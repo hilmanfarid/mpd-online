@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_cust_acc_status</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-5D95AA10
+
+var t_cust_acc_statusForm_DatePicker_valid_from = new Object(); 
+t_cust_acc_statusForm_DatePicker_valid_from.format           = "dd-mmm-yyyy";
+t_cust_acc_statusForm_DatePicker_valid_from.style            = "Styles/sikp/Style.css";
+t_cust_acc_statusForm_DatePicker_valid_from.relativePathPart = "../";
+t_cust_acc_statusForm_DatePicker_valid_from.themeVersion = "3.0";
+
+var t_cust_acc_statusForm_DatePicker_valid_to = new Object(); 
+t_cust_acc_statusForm_DatePicker_valid_to.format           = "dd-mmm-yyyy";
+t_cust_acc_statusForm_DatePicker_valid_to.style            = "Styles/sikp/Style.css";
+t_cust_acc_statusForm_DatePicker_valid_to.relativePathPart = "../";
+t_cust_acc_statusForm_DatePicker_valid_to.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//t_cust_acc_statusFormButton_Delete_OnClick @97-9EDC5CD6
+function t_cust_acc_statusFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_cust_acc_statusFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close t_cust_acc_statusFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_cust_acc_statusFormButton_Delete_OnClick
+
+//t_cust_acc_statusFormButton_Cancel_OnClick @99-D6837D77
+function t_cust_acc_statusFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_cust_acc_statusFormButton_Cancel_OnClick
+
+//bind_events @1-8AFD9D35
+function bind_events() {
+    addEventHandler("t_cust_acc_statusFormButton_Delete", "click", t_cust_acc_statusFormButton_Delete_OnClick);
+    addEventHandler("t_cust_acc_statusFormButton_Cancel", "click", t_cust_acc_statusFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toRole()">
+      <div class="tab-title-selected">
+        STATUS AKUN&nbsp;&nbsp;KUSTOMER 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_cust_acc_statusSearch -->
+        <form id="t_cust_acc_statusSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="t_cust_acc_statusSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_cust_acc_statusSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_cust_acc_statusSearch --><br>
+        <!-- BEGIN Grid t_cust_acc_statusGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;USER&nbsp;</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">Kustomer</th>
+ 
+                  <th scope="col">Status Akun</th>
+ 
+                  <th scope="col">Valid&nbsp;From&nbsp;</th>
+ 
+                  <th colspan="5" scope="col">Valid To</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_cust_acc_statusGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_cust_acc_statusGridDLink_{t_cust_acc_statusGrid:rowNumber}">{DLink}</a></td> 
+                  <td>{company_name}&nbsp;<input id="t_cust_acc_statusGridt_cust_acc_status_id" type="hidden" value="{t_cust_acc_status_id}" name="{t_cust_acc_status_id_Name}"></td> 
+                  <td>{code}&nbsp;</td> 
+                  <td>&nbsp;{valid_from}</td> 
+                  <td colspan="5">{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="9">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="t_cust_acc_statusGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="8">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_cust_acc_statusGrid --><br>
+        <!-- BEGIN Record t_cust_acc_statusForm -->
+        <form id="t_cust_acc_statusForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI USER&nbsp;</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record Grid" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_acc_statusFormt_cust_account_id_cust_acc">Status Kustomer</label></td> 
+                    <td><input id="t_cust_acc_statusFormt_cust_account_id_cust_acc" class="ControlsRQ" style="HEIGHT: 20px; WIDTH: 198px" readonly maxlength="96" size="14" value="{t_cust_account_id_cust_acc}" name="{t_cust_account_id_cust_acc_Name}"><img onclick="javascript:lov_cust_status()" border="0" src="../images/view.gif"><input id="t_cust_acc_statusFormt_cust_acc_status_id" type="hidden" value="{t_cust_acc_status_id}" name="{t_cust_acc_status_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_acc_statusFormcompany_name">Kustomer</label></td> 
+                    <td><input id="t_cust_acc_statusFormcompany_name" class="ControlsRQ" style="HEIGHT: 20px; WIDTH: 198px" readonly maxlength="16" size="1" value="{company_name}" name="{company_name_Name}"><img onclick="javascript:lov_cust_acc()" border="0" src="../images/view.gif"><input id="t_cust_acc_statusFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_acc_statusFormp_account_status_id">Status Akun</label></td> 
+                    <td>
+                      <select id="t_cust_acc_statusFormp_account_status_id" class="ControlsRQ" style="WIDTH: 198px" name="{p_account_status_id_Name}">
+                        {p_account_status_id_Options}
+                      </select>
+ &nbsp;<input id="t_cust_acc_statusFormp_a_p_account_status_id" type="hidden" value="{p_a_p_account_status_id}" name="{p_a_p_account_status_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_acc_statusFormdescription">Deskripsi</label></td> 
+                    <td><input id="t_cust_acc_statusFormdescription" class="ControlsIN" maxlength="250" size="60" value="{description}" name="{description_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_acc_statusFormvalid_from">Tanggal Berlaku</label></td> 
+                    <td><input id="t_cust_acc_statusFormvalid_from" class="ControlsRQ" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="15" value="{valid_from}" name="{valid_from_Name}">
+                      <!-- BEGIN DatePicker DatePicker_valid_from --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_cust_acc_statusFormDatePicker_valid_from"><img id="t_cust_acc_statusFormDatePicker_valid_from_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_from --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_acc_statusFormvalid_to">Tanggal Kadaluarsa</label></td> 
+                    <td><input id="t_cust_acc_statusFormvalid_to" class="ControlsIN" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="15" value="{valid_to}" name="{valid_to_Name}">
+                      <!-- BEGIN DatePicker DatePicker_valid_to --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_cust_acc_statusFormDatePicker_valid_to"><img id="t_cust_acc_statusFormDatePicker_valid_to_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_to --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_acc_statusFormcreated_by">Dibuat Oleh</label></td> 
+                    <td><input id="t_cust_acc_statusFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="t_cust_acc_statusFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_acc_statusFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input id="t_cust_acc_statusFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="t_cust_acc_statusFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button_Insert --><input id="t_cust_acc_statusFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_cust_acc_statusFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_cust_acc_statusFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="t_cust_acc_statusFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_cust_acc_statusForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function lov_cust_status() {
+        getFrom_LOV('t_cust_acc_statusForm','t_cust_acc_status_id,t_cust_account_id_cust_acc','lov_2_field.php?TABLE=t_cust_acc_status&FIELD_0=t_cust_acc_status_id&FIELD_1=t_cust_account_id&FIELD_2=p_account_status_id&LABEL1=CUST ACC&LABEL2=ACC STATUS&HEADER_PAGE=ACC STATUS&HEADER_LOV=DAFTAR CUST ACC STATUS&ORDER=LISTING_NO');
+}
+function lov_cust_acc() {
+        getFrom_LOV('t_cust_acc_statusForm','t_cust_account_id,company_name','lov_2_field.php?TABLE=t_cust_account&FIELD_0=t_cust_account_id&FIELD_1=company_name&FIELD_2=address_name&LABEL1=NAMA PERUSAHAAN&LABEL2=ALAMAT PERUSAHAAN&HEADER_PAGE=CUSTOMER&HEADER_LOV=DAFTAR KUSTOMER&ORDER=LISTING_NO');
+}
+</script>
+</body>
+</html>

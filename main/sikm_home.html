@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>main</title>
+<meta content="CodeCharge Studio 4.1.00.031" name="GENERATOR">
+<!--#include File="../include/sessi.inc"-->
+<script language="JavaScript" src="../js/qs.js"></script>
+<link href="../Styles/sip/Style.css" type="text/css" rel="stylesheet">
+<link href="../Styles/sip/Style_doctype.css" type="text/css" rel="stylesheet">
+</head>
+<body vlink="#000000" link="#000000" leftmargin="0" topmargin="0" marginwidth="" marginheight="">
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td><img src="../images/tab_s_on.gif" border="0"></td> 
+    <td class="th" nowrap background="../images/tab_on.gif">AVAILABLE WORKFLOW</td> 
+    <td><img src="../images/tab_e_on.gif" border="0"></td> 
+    <td><img src="../images/tab_s_off.gif" border="0"></td> 
+    <td class="th" nowrap background="../images/tab_off.gif"><a href="../param/user_change_password.aspx">UBAH PASSWORD</a></td> 
+    <td><img src="../images/tab_e_off.gif" border="0"></td> 
+    <td width="100%" background="../images/tab_back.gif"></td>
+  </tr>
+</table>
+<p>
+<!-- BEGIN Grid workavailable -->
+<table cellspacing="0" cellpadding="0" width="30%" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption" style="TEXT-ALIGN: center" align="center">
+          <th style="TEXT-ALIGN: center" scope="col" nowrap align="middle" colspan="8">&nbsp;INBOX UNTUK ANDA </th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td nowrap align="center" width="1%">
+            <p align="center">&nbsp;</p>
+          </td> 
+          <td nowrap width="10%"><a href="{WORKFLOW_NAME_Src}" id="workavailableWORKFLOW_NAME_{workavailable:rowNumber}"><b>{WORKFLOW_NAME}</b> </b></a>&nbsp;&nbsp; 
+            <!-- BEGIN TextBox SURL --><input class="tdleft" id="workavailableSURL" style="DISPLAY: none; WIDTH: 147px; HEIGHT: 16px" readonly size="11" value="{SURL}" name="{SURL_Name}"><!-- END TextBox SURL --></td> 
+          <td style="TEXT-ALIGN: center" nowrap align="center" width="5%" colspan="6"><a href="{INBOX_Src}" id="workavailableINBOX_{workavailable:rowNumber}"><b>{INBOX}</b> </b></a></td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="8"></td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="NoRecords">
+          <td style="TEXT-ALIGN: right" nowrap width="10%" colspan="8">_______________&nbsp;</td>
+        </tr>
+ 
+        <tr class="NoRecords">
+          <td style="TEXT-ALIGN: right" nowrap width="10%" colspan="2">&nbsp;Jumlah Pekerjaan Tersedia &nbsp;: &nbsp;</td> 
+          <td style="TEXT-ALIGN: center" nowrap width="5%" colspan="6"><b>{JUMLAH}</b>&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid workavailable --></p>
+</body>
+</html>

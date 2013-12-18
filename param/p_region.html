@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_application_role</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//p_regionFormButton_Delete_OnClick @26-8C105CF9
+function p_regionFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_regionFormButton_Delete_OnClick
+
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_regionFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close p_regionFormButton_Delete_OnClick
+
+//p_regionFormButton_Cancel_OnClick @124-CE68666A
+function p_regionFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_regionFormButton_Cancel_OnClick
+
+//bind_events @1-41CFB328
+function bind_events() {
+    addEventHandler("p_regionFormButton_Delete", "click", p_regionFormButton_Delete_OnClick);
+    addEventHandler("p_regionFormButton_Cancel", "click", p_regionFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        REGIONAL 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record p_regionSearch -->
+        <form id="p_regionSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td>{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input class="ControlsIN" id="p_regionSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="p_regionSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="p_regionSearchparent_id" type="hidden" value="{parent_id}" name="{parent_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_regionSearch --><br>
+        <!-- BEGIN Grid p_regionGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR REGIONAL</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center">#</th>
+ 
+                  <th scope="col">&nbsp;Kode Regional</th>
+ 
+                  <th scope="col">Regional</th>
+ 
+                  <th scope="col">Deskripsi</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_regionGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: right">
+                    <div align="center">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{DLink_Src}" id="p_regionGridDLink_{p_app_roleGrid:rowNumber}">{DLink}</a>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+                    </div>
+                  </td> 
+                  <td>{region_code}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">
+                    <div align="left">
+                      {region_name}&nbsp;<input id="p_regionGridp_region_id" type="hidden" value="{p_region_id}" name="{p_region_id_Name}">&nbsp;&nbsp;&nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="left">
+                      {description}&nbsp;&nbsp;&nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="4">data tidak ditemukan</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><a href="{Insert_Link_Src}" id="p_regionGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a>&nbsp;</td> 
+                  <td colspan="3">&nbsp; 
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_regionGrid --><br>
+        <!-- BEGIN Record p_regionForm -->
+        <form id="p_regionForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>INFORMASI REGIONAL</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">Kode Regional&nbsp;</td> 
+                    <td><input class="ControlsIN" id="p_regionFormregion_code" maxlength="12" size="15" value="{region_code}" name="{region_code_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_regionFormregion_name">Regional</label></td> 
+                    <td><input class="ControlsRQ" id="p_regionFormregion_name" maxlength="32" size="32" value="{region_name}" name="{region_name_Name}">&nbsp;<input id="p_regionFormparent_id" type="hidden" value="{parent_id}" name="{parent_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Level&nbsp;</td> 
+                    <td>
+                      <select class="ControlsRQ" id="p_regionFormp_region_level_id" name="{p_region_level_id_Name}">
+                        {p_region_level_id_Options}
+                      </select>
+ &nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_regionFormdescription">Deskripsi</label></td> 
+                    <td><input class="ControlsIN" id="p_regionFormdescription" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_regionFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input class="ControlsRO" id="p_regionFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="p_regionFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="2">
+                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="p_regionFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="p_regionFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="p_regionFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="p_regionFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_regionFormp_region_id" type="hidden" value="{p_region_id}" name="{p_region_id_Name}"><input id="p_regionFormp_regionGridPage" type="hidden" value="{p_regionGridPage}" name="{p_regionGridPage_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_regionForm -->
+        <p></p>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

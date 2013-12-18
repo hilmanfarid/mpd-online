@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?> <!--FlashChart Header @703-EFBEC7D5-->
+
+<!--FlashChart Template @703-9E78F4FA-->
+<root>
+	<schema name="Autumn">
+		<mask/>
+		<colors/>
+	</schema>
+	<separator decimal="," group=""/>
+	<background border="yes"/>
+	<chartarea border="yes">
+		<grid line_style="medium" visible="yes"/>
+		<vertical_axis visible="yes"/>
+		<horizontal_axis visible="yes" rotation="degrees" autoRotate="yes"/>
+		<chart line_thick="2" enabled="yes" type="3d_columns" series="columns">
+			<inscriptions visible="yes"/>
+			<animation type="none"/>
+			<markers size="8" type="0"/>
+			<hints border="yes" enabled="yes"/>
+		</chart>
+		<legend sqr_size="12" sqr_borders="yes" border_thick="0" position="left-center" layout="vertical" visible="no"/>
+		<title position="top" align="center" border="no" alpha="100" visible="yes" text="Jumlah Lapor"/>
+	</chartarea>
+	<objects>
+	</objects>
+	<data>
+		<columns>
+			<column field="jml_lapor" name="Jumlah Lapor"/></columns>
+		<rows>
+			<!-- BEGIN Row --><row col1="{jml_lapor}" name="{tgl}"/><!-- END Row --></rows>
+	</data>
+</root>
+
+<!--End FlashChart Template-->

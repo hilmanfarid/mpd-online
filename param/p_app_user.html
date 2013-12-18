@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_app_user</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-5D95AA10
+
+var p_app_userForm_DatePicker_expired_user = new Object(); 
+p_app_userForm_DatePicker_expired_user.format           = "dd-mmm-yyyy";
+p_app_userForm_DatePicker_expired_user.style            = "Styles/sikp/Style.css";
+p_app_userForm_DatePicker_expired_user.relativePathPart = "../";
+p_app_userForm_DatePicker_expired_user.themeVersion = "3.0";
+
+var p_app_userForm_DatePicker_expired_pwd = new Object(); 
+p_app_userForm_DatePicker_expired_pwd.format           = "dd-mmm-yyyy";
+p_app_userForm_DatePicker_expired_pwd.style            = "Styles/sikp/Style.css";
+p_app_userForm_DatePicker_expired_pwd.relativePathPart = "../";
+p_app_userForm_DatePicker_expired_pwd.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//p_app_userFormButton_Delete_OnClick @97-9EDC5CD6
+function p_app_userFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_app_userFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_app_userFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close p_app_userFormButton_Delete_OnClick
+
+//p_app_userFormButton_Cancel_OnClick @99-D6837D77
+function p_app_userFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_app_userFormButton_Cancel_OnClick
+
+//bind_events @1-8AFD9D35
+function bind_events() {
+    addEventHandler("p_app_userFormButton_Delete", "click", p_app_userFormButton_Delete_OnClick);
+    addEventHandler("p_app_userFormButton_Cancel", "click", p_app_userFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        ADMINISTRASI USER 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toRole()">
+      <div class="tab-title">
+        ROLE USER 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record p_app_userSearch -->
+        <form id="p_app_userSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input class="ControlsIN" id="p_app_userSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="p_app_userSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_app_userSearch --><br>
+        <!-- BEGIN Grid p_app_userGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;USER&nbsp;</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                  <th scope="col">Ubah Password</th>
+ 
+                  <th scope="col">Nama User</th>
+ 
+                  <th scope="col">Nama Lengkap</th>
+ 
+                  <th scope="col">Deskripsi</th>
+ 
+                  <th scope="col" colspan="2">email</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_app_userGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_app_userGridDLink_{p_app_userGrid:rowNumber}">{DLink}</a></td> 
+                  <td style="TEXT-ALIGN: center">&nbsp;<a href="{ImageLink1}" id="p_app_userGridImageLink1_{p_app_userGrid:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink1}" src="../images/key.gif"></a></td> 
+                  <td>{app_user_name}&nbsp;<input id="p_app_userGridp_app_user_id_{p_app_userGrid:rowNumber}" type="hidden" value="{p_app_user_id}" name="{p_app_user_id_Name}"></td> 
+                  <td>{full_name}&nbsp;</td> 
+                  <td>{description}&nbsp;</td> 
+                  <td colspan="2">{email_address}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="7">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="p_app_userGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a></b></td> 
+                  <td colspan="6">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_app_userGrid --><br>
+        <!-- BEGIN Record p_app_userForm -->
+        <form id="p_app_userForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>INFORMASI USER&nbsp;</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record Grid" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormapp_user_name">Nama User</label></td> 
+                    <td><input class="ControlsRQ" id="p_app_userFormapp_user_name" maxlength="16" size="12" value="{app_user_name}" name="{app_user_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormfull_name">Nama Lengkap</label></td> 
+                    <td><input class="ControlsRQ" id="p_app_userFormfull_name" maxlength="96" size="40" value="{full_name}" name="{full_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormemail_address">Email</label></td> 
+                    <td><input class="ControlsRQ" id="p_app_userFormemail_address" maxlength="128" size="50" value="{email_address}" name="{email_address_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormp_user_status_id">Status</label></td> 
+                    <td>
+                      <select class="ControlsRQ" id="p_app_userFormp_user_status_id" name="{p_user_status_id_Name}">
+                        {p_user_status_id_Options}
+                      </select>
+ &nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Employee ?&nbsp;</td> 
+                    <td>
+                      <select class="ControlsRQ" id="p_app_userFormis_employee" name="{is_employee_Name}">
+                        <option value="" selected>Pilih</option>
+                        {is_employee_Options}
+                      </select>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormdescription">Deskripsi</label></td> 
+                    <td><input class="ControlsIN" id="p_app_userFormdescription" maxlength="250" size="60" value="{description}" name="{description_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormip_address_v4">IP Address v4</label></td> 
+                    <td><input class="ControlsIN" id="p_app_userFormip_address_v4" maxlength="24" value="{ip_address_v4}" name="{ip_address_v4_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormip_address_v4">IP Address v6</label></td> 
+                    <td><input class="ControlsIN" id="p_app_userFormip_address_v6" maxlength="24" value="{ip_address_v6}" name="{ip_address_v6_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormexpired_user">Expired User</label></td> 
+                    <td><input class="ControlsIN" id="p_app_userFormexpired_user" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="15" value="{expired_user}" name="{expired_user_Name}">
+                      <!-- BEGIN DatePicker DatePicker_expired_user --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_app_userFormDatePicker_expired_user"><img id="p_app_userFormDatePicker_expired_user_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_expired_user --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormexpired_pwd">Expired Pwd</label></td> 
+                    <td><input class="ControlsIN" id="p_app_userFormexpired_pwd" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="15" value="{expired_pwd}" name="{expired_pwd_Name}">
+                      <!-- BEGIN DatePicker DatePicker_expired_pwd --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_app_userFormDatePicker_expired_pwd"><img id="p_app_userFormDatePicker_expired_pwd_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_expired_pwd --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormlast_login_time">Terakhir Login</label></td> 
+                    <td><input class="ControlsRO" id="p_app_userFormlast_login_time" readonly maxlength="100" size="30" value="{last_login_time}" name="{last_login_time_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormcreated_by">Dibuat Oleh</label></td> 
+                    <td><input class="ControlsRO" id="p_app_userFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="p_app_userFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input class="ControlsRO" id="p_app_userFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="p_app_userFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="2">
+                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="p_app_userFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="p_app_userFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="p_app_userFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="p_app_userFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_app_userFormp_app_userGridPage" style="WIDTH: 76px; HEIGHT: 22px" type="hidden" size="10" value="{p_app_userGridPage}" name="{p_app_userGridPage_Name}"><input id="p_app_userFormp_app_user_id" type="hidden" value="{p_app_user_id}" name="{p_app_user_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_app_userForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function toRole()
+{
+  var idelement;
+  if (idelement = document.getElementById('p_app_userFormp_app_user_id'))
+  {
+    var pid=idelement.value;
+    var pcode=document.getElementById("p_app_userFormapp_user_name").value;
+    var skw=document.getElementById("p_app_userSearchs_keyword").value;
+        var page=document.getElementById("p_app_userFormp_app_userGridPage").value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="p_app_user_role.php?p_app_user_id="+pid+"&app_user_name="+pcode+"&user_s_keyword="+skw+"&p_app_userGridPage="+page;
+    } else {
+     alert("Pilih salah satu USER!");
+    }
+  } else {
+     alert("Pilih salah satu USER!");
+  }
+}
+
+</script>
+</body>
+</html>

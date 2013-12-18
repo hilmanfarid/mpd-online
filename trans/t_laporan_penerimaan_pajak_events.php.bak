@@ -1,0 +1,64 @@
+<?php
+//BindEvents Method @1-FD2B16D4
+function BindEvents()
+{
+    global $t_vat_setllementSearch;
+    $t_vat_setllementSearch->button_submit->CCSEvents["OnClick"] = "t_vat_setllementSearch_button_submit_OnClick";
+}
+//End BindEvents Method
+
+//t_vat_setllementSearch_button_submit_OnClick @8-50DA784C
+function t_vat_setllementSearch_button_submit_OnClick(& $sender)
+{
+    $t_vat_setllementSearch_button_submit_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementSearch; //Compatibility
+//End t_vat_setllementSearch_button_submit_OnClick
+
+//Custom Code @9-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$dbConn = new clsDBConnSIKP();
+	$cusAccId = $t_vat_setllementSearch->t_cust_account_id->GetValue();
+	$Period = $t_vat_setllementSearch->p_finance_period_id->GetValue();
+	//$ReqId = $t_vat_setllementSearch->p_rqst_type_id->GetValue();
+	$npwd = $t_vat_setllementSearch->npwd->GetValue(); 	
+	$User = CCGetUserLogin();
+		 
+	$sql = "select * from f_vat_settlement(".$cusAccId.","											
+											."null,"
+											.$Period.",'"
+											.$npwd."','"
+											.$User."')";
+	$dbConn->query($sql);
+	$dbConn->next_record();
+	$vatId = $dbConn->f("o_vat_setllement_id");
+	$mess = $dbConn->f("o_mess");
+	$dbConn->close();
+
+	echo '<script language="javascript">';
+	echo 'alert("'.$mess.'");';
+	echo '</script>';
+	
+	$PeriodCode = $t_vat_setllementSearch->finance_period_code->GetValue();
+	$typeCode = $t_vat_setllementSearch->rqst_type_code->GetValue(); 
+	$param = "t_vat_setllement.php?t_cust_account_id=".$cusAccId
+			."&p_finance_period_id=".$Period
+			."&finance_period_code=".$PeriodCode
+			."&rqst_type_code=".$typeCode
+			."&p_rqst_type_id=".$ReqId
+			."&npwd=".$npwd;
+
+	echo "<meta http-equiv='refresh' content='0;URL=".$param."' >";
+		return;
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementSearch_button_submit_OnClick @8-36FC9291
+    return $t_vat_setllementSearch_button_submit_OnClick;
+}
+//End Close t_vat_setllementSearch_button_submit_OnClick
+
+
+?>

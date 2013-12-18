@@ -1,0 +1,263 @@
+<!CCSDOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head><style needdelete>td {border-style:dotted;border-width:1px;border-color:#aaaaaa;} table {border-style:dashed;border-width:1px;border-color:#aaaaaa;}</style>
+<meta ccsServiceable="true" name="GENERATOR" content="CodeCharge Studio 4.3.00.7676"/><meta ccsServiceable="true" http-equiv="content-type" content="text/html; charset=windows-1252"/>
+
+<title>p_application</title>
+
+
+<link ccsServiceable="true" rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css"/>
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//p_applicationFormButton_Delete_OnClick @80-5863DA59
+function p_applicationFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_applicationFormButton_Delete_OnClick
+
+//Confirmation Message @81-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_applicationFormButton_Delete_OnClick @80-BC33A33A
+    return result;
+}
+//End Close p_applicationFormButton_Delete_OnClick
+
+//p_applicationFormButton_Cancel_OnClick @79-EBB7FC54
+function p_applicationFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_applicationFormButton_Cancel_OnClick
+
+//bind_events @1-0021CFC6
+function bind_events() {
+    addEventHandler("p_applicationFormButton_Delete", "click", p_applicationFormButton_Delete_OnClick);
+    addEventHandler("p_applicationFormButton_Cancel", "click", p_applicationFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        ADMINISTRASI MODUL 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_onclick="javascript:toMenu()">
+      <div class="tab-title">
+        ROLE MODUL 
+      </div>
+      </span>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <span contentEditable="true"  style="display:block;border-style:dashed;border-color:#FF3333; border-width:thin" ccsType="Component" ccsId="3" ccsServiceable="true" ccsName="p_applicationSearch" >
+        
+<form ccsServiceable="true" id="p_applicationSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input ccsServiceable="true" ccsId="5" ccsName="s_keyword" ccsType="Component" class="ControlsIN" id="p_applicationSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"/></td> 
+                    <td class="search-field">
+                      <input ccsServiceable="true" ccsId="4" ccsName="Button_DoSearch" ccsType="Component" ccsExtendedHtml="true" class="btn_tambah" id="p_applicationSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"/></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+
+        &nbsp;</span><br>
+        <span contentEditable="true"  style="display:block;border-style:dashed;border-color:#FF3333; border-width:thin" ccsType="Component" ccsId="2" ccsServiceable="true" ccsName="p_applicationGrid" >
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img ccsServiceable="true" alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"/></td> 
+                  <td class="th"><strong>DAFTAR MODUL&nbsp;</strong></td> 
+                  <td class="HeaderRight"><img ccsServiceable="true" alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"/></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Menu&nbsp;</th>
+ 
+                  <th scope="col">Modul</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">No Urut&nbsp;</th>
+ 
+                  <th scope="col" colspan="3">Deskripsi</th>
+                </tr>
+ 
+                <tr  ccsType="Block" isBegin="True" name="Row" ccsServiceable="true" ><td atomicselection="true" unselectable="on" colspan="99" style="border-right: black 1px solid;border-top: 2px groove;border-left: 2px groove;border-bottom: black 1px solid;background-color:#DDDDDD" ccsServiceable="true"><span style="width:100%;height:100%;border-style:none;font-size:xx-small;font-family:Arial" unselectable="on" ccsServiceable="true"> Begin Row</span></td></tr>
+                <tr  class="Row" {p_applicationGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap><span ccsType="Component" ccsId="11" ccsName="DLink" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px" ccsServiceable="true" contentEditable="true"><a ccsServiceable="true"  href="{DLink_Src}" id="p_applicationGridDLink_{p_applicationGrid:rowNumber}"><span style="white-space:nowrap" ccsBlockIsWhiteSpace="true" ccsServiceable="true">{DLink}</span></a></span></td> 
+                  <td style="TEXT-ALIGN: center" nowrap>&nbsp;<span ccsType="Component" ccsId="133" ccsName="ImageLink1" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px" ccsServiceable="true" contentEditable="true"><a ccsServiceable="true"  href="{ImageLink1}" id="p_applicationGridImageLink1_{p_applicationGrid:rowNumber}"><span style="white-space:nowrap" ccsBlockIsWhiteSpace="true" ccsServiceable="true"><img ccsServiceable="true" style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink1}" src="../images/list.gif"/></span></a></span></td> 
+                  <td nowrap><span ccsId="15" ccsName="code" ccsBlockIsWhiteSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px" ccsType="Component" ccsServiceable="true" contentEditable="false">code</span>&nbsp;<input ccsServiceable="true" ccsId="13" ccsName="p_application_id" ccsType="Component" id="p_application_id" type="hidden" value="{p_application_id}" name="{p_application_id_Name}"/></td> 
+                  <td style="TEXT-ALIGN: center"><span ccsId="78" ccsName="listing_no" ccsBlockIsWhiteSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px" ccsType="Component" ccsServiceable="true" contentEditable="false">listing_no</span></td> 
+                  <td nowrap colspan="3"><span ccsId="17" ccsName="description" ccsBlockIsWhiteSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px" ccsType="Component" ccsServiceable="true" contentEditable="false">description</span>&nbsp;</td>
+                </tr>
+ <tr  ccsType="Block" isBegin="False" name="Row" ccsServiceable="true" ><td atomicselection="true" unselectable="on" colspan="99" style="border-right: black 1px solid;border-top: 2px groove;border-left: 2px groove;border-bottom: black 1px solid;background-color:#DDDDDD" ccsServiceable="true"><span style="width:100%;height:100%;border-style:none;font-size:xx-small;font-family:Arial" unselectable="on" ccsServiceable="true"> End Row</span></td></tr>
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="7">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><span ccsType="Component" ccsId="7" ccsName="Insert_Link" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px" ccsServiceable="true" contentEditable="true"><a ccsServiceable="true"  href="{Insert_Link_Src}" id="p_applicationGridInsert_Link"><span style="white-space:nowrap" ccsBlockIsWhiteSpace="true" ccsServiceable="true"><img ccsServiceable="true" src="../images/insert_link.gif" border="0"/></span></a></span><a ccsServiceable="true" href="{Insert_Link_Src}" id="p_applicationGridInsert_Link"></a></b></td> 
+                  <td colspan="6">
+                    <span ccsId="18" ccsName="Navigator" ccsType="Navigator" ccsControlType="Navigator" ccsControlName="Navigator" ccsExtendedHtml="true" atomicselection="true"  ccsServiceable="true" ccsExtendedHtmlSpan="true">
+                    <span ccsId="" ccsName="First_On" name="First_On" ccsType="Block" ccsServiceable="true" contentEditable="true" ccsPreserveEndSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><a ccsServiceable="true" href="{First_URL}"><img ccsServiceable="true" alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"/></a> </span>
+                    <span ccsId="" ccsName="First_Off" name="First_Off" ccsType="Block" ccsServiceable="true" contentEditable="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><img ccsServiceable="true" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"/></span>
+                    <span ccsId="" ccsName="Prev_On" name="Prev_On" ccsType="Block" ccsServiceable="true" contentEditable="true" ccsPreserveEndSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><a ccsServiceable="true" href="{Prev_URL}"><img ccsServiceable="true" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"/></a> </span>
+                    <span ccsId="" ccsName="Prev_Off" name="Prev_Off" ccsType="Block" ccsServiceable="true" contentEditable="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><img ccsServiceable="true" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"/></span>&nbsp; 
+                    <span ccsId="" ccsName="Pages" name="Pages" ccsType="Block" ccsServiceable="true" contentEditable="true">
+                    <span ccsId="" ccsName="Page_On" name="Page_On" ccsType="Block" ccsServiceable="true" contentEditable="true" ccsPreserveEndSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><a ccsServiceable="true" href="{Page_URL}">{Page_Number}</a>&nbsp;</span>
+                    <span ccsId="" ccsName="Page_Off" name="Page_Off" ccsType="Block" ccsServiceable="true" contentEditable="true" ccsPreserveEndSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px">{Page_Number}&nbsp;</span></span>
+                    <span ccsId="" ccsName="Next_On" name="Next_On" ccsType="Block" ccsServiceable="true" contentEditable="true" ccsPreserveEndSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><a ccsServiceable="true" href="{Next_URL}"><img ccsServiceable="true" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"/></a> </span>
+                    <span ccsId="" ccsName="Next_Off" name="Next_Off" ccsType="Block" ccsServiceable="true" contentEditable="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><img ccsServiceable="true" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"/></span>
+                    <span ccsId="" ccsName="Last_On" name="Last_On" ccsType="Block" ccsServiceable="true" contentEditable="true" ccsPreserveEndSpace="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><a ccsServiceable="true" href="{Last_URL}"><img ccsServiceable="true" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"/></a> </span>
+                    <span ccsId="" ccsName="Last_Off" name="Last_Off" ccsType="Block" ccsServiceable="true" contentEditable="true" style="white-space:nowrap;border-color:#bbbbbb;border-style:solid;border-width:1px"><img ccsServiceable="true" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"/></span>&nbsp;</span>&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        &nbsp;</span><br>
+        <span contentEditable="true"  style="display:block;border-style:dashed;border-color:#FF3333; border-width:thin" ccsType="Component" ccsId="19" ccsServiceable="true" ccsName="p_applicationForm" >
+        
+<form ccsServiceable="true" id="p_applicationForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img ccsServiceable="true" alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"/></td> 
+                    <td class="th"><strong>INFORMASI MODUL&nbsp;</strong></td> 
+                    <td class="HeaderRight"><img ccsServiceable="true" alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"/></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record Grid" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="p_applicationFormcode">Modul</span></td> 
+                    <td><input ccsServiceable="true" ccsId="27" ccsName="code" ccsType="Component" class="ControlsRQ" id="p_applicationFormcode" maxlength="32" size="32" value="{code}" name="{code_Name}"/></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="p_applicationFormlisting_no">No Urut</span></td> 
+                    <td><input ccsServiceable="true" ccsId="28" ccsName="listing_no" ccsType="Component" class="ControlsRQ" id="p_applicationFormlisting_no" maxlength="12" size="4" value="{listing_no}" name="{listing_no_Name}"/></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="p_applicationFormdescription">Deskripsi</span></td> 
+                    <td><input ccsServiceable="true" ccsId="29" ccsName="description" ccsType="Component" class="ControlsIN" id="p_applicationFormdescription" maxlength="250" size="50" value="{description}" name="{description_Name}"/></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="p_applicationFormcreated_by">Dibuat Oleh</span></td> 
+                    <td><input ccsServiceable="true" ccsId="32" ccsName="created_by" ccsType="Component" class="ControlsRO" id="p_applicationFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly="readonly" maxlength="16" size="15" value="{created_by}" name="{created_by_Name}"/>; Tanggal :<input ccsServiceable="true" ccsId="30" ccsName="creation_date" ccsType="Component" class="ControlsRO" id="p_applicationFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly="readonly" maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"/></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><span ccsServiceable="true" ccsHtmlTag="label" ccsHtmlTag_for="p_applicationFormupdated_by">Diubah Oleh</span></td> 
+                    <td><input ccsServiceable="true" ccsId="35" ccsName="updated_by" ccsType="Component" class="ControlsRO" id="p_applicationFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly="readonly" maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}"/>; Tanggal :<input ccsServiceable="true" ccsId="33" ccsName="updated_date" ccsType="Component" class="ControlsRO" id="p_applicationFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly="readonly" maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"/></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      <input ccsServiceable="true" ccsId="24" ccsName="Button_Insert" ccsType="Component" ccsExtendedHtml="true" class="btn_tambah" id="p_applicationFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"/>
+                      <input ccsServiceable="true" ccsId="82" ccsName="Button_Update" ccsType="Component" ccsExtendedHtml="true" class="btn_tambah" id="p_applicationFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"/>
+                      <input ccsServiceable="true" ccsId="80" ccsName="Button_Delete" ccsType="Component" ccsExtendedHtml="true" class="btn_tambah" id="p_applicationFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"/>
+                      <input ccsServiceable="true" ccsId="79" ccsName="Button_Cancel" ccsType="Component" ccsExtendedHtml="true" class="btn_tambah" id="p_applicationFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"/><input ccsServiceable="true" ccsId="26" ccsName="p_application_id" ccsType="Component" id="p_applicationFormp_application_id" type="hidden" value="{p_application_id}" name="{p_application_id_Name}"/><input ccsServiceable="true" ccsId="135" ccsName="p_applicationGridPage" ccsType="Component" id="p_applicationFormp_applicationGridPage" type="hidden" value="{p_applicationGridPage}" name="{p_applicationGridPage_Name}"/></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+
+        &nbsp;</span><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+
+function toMenu()
+{
+  var idelement;
+  if (idelement = document.getElementById('p_applicationFormp_application_id'))
+  {
+    var pid=idelement.value;
+    var pcode=document.getElementById("p_applicationFormcode").value;
+    var skw=document.getElementById("p_applicationSearchs_keyword").value;
+    var page=document.getElementById("p_applicationFormp_applicationGridPage").value;
+
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="p_application_role.php?p_application_id="+pid+"&app_code="+pcode+"&app_s_keyword="+skw+"&p_applicationGridPage="+page;
+    } else {
+     alert("Pilih salah satu ROLE!");
+    }
+  } else {
+     alert("Pilih salah satu ROLE!");
+  }
+}
+
+</script>
+<div>
+</div>
+<div>
+</div>
+
+</body>
+</html>

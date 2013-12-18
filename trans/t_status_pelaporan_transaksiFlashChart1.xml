@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?> <!--FlashChart Header @686-EFBEC7D5-->
+
+<!--FlashChart Template @686-AC5C8349-->
+<root>
+	<schema name="Bright">
+		<mask/>
+		<colors/>
+	</schema>
+	<separator decimal="," group=""/>
+	<background border="yes"/>
+	<chartarea border="yes">
+		<grid line_style="medium" visible="yes"/>
+		<vertical_axis visible="yes"/>
+		<horizontal_axis visible="yes" rotation="degrees" autoRotate="yes"/>
+		<chart line_thick="2" enabled="yes" type="3d_pie" series="rows">
+			<inscriptions visible="yes"/>
+			<animation type="none"/>
+			<markers size="8" type="0"/>
+			<hints border="yes" enabled="yes"/>
+		</chart>
+		<legend sqr_size="12" sqr_borders="yes" border_thick="0" position="left-center" layout="vertical" visible="yes"/>
+		<title position="top" align="center" border="no" alpha="100" visible="yes" text="Status Pelaporan Pajak"/>
+	</chartarea>
+	<objects>
+	</objects>
+	<data>
+		<columns>
+			<column field="jml" name="jml"/></columns>
+		<rows><!-- BEGIN Row --><row col1="{jml}" name="{status_lapor}"/><!-- END Row --></rows></data>
+</root>
+
+<!--End FlashChart Template-->
+

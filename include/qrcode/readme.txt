@@ -1,0 +1,1 @@
+Pada index.php di line 40,Lokasi generate-qr.php harus full path

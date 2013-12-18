@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?> <!--FlashChart Header @684-EFBEC7D5-->
+
+<!--FlashChart Template @684-84E3C073-->
+<root>
+	<schema name="Autumn">
+		<mask name="0"/>
+		<colors><color value="17DCDC"/><color value="FF9900"/><color value="03D803"/><color value="FFEA00"/><color value="FF0000"/><color value="0000FF"/><color value="5C2DB3"/><color value="993366"/><color value="CB07CB"/><color value="2AA7CB"/><color value="B3EF00"/><color value="6CF2F7"/><color value="6B3CE4"/><color value="A2D061"/><color value="A76DFF"/><color value="FC9F62"/><color value="FFCC00"/><color value="FF99CC"/><color value="5454E5"/><color value="C50404"/><color value="CC99FF"/><color value="E15603"/><color value="899CFF"/><color value="ED70AF"/><color value="FDF98B"/><color value="BE3EE3"/><color value="764BE5"/><color value="CDDF52"/><color value="00F439"/><color value="CCCCCB"/><color value="3DC681"/><color value="4193DF"/><color value="D5B94A"/><color value="C46B30"/><color value="037ADE"/><color value="FFDD56"/><color value="FF6600"/><color value="99CC00"/><color value="FFFF00"/><color value="DB214C"/></colors>
+	</schema>
+	<separator decimal="," group=""/>
+	<background border="yes" beginColor="FFFFFF" endColor="FFFFFF" color="FFFFFF" gradient="no"/>
+	<chartarea border="yes" alpha="100" beginColor="c9c8ac" endColor="f6f6d6" bgcolor="c9c8ac" gradient="yes">
+		<grid line_style="medium" alpha="100" color="8e8d65" visible="yes"/>
+		<vertical_axis visible="yes"><font face="Verdana" size="11" color="605f43" bold="no" italic="no" uline="no"/></vertical_axis>
+		<horizontal_axis visible="yes" rotation="degrees" autoRotate="yes"><font face="Verdana" size="11" color="605f43" bold="no" italic="no" uline="no"/></horizontal_axis>
+		<chart line_thick="2" enabled="yes" border="yes" alpha="100" isBorderBright="yes" type="3d_columns" series="columns">
+			<inscriptions color="605f43" visible="yes"><font face="Verdana" size="11" bold="no" italic="no" uline="no"/></inscriptions>
+			<animation type="none" time="2000"/>
+			<markers size="8" type="0"/>
+			<hints border="yes" enabled="yes" color="FFFF99"><font face="Verdana" size="11" color="605f43" bold="no" italic="no" uline="no"/></hints>
+		</chart>
+		<legend sqr_size="12" sqr_borders="yes" border_thick="0" alpha="100" position="left-center" layout="vertical" visible="no"><font face="Verdana" size="11" color="605f43" bold="no" italic="no" uline="no"/></legend>
+		<title position="top" align="center" border="no" alpha="100" visible="yes" text="Nilai Lapor"><font face="Verdana" size="11" color="000000" bold="no" italic="no" uline="no"/></title>
+	</chartarea>
+	<objects>
+	</objects>
+	<data>
+		<columns>
+			<column field="nilai_lapor" name="Nilai Lapor"/></columns>
+		<rows>
+			<!-- BEGIN Row --><row col1="{nilai_lapor}" name="{tgl}"/><!-- END Row --></rows>
+	</data>
+</root>
+
+<!--End FlashChart Template-->
+

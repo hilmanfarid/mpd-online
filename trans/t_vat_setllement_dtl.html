@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_application_role</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+
+</script>
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toVat()">
+      <div class="tab-title">
+        SPTPD (Pelaporan Pajak) 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DETAIL SPTPD (Pelaporan Pajak) 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_setllement_dtlSearch -->
+        <form id="t_vat_setllement_dtlSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;<input class="ControlsIN" id="t_vat_setllement_dtlSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}">
+                      <td class="search-field">&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="t_vat_setllement_dtlSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="t_vat_setllement_dtlSearcht_cust_account_id" style="WIDTH: 42px; HEIGHT: 22px" type="hidden" size="5" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"><input id="t_vat_setllement_dtlSearchp_finance_period_id" style="WIDTH: 47px; HEIGHT: 22px" type="hidden" size="6" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"><input id="t_vat_setllement_dtlSearcht_customer_order_id" style="WIDTH: 45px; HEIGHT: 22px" type="hidden" size="6" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"><input id="t_vat_setllement_dtlSearchnpwd" style="WIDTH: 42px; HEIGHT: 22px" type="hidden" size="5" value="{npwd}" name="{npwd_Name}"><input id="t_vat_setllement_dtlSearchfinance_period_code" style="WIDTH: 42px; HEIGHT: 22px" type="hidden" size="5" value="{finance_period_code}" name="{finance_period_code_Name}"><input id="t_vat_setllement_dtlSearchorder_no" style="WIDTH: 42px; HEIGHT: 22px" type="hidden" size="5" value="{order_no}" name="{order_no_Name}"><input id="t_vat_setllement_dtlSearcht_vat_setllement_id" style="WIDTH: 42px; HEIGHT: 22px" type="hidden" size="5" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"><input id="t_vat_setllement_dtlSearchrqst_type_code" style="WIDTH: 61px; HEIGHT: 22px" type="hidden" size="8" value="{rqst_type_code}" name="{rqst_type_code_Name}"><input id="t_vat_setllement_dtlSearchp_rqst_type_id" style="WIDTH: 61px; HEIGHT: 22px" type="hidden" size="8" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"></td></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_setllement_dtlSearch --><br>
+        <!-- BEGIN Grid t_vat_setllement_dtlGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR DETAIL SPTPD (Pelaporan Pajak)</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center">#</th>
+ 
+                  <th scope="col">Nama Perusahaan</th>
+ 
+                  <th scope="col">&nbsp;Tanggal Transaksi</th>
+ 
+                  <th scope="col">Nama Service</th>
+ 
+                  <th scope="col">Service Charge</th>
+ 
+                  <th scope="col">Service Vat</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_setllement_dtlGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: right">
+                    <div align="center">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{DLink_Src}" id="t_vat_setllement_dtlGridDLink_{p_app_roleGrid:rowNumber}">{DLink}</a>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="left">
+                      {company_name}&nbsp;&nbsp;&nbsp;&nbsp; 
+                    </div>
+                  </td> 
+                  <td>{trans_date}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">
+                    <div align="left">
+                      {service_desc}&nbsp;<input id="t_vat_setllement_dtlGridt_vat_setllement_dtl_id" type="hidden" value="{t_vat_setllement_dtl_id}" name="{t_vat_setllement_dtl_id_Name}">&nbsp;&nbsp;&nbsp; 
+                    </div>
+                  </td> 
+                  <td>{service_charge}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td> 
+                  <td>
+                    <div align="left">
+                      {vat_charge}&nbsp;&nbsp;&nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="6">data tidak ditemukan</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td>&nbsp;</td> 
+                  <td colspan="5">&nbsp; 
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_setllement_dtlGrid --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script src="../js/lov.js" type="text/javascript"></script>
+<script language="javascript">
+
+function toVat()
+{
+    var pid=document.getElementById("t_vat_setllement_dtlSearcht_vat_setllement_id").value;
+    var custId=document.getElementById("t_vat_setllement_dtlSearcht_cust_account_id").value;
+    var fId=document.getElementById("t_vat_setllement_dtlSearchp_finance_period_id").value;
+    var cusId=document.getElementById("t_vat_setllement_dtlSearcht_customer_order_id").value;
+    var npwd=document.getElementById("t_vat_setllement_dtlSearchnpwd").value;
+    var fcode=document.getElementById("t_vat_setllement_dtlSearchfinance_period_code").value;
+    var order=document.getElementById("t_vat_setllement_dtlSearchorder_no").value;
+	var reqId=document.getElementById("t_vat_setllement_dtlSearchp_rqst_type_id").value;
+    var reqCode=document.getElementById("t_vat_setllement_dtlSearchrqst_type_code").value; 
+
+    location.href="t_vat_setllement.php?t_vat_setllement_id="+pid
+                                                                           +"&t_cust_account_id="+custId
+                                                                           +"&p_finance_period_id="+fId
+                                                                           +"&t_customer_order_id="+cusId
+                                                                           +"&npwd="+npwd
+                                                                           +"&finance_period_code="+fcode
+                                                                           +"&order_no="+order
+																		   +"&p_rqst_type_id="+reqId
+																		   +"&rqst_type_code="+reqCode;
+   
+}
+
+</script>
+</body>
+</html>

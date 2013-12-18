@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_procedure</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//p_procedureFormButton_Delete_OnClick @97-6454C8E5
+function p_procedureFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_procedureFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_procedureFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close p_procedureFormButton_Delete_OnClick
+
+//p_procedureFormButton_Cancel_OnClick @99-6505A581
+function p_procedureFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_procedureFormButton_Cancel_OnClick
+
+//bind_events @1-963ED048
+function bind_events() {
+    addEventHandler("p_procedureFormButton_Delete", "click", p_procedureFormButton_Delete_OnClick);
+    addEventHandler("p_procedureFormButton_Cancel", "click", p_procedureFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        PEKERJAAN WORKFLOW 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toRole()">
+      <div class="tab-title">
+        ROLE PROSEDUR 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record p_procedureSearch -->
+        <form id="p_procedureSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input class="ControlsIN" id="p_procedureSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="p_procedureSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_procedureSearch --><br>
+        <!-- BEGIN Grid p_procedureGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;NAMA PEKERJAAN WORKFLOW</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;File Pekerjaan</th>
+ 
+                  <th scope="col">Pekerjaan</th>
+ 
+                  <th scope="col">Nama Pekerjaan</th>
+ 
+                  <th scope="col"><label for="p_procedureFormupdated_by"><label for="p_districtFormcreated_by"><label for="p_file_pathFormupdated_by">Aktif?</label></label></label></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_procedureGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_procedureGridDLink_{p_procedureGrid:rowNumber}">{DLink}</a></td> 
+                  <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="p_procedureGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink1}" src="../images/table.gif"></a>&nbsp;</td> 
+                  <td>{proc_name}&nbsp;<input id="p_procedureGridp_procedure_id_{p_procedureGrid:rowNumber}" type="hidden" value="{p_procedure_id}" name="{p_procedure_id_Name}"></td> 
+                  <td>{display_name}&nbsp;</td> 
+                  <td>{is_active}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="5">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="p_procedureGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a></b></td> 
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_procedureGrid --><br>
+        <!-- BEGIN Record p_procedureForm -->
+        <form id="p_procedureForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>INFORMASI PEKERJAAN WORKFLOW</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><span id="P_W_PROCFormHolder">Pekerjaan</span></label></label></label></label></td> 
+                    <td colspan="3"><input class="ControlsRQ" id="p_procedureFormproc_name" tabindex="2" maxlength="60" size="50" value="{proc_name}" name="{proc_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Pekerjaan</label></label></label></label></label></td> 
+                    <td colspan="3"><input class="ControlsRQ" id="p_procedureFormdisplay_name" tabindex="2" maxlength="128" size="50" value="{display_name}" name="{display_name_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><span id="P_W_PROCFormHolder">Diaktifkan ?</span></td> 
+                    <td colspan="3">
+                      <select class="ControlsRQ" id="p_procedureFormis_active" name="{is_active_Name}">
+                        {is_active_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><span id="P_W_PROCFormHolder">Nomor Urut Pekerjaan</span>&nbsp;</td> 
+                    <td colspan="3"><input class="ControlsRQ" id="p_procedureFormseqno" style="TEXT-ALIGN: right" tabindex="2" maxlength="5" size="10" value="{seqno}" name="{seqno_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Fungsi Sebelum Submit&nbsp;</td> 
+                    <td colspan="3"><input class="ControlsIN" id="p_procedureFormf_before" tabindex="2" maxlength="60" size="50" value="{f_before}" name="{f_before_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Fungsi Setelah Submit&nbsp;</td> 
+                    <td colspan="3"><input class="ControlsIN" id="p_procedureFormf_after" tabindex="2" maxlength="60" size="50" value="{f_after}" name="{f_after_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Deskripsi&nbsp;</td> 
+                    <td colspan="3"><input class="ControlsIN" id="p_procedureFormdescription" tabindex="2" maxlength="60" size="50" value="{description}" name="{description_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_procedureFormupdated_by"><label for="p_districtFormcreated_by">Dibuat Oleh</label></label></td> 
+                    <td colspan="3"><input class="ControlsRO" id="p_procedureFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal :<input class="ControlsRO" id="p_procedureFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_procedureFormupdated_by"><label for="p_districtFormcreated_by"><label for="p_file_pathFormupdated_by">Diubah Oleh</label></label></label></td> 
+                    <td colspan="3"><input class="ControlsRO" id="p_procedureFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal :<input class="ControlsRO" id="p_procedureFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="4">
+                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="p_procedureFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="p_procedureFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="p_procedureFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="p_procedureFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_procedureFormp_procedureGridPage" style="WIDTH: 76px; HEIGHT: 22px" type="hidden" size="10" value="{p_procedureGridPage}" name="{p_procedureGridPage_Name}"><input id="p_procedureFormp_procedure_id" type="hidden" value="{p_procedure_id}" name="{p_procedure_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_procedureForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function lov_path() {
+        getFrom_LOV('p_procedureForm','p_file_path_id,cpath','lov_2_field.php?TABLE=p_file_path&FIELD_0=p_file_path_id&FIELD_1=code&FIELD_2=path_detail&LABEL1=Kode&LABEL2=Detail Direktori&HEADER_PAGE=DIREKTORI&HEADER_LOV=DAFTAR DIREKTORI&ORDER=p_file_path_id');
+}
+
+function toRole()
+{
+  var idelement;
+  if (idelement = document.getElementById('p_procedureFormp_procedure_id'))
+  {
+    var pid=idelement.value;
+    var pcode=document.getElementById("p_procedureFormdisplay_name").value;
+    var skw=document.getElementById("p_procedureSearchs_keyword").value;
+    var page=document.getElementById("p_procedureFormp_procedureGridPage").value;
+
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="p_procedure_role.php?p_procedure_id="+pid+"&proc_code="+pcode+"&proc_s_keyword="+skw+"&p_procedureGridPage="+page;
+    } else {
+     alert("Pilih salah satu ROLE!");
+    }
+  } else {
+     alert("Pilih salah satu ROLE!");
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_pass_byadmin</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toHome()">
+      <div class="tab-title">
+        HOME 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        UBAH PASSWORD 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <br>
+  <br>
+  <br>
+  <br>
+  <table cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td><br>
+        <!-- BEGIN Record p_pass_byadminForm -->
+        <form id="p_pass_byadminForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>UBAH PASSWORD</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">User&nbsp;</td> 
+                    <td>{app_user_name}</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Password Lama&nbsp;</td> 
+                    <td><input class="ControlsRQ" id="p_pass_byadminFormo_user_pwd" type="password" maxlength="16" size="16" value="{o_user_pwd}" name="{o_user_pwd_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_pass_byadminFormn_user_pwd1">Password Baru</label></td> 
+                    <td><input class="ControlsRQ" id="p_pass_byadminFormn_user_pwd1" type="password" maxlength="16" size="16" value="{n_user_pwd1}" name="{n_user_pwd1_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_pass_byadminFormvalid_from">Ulang Password Baru&nbsp;</label></td> 
+                    <td><input class="ControlsRQ" id="p_pass_byadminFormn_user_pwd2" type="password" maxlength="16" size="16" value="{n_user_pwd2}" name="{n_user_pwd2_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="2">
+                      <!-- BEGIN Button Button_Ubah --><input class="btn_tambah" id="p_pass_byadminFormButton_Ubah" onclick="return cek()" type="submit" alt="Submit" value="UBAH" name="{Button_Name}"><!-- END Button Button_Ubah -->
+                      <!-- BEGIN Button Button_cancel --><input class="btn_tambah" id="p_pass_byadminFormButton_cancel" type="reset" alt="Button1" value="ULANGI" name="{Button_Name}"><!-- END Button Button_cancel --><input id="p_pass_byadminFormp_app_user_id" type="hidden" value="{p_app_user_id}" name="{p_app_user_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_pass_byadminForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function toHome()
+{
+     location.href="sikp_home.php";
+}
+</script>
+</body>
+</html>

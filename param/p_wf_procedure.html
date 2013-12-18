@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_wf_procedure</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        WORKFLOW DAN ALIRAN PROSEDUR 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td colspan="3">&nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td colspan="3">
+        <!-- BEGIN Record p_workflowSearch -->
+        <form id="p_workflowSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input class="ControlsIN" id="p_workflowSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="p_workflowSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_workflowSearch --><br>
+        <!-- BEGIN Grid p_workflowGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;WORKFLOW</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                  <th scope="col">Nama Dokumen&nbsp;</th>
+ 
+                  <th scope="col">Aktif</th>
+ 
+                  <th scope="col">Jumlah&nbsp;Transisi</th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Workflow</label></label></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_workflowGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center">
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="p_workflowGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="p_workflowGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{ldocument}&nbsp;<input id="p_workflowGridp_workflow_id_{p_workflowGrid:rowNumber}" type="hidden" value="{p_workflow_id}" name="{p_workflow_id_Name}"></td> 
+                  <td>{lactive}&nbsp;</td> 
+                  <td>{cabang}</td> 
+                  <td>{lworkflow}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="5">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_workflowGrid --><br>
+      </td>
+    </tr>
+ 
+    <tr>
+      <td valign="top">
+        <!-- BEGIN Grid p_wf_procmasterGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;ALIRAN PROSEDUR</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Prosedur Sebelum</label></label></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_wf_procmasterGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center">
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="p_wf_procmasterGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="p_wf_procmasterGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{proc_display_prev}&nbsp;<input id="p_wf_procmasterGridp_procedure_id_prev_{p_wf_procmasterGrid:rowNumber}" type="hidden" value="{p_procedure_id_prev}" name="{p_procedure_id_prev_Name}"><input id="p_wf_procmasterGridp_workflow_id_{p_workflowGrid:rowNumber}" type="hidden" value="{p_workflow_id}" name="{p_workflow_id_Name}"></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="2">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link2_Src}" id="p_wf_procmasterGridInsert_Link2"><img src="../images/insert_link.gif" border="0"></a></b></td> 
+                  <td>
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_wf_procmasterGrid -->&nbsp; </td> 
+      <td valign="top">&nbsp;&nbsp;</td> 
+      <td valign="top">
+        <!-- BEGIN Grid p_wf_procmasterGrid2 -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;ALIRAN PROSEDUR BERIKUTNYA</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%">Record&nbsp;</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Daemon</label></label></th>
+ 
+                  <th scope="col">Pekerjaan (Sesudah)</th>
+ 
+                  <th scope="col">Init Sub?</th>
+ 
+                  <th scope="col">Valid?&nbsp;</th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;</th>
+ 
+                  <th scope="col">Berlaku Sampai</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_wf_procmasterGrid2:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="p_wf_procmasterGrid2ImageLink1_{p_applicationGrid:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink1}" src="../images/list.gif"></a></td> 
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="p_wf_procmasterGrid2DLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="p_wf_procmasterGrid2ADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td style="TEXT-ALIGN: center" nowrap><a href="{ImageLink2}" id="p_wf_procmasterGrid2ImageLink2_{p_app_menuGrid:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink1}" src="../images/table.gif"></a><input id="p_wf_procmasterGrid2p_w_chart_proc_id_next_{p_wf_procmasterGrid2:rowNumber}" type="hidden" value="{p_w_chart_proc_id_next}" name="{p_w_chart_proc_id_next_Name}"><input id="p_wf_procmasterGrid2p_procedure_id_prev_{p_wf_procmasterGrid:rowNumber}" type="hidden" value="{p_procedure_id_prev}" name="{p_procedure_id_prev_Name}"><input id="p_wf_procmasterGrid2p_workflow_id_{p_wf_procmasterGrid:rowNumber}" type="hidden" value="{p_workflow_id}" name="{p_workflow_id_Name}"></td> 
+                  <td nowrap>{proc_display_next}</td> 
+                  <td>{linitchild}</td> 
+                  <td>{lvalid}&nbsp;</td> 
+                  <td nowrap>{valid_from}&nbsp;</td> 
+                  <td nowrap>{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="8">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><a href="{Insert_Link3_Src}" id="p_wf_procmasterGrid2Insert_Link3"><img src="../images/insert_link.gif" border="0"></a></td> 
+                  <td><b></b></td> 
+                  <td colspan="6">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_wf_procmasterGrid2 -->
+        <p></p>
+      </td>
+    </tr>
+  </table>
+</div>
+<script src="../js/lov.js" type="text/javascript"></script>
+<script language="javascript">
+function lov_doc() {
+        getFrom_LOV('p_workflowForm','p_document_type_id,document_name','lov_2_field.php?TABLE=p_document_type&FIELD_0=p_document_type_id&FIELD_1=document_name&FIELD_2=description&LABEL1=Nama Dokumen&LABEL2=Deskripsi&HEADER_PAGE=TIPE DOKUMEN&HEADER_LOV=DAFTAR TIPE DOKUMEN&ORDER=p_document_type_id');
+}
+
+function lov_prod() {
+        getFrom_LOV('p_workflowForm','p_procedure_id,cproc','lov_2_field.php?TABLE=p_procedure&FIELD_0=p_procedure_id&FIELD_1=code&FIELD_2=description&LABEL1=Kode&LABEL2=Deskripsi&HEADER_PAGE=PROSEDUR&HEADER_LOV=DAFTAR PROSEDUR&ORDER=p_procedure_id');
+}
+
+</script>
+</body>
+</html>

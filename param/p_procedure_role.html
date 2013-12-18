@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_procedure_role</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-F7A2C93C
+
+var p_procedure_roleForm_DatePicker_valid_from = new Object(); 
+p_procedure_roleForm_DatePicker_valid_from.format           = "dd-mmm-yyyy";
+p_procedure_roleForm_DatePicker_valid_from.style            = "Styles/sikp/Style.css";
+p_procedure_roleForm_DatePicker_valid_from.relativePathPart = "../";
+p_procedure_roleForm_DatePicker_valid_from.themeVersion = "3.0";
+
+var p_procedure_roleForm_DatePicker_valid_to = new Object(); 
+p_procedure_roleForm_DatePicker_valid_to.format           = "dd-mmm-yyyy";
+p_procedure_roleForm_DatePicker_valid_to.style            = "Styles/sikp/Style.css";
+p_procedure_roleForm_DatePicker_valid_to.relativePathPart = "../";
+p_procedure_roleForm_DatePicker_valid_to.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//p_procedure_roleFormButton_Delete_OnClick @26-3168E90E
+function p_procedure_roleFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_procedure_roleFormButton_Delete_OnClick
+
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_procedure_roleFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close p_procedure_roleFormButton_Delete_OnClick
+
+//p_procedure_roleFormButton_Cancel_OnClick @124-DB3A8E1D
+function p_procedure_roleFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_procedure_roleFormButton_Cancel_OnClick
+
+//bind_events @1-277312EB
+function bind_events() {
+    addEventHandler("p_procedure_roleFormButton_Delete", "click", p_procedure_roleFormButton_Delete_OnClick);
+    addEventHandler("p_procedure_roleFormButton_Cancel", "click", p_procedure_roleFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toProc()">
+      <div class="tab-title">
+        PEKERJAAN WORKFLOW 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        ROLE PEKERJAAN 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <table class="param-grid" cellspacing="0" cellpadding="0">
+          <tr>
+            <th nowrap><span id="p_w_procHolder">Nama Pekerjaan</span>&nbsp;:&nbsp;</th>
+ 
+            <th nowrap>{proc_code}&nbsp;</th>
+          </tr>
+        </table>
+        <!-- BEGIN Record p_procedure_roleSearch -->
+        <form id="p_procedure_roleSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td>{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input class="ControlsIN" id="p_procedure_roleSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"><input id="p_procedure_roleSearchp_procedure_id" type="hidden" value="{p_procedure_id}" name="{p_procedure_id_Name}"><input id="p_procedure_roleSearchp_procedureGridPage" type="hidden" value="{p_procedureGridPage}" name="{p_procedureGridPage_Name}"><input id="p_procedure_roleSearchproc_s_keyword" type="hidden" value="{proc_s_keyword}" name="{proc_s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="p_procedure_roleSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_procedure_roleSearch --><br>
+        <!-- BEGIN Grid p_procedure_roleGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR ROLE PEKERJAAN</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center">#</th>
+ 
+                  <th scope="col">Role Aplikasi</th>
+ 
+                  <th scope="col">&nbsp;Role Flow</th>
+ 
+                  <th scope="col">Berlaku Dari</th>
+ 
+                  <th scope="col">Berlaku Sampai</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_procedure_roleGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: right">
+                    <div align="center">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{DLink_Src}" id="p_procedure_roleGridDLink_{p_app_roleGrid:rowNumber}">{DLink}</a>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+                    </div>
+                  </td> 
+                  <td style="TEXT-ALIGN: right">
+                    <div align="left">
+                      {role_code}&nbsp;<input id="p_procedure_roleGridHidden1" type="hidden" value="{p_procedure_role_id}" name="{p_procedure_role_id_Name}">&nbsp;&nbsp;&nbsp; 
+                    </div>
+                  </td> 
+                  <td>{f_role}</td> 
+                  <td>{valid_from}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td> 
+                  <td>
+                    <div align="left">
+                      {valid_to}&nbsp;&nbsp;&nbsp;&nbsp; 
+                    </div>
+                  </td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="5">data tidak ditemukan</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><a href="{Insert_Link_Src}" id="p_procedure_roleGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a>&nbsp;</td> 
+                  <td colspan="4">&nbsp; 
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_procedure_roleGrid --><br>
+        <!-- BEGIN Record p_procedure_roleForm -->
+        <form id="p_procedure_roleForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>INFORMASI ROLE PEKERJAAN&nbsp;</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_procedure_roleFormrole_code">Nama Role Aplikasi</label></td> 
+                    <td><input class="ControlsRQ" id="p_procedure_roleFormrole_code" readonly maxlength="60" size="50" value="{role_code}" name="{role_code_Name}">&nbsp;<img onclick="javascript:lov_role()" src="../images/view.gif" border="0">&nbsp;<input id="p_procedure_roleFormp_app_role_id" type="hidden" value="{p_app_role_id}" name="{p_app_role_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><span id="v_p_w_role_proc1Holder">Fungsi Role Workflow</span>&nbsp;</td> 
+                    <td><input class="ControlsIN" id="p_procedure_roleFormf_role" maxlength="32" size="32" value="{f_role}" name="{f_role_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_procedure_roleFormvalid_from">Masa Berlaku</label></td> 
+                    <td><input class="ControlsRQ" id="p_procedure_roleFormvalid_from" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="12" value="{valid_from}" name="{valid_from_Name}">
+                      <!-- BEGIN DatePicker DatePicker_valid_from --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_procedure_roleFormDatePicker_valid_from"><img id="p_procedure_roleFormDatePicker_valid_from_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_valid_from -->&nbsp;s/d&nbsp; <input class="ControlsIN" id="p_procedure_roleFormvalid_to" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="15" value="{valid_to}" name="{valid_to_Name}">
+                      <!-- BEGIN DatePicker DatePicker_valid_to --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_procedure_roleFormDatePicker_valid_to"><img id="p_procedure_roleFormDatePicker_valid_to_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a>&nbsp;<!-- END DatePicker DatePicker_valid_to --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_districtFormcreated_by">Dibuat Oleh</label>&nbsp;</td> 
+                    <td><input class="ControlsRO" id="p_procedure_roleFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="p_procedure_roleFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_procedure_roleFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input class="ControlsRO" id="p_procedure_roleFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="p_procedure_roleFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="2">
+                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="p_procedure_roleFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="p_procedure_roleFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="p_procedure_roleFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="p_procedure_roleFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_procedure_roleFormp_procedure_roleGridPage" type="hidden" value="{p_procedure_roleGridPage}" name="{p_procedure_roleGridPage_Name}"><input id="p_procedure_roleFormp_procedure_id" type="hidden" value="{p_procedure_id}" name="{p_procedure_id_Name}"><input id="p_procedure_roleFormp_procedure_role_id" type="hidden" value="{p_procedure_role_id}" name="{p_procedure_role_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_procedure_roleForm -->
+        <p></p>
+      </td>
+    </tr>
+  </table>
+</div>
+<script src="../js/lov.js" type="text/javascript"></script>
+<script language="javascript">
+function lov_role() {
+        getFrom_LOV('p_procedure_roleForm','p_app_role_id,role_code','lov_2_field.php?TABLE=p_app_role&FIELD_0=p_app_role_id&FIELD_1=code&FIELD_2=description&LABEL1=Role&LABEL2=Deskripsi&HEADER_PAGE=ROLE&HEADER_LOV=DAFTAR ROLE&ORDER=LISTING_NO');
+}
+
+function toProc()
+{
+    var pid=document.getElementById("p_procedure_roleSearchp_procedure_id").value;
+    var page=document.getElementById("p_procedure_roleSearchp_procedureGridPage").value;
+    var skw=document.getElementById("p_procedure_roleSearchproc_s_keyword").value;
+    location.href="p_procedure.php?p_procedure_id="+pid+"&p_procedureGridPage="+page+"&s_keyword="+skw;
+}
+</script>
+</body>
+</html>

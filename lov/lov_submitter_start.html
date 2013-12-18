@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>lov_company</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<!--start user-->
+<script language="javascript"> 
+</script>
+<!--end user-->
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//V_SUBMITTERButton_Update_OnClick @85-52FE60B9
+function V_SUBMITTERButton_Update_OnClick()
+{
+    var result = true;
+//End V_SUBMITTERButton_Update_OnClick
+
+//Confirmation Message @103-3998942D
+
+   result = confirm('Anda yakin akan menutup pekerjaan ini ?');
+   if (result) { 
+      document.getElementById('V_SUBMITTERButton_Update').style.display = "none"; 
+          document.getElementById('indicator').style.display = "";
+    } 
+//End Confirmation Message
+
+//Close V_SUBMITTERButton_Update_OnClick @85-BC33A33A
+    return result;
+}
+//End Close V_SUBMITTERButton_Update_OnClick
+
+//V_SUBMITTERButton_Delete_OnClick @86-E636D0AB
+function V_SUBMITTERButton_Delete_OnClick()
+{
+    disableValidation = true;
+}
+//End V_SUBMITTERButton_Delete_OnClick
+
+ 
+//bind_events @1-9389909F
+function bind_events() {
+    addEventHandler("V_SUBMITTERButton_Update", "click", V_SUBMITTERButton_Update_OnClick);
+    addEventHandler("V_SUBMITTERButton_Delete", "click", V_SUBMITTERButton_Delete_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body style="MARGIN: 0px" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        SUBMITER 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <div id="indicator" style="LEFT: 200px; WIDTH: 210px; POSITION: absolute; TOP: 200px; HEIGHT: 125px; BACKGROUND-COLOR: transparent">
+    <img height="35" alt="" src="../images/2_computers.gif" width="107">
+  </div>
+<!-- BEGIN Record V_SUBMITTER -->
+<form id="V_SUBMITTER" name="{HTMLFormName}" action="{Action}" method="post">
+  <table class="grid-table-container" cellspacing="0" cellpadding="0" align="left" border="0">
+    <tr>
+      <td valign="top">
+        <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft"><img alt="" src="../Styles/sikm/Images/Spacer.gif" border="0"></td> 
+            <td class="th"><strong>KONFIRMASI&nbsp;PENUTUPAN PEKERJAAN</strong></td> 
+            <td class="HeaderRight"><img alt="" src="../Styles/sikm/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record" cellspacing="0" cellpadding="0" align="left">
+          <!-- BEGIN Error -->
+          <tr class="Error">
+            <td colspan="4">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr>
+            <td colspan="4"><input id="V_SUBMITTERCURR_DOC_ID" style="DISPLAY: none; WIDTH: 36px; HEIGHT: 22px" type="hidden" maxlength="12" size="4" value="{CURR_DOC_ID}" name="{CURR_DOC_ID_Name}"><input id="V_SUBMITTERCURR_DOC_TYPE_ID" style="DISPLAY: none; WIDTH: 54px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{CURR_DOC_TYPE_ID}" name="{CURR_DOC_TYPE_ID_Name}"><input id="V_SUBMITTERCURR_PROC_ID" style="DISPLAY: none; WIDTH: 56px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{CURR_PROC_ID}" name="{CURR_PROC_ID_Name}"><input id="V_SUBMITTERCURR_CTL_ID" style="DISPLAY: none; WIDTH: 58px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{CURR_CTL_ID}" name="{CURR_CTL_ID_Name}"><input id="V_SUBMITTERPREV_DOC_ID" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="6" value="{PREV_DOC_ID}" name="{PREV_DOC_ID_Name}"><input id="V_SUBMITTERPREV_DOC_TYPE_ID" style="DISPLAY: none; WIDTH: 54px; HEIGHT: 22px" type="hidden" maxlength="12" size="6" value="{PREV_DOC_TYPE_ID}" name="{PREV_DOC_TYPE_ID_Name}"><input id="V_SUBMITTERPREV_PROC_ID" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="6" value="{PREV_PROC_ID}" name="{PREV_PROC_ID_Name}"><input id="V_SUBMITTERPREV_CTL_ID" style="DISPLAY: none; WIDTH: 58px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{PREV_CTL_ID}" name="{PREV_CTL_ID_Name}"><input id="V_SUBMITTERSLOT_1" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{SLOT_1}" name="{SLOT_1_Name}"><input id="V_SUBMITTERSLOT_2" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{SLOT_2}" name="{SLOT_2_Name}">
+<input id="V_SUBMITTERSLOT_3" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{SLOT_3}" name="{SLOT_3_Name}"><input id="V_SUBMITTERSLOT_4" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{SLOT_4}" name="{SLOT_4_Name}"><input id="V_SUBMITTERSLOT_5" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{SLOT_5}" name="{SLOT_5_Name}"><input id="V_SUBMITTERUSER_ID_DOC" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{USER_ID_DOC}" name="{USER_ID_DOC_Name}"><input id="V_SUBMITTERUSER_ID_DONOR" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{USER_ID_DONOR}" name="{USER_ID_DONOR_Name}"><input id="V_SUBMITTERUSER_ID_LOGIN" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{USER_ID_LOGIN}" name="{USER_ID_LOGIN_Name}"><input id="V_SUBMITTERUSER_ID_TAKEN" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{USER_ID_TAKEN}" name="{USER_ID_TAKEN_Name}"><input id="V_SUBMITTERIS_CREATE_DOC" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{IS_CREATE_DOC}" name="{IS_CREATE_DOC_Name}"><input id="V_SUBMITTERIS_MANUAL" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{IS_MANUAL}" name="{IS_MANUAL_Name}"><input id="V_SUBMITTERCURR_PROC_STATUS" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{CURR_PROC_STATUS}" name="{CURR_PROC_STATUS_Name}">
+<input id="V_SUBMITTERCURR_DOC_STATUS" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{CURR_DOC_STATUS}" name="{CURR_DOC_STATUS_Name}"><input id="V_SUBMITTERMESSAGE" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{MESSAGE}" name="{MESSAGE_Name}"><input id="V_SUBMITTERIS_VIEW_ONLY" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{IS_VIEW_ONLY}" name="{IS_VIEW_ONLY_Name}"><input id="V_SUBMITTERJENIS" style="DISPLAY: none; WIDTH: 53px; HEIGHT: 22px" type="hidden" maxlength="12" size="5" value="{JENIS}" name="{JENIS_Name}"></td>
+          </tr>
+ 
+          <tr class="Row">
+            <td class="th" style="TEXT-ALIGN: left">Waktu&nbsp;Sekarang <input id="V_SUBMITTERRETURN_MESSAGE" type="hidden" value="{RETURN_MESSAGE}" name="{RETURN_MESSAGE_Name}"></td> 
+            <td class="th" colspan="3"><input class="th" id="V_SUBMITTERSUBMIT_DATE" readonly maxlength="32" size="28" value="{SUBMIT_DATE}" name="{SUBMIT_DATE_Name}">&nbsp;&nbsp;Submit Oleh :&nbsp;{lusername}<input id="V_SUBMITTERSUBMITTER_ID" style="WIDTH: 120px; HEIGHT: 22px" type="hidden" size="16" value="{SUBMITTER_ID}" name="{SUBMITTER_ID_Name}"></td>
+          </tr>
+ 
+          <tr class="Row">
+            <td class="th" style="TEXT-ALIGN: left">Pekerjaan Tersedia </td> 
+            <td colspan="3">{NTASK}</td>
+          </tr>
+ 
+          <tr class="Row">
+            <td class="th" style="TEXT-ALIGN: left">Status Dokumen Workflow&nbsp;</td> 
+            <td colspan="3">
+              <select class="ControlsIN" id="V_SUBMITTERSTS" style="WIDTH: 340px" disabled name="{STS_Name}">
+                {STS_Options}
+              </select>
+ &nbsp;</td>
+          </tr>
+ 
+          <tr class="Row" id="TR_PESAN_KIRIM0">
+            <td class="th" id="TR_PESAN_KIRIM1" style="TEXT-ALIGN: left">Pesan Akan Dikirim </td> 
+            <td id="TR_PESAN_KIRIM2" colspan="3"><textarea class="ControlsIN" id="V_SUBMITTERINTERACTIVE_MESSAGE" style="WIDTH: 358px; HEIGHT: 50px" name="{INTERACTIVE_MESSAGE_Name}" rows="1" cols="31">{INTERACTIVE_MESSAGE}</textarea></td>
+          </tr>
+ 
+          <tr class="Row" id="TR_PESAN_SUKSES0">
+            <td class="th" id="TR_PESAN_SUKSES1" style="TEXT-ALIGN: left">Pesan Berhasil Dikirim&nbsp;</td> 
+            <td id="TR_PESAN_SUKSES2" colspan="3"><textarea class="ControlsRO" id="V_SUBMITTERSENT_MESSAGE" style="WIDTH: 358px; HEIGHT: 58px" name="{SENT_MESSAGE_Name}" rows="1" readonly cols="31">{SENT_MESSAGE}</textarea></td>
+          </tr>
+ 
+          <tr class="Row" id="TR_PESAN_ERROR0">
+            <td class="th" id="TR_PESAN_ERROR1" style="TEXT-ALIGN: left">Pesan Error </td> 
+            <td id="TR_PESAN_ERROR2" colspan="3"><textarea class="ControlsRO" id="V_SUBMITTERERROR_MESSAGE" style="WIDTH: 358px; HEIGHT: 58px" name="{ERROR_MESSAGE_Name}" rows="1" readonly cols="31">{ERROR_MESSAGE}</textarea></td>
+          </tr>
+ 
+          <tr class="Row">
+            <td class="th" style="TEXT-ALIGN: left">Pesan Peringatan &nbsp;</td> 
+            <td colspan="3"><textarea class="ControlsRO" id="V_SUBMITTERWARNING" style="WIDTH: 358px; HEIGHT: 34px" name="{WARNING_Name}" rows="1" readonly cols="30">{WARNING}</textarea></td>
+          </tr>
+ 
+          <tr class="Bottom">
+            <td align="right" colspan="4">
+              <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="V_SUBMITTERButton_Update" type="submit" alt="SIMPAN" value="Submit" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="V_SUBMITTERButton_Delete" onclick="parent.window.close()" type="button" alt="HAPUS" value="Tutup" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record V_SUBMITTER --><br>
+<script language="javascript"> 
+
+            document.getElementById('indicator').style.display = "none";
+
+        function show_message() {
+                document.getElementById("V_SUBMITTERButton_Update").style.display = ""; 
+
+                if (document.getElementById("V_SUBMITTERRETURN_MESSAGE").value=="0") {
+
+                        document.getElementById("TR_PESAN_KIRIM0").style.display = "";
+                        document.getElementById("TR_PESAN_KIRIM1").style.display = "";
+                        document.getElementById("TR_PESAN_KIRIM2").style.display = "";  
+
+                        document.getElementById("TR_PESAN_ERROR0").style.display = "";
+                        document.getElementById("TR_PESAN_ERROR1").style.display = "";
+                        document.getElementById("TR_PESAN_ERROR2").style.display = "";   
+                        document.getElementById("TR_PESAN_SUKSES0").style.display = "none";
+                        document.getElementById("TR_PESAN_SUKSES1").style.display = "none";
+                        document.getElementById("TR_PESAN_SUKSES2").style.display = "none";   
+                                                document.getElementById("V_SUBMITTERButton_Update").style.display = "none"; 
+
+                } else {
+
+                     if (document.getElementById("V_SUBMITTERRETURN_MESSAGE").value=="1") {  
+                        document.getElementById("TR_PESAN_KIRIM0").style.display = "none";
+                        document.getElementById("TR_PESAN_KIRIM1").style.display = "none";
+                        document.getElementById("TR_PESAN_KIRIM2").style.display = "none";  
+
+                        document.getElementById("TR_PESAN_ERROR0").style.display = "none";
+                        document.getElementById("TR_PESAN_ERROR1").style.display = "none";
+                        document.getElementById("TR_PESAN_ERROR2").style.display = "none";   
+                        document.getElementById("TR_PESAN_SUKSES0").style.display = "";
+                        document.getElementById("TR_PESAN_SUKSES1").style.display = "";
+                        document.getElementById("TR_PESAN_SUKSES2").style.display = "";   
+                        document.getElementById("V_SUBMITTERButton_Update").style.display = "none"; 
+                    } 
+                } 
+        }                
+         
+
+        show_message();
+
+</script>
+<script type="text/javascript"> 
+
+</script>
+<div>
+</div>
+</body>
+</html>

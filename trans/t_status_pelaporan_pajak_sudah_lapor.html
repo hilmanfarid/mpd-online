@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toPelaporan()">
+      <div class="tab-title">
+        STATUS PELAPORAN PAJAK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        REKAP PERHARI 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <div align="left">
+          <!-- BEGIN FlashChart jml_lapor -->
+          <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{Width}" height="{Height}" accesskey="q" tabindex="1" title="{Title}">
+            <param name="movie" value="{Src}" />
+            <param name="quality" value="high" />
+            <param name="wmode" value="transparent" />
+            <param name="scale" value="exactfit" />
+            <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
+ 
+          </object>
+          <!-- END FlashChart jml_lapor -->
+          <!-- BEGIN FlashChart nilai_lapor -->
+          <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{Width}" height="{Height}" accesskey="q" tabindex="1" title="{Title}" style="display:inline-block;">
+            <param name="movie" value="{Src}" />
+            <param name="quality" value="high" />
+            <param name="wmode" value="transparent" />
+            <param name="scale" value="exactfit" />
+            <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
+ 
+          </object>
+          <!-- END FlashChart nilai_lapor -->
+          <!-- BEGIN FlashChart nilai_denda -->
+          <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{Width}" height="{Height}" accesskey="q" tabindex="1" title="{Title}" style="display:inline-block;">
+            <param name="movie" value="{Src}" />
+            <param name="quality" value="high" />
+            <param name="wmode" value="transparent" />
+            <param name="scale" value="exactfit" />
+            <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
+ 
+          </object>
+          <!-- END FlashChart nilai_denda -->
+        </div>
+        <br>
+        <!-- BEGIN Grid t_status_pelaporan_pajak_sudah_laporGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="50%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;PELAPORAN PAJAK</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th scope="col">Tanggal Pelaporan</th>
+ 
+                  <th scope="col">&nbsp;Jumlah Lapor</th>
+ 
+                  <th scope="col">&nbsp;Nilai Pajak</th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Denda</label></label></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_status_pelaporan_pajak_sudah_laporGrid:rowStyle}>
+                  <td>{tgl_pelaporan}</td> 
+                  <td>
+                    <div align="center">
+                      {jml_lapor} 
+                    </div>
+ 
+                    <div align="right">
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="right">
+                      {nilai_lapor} 
+                    </div>
+                  </td> 
+                  <td>
+                    <div align="right">
+                      {nilai_denda} 
+                    </div>
+                  </td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="4">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <input id="t_status_pelaporan_pajak_sudah_laporGridp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"><input id="t_status_pelaporan_pajak_sudah_laporGridstatus_lapor" type="hidden" value="{status_lapor}" name="{status_lapor_Name}"><!-- END Grid t_status_pelaporan_pajak_sudah_laporGrid --></td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function toPelaporan(){
+    var pid=document.getElementById("t_status_pelaporan_pajak_sudah_laporGridp_finance_period_id").value;
+    location.href="t_status_pelaporan_pajak.php?p_finance_period_id="+pid;
+}
+
+</script>
+</body>
+</html>

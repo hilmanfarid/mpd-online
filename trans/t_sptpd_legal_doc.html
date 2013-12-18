@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_sptpd_legal_doc</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_cust_order_legal_docFormButton_Delete_OnClick @97-E2E64A33
+function t_cust_order_legal_docFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_cust_order_legal_docFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close t_cust_order_legal_docFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_cust_order_legal_docFormButton_Delete_OnClick
+
+//t_cust_order_legal_docFormButton_Cancel_OnClick @99-6C05B6D9
+function t_cust_order_legal_docFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_cust_order_legal_docFormButton_Cancel_OnClick
+
+//bind_events @1-415A3D61
+function bind_events() {
+    addEventHandler("t_cust_order_legal_docFormButton_Delete", "click", t_cust_order_legal_docFormButton_Delete_OnClick);
+    addEventHandler("t_cust_order_legal_docFormButton_Cancel", "click", t_cust_order_legal_docFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toVat()">
+      <div class="tab-title">
+        SPTPD (Pelaporan Pajak) 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DOKUMEN PENDUKUNG 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_cust_order_legal_docSearch -->
+        <form id="t_cust_order_legal_docSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="3">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field" colspan="2"><input class="ControlsIN" id="t_cust_order_legal_docSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}">
+                      <td class="search-field">
+                        <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="t_cust_order_legal_docSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="t_cust_order_legal_docSearchnpwd" style="WIDTH: 50px; HEIGHT: 22px" type="hidden" size="6" value="{npwd}" name="{npwd_Name}"><input id="t_cust_order_legal_docSearcht_cust_account_id" style="WIDTH: 83px; HEIGHT: 22px" type="hidden" size="11" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"><input id="t_cust_order_legal_docSearchorder_no" style="WIDTH: 60px; HEIGHT: 22px" type="hidden" size="8" value="{order_no}" name="{order_no_Name}"><input id="t_cust_order_legal_docSearcht_customer_order_id" style="WIDTH: 38px; HEIGHT: 22px" type="hidden" size="5" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"><input id="t_cust_order_legal_docSearchfinance_period_code" style="WIDTH: 61px; HEIGHT: 22px" type="hidden" size="8" value="{finance_period_code}" name="{finance_period_code_Name}"><input id="t_cust_order_legal_docSearchp_finance_period_id" style="WIDTH: 61px; HEIGHT: 22px" type="hidden" size="8" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"><input id="t_cust_order_legal_docSearchrqst_type_code" style="WIDTH: 61px; HEIGHT: 22px" type="hidden" size="8" value="{rqst_type_code}" name="{rqst_type_code_Name}"><input id="t_cust_order_legal_docSearchp_rqst_type_id" style="WIDTH: 61px; HEIGHT: 22px" type="hidden" size="8" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_cust_order_legal_docSearch --><br>
+          <!-- BEGIN Grid t_cust_order_legal_docGrid -->
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>DAFTAR&nbsp;DOKUMEN PENDUKUNG</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Grid" cellspacing="0" cellpadding="0">
+                  <tr class="Caption">
+                    <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                    <th scope="col">Jenis Dokumen</th>
+ 
+                    <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama File</label></label></th>
+ 
+                    <th scope="col">Deskripsi&nbsp;</th>
+                  </tr>
+ 
+                  <!-- BEGIN Row -->
+                  <tr {t_cust_order_legal_docGrid:rowStyle}>
+                    <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_cust_order_legal_docGridDLink_{t_cust_order_legal_docGrid:rowNumber}">{DLink}</a></td> 
+                    <td>{legal_doc_desc}</td> 
+                    <td><a href="../files/{origin_file_name_Src}" id="t_cust_order_legal_docGridorigin_file_name_{t_cust_order_legal_docGrid:rowNumber}">{origin_file_name}</a>&nbsp;<input id="t_cust_order_legal_docGridt_cust_order_legal_doc_id_{t_cust_order_legal_docGrid:rowNumber}" type="hidden" value="{t_cust_order_legal_doc_id}" name="{t_cust_order_legal_doc_id_Name}"></td> 
+                    <td>{description}&nbsp;</td>
+                  </tr>
+ <!-- END Row -->
+                  <!-- BEGIN NoRecords -->
+                  <tr class="NoRecords">
+                    <td colspan="4">-</td>
+                  </tr>
+                  <!-- END NoRecords -->
+                  <tr class="Footer">
+                    <td><b><a href="{Insert_Link_Src}" id="t_cust_order_legal_docGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a></b></td> 
+                    <td colspan="3">
+                      <!-- BEGIN Navigator Navigator -->
+                      <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                      <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                      <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                      <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                      <!-- BEGIN Pages -->
+                      <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                      <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                      <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                      <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                      <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                      <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- END Grid t_cust_order_legal_docGrid --><br>
+          <!-- BEGIN Record t_cust_order_legal_docForm -->
+          <form id="t_cust_order_legal_docForm" name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
+            <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+              <tr>
+                <td valign="top">
+                  <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                      <td class="th"><strong>INFORMASI DOKUMEN PENDUKUNG</strong></td> 
+                      <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                    </tr>
+                  </table>
+ 
+                  <table class="Record" cellspacing="0" cellpadding="0">
+                    <!-- BEGIN Error -->
+                    <tr class="Error">
+                      <td colspan="4">{Error}</td>
+                    </tr>
+                    <!-- END Error -->
+                    <tr class="Controls">
+                      <td class="th">Jenis Dokumen</td> 
+                      <td colspan="3"><input class="ControlsRQ" id="t_cust_order_legal_docFormlegal_doc_desc" tabindex="2" readonly maxlength="32" size="32" value="{legal_doc_desc}" name="{legal_doc_desc_Name}">&nbsp;<img onclick="javascript:lov_doc()" src="../images/view.gif" border="0">&nbsp;<input id="t_cust_order_legal_docFormp_legal_doc_type_id" type="hidden" value="{p_legal_doc_type_id}" name="{p_legal_doc_type_id_Name}"><input id="t_cust_order_legal_docFormfile_folder" type="hidden" value="{file_folder}" name="{file_folder_Name}"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Uploda File</label></label></label></label></label></label></label></td> 
+                      <td class="" colspan="3">
+                        <!-- BEGIN FileUpload file_name --><input id="t_cust_order_legal_docFormfile_nameControlName" type="hidden" value="{State}" name="{ControlName}">
+                        <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes.<!-- END Info -->
+                        <!-- BEGIN Upload --><label for="t_cust_order_legal_docFormfile_nameFileControl" style="display: none;">File upload</label><input class="ControlsRQ" id="t_cust_order_legal_docFormfile_nameFileControl" type="file" name="{FileControl}"><!-- END Upload -->
+                        <!-- BEGIN DeleteControl --><label for="t_cust_order_legal_docFormfile_nameDeleteControl">HAPUS</label><input id="t_cust_order_legal_docFormfile_nameDeleteControl" type="checkbox" name="{DeleteControl}" {DeleteChecked}><!-- END DeleteControl --><!-- END FileUpload file_name --><input id="t_cust_order_legal_docFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}">&nbsp;</td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="th"><label for="t_cust_order_legal_docFormdescription">Deskripsi</label></td> 
+                      <td colspan="3"><input class="ControlsIN" id="t_cust_order_legal_docFormdescription" maxlength="250" size="60" value="{description}" name="{description_Name}">&nbsp;<input id="t_cust_order_legal_docFormorigin_file_name" type="hidden" value="{origin_file_name}" name="{origin_file_name_Name}"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="th"><label for="t_cust_order_legal_docFormcreated_by">Dibuat Oleh</label></td> 
+                      <td colspan="3"><input class="ControlsRO" id="t_cust_order_legal_docFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="t_cust_order_legal_docFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="th"><label for="t_cust_order_legal_docFormupdated_by">Diubah Oleh</label></td> 
+                      <td colspan="3"><input class="ControlsRO" id="t_cust_order_legal_docFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="t_cust_order_legal_docFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                    </tr>
+ 
+                    <tr class="Bottom">
+                      <td align="right" colspan="4">
+                        <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_cust_order_legal_docFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                        <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_cust_order_legal_docFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                        <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_cust_order_legal_docFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                        <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_cust_order_legal_docFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_cust_order_legal_docFormt_cust_order_legal_docGridPage" style="WIDTH: 76px; HEIGHT: 22px" type="hidden" size="10" value="{t_cust_order_legal_docGridPage}" name="{t_cust_order_legal_docGridPage_Name}"><input id="t_cust_order_legal_docFormt_cust_order_legal_doc_id" type="hidden" value="{t_cust_order_legal_doc_id}" name="{t_cust_order_legal_doc_id_Name}"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_cust_order_legal_docForm --><br>
+          <br>
+          <br>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+
+function lov_doc() {
+        getFrom_LOV('t_cust_order_legal_docForm','p_legal_doc_type_id,legal_doc_desc','lov_2_field.php?TABLE=p_legal_doc_type&FIELD_0=p_legal_doc_type_id&FIELD_1=code&FIELD_2=description&LABEL1=Jenis Dokumen&LABEL2=Deskripsi&HEADER_PAGE=JENIS DOKUMEN&HEADER_LOV=DAFTAR JENIS DOKUMEN&ORDER=p_legal_doc_type_id');
+}
+
+function toOrder()
+{
+     var pid = document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;         
+     location.href="t_customer_order.php?t_customer_order_id="+pid;
+}
+
+function toReg()
+{
+  var pid=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+  var req_code=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;
+  var id_req=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+  var id_vat = document.getElementById("t_cust_order_legal_docSearcht_vat_registration_id").value;      
+  location.href="t_vat_registration.php?t_customer_order_id="+pid+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_vat_registration_id="+id_vat;
+}
+
+function toReg2()
+{
+  var pid=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+  var req_code=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;
+  var id_req=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+  var id_vat = document.getElementById("t_cust_order_legal_docSearcht_vat_registration_id").value;    
+  if (id_vat != 0)   {         
+  location.href="t_vat_reg_dtl.php?t_customer_order_id="+pid+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_vat_registration_id="+id_vat;
+  }else{
+        alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+  }     
+}
+
+function toVat()
+{
+    var custId=document.getElementById("t_cust_order_legal_docSearcht_cust_account_id").value;
+    var fId=document.getElementById("t_cust_order_legal_docSearchp_finance_period_id").value;
+    var cusId=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+    var npwd=document.getElementById("t_cust_order_legal_docSearchnpwd").value;
+    var fcode=document.getElementById("t_cust_order_legal_docSearchfinance_period_code").value;
+    var order=document.getElementById("t_cust_order_legal_docSearchorder_no").value;
+    var reqId=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+    var reqCode=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;  
+
+    location.href="t_vat_setllement.php?t_cust_account_id="+custId
+                                                                           +"&p_finance_period_id="+fId
+                                                                           +"&t_customer_order_id="+cusId
+                                                                           +"&npwd="+npwd
+                                                                           +"&finance_period_code="+fcode
+                                                                           +"&order_no="+order
+																		   +"&p_rqst_type_id="+reqId
+																		   +"&rqst_type_code="+reqCode;
+}
+</script>
+  </body>
+  </html>

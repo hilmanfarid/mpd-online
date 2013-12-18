@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>PAJAK RESTORAN</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_vat_reg_dtl_restaurantFormButton_Delete_OnClick @97-01AE6E5B
+function t_vat_reg_dtl_restaurantFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_vat_reg_dtl_restaurantFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+        window.close();
+//End Confirmation Message
+
+//Close t_vat_reg_dtl_restaurantFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_vat_reg_dtl_restaurantFormButton_Delete_OnClick
+
+//t_vat_reg_dtl_restaurantFormButton_Cancel_OnClick @99-DDE02805
+function t_vat_reg_dtl_restaurantFormButton_Cancel_OnClick()
+{
+    var result = true;
+//End t_vat_reg_dtl_restaurantFormButton_Cancel_OnClick
+
+//Custom Code @673-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+                window.close();
+    // -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtl_restaurantFormButton_Cancel_OnClick @99-AEF500E0
+    disableValidation = true;
+    return result;
+}
+//End Close t_vat_reg_dtl_restaurantFormButton_Cancel_OnClick
+
+//bind_events @1-EEFDAF5F
+function bind_events() {
+    addEventHandler("t_vat_reg_dtl_restaurantFormButton_Delete", "click", t_vat_reg_dtl_restaurantFormButton_Delete_OnClick);
+    addEventHandler("t_vat_reg_dtl_restaurantFormButton_Cancel", "click", t_vat_reg_dtl_restaurantFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DAFTAR POTENSI PAJAK RESTORAN 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_reg_dtl_restaurantForm -->
+        <form id="t_vat_reg_dtl_restaurantForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>INFORMASI POTENSI PAJAK RESTORAN</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="5">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Jenis Pelayanan</label></label></label></label></label></label></label></label></label></label></label></td> 
+                    <td colspan="4"><input class="ControlsRO" id="t_vat_reg_dtl_restaurantFormservice_type_desc" tabindex="2" readonly maxlength="64" size="50" value="{service_type_desc}" name="{service_type_desc_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Jumlah&nbsp;Kursi</label></label></td> 
+                    <td colspan="4"><input class="ControlsRQ" id="t_vat_reg_dtl_restaurantFormseat_qty" tabindex="2" maxlength="8" size="8" value="{seat_qty}" name="{seat_qty_Name}">&nbsp;<input id="t_vat_reg_dtl_restaurantFormrqst_type_code" style="WIDTH: 83px; HEIGHT: 22px" type="hidden" size="11" value="{rqst_type_code}" name="{rqst_type_code_Name}"><input id="t_vat_reg_dtl_restaurantFormp_rqst_type_id" type="hidden" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"><input id="t_vat_reg_dtl_restaurantFormt_customer_order_id" style="WIDTH: 106px; HEIGHT: 22px" type="hidden" size="14" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jumlah&nbsp;Meja</td> 
+                    <td colspan="4"><input class="ControlsRQ" id="t_vat_reg_dtl_restaurantFormtable_qty" tabindex="2" maxlength="8" size="8" value="{table_qty}" name="{table_qty_Name}">&nbsp;<input id="t_vat_reg_dtl_restaurantFormt_vat_registration_id" type="hidden" value="{t_vat_registration_id}" name="{t_vat_registration_id_Name}"><input id="t_vat_reg_dtl_restaurantFormp_vat_type_dtl_id" type="hidden" value="{p_vat_type_dtl_id}" name="{p_vat_type_dtl_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Daya Tampung</td> 
+                    <td colspan="2"><input class="ControlsRQ" id="t_vat_reg_dtl_restaurantFormmax_service_qty" tabindex="2" maxlength="5" size="5" value="{max_service_qty}" name="{max_service_qty_Name}">&nbsp;&nbsp;</td> 
+                    <td>&nbsp;Jumlah pengunjung&nbsp;rata-rata per Bulan</td> 
+                    <td><input class="ControlsRQ" id="t_vat_reg_dtl_restaurantFormavg_subscription" tabindex="2" maxlength="12" size="15" value="{avg_subscription}" name="{avg_subscription_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_reg_dtl_restaurantFormdescription">Deskripsi</label></td> 
+                    <td colspan="4"><input class="ControlsIN" id="t_vat_reg_dtl_restaurantFormdescription" maxlength="250" size="60" value="{description}" name="{description_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_reg_dtl_restaurantFormcreated_by">Dibuat Oleh</label></td> 
+                    <td colspan="4"><input class="ControlsRO" id="t_vat_reg_dtl_restaurantFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="t_vat_reg_dtl_restaurantFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_reg_dtl_restaurantFormupdated_by">Diubah Oleh</label></td> 
+                    <td colspan="4"><input class="ControlsRO" id="t_vat_reg_dtl_restaurantFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="t_vat_reg_dtl_restaurantFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="5">
+                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_vat_reg_dtl_restaurantFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_vat_reg_dtl_restaurantFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_vat_reg_dtl_restaurantFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_vat_reg_dtl_restaurantFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_vat_reg_dtl_restaurantFormt_vat_reg_dtl_restaurant_id" type="hidden" value="{t_vat_reg_dtl_restaurant_id}" name="{t_vat_reg_dtl_restaurant_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_reg_dtl_restaurantForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+function lov_rest_type() {
+        getFrom_LOV('t_vat_reg_dtl_restaurantForm','p_rest_service_type_id,service_type_desc','lov_2_field.php?TABLE=p_rest_service_type&FIELD_0=p_rest_service_type_id&FIELD_1=code&FIELD_2=description&LABEL1=Jenis Pelayanan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PELAYANAN&HEADER_LOV=DAFTAR JENIS PELAYANAN&ORDER=p_rest_service_type_id');
+}
+</script>
+</body>
+</html>

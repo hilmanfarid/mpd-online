@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_bsheet_exception</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-D3BCC65D
+
+var p_bsheet_exceptionForm_DatePicker_valid_from = new Object(); 
+p_bsheet_exceptionForm_DatePicker_valid_from.format           = "dd-mmm-yyyy";
+p_bsheet_exceptionForm_DatePicker_valid_from.style            = "Styles/sikp/Style.css";
+p_bsheet_exceptionForm_DatePicker_valid_from.relativePathPart = "../";
+p_bsheet_exceptionForm_DatePicker_valid_from.themeVersion = "3.0";
+
+var p_bsheet_exceptionForm_DatePicker_valid_to = new Object(); 
+p_bsheet_exceptionForm_DatePicker_valid_to.format           = "dd-mmm-yyyy";
+p_bsheet_exceptionForm_DatePicker_valid_to.style            = "Styles/sikp/Style.css";
+p_bsheet_exceptionForm_DatePicker_valid_to.relativePathPart = "../";
+p_bsheet_exceptionForm_DatePicker_valid_to.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//p_bsheet_exceptionFormButton_Delete_OnClick @26-C71E2D2A
+function p_bsheet_exceptionFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_bsheet_exceptionFormButton_Delete_OnClick
+
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_bsheet_exceptionFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close p_bsheet_exceptionFormButton_Delete_OnClick
+
+//p_bsheet_exceptionFormButton_Cancel_OnClick @124-B6B80B6A
+function p_bsheet_exceptionFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_bsheet_exceptionFormButton_Cancel_OnClick
+
+//bind_events @1-7A231F04
+function bind_events() {
+    addEventHandler("p_bsheet_exceptionFormButton_Delete", "click", p_bsheet_exceptionFormButton_Delete_OnClick);
+    addEventHandler("p_bsheet_exceptionFormButton_Cancel", "click", p_bsheet_exceptionFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toLayout()">
+      <div class="tab-title">
+        LAYOUT NERACA
+      </div>
+      </label>
+    </div>
+	    <div class="th tab-button">
+      <label onclick="javascript:toSumber()">
+      <div class="tab-title">
+        SUMBER DATA 
+      </div>
+      </label>
+    </div>
+	  <div class="th tab-button">
+      <div class="tab-title-selected">
+        PENGECUALIAN
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+<table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+  <tr>
+    <td>
+      <table class="param-grid" cellspacing="0" cellpadding="0">
+        <tr>
+          <th nowrap>SUMBER DATA&nbsp;:&nbsp;</th>
+ 
+          <th nowrap>{bsheet_code}&nbsp;</th>
+        </tr>
+      </table>
+      <!-- BEGIN Record p_bsheet_exceptionSearch -->
+      <form id="p_bsheet_exceptionSearch" name="{HTMLFormName}" action="{Action}" method="post">
+        <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td>{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="search-field"><input class="ControlsIN" id="p_bsheet_exceptionSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"><input id="p_bsheet_exceptionSearchp_balance_sheet_id" style="WIDTH: 59px; HEIGHT: 22px" type="hidden" size="8" value="{p_balance_sheet_id}" name="{p_balance_sheet_id_Name}"><input id="p_bsheet_exceptionSearchp_balance_sheetGridPage" style="WIDTH: 85px; HEIGHT: 22px" type="hidden" size="11" value="{p_balance_sheetGridPage}" name="{p_balance_sheetGridPage_Name}"><input id="p_bsheet_exceptionSearchbalance_s_keyword" style="WIDTH: 63px; HEIGHT: 22px" type="hidden" size="8" value="{balance_s_keyword}" name="{balance_s_keyword_Name}"><input id="p_bsheet_exceptionSearchbalance_code" style="WIDTH: 63px; HEIGHT: 22px" type="hidden" size="8" value="{balance_code}" name="{balance_code_Name}"><input id="p_bsheet_exceptionSearchp_bsheet_source_id" style="WIDTH: 52px; HEIGHT: 22px" type="hidden" size="7" value="{p_bsheet_source_id}" name="{p_bsheet_source_id_Name}"><input id="p_bsheet_exceptionSearchp_bsheet_sourceGridPage" style="WIDTH: 76px; HEIGHT: 22px" type="hidden" size="10" value="{p_bsheet_sourceGridPage}" name="{p_bsheet_sourceGridPage_Name}"><input id="p_bsheet_exceptionSearchbsheet_code" style="WIDTH: 63px; HEIGHT: 22px" type="hidden" size="8" value="{bsheet_code}" name="{bsheet_code_Name}"><input id="p_bsheet_exceptionSearchbsheet_s_keyword" style="WIDTH: 63px; HEIGHT: 22px" type="hidden" size="8" value="{bsheet_s_keyword}" name="{bsheet_s_keyword_Name}"></td>
+                  <td class="search-field"><!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="p_bsheet_exceptionSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record p_bsheet_exceptionSearch --><br>
+      <!-- BEGIN Grid p_bsheet_exceptionGrid -->
+      <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <tr>
+          <td valign="top">
+            <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                <td class="th"><strong>DAFTAR <label onclick="javascript:toBsheet()">SUMBER DATA</label>&nbsp;</strong></td> 
+                <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th style="TEXT-ALIGN: center">#</th>
+ 
+                <th scope="col"><label for="V_P_BSHEET_SOURCE1PARTIAL_ACCOUNT_CODE">Akun Lunas</label></th>
+ 
+                <th scope="col">Berlaku Dari</th>
+ 
+                <th scope="col">Berlaku Sampai</th>
+ 
+                <th scope="col">Keterangan</th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr {p_bsheet_exceptionGrid:rowStyle}>
+                <td style="TEXT-ALIGN: right">
+                  <div align="center">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{DLink_Src}" id="p_bsheet_exceptionGridDLink_{p_app_roleGrid:rowNumber}">{DLink}</a>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+                  </div>
+                </td> 
+                <td style="TEXT-ALIGN: right">
+                  <div align="left">
+                    {full_account_code}&nbsp;<input id="p_bsheet_exceptionGridp_bsheet_exception_id" type="hidden" value="{p_bsheet_exception_id}" name="{p_bsheet_exception_id_Name}">&nbsp;&nbsp;&nbsp; 
+                  </div>
+                </td> 
+                <td>{valid_from}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td> 
+                <td>
+                  <div align="left">
+                    {valid_to}&nbsp;&nbsp;&nbsp;&nbsp; 
+                  </div>
+                </td> 
+                <td>
+                  <div align="left">
+                    {description}&nbsp;&nbsp;&nbsp;&nbsp; 
+                  </div>
+                </td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="5">data tidak ditemukan</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td><a href="{Insert_Link_Src}" id="p_bsheet_exceptionGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a>&nbsp;</td> 
+                <td colspan="4">&nbsp; 
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid p_bsheet_exceptionGrid --><br>
+      <!-- BEGIN Record p_bsheet_exceptionForm -->
+      <form id="p_bsheet_exceptionForm" name="{HTMLFormName}" action="{Action}" method="post">
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>INFORMASI <label onclick="javascript:toBsheet()">SUMBER DATA</label></strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="p_bsheet_exceptionFormfull_account_code">Akun Lunas</label></td> 
+                  <td><input class="ControlsRQ" id="p_bsheet_exceptionFormfull_account_code" maxlength="32" size="32" value="{full_account_code}" name="{full_account_code_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="p_bsheet_exceptionFormvalid_from">Masa Berlaku</label></td> 
+                  <td><input class="ControlsRQ" id="p_bsheet_exceptionFormvalid_from" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="12" value="{valid_from}" name="{valid_from_Name}">
+                    <!-- BEGIN DatePicker DatePicker_valid_from --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_bsheet_exceptionFormDatePicker_valid_from"><img id="p_bsheet_exceptionFormDatePicker_valid_from_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_valid_from -->&nbsp;s/d&nbsp; <input class="ControlsIN" id="p_bsheet_exceptionFormvalid_to" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="15" value="{valid_to}" name="{valid_to_Name}">
+                    <!-- BEGIN DatePicker DatePicker_valid_to --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_bsheet_exceptionFormDatePicker_valid_to"><img id="p_bsheet_exceptionFormDatePicker_valid_to_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a>&nbsp;<!-- END DatePicker DatePicker_valid_to --></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="p_bsheet_exceptionFormdescription">Deskripsi</label></td> 
+                  <td><input class="ControlsIN" id="p_bsheet_exceptionFormdescription" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="p_bsheet_exceptionFormcreated_by">Dibuat Oleh</label></td> 
+                  <td><input class="ControlsRO" id="p_bsheet_exceptionFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="p_bsheet_exceptionFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="p_bsheet_exceptionFormupdated_by">Diubah Oleh</label></td> 
+                  <td><input class="ControlsRO" id="p_bsheet_exceptionFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="p_bsheet_exceptionFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="p_bsheet_exceptionFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="p_bsheet_exceptionFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="p_bsheet_exceptionFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="p_bsheet_exceptionFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_bsheet_exceptionFormp_bsheet_source_id" type="hidden" value="{p_bsheet_source_id}" name="{p_bsheet_source_id_Name}"><input id="p_bsheet_exceptionFormp_bsheet_exception_id" type="hidden" value="{p_bsheet_exception_id}" name="{p_bsheet_exception_id_Name}"><input id="p_bsheet_exceptionFormp_bsheet_exceptionGridPage" style="WIDTH: 76px; HEIGHT: 22px" type="hidden" size="10" value="{p_bsheet_exceptionGridPage}" name="{p_bsheet_exceptionGridPage_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record p_bsheet_exceptionForm -->
+      <p></p>
+    </td>
+  </tr>
+</table>
+</div>
+<script src="../js/lov.js" type="text/javascript"></script>
+<script language="javascript">
+
+function toLayout(){
+    var pid=document.getElementById("p_bsheet_exceptionSearchp_balance_sheet_id").value;
+    var page=document.getElementById("p_bsheet_exceptionSearchp_balance_sheetGridPage").value;
+    var skw=document.getElementById("p_bsheet_exceptionSearchbalance_s_keyword").value;
+    location.href="p_balance_sheet.php?p_balance_sheet_id="+pid+"&p_balance_sheetGridPage="+page+"&s_keyword="+skw;
+}
+
+function toSumber(){
+    var pid=document.getElementById("p_bsheet_exceptionSearchp_balance_sheet_id").value;
+    var skw=document.getElementById("p_bsheet_exceptionSearchbalance_s_keyword").value;
+    var cwd=document.getElementById("p_bsheet_exceptionSearchbalance_code").value;
+    var page=document.getElementById("p_bsheet_exceptionSearchp_balance_sheetGridPage").value;
+
+    var pidS=document.getElementById("p_bsheet_exceptionSearchp_bsheet_source_id").value;
+    var skwS=document.getElementById("p_bsheet_exceptionSearchbsheet_s_keyword").value;
+    var pageS=document.getElementById("p_bsheet_exceptionSearchp_bsheet_sourceGridPage").value;
+   
+             location.href="p_bsheet_source.php?p_bsheet_source_id="+pidS
+                                                +"&s_keyword="+skwS
+                                                +"&p_bsheet_sourceGridPage="+pageS
+                                                +"&p_balance_sheet_id="+pid
+                                                +"&balance_s_keyword="+skw
+                                                +"&balance_code="+cwd
+                                                +"&p_balance_sheetGridPage="+page;
+      
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_entertaintment_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-09438EB0
+
+var t_cust_acc_dtl_transSearch_DatePicker_trans_date = new Object(); 
+t_cust_acc_dtl_transSearch_DatePicker_trans_date.format           = "yyyy-mm-dd";
+t_cust_acc_dtl_transSearch_DatePicker_trans_date.style            = "Styles/sikp/Style.css";
+t_cust_acc_dtl_transSearch_DatePicker_trans_date.relativePathPart = "../";
+t_cust_acc_dtl_transSearch_DatePicker_trans_date.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//t_cust_acc_dtl_transFormButton_Delete_OnClick @26-86077B32
+function t_cust_acc_dtl_transFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_cust_acc_dtl_transFormButton_Delete_OnClick
+
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+    return confirm('Delete record?');
+
+//Close t_cust_acc_dtl_transFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close t_cust_acc_dtl_transFormButton_Delete_OnClick
+
+//t_cust_acc_dtl_transFormButton_Cancel_OnClick @28-04AB1196
+function t_cust_acc_dtl_transFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_cust_acc_dtl_transFormButton_Cancel_OnClick
+
+//bind_events @1-96148011
+function bind_events() {
+    addEventHandler("t_cust_acc_dtl_transFormButton_Delete", "click", t_cust_acc_dtl_transFormButton_Delete_OnClick);
+    addEventHandler("t_cust_acc_dtl_transFormButton_Cancel", "click", t_cust_acc_dtl_transFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        TRANSAKSI HARIAN WP 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toBulanan()">
+      <div class="tab-title">
+        TRANSAKSI BULANAN WP 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_cust_acc_dtl_transSearch -->
+        <form id="t_cust_acc_dtl_transSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">NPWPD&nbsp;</td> 
+                    <td class="search-field"><input class="ControlsRQ" id="t_cust_acc_dtl_transSearchnpwd" maxlength="32" size="25" value="{npwd}" name="{npwd_Name}">&nbsp;<img onclick="javascript:lov_npwd()" src="../images/view.gif" border="0">&nbsp;<input id="t_cust_acc_dtl_transSearcht_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Tgl. Transaksi&nbsp;&nbsp; </td> 
+                    <td class="search-field"><input class="ControlsRQ" id="t_cust_acc_dtl_transSearchtrans_date" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="25" value="{trans_date}" name="{trans_date_Name}">
+                      <!-- BEGIN DatePicker DatePicker_trans_date --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_cust_acc_dtl_transSearchDatePicker_trans_date"><img id="t_cust_acc_dtl_transSearchDatePicker_trans_date_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_trans_date --></td></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="search-field">&nbsp;</td> 
+                  <td class="search-field" style="TEXT-ALIGN: right">
+                    <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="t_cust_acc_dtl_transSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record t_cust_acc_dtl_transSearch --><br>
+      <!-- BEGIN Grid t_cust_acc_dtl_transGrid -->
+      <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <tr>
+          <td valign="top">
+            <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                <td class="th"><strong>DAFTAR TRANSAKSI HARIAN WP</strong></td> 
+                <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                <th scope="col">No. Faktur</th>
+ 
+                <th scope="col">Nama Transaksi</th>
+ 
+                <th scope="col">Nilai Transaksi</th>
+ 
+                <th scope="col">Nilai Pajak&nbsp;</th>
+ 
+                <th scope="col" colspan="3">Deskripsi</th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr {t_cust_acc_dtl_transGrid:rowStyle}>
+                <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_cust_acc_dtl_transGridDLink_{t_cust_acc_dtl_transGrid:rowNumber}">{DLink}</a></td> 
+                <td>{bill_no}&nbsp;&nbsp;<input id="t_cust_acc_dtl_transGridt_cust_acc_dtl_trans_id_{t_cust_acc_dtl_transGrid:rowNumber}" type="hidden" value="{t_cust_acc_dtl_trans_id}" name="{t_cust_acc_dtl_trans_id_Name}"><input id="t_cust_acc_dtl_transGridt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                <td>{service_desc}&nbsp;</td> 
+                <td>{service_charge}&nbsp;</td> 
+                <td>{vat_charge}&nbsp;</td> 
+                <td colspan="3">{description}</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="8">-</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td><b><a href="{Insert_Link_Src}" id="t_cust_acc_dtl_transGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a></b></td> 
+                <td colspan="7">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid t_cust_acc_dtl_transGrid --><br>
+      <!-- BEGIN Record t_cust_acc_dtl_transForm -->
+      <form id="t_cust_acc_dtl_transForm" name="{HTMLFormName}" action="{Action}" method="post">
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>INFORMASI TRANSAKSI HARIAN WP (MANUAL INPUT)</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="t_cust_acc_dtl_transFormbill_no">No Faktur</label></td> 
+                  <td><input class="ControlsRQ" id="t_cust_acc_dtl_transFormbill_no" maxlength="32" size="32" value="{bill_no}" name="{bill_no_Name}"><input id="t_cust_acc_dtl_transFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"><input class="ControlsIN" id="t_cust_acc_dtl_transFormservice_desc" type="hidden" maxlength="64" size="50" value="{service_desc}" name="{service_desc_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Nilai Transaksi&nbsp;</td> 
+                  <td><input class="ControlsRQ" id="t_cust_acc_dtl_transFormservice_charge" style="TEXT-ALIGN: right" maxlength="12" value="{service_charge}" name="{service_charge_Name}">&nbsp;<input id="t_cust_acc_dtl_transFormtrans_date" type="hidden" value="{trans_date}" name="{trans_date_Name}"><input class="ControlsIN" id="t_cust_acc_dtl_transFormvat_charge" style="TEXT-ALIGN: right" type="hidden" maxlength="12" value="{vat_charge}" name="{vat_charge_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="t_cust_acc_dtl_transFormcreated_by">Dibuat Oleh</label></td> 
+                  <td><input class="ControlsRO" id="t_cust_acc_dtl_transFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="t_cust_acc_dtl_transFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}">&nbsp;<input class="ControlsIN" id="t_cust_acc_dtl_transFormdescription" type="hidden" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="t_cust_acc_dtl_transFormupdated_by">Diubah Oleh</label></td> 
+                  <td><input class="ControlsRO" id="t_cust_acc_dtl_transFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="t_cust_acc_dtl_transFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="2">
+                    <!-- BEGIN Button Button1 --><input class="btn_tambah" id="t_cust_acc_dtl_transFormButton1" onclick="cetak()" type="submit" alt="Button1" value="CETAK" name="{Button_Name}"><!-- END Button Button1 -->
+                    <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_cust_acc_dtl_transFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_cust_acc_dtl_transFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_cust_acc_dtl_transFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_cust_acc_dtl_transFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_cust_acc_dtl_transFormt_cust_acc_dtl_trans_id" type="hidden" value="{t_cust_acc_dtl_trans_id}" name="{t_cust_acc_dtl_trans_id_Name}"><input id="t_cust_acc_dtl_transFormt_cust_acc_dtl_transGridPage" type="hidden" value="{t_cust_acc_dtl_transGridPage}" name="{t_cust_acc_dtl_transGridPage_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record t_cust_acc_dtl_transForm --><br>
+      <!-- BEGIN Record uploadForm -->
+      <form id="uploadForm" name="{HTMLFormName}" action="{Action}" method="post" enctype="multipart/form-data">
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>INFORMASI TRANSAKSI HARIAN WP (MANUAL OTOMATIS)</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Upload File Excel</label></label></label></label></label></label></label></label></label></td> 
+                  <td colspan="3"><input class="ControlsRQ" id="idexcel_file" type="file" name="excel_file"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="4"><input id="uploadFormtrans_date" style="WIDTH: 64px; HEIGHT: 22px" type="hidden" size="8" value="{trans_date}" name="{trans_date_Name}"><input id="uploadFormt_cust_account_id" style="WIDTH: 63px; HEIGHT: 22px" type="hidden" size="8" value="{t_cust_account_id}" name="{t_cust_account_id_Name}">&nbsp; 
+                    <!-- BEGIN Button Button_xl --><input class="btn_tambah" id="uploadFormButton_xl" type="submit" alt="Add" value="UPLOAD FILE EXCEL" name="{Button_Name}"><!-- END Button Button_xl --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record uploadForm --></td>
+  </tr>
+</table>
+</div>
+<script src="../js/lov.js" type="text/javascript"></script>
+<script language="javascript">
+function lov_npwd() {
+        getFrom_LOV('t_cust_acc_dtl_transSearch','t_cust_account_id,npwd','lov_npwd.php');
+}
+
+function toBulanan()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_cust_acc_dtl_transSearcht_cust_account_id'))
+  {
+    var pid=idelement.value;
+        var npwd = document.getElementById('t_cust_acc_dtl_transSearchnpwd').value;
+        var trans_date = document.getElementById('t_cust_acc_dtl_transSearchtrans_date').value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_cust_acc_dtl_trans_month.php?t_cust_account_id="+pid
+                                                                                                        +"&npwd="+npwd
+                                                                                                        +"&trans_date="+trans_date;
+    } else {
+     alert("Pilih salah satu NPWD!");
+    }
+  } else {
+     alert("Pilih salah satu NPWD!");
+  }
+}
+
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function cetak(){
+                 var idVat=document.getElementById("t_cust_acc_dtl_transFormt_cust_account_id").value;
+                 var tgl_trans=document.getElementById("t_cust_acc_dtl_transFormtrans_date").value;
+                                 var urlLink = "?t_cust_account_id="+idVat+"&trans_date="+tgl_trans;
+                return popup("../report/cetak_trans_harian_pdf.php"+urlLink);
+              
+}
+</script>
+</body>
+</html>

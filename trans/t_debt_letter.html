@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order_ro</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_debt_letterFormButton_Delete_OnClick @632-82F8E8F0
+function t_debt_letterFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_debt_letterFormButton_Delete_OnClick
+
+//Confirmation Message @633-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Confirmation Message @633//End Confirmation Message
+
+//Close t_debt_letterFormButton_Delete_OnClick @632-BC33A33A
+    return result;
+}
+//End Close t_debt_letterFormButton_Delete_OnClick
+
+//t_debt_letterFormButton_Cancel_OnClick @634-3A32816C
+function t_debt_letterFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_debt_letterFormButton_Cancel_OnClick
+
+//bind_events @1-D759763B
+function bind_events() {
+    addEventHandler("t_debt_letterFormButton_Delete", "click", t_debt_letterFormButton_Delete_OnClick);
+    addEventHandler("t_debt_letterFormButton_Cancel", "click", t_debt_letterFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        SURAT TEGURAN 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toReg3()">
+      <div class="tab-title">
+        DOKUMEN PENDUKUNG 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toActive()">
+      <div class="tab-title">
+        DATA LOG AKTIFITAS 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_debt_letterForm -->
+        <form id="t_debt_letterForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>DETAIL&nbsp;FORMULIR PENDAFTARAN</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nomor Order</label></label>&nbsp; </label></label></label></label></label></label></label></td> 
+                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormorder_no" tabindex="2" readonly maxlength="14" value="{order_no}" name="{order_no_Name}">&nbsp;<input id="t_debt_letterFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"><input id="t_debt_letterFormt_debt_letter_id" type="hidden" value="{t_debt_letter_id}" name="{t_debt_letter_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Periode</td> 
+                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormfinance_period_code" tabindex="2" readonly maxlength="32" size="32" value="{finance_period_code}" name="{finance_period_code_Name}">&nbsp;<input id="t_debt_letterFormp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jenis&nbsp;Surat&nbsp;&nbsp;</td> 
+                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormleter_type" tabindex="2" readonly maxlength="32" size="32" value="{leter_type}" name="{leter_type_Name}">&nbsp;<input id="t_debt_letterFormp_debt_letter_type_id" type="hidden" value="{p_debt_letter_type_id}" name="{p_debt_letter_type_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Tanggal&nbsp;Surat&nbsp;</td> 
+                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormletter_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="25" value="{letter_date}" name="{letter_date_Name}">&nbsp;<input id="t_debt_letterFormTAKEN_CTL" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{TAKEN_CTL}" name="{TAKEN_CTL_Name}"><input id="t_debt_letterFormIS_TAKEN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{IS_TAKEN}" name="{IS_TAKEN_Name}"><input id="t_debt_letterFormCURR_DOC_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_DOC_ID}" name="{CURR_DOC_ID_Name}"><input id="t_debt_letterFormCURR_DOC_TYPE_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_DOC_TYPE_ID}" name="{CURR_DOC_TYPE_ID_Name}"><input id="t_debt_letterFormCURR_PROC_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_PROC_ID}" name="{CURR_PROC_ID_Name}"><input id="t_debt_letterFormCURR_CTL_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_CTL_ID}" name="{CURR_CTL_ID_Name}"><input id="t_debt_letterFormUSER_ID_DOC" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_DOC}" name="{USER_ID_DOC_Name}"><input id="t_debt_letterFormUSER_ID_DONOR" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_DONOR}" name="{USER_ID_DONOR_Name}"><input id="t_debt_letterFormUSER_ID_LOGIN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_LOGIN}" name="{USER_ID_LOGIN_Name}"><input id="t_debt_letterFormUSER_ID_TAKEN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_TAKEN}" name="{USER_ID_TAKEN_Name}">
+<input id="t_debt_letterFormIS_CREATE_DOC" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{IS_CREATE_DOC}" name="{IS_CREATE_DOC_Name}"><input id="t_debt_letterFormIS_MANUAL" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{IS_MANUAL}" name="{IS_MANUAL_Name}"><input id="t_debt_letterFormCURR_PROC_STATUS" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{CURR_PROC_STATUS}" name="{CURR_PROC_STATUS_Name}"><input id="t_debt_letterFormCURR_DOC_STATUS" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{CURR_DOC_STATUS}" name="{CURR_DOC_STATUS_Name}"><input id="t_debt_letterFormPREV_DOC_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_DOC_ID}" name="{PREV_DOC_ID_Name}"><input id="t_debt_letterFormPREV_DOC_TYPE_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_DOC_TYPE_ID}" name="{PREV_DOC_TYPE_ID_Name}"><input id="t_debt_letterFormPREV_PROC_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_PROC_ID}" name="{PREV_PROC_ID_Name}"><input id="t_debt_letterFormPREV_CTL_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_CTL_ID}" name="{PREV_CTL_ID_Name}"><input id="t_debt_letterFormSLOT_1" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_1}" name="{SLOT_1_Name}"><input id="t_debt_letterFormSLOT_2" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_2}" name="{SLOT_2_Name}"><input id="t_debt_letterFormSLOT_3" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_3}" name="{SLOT_3_Name}"><input id="t_debt_letterFormSLOT_4" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_4}" name="{SLOT_4_Name}">
+<input id="t_debt_letterFormSLOT_5" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_5}" name="{SLOT_5_Name}"><input id="t_debt_letterFormMESSAGE" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{MESSAGE}" name="{MESSAGE_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Surat Teguran Ke -&nbsp;</td> 
+                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormsequence_no" readonly maxlength="2" size="2" value="{sequence_no}" name="{sequence_no_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Nomor Surat</td> 
+                    <td colspan="3"><input class="ControlsRQ" id="t_debt_letterFormletter_no" tabindex="2" maxlength="32" size="32" value="{letter_no}" name="{letter_no_Name}">&nbsp;<input id="t_debt_letterFormis_approve_1" type="hidden" value="{is_approve_1}" name="{is_approve_1_Name}"><input id="t_debt_letterFormis_approve_2" type="hidden" value="{is_approve_2}" name="{is_approve_2_Name}"><input id="t_debt_letterFormis_approve_3" type="hidden" value="{is_approve_3}" name="{is_approve_3_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">SMS Konten</td> 
+                    <td colspan="3"><input class="ControlsRQ" id="t_debt_letterFormsms_content" tabindex="2" maxlength="128" size="100" value="{sms_content}" name="{sms_content_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_debt_letterFormcreated_by">Dibuat Oleh</label></td> 
+                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="t_debt_letterFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_debt_letterFormupdated_by">Diubah Oleh</label></td> 
+                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="t_debt_letterFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="4">&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button4 --><input class="btn_tambah" id="t_debt_letterFormButton4" onclick="view_debt()" type="submit" alt="Button2" value="VIEW DAFTAR SURAT TEGURAN" name="{Button_Name}"><!-- END Button Button4 -->
+                      <!-- BEGIN Button Button3 --><input class="btn_tambah" id="t_debt_letterFormButton3" onclick="cetak_debt()" type="submit" alt="Button2" value="CETAK SURAT TEGURAN" name="{Button_Name}"><!-- END Button Button3 -->
+                      <!-- BEGIN Button Button2 --><input class="btn_tambah" id="t_debt_letterFormButton2" onclick="submitter()" type="submit" alt="Button2" value="SUBMIT" name="{Button_Name}"><!-- END Button Button2 -->
+                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_debt_letterFormButton_Insert" style="DISPLAY: none" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_debt_letterFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_debt_letterFormButton_Delete" style="DISPLAY: none" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_debt_letterFormButton_Cancel" style="DISPLAY: none" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_debt_letterForm --><br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function toReg3()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_debt_letterFormt_customer_order_id'))
+  {
+    var pid=idelement.value;
+    var id_debt =document.getElementById('t_debt_letterFormt_debt_letter_id').value;    
+        var takenCtl = document.getElementById('t_debt_letterFormTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_debt_letterFormIS_TAKEN').value;
+        var currDocId = document.getElementById('t_debt_letterFormCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_debt_letterFormCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_debt_letterFormCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_debt_letterFormCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_debt_letterFormUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_debt_letterFormUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_debt_letterFormUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_debt_letterFormUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_debt_letterFormIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_debt_letterFormIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_debt_letterFormCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_debt_letterFormCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_debt_letterFormPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_debt_letterFormPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_debt_letterFormPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_debt_letterFormPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_debt_letterFormSLOT_1').value;
+        var slot2 = document.getElementById('t_debt_letterFormSLOT_2').value;
+        var slot3 = document.getElementById('t_debt_letterFormSLOT_3').value;
+        var slot4 = document.getElementById('t_debt_letterFormSLOT_4').value;
+        var slot5 = document.getElementById('t_debt_letterFormSLOT_5').value;
+        var msg = document.getElementById('t_debt_letterFormMESSAGE').value;
+
+        if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_debt_legal_doc_roo.php?t_customer_order_id="+pid
+                                                                                                  +"&t_debt_letter_id="+id_debt
+                                                                                                  +"&TAKEN_CTL="+takenCtl
+                                                                                                        +"&IS_TAKEN="+isTaken
+                                                                                                        +"&CURR_DOC_ID="+currDocId
+                                                                                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                                        +"&CURR_PROC_ID="+currProcId
+                                                                                                        +"&CURR_CTL_ID="+currCtlId
+                                                                                                        +"&USER_ID_DOC="+userIdDoc
+                                                                                                        +"&USER_ID_DONOR="+userIdDonor
+                                                                                                        +"&USER_ID_LOGIN="+userIdLogin
+                                                                                                        +"&USER_ID_TAKEN="+userIdTaken
+                                                                                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                                        +"&IS_MANUAL="+isManual
+                                                                                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                                        +"&PREV_DOC_ID="+PrevDocId
+                                                                                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                                        +"&PREV_PROC_ID="+PrevProcId
+                                                                                                        +"&PREV_CTL_ID="+PrevCtlId
+                                                                                                        +"&SLOT_1="+slot1
+                                                                                                        +"&SLOT_2="+slot2
+                                                                                                        +"&SLOT_3="+slot3
+                                                                                                        +"&SLOT_4="+slot4
+                                                                                                        +"&SLOT_5="+slot5
+                                                                                                        +"&MESSAGE="+msg;
+    } else {
+     alert("Pilih salah satu ORDER!");
+    }
+  } else {
+     alert("Pilih salah satu ORDER!");
+  }
+}
+
+
+function toActive()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_debt_letterFormt_customer_order_id'))
+  {
+    var pid=idelement.value;
+    var id_debt =document.getElementById('t_debt_letterFormt_debt_letter_id').value;
+     var takenCtl = document.getElementById('t_debt_letterFormTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_debt_letterFormIS_TAKEN').value;
+        var currDocId = document.getElementById('t_debt_letterFormCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_debt_letterFormCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_debt_letterFormCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_debt_letterFormCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_debt_letterFormUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_debt_letterFormUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_debt_letterFormUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_debt_letterFormUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_debt_letterFormIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_debt_letterFormIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_debt_letterFormCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_debt_letterFormCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_debt_letterFormPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_debt_letterFormPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_debt_letterFormPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_debt_letterFormPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_debt_letterFormSLOT_1').value;
+        var slot2 = document.getElementById('t_debt_letterFormSLOT_2').value;
+        var slot3 = document.getElementById('t_debt_letterFormSLOT_3').value;
+        var slot4 = document.getElementById('t_debt_letterFormSLOT_4').value;
+        var slot5 = document.getElementById('t_debt_letterFormSLOT_5').value;
+        var msg = document.getElementById('t_debt_letterFormMESSAGE').value;
+
+        if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_debt_log_kronologiss.php?t_customer_order_id="+pid
+                                                                                                  +"&t_debt_letter_id="+id_debt
+                                                                                                  +"&TAKEN_CTL="+takenCtl
+                                                                                                        +"&IS_TAKEN="+isTaken
+                                                                                                        +"&CURR_DOC_ID="+currDocId
+                                                                                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                                        +"&CURR_PROC_ID="+currProcId
+                                                                                                        +"&CURR_CTL_ID="+currCtlId
+                                                                                                        +"&USER_ID_DOC="+userIdDoc
+                                                                                                        +"&USER_ID_DONOR="+userIdDonor
+                                                                                                        +"&USER_ID_LOGIN="+userIdLogin
+                                                                                                        +"&USER_ID_TAKEN="+userIdTaken
+                                                                                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                                        +"&IS_MANUAL="+isManual
+                                                                                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                                        +"&PREV_DOC_ID="+PrevDocId
+                                                                                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                                        +"&PREV_PROC_ID="+PrevProcId
+                                                                                                        +"&PREV_CTL_ID="+PrevCtlId
+                                                                                                        +"&SLOT_1="+slot1
+                                                                                                        +"&SLOT_2="+slot2
+                                                                                                        +"&SLOT_3="+slot3
+                                                                                                        +"&SLOT_4="+slot4
+                                                                                                        +"&SLOT_5="+slot5
+                                                                                                        +"&MESSAGE="+msg;
+    } else {
+     alert("Pilih salah satu ORDER!");
+    }
+  } else {
+     alert("Pilih salah satu ORDER!");
+  }
+}
+
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function submitter(){
+        var takenCtl = document.getElementById('t_debt_letterFormTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_debt_letterFormIS_TAKEN').value;
+        var currDocId = document.getElementById('t_debt_letterFormCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_debt_letterFormCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_debt_letterFormCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_debt_letterFormCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_debt_letterFormUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_debt_letterFormUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_debt_letterFormUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_debt_letterFormUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_debt_letterFormIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_debt_letterFormIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_debt_letterFormCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_debt_letterFormCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_debt_letterFormPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_debt_letterFormPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_debt_letterFormPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_debt_letterFormPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_debt_letterFormSLOT_1').value;
+        var slot2 = document.getElementById('t_debt_letterFormSLOT_2').value;
+        var slot3 = document.getElementById('t_debt_letterFormSLOT_3').value;
+        var slot4 = document.getElementById('t_debt_letterFormSLOT_4').value;
+        var slot5 = document.getElementById('t_debt_letterFormSLOT_5').value;
+        var msg = document.getElementById('t_debt_letterFormMESSAGE').value;
+        
+         var urlLink = "?TAKEN_CTL="+takenCtl
+                                        +"&IS_TAKEN="+isTaken
+                                        +"&CURR_DOC_ID="+currDocId
+                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                        +"&CURR_PROC_ID="+currProcId
+                                        +"&CURR_CTL_ID="+currCtlId
+                                        +"&USER_ID_DOC="+userIdDoc
+                                        +"&USER_ID_DONOR="+userIdDonor
+                                        +"&USER_ID_LOGIN="+userIdLogin
+                                        +"&USER_ID_TAKEN="+userIdTaken
+                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                        +"&IS_MANUAL="+isManual
+                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                        +"&PREV_DOC_ID="+PrevDocId
+                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                        +"&PREV_PROC_ID="+PrevProcId
+                                        +"&PREV_CTL_ID="+PrevCtlId
+                                        +"&SLOT_1="+slot1
+                                        +"&SLOT_2="+slot2
+                                        +"&SLOT_3="+slot3
+                                        +"&SLOT_4="+slot4
+                                        +"&SLOT_5="+slot5
+                                        +"&MESSAGE="+msg;
+     return popup("../workflow/php_submitter_start.php"+urlLink);
+}
+
+function view_debt(){
+                var id_cus =document.getElementById('t_debt_letterFormt_customer_order_id').value;
+        var urlLink = "?t_customer_order_id="+id_cus;
+        return popup("../report/view_daftar_surat_teguran_pdf.php"+urlLink);
+}
+
+function cetak_debt(){
+                var id_cus =document.getElementById('t_debt_letterFormt_customer_order_id').value;
+        var urlLink = "?t_customer_order_id="+id_cus;
+        return popup("../report/cetak_formulir_surat_teguran_pdf.php"+urlLink);
+}
+</script>
+</body>
+</html>
