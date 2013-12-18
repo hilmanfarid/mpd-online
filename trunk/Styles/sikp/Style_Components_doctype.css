@@ -1,0 +1,1224 @@
+/* CCSTheme v 3.x */
+/* General */
+
+/* Colors */
+.PageBgColorRWNet {
+	background-color: #e6e2cf;
+	}
+
+.FormTitleBgColorRWNet {
+	background-color: #005ebb;
+	}
+
+.FormTitleFontColorRWNet {
+	color: #ffffff;
+	}
+
+.CaptionBgColorRWNet {
+	background-color: #80bbec;
+	}
+
+.CaptionFontColorRWNet {
+	color: #000000;
+	}
+
+.DataBgColorRWNet {
+	background-color: #ffffff;
+	}
+
+.AltDataBgColorRWNet {
+	background-color: #c5f8fc;
+	}
+
+.DataFontColorRWNet {
+	color: #000000;
+	}
+
+.LinkColorRWNet {
+	color: #0033cc;
+	}
+
+.VisitedLinkColorRWNet {
+	color: #840000;
+	}
+
+.HoverLinkColorRWNet {
+	color: #ff0000;
+	}
+
+.ColorBgButtonRWNet {
+	background-color: #005ebb;
+}
+
+.ColorFontButtonRWNet {
+	color: #ffffff;
+}
+
+.ColorBgButtonPassiveRWNet {
+	background-color: #6fb7ff;
+}
+
+.ColorFontButtonPassiveRWNet {
+	color: #ffffff;
+}
+
+
+
+.HeaderRWNet {
+	width: 100%;
+	}
+
+.HeaderRWNet th { 
+	font-family: Arial; font-size: 90%; font-weight: bold; text-align: center !important;
+	padding: 2px;
+	background-image: url('Images/HeaderBg.gif'); color: #ffffff;
+	width: 100%;
+	white-space: nowrap;
+	padding-left: 8px;
+	}
+
+
+html>body .HeaderRWNet th {
+	font-family: Arial; font-size: 130%; font-weight: bold; text-align: center !important;
+}
+
+
+/*ie6*/
+* html body .HeaderRWNet th {
+	font-family: Arial; font-size: 130%; font-weight: bold; text-align: center !important;
+}
+/*end*/
+
+.HeaderRWNet a:link { 
+	color: #ffffff;
+	}
+
+.HeaderRWNet a:visited { 
+	color: #ffffff;
+	}
+
+.HeaderRWNet a:hover, .CaptionRWNet a:active { 
+	color: #ffffff; text-decoration: none;
+	}
+
+.HeaderLeftRWNet { 
+	background-image: url('Images/HeaderLeft.gif');
+	}
+
+.HeaderRightRWNet { 
+	background-image: url('Images/HeaderRight.gif');
+	background-position: right top;
+	}
+
+.HeaderLeftRWNet img{
+	width: 1px;
+	}
+
+.HeaderRightRWNet img{
+	width: 1px;
+	}
+
+
+/* Grid Options */
+.GridRWNet { 
+	border: 1px solid #005ebb;
+	width: 100%;
+	}
+
+.CaptionRWNet th { 
+	font-family: Arial; font-size: 70%; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF;
+	background-color: #80bbec; color: #000000;
+	white-space: nowrap;
+	}
+
+.CaptionRWNet td { 
+	font-family: Arial; font-size: 70%; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF;
+	background-color: #80bbec; color: #000000;
+	white-space: nowrap;
+	}
+
+
+html>body .CaptionRWNet th, html>body .CaptionRWNet td {
+	font-family: Arial; font-size: 100%; text-align: left; vertical-align: top;
+}
+
+
+/*ie6*/
+* html body .CaptionRWNet th, * html body .CaptionRWNet td {
+	font-family: Arial; font-size: 100%; text-align: left; vertical-align: top;
+}
+/*end*/
+
+.CaptionRWNet a:link { 
+	color: #000000;
+	}
+
+.CaptionRWNet a:visited { 
+	color: #000000;
+	}
+
+.CaptionRWNet a:hover, .CaptionRWNet a:active { 
+	color: #ff0000;
+	}
+
+.CaptionRWNet img {
+	margin: 2px; 
+	vertical-align: middle;
+	}
+
+.CaptionRWNet input {
+	vertical-align: middle;
+	}
+
+.RowRWNet th { 
+	font-family: Arial; font-size: 70%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #ffffff; color: #000000;
+	white-space: nowrap;
+	color: #000000;
+	}
+
+.RowRWNet td { 
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	background-color: #ffffff; 
+	color: #000000;
+	}
+	
+
+html>body .RowRWNet th, html>body .RowRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .RowRWNet th, * html body .RowRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+caption.RowRWNet { 
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border: 1px solid #005ebb; border-bottom: 0px;
+	text-align: left;
+	vertical-align: top;
+	background-color: #ffffff; 
+	color: #000000;
+	}
+
+
+html>body caption.RowRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body caption.RowRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.RowRWNet a:link { 
+	color: #0033cc;
+	}
+
+.RowRWNet a:visited { 
+	color: #840000;
+	}
+
+.RowRWNet a:hover, .RowRWNet a:active { 
+	color: #ff0000;
+	}
+
+.SeparatorRWNet{
+	color: #005ebb;
+	}
+
+.SeparatorRWNet td{
+	height: 1px;
+	}
+
+
+.AltRowRWNet th { 
+	font-family: Arial; font-size: 70%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #ffffff; color: #000000;
+	white-space: nowrap;
+	color: #000000;
+	}
+
+.AltRowRWNet td { 
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	background-color: #c5f8fc; 
+	color: #000000;
+	}
+
+
+html>body .AltRowRWNet th, html>body .AltRowRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .AltRowRWNet th, * html body .AltRowRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.AltRowRWNet a:link { 
+	color: #0033cc;
+	}
+
+.AltRowRWNet a:visited { 
+	color: #840000;
+	}
+
+.AltRowRWNet a:hover, .AltRowRWNet a:active { 
+	color: #ff0000;
+	}
+
+.NoRecordsRWNet td { 
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF;
+	text-align: left;
+	background-color: #ffffff; 
+	color: #000000;
+	vertical-align: top;
+	}
+
+.FooterRWNet td { 
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-top: 1px solid #FFFFFF;
+	background-color: #80bbec; color: #000000;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	color: #000000;
+	}
+
+
+html>body .NoRecordsRWNet td, html>body .FooterRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .NoRecordsRWNet td, * html body .FooterRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.FooterRWNet a:link { 
+	color: #0033cc;
+	}
+
+.FooterRWNet a:visited { 
+	color: #840000;
+	}
+
+.FooterRWNet a:hover, .FooterRWNet a:active { 
+	color: #ff0000;
+	}
+
+.FooterRWNet img {
+	margin: 2px; 
+	vertical-align: middle;
+	}
+
+.FooterRWNet input {
+	margin: 2px;
+	vertical-align: middle;
+	}
+
+/* Record Options */
+.RecordRWNet { 
+	border: 1px solid #005ebb;
+	width: 100%;
+	}
+
+.ErrorRWNet td { 
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF;
+	text-align: left;
+	color: #FF0000;
+	vertical-align: top;
+	background-color: #ffffff; 
+	}
+
+
+* html>body .ErrorRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .ErrorRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.ControlsRWNet th { 
+	font-family: Arial; font-size: 70%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #ffffff; color: #000000;
+	white-space: nowrap;
+	color: #000000;
+	}
+
+.ControlsRWNet td { 
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	background-color: #ffffff; 
+	color: #000000;
+	}
+	
+.BottomRWNet td { 
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-top: 1px solid #FFFFFF;
+	background-color: #80bbec; color: #000000;
+	text-align: right;
+	vertical-align: middle;
+	white-space: nowrap;
+	color: #000000;
+	}
+
+
+html>body .ControlsRWNet th, html>body .ControlsRWNet td, html>body .BottomRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .ControlsRWNet th, * html body .ControlsRWNet td, * html body .BottomRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.BottomRWNet a:link { 
+	color: #0033cc;
+	}
+
+.BottomRWNet a:visited { 
+	color: #840000;
+	}
+
+.BottomRWNet a:hover, .CaptionRWNet a:active { 
+	color: #ff0000;
+	}
+
+.BottomRWNet img {
+	margin: 2px;
+	vertical-align: middle; 
+	}
+
+.BottomRWNet input {
+	margin: 2px;
+	vertical-align: middle;
+	}
+
+/* Report */
+.GroupCaptionRWNet th{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	white-space: nowrap;
+	text-align: left;
+	vertical-align: top;
+	font-weight: bold;
+	background-color: #c5f8fc; 
+	color: #000000;
+	}
+
+.GroupCaptionRWNet td{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	font-weight: bold;
+	background-color: #ffffff; 
+	color: #000000;
+	}
+
+
+html>body .GroupCaptionRWNet th, html>body .GroupCaptionRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .GroupCaptionRWNet th, * html body .GroupCaptionRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.GroupCaptionRWNet a:link {
+	color: #000000;
+	}
+
+.GroupCaptionRWNet a:visited{
+	color: #000000;
+	}
+
+.GroupCaptionRWNet a:hover, .GroupCaptionRWNet a:active{
+	color: #ff0000;
+	}
+
+.GroupFooterRWNet td{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-top: 1px solid #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	background-color: #80bbec; 
+	color: #000000;
+	}
+
+
+html>body .GroupFooterRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .GroupFooterRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.GroupFooterRWNet a:link {
+	color: #0033cc;
+	}
+
+.GroupFooterRWNet a:visited{
+	color: #840000;
+	}
+
+.GroupFooterRWNet a:hover, .GroupFooterRWNet a:active{
+	color: #ff0000;
+	}
+
+.GroupFooterRWNet img {
+	margin: 2px; 
+	vertical-align: middle;
+	}
+
+.GroupFooterRWNet input {
+	margin: 2px;
+	vertical-align: middle;
+	}
+
+.SubTotalRWNet td{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	font-weight: bold;
+	background-color: #c5f8fc; 
+	color: #000000;
+	border-bottom: 2px solid #005ebb;
+	}
+
+
+html>body .SubTotalRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .SubTotalRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.SubTotalRWNet a:link {
+	color: #0033cc;
+	}
+
+.SubTotalRWNet a:visited{
+	color: #840000;
+	}
+
+.SubTotalRWNet a:hover, .SubTotalRWNet a:active{
+	color: #ff0000;
+	}
+
+.TotalRWNet td{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	vertical-align: top;
+	white-space: nowrap;
+	font-weight: bold;
+	background-color: #c5f8fc; 
+	color: #000000;
+	}
+
+
+html>body .TotalRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .TotalRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.TotalRWNet a:link {
+	color: #0033cc;
+	}
+
+.TotalRWNet a:visited{
+	color: #840000;
+	}
+
+.TotalRWNet a:hover, .TotalRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Form Options */
+.ButtonRWNet { 
+	background-color: #005ebb; color: #ffffff; border-left: solid 1px #EDEDED; border-top: solid 1px #EDEDED; border-right: solid 1px #848284; border-bottom: solid 1px #848284; padding: 2px; font-weight: bold; font-family: Tahoma; font-size: 10px; font-weight: bold;
+	}
+
+/* Calendar */
+
+.CalendarRWNet { 
+	border: 1px solid #005ebb;
+	width: 100%;
+	}
+
+.CalendarWeekdayNameRWNet{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF;
+	text-align: center; 
+	vertical-align: top;
+	white-space: nowrap;
+	background-color: #c5f8fc; 
+	color: #000000;
+	font-weight: normal;
+	}
+
+
+html>body .CalendarWeekdayNameRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarWeekdayNameRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarWeekdayNameRWNet a:link {
+	color: #0033cc;
+	}
+
+.CalendarWeekdayNameRWNet a:visited{
+	color: #840000;
+	}
+
+.CalendarWeekdayNameRWNet a:hover, .CalendarWeekdayNameRWNet a:active{
+	color: #ff0000;
+	}
+
+.CalendarWeekendNameRWNet{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF;
+	white-space: nowrap;
+	text-align: center; 
+	vertical-align: top;
+	background-color: #c5f8fc;	
+	color: #000000;
+	font-weight: normal;
+	}
+
+
+html>body .CalendarWeekendNameRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarWeekendNameRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarWeekendNameRWNet a:link {
+	color: #000000;
+	}
+
+.CalendarWeekendNameRWNet a:visited{
+	color: #000000;
+	}
+
+.CalendarWeekendNameRWNet a:link, .CalendarWeekendNameRWNet a:visited{
+	color: #ff0000;
+	}
+
+/* Calendar Day */
+.CalendarDayRWNet{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: center;
+	background-color: #ffffff;	
+	color: #000000;
+	}
+
+
+html>body .CalendarDayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarDayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarDayRWNet a:link {
+	color: #0033cc;
+	}
+
+.CalendarDayRWNet a:visited{
+	color: #840000;
+	}
+
+.CalendarDayRWNet a:hover, .CalendarDayRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Calendar Weekend */
+.CalendarWeekendRWNet{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: center;
+	background-color: #c5f8fc;	
+	color: #000000;
+	}
+
+
+html>body .CalendarWeekendRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarWeekendRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarWeekendRWNet a:link {
+	color: #0033cc;
+	}
+
+.CalendarWeekendRWNet a:visited{
+	color: #840000;
+	}
+
+.CalendarWeekendRWNet a:hover, .CalendarWeekendRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Calendar Today */
+.CalendarTodayRWNet {
+	font-family: Arial; font-size: 70%;
+	padding: 0px;
+	border: 2px solid #005ebb;
+	text-align: center;
+	background-color: #ffffff;	
+	color: #000000;
+	}
+
+
+html>body .CalendarTodayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarTodayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarTodayRWNet a:link {
+	color: #0033cc;
+	}
+
+.CalendarTodayRWNet a:visited{
+	color: #840000;
+	}
+
+.CalendarTodayRWNet a:hover, .CalendarTodayRWNet a:active {
+	color: #ff0000;
+	}
+
+/* Calendar Weekend Today */
+.CalendarWeekendTodayRWNet {
+	font-family: Arial; font-size: 70%;
+	padding: 0px;
+	border: 2px solid #005ebb;
+	text-align: center;
+	background-color: #c5f8fc;	
+	color: #000000;
+	}
+
+
+html>body .CalendarWeekendTodayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarWeekendTodayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarWeekendTodayRWNet a:link {
+	color: #0033cc;
+	}
+
+.CalendarWeekendTodayRWNet a:visited{
+	color: #840000;
+	}
+
+.CalendarWeekendTodayRWNet a:hover, .CalendarWeekendTodayRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Calendar Other Month's Day */
+.CalendarOtherMonthDayRWNet{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: center;
+	background-color: #ffffff;	
+	color: #005ebb;
+	}
+
+
+html>body .CalendarOtherMonthDayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarOtherMonthDayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarOtherMonthDayRWNet a:link {
+	color: #005ebb;
+	}
+
+.CalendarOtherMonthDayRWNet a:visited{
+	color: #005ebb;
+	}
+
+.CalendarOtherMonthDayRWNet a:hover, .CalendarOtherMonthDayRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Calendar Other Month's Today */
+.CalendarOtherMonthTodayRWNet {
+	font-family: Arial; font-size: 70%;
+	padding: 0px;
+	border: 2px solid #005ebb;
+	text-align: center;
+	background-color: #ffffff;	
+	color: #005ebb;
+	}
+
+
+html>body .CalendarOtherMonthTodayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarOtherMonthTodayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarOtherMonthTodayRWNet a:link {
+	color: #005ebb;
+	}
+
+.CalendarOtherMonthTodayRWNet a:visited{
+	color: #005ebb;
+	}
+
+.CalendarOtherMonthTodayRWNet a:hover, .CalendarOtherMonthTodayRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Calendar Other Month's Weekend */
+.CalendarOtherMonthWeekendRWNet {
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: center;
+	background-color: #c5f8fc;	
+	color: #005ebb;
+	}
+
+
+html>body .CalendarOtherMonthWeekendRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarOtherMonthWeekendRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarOtherMonthWeekendRWNet a:link {
+	color: #005ebb;
+	}
+
+.CalendarOtherMonthWeekendRWNet a:visited{
+	color: #005ebb;
+	}
+
+.CalendarOtherMonthWeekendRWNet a:hover, .CalendarOtherMonthWeekendRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Calendar Other Month's Weekend Today */
+.CalendarOtherMonthWeekendTodayRWNet {
+	font-family: Arial; font-size: 70%;
+	padding: 0px;
+	border: 2px solid #005ebb;
+	text-align: center;
+	color: #005ebb;
+	background-color: #c5f8fc;	
+	}
+	
+
+html>body .CalendarOtherMonthWeekendTodayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarOtherMonthWeekendTodayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarOtherMonthWeekendTodayRWNet a:link {
+	color: #005ebb;
+	}
+
+.CalendarOtherMonthWeekendTodayRWNet a:visited{
+	color: #005ebb;
+	}
+
+.CalendarOtherMonthWeekendTodayRWNet a:hover, .CalendarOtherMonthWeekendTodayRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Calendar Selected Day (for DatePicker) */
+.CalendarSelectedDayRWNet{
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #80bbec;
+	color: #000000;
+	text-align: center;
+	font-weight: bold;
+	}
+	
+
+html>body .CalendarSelectedDayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarSelectedDayRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarSelectedDayRWNet a:link {
+	color: #000000;
+	}
+
+.CalendarSelectedDayRWNet a:visited{
+	color: #000000;
+	}
+
+.CalendarSelectedDayRWNet a:hover, .CalendarSelectedDayRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Calendar Navigator */
+.CalendarNavigatorRWNet {
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	background-color: #80bbec; color: #000000;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	color: #000000;
+	}
+
+
+html>body .CalendarNavigatorRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarNavigatorRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarNavigatorRWNet a:link {
+	color: #0033cc;
+	}
+
+.CalendarNavigatorRWNet a:visited{
+	color: #840000;
+	}
+
+.CalendarNavigatorRWNet a:hover, .CalendarNavigatorRWNet a:active{
+	color: #ff0000;
+	}
+
+.CalendarNavigatorRWNet img{
+	margin: 2px;
+	vertical-align: middle; 	
+	}
+
+.CalendarNavigatorRWNet td {
+	font-family: Arial; font-size: 70%;
+	}
+
+.CalendarNavigatorRWNet th {
+	font-family: Arial; font-size: 70%;
+	}
+
+
+html>body .CalendarNavigatorRWNet th, html>body .CalendarNavigatorRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarNavigatorRWNet th, * html body .CalendarNavigatorRWNet td {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+/* Calendar Extra */
+.CalendarEventRWNet{
+	font-family: Arial; font-size: 70%;
+	text-align: left;
+	}
+
+
+html>body .CalendarEventRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .CalendarEventRWNet {
+	font-family: Arial; font-size: 100%;
+}
+/*end*/
+
+.CalendarEventRWNet a:link {
+	color: #0033cc;
+	}
+
+.CalendarEventRWNet a:visited{
+	color: #840000;
+	}
+
+.CalendarEventRWNet a:hover, .CalendarEventRWNet a:active{
+	color: #ff0000;
+	}
+
+/* Changes for Section508 */
+table tr td strong {
+	padding: 0px;
+	margin: 0px;
+}
+
+.thRWNet { 
+	font-family: Arial; font-size: 70%;
+	font-weight: bold;
+}
+
+
+html>body .thRWNet {
+	font-size: 100%;
+}
+
+
+/*ie6*/
+* html body .thRWNet {
+	font-size: 100%;
+}
+/*end*/
+
+.HeaderRWNet .thRWNet { 
+	font-family: Arial; font-size: 90%; font-weight: bold; text-align: center !important;
+	padding: 2px;
+	background-image: url('Images/HeaderBg.gif'); color: #ffffff;
+	width: 100%;
+	white-space: nowrap;
+}
+
+
+html>body .HeaderRWNet .thRWNet {
+	font-family: Arial; font-size: 130%; font-weight: bold; text-align: center !important;
+}
+
+
+/*ie6*/
+* html body .HeaderRWNet .thRWNet {
+	font-family: Arial; font-size: 130%; font-weight: bold; text-align: center !important;
+}
+/*end*/
+
+.CaptionRWNet .thRWNet { 
+	font-family: Arial; font-size: 70%; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF;
+	background-color: #80bbec; color: #000000;
+	white-space: nowrap;
+}
+
+
+html>body .CaptionRWNet .thRWNet {
+	font-family: Arial; font-size: 100%; text-align: left; vertical-align: top;
+}
+
+
+/*ie6*/
+* html body .CaptionRWNet .thRWNet {
+	font-family: Arial; font-size: 100%; text-align: left; vertical-align: top;
+}
+/*end*/
+
+.RowRWNet .thRWNet { 
+	font-family: Arial; font-size: 70%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #ffffff; color: #000000;
+	white-space: nowrap;
+	color: #000000;
+}
+
+.AltRowRWNet .thRWNet { 
+	font-family: Arial; font-size: 70%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #ffffff; color: #000000;
+	white-space: nowrap;
+	color: #000000;
+}
+
+.ControlsRWNet .thRWNet { 
+	font-family: Arial; font-size: 70%; font-weight: normal; text-align: left; vertical-align: top;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	background-color: #ffffff; color: #000000;
+	white-space: nowrap;
+	color: #000000;
+}
+
+.GroupCaptionRWNet .thRWNet {
+	font-family: Arial; font-size: 70%;
+	padding: 2px;
+	border-right: 1px solid #FFFFFF; border-bottom: 1px solid #FFFFFF;
+	text-align: left;
+	white-space: nowrap;
+	vertical-align: top;
+	font-weight: bold;
+	background-color: #c5f8fc; 
+	color: #000000;
+}
+
+
+html>body .GroupCaptionRWNet .thRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+html>body .RowRWNet .thRWNet, html>body .AltRowRWNet .thRWNet, html>body .ControlsRWNet .thRWNet {
+	font-family: Arial; font-size: 100%; font-weight: normal; text-align: left; vertical-align: top;
+}
+
+
+/*ie6*/
+* html body .GroupCaptionRWNet .thRWNet {
+	font-family: Arial; font-size: 100%;
+}
+
+* html body .RowRWNet .thRWNet, * html body .AltRowRWNet .thRWNet, * html body .ControlsRWNet .thRWNet {
+	font-family: Arial; font-size: 100%; font-weight: normal; text-align: left; vertical-align: top;
+}
+/*end*/
+
+/* Class for Application Builder Menu */
+.simpleMenuRWNet td {
+	font-family: Arial; font-size: 70%;
+}
+
+
+html>body .simpleMenuRWNet td {
+	font-family: Arial; font-size: 100%;
+} 
+
+
+/*ie6*/
+* html body .simpleMenuRWNet td {
+	font-family: Arial; font-size: 100%;
+} 
+/*end*/
