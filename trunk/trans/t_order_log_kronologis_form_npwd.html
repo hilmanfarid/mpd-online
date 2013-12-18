@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LOG KRONOLOGIS</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_order_log_kronologisFormButton_Delete_OnClick @97-1B70DC1F
+function t_order_log_kronologisFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_order_log_kronologisFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+        window.close();
+//End Confirmation Message
+
+//Close t_order_log_kronologisFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_order_log_kronologisFormButton_Delete_OnClick
+
+//t_order_log_kronologisFormButton_Cancel_OnClick @99-C73E9A41
+function t_order_log_kronologisFormButton_Cancel_OnClick()
+{
+    var result = true;
+//End t_order_log_kronologisFormButton_Cancel_OnClick
+
+//Custom Code @673-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+                window.close();
+    // -------------------------
+//End Custom Code
+
+//Close t_order_log_kronologisFormButton_Cancel_OnClick @99-AEF500E0
+    disableValidation = true;
+    return result;
+}
+//End Close t_order_log_kronologisFormButton_Cancel_OnClick
+
+//bind_events @1-3694A5B2
+function bind_events() {
+    addEventHandler("t_order_log_kronologisFormButton_Delete", "click", t_order_log_kronologisFormButton_Delete_OnClick);
+    addEventHandler("t_order_log_kronologisFormButton_Cancel", "click", t_order_log_kronologisFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LOG KRONOLOGIS 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_order_log_kronologisForm -->
+        <form id="t_order_log_kronologisForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>INFORMASI LOG KRONOLOGIS</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="5">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Tanggal</label></label></td> 
+                    <td colspan="4"><input class="ControlsRO" id="t_order_log_kronologisFormlog_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="25" value="{log_date}" name="{log_date_Name}"><input id="t_order_log_kronologisFormcounter_no" style="WIDTH: 44px; HEIGHT: 22px" type="hidden" size="5" value="{counter_no}" name="{counter_no_Name}"><input id="t_order_log_kronologisFormTAKEN_CTL" style="WIDTH: 47px; HEIGHT: 22px" type="hidden" size="6" value="{TAKEN_CTL}" name="{TAKEN_CTL_Name}"><input id="t_order_log_kronologisFormIS_TAKEN" style="WIDTH: 43px; HEIGHT: 22px" type="hidden" size="5" value="{IS_TAKEN}" name="{IS_TAKEN_Name}"><input id="t_order_log_kronologisFormCURR_DOC_ID" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{CURR_DOC_ID}" name="{CURR_DOC_ID_Name}"><input id="t_order_log_kronologisFormCURR_DOC_TYPE_ID" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{CURR_DOC_TYPE_ID}" name="{CURR_DOC_TYPE_ID_Name}"><input id="t_order_log_kronologisFormCURR_PROC_ID" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{CURR_PROC_ID}" name="{CURR_PROC_ID_Name}"><input id="t_order_log_kronologisFormCURR_CTL_ID" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{CURR_CTL_ID}" name="{CURR_CTL_ID_Name}"><input id="t_order_log_kronologisFormUSER_ID_DOC" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{USER_ID_DOC}" name="{USER_ID_DOC_Name}"><input id="t_order_log_kronologisFormUSER_ID_DONOR" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{USER_ID_DONOR}" name="{USER_ID_DONOR_Name}"><input id="t_order_log_kronologisFormUSER_ID_LOGIN" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{USER_ID_LOGIN}" name="{USER_ID_LOGIN_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Aktifitas&nbsp;</td> 
+                    <td colspan="4"><input class="ControlsRQ" id="t_order_log_kronologisFormactivity" tabindex="2" maxlength="128" size="51" value="{activity}" name="{activity_Name}"><input id="t_order_log_kronologisFormUSER_ID_TAKEN" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{USER_ID_TAKEN}" name="{USER_ID_TAKEN_Name}"><input id="t_order_log_kronologisFormIS_CREATE_DOC" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{IS_CREATE_DOC}" name="{IS_CREATE_DOC_Name}"><input id="t_order_log_kronologisFormIS_MANUAL" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{IS_MANUAL}" name="{IS_MANUAL_Name}"><input id="t_order_log_kronologisFormCURR_PROC_STATUS" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{CURR_PROC_STATUS}" name="{CURR_PROC_STATUS_Name}"><input id="t_order_log_kronologisFormCURR_DOC_STATUS" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{CURR_DOC_STATUS}" name="{CURR_DOC_STATUS_Name}"><input id="t_order_log_kronologisFormPREV_DOC_ID" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{PREV_DOC_ID}" name="{PREV_DOC_ID_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_order_log_kronologisFormdescription">Keterangan</label></td> 
+                    <td colspan="4"><textarea class="ControlsRQ" id="t_order_log_kronologisFormdescription" name="{description_Name}" rows="3" cols="50">{description}</textarea><input id="t_order_log_kronologisFormPREV_DOC_TYPE_ID" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{PREV_DOC_TYPE_ID}" name="{PREV_DOC_TYPE_ID_Name}"><input id="t_order_log_kronologisFormPREV_PROC_ID" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{PREV_PROC_ID}" name="{PREV_PROC_ID_Name}"><input id="t_order_log_kronologisFormPREV_CTL_ID" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{PREV_CTL_ID}" name="{PREV_CTL_ID_Name}"><input id="t_order_log_kronologisFormSLOT_1" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{SLOT_1}" name="{SLOT_1_Name}"><input id="t_order_log_kronologisFormSLOT_2" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{SLOT_2}" name="{SLOT_2_Name}"><input id="t_order_log_kronologisFormSLOT_3" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{SLOT_3}" name="{SLOT_3_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_order_log_kronologisFormcreate_by">Dibuat Oleh</label></td> 
+                    <td colspan="4"><input class="ControlsRO" id="t_order_log_kronologisFormcreate_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{create_by}" name="{create_by_Name}">; Tanggal : <input class="ControlsRO" id="t_order_log_kronologisFormcreate_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{create_date}" name="{create_date_Name}"><input id="t_order_log_kronologisFormSLOT_4" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{SLOT_4}" name="{SLOT_4_Name}"><input id="t_order_log_kronologisFormSLOT_5" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{SLOT_5}" name="{SLOT_5_Name}"><input id="t_order_log_kronologisFormMESSAGE" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{MESSAGE}" name="{MESSAGE_Name}"><input id="t_order_log_kronologisForminput_type" style="WIDTH: 53px; HEIGHT: 22px" type="hidden" size="6" value="{input_type}" name="{input_type_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_order_log_kronologisFormupdate_by">Diubah Oleh</label></td> 
+                    <td colspan="4"><input class="ControlsRO" id="t_order_log_kronologisFormupdate_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{update_by}" name="{update_by_Name}">; Tanggal : <input class="ControlsRO" id="t_order_log_kronologisFormupdate_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{update_date}" name="{update_date_Name}"><input id="t_order_log_kronologisFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"><input id="t_order_log_kronologisFormp_rqst_type_id" type="hidden" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"><input id="t_order_log_kronologisFormt_vat_registration_id" type="hidden" value="{t_vat_registration_id}" name="{t_vat_registration_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="5">
+                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_order_log_kronologisFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_order_log_kronologisFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_order_log_kronologisFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_order_log_kronologisFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_order_log_kronologisForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+
+</script>
+</body>
+</html>

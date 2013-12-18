@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Login</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<style>
+        .header-app {
+    background: #878AA7; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIyMiUiIHN0b3AtY29sb3I9IiNkYmRiZGIiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYzBjMGMwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+    background: -moz-linear-gradient(top,  #878AA7 22%, #080A51 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(22%,#878AA7), color-stop(100%,#080A51)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #878AA7 22%,#080A51 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #878AA7 22%,#080A51 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #878AA7 22%,#080A51 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #878AA7 22%,#080A51 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#878AA7', endColorstr='#080A51',GradientType=0 ); /* IE6-8 */
+    border-bottom: 1px solid #00008B;
+    box-shadow: 0 0 7px 0 #000000;
+    height: 53px;
+    position: relative;
+}
+/*
+.btn_tambah {
+        -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+        -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+        box-shadow:inset 0px 1px 0px 0px #ffffff;
+        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+        background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+        background-color:#ededed;
+        -webkit-border-top-left-radius:6px;
+        -moz-border-radius-topleft:6px;
+        border-top-left-radius:6px;
+        -webkit-border-top-right-radius:6px;
+        -moz-border-radius-topright:6px;
+        border-top-right-radius:6px;
+        -webkit-border-bottom-right-radius:6px;
+        -moz-border-radius-bottomright:6px;
+        border-bottom-right-radius:6px;
+        -webkit-border-bottom-left-radius:6px;
+        -moz-border-radius-bottomleft:6px;
+        border-bottom-left-radius:6px;
+        text-indent:0;
+        border:1px solid #dcdcdc;
+        display:inline-block;
+        color:#696969;
+        font-family:arial;
+        font-size:14px;
+        font-weight:bold;
+        font-style:normal;
+        height:28px;
+        line-height:28px;
+        width:100px;
+        text-decoration:none;
+        text-align:center;
+        text-shadow:1px 1px 0px #ffffff;
+}
+.btn_tambah:hover {
+        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+        background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+        background-color:#dfdfdf;
+}.btn_tambah:active {
+        position:relative;
+        top:1px;
+}
+*/
+.dialog-title {
+    background: url("../Styles/sikp/Images/header-title.png") repeat-x scroll 50% 50% #0B3698;
+    border: 1px solid #80847C;
+    border-radius: 4px 4px 4px 4px;
+    color: #FFFFFF;
+    font-family: Trebuchet MS;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    margin-left: -5px;
+    padding: 5px 4px 7px;
+    width: 100%;
+}
+#login-box tr{
+    height: 40px;
+}
+#login-box tr{
+    color: #696969;
+}
+#login-box input{
+    color: #696969;
+}
+#login-box {
+    background-color: #FFFFFF;
+    border: 1px solid #A2A2A2;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 4px 0;
+    font-family: tahoma;
+    left: 27%;
+    padding: 3px;
+    position: absolute;
+    top: 26%;
+}
+
+#login-box img {
+        border:none;
+}
+
+.login-box-options  {
+        clear:both;
+}
+        .input-login {
+            2px 2px 4px 0 #2F4F4F inset
+            -webkit-box-shadow: inset 2px 2px 4px 0 #2F4F4F;
+            -moz-box-shadow: inset 2px 2px 4px 0 #2F4F4F;
+            box-shadow: inset 2px 2px 4px 0 #2F4F4F;
+            border-radius:4px;
+            /*margin: 10px;*/
+            /*overflow: auto;*/
+            padding: 7px 10px 7px 39px;
+            font-family: tahoma;
+            font-size: 13px;
+            border: 1px solid #aaa;
+            /*margin-top:3px;
+            margin-left:1px;*/
+            width:86%;
+        }
+        #login-background{
+                        display: inline-block;
+            border: solid #6A7E87 2px;
+            border-radius : 4px;
+            background: rgb(137,156,186); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(137,156,186,1) 0%, rgba(207,220,236,1) 30%, rgba(207,220,236,1) 72%, rgba(137,156,186,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(137,156,186,1)), color-stop(30%,rgba(207,220,236,1)), color-stop(72%,rgba(207,220,236,1)), color-stop(100%,rgba(137,156,186,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(137,156,186,1) 0%,rgba(207,220,236,1) 30%,rgba(207,220,236,1) 72%,rgba(137,156,186,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(137,156,186,1) 0%,rgba(207,220,236,1) 30%,rgba(207,220,236,1) 72%,rgba(137,156,186,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(137,156,186,1) 0%,rgba(207,220,236,1) 30%,rgba(207,220,236,1) 72%,rgba(137,156,186,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(137,156,186,1) 0%,rgba(207,220,236,1) 30%,rgba(207,220,236,1) 72%,rgba(137,156,186,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#899cba', endColorstr='#899cba',GradientType=0 ); /* IE6-9 */
+            height:100%;
+            /* width:100%; */
+        }
+        #left-background{
+            width:33%;
+            float:right;
+            height:100%;
+            background: rgb(135,138,167); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(135,138,167,1) 20%, rgba(34,36,98,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,rgba(135,138,167,1)), color-stop(100%,rgba(34,36,98,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(135,138,167,1) 20%,rgba(34,36,98,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(135,138,167,1) 20%,rgba(34,36,98,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(135,138,167,1) 20%,rgba(34,36,98,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(135,138,167,1) 20%,rgba(34,36,98,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#878aa7', endColorstr='#222462',GradientType=0 ); /* IE6-9 */
+        }
+        #top-left-background{
+            width:100%;
+            height:43%;
+            border-bottom:1px solid black;   
+            /* border-bottom: 2px groove #000000; */
+			border-bottom: 2px groove #808080;
+        }
+        #bottom-right{
+            color: #E6E6FA;
+            display: inline-block;
+            font-family: calibri;
+            font-size: 21px;
+            height: 100%;
+            min-height: 3em;
+            padding: 1px;
+            text-align: center;
+            text-shadow: 1px 1px 1px activecaption;
+            width: 100%;
+        }
+        #left-side{
+            /* color: #676767; */
+                        color: #FFFFFF;
+            font-family: calibri;
+            font-size: 25px;
+            padding: 1px;
+            text-align: center;
+            text-shadow: 1px 1px 1px activecaption;
+            margin-bottom:22px;
+        }
+    </style>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//_OnLoad @1-9C4F01C0
+function _OnLoad()
+{
+    var result = true;
+//End _OnLoad
+
+//Set Focus @7-D20FE9BF
+    if (document.forms["Login"] && document.forms["Login"].login) document.forms["Login"].login.focus();
+//End Set Focus
+
+//Close _OnLoad @1-BC33A33A
+    return result;
+}
+//End Close _OnLoad
+
+//bind_events @1-B4BAE7CE
+function bind_events() {
+    addEventHandler("", "load", _OnLoad);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body style="MARGIN-TOP: 0px; MARGIN-LEFT: 0px; MARGIN-RIGHT: 0px; BACKGROUND-COLOR: #dcdcdc">
+<div class="header-app">
+  <div style="PADDING-RIGHT: 10px; PADDING-LEFT: 9px; FONT-WEIGHT: bold; FONT-SIZE: 21px; PADDING-BOTTOM: 2px; MARGIN-LEFT: 18px; COLOR: #f3fcff; BOTTOM: 9px; PADDING-TOP: 2px; POSITION: absolute; border-radius: 4px 4px 4px 4px">
+    Modul Penerimaan Pajak Daerah 
+  </div>
+  <div style="BACKGROUND: url(../images/header.png) no-repeat right 7px; WIDTH: 100%; HEIGHT: 100%">
+  </div>
+</div>
+<!-- BEGIN Record Login -->
+<form id="Login" name="{HTMLFormName}" action="{Action}" method="post">
+  <div id="login-box">
+    <div id="login-background">
+      <div style="FLOAT: left; MARGIN-LEFT: 1%; WIDTH: 65%; HEIGHT: 100%">
+        <br>
+        <div id="left-side">
+          Masukkan User dan Password 
+        </div>
+        <div style="COLOR: #676767; FONT-FAMILY: calibri">
+          Username: 
+        </div>
+        <input class="input-login" style="BACKGROUND: url(../images/user.png) buttonhighlight no-repeat left center; background-size: contain" value="{login}" name="{login_Name}"><br>
+        <div style="COLOR: #676767; FONT-FAMILY: calibri">
+          Password: 
+        </div>
+        <input class="input-login" style="BACKGROUND: url(../images/lock.png) buttonhighlight no-repeat left center; background-size: contain" type="password" value="{password}" name="{password_Name}"><br>
+        <div align="right">
+          <!-- BEGIN Button Button_DoLogin --><input class="btn_tambah" id="LoginButton_DoLogin" style="MARGIN-TOP: 6px; MARGIN-BOTTOM: 7px; WIDTH: 95px; HEIGHT: 32px" type="submit" size="28" value="LOGIN" name="{Button_Name}"><!-- END Button Button_DoLogin -->&nbsp; 
+        </div>
+		<!-- BEGIN Error -->{Error} <!-- END Error -->
+      </div>      
+      <div id="left-background">
+        <div id="top-left-background">
+          <img style="DISPLAY: block; MARGIN: auto; max-height: 100%; max-width: 100%" height="auto" src="../images/logo.png">
+        </div>
+        <div id="bottom-right">
+          Modul Penerimaan Pajak Daerah 
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- END Record Login -->
+</div>
+</body>
+</html>

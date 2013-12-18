@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LOV Role</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<!--start user-->
+<script language="javascript">
+function clickReturn(retVal) {
+                strObj = document.getElementById('LOVOBJ').value;
+                strForm = document.getElementById('LOVFORM').value;
+        arrVal = retVal.split('#~#');
+                arrForm = strObj.split(',');
+                for (x=0;x<arrForm.length;x++) {
+                window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
+                }
+                window.close();
+}
+</script>
+<!--end user-->
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//VIEWDETTRANSButton1_OnClick @53-352DE568
+function VIEWDETTRANSButton1_OnClick()
+{
+    var result = true;
+//End VIEWDETTRANSButton1_OnClick
+
+//Custom Code @54-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+                window.close();
+    // -------------------------
+//End Custom Code
+
+//Close VIEWDETTRANSButton1_OnClick @53-BC33A33A
+    return result;
+}
+//End Close VIEWDETTRANSButton1_OnClick
+
+//bind_events @1-8A16EC7D
+function bind_events() {
+    addEventHandler("VIEWDETTRANSButton1", "click", VIEWDETTRANSButton1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body style="MARGIN: 0px" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DETAIL TRANSAKSI CUSTOMER 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Grid VIEWDETTRANS -->
+        <table class="grid-table-container" style="WIDTH: 663px; HEIGHT: 193px" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><font color="#ffffff">Detail Transaksi</font></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th scope="col">Tgl Transaksi</th>
+ 
+                  <th scope="col">No Transaksi</th>
+ 
+                  <th scope="col">Nama Transaksi</th>
+ 
+                  <th scope="col">&nbsp;Nilai Transaksi</th>
+ 
+                  <th scope="col">Nilai Pajak</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr class="Row">
+                  <td>{trans_date}&nbsp;</td> 
+                  <td>{bill_no}</td> 
+                  <td>{service_desc}</td> 
+                  <td>{service_charge}&nbsp;</td> 
+                  <td>{vat_charge}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="5">Data tidak ditemukan</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->&nbsp;{Page_Number}&nbsp;of&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">
+                    <!-- BEGIN Button Button1 --><input class="btn_tambah" id="VIEWDETTRANSButton1" type="submit" alt="Button1" value="TUTUP" name="{Button_Name}"><!-- END Button Button1 -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid VIEWDETTRANS --></td>
+    </tr>
+  </table>
+  <div>
+  </div>
+  <br>
+</div>
+</body>
+</html>

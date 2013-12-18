@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        TARGET VS REALISASI 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toJenis()">
+      <div class="tab-title">
+        PER JENIS PAJAK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toBulanan()">
+      <div class="tab-title">
+        BULANAN PER JENIS PAJAK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toMingguan()">
+      <div class="tab-title">
+        MINGGUAN PER JENIS PAJAK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toHarian()">
+      <div class="tab-title">
+        HARIAN PER JENIS PAJAK 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td><br>
+        <!-- BEGIN Grid t_target_realisasiGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="50%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR TARGET VS REALISASI</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th scope="col">
+                  <div align="center">
+                    # 
+                  </div>
+                  </th>
+ 
+                  <th scope="col">Tahun</th>
+ 
+                  <th scope="col">Target</th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Realisasi</label></label></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_target_realisasiGrid:rowStyle}>
+                  <td>
+                    <div align="center">
+<a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a> 
+                    </div>
+                  </td> 
+                  <td>{year_code}<input id="t_target_realisasiGridp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"></td> 
+                  <td>{target_amt}</td> 
+                  <td>{realisasi_amt}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="4">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        &nbsp;<input id="t_target_realisasiGridp_year_period_id2" type="hidden" value="{p_year_period_id2}" name="{p_year_period_id2_Name}"><!-- END Grid t_target_realisasiGrid -->
+        <p>&nbsp; 
+        <!-- BEGIN FlashChart t_target_realisasiFlash_tahunan -->
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{Width}" height="{Height}" accesskey="q" tabindex="1" title="{Title}">
+          <param name="movie" value="{Src}" />
+          <param name="quality" value="high" />
+          <param name="wmode" value="transparent" />
+          <param name="scale" value="exactfit" />
+          <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
+ 
+        </object>
+        <!-- END FlashChart t_target_realisasiFlash_tahunan --></p>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function toJenis()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasiGridp_year_period_id2"))
+  {
+    var pid=idelement.value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_target_realisasi_jenis.php?p_year_period_id="+pid;
+    } else {
+     alert("Pilih salah satu TAHUN!");
+    }
+  } else {
+     alert("Pilih salah satu TAHUN!");
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1350 @@
+<?php
+//Include Common Files @1-11B335AB
+define("RelativePath", "..");
+define("PathToCurrentPage", "/param/");
+define("FileName", "p_organization.php");
+include_once(RelativePath . "/Common.php");
+include_once(RelativePath . "/Template.php");
+include_once(RelativePath . "/Sorter.php");
+include_once(RelativePath . "/Navigator.php");
+//End Include Common Files
+
+class clsGridp_organizationGrid { //p_organizationGrid class @2-7F40CA7B
+
+//Variables @2-AC1EDBB9
+
+    // Public variables
+    var $ComponentType = "Grid";
+    var $ComponentName;
+    var $Visible;
+    var $Errors;
+    var $ErrorBlock;
+    var $ds;
+    var $DataSource;
+    var $PageSize;
+    var $IsEmpty;
+    var $ForceIteration = false;
+    var $HasRecord = false;
+    var $SorterName = "";
+    var $SorterDirection = "";
+    var $PageNumber;
+    var $RowNumber;
+    var $ControlsVisible = array();
+
+    var $CCSEvents = "";
+    var $CCSEventResult;
+
+    var $RelativePath = "";
+    var $Attributes;
+
+    // Grid Controls
+    var $StaticControls;
+    var $RowControls;
+//End Variables
+
+//Class_Initialize Event @2-CE98D749
+    function clsGridp_organizationGrid($RelativePath, & $Parent)
+    {
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->ComponentName = "p_organizationGrid";
+        $this->Visible = True;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Grid p_organizationGrid";
+        $this->Attributes = new clsAttributes($this->ComponentName . ":");
+        $this->DataSource = new clsp_organizationGridDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
+        if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
+            $this->PageSize = 5;
+        else
+            $this->PageSize = intval($this->PageSize);
+        if ($this->PageSize > 100)
+            $this->PageSize = 100;
+        if($this->PageSize == 0)
+            $this->Errors->addError("<p>Form: Grid " . $this->ComponentName . "<br>Error: (CCS06) Invalid page size.</p>");
+        $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
+        if ($this->PageNumber <= 0) $this->PageNumber = 1;
+
+        $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
+        $this->DLink->HTML = true;
+        $this->DLink->Page = "p_organization.php";
+        $this->organization_code = & new clsControl(ccsLabel, "organization_code", "organization_code", ccsText, "", CCGetRequestParam("organization_code", ccsGet, NULL), $this);
+        $this->description = & new clsControl(ccsLabel, "description", "description", ccsText, "", CCGetRequestParam("description", ccsGet, NULL), $this);
+        $this->organization_name = & new clsControl(ccsLabel, "organization_name", "organization_name", ccsText, "", CCGetRequestParam("organization_name", ccsGet, NULL), $this);
+        $this->p_organization_id = & new clsControl(ccsHidden, "p_organization_id", "p_organization_id", ccsFloat, "", CCGetRequestParam("p_organization_id", ccsGet, NULL), $this);
+        $this->district_name = & new clsControl(ccsLabel, "district_name", "district_name", ccsText, "", CCGetRequestParam("district_name", ccsGet, NULL), $this);
+        $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
+        $this->Insert_Link->Page = "p_organization.php";
+        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+    }
+//End Class_Initialize Event
+
+//Initialize Method @2-90E704C5
+    function Initialize()
+    {
+        if(!$this->Visible) return;
+
+        $this->DataSource->PageSize = & $this->PageSize;
+        $this->DataSource->AbsolutePage = & $this->PageNumber;
+        $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
+    }
+//End Initialize Method
+
+//Show Method @2-06829E80
+    function Show()
+    {
+        global $Tpl;
+        global $CCSLocales;
+        if(!$this->Visible) return;
+
+        $this->RowNumber = 0;
+
+        $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
+        $this->DataSource->Parameters["urlparent_id"] = CCGetFromGet("parent_id", NULL);
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $this->DataSource->Prepare();
+        $this->DataSource->Open();
+        $this->HasRecord = $this->DataSource->has_next_record();
+        $this->IsEmpty = ! $this->HasRecord;
+        $this->Attributes->Show();
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        if(!$this->Visible) return;
+
+        $GridBlock = "Grid " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+
+
+        if (!$this->IsEmpty) {
+            $this->ControlsVisible["DLink"] = $this->DLink->Visible;
+            $this->ControlsVisible["organization_code"] = $this->organization_code->Visible;
+            $this->ControlsVisible["description"] = $this->description->Visible;
+            $this->ControlsVisible["organization_name"] = $this->organization_name->Visible;
+            $this->ControlsVisible["p_organization_id"] = $this->p_organization_id->Visible;
+            $this->ControlsVisible["district_name"] = $this->district_name->Visible;
+            while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
+                $this->RowNumber++;
+                if ($this->HasRecord) {
+                    $this->DataSource->next_record();
+                    $this->DataSource->SetValues();
+                }
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
+                $this->DLink->Parameters = CCGetQueryString("QueryString", array("FLAG", "ccsForm"));
+                $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "p_organization_id", $this->DataSource->f("p_organization_id"));
+                $this->organization_code->SetValue($this->DataSource->organization_code->GetValue());
+                $this->description->SetValue($this->DataSource->description->GetValue());
+                $this->organization_name->SetValue($this->DataSource->organization_name->GetValue());
+                $this->p_organization_id->SetValue($this->DataSource->p_organization_id->GetValue());
+                $this->district_name->SetValue($this->DataSource->district_name->GetValue());
+                $this->Attributes->SetValue("rowNumber", $this->RowNumber);
+                $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
+                $this->Attributes->Show();
+                $this->DLink->Show();
+                $this->organization_code->Show();
+                $this->description->Show();
+                $this->organization_name->Show();
+                $this->p_organization_id->Show();
+                $this->district_name->Show();
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+                $Tpl->parse("Row", true);
+            }
+        }
+        else { // Show NoRecords block if no records are found
+            $this->Attributes->Show();
+            $Tpl->parse("NoRecords", false);
+        }
+
+        $errors = $this->GetErrors();
+        if(strlen($errors))
+        {
+            $Tpl->replaceblock("", $errors);
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("p_organization_id", "s_keyword", "ccsForm"));
+        $this->Insert_Link->Parameters = CCAddParam($this->Insert_Link->Parameters, "FLAG", "ADD");
+        $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
+        $this->Navigator->PageSize = $this->PageSize;
+        if ($this->DataSource->RecordsCount == "CCS not counted")
+            $this->Navigator->TotalPages = $this->DataSource->AbsolutePage + ($this->DataSource->next_record() ? 1 : 0);
+        else
+            $this->Navigator->TotalPages = $this->DataSource->PageCount();
+        if ($this->Navigator->TotalPages <= 1) {
+            $this->Navigator->Visible = false;
+        }
+        $this->Insert_Link->Show();
+        $this->Navigator->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+//GetErrors Method @2-D611DE82
+    function GetErrors()
+    {
+        $errors = "";
+        $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->organization_code->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->description->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->organization_name->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->p_organization_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->district_name->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
+        return $errors;
+    }
+//End GetErrors Method
+
+} //End p_organizationGrid Class @2-FCB6E20C
+
+class clsp_organizationGridDataSource extends clsDBConnSIKP {  //p_organizationGridDataSource Class @2-E3419599
+
+//DataSource Variables @2-76572A5D
+    var $Parent = "";
+    var $CCSEvents = "";
+    var $CCSEventResult;
+    var $ErrorBlock;
+    var $CmdExecution;
+
+    var $CountSQL;
+    var $wp;
+
+
+    // Datasource fields
+    var $organization_code;
+    var $description;
+    var $organization_name;
+    var $p_organization_id;
+    var $district_name;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @2-4BCC1E9C
+    function clsp_organizationGridDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Grid p_organizationGrid";
+        $this->Initialize();
+        $this->organization_code = new clsField("organization_code", ccsText, "");
+        
+        $this->description = new clsField("description", ccsText, "");
+        
+        $this->organization_name = new clsField("organization_name", ccsText, "");
+        
+        $this->p_organization_id = new clsField("p_organization_id", ccsFloat, "");
+        
+        $this->district_name = new clsField("district_name", ccsText, "");
+        
+
+    }
+//End DataSourceClass_Initialize Event
+
+//SetOrder Method @2-71AEB3BD
+    function SetOrder($SorterName, $SorterDirection)
+    {
+        $this->Order = "a.p_organization_id";
+        $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
+            "");
+    }
+//End SetOrder Method
+
+//Prepare Method @2-6ACDE62B
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("2", "urlparent_id", ccsFloat, "", "", $this->Parameters["urlparent_id"], 0, false);
+    }
+//End Prepare Method
+
+//Open Method @2-0BA92C9D
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT a.p_organization_id, a.organization_code, a.organization_name, a.company_id, b.level_code, c.company_name, a.p_organization_level_id, \n" .
+        "a.listing_no, a.parent_id, a.description, to_char(a.creation_date,'DD-MON-YYYY')as creation_date, a.created_by, to_char(a.updated_date,'DD-MON-YYYY')as updated_date, a.updated_by, a.p_district_id, d.district_name\n" .
+        "FROM sikp.p_organization a, sikp.p_organization_level b, sikp.company c, sikp.p_district d\n" .
+        "WHERE a.company_id = c.company_id AND\n" .
+        "a.p_organization_level_id = b.p_organization_level_id AND\n" .
+        "a.p_district_id = d.p_district_id AND\n" .
+        "nvl(a.parent_id,0) = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . " AND\n" .
+        "(upper(a.organization_code) like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
+        "upper(a.organization_name) like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')) cnt";
+        $this->SQL = "SELECT a.p_organization_id, a.organization_code, a.organization_name, a.company_id, b.level_code, c.company_name, a.p_organization_level_id, \n" .
+        "a.listing_no, a.parent_id, a.description, to_char(a.creation_date,'DD-MON-YYYY')as creation_date, a.created_by, to_char(a.updated_date,'DD-MON-YYYY')as updated_date, a.updated_by, a.p_district_id, d.district_name\n" .
+        "FROM sikp.p_organization a, sikp.p_organization_level b, sikp.company c, sikp.p_district d\n" .
+        "WHERE a.company_id = c.company_id AND\n" .
+        "a.p_organization_level_id = b.p_organization_level_id AND\n" .
+        "a.p_district_id = d.p_district_id AND\n" .
+        "nvl(a.parent_id,0) = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . " AND\n" .
+        "(upper(a.organization_code) like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
+        "upper(a.organization_name) like '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') {SQL_OrderBy}";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        if ($this->CountSQL) 
+            $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
+        else
+            $this->RecordsCount = "CCS not counted";
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+    }
+//End Open Method
+
+//SetValues Method @2-4CDBAF8A
+    function SetValues()
+    {
+        $this->organization_code->SetDBValue($this->f("organization_code"));
+        $this->description->SetDBValue($this->f("description"));
+        $this->organization_name->SetDBValue($this->f("organization_name"));
+        $this->p_organization_id->SetDBValue(trim($this->f("p_organization_id")));
+        $this->district_name->SetDBValue($this->f("district_name"));
+    }
+//End SetValues Method
+
+} //End p_organizationGridDataSource Class @2-FCB6E20C
+
+class clsRecordp_organizationSearch { //p_organizationSearch Class @3-6CBFEF7C
+
+//Variables @3-D6FF3E86
+
+    // Public variables
+    var $ComponentType = "Record";
+    var $ComponentName;
+    var $Parent;
+    var $HTMLFormAction;
+    var $PressedButton;
+    var $Errors;
+    var $ErrorBlock;
+    var $FormSubmitted;
+    var $FormEnctype;
+    var $Visible;
+    var $IsEmpty;
+
+    var $CCSEvents = "";
+    var $CCSEventResult;
+
+    var $RelativePath = "";
+
+    var $InsertAllowed = false;
+    var $UpdateAllowed = false;
+    var $DeleteAllowed = false;
+    var $ReadAllowed   = false;
+    var $EditMode      = false;
+    var $ds;
+    var $DataSource;
+    var $ValidatingControls;
+    var $Controls;
+    var $Attributes;
+
+    // Class variables
+//End Variables
+
+//Class_Initialize Event @3-98692564
+    function clsRecordp_organizationSearch($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Record p_organizationSearch/Error";
+        $this->ReadAllowed = true;
+        if($this->Visible)
+        {
+            $this->ComponentName = "p_organizationSearch";
+            $this->Attributes = new clsAttributes($this->ComponentName . ":");
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
+            if(sizeof($CCSForm) == 1)
+                $CCSForm[1] = "";
+            list($FormName, $FormMethod) = $CCSForm;
+            $this->FormEnctype = "application/x-www-form-urlencoded";
+            $this->FormSubmitted = ($FormName == $this->ComponentName);
+            $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
+            $this->parent_id = & new clsControl(ccsHidden, "parent_id", "parent_id", ccsText, "", CCGetRequestParam("parent_id", $Method, NULL), $this);
+        }
+    }
+//End Class_Initialize Event
+
+//Validate Method @3-4E42497D
+    function Validate()
+    {
+        global $CCSLocales;
+        $Validation = true;
+        $Where = "";
+        $Validation = ($this->s_keyword->Validate() && $Validation);
+        $Validation = ($this->parent_id->Validate() && $Validation);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->parent_id->Errors->Count() == 0);
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//CheckErrors Method @3-F7AC56AF
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->s_keyword->Errors->Count());
+        $errors = ($errors || $this->parent_id->Errors->Count());
+        $errors = ($errors || $this->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//MasterDetail @3-ED598703
+function SetPrimaryKeys($keyArray)
+{
+    $this->PrimaryKeys = $keyArray;
+}
+function GetPrimaryKeys()
+{
+    return $this->PrimaryKeys;
+}
+function GetPrimaryKey($keyName)
+{
+    return $this->PrimaryKeys[$keyName];
+}
+//End MasterDetail
+
+//Operation Method @3-C98AD6D8
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        if(!$this->FormSubmitted) {
+            return;
+        }
+
+        if($this->FormSubmitted) {
+            $this->PressedButton = "Button_DoSearch";
+            if($this->Button_DoSearch->Pressed) {
+                $this->PressedButton = "Button_DoSearch";
+            }
+        }
+        $Redirect = "p_organization.php";
+        if($this->Validate()) {
+            if($this->PressedButton == "Button_DoSearch") {
+                $Redirect = "p_organization.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
+                if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            }
+        } else {
+            $Redirect = "";
+        }
+    }
+//End Operation Method
+
+//Show Method @3-5CBDA179
+    function Show()
+    {
+        global $CCSUseAmp;
+        global $Tpl;
+        global $FileName;
+        global $CCSLocales;
+        $Error = "";
+
+        if(!$this->Visible)
+            return;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $RecordBlock = "Record " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
+        $this->EditMode = $this->EditMode && $this->ReadAllowed;
+        if (!$this->FormSubmitted) {
+        }
+
+        if($this->FormSubmitted || $this->CheckErrors()) {
+            $Error = "";
+            $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->parent_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->EditMode ? $this->ComponentName . ":" . "Edit" : $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        $this->Attributes->Show();
+        if(!$this->Visible) {
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+
+        $this->Button_DoSearch->Show();
+        $this->s_keyword->Show();
+        $this->parent_id->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+    }
+//End Show Method
+
+} //End p_organizationSearch Class @3-FCB6E20C
+
+class clsRecordp_organizationForm { //p_organizationForm Class @94-7E4D3706
+
+//Variables @94-D6FF3E86
+
+    // Public variables
+    var $ComponentType = "Record";
+    var $ComponentName;
+    var $Parent;
+    var $HTMLFormAction;
+    var $PressedButton;
+    var $Errors;
+    var $ErrorBlock;
+    var $FormSubmitted;
+    var $FormEnctype;
+    var $Visible;
+    var $IsEmpty;
+
+    var $CCSEvents = "";
+    var $CCSEventResult;
+
+    var $RelativePath = "";
+
+    var $InsertAllowed = false;
+    var $UpdateAllowed = false;
+    var $DeleteAllowed = false;
+    var $ReadAllowed   = false;
+    var $EditMode      = false;
+    var $ds;
+    var $DataSource;
+    var $ValidatingControls;
+    var $Controls;
+    var $Attributes;
+
+    // Class variables
+//End Variables
+
+//Class_Initialize Event @94-FA0DCFAD
+    function clsRecordp_organizationForm($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Record p_organizationForm/Error";
+        $this->DataSource = new clsp_organizationFormDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->InsertAllowed = true;
+        $this->UpdateAllowed = true;
+        $this->DeleteAllowed = true;
+        $this->ReadAllowed = true;
+        if($this->Visible)
+        {
+            $this->ComponentName = "p_organizationForm";
+            $this->Attributes = new clsAttributes($this->ComponentName . ":");
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
+            if(sizeof($CCSForm) == 1)
+                $CCSForm[1] = "";
+            list($FormName, $FormMethod) = $CCSForm;
+            $this->EditMode = ($FormMethod == "Edit");
+            $this->FormEnctype = "application/x-www-form-urlencoded";
+            $this->FormSubmitted = ($FormName == $this->ComponentName);
+            $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->p_organization_id = & new clsControl(ccsHidden, "p_organization_id", "Id", ccsFloat, "", CCGetRequestParam("p_organization_id", $Method, NULL), $this);
+            $this->description = & new clsControl(ccsTextBox, "description", "Description", ccsText, "", CCGetRequestParam("description", $Method, NULL), $this);
+            $this->created_by = & new clsControl(ccsTextBox, "created_by", "Created By", ccsText, "", CCGetRequestParam("created_by", $Method, NULL), $this);
+            $this->updated_by = & new clsControl(ccsTextBox, "updated_by", "Updated By", ccsText, "", CCGetRequestParam("updated_by", $Method, NULL), $this);
+            $this->creation_date = & new clsControl(ccsTextBox, "creation_date", "Creation Date", ccsText, "", CCGetRequestParam("creation_date", $Method, NULL), $this);
+            $this->updated_date = & new clsControl(ccsTextBox, "updated_date", "Updated Date", ccsText, "", CCGetRequestParam("updated_date", $Method, NULL), $this);
+            $this->p_organizationGridPage = & new clsControl(ccsHidden, "p_organizationGridPage", "p_organizationGridPage", ccsText, "", CCGetRequestParam("p_organizationGridPage", $Method, NULL), $this);
+            $this->p_organization_level_id = & new clsControl(ccsListBox, "p_organization_level_id", "Level Organisasi", ccsText, "", CCGetRequestParam("p_organization_level_id", $Method, NULL), $this);
+            $this->p_organization_level_id->DSType = dsTable;
+            $this->p_organization_level_id->DataSource = new clsDBConnSIKP();
+            $this->p_organization_level_id->ds = & $this->p_organization_level_id->DataSource;
+            $this->p_organization_level_id->DataSource->SQL = "SELECT * \n" .
+"FROM p_organization_level {SQL_Where} {SQL_OrderBy}";
+            list($this->p_organization_level_id->BoundColumn, $this->p_organization_level_id->TextColumn, $this->p_organization_level_id->DBFormat) = array("p_organization_level_id", "level_code", "");
+            $this->p_organization_level_id->Required = true;
+            $this->organization_code = & new clsControl(ccsTextBox, "organization_code", "Kode Organisasi", ccsText, "", CCGetRequestParam("organization_code", $Method, NULL), $this);
+            $this->organization_code->Required = true;
+            $this->organization_name = & new clsControl(ccsTextBox, "organization_name", "Nama Organisasi", ccsText, "", CCGetRequestParam("organization_name", $Method, NULL), $this);
+            $this->organization_name->Required = true;
+            $this->parent_id = & new clsControl(ccsTextBox, "parent_id", "Parent ID", ccsFloat, "", CCGetRequestParam("parent_id", $Method, NULL), $this);
+            $this->listing_no = & new clsControl(ccsTextBox, "listing_no", "No Urut", ccsFloat, "", CCGetRequestParam("listing_no", $Method, NULL), $this);
+            $this->district_name = & new clsControl(ccsTextBox, "district_name", "Kota", ccsText, "", CCGetRequestParam("district_name", $Method, NULL), $this);
+            $this->district_name->Required = true;
+            $this->p_district_id = & new clsControl(ccsHidden, "p_district_id", "Kota", ccsFloat, "", CCGetRequestParam("p_district_id", $Method, NULL), $this);
+            $this->p_district_id->Required = true;
+            $this->company_id = & new clsControl(ccsListBox, "company_id", "Perusahaan", ccsText, "", CCGetRequestParam("company_id", $Method, NULL), $this);
+            $this->company_id->DSType = dsTable;
+            $this->company_id->DataSource = new clsDBConnSIKP();
+            $this->company_id->ds = & $this->company_id->DataSource;
+            $this->company_id->DataSource->SQL = "SELECT * \n" .
+"FROM company {SQL_Where} {SQL_OrderBy}";
+            list($this->company_id->BoundColumn, $this->company_id->TextColumn, $this->company_id->DBFormat) = array("company_id", "company_name", "");
+            $this->company_id->Required = true;
+            if(!$this->FormSubmitted) {
+                if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
+                    $this->created_by->SetText(CCGetUserLogin());
+                if(!is_array($this->updated_by->Value) && !strlen($this->updated_by->Value) && $this->updated_by->Value !== false)
+                    $this->updated_by->SetText(CCGetUserLogin());
+                if(!is_array($this->creation_date->Value) && !strlen($this->creation_date->Value) && $this->creation_date->Value !== false)
+                    $this->creation_date->SetText(date("d-M-Y"));
+                if(!is_array($this->updated_date->Value) && !strlen($this->updated_date->Value) && $this->updated_date->Value !== false)
+                    $this->updated_date->SetText(date("d-M-Y"));
+            }
+        }
+    }
+//End Class_Initialize Event
+
+//Initialize Method @94-0987C25D
+    function Initialize()
+    {
+
+        if(!$this->Visible)
+            return;
+
+        $this->DataSource->Parameters["urlp_organization_id"] = CCGetFromGet("p_organization_id", NULL);
+    }
+//End Initialize Method
+
+//Validate Method @94-5AC616A9
+    function Validate()
+    {
+        global $CCSLocales;
+        $Validation = true;
+        $Where = "";
+        $Validation = ($this->p_organization_id->Validate() && $Validation);
+        $Validation = ($this->description->Validate() && $Validation);
+        $Validation = ($this->created_by->Validate() && $Validation);
+        $Validation = ($this->updated_by->Validate() && $Validation);
+        $Validation = ($this->creation_date->Validate() && $Validation);
+        $Validation = ($this->updated_date->Validate() && $Validation);
+        $Validation = ($this->p_organizationGridPage->Validate() && $Validation);
+        $Validation = ($this->p_organization_level_id->Validate() && $Validation);
+        $Validation = ($this->organization_code->Validate() && $Validation);
+        $Validation = ($this->organization_name->Validate() && $Validation);
+        $Validation = ($this->parent_id->Validate() && $Validation);
+        $Validation = ($this->listing_no->Validate() && $Validation);
+        $Validation = ($this->district_name->Validate() && $Validation);
+        $Validation = ($this->p_district_id->Validate() && $Validation);
+        $Validation = ($this->company_id->Validate() && $Validation);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->p_organization_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->description->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->created_by->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->updated_by->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->creation_date->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->updated_date->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_organizationGridPage->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_organization_level_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->organization_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->organization_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->parent_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->listing_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->district_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_district_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->company_id->Errors->Count() == 0);
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//CheckErrors Method @94-00B10E87
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->p_organization_id->Errors->Count());
+        $errors = ($errors || $this->description->Errors->Count());
+        $errors = ($errors || $this->created_by->Errors->Count());
+        $errors = ($errors || $this->updated_by->Errors->Count());
+        $errors = ($errors || $this->creation_date->Errors->Count());
+        $errors = ($errors || $this->updated_date->Errors->Count());
+        $errors = ($errors || $this->p_organizationGridPage->Errors->Count());
+        $errors = ($errors || $this->p_organization_level_id->Errors->Count());
+        $errors = ($errors || $this->organization_code->Errors->Count());
+        $errors = ($errors || $this->organization_name->Errors->Count());
+        $errors = ($errors || $this->parent_id->Errors->Count());
+        $errors = ($errors || $this->listing_no->Errors->Count());
+        $errors = ($errors || $this->district_name->Errors->Count());
+        $errors = ($errors || $this->p_district_id->Errors->Count());
+        $errors = ($errors || $this->company_id->Errors->Count());
+        $errors = ($errors || $this->Errors->Count());
+        $errors = ($errors || $this->DataSource->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//MasterDetail @94-ED598703
+function SetPrimaryKeys($keyArray)
+{
+    $this->PrimaryKeys = $keyArray;
+}
+function GetPrimaryKeys()
+{
+    return $this->PrimaryKeys;
+}
+function GetPrimaryKey($keyName)
+{
+    return $this->PrimaryKeys[$keyName];
+}
+//End MasterDetail
+
+//Operation Method @94-742DFCFB
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        $this->DataSource->Prepare();
+        if(!$this->FormSubmitted) {
+            $this->EditMode = $this->DataSource->AllParametersSet;
+            return;
+        }
+
+        if($this->FormSubmitted) {
+            $this->PressedButton = $this->EditMode ? "Button_Update" : "Button_Insert";
+            if($this->Button_Insert->Pressed) {
+                $this->PressedButton = "Button_Insert";
+            } else if($this->Button_Update->Pressed) {
+                $this->PressedButton = "Button_Update";
+            } else if($this->Button_Delete->Pressed) {
+                $this->PressedButton = "Button_Delete";
+            } else if($this->Button_Cancel->Pressed) {
+                $this->PressedButton = "Button_Cancel";
+            }
+        }
+        $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
+        if($this->PressedButton == "Button_Delete") {
+            $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "p_organization_id", "s_keyword", "p_organizationGridPage"));
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
+                $Redirect = "";
+            }
+        } else if($this->PressedButton == "Button_Cancel") {
+            $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "p_organization_id", "s_keyword", "p_organizationGridPage"));
+            if(!CCGetEvent($this->Button_Cancel->CCSEvents, "OnClick", $this->Button_Cancel)) {
+                $Redirect = "";
+            }
+        } else if($this->Validate()) {
+            if($this->PressedButton == "Button_Insert") {
+                $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
+                if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert) || !$this->InsertRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_Update") {
+                $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
+                if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            }
+        } else {
+            $Redirect = "";
+        }
+        if ($Redirect)
+            $this->DataSource->close();
+    }
+//End Operation Method
+
+//InsertRow Method @94-F0CB9D12
+    function InsertRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
+        if(!$this->InsertAllowed) return false;
+        $this->DataSource->p_organization_id->SetValue($this->p_organization_id->GetValue(true));
+        $this->DataSource->organization_code->SetValue($this->organization_code->GetValue(true));
+        $this->DataSource->organization_name->SetValue($this->organization_name->GetValue(true));
+        $this->DataSource->company_id->SetValue($this->company_id->GetValue(true));
+        $this->DataSource->p_organization_level_id->SetValue($this->p_organization_level_id->GetValue(true));
+        $this->DataSource->listing_no->SetValue($this->listing_no->GetValue(true));
+        $this->DataSource->parent_id->SetValue($this->parent_id->GetValue(true));
+        $this->DataSource->description->SetValue($this->description->GetValue(true));
+        $this->DataSource->p_district_id->SetValue($this->p_district_id->GetValue(true));
+        $this->DataSource->Insert();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
+        return (!$this->CheckErrors());
+    }
+//End InsertRow Method
+
+//UpdateRow Method @94-8E8F3028
+    function UpdateRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
+        if(!$this->UpdateAllowed) return false;
+        $this->DataSource->organization_code->SetValue($this->organization_code->GetValue(true));
+        $this->DataSource->organization_name->SetValue($this->organization_name->GetValue(true));
+        $this->DataSource->company_id->SetValue($this->company_id->GetValue(true));
+        $this->DataSource->p_organization_level_id->SetValue($this->p_organization_level_id->GetValue(true));
+        $this->DataSource->listing_no->SetValue($this->listing_no->GetValue(true));
+        $this->DataSource->description->SetValue($this->description->GetValue(true));
+        $this->DataSource->p_district_id->SetValue($this->p_district_id->GetValue(true));
+        $this->DataSource->p_organization_id->SetValue($this->p_organization_id->GetValue(true));
+        $this->DataSource->Update();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
+        return (!$this->CheckErrors());
+    }
+//End UpdateRow Method
+
+//DeleteRow Method @94-EBB7EA5A
+    function DeleteRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
+        if(!$this->DeleteAllowed) return false;
+        $this->DataSource->p_organization_id->SetValue($this->p_organization_id->GetValue(true));
+        $this->DataSource->Delete();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
+        return (!$this->CheckErrors());
+    }
+//End DeleteRow Method
+
+//Show Method @94-A9EE9D5B
+    function Show()
+    {
+        global $CCSUseAmp;
+        global $Tpl;
+        global $FileName;
+        global $CCSLocales;
+        $Error = "";
+
+        if(!$this->Visible)
+            return;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+        $this->p_organization_level_id->Prepare();
+        $this->company_id->Prepare();
+
+        $RecordBlock = "Record " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
+        $this->EditMode = $this->EditMode && $this->ReadAllowed;
+        if($this->EditMode) {
+            if($this->DataSource->Errors->Count()){
+                $this->Errors->AddErrors($this->DataSource->Errors);
+                $this->DataSource->Errors->clear();
+            }
+            $this->DataSource->Open();
+            if($this->DataSource->Errors->Count() == 0 && $this->DataSource->next_record()) {
+                $this->DataSource->SetValues();
+                if(!$this->FormSubmitted){
+                    $this->p_organization_id->SetValue($this->DataSource->p_organization_id->GetValue());
+                    $this->description->SetValue($this->DataSource->description->GetValue());
+                    $this->created_by->SetValue($this->DataSource->created_by->GetValue());
+                    $this->updated_by->SetValue($this->DataSource->updated_by->GetValue());
+                    $this->creation_date->SetValue($this->DataSource->creation_date->GetValue());
+                    $this->updated_date->SetValue($this->DataSource->updated_date->GetValue());
+                    $this->p_organization_level_id->SetValue($this->DataSource->p_organization_level_id->GetValue());
+                    $this->organization_code->SetValue($this->DataSource->organization_code->GetValue());
+                    $this->organization_name->SetValue($this->DataSource->organization_name->GetValue());
+                    $this->parent_id->SetValue($this->DataSource->parent_id->GetValue());
+                    $this->listing_no->SetValue($this->DataSource->listing_no->GetValue());
+                    $this->district_name->SetValue($this->DataSource->district_name->GetValue());
+                    $this->p_district_id->SetValue($this->DataSource->p_district_id->GetValue());
+                    $this->company_id->SetValue($this->DataSource->company_id->GetValue());
+                }
+            } else {
+                $this->EditMode = false;
+            }
+        }
+        if (!$this->FormSubmitted) {
+        }
+
+        if($this->FormSubmitted || $this->CheckErrors()) {
+            $Error = "";
+            $Error = ComposeStrings($Error, $this->p_organization_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->description->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->created_by->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->updated_by->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->creation_date->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->updated_date->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_organizationGridPage->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_organization_level_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->organization_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->organization_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->parent_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->listing_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->district_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_district_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->company_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->EditMode ? $this->ComponentName . ":" . "Edit" : $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+        $this->Button_Insert->Visible = !$this->EditMode && $this->InsertAllowed;
+        $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
+        $this->Button_Delete->Visible = $this->EditMode && $this->DeleteAllowed;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        $this->Attributes->Show();
+        if(!$this->Visible) {
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+
+        $this->Button_Insert->Show();
+        $this->Button_Update->Show();
+        $this->Button_Delete->Show();
+        $this->Button_Cancel->Show();
+        $this->p_organization_id->Show();
+        $this->description->Show();
+        $this->created_by->Show();
+        $this->updated_by->Show();
+        $this->creation_date->Show();
+        $this->updated_date->Show();
+        $this->p_organizationGridPage->Show();
+        $this->p_organization_level_id->Show();
+        $this->organization_code->Show();
+        $this->organization_name->Show();
+        $this->parent_id->Show();
+        $this->listing_no->Show();
+        $this->district_name->Show();
+        $this->p_district_id->Show();
+        $this->company_id->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+} //End p_organizationForm Class @94-FCB6E20C
+
+class clsp_organizationFormDataSource extends clsDBConnSIKP {  //p_organizationFormDataSource Class @94-BC76036D
+
+//DataSource Variables @94-50356406
+    var $Parent = "";
+    var $CCSEvents = "";
+    var $CCSEventResult;
+    var $ErrorBlock;
+    var $CmdExecution;
+
+    var $InsertParameters;
+    var $UpdateParameters;
+    var $DeleteParameters;
+    var $wp;
+    var $AllParametersSet;
+
+
+    // Datasource fields
+    var $p_organization_id;
+    var $description;
+    var $created_by;
+    var $updated_by;
+    var $creation_date;
+    var $updated_date;
+    var $p_organizationGridPage;
+    var $p_organization_level_id;
+    var $organization_code;
+    var $organization_name;
+    var $parent_id;
+    var $listing_no;
+    var $district_name;
+    var $p_district_id;
+    var $company_id;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @94-B0D06501
+    function clsp_organizationFormDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Record p_organizationForm/Error";
+        $this->Initialize();
+        $this->p_organization_id = new clsField("p_organization_id", ccsFloat, "");
+        
+        $this->description = new clsField("description", ccsText, "");
+        
+        $this->created_by = new clsField("created_by", ccsText, "");
+        
+        $this->updated_by = new clsField("updated_by", ccsText, "");
+        
+        $this->creation_date = new clsField("creation_date", ccsText, "");
+        
+        $this->updated_date = new clsField("updated_date", ccsText, "");
+        
+        $this->p_organizationGridPage = new clsField("p_organizationGridPage", ccsText, "");
+        
+        $this->p_organization_level_id = new clsField("p_organization_level_id", ccsText, "");
+        
+        $this->organization_code = new clsField("organization_code", ccsText, "");
+        
+        $this->organization_name = new clsField("organization_name", ccsText, "");
+        
+        $this->parent_id = new clsField("parent_id", ccsFloat, "");
+        
+        $this->listing_no = new clsField("listing_no", ccsFloat, "");
+        
+        $this->district_name = new clsField("district_name", ccsText, "");
+        
+        $this->p_district_id = new clsField("p_district_id", ccsFloat, "");
+        
+        $this->company_id = new clsField("company_id", ccsText, "");
+        
+
+    }
+//End DataSourceClass_Initialize Event
+
+//Prepare Method @94-BB017428
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urlp_organization_id", ccsFloat, "", "", $this->Parameters["urlp_organization_id"], 0, false);
+        $this->AllParametersSet = $this->wp->AllParamsSet();
+    }
+//End Prepare Method
+
+//Open Method @94-071AAEC1
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->SQL = "SELECT a.p_organization_id, a.organization_code, a.organization_name, a.company_id, b.level_code, c.company_name, a.p_organization_level_id, \n" .
+        "a.listing_no, a.parent_id, a.description, to_char(a.creation_date,'DD-MON-YYYY')as creation_date, a.created_by, to_char(a.updated_date,'DD-MON-YYYY')as updated_date, a.updated_by, a.p_district_id, d.district_name\n" .
+        "FROM p_organization a, p_organization_level b, company c, p_district d\n" .
+        "WHERE a.company_id = c.company_id AND\n" .
+        "a.p_organization_level_id = b.p_organization_level_id AND\n" .
+        "a.p_district_id = d.p_district_id AND\n" .
+        "a.p_organization_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "";
+        $this->Order = "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        $this->PageSize = 1;
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+    }
+//End Open Method
+
+//SetValues Method @94-452CD691
+    function SetValues()
+    {
+        $this->p_organization_id->SetDBValue(trim($this->f("p_organization_id")));
+        $this->description->SetDBValue($this->f("description"));
+        $this->created_by->SetDBValue($this->f("created_by"));
+        $this->updated_by->SetDBValue($this->f("updated_by"));
+        $this->creation_date->SetDBValue($this->f("creation_date"));
+        $this->updated_date->SetDBValue($this->f("updated_date"));
+        $this->p_organization_level_id->SetDBValue($this->f("p_organization_level_id"));
+        $this->organization_code->SetDBValue($this->f("organization_code"));
+        $this->organization_name->SetDBValue($this->f("organization_name"));
+        $this->parent_id->SetDBValue(trim($this->f("parent_id")));
+        $this->listing_no->SetDBValue(trim($this->f("listing_no")));
+        $this->district_name->SetDBValue($this->f("district_name"));
+        $this->p_district_id->SetDBValue(trim($this->f("p_district_id")));
+        $this->company_id->SetDBValue($this->f("company_id"));
+    }
+//End SetValues Method
+
+//Insert Method @94-D86CED51
+    function Insert()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->cp["p_organization_id"] = new clsSQLParameter("ctrlp_organization_id", ccsFloat, "", "", $this->p_organization_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["organization_code"] = new clsSQLParameter("ctrlorganization_code", ccsText, "", "", $this->organization_code->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["organization_name"] = new clsSQLParameter("ctrlorganization_name", ccsText, "", "", $this->organization_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["company_id"] = new clsSQLParameter("ctrlcompany_id", ccsFloat, "", "", $this->company_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["p_organization_level_id"] = new clsSQLParameter("ctrlp_organization_level_id", ccsFloat, "", "", $this->p_organization_level_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["listing_no"] = new clsSQLParameter("ctrllisting_no", ccsFloat, "", "", $this->listing_no->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["parent_id"] = new clsSQLParameter("ctrlparent_id", ccsFloat, "", "", $this->parent_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["created_by"] = new clsSQLParameter("expr302", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
+        $this->cp["updated_by"] = new clsSQLParameter("expr303", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
+        $this->cp["p_district_id"] = new clsSQLParameter("ctrlp_district_id", ccsFloat, "", "", $this->p_district_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
+        if (!is_null($this->cp["p_organization_id"]->GetValue()) and !strlen($this->cp["p_organization_id"]->GetText()) and !is_bool($this->cp["p_organization_id"]->GetValue())) 
+            $this->cp["p_organization_id"]->SetValue($this->p_organization_id->GetValue(true));
+        if (!strlen($this->cp["p_organization_id"]->GetText()) and !is_bool($this->cp["p_organization_id"]->GetValue(true))) 
+            $this->cp["p_organization_id"]->SetText(0);
+        if (!is_null($this->cp["organization_code"]->GetValue()) and !strlen($this->cp["organization_code"]->GetText()) and !is_bool($this->cp["organization_code"]->GetValue())) 
+            $this->cp["organization_code"]->SetValue($this->organization_code->GetValue(true));
+        if (!is_null($this->cp["organization_name"]->GetValue()) and !strlen($this->cp["organization_name"]->GetText()) and !is_bool($this->cp["organization_name"]->GetValue())) 
+            $this->cp["organization_name"]->SetValue($this->organization_name->GetValue(true));
+        if (!is_null($this->cp["company_id"]->GetValue()) and !strlen($this->cp["company_id"]->GetText()) and !is_bool($this->cp["company_id"]->GetValue())) 
+            $this->cp["company_id"]->SetValue($this->company_id->GetValue(true));
+        if (!strlen($this->cp["company_id"]->GetText()) and !is_bool($this->cp["company_id"]->GetValue(true))) 
+            $this->cp["company_id"]->SetText(0);
+        if (!is_null($this->cp["p_organization_level_id"]->GetValue()) and !strlen($this->cp["p_organization_level_id"]->GetText()) and !is_bool($this->cp["p_organization_level_id"]->GetValue())) 
+            $this->cp["p_organization_level_id"]->SetValue($this->p_organization_level_id->GetValue(true));
+        if (!strlen($this->cp["p_organization_level_id"]->GetText()) and !is_bool($this->cp["p_organization_level_id"]->GetValue(true))) 
+            $this->cp["p_organization_level_id"]->SetText(0);
+        if (!is_null($this->cp["listing_no"]->GetValue()) and !strlen($this->cp["listing_no"]->GetText()) and !is_bool($this->cp["listing_no"]->GetValue())) 
+            $this->cp["listing_no"]->SetValue($this->listing_no->GetValue(true));
+        if (!strlen($this->cp["listing_no"]->GetText()) and !is_bool($this->cp["listing_no"]->GetValue(true))) 
+            $this->cp["listing_no"]->SetText(0);
+        if (!is_null($this->cp["parent_id"]->GetValue()) and !strlen($this->cp["parent_id"]->GetText()) and !is_bool($this->cp["parent_id"]->GetValue())) 
+            $this->cp["parent_id"]->SetValue($this->parent_id->GetValue(true));
+        if (!strlen($this->cp["parent_id"]->GetText()) and !is_bool($this->cp["parent_id"]->GetValue(true))) 
+            $this->cp["parent_id"]->SetText(0);
+        if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
+            $this->cp["description"]->SetValue($this->description->GetValue(true));
+        if (!is_null($this->cp["created_by"]->GetValue()) and !strlen($this->cp["created_by"]->GetText()) and !is_bool($this->cp["created_by"]->GetValue())) 
+            $this->cp["created_by"]->SetValue(CCGetUserLogin());
+        if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
+            $this->cp["updated_by"]->SetValue(CCGetUserLogin());
+        if (!is_null($this->cp["p_district_id"]->GetValue()) and !strlen($this->cp["p_district_id"]->GetText()) and !is_bool($this->cp["p_district_id"]->GetValue())) 
+            $this->cp["p_district_id"]->SetValue($this->p_district_id->GetValue(true));
+        if (!strlen($this->cp["p_district_id"]->GetText()) and !is_bool($this->cp["p_district_id"]->GetValue(true))) 
+            $this->cp["p_district_id"]->SetText(0);
+        $this->SQL = "INSERT INTO p_organization(\n" .
+        "p_organization_id, \n" .
+        "organization_code, \n" .
+        "organization_name, \n" .
+        "company_id, \n" .
+        "p_organization_level_id, \n" .
+        "listing_no, \n" .
+        "parent_id, \n" .
+        "description, \n" .
+        "creation_date, \n" .
+        "created_by, \n" .
+        "updated_date, \n" .
+        "updated_by, \n" .
+        "p_district_id)\n" .
+        "VALUES (generate_id('sikp','p_organization','p_organization_id'), \n" .
+        "'" . $this->SQLValue($this->cp["organization_code"]->GetDBValue(), ccsText) . "', \n" .
+        "'" . $this->SQLValue($this->cp["organization_name"]->GetDBValue(), ccsText) . "', \n" .
+        "decode(" . $this->SQLValue($this->cp["company_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["company_id"]->GetDBValue(), ccsFloat) . "),\n" .
+        "" . $this->SQLValue($this->cp["p_organization_level_id"]->GetDBValue(), ccsFloat) . ", \n" .
+        "decode(" . $this->SQLValue($this->cp["listing_no"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["listing_no"]->GetDBValue(), ccsFloat) . "), \n" .
+        "decode(" . $this->SQLValue($this->cp["parent_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["parent_id"]->GetDBValue(), ccsFloat) . "), \n" .
+        "'" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
+        "sysdate, \n" .
+        "'" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', \n" .
+        "sysdate, \n" .
+        "'" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', \n" .
+        "decode(" . $this->SQLValue($this->cp["p_district_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["p_district_id"]->GetDBValue(), ccsFloat) . "))";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
+        }
+    }
+//End Insert Method
+
+//Update Method @94-BD916C7A
+    function Update()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->cp["organization_code"] = new clsSQLParameter("ctrlorganization_code", ccsText, "", "", $this->organization_code->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["organization_name"] = new clsSQLParameter("ctrlorganization_name", ccsText, "", "", $this->organization_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["company_id"] = new clsSQLParameter("ctrlcompany_id", ccsFloat, "", "", $this->company_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["p_organization_level_id"] = new clsSQLParameter("ctrlp_organization_level_id", ccsFloat, "", "", $this->p_organization_level_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["listing_no"] = new clsSQLParameter("ctrllisting_no", ccsFloat, "", "", $this->listing_no->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["updated_by"] = new clsSQLParameter("expr312", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
+        $this->cp["p_district_id"] = new clsSQLParameter("ctrlp_district_id", ccsFloat, "", "", $this->p_district_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["p_organization_id"] = new clsSQLParameter("ctrlp_organization_id", ccsText, "", "", $this->p_organization_id->GetValue(true), "", false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
+        if (!is_null($this->cp["organization_code"]->GetValue()) and !strlen($this->cp["organization_code"]->GetText()) and !is_bool($this->cp["organization_code"]->GetValue())) 
+            $this->cp["organization_code"]->SetValue($this->organization_code->GetValue(true));
+        if (!is_null($this->cp["organization_name"]->GetValue()) and !strlen($this->cp["organization_name"]->GetText()) and !is_bool($this->cp["organization_name"]->GetValue())) 
+            $this->cp["organization_name"]->SetValue($this->organization_name->GetValue(true));
+        if (!is_null($this->cp["company_id"]->GetValue()) and !strlen($this->cp["company_id"]->GetText()) and !is_bool($this->cp["company_id"]->GetValue())) 
+            $this->cp["company_id"]->SetValue($this->company_id->GetValue(true));
+        if (!strlen($this->cp["company_id"]->GetText()) and !is_bool($this->cp["company_id"]->GetValue(true))) 
+            $this->cp["company_id"]->SetText(0);
+        if (!is_null($this->cp["p_organization_level_id"]->GetValue()) and !strlen($this->cp["p_organization_level_id"]->GetText()) and !is_bool($this->cp["p_organization_level_id"]->GetValue())) 
+            $this->cp["p_organization_level_id"]->SetValue($this->p_organization_level_id->GetValue(true));
+        if (!strlen($this->cp["p_organization_level_id"]->GetText()) and !is_bool($this->cp["p_organization_level_id"]->GetValue(true))) 
+            $this->cp["p_organization_level_id"]->SetText(0);
+        if (!is_null($this->cp["listing_no"]->GetValue()) and !strlen($this->cp["listing_no"]->GetText()) and !is_bool($this->cp["listing_no"]->GetValue())) 
+            $this->cp["listing_no"]->SetValue($this->listing_no->GetValue(true));
+        if (!strlen($this->cp["listing_no"]->GetText()) and !is_bool($this->cp["listing_no"]->GetValue(true))) 
+            $this->cp["listing_no"]->SetText(0);
+        if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
+            $this->cp["description"]->SetValue($this->description->GetValue(true));
+        if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
+            $this->cp["updated_by"]->SetValue(CCGetUserLogin());
+        if (!is_null($this->cp["p_district_id"]->GetValue()) and !strlen($this->cp["p_district_id"]->GetText()) and !is_bool($this->cp["p_district_id"]->GetValue())) 
+            $this->cp["p_district_id"]->SetValue($this->p_district_id->GetValue(true));
+        if (!strlen($this->cp["p_district_id"]->GetText()) and !is_bool($this->cp["p_district_id"]->GetValue(true))) 
+            $this->cp["p_district_id"]->SetText(0);
+        if (!is_null($this->cp["p_organization_id"]->GetValue()) and !strlen($this->cp["p_organization_id"]->GetText()) and !is_bool($this->cp["p_organization_id"]->GetValue())) 
+            $this->cp["p_organization_id"]->SetValue($this->p_organization_id->GetValue(true));
+        $this->SQL = "UPDATE p_organization\n" .
+        "   SET organization_code='" . $this->SQLValue($this->cp["organization_code"]->GetDBValue(), ccsText) . "', \n" .
+        "       organization_name='" . $this->SQLValue($this->cp["organization_name"]->GetDBValue(), ccsText) . "', \n" .
+        "       company_id=decode(" . $this->SQLValue($this->cp["company_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["company_id"]->GetDBValue(), ccsFloat) . "), \n" .
+        "       p_organization_level_id=" . $this->SQLValue($this->cp["p_organization_level_id"]->GetDBValue(), ccsFloat) . ", \n" .
+        "       listing_no=decode(" . $this->SQLValue($this->cp["listing_no"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["listing_no"]->GetDBValue(), ccsFloat) . "),   \n" .
+        "       description='" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
+        "       updated_date=sysdate, \n" .
+        "       updated_by='" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', \n" .
+        "       p_district_id=decode(" . $this->SQLValue($this->cp["p_district_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["p_district_id"]->GetDBValue(), ccsFloat) . ")\n" .
+        " WHERE p_organization_id=" . $this->SQLValue($this->cp["p_organization_id"]->GetDBValue(), ccsText) . "   ";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
+        }
+    }
+//End Update Method
+
+//Delete Method @94-A9FA17FE
+    function Delete()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->cp["p_organization_id"] = new clsSQLParameter("ctrlp_organization_id", ccsFloat, "", "", $this->p_organization_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
+        if (!is_null($this->cp["p_organization_id"]->GetValue()) and !strlen($this->cp["p_organization_id"]->GetText()) and !is_bool($this->cp["p_organization_id"]->GetValue())) 
+            $this->cp["p_organization_id"]->SetValue($this->p_organization_id->GetValue(true));
+        if (!strlen($this->cp["p_organization_id"]->GetText()) and !is_bool($this->cp["p_organization_id"]->GetValue(true))) 
+            $this->cp["p_organization_id"]->SetText(0);
+        $this->SQL = "DELETE FROM p_organization\n" .
+        "WHERE p_organization_id = " . $this->SQLValue($this->cp["p_organization_id"]->GetDBValue(), ccsFloat) . "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
+        }
+    }
+//End Delete Method
+
+} //End p_organizationFormDataSource Class @94-FCB6E20C
+
+//Initialize Page @1-5B1B1B18
+// Variables
+$FileName = "";
+$Redirect = "";
+$Tpl = "";
+$TemplateFileName = "";
+$BlockToParse = "";
+$ComponentName = "";
+$Attributes = "";
+
+// Events;
+$CCSEvents = "";
+$CCSEventResult = "";
+
+$FileName = FileName;
+$Redirect = "";
+$TemplateFileName = "p_organization.html";
+$BlockToParse = "main";
+$TemplateEncoding = "CP1252";
+$ContentType = "text/html";
+$PathToRoot = "../";
+$Charset = $Charset ? $Charset : "windows-1252";
+//End Initialize Page
+
+//Include events file @1-F09EAA62
+include_once("./p_organization_events.php");
+//End Include events file
+
+//Before Initialize @1-E870CEBC
+$CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
+//End Before Initialize
+
+//Initialize Objects @1-E1BC4582
+$DBConnSIKP = new clsDBConnSIKP();
+$MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
+$Attributes = new clsAttributes("page:");
+$MainPage->Attributes = & $Attributes;
+
+// Controls
+$p_organizationGrid = & new clsGridp_organizationGrid("", $MainPage);
+$p_organizationSearch = & new clsRecordp_organizationSearch("", $MainPage);
+$p_organizationForm = & new clsRecordp_organizationForm("", $MainPage);
+$MainPage->p_organizationGrid = & $p_organizationGrid;
+$MainPage->p_organizationSearch = & $p_organizationSearch;
+$MainPage->p_organizationForm = & $p_organizationForm;
+$p_organizationGrid->Initialize();
+$p_organizationForm->Initialize();
+
+BindEvents();
+
+$CCSEventResult = CCGetEvent($CCSEvents, "AfterInitialize", $MainPage);
+
+if ($Charset) {
+    header("Content-Type: " . $ContentType . "; charset=" . $Charset);
+} else {
+    header("Content-Type: " . $ContentType);
+}
+//End Initialize Objects
+
+//Initialize HTML Template @1-52F9C312
+$CCSEventResult = CCGetEvent($CCSEvents, "OnInitializeView", $MainPage);
+$Tpl = new clsTemplate($FileEncoding, $TemplateEncoding);
+$Tpl->LoadTemplate(PathToCurrentPage . $TemplateFileName, $BlockToParse, "CP1252");
+$Tpl->block_path = "/$BlockToParse";
+$CCSEventResult = CCGetEvent($CCSEvents, "BeforeShow", $MainPage);
+$Attributes->SetValue("pathToRoot", "../");
+$Attributes->Show();
+//End Initialize HTML Template
+
+//Execute Components @1-F6CAC054
+$p_organizationSearch->Operation();
+$p_organizationForm->Operation();
+//End Execute Components
+
+//Go to destination page @1-420E416D
+if($Redirect)
+{
+    $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
+    $DBConnSIKP->close();
+    header("Location: " . $Redirect);
+    unset($p_organizationGrid);
+    unset($p_organizationSearch);
+    unset($p_organizationForm);
+    unset($Tpl);
+    exit;
+}
+//End Go to destination page
+
+//Show Page @1-139538C1
+$p_organizationGrid->Show();
+$p_organizationSearch->Show();
+$p_organizationForm->Show();
+$Tpl->block_path = "";
+$Tpl->Parse($BlockToParse, false);
+if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
+$CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
+if ($CCSEventResult) echo $main_block;
+//End Show Page
+
+//Unload Page @1-48F9FC7E
+$CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
+$DBConnSIKP->close();
+unset($p_organizationGrid);
+unset($p_organizationSearch);
+unset($p_organizationForm);
+unset($Tpl);
+//End Unload Page
+
+
+?>

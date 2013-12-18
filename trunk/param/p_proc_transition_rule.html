@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_proc_transition_rule</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//p_proc_transition_ruleFormButton_Delete_OnClick @97-485778FA
+function p_proc_transition_ruleFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_proc_transition_ruleFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_proc_transition_ruleFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close p_proc_transition_ruleFormButton_Delete_OnClick
+
+//p_proc_transition_ruleFormButton_Cancel_OnClick @99-810C2156
+function p_proc_transition_ruleFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_proc_transition_ruleFormButton_Cancel_OnClick
+
+//bind_events @1-D302E1D3
+function bind_events() {
+    addEventHandler("p_proc_transition_ruleFormButton_Delete", "click", p_proc_transition_ruleFormButton_Delete_OnClick);
+    addEventHandler("p_proc_transition_ruleFormButton_Cancel", "click", p_proc_transition_ruleFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        ATURAN ALIRAN PROSEDUR 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+<table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+  <tr>
+    <td>
+      <!-- BEGIN Record p_proc_transition_ruleSearch -->
+      <form id="p_proc_transition_ruleSearch" name="{HTMLFormName}" action="{Action}" method="post">
+        <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="search-field"><input class="ControlsIN" id="p_proc_transition_ruleSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                  <td class="search-field">
+                    <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="p_proc_transition_ruleSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record p_proc_transition_ruleSearch --><br>
+      <!-- BEGIN Grid p_proc_transition_ruleGrid -->
+      <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <tr>
+          <td valign="top">
+            <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                <td class="th"><strong>DAFTAR&nbsp;ATURAN ALIRAN PROSEDUR</strong></td> 
+                <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Caption">
+                <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Kode</label></label></th>
+ 
+                <th scope="col">Nama Tabel</th>
+ 
+                <th scope="col">Nama Kolom</th>
+ 
+                <th scope="col">Status?</th>
+ 
+                <th scope="col">Deskripsi</th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr {p_proc_transition_ruleGrid:rowStyle}>
+                <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_proc_transition_ruleGridDLink_{p_proc_transition_ruleGrid:rowNumber}">{DLink}</a></td> 
+                <td>{code}&nbsp;<input id="p_proc_transition_ruleGridp_proc_transition_rule_id_{p_proc_transition_ruleGrid:rowNumber}" type="hidden" value="{p_proc_transition_rule_id}" name="{p_proc_transition_rule_id_Name}"></td> 
+                <td>{table_name}&nbsp;</td> 
+                <td>{column_name}</td> 
+                <td>{is_active}&nbsp;</td> 
+                <td>{description}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="6">-</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td><b><a href="{Insert_Link_Src}" id="p_proc_transition_ruleGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a></b></td> 
+                <td colspan="5">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid p_proc_transition_ruleGrid --><br>
+      <!-- BEGIN Record p_proc_transition_ruleForm -->
+      <form id="p_proc_transition_ruleForm" name="{HTMLFormName}" action="{Action}" method="post">
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>INFORMASI ATURAN ALIRAN PROSEDUR</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="4">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <td class="th"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Kode</label></label></label></label></td> 
+                  <td colspan="3"><input class="ControlsRQ" id="p_proc_transition_ruleFormcode" tabindex="2" maxlength="32" size="32" value="{code}" name="{code_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Nama Tabel&nbsp;</td> 
+                  <td colspan="3"><input class="ControlsIN" id="p_proc_transition_ruleFormtable_name" tabindex="2" readonly maxlength="60" size="50" value="{table_name}" name="{table_name_Name}">&nbsp;<img onclick="javascript:lov_tb_name1()" src="../images/view.gif" border="0">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Kolom</label></label></label></label></label></td> 
+                  <td colspan="3"><input class="ControlsIN" id="p_proc_transition_ruleFormcolumn_name" tabindex="2" readonly maxlength="60" size="50" value="{column_name}" name="{column_name_Name}">&nbsp;<img onclick="javascript:lov_field()" src="../images/view.gif" border="0">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Nilai&nbsp;Pertama</td> 
+                  <td colspan="3"><input class="ControlsIN" id="p_proc_transition_ruleFormfirst_value" maxlength="250" size="50" value="{first_value}" name="{first_value_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Nilai Kedua&nbsp;</td> 
+                  <td colspan="3"><input class="ControlsIN" id="p_proc_transition_ruleFormsecond_value" maxlength="250" size="50" value="{second_value}" name="{second_value_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Range?</td> 
+                  <td colspan="3">
+                    <select class="ControlsIN" id="p_proc_transition_ruleFormis_range" name="{is_range_Name}">
+                      {is_range_Options}
+                    </select>
+ &nbsp;&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Tipe Data?</td> 
+                  <td colspan="3">
+                    <select class="ControlsIN" id="p_proc_transition_ruleFormdata_type" name="{data_type_Name}">
+                      {data_type_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Statemen?&nbsp;</td> 
+                  <td colspan="3">
+                    <select class="ControlsRQ" id="p_proc_transition_ruleFormis_statement" name="{is_statement_Name}">
+                      {is_statement_Options}
+                    </select>
+ &nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Statemen Kondisi&nbsp;</td> 
+                  <td colspan="3"><textarea class="ControlsIN" id="p_proc_transition_ruleFormcondition_statement" style="WIDTH: 325px; HEIGHT: 60px" name="{condition_statement_Name}" rows="4" cols="39">{condition_statement}</textarea>&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Status?&nbsp;</td> 
+                  <td colspan="3">
+                    <select class="ControlsRQ" id="p_proc_transition_ruleFormis_active" name="{is_active_Name}">
+                      {is_active_Options}
+                    </select>
+ &nbsp;&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Deskripsi&nbsp;</td> 
+                  <td colspan="3"><input class="ControlsIN" id="p_proc_transition_ruleFormdescription" maxlength="250" size="50" value="{description}" name="{description_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="p_districtFormcreated_by">Dibuat Oleh</label></td> 
+                  <td colspan="3"><input class="ControlsRO" id="p_proc_transition_ruleFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal :<input class="ControlsRO" id="p_proc_transition_ruleFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th"><label for="p_proc_transition_ruleFormupdated_by">Diubah Oleh</label></td> 
+                  <td colspan="3"><input class="ControlsRO" id="p_proc_transition_ruleFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal :<input class="ControlsRO" id="p_proc_transition_ruleFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="4">
+                    <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="p_proc_transition_ruleFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="p_proc_transition_ruleFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="p_proc_transition_ruleFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="p_proc_transition_ruleFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_proc_transition_ruleFormp_proc_transition_ruleGridPage" style="WIDTH: 76px; HEIGHT: 22px" type="hidden" size="10" value="{p_proc_transition_ruleGridPage}" name="{p_proc_transition_ruleGridPage_Name}"><input id="p_proc_transition_ruleFormp_proc_transition_rule_id" type="hidden" value="{p_proc_transition_rule_id}" name="{p_proc_transition_rule_id_Name}"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record p_proc_transition_ruleForm --><br>
+      <br>
+      <br>
+    </td>
+  </tr>
+</table>
+</div>
+<script src="../js/lov.js" type="text/javascript"></script>
+<script language="javascript">
+function lov_tb_name1() {
+        getFrom_LOV('p_proc_transition_ruleForm','table_name','lov_tables.php');
+}
+
+function lov_field() {
+        var tb=document.getElementById("p_proc_transition_ruleFormtable_name").value;
+    if (tb!= "" && tb != 0 && tb != false && tb != undefined &&  tb != null){
+                getFrom_LOV('p_proc_transition_ruleForm','column_name','lov_field.php?table_name='+tb);
+        }else{
+                alert ("Nama Tabel Belum Diisi");
+        }
+}
+
+</script>
+</body>
+</html>

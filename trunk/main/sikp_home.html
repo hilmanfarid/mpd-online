@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_pass_byadmin</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        HOME 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toPass()">
+      <div class="tab-title">
+        UBAH PASSWORD 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <!-- BEGIN Grid workavailable -->
+  <table cellspacing="0" cellpadding="0" width="30%" border="1">
+    <tr>
+      <td valign="top">
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <tr class="Caption" style="TEXT-ALIGN: center" align="center">
+            <th style="TEXT-ALIGN: center" scope="col" nowrap align="middle" colspan="8">&nbsp;INBOX UNTUK ANDA </th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <tr class="Row">
+            <td nowrap align="center" width="1%"></td> 
+            <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap width="10%"><a href="{WORKFLOW_NAME_Src}" id="workavailableWORKFLOW_NAME_{workavailable:rowNumber}"><b><u>{WORKFLOW_NAME}</u></b></a> <input id="workavailableSURL_{workavailable:rowNumber}" type="hidden" value="{SURL}" name="{SURL_Name}"></td> 
+            <td style="TEXT-ALIGN: center" nowrap align="center" width="5%" colspan="6"><a href="{INBOX_Src}" id="workavailableINBOX_{workavailable:rowNumber}"><b><u>{INBOX}</u></b></a> </td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="8"></td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="NoRecords">
+            <td style="COLOR: black; TEXT-ALIGN: right" nowrap width="10%" colspan="8">_______________&nbsp;</td>
+          </tr>
+ 
+          <tr class="NoRecords">
+            <td style="COLOR: black; TEXT-ALIGN: right" nowrap width="10%" colspan="2">&nbsp;Jumlah Pekerjaan Tersedia &nbsp;: &nbsp;</td> 
+            <td style="COLOR: black; TEXT-ALIGN: center" nowrap width="5%" colspan="6"><b>{JUMLAH}</b>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <!-- END Grid workavailable -->
+</div>
+<script language="javascript">
+function toPass()
+{
+     location.href="p_change_pass.php";
+}
+</script>
+<!-- BEGIN Grid workavailable_wp -->
+<table cellspacing="0" cellpadding="0" width="30%" border="1">
+  <tr>
+    <td valign="top">
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption" style="TEXT-ALIGN: center" align="center">
+          <th style="TEXT-ALIGN: center" scope="col" nowrap align="middle" colspan="8">&nbsp;INBOX WP UNTUK ANDA</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row">
+          <td nowrap align="center" width="1%"></td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap width="10%"><a href="{WORKFLOW_NAME_Src}" id="workavailable_wpWORKFLOW_NAME_{workavailable_wp:rowNumber}"><b><u>{WORKFLOW_NAME}</u></b></a> <input id="workavailable_wpSURL_{workavailable_wp:rowNumber}" type="hidden" value="{SURL}" name="{SURL_Name}"></td> 
+          <td style="TEXT-ALIGN: center" nowrap align="center" width="5%" colspan="6"><a href="{INBOX_Src}" id="workavailable_wpINBOX_{workavailable_wp:rowNumber}"><b><u>{INBOX}</u></b></a> </td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="8"></td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="NoRecords">
+          <td style="COLOR: black; TEXT-ALIGN: right" nowrap width="10%" colspan="8">_______________&nbsp;</td>
+        </tr>
+ 
+        <tr class="NoRecords">
+          <td style="COLOR: black; TEXT-ALIGN: right" nowrap width="10%" colspan="2">&nbsp;Jumlah Pekerjaan Tersedia &nbsp;: &nbsp;</td> 
+          <td style="COLOR: black; TEXT-ALIGN: center" nowrap width="5%" colspan="6"><b>{JUMLAH}</b>&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid workavailable_wp --><br>
+<!-- BEGIN Grid HistoryGrid -->
+<table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tr>
+    <td valign="top">
+      <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+          <td class="th"><strong>HISTORY TRANSAKSI WAJIB PAJAK</strong></td> 
+          <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th style="vertical-align: middle; TEXT-ALIGN: center" scope="col" rowspan="2">NPWD</th>
+ 
+          <th style="vertical-align: middle; TEXT-ALIGN: center" scope="col" rowspan="2">Nama Badan</th>
+ 
+          <th style="TEXT-ALIGN: center" scope="col" colspan="5">Pelaporan Pajak</th>
+ 
+          <th style="TEXT-ALIGN: center" scope="col" colspan="3">&nbsp;Pembayaran</th>
+        </tr>
+ 
+        <tr class="Caption">
+          <th scope="col">Periode Pelaporan</th>
+ 
+          <th scope="col">&nbsp;Periode Transaksi</th>
+ 
+          <th scope="col">&nbsp;Tgl. Pelaporan</th>
+ 
+          <th scope="col">Total Transaksi&nbsp;</th>
+ 
+          <th scope="col">&nbsp;Total Pajak</th>
+ 
+          <th scope="col">&nbsp;No. Kwitansi</th>
+ 
+          <th scope="col">Tgl. Pembayaran&nbsp;</th>
+ 
+          <th scope="col">Nilai Pembayaran&nbsp;</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {HistoryGrid:rowStyle}>
+          <td style="BORDER-LEFT: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{npwd}&nbsp;</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{company_name}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_awal_laporan}&nbsp;s/d {periode_akhir_laporan}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pelaporan}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_transaksi}&nbsp;</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kuitansi_pembayaran}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pembayaran}&nbsp;</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{payment_amount}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="10">-</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="10">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid HistoryGrid -->
+</body>
+</html>

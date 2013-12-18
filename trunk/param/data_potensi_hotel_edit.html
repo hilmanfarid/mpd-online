@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>PAJAK HOTEL</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-C17A7E91
+
+var t_vat_reg_dtl_hotelForm_DatePicker_valid_from = new Object(); 
+t_vat_reg_dtl_hotelForm_DatePicker_valid_from.format           = "dd-mmm-yyyy";
+t_vat_reg_dtl_hotelForm_DatePicker_valid_from.style            = "Styles/sikp/Style.css";
+t_vat_reg_dtl_hotelForm_DatePicker_valid_from.relativePathPart = "../";
+t_vat_reg_dtl_hotelForm_DatePicker_valid_from.themeVersion = "3.0";
+
+var t_vat_reg_dtl_hotelForm_DatePicker_valid_to = new Object(); 
+t_vat_reg_dtl_hotelForm_DatePicker_valid_to.format           = "dd-mmm-yyyy";
+t_vat_reg_dtl_hotelForm_DatePicker_valid_to.style            = "Styles/sikp/Style.css";
+t_vat_reg_dtl_hotelForm_DatePicker_valid_to.relativePathPart = "../";
+t_vat_reg_dtl_hotelForm_DatePicker_valid_to.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//t_vat_reg_dtl_hotelFormButton_Delete_OnClick @97-6CC9C8F0
+function t_vat_reg_dtl_hotelFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_vat_reg_dtl_hotelFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+        window.close();
+//End Confirmation Message
+
+//Close t_vat_reg_dtl_hotelFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_vat_reg_dtl_hotelFormButton_Delete_OnClick
+
+//t_vat_reg_dtl_hotelFormButton_Cancel_OnClick @99-B0878EAE
+function t_vat_reg_dtl_hotelFormButton_Cancel_OnClick()
+{
+    var result = true;
+//End t_vat_reg_dtl_hotelFormButton_Cancel_OnClick
+
+//Custom Code @673-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+                window.close();
+    // -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtl_hotelFormButton_Cancel_OnClick @99-AEF500E0
+    disableValidation = true;
+    return result;
+}
+//End Close t_vat_reg_dtl_hotelFormButton_Cancel_OnClick
+
+//bind_events @1-6BDFC657
+function bind_events() {
+    addEventHandler("t_vat_reg_dtl_hotelFormButton_Delete", "click", t_vat_reg_dtl_hotelFormButton_Delete_OnClick);
+    addEventHandler("t_vat_reg_dtl_hotelFormButton_Cancel", "click", t_vat_reg_dtl_hotelFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DAFTAR POTENSI PAJAK HOTEL 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_reg_dtl_hotelForm -->
+        <form id="t_vat_reg_dtl_hotelForm" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>INFORMASI POTENSI PAJAK HOTEL</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="5">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Golongan Kamar</label></label></td> 
+                    <td colspan="4">
+                      <select class="ControlsRQ" id="t_vat_reg_dtl_hotelFormp_room_type_id" name="{p_room_type_id_Name}">
+                        {p_room_type_id_Options}
+                      </select>
+ <input id="t_vat_reg_dtl_hotelFormcustomer_name" style="WIDTH: 83px; HEIGHT: 22px" type="hidden" size="11" value="{customer_name}" name="{customer_name_Name}"><input id="t_vat_reg_dtl_hotelFormt_customer_id" type="hidden" value="{t_customer_id}" name="{t_customer_id_Name}"><input id="t_vat_reg_dtl_hotelFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Tarif Kamar Weekend&nbsp;</td> 
+                    <td colspan="2"><input class="ControlsRQ" id="t_vat_reg_dtl_hotelFormservice_charge_wd" tabindex="2" maxlength="12" size="12" value="{service_charge_wd}" name="{service_charge_wd_Name}"></td> 
+                    <td>&nbsp;Non Weekend</td> 
+                    <td><input class="ControlsRQ" id="t_vat_reg_dtl_hotelFormservice_charge_we" tabindex="2" maxlength="12" size="12" value="{service_charge_we}" name="{service_charge_we_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jumlah Kamar&nbsp;</td> 
+                    <td colspan="2"><input class="ControlsRQ" id="t_vat_reg_dtl_hotelFormroom_qty" tabindex="2" maxlength="5" size="5" value="{room_qty}" name="{room_qty_Name}">&nbsp;</td> 
+                    <td>&nbsp;Frekwensi Penggunaan Layanan</td> 
+                    <td><input class="ControlsRQ" id="t_vat_reg_dtl_hotelFormservice_qty" tabindex="2" maxlength="5" size="5" value="{service_qty}" name="{service_qty_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Berlaku Dari&nbsp;</td> 
+                    <td colspan="4"><input class="ControlsRQ" id="t_vat_reg_dtl_hotelFormvalid_from" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="12" value="{valid_from}" name="{valid_from_Name}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_valid_from --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_reg_dtl_hotelFormDatePicker_valid_from"><img id="t_vat_reg_dtl_hotelFormDatePicker_valid_from_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_valid_from -->s/d <input class="ControlsIN" id="t_vat_reg_dtl_hotelFormvalid_to" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="15" value="{valid_to}" name="{valid_to_Name}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_valid_to --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_reg_dtl_hotelFormDatePicker_valid_to"><img id="t_vat_reg_dtl_hotelFormDatePicker_valid_to_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_valid_to --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_reg_dtl_hotelFormdescription">Deskripsi</label></td> 
+                    <td colspan="4"><input class="ControlsIN" id="t_vat_reg_dtl_hotelFormdescription" maxlength="250" size="60" value="{description}" name="{description_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_reg_dtl_hotelFormcreated_by">Dibuat Oleh</label></td> 
+                    <td colspan="4"><input class="ControlsRO" id="t_vat_reg_dtl_hotelFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="t_vat_reg_dtl_hotelFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_reg_dtl_hotelFormupdated_by">Diubah Oleh</label></td> 
+                    <td colspan="4"><input class="ControlsRO" id="t_vat_reg_dtl_hotelFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="t_vat_reg_dtl_hotelFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="5">
+                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_vat_reg_dtl_hotelFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_vat_reg_dtl_hotelFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_vat_reg_dtl_hotelFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_vat_reg_dtl_hotelFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_vat_reg_dtl_hotelFormt_cacc_dtl_hotel_id" type="hidden" value="{t_cacc_dtl_hotel_id}" name="{t_cacc_dtl_hotel_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_reg_dtl_hotelForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+
+</script>
+</body>
+</html>

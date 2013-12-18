@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LOV NPWD</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<!--start user-->
+<script language="javascript">
+function clickReturn(retVal) {
+                strObj = document.getElementById('LOVOBJ').value;
+                strForm = document.getElementById('LOVFORM').value;
+        arrVal = retVal.split('#~#');
+                arrForm = strObj.split(',');
+                for (x=0;x<arrForm.length;x++) {
+                window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
+                }
+                window.close();
+}
+</script>
+<!--end user-->
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body style="MARGIN: 0px" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DAFTAR NPWPD 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Record LOV -->
+        <form id="LOV" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="LOVs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"><input id="LOVFORM" style="DISPLAY: none" value="{FORM}" name="{FORM_Name}"><label for="LOVOBJ" style="display: none;">&nbsp;</label><input id="LOVOBJ" style="DISPLAY: none" value="{OBJ}" name="{OBJ_Name}"><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="LOVButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="Cari" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record LOV --><br>
+        <!-- BEGIN Grid LOV_ORDER -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><font color="#ffffff">DAFTAR NPWD</font></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col"><input onclick="clickReturn('#~#')" id="Button1" class="btn_tambah" type="button" value="BLANK" name="Button1"></th>
+ 
+                  <th scope="col">NPWPD</th>
+ 
+                  <th scope="col">Nama Perusahaan</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr class="Row">
+                  <td style="TEXT-ALIGN: center">&nbsp;{PILIH} <input id="LOV_ORDERvat_code" type="hidden" value="{vat_code}" name="{vat_code_Name}"><input id="LOV_ORDERt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"><input id="LOV_ORDERp_vat_type_dtl_id" type="hidden" value="{p_vat_type_dtl_id}" name="{p_vat_type_dtl_id_Name}"><input id="LOV_ORDERvat_code_dtl" type="hidden" value="{vat_code_dtl}" name="{vat_code_dtl_Name}"></td> 
+                  <td>{npwd}&nbsp;</td> 
+                  <td>{company_name}&nbsp;<input id="LOV_ORDERp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="3">Data tidak ditemukan</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: left" colspan="3">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->&nbsp;{Page_Number}&nbsp;of&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid LOV_ORDER --></td>
+    </tr>
+  </table>
+  <div>
+  </div>
+  <br>
+</div>
+</body>
+</html>

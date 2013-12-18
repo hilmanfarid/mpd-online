@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_entertaintment_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+//Begin CCS script
+
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+    return confirm('Delete record?');
+
+//p_vat_penaltyFormButton_Delete_OnClick @26-52AEFC97
+function p_vat_penaltyFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_vat_penaltyFormButton_Delete_OnClick
+
+//Close p_vat_penaltyFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close p_vat_penaltyFormButton_Delete_OnClick
+
+//p_vat_penaltyFormButton_Cancel_OnClick @28-A8FA9272
+function p_vat_penaltyFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_vat_penaltyFormButton_Cancel_OnClick
+
+//bind_events @1-24E74F37
+function bind_events() {
+    addEventHandler("p_vat_penaltyFormButton_Delete", "click", p_vat_penaltyFormButton_Delete_OnClick);
+    addEventHandler("p_vat_penaltyFormButton_Cancel", "click", p_vat_penaltyFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DENDA&nbsp;PAJAK 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record p_vat_penaltySearch -->
+        <form id="p_vat_penaltySearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="p_vat_penaltySearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_vat_penaltySearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_vat_penaltySearch --><br>
+        <!-- BEGIN Grid p_vat_penaltyGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;DENDA PAJAK</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">Jenis Pajak</th>
+ 
+                  <th scope="col">&nbsp;Kuantitas Bulanan</th>
+ 
+                  <th scope="col">&nbsp;Persentase Denda</th>
+ 
+                  <th scope="col">Jumlah&nbsp;Denda&nbsp;</th>
+ 
+                  <th scope="col">Deskripsi</th>
+ 
+                  <th scope="col">Pengubah</th>
+ 
+                  <th colspan="2" scope="col">Tanggal Ubah</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_vat_penaltyGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_vat_penaltyGridDLink_{p_vat_penaltyGrid:rowNumber}">{DLink}</a></td> 
+                  <td>{vat_code}&nbsp;&nbsp;<input id="p_vat_penaltyGridp_vat_penalty_id_{p_vat_penaltyGrid:rowNumber}" type="hidden" value="{p_vat_penalty_id}" name="{p_vat_penalty_id_Name}"></td> 
+                  <td>&nbsp;{month_qty}</td> 
+                  <td>&nbsp;{penalty_pct}</td> 
+                  <td>&nbsp;{penalty_amt}</td> 
+                  <td>{description}&nbsp;</td> 
+                  <td>{updated_by}&nbsp;</td> 
+                  <td colspan="2">{updated_date}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="9">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="p_vat_penaltyGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="8">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_vat_penaltyGrid --><br>
+        <!-- BEGIN Record p_vat_penaltyForm -->
+        <form id="p_vat_penaltyForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI&nbsp;DENDA PAJAK</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_vat_penaltyFormvat_code">Kode</label></td> 
+                    <td><input id="p_vat_penaltyFormvat_code" class="ControlsRQ" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}">&nbsp;<img onclick="javascript:lov_pajak()" border="0" src="../images/view.gif"><input id="p_vat_penaltyFormp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kuantitas Bulanan</td> 
+                    <td><input id="p_vat_penaltyFormmonth_qty" class="ControlsRQ" maxlength="32" size="32" value="{month_qty}" name="{month_qty_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Persentase</td> 
+                    <td>
+                      <select id="p_vat_penaltyFormis_percentage" class="ControlsRQ" name="{is_percentage_Name}">
+                        {is_percentage_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Persentase Denda</td> 
+                    <td><input id="p_vat_penaltyFormpenalty_pct" class="ControlsIN" maxlength="250" size="50" value="{penalty_pct}" name="{penalty_pct_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jumlah Denda</td> 
+                    <td><input id="p_vat_penaltyFormpenalty_amt" class="ControlsIN" maxlength="250" size="50" value="{penalty_amt}" name="{penalty_amt_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_vat_penaltyFormdescription">Deskripsi</label></td> 
+                    <td><input id="p_vat_penaltyFormdescription" class="ControlsIN" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_vat_penaltyFormcreated_by">Dibuat Oleh</label></td> 
+                    <td><input id="p_vat_penaltyFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="p_vat_penaltyFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_vat_penaltyFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input id="p_vat_penaltyFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="p_vat_penaltyFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button_Insert --><input id="p_vat_penaltyFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="p_vat_penaltyFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_vat_penaltyFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_vat_penaltyFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_vat_penaltyFormp_vat_penalty_id" type="hidden" value="{p_vat_penalty_id}" name="{p_vat_penalty_id_Name}"><input id="p_vat_penaltyFormp_vat_penaltyGridPage" type="hidden" value="{p_vat_penaltyGridPage}" name="{p_vat_penaltyGridPage_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_vat_penaltyForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function lov_pajak() {
+        getFrom_LOV('p_vat_penaltyForm','p_vat_type_id,vat_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
+}
+</script>
+</body>
+</html>

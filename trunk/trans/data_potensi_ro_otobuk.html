@@ -1,0 +1,744 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_wf_procedure</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toSptpd()">
+      <div class="tab-title">
+        SPTPD (Pelaporan Pajak) 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DATA POTENSI 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toActive()">
+      <div class="tab-title">
+        DATA LOG AKTIFITAS 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td colspan="2">
+        <!-- BEGIN Record t_vat_setllementSearch -->
+        <form id="t_vat_setllementSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <input id="t_vat_setllementSearchTAKEN_CTL" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{TAKEN_CTL}" name="{TAKEN_CTL_Name}"><input id="t_vat_setllementSearchIS_TAKEN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{IS_TAKEN}" name="{IS_TAKEN_Name}"><input id="t_vat_setllementSearchCURR_DOC_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_DOC_ID}" name="{CURR_DOC_ID_Name}"><input id="t_vat_setllementSearchCURR_DOC_TYPE_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_DOC_TYPE_ID}" name="{CURR_DOC_TYPE_ID_Name}"><input id="t_vat_setllementSearchCURR_PROC_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_PROC_ID}" name="{CURR_PROC_ID_Name}"><input id="t_vat_setllementSearchCURR_CTL_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_CTL_ID}" name="{CURR_CTL_ID_Name}"><input id="t_vat_setllementSearchUSER_ID_DOC" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_DOC}" name="{USER_ID_DOC_Name}"><input id="t_vat_setllementSearchUSER_ID_DONOR" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_DONOR}" name="{USER_ID_DONOR_Name}"><input id="t_vat_setllementSearchUSER_ID_LOGIN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_LOGIN}" name="{USER_ID_LOGIN_Name}"><input id="t_vat_setllementSearchUSER_ID_TAKEN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_TAKEN}" name="{USER_ID_TAKEN_Name}"><input id="t_vat_setllementSearchIS_CREATE_DOC" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{IS_CREATE_DOC}" name="{IS_CREATE_DOC_Name}">
+<input id="t_vat_setllementSearchIS_MANUAL" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{IS_MANUAL}" name="{IS_MANUAL_Name}"><input id="t_vat_setllementSearchCURR_PROC_STATUS" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{CURR_PROC_STATUS}" name="{CURR_PROC_STATUS_Name}"><input id="t_vat_setllementSearchCURR_DOC_STATUS" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{CURR_DOC_STATUS}" name="{CURR_DOC_STATUS_Name}"><input id="t_vat_setllementSearchPREV_DOC_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_DOC_ID}" name="{PREV_DOC_ID_Name}"><input id="t_vat_setllementSearchPREV_DOC_TYPE_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_DOC_TYPE_ID}" name="{PREV_DOC_TYPE_ID_Name}"><input id="t_vat_setllementSearchPREV_PROC_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_PROC_ID}" name="{PREV_PROC_ID_Name}"><input id="t_vat_setllementSearchPREV_CTL_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_CTL_ID}" name="{PREV_CTL_ID_Name}"><input id="t_vat_setllementSearchSLOT_1" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_1}" name="{SLOT_1_Name}"><input id="t_vat_setllementSearchSLOT_2" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_2}" name="{SLOT_2_Name}"><input id="t_vat_setllementSearchSLOT_3" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_3}" name="{SLOT_3_Name}"><input id="t_vat_setllementSearchSLOT_4" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_4}" name="{SLOT_4_Name}"><input id="t_vat_setllementSearchSLOT_5" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_5}" name="{SLOT_5_Name}">
+<input id="t_vat_setllementSearchMESSAGE" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{MESSAGE}" name="{MESSAGE_Name}"><input id="t_vat_setllementSearcht_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}">
+        </form>
+        <!-- END Record t_vat_setllementSearch -->
+        <!-- BEGIN Grid t_vat_reg_employeeGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR POTENSI PEGAWAI</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Jabatan</label></label></th>
+ 
+                  <th scope="col">Jumlah Pegawai</th>
+ 
+                  <th scope="col">Gaji Pegawai</th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;&nbsp;</th>
+ 
+                  <th scope="col">Berlaku&nbsp;Sampai&nbsp;&nbsp;</th>
+ 
+                  <th scope="col">Deskripsi</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_reg_employeeGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_employeeGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_employeeGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{jabatan}&nbsp;<input id="t_vat_reg_employeeGridt_cust_acc_employee_id_{t_vat_reg_employeeGrid:rowNumber}" type="hidden" value="{t_cust_acc_employee_id}" name="{t_cust_acc_employee_id_Name}"><input id="t_vat_reg_employeeGridt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                  <td>{employee_qty}&nbsp;</td> 
+                  <td>{employee_salery}</td> 
+                  <td>{valid_from}&nbsp;</td> 
+                  <td>{valid_to}&nbsp;</td> 
+                  <td>{description}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="7">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td> 
+                  <td colspan="6">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_reg_employeeGrid --></td>
+    </tr>
+ 
+    <tr>
+      <td valign="top"><br>
+        <!-- BEGIN Grid t_vat_reg_dtl_restaurantGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;POTENSI PAJAK RESTORAN</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%"># </th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Jenis Pelayanan</label></label></th>
+ 
+                  <th scope="col">Jumlah&nbsp;Kursi</th>
+ 
+                  <th scope="col">Jumlah&nbsp;Meja&nbsp;</th>
+ 
+                  <th scope="col">Daya Tampung</th>
+ 
+                  <th scope="col">Jumlah pengunjung<br>
+                  rata-rata per Bulan&nbsp; </th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;</th>
+ 
+                  <th scope="col">Berlaku&nbsp;Sampai&nbsp;</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_reg_dtl_restaurantGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_restaurantGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_restaurantGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{service_type_desc}&nbsp;<input id="t_vat_reg_dtl_restaurantGridt_cacc_dtl_restaurant_id_{t_vat_reg_dtl_restaurantGrid:rowNumber}" type="hidden" value="{t_cacc_dtl_restaurant_id}" name="{t_cacc_dtl_restaurant_id_Name}"><input id="t_vat_reg_dtl_restaurantGridt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                  <td>{seat_qty}&nbsp;</td> 
+                  <td>{table_qty}&nbsp;</td> 
+                  <td>{max_service_qty}&nbsp;</td> 
+                  <td>{avg_subscription}&nbsp;</td> 
+                  <td>{valid_from}&nbsp;</td> 
+                  <td>{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="8">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
+                  <td colspan="7">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_reg_dtl_restaurantGrid -->
+        <!-- BEGIN Grid t_vat_reg_dtl_hotelGrid1 -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;POTENSI PAJAK HOTEL</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%"># </th>
+ 
+                  <th scope="col">Golongan Kamar&nbsp;</th>
+ 
+                  <th scope="col">Jumlah Kamar&nbsp;</th>
+ 
+                  <th scope="col">Frekwensi PL&nbsp;</th>
+ 
+                  <th scope="col">Tarif Weekend</th>
+ 
+                  <th scope="col">Tarif Non Weekend&nbsp;</th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;</th>
+ 
+                  <th scope="col">Berlaku&nbsp;Sampai&nbsp;</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_reg_dtl_hotelGrid1:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_hotelGrid1DLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_hotelGrid1ADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{room_type_code}&nbsp;<input id="t_vat_reg_dtl_hotelGrid1t_cacc_dtl_hotel_id_{t_vat_reg_dtl_hotelGrid1:rowNumber}" type="hidden" value="{t_cacc_dtl_hotel_id}" name="{t_cacc_dtl_hotel_id_Name}"><input id="t_vat_reg_dtl_hotelGrid1t_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                  <td>{room_qty}&nbsp;</td> 
+                  <td>{service_qty}&nbsp;</td> 
+                  <td>{service_charge_wd}&nbsp;</td> 
+                  <td>&nbsp;{service_charge_we}</td> 
+                  <td>{valid_from}&nbsp;</td> 
+                  <td>{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="8">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
+                  <td colspan="7">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_reg_dtl_hotelGrid1 -->
+        <!-- BEGIN Grid v_vat_reg_dtl_entertaintmentGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;POTENSI PAJAK HIBURAN</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%"># </th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Jenis Hiburan</label></label></th>
+ 
+                  <th scope="col">Tarif Weekend</th>
+ 
+                  <th scope="col">Tarif Non Weedend&nbsp;</th>
+ 
+                  <th scope="col">Jumlah&nbsp;Lembar Meja/Kursi&nbsp;</th>
+ 
+                  <th scope="col">Jumlah Room&nbsp;</th>
+ 
+                  <th scope="col">Jumlah PL&nbsp;</th>
+ 
+                  <th scope="col">Booking Jam&nbsp;</th>
+ 
+                  <th scope="col">F &amp; B&nbsp;</th>
+ 
+                  <th scope="col">Porsi/Orang&nbsp;</th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;</th>
+ 
+                  <th scope="col">Berlaku&nbsp;Sampai&nbsp;</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {v_vat_reg_dtl_entertaintmentGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="v_vat_reg_dtl_entertaintmentGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="v_vat_reg_dtl_entertaintmentGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{entertainment_desc}&nbsp;<input id="v_vat_reg_dtl_entertaintmentGridt_cacc_dtl_entertaintment_id_{v_vat_reg_dtl_entertaintmentGrid:rowNumber}" type="hidden" value="{t_cacc_dtl_entertaintment_id}" name="{t_cacc_dtl_entertaintment_id_Name}"></td> 
+                  <td>{service_charge_wd}&nbsp;<input id="v_vat_reg_dtl_entertaintmentGridt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                  <td>&nbsp;{service_charge_we}</td> 
+                  <td>{seat_qty}</td> 
+                  <td>{room_qty}&nbsp;</td> 
+                  <td>{clerk_qty}&nbsp;</td> 
+                  <td>{booking_hour}&nbsp;</td> 
+                  <td>{f_and_b}&nbsp;</td> 
+                  <td>{portion_person}</td> 
+                  <td>{valid_from}&nbsp;</td> 
+                  <td>{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="12">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
+                  <td colspan="11">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid v_vat_reg_dtl_entertaintmentGrid -->
+        <!-- BEGIN Grid t_vat_reg_dtl_parkingGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;POTENSI PAJAK PARKIR</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%"># </th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Klasifikasi Tempat Parkir</label></label></th>
+ 
+                  <th scope="col">Luas Lahan Parkir</th>
+ 
+                  <th scope="col">Daya Tampung Kendaraan Bermotor&nbsp;&nbsp;</th>
+ 
+                  <th scope="col">Frekuensi Kendaraan Bermotor&nbsp;</th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;</th>
+ 
+                  <th scope="col">Berlaku&nbsp;Sampai&nbsp;</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_reg_dtl_parkingGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_parkingGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_parkingGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{classification_desc}&nbsp;<input id="t_vat_reg_dtl_parkingGridt_acc_dtl_parking_id_{t_vat_reg_dtl_parkingGrid:rowNumber}" type="hidden" value="{t_acc_dtl_parking_id}" name="{t_acc_dtl_parking_id_Name}"></td> 
+                  <td>{parking_size}&nbsp;<input id="t_vat_reg_dtl_parkingGridt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                  <td>{max_load_qty}&nbsp;</td> 
+                  <td>{avg_subscription_qty}</td> 
+                  <td>{valid_from}&nbsp;</td> 
+                  <td>{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="7">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
+                  <td colspan="6">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_reg_dtl_parkingGrid -->
+        <!-- BEGIN Grid t_vat_reg_dtl_ppjGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;POTENSI PAJAK PPJ PLN</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%"># </th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Golongan</label></label></th>
+ 
+                  <th scope="col">Kapasitas Daya</th>
+ 
+                  <th scope="col">Harga Satuan&nbsp;</th>
+ 
+                  <th scope="col">Faktor Daya&nbsp;</th>
+ 
+                  <th scope="col">Keterangan&nbsp;</th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;</th>
+ 
+                  <th scope="col">Berlaku&nbsp;Sampai&nbsp;</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_reg_dtl_ppjGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_ppjGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_ppjGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{pwr_classification_desc}&nbsp;<input id="t_vat_reg_dtl_ppjGridt_cacc_dtl_ppj_id_{t_vat_reg_dtl_ppjGrid:rowNumber}" type="hidden" value="{t_cacc_dtl_ppj_id}" name="{t_cacc_dtl_ppj_id_Name}"></td> 
+                  <td>{power_capacity}&nbsp;<input id="t_vat_reg_dtl_ppjGridt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                  <td>{service_charge}&nbsp;</td> 
+                  <td>{power_factor}</td> 
+                  <td>{description}</td> 
+                  <td>{valid_from}&nbsp;</td> 
+                  <td>{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="8">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
+                  <td colspan="7">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_reg_dtl_ppjGrid -->
+        <p>&nbsp;</p>
+      </td> 
+      <td valign="top">&nbsp; 
+        <!-- BEGIN Grid t_vat_reg_dtl_ppj_nplGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;POTENSI PAJAK PPJ NON PLN</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%"># </th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Jumlah Pelanggan</label></label></th>
+ 
+                  <th scope="col">Kapasitas Daya</th>
+ 
+                  <th scope="col">Keterangan&nbsp;</th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;</th>
+ 
+                  <th scope="col">Berlaku&nbsp;Sampai&nbsp;</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_reg_dtl_ppj_nplGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_ppj_nplGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_ppj_nplGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{owner_qty}&nbsp;<input id="t_vat_reg_dtl_ppj_nplGridt_cacc_dtl_ppj_pln_id_{t_vat_reg_dtl_ppj_nplGrid:rowNumber}" type="hidden" value="{t_cacc_dtl_ppj_pln_id}" name="{t_cacc_dtl_ppj_pln_id_Name}"></td> 
+                  <td>{power_capacity}&nbsp;<input id="t_vat_reg_dtl_ppj_nplGridt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                  <td>{description}</td> 
+                  <td>{valid_from}&nbsp;</td> 
+                  <td>{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="6">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
+                  <td colspan="5">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_reg_dtl_ppj_nplGrid -->
+        <!-- BEGIN Grid t_vat_reg_dtl_hotel_srvcGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;POTENSI FASILITAS HOTEL</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col" width="1%"># </th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Fasilitas</label></label></th>
+ 
+                  <th scope="col">Keterangan&nbsp;</th>
+ 
+                  <th scope="col">Berlaku Dari&nbsp;</th>
+ 
+                  <th scope="col">Berlaku&nbsp;Sampai&nbsp;</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_reg_dtl_hotel_srvcGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_hotel_srvcGridDLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_hotel_srvcGridADLink_{P_APP_ROLE:rowNumber}"><img src="../images/radio_s.gif" width="16" border="0"></a><!-- END Link ADLink --></td> 
+                  <td>{services}&nbsp;<input id="t_vat_reg_dtl_hotel_srvcGridt_cacc_dtl_hotel_srvc_id_{t_vat_reg_dtl_hotel_srvcGrid:rowNumber}" type="hidden" value="{t_cacc_dtl_hotel_srvc_id}" name="{t_cacc_dtl_hotel_srvc_id_Name}"></td> 
+                  <td>{description}<input id="t_vat_reg_dtl_hotel_srvcGridt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
+                  <td>{valid_from}&nbsp;</td> 
+                  <td>{valid_to}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="5">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_reg_dtl_hotel_srvcGrid --></td>
+    </tr>
+  </table>
+</div>
+<script src="../js/lov.js" type="text/javascript"></script>
+<script language="javascript">
+function toSptpd(){
+        var takenCtl = document.getElementById('t_vat_setllementSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_vat_setllementSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_vat_setllementSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_vat_setllementSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_vat_setllementSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_vat_setllementSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_vat_setllementSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_vat_setllementSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_vat_setllementSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_vat_setllementSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_vat_setllementSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_vat_setllementSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_vat_setllementSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_vat_setllementSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_vat_setllementSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_vat_setllementSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_vat_setllementSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_vat_setllementSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_vat_setllementSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_vat_setllementSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_vat_setllementSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_vat_setllementSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_vat_setllementSearchSLOT_5').value;
+        var msg = document.getElementById('t_vat_setllementSearchMESSAGE').value;
+        
+         location.href="t_vat_setllement_ro_otobuk.php?TAKEN_CTL="+takenCtl
+                                        +"&IS_TAKEN="+isTaken
+                                        +"&CURR_DOC_ID="+currDocId
+                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                        +"&CURR_PROC_ID="+currProcId
+                                        +"&CURR_CTL_ID="+currCtlId
+                                        +"&USER_ID_DOC="+userIdDoc
+                                        +"&USER_ID_DONOR="+userIdDonor
+                                        +"&USER_ID_LOGIN="+userIdLogin
+                                        +"&USER_ID_TAKEN="+userIdTaken
+                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                        +"&IS_MANUAL="+isManual
+                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                        +"&PREV_DOC_ID="+PrevDocId
+                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                        +"&PREV_PROC_ID="+PrevProcId
+                                        +"&PREV_CTL_ID="+PrevCtlId
+                                        +"&SLOT_1="+slot1
+                                        +"&SLOT_2="+slot2
+                                        +"&SLOT_3="+slot3
+                                        +"&SLOT_4="+slot4
+                                        +"&SLOT_5="+slot5
+                                        +"&MESSAGE="+msg;
+}
+
+function toActive(){
+        var takenCtl = document.getElementById('t_vat_setllementSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_vat_setllementSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_vat_setllementSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_vat_setllementSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_vat_setllementSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_vat_setllementSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_vat_setllementSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_vat_setllementSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_vat_setllementSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_vat_setllementSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_vat_setllementSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_vat_setllementSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_vat_setllementSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_vat_setllementSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_vat_setllementSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_vat_setllementSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_vat_setllementSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_vat_setllementSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_vat_setllementSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_vat_setllementSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_vat_setllementSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_vat_setllementSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_vat_setllementSearchSLOT_5').value;
+        var msg = document.getElementById('t_vat_setllementSearchMESSAGE').value;
+                var custId = document.getElementById('t_vat_setllementSearcht_cust_account_id').value;
+        
+         location.href="t_order_log_kronologis_otobuk.php?TAKEN_CTL="+takenCtl
+                                        +"&IS_TAKEN="+isTaken
+                                        +"&CURR_DOC_ID="+currDocId
+                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                        +"&CURR_PROC_ID="+currProcId
+                                        +"&CURR_CTL_ID="+currCtlId
+                                        +"&USER_ID_DOC="+userIdDoc
+                                        +"&USER_ID_DONOR="+userIdDonor
+                                        +"&USER_ID_LOGIN="+userIdLogin
+                                        +"&USER_ID_TAKEN="+userIdTaken
+                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                        +"&IS_MANUAL="+isManual
+                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                        +"&PREV_DOC_ID="+PrevDocId
+                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                        +"&PREV_PROC_ID="+PrevProcId
+                                        +"&PREV_CTL_ID="+PrevCtlId
+                                        +"&SLOT_1="+slot1
+                                        +"&SLOT_2="+slot2
+                                        +"&SLOT_3="+slot3
+                                        +"&SLOT_4="+slot4
+                                        +"&SLOT_5="+slot5
+                                        +"&MESSAGE="+msg
+                                                                                +"&t_cust_account_id="+custId;
+}
+</script>
+</body>
+</html>

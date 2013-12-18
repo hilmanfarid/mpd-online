@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toTarget()">
+      <div class="tab-title">
+        TARGET VS REALISASI 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toJenis()">
+      <div class="tab-title">
+        PER JENIS PAJAK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        BULANAN PER JENIS PAJAK 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toMingguan()">
+      <div class="tab-title">
+        MINGGUAN PER JENIS PAJAK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toHarian()">
+      <div class="tab-title">
+        HARIAN PER JENIS PAJAK 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <p>&nbsp; 
+        <!-- BEGIN FlashChart t_target_realisasi_jenis_bulanFlashjenis_bulan -->
+        <object title="{Title}" tabindex="1" accesskey="q" height="{Height}" width="{Width}" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+          <param name="movie" value="{Src}" />
+          <param name="quality" value="high" />
+          <param name="wmode" value="transparent" />
+          <param name="scale" value="exactfit" />
+          <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
+ 
+        </object>
+        <!-- END FlashChart t_target_realisasi_jenis_bulanFlashjenis_bulan --></p>
+ 
+        <p>&nbsp; 
+        <!-- BEGIN FlashChart t_target_realisasi_jenis_bulanFlashbulan -->
+        <object title="{Title}" tabindex="1" accesskey="q" height="{Height}" width="{Width}" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+          <param name="movie" value="{Src}" />
+          <param name="quality" value="high" />
+          <param name="wmode" value="transparent" />
+          <param name="scale" value="exactfit" />
+          <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
+ 
+        </object>
+        <!-- END FlashChart t_target_realisasi_jenis_bulanFlashbulan --></p>
+        <!-- BEGIN Record t_target_realisasi_jenis_bulanForm -->
+        <form id="t_target_realisasi_jenis_bulanForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" type="hidden" value="{t_revenue_target_id}" name="{t_revenue_target_id_Name}"></h2>
+        </form>
+        <!-- END Record t_target_realisasi_jenis_bulanForm --></td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function toTarget()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasi_jenis_bulanFormp_year_period_id"))
+  {
+    var pid=idelement.value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_target_realisasi.php?p_year_period_id="+pid;
+    } else {
+     alert("Pilih salah satu TAHUN!");
+    }
+  } else {
+     alert("Pilih salah satu TAHUN!");
+  }
+}
+
+function toJenis()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasi_jenis_bulanFormp_year_period_id"))
+  {
+    var pid=idelement.value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_target_realisasi_jenis.php?p_year_period_id="+pid;
+    } else {
+     alert("Pilih salah satu TAHUN!");
+    }
+  } else {
+     alert("Pilih salah satu TAHUN!");
+  }
+}
+</script>
+</body>
+</html>
