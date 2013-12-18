@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_job_position</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-AEF3CB49
+
+var TaskSearch_DatePicker_sdonor_date = new Object(); 
+TaskSearch_DatePicker_sdonor_date.format           = "dd-mmm-yyyy";
+TaskSearch_DatePicker_sdonor_date.style            = "Styles/sikp/Style.css";
+TaskSearch_DatePicker_sdonor_date.relativePathPart = "../";
+TaskSearch_DatePicker_sdonor_date.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//bind_events @1-BF0EB765
+function bind_events() {
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        WORKFLOW SUMMARY 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td valign="top">
+        <!-- BEGIN Grid sumworkflow -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="th"><strong>SUMMARY</strong></td> 
+                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Pekerjaan</label></label></th>
+ 
+                  <th scope="col"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME">Jumlah</label></label></th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Pilih</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {sumworkflow:rowStyle}>
+                  <td nowrap>{DISPLAY_NAME}&nbsp;<input id="sumworkflowSTYPE" type="hidden" value="{STYPE}" name="{STYPE_Name}"><input id="sumworkflowELEMENT_ID" type="hidden" value="{ELEMENT_ID}" name="{ELEMENT_ID_Name}"></td> 
+                  <td>{SCOUNT}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: center" nowrap>
+                    <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="sumworkflowDLink_{TCUSTGrid:rowNumber}"><img src="../images/radio.gif" border="0"></a><!-- END Link DLink -->
+                    <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="sumworkflowADLink_{TCUSTGrid:rowNumber}"><img src="../images/radio_s.gif" border="0"></a><!-- END Link ADLink --></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="3">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="3">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid sumworkflow -->
+        <p>&nbsp; 
+        <table  class="grid-table-container" cellspacing="0" cellpadding="0" align="center" border="4">
+          <tr class="Controls">
+            <td valign="top" align="left" height="10"><strong><font color="#000000">PENGUMUMAN :</font></strong></td>
+          </tr>
+          <tr bgcolor="#ffffff">
+            <td style="TEXT-ALIGN: left" valign="top" height="100">
+              <!-- BEGIN Record BROAD -->
+              <form id="BROAD" name="{HTMLFormName}" action="{Action}" method="post">
+                <table cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td valign="top">
+                      <table cellspacing="0" cellpadding="0">
+                        <!-- BEGIN Error -->
+                        <tr>
+                          <td>{Error}</td>
+                        </tr>
+                        <!-- END Error -->
+                        <tr class="Controls">
+                          <td><textarea class="nl" id="BROADCASTER" style="WIDTH: 221px; HEIGHT: 158px" name="{CASTER_Name}" rows="6" readonly cols="19">{CASTER}</textarea></td>
+                        </tr>
+                      </table>
+                      <label for="BROADTextBox1" style="display: none;">&nbsp;</label></td>
+                  </tr>
+                </table>
+              </form>
+              <!-- END Record BROAD --></td>
+          </tr>
+        </table>
+        </p>
+ 
+        <p>&nbsp;</p>
+      </td> 
+      <td valign="top">&nbsp;</td> 
+      <td valign="top">
+        <!-- BEGIN Record TaskSearch -->
+        <form id="TaskSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="th"><strong>DAFTAR PEKERJAAN</strong></td> 
+                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record Grid" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+
+                  <tr class="Controls">
+                    <td class="th"><label for="TaskSearchcode">Tgl. Terima</label></td> 
+                    <td><input class="ControlsIN" id="sdonor_date" style="TEXT-TRANSFORM: uppercase" maxlength="100" size="12" value="{sdonor_date}" name="{sdonor_date_Name}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_sdonor_date --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="TaskSearchDatePicker_sdonor_date"><img id="TaskSearchDatePicker_sdonor_date_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_sdonor_date --><input id="P_W_DOC_TYPE_ID" style="DISPLAY: none" maxlength="100" size="12" value="{P_W_DOC_TYPE_ID}" name="{P_W_DOC_TYPE_ID_Name}"><input id="P_W_PROC_ID" style="DISPLAY: none" maxlength="100" size="9" value="{P_W_PROC_ID}" name="{P_W_PROC_ID_Name}"><input id="ELEMENT_ID" style="DISPLAY: none" maxlength="100" size="8" value="{ELEMENT_ID}" name="{ELEMENT_ID_Name}"></td> 
+                    <td><input class="ControlsIN" id="TaskSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}">&nbsp;</td> 
+                    <td>
+                      <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="TaskSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td align="right" colspan="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record TaskSearch --><br>
+        <!-- BEGIN Grid Task -->
+        <table class="grid-table-container" height="100%" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Grid" height="100%" cellspacing="0" cellpadding="0" width="100%">
+                <tr class="Caption">
+                  <th scope="col">TERIMA </th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_LTASK --><a href="{Sort_URL}" id="TaskSorter_LTASK"><font color="#ffffff">PEKERJAAN</font></a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascending" src="../Styles/sikp/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descending" src="../Styles/sikp/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_LTASK --></th>
+ 
+                  <th scope="col">
+                  <!-- BEGIN Sorter Sorter_DOC_NO --><a href="{Sort_URL}" id="TaskSorter_DOC_NO"><font color="#ffffff">DOKUMEN</font></a> 
+                  <!-- BEGIN Asc_On --><img alt="Ascending" src="../Styles/sikp/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                  <!-- BEGIN Desc_On --><img alt="Descending" src="../Styles/sikp/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_DOC_NO --></th>
+ 
+                  <th scope="col">PESAN</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr class="Row">
+                  <td style="TEXT-ALIGN: left" valign="top" nowrap colspan="4">&nbsp;<b>{CUST_INFO}&nbsp; </b></td>
+                </tr>
+ 
+                <tr class="Row">
+                  <td style="TEXT-ALIGN: left" valign="top">
+                    <p>
+                    <!-- BEGIN Button Buka --><input class="Button" id="TaskBuka" style="WIDTH: 58px; HEIGHT: 20px" onclick="{Buka:taskbuka}" type="button" alt="Button1" size="29" value="{Buka:read}" name="{Button_Name}"><!-- END Button Buka -->&nbsp; {EVENT_COLORING}&nbsp;</p>
+ 
+                    <p>&nbsp;</p>
+ 
+                    <p>&nbsp; <input class="tdleft" id="TaskPROFILE_TYPE" style="DISPLAY: none" size="3" value="{PROFILE_TYPE}" name="{PROFILE_TYPE_Name}"><input class="tdleft" id="TaskFILENAME" style="DISPLAY: none" readonly size="1" value="{FILENAME}" name="{FILENAME_Name}"><input class="tdleft" id="TaskIS_READ" style="DISPLAY: none" size="1" value="{IS_READ}" name="{IS_READ_Name}"><input class="tdleft" id="TaskP_W_DOC_TYPE_ID" style="DISPLAY: none" size="1" value="{P_W_DOC_TYPE_ID}" name="{P_W_DOC_TYPE_ID_Name}"><input class="tdleft" id="TaskP_W_PROC_ID" style="DISPLAY: none" size="1" value="{P_W_PROC_ID}" name="{P_W_PROC_ID_Name}"><input class="tdleft" id="TaskT_USER_CTL_ID" style="DISPLAY: none" size="3" value="{T_USER_CTL_ID}" name="{T_USER_CTL_ID_Name}"><input class="tdleft" id="TaskT_CTL_ID" style="DISPLAY: none" size="1" value="{T_CTL_ID}" name="{T_CTL_ID_Name}"><input class="tdleft" id="TaskDOC_ID" style="DISPLAY: none" size="2" value="{DOC_ID}" name="{DOC_ID_Name}"><input class="tdleft" id="TaskPROC_STS" style="DISPLAY: none" size="2" value="{PROC_STS}" name="{PROC_STS_Name}"></p>
+ 
+                    <p>&nbsp; <input class="tdleft" id="TaskDOC_NO" style="DISPLAY: none" size="1" value="{DOC_NO}" name="{DOC_NO_Name}"><input class="tdleft" id="TaskP_APP_USER_ID_DONOR" style="DISPLAY: none" size="1" value="{P_APP_USER_ID_DONOR}" name="{P_APP_USER_ID_DONOR_Name}"><input class="tdleft" id="TaskP_APP_USER_ID_TAKEOVER" style="DISPLAY: none" size="1" value="{P_APP_USER_ID_TAKEOVER}" name="{P_APP_USER_ID_TAKEOVER_Name}"><input class="tdleft" id="TaskPREV_DOC_TYPE_ID" style="DISPLAY: none" size="1" value="{PREV_DOC_TYPE_ID}" name="{PREV_DOC_TYPE_ID_Name}"><input class="tdleft" id="TaskPREV_PROC_ID" style="DISPLAY: none" size="1" value="{PREV_PROC_ID}" name="{PREV_PROC_ID_Name}"><input class="tdleft" id="TaskPREV_DOC_ID" style="DISPLAY: none" size="1" value="{PREV_DOC_ID}" name="{PREV_DOC_ID_Name}"><input class="tdleft" id="TaskPREV_CTL_ID" style="DISPLAY: none" size="1" value="{PREV_CTL_ID}" name="{PREV_CTL_ID_Name}"><input class="tdleft" id="TaskSLOT_1" style="DISPLAY: none" size="1" value="{SLOT_1}" name="{SLOT_1_Name}"><input class="tdleft" id="TaskSLOT_2" style="DISPLAY: none" size="1" value="{SLOT_2}" name="{SLOT_2_Name}"><input class="tdleft" id="TaskSLOT_3" style="DISPLAY: none" size="1" value="{SLOT_3}" name="{SLOT_3_Name}"><input class="tdleft" id="TaskSLOT_4" style="DISPLAY: none" size="1" value="{SLOT_4}" name="{SLOT_4_Name}"><input class="tdleft" id="TaskSLOT_5" style="DISPLAY: none" size="1" value="{SLOT_5}" name="{SLOT_5_Name}"><input class="tdleft" id="TaskDOC_STS" style="DISPLAY: none" size="2" value="{DOC_STS}" name="{DOC_STS_Name}"></p>
+                  </td> 
+                  <td nowrap height="1%">
+                    <table cellspacing="0" cellpadding="0" border="1">
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Nama Pekerjaan</font>&nbsp;&nbsp; </strong></td> 
+                        <td valign="top" nowrap width="1%">:</td> 
+                        <td valign="top" colspan="2"><font color="#009900"><b>{LTASK}</b>&nbsp;</font></td>
+                      </tr>
+ 
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Pengirim</font></strong></td> 
+                        <td valign="top" nowrap>:&nbsp;</td> 
+                        <td valign="top" nowrap>{SENDER}&nbsp;</td> 
+                        <td valign="top" nowrap>{DONOR_DATE}&nbsp;</td>
+                      </tr>
+ 
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Penerima</font></strong></td> 
+                        <td valign="top" nowrap>:</td> 
+                        <td valign="top" nowrap>{RECIPIENT}&nbsp; </td> 
+                        <td valign="top">&nbsp;</td>
+                      </tr>
+ 
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Pengambil </font></strong></td> 
+                        <td valign="top" nowrap>:&nbsp;</td> 
+                        <td valign="top" nowrap>{TAKEOVER}&nbsp;</td> 
+                        <td valign="top" nowrap>{TAKEN_DATE}&nbsp;</td>
+                      </tr>
+ 
+                      <tr>
+                        <td valign="top"><strong><font color="#000000">Submitter &nbsp; </font></strong></td> 
+                        <td valign="top">:</td> 
+                        <td valign="top" nowrap>{CLOSER}&nbsp;</td> 
+                        <td valign="top" nowrap>{SUBMIT_DATE}&nbsp;</td>
+                      </tr>
+ 
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Status</font></strong></td> 
+                        <td valign="top" nowrap>:&nbsp;</td> 
+                        <td valign="top" nowrap>{LPROC_STS}&nbsp;</td> 
+                        <td valign="top">&nbsp;</td>
+                      </tr>
+                    </table>
+                  </td> 
+                  <td nowrap>
+                    <table cellspacing="0" cellpadding="0" border="1">
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Nomor&nbsp;Permohonan</font>&nbsp; </strong></td> 
+                        <td valign="top" nowrap>:</td> 
+                        <td valign="top" nowrap><font color="#009900"><b>{LDOC_NO}</b>&nbsp;</font></td>
+                      </tr>
+ 
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Periode</font></strong></td> 
+                        <td valign="top" nowrap>:</td> 
+                        <td valign="top" nowrap>{PERIOD}&nbsp;</td>
+                      </tr>
+ 
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Tanggal Dibaca</font></strong></td> 
+                        <td valign="top" nowrap>:</td> 
+                        <td valign="top" nowrap>{READ_DATE}&nbsp;</td>
+                      </tr>
+ 
+                      <tr>
+                        <td valign="top" nowrap><strong><font color="#000000">Status</font></strong></td> 
+                        <td valign="top" nowrap>:</td> 
+                        <td valign="top">{LDOC_STS}&nbsp;</td>
+                      </tr>
+                    </table>
+                  </td> 
+                  <td>{MESSAGE}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="4">No records</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td style="TEXT-ALIGN: center" colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->of&nbsp;{Total_Pages}&nbsp; 
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid Task --><br>
+        <br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+function lov_district(){
+        getFrom_LOV('p_organizationForm','p_district_id,district_name','lov_2_field.php?TABLE=p_district&FIELD_0=p_district_id&FIELD_1=code&FIELD_2=district_name&LABEL1=Kode&LABEL2=Kota/Kabupaten&HEADER_PAGE=KOTA/KABUPATEN&HEADER_LOV=DAFTAR KOTA/KABUPATEN&ORDER=listing_no');
+}
+
+function toCustomerAccount()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_customerFormt_customer_id'))
+  {
+    var pid = idelement.value;
+    var customerName = document.getElementById('t_customerFormcompany_owner').value;
+
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_cust_account.php?t_customer_id="+pid+"&customer_name="+customerName;
+    } else {
+     alert("Pilih salah satu Customer!");
+    }
+  } else {
+     alert("Pilih salah satu Customer!");
+  }
+}
+
+</script>
+</body>
+</html>
