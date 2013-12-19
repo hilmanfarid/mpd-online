@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_sptpd_legal_doc</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        Daftar&nbsp;BPHTB 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_cust_order_legal_docSearch -->
+        <form id="t_cust_order_legal_docSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="3">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field" colspan="2"><input id="t_cust_order_legal_docSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32">
+                      <td class="search-field">
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_cust_order_legal_docSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --><input style="WIDTH: 50px; HEIGHT: 22px" id="t_cust_order_legal_docSearchnpwd" name="{npwd_Name}" value="{npwd}" size="6" type="hidden"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_cust_order_legal_docSearch --><br>
+          <!-- BEGIN Grid t_bphtb_registration_list -->
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>DAFTAR&nbsp;BPHTB</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Grid" cellspacing="0" cellpadding="0">
+                  <tr class="Caption">
+                    <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                    <th scope="col">Nama Wajib Pajak</th>
+ 
+                    <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">No order</label></label></th>
+ 
+                    <th scope="col">Deskripsi&nbsp;</th>
+                  </tr>
+ 
+                  <!-- BEGIN Row -->
+                  <tr {t_bphtb_registration_list:rowStyle}>
+                    <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_bphtb_registration_listDLink_{t_bphtb_registration_list:rowNumber}">{DLink}</a></td> 
+                    <td>{wp_name}</td> 
+                    <td><a href="../files/{origin_file_name_Src}" id="t_bphtb_registration_listorigin_file_name_{t_bphtb_registration_list:rowNumber}">{origin_file_name}</a>&nbsp;</td> 
+                    <td><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></td>
+                  </tr>
+ <!-- END Row -->
+                  <!-- BEGIN NoRecords -->
+                  <tr class="NoRecords">
+                    <td colspan="4">-</td>
+                  </tr>
+                  <!-- END NoRecords -->
+                  <tr class="Footer">
+                    <td><b><a href="{Insert_Link_Src}" id="t_bphtb_registration_listInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                    <td colspan="3">
+                      <!-- BEGIN Navigator Navigator -->
+                      <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                      <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                      <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                      <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                      <!-- BEGIN Pages -->
+                      <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                      <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                      <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                      <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                      <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                      <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- END Grid t_bphtb_registration_list -->
+          <p>&nbsp;</p>
+ 
+          <p>&nbsp;</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+
+function lov_doc() {
+        getFrom_LOV('t_cust_order_legal_docForm','p_legal_doc_type_id,legal_doc_desc','lov_2_field.php?TABLE=p_legal_doc_type&FIELD_0=p_legal_doc_type_id&FIELD_1=code&FIELD_2=description&LABEL1=Jenis Dokumen&LABEL2=Deskripsi&HEADER_PAGE=JENIS DOKUMEN&HEADER_LOV=DAFTAR JENIS DOKUMEN&ORDER=p_legal_doc_type_id');
+}
+
+function toOrder()
+{
+     var pid = document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;         
+     location.href="t_customer_order.php?t_customer_order_id="+pid;
+}
+
+function toReg()
+{
+  var pid=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+  var req_code=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;
+  var id_req=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+  var id_vat = document.getElementById("t_cust_order_legal_docSearcht_vat_registration_id").value;      
+  location.href="t_vat_registration.php?t_customer_order_id="+pid+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_vat_registration_id="+id_vat;
+}
+
+function toReg2()
+{
+  var pid=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+  var req_code=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;
+  var id_req=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+  var id_vat = document.getElementById("t_cust_order_legal_docSearcht_vat_registration_id").value;    
+  if (id_vat != 0)   {         
+  location.href="t_vat_reg_dtl.php?t_customer_order_id="+pid+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_vat_registration_id="+id_vat;
+  }else{
+        alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+  }     
+}
+
+function toVat()
+{
+    var custId=document.getElementById("t_cust_order_legal_docSearcht_cust_account_id").value;
+    var fId=document.getElementById("t_cust_order_legal_docSearchp_finance_period_id").value;
+    var cusId=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+    var npwd=document.getElementById("t_cust_order_legal_docSearchnpwd").value;
+    var fcode=document.getElementById("t_cust_order_legal_docSearchfinance_period_code").value;
+    var order=document.getElementById("t_cust_order_legal_docSearchorder_no").value;
+    var reqId=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+    var reqCode=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;  
+
+    location.href="t_vat_setllement.php?t_cust_account_id="+custId
+                                                                           +"&p_finance_period_id="+fId
+                                                                           +"&t_customer_order_id="+cusId
+                                                                           +"&npwd="+npwd
+                                                                           +"&finance_period_code="+fcode
+                                                                           +"&order_no="+order
+                                                                                                                                                   +"&p_rqst_type_id="+reqId
+                                                                                                                                                   +"&rqst_type_code="+reqCode;
+}
+</script>
+  </body>
+  </html>
