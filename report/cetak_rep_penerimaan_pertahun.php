@@ -17,7 +17,7 @@ $tgl_status			= CCGetFromGet("tgl_status", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_penerimaan_pertahun($p_year_period_id, $p_vat_type_id, '$tgl_status');";
+$query				= "select * from f_rep_penerimaan_pertahun($p_year_period_id, $p_vat_type_id, $tgl_status);";
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
