@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script></head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN&nbsp;PENDAFTARAN BPHTB&nbsp;
+      </div>
+    </div>
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_rep_bphtb_registrationSearch -->
+        <form id="t_rep_bphtb_registrationSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Nama Subjek Pajak</td> 
+                    <td class="search-field"><input id="t_rep_bphtb_registrationSearchwp_name" class="ControlsRQ" maxlength="32" size="32" value="{wp_name}" name="{wp_name_Name}">
+                      <td><img onclick="javascript:lov_bphtb()" border="0" src="../images/view.gif">&nbsp;<input id="t_rep_bphtb_registrationSearcht_bphtb_registration_id" type="hidden" value="{t_bphtb_registration_id}" name="{t_bphtb_registration_id_Name}"></td> 
+                      <td class="search-field">
+                        <!-- BEGIN Button Button_DoSearch --><input onclick="cetak(); return false;" id="t_rep_bphtb_registrationSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="TAMPILKAN" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_rep_bphtb_registrationSearch -->
+          <div align="left">
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script language="javascript">
+	function lov_bphtb()
+	{
+		getFrom_LOV("t_rep_bphtb_registrationSearch", "t_bphtb_registration_id,wp_name", "lov_2_field.php?TABLE=t_bphtb_registration&FIELD_0=t_bphtb_registration_id&FIELD_1=wp_name&FIELD_2=description&LABEL1=Subyek Pajak&LABEL2=Deskripsi&HEADER_PAGE=SUBYEK PAJAK&HEADER_LOV=DAFTAR SUBYEK PAJAK");
+	}
+    function cetak()
+    {
+            t_bphtb_registration_id = document.getElementById("t_rep_bphtb_registrationSearcht_bphtb_registration_id").value;
+            window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id=" + t_bphtb_registration_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+    }
+        </script>
+  </body>
+  </html>
