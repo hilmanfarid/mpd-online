@@ -6,13 +6,13 @@ include_once(RelativePath . "/Common.php");
 // include_once("../include/fpdf.php");
 require("../include/qrcode/fpdf17/fpdf.php");
 
-// $p_year_period_id	= CCGetFromGet("p_year_period_id", "");
-// $p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
-// $tgl_status			= CCGetFromGet("tgl_status", "");
+$p_year_period_id	= CCGetFromGet("p_year_period_id", "");
+$p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
+$tgl_status			= CCGetFromGet("tgl_status", "");
 
-$p_year_period_id	= 4;
-$p_vat_type_id		= 1;
-$tgl_status			= '15-12-2013';
+// $p_year_period_id	= 4;
+// $p_vat_type_id		= 1;
+// $tgl_status			= '15-12-2013';
 
 $user				= CCGetUserLogin();
 $data				= array();
