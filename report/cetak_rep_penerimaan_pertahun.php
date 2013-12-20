@@ -21,6 +21,7 @@ $query				= "select * from f_rep_penerimaan_pertahun($p_year_period_id, $p_vat_t
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
+	$data["tahun"][]			= $dbConn->f("tahun");
 	$data["nama"][]			= $dbConn->f("nama");
 	$data["alamat"][]		= $dbConn->f("alamat");
 	$data["npwpd"][]		= $dbConn->f("npwpd");
@@ -33,33 +34,33 @@ while ($dbConn->next_record()) {
 	$data["f_10_sts"][]		= $dbConn->f("f_10_sts");
 	$data["f_10_amt"][]		= $dbConn->f("f_10_amt");
 	$data["f_10_paydate"][]	= $dbConn->f("f_10_paydate");
-	$data["f_9_sts"][]		= $dbConn->f("f_9_sts");
-	$data["f_9_amt"][]		= $dbConn->f("f_9_amt");
-	$data["f_9_paydate"][]	= $dbConn->f("f_9_paydate");
-	$data["f_8_sts"][]		= $dbConn->f("f_8_sts");
-	$data["f_8_amt"][]		= $dbConn->f("f_8_amt");
-	$data["f_8_paydate"][]	= $dbConn->f("f_8_paydate");
-	$data["f_7_sts"][]		= $dbConn->f("f_7_sts");
-	$data["f_7_amt"][]		= $dbConn->f("f_7_amt");
-	$data["f_7_paydate"][]	= $dbConn->f("f_7_paydate");
-	$data["f_6_sts"][]		= $dbConn->f("f_6_sts");
-	$data["f_6_amt"][]		= $dbConn->f("f_6_amt");
-	$data["f_6_paydate"][]	= $dbConn->f("f_6_paydate");
-	$data["f_5_sts"][]		= $dbConn->f("f_5_sts");
-	$data["f_5_amt"][]		= $dbConn->f("f_5_amt");
-	$data["f_5_paydate"][]	= $dbConn->f("f_5_paydate");
-	$data["f_4_sts"][]		= $dbConn->f("f_4_sts");
-	$data["f_4_amt"][]		= $dbConn->f("f_4_amt");
-	$data["f_4_paydate"][]	= $dbConn->f("f_4_paydate");
-	$data["f_3_sts"][]		= $dbConn->f("f_3_sts");
-	$data["f_3_amt"][]		= $dbConn->f("f_3_amt");
-	$data["f_3_paydate"][]	= $dbConn->f("f_3_paydate");
-	$data["f_2_sts"][]		= $dbConn->f("f_2_sts");
-	$data["f_2_amt"][]		= $dbConn->f("f_2_amt");
-	$data["f_2_paydate"][]	= $dbConn->f("f_2_paydate");
-	$data["f_1_sts"][]		= $dbConn->f("f_1_sts");
-	$data["f_1_amt"][]		= $dbConn->f("f_1_amt");
-	$data["f_1_paydate"][]	= $dbConn->f("f_1_paydate");
+	$data["f_09_sts"][]		= $dbConn->f("f_09_sts");
+	$data["f_09_amt"][]		= $dbConn->f("f_09_amt");
+	$data["f_09_paydate"][]	= $dbConn->f("f_09_paydate");
+	$data["f_08_sts"][]		= $dbConn->f("f_08_sts");
+	$data["f_08_amt"][]		= $dbConn->f("f_08_amt");
+	$data["f_08_paydate"][]	= $dbConn->f("f_08_paydate");
+	$data["f_07_sts"][]		= $dbConn->f("f_07_sts");
+	$data["f_07_amt"][]		= $dbConn->f("f_07_amt");
+	$data["f_07_paydate"][]	= $dbConn->f("f_07_paydate");
+	$data["f_06_sts"][]		= $dbConn->f("f_06_sts");
+	$data["f_06_amt"][]		= $dbConn->f("f_06_amt");
+	$data["f_06_paydate"][]	= $dbConn->f("f_06_paydate");
+	$data["f_05_sts"][]		= $dbConn->f("f_05_sts");
+	$data["f_05_amt"][]		= $dbConn->f("f_05_amt");
+	$data["f_05_paydate"][]	= $dbConn->f("f_05_paydate");
+	$data["f_04_sts"][]		= $dbConn->f("f_04_sts");
+	$data["f_04_amt"][]		= $dbConn->f("f_04_amt");
+	$data["f_04_paydate"][]	= $dbConn->f("f_04_paydate");
+	$data["f_03_sts"][]		= $dbConn->f("f_03_sts");
+	$data["f_03_amt"][]		= $dbConn->f("f_03_amt");
+	$data["f_03_paydate"][]	= $dbConn->f("f_03_paydate");
+	$data["f_02_sts"][]		= $dbConn->f("f_02_sts");
+	$data["f_02_amt"][]		= $dbConn->f("f_02_amt");
+	$data["f_02_paydate"][]	= $dbConn->f("f_02_paydate");
+	$data["f_01_sts"][]		= $dbConn->f("f_01_sts");
+	$data["f_01_amt"][]		= $dbConn->f("f_01_amt");
+	$data["f_01_paydate"][]	= $dbConn->f("f_01_paydate");
 }
 $dbConn->close();
 
@@ -68,7 +69,7 @@ class FormCetak extends FPDF {
 	var $fontFam = 'Arial';
 	var $yearId = 0;
 	var $yearCode="";
-	var $paperWSize = 330;
+	var $paperWSize = 400;
 	var $paperHSize = 215;
 	var $height = 5;
 	var $currX;
@@ -83,7 +84,7 @@ class FormCetak extends FPDF {
 	function __construct() {
 		$this->FormCetak();
 		$this->startY = $this->GetY();
-		$this->startX = $this->paperWSize-72;
+		$this->startX = $this->paperWSize-140;
 		$this->lengthCell = $this->startX+20;
 	}
 	/*
@@ -119,7 +120,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "Tahun " . $data["tahun"], "R", 0, 'C');		
+		$this->Cell($lheader4, $this->height, "Tahun " . $data["tahun"][0], "R", 0, 'C');		
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
@@ -139,7 +140,7 @@ class FormCetak extends FPDF {
 		$ltable9 = $ltable * 9;
 		$ltable36 = $ltable * 36;
 
-		$this->SetFont('Arial', '', 8);
+		$this->SetFont('Arial', '', 6);
 		
 		$this->Cell($ltable2, $this->height + 5, "NO.", "TLR", 0, 'C');
 		$this->Cell($ltable4, $this->height, "NAMA", "TLR", 0, 'C');
@@ -147,21 +148,38 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable36, $this->height, "REALISASI DAN TANGGAL BAYAR", "TBLR", 0, 'C');
 		$this->Ln();
 		
+		$this->Cell($ltable2, $this->height, "", "LR", 0, 'C');
+		$this->Cell($ltable4, $this->height, "PERUSAHAAN", "LR", 0, 'C');
+		$this->Cell($ltable4, $this->height, "", "LR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "DESEMBER", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "JANUARI", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "FEBRUARI", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "MARET", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "APRIL", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "MEI", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "JUNI", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "JULI", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "AGUSTUS", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "SEPTEMBER", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "OKTOBER", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "NOVEMBER", "TLR", 0, 'C');
+		$this->Ln();
+		
 		$this->Cell($ltable2, $this->height, "", "BLR", 0, 'C');
-		$this->Cell($ltable4, $this->height, "PERUSAHAAN", "BLR", 0, 'C');
 		$this->Cell($ltable4, $this->height, "", "BLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "DESEMBER", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "JANUARI", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "FEBRUARI", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "MARET", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "APRIL", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "MEI", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "JUNI", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "JULI", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "AGUSTUS", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "SEPTEMBER", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "OKTOBER", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "NOVEMBER", "TBLR", 0, 'C');
+		$this->Cell($ltable4, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, $data["tahun"][0] - 1, "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
 		$this->Ln();
 		
 		//isi kolom
@@ -173,11 +191,14 @@ class FormCetak extends FPDF {
 			// print data piutang
 			$data2 = array();
 			for($j = 0; $j < 12; $j++){
-				if(is_null($data["f_$j_sts"][$i])){
-					$data2[$j] = number_format($data["f_$j_amt"][$i], 0, ',', '.');
+				$sts = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_sts";
+				$amt = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_amt";
+				
+				if(is_null($data[$sts][$i])){
+					$data2[$j] = number_format($data[$amt][$i], 0, ',', '.');
 				}
 				else{
-					$data2[$j] = $data["f_$j_sts"][$i];
+					$data2[$j] = $data[$sts][$i];
 				}
 			}
 			
@@ -222,11 +243,14 @@ class FormCetak extends FPDF {
 			// print data tanggal bayar
 			$data2 = array();
 			for($j = 0; $j < 12; $j++){
-				if(is_null($data["f_$j_sts"][$i])){
-					$data2[$j] = $data["f_$j_paydate"][$i];
+				$sts = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_sts";
+				$paydate = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_paydate";
+				
+				if(is_null($data[$sts][$i])){
+					$data2[$j] = $data[$paydate][$i];
 				}
 				else{
-					$data2[$j] = $data["f_$j_sts"][$i];
+					$data2[$j] = $data[$sts][$i];
 				}
 			}
 			
