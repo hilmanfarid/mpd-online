@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-C3E7A413
+//Class_Initialize Event @94-C0ABA169
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -86,10 +86,10 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->wp_kelurahan->Required = true;
             $this->wp_p_region_id = & new clsControl(ccsHidden, "wp_p_region_id", "Kota/Kabupaten - WP", ccsFloat, "", CCGetRequestParam("wp_p_region_id", $Method, NULL), $this);
             $this->wp_p_region_id->Required = true;
-            $this->wp_p_region_id_kecamatan = & new clsControl(ccsHidden, "wp_p_region_id_kecamatan", "Kecamatan - WP", ccsFloat, "", CCGetRequestParam("wp_p_region_id_kecamatan", $Method, NULL), $this);
-            $this->wp_p_region_id_kecamatan->Required = true;
-            $this->wp_p_region_id_kelurahan = & new clsControl(ccsHidden, "wp_p_region_id_kelurahan", "Kelurahan - WP", ccsFloat, "", CCGetRequestParam("wp_p_region_id_kelurahan", $Method, NULL), $this);
-            $this->wp_p_region_id_kelurahan->Required = true;
+            $this->wp_p_region_id_kec = & new clsControl(ccsHidden, "wp_p_region_id_kec", "Kecamatan - WP", ccsFloat, "", CCGetRequestParam("wp_p_region_id_kec", $Method, NULL), $this);
+            $this->wp_p_region_id_kec->Required = true;
+            $this->wp_p_region_id_kel = & new clsControl(ccsHidden, "wp_p_region_id_kel", "Kelurahan - WP", ccsFloat, "", CCGetRequestParam("wp_p_region_id_kel", $Method, NULL), $this);
+            $this->wp_p_region_id_kel->Required = true;
             $this->wp_kecamatan = & new clsControl(ccsTextBox, "wp_kecamatan", "Kecamatan - WP", ccsText, "", CCGetRequestParam("wp_kecamatan", $Method, NULL), $this);
             $this->wp_kecamatan->Required = true;
             $this->wp_name = & new clsControl(ccsTextBox, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", $Method, NULL), $this);
@@ -97,12 +97,12 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->npwp = & new clsControl(ccsTextBox, "npwp", "npwp", ccsText, "", CCGetRequestParam("npwp", $Method, NULL), $this);
             $this->object_kelurahan = & new clsControl(ccsTextBox, "object_kelurahan", "Kelurahan - WP", ccsText, "", CCGetRequestParam("object_kelurahan", $Method, NULL), $this);
             $this->object_kelurahan->Required = true;
-            $this->object_p_region_id_kelurahan = & new clsControl(ccsHidden, "object_p_region_id_kelurahan", "Kelurahan - WP", ccsFloat, "", CCGetRequestParam("object_p_region_id_kelurahan", $Method, NULL), $this);
-            $this->object_p_region_id_kelurahan->Required = true;
+            $this->object_p_region_id_kel = & new clsControl(ccsHidden, "object_p_region_id_kel", "Kelurahan - Object", ccsFloat, "", CCGetRequestParam("object_p_region_id_kel", $Method, NULL), $this);
+            $this->object_p_region_id_kel->Required = true;
             $this->object_kecamatan = & new clsControl(ccsTextBox, "object_kecamatan", "Kecamatan - WP", ccsText, "", CCGetRequestParam("object_kecamatan", $Method, NULL), $this);
             $this->object_kecamatan->Required = true;
-            $this->object_p_region_id_kecamatan = & new clsControl(ccsHidden, "object_p_region_id_kecamatan", "Kecamatan - WP", ccsFloat, "", CCGetRequestParam("object_p_region_id_kecamatan", $Method, NULL), $this);
-            $this->object_p_region_id_kecamatan->Required = true;
+            $this->object_p_region_id_kec = & new clsControl(ccsHidden, "object_p_region_id_kec", "Kecamatan - Object", ccsFloat, "", CCGetRequestParam("object_p_region_id_kec", $Method, NULL), $this);
+            $this->object_p_region_id_kec->Required = true;
             $this->object_kota = & new clsControl(ccsTextBox, "object_kota", "Kota/Kabupaten - WP", ccsText, "", CCGetRequestParam("object_kota", $Method, NULL), $this);
             $this->object_kota->Required = true;
             $this->object_p_region_id = & new clsControl(ccsHidden, "object_p_region_id", "Kota/Kabupaten - WP", ccsFloat, "", CCGetRequestParam("object_p_region_id", $Method, NULL), $this);
@@ -140,6 +140,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->phone_no = & new clsControl(ccsTextBox, "phone_no", "phone_no", ccsText, "", CCGetRequestParam("phone_no", $Method, NULL), $this);
             $this->mobile_phone_no = & new clsControl(ccsTextBox, "mobile_phone_no", "mobile_phone_no", ccsText, "", CCGetRequestParam("mobile_phone_no", $Method, NULL), $this);
             $this->total_price = & new clsControl(ccsTextBox, "total_price", "total_price", ccsFloat, "", CCGetRequestParam("total_price", $Method, NULL), $this);
+            $this->t_bphtb_registration_id = & new clsControl(ccsHidden, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsInteger, "", CCGetRequestParam("t_bphtb_registration_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -168,18 +169,18 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Class_Initialize Event
 
-//Initialize Method @94-E8596F60
+//Initialize Method @94-ED145515
     function Initialize()
     {
 
         if(!$this->Visible)
             return;
 
-        $this->DataSource->Parameters["urlt_customer_order_id"] = CCGetFromGet("t_customer_order_id", NULL);
+        $this->DataSource->Parameters["urlt_bphtb_registration_id"] = CCGetFromGet("t_bphtb_registration_id", NULL);
     }
 //End Initialize Method
 
-//Validate Method @94-C5FDC5D9
+//Validate Method @94-DB9129D0
     function Validate()
     {
         global $CCSLocales;
@@ -188,16 +189,16 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->wp_kota->Validate() && $Validation);
         $Validation = ($this->wp_kelurahan->Validate() && $Validation);
         $Validation = ($this->wp_p_region_id->Validate() && $Validation);
-        $Validation = ($this->wp_p_region_id_kecamatan->Validate() && $Validation);
-        $Validation = ($this->wp_p_region_id_kelurahan->Validate() && $Validation);
+        $Validation = ($this->wp_p_region_id_kec->Validate() && $Validation);
+        $Validation = ($this->wp_p_region_id_kel->Validate() && $Validation);
         $Validation = ($this->wp_kecamatan->Validate() && $Validation);
         $Validation = ($this->wp_name->Validate() && $Validation);
         $Validation = ($this->wp_address_name->Validate() && $Validation);
         $Validation = ($this->npwp->Validate() && $Validation);
         $Validation = ($this->object_kelurahan->Validate() && $Validation);
-        $Validation = ($this->object_p_region_id_kelurahan->Validate() && $Validation);
+        $Validation = ($this->object_p_region_id_kel->Validate() && $Validation);
         $Validation = ($this->object_kecamatan->Validate() && $Validation);
-        $Validation = ($this->object_p_region_id_kecamatan->Validate() && $Validation);
+        $Validation = ($this->object_p_region_id_kec->Validate() && $Validation);
         $Validation = ($this->object_kota->Validate() && $Validation);
         $Validation = ($this->object_p_region_id->Validate() && $Validation);
         $Validation = ($this->land_area->Validate() && $Validation);
@@ -224,20 +225,21 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->phone_no->Validate() && $Validation);
         $Validation = ($this->mobile_phone_no->Validate() && $Validation);
         $Validation = ($this->total_price->Validate() && $Validation);
+        $Validation = ($this->t_bphtb_registration_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_p_region_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->wp_p_region_id_kecamatan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->wp_p_region_id_kelurahan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->wp_p_region_id_kec->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->wp_p_region_id_kel->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kecamatan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_address_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->npwp->Errors->Count() == 0);
         $Validation =  $Validation && ($this->object_kelurahan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->object_p_region_id_kelurahan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->object_p_region_id_kel->Errors->Count() == 0);
         $Validation =  $Validation && ($this->object_kecamatan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->object_p_region_id_kecamatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->object_p_region_id_kec->Errors->Count() == 0);
         $Validation =  $Validation && ($this->object_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->object_p_region_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->land_area->Errors->Count() == 0);
@@ -264,27 +266,28 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->phone_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->mobile_phone_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->total_price->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_bphtb_registration_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-4689E5D6
+//CheckErrors Method @94-3C97ED4B
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->wp_kota->Errors->Count());
         $errors = ($errors || $this->wp_kelurahan->Errors->Count());
         $errors = ($errors || $this->wp_p_region_id->Errors->Count());
-        $errors = ($errors || $this->wp_p_region_id_kecamatan->Errors->Count());
-        $errors = ($errors || $this->wp_p_region_id_kelurahan->Errors->Count());
+        $errors = ($errors || $this->wp_p_region_id_kec->Errors->Count());
+        $errors = ($errors || $this->wp_p_region_id_kel->Errors->Count());
         $errors = ($errors || $this->wp_kecamatan->Errors->Count());
         $errors = ($errors || $this->wp_name->Errors->Count());
         $errors = ($errors || $this->wp_address_name->Errors->Count());
         $errors = ($errors || $this->npwp->Errors->Count());
         $errors = ($errors || $this->object_kelurahan->Errors->Count());
-        $errors = ($errors || $this->object_p_region_id_kelurahan->Errors->Count());
+        $errors = ($errors || $this->object_p_region_id_kel->Errors->Count());
         $errors = ($errors || $this->object_kecamatan->Errors->Count());
-        $errors = ($errors || $this->object_p_region_id_kecamatan->Errors->Count());
+        $errors = ($errors || $this->object_p_region_id_kec->Errors->Count());
         $errors = ($errors || $this->object_kota->Errors->Count());
         $errors = ($errors || $this->object_p_region_id->Errors->Count());
         $errors = ($errors || $this->land_area->Errors->Count());
@@ -311,6 +314,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->phone_no->Errors->Count());
         $errors = ($errors || $this->mobile_phone_no->Errors->Count());
         $errors = ($errors || $this->total_price->Errors->Count());
+        $errors = ($errors || $this->t_bphtb_registration_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -433,90 +437,61 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @94-D1714833
+//UpdateRow Method @94-3DDAADC5
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
-        $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
-        $this->DataSource->p_region_id_kelurahan->SetValue($this->p_region_id_kelurahan->GetValue(true));
-        $this->DataSource->p_region_id_kecamatan->SetValue($this->p_region_id_kecamatan->GetValue(true));
-        $this->DataSource->p_region_id->SetValue($this->p_region_id->GetValue(true));
-        $this->DataSource->p_region_id_kel_owner->SetValue($this->p_region_id_kel_owner->GetValue(true));
-        $this->DataSource->p_region_id_kec_owner->SetValue($this->p_region_id_kec_owner->GetValue(true));
-        $this->DataSource->p_region_id_owner->SetValue($this->p_region_id_owner->GetValue(true));
-        $this->DataSource->company_name->SetValue($this->company_name->GetValue(true));
-        $this->DataSource->address_name->SetValue($this->address_name->GetValue(true));
-        $this->DataSource->p_job_position_id->SetValue($this->p_job_position_id->GetValue(true));
-        $this->DataSource->company_brand->SetValue($this->company_brand->GetValue(true));
-        $this->DataSource->address_no->SetValue($this->address_no->GetValue(true));
-        $this->DataSource->address_rt->SetValue($this->address_rt->GetValue(true));
-        $this->DataSource->address_rw->SetValue($this->address_rw->GetValue(true));
-        $this->DataSource->address_no_owner->SetValue($this->address_no_owner->GetValue(true));
-        $this->DataSource->address_rt_owner->SetValue($this->address_rt_owner->GetValue(true));
-        $this->DataSource->address_rw_owner->SetValue($this->address_rw_owner->GetValue(true));
-        $this->DataSource->phone_no->SetValue($this->phone_no->GetValue(true));
-        $this->DataSource->fax_no->SetValue($this->fax_no->GetValue(true));
-        $this->DataSource->zip_code->SetValue($this->zip_code->GetValue(true));
-        $this->DataSource->phone_no_owner->SetValue($this->phone_no_owner->GetValue(true));
-        $this->DataSource->company_owner->SetValue($this->company_owner->GetValue(true));
-        $this->DataSource->mobile_no_owner->SetValue($this->mobile_no_owner->GetValue(true));
-        $this->DataSource->fax_no_owner->SetValue($this->fax_no_owner->GetValue(true));
-        $this->DataSource->zip_code_owner->SetValue($this->zip_code_owner->GetValue(true));
-        $this->DataSource->mobile_no->SetValue($this->mobile_no->GetValue(true));
-        $this->DataSource->address_name_owner->SetValue($this->address_name_owner->GetValue(true));
-        $this->DataSource->email->SetValue($this->email->GetValue(true));
-        $this->DataSource->p_vat_type_dtl_id->SetValue($this->p_vat_type_dtl_id->GetValue(true));
-        $this->DataSource->wp_user_name->SetValue($this->wp_user_name->GetValue(true));
-        $this->DataSource->wp_user_pwd->SetValue($this->wp_user_pwd->GetValue(true));
+        $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
+        $this->DataSource->wp_p_region_id->SetValue($this->wp_p_region_id->GetValue(true));
+        $this->DataSource->wp_p_region_id_kel->SetValue($this->wp_p_region_id_kel->GetValue(true));
         $this->DataSource->wp_name->SetValue($this->wp_name->GetValue(true));
         $this->DataSource->wp_address_name->SetValue($this->wp_address_name->GetValue(true));
-        $this->DataSource->wp_address_no->SetValue($this->wp_address_no->GetValue(true));
-        $this->DataSource->wp_address_rt->SetValue($this->wp_address_rt->GetValue(true));
-        $this->DataSource->wp_address_rw->SetValue($this->wp_address_rw->GetValue(true));
-        $this->DataSource->wp_p_region_id_kelurahan->SetValue($this->wp_p_region_id_kelurahan->GetValue(true));
-        $this->DataSource->wp_p_region_id_kecamatan->SetValue($this->wp_p_region_id_kecamatan->GetValue(true));
-        $this->DataSource->wp_p_region_id->SetValue($this->wp_p_region_id->GetValue(true));
-        $this->DataSource->wp_phone_no->SetValue($this->wp_phone_no->GetValue(true));
-        $this->DataSource->wp_mobile_no->SetValue($this->wp_mobile_no->GetValue(true));
-        $this->DataSource->wp_fax_no->SetValue($this->wp_fax_no->GetValue(true));
-        $this->DataSource->wp_zip_code->SetValue($this->wp_zip_code->GetValue(true));
-        $this->DataSource->wp_email->SetValue($this->wp_email->GetValue(true));
-        $this->DataSource->brand_address_name->SetValue($this->brand_address_name->GetValue(true));
-        $this->DataSource->brand_address_no->SetValue($this->brand_address_no->GetValue(true));
-        $this->DataSource->brand_address_rt->SetValue($this->brand_address_rt->GetValue(true));
-        $this->DataSource->brand_address_rw->SetValue($this->brand_address_rw->GetValue(true));
-        $this->DataSource->brand_p_region_id_kel->SetValue($this->brand_p_region_id_kel->GetValue(true));
-        $this->DataSource->brand_p_region_id_kec->SetValue($this->brand_p_region_id_kec->GetValue(true));
-        $this->DataSource->brand_p_region_id->SetValue($this->brand_p_region_id->GetValue(true));
-        $this->DataSource->brand_phone_no->SetValue($this->brand_phone_no->GetValue(true));
-        $this->DataSource->brand_mobile_no->SetValue($this->brand_mobile_no->GetValue(true));
-        $this->DataSource->brand_fax_no->SetValue($this->brand_fax_no->GetValue(true));
-        $this->DataSource->brand_zip_code->SetValue($this->brand_zip_code->GetValue(true));
-        $this->DataSource->t_vat_registration_id->SetValue($this->t_vat_registration_id->GetValue(true));
-        $this->DataSource->p_private_question_id->SetValue($this->p_private_question_id->GetValue(true));
-        $this->DataSource->private_answer->SetValue($this->private_answer->GetValue(true));
-        $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
-        $this->DataSource->t_vat_registration_id->SetValue($this->t_vat_registration_id->GetValue(true));
+        $this->DataSource->npwp->SetValue($this->npwp->GetValue(true));
+        $this->DataSource->object_p_region_id_kec->SetValue($this->object_p_region_id_kec->GetValue(true));
+        $this->DataSource->object_p_region_id->SetValue($this->object_p_region_id->GetValue(true));
+        $this->DataSource->land_area->SetValue($this->land_area->GetValue(true));
+        $this->DataSource->land_price_per_m->SetValue($this->land_price_per_m->GetValue(true));
+        $this->DataSource->land_total_price->SetValue($this->land_total_price->GetValue(true));
+        $this->DataSource->building_area->SetValue($this->building_area->GetValue(true));
+        $this->DataSource->building_price_per_m->SetValue($this->building_price_per_m->GetValue(true));
+        $this->DataSource->building_total_price->SetValue($this->building_total_price->GetValue(true));
+        $this->DataSource->wp_rt->SetValue($this->wp_rt->GetValue(true));
+        $this->DataSource->wp_rw->SetValue($this->wp_rw->GetValue(true));
+        $this->DataSource->object_rt->SetValue($this->object_rt->GetValue(true));
+        $this->DataSource->object_rw->SetValue($this->object_rw->GetValue(true));
+        $this->DataSource->njop_pbb->SetValue($this->njop_pbb->GetValue(true));
+        $this->DataSource->object_address_name->SetValue($this->object_address_name->GetValue(true));
+        $this->DataSource->p_bphtb_legal_doc_type_id->SetValue($this->p_bphtb_legal_doc_type_id->GetValue(true));
+        $this->DataSource->npop->SetValue($this->npop->GetValue(true));
+        $this->DataSource->npop_tkp->SetValue($this->npop_tkp->GetValue(true));
+        $this->DataSource->npop_kp->SetValue($this->npop_kp->GetValue(true));
+        $this->DataSource->bphtb_amt->SetValue($this->bphtb_amt->GetValue(true));
+        $this->DataSource->bphtb_amt_final->SetValue($this->bphtb_amt_final->GetValue(true));
+        $this->DataSource->bphtb_discount->SetValue($this->bphtb_discount->GetValue(true));
+        $this->DataSource->description->SetValue($this->description->GetValue(true));
+        $this->DataSource->market_price->SetValue($this->market_price->GetValue(true));
+        $this->DataSource->mobile_phone_no->SetValue($this->mobile_phone_no->GetValue(true));
+        $this->DataSource->wp_p_region_id_kec->SetValue($this->wp_p_region_id_kec->GetValue(true));
+        $this->DataSource->object_p_region_id_kel->SetValue($this->object_p_region_id_kel->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//DeleteRow Method @94-8CCE79FB
+//DeleteRow Method @94-299D98C3
     function DeleteRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
         if(!$this->DeleteAllowed) return false;
-        $this->DataSource->t_vat_registration_id->SetValue($this->t_vat_registration_id->GetValue(true));
         $this->DataSource->Delete();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
         return (!$this->CheckErrors());
     }
 //End DeleteRow Method
 
-//Show Method @94-692E8E06
+//Show Method @94-C32E227F
     function Show()
     {
         global $CCSUseAmp;
@@ -548,21 +523,49 @@ function GetPrimaryKey($keyName)
                     $this->wp_kota->SetValue($this->DataSource->wp_kota->GetValue());
                     $this->wp_kelurahan->SetValue($this->DataSource->wp_kelurahan->GetValue());
                     $this->wp_p_region_id->SetValue($this->DataSource->wp_p_region_id->GetValue());
-                    $this->wp_p_region_id_kecamatan->SetValue($this->DataSource->wp_p_region_id_kecamatan->GetValue());
-                    $this->wp_p_region_id_kelurahan->SetValue($this->DataSource->wp_p_region_id_kelurahan->GetValue());
+                    $this->wp_p_region_id_kec->SetValue($this->DataSource->wp_p_region_id_kec->GetValue());
+                    $this->wp_p_region_id_kel->SetValue($this->DataSource->wp_p_region_id_kel->GetValue());
                     $this->wp_kecamatan->SetValue($this->DataSource->wp_kecamatan->GetValue());
+                    $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
+                    $this->wp_address_name->SetValue($this->DataSource->wp_address_name->GetValue());
+                    $this->npwp->SetValue($this->DataSource->npwp->GetValue());
                     $this->object_kelurahan->SetValue($this->DataSource->object_kelurahan->GetValue());
-                    $this->object_p_region_id_kelurahan->SetValue($this->DataSource->object_p_region_id_kelurahan->GetValue());
+                    $this->object_p_region_id_kel->SetValue($this->DataSource->object_p_region_id_kel->GetValue());
                     $this->object_kecamatan->SetValue($this->DataSource->object_kecamatan->GetValue());
-                    $this->object_p_region_id_kecamatan->SetValue($this->DataSource->object_p_region_id_kecamatan->GetValue());
+                    $this->object_p_region_id_kec->SetValue($this->DataSource->object_p_region_id_kec->GetValue());
                     $this->object_kota->SetValue($this->DataSource->object_kota->GetValue());
                     $this->object_p_region_id->SetValue($this->DataSource->object_p_region_id->GetValue());
+                    $this->land_area->SetValue($this->DataSource->land_area->GetValue());
+                    $this->land_price_per_m->SetValue($this->DataSource->land_price_per_m->GetValue());
+                    $this->land_total_price->SetValue($this->DataSource->land_total_price->GetValue());
+                    $this->building_area->SetValue($this->DataSource->building_area->GetValue());
+                    $this->building_price_per_m->SetValue($this->DataSource->building_price_per_m->GetValue());
+                    $this->building_total_price->SetValue($this->DataSource->building_total_price->GetValue());
+                    $this->wp_rt->SetValue($this->DataSource->wp_rt->GetValue());
+                    $this->wp_rw->SetValue($this->DataSource->wp_rw->GetValue());
+                    $this->object_rt->SetValue($this->DataSource->object_rt->GetValue());
+                    $this->object_rw->SetValue($this->DataSource->object_rw->GetValue());
+                    $this->njop_pbb->SetValue($this->DataSource->njop_pbb->GetValue());
+                    $this->object_address_name->SetValue($this->DataSource->object_address_name->GetValue());
+                    $this->p_bphtb_legal_doc_type_id->SetValue($this->DataSource->p_bphtb_legal_doc_type_id->GetValue());
+                    $this->npop->SetValue($this->DataSource->npop->GetValue());
+                    $this->npop_tkp->SetValue($this->DataSource->npop_tkp->GetValue());
+                    $this->npop_kp->SetValue($this->DataSource->npop_kp->GetValue());
+                    $this->bphtb_amt->SetValue($this->DataSource->bphtb_amt->GetValue());
+                    $this->bphtb_amt_final->SetValue($this->DataSource->bphtb_amt_final->GetValue());
+                    $this->bphtb_discount->SetValue($this->DataSource->bphtb_discount->GetValue());
+                    $this->description->SetValue($this->DataSource->description->GetValue());
+                    $this->market_price->SetValue($this->DataSource->market_price->GetValue());
+                    $this->phone_no->SetValue($this->DataSource->phone_no->GetValue());
+                    $this->mobile_phone_no->SetValue($this->DataSource->mobile_phone_no->GetValue());
+                    $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
             }
         }
         if (!$this->FormSubmitted) {
+            $this->total_price->SetText($this->DataSource->land_total_price->GetValue()+$this->DataSource->building_total_price->GetValue());
         }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
@@ -570,16 +573,16 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->wp_kota->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_kelurahan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_p_region_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->wp_p_region_id_kecamatan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->wp_p_region_id_kelurahan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->wp_p_region_id_kec->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->wp_p_region_id_kel->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_kecamatan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_address_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->npwp->Errors->ToString());
             $Error = ComposeStrings($Error, $this->object_kelurahan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->object_p_region_id_kelurahan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->object_p_region_id_kel->Errors->ToString());
             $Error = ComposeStrings($Error, $this->object_kecamatan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->object_p_region_id_kecamatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->object_p_region_id_kec->Errors->ToString());
             $Error = ComposeStrings($Error, $this->object_kota->Errors->ToString());
             $Error = ComposeStrings($Error, $this->object_p_region_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->land_area->Errors->ToString());
@@ -606,6 +609,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->phone_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->mobile_phone_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->total_price->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_bphtb_registration_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -634,16 +638,16 @@ function GetPrimaryKey($keyName)
         $this->wp_kota->Show();
         $this->wp_kelurahan->Show();
         $this->wp_p_region_id->Show();
-        $this->wp_p_region_id_kecamatan->Show();
-        $this->wp_p_region_id_kelurahan->Show();
+        $this->wp_p_region_id_kec->Show();
+        $this->wp_p_region_id_kel->Show();
         $this->wp_kecamatan->Show();
         $this->wp_name->Show();
         $this->wp_address_name->Show();
         $this->npwp->Show();
         $this->object_kelurahan->Show();
-        $this->object_p_region_id_kelurahan->Show();
+        $this->object_p_region_id_kel->Show();
         $this->object_kecamatan->Show();
-        $this->object_p_region_id_kecamatan->Show();
+        $this->object_p_region_id_kec->Show();
         $this->object_kota->Show();
         $this->object_p_region_id->Show();
         $this->land_area->Show();
@@ -670,6 +674,7 @@ function GetPrimaryKey($keyName)
         $this->phone_no->Show();
         $this->mobile_phone_no->Show();
         $this->total_price->Show();
+        $this->t_bphtb_registration_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -680,7 +685,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-050152EE
+//DataSource Variables @94-4A512130
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -693,21 +698,22 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $wp;
     var $AllParametersSet;
 
+    var $UpdateFields = array();
 
     // Datasource fields
     var $wp_kota;
     var $wp_kelurahan;
     var $wp_p_region_id;
-    var $wp_p_region_id_kecamatan;
-    var $wp_p_region_id_kelurahan;
+    var $wp_p_region_id_kec;
+    var $wp_p_region_id_kel;
     var $wp_kecamatan;
     var $wp_name;
     var $wp_address_name;
     var $npwp;
     var $object_kelurahan;
-    var $object_p_region_id_kelurahan;
+    var $object_p_region_id_kel;
     var $object_kecamatan;
-    var $object_p_region_id_kecamatan;
+    var $object_p_region_id_kec;
     var $object_kota;
     var $object_p_region_id;
     var $land_area;
@@ -734,9 +740,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $phone_no;
     var $mobile_phone_no;
     var $total_price;
+    var $t_bphtb_registration_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-780A6612
+//DataSourceClass_Initialize Event @94-FE9A2777
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -748,9 +755,9 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->wp_p_region_id = new clsField("wp_p_region_id", ccsFloat, "");
         
-        $this->wp_p_region_id_kecamatan = new clsField("wp_p_region_id_kecamatan", ccsFloat, "");
+        $this->wp_p_region_id_kec = new clsField("wp_p_region_id_kec", ccsFloat, "");
         
-        $this->wp_p_region_id_kelurahan = new clsField("wp_p_region_id_kelurahan", ccsFloat, "");
+        $this->wp_p_region_id_kel = new clsField("wp_p_region_id_kel", ccsFloat, "");
         
         $this->wp_kecamatan = new clsField("wp_kecamatan", ccsText, "");
         
@@ -762,11 +769,11 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->object_kelurahan = new clsField("object_kelurahan", ccsText, "");
         
-        $this->object_p_region_id_kelurahan = new clsField("object_p_region_id_kelurahan", ccsFloat, "");
+        $this->object_p_region_id_kel = new clsField("object_p_region_id_kel", ccsFloat, "");
         
         $this->object_kecamatan = new clsField("object_kecamatan", ccsText, "");
         
-        $this->object_p_region_id_kecamatan = new clsField("object_p_region_id_kecamatan", ccsFloat, "");
+        $this->object_p_region_id_kec = new clsField("object_p_region_id_kec", ccsFloat, "");
         
         $this->object_kota = new clsField("object_kota", ccsText, "");
         
@@ -820,28 +827,85 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->total_price = new clsField("total_price", ccsFloat, "");
         
+        $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsInteger, "");
+        
 
+        $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["wp_p_region_id"] = array("Name" => "wp_p_region_id", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["wp_p_region_id_kel"] = array("Name" => "wp_p_region_id_kel", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["wp_name"] = array("Name" => "wp_name", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["wp_address_name"] = array("Name" => "wp_address_name", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["npwp"] = array("Name" => "npwp", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["object_p_region_id_kec"] = array("Name" => "object_p_region_id_kec", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["object_p_region_id"] = array("Name" => "object_p_region_id", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["land_area"] = array("Name" => "land_area", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["land_price_per_m"] = array("Name" => "land_price_per_m", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["land_total_price"] = array("Name" => "land_total_price", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["building_area"] = array("Name" => "building_area", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["building_price_per_m"] = array("Name" => "building_price_per_m", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["building_total_price"] = array("Name" => "building_total_price", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["wp_rt"] = array("Name" => "wp_rt", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["wp_rw"] = array("Name" => "wp_rw", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["object_rt"] = array("Name" => "object_rt", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["object_rw"] = array("Name" => "object_rw", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["njop_pbb"] = array("Name" => "njop_pbb", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["object_address_name"] = array("Name" => "object_address_name", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["p_bphtb_legal_doc_type_id"] = array("Name" => "p_bphtb_legal_doc_type_id", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["npop"] = array("Name" => "npop", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["npop_tkp"] = array("Name" => "npop_tkp", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["npop_kp"] = array("Name" => "npop_kp", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["bphtb_amt"] = array("Name" => "bphtb_amt", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["bphtb_amt_final"] = array("Name" => "bphtb_amt_final", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["bphtb_discount"] = array("Name" => "bphtb_discount", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["description"] = array("Name" => "description", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["market_price"] = array("Name" => "market_price", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["mobile_phone_no"] = array("Name" => "mobile_phone_no", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["wp_p_region_id_kec"] = array("Name" => "wp_p_region_id_kec", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["object_p_region_id_kel"] = array("Name" => "object_p_region_id_kel", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
-//Prepare Method @94-91E1320A
+//Prepare Method @94-A34FC581
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlt_customer_order_id", ccsFloat, "", "", $this->Parameters["urlt_customer_order_id"], "", false);
+        $this->wp->AddParameter("1", "urlt_bphtb_registration_id", ccsText, "", "", $this->Parameters["urlt_bphtb_registration_id"], "", false);
         $this->AllParametersSet = $this->wp->AllParamsSet();
     }
 //End Prepare Method
 
-//Open Method @94-DF3AF697
+//Open Method @94-AA4D91C0
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "SELECT * \n" .
-        "FROM v_vat_registration\n" .
-        "WHERE t_customer_order_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ";
+        $this->SQL = "select a.*,\n" .
+        "b.region_name as wp_kota,\n" .
+        "c.region_name as wp_kecamatan,\n" .
+        "d.region_name as wp_kelurahan,\n" .
+        "e.region_name as object_region,\n" .
+        "f.region_name as object_kecamatan,\n" .
+        "g.region_name as object_kelurahan,\n" .
+        "h.description as doc_name\n" .
+        "\n" .
+        "from t_bphtb_registration as a \n" .
+        "left join p_region as b\n" .
+        "	on a.wp_p_region_id = b.p_region_id\n" .
+        "left join p_region as c\n" .
+        "	on a.wp_p_region_id_kec = c.p_region_id\n" .
+        "left join p_region as d\n" .
+        "	on a.wp_p_region_id_kel = d.p_region_id\n" .
+        "left join p_region as e\n" .
+        "	on a.object_p_region_id = e.p_region_id\n" .
+        "left join p_region as f\n" .
+        "	on a.object_p_region_id_kec = f.p_region_id\n" .
+        "left join p_region as g\n" .
+        "	on a.object_p_region_id_kel = g.p_region_id\n" .
+        "left join p_bphtb_legal_doc_type as h\n" .
+        "	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id\n" .
+        "where a.t_bphtb_registration_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         $this->PageSize = 1;
@@ -850,21 +914,48 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-727B2ACF
+//SetValues Method @94-05F2AB04
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
         $this->wp_kelurahan->SetDBValue($this->f("wp_kelurahan"));
         $this->wp_p_region_id->SetDBValue(trim($this->f("wp_p_region_id")));
-        $this->wp_p_region_id_kecamatan->SetDBValue(trim($this->f("wp_p_region_id_kecamatan")));
-        $this->wp_p_region_id_kelurahan->SetDBValue(trim($this->f("wp_p_region_id_kelurahan")));
+        $this->wp_p_region_id_kec->SetDBValue(trim($this->f("wp_p_region_id_kec")));
+        $this->wp_p_region_id_kel->SetDBValue(trim($this->f("wp_p_region_id_kel")));
         $this->wp_kecamatan->SetDBValue($this->f("wp_kecamatan"));
+        $this->wp_name->SetDBValue($this->f("wp_name"));
+        $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
+        $this->npwp->SetDBValue($this->f("npwp"));
         $this->object_kelurahan->SetDBValue($this->f("wp_kelurahan"));
-        $this->object_p_region_id_kelurahan->SetDBValue(trim($this->f("wp_p_region_id_kelurahan")));
+        $this->object_p_region_id_kel->SetDBValue(trim($this->f("wp_p_region_id_kel")));
         $this->object_kecamatan->SetDBValue($this->f("wp_kecamatan"));
-        $this->object_p_region_id_kecamatan->SetDBValue(trim($this->f("wp_p_region_id_kecamatan")));
+        $this->object_p_region_id_kec->SetDBValue(trim($this->f("wp_p_region_id_kec")));
         $this->object_kota->SetDBValue($this->f("wp_kota"));
         $this->object_p_region_id->SetDBValue(trim($this->f("wp_p_region_id")));
+        $this->land_area->SetDBValue(trim($this->f("land_area")));
+        $this->land_price_per_m->SetDBValue(trim($this->f("land_price_per_m")));
+        $this->land_total_price->SetDBValue(trim($this->f("land_total_price")));
+        $this->building_area->SetDBValue(trim($this->f("building_area")));
+        $this->building_price_per_m->SetDBValue(trim($this->f("building_price_per_m")));
+        $this->building_total_price->SetDBValue(trim($this->f("building_total_price")));
+        $this->wp_rt->SetDBValue($this->f("wp_rt"));
+        $this->wp_rw->SetDBValue($this->f("wp_rw"));
+        $this->object_rt->SetDBValue($this->f("object_rt"));
+        $this->object_rw->SetDBValue($this->f("object_rw"));
+        $this->njop_pbb->SetDBValue($this->f("njop_pbb"));
+        $this->object_address_name->SetDBValue($this->f("object_address_name"));
+        $this->p_bphtb_legal_doc_type_id->SetDBValue($this->f("p_bphtb_legal_doc_type_id"));
+        $this->npop->SetDBValue(trim($this->f("npop")));
+        $this->npop_tkp->SetDBValue(trim($this->f("npop_tkp")));
+        $this->npop_kp->SetDBValue(trim($this->f("npop_kp")));
+        $this->bphtb_amt->SetDBValue(trim($this->f("bphtb_amt")));
+        $this->bphtb_amt_final->SetDBValue(trim($this->f("bphtb_amt_final")));
+        $this->bphtb_discount->SetDBValue(trim($this->f("bphtb_discount")));
+        $this->description->SetDBValue($this->f("description"));
+        $this->market_price->SetDBValue(trim($this->f("market_price")));
+        $this->phone_no->SetDBValue($this->f("phone_no"));
+        $this->mobile_phone_no->SetDBValue($this->f("mobile_phone_no"));
+        $this->t_bphtb_registration_id->SetDBValue(trim($this->f("t_bphtb_registration_id")));
     }
 //End SetValues Method
 
@@ -1087,260 +1178,169 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @94-571EC9C6
+//Update Method @94-3DCAB474
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["o_res"] = new clsSQLParameter("urlo_res", ccsText, "", "", CCGetFromGet("o_res", NULL), "", false, $this->ErrorBlock);
-        $this->cp["icode"] = new clsSQLParameter("urlicode", ccsText, "", "", CCGetFromGet("icode", NULL), "", false, $this->ErrorBlock);
-        $this->cp["iuser"] = new clsSQLParameter("exprKey907", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
-        $this->cp["cusorderid"] = new clsSQLParameter("ctrlt_customer_order_id", ccsFloat, "", "", $this->t_customer_order_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["regionidkel"] = new clsSQLParameter("ctrlp_region_id_kelurahan", ccsFloat, "", "", $this->p_region_id_kelurahan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["regionidkec"] = new clsSQLParameter("ctrlp_region_id_kecamatan", ccsFloat, "", "", $this->p_region_id_kecamatan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["regionid"] = new clsSQLParameter("ctrlp_region_id", ccsFloat, "", "", $this->p_region_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["regionidkelown"] = new clsSQLParameter("ctrlp_region_id_kel_owner", ccsFloat, "", "", $this->p_region_id_kel_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["regionidkecown"] = new clsSQLParameter("ctrlp_region_id_kec_owner", ccsFloat, "", "", $this->p_region_id_kec_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["regionidown"] = new clsSQLParameter("ctrlp_region_id_owner", ccsFloat, "", "", $this->p_region_id_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["companyname"] = new clsSQLParameter("ctrlcompany_name", ccsText, "", "", $this->company_name->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["addressname"] = new clsSQLParameter("ctrladdress_name", ccsText, "", "", $this->address_name->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["jobid"] = new clsSQLParameter("ctrlp_job_position_id", ccsFloat, "", "", $this->p_job_position_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["companybrand"] = new clsSQLParameter("ctrlcompany_brand", ccsText, "", "", $this->company_brand->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["addressno"] = new clsSQLParameter("ctrladdress_no", ccsText, "", "", $this->address_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["addressrt"] = new clsSQLParameter("ctrladdress_rt", ccsText, "", "", $this->address_rt->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["addressrw"] = new clsSQLParameter("ctrladdress_rw", ccsText, "", "", $this->address_rw->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["addressnoown"] = new clsSQLParameter("ctrladdress_no_owner", ccsText, "", "", $this->address_no_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["addressrtown"] = new clsSQLParameter("ctrladdress_rt_owner", ccsText, "", "", $this->address_rt_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["addressrwown"] = new clsSQLParameter("ctrladdress_rw_owner", ccsText, "", "", $this->address_rw_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["phoneno"] = new clsSQLParameter("ctrlphone_no", ccsText, "", "", $this->phone_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["faxno"] = new clsSQLParameter("ctrlfax_no", ccsText, "", "", $this->fax_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["zipcode"] = new clsSQLParameter("ctrlzip_code", ccsText, "", "", $this->zip_code->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["phonenoown"] = new clsSQLParameter("ctrlphone_no_owner", ccsText, "", "", $this->phone_no_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["companyown"] = new clsSQLParameter("ctrlcompany_owner", ccsText, "", "", $this->company_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["mobilenoown"] = new clsSQLParameter("ctrlmobile_no_owner", ccsText, "", "", $this->mobile_no_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["faxnoown"] = new clsSQLParameter("ctrlfax_no_owner", ccsText, "", "", $this->fax_no_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["zipcodeown"] = new clsSQLParameter("ctrlzip_code_owner", ccsText, "", "", $this->zip_code_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["mobileno"] = new clsSQLParameter("ctrlmobile_no", ccsText, "", "", $this->mobile_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["addressnameown"] = new clsSQLParameter("ctrladdress_name_owner", ccsText, "", "", $this->address_name_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["i_email"] = new clsSQLParameter("ctrlemail", ccsText, "", "", $this->email->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["vattypedtlid"] = new clsSQLParameter("ctrlp_vat_type_dtl_id", ccsFloat, "", "", $this->p_vat_type_dtl_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpusername"] = new clsSQLParameter("ctrlwp_user_name", ccsText, "", "", $this->wp_user_name->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpuserpwd"] = new clsSQLParameter("ctrlwp_user_pwd", ccsText, "", "", $this->wp_user_pwd->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpname"] = new clsSQLParameter("ctrlwp_name", ccsText, "", "", $this->wp_name->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpaddressname"] = new clsSQLParameter("ctrlwp_address_name", ccsText, "", "", $this->wp_address_name->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpaddressno"] = new clsSQLParameter("ctrlwp_address_no", ccsText, "", "", $this->wp_address_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wprt"] = new clsSQLParameter("ctrlwp_address_rt", ccsText, "", "", $this->wp_address_rt->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wprw"] = new clsSQLParameter("ctrlwp_address_rw", ccsText, "", "", $this->wp_address_rw->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpkel"] = new clsSQLParameter("ctrlwp_p_region_id_kelurahan", ccsFloat, "", "", $this->wp_p_region_id_kelurahan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpkec"] = new clsSQLParameter("ctrlwp_p_region_id_kecamatan", ccsFloat, "", "", $this->wp_p_region_id_kecamatan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpkota"] = new clsSQLParameter("ctrlwp_p_region_id", ccsFloat, "", "", $this->wp_p_region_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpphoneno"] = new clsSQLParameter("ctrlwp_phone_no", ccsText, "", "", $this->wp_phone_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpmobileno"] = new clsSQLParameter("ctrlwp_mobile_no", ccsText, "", "", $this->wp_mobile_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpfaxno"] = new clsSQLParameter("ctrlwp_fax_no", ccsText, "", "", $this->wp_fax_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpzipcode"] = new clsSQLParameter("ctrlwp_zip_code", ccsText, "", "", $this->wp_zip_code->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["wpemail"] = new clsSQLParameter("ctrlwp_email", ccsText, "", "", $this->wp_email->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandaddress"] = new clsSQLParameter("ctrlbrand_address_name", ccsText, "", "", $this->brand_address_name->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandno"] = new clsSQLParameter("ctrlbrand_address_no", ccsText, "", "", $this->brand_address_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandrt"] = new clsSQLParameter("ctrlbrand_address_rt", ccsText, "", "", $this->brand_address_rt->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandrw"] = new clsSQLParameter("ctrlbrand_address_rw", ccsText, "", "", $this->brand_address_rw->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandkel"] = new clsSQLParameter("ctrlbrand_p_region_id_kel", ccsFloat, "", "", $this->brand_p_region_id_kel->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandkec"] = new clsSQLParameter("ctrlbrand_p_region_id_kec", ccsFloat, "", "", $this->brand_p_region_id_kec->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandkota"] = new clsSQLParameter("ctrlbrand_p_region_id", ccsFloat, "", "", $this->brand_p_region_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandphoneno"] = new clsSQLParameter("ctrlbrand_phone_no", ccsText, "", "", $this->brand_phone_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandmobileno"] = new clsSQLParameter("ctrlbrand_mobile_no", ccsText, "", "", $this->brand_mobile_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandfaxno"] = new clsSQLParameter("ctrlbrand_fax_no", ccsText, "", "", $this->brand_fax_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["brandzipcode"] = new clsSQLParameter("ctrlbrand_zip_code", ccsText, "", "", $this->brand_zip_code->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["idvat"] = new clsSQLParameter("ctrlt_vat_registration_id", ccsFloat, "", "", $this->t_vat_registration_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["questionid"] = new clsSQLParameter("ctrlp_private_question_id", ccsFloat, "", "", $this->p_private_question_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["privateanswer"] = new clsSQLParameter("ctrlprivate_answer", ccsText, "", "", $this->private_answer->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["i_mode"] = new clsSQLParameter("exprKey970", ccsText, "", "", 'U', "", false, $this->ErrorBlock);
+        $this->cp["updated_by"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), NULL, false, $this->ErrorBlock);
+        $this->cp["updated_date"] = new clsSQLParameter("expr739", ccsText, "", "", date("Y-m-d H:i:s"), NULL, false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id"] = new clsSQLParameter("ctrlwp_p_region_id", ccsFloat, "", "", $this->wp_p_region_id->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id_kel"] = new clsSQLParameter("ctrlwp_p_region_id_kel", ccsFloat, "", "", $this->wp_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["wp_name"] = new clsSQLParameter("ctrlwp_name", ccsText, "", "", $this->wp_name->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["wp_address_name"] = new clsSQLParameter("ctrlwp_address_name", ccsText, "", "", $this->wp_address_name->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["npwp"] = new clsSQLParameter("ctrlnpwp", ccsText, "", "", $this->npwp->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["object_p_region_id_kec"] = new clsSQLParameter("ctrlobject_p_region_id_kec", ccsText, "", "", $this->object_p_region_id_kec->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["object_p_region_id"] = new clsSQLParameter("ctrlobject_p_region_id", ccsText, "", "", $this->object_p_region_id->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["land_area"] = new clsSQLParameter("ctrlland_area", ccsFloat, "", "", $this->land_area->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["land_price_per_m"] = new clsSQLParameter("ctrlland_price_per_m", ccsFloat, "", "", $this->land_price_per_m->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["land_total_price"] = new clsSQLParameter("ctrlland_total_price", ccsFloat, "", "", $this->land_total_price->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["building_area"] = new clsSQLParameter("ctrlbuilding_area", ccsFloat, "", "", $this->building_area->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["building_price_per_m"] = new clsSQLParameter("ctrlbuilding_price_per_m", ccsFloat, "", "", $this->building_price_per_m->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["building_total_price"] = new clsSQLParameter("ctrlbuilding_total_price", ccsFloat, "", "", $this->building_total_price->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["wp_rt"] = new clsSQLParameter("ctrlwp_rt", ccsText, "", "", $this->wp_rt->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["wp_rw"] = new clsSQLParameter("ctrlwp_rw", ccsText, "", "", $this->wp_rw->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["object_rt"] = new clsSQLParameter("ctrlobject_rt", ccsText, "", "", $this->object_rt->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["object_rw"] = new clsSQLParameter("ctrlobject_rw", ccsText, "", "", $this->object_rw->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["njop_pbb"] = new clsSQLParameter("ctrlnjop_pbb", ccsText, "", "", $this->njop_pbb->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["object_address_name"] = new clsSQLParameter("ctrlobject_address_name", ccsText, "", "", $this->object_address_name->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["p_bphtb_legal_doc_type_id"] = new clsSQLParameter("ctrlp_bphtb_legal_doc_type_id", ccsText, "", "", $this->p_bphtb_legal_doc_type_id->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["npop"] = new clsSQLParameter("ctrlnpop", ccsFloat, "", "", $this->npop->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["npop_tkp"] = new clsSQLParameter("ctrlnpop_tkp", ccsFloat, "", "", $this->npop_tkp->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["npop_kp"] = new clsSQLParameter("ctrlnpop_kp", ccsFloat, "", "", $this->npop_kp->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["bphtb_amt"] = new clsSQLParameter("ctrlbphtb_amt", ccsFloat, "", "", $this->bphtb_amt->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["bphtb_amt_final"] = new clsSQLParameter("ctrlbphtb_amt_final", ccsFloat, "", "", $this->bphtb_amt_final->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["bphtb_discount"] = new clsSQLParameter("ctrlbphtb_discount", ccsFloat, "", "", $this->bphtb_discount->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["market_price"] = new clsSQLParameter("ctrlmarket_price", ccsFloat, "", "", $this->market_price->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["mobile_phone_no"] = new clsSQLParameter("ctrlmobile_phone_no", ccsText, "", "", $this->mobile_phone_no->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id_kec"] = new clsSQLParameter("ctrlwp_p_region_id_kec", ccsFloat, "", "", $this->wp_p_region_id_kec->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
+        $wp = new clsSQLParameters($this->ErrorBlock);
+        $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
+        if(!$wp->AllParamsSet()) {
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
+        $wp->AddParameter("2", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
+        if(!$wp->AllParamsSet()) {
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
+        $wp->AddParameter("3", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
+        if(!$wp->AllParamsSet()) {
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
-        if (!is_null($this->cp["o_res"]->GetValue()) and !strlen($this->cp["o_res"]->GetText()) and !is_bool($this->cp["o_res"]->GetValue())) 
-            $this->cp["o_res"]->SetText(CCGetFromGet("o_res", NULL));
-        if (!is_null($this->cp["icode"]->GetValue()) and !strlen($this->cp["icode"]->GetText()) and !is_bool($this->cp["icode"]->GetValue())) 
-            $this->cp["icode"]->SetText(CCGetFromGet("icode", NULL));
-        if (!is_null($this->cp["iuser"]->GetValue()) and !strlen($this->cp["iuser"]->GetText()) and !is_bool($this->cp["iuser"]->GetValue())) 
-            $this->cp["iuser"]->SetValue(CCGetUserLogin());
-        if (!is_null($this->cp["cusorderid"]->GetValue()) and !strlen($this->cp["cusorderid"]->GetText()) and !is_bool($this->cp["cusorderid"]->GetValue())) 
-            $this->cp["cusorderid"]->SetValue($this->t_customer_order_id->GetValue(true));
-        if (!is_null($this->cp["regionidkel"]->GetValue()) and !strlen($this->cp["regionidkel"]->GetText()) and !is_bool($this->cp["regionidkel"]->GetValue())) 
-            $this->cp["regionidkel"]->SetValue($this->p_region_id_kelurahan->GetValue(true));
-        if (!is_null($this->cp["regionidkec"]->GetValue()) and !strlen($this->cp["regionidkec"]->GetText()) and !is_bool($this->cp["regionidkec"]->GetValue())) 
-            $this->cp["regionidkec"]->SetValue($this->p_region_id_kecamatan->GetValue(true));
-        if (!is_null($this->cp["regionid"]->GetValue()) and !strlen($this->cp["regionid"]->GetText()) and !is_bool($this->cp["regionid"]->GetValue())) 
-            $this->cp["regionid"]->SetValue($this->p_region_id->GetValue(true));
-        if (!is_null($this->cp["regionidkelown"]->GetValue()) and !strlen($this->cp["regionidkelown"]->GetText()) and !is_bool($this->cp["regionidkelown"]->GetValue())) 
-            $this->cp["regionidkelown"]->SetValue($this->p_region_id_kel_owner->GetValue(true));
-        if (!is_null($this->cp["regionidkecown"]->GetValue()) and !strlen($this->cp["regionidkecown"]->GetText()) and !is_bool($this->cp["regionidkecown"]->GetValue())) 
-            $this->cp["regionidkecown"]->SetValue($this->p_region_id_kec_owner->GetValue(true));
-        if (!is_null($this->cp["regionidown"]->GetValue()) and !strlen($this->cp["regionidown"]->GetText()) and !is_bool($this->cp["regionidown"]->GetValue())) 
-            $this->cp["regionidown"]->SetValue($this->p_region_id_owner->GetValue(true));
-        if (!is_null($this->cp["companyname"]->GetValue()) and !strlen($this->cp["companyname"]->GetText()) and !is_bool($this->cp["companyname"]->GetValue())) 
-            $this->cp["companyname"]->SetValue($this->company_name->GetValue(true));
-        if (!is_null($this->cp["addressname"]->GetValue()) and !strlen($this->cp["addressname"]->GetText()) and !is_bool($this->cp["addressname"]->GetValue())) 
-            $this->cp["addressname"]->SetValue($this->address_name->GetValue(true));
-        if (!is_null($this->cp["jobid"]->GetValue()) and !strlen($this->cp["jobid"]->GetText()) and !is_bool($this->cp["jobid"]->GetValue())) 
-            $this->cp["jobid"]->SetValue($this->p_job_position_id->GetValue(true));
-        if (!is_null($this->cp["companybrand"]->GetValue()) and !strlen($this->cp["companybrand"]->GetText()) and !is_bool($this->cp["companybrand"]->GetValue())) 
-            $this->cp["companybrand"]->SetValue($this->company_brand->GetValue(true));
-        if (!is_null($this->cp["addressno"]->GetValue()) and !strlen($this->cp["addressno"]->GetText()) and !is_bool($this->cp["addressno"]->GetValue())) 
-            $this->cp["addressno"]->SetValue($this->address_no->GetValue(true));
-        if (!is_null($this->cp["addressrt"]->GetValue()) and !strlen($this->cp["addressrt"]->GetText()) and !is_bool($this->cp["addressrt"]->GetValue())) 
-            $this->cp["addressrt"]->SetValue($this->address_rt->GetValue(true));
-        if (!is_null($this->cp["addressrw"]->GetValue()) and !strlen($this->cp["addressrw"]->GetText()) and !is_bool($this->cp["addressrw"]->GetValue())) 
-            $this->cp["addressrw"]->SetValue($this->address_rw->GetValue(true));
-        if (!is_null($this->cp["addressnoown"]->GetValue()) and !strlen($this->cp["addressnoown"]->GetText()) and !is_bool($this->cp["addressnoown"]->GetValue())) 
-            $this->cp["addressnoown"]->SetValue($this->address_no_owner->GetValue(true));
-        if (!is_null($this->cp["addressrtown"]->GetValue()) and !strlen($this->cp["addressrtown"]->GetText()) and !is_bool($this->cp["addressrtown"]->GetValue())) 
-            $this->cp["addressrtown"]->SetValue($this->address_rt_owner->GetValue(true));
-        if (!is_null($this->cp["addressrwown"]->GetValue()) and !strlen($this->cp["addressrwown"]->GetText()) and !is_bool($this->cp["addressrwown"]->GetValue())) 
-            $this->cp["addressrwown"]->SetValue($this->address_rw_owner->GetValue(true));
-        if (!is_null($this->cp["phoneno"]->GetValue()) and !strlen($this->cp["phoneno"]->GetText()) and !is_bool($this->cp["phoneno"]->GetValue())) 
-            $this->cp["phoneno"]->SetValue($this->phone_no->GetValue(true));
-        if (!is_null($this->cp["faxno"]->GetValue()) and !strlen($this->cp["faxno"]->GetText()) and !is_bool($this->cp["faxno"]->GetValue())) 
-            $this->cp["faxno"]->SetValue($this->fax_no->GetValue(true));
-        if (!is_null($this->cp["zipcode"]->GetValue()) and !strlen($this->cp["zipcode"]->GetText()) and !is_bool($this->cp["zipcode"]->GetValue())) 
-            $this->cp["zipcode"]->SetValue($this->zip_code->GetValue(true));
-        if (!is_null($this->cp["phonenoown"]->GetValue()) and !strlen($this->cp["phonenoown"]->GetText()) and !is_bool($this->cp["phonenoown"]->GetValue())) 
-            $this->cp["phonenoown"]->SetValue($this->phone_no_owner->GetValue(true));
-        if (!is_null($this->cp["companyown"]->GetValue()) and !strlen($this->cp["companyown"]->GetText()) and !is_bool($this->cp["companyown"]->GetValue())) 
-            $this->cp["companyown"]->SetValue($this->company_owner->GetValue(true));
-        if (!is_null($this->cp["mobilenoown"]->GetValue()) and !strlen($this->cp["mobilenoown"]->GetText()) and !is_bool($this->cp["mobilenoown"]->GetValue())) 
-            $this->cp["mobilenoown"]->SetValue($this->mobile_no_owner->GetValue(true));
-        if (!is_null($this->cp["faxnoown"]->GetValue()) and !strlen($this->cp["faxnoown"]->GetText()) and !is_bool($this->cp["faxnoown"]->GetValue())) 
-            $this->cp["faxnoown"]->SetValue($this->fax_no_owner->GetValue(true));
-        if (!is_null($this->cp["zipcodeown"]->GetValue()) and !strlen($this->cp["zipcodeown"]->GetText()) and !is_bool($this->cp["zipcodeown"]->GetValue())) 
-            $this->cp["zipcodeown"]->SetValue($this->zip_code_owner->GetValue(true));
-        if (!is_null($this->cp["mobileno"]->GetValue()) and !strlen($this->cp["mobileno"]->GetText()) and !is_bool($this->cp["mobileno"]->GetValue())) 
-            $this->cp["mobileno"]->SetValue($this->mobile_no->GetValue(true));
-        if (!is_null($this->cp["addressnameown"]->GetValue()) and !strlen($this->cp["addressnameown"]->GetText()) and !is_bool($this->cp["addressnameown"]->GetValue())) 
-            $this->cp["addressnameown"]->SetValue($this->address_name_owner->GetValue(true));
-        if (!is_null($this->cp["i_email"]->GetValue()) and !strlen($this->cp["i_email"]->GetText()) and !is_bool($this->cp["i_email"]->GetValue())) 
-            $this->cp["i_email"]->SetValue($this->email->GetValue(true));
-        if (!is_null($this->cp["vattypedtlid"]->GetValue()) and !strlen($this->cp["vattypedtlid"]->GetText()) and !is_bool($this->cp["vattypedtlid"]->GetValue())) 
-            $this->cp["vattypedtlid"]->SetValue($this->p_vat_type_dtl_id->GetValue(true));
-        if (!is_null($this->cp["wpusername"]->GetValue()) and !strlen($this->cp["wpusername"]->GetText()) and !is_bool($this->cp["wpusername"]->GetValue())) 
-            $this->cp["wpusername"]->SetValue($this->wp_user_name->GetValue(true));
-        if (!is_null($this->cp["wpuserpwd"]->GetValue()) and !strlen($this->cp["wpuserpwd"]->GetText()) and !is_bool($this->cp["wpuserpwd"]->GetValue())) 
-            $this->cp["wpuserpwd"]->SetValue($this->wp_user_pwd->GetValue(true));
-        if (!is_null($this->cp["wpname"]->GetValue()) and !strlen($this->cp["wpname"]->GetText()) and !is_bool($this->cp["wpname"]->GetValue())) 
-            $this->cp["wpname"]->SetValue($this->wp_name->GetValue(true));
-        if (!is_null($this->cp["wpaddressname"]->GetValue()) and !strlen($this->cp["wpaddressname"]->GetText()) and !is_bool($this->cp["wpaddressname"]->GetValue())) 
-            $this->cp["wpaddressname"]->SetValue($this->wp_address_name->GetValue(true));
-        if (!is_null($this->cp["wpaddressno"]->GetValue()) and !strlen($this->cp["wpaddressno"]->GetText()) and !is_bool($this->cp["wpaddressno"]->GetValue())) 
-            $this->cp["wpaddressno"]->SetValue($this->wp_address_no->GetValue(true));
-        if (!is_null($this->cp["wprt"]->GetValue()) and !strlen($this->cp["wprt"]->GetText()) and !is_bool($this->cp["wprt"]->GetValue())) 
-            $this->cp["wprt"]->SetValue($this->wp_address_rt->GetValue(true));
-        if (!is_null($this->cp["wprw"]->GetValue()) and !strlen($this->cp["wprw"]->GetText()) and !is_bool($this->cp["wprw"]->GetValue())) 
-            $this->cp["wprw"]->SetValue($this->wp_address_rw->GetValue(true));
-        if (!is_null($this->cp["wpkel"]->GetValue()) and !strlen($this->cp["wpkel"]->GetText()) and !is_bool($this->cp["wpkel"]->GetValue())) 
-            $this->cp["wpkel"]->SetValue($this->wp_p_region_id_kelurahan->GetValue(true));
-        if (!is_null($this->cp["wpkec"]->GetValue()) and !strlen($this->cp["wpkec"]->GetText()) and !is_bool($this->cp["wpkec"]->GetValue())) 
-            $this->cp["wpkec"]->SetValue($this->wp_p_region_id_kecamatan->GetValue(true));
-        if (!is_null($this->cp["wpkota"]->GetValue()) and !strlen($this->cp["wpkota"]->GetText()) and !is_bool($this->cp["wpkota"]->GetValue())) 
-            $this->cp["wpkota"]->SetValue($this->wp_p_region_id->GetValue(true));
-        if (!is_null($this->cp["wpphoneno"]->GetValue()) and !strlen($this->cp["wpphoneno"]->GetText()) and !is_bool($this->cp["wpphoneno"]->GetValue())) 
-            $this->cp["wpphoneno"]->SetValue($this->wp_phone_no->GetValue(true));
-        if (!is_null($this->cp["wpmobileno"]->GetValue()) and !strlen($this->cp["wpmobileno"]->GetText()) and !is_bool($this->cp["wpmobileno"]->GetValue())) 
-            $this->cp["wpmobileno"]->SetValue($this->wp_mobile_no->GetValue(true));
-        if (!is_null($this->cp["wpfaxno"]->GetValue()) and !strlen($this->cp["wpfaxno"]->GetText()) and !is_bool($this->cp["wpfaxno"]->GetValue())) 
-            $this->cp["wpfaxno"]->SetValue($this->wp_fax_no->GetValue(true));
-        if (!is_null($this->cp["wpzipcode"]->GetValue()) and !strlen($this->cp["wpzipcode"]->GetText()) and !is_bool($this->cp["wpzipcode"]->GetValue())) 
-            $this->cp["wpzipcode"]->SetValue($this->wp_zip_code->GetValue(true));
-        if (!is_null($this->cp["wpemail"]->GetValue()) and !strlen($this->cp["wpemail"]->GetText()) and !is_bool($this->cp["wpemail"]->GetValue())) 
-            $this->cp["wpemail"]->SetValue($this->wp_email->GetValue(true));
-        if (!is_null($this->cp["brandaddress"]->GetValue()) and !strlen($this->cp["brandaddress"]->GetText()) and !is_bool($this->cp["brandaddress"]->GetValue())) 
-            $this->cp["brandaddress"]->SetValue($this->brand_address_name->GetValue(true));
-        if (!is_null($this->cp["brandno"]->GetValue()) and !strlen($this->cp["brandno"]->GetText()) and !is_bool($this->cp["brandno"]->GetValue())) 
-            $this->cp["brandno"]->SetValue($this->brand_address_no->GetValue(true));
-        if (!is_null($this->cp["brandrt"]->GetValue()) and !strlen($this->cp["brandrt"]->GetText()) and !is_bool($this->cp["brandrt"]->GetValue())) 
-            $this->cp["brandrt"]->SetValue($this->brand_address_rt->GetValue(true));
-        if (!is_null($this->cp["brandrw"]->GetValue()) and !strlen($this->cp["brandrw"]->GetText()) and !is_bool($this->cp["brandrw"]->GetValue())) 
-            $this->cp["brandrw"]->SetValue($this->brand_address_rw->GetValue(true));
-        if (!is_null($this->cp["brandkel"]->GetValue()) and !strlen($this->cp["brandkel"]->GetText()) and !is_bool($this->cp["brandkel"]->GetValue())) 
-            $this->cp["brandkel"]->SetValue($this->brand_p_region_id_kel->GetValue(true));
-        if (!is_null($this->cp["brandkec"]->GetValue()) and !strlen($this->cp["brandkec"]->GetText()) and !is_bool($this->cp["brandkec"]->GetValue())) 
-            $this->cp["brandkec"]->SetValue($this->brand_p_region_id_kec->GetValue(true));
-        if (!is_null($this->cp["brandkota"]->GetValue()) and !strlen($this->cp["brandkota"]->GetText()) and !is_bool($this->cp["brandkota"]->GetValue())) 
-            $this->cp["brandkota"]->SetValue($this->brand_p_region_id->GetValue(true));
-        if (!is_null($this->cp["brandphoneno"]->GetValue()) and !strlen($this->cp["brandphoneno"]->GetText()) and !is_bool($this->cp["brandphoneno"]->GetValue())) 
-            $this->cp["brandphoneno"]->SetValue($this->brand_phone_no->GetValue(true));
-        if (!is_null($this->cp["brandmobileno"]->GetValue()) and !strlen($this->cp["brandmobileno"]->GetText()) and !is_bool($this->cp["brandmobileno"]->GetValue())) 
-            $this->cp["brandmobileno"]->SetValue($this->brand_mobile_no->GetValue(true));
-        if (!is_null($this->cp["brandfaxno"]->GetValue()) and !strlen($this->cp["brandfaxno"]->GetText()) and !is_bool($this->cp["brandfaxno"]->GetValue())) 
-            $this->cp["brandfaxno"]->SetValue($this->brand_fax_no->GetValue(true));
-        if (!is_null($this->cp["brandzipcode"]->GetValue()) and !strlen($this->cp["brandzipcode"]->GetText()) and !is_bool($this->cp["brandzipcode"]->GetValue())) 
-            $this->cp["brandzipcode"]->SetValue($this->brand_zip_code->GetValue(true));
-        if (!is_null($this->cp["idvat"]->GetValue()) and !strlen($this->cp["idvat"]->GetText()) and !is_bool($this->cp["idvat"]->GetValue())) 
-            $this->cp["idvat"]->SetValue($this->t_vat_registration_id->GetValue(true));
-        if (!is_null($this->cp["questionid"]->GetValue()) and !strlen($this->cp["questionid"]->GetText()) and !is_bool($this->cp["questionid"]->GetValue())) 
-            $this->cp["questionid"]->SetValue($this->p_private_question_id->GetValue(true));
-        if (!is_null($this->cp["privateanswer"]->GetValue()) and !strlen($this->cp["privateanswer"]->GetText()) and !is_bool($this->cp["privateanswer"]->GetValue())) 
-            $this->cp["privateanswer"]->SetValue($this->private_answer->GetValue(true));
-        if (!is_null($this->cp["i_mode"]->GetValue()) and !strlen($this->cp["i_mode"]->GetText()) and !is_bool($this->cp["i_mode"]->GetValue())) 
-            $this->cp["i_mode"]->SetValue('U');
-        $this->SQL = "SELECT f_crud_vat_reg (" . $this->ToSQL($this->cp["icode"]->GetDBValue(), $this->cp["icode"]->DataType) . ", "
-             . $this->ToSQL($this->cp["iuser"]->GetDBValue(), $this->cp["iuser"]->DataType) . ", "
-             . $this->ToSQL($this->cp["cusorderid"]->GetDBValue(), $this->cp["cusorderid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidkel"]->GetDBValue(), $this->cp["regionidkel"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidkec"]->GetDBValue(), $this->cp["regionidkec"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionid"]->GetDBValue(), $this->cp["regionid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidkelown"]->GetDBValue(), $this->cp["regionidkelown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidkecown"]->GetDBValue(), $this->cp["regionidkecown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidown"]->GetDBValue(), $this->cp["regionidown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["companyname"]->GetDBValue(), $this->cp["companyname"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressname"]->GetDBValue(), $this->cp["addressname"]->DataType) . ", "
-             . $this->ToSQL($this->cp["jobid"]->GetDBValue(), $this->cp["jobid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["companybrand"]->GetDBValue(), $this->cp["companybrand"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressno"]->GetDBValue(), $this->cp["addressno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressrt"]->GetDBValue(), $this->cp["addressrt"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressrw"]->GetDBValue(), $this->cp["addressrw"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressnoown"]->GetDBValue(), $this->cp["addressnoown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressrtown"]->GetDBValue(), $this->cp["addressrtown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressrwown"]->GetDBValue(), $this->cp["addressrwown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["phoneno"]->GetDBValue(), $this->cp["phoneno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["faxno"]->GetDBValue(), $this->cp["faxno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["zipcode"]->GetDBValue(), $this->cp["zipcode"]->DataType) . ", "
-             . $this->ToSQL($this->cp["phonenoown"]->GetDBValue(), $this->cp["phonenoown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["companyown"]->GetDBValue(), $this->cp["companyown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["mobilenoown"]->GetDBValue(), $this->cp["mobilenoown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["faxnoown"]->GetDBValue(), $this->cp["faxnoown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["zipcodeown"]->GetDBValue(), $this->cp["zipcodeown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["mobileno"]->GetDBValue(), $this->cp["mobileno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressnameown"]->GetDBValue(), $this->cp["addressnameown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["i_email"]->GetDBValue(), $this->cp["i_email"]->DataType) . ", "
-             . $this->ToSQL($this->cp["vattypedtlid"]->GetDBValue(), $this->cp["vattypedtlid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpusername"]->GetDBValue(), $this->cp["wpusername"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpuserpwd"]->GetDBValue(), $this->cp["wpuserpwd"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpname"]->GetDBValue(), $this->cp["wpname"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpaddressname"]->GetDBValue(), $this->cp["wpaddressname"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpaddressno"]->GetDBValue(), $this->cp["wpaddressno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wprt"]->GetDBValue(), $this->cp["wprt"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wprw"]->GetDBValue(), $this->cp["wprw"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpkel"]->GetDBValue(), $this->cp["wpkel"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpkec"]->GetDBValue(), $this->cp["wpkec"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpkota"]->GetDBValue(), $this->cp["wpkota"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpphoneno"]->GetDBValue(), $this->cp["wpphoneno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpmobileno"]->GetDBValue(), $this->cp["wpmobileno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpfaxno"]->GetDBValue(), $this->cp["wpfaxno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpzipcode"]->GetDBValue(), $this->cp["wpzipcode"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpemail"]->GetDBValue(), $this->cp["wpemail"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandaddress"]->GetDBValue(), $this->cp["brandaddress"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandno"]->GetDBValue(), $this->cp["brandno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandrt"]->GetDBValue(), $this->cp["brandrt"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandrw"]->GetDBValue(), $this->cp["brandrw"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandkel"]->GetDBValue(), $this->cp["brandkel"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandkec"]->GetDBValue(), $this->cp["brandkec"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandkota"]->GetDBValue(), $this->cp["brandkota"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandphoneno"]->GetDBValue(), $this->cp["brandphoneno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandmobileno"]->GetDBValue(), $this->cp["brandmobileno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandfaxno"]->GetDBValue(), $this->cp["brandfaxno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandzipcode"]->GetDBValue(), $this->cp["brandzipcode"]->DataType) . ", "
-             . $this->ToSQL($this->cp["idvat"]->GetDBValue(), $this->cp["idvat"]->DataType) . ", "
-             . $this->ToSQL($this->cp["questionid"]->GetDBValue(), $this->cp["questionid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["privateanswer"]->GetDBValue(), $this->cp["privateanswer"]->DataType) . ", "
-             . $this->ToSQL($this->cp["i_mode"]->GetDBValue(), $this->cp["i_mode"]->DataType) . ");";
+        if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
+            $this->cp["updated_by"]->SetValue(CCGetSession("UserLogin", NULL));
+        if (!is_null($this->cp["updated_date"]->GetValue()) and !strlen($this->cp["updated_date"]->GetText()) and !is_bool($this->cp["updated_date"]->GetValue())) 
+            $this->cp["updated_date"]->SetValue(date("Y-m-d H:i:s"));
+        if (!is_null($this->cp["wp_p_region_id"]->GetValue()) and !strlen($this->cp["wp_p_region_id"]->GetText()) and !is_bool($this->cp["wp_p_region_id"]->GetValue())) 
+            $this->cp["wp_p_region_id"]->SetValue($this->wp_p_region_id->GetValue(true));
+        if (!is_null($this->cp["wp_p_region_id_kel"]->GetValue()) and !strlen($this->cp["wp_p_region_id_kel"]->GetText()) and !is_bool($this->cp["wp_p_region_id_kel"]->GetValue())) 
+            $this->cp["wp_p_region_id_kel"]->SetValue($this->wp_p_region_id_kel->GetValue(true));
+        if (!is_null($this->cp["wp_name"]->GetValue()) and !strlen($this->cp["wp_name"]->GetText()) and !is_bool($this->cp["wp_name"]->GetValue())) 
+            $this->cp["wp_name"]->SetValue($this->wp_name->GetValue(true));
+        if (!is_null($this->cp["wp_address_name"]->GetValue()) and !strlen($this->cp["wp_address_name"]->GetText()) and !is_bool($this->cp["wp_address_name"]->GetValue())) 
+            $this->cp["wp_address_name"]->SetValue($this->wp_address_name->GetValue(true));
+        if (!is_null($this->cp["npwp"]->GetValue()) and !strlen($this->cp["npwp"]->GetText()) and !is_bool($this->cp["npwp"]->GetValue())) 
+            $this->cp["npwp"]->SetValue($this->npwp->GetValue(true));
+        if (!is_null($this->cp["object_p_region_id_kec"]->GetValue()) and !strlen($this->cp["object_p_region_id_kec"]->GetText()) and !is_bool($this->cp["object_p_region_id_kec"]->GetValue())) 
+            $this->cp["object_p_region_id_kec"]->SetValue($this->object_p_region_id_kec->GetValue(true));
+        if (!is_null($this->cp["object_p_region_id"]->GetValue()) and !strlen($this->cp["object_p_region_id"]->GetText()) and !is_bool($this->cp["object_p_region_id"]->GetValue())) 
+            $this->cp["object_p_region_id"]->SetValue($this->object_p_region_id->GetValue(true));
+        if (!is_null($this->cp["land_area"]->GetValue()) and !strlen($this->cp["land_area"]->GetText()) and !is_bool($this->cp["land_area"]->GetValue())) 
+            $this->cp["land_area"]->SetValue($this->land_area->GetValue(true));
+        if (!is_null($this->cp["land_price_per_m"]->GetValue()) and !strlen($this->cp["land_price_per_m"]->GetText()) and !is_bool($this->cp["land_price_per_m"]->GetValue())) 
+            $this->cp["land_price_per_m"]->SetValue($this->land_price_per_m->GetValue(true));
+        if (!is_null($this->cp["land_total_price"]->GetValue()) and !strlen($this->cp["land_total_price"]->GetText()) and !is_bool($this->cp["land_total_price"]->GetValue())) 
+            $this->cp["land_total_price"]->SetValue($this->land_total_price->GetValue(true));
+        if (!is_null($this->cp["building_area"]->GetValue()) and !strlen($this->cp["building_area"]->GetText()) and !is_bool($this->cp["building_area"]->GetValue())) 
+            $this->cp["building_area"]->SetValue($this->building_area->GetValue(true));
+        if (!is_null($this->cp["building_price_per_m"]->GetValue()) and !strlen($this->cp["building_price_per_m"]->GetText()) and !is_bool($this->cp["building_price_per_m"]->GetValue())) 
+            $this->cp["building_price_per_m"]->SetValue($this->building_price_per_m->GetValue(true));
+        if (!is_null($this->cp["building_total_price"]->GetValue()) and !strlen($this->cp["building_total_price"]->GetText()) and !is_bool($this->cp["building_total_price"]->GetValue())) 
+            $this->cp["building_total_price"]->SetValue($this->building_total_price->GetValue(true));
+        if (!is_null($this->cp["wp_rt"]->GetValue()) and !strlen($this->cp["wp_rt"]->GetText()) and !is_bool($this->cp["wp_rt"]->GetValue())) 
+            $this->cp["wp_rt"]->SetValue($this->wp_rt->GetValue(true));
+        if (!is_null($this->cp["wp_rw"]->GetValue()) and !strlen($this->cp["wp_rw"]->GetText()) and !is_bool($this->cp["wp_rw"]->GetValue())) 
+            $this->cp["wp_rw"]->SetValue($this->wp_rw->GetValue(true));
+        if (!is_null($this->cp["object_rt"]->GetValue()) and !strlen($this->cp["object_rt"]->GetText()) and !is_bool($this->cp["object_rt"]->GetValue())) 
+            $this->cp["object_rt"]->SetValue($this->object_rt->GetValue(true));
+        if (!is_null($this->cp["object_rw"]->GetValue()) and !strlen($this->cp["object_rw"]->GetText()) and !is_bool($this->cp["object_rw"]->GetValue())) 
+            $this->cp["object_rw"]->SetValue($this->object_rw->GetValue(true));
+        if (!is_null($this->cp["njop_pbb"]->GetValue()) and !strlen($this->cp["njop_pbb"]->GetText()) and !is_bool($this->cp["njop_pbb"]->GetValue())) 
+            $this->cp["njop_pbb"]->SetValue($this->njop_pbb->GetValue(true));
+        if (!is_null($this->cp["object_address_name"]->GetValue()) and !strlen($this->cp["object_address_name"]->GetText()) and !is_bool($this->cp["object_address_name"]->GetValue())) 
+            $this->cp["object_address_name"]->SetValue($this->object_address_name->GetValue(true));
+        if (!is_null($this->cp["p_bphtb_legal_doc_type_id"]->GetValue()) and !strlen($this->cp["p_bphtb_legal_doc_type_id"]->GetText()) and !is_bool($this->cp["p_bphtb_legal_doc_type_id"]->GetValue())) 
+            $this->cp["p_bphtb_legal_doc_type_id"]->SetValue($this->p_bphtb_legal_doc_type_id->GetValue(true));
+        if (!is_null($this->cp["npop"]->GetValue()) and !strlen($this->cp["npop"]->GetText()) and !is_bool($this->cp["npop"]->GetValue())) 
+            $this->cp["npop"]->SetValue($this->npop->GetValue(true));
+        if (!is_null($this->cp["npop_tkp"]->GetValue()) and !strlen($this->cp["npop_tkp"]->GetText()) and !is_bool($this->cp["npop_tkp"]->GetValue())) 
+            $this->cp["npop_tkp"]->SetValue($this->npop_tkp->GetValue(true));
+        if (!is_null($this->cp["npop_kp"]->GetValue()) and !strlen($this->cp["npop_kp"]->GetText()) and !is_bool($this->cp["npop_kp"]->GetValue())) 
+            $this->cp["npop_kp"]->SetValue($this->npop_kp->GetValue(true));
+        if (!is_null($this->cp["bphtb_amt"]->GetValue()) and !strlen($this->cp["bphtb_amt"]->GetText()) and !is_bool($this->cp["bphtb_amt"]->GetValue())) 
+            $this->cp["bphtb_amt"]->SetValue($this->bphtb_amt->GetValue(true));
+        if (!is_null($this->cp["bphtb_amt_final"]->GetValue()) and !strlen($this->cp["bphtb_amt_final"]->GetText()) and !is_bool($this->cp["bphtb_amt_final"]->GetValue())) 
+            $this->cp["bphtb_amt_final"]->SetValue($this->bphtb_amt_final->GetValue(true));
+        if (!is_null($this->cp["bphtb_discount"]->GetValue()) and !strlen($this->cp["bphtb_discount"]->GetText()) and !is_bool($this->cp["bphtb_discount"]->GetValue())) 
+            $this->cp["bphtb_discount"]->SetValue($this->bphtb_discount->GetValue(true));
+        if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
+            $this->cp["description"]->SetValue($this->description->GetValue(true));
+        if (!is_null($this->cp["market_price"]->GetValue()) and !strlen($this->cp["market_price"]->GetText()) and !is_bool($this->cp["market_price"]->GetValue())) 
+            $this->cp["market_price"]->SetValue($this->market_price->GetValue(true));
+        if (!is_null($this->cp["mobile_phone_no"]->GetValue()) and !strlen($this->cp["mobile_phone_no"]->GetText()) and !is_bool($this->cp["mobile_phone_no"]->GetValue())) 
+            $this->cp["mobile_phone_no"]->SetValue($this->mobile_phone_no->GetValue(true));
+        if (!is_null($this->cp["wp_p_region_id_kec"]->GetValue()) and !strlen($this->cp["wp_p_region_id_kec"]->GetText()) and !is_bool($this->cp["wp_p_region_id_kec"]->GetValue())) 
+            $this->cp["wp_p_region_id_kec"]->SetValue($this->wp_p_region_id_kec->GetValue(true));
+        if (!is_null($this->cp["object_p_region_id_kel"]->GetValue()) and !strlen($this->cp["object_p_region_id_kel"]->GetText()) and !is_bool($this->cp["object_p_region_id_kel"]->GetValue())) 
+            $this->cp["object_p_region_id_kel"]->SetValue($this->object_p_region_id_kel->GetValue(true));
+        $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
+        $wp->Criterion[2] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("2"), $this->ToSQL($wp->GetDBValue("2"), ccsFloat),false);
+        $wp->Criterion[3] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("3"), $this->ToSQL($wp->GetDBValue("3"), ccsFloat),false);
+        $Where = $wp->opAND(
+             false, $wp->opAND(
+             false, 
+             $wp->Criterion[1], 
+             $wp->Criterion[2]), 
+             $wp->Criterion[3]);
+        $this->UpdateFields["updated_by"]["Value"] = $this->cp["updated_by"]->GetDBValue(true);
+        $this->UpdateFields["updated_date"]["Value"] = $this->cp["updated_date"]->GetDBValue(true);
+        $this->UpdateFields["wp_p_region_id"]["Value"] = $this->cp["wp_p_region_id"]->GetDBValue(true);
+        $this->UpdateFields["wp_p_region_id_kel"]["Value"] = $this->cp["wp_p_region_id_kel"]->GetDBValue(true);
+        $this->UpdateFields["wp_name"]["Value"] = $this->cp["wp_name"]->GetDBValue(true);
+        $this->UpdateFields["wp_address_name"]["Value"] = $this->cp["wp_address_name"]->GetDBValue(true);
+        $this->UpdateFields["npwp"]["Value"] = $this->cp["npwp"]->GetDBValue(true);
+        $this->UpdateFields["object_p_region_id_kec"]["Value"] = $this->cp["object_p_region_id_kec"]->GetDBValue(true);
+        $this->UpdateFields["object_p_region_id"]["Value"] = $this->cp["object_p_region_id"]->GetDBValue(true);
+        $this->UpdateFields["land_area"]["Value"] = $this->cp["land_area"]->GetDBValue(true);
+        $this->UpdateFields["land_price_per_m"]["Value"] = $this->cp["land_price_per_m"]->GetDBValue(true);
+        $this->UpdateFields["land_total_price"]["Value"] = $this->cp["land_total_price"]->GetDBValue(true);
+        $this->UpdateFields["building_area"]["Value"] = $this->cp["building_area"]->GetDBValue(true);
+        $this->UpdateFields["building_price_per_m"]["Value"] = $this->cp["building_price_per_m"]->GetDBValue(true);
+        $this->UpdateFields["building_total_price"]["Value"] = $this->cp["building_total_price"]->GetDBValue(true);
+        $this->UpdateFields["wp_rt"]["Value"] = $this->cp["wp_rt"]->GetDBValue(true);
+        $this->UpdateFields["wp_rw"]["Value"] = $this->cp["wp_rw"]->GetDBValue(true);
+        $this->UpdateFields["object_rt"]["Value"] = $this->cp["object_rt"]->GetDBValue(true);
+        $this->UpdateFields["object_rw"]["Value"] = $this->cp["object_rw"]->GetDBValue(true);
+        $this->UpdateFields["njop_pbb"]["Value"] = $this->cp["njop_pbb"]->GetDBValue(true);
+        $this->UpdateFields["object_address_name"]["Value"] = $this->cp["object_address_name"]->GetDBValue(true);
+        $this->UpdateFields["p_bphtb_legal_doc_type_id"]["Value"] = $this->cp["p_bphtb_legal_doc_type_id"]->GetDBValue(true);
+        $this->UpdateFields["npop"]["Value"] = $this->cp["npop"]->GetDBValue(true);
+        $this->UpdateFields["npop_tkp"]["Value"] = $this->cp["npop_tkp"]->GetDBValue(true);
+        $this->UpdateFields["npop_kp"]["Value"] = $this->cp["npop_kp"]->GetDBValue(true);
+        $this->UpdateFields["bphtb_amt"]["Value"] = $this->cp["bphtb_amt"]->GetDBValue(true);
+        $this->UpdateFields["bphtb_amt_final"]["Value"] = $this->cp["bphtb_amt_final"]->GetDBValue(true);
+        $this->UpdateFields["bphtb_discount"]["Value"] = $this->cp["bphtb_discount"]->GetDBValue(true);
+        $this->UpdateFields["description"]["Value"] = $this->cp["description"]->GetDBValue(true);
+        $this->UpdateFields["market_price"]["Value"] = $this->cp["market_price"]->GetDBValue(true);
+        $this->UpdateFields["mobile_phone_no"]["Value"] = $this->cp["mobile_phone_no"]->GetDBValue(true);
+        $this->UpdateFields["wp_p_region_id_kec"]["Value"] = $this->cp["wp_p_region_id_kec"]->GetDBValue(true);
+        $this->UpdateFields["object_p_region_id_kel"]["Value"] = $this->cp["object_p_region_id_kel"]->GetDBValue(true);
+        $this->SQL = CCBuildUpdate("t_bphtb_registration", $this->UpdateFields, $this);
+        $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -1349,257 +1349,23 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Update Method
 
-//Delete Method @94-D91DDDA9
+//Delete Method @94-AEEB9CE7
     function Delete()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["icode"] = new clsSQLParameter("urlicode", ccsText, "", "", CCGetFromGet("icode", NULL), "", false, $this->ErrorBlock);
-        $this->cp["iuser"] = new clsSQLParameter("urliuser", ccsText, "", "", CCGetFromGet("iuser", NULL), "", false, $this->ErrorBlock);
-        $this->cp["cusorderid"] = new clsSQLParameter("urlcusorderid", ccsFloat, "", "", CCGetFromGet("cusorderid", NULL), "", false, $this->ErrorBlock);
-        $this->cp["regionidkel"] = new clsSQLParameter("urlregionidkel", ccsFloat, "", "", CCGetFromGet("regionidkel", NULL), "", false, $this->ErrorBlock);
-        $this->cp["regionidkec"] = new clsSQLParameter("urlregionidkec", ccsFloat, "", "", CCGetFromGet("regionidkec", NULL), "", false, $this->ErrorBlock);
-        $this->cp["regionid"] = new clsSQLParameter("urlregionid", ccsFloat, "", "", CCGetFromGet("regionid", NULL), "", false, $this->ErrorBlock);
-        $this->cp["regionidkelown"] = new clsSQLParameter("urlregionidkelown", ccsFloat, "", "", CCGetFromGet("regionidkelown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["regionidkecown"] = new clsSQLParameter("urlregionidkecown", ccsFloat, "", "", CCGetFromGet("regionidkecown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["regionidown"] = new clsSQLParameter("urlregionidown", ccsFloat, "", "", CCGetFromGet("regionidown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["companyname"] = new clsSQLParameter("urlcompanyname", ccsText, "", "", CCGetFromGet("companyname", NULL), "", false, $this->ErrorBlock);
-        $this->cp["addressname"] = new clsSQLParameter("urladdressname", ccsText, "", "", CCGetFromGet("addressname", NULL), "", false, $this->ErrorBlock);
-        $this->cp["jobid"] = new clsSQLParameter("urljobid", ccsFloat, "", "", CCGetFromGet("jobid", NULL), "", false, $this->ErrorBlock);
-        $this->cp["companybrand"] = new clsSQLParameter("urlcompanybrand", ccsText, "", "", CCGetFromGet("companybrand", NULL), "", false, $this->ErrorBlock);
-        $this->cp["addressno"] = new clsSQLParameter("urladdressno", ccsText, "", "", CCGetFromGet("addressno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["addressrt"] = new clsSQLParameter("urladdressrt", ccsText, "", "", CCGetFromGet("addressrt", NULL), "", false, $this->ErrorBlock);
-        $this->cp["addressrw"] = new clsSQLParameter("urladdressrw", ccsText, "", "", CCGetFromGet("addressrw", NULL), "", false, $this->ErrorBlock);
-        $this->cp["addressnoown"] = new clsSQLParameter("urladdressnoown", ccsText, "", "", CCGetFromGet("addressnoown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["addressrtown"] = new clsSQLParameter("urladdressrtown", ccsText, "", "", CCGetFromGet("addressrtown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["addressrwown"] = new clsSQLParameter("urladdressrwown", ccsText, "", "", CCGetFromGet("addressrwown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["phoneno"] = new clsSQLParameter("urlphoneno", ccsText, "", "", CCGetFromGet("phoneno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["faxno"] = new clsSQLParameter("urlfaxno", ccsText, "", "", CCGetFromGet("faxno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["zipcode"] = new clsSQLParameter("urlzipcode", ccsText, "", "", CCGetFromGet("zipcode", NULL), "", false, $this->ErrorBlock);
-        $this->cp["phonenoown"] = new clsSQLParameter("urlphonenoown", ccsText, "", "", CCGetFromGet("phonenoown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["companyown"] = new clsSQLParameter("urlcompanyown", ccsText, "", "", CCGetFromGet("companyown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["mobilenoown"] = new clsSQLParameter("urlmobilenoown", ccsText, "", "", CCGetFromGet("mobilenoown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["faxnoown"] = new clsSQLParameter("urlfaxnoown", ccsText, "", "", CCGetFromGet("faxnoown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["zipcodeown"] = new clsSQLParameter("urlzipcodeown", ccsText, "", "", CCGetFromGet("zipcodeown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["mobileno"] = new clsSQLParameter("urlmobileno", ccsText, "", "", CCGetFromGet("mobileno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["addressnameown"] = new clsSQLParameter("urladdressnameown", ccsText, "", "", CCGetFromGet("addressnameown", NULL), "", false, $this->ErrorBlock);
-        $this->cp["i_email"] = new clsSQLParameter("urli_email", ccsText, "", "", CCGetFromGet("i_email", NULL), "", false, $this->ErrorBlock);
-        $this->cp["vattypedtlid"] = new clsSQLParameter("urlvattypedtlid", ccsFloat, "", "", CCGetFromGet("vattypedtlid", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpusername"] = new clsSQLParameter("urlwpusername", ccsText, "", "", CCGetFromGet("wpusername", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpuserpwd"] = new clsSQLParameter("urlwpuserpwd", ccsText, "", "", CCGetFromGet("wpuserpwd", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpname"] = new clsSQLParameter("urlwpname", ccsText, "", "", CCGetFromGet("wpname", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpaddressname"] = new clsSQLParameter("urlwpaddressname", ccsText, "", "", CCGetFromGet("wpaddressname", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpaddressno"] = new clsSQLParameter("urlwpaddressno", ccsText, "", "", CCGetFromGet("wpaddressno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wprt"] = new clsSQLParameter("urlwprt", ccsText, "", "", CCGetFromGet("wprt", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wprw"] = new clsSQLParameter("urlwprw", ccsText, "", "", CCGetFromGet("wprw", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpkel"] = new clsSQLParameter("urlwpkel", ccsFloat, "", "", CCGetFromGet("wpkel", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpkec"] = new clsSQLParameter("urlwpkec", ccsFloat, "", "", CCGetFromGet("wpkec", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpkota"] = new clsSQLParameter("urlwpkota", ccsFloat, "", "", CCGetFromGet("wpkota", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpphoneno"] = new clsSQLParameter("urlwpphoneno", ccsText, "", "", CCGetFromGet("wpphoneno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpmobileno"] = new clsSQLParameter("urlwpmobileno", ccsText, "", "", CCGetFromGet("wpmobileno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpfaxno"] = new clsSQLParameter("urlwpfaxno", ccsText, "", "", CCGetFromGet("wpfaxno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpzipcode"] = new clsSQLParameter("urlwpzipcode", ccsText, "", "", CCGetFromGet("wpzipcode", NULL), "", false, $this->ErrorBlock);
-        $this->cp["wpemail"] = new clsSQLParameter("urlwpemail", ccsText, "", "", CCGetFromGet("wpemail", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandaddress"] = new clsSQLParameter("urlbrandaddress", ccsText, "", "", CCGetFromGet("brandaddress", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandno"] = new clsSQLParameter("urlbrandno", ccsText, "", "", CCGetFromGet("brandno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandrt"] = new clsSQLParameter("urlbrandrt", ccsText, "", "", CCGetFromGet("brandrt", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandrw"] = new clsSQLParameter("urlbrandrw", ccsText, "", "", CCGetFromGet("brandrw", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandkel"] = new clsSQLParameter("urlbrandkel", ccsFloat, "", "", CCGetFromGet("brandkel", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandkec"] = new clsSQLParameter("urlbrandkec", ccsFloat, "", "", CCGetFromGet("brandkec", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandkota"] = new clsSQLParameter("urlbrandkota", ccsFloat, "", "", CCGetFromGet("brandkota", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandphoneno"] = new clsSQLParameter("urlbrandphoneno", ccsText, "", "", CCGetFromGet("brandphoneno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandmobileno"] = new clsSQLParameter("urlbrandmobileno", ccsText, "", "", CCGetFromGet("brandmobileno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandfaxno"] = new clsSQLParameter("urlbrandfaxno", ccsText, "", "", CCGetFromGet("brandfaxno", NULL), "", false, $this->ErrorBlock);
-        $this->cp["brandzipcode"] = new clsSQLParameter("urlbrandzipcode", ccsText, "", "", CCGetFromGet("brandzipcode", NULL), "", false, $this->ErrorBlock);
-        $this->cp["idvat"] = new clsSQLParameter("ctrlt_vat_registration_id", ccsFloat, "", "", $this->t_vat_registration_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["questionid"] = new clsSQLParameter("urlquestionid", ccsFloat, "", "", CCGetFromGet("questionid", NULL), "", false, $this->ErrorBlock);
-        $this->cp["privateanswer"] = new clsSQLParameter("urlprivateanswer", ccsText, "", "", CCGetFromGet("privateanswer", NULL), "", false, $this->ErrorBlock);
-        $this->cp["i_mode"] = new clsSQLParameter("exprKey970", ccsText, "", "", 'D', "", false, $this->ErrorBlock);
+        $wp = new clsSQLParameters($this->ErrorBlock);
+        $wp->AddParameter("1", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
+        if(!$wp->AllParamsSet()) {
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
-        if (!is_null($this->cp["icode"]->GetValue()) and !strlen($this->cp["icode"]->GetText()) and !is_bool($this->cp["icode"]->GetValue())) 
-            $this->cp["icode"]->SetText(CCGetFromGet("icode", NULL));
-        if (!is_null($this->cp["iuser"]->GetValue()) and !strlen($this->cp["iuser"]->GetText()) and !is_bool($this->cp["iuser"]->GetValue())) 
-            $this->cp["iuser"]->SetText(CCGetFromGet("iuser", NULL));
-        if (!is_null($this->cp["cusorderid"]->GetValue()) and !strlen($this->cp["cusorderid"]->GetText()) and !is_bool($this->cp["cusorderid"]->GetValue())) 
-            $this->cp["cusorderid"]->SetText(CCGetFromGet("cusorderid", NULL));
-        if (!is_null($this->cp["regionidkel"]->GetValue()) and !strlen($this->cp["regionidkel"]->GetText()) and !is_bool($this->cp["regionidkel"]->GetValue())) 
-            $this->cp["regionidkel"]->SetText(CCGetFromGet("regionidkel", NULL));
-        if (!is_null($this->cp["regionidkec"]->GetValue()) and !strlen($this->cp["regionidkec"]->GetText()) and !is_bool($this->cp["regionidkec"]->GetValue())) 
-            $this->cp["regionidkec"]->SetText(CCGetFromGet("regionidkec", NULL));
-        if (!is_null($this->cp["regionid"]->GetValue()) and !strlen($this->cp["regionid"]->GetText()) and !is_bool($this->cp["regionid"]->GetValue())) 
-            $this->cp["regionid"]->SetText(CCGetFromGet("regionid", NULL));
-        if (!is_null($this->cp["regionidkelown"]->GetValue()) and !strlen($this->cp["regionidkelown"]->GetText()) and !is_bool($this->cp["regionidkelown"]->GetValue())) 
-            $this->cp["regionidkelown"]->SetText(CCGetFromGet("regionidkelown", NULL));
-        if (!is_null($this->cp["regionidkecown"]->GetValue()) and !strlen($this->cp["regionidkecown"]->GetText()) and !is_bool($this->cp["regionidkecown"]->GetValue())) 
-            $this->cp["regionidkecown"]->SetText(CCGetFromGet("regionidkecown", NULL));
-        if (!is_null($this->cp["regionidown"]->GetValue()) and !strlen($this->cp["regionidown"]->GetText()) and !is_bool($this->cp["regionidown"]->GetValue())) 
-            $this->cp["regionidown"]->SetText(CCGetFromGet("regionidown", NULL));
-        if (!is_null($this->cp["companyname"]->GetValue()) and !strlen($this->cp["companyname"]->GetText()) and !is_bool($this->cp["companyname"]->GetValue())) 
-            $this->cp["companyname"]->SetText(CCGetFromGet("companyname", NULL));
-        if (!is_null($this->cp["addressname"]->GetValue()) and !strlen($this->cp["addressname"]->GetText()) and !is_bool($this->cp["addressname"]->GetValue())) 
-            $this->cp["addressname"]->SetText(CCGetFromGet("addressname", NULL));
-        if (!is_null($this->cp["jobid"]->GetValue()) and !strlen($this->cp["jobid"]->GetText()) and !is_bool($this->cp["jobid"]->GetValue())) 
-            $this->cp["jobid"]->SetText(CCGetFromGet("jobid", NULL));
-        if (!is_null($this->cp["companybrand"]->GetValue()) and !strlen($this->cp["companybrand"]->GetText()) and !is_bool($this->cp["companybrand"]->GetValue())) 
-            $this->cp["companybrand"]->SetText(CCGetFromGet("companybrand", NULL));
-        if (!is_null($this->cp["addressno"]->GetValue()) and !strlen($this->cp["addressno"]->GetText()) and !is_bool($this->cp["addressno"]->GetValue())) 
-            $this->cp["addressno"]->SetText(CCGetFromGet("addressno", NULL));
-        if (!is_null($this->cp["addressrt"]->GetValue()) and !strlen($this->cp["addressrt"]->GetText()) and !is_bool($this->cp["addressrt"]->GetValue())) 
-            $this->cp["addressrt"]->SetText(CCGetFromGet("addressrt", NULL));
-        if (!is_null($this->cp["addressrw"]->GetValue()) and !strlen($this->cp["addressrw"]->GetText()) and !is_bool($this->cp["addressrw"]->GetValue())) 
-            $this->cp["addressrw"]->SetText(CCGetFromGet("addressrw", NULL));
-        if (!is_null($this->cp["addressnoown"]->GetValue()) and !strlen($this->cp["addressnoown"]->GetText()) and !is_bool($this->cp["addressnoown"]->GetValue())) 
-            $this->cp["addressnoown"]->SetText(CCGetFromGet("addressnoown", NULL));
-        if (!is_null($this->cp["addressrtown"]->GetValue()) and !strlen($this->cp["addressrtown"]->GetText()) and !is_bool($this->cp["addressrtown"]->GetValue())) 
-            $this->cp["addressrtown"]->SetText(CCGetFromGet("addressrtown", NULL));
-        if (!is_null($this->cp["addressrwown"]->GetValue()) and !strlen($this->cp["addressrwown"]->GetText()) and !is_bool($this->cp["addressrwown"]->GetValue())) 
-            $this->cp["addressrwown"]->SetText(CCGetFromGet("addressrwown", NULL));
-        if (!is_null($this->cp["phoneno"]->GetValue()) and !strlen($this->cp["phoneno"]->GetText()) and !is_bool($this->cp["phoneno"]->GetValue())) 
-            $this->cp["phoneno"]->SetText(CCGetFromGet("phoneno", NULL));
-        if (!is_null($this->cp["faxno"]->GetValue()) and !strlen($this->cp["faxno"]->GetText()) and !is_bool($this->cp["faxno"]->GetValue())) 
-            $this->cp["faxno"]->SetText(CCGetFromGet("faxno", NULL));
-        if (!is_null($this->cp["zipcode"]->GetValue()) and !strlen($this->cp["zipcode"]->GetText()) and !is_bool($this->cp["zipcode"]->GetValue())) 
-            $this->cp["zipcode"]->SetText(CCGetFromGet("zipcode", NULL));
-        if (!is_null($this->cp["phonenoown"]->GetValue()) and !strlen($this->cp["phonenoown"]->GetText()) and !is_bool($this->cp["phonenoown"]->GetValue())) 
-            $this->cp["phonenoown"]->SetText(CCGetFromGet("phonenoown", NULL));
-        if (!is_null($this->cp["companyown"]->GetValue()) and !strlen($this->cp["companyown"]->GetText()) and !is_bool($this->cp["companyown"]->GetValue())) 
-            $this->cp["companyown"]->SetText(CCGetFromGet("companyown", NULL));
-        if (!is_null($this->cp["mobilenoown"]->GetValue()) and !strlen($this->cp["mobilenoown"]->GetText()) and !is_bool($this->cp["mobilenoown"]->GetValue())) 
-            $this->cp["mobilenoown"]->SetText(CCGetFromGet("mobilenoown", NULL));
-        if (!is_null($this->cp["faxnoown"]->GetValue()) and !strlen($this->cp["faxnoown"]->GetText()) and !is_bool($this->cp["faxnoown"]->GetValue())) 
-            $this->cp["faxnoown"]->SetText(CCGetFromGet("faxnoown", NULL));
-        if (!is_null($this->cp["zipcodeown"]->GetValue()) and !strlen($this->cp["zipcodeown"]->GetText()) and !is_bool($this->cp["zipcodeown"]->GetValue())) 
-            $this->cp["zipcodeown"]->SetText(CCGetFromGet("zipcodeown", NULL));
-        if (!is_null($this->cp["mobileno"]->GetValue()) and !strlen($this->cp["mobileno"]->GetText()) and !is_bool($this->cp["mobileno"]->GetValue())) 
-            $this->cp["mobileno"]->SetText(CCGetFromGet("mobileno", NULL));
-        if (!is_null($this->cp["addressnameown"]->GetValue()) and !strlen($this->cp["addressnameown"]->GetText()) and !is_bool($this->cp["addressnameown"]->GetValue())) 
-            $this->cp["addressnameown"]->SetText(CCGetFromGet("addressnameown", NULL));
-        if (!is_null($this->cp["i_email"]->GetValue()) and !strlen($this->cp["i_email"]->GetText()) and !is_bool($this->cp["i_email"]->GetValue())) 
-            $this->cp["i_email"]->SetText(CCGetFromGet("i_email", NULL));
-        if (!is_null($this->cp["vattypedtlid"]->GetValue()) and !strlen($this->cp["vattypedtlid"]->GetText()) and !is_bool($this->cp["vattypedtlid"]->GetValue())) 
-            $this->cp["vattypedtlid"]->SetText(CCGetFromGet("vattypedtlid", NULL));
-        if (!is_null($this->cp["wpusername"]->GetValue()) and !strlen($this->cp["wpusername"]->GetText()) and !is_bool($this->cp["wpusername"]->GetValue())) 
-            $this->cp["wpusername"]->SetText(CCGetFromGet("wpusername", NULL));
-        if (!is_null($this->cp["wpuserpwd"]->GetValue()) and !strlen($this->cp["wpuserpwd"]->GetText()) and !is_bool($this->cp["wpuserpwd"]->GetValue())) 
-            $this->cp["wpuserpwd"]->SetText(CCGetFromGet("wpuserpwd", NULL));
-        if (!is_null($this->cp["wpname"]->GetValue()) and !strlen($this->cp["wpname"]->GetText()) and !is_bool($this->cp["wpname"]->GetValue())) 
-            $this->cp["wpname"]->SetText(CCGetFromGet("wpname", NULL));
-        if (!is_null($this->cp["wpaddressname"]->GetValue()) and !strlen($this->cp["wpaddressname"]->GetText()) and !is_bool($this->cp["wpaddressname"]->GetValue())) 
-            $this->cp["wpaddressname"]->SetText(CCGetFromGet("wpaddressname", NULL));
-        if (!is_null($this->cp["wpaddressno"]->GetValue()) and !strlen($this->cp["wpaddressno"]->GetText()) and !is_bool($this->cp["wpaddressno"]->GetValue())) 
-            $this->cp["wpaddressno"]->SetText(CCGetFromGet("wpaddressno", NULL));
-        if (!is_null($this->cp["wprt"]->GetValue()) and !strlen($this->cp["wprt"]->GetText()) and !is_bool($this->cp["wprt"]->GetValue())) 
-            $this->cp["wprt"]->SetText(CCGetFromGet("wprt", NULL));
-        if (!is_null($this->cp["wprw"]->GetValue()) and !strlen($this->cp["wprw"]->GetText()) and !is_bool($this->cp["wprw"]->GetValue())) 
-            $this->cp["wprw"]->SetText(CCGetFromGet("wprw", NULL));
-        if (!is_null($this->cp["wpkel"]->GetValue()) and !strlen($this->cp["wpkel"]->GetText()) and !is_bool($this->cp["wpkel"]->GetValue())) 
-            $this->cp["wpkel"]->SetText(CCGetFromGet("wpkel", NULL));
-        if (!is_null($this->cp["wpkec"]->GetValue()) and !strlen($this->cp["wpkec"]->GetText()) and !is_bool($this->cp["wpkec"]->GetValue())) 
-            $this->cp["wpkec"]->SetText(CCGetFromGet("wpkec", NULL));
-        if (!is_null($this->cp["wpkota"]->GetValue()) and !strlen($this->cp["wpkota"]->GetText()) and !is_bool($this->cp["wpkota"]->GetValue())) 
-            $this->cp["wpkota"]->SetText(CCGetFromGet("wpkota", NULL));
-        if (!is_null($this->cp["wpphoneno"]->GetValue()) and !strlen($this->cp["wpphoneno"]->GetText()) and !is_bool($this->cp["wpphoneno"]->GetValue())) 
-            $this->cp["wpphoneno"]->SetText(CCGetFromGet("wpphoneno", NULL));
-        if (!is_null($this->cp["wpmobileno"]->GetValue()) and !strlen($this->cp["wpmobileno"]->GetText()) and !is_bool($this->cp["wpmobileno"]->GetValue())) 
-            $this->cp["wpmobileno"]->SetText(CCGetFromGet("wpmobileno", NULL));
-        if (!is_null($this->cp["wpfaxno"]->GetValue()) and !strlen($this->cp["wpfaxno"]->GetText()) and !is_bool($this->cp["wpfaxno"]->GetValue())) 
-            $this->cp["wpfaxno"]->SetText(CCGetFromGet("wpfaxno", NULL));
-        if (!is_null($this->cp["wpzipcode"]->GetValue()) and !strlen($this->cp["wpzipcode"]->GetText()) and !is_bool($this->cp["wpzipcode"]->GetValue())) 
-            $this->cp["wpzipcode"]->SetText(CCGetFromGet("wpzipcode", NULL));
-        if (!is_null($this->cp["wpemail"]->GetValue()) and !strlen($this->cp["wpemail"]->GetText()) and !is_bool($this->cp["wpemail"]->GetValue())) 
-            $this->cp["wpemail"]->SetText(CCGetFromGet("wpemail", NULL));
-        if (!is_null($this->cp["brandaddress"]->GetValue()) and !strlen($this->cp["brandaddress"]->GetText()) and !is_bool($this->cp["brandaddress"]->GetValue())) 
-            $this->cp["brandaddress"]->SetText(CCGetFromGet("brandaddress", NULL));
-        if (!is_null($this->cp["brandno"]->GetValue()) and !strlen($this->cp["brandno"]->GetText()) and !is_bool($this->cp["brandno"]->GetValue())) 
-            $this->cp["brandno"]->SetText(CCGetFromGet("brandno", NULL));
-        if (!is_null($this->cp["brandrt"]->GetValue()) and !strlen($this->cp["brandrt"]->GetText()) and !is_bool($this->cp["brandrt"]->GetValue())) 
-            $this->cp["brandrt"]->SetText(CCGetFromGet("brandrt", NULL));
-        if (!is_null($this->cp["brandrw"]->GetValue()) and !strlen($this->cp["brandrw"]->GetText()) and !is_bool($this->cp["brandrw"]->GetValue())) 
-            $this->cp["brandrw"]->SetText(CCGetFromGet("brandrw", NULL));
-        if (!is_null($this->cp["brandkel"]->GetValue()) and !strlen($this->cp["brandkel"]->GetText()) and !is_bool($this->cp["brandkel"]->GetValue())) 
-            $this->cp["brandkel"]->SetText(CCGetFromGet("brandkel", NULL));
-        if (!is_null($this->cp["brandkec"]->GetValue()) and !strlen($this->cp["brandkec"]->GetText()) and !is_bool($this->cp["brandkec"]->GetValue())) 
-            $this->cp["brandkec"]->SetText(CCGetFromGet("brandkec", NULL));
-        if (!is_null($this->cp["brandkota"]->GetValue()) and !strlen($this->cp["brandkota"]->GetText()) and !is_bool($this->cp["brandkota"]->GetValue())) 
-            $this->cp["brandkota"]->SetText(CCGetFromGet("brandkota", NULL));
-        if (!is_null($this->cp["brandphoneno"]->GetValue()) and !strlen($this->cp["brandphoneno"]->GetText()) and !is_bool($this->cp["brandphoneno"]->GetValue())) 
-            $this->cp["brandphoneno"]->SetText(CCGetFromGet("brandphoneno", NULL));
-        if (!is_null($this->cp["brandmobileno"]->GetValue()) and !strlen($this->cp["brandmobileno"]->GetText()) and !is_bool($this->cp["brandmobileno"]->GetValue())) 
-            $this->cp["brandmobileno"]->SetText(CCGetFromGet("brandmobileno", NULL));
-        if (!is_null($this->cp["brandfaxno"]->GetValue()) and !strlen($this->cp["brandfaxno"]->GetText()) and !is_bool($this->cp["brandfaxno"]->GetValue())) 
-            $this->cp["brandfaxno"]->SetText(CCGetFromGet("brandfaxno", NULL));
-        if (!is_null($this->cp["brandzipcode"]->GetValue()) and !strlen($this->cp["brandzipcode"]->GetText()) and !is_bool($this->cp["brandzipcode"]->GetValue())) 
-            $this->cp["brandzipcode"]->SetText(CCGetFromGet("brandzipcode", NULL));
-        if (!is_null($this->cp["idvat"]->GetValue()) and !strlen($this->cp["idvat"]->GetText()) and !is_bool($this->cp["idvat"]->GetValue())) 
-            $this->cp["idvat"]->SetValue($this->t_vat_registration_id->GetValue(true));
-        if (!is_null($this->cp["questionid"]->GetValue()) and !strlen($this->cp["questionid"]->GetText()) and !is_bool($this->cp["questionid"]->GetValue())) 
-            $this->cp["questionid"]->SetText(CCGetFromGet("questionid", NULL));
-        if (!is_null($this->cp["privateanswer"]->GetValue()) and !strlen($this->cp["privateanswer"]->GetText()) and !is_bool($this->cp["privateanswer"]->GetValue())) 
-            $this->cp["privateanswer"]->SetText(CCGetFromGet("privateanswer", NULL));
-        if (!is_null($this->cp["i_mode"]->GetValue()) and !strlen($this->cp["i_mode"]->GetText()) and !is_bool($this->cp["i_mode"]->GetValue())) 
-            $this->cp["i_mode"]->SetValue('D');
-        $this->SQL = "SELECT f_crud_vat_reg (" . $this->ToSQL($this->cp["icode"]->GetDBValue(), $this->cp["icode"]->DataType) . ", "
-             . $this->ToSQL($this->cp["iuser"]->GetDBValue(), $this->cp["iuser"]->DataType) . ", "
-             . $this->ToSQL($this->cp["cusorderid"]->GetDBValue(), $this->cp["cusorderid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidkel"]->GetDBValue(), $this->cp["regionidkel"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidkec"]->GetDBValue(), $this->cp["regionidkec"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionid"]->GetDBValue(), $this->cp["regionid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidkelown"]->GetDBValue(), $this->cp["regionidkelown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidkecown"]->GetDBValue(), $this->cp["regionidkecown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["regionidown"]->GetDBValue(), $this->cp["regionidown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["companyname"]->GetDBValue(), $this->cp["companyname"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressname"]->GetDBValue(), $this->cp["addressname"]->DataType) . ", "
-             . $this->ToSQL($this->cp["jobid"]->GetDBValue(), $this->cp["jobid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["companybrand"]->GetDBValue(), $this->cp["companybrand"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressno"]->GetDBValue(), $this->cp["addressno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressrt"]->GetDBValue(), $this->cp["addressrt"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressrw"]->GetDBValue(), $this->cp["addressrw"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressnoown"]->GetDBValue(), $this->cp["addressnoown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressrtown"]->GetDBValue(), $this->cp["addressrtown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressrwown"]->GetDBValue(), $this->cp["addressrwown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["phoneno"]->GetDBValue(), $this->cp["phoneno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["faxno"]->GetDBValue(), $this->cp["faxno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["zipcode"]->GetDBValue(), $this->cp["zipcode"]->DataType) . ", "
-             . $this->ToSQL($this->cp["phonenoown"]->GetDBValue(), $this->cp["phonenoown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["companyown"]->GetDBValue(), $this->cp["companyown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["mobilenoown"]->GetDBValue(), $this->cp["mobilenoown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["faxnoown"]->GetDBValue(), $this->cp["faxnoown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["zipcodeown"]->GetDBValue(), $this->cp["zipcodeown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["mobileno"]->GetDBValue(), $this->cp["mobileno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["addressnameown"]->GetDBValue(), $this->cp["addressnameown"]->DataType) . ", "
-             . $this->ToSQL($this->cp["i_email"]->GetDBValue(), $this->cp["i_email"]->DataType) . ", "
-             . $this->ToSQL($this->cp["vattypedtlid"]->GetDBValue(), $this->cp["vattypedtlid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpusername"]->GetDBValue(), $this->cp["wpusername"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpuserpwd"]->GetDBValue(), $this->cp["wpuserpwd"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpname"]->GetDBValue(), $this->cp["wpname"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpaddressname"]->GetDBValue(), $this->cp["wpaddressname"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpaddressno"]->GetDBValue(), $this->cp["wpaddressno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wprt"]->GetDBValue(), $this->cp["wprt"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wprw"]->GetDBValue(), $this->cp["wprw"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpkel"]->GetDBValue(), $this->cp["wpkel"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpkec"]->GetDBValue(), $this->cp["wpkec"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpkota"]->GetDBValue(), $this->cp["wpkota"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpphoneno"]->GetDBValue(), $this->cp["wpphoneno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpmobileno"]->GetDBValue(), $this->cp["wpmobileno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpfaxno"]->GetDBValue(), $this->cp["wpfaxno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpzipcode"]->GetDBValue(), $this->cp["wpzipcode"]->DataType) . ", "
-             . $this->ToSQL($this->cp["wpemail"]->GetDBValue(), $this->cp["wpemail"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandaddress"]->GetDBValue(), $this->cp["brandaddress"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandno"]->GetDBValue(), $this->cp["brandno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandrt"]->GetDBValue(), $this->cp["brandrt"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandrw"]->GetDBValue(), $this->cp["brandrw"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandkel"]->GetDBValue(), $this->cp["brandkel"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandkec"]->GetDBValue(), $this->cp["brandkec"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandkota"]->GetDBValue(), $this->cp["brandkota"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandphoneno"]->GetDBValue(), $this->cp["brandphoneno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandmobileno"]->GetDBValue(), $this->cp["brandmobileno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandfaxno"]->GetDBValue(), $this->cp["brandfaxno"]->DataType) . ", "
-             . $this->ToSQL($this->cp["brandzipcode"]->GetDBValue(), $this->cp["brandzipcode"]->DataType) . ", "
-             . $this->ToSQL($this->cp["idvat"]->GetDBValue(), $this->cp["idvat"]->DataType) . ", "
-             . $this->ToSQL($this->cp["questionid"]->GetDBValue(), $this->cp["questionid"]->DataType) . ", "
-             . $this->ToSQL($this->cp["privateanswer"]->GetDBValue(), $this->cp["privateanswer"]->DataType) . ", "
-             . $this->ToSQL($this->cp["i_mode"]->GetDBValue(), $this->cp["i_mode"]->DataType) . ");";
+        $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
+        $Where = 
+             $wp->Criterion[1];
+        $this->SQL = "DELETE FROM t_bphtb_registration";
+        $this->SQL = CCBuildSQL($this->SQL, $Where, "");
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);

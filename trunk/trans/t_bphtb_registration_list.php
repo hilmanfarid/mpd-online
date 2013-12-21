@@ -42,7 +42,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-BB9F594D
+//Class_Initialize Event @2-479D61CC
     function clsGridt_bphtb_registration_list($RelativePath, & $Parent)
     {
         global $FileName;
@@ -75,6 +75,9 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
         $this->DLink->HTML = true;
         $this->DLink->Page = "t_bphtb_registration_list.php";
+        $this->t_bphtb_registration_id = & new clsControl(ccsLabel, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsText, "", CCGetRequestParam("t_bphtb_registration_id", ccsGet, NULL), $this);
+        $this->Button1 = & new clsButton("Button1", ccsGet, $this);
+        $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", ccsGet, NULL), $this);
         $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
         $this->Insert_Link->Page = "t_bphtb_registration.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
@@ -93,7 +96,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Initialize Method
 
-//Show Method @2-9BF6FBEC
+//Show Method @2-649E9BBD
     function Show()
     {
         global $Tpl;
@@ -125,6 +128,9 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
             $this->ControlsVisible["wp_name"] = $this->wp_name->Visible;
             $this->ControlsVisible["origin_file_name"] = $this->origin_file_name->Visible;
             $this->ControlsVisible["DLink"] = $this->DLink->Visible;
+            $this->ControlsVisible["t_bphtb_registration_id"] = $this->t_bphtb_registration_id->Visible;
+            $this->ControlsVisible["Button1"] = $this->Button1->Visible;
+            $this->ControlsVisible["t_customer_order_id"] = $this->t_customer_order_id->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -137,12 +143,17 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
                 $this->origin_file_name->Page = $this->DataSource->f("file_name");
                 $this->DLink->Parameters = CCGetQueryString("QueryString", array("FLAG", "ccsForm"));
                 $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_cust_order_legal_doc_id", $this->DataSource->f("t_cust_order_legal_doc_id"));
+                $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
+                $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
                 $this->wp_name->Show();
                 $this->origin_file_name->Show();
                 $this->DLink->Show();
+                $this->t_bphtb_registration_id->Show();
+                $this->Button1->Show();
+                $this->t_customer_order_id->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -159,7 +170,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
             $Tpl->block_path = $ParentPath;
             return;
         }
-        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("t_cust_order_legal_doc_id", "s_keyword", "ccsForm"));
+        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
         $this->Insert_Link->Parameters = CCAddParam($this->Insert_Link->Parameters, "FLAG", "ADD");
         $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
         $this->Navigator->PageSize = $this->PageSize;
@@ -178,13 +189,15 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Show Method
 
-//GetErrors Method @2-D448E1AF
+//GetErrors Method @2-3E814539
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->origin_file_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->t_bphtb_registration_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->t_customer_order_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -195,7 +208,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
 
 class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_registration_listDataSource Class @2-07378C2F
 
-//DataSource Variables @2-6D38855A
+//DataSource Variables @2-9FAD01CC
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -209,9 +222,11 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     // Datasource fields
     var $wp_name;
     var $origin_file_name;
+    var $t_bphtb_registration_id;
+    var $t_customer_order_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-A655C519
+//DataSourceClass_Initialize Event @2-FD46AE25
     function clst_bphtb_registration_listDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -220,6 +235,10 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
         $this->wp_name = new clsField("wp_name", ccsText, "");
         
         $this->origin_file_name = new clsField("origin_file_name", ccsText, "");
+        
+        $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsText, "");
+        
+        $this->t_customer_order_id = new clsField("t_customer_order_id", ccsText, "");
         
 
     }
@@ -244,20 +263,22 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Prepare Method
 
-//Open Method @2-ED43DFF6
+//Open Method @2-E7FA0E2C
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select cust_order.*,regis.* from t_bphtb_registration regis\n" .
         "LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id\n" .
         "where\n" .
-        "cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
-        "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') cnt";
+        "(cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
+        "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
+        "AND cust_order.p_order_status_id = 1) cnt";
         $this->SQL = "select cust_order.*,regis.* from t_bphtb_registration regis\n" .
         "LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id\n" .
         "where\n" .
-        "cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
-        "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' {SQL_OrderBy}";
+        "(cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
+        "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
+        "AND cust_order.p_order_status_id = 1{SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -268,11 +289,13 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Open Method
 
-//SetValues Method @2-43A4B182
+//SetValues Method @2-D7947AAE
     function SetValues()
     {
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->origin_file_name->SetDBValue($this->f("order_no"));
+        $this->t_bphtb_registration_id->SetDBValue($this->f("t_bphtb_registration_id"));
+        $this->t_customer_order_id->SetDBValue($this->f("t_customer_order_id"));
     }
 //End SetValues Method
 

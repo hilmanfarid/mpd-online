@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-FAFD03E9
+//BindEvents Method @1-9EDF8271
 function BindEvents()
 {
     global $t_bphtb_registration_list;
@@ -7,6 +7,7 @@ function BindEvents()
     $t_bphtb_registration_list->CCSEvents["BeforeShowRow"] = "t_bphtb_registration_list_BeforeShowRow";
     $t_bphtb_registration_list->CCSEvents["BeforeSelect"] = "t_bphtb_registration_list_BeforeSelect";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
 
@@ -73,6 +74,32 @@ function Page_OnInitializeView(& $sender)
     return $Page_OnInitializeView;
 }
 //End Close Page_OnInitializeView
+
+//Page_BeforeShow @1-6239AA6D
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_bphtb_registration_list; //Compatibility
+//End Page_BeforeShow
+
+//Custom Code @703-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	if(CCGetFromGet("submit_bphtb")==1){
+		$dbConn = new clsDBConnSIKP();
+		$sql="select sikp.f_first_submit_engine(505,".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+		$dbConn->query($sql);
+		$dbConn->close();
+	}
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
 
 
 ?>
