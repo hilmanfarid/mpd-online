@@ -46,25 +46,24 @@ function p_regionGrid_BeforeShowRow(& $sender)
     $img_radio= "<img border='0' src='../images/radio.gif'>";
 // End Bdr
 
-//Set Row Style @87-982C9472
-    $styles = array("Row", "AltRow");
-	// Start Bdr    
-    $Style = $styles[0];
-    
-    if ($Component->DataSource->p_region_id->GetValue()== $selected_id) {
-    	$img_radio= "<img border='0' src='../images/radio_s.gif'>";
-        $Style = $styles[1];
-        $is_show_form=1;
-    }	
-// End Bdr    
+      $styles = array("Row", "AltRow");
+  	// Start Bdr    
+      $Style = $styles[0];
+      
+      if ($Component->DataSource->p_region_id->GetValue()== $selected_id) {
+      	$img_radio= "<img border='0' src='../images/radio_s.gif'>";
+          $Style = $styles[1];
+          $is_show_form=1;
+      }	
+  // End Bdr    
+  
+      if (count($styles)) {
+          //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
+          if (strlen($Style) && !strpos($Style, "="))
+              $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+          $Component->Attributes->SetValue("rowStyle", $Style);
+      }
 
-    if (count($styles)) {
-        //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
-        if (strlen($Style) && !strpos($Style, "="))
-            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
-        $Component->Attributes->SetValue("rowStyle", $Style);
-    }
-//End Set Row Style
 $Component->DLink->SetValue($img_radio);  // Bdr
 
 //Close p_regionGrid_BeforeShowRow @2-D02E35F3
@@ -81,12 +80,6 @@ function p_regionGrid_BeforeShow(& $sender)
     global $p_regionGrid; //Compatibility
 //End p_regionGrid_BeforeShow
 
-//Custom Code @88-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 //Close p_regionGrid_BeforeShow @2-9EDA0BDE
     return $p_regionGrid_BeforeShow;
 }
@@ -101,12 +94,11 @@ function p_regionGrid_BeforeSelect(& $sender)
     global $p_regionGrid; //Compatibility
 //End p_regionGrid_BeforeSelect
 
-//Custom Code @183-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
+  // -------------------------
+
 
 //Close p_regionGrid_BeforeSelect @2-27BD94CB
     return $p_regionGrid_BeforeSelect;
@@ -122,12 +114,6 @@ function p_regionForm_BeforeShow(& $sender)
     global $p_regionForm; //Compatibility
 //End p_regionForm_BeforeShow
 
-//Custom Code @128-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 //Close p_regionForm_BeforeShow @23-C2D17AAB
     return $p_regionForm_BeforeShow;
 }
@@ -142,16 +128,15 @@ function Page_OnInitializeView(& $sender)
     global $p_region; //Compatibility
 //End Page_OnInitializeView
 
-//Custom Code @89-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	global $selected_id;
-    global $add_flag;
-    $selected_id = -1;
-    $selected_id=CCGetFromGet("p_region_id", $selected_id);
-    $add_flag=CCGetFromGet("FLAG", "NONE");
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	global $selected_id;
+      global $add_flag;
+      $selected_id = -1;
+      $selected_id=CCGetFromGet("p_region_id", $selected_id);
+      $add_flag=CCGetFromGet("FLAG", "NONE");
+  // -------------------------
+
 
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;

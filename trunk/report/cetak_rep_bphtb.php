@@ -79,8 +79,8 @@ class FormCetak extends FPDF {
 	var $fontFam = 'Arial';
 	var $yearId = 0;
 	var $yearCode="";
-	var $paperWSize = 330;
-	var $paperHSize = 215;
+	// var $paperWSize = 330;
+	// var $paperHSize = 215;
 	var $height = 5;
 	var $currX;
 	var $currY;
@@ -93,9 +93,12 @@ class FormCetak extends FPDF {
 	
 	function __construct() {
 		$this->FormCetak();
-		$this->startY = $this->GetY();
-		$this->startX = $this->paperWSize-72;
-		$this->lengthCell = $this->startX+20;
+		$size = $this->_getpagesize("Legal");
+		$this->DefPageSize = $size;
+		$this->CurPageSize = $size;
+		$this->startY = 0;
+		$this->startX = 0;
+		$this->lengthCell = $size[0];
 	}
 	/*
 	function Header() {
@@ -105,7 +108,7 @@ class FormCetak extends FPDF {
 	
 	function PageCetak($data, $user) {
 		$this->AliasNbPages();
-		$this->AddPage("L");
+		$this->AddPage("P");
 		
 		$this->Image('../images/logo_pemda.png',25,10,25,25);
 		
@@ -278,7 +281,7 @@ class FormCetak extends FPDF {
 	}
 	
 	function barisBaru($section, $field, $data){
-		$this->SetFont("Arial", "", 10);
+		$this->SetFont("Arial", "", 8);
 		$lbody = $this->lengthCell / 20;
 		$lbody1 = $lbody * 1;
 		$lbody4 = $lbody * 4;
