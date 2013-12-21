@@ -105,3 +105,4 @@ CCS_UploadingError=An error occured when uploading file specified in {0}. Error 
 CCS_UploadingTempFolderError=An error occured when uploading file specified in {0} into temporary folder. Error description: {1}.
 CCS_WrongType=The file type specified in field {0} is not allowed.
 Text1=Tanggal
+Text2=$this->DataSource->land_total_price->GetValue()+$this->DataSource->building_total_price->GetValue()

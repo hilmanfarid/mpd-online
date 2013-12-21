@@ -2255,7 +2255,7 @@ class clsLocaleInfo {
 
 //End clsLocaleInfo
 
-//clsLocale Class @0-61356E3A
+//clsLocale Class @0-55E34965
 class clsLocale {
   var $Name;
   var $Dir;
@@ -2386,6 +2386,7 @@ class clsLocale {
     $this->Messages["ccs_uploadingtempfoldererror"] = "An error occured when uploading file specified in {0} into temporary folder. Error description: {1}.";
     $this->Messages["ccs_wrongtype"] = "The file type specified in field {0} is not allowed.";
     $this->Messages["text1"] = "Tanggal";
+    $this->Messages["text2"] = "\$this->DataSource->land_total_price->GetValue()+\$this->DataSource->building_total_price->GetValue()";
     $this->IsLoaded = true;
   }
 
