@@ -119,7 +119,7 @@ t_rep_penerimaan_pertahunSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
   </div>
  
   <script language="javascript">
-                function jenispajak() {
+		function jenispajak() {
                 getFrom_LOV('t_rep_penerimaan_pertahunSearch','p_vat_type_id,vat_code','lov_vat_type.php');
         }
 
@@ -133,10 +133,10 @@ t_rep_penerimaan_pertahunSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
 
         function cetak()
         {
-                tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
-                p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
-                p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
-				p_account_status_id = document.getElementById("t_rep_bppsSearchp_account_status_id").value;
+                tgl_penerimaan = document.getElementById("t_rep_penerimaan_pertahunSearchtgl_penerimaan").value;
+                p_year_period_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_year_period_id").value;
+                p_vat_type_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_vat_type_id").value;
+				p_account_status_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_account_status_id").value;
                 
 				window.open("../report/cetak_rep_penerimaan_pertahun.php?tgl_status='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id + "&p_account_status_id=" + p_account_status_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
