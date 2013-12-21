@@ -104,15 +104,15 @@ function Page_BeforeInitialize(& $sender)
         $Service->SetFormatter($formatter);
 //End t_target_realisasiFlash_tahunan Initialization
 
-//t_target_realisasiFlash_tahunan DataSource @696-30F3CA98
+//t_target_realisasiFlash_tahunan DataSource @696-5C752142
         $Service->DataSource = new clsDBConnSIKP();
         $Service->ds = & $Service->DataSource;
         $Service->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
         $Service->DataSource->wp = new clsSQLParameters();
-        $Service->DataSource->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $Service->DataSource->Parameters["urlp_year_period_id"], "", false);
+        $Service->DataSource->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $Service->DataSource->Parameters["urlp_year_period_id"], 0, false);
         $Service->DataSource->SQL = "SELECT target_amt, realisasi_amt \n" .
         "FROM v_target_vs_real_anual\n" .
-        "WHERE p_year_period_id = " . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . " ";
+        "WHERE p_year_period_id = " . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . "";
         $Service->DataSource->Order = "";
         $Service->DataSource->PageSize = 25;
         $Service->SetDataSourceQuery($Service->DataSource->OptimizeSQL(CCBuildSQL($Service->DataSource->SQL, $Service->DataSource->Where, $Service->DataSource->Order)));

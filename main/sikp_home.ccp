@@ -155,49 +155,49 @@ order by c.npwd , b.start_date desc
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="128" fieldSourceType="DBColumn" dataType="Text" html="False" name="tgl_pelaporan" fieldSource="tgl_pelaporan" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtgl_pelaporan">
+				<Label id="128" fieldSourceType="DBColumn" dataType="Text" html="False" name="tgl_pelaporan" fieldSource="tgl_pelaporan" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtgl_pelaporan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="129" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_transaksi" fieldSource="total_transaksi" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_transaksi" format="0">
+				<Label id="129" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_transaksi" fieldSource="total_transaksi" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_transaksi" format="#,##0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="130" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_pajak" fieldSource="total_pajak" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_pajak" format="0">
+				<Label id="130" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_pajak" fieldSource="total_pajak" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_pajak" format="#,##0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="131" fieldSourceType="DBColumn" dataType="Text" html="False" name="kuitansi_pembayaran" fieldSource="kuitansi_pembayaran" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridkuitansi_pembayaran">
+				<Label id="131" fieldSourceType="DBColumn" dataType="Text" html="False" name="kuitansi_pembayaran" fieldSource="kuitansi_pembayaran" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridkuitansi_pembayaran">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="132" fieldSourceType="DBColumn" dataType="Text" html="False" name="tgl_pembayaran" fieldSource="tgl_pembayaran" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtgl_pembayaran">
+				<Label id="132" fieldSourceType="DBColumn" dataType="Text" html="False" name="tgl_pembayaran" fieldSource="tgl_pembayaran" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtgl_pembayaran">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="133" fieldSourceType="DBColumn" dataType="Float" html="False" name="payment_amount" fieldSource="payment_amount" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridpayment_amount" format="0">
+				<Label id="133" fieldSourceType="DBColumn" dataType="Float" html="False" name="payment_amount" fieldSource="payment_amount" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridpayment_amount" format="#,##0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="134" fieldSourceType="DBColumn" dataType="Text" html="False" name="periode_akhir_laporan" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridperiode_akhir_laporan" fieldSource="periode_akhir_laporan">
+				<Label id="134" fieldSourceType="DBColumn" dataType="Text" html="False" name="periode_akhir_laporan" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridperiode_akhir_laporan" fieldSource="periode_akhir_laporan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>

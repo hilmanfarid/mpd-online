@@ -5,7 +5,7 @@
 <title>p_pass_byadmin</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="javascript" type="text/javascript">
 $(document).ready(function()
 {
@@ -16,8 +16,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -33,21 +33,21 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
+<div style="PADDING-TOP: 50px; CLEAR: both">
   <!-- BEGIN Grid workavailable -->
   <table cellspacing="0" cellpadding="0" width="30%" border="1">
     <tr>
       <td valign="top">
         <table class="Grid" cellspacing="0" cellpadding="0">
           <tr class="Caption" style="TEXT-ALIGN: center" align="center">
-            <th style="TEXT-ALIGN: center" scope="col" nowrap align="middle" colspan="8">&nbsp;INBOX UNTUK ANDA </th>
+            <th style="TEXT-ALIGN: center" colspan="8" scope="col" nowrap align="center">&nbsp;INBOX UNTUK ANDA </th>
           </tr>
  
           <!-- BEGIN Row -->
           <tr class="Row">
-            <td nowrap align="center" width="1%"></td> 
-            <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap width="10%"><a href="{WORKFLOW_NAME_Src}" id="workavailableWORKFLOW_NAME_{workavailable:rowNumber}"><b><u>{WORKFLOW_NAME}</u></b></a> <input id="workavailableSURL_{workavailable:rowNumber}" type="hidden" value="{SURL}" name="{SURL_Name}"></td> 
-            <td style="TEXT-ALIGN: center" nowrap align="center" width="5%" colspan="6"><a href="{INBOX_Src}" id="workavailableINBOX_{workavailable:rowNumber}"><b><u>{INBOX}</u></b></a> </td>
+            <td width="1%" nowrap align="center"></td> 
+            <td style="BORDER-RIGHT: #dcdcdc 1px solid" width="10%" nowrap><a href="{WORKFLOW_NAME_Src}" id="workavailableWORKFLOW_NAME_{workavailable:rowNumber}"><b><u>{WORKFLOW_NAME}</u></b></a> <input id="workavailableSURL_{workavailable:rowNumber}" type="hidden" value="{SURL}" name="{SURL_Name}"></td> 
+            <td style="TEXT-ALIGN: center" width="5%" colspan="6" nowrap align="center"><a href="{INBOX_Src}" id="workavailableINBOX_{workavailable:rowNumber}"><b><u>{INBOX}</u></b></a> </td>
           </tr>
  <!-- END Row -->
           <!-- BEGIN NoRecords -->
@@ -56,12 +56,12 @@ $(document).ready(function()
           </tr>
           <!-- END NoRecords -->
           <tr class="NoRecords">
-            <td style="COLOR: black; TEXT-ALIGN: right" nowrap width="10%" colspan="8">_______________&nbsp;</td>
+            <td style="COLOR: black; TEXT-ALIGN: right" width="10%" colspan="8" nowrap>_______________&nbsp;</td>
           </tr>
  
           <tr class="NoRecords">
-            <td style="COLOR: black; TEXT-ALIGN: right" nowrap width="10%" colspan="2">&nbsp;Jumlah Pekerjaan Tersedia &nbsp;: &nbsp;</td> 
-            <td style="COLOR: black; TEXT-ALIGN: center" nowrap width="5%" colspan="6"><b>{JUMLAH}</b>&nbsp;</td>
+            <td style="COLOR: black; TEXT-ALIGN: right" width="10%" colspan="2" nowrap>&nbsp;Jumlah Pekerjaan Tersedia &nbsp;: &nbsp;</td> 
+            <td style="COLOR: black; TEXT-ALIGN: center" width="5%" colspan="6" nowrap><b>{JUMLAH}</b>&nbsp;</td>
           </tr>
         </table>
       </td>
@@ -81,14 +81,14 @@ function toPass()
     <td valign="top">
       <table class="Grid" cellspacing="0" cellpadding="0">
         <tr class="Caption" style="TEXT-ALIGN: center" align="center">
-          <th style="TEXT-ALIGN: center" scope="col" nowrap align="middle" colspan="8">&nbsp;INBOX WP UNTUK ANDA</th>
+          <th style="TEXT-ALIGN: center" colspan="8" scope="col" nowrap align="center">&nbsp;INBOX WP UNTUK ANDA</th>
         </tr>
  
         <!-- BEGIN Row -->
         <tr class="Row">
-          <td nowrap align="center" width="1%"></td> 
-          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap width="10%"><a href="{WORKFLOW_NAME_Src}" id="workavailable_wpWORKFLOW_NAME_{workavailable_wp:rowNumber}"><b><u>{WORKFLOW_NAME}</u></b></a> <input id="workavailable_wpSURL_{workavailable_wp:rowNumber}" type="hidden" value="{SURL}" name="{SURL_Name}"></td> 
-          <td style="TEXT-ALIGN: center" nowrap align="center" width="5%" colspan="6"><a href="{INBOX_Src}" id="workavailable_wpINBOX_{workavailable_wp:rowNumber}"><b><u>{INBOX}</u></b></a> </td>
+          <td width="1%" nowrap align="center"></td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" width="10%" nowrap><a href="{WORKFLOW_NAME_Src}" id="workavailable_wpWORKFLOW_NAME_{workavailable_wp:rowNumber}"><b><u>{WORKFLOW_NAME}</u></b></a> <input id="workavailable_wpSURL_{workavailable_wp:rowNumber}" type="hidden" value="{SURL}" name="{SURL_Name}"></td> 
+          <td style="TEXT-ALIGN: center" width="5%" colspan="6" nowrap align="center"><a href="{INBOX_Src}" id="workavailable_wpINBOX_{workavailable_wp:rowNumber}"><b><u>{INBOX}</u></b></a> </td>
         </tr>
  <!-- END Row -->
         <!-- BEGIN NoRecords -->
@@ -97,12 +97,12 @@ function toPass()
         </tr>
         <!-- END NoRecords -->
         <tr class="NoRecords">
-          <td style="COLOR: black; TEXT-ALIGN: right" nowrap width="10%" colspan="8">_______________&nbsp;</td>
+          <td style="COLOR: black; TEXT-ALIGN: right" width="10%" colspan="8" nowrap>_______________&nbsp;</td>
         </tr>
  
         <tr class="NoRecords">
-          <td style="COLOR: black; TEXT-ALIGN: right" nowrap width="10%" colspan="2">&nbsp;Jumlah Pekerjaan Tersedia &nbsp;: &nbsp;</td> 
-          <td style="COLOR: black; TEXT-ALIGN: center" nowrap width="5%" colspan="6"><b>{JUMLAH}</b>&nbsp;</td>
+          <td style="COLOR: black; TEXT-ALIGN: right" width="10%" colspan="2" nowrap>&nbsp;Jumlah Pekerjaan Tersedia &nbsp;: &nbsp;</td> 
+          <td style="COLOR: black; TEXT-ALIGN: center" width="5%" colspan="6" nowrap><b>{JUMLAH}</b>&nbsp;</td>
         </tr>
       </table>
     </td>
@@ -115,21 +115,21 @@ function toPass()
     <td valign="top">
       <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
         <tr>
-          <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+          <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
           <td class="th"><strong>HISTORY TRANSAKSI WAJIB PAJAK</strong></td> 
-          <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+          <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
         </tr>
       </table>
  
       <table class="Grid" cellspacing="0" cellpadding="0">
         <tr class="Caption">
-          <th style="vertical-align: middle; TEXT-ALIGN: center" scope="col" rowspan="2">NPWD</th>
+          <th style="VERTICAL-ALIGN: middle; TEXT-ALIGN: center" rowspan="2" scope="col">NPWD</th>
  
-          <th style="vertical-align: middle; TEXT-ALIGN: center" scope="col" rowspan="2">Nama Badan</th>
+          <th style="VERTICAL-ALIGN: middle; TEXT-ALIGN: center" rowspan="2" scope="col">Nama Badan</th>
  
-          <th style="TEXT-ALIGN: center" scope="col" colspan="5">Pelaporan Pajak</th>
+          <th style="TEXT-ALIGN: center" colspan="5" scope="col">Pelaporan Pajak</th>
  
-          <th style="TEXT-ALIGN: center" scope="col" colspan="3">&nbsp;Pembayaran</th>
+          <th style="TEXT-ALIGN: center" colspan="3" scope="col">&nbsp;Pembayaran</th>
         </tr>
  
         <tr class="Caption">
@@ -152,16 +152,16 @@ function toPass()
  
         <!-- BEGIN Row -->
         <tr {HistoryGrid:rowStyle}>
-          <td style="BORDER-LEFT: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{npwd}&nbsp;</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid" nowrap>{npwd}&nbsp;</td> 
           <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{company_name}</td> 
           <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
           <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_awal_laporan}&nbsp;s/d {periode_akhir_laporan}</td> 
           <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pelaporan}</td> 
-          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_transaksi}&nbsp;</td> 
-          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
-          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kuitansi_pembayaran}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap align="right">{total_transaksi}&nbsp;</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap align="right">{total_pajak}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap align="right">{kuitansi_pembayaran}</td> 
           <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pembayaran}&nbsp;</td> 
-          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{payment_amount}&nbsp;</td>
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap align="right">{payment_amount}&nbsp;</td>
         </tr>
  <!-- END Row -->
         <!-- BEGIN NoRecords -->
@@ -172,17 +172,17 @@ function toPass()
         <tr class="Footer">
           <td colspan="10">
             <!-- BEGIN Navigator Navigator -->
-            <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
-            <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
-            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
-            <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
             <!-- BEGIN Pages -->
             <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
             <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
-            <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
-            <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
-            <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
-            <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
         </tr>
       </table>
     </td>

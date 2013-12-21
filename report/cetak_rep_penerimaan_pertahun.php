@@ -190,7 +190,7 @@ class FormCetak extends FPDF {
 			
 			// print data piutang
 			$data2 = array();
-			for($j = 0; $j < 12; $j++){
+			for($j = 1; $j <= 12; $j++){
 				$sts = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_sts";
 				$amt = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_amt";
 				
@@ -242,7 +242,7 @@ class FormCetak extends FPDF {
 			
 			// print data tanggal bayar
 			$data2 = array();
-			for($j = 0; $j < 12; $j++){
+			for($j = 1; $j <= 12; $j++){
 				$sts = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_sts";
 				$paydate = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_paydate";
 				

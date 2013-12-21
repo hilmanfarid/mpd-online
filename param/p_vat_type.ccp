@@ -66,7 +66,7 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -230,7 +230,7 @@ WHERE p_vat_type_id = {p_vat_type_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 			</Events>
 			<TableParameters>
@@ -253,7 +253,7 @@ WHERE p_vat_type_id = {p_vat_type_id} ">
 				<SQLParameter id="199" variable="updated_by" dataType="Text" parameterType="Expression" parameterSource="CCGetUserLogin()"/>
 				<SQLParameter id="235" variable="p_vat_type_id" parameterType="Control" dataType="Text" parameterSource="p_vat_type_id"/>
 				<SQLParameter id="245" variable="code" parameterType="Control" dataType="Text" parameterSource="code"/>
-</ISQLParameters>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="228" field="p_vat_type_id" dataType="Float" parameterType="Control" parameterSource="p_vat_type_id"/>
 				<CustomParameter id="229" field="vat_code" dataType="Text" parameterType="Control" parameterSource="code"/>
@@ -270,7 +270,7 @@ WHERE p_vat_type_id = {p_vat_type_id} ">
 				<SQLParameter id="211" variable="description" dataType="Text" parameterType="Control" parameterSource="description"/>
 				<SQLParameter id="215" variable="updated_by" dataType="Text" parameterType="Expression" parameterSource="CCGetUserLogin()"/>
 				<SQLParameter id="246" variable="code" parameterType="Control" dataType="Text" parameterSource="code"/>
-</USQLParameters>
+			</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>
