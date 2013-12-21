@@ -115,7 +115,7 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "B", 12);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
 		$this->Ln();
-		$this->Cell($this->lengthCell, $this->height, "NOTA PERHITUNGAN", "", 0, "C");
+		$this->Cell($this->lengthCell, $this->height, "NOTA VERIFIKASI", "", 0, "C");
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "BEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN", "", 0, "C");
 		$this->Ln();
