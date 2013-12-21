@@ -572,7 +572,7 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 					<Events>
 						<Event name="OnClick" type="Server">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="902"/>
+								<Action actionName="Custom Code" actionCategory="General" id="902" eventType="Server"/>
 							</Actions>
 						</Event>
 					</Events>

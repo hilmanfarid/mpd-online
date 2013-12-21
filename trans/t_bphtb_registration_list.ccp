@@ -3,11 +3,12 @@
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_bphtb_registration_list" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="select cust_order.*,regis.* from t_bphtb_registration regis
 LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id
 where
-cust_order.order_no ILIKE '%{s_keyword}%' OR
-regis.wp_name ILIKE '%{s_keyword}%'
+(cust_order.order_no ILIKE '%{s_keyword}%' OR
+regis.wp_name ILIKE '%{s_keyword}%') 
+AND cust_order.p_order_status_id = 1
 order by regis.t_bphtb_registration_id DESC">
 			<Components>
-				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_bphtb_registration.ccp" removeParameters="t_cust_order_legal_doc_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_bphtb_registration_listInsert_Link">
+				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_bphtb_registration.ccp" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_bphtb_registration_listInsert_Link">
 					<Components/>
 					<Events/>
 					<LinkParameters>
@@ -44,7 +45,25 @@ order by regis.t_bphtb_registration_id DESC">
 					<Attributes/>
 					<Features/>
 				</Link>
-			</Components>
+				<Label id="701" fieldSourceType="DBColumn" dataType="Text" html="False" name="t_bphtb_registration_id" PathID="t_bphtb_registration_listt_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Button id="702" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_bphtb_registration_listButton1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
+<Hidden id="704" fieldSourceType="DBColumn" dataType="Text" html="False" name="t_customer_order_id" fieldSource="t_customer_order_id" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_registration_listt_customer_order_id">
+<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -69,7 +88,7 @@ order by regis.t_bphtb_registration_id DESC">
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="698" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
+				<SQLParameter id="698" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword" designDefaultValue="a"/>
 			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -132,5 +151,10 @@ order by regis.t_bphtb_registration_id DESC">
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="703"/>
+</Actions>
+</Event>
+</Events>
 </Page>

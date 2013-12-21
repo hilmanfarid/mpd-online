@@ -7,6 +7,10 @@
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
+function printLaporan(id_lap){
+                alert(id_lap);
+     window.open("../trans/t_rep_bphtb_registration.php?"+id_lap, "_blank", "toolbar=0,location=0,menubar=0");
+}
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
         arrLOV = LOV_NM.split("?");
@@ -23,7 +27,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -75,29 +79,36 @@ $(document).ready(function()
                   <tr class="Caption">
                     <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
  
+                    <th scope="col">&nbsp;Detil</th>
+ 
+                    <th scope="col">&nbsp;ID</th>
+ 
                     <th scope="col">Nama Wajib Pajak</th>
  
                     <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">No order</label></label></th>
  
-                    <th scope="col">Deskripsi&nbsp;</th>
+                    <th scope="col">Print</th>
                   </tr>
  
                   <!-- BEGIN Row -->
                   <tr {t_bphtb_registration_list:rowStyle}>
                     <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_bphtb_registration_listDLink_{t_bphtb_registration_list:rowNumber}">{DLink}</a></td> 
+                    <td>&nbsp;<a href="t_bphtb_registration.php?ccsForm=:Edit&amp;t_bphtb_registration_id={t_bphtb_registration_id}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
+                    <td>&nbsp;{t_bphtb_registration_id}<input type="hidden" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" id="t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}"></td> 
                     <td>{wp_name}</td> 
                     <td><a href="../files/{origin_file_name_Src}" id="t_bphtb_registration_listorigin_file_name_{t_bphtb_registration_list:rowNumber}">{origin_file_name}</a>&nbsp;</td> 
-                    <td><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></td>
+                    <td>
+                      <!-- BEGIN Button Button1 --><input id="t_bphtb_registration_listButton1" class="btn_tambah" onclick="submitRegisBphtb({t_bphtb_registration_id},'t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}')" name="{Button_Name}" alt="Button1" value="SUBMIT" type="button"><!-- END Button Button1 --></td>
                   </tr>
  <!-- END Row -->
                   <!-- BEGIN NoRecords -->
                   <tr class="NoRecords">
-                    <td colspan="4">-</td>
+                    <td colspan="6">-</td>
                   </tr>
                   <!-- END NoRecords -->
                   <tr class="Footer">
                     <td><b><a href="{Insert_Link_Src}" id="t_bphtb_registration_listInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
-                    <td colspan="3">
+                    <td colspan="5">
                       <!-- BEGIN Navigator Navigator -->
                       <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                       <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -185,6 +196,14 @@ function toVat()
                                                                            +"&order_no="+order
                                                                                                                                                    +"&p_rqst_type_id="+reqId
                                                                                                                                                    +"&rqst_type_code="+reqCode;
+}
+
+function submitRegisBphtb(idVal,t_customer_order_id){
+		var cust_id = document.getElementById(t_customer_order_id);
+                if(confirm("Anda Yakin Untuk Submit Data BPHTB?")){
+                        location.href="t_bphtb_registration_list.php?submit_bphtb=1&t_bphtb_registration_id="+idVal+"&t_customer_order_id="+cust_id.value;
+                }
+        
 }
 </script>
   </body>
