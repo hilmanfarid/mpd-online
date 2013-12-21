@@ -1,7 +1,7 @@
 <?php
 define("RelativePath", "..");
 define("PathToCurrentPage", "/report/");
-define("FileName", "cetak_rep_bpps.php");
+define("FileName", "cetak_rep_sspd_bphtb.php");
 include_once(RelativePath . "/Common.php");
 // include_once("../include/fpdf.php");
 require("../include/qrcode/fpdf17/fpdf.php");
@@ -88,7 +88,7 @@ class FormCetak extends FPDF {
 	var $aligns;
 	
 	function FormCetak() {
-		$this->FPDF();
+		$this->FPDF("L");
 	}
 	
 	function __construct() {
@@ -110,14 +110,19 @@ class FormCetak extends FPDF {
 		$this->Image('../images/logo_pemda.png',25,10,25,25);
 		
 		$this->SetFont("Arial", "B", 12);
-		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
-		$this->Ln();
-		$this->Cell($this->lengthCell, $this->height, "NOTA PERHITUNGAN", "", 0, "C");
+		$this->Cell($this->lengthCell, $this->height, "SURAT SETORAN PAJAK DAERAH", "", 0, "C");
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "BEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN", "", 0, "C");
 		$this->Ln();
-		$this->newLine();
-		$this->Cell($this->lengthCell, $this->height, "JENIS TRANSAKSI: ", "", 0, "C");
+		
+		$this->SetFont("Arial", "B", 14);
+		$this->Cell($this->lengthCell, $this->height, "(SSPD - BPHTB)", "", 0, "C");
+		$this->Ln();
+		
+		$this->SetFont("Arial", "B", 10);
+		$this->Cell($this->lengthCell, $this->height, "BERFUNGSI SEBAGAI SURAT PEMBERITAHUAN OBJEK PAJAK", "", 0, "C");
+		$this->Ln();
+		$this->Cell($this->lengthCell, $this->height, "PAJAK BUMI DAN BANGUNAN (SPOP PBB)", "", 0, "C");
 		$this->Ln();
 		$this->newLine();
 		$this->newLine();
