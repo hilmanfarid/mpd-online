@@ -1,0 +1,904 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function printLaporan(){
+                var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
+        window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+}
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-113F5716
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//t_bphtb_registrationFormButton_Delete_OnClick @97-C27F3D13
+function t_bphtb_registrationFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_bphtb_registrationFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close t_bphtb_registrationFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_bphtb_registrationFormButton_Delete_OnClick
+
+//t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange @934-146D1D21
+function t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange()
+{
+    var result = true;
+//End t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange
+
+//Custom Code @956-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange @934-BC33A33A
+    return result;
+}
+//End Close t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange
+//t_bphtb_registrationFormButton_Cancel_OnClick @99-359D9A2A
+function t_bphtb_registrationFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_bphtb_registrationFormButton_Cancel_OnClick
+
+//PTAutoFill1 Loading @951-4695F141
+function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(sender) {
+    new Ajax.Request("../services/trans_t_bphtb_registration_t_bphtb_registrationForm_p_bphtb_legal_doc_type_id_PTAutoFill1.php?keyword=" + encodeURIComponent($("t_bphtb_registrationFormp_bphtb_legal_doc_type_id").value).replace(/'/g, "%27"), {
+        method: "get",
+        requestHeaders: ['If-Modified-Since', new Date(0)],
+        onSuccess: function(transport) {
+            var valuesRow = eval(transport.responseText)[0];
+            if (typeof(valuesRow) != "undefined") {
+                getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = valuesRow["npoptkp"];
+            } else {
+                getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = "0";
+            }
+                        hitungNPOPKP();
+        }, 
+        onFailure: function(transport) {
+            alert(transport.responseText);
+        }
+    });
+}
+//End PTAutoFill1 Loading
+
+//bind_events @1-68E8BC11
+function bind_events() {
+    addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start);
+    addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange);
+    addEventHandler("t_bphtb_registrationFormButton_Delete", "click", t_bphtb_registrationFormButton_Delete_OnClick);
+    addEventHandler("t_bphtb_registrationFormButton_Cancel", "click", t_bphtb_registrationFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toOrder()">
+      <div class="tab-title">
+        DAFTAR BPHTB&nbsp; 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        FORMULIR PENDAFTARAN 
+      </div>
+    </div>
+    <!--<div class="th tab-button">
+      <label onclick="javascript:toReg3()">
+      <div class="tab-title">
+        DOKUMEN PENDUKUNG 
+      </div>
+      </label>
+    </div>-->
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_bphtb_registrationForm -->
+        <form id="t_bphtb_registrationForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI FORMULIR PENDAFTARAN</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="9">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th" colspan="3">&nbsp;A. Subjek Pajak</td> 
+                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormt_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormTAKEN_CTL" name="{TAKEN_CTL_Name}" value="{TAKEN_CTL}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_TAKEN" name="{IS_TAKEN_Name}" value="{IS_TAKEN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_ID" name="{CURR_DOC_ID_Name}" value="{CURR_DOC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_TYPE_ID" name="{CURR_DOC_TYPE_ID_Name}" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_PROC_ID" name="{CURR_PROC_ID_Name}" value="{CURR_PROC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_CTL_ID" name="{CURR_CTL_ID_Name}" value="{CURR_CTL_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_DOC" name="{USER_ID_DOC_Name}" value="{USER_ID_DOC}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_DONOR" name="{USER_ID_DONOR_Name}" value="{USER_ID_DONOR}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_LOGIN" name="{USER_ID_LOGIN_Name}" value="{USER_ID_LOGIN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_TAKEN" name="{USER_ID_TAKEN_Name}" value="{USER_ID_TAKEN}" size="5" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_CREATE_DOC" name="{IS_CREATE_DOC_Name}" value="{IS_CREATE_DOC}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_MANUAL" name="{IS_MANUAL_Name}" value="{IS_MANUAL}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_PROC_STATUS" name="{CURR_PROC_STATUS_Name}" value="{CURR_PROC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_STATUS" name="{CURR_DOC_STATUS_Name}" value="{CURR_DOC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_DOC_ID" name="{PREV_DOC_ID_Name}" value="{PREV_DOC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_DOC_TYPE_ID" name="{PREV_DOC_TYPE_ID_Name}" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_PROC_ID" name="{PREV_PROC_ID_Name}" value="{PREV_PROC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_CTL_ID" name="{PREV_CTL_ID_Name}" value="{PREV_CTL_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_1" name="{SLOT_1_Name}" value="{SLOT_1}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_2" name="{SLOT_2_Name}" value="{SLOT_2}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_3" name="{SLOT_3_Name}" value="{SLOT_3}" size="4" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_4" name="{SLOT_4_Name}" value="{SLOT_4}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_5" name="{SLOT_5_Name}" value="{SLOT_5}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormMESSAGE" name="{MESSAGE_Name}" value="{MESSAGE}" size="4" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama</label></label></label></label></label></label></label></td> 
+                    <td colspan="6"><label for="t_bphtb_registrationFormwp_name" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" name="{wp_name_Name}" readonly value="{wp_name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">NPWP</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormnpwp" name="{npwp_Name}" readonly value="{npwp}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Alamat</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_address_name" name="{wp_address_name_Name}" readonly value="{wp_address_name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">No Telp</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormphone_no" name="{phone_no_Name}" readonly value="{phone_no}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">No HP</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormmobile_phone_no" name="{mobile_phone_no_Name}" readonly value="{mobile_phone_no}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;RT/ RW</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_rt" name="{wp_rt_Name}" readonly value="{wp_rt}" size="2">&nbsp;/ <input id="t_bphtb_registrationFormwp_rw" name="{wp_rw_Name}" readonly value="{wp_rw}" size="2"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kota/Kabupaten&nbsp;</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kota" class="ControlsRQ" tabindex="2" name="{wp_kota_Name}" readonly maxlength="32" value="{wp_kota}" size="32">&nbsp;&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id" name="{wp_p_region_id_Name}" value="{wp_p_region_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kecamatan&nbsp;</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kecamatan" class="ControlsRQ" tabindex="2" name="{wp_kecamatan_Name}" readonly maxlength="32" value="{wp_kecamatan}" size="32">&nbsp;&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id_kec" name="{wp_p_region_id_kec_Name}" value="{wp_p_region_id_kec}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kelurahan&nbsp;</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kelurahan" class="ControlsRQ" tabindex="2" name="{wp_kelurahan_Name}" readonly maxlength="32" value="{wp_kelurahan}" size="32">&nbsp;&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id_kel" name="{wp_p_region_id_kel_Name}" value="{wp_p_region_id_kel}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="3">&nbsp;B. Objek Pajak</td> 
+                    <td colspan="6">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;Nomor Objek Pajak</td> 
+                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" readonly value="{njop_pbb}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;Letak Tanah dan atau Bangunan</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_address_name" name="{object_address_name_Name}" readonly value="{object_address_name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;RT/ RW</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_rt" name="{object_rt_Name}" readonly value="{object_rt}" size="2">&nbsp;/ <input id="t_bphtb_registrationFormobject_rw" name="{object_rw_Name}" readonly value="{object_rw}" size="2"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kabupaten/ Kota</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kota" class="ControlsRQ" tabindex="2" name="{object_kota_Name}" readonly maxlength="32" value="{object_kota}" size="32"><input id="t_bphtb_registrationFormobject_p_region_id" name="{object_p_region_id_Name}" value="{object_p_region_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kecamatan</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kecamatan" class="ControlsRQ" tabindex="2" name="{object_kecamatan_Name}" readonly maxlength="32" value="{object_kecamatan}" size="32"><input id="t_bphtb_registrationFormobject_p_region_id_kec" name="{object_p_region_id_kec_Name}" value="{object_p_region_id_kec}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kelurahan</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kelurahan" class="ControlsRQ" tabindex="2" name="{object_kelurahan_Name}" readonly maxlength="32" value="{object_kelurahan}" size="32"><input id="t_bphtb_registrationFormobject_p_region_id_kel" name="{object_p_region_id_kel_Name}" value="{object_p_region_id_kel}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Dokumen Pendukung</td> 
+                    <td colspan="6">
+                      <!-- BEGIN ListBox p_bphtb_legal_doc_type_id -->
+                      <select id="t_bphtb_registrationFormp_bphtb_legal_doc_type_id" disabled name="{p_bphtb_legal_doc_type_id_Name}">
+                        <option selected value="">Select Value</option>
+                        {p_bphtb_legal_doc_type_id_Options}
+                      </select>
+ <!-- END ListBox p_bphtb_legal_doc_type_id --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;</td> 
+                    <td colspan="6">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;Tanah</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" onkeyup="hitungTotalTanah();" name="{land_area_Name}" readonly value="{land_area}">&nbsp;m2</td> 
+                    <td class="th">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_price_per_m" onkeyup="hitungTotalTanah();" name="{land_price_per_m_Name}" readonly value="{land_price_per_m}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" name="{land_total_price_Name}" readonly value="{land_total_price}"></td>
+                  </tr>
+ 
+                  <tr class="Controls" onkeyup="document.getElementById(&amp;quot;t_bphtb_registrationFormland_total_price&amp;quot;).value=hitungTotalTanah();">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;Bangunan</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" onkeyup="hitungTotalBangunan();" name="{building_area_Name}" readonly value="{building_area}">&nbsp;m2</td> 
+                    <td>&nbsp;Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_price_per_m" onkeyup="hitungTotalBangunan();" name="{building_price_per_m_Name}" readonly value="{building_price_per_m}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" name="{building_total_price_Name}" readonly value="{building_total_price}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;</td> 
+                    <td colspan="5">&nbsp;Total</td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormtotal_price" name="{total_price_Name}" readonly value="{total_price}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;</td> 
+                    <td colspan="5">&nbsp;Harga Transaksi Pasar</td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" onkeyup="getNPOP();" name="{market_price_Name}" value="{market_price}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Nilai Perolehan Objek Pajak (NPOP)</td> 
+                    <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop" onchange="hitungNPOPKP();" name="{npop_Name}" readonly value="{npop}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Nilai Perolehan Objek Pajak Tidak Kena Pajak(NPOPTKP)</td> 
+                    <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_tkp" name="{npop_tkp_Name}" readonly value="{npop_tkp}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Nilai Perolehan Objek Pajak Kena Pajak(NPOPKP)</td> 
+                    <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_kp" name="{npop_kp_Name}" readonly value="{npop_kp}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang terutang</td> 
+                    <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt" name="{bphtb_amt_Name}" readonly value="{bphtb_amt}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Potongan</td> 
+                    <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_discount" onkeyup="hitungPembayaran();" name="{bphtb_discount_Name}" readonly value="{bphtb_discount}">&nbsp; <input id="t_bphtb_registrationFormdescription" name="{description_Name}" readonly value="{description}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</td> 
+                    <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt_final" name="{bphtb_amt_final_Name}" readonly value="{bphtb_amt_final}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="9" align="right">&nbsp; 
+                      <!-- BEGIN Button Button3 --><input id="t_bphtb_registrationFormButton3" class="btn_tambah" onclick="printLaporan();" name="{Button_Name}" alt="Button2" value="PRINT SSPD" type="button"><!-- END Button Button3 -->&nbsp;&nbsp;&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button2 --><input id="t_bphtb_registrationFormButton2" class="btn_tambah" onclick="submitter();return false;" name="{Button_Name}" alt="Button2" value="SUBMIT" type="submit"><!-- END Button Button2 -->
+                      <!-- BEGIN Button Button_Insert --><input id="t_bphtb_registrationFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input style="DISPLAY: none" id="t_bphtb_registrationFormButton_Update" class="btn_tambah" disabled name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="t_bphtb_registrationFormButton_Delete" class="btn_tambah" disabled name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_bphtb_registrationFormButton_Cancel" class="btn_tambah" disabled name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_bphtb_registrationForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+function lov_job() {
+        getFrom_LOV('t_bphtb_registrationForm','p_job_position_id,job_position_code','lov_2_field.php?TABLE=p_job_position&FIELD_0=p_job_position_id&FIELD_1=code&FIELD_2=description&LABEL1=Jabatan&LABEL2=Deskripsi&HEADER_PAGE=JABATAN&HEADER_LOV=DAFTAR JABATAN&ORDER=p_job_position_id');
+}
+
+
+function lov_region_wp1() {
+        getFrom_LOV('t_bphtb_registrationForm','wp_p_region_id,wp_kota','lov_region.php');
+}
+
+function lov_region_wp2() {
+                var kota = document.getElementById("t_bphtb_registrationFormwp_p_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_bphtb_registrationForm','wp_p_region_id_kec,wp_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_wp3() {
+                var kec = document.getElementById("t_bphtb_registrationFormwp_p_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_bphtb_registrationForm','wp_p_region_id_kel,wp_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region_object1() {
+        getFrom_LOV('t_bphtb_registrationForm','object_p_region_id,object_kota','lov_region.php');
+}
+
+function lov_region_object2() {
+                var kota = document.getElementById("t_bphtb_registrationFormobject_p_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_bphtb_registrationForm','object_p_region_id_kec,object_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_object3() {
+                var kec = document.getElementById("t_bphtb_registrationFormobject_p_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_bphtb_registrationForm','object_p_region_id_kel,object_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region1() {
+        getFrom_LOV('t_bphtb_registrationForm','p_region_id,kota_code','lov_region.php');
+}
+
+function lov_region2() {
+                var kota = document.getElementById("t_bphtb_registrationFormp_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_bphtb_registrationForm','p_region_id_kec,kecamatan_code','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region3() {
+                var kec = document.getElementById("t_bphtb_registrationFormp_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_bphtb_registrationForm','p_region_id_kel,kelurahan_code','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region_own1() {
+        getFrom_LOV('t_bphtb_registrationForm','p_region_id_owner,kota_own_code','lov_region.php');
+}
+
+function lov_region_own2() {
+                var kota2 = document.getElementById("t_bphtb_registrationFormp_region_id_owner").value;          
+                if (kota2!= "" && kota2 != 0 && kota2 != false && kota2 != undefined &&  kota2 != null){
+                        getFrom_LOV('t_bphtb_registrationForm','p_region_id_kec_owner,kecamatan_own_code','lov_region_kec.php?p_region_id='+kota2);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_own3() {
+                var kec2 = document.getElementById("t_bphtb_registrationFormp_region_id_kec_owner").value;          
+                if (kec2!= "" && kec2 != 0 && kec2 != false && kec2 != undefined &&  kec2 != null){
+                        getFrom_LOV('t_bphtb_registrationForm','p_region_id_kel_owner,kelurahan_own_code','lov_region_kel.php?p_region_id='+kec2);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function toOrder()
+{
+
+    var pid=document.getElementById('t_bphtb_registrationFormt_customer_order_id').value;
+        location.href="t_customer_order.php?t_customer_order_id="+pid;
+   
+}
+
+function toReg2()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id'))
+  {
+    var pid=idelement.value;
+    var req_code=document.getElementById("t_bphtb_registrationFormrqst_type_code").value;
+    var id_req=document.getElementById("t_bphtb_registrationFormp_rqst_type_id").value;
+        var id_cus=document.getElementById("t_bphtb_registrationFormt_customer_order_id").value;
+        if (pid != 0)
+    {
+     location.href="t_vat_reg_dtl.php?t_bphtb_registration_id="+pid+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_customer_order_id="+id_cus;
+    } else {
+     alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+    }
+  } else {
+     alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+  }
+}
+/*
+function toReg3()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_bphtb_registrationFormt_customer_order_id'))
+  {
+    var pid=idelement.value;
+    var req_code=document.getElementById("t_bphtb_registrationFormrqst_type_code").value;
+    var id_req=document.getElementById("t_bphtb_registrationFormp_rqst_type_id").value;
+        var id_vat=document.getElementById("t_bphtb_registrationFormt_bphtb_registration_id").value;
+        if (pid != 0)
+    {
+     location.href="t_cust_order_legal_doc.php?t_bphtb_registration_id="+id_vat+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_customer_order_id="+pid;
+    } else {
+     alert("Pilih salah satu ORDER!");
+    }
+  } else {
+     alert("Pilih salah satu ORDER!");
+  }
+}
+*/
+
+function hitungTotalTanah(){
+        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value)*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value);
+        document.getElementById('t_bphtb_registrationFormland_total_price').value=hasil;
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value)+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value);
+                getNPOP();
+                hitungNPOPKP();
+}
+function hitungTotalBangunan(){
+        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value)*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value);
+        document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=hasil;
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value)+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value);
+                getNPOP();
+                
+}
+function getNPOP(){
+        if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value)>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value)){
+                        document.getElementById('t_bphtb_registrationFormnpop').value=document.getElementById('t_bphtb_registrationFormtotal_price').value;
+                }else{
+                        document.getElementById('t_bphtb_registrationFormnpop').value=document.getElementById('t_bphtb_registrationFormmarket_price').value;
+                }
+                hitungNPOPKP();
+}
+function hitungNPOPKP(){
+                                var npotkp = document.getElementById('t_bphtb_registrationFormnpop_tkp').value;
+                                if(npotkp=='' || npotkp=='undefined'){
+                                        npotkp=0;
+                                }
+                                var npokp = document.getElementById('t_bphtb_registrationFormnpop').value;
+                                if(npokp=='' || npokp=='undefined'){
+                                        npokp=0;
+                                }
+                document.getElementById('t_bphtb_registrationFormnpop_kp').value=parseFloat(npokp)-parseFloat(npotkp);
+               hitungTerutang(document.getElementById('t_bphtb_registrationFormnpop_kp').value);
+}
+function hitungTerutang(nilai){
+        var terutang = nilai/100*5;
+        document.getElementById('t_bphtb_registrationFormbphtb_amt').value=terutang.toFixed(2);
+                hitungPembayaran();
+}
+function hitungPembayaran(){
+        var jumlah= document.getElementById('t_bphtb_registrationFormbphtb_amt').value;
+        var diskon= document.getElementById('t_bphtb_registrationFormbphtb_discount').value;
+                if(jumlah=='' || jumlah=='undefined'){
+                jumlah=0;
+        }
+        if(diskon=='' || diskon=='undefined'){
+                diskon=0;
+        }
+        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=parseFloat(jumlah)-parseFloat(diskon);
+}
+
+
+function toReg2()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id'))
+  {
+    var pid=idelement.value;
+        var id_req=document.getElementById("t_bphtb_registrationFormp_rqst_type_id").value;
+    var id_cus = document.getElementById("t_bphtb_registrationFormt_customer_order_id").value;
+
+        var takenCtl = document.getElementById('t_bphtb_registrationFormTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_bphtb_registrationFormIS_TAKEN').value;
+        var currDocId = document.getElementById('t_bphtb_registrationFormCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_bphtb_registrationFormCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_bphtb_registrationFormCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_bphtb_registrationFormCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_bphtb_registrationFormUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_bphtb_registrationFormUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_bphtb_registrationFormUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_bphtb_registrationFormUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_bphtb_registrationFormIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_bphtb_registrationFormIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_bphtb_registrationFormCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_bphtb_registrationFormCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_bphtb_registrationFormPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_bphtb_registrationFormPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_bphtb_registrationFormPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_bphtb_registrationFormPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_bphtb_registrationFormSLOT_1').value;
+        var slot2 = document.getElementById('t_bphtb_registrationFormSLOT_2').value;
+        var slot3 = document.getElementById('t_bphtb_registrationFormSLOT_3').value;
+        var slot4 = document.getElementById('t_bphtb_registrationFormSLOT_4').value;
+        var slot5 = document.getElementById('t_bphtb_registrationFormSLOT_5').value;
+        var msg = document.getElementById('t_bphtb_registrationFormMESSAGE').value;
+
+    if (pid != 0)
+        {
+                location.href="t_vat_reg_dtl_ro_ver.php?t_bphtb_registration_id="+pid
+                                                                                                +"&p_rqst_type_id="+id_req
+                                                                                                +"&t_customer_order_id="+id_cus
+                                                                                                +"&TAKEN_CTL="+takenCtl
+                                                                                                +"&IS_TAKEN="+isTaken
+                                                                                                +"&CURR_DOC_ID="+currDocId
+                                                                                                +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                                +"&CURR_PROC_ID="+currProcId
+                                                                                                +"&CURR_CTL_ID="+currCtlId
+                                                                                                +"&USER_ID_DOC="+userIdDoc
+                                                                                                +"&USER_ID_DONOR="+userIdDonor
+                                                                                                +"&USER_ID_LOGIN="+userIdLogin
+                                                                                                +"&USER_ID_TAKEN="+userIdTaken
+                                                                                                +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                                +"&IS_MANUAL="+isManual
+                                                                                                +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                                +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                                +"&PREV_DOC_ID="+PrevDocId
+                                                                                                +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                                +"&PREV_PROC_ID="+PrevProcId
+                                                                                                +"&PREV_CTL_ID="+PrevCtlId
+                                                                                                +"&SLOT_1="+slot1
+                                                                                                +"&SLOT_2="+slot2
+                                                                                                +"&SLOT_3="+slot3
+                                                                                                +"&SLOT_4="+slot4
+                                                                                                +"&SLOT_5="+slot5
+                                                                                                +"&MESSAGE="+msg;
+        } else {
+                alert("Pilih Salah Satu Order!");
+        }
+  } else {
+     alert("Pilih Salah Satu Order!");
+  }
+}
+
+function toReg3()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_bphtb_registrationFormt_customer_order_id'))
+  {
+    var pid=idelement.value;
+    var id_vat =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
+    var id_req=document.getElementById("t_bphtb_registrationFormp_rqst_type_id").value;
+    
+        var takenCtl = document.getElementById('t_bphtb_registrationFormTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_bphtb_registrationFormIS_TAKEN').value;
+        var currDocId = document.getElementById('t_bphtb_registrationFormCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_bphtb_registrationFormCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_bphtb_registrationFormCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_bphtb_registrationFormCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_bphtb_registrationFormUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_bphtb_registrationFormUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_bphtb_registrationFormUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_bphtb_registrationFormUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_bphtb_registrationFormIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_bphtb_registrationFormIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_bphtb_registrationFormCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_bphtb_registrationFormCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_bphtb_registrationFormPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_bphtb_registrationFormPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_bphtb_registrationFormPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_bphtb_registrationFormPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_bphtb_registrationFormSLOT_1').value;
+        var slot2 = document.getElementById('t_bphtb_registrationFormSLOT_2').value;
+        var slot3 = document.getElementById('t_bphtb_registrationFormSLOT_3').value;
+        var slot4 = document.getElementById('t_bphtb_registrationFormSLOT_4').value;
+        var slot5 = document.getElementById('t_bphtb_registrationFormSLOT_5').value;
+        var msg = document.getElementById('t_bphtb_registrationFormMESSAGE').value;
+
+        if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_cust_order_legal_doc_ro_ver.php?t_customer_order_id="+pid
+                                                                                                  +"&p_rqst_type_id="+id_req
+                                                                                                  +"&t_bphtb_registration_id="+id_vat
+                                                                                                  +"&TAKEN_CTL="+takenCtl
+                                                                                                        +"&IS_TAKEN="+isTaken
+                                                                                                        +"&CURR_DOC_ID="+currDocId
+                                                                                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                                        +"&CURR_PROC_ID="+currProcId
+                                                                                                        +"&CURR_CTL_ID="+currCtlId
+                                                                                                        +"&USER_ID_DOC="+userIdDoc
+                                                                                                        +"&USER_ID_DONOR="+userIdDonor
+                                                                                                        +"&USER_ID_LOGIN="+userIdLogin
+                                                                                                        +"&USER_ID_TAKEN="+userIdTaken
+                                                                                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                                        +"&IS_MANUAL="+isManual
+                                                                                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                                        +"&PREV_DOC_ID="+PrevDocId
+                                                                                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                                        +"&PREV_PROC_ID="+PrevProcId
+                                                                                                        +"&PREV_CTL_ID="+PrevCtlId
+                                                                                                        +"&SLOT_1="+slot1
+                                                                                                        +"&SLOT_2="+slot2
+                                                                                                        +"&SLOT_3="+slot3
+                                                                                                        +"&SLOT_4="+slot4
+                                                                                                        +"&SLOT_5="+slot5
+                                                                                                        +"&MESSAGE="+msg;
+    } else {
+     alert("Pilih salah satu ORDER!");
+    }
+  } else {
+     alert("Pilih salah satu ORDER!");
+  }
+}
+
+
+function toActive()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_bphtb_registrationFormt_customer_order_id'))
+  {
+    var pid=idelement.value;
+    var id_vat =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
+    var id_req=document.getElementById("t_bphtb_registrationFormp_rqst_type_id").value;
+    
+        var takenCtl = document.getElementById('t_bphtb_registrationFormTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_bphtb_registrationFormIS_TAKEN').value;
+        var currDocId = document.getElementById('t_bphtb_registrationFormCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_bphtb_registrationFormCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_bphtb_registrationFormCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_bphtb_registrationFormCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_bphtb_registrationFormUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_bphtb_registrationFormUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_bphtb_registrationFormUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_bphtb_registrationFormUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_bphtb_registrationFormIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_bphtb_registrationFormIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_bphtb_registrationFormCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_bphtb_registrationFormCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_bphtb_registrationFormPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_bphtb_registrationFormPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_bphtb_registrationFormPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_bphtb_registrationFormPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_bphtb_registrationFormSLOT_1').value;
+        var slot2 = document.getElementById('t_bphtb_registrationFormSLOT_2').value;
+        var slot3 = document.getElementById('t_bphtb_registrationFormSLOT_3').value;
+        var slot4 = document.getElementById('t_bphtb_registrationFormSLOT_4').value;
+        var slot5 = document.getElementById('t_bphtb_registrationFormSLOT_5').value;
+        var msg = document.getElementById('t_bphtb_registrationFormMESSAGE').value;
+
+        if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_order_log_kronologis_ver.php?t_customer_order_id="+pid
+                                                                                                  +"&p_rqst_type_id="+id_req
+                                                                                                  +"&t_bphtb_registration_id="+id_vat
+                                                                                                  +"&TAKEN_CTL="+takenCtl
+                                                                                                        +"&IS_TAKEN="+isTaken
+                                                                                                        +"&CURR_DOC_ID="+currDocId
+                                                                                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                                        +"&CURR_PROC_ID="+currProcId
+                                                                                                        +"&CURR_CTL_ID="+currCtlId
+                                                                                                        +"&USER_ID_DOC="+userIdDoc
+                                                                                                        +"&USER_ID_DONOR="+userIdDonor
+                                                                                                        +"&USER_ID_LOGIN="+userIdLogin
+                                                                                                        +"&USER_ID_TAKEN="+userIdTaken
+                                                                                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                                        +"&IS_MANUAL="+isManual
+                                                                                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                                        +"&PREV_DOC_ID="+PrevDocId
+                                                                                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                                        +"&PREV_PROC_ID="+PrevProcId
+                                                                                                        +"&PREV_CTL_ID="+PrevCtlId
+                                                                                                        +"&SLOT_1="+slot1
+                                                                                                        +"&SLOT_2="+slot2
+                                                                                                        +"&SLOT_3="+slot3
+                                                                                                        +"&SLOT_4="+slot4
+                                                                                                        +"&SLOT_5="+slot5
+                                                                                                        +"&MESSAGE="+msg;
+    } else {
+     alert("Pilih salah satu ORDER!");
+    }
+  } else {
+     alert("Pilih salah satu ORDER!");
+  }
+}
+
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function submitter(){
+        var takenCtl = document.getElementById('t_bphtb_registrationFormTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_bphtb_registrationFormIS_TAKEN').value;
+        var currDocId = document.getElementById('t_bphtb_registrationFormCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_bphtb_registrationFormCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_bphtb_registrationFormCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_bphtb_registrationFormCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_bphtb_registrationFormUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_bphtb_registrationFormUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_bphtb_registrationFormUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_bphtb_registrationFormUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_bphtb_registrationFormIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_bphtb_registrationFormIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_bphtb_registrationFormCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_bphtb_registrationFormCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_bphtb_registrationFormPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_bphtb_registrationFormPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_bphtb_registrationFormPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_bphtb_registrationFormPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_bphtb_registrationFormSLOT_1').value;
+        var slot2 = document.getElementById('t_bphtb_registrationFormSLOT_2').value;
+        var slot3 = document.getElementById('t_bphtb_registrationFormSLOT_3').value;
+        var slot4 = document.getElementById('t_bphtb_registrationFormSLOT_4').value;
+        var slot5 = document.getElementById('t_bphtb_registrationFormSLOT_5').value;
+        var msg = document.getElementById('t_bphtb_registrationFormMESSAGE').value;
+        
+         var urlLink = "?TAKEN_CTL="+takenCtl
+                                        +"&IS_TAKEN="+isTaken
+                                        +"&CURR_DOC_ID="+currDocId
+                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                        +"&CURR_PROC_ID="+currProcId
+                                        +"&CURR_CTL_ID="+currCtlId
+                                        +"&USER_ID_DOC="+userIdDoc
+                                        +"&USER_ID_DONOR="+userIdDonor
+                                        +"&USER_ID_LOGIN="+userIdLogin
+                                        +"&USER_ID_TAKEN="+userIdTaken
+                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                        +"&IS_MANUAL="+isManual
+                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                        +"&PREV_DOC_ID="+PrevDocId
+                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                        +"&PREV_PROC_ID="+PrevProcId
+                                        +"&PREV_CTL_ID="+PrevCtlId
+                                        +"&SLOT_1="+slot1
+                                        +"&SLOT_2="+slot2
+                                        +"&SLOT_3="+slot3
+                                        +"&SLOT_4="+slot4
+                                        +"&SLOT_5="+slot5
+                                        +"&MESSAGE="+msg;
+     return popup("../workflow/php_submitter_start.php"+urlLink);
+}
+
+function cetak_formulir(){
+        var idd = document.getElementById('t_bphtb_registrationFormt_customer_order_id').value;
+                var vatId = document.getElementById('t_bphtb_registrationFormp_rqst_type_id').value;
+                var urlLink = "?t_customer_order_id="+idd;
+                if(vatId == 3){
+                        return popup("../report/cetak_formulir_hiburan_pdf.php"+urlLink);
+                }else if(vatId == 1){ 
+                        return popup("../report/cetak_formulir_hotel_pdf.php"+urlLink);
+                }else if(vatId == 4){
+                        return popup("../report/cetak_formulir_parkir_pdf.php"+urlLink);
+                }else if(vatId == 5){
+                        return popup("../report/cetak_formulir_ppj_pdf.php"+urlLink);
+                }else if(vatId == 2){
+                        return popup("../report/cetak_formulir_restoran_pdf.php"+urlLink);
+                }else{
+                        alert("Formulir Kosong");
+                }
+}
+
+function cetak_sp(){
+       return popup("../report/surat_penolakan_pdf.php");
+}
+
+function cetak_tri(){
+                var cet = document.getElementById('t_bphtb_registrationFormHidden1').value;
+        var idd = document.getElementById('t_bphtb_registrationFormt_customer_order_id').value;
+        var vatId = document.getElementById('t_bphtb_registrationFormp_rqst_type_id').value;
+        var urlLink = "?t_customer_order_id="+idd;
+       
+           if (cet == 1){              
+                            if(vatId == 3){
+                        return popup("../report/cetak_sptpd_hiburan_pdf.php"+urlLink);
+                }else if(vatId == 1){ 
+                        return popup("../report/cetak_sptpd_hotel_pdf.php"+urlLink);
+                }else if(vatId == 4){
+                        return popup("../report/cetak_sptpd_parkir_pdf.php"+urlLink);
+                }else if(vatId == 5){
+                        return popup("../report/cetak_sptpd_ppj_pdf.php"+urlLink);
+                }else if(vatId == 2){
+                        return popup("../report/cetak_sptpd_restoran_pdf.php"+urlLink);
+                }else{
+                        alert("Formulir Kosong");
+                }
+                }else if(cet == 2){
+                        return popup("../report/cetak_formulir_skpdkb_pdf.php"+urlLink);        
+                }else{
+                        return popup("../report/cetak_formulir_skpdn_pdf.php"+urlLink);
+                }
+}
+
+</script>
+</body>
+</html>
