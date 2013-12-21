@@ -25,22 +25,21 @@ function workavailable_BeforeShowRow(& $sender)
     global $workavailable; //Compatibility
 //End workavailable_BeforeShowRow
 
-//Custom Code @27-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$url = $workavailable->SURL->GetValue();
-	$new_url = str_replace("~#","&",$url);
-	$workavailable->WORKFLOW_NAME->SetLink($new_url);
-	$workavailable->INBOX->SetLink($new_url);
+  // -------------------------
+      // Write your own code here.
+  	$url = $workavailable->SURL->GetValue();
+  	$new_url = str_replace("~#","&",$url);
+  	$workavailable->WORKFLOW_NAME->SetLink($new_url);
+  	$workavailable->INBOX->SetLink($new_url);
+  
+  	$jum = $workavailable->INBOX->GetValue();
+  
+  	$jumlah = $jumlah + $jum;
+  
+  	$workavailable->JUMLAH->SetValue($jumlah);
+  
+  // -------------------------
 
-	$jum = $workavailable->INBOX->GetValue();
-
-	$jumlah = $jumlah + $jum;
-
-	$workavailable->JUMLAH->SetValue($jumlah);
-
-// -------------------------
-//End Custom Code
 
 //Close workavailable_BeforeShowRow @4-E31BD942
     return $workavailable_BeforeShowRow;
@@ -56,12 +55,6 @@ function workavailable_BeforeShow(& $sender)
     global $workavailable; //Compatibility
 //End workavailable_BeforeShow
 
-//Custom Code @31-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 //Close workavailable_BeforeShow @4-E241EF8D
     return $workavailable_BeforeShow;
 }
@@ -76,22 +69,21 @@ function workavailable_wp_BeforeShowRow(& $sender)
     global $workavailable_wp; //Compatibility
 //End workavailable_wp_BeforeShowRow
 
-//Custom Code @107-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$url = $workavailable_wp->SURL->GetValue();
-	$new_url = str_replace("~#","&",$url);
-	$workavailable_wp->WORKFLOW_NAME->SetLink($new_url);
-	$workavailable_wp->INBOX->SetLink($new_url);
+  // -------------------------
+      // Write your own code here.
+  	$url = $workavailable_wp->SURL->GetValue();
+  	$new_url = str_replace("~#","&",$url);
+  	$workavailable_wp->WORKFLOW_NAME->SetLink($new_url);
+  	$workavailable_wp->INBOX->SetLink($new_url);
+  
+  	$jum = $workavailable_wp->INBOX->GetValue();
+  
+  	$jumlah = $jumlah + $jum;
+  
+  	$workavailable_wp->JUMLAH->SetValue($jumlah);
+  
+  // -------------------------
 
-	$jum = $workavailable_wp->INBOX->GetValue();
-
-	$jumlah = $jumlah + $jum;
-
-	$workavailable_wp->JUMLAH->SetValue($jumlah);
-
-// -------------------------
-//End Custom Code
 
 //Close workavailable_wp_BeforeShowRow @102-68FFC74B
     return $workavailable_wp_BeforeShowRow;
@@ -107,16 +99,6 @@ function HistoryGrid_BeforeShowRow(& $sender)
     global $HistoryGrid; //Compatibility
 //End HistoryGrid_BeforeShowRow
 
-//Set Row Style @10-982C9472
-    $styles = array("Row", "AltRow");
-    if (count($styles)) {
-        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
-        if (strlen($Style) && !strpos($Style, "="))
-            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
-        $Component->Attributes->SetValue("rowStyle", $Style);
-    }
-//End Set Row Style
-
 //Close HistoryGrid_BeforeShowRow @2-D25D4DF5
     return $HistoryGrid_BeforeShowRow;
 }
@@ -130,12 +112,6 @@ function HistoryGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $HistoryGrid; //Compatibility
 //End HistoryGrid_BeforeSelect
-
-//Custom Code @121-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
 //Close HistoryGrid_BeforeSelect @2-39569808
     return $HistoryGrid_BeforeSelect;
@@ -151,12 +127,6 @@ function Page_OnInitializeView(& $sender)
     global $sikp_home; //Compatibility
 //End Page_OnInitializeView
 
-//Custom Code @100-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
 }
@@ -171,33 +141,32 @@ function Page_BeforeShow(& $sender)
     global $sikp_home; //Compatibility
 //End Page_BeforeShow
 
-//Custom Code @110-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	global $workavailable;
-	global $workavailable_wp;
-	global $HistoryGrid;
+  // -------------------------
+      // Write your own code here.
+  	global $workavailable;
+  	global $workavailable_wp;
+  	global $HistoryGrid;
+  
+  	$user = CCGetUserLogin();
+  
+  	$dbConn = new clsDBConnSIKP();
+  	$sql = "select count(*)as wp from p_app_user where is_employee = 'N' and app_user_name = '".$user."'";
+  	$dbConn->query($sql);
+  	$dbConn->next_record();
+  	$wp = $dbConn->f("wp");
+  	$dbConn->close();
+  
+  	if ($wp > 0){
+  		$workavailable_wp->Visible = true;
+  		$workavailable->Visible = false;
+  		$HistoryGrid->Visible = true;
+  	}else{
+  		$workavailable_wp->Visible = false;
+  		$workavailable->Visible = true;
+  		$HistoryGrid->Visible = false;
+  	}
+  // -------------------------
 
-	$user = CCGetUserLogin();
-
-	$dbConn = new clsDBConnSIKP();
-	$sql = "select count(*)as wp from p_app_user where is_employee = 'N' and app_user_name = '".$user."'";
-	$dbConn->query($sql);
-	$dbConn->next_record();
-	$wp = $dbConn->f("wp");
-	$dbConn->close();
-
-	if ($wp > 0){
-		$workavailable_wp->Visible = true;
-		$workavailable->Visible = false;
-		$HistoryGrid->Visible = true;
-	}else{
-		$workavailable_wp->Visible = false;
-		$workavailable->Visible = true;
-		$HistoryGrid->Visible = false;
-	}
-// -------------------------
-//End Custom Code
 
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;

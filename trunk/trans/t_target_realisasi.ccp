@@ -79,7 +79,7 @@
 		</Grid>
 		<FlashChart id="696" secured="False" dataSeriesIn="Columns" chartType="3d_pie" sourceType="SQL" defaultPageSize="25" returnValueType="Number" name="t_target_realisasiFlash_tahunan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiFlash_tahunan" connection="ConnSIKP" dataSource="SELECT target_amt, realisasi_amt 
 FROM v_target_vs_real_anual
-WHERE p_year_period_id = {p_year_period_id} " activeCollection="TableParameters" schemaName="Autumn" layout="5" gridCaptionField="-1" width="400" height="300" displayTitle="True" title="Target vs Realisasi Tahunan" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="degrees" autoRotate="yes" template="&lt;root&gt;
+WHERE p_year_period_id = {p_year_period_id}" activeCollection="SQLParameters" schemaName="Autumn" layout="5" gridCaptionField="-1" width="400" height="300" displayTitle="True" title="Target vs Realisasi Tahunan" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="degrees" autoRotate="yes" template="&lt;root&gt;
 	&lt;schema name=&quot;Autumn&quot;&gt;
 		&lt;mask/&gt;
 		&lt;colors/&gt;
@@ -106,7 +106,7 @@ WHERE p_year_period_id = {p_year_period_id} " activeCollection="TableParameters"
 			&lt;column field=&quot;target_amt&quot; name=&quot;target_amt&quot;/&gt;&lt;column field=&quot;realisasi_amt&quot; name=&quot;realisasi_amt&quot;/&gt;&lt;/columns&gt;
 		&lt;rows&gt;&lt;!-- BEGIN Row --&gt;&lt;row col1=&quot;{target_amt}&quot; col2=&quot;{realisasi_amt}&quot;/&gt;&lt;!-- END Row --&gt;&lt;/rows&gt;&lt;/data&gt;
 &lt;/root&gt;
-">
+" parameterTypeListName="ParameterTypeList">
 			<Components/>
 			<Events/>
 			<Attributes/>
@@ -118,12 +118,9 @@ WHERE p_year_period_id = {p_year_period_id} " activeCollection="TableParameters"
 				<TableParameter id="701" conditionType="Parameter" useIsNull="False" field="p_year_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" DBFormat="0" parameterSource="p_year_period_id"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="697" tableName="v_target_vs_real_anual" schemaName="sikp" posLeft="10" posTop="10" posWidth="114" posHeight="120"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="717" tableName="v_target_vs_real_anual" fieldName="target_amt"/>
-				<Field id="718" tableName="v_target_vs_real_anual" fieldName="realisasi_amt"/>
 			</Fields>
 			<AllFields>
 				<Field id="742" fieldName="target_amt"/>
@@ -135,8 +132,8 @@ WHERE p_year_period_id = {p_year_period_id} " activeCollection="TableParameters"
 			</SelectedFields>
 			<SPParameters/>
 			<SQLParameters>
-<SQLParameter id="749" parameterType="URL" variable="p_year_period_id" dataType="Float" DBFormat="0" parameterSource="p_year_period_id"/>
-</SQLParameters>
+				<SQLParameter id="749" parameterType="URL" variable="p_year_period_id" dataType="Float" DBFormat="0" parameterSource="p_year_period_id" defaultValue="0"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Features/>
 		</FlashChart>

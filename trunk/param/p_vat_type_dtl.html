@@ -15,34 +15,28 @@
 <script language="JavaScript" type="text/javascript">
 //End Include Common JSFunctions
 
-//p_vat_typeFormButton_Delete_OnClick @26-D4F07951
-function p_vat_typeFormButton_Delete_OnClick()
+//p_vat_type_dtlFormButton_Delete_OnClick @26-D44B251A
+function p_vat_type_dtlFormButton_Delete_OnClick()
 {
     var result = true;
-//End p_vat_typeFormButton_Delete_OnClick
-
-//Confirmation Message @27-8243B274
-    return confirm('Delete record?');
-//End Confirmation Message
-
-    return confirm('Delete record?');
-
-//Close p_vat_typeFormButton_Delete_OnClick @26-BC33A33A
+//End p_vat_type_dtlFormButton_Delete_OnClick
+        return confirm('Delete record?');
+//Close p_vat_type_dtlFormButton_Delete_OnClick @26-BC33A33A
     return result;
 }
-//End Close p_vat_typeFormButton_Delete_OnClick
+//End Close p_vat_type_dtlFormButton_Delete_OnClick
 
-//p_vat_typeFormButton_Cancel_OnClick @28-C3FF0621
-function p_vat_typeFormButton_Cancel_OnClick()
+//p_vat_type_dtlFormButton_Cancel_OnClick @28-BFC36628
+function p_vat_type_dtlFormButton_Cancel_OnClick()
 {
     disableValidation = true;
 }
-//End p_vat_typeFormButton_Cancel_OnClick
+//End p_vat_type_dtlFormButton_Cancel_OnClick
 
-//bind_events @1-3B213B57
+//bind_events @1-D0D98303
 function bind_events() {
-    addEventHandler("p_vat_typeFormButton_Delete", "click", p_vat_typeFormButton_Delete_OnClick);
-    addEventHandler("p_vat_typeFormButton_Cancel", "click", p_vat_typeFormButton_Cancel_OnClick);
+    addEventHandler("p_vat_type_dtlFormButton_Delete", "click", p_vat_type_dtlFormButton_Delete_OnClick);
+    addEventHandler("p_vat_type_dtlFormButton_Cancel", "click", p_vat_type_dtlFormButton_Cancel_OnClick);
 }
 //End bind_events
 
@@ -65,13 +59,14 @@ $(document).ready(function()
 <div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
   <div class="tab-background-styled">
     <div class="th tab-button">
-      <div class="tab-title-selected">
+      <label onclick="javascript:toJenis()">
+      <div class="tab-title">
         JENIS PAJAK 
       </div>
+      </label>
     </div>
     <div class="th tab-button">
-      <label onclick="javascript:toDetail()">
-      <div class="tab-title">
+      <div class="tab-title-selected">
         DETAIL JENIS PAJAK 
       </div>
       </label>
@@ -82,8 +77,8 @@ $(document).ready(function()
   <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
-        <!-- BEGIN Record p_vat_typeSearch -->
-        <form id="p_vat_typeSearch" method="post" name="{HTMLFormName}" action="{Action}">
+        <!-- BEGIN Record p_vat_type_dtlSearch -->
+        <form id="p_vat_type_dtlSearch" method="post" name="{HTMLFormName}" action="{Action}">
           <table class="search-field" cellspacing="0" cellpadding="0" border="0">
             <tr>
               <td valign="top">
@@ -94,24 +89,24 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="p_vat_typeSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field"><input id="p_vat_type_dtlSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"><input id="p_vat_type_dtlSearchp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="p_vat_typeSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_vat_type_dtlSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
             </tr>
           </table>
         </form>
-        <!-- END Record p_vat_typeSearch --><br>
-        <!-- BEGIN Grid p_vat_typeGrid -->
+        <!-- END Record p_vat_type_dtlSearch --><br>
+        <!-- BEGIN Grid p_vat_type_dtlGrid -->
         <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
           <tr>
             <td valign="top">
               <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>DAFTAR JENIS PAJAK</strong></td> 
+                  <td class="th"><strong>DAFTAR DETAIL JENIS PAJAK</strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -122,7 +117,9 @@ $(document).ready(function()
  
                   <th scope="col">Kode&nbsp;</th>
  
-                  <th scope="col">Jenis Pajak</th>
+                  <th scope="col">Detail Jenis Pajak</th>
+ 
+                  <th scope="col">&nbsp;Persentase Pajak</th>
  
                   <th scope="col">Deskripsi</th>
  
@@ -132,10 +129,11 @@ $(document).ready(function()
                 </tr>
  
                 <!-- BEGIN Row -->
-                <tr {p_vat_typeGrid:rowStyle}>
-                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_vat_typeGridDLink_{p_vat_typeGrid:rowNumber}">{DLink}</a></td> 
+                <tr {p_vat_type_dtlGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_vat_type_dtlGridDLink_{p_vat_type_dtlGrid:rowNumber}">{DLink}</a></td> 
                   <td>{code}&nbsp;</td> 
-                  <td>{vat_code}&nbsp;&nbsp;<input id="p_vat_typeGridp_vat_type_id_{p_vat_typeGrid:rowNumber}" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td> 
+                  <td>{vat_code}&nbsp;&nbsp;<input id="p_vat_type_dtlGridp_vat_type_dtl_id_{p_vat_type_dtlGrid:rowNumber}" type="hidden" value="{p_vat_type_dtl_id}" name="{p_vat_type_dtl_id_Name}"></td> 
+                  <td>&nbsp;{vat_pct}</td> 
                   <td>{description}&nbsp;</td> 
                   <td>{updated_by}&nbsp;</td> 
                   <td colspan="2">{updated_date}&nbsp;</td>
@@ -143,12 +141,12 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="7">-</td>
+                  <td colspan="8">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td><b><a href="{Insert_Link_Src}" id="p_vat_typeGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
-                  <td colspan="6">
+                  <td><b><a href="{Insert_Link_Src}" id="p_vat_type_dtlGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="7">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -166,16 +164,16 @@ $(document).ready(function()
             </td>
           </tr>
         </table>
-        <!-- END Grid p_vat_typeGrid --><br>
-        <!-- BEGIN Record p_vat_typeForm -->
-        <form id="p_vat_typeForm" method="post" name="{HTMLFormName}" action="{Action}">
+        <!-- END Grid p_vat_type_dtlGrid --><br>
+        <!-- BEGIN Record p_vat_type_dtlForm -->
+        <form id="p_vat_type_dtlForm" method="post" name="{HTMLFormName}" action="{Action}">
           <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
             <tr>
               <td valign="top">
                 <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                    <td class="th"><strong>INFORMASI JENIS PAJAK</strong></td> 
+                    <td class="th"><strong>INFORMASI DETAIL JENIS PAJAK</strong></td> 
                     <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
                 </table>
@@ -187,68 +185,73 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="th"><label for="p_vat_typeFormvat_code">Kode</label>&nbsp;</td> 
-                    <td><input id="p_vat_typeFormcode" class="ControlsRQ" maxlength="12" size="15" value="{code}" name="{code_Name}">&nbsp;</td>
+                    <td class="th"><label for="p_vat_type_dtlFormvat_code">Kode</label>&nbsp;</td> 
+                    <td><input id="p_vat_type_dtlFormcode" class="ControlsRQ" maxlength="12" size="15" value="{code}" name="{code_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th"><label for="p_vat_typeFormvat_code">Jenis Pajak</label></td> 
-                    <td><input id="p_vat_typeFormvat_code" class="ControlsRQ" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}"></td>
+                    <td class="th"><label for="p_vat_type_dtlFormvat_code">Detail Jenis Pajak</label></td> 
+                    <td><input id="p_vat_type_dtlFormvat_code" class="ControlsRQ" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}"><input id="p_vat_type_dtlFormp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th"><label for="p_vat_typeFormdescription">Deskripsi</label></td> 
-                    <td><input id="p_vat_typeFormdescription" class="ControlsIN" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
+                    <td class="th"><label for="p_vat_type_dtlFormdescription">Deskripsi</label></td> 
+                    <td><input id="p_vat_type_dtlFormdescription" class="ControlsIN" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th"><label for="p_vat_typeFormcreated_by">Dibuat Oleh</label></td> 
-                    <td><input id="p_vat_typeFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="p_vat_typeFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                    <td class="th">Persentase Pajak</td> 
+                    <td><input id="p_vat_type_dtlFormvat_pct" class="ControlsIN" maxlength="250" size="50" value="{vat_pct}" name="{vat_pct_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th"><label for="p_vat_typeFormupdated_by">Diubah Oleh</label></td> 
-                    <td><input id="p_vat_typeFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="p_vat_typeFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                    <td class="th"><label for="p_vat_type_dtlFormcreated_by">Dibuat Oleh</label></td> 
+                    <td><input id="p_vat_type_dtlFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="p_vat_type_dtlFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_vat_type_dtlFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input id="p_vat_type_dtlFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="p_vat_type_dtlFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">
-                      <!-- BEGIN Button Button_Insert --><input id="p_vat_typeFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="p_vat_typeFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input id="p_vat_typeFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input id="p_vat_typeFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_vat_typeFormp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"><input id="p_vat_typeFormp_vat_typeGridPage" type="hidden" value="{p_vat_typeGridPage}" name="{p_vat_typeGridPage_Name}"></td>
+                      <!-- BEGIN Button Button_Insert --><input id="p_vat_type_dtlFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="p_vat_type_dtlFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_vat_type_dtlFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_vat_type_dtlFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_vat_type_dtlFormp_vat_type_dtl_id" type="hidden" value="{p_vat_type_dtl_id}" name="{p_vat_type_dtl_id_Name}"><input id="p_vat_type_dtlFormp_vat_type_dtlGridPage" type="hidden" value="{p_vat_type_dtlGridPage}" name="{p_vat_type_dtlGridPage_Name}"></td>
                   </tr>
                 </table>
               </td>
             </tr>
           </table>
         </form>
-        <!-- END Record p_vat_typeForm --><br>
+        <!-- END Record p_vat_type_dtlForm --><br>
       </td>
     </tr>
   </table>
 </div>
 <script language="javascript">
-        function toDetail()
+        function toJenis()
         {
                 var idelement;
 
-                if (idelement = document.getElementById("p_vat_typeFormp_vat_type_id"))
+                if (idelement = document.getElementById("p_vat_type_dtlSearchp_vat_type_id"))
                 {
                         var pid = idelement.value;
 
                         if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
                         {                
-                                location.href="p_vat_type_dtl.php?p_vat_type_id="+pid;
+                                location.href="p_vat_type.php?p_vat_type_id="+pid;
                         }
                         else
                         {
-                                alert("Pilih salah satu JENIS PAJAK!");
+                                alert("Pilih salah satu DETAIL JENIS PAJAK!");
                         }
                 } 
                 else 
                 {
-                        alert("Pilih salah satu JENIS PAJAK!");
+                        alert("Pilih salah satu DETAIL JENIS PAJAK!");
                 }
         }
         </script>
