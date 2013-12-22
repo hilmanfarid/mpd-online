@@ -4,7 +4,8 @@
 p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl
 from f_get_npwd_by_username('{puser}') AS tbl (ty_lov_npwd)
 where upper(npwd) like '%{s_keyword}%' OR
-upper(company_name) like '%{s_keyword}%'">
+upper(company_name) like '%{s_keyword}%' OR
+upper(company_brand) like '%{s_keyword}%'">
 			<Components>
 				<Label id="14" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwd" fieldSource="npwd" wizardCaption="CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_ORDERnpwd">
 					<Components/>
