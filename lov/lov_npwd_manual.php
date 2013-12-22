@@ -284,7 +284,7 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Prepare Method
 
-//Open Method @2-69888CE9
+//Open Method @2-228FB16F
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -292,7 +292,8 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
         "p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl\n" .
         "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl (ty_lov_npwd)\n" .
         "where upper(npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
-        "upper(company_name) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'";
+        "upper(company_name) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
+        "upper(company_brand) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
