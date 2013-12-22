@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>t_revenue_target_dtl</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
-<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css" />
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function getFrom_LOV(formName,fieldList,LOV_NM)
@@ -26,6 +26,10 @@ function v_t_revenue_target_dtlFormButton_Delete_OnClick()
 {
     var result = true;
 //End v_t_revenue_target_dtlFormButton_Delete_OnClick
+
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
 
 //Close v_t_revenue_target_dtlFormButton_Delete_OnClick @26-BC33A33A
     return confirm('Delete record?');
@@ -68,20 +72,24 @@ $(document).ready(function()
       <div class="tab-title">
         TAHUN 
       </div>
-      </label>
+ </label> 
     </div>
+ 
     <div class="th tab-button">
       <label onclick="javascript:toTarget()">
       <div class="tab-title">
         TARGET PAJAK 
       </div>
-      </label>
+ </label> 
     </div>
+ 
     <div class="th tab-button">
       <div class="tab-title-selected">
         PERIODE BULANAN 
       </div>
+ 
     </div>
+ 
   </div>
 </div>
 <div style="PADDING-TOP: 50px; CLEAR: both">
@@ -93,8 +101,11 @@ $(document).ready(function()
             <th style="TEXT-ALIGN: left" nowrap>TARGET PAJAK&nbsp;</th>
  
             <th style="TEXT-ALIGN: left" nowrap>: {rev_target_code}&nbsp;</th>
+ 
           </tr>
+ 
         </table>
+ 
         <!-- BEGIN Record v_t_revenue_target_dtlSearch -->
         <form id="v_t_revenue_target_dtlSearch" method="post" name="{HTMLFormName}" action="{Action}">
           <table class="search-field" cellspacing="0" cellpadding="0" border="0">
@@ -103,21 +114,24 @@ $(document).ready(function()
                 <table class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
-                    <td colspan="2">{Error}</td>
+                    <td colspan="2">{Error}</td> 
                   </tr>
-                  <!-- END Error -->
+ <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field"><input id="v_t_revenue_target_dtlSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="v_t_revenue_target_dtlSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="v_t_revenue_target_dtlSearchp_year_periodGridPage" style="HEIGHT: 22px; WIDTH: 47px" size="6" type="hidden" value="{p_year_periodGridPage}" name="{p_year_periodGridPage_Name}"><input id="v_t_revenue_target_dtlSearchp_year_period_id" style="HEIGHT: 22px; WIDTH: 44px" size="6" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"><input id="v_t_revenue_target_dtlSearchyear_s_keyword" style="HEIGHT: 22px; WIDTH: 64px" size="8" type="hidden" value="{year_s_keyword}" name="{year_s_keyword_Name}"><input id="v_t_revenue_target_dtlSearchyear_code" style="HEIGHT: 22px; WIDTH: 53px" size="7" type="hidden" value="{year_code}" name="{year_code_Name}"><input id="v_t_revenue_target_dtlSearchrev_target_code" style="HEIGHT: 22px; WIDTH: 42px" size="5" type="hidden" value="{rev_target_code}" name="{rev_target_code_Name}"><input id="v_t_revenue_target_dtlSearcht_revenue_target_id" style="HEIGHT: 22px; WIDTH: 56px" size="7" type="hidden" value="{t_revenue_target_id}" name="{t_revenue_target_id_Name}"><input id="v_t_revenue_target_dtlSearcht_revenue_targetGridPage" style="HEIGHT: 22px; WIDTH: 55px" size="7" type="hidden" value="{t_revenue_targetGridPage}" name="{t_revenue_targetGridPage_Name}"><input id="v_t_revenue_target_dtlSearchtarget_s_keyword" style="HEIGHT: 22px; WIDTH: 53px" size="7" type="hidden" value="{target_s_keyword}" name="{target_s_keyword_Name}"><input id="v_t_revenue_target_dtlSearchvat_type_code" style="HEIGHT: 22px; WIDTH: 70px" size="9" type="hidden" value="{vat_type_code}" name="{vat_type_code_Name}">
-<input id="v_t_revenue_target_dtlSearchp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td>
+<input id="v_t_revenue_target_dtlSearchp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td> 
                   </tr>
+ 
                 </table>
-              </td>
+ </td> 
             </tr>
+ 
           </table>
+ 
         </form>
-        <!-- END Record v_t_revenue_target_dtlSearch --><br>
+ <!-- END Record v_t_revenue_target_dtlSearch --><br>
         <!-- BEGIN Grid v_t_revenue_target_dtlGrid -->
         <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
           <tr>
@@ -126,8 +140,9 @@ $(document).ready(function()
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR PERIODE BULANAN | JENIS PAJAK : {vat_type_code}</strong></td> 
-                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                 </tr>
+ 
               </table>
  
               <table class="Grid" cellspacing="0" cellpadding="0">
@@ -143,6 +158,7 @@ $(document).ready(function()
                   <th style="TEXT-ALIGN: right" scope="col">Jumlah</th>
  
                   <th scope="col"><label for="p_app_menuFormdescription">Deskripsi</label></th>
+ 
                 </tr>
  
                 <!-- BEGIN Row -->
@@ -152,14 +168,14 @@ $(document).ready(function()
                   <td>{periode}<input id="v_t_revenue_target_dtlGridt_revenue_target_dtl_id_{v_t_revenue_target_dtlGrid:rowNumber}" type="hidden" value="{t_revenue_target_dtl_id}" name="{t_revenue_target_dtl_id_Name}"></td> 
                   <td>{vat_code}</td> 
                   <td style="TEXT-ALIGN: right">{target_amt}</td> 
-                  <td>{description}</td>
+                  <td>{description}</td> 
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="6">-</td>
+                  <td colspan="6">-</td> 
                 </tr>
-                <!-- END NoRecords -->
+ <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b><a href="{Insert_Link_Src}" id="v_t_revenue_target_dtlGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
                   <td colspan="5">
@@ -174,13 +190,15 @@ $(document).ready(function()
                     <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
                     <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
-                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td> 
                 </tr>
+ 
               </table>
-            </td>
+ </td> 
           </tr>
+ 
         </table>
-        <!-- END Grid v_t_revenue_target_dtlGrid --><br>
+ <!-- END Grid v_t_revenue_target_dtlGrid --><br>
         <!-- BEGIN Record v_t_revenue_target_dtlForm -->
         <form id="v_t_revenue_target_dtlForm" method="post" name="{HTMLFormName}" action="{Action}">
           <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
@@ -190,49 +208,50 @@ $(document).ready(function()
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI PERIODE BULANAN | JENIS PAJAK : {vat_type_code}</strong></td> 
-                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   </tr>
+ 
                 </table>
  
                 <table class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
-                    <td colspan="4">{Error}</td>
+                    <td colspan="4">{Error}</td> 
                   </tr>
-                  <!-- END Error -->
+ <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="v_t_revenue_target_dtlFormtarget_code">Kode</label></td> 
-                    <td colspan="3"><input id="v_t_revenue_target_dtlFormtarget_code" class="ControlsRQ" maxlength="32" size="32" value="{target_code}" name="{target_code_Name}"></td>
+                    <td colspan="3"><input id="v_t_revenue_target_dtlFormtarget_code" class="ControlsRQ" maxlength="32" size="32" value="{target_code}" name="{target_code_Name}"></td> 
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="v_t_revenue_target_dtlFormperiode">Periode</label></td> 
-                    <td colspan="3"><input id="v_t_revenue_target_dtlFormperiode" class="ControlsRQ" maxlength="32" size="32" value="{periode}" name="{periode_Name}">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif">&nbsp;<input id="v_t_revenue_target_dtlFormp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td>
+                    <td colspan="3"><input id="v_t_revenue_target_dtlFormperiode" class="ControlsRQ" maxlength="32" size="32" value="{periode}" name="{periode_Name}">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif">&nbsp;<input id="v_t_revenue_target_dtlFormp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td> 
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Detail Jenis Pajak</td> 
-                    <td colspan="3"><input id="v_t_revenue_target_dtlFormvat_code" class="ControlsRQ" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}">&nbsp;<img onclick="javascript:lov_vattype()" border="0" src="../images/view.gif"><input id="v_t_revenue_target_dtlFormp_vat_type_dtl_id" type="hidden" value="{p_vat_type_dtl_id}" name="{p_vat_type_dtl_id_Name}"></td>
+                    <td colspan="3"><input id="v_t_revenue_target_dtlFormvat_code" class="ControlsRQ" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}">&nbsp;<img onclick="javascript:lov_vattype()" border="0" src="../images/view.gif"><input id="v_t_revenue_target_dtlFormp_vat_type_dtl_id" type="hidden" value="{p_vat_type_dtl_id}" name="{p_vat_type_dtl_id_Name}"></td> 
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Jumlah&nbsp;</td> 
-                    <td colspan="3"><input id="v_t_revenue_target_dtlFormtarget_amt" class="ControlsIN" style="TEXT-ALIGN: right" maxlength="16" size="16" value="{target_amt}" name="{target_amt_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="v_t_revenue_target_dtlFormtarget_amt" class="ControlsIN" style="TEXT-ALIGN: right" maxlength="16" size="16" value="{target_amt}" name="{target_amt_Name}">&nbsp;</td> 
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="v_t_revenue_target_dtlFormdescription"><label for="p_app_menuFormdescription">Deskripsi</label></label></td> 
-                    <td colspan="3"><input id="v_t_revenue_target_dtlFormdescription" class="ControlsIN" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
+                    <td colspan="3"><input id="v_t_revenue_target_dtlFormdescription" class="ControlsIN" maxlength="250" size="50" value="{description}" name="{description_Name}"></td> 
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="v_t_revenue_target_dtlFormcreated_by">Dibuat Oleh</label></td> 
-                    <td colspan="3"><input id="v_t_revenue_target_dtlFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="v_t_revenue_target_dtlFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                    <td colspan="3"><input id="v_t_revenue_target_dtlFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="v_t_revenue_target_dtlFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td> 
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="v_t_revenue_target_dtlFormupdated_by">Diubah Oleh</label></td> 
-                    <td colspan="3"><input id="v_t_revenue_target_dtlFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="v_t_revenue_target_dtlFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                    <td colspan="3"><input id="v_t_revenue_target_dtlFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="v_t_revenue_target_dtlFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td> 
                   </tr>
  
                   <tr class="Bottom">
@@ -240,16 +259,20 @@ $(document).ready(function()
                       <!-- BEGIN Button Button_Insert --><input id="v_t_revenue_target_dtlFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input id="v_t_revenue_target_dtlFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
                       <!-- BEGIN Button Button_Delete --><input id="v_t_revenue_target_dtlFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input id="v_t_revenue_target_dtlFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="v_t_revenue_target_dtlFormt_revenue_target_dtl_id" type="hidden" value="{t_revenue_target_dtl_id}" name="{t_revenue_target_dtl_id_Name}"><input id="v_t_revenue_target_dtlFormt_revenue_target_id_{p_journal_periodGrid:rowNumber}" type="hidden" value="{t_revenue_target_id}" name="{t_revenue_target_id_Name}"><input id="v_t_revenue_target_dtlFormt_revenue_target_dtlGridPage" type="hidden" value="{t_revenue_target_dtlGridPage}" name="{t_revenue_target_dtlGridPage_Name}"></td>
+                      <!-- BEGIN Button Button_Cancel --><input id="v_t_revenue_target_dtlFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="v_t_revenue_target_dtlFormt_revenue_target_dtl_id" type="hidden" value="{t_revenue_target_dtl_id}" name="{t_revenue_target_dtl_id_Name}"><input id="v_t_revenue_target_dtlFormt_revenue_target_id_{p_journal_periodGrid:rowNumber}" type="hidden" value="{t_revenue_target_id}" name="{t_revenue_target_id_Name}"><input id="v_t_revenue_target_dtlFormt_revenue_target_dtlGridPage" type="hidden" value="{t_revenue_target_dtlGridPage}" name="{t_revenue_target_dtlGridPage_Name}"></td> 
                   </tr>
+ 
                 </table>
-              </td>
+ </td> 
             </tr>
+ 
           </table>
+ 
         </form>
-        <!-- END Record v_t_revenue_target_dtlForm --><br>
-      </td>
+ <!-- END Record v_t_revenue_target_dtlForm --><br>
+      </td> 
     </tr>
+ 
   </table>
 </div>
 <script language="javascript">

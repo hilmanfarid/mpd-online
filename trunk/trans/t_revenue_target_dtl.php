@@ -258,10 +258,10 @@ class clsv_t_revenue_target_dtlGridDataSource extends clsDBConnSIKP {  //v_t_rev
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-59785E7A
+//SetOrder Method @2-AF653260
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "start_date desc";
+        $this->Order = "p_vat_type_id desc";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
