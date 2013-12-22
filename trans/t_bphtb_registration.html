@@ -5,8 +5,21 @@
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 <script language="JavaScript" type="text/javascript">
+function ReplaceNumberWithCommas(yourNumber) {
+    //Seperates the components of the number
+    var n= yourNumber.toString().split(".");
+    //Comma-fies the first part
+    n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    //Combines the two sections
+    return n.join(".");
+}
+function setNormalValue(){
+        jQuery(".numeric-field").each(function() {
+                var thisVal=jQuery(this).val();
+        jQuery(this).val(thisVal.replace(/,/g ,''));
+    });
+}
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
         arrLOV = LOV_NM.split("?");
@@ -58,6 +71,24 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange()
     return result;
 }
 //End Close t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange
+
+//t_bphtb_registrationForm_OnSubmit @94-5816823C
+function t_bphtb_registrationForm_OnSubmit()
+{
+    var result = true;
+//End t_bphtb_registrationForm_OnSubmit
+
+//Custom Code @1001-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+
+    // -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationForm_OnSubmit @94-BC33A33A
+    return result;
+}
+//End Close t_bphtb_registrationForm_OnSubmit
 //t_bphtb_registrationFormButton_Cancel_OnClick @99-359D9A2A
 function t_bphtb_registrationFormButton_Cancel_OnClick()
 {
@@ -86,11 +117,12 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(send
 }
 //End PTAutoFill1 Loading
 
-//bind_events @1-68E8BC11
+//bind_events @1-C467B162
 function bind_events() {
     addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start);
     addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange);
     addEventHandler("t_bphtb_registrationFormButton_Delete", "click", t_bphtb_registrationFormButton_Delete_OnClick);
+    addEventHandler("t_bphtb_registrationForm", "submit", t_bphtb_registrationForm_OnSubmit);
     addEventHandler("t_bphtb_registrationFormButton_Cancel", "click", t_bphtb_registrationFormButton_Cancel_OnClick);
 }
 //End bind_events
@@ -99,12 +131,16 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 
 //End CCS script
 </script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
 <script language="javascript" type="text/javascript">
+jQuery.noConflict();
 jQuery(document).ready(function()
 {
+        jQuery(".numeric-field").maskMoney({thousands:',', precision: 0, defaultZero:false});
     jQuery(window).scroll(function()
     {
-            $('#tabtop').css('top', $(window).scrollTop());
+            jQuery('#tabtop').css('top', jQuery(window).scrollTop());
     });
 
         jQuery(".numeric-field").keydown(function(event) {
@@ -127,7 +163,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -156,7 +192,7 @@ jQuery(document).ready(function()
     <tr>
       <td>
         <!-- BEGIN Record t_bphtb_registrationForm -->
-        <form id="t_bphtb_registrationForm" method="post" name="{HTMLFormName}" action="{Action}">
+        <form id="t_bphtb_registrationForm" onsubmit="return setNormalValue();" method="post" name="{HTMLFormName}" action="{Action}">
           <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td valign="top">
@@ -295,67 +331,67 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Tanah</td> 
-                    <td colspan="4"><input id="t_bphtb_registrationFormland_area" class="numeric-field" onkeyup="hitungTotalTanah();" name="{land_area_Name}" value="{land_area}">&nbsp;m2</td> 
-                    <td class="th">Rp. <input id="t_bphtb_registrationFormland_price_per_m" onkeyup="hitungTotalTanah();" name="{land_price_per_m_Name}" value="{land_price_per_m}"></td> 
-                    <td>Rp. &nbsp;<input id="t_bphtb_registrationFormland_total_price" name="{land_total_price_Name}" readonly value="{land_total_price}"></td>
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" class="numeric-field" onkeyup="hitungTotalTanah();return 1;" name="{land_area_Name}" value="{land_area}">&nbsp;m2</td> 
+                    <td class="th">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_price_per_m" class="numeric-field" onkeyup="hitungTotalTanah();" name="{land_price_per_m_Name}" value="{land_price_per_m}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" class="numeric-field" name="{land_total_price_Name}" readonly value="{land_total_price}"></td>
                   </tr>
  
                   <tr class="Controls" onkeyup="document.getElementById(&amp;quot;t_bphtb_registrationFormland_total_price&amp;quot;).value=hitungTotalTanah();">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Bangunan</td> 
-                    <td colspan="4"><input id="t_bphtb_registrationFormbuilding_area" onkeyup="hitungTotalBangunan();" name="{building_area_Name}" value="{building_area}">&nbsp;m2</td> 
-                    <td>&nbsp;Rp. <input id="t_bphtb_registrationFormbuilding_price_per_m" onkeyup="hitungTotalBangunan();" name="{building_price_per_m_Name}" value="{building_price_per_m}"></td> 
-                    <td>Rp. &nbsp;<input id="t_bphtb_registrationFormbuilding_total_price" name="{building_total_price_Name}" readonly value="{building_total_price}"></td>
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" class="numeric-field" onkeyup="hitungTotalBangunan();" name="{building_area_Name}" value="{building_area}">&nbsp;m2</td> 
+                    <td>&nbsp;Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_price_per_m" class="numeric-field" onkeyup="hitungTotalBangunan();" name="{building_price_per_m_Name}" value="{building_price_per_m}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" class="numeric-field" name="{building_total_price_Name}" readonly value="{building_total_price}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;</td> 
                     <td colspan="5">&nbsp;Total</td> 
-                    <td>Rp. &nbsp;<input id="t_bphtb_registrationFormtotal_price" name="{total_price_Name}" readonly value="{total_price}"></td>
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormtotal_price" class="numeric-field" name="{total_price_Name}" readonly value="{total_price}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;</td> 
                     <td colspan="5">&nbsp;Harga Transaksi Pasar</td> 
-                    <td>Rp. &nbsp;<input id="t_bphtb_registrationFormmarket_price" onkeyup="getNPOP();" name="{market_price_Name}" value="{market_price}"></td>
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" class="numeric-field" onkeyup="getNPOP();" name="{market_price_Name}" value="{market_price}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak (NPOP)</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormnpop" onchange="hitungNPOPKP();" name="{npop_Name}" value="{npop}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop" onchange="hitungNPOPKP();" class="numeric-field" name="{npop_Name}" value="{npop}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak Tidak Kena Pajak(NPOPTKP)</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormnpop_tkp" name="{npop_tkp_Name}" value="{npop_tkp}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_tkp" class="numeric-field" name="{npop_tkp_Name}" value="{npop_tkp}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak Kena Pajak(NPOPKP)</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormnpop_kp" name="{npop_kp_Name}" value="{npop_kp}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_kp" class="numeric-field" name="{npop_kp_Name}" value="{npop_kp}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang terutang</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormbphtb_amt" name="{bphtb_amt_Name}" value="{bphtb_amt}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt" class="numeric-field" name="{bphtb_amt_Name}" value="{bphtb_amt}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Potongan</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormbphtb_discount" onkeyup="hitungPembayaran();" name="{bphtb_discount_Name}" value="{bphtb_discount}">&nbsp; <input id="t_bphtb_registrationFormdescription" name="{description_Name}" value="{description}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_discount" class="numeric-field" onkeyup="hitungPembayaran();" name="{bphtb_discount_Name}" value="{bphtb_discount}">&nbsp; <input id="t_bphtb_registrationFormdescription" name="{description_Name}" value="{description}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormbphtb_amt_final" name="{bphtb_amt_final_Name}" value="{bphtb_amt_final}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt_final" class="numeric-field" name="{bphtb_amt_final_Name}" value="{bphtb_amt_final}"></td>
                   </tr>
  
                   <tr class="Bottom">
@@ -530,54 +566,55 @@ function toReg3()
 */
 
 function hitungTotalTanah(){
-        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value)*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value);
-        document.getElementById('t_bphtb_registrationFormland_total_price').value=hasil;
-                document.getElementById('t_bphtb_registrationFormtotal_price').value=parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value)+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value);
+                //alert(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,./g ,''));
+        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
+        document.getElementById('t_bphtb_registrationFormland_total_price').value=ReplaceNumberWithCommas(hasil);
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 hitungNPOPKP();
 }
 function hitungTotalBangunan(){
-        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value)*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value);
-        document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=hasil;
-                document.getElementById('t_bphtb_registrationFormtotal_price').value=parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value)+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value);
+        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
+        document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 
 }
 function getNPOP(){
-        if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value)>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value)){
-                        document.getElementById('t_bphtb_registrationFormnpop').value=document.getElementById('t_bphtb_registrationFormtotal_price').value;
+        if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
+                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''));
                 }else{
-                        document.getElementById('t_bphtb_registrationFormnpop').value=document.getElementById('t_bphtb_registrationFormmarket_price').value;
+                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''));
                 }
                 hitungNPOPKP();
 }
 function hitungNPOPKP(){
-                                var npotkp = document.getElementById('t_bphtb_registrationFormnpop_tkp').value;
+                                var npotkp = document.getElementById('t_bphtb_registrationFormnpop_tkp').value.replace(/,/g ,'');
                                 if(npotkp=='' || npotkp=='undefined'){
                                         npotkp=0;
                                 }
-                                var npokp = document.getElementById('t_bphtb_registrationFormnpop').value;
+                                var npokp = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
                                 if(npokp=='' || npokp=='undefined'){
                                         npokp=0;
                                 }
-                document.getElementById('t_bphtb_registrationFormnpop_kp').value=parseFloat(npokp)-parseFloat(npotkp);
-               hitungTerutang(document.getElementById('t_bphtb_registrationFormnpop_kp').value);
+                document.getElementById('t_bphtb_registrationFormnpop_kp').value=ReplaceNumberWithCommas(parseFloat(npokp)-parseFloat(npotkp));
+               hitungTerutang(document.getElementById('t_bphtb_registrationFormnpop_kp').value.replace(/,/g ,''));
 }
 function hitungTerutang(nilai){
         var terutang = nilai/100*5;
-        document.getElementById('t_bphtb_registrationFormbphtb_amt').value=terutang.toFixed(2);
+        document.getElementById('t_bphtb_registrationFormbphtb_amt').value=ReplaceNumberWithCommas(terutang.toFixed(2));
                 hitungPembayaran();
 }
 function hitungPembayaran(){
-        var jumlah= document.getElementById('t_bphtb_registrationFormbphtb_amt').value;
-        var diskon= document.getElementById('t_bphtb_registrationFormbphtb_discount').value;
+        var jumlah= document.getElementById('t_bphtb_registrationFormbphtb_amt').value.replace(/,/g ,'');
+        var diskon= document.getElementById('t_bphtb_registrationFormbphtb_discount').value.replace(/,/g ,'');
                 if(jumlah=='' || jumlah=='undefined'){
                 jumlah=0;
         }
         if(diskon=='' || diskon=='undefined'){
                 diskon=0;
         }
-        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=parseFloat(jumlah)-parseFloat(diskon);
+        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=ReplaceNumberWithCommas(parseFloat(jumlah)-parseFloat(diskon));
 }
 </script>
 </body>
