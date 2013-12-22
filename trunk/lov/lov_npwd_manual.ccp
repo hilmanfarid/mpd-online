@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\lov" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="LOV_ORDER" pageSizeLimit="100" wizardCaption="List of P CUSTOMER SEGMENT " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="select ty_lov_npwd as t_cust_account_id, npwd, company_name,
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="LOV_ORDER" pageSizeLimit="100" wizardCaption="List of P CUSTOMER SEGMENT " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="select ty_lov_npwd as t_cust_account_id, npwd, company_name,company_brand as wp_address_name,
 p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl
 from f_get_npwd_by_username('{puser}') AS tbl (ty_lov_npwd)
 where upper(npwd) like '%{s_keyword}%' OR
@@ -66,7 +66,13 @@ upper(company_name) like '%{s_keyword}%'">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Label id="50" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_address_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERwp_address_name" fieldSource="wp_address_name">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -147,8 +153,8 @@ upper(company_name) like '%{s_keyword}%'">
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="lov_npwd_manual_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="lov_npwd_manual.php" forShow="True" url="lov_npwd_manual.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="lov_npwd_manual.php" forShow="True" url="lov_npwd_manual.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
