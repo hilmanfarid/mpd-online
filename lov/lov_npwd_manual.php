@@ -42,7 +42,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-379FD25D
+//Class_Initialize Event @2-E660832D
     function clsGridLOV_ORDER($RelativePath, & $Parent)
     {
         global $FileName;
@@ -78,6 +78,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
         $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsFloat, "", CCGetRequestParam("p_vat_type_dtl_id", ccsGet, NULL), $this);
         $this->vat_code_dtl = & new clsControl(ccsHidden, "vat_code_dtl", "vat_code_dtl", ccsText, "", CCGetRequestParam("vat_code_dtl", ccsGet, NULL), $this);
         $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsFloat, "", CCGetRequestParam("t_cust_account_id", ccsGet, NULL), $this);
+        $this->wp_address_name = & new clsControl(ccsLabel, "wp_address_name", "wp_address_name", ccsText, "", CCGetRequestParam("wp_address_name", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -94,7 +95,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     }
 //End Initialize Method
 
-//Show Method @2-0E9D158B
+//Show Method @2-4630B751
     function Show()
     {
         global $Tpl;
@@ -132,6 +133,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
             $this->ControlsVisible["p_vat_type_dtl_id"] = $this->p_vat_type_dtl_id->Visible;
             $this->ControlsVisible["vat_code_dtl"] = $this->vat_code_dtl->Visible;
             $this->ControlsVisible["t_cust_account_id"] = $this->t_cust_account_id->Visible;
+            $this->ControlsVisible["wp_address_name"] = $this->wp_address_name->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -146,6 +148,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
                 $this->p_vat_type_dtl_id->SetValue($this->DataSource->p_vat_type_dtl_id->GetValue());
                 $this->vat_code_dtl->SetValue($this->DataSource->vat_code_dtl->GetValue());
                 $this->t_cust_account_id->SetValue($this->DataSource->t_cust_account_id->GetValue());
+                $this->wp_address_name->SetValue($this->DataSource->wp_address_name->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -157,6 +160,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
                 $this->p_vat_type_dtl_id->Show();
                 $this->vat_code_dtl->Show();
                 $this->t_cust_account_id->Show();
+                $this->wp_address_name->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -189,7 +193,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     }
 //End Show Method
 
-//GetErrors Method @2-89539CEB
+//GetErrors Method @2-55D7C640
     function GetErrors()
     {
         $errors = "";
@@ -201,6 +205,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
         $errors = ComposeStrings($errors, $this->p_vat_type_dtl_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->vat_code_dtl->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_cust_account_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->wp_address_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -211,7 +216,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
 
 class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Class @2-A587E400
 
-//DataSource Variables @2-B95FC4D9
+//DataSource Variables @2-766F01C2
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -230,9 +235,10 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     var $p_vat_type_dtl_id;
     var $vat_code_dtl;
     var $t_cust_account_id;
+    var $wp_address_name;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-55B0D91B
+//DataSourceClass_Initialize Event @2-6062A6C3
     function clsLOV_ORDERDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -251,6 +257,8 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
         $this->vat_code_dtl = new clsField("vat_code_dtl", ccsText, "");
         
         $this->t_cust_account_id = new clsField("t_cust_account_id", ccsFloat, "");
+        
+        $this->wp_address_name = new clsField("wp_address_name", ccsText, "");
         
 
     }
@@ -276,16 +284,11 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Prepare Method
 
-//Open Method @2-62745CFF
+//Open Method @2-69888CE9
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select ty_lov_npwd as t_cust_account_id, npwd, company_name,\n" .
-        "p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl\n" .
-        "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl (ty_lov_npwd)\n" .
-        "where upper(npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
-        "upper(company_name) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%') cnt";
-        $this->SQL = "select ty_lov_npwd as t_cust_account_id, npwd, company_name,\n" .
+        $this->SQL = "select ty_lov_npwd as t_cust_account_id, npwd, company_name,company_brand as wp_address_name,\n" .
         "p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl\n" .
         "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl (ty_lov_npwd)\n" .
         "where upper(npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
@@ -300,7 +303,7 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Open Method
 
-//SetValues Method @2-778FF13A
+//SetValues Method @2-1615AD6C
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
@@ -310,6 +313,7 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
         $this->p_vat_type_dtl_id->SetDBValue(trim($this->f("p_vat_type_dtl_id")));
         $this->vat_code_dtl->SetDBValue($this->f("vat_code_dtl"));
         $this->t_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
+        $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
     }
 //End SetValues Method
 
