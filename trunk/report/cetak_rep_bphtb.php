@@ -88,17 +88,19 @@ class FormCetak extends FPDF {
 	var $aligns;
 	
 	function FormCetak() {
-		$this->FPDF();
+		$this->FPDF('P');
 	}
 	
 	function __construct() {
+	    $this->DefPageSize = $size;
+		$this->CurPageSize = $size;
 		$this->FormCetak();
 		$size = $this->_getpagesize("Legal");
-		$this->DefPageSize = $size;
-		$this->CurPageSize = $size;
+		//$this->DefPageSize = $size;
+		//$this->CurPageSize = $size;
 		$this->startY = 0;
 		$this->startX = 0;
-		$this->lengthCell = $size[0];
+		$this->lengthCell = $size[0]-30;
 	}
 	/*
 	function Header() {
@@ -110,7 +112,7 @@ class FormCetak extends FPDF {
 		$this->AliasNbPages();
 		$this->AddPage("P");
 		
-		$this->Image('../images/logo_pemda.png',25,10,25,25);
+		$this->Image('../images/logo_pemda.png',20,10,25,25);
 		
 		$this->SetFont("Arial", "B", 12);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
