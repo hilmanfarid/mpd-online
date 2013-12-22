@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="v_t_revenue_target_dtlGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="v_t_revenue_target_dtl" orderBy="start_date desc">
+		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="v_t_revenue_target_dtlGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="v_t_revenue_target_dtl" orderBy="p_vat_type_id desc">
 			<Components>
 				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_revenue_target_dtl.ccp" removeParameters="t_revenue_target_dtl_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="v_t_revenue_target_dtlGridInsert_Link">
 					<Components/>
@@ -68,7 +68,7 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -172,12 +172,12 @@
 					<Features/>
 				</Hidden>
 				<Hidden id="204" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="v_t_revenue_target_dtlSearchp_vat_type_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -325,13 +325,13 @@ VALUES(generate_id('sikp','t_revenue_target_dtl','t_revenue_target_dtl_id'), '{t
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="199" fieldSourceType="DBColumn" dataType="Float" name="p_vat_type_dtl_id" PathID="v_t_revenue_target_dtlFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+				<Hidden id="199" fieldSourceType="DBColumn" dataType="Float" name="p_vat_type_dtl_id" PathID="v_t_revenue_target_dtlFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events/>
 			<TableParameters>
 				<TableParameter id="143" conditionType="Parameter" useIsNull="False" field="t_revenue_target_dtl_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_revenue_target_dtl_id"/>
@@ -354,7 +354,7 @@ VALUES(generate_id('sikp','t_revenue_target_dtl','t_revenue_target_dtl_id'), '{t
 				<SQLParameter id="169" variable="t_revenue_target_id" dataType="Float" parameterType="Control" parameterSource="t_revenue_target_id" defaultValue="0"/>
 				<SQLParameter id="170" variable="target_amt" dataType="Float" parameterType="Control" parameterSource="target_amt" defaultValue="0"/>
 				<SQLParameter id="202" variable="p_vat_type_dtl_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_vat_type_dtl_id"/>
-</ISQLParameters>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="149" field="t_revenue_target_dtl_id" dataType="Float" parameterType="Control" parameterSource="t_revenue_target_dtl_id"/>
 				<CustomParameter id="150" field="target_code" dataType="Text" parameterType="Control" parameterSource="target_code"/>
@@ -378,7 +378,7 @@ VALUES(generate_id('sikp','t_revenue_target_dtl','t_revenue_target_dtl_id'), '{t
 				<SQLParameter id="191" variable="t_revenue_target_id" dataType="Float" parameterType="Control" parameterSource="t_revenue_target_id" defaultValue="0"/>
 				<SQLParameter id="192" variable="target_amt" dataType="Float" parameterType="Control" parameterSource="target_amt" defaultValue="0"/>
 				<SQLParameter id="203" variable="p_vat_type_dtl_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_vat_type_dtl_id"/>
-</USQLParameters>
+			</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>
