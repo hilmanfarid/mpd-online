@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.no_kohir, a.t_vat_setllement_id, a.t_customer_order_id, 
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.no_kohir,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, 
 a.settlement_date, a.p_finance_period_id, 
 a.t_cust_account_id, a.npwd, a.total_trans_amount,
 a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id
@@ -44,7 +44,7 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Label id="175" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_trans_amount" fieldSource="total_trans_amount" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridtotal_trans_amount">
+				<Label id="175" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_trans_amount" fieldSource="total_trans_amount" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridtotal_trans_amount" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -144,7 +144,7 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Label id="21" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_vat_amount" fieldSource="total_vat_amount" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridtotal_vat_amount">
+				<Label id="21" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_vat_amount" fieldSource="total_vat_amount" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridtotal_vat_amount" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -180,13 +180,37 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="305" fieldSourceType="DBColumn" dataType="Text" html="False" name="no_kohir" fieldSource="no_kohir" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridno_kohir">
+				<Label id="305" fieldSourceType="DBColumn" dataType="Text" html="False" name="no_kohir" fieldSource="no_kohir" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridno_kohir" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="306" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_name" PathID="t_vat_setllementGridwp_name" fieldSource="wp_name">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Button id="307" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_payment" PathID="t_vat_setllementGridcetak_payment">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="308" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register" PathID="t_vat_setllementGridcetak_register">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Hidden id="309" fieldSourceType="DBColumn" dataType="Integer" name="t_customer_order_id" PathID="t_vat_setllementGridt_customer_order_id" fieldSource="t_customer_order_id">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -208,7 +232,7 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="298" variable="CURR_DOC_ID" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="CURR_DOC_ID"/>
+				<SQLParameter id="298" variable="CURR_DOC_ID" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="CURR_DOC_ID" designDefaultValue="504"/>
 			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>

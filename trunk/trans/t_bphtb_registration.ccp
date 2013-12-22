@@ -43,7 +43,7 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 					<Events>
 						<Event name="OnClick" type="Client">
 							<Actions>
-								<Action actionName="Confirmation Message" actionCategory="General" id="98" message="Delete record?"/>
+								<Action actionName="Confirmation Message" actionCategory="General" id="98" message="Delete record?" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
@@ -226,7 +226,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Events>
 						<Event name="OnChange" type="Client">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="956"/>
+								<Action actionName="Custom Code" actionCategory="General" id="956" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
@@ -331,25 +331,25 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="842"/>
+						<Action actionName="Custom Code" actionCategory="General" id="842" eventType="Server"/>
 					</Actions>
 				</Event>
 				<Event name="BeforeInsert" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="853"/>
+						<Action actionName="Custom Code" actionCategory="General" id="853" eventType="Server"/>
 					</Actions>
 				</Event>
 				<Event name="AfterExecuteDelete" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="954"/>
+						<Action actionName="Custom Code" actionCategory="General" id="954" eventType="Server"/>
 					</Actions>
 				</Event>
 				<Event name="OnSubmit" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="1001"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="1001" eventType="Client"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="896" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
 			</TableParameters>
