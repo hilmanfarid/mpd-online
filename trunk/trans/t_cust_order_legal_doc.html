@@ -5,7 +5,7 @@
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
@@ -55,6 +55,16 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 <script language="javascript" type="text/javascript">
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
 $(document).ready(function()
 {
     $(window).scroll(function()
@@ -64,8 +74,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toOrder()">
@@ -96,12 +106,12 @@ $(document).ready(function()
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <!-- BEGIN Record t_cust_order_legal_docSearch -->
-        <form id="t_cust_order_legal_docSearch" name="{HTMLFormName}" action="{Action}" method="post">
-          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+        <form id="t_cust_order_legal_docSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -111,9 +121,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field" colspan="2"><input class="ControlsIN" id="t_cust_order_legal_docSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}">
+                    <td class="search-field" colspan="2"><input id="t_cust_order_legal_docSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32">
                       <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="t_cust_order_legal_docSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="t_cust_order_legal_docSearcht_vat_registration_id" style="WIDTH: 50px; HEIGHT: 22px" type="hidden" size="6" value="{t_vat_registration_id}" name="{t_vat_registration_id_Name}"><input id="t_cust_order_legal_docSearchrqst_type_code" style="WIDTH: 83px; HEIGHT: 22px" type="hidden" size="11" value="{rqst_type_code}" name="{rqst_type_code_Name}"><input id="t_cust_order_legal_docSearchp_rqst_type_id" style="WIDTH: 60px; HEIGHT: 22px" type="hidden" size="8" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"><input id="t_cust_order_legal_docSearcht_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_cust_order_legal_docSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --><input style="WIDTH: 50px; HEIGHT: 22px" id="t_cust_order_legal_docSearcht_vat_registration_id" name="{t_vat_registration_id_Name}" value="{t_vat_registration_id}" size="6" type="hidden"><input style="WIDTH: 83px; HEIGHT: 22px" id="t_cust_order_legal_docSearchrqst_type_code" name="{rqst_type_code_Name}" value="{rqst_type_code}" size="11" type="hidden"><input style="WIDTH: 60px; HEIGHT: 22px" id="t_cust_order_legal_docSearchp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" size="8" type="hidden"><input id="t_cust_order_legal_docSearcht_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"></td>
                     </tr>
                   </table>
                 </td>
@@ -122,20 +132,20 @@ $(document).ready(function()
           </form>
           <!-- END Record t_cust_order_legal_docSearch --><br>
           <!-- BEGIN Grid t_cust_order_legal_docGrid -->
-          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td valign="top">
-                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>DAFTAR&nbsp;DOKUMEN PENDUKUNG</strong></td> 
-                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
                 </table>
  
                 <table class="Grid" cellspacing="0" cellpadding="0">
                   <tr class="Caption">
-                    <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+                    <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
  
                     <th scope="col">Jenis Dokumen</th>
  
@@ -148,7 +158,7 @@ $(document).ready(function()
                   <tr {t_cust_order_legal_docGrid:rowStyle}>
                     <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_cust_order_legal_docGridDLink_{t_cust_order_legal_docGrid:rowNumber}">{DLink}</a></td> 
                     <td>{legal_doc_desc}</td> 
-                    <td><a href="../files/{origin_file_name_Src}" id="t_cust_order_legal_docGridorigin_file_name_{t_cust_order_legal_docGrid:rowNumber}">{origin_file_name}</a>&nbsp;<input id="t_cust_order_legal_docGridt_cust_order_legal_doc_id_{t_cust_order_legal_docGrid:rowNumber}" type="hidden" value="{t_cust_order_legal_doc_id}" name="{t_cust_order_legal_doc_id_Name}"></td> 
+                    <td><a href="../files/{origin_file_name_Src}" id="t_cust_order_legal_docGridorigin_file_name_{t_cust_order_legal_docGrid:rowNumber}">{origin_file_name}</a>&nbsp;<input id="t_cust_order_legal_docGridt_cust_order_legal_doc_id_{t_cust_order_legal_docGrid:rowNumber}" name="{t_cust_order_legal_doc_id_Name}" value="{t_cust_order_legal_doc_id}" type="hidden"></td> 
                     <td>{description}&nbsp;</td>
                   </tr>
  <!-- END Row -->
@@ -158,20 +168,20 @@ $(document).ready(function()
                   </tr>
                   <!-- END NoRecords -->
                   <tr class="Footer">
-                    <td><b><a href="{Insert_Link_Src}" id="t_cust_order_legal_docGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a></b></td> 
+                    <td><b><a href="{Insert_Link_Src}" id="t_cust_order_legal_docGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
                     <td colspan="3">
                       <!-- BEGIN Navigator Navigator -->
-                      <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
-                      <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
-                      <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
-                      <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                      <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                      <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                      <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                      <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
                       <!-- BEGIN Pages -->
                       <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
                       <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
-                      <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
-                      <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
-                      <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
-                      <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                      <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                      <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                      <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                      <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
                   </tr>
                 </table>
               </td>
@@ -179,15 +189,15 @@ $(document).ready(function()
           </table>
           <!-- END Grid t_cust_order_legal_docGrid --><br>
           <!-- BEGIN Record t_cust_order_legal_docForm -->
-          <form id="t_cust_order_legal_docForm" name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
-            <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <form id="t_cust_order_legal_docForm" enctype="{HTMLFormEnctype}" method="post" name="{HTMLFormName}" action="{Action}">
+            <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
               <tr>
                 <td valign="top">
-                  <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                      <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                      <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                       <td class="th"><strong>INFORMASI DOKUMEN PENDUKUNG</strong></td> 
-                      <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                      <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                     </tr>
                   </table>
  
@@ -199,39 +209,40 @@ $(document).ready(function()
                     <!-- END Error -->
                     <tr class="Controls">
                       <td class="th">Jenis Dokumen</td> 
-                      <td colspan="3"><input class="ControlsRQ" id="t_cust_order_legal_docFormlegal_doc_desc" tabindex="2" readonly maxlength="32" size="32" value="{legal_doc_desc}" name="{legal_doc_desc_Name}">&nbsp;<img onclick="javascript:lov_doc()" src="../images/view.gif" border="0">&nbsp;<input id="t_cust_order_legal_docFormp_legal_doc_type_id" type="hidden" value="{p_legal_doc_type_id}" name="{p_legal_doc_type_id_Name}"><input id="t_cust_order_legal_docFormfile_folder" type="hidden" value="{file_folder}" name="{file_folder_Name}"></td>
+                      <td colspan="3"><input id="t_cust_order_legal_docFormlegal_doc_desc" class="ControlsRQ" tabindex="2" name="{legal_doc_desc_Name}" readonly maxlength="32" value="{legal_doc_desc}" size="32">&nbsp;<img onclick="javascript:lov_doc()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_order_legal_docFormp_legal_doc_type_id" name="{p_legal_doc_type_id_Name}" value="{p_legal_doc_type_id}" type="hidden"><input id="t_cust_order_legal_docFormfile_folder" name="{file_folder_Name}" value="{file_folder}" type="hidden"></td>
                     </tr>
  
                     <tr class="Controls">
                       <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Uploda File</label></label></label></label></label></label></label></td> 
-                      <td class="" colspan="3">
-                        <!-- BEGIN FileUpload file_name --><input id="t_cust_order_legal_docFormfile_nameControlName" type="hidden" value="{State}" name="{ControlName}">
+                      <td colspan="3">
+                        <!-- BEGIN FileUpload file_name --><input id="t_cust_order_legal_docFormfile_nameControlName" name="{ControlName}" value="{State}" type="hidden">
                         <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes.<!-- END Info -->
-                        <!-- BEGIN Upload --><label for="t_cust_order_legal_docFormfile_nameFileControl" style="display: none;">File upload</label><input class="ControlsRQ" id="t_cust_order_legal_docFormfile_nameFileControl" type="file" name="{FileControl}"><!-- END Upload -->
-                        <!-- BEGIN DeleteControl --><label for="t_cust_order_legal_docFormfile_nameDeleteControl">HAPUS</label><input id="t_cust_order_legal_docFormfile_nameDeleteControl" type="checkbox" name="{DeleteControl}" {DeleteChecked}><!-- END DeleteControl --><!-- END FileUpload file_name --><input id="t_cust_order_legal_docFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}">&nbsp;</td>
+                        <!-- BEGIN Upload --><label for="t_cust_order_legal_docFormfile_nameFileControl" style="display: none;">File upload</label><input id="t_cust_order_legal_docFormfile_nameFileControl" class="ControlsRQ" name="{FileControl}" type="file"><!-- END Upload -->
+                        <!-- BEGIN DeleteControl --><label for="t_cust_order_legal_docFormfile_nameDeleteControl">HAPUS</label><input id="t_cust_order_legal_docFormfile_nameDeleteControl" name="{DeleteControl}" type="checkbox" {DeleteChecked}><!-- END DeleteControl --><!-- END FileUpload file_name --><input id="t_cust_order_legal_docFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden">&nbsp;</td>
                     </tr>
  
                     <tr class="Controls">
                       <td class="th"><label for="t_cust_order_legal_docFormdescription">Deskripsi</label></td> 
-                      <td colspan="3"><input class="ControlsIN" id="t_cust_order_legal_docFormdescription" maxlength="250" size="60" value="{description}" name="{description_Name}">&nbsp;<input id="t_cust_order_legal_docFormorigin_file_name" type="hidden" value="{origin_file_name}" name="{origin_file_name_Name}"></td>
+                      <td colspan="3"><input id="t_cust_order_legal_docFormdescription" class="ControlsIN" name="{description_Name}" maxlength="250" value="{description}" size="60">&nbsp;<input id="t_cust_order_legal_docFormorigin_file_name" name="{origin_file_name_Name}" value="{origin_file_name}" type="hidden"></td>
                     </tr>
  
                     <tr class="Controls">
                       <td class="th"><label for="t_cust_order_legal_docFormcreated_by">Dibuat Oleh</label></td> 
-                      <td colspan="3"><input class="ControlsRO" id="t_cust_order_legal_docFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="t_cust_order_legal_docFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                      <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_cust_order_legal_docFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="16" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_cust_order_legal_docFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
                     </tr>
  
                     <tr class="Controls">
                       <td class="th"><label for="t_cust_order_legal_docFormupdated_by">Diubah Oleh</label></td> 
-                      <td colspan="3"><input class="ControlsRO" id="t_cust_order_legal_docFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="t_cust_order_legal_docFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                      <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_cust_order_legal_docFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="16" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_cust_order_legal_docFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
                     </tr>
  
                     <tr class="Bottom">
-                      <td align="right" colspan="4">
-                        <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_cust_order_legal_docFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                        <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_cust_order_legal_docFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                        <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_cust_order_legal_docFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                        <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_cust_order_legal_docFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_cust_order_legal_docFormt_cust_order_legal_docGridPage" style="WIDTH: 76px; HEIGHT: 22px" type="hidden" size="10" value="{t_cust_order_legal_docGridPage}" name="{t_cust_order_legal_docGridPage_Name}"><input id="t_cust_order_legal_docFormt_cust_order_legal_doc_id" type="hidden" value="{t_cust_order_legal_doc_id}" name="{t_cust_order_legal_doc_id_Name}"></td>
+                      <td colspan="4" align="right">&nbsp;
+                        <!-- BEGIN Button Button1 --><input id="t_cust_order_legal_docFormButton1" class="btn_tambah" onclick="return cetak()" name="{Button_Name}" alt="Button1" value="CETAK TANDA TERIMA" type="submit"><!-- END Button Button1 -->
+                        <!-- BEGIN Button Button_Insert --><input id="t_cust_order_legal_docFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                        <!-- BEGIN Button Button_Update --><input id="t_cust_order_legal_docFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                        <!-- BEGIN Button Button_Delete --><input id="t_cust_order_legal_docFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                        <!-- BEGIN Button Button_Cancel --><input id="t_cust_order_legal_docFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input style="WIDTH: 76px; HEIGHT: 22px" id="t_cust_order_legal_docFormt_cust_order_legal_docGridPage" name="{t_cust_order_legal_docGridPage_Name}" value="{t_cust_order_legal_docGridPage}" size="10" type="hidden"><input id="t_cust_order_legal_docFormt_cust_order_legal_doc_id" name="{t_cust_order_legal_doc_id_Name}" value="{t_cust_order_legal_doc_id}" type="hidden"></td>
                     </tr>
                   </table>
                 </td>
@@ -286,6 +297,11 @@ function toReg2()
   }else{
         alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
   }     
+}
+function cetak() {
+	 var currDocId = document.getElementById('t_cust_order_legal_docFormt_customer_order_id').value;	
+	 var urlLink = "?CURR_DOC_ID="+currDocId;
+     return popup("../report/cetak_formulir_tanda_terima_pdf.php"+urlLink);
 }
 </script>
   </body>
