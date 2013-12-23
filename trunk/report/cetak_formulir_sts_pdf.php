@@ -21,8 +21,10 @@ from
   group by kode_jns_pajak ,jns_pajak
   )
 order by kode_rekening ";
-
+print($query);
+exit;
 $dbConn->query($query);
+
 while ($dbConn->next_record()) {
 		$data["kode_rekening"][] = $dbConn->f("kode_rekening");
 		$data["rincian_object"][] = $dbConn->f("rincian_object");
