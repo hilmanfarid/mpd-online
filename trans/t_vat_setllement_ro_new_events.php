@@ -29,14 +29,15 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
 //Custom Code @301-2A29BDB7
 // -------------------------
     // Write your own code here.
-		$dbConn = new clsDBConnSIKP();
+	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
+
+	$dbConn = new clsDBConnSIKP();
 	$sql ="select count(*)as ada from t_vat_penalty where t_vat_setllement_id = ".$nilai;
 	$dbConn->query($sql);
 	$dbConn->next_record();
 	$ada = $dbConn->f("ada");	
 	$dbConn->close();
 	if ($ada > 0){
-	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
 	//$nilai2 = $t_vat_setllementGrid->p_vat_type_id->GetValue();
 	$t_vat_setllementGrid->cetak_sptpd->SetValue("<input type='button' value='CETAK' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
   									 "cetakStpd(".$nilai.")\">");
