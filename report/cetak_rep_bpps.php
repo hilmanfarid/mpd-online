@@ -151,7 +151,7 @@ class FormCetak extends FPDF {
 		foreach($data as $item) {
 			//print data
 			$this->RowMultiBorderWithHeight(array($no,
-												  $item["kode_jns_pajak"] . " " . $item["kode_jns_trans"],
+												  $item["kode_jns_pajak"]." ".$item["kode_ayat"],
 												  $item["jns_pajak"],
 												  $item["no_kohir"],
 												  $item["wp_name"],
@@ -178,19 +178,19 @@ class FormCetak extends FPDF {
 			
 			//cek apakah perlu bikin baris jumlah
 			//jika iya, simpan jumlahtemp ke jumlahperayat, print jumlahtemp, reset jumlahtemp
-			$ayat = $item["kode_jns_trans"];
-			$ayatsesudah = $data[$i+1]["kode_jns_trans"];
-			if($ayat != $ayatsesudah&&count($data)>1){
+			$ayat = $item["kode_ayat"];
+			$ayatsesudah = $data[$i+1]["kode_ayat"];
+			if(($ayat != $ayatsesudah&&count($data)>1)||empty($data[$i+1])){
 				$jumlahperayat[] = $jumlahtemp;
 				$this->Cell($ltable22, $this->height + 2, "JUMLAH " . strtoupper($item["jns_pajak"]), "TBLR", 0, 'C');
 				$this->Cell($ltable4, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtemp = 0;
+				
 			}
-
 			//cek apakah sudah pindah waktu (pagi ke titipan)
 			//jika ya, totalkan jumlahperayat jadi tempperayat, copy ke jumlahperwaktu, print tempperayat, reset jumlahperayat
-			$waktuayat = $item["jns_trans"];
+			/*$waktuayat = $item["jns_trans"];
 			$waktuayatsesudah = $data[$i+1]["jns_trans"];
 			if($waktuayat != $waktuayatsesudah&&count($data)>1){
 				$tempperayat = 0;
@@ -203,7 +203,8 @@ class FormCetak extends FPDF {
 				$this->Cell($ltable4, $this->height + 2, number_format($tempperayat, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahperayat = array();
-			}
+			}*/
+			$i++;
 		}
 
 		$this->Ln();
@@ -402,5 +403,4 @@ class FormCetak extends FPDF {
 $formulir = new FormCetak();
 $formulir->PageCetak($data, $user);
 $formulir->Output();
-
 ?>
