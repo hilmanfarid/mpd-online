@@ -42,7 +42,7 @@ class clsGridv_t_revenue_target_dtlGrid { //v_t_revenue_target_dtlGrid class @2-
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-D7A843E2
+//Class_Initialize Event @2-126FF7B5
     function clsGridv_t_revenue_target_dtlGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -76,7 +76,7 @@ class clsGridv_t_revenue_target_dtlGrid { //v_t_revenue_target_dtlGrid class @2-
         $this->description = & new clsControl(ccsLabel, "description", "description", ccsText, "", CCGetRequestParam("description", ccsGet, NULL), $this);
         $this->t_revenue_target_dtl_id = & new clsControl(ccsHidden, "t_revenue_target_dtl_id", "t_revenue_target_dtl_id", ccsFloat, "", CCGetRequestParam("t_revenue_target_dtl_id", ccsGet, NULL), $this);
         $this->target_code = & new clsControl(ccsLabel, "target_code", "target_code", ccsText, "", CCGetRequestParam("target_code", ccsGet, NULL), $this);
-        $this->target_amt = & new clsControl(ccsLabel, "target_amt", "target_amt", ccsText, "", CCGetRequestParam("target_amt", ccsGet, NULL), $this);
+        $this->target_amt = & new clsControl(ccsLabel, "target_amt", "target_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amt", ccsGet, NULL), $this);
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
         $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
         $this->Insert_Link->Page = "t_revenue_target_dtl.php";
@@ -236,7 +236,7 @@ class clsv_t_revenue_target_dtlGridDataSource extends clsDBConnSIKP {  //v_t_rev
     var $vat_code;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-58C76D34
+//DataSourceClass_Initialize Event @2-991B8A2C
     function clsv_t_revenue_target_dtlGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -250,7 +250,7 @@ class clsv_t_revenue_target_dtlGridDataSource extends clsDBConnSIKP {  //v_t_rev
         
         $this->target_code = new clsField("target_code", ccsText, "");
         
-        $this->target_amt = new clsField("target_amt", ccsText, "");
+        $this->target_amt = new clsField("target_amt", ccsFloat, "");
         
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
@@ -302,14 +302,14 @@ class clsv_t_revenue_target_dtlGridDataSource extends clsDBConnSIKP {  //v_t_rev
     }
 //End Open Method
 
-//SetValues Method @2-BC69E1F5
+//SetValues Method @2-EC8014E1
     function SetValues()
     {
         $this->periode->SetDBValue($this->f("periode"));
         $this->description->SetDBValue($this->f("description"));
         $this->t_revenue_target_dtl_id->SetDBValue(trim($this->f("t_revenue_target_dtl_id")));
         $this->target_code->SetDBValue($this->f("target_code"));
-        $this->target_amt->SetDBValue($this->f("target_amt"));
+        $this->target_amt->SetDBValue(trim($this->f("target_amt")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
     }
 //End SetValues Method
@@ -600,7 +600,7 @@ class clsRecordv_t_revenue_target_dtlForm { //v_t_revenue_target_dtlForm Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-74208189
+//Class_Initialize Event @23-826E8C1B
     function clsRecordv_t_revenue_target_dtlForm($RelativePath, & $Parent)
     {
 
@@ -651,7 +651,7 @@ class clsRecordv_t_revenue_target_dtlForm { //v_t_revenue_target_dtlForm Class @
             $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
             $this->t_revenue_target_dtlGridPage = & new clsControl(ccsHidden, "t_revenue_target_dtlGridPage", "t_revenue_target_dtlGridPage", ccsText, "", CCGetRequestParam("t_revenue_target_dtlGridPage", $Method, NULL), $this);
             $this->t_revenue_target_id = & new clsControl(ccsHidden, "t_revenue_target_id", "t_revenue_target_id", ccsFloat, "", CCGetRequestParam("t_revenue_target_id", $Method, NULL), $this);
-            $this->target_amt = & new clsControl(ccsTextBox, "target_amt", "Jumlah", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("target_amt", $Method, NULL), $this);
+            $this->target_amt = & new clsControl(ccsTextBox, "target_amt", "Jumlah", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amt", $Method, NULL), $this);
             $this->vat_type_code = & new clsControl(ccsLabel, "vat_type_code", "vat_type_code", ccsText, "", CCGetRequestParam("vat_type_code", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Jenis Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->vat_code->Required = true;

@@ -20,7 +20,17 @@ function v_t_revenue_targetGrid_BeforeShowRow(& $sender)
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
     global $v_t_revenue_targetGrid; //Compatibility
-//End v_t_revenue_targetGrid_BeforeShowRow	
+//End v_t_revenue_targetGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style	
 
 	global $v_t_revenue_targetForm;	
     global $selected_id;
@@ -68,6 +78,12 @@ function v_t_revenue_targetGrid_BeforeShow(& $sender)
     global $v_t_revenue_targetGrid; //Compatibility
 //End v_t_revenue_targetGrid_BeforeShow
 
+//Custom Code @95-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close v_t_revenue_targetGrid_BeforeShow @2-A7CCA650
     return $v_t_revenue_targetGrid_BeforeShow;
 }
@@ -81,6 +97,12 @@ function v_t_revenue_targetGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $v_t_revenue_targetGrid; //Compatibility
 //End v_t_revenue_targetGrid_BeforeSelect
+
+//Custom Code @97-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -101,6 +123,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_revenue_target; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
     global $selected_id;

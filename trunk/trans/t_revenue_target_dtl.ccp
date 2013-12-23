@@ -50,7 +50,7 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="108" fieldSourceType="DBColumn" dataType="Text" html="False" name="target_amt" fieldSource="target_amt" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="v_t_revenue_target_dtlGridtarget_amt">
+				<Label id="108" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amt" fieldSource="target_amt" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="v_t_revenue_target_dtlGridtarget_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -307,7 +307,7 @@ VALUES(generate_id('sikp','t_revenue_target_dtl','t_revenue_target_dtl_id'), '{t
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="135" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="target_amt" fieldSource="target_amt" caption="Jumlah" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="v_t_revenue_target_dtlFormtarget_amt" required="False" format="0">
+				<TextBox id="135" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="target_amt" fieldSource="target_amt" caption="Jumlah" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="v_t_revenue_target_dtlFormtarget_amt" required="False" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>

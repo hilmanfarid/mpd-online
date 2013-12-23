@@ -173,13 +173,13 @@ from
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Hidden id="684" fieldSourceType="DBColumn" dataType="Float" name="p_finance_period_id" fieldSource="1" PathID="t_status_pelaporan_pajakSearchp_finance_period_id">
-					<Components/>
+				<TextBox id="684" fieldSourceType="DBColumn" dataType="Float" name="p_finance_period_id" PathID="t_status_pelaporan_pajakSearchp_finance_period_id" visible="Yes" defaultValue="1">
+<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
-				</Hidden>
-			</Components>
+				</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
