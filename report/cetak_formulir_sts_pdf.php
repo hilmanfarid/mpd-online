@@ -21,8 +21,7 @@ from
   group by kode_jns_pajak ,jns_pajak
   )
 order by kode_rekening ";
-print($query);
-exit;
+
 $dbConn->query($query);
 
 while ($dbConn->next_record()) {
@@ -31,6 +30,8 @@ while ($dbConn->next_record()) {
 		$data["jumlah"][] = $dbConn->f("jumlah");
 }
 
+print($data["kode_rekening"][0]);
+exit;
 $dbConn->close();
 
 class FormCetak extends FPDF {
