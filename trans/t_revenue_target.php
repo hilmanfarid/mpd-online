@@ -42,7 +42,7 @@ class clsGridv_t_revenue_targetGrid { //v_t_revenue_targetGrid class @2-FA98B570
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-03212DA8
+//Class_Initialize Event @2-4644634D
     function clsGridv_t_revenue_targetGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -77,7 +77,7 @@ class clsGridv_t_revenue_targetGrid { //v_t_revenue_targetGrid class @2-FA98B570
         $this->t_revenue_target_id = & new clsControl(ccsHidden, "t_revenue_target_id", "t_revenue_target_id", ccsFloat, "", CCGetRequestParam("t_revenue_target_id", ccsGet, NULL), $this);
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
         $this->target_code = & new clsControl(ccsLabel, "target_code", "target_code", ccsText, "", CCGetRequestParam("target_code", ccsGet, NULL), $this);
-        $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsText, "", CCGetRequestParam("target_amount", ccsGet, NULL), $this);
+        $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount", ccsGet, NULL), $this);
         $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
         $this->Insert_Link->Page = "t_revenue_target.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
@@ -234,7 +234,7 @@ class clsv_t_revenue_targetGridDataSource extends clsDBConnSIKP {  //v_t_revenue
     var $target_amount;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-75AD4D13
+//DataSourceClass_Initialize Event @2-CAB89694
     function clsv_t_revenue_targetGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -250,7 +250,7 @@ class clsv_t_revenue_targetGridDataSource extends clsDBConnSIKP {  //v_t_revenue
         
         $this->target_code = new clsField("target_code", ccsText, "");
         
-        $this->target_amount = new clsField("target_amount", ccsText, "");
+        $this->target_amount = new clsField("target_amount", ccsFloat, "");
         
 
     }
@@ -304,7 +304,7 @@ class clsv_t_revenue_targetGridDataSource extends clsDBConnSIKP {  //v_t_revenue
     }
 //End Open Method
 
-//SetValues Method @2-2D1C8CD4
+//SetValues Method @2-33F6C50B
     function SetValues()
     {
         $this->year_code->SetDBValue($this->f("year_code"));
@@ -312,7 +312,7 @@ class clsv_t_revenue_targetGridDataSource extends clsDBConnSIKP {  //v_t_revenue
         $this->t_revenue_target_id->SetDBValue(trim($this->f("t_revenue_target_id")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->target_code->SetDBValue($this->f("target_code"));
-        $this->target_amount->SetDBValue($this->f("target_amount"));
+        $this->target_amount->SetDBValue(trim($this->f("target_amount")));
     }
 //End SetValues Method
 

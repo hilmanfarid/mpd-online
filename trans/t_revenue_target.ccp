@@ -56,7 +56,7 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="108" fieldSourceType="DBColumn" dataType="Text" html="False" name="target_amount" fieldSource="target_amount" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="v_t_revenue_targetGridtarget_amount">
+				<Label id="108" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount" fieldSource="target_amount" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="v_t_revenue_targetGridtarget_amount" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -271,7 +271,7 @@ VALUES(generate_id('sikp','t_revenue_target','t_revenue_target_id'), {p_year_per
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters>
 				<TableParameter id="137" conditionType="Parameter" useIsNull="False" field="t_revenue_target_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_revenue_target_id"/>

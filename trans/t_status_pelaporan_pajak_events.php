@@ -18,6 +18,16 @@ function t_status_pelaporan_pajakGrid_BeforeShowRow(& $sender)
     global $t_status_pelaporan_pajakGrid; //Compatibility
 //End t_status_pelaporan_pajakGrid_BeforeShowRow
 
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
+
 //Close t_status_pelaporan_pajakGrid_BeforeShowRow @2-E5A5F85A
     return $t_status_pelaporan_pajakGrid_BeforeShowRow;
 }
@@ -31,6 +41,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_status_pelaporan_pajak; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 	global $selected_id;
 	$selected_id = -1;

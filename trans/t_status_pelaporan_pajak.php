@@ -351,7 +351,7 @@ class clsRecordt_status_pelaporan_pajakSearch { //t_status_pelaporan_pajakSearch
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-CE536CFE
+//Class_Initialize Event @3-F687A9C0
     function clsRecordt_status_pelaporan_pajakSearch($RelativePath, & $Parent)
     {
 
@@ -377,7 +377,11 @@ class clsRecordt_status_pelaporan_pajakSearch { //t_status_pelaporan_pajakSearch
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->code_period = & new clsControl(ccsTextBox, "code_period", "code_period", ccsText, "", CCGetRequestParam("code_period", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
-            $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
+            $this->p_finance_period_id = & new clsControl(ccsTextBox, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
+            if(!$this->FormSubmitted) {
+                if(!is_array($this->p_finance_period_id->Value) && !strlen($this->p_finance_period_id->Value) && $this->p_finance_period_id->Value !== false)
+                    $this->p_finance_period_id->SetText(1);
+            }
         }
     }
 //End Class_Initialize Event
