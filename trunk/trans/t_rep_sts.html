@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-A4139E39
+
+var t_rep_bppsSearch_DatePicker_tgl_penerimaan = new Object(); 
+t_rep_bppsSearch_DatePicker_tgl_penerimaan.format           = "dd-mm-yyyy";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan.relativePathPart = "../";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//bind_events @1-BF0EB765
+function bind_events() {
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        CETAK STS 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_rep_bppsSearch -->
+        <form id="t_rep_bppsSearch" name="{HTMLFormName}" action="{Action}" method="post">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Periode Tahun</td> 
+                    <td class="search-field"><input class="ControlsRQ" id="t_rep_bppsSearchyear_code" maxlength="32" size="32" value="{year_code}" name="{year_code_Name}"></td> 
+                    <td><img onclick="javascript:periodetahun()" src="../images/view.gif" border="0">&nbsp;<input id="t_rep_bppsSearchp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"></td> 
+                    <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Tanggal Penerimaan</td> 
+                    <td class="search-field"><input class="ControlsRQ" id="t_rep_bppsSearchtgl_penerimaan" maxlength="32" size="32" value="{tgl_penerimaan}" name="{tgl_penerimaan_Name}">
+                      <td>
+                        <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_bppsSearchDatePicker_tgl_penerimaan"><img id="t_rep_bppsSearchDatePicker_tgl_penerimaan_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;</td> 
+                      <td class="search-field">
+                        <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="t_rep_bppsSearchButton_DoSearch" onclick="cetak(); return false;" type="submit" alt="Search" value="TAMPILKAN" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_rep_bppsSearch -->
+          <div align="left">
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script language="javascript">
+         
+
+        function periodetahun() {
+                getFrom_LOV('t_rep_bppsSearch','p_year_period_id,year_code','lov_year_period.php');
+        }
+
+        function cetak()
+        {
+                p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
+
+                window.open("../report/cetak_formulir_sts_pdf.php?tgl_penerimaan=" + tgl_penerimaan + "&p_year_period_id=" + p_year_period_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        }
+        </script>
+  </body>
+  </html>
