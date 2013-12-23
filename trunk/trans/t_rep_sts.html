@@ -51,7 +51,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -76,6 +76,13 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td colspan="4">{Error}</td>
                   </tr>
                   <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Jenis Pajak&nbsp;</td> 
+                    <td class="search-field"><input class="ControlsRQ" id="t_rep_bppsSearchvat_code" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}">&nbsp;</td> 
+                    <td><img onclick="javascript:jenispajak()" src="../images/view.gif" border="0">&nbsp;<input id="t_rep_bppsSearchp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
                   <tr class="Controls">
                     <td class="search-field">Periode Tahun</td> 
                     <td class="search-field"><input class="ControlsRQ" id="t_rep_bppsSearchyear_code" maxlength="32" size="32" value="{year_code}" name="{year_code_Name}"></td> 
@@ -105,16 +112,20 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
   </div>
   <script language="javascript">
          
-
+		function jenispajak() {
+                getFrom_LOV('t_rep_bppsSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+        }
+			
         function periodetahun() {
                 getFrom_LOV('t_rep_bppsSearch','p_year_period_id,year_code','lov_year_period.php');
         }
 
         function cetak()
         {
+				p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
                 p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
                 tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
-                window.open("../report/cetak_formulir_sts_pdf.php?tgl_penerimaan=" + tgl_penerimaan + "&p_year_period_id=" + p_year_period_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                window.open("../report/cetak_formulir_sts_pdf.php?p_vat_type_id="+ p_vat_type_id +"&tgl_penerimaan=" + tgl_penerimaan + "&p_year_period_id=" + p_year_period_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
         </script>
   </body>

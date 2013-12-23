@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-F4642FDC
+//Class_Initialize Event @3-50A9BD55
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -74,11 +74,13 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_rep_bppsSearch", "tgl_penerimaan", $this);
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
+            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-03C0A9D4
+//Validate Method @3-97A0B073
     function Validate()
     {
         global $CCSLocales;
@@ -87,15 +89,19 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation = ($this->tgl_penerimaan->Validate() && $Validation);
         $Validation = ($this->year_code->Validate() && $Validation);
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
+        $Validation = ($this->vat_code->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-C233453F
+//CheckErrors Method @3-B8109744
     function CheckErrors()
     {
         $errors = false;
@@ -103,6 +109,8 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->year_code->Errors->Count());
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
+        $errors = ($errors || $this->vat_code->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -155,7 +163,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-8606FF9D
+//Show Method @3-BC968ABB
     function Show()
     {
         global $CCSUseAmp;
@@ -183,6 +191,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -205,6 +215,8 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_tgl_penerimaan->Show();
         $this->year_code->Show();
         $this->p_year_period_id->Show();
+        $this->vat_code->Show();
+        $this->p_vat_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
