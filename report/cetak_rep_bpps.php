@@ -148,6 +148,7 @@ class FormCetak extends FPDF {
 		$jumlahperwaktu = array();
 		$jumlahtemp = 0;
 		$i=0;
+		$total=0;
 		foreach($data as $item) {
 			//print data
 			$this->RowMultiBorderWithHeight(array($no,
@@ -175,7 +176,7 @@ class FormCetak extends FPDF {
 
 			//hitung jumlahperayat sampai baris ini
 			$jumlahtemp += $item["jumlah_terima"];
-			
+			$total+= $item["jumlah_terima"];
 			//cek apakah perlu bikin baris jumlah
 			//jika iya, simpan jumlahtemp ke jumlahperayat, print jumlahtemp, reset jumlahtemp
 			$ayat = $item["kode_ayat"];
@@ -206,6 +207,8 @@ class FormCetak extends FPDF {
 			}*/
 			$i++;
 		}
+		$this->Cell($ltable22, $this->height + 2, "TOTAL " . strtoupper($item["jns_pajak"]), "TBLR", 0, 'C');
+		$this->Cell($ltable4, $this->height + 2, number_format($total, 0, ',', '.'), "TBLR", 0, 'R');
 
 		$this->Ln();
 		$this->newLine();
