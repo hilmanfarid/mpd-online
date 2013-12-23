@@ -19,11 +19,17 @@ $query = 	"select a.wp_name, a.wp_address_name, a.company_name, a.address_name, 
 // die($query);
 $dbConn->query($query);
 while ($dbConn->next_record()) {
-	$data["wp_name"]			= $dbConn->f("wp_name");
-	$data["wp_address_name"]	= $dbConn->f("wp_address_name");
-	$data["company_name"]		= $dbConn->f("company_name");
-	$data["address_name"]		= $dbConn->f("address_name");
-	$data["job_name"]			= $dbConn->f("job_name");
+	$data["wp_name"]				= $dbConn->f("wp_name");
+	$data["wp_address_name"]		= $dbConn->f("wp_address_name");
+	$data["company_name"]			= $dbConn->f("company_name");
+	$data["address_name"]			= $dbConn->f("address_name");
+	$data["job_name"]				= $dbConn->f("job_name");
+	$data["bap_employee_no_1"]		= $dbConn->f("bap_employee_no_1");
+	$data["bap_employee_no_2"]		= $dbConn->f("bap_employee_no_2");
+	$data["bap_employee_name_1"]	= $dbConn->f("bap_employee_name_1");
+	$data["bap_employee_name_2"]	= $dbConn->f("bap_employee_name_2");
+	$data["bap_employee_job_pos_1"]	= $dbConn->f("bap_employee_job_pos_1");
+	$data["bap_employee_job_pos_2"]	= $dbConn->f("bap_employee_job_pos_2");
 }
 
 $dbConn->close();
@@ -115,11 +121,11 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		// Nama Petugas
-		$this->isi("1.", "Nama", ": ............................................................................................");
-		$this->isi("", "NIP", ": ............................................................................................");
-		$this->isi("", "Jabatan", ": ............................................................................................");
-		$this->isi("2.", "Nama", ": ............................................................................................");
-		$this->isi("", "NIP", ": ............................................................................................");
+		$this->isi("1.", "Nama", ": " . $data["bap_employee_nama_1"]);
+		$this->isi("", "NIP", ": " . $data["bap_employee_no_1"]);
+		$this->isi("", "Jabatan", ": " . $data["bap_employee_job_pos_1"]);
+		$this->isi("2.", "Nama", ": " . $data["bap_employee_nama_2"]);
+		$this->isi("", "NIP", ": " . $data["bap_employee_no_2"]);
 		$this->isi("", "Jabatan", ": ............................................................................................");
 
 		// Body
