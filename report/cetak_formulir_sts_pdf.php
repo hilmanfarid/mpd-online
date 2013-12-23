@@ -30,6 +30,18 @@ while ($dbConn->next_record()) {
 		$data["jumlah"][] = $dbConn->f("jumlah");
 }
 
+$total = 0;
+for ($i=0; $i<count($data['kode_rekening']); $i++) {
+	$totalUang = $data["jumlah"][$i];
+	
+	$total = $total + $data["jumlah"][$i];
+}
+
+$query_ter = "select replace(f_terbilang(to_char(round(nvl(".$total.",0))),'IDR'), '  ', ' ') as dengan_huruf";
+$dbConn->query($query_ter);
+while ($dbConn->next_record()) {
+	$terbilang = $dbConn->f("dengan_huruf");
+}
 
 $dbConn->close();
 
@@ -60,7 +72,7 @@ class FormCetak extends FPDF {
 	}
 	*/
 	
-	function PageCetak($data) {
+	function PageCetak($data,$terbilang,$total) {
 		$this->AliasNbPages();
 		$this->AddPage("P");
 		$startY = $this->GetY();
@@ -97,11 +109,11 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($length1, $this->height, "", 0, 0, 'L');
 		$this->Cell($length2+3, $this->height, "Harap diterima uang sebesar ", 0, 0, 'L');
-		$this->Cell($length2+$length1, $this->height, ": Rp.", 0, 0, 'L');
+		$this->Cell($length2+$length1, $this->height, ": Rp. ".$total, 0, 0, 'L');
 		$this->Ln();
 		$this->Cell($length1, $this->height, "", 0, 0, 'L');
 		$this->Cell($length2+3, $this->height, "(dengan huruf)", 0, 0, 'L');
-		$this->Cell($length2+$length1, $this->height, ":", 0, 0, 'L');
+		$this->Cell($length2+$length1, $this->height, ": ".$terbilang, 0, 0, 'L');
 		$this->Ln();
 		$this->Cell($length1, $this->height, "", 0, 0, 'L');
 		$this->Cell($length2+3, $this->height, "Dengan rincian penerimaan sebagai berikut :", 0, 0, 'L');
@@ -328,7 +340,7 @@ class FormCetak extends FPDF {
 }
 
 $formulir = new FormCetak();
-$formulir->PageCetak($data);
+$formulir->PageCetak($data,$terbilang,$total);
 $formulir->Output();
 
 ?>
