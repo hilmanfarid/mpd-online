@@ -37,7 +37,7 @@ for ($i=0; $i<count($data['kode_rekening']); $i++) {
 	$total = $total + $data["jumlah"][$i];
 }
 
-$query_ter = "select replace(f_terbilang(to_char(round(nvl(".$total.",0))),'IDR'), '  ', ' ') as dengan_huruf";
+$query_ter = "select replace(f_terbilang(to_char(nvl(".$total.",0)),'IDR'), '  ', ' ') as dengan_huruf";
 $dbConn->query($query_ter);
 while ($dbConn->next_record()) {
 	$terbilang = $dbConn->f("dengan_huruf");
