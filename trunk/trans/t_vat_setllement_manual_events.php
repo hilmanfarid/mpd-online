@@ -22,6 +22,12 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
     global $t_vat_setllementForm; //Compatibility
 //End t_vat_setllementForm_Button1_OnClick
 
+//Custom Code @165-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 // -------------------------
     // Write your own code here.
 
@@ -94,6 +100,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_manual; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
