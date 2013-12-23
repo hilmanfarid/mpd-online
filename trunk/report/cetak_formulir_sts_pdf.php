@@ -113,8 +113,13 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($length1, $this->height, "", 0, 0, 'L');
 		$this->Cell($length2+3, $this->height, "(dengan huruf)", 0, 0, 'L');
-		$this->Cell($length2+$length1, $this->height, ": ".$terbilang, 0, 0, 'L');
-		$this->Ln();
+		//$this->Cell($length2+$length1, $this->height, ": ".$terbilang, 0, 0, 'L');
+		//$this->Ln();
+		$this->SetWidths(array($length2+$length1));
+		$this->SetAligns(array("L"));
+		$this->RowMultiBorderWithHeight(array($terbilang),
+										array(''), $this->height);
+		
 		$this->Cell($length1, $this->height, "", 0, 0, 'L');
 		$this->Cell($length2+3, $this->height, "Dengan rincian penerimaan sebagai berikut :", 0, 0, 'L');
 		$this->Ln(7);
