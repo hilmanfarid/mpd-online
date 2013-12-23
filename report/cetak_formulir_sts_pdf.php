@@ -7,6 +7,7 @@ include_once("../include/fpdf.php");
 
 $yearId = CCGetFromGet("p_year_period_id", "");
 $tglPenerimaan = CCGetFromGet("tgl_penerimaan", "");
+$vatId = CCGetFromGet("p_vat_type_id", "");
 $data = array();
 
 $dbConn = new clsDBConnSIKP();
@@ -14,10 +15,10 @@ $dbConn = new clsDBConnSIKP();
 $query="Select *
 from
   (
-  select kode_jns_pajak  as kode_rekening ,jns_pajak as rincian_object, sum(jumlah_terima) as jumlah  from f_rep_sts(".$yearId.", '".$tglPenerimaan."',1)
+  select kode_jns_pajak  as kode_rekening ,jns_pajak as rincian_object, sum(jumlah_terima) as jumlah  from f_rep_bpps(".$vatId.", ".$yearId.", '".$tglPenerimaan."',1)
   group by kode_jns_pajak ,jns_pajak
   UNION
-  select kode_jns_pajak  as kode_rekening ,jns_pajak as rincian_object, sum(jumlah_terima) as jumlah  from f_rep_sts(".$yearId.", '".$tglPenerimaan."',2)
+  select kode_jns_pajak  as kode_rekening ,jns_pajak as rincian_object, sum(jumlah_terima) as jumlah  from f_rep_bpps(".$vatId.", ".$yearId.", '".$tglPenerimaan."',2)
   group by kode_jns_pajak ,jns_pajak
   )
 order by kode_rekening ";
