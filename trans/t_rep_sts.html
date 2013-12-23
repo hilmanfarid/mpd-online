@@ -113,8 +113,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         function cetak()
         {
                 p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
-                p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
-
+                tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
                 window.open("../report/cetak_formulir_sts_pdf.php?tgl_penerimaan=" + tgl_penerimaan + "&p_year_period_id=" + p_year_period_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
         </script>
