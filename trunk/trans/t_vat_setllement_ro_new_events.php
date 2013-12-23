@@ -74,7 +74,8 @@ function t_vat_setllementGrid_cetak_BeforeShow(& $sender)
 //Custom Code @225-2A29BDB7
 // -------------------------
     // Write your own code here.
-	$nilai1 = CCGetFromGet("CURR_DOC_ID","");
+	//$nilai1 = CCGetFromGet("CURR_DOC_ID","");
+	$nilai1 = $t_vat_setllementGrid->t_customer_order_id->GetValue();
 	$t_vat_setllementGrid->cetak->SetValue("<input type='button' value='CETAK SSPD' style='WIDTH: 75px; HEIGHT: 22px' class='Button' onclick=\"" .
   									 "return cetak_sspd(".$nilai1.")\">");
 // -------------------------
