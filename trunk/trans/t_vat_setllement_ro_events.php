@@ -51,8 +51,14 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
 		$sql="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
 		$dbConn->query($sql);
 		$dbConn->next_record();
-		print_laporan($dbConn->f('f_print_register'));
+		//print_laporan($dbConn->f('f_print_register'));
+		echo "
+			<script>
+				window.open('../services/print_string.php?input_number=".$dbConn->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+			</script>
+		";
 		$dbConn->close();
+		exit;
 	}
 // -------------------------
 //End Custom Code
