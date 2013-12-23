@@ -20,11 +20,13 @@ $query="select b.npwd,
        c.company_name,
        c.address_name,
 	   d.vat_code,
+	   e.order_no,
 	   d.penalty_code as penalty_ayat,
       replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', ' ') as dengan_huruf
-from t_vat_penalty a, t_vat_setllement b, t_cust_account c, p_vat_type d
+from t_vat_penalty a, t_vat_setllement b, t_cust_account c, p_vat_type d, t_customer_order e
 where a.t_vat_setllement_id = b.t_vat_setllement_id
-and b.t_cust_account_id = c.t_cust_account_id 
+and b.t_cust_account_id = c.t_cust_account_id
+and b.t_customer_order_id = e.t_customer_order_id 
 and c.p_vat_type_id = d.p_vat_type_id
 and a.t_vat_setllement_id = ".$VatId;
 
@@ -42,6 +44,8 @@ while ($dbConn->next_record()) {
 		$data["dengan_huruf"] = $dbConn->f("dengan_huruf");
 		$data["tahun"] = $dbConn->f("tahun");
 		$data["penalty_ayat"] = $dbConn->f("penalty_ayat");
+		$data["order_no"] = $dbConn->f("order_no");
+		
 }
 
 	//nip & nama
@@ -135,15 +139,13 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader2 + $lheader4 + 7, $this->height, "", "R", 0, 'C');
 
 
-		//$no_urt = str_split($data["no_urut"]);
-		$this->kotak(1, 34, 6, "");
-		/*
+		$no_urt = str_split($data["order_no"]);
+		$this->kotak(1, 34, 1, $no_urt[0]);
 		$this->kotak(1, 34, 1, $no_urt[1]);
 		$this->kotak(1, 34, 1, $no_urt[2]);
 		$this->kotak(1, 34, 1, $no_urt[3]);
 		$this->kotak(1, 34, 1, $no_urt[4]);
 		$this->kotak(1, 34, 1, $no_urt[5]);
-		*/
 		$this->Ln();
 		// =======
 		
