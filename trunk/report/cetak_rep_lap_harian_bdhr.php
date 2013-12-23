@@ -114,19 +114,19 @@ class FormCetak extends FPDF {
 		$ltable = $this->lengthCell / 20;
 		$ltable1 = $ltable * 1;
 		$ltable3 = $ltable * 3;
-		$ltable4 = $ltable * 4;
+		$ltable4 = $ltable * 2.6;
 		$ltable16 = $ltable * 16;
 		
 		$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "AYAT", "TBLR", 0, 'C');
-		$this->Cell($ltable4, $this->height + 2, "PAJAK/RETRIBUSI", "TBLR", 0, 'C');
-		$this->Cell($ltable4, $this->height + 2, "JUMLAH HARI INI", "TBLR", 0, 'C');
-		$this->Cell($ltable4, $this->height + 2, "JUMLAH S/D HARI YANG LALU", "TBLR", 0, 'C');
-		$this->Cell($ltable4, $this->height + 2, "JUMLAH S/D HARI INI", "TBLR", 0, 'C');
+		$this->Cell($ltable4*2.2+4, $this->height + 2, "PAJAK/RETRIBUSI", "TBLR", 0, 'C');
+		$this->Cell($ltable4*1.1, $this->height + 2, "JUMLAH HARI INI", "TBLR", 0, 'C');
+		$this->Cell($ltable*4.04, $this->height + 2, "JUMLAH S/D HARI YANG LALU", "TBLR", 0, 'C');
+		$this->Cell($ltable4*1.3-4, $this->height + 2, "JUMLAH S/D HARI INI", "TBLR", 0, 'C');
 		$this->Ln();
 
 		//isi kolom
-		$this->SetWidths(array($ltable1, $ltable3, $ltable4, $ltable4, $ltable4, $ltable4));
+		$this->SetWidths(array($ltable1, $ltable3, $ltable4*2.2+4, $ltable4*1.1, $ltable*4.04, $ltable4*1.3-4));
 		$this->SetAligns(array("C", "L", "L", "R", "R", "R"));
 		$no = 1;
 		$jumlahperjenis = array();
@@ -135,8 +135,8 @@ class FormCetak extends FPDF {
 		for ($i = 0; $i < count($data['nomor_ayat']); $i++) {
 			//print data
 			$this->RowMultiBorderWithHeight(array($no,
-												  $data["nama_ayat"][$i] . " " . $data["kode_jns_trans"][$i],
-												  $data["nama_jns_pajak"][$i],
+												  $data["nomor_ayat"][$i] . " " . $data["kode_jns_trans"][$i],
+												  "P. ".$data["nama_ayat"][$i],
 												  number_format($data["jml_hari_ini"][$i], 0, ',', '.'),
 												  number_format($data["jml_sd_hari_lalu"][$i], 0, ',', '.'),
 												  number_format($data["jml_sd_hari_ini"][$i], 0, ',', '.')
@@ -161,15 +161,15 @@ class FormCetak extends FPDF {
 			$jenissesudah = $data["nama_jns_pajak"][$i + 1];
 			if($jenis != $jenissesudah){
 				$jumlahperjenis[] = $jumlahtemp;
-				$this->Cell($ltable16, $this->height + 2, "JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]), "TBLR", 0, 'C');
-				$this->Cell($ltable4, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable16+12.7, $this->height + 2, "JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]), "TBLR", 0, 'C');
+				$this->Cell($ltable4+6.76, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtemp = 0;
 			}
 			
 			if($i == count($data['nomor_ayat']) - 1){
-				$this->Cell($ltable16, $this->height + 2, "JUMLAH TOTAL", "TBLR", 0, 'C');
-				$this->Cell($ltable4, $this->height + 2, number_format($jumlahtotal, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable16+12.7, $this->height + 2, "JUMLAH TOTAL", "TBLR", 0, 'C');
+				$this->Cell($ltable4+6.76, $this->height + 2, number_format($jumlahtotal, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtotal = 0;
 			}
