@@ -266,11 +266,17 @@ WHERE t_cust_order_legal_doc_id = {t_cust_order_legal_doc_id} ">
 					<Features/>
 				</Hidden>
 				<FileUpload id="693" fieldSourceType="DBColumn" allowedFileMasks="*" fileSizeLimit="2000000" dataType="Text" tempFileFolder="../files_tmp" name="file_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_order_legal_docFormfile_name" processedFileFolder="../files" fieldSource="file_name">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</FileUpload>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</FileUpload>
+				<Button id="694" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_order_legal_docFormButton1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters>

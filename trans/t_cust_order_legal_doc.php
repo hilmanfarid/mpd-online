@@ -546,7 +546,7 @@ class clsRecordt_cust_order_legal_docForm { //t_cust_order_legal_docForm Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-313CA617
+//Class_Initialize Event @94-CFA39B15
     function clsRecordt_cust_order_legal_docForm($RelativePath, & $Parent)
     {
 
@@ -594,6 +594,7 @@ class clsRecordt_cust_order_legal_docForm { //t_cust_order_legal_docForm Class @
             $this->file_folder = & new clsControl(ccsHidden, "file_folder", "file_folder", ccsText, "", CCGetRequestParam("file_folder", $Method, NULL), $this);
             $this->origin_file_name = & new clsControl(ccsHidden, "origin_file_name", "origin_file_name", ccsText, "", CCGetRequestParam("origin_file_name", $Method, NULL), $this);
             $this->file_name = & new clsFileUpload("file_name", "file_name", "../files_tmp/", "../files/", "*", "", 2000000, $this);
+            $this->Button1 = & new clsButton("Button1", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -694,7 +695,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-8DCD478F
+//Operation Method @94-01C57536
     function Operation()
     {
         if(!$this->Visible)
@@ -721,6 +722,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Delete";
             } else if($this->Button_Cancel->Pressed) {
                 $this->PressedButton = "Button_Cancel";
+            } else if($this->Button1->Pressed) {
+                $this->PressedButton = "Button1";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -743,6 +746,10 @@ function GetPrimaryKey($keyName)
             } else if($this->PressedButton == "Button_Update") {
                 $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button1") {
+                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
                     $Redirect = "";
                 }
             }
@@ -808,7 +815,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-96EB1552
+//Show Method @94-4CF13780
     function Show()
     {
         global $CCSUseAmp;
@@ -909,6 +916,7 @@ function GetPrimaryKey($keyName)
         $this->file_folder->Show();
         $this->origin_file_name->Show();
         $this->file_name->Show();
+        $this->Button1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
