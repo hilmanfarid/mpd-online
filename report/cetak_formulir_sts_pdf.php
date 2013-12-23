@@ -26,7 +26,7 @@ $dbConn->query($query);
 while ($dbConn->next_record()) {
 		$data["kode_rekening"][] = $dbConn->f("kode_rekening");
 		$data["rincian_object"][] = $dbConn->f("rincian_object");
-		$data["jumlah_terima"][] = $dbConn->f("jumlah_terima");
+		$data["jumlah"][] = $dbConn->f("jumlah");
 }
 
 $dbConn->close();
@@ -122,7 +122,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(array($no,
 											  $data["kode_rekening"][$i],
 											  $data["rincian_object"][$i],
-											  number_format($data["jumlah_terima"][$i],2,",","."))
+											  number_format($data["jumlah"][$i],2,",","."))
 											 ,
 										array('LR',
 										      'LR',
@@ -130,7 +130,7 @@ class FormCetak extends FPDF {
 											  'LR')
 											  ,$this->height);
 		$no = $no + 1;										
-		$jumlah = $jumlah + $data["jumlah_terima"][$i];
+		$jumlah = $jumlah + $data["jumlah"][$i];
 		}
 		
 		$this->Cell($length1+$length2+$length3, $this->height, "Jumlah", 1, 0, 'C');
