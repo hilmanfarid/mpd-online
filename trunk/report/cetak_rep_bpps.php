@@ -9,6 +9,7 @@ require("../include/qrcode/fpdf17/fpdf.php");
 $p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
 $p_year_period_id	= CCGetFromGet("p_year_period_id", "");
 $tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
+$i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 
 // $p_vat_type_id		= 1;
 // $p_year_period_id	= 4;
@@ -17,26 +18,26 @@ $tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
-
+$query				= "select * from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
 while ($dbConn->next_record()) {
-	$data[]["kode_jns_trans"]	= $dbConn->f("kode_jns_trans");
-	$data[]["jns_trans"]		= $dbConn->f("jns_trans");
-	$data[]["kode_jns_pajak"]	= $dbConn->f("kode_jns_pajak");
-	$data[]["kode_ayat"]		= $dbConn->f("kode_ayat");
-	$data[]["jns_pajak"]		= $dbConn->f("jns_pajak");
-	$data[]["jns_ayat"]			= $dbConn->f("jns_ayat");
-	$data[]["nama_ayat"]		= $dbConn->f("nama_ayat");
-	$data[]["no_kohir"]			= $dbConn->f("no_kohir");
-	$data[]["wp_name"]			= $dbConn->f("wp_name");
-	$data[]["npwpd"]			= $dbConn->f("npwpd");
-	$data[]["jumlah_terima"]	= $dbConn->f("jumlah_terima");
-	$data[]["masa_pajak"]		= $dbConn->f("masa_pajak");
-	$data[]["kd_tap"]			= $dbConn->f("kd_tap");
-	$data[]["keterangan"]		= $dbConn->f("keterangan");
-	$data[]["payment_date"]		= $dbConn->f("payment_date");
-	$data[]["jam"]		= $dbConn->f("jam");
+	$data[]= array(
+	"kode_jns_trans"	=> $dbConn->f("kode_jns_trans"),
+	"jns_trans"		=> $dbConn->f("jns_trans"),
+	"kode_jns_pajak"	=> $dbConn->f("kode_jns_pajak"),
+	"kode_ayat"		=> $dbConn->f("kode_ayat"),
+	"jns_pajak"		=> $dbConn->f("jns_pajak"),
+	"jns_ayat"			=> $dbConn->f("jns_ayat"),
+	"nama_ayat"		=> $dbConn->f("nama_ayat"),
+	"no_kohir"		=> $dbConn->f("no_kohir"),
+	"wp_name"			=> $dbConn->f("wp_name"),
+	"npwpd"			=> $dbConn->f("npwpd"),
+	"jumlah_terima"	=> $dbConn->f("jumlah_terima"),
+	"masa_pajak"		=> $dbConn->f("masa_pajak"),
+	"kd_tap"			=> $dbConn->f("kd_tap"),
+	"keterangan"		=> $dbConn->f("keterangan"),
+	"payment_date"		=> $dbConn->f("payment_date"),
+	"jam"		=> $dbConn->f("jam"));
 }
 /*
 if ($data["no_urut"] != "") {
@@ -150,15 +151,15 @@ class FormCetak extends FPDF {
 		foreach($data as $item) {
 			//print data
 			$this->RowMultiBorderWithHeight(array($no,
-												  $data["kode_jns_pajak"] . " " . $data["kode_jns_trans"],
-												  $data["jns_pajak"],
-												  $data["no_kohir"],
-												  $data["wp_name"],
-												  $data["npwpd"],
-												  number_format($data["jumlah_terima"], 0, ',', '.'),
-												  $data["masa_pajak"],
-												  $data["kd_tap"],
-												  $data["keterangan"]
+												  $item["kode_jns_pajak"] . " " . $item["kode_jns_trans"],
+												  $item["jns_pajak"],
+												  $item["no_kohir"],
+												  $item["wp_name"],
+												  $item["npwpd"],
+												  number_format($item["jumlah_terima"], 0, ',', '.'),
+												  $item["masa_pajak"],
+												  $item["kd_tap"],
+												  $item["keterangan"]
 												  ),
 											array('TBLR',
 												  'TBLR',
@@ -173,15 +174,15 @@ class FormCetak extends FPDF {
 			$no++;
 
 			//hitung jumlahperayat sampai baris ini
-			$jumlahtemp += $data["jumlah_terima"];
+			$jumlahtemp += $item["jumlah_terima"];
 			
 			//cek apakah perlu bikin baris jumlah
 			//jika iya, simpan jumlahtemp ke jumlahperayat, print jumlahtemp, reset jumlahtemp
-			$ayat = $data["kode_jns_trans"];
+			$ayat = $item["kode_jns_trans"];
 			$ayatsesudah = $data[$i+1]["kode_jns_trans"];
-			if($ayat != $ayatsesudah){
+			if($ayat != $ayatsesudah&&count($data)>1){
 				$jumlahperayat[] = $jumlahtemp;
-				$this->Cell($ltable22, $this->height + 2, "JUMLAH " . strtoupper($data["jns_pajak"]), "TBLR", 0, 'C');
+				$this->Cell($ltable22, $this->height + 2, "JUMLAH " . strtoupper($item["jns_pajak"]), "TBLR", 0, 'C');
 				$this->Cell($ltable4, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtemp = 0;
@@ -189,16 +190,16 @@ class FormCetak extends FPDF {
 
 			//cek apakah sudah pindah waktu (pagi ke titipan)
 			//jika ya, totalkan jumlahperayat jadi tempperayat, copy ke jumlahperwaktu, print tempperayat, reset jumlahperayat
-			$waktuayat = $data["jns_trans"];
+			$waktuayat = $item["jns_trans"];
 			$waktuayatsesudah = $data[$i+1]["jns_trans"];
-			if($waktuayat != $waktuayatsesudah){
+			if($waktuayat != $waktuayatsesudah&&count($data)>1){
 				$tempperayat = 0;
 				for($j = 0; $j < count($jumlahperayat); $j++){
 					$tempperayat += $jumlahperayat[$j];
 				}
 
 				$jumlahperwaktu[] = $tempperayat;
-				$this->Cell($ltable22, $this->height + 2, "JUMLAH " . $data["jns_trans"], "TBLR", 0, 'C');
+				$this->Cell($ltable22, $this->height + 2, "JUMLAH " . $item["jns_trans"], "TBLR", 0, 'C');
 				$this->Cell($ltable4, $this->height + 2, number_format($tempperayat, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahperayat = array();
