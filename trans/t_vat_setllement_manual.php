@@ -45,7 +45,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-8AD1B4D6
+//Class_Initialize Event @23-1D1263E3
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -98,8 +98,8 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->vat_code->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
-            $this->vat_code1 = & new clsControl(ccsTextBox, "vat_code1", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code1", $Method, NULL), $this);
-            $this->vat_code1->Required = true;
+            $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
+            $this->vat_code_dtl->Required = true;
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->creation_date->Value) && !strlen($this->creation_date->Value) && $this->creation_date->Value !== false)
@@ -117,7 +117,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     }
 //End Class_Initialize Event
 
-//Validate Method @23-BB9DA76E
+//Validate Method @23-FBF0C6FD
     function Validate()
     {
         global $CCSLocales;
@@ -140,7 +140,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation = ($this->company_name->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
-        $Validation = ($this->vat_code1->Validate() && $Validation);
+        $Validation = ($this->vat_code_dtl->Validate() && $Validation);
         $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->creation_date->Errors->Count() == 0);
@@ -160,13 +160,13 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation =  $Validation && ($this->company_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->vat_code1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code_dtl->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-D6B7BC63
+//CheckErrors Method @23-A7E49CBC
     function CheckErrors()
     {
         $errors = false;
@@ -189,7 +189,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $errors = ($errors || $this->company_name->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
-        $errors = ($errors || $this->vat_code1->Errors->Count());
+        $errors = ($errors || $this->vat_code_dtl->Errors->Count());
         $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
@@ -271,7 +271,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @23-F54E39CA
+//Show Method @23-5795BAA3
     function Show()
     {
         global $CCSUseAmp;
@@ -314,7 +314,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->company_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->vat_code1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code_dtl->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -359,7 +359,7 @@ function GetPrimaryKey($keyName)
         $this->company_name->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
-        $this->vat_code1->Show();
+        $this->vat_code_dtl->Show();
         $this->p_vat_type_dtl_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;

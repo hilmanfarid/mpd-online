@@ -166,7 +166,7 @@ WHERE  p_rqst_type_id = {p_rqst_type_id}">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="169" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code1" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormvat_code1" required="True" caption="Ayat Pajak">
+				<TextBox id="169" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormvat_code_dtl" required="True" caption="Ayat Pajak">
 					<Components/>
 					<Events/>
 					<Attributes/>
