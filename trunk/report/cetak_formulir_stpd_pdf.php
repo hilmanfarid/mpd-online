@@ -20,6 +20,7 @@ $query="select b.npwd,
        c.company_name,
        c.address_name,
 	   d.vat_code,
+	   b.no_kohir||'.1' as no_urut,
       replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', ' ') as dengan_huruf
 from t_vat_penalty a, t_vat_setllement b, t_cust_account c, p_vat_type d
 where a.t_vat_setllement_id = b.t_vat_setllement_id
@@ -40,6 +41,7 @@ while ($dbConn->next_record()) {
 		$data["vat_code"] = $dbConn->f("vat_code");
 		$data["dengan_huruf"] = $dbConn->f("dengan_huruf");
 		$data["tahun"] = $dbConn->f("tahun");
+		$data["no_urut"] = $dbConn->f("no_urut");
 }
 
 	//nip & nama
@@ -131,7 +133,15 @@ class FormCetak extends FPDF {
 		$this->Ln($this->height-4);
 		// No Urut
 		$this->Cell($lheader2 + $lheader4 + 7, $this->height, "", "R", 0, 'C');
-		$this->kotak(1, 34, 6, "");
+
+
+		$no_urt = str_split($data["no_urut"]);
+		$this->kotak(1, 34, 1, $no_urt[0]);
+		$this->kotak(1, 34, 1, $no_urt[1]);
+		$this->kotak(1, 34, 1, $no_urt[2]);
+		$this->kotak(1, 34, 1, $no_urt[3]);
+		$this->kotak(1, 34, 1, $no_urt[4]);
+		$this->kotak(1, 34, 1, $no_urt[5]);
 		$this->Ln();
 		// =======
 		
