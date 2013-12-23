@@ -109,7 +109,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($length1, $this->height, "", 0, 0, 'L');
 		$this->Cell($length2+3, $this->height, "Harap diterima uang sebesar ", 0, 0, 'L');
-		$this->Cell($length2+$length1, $this->height, ": Rp. ".$total, 0, 0, 'L');
+		$this->Cell($length2+$length1, $this->height, ": Rp. ".number_format($total,2,",","."), 0, 0, 'L');
 		$this->Ln();
 		$this->Cell($length1, $this->height, "", 0, 0, 'L');
 		$this->Cell($length2+3, $this->height, "(dengan huruf)", 0, 0, 'L');
