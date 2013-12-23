@@ -13,10 +13,10 @@ $dbConn = new clsDBConnSIKP();
 $query = "begin;";
 $dbConn->query($query);
 
-$query = "select  b.code || decode(a.legal_doc_desc,null,'',' ('||a.legal_doc_desc||')') as doc_name, a.order_no
-from t_cust_order_legal_doc a, p_legal_doc_type b
+$query = "select  b.code || decode(a.legal_doc_desc,null,'',' ('||a.legal_doc_desc||')') as doc_name, c.order_no
+from t_cust_order_legal_doc a, p_legal_doc_type b,t_customer_order c
 where a.p_legal_doc_type_id = b.p_legal_doc_type_id 
-and a.t_customer_order_id = ".$t_customer_order_id;
+and a.t_customer_order_id = ".$t_customer_order_id." and c.t_customer_order_id = a.t_customer_order_id";
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 	$data["doc_name"] = $dbConn->f("doc_name");
@@ -363,6 +363,6 @@ class FormCetak extends FPDF {
 
 $formulir = new FormCetak();
 $formulir->PageCetak($data);
-$formulir->Output();
+$formulir->Output("","I");
 // phpinfo();
 ?>
