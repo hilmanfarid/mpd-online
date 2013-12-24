@@ -178,7 +178,19 @@ WHERE  p_rqst_type_id = {p_rqst_type_id}">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<TextBox id="172" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl_cls" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormvat_code_dtl_cls" required="False" caption="Ayat Pajak">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Hidden id="173" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_cls_id" PathID="t_vat_setllementFormp_vat_type_dtl_cls_id" fieldSource="p_vat_type_dtl_cls_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events>
 			</Events>
 			<TableParameters>
