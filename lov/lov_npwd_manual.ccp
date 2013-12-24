@@ -68,12 +68,12 @@ upper(company_brand) like '%{s_keyword}%'">
 					<Features/>
 				</Hidden>
 				<Label id="50" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_address_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERwp_address_name" fieldSource="wp_address_name">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>

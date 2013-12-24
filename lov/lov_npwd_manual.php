@@ -284,10 +284,16 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Prepare Method
 
-//Open Method @2-228FB16F
+//Open Method @2-BE4880EC
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (select ty_lov_npwd as t_cust_account_id, npwd, company_name,company_brand as wp_address_name,\n" .
+        "p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl\n" .
+        "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl (ty_lov_npwd)\n" .
+        "where upper(npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
+        "upper(company_name) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
+        "upper(company_brand) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%') cnt";
         $this->SQL = "select ty_lov_npwd as t_cust_account_id, npwd, company_name,company_brand as wp_address_name,\n" .
         "p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl\n" .
         "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl (ty_lov_npwd)\n" .
