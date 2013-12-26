@@ -28,12 +28,6 @@ function t_vat_setllementGrid_BeforeSelect(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeSelect
 
-//Custom Code @226-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
   // -------------------------
       // Write your own code here.
   	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
@@ -52,12 +46,6 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeShowRow
-
-//Custom Code @227-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
 // Start Bdr
     global $t_vat_setllementForm;
@@ -108,32 +96,31 @@ function t_vat_setllementForm_BeforeShow(& $sender)
     global $t_vat_setllementForm; //Compatibility
 //End t_vat_setllementForm_BeforeShow
 
-//Custom Code @275-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$idVat = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
-	
-	if(!empty($idVat)){
-		$t_vat_setllementForm->Button1->Visible = true;
-		$dbConn = new clsDBConnSIKP();
-		$test = "select count(*)as ada from t_vat_penalty where t_vat_setllement_id = ".$idVat;
-		$dbConn->query($test);
+  // -------------------------
+      // Write your own code here.
+  	$idVat = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
+  	
+  	if(!empty($idVat)){
+  		$t_vat_setllementForm->Button1->Visible = true;
+  		$dbConn = new clsDBConnSIKP();
+  		$test = "select count(*)as ada from t_vat_penalty where t_vat_setllement_id = ".$idVat;
+  		$dbConn->query($test);
+  
+  			while($dbConn->next_record()){
+  				$ada = $dbConn->f("ada");
+  			}
+  
+  			if ($ada > 0){
+  				$t_vat_setllementForm->Button2->Visible = true;
+  			}else{
+  				$t_vat_setllementForm->Button2->Visible = false;
+  			}
+  	}else{
+  		$t_vat_setllementForm->Button1->Visible = false;
+  		$t_vat_setllementForm->Button2->Visible = false;
+  	}
+  // -------------------------
 
-			while($dbConn->next_record()){
-				$ada = $dbConn->f("ada");
-			}
-
-			if ($ada > 0){
-				$t_vat_setllementForm->Button2->Visible = true;
-			}else{
-				$t_vat_setllementForm->Button2->Visible = false;
-			}
-	}else{
-		$t_vat_setllementForm->Button1->Visible = false;
-		$t_vat_setllementForm->Button2->Visible = false;
-	}
-// -------------------------
-//End Custom Code
 
 //Close t_vat_setllementForm_BeforeShow @23-08204CD1
     return $t_vat_setllementForm_BeforeShow;
@@ -149,45 +136,44 @@ function t_vat_setllementSearch_button_submit_OnClick(& $sender)
     global $t_vat_setllementSearch; //Compatibility
 //End t_vat_setllementSearch_button_submit_OnClick
 
-//Custom Code @177-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$dbConn = new clsDBConnSIKP();
-	$cusAccId = $t_vat_setllementSearch->t_cust_account_id->GetValue();
-	$Period = $t_vat_setllementSearch->p_finance_period_id->GetValue();
-	//$ReqId = $t_vat_setllementSearch->p_rqst_type_id->GetValue();
-	$npwd = $t_vat_setllementSearch->npwd->GetValue(); 	
-	$User = CCGetUserLogin();
-		 
-	$sql = "select * from f_vat_settlement(".$cusAccId.","											
-											."null,"
-											.$Period.",'"
-											.$npwd."','"
-											.$User."')";
-	$dbConn->query($sql);
-	$dbConn->next_record();
-	$vatId = $dbConn->f("o_vat_setllement_id");
-	$mess = $dbConn->f("o_mess");
-	$dbConn->close();
+  // -------------------------
+      // Write your own code here.
+  	$dbConn = new clsDBConnSIKP();
+  	$cusAccId = $t_vat_setllementSearch->t_cust_account_id->GetValue();
+  	$Period = $t_vat_setllementSearch->p_finance_period_id->GetValue();
+  	//$ReqId = $t_vat_setllementSearch->p_rqst_type_id->GetValue();
+  	$npwd = $t_vat_setllementSearch->npwd->GetValue(); 	
+  	$User = CCGetUserLogin();
+  		 
+  	$sql = "select * from f_vat_settlement(".$cusAccId.","											
+  											."null,"
+  											.$Period.",'"
+  											.$npwd."','"
+  											.$User."')";
+  	$dbConn->query($sql);
+  	$dbConn->next_record();
+  	$vatId = $dbConn->f("o_vat_setllement_id");
+  	$mess = $dbConn->f("o_mess");
+  	$dbConn->close();
+  
+  	echo '<script language="javascript">';
+  	echo 'alert("'.$mess.'");';
+  	echo '</script>';
+  	
+  	$PeriodCode = $t_vat_setllementSearch->finance_period_code->GetValue();
+  	$typeCode = $t_vat_setllementSearch->year_code->GetValue(); 
+  	$YearId = $t_vat_setllementSearch->p_year_period_id->GetValue();
+  	$param = "t_vat_setllement.php?t_cust_account_id=".$cusAccId
+  			."&p_finance_period_id=".$Period
+  			."&finance_period_code=".$PeriodCode
+  			."&year_code=".$typeCode
+  			."&p_year_period_id=".$YearId
+  			."&npwd=".$npwd;
+  
+  	echo "<meta http-equiv='refresh' content='0;URL=".$param."' >";
+  		return;
+  // -------------------------
 
-	echo '<script language="javascript">';
-	echo 'alert("'.$mess.'");';
-	echo '</script>';
-	
-	$PeriodCode = $t_vat_setllementSearch->finance_period_code->GetValue();
-	$typeCode = $t_vat_setllementSearch->year_code->GetValue(); 
-	$YearId = $t_vat_setllementSearch->p_year_period_id->GetValue();
-	$param = "t_vat_setllement.php?t_cust_account_id=".$cusAccId
-			."&p_finance_period_id=".$Period
-			."&finance_period_code=".$PeriodCode
-			."&year_code=".$typeCode
-			."&p_year_period_id=".$YearId
-			."&npwd=".$npwd;
-
-	echo "<meta http-equiv='refresh' content='0;URL=".$param."' >";
-		return;
-// -------------------------
-//End Custom Code
 
 //Close t_vat_setllementSearch_button_submit_OnClick @174-36FC9291
     return $t_vat_setllementSearch_button_submit_OnClick;
@@ -202,12 +188,6 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement; //Compatibility
 //End Page_OnInitializeView
-
-//Custom Code @66-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -231,28 +211,27 @@ function Page_BeforeShow(& $sender)
     global $t_vat_setllement; //Compatibility
 //End Page_BeforeShow
 
-//Custom Code @260-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	global $t_vat_setllementSearch;
-	global $t_vat_setllementGrid;
-	global $t_vat_setllementForm;
+  // -------------------------
+      // Write your own code here.
+  	global $t_vat_setllementSearch;
+  	global $t_vat_setllementGrid;
+  	global $t_vat_setllementForm;
+  
+  	$npwd = $t_vat_setllementSearch->npwd->GetValue();
+  
+  	if($npwd == ""){
+  		$t_vat_setllementForm->Visible = false;
+  		$t_vat_setllementGrid->Visible = false;
+  		$t_vat_setllementSearch->Visible = true;
+  	}else{
+  		$t_vat_setllementForm->Visible = true;
+  		$t_vat_setllementGrid->Visible = true;
+  		$t_vat_setllementSearch->Visible = true;
+  	}
+  
+  
+  // -------------------------
 
-	$npwd = $t_vat_setllementSearch->npwd->GetValue();
-
-	if($npwd == ""){
-		$t_vat_setllementForm->Visible = false;
-		$t_vat_setllementGrid->Visible = false;
-		$t_vat_setllementSearch->Visible = true;
-	}else{
-		$t_vat_setllementForm->Visible = true;
-		$t_vat_setllementGrid->Visible = true;
-		$t_vat_setllementSearch->Visible = true;
-	}
-
-
-// -------------------------
-//End Custom Code
 
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;

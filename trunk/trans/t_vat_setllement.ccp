@@ -1,6 +1,11 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" dataSource="v_vat_setllement">
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" dataSource="SELECT * 
+FROM v_vat_setllement_sptpd
+WHERE t_cust_account_id = {t_cust_account_id}
+AND p_finance_period_id = {p_finance_period_id}
+AND p_rqst_type_id = {p_rqst_type_id}
+AND p_order_status_id = {Expr0} ">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_vat_setllement.ccp" wizardThemeItem="GridA" PathID="t_vat_setllementGridDLink" removeParameters="FLAG">
 					<Components/>
@@ -101,26 +106,32 @@
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="256" conditionType="Parameter" useIsNull="False" field="t_cust_account_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cust_account_id"/>
-				<TableParameter id="257" conditionType="Parameter" useIsNull="False" field="p_finance_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_finance_period_id"/>
-				<TableParameter id="258" conditionType="Parameter" useIsNull="False" field="p_rqst_type_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_rqst_type_id"/>
-				<TableParameter id="261" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" logicOperator="And" parameterSource="1"/>
-			</TableParameters>
+				<TableParameter id="256" conditionType="Parameter" useIsNull="False" field="t_cust_account_id" dataType="Float" searchConditionType="Equal" parameterType="URL" parameterSource="t_cust_account_id" logicOperator="And"/>
+<TableParameter id="257" conditionType="Parameter" useIsNull="False" field="p_finance_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" parameterSource="p_finance_period_id" logicOperator="And"/>
+<TableParameter id="258" conditionType="Parameter" useIsNull="False" field="p_rqst_type_id" dataType="Float" searchConditionType="Equal" parameterType="URL" parameterSource="p_rqst_type_id" logicOperator="And"/>
+<TableParameter id="261" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" parameterSource="1" logicOperator="And"/>
+</TableParameters>
 			<JoinTables>
-				<JoinTable id="248" tableName="v_vat_setllement" posLeft="10" posTop="10" posWidth="155" posHeight="180"/>
-			</JoinTables>
+				<JoinTable id="279" tableName="v_vat_setllement" posLeft="10" posTop="10" posWidth="160" posHeight="40"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="247" fieldName="*"/>
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-			</SQLParameters>
+				<SQLParameter id="280" parameterType="URL" variable="t_cust_account_id" dataType="Float" parameterSource="t_cust_account_id"/>
+<SQLParameter id="281" parameterType="URL" variable="p_finance_period_id" dataType="Float" parameterSource="p_finance_period_id"/>
+<SQLParameter id="282" parameterType="URL" variable="p_rqst_type_id" dataType="Float" parameterSource="p_rqst_type_id"/>
+<SQLParameter id="283" parameterType="Expression" variable="Expr0" dataType="Float" parameterSource="1"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="23" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_setllementForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_vat_setllementForm" activeCollection="DSQLParameters" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" dataSource="v_vat_setllement" customUpdate="select o_result_code, o_result_msg from f_first_submit_engine(501,{t_customer_order_id},'{UserName}')" customUpdateType="SQL" customDeleteType="SQL" customDelete="select * from f_del_vat_setllement({t_vat_setllement_id},null,null)">
+		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_setllementForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_vat_setllementForm" activeCollection="DSQLParameters" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" dataSource="SELECT * 
+FROM v_vat_setllement_sptpd
+WHERE t_vat_setllement_id = {t_vat_setllement_id} " customUpdate="select o_result_code, o_result_msg from f_first_submit_engine(501,{t_customer_order_id},'{UserName}')" customUpdateType="SQL" customDeleteType="SQL" customDelete="select * from f_del_vat_setllement({t_vat_setllement_id},null,null)">
 			<Components>
 				<Button id="24" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_vat_setllementFormButton_Insert" removeParameters="FLAG">
 					<Components/>
@@ -225,7 +236,8 @@
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters>
-			</SQLParameters>
+				<SQLParameter id="284" parameterType="URL" variable="t_vat_setllement_id" dataType="Float" parameterSource="t_vat_setllement_id"/>
+</SQLParameters>
 			<JoinTables>
 				<JoinTable id="249" tableName="v_vat_setllement" posLeft="10" posTop="10" posWidth="155" posHeight="180"/>
 			</JoinTables>
@@ -334,13 +346,13 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="278" fieldSourceType="DBColumn" dataType="Float" name="p_year_period_id" PathID="t_vat_setllementSearchp_year_period_id">
+				<Hidden id="278" fieldSourceType="DBColumn" dataType="Float" name="p_year_period_id" PathID="t_vat_setllementSearchp_year_period_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

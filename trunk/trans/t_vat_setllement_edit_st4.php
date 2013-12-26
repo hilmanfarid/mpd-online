@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-15E5B4E5
+//Class_Initialize Event @2-E9FBE641
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -74,11 +74,12 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->DLink->Page = "t_vat_setllement_edit_st4.php";
         $this->order_no = & new clsControl(ccsLabel, "order_no", "order_no", ccsText, "", CCGetRequestParam("order_no", ccsGet, NULL), $this);
         $this->total_trans_amount = & new clsControl(ccsLabel, "total_trans_amount", "total_trans_amount", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("total_trans_amount", ccsGet, NULL), $this);
-        $this->total_vat_amount = & new clsControl(ccsLabel, "total_vat_amount", "total_vat_amount", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("total_vat_amount", ccsGet, NULL), $this);
+        $this->total_vat_amount = & new clsControl(ccsLabel, "total_vat_amount", "total_vat_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_vat_amount", ccsGet, NULL), $this);
         $this->finance_period_code = & new clsControl(ccsLabel, "finance_period_code", "finance_period_code", ccsText, "", CCGetRequestParam("finance_period_code", ccsGet, NULL), $this);
         $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "t_vat_setllement_id", ccsFloat, "", CCGetRequestParam("t_vat_setllement_id", ccsGet, NULL), $this);
         $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
         $this->wp_name = & new clsControl(ccsLabel, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", ccsGet, NULL), $this);
+        $this->jenis_pajak = & new clsControl(ccsLabel, "jenis_pajak", "jenis_pajak", ccsText, "", CCGetRequestParam("jenis_pajak", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -95,7 +96,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-F44F484C
+//Show Method @2-4699E14E
     function Show()
     {
         global $Tpl;
@@ -132,6 +133,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["t_vat_setllement_id"] = $this->t_vat_setllement_id->Visible;
             $this->ControlsVisible["npwd"] = $this->npwd->Visible;
             $this->ControlsVisible["wp_name"] = $this->wp_name->Visible;
+            $this->ControlsVisible["jenis_pajak"] = $this->jenis_pajak->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -148,6 +150,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->t_vat_setllement_id->SetValue($this->DataSource->t_vat_setllement_id->GetValue());
                 $this->npwd->SetValue($this->DataSource->npwd->GetValue());
                 $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
+                $this->jenis_pajak->SetValue($this->DataSource->jenis_pajak->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -159,6 +162,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->t_vat_setllement_id->Show();
                 $this->npwd->Show();
                 $this->wp_name->Show();
+                $this->jenis_pajak->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -191,7 +195,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Show Method
 
-//GetErrors Method @2-0DAEEAA8
+//GetErrors Method @2-74B4DFBF
     function GetErrors()
     {
         $errors = "";
@@ -203,6 +207,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $errors = ComposeStrings($errors, $this->t_vat_setllement_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->npwd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->jenis_pajak->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -213,7 +218,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
 class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllementGridDataSource Class @2-F0AECE38
 
-//DataSource Variables @2-DE0D827F
+//DataSource Variables @2-1E88AEAA
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -232,9 +237,10 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $t_vat_setllement_id;
     var $npwd;
     var $wp_name;
+    var $jenis_pajak;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-C38FA95E
+//DataSourceClass_Initialize Event @2-1AE7503C
     function clst_vat_setllementGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -253,6 +259,8 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->npwd = new clsField("npwd", ccsText, "");
         
         $this->wp_name = new clsField("wp_name", ccsText, "");
+        
+        $this->jenis_pajak = new clsField("jenis_pajak", ccsText, "");
         
 
     }
@@ -306,7 +314,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @2-F531E067
+//SetValues Method @2-53885F6A
     function SetValues()
     {
         $this->order_no->SetDBValue($this->f("order_no"));
@@ -316,6 +324,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->t_vat_setllement_id->SetDBValue(trim($this->f("t_vat_setllement_id")));
         $this->npwd->SetDBValue($this->f("npwd"));
         $this->wp_name->SetDBValue($this->f("wp_name"));
+        $this->jenis_pajak->SetDBValue($this->f("jenis_pajak"));
     }
 //End SetValues Method
 
@@ -357,7 +366,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-DD6B11EF
+//Class_Initialize Event @23-EC2B5DE5
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -395,8 +404,6 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->order_no->Required = true;
             $this->total_trans_amount = & new clsControl(ccsTextBox, "total_trans_amount", "total_trans_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_trans_amount", $Method, NULL), $this);
             $this->total_trans_amount->Required = true;
-            $this->total_vat_amount = & new clsControl(ccsTextBox, "total_vat_amount", "total_vat_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_vat_amount", $Method, NULL), $this);
-            $this->total_vat_amount->Required = true;
             $this->npwd = & new clsControl(ccsTextBox, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", $Method, NULL), $this);
             $this->npwd->Required = true;
             $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "Id", ccsFloat, "", CCGetRequestParam("t_vat_setllement_id", $Method, NULL), $this);
@@ -417,8 +424,6 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->DatePicker_end_period = & new clsDatePicker("DatePicker_end_period", "t_vat_setllementForm", "end_period", $this);
             $this->due_date = & new clsControl(ccsTextBox, "due_date", "due_date", ccsText, "", CCGetRequestParam("due_date", $Method, NULL), $this);
             $this->due_date->Required = true;
-            $this->debt_vat_amt = & new clsControl(ccsTextBox, "debt_vat_amt", "debt_vat_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_vat_amt", $Method, NULL), $this);
-            $this->debt_vat_amt->Required = true;
             $this->cr_adjustment = & new clsControl(ccsTextBox, "cr_adjustment", "cr_adjustment", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("cr_adjustment", $Method, NULL), $this);
             $this->cr_adjustment->Required = true;
             $this->cr_others = & new clsControl(ccsTextBox, "cr_others", "cr_others", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("cr_others", $Method, NULL), $this);
@@ -427,28 +432,32 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->cr_payment->Required = true;
             $this->cr_stp = & new clsControl(ccsTextBox, "cr_stp", "cr_stp", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("cr_stp", $Method, NULL), $this);
             $this->cr_stp->Required = true;
-            $this->db_interest_charge = & new clsControl(ccsTextBox, "db_interest_charge", "db_interest_charge", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("db_interest_charge", $Method, NULL), $this);
-            $this->db_interest_charge->Required = true;
-            $this->db_increasing_charge = & new clsControl(ccsTextBox, "db_increasing_charge", "db_increasing_charge", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("db_increasing_charge", $Method, NULL), $this);
-            $this->db_increasing_charge->Required = true;
-            $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsFloat, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
             $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
             $this->DatePicker_due_date = & new clsDatePicker("DatePicker_due_date", "t_vat_setllementForm", "due_date", $this);
             $this->total_penalty_amount = & new clsControl(ccsTextBox, "total_penalty_amount", "total_penalty_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_penalty_amount", $Method, NULL), $this);
             $this->total_penalty_amount->Required = true;
+            $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsFloat, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
+            $this->debt_vat_amt = & new clsControl(ccsTextBox, "debt_vat_amt", "debt_vat_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_vat_amt", $Method, NULL), $this);
+            $this->debt_vat_amt->Required = true;
+            $this->TextBox1 = & new clsControl(ccsTextBox, "TextBox1", "TextBox1", ccsText, "", CCGetRequestParam("TextBox1", $Method, NULL), $this);
+            $this->total_vat_amount = & new clsControl(ccsTextBox, "total_vat_amount", "total_vat_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_vat_amount", $Method, NULL), $this);
+            $this->total_vat_amount->Required = true;
+            $this->TextBox2 = & new clsControl(ccsTextBox, "TextBox2", "TextBox2", ccsText, "", CCGetRequestParam("TextBox2", $Method, NULL), $this);
+            $this->db_interest_charge = & new clsControl(ccsTextBox, "db_interest_charge", "db_interest_charge", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("db_interest_charge", $Method, NULL), $this);
+            $this->db_interest_charge->Required = true;
+            $this->db_increasing_charge = & new clsControl(ccsTextBox, "db_increasing_charge", "db_increasing_charge", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("db_increasing_charge", $Method, NULL), $this);
+            $this->db_increasing_charge->Required = true;
+            $this->TextBox3 = & new clsControl(ccsTextBox, "TextBox3", "TextBox3", ccsText, "", CCGetRequestParam("TextBox3", $Method, NULL), $this);
+            $this->TextBox4 = & new clsControl(ccsTextBox, "TextBox4", "TextBox4", ccsText, "", CCGetRequestParam("TextBox4", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->total_trans_amount->Value) && !strlen($this->total_trans_amount->Value) && $this->total_trans_amount->Value !== false)
                     $this->total_trans_amount->SetText(0);
-                if(!is_array($this->total_vat_amount->Value) && !strlen($this->total_vat_amount->Value) && $this->total_vat_amount->Value !== false)
-                    $this->total_vat_amount->SetText(0);
                 if(!is_array($this->start_period->Value) && !strlen($this->start_period->Value) && $this->start_period->Value !== false)
                     $this->start_period->SetText(date("d-M-Y"));
                 if(!is_array($this->end_period->Value) && !strlen($this->end_period->Value) && $this->end_period->Value !== false)
                     $this->end_period->SetText(date("d-M-Y"));
                 if(!is_array($this->due_date->Value) && !strlen($this->due_date->Value) && $this->due_date->Value !== false)
                     $this->due_date->SetText(date("d-M-Y"));
-                if(!is_array($this->debt_vat_amt->Value) && !strlen($this->debt_vat_amt->Value) && $this->debt_vat_amt->Value !== false)
-                    $this->debt_vat_amt->SetText(0);
                 if(!is_array($this->cr_adjustment->Value) && !strlen($this->cr_adjustment->Value) && $this->cr_adjustment->Value !== false)
                     $this->cr_adjustment->SetText(0);
                 if(!is_array($this->cr_others->Value) && !strlen($this->cr_others->Value) && $this->cr_others->Value !== false)
@@ -457,12 +466,16 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
                     $this->cr_payment->SetText(0);
                 if(!is_array($this->cr_stp->Value) && !strlen($this->cr_stp->Value) && $this->cr_stp->Value !== false)
                     $this->cr_stp->SetText(0);
+                if(!is_array($this->total_penalty_amount->Value) && !strlen($this->total_penalty_amount->Value) && $this->total_penalty_amount->Value !== false)
+                    $this->total_penalty_amount->SetText(0);
+                if(!is_array($this->debt_vat_amt->Value) && !strlen($this->debt_vat_amt->Value) && $this->debt_vat_amt->Value !== false)
+                    $this->debt_vat_amt->SetText(0);
+                if(!is_array($this->total_vat_amount->Value) && !strlen($this->total_vat_amount->Value) && $this->total_vat_amount->Value !== false)
+                    $this->total_vat_amount->SetText(0);
                 if(!is_array($this->db_interest_charge->Value) && !strlen($this->db_interest_charge->Value) && $this->db_interest_charge->Value !== false)
                     $this->db_interest_charge->SetText(0);
                 if(!is_array($this->db_increasing_charge->Value) && !strlen($this->db_increasing_charge->Value) && $this->db_increasing_charge->Value !== false)
                     $this->db_increasing_charge->SetText(0);
-                if(!is_array($this->total_penalty_amount->Value) && !strlen($this->total_penalty_amount->Value) && $this->total_penalty_amount->Value !== false)
-                    $this->total_penalty_amount->SetText(0);
             }
         }
     }
@@ -479,7 +492,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     }
 //End Initialize Method
 
-//Validate Method @23-31826067
+//Validate Method @23-9300222D
     function Validate()
     {
         global $CCSLocales;
@@ -488,7 +501,6 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation = ($this->finance_period_code->Validate() && $Validation);
         $Validation = ($this->order_no->Validate() && $Validation);
         $Validation = ($this->total_trans_amount->Validate() && $Validation);
-        $Validation = ($this->total_vat_amount->Validate() && $Validation);
         $Validation = ($this->npwd->Validate() && $Validation);
         $Validation = ($this->t_vat_setllement_id->Validate() && $Validation);
         $Validation = ($this->t_cust_account_id->Validate() && $Validation);
@@ -502,21 +514,25 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation = ($this->start_period->Validate() && $Validation);
         $Validation = ($this->end_period->Validate() && $Validation);
         $Validation = ($this->due_date->Validate() && $Validation);
-        $Validation = ($this->debt_vat_amt->Validate() && $Validation);
         $Validation = ($this->cr_adjustment->Validate() && $Validation);
         $Validation = ($this->cr_others->Validate() && $Validation);
         $Validation = ($this->cr_payment->Validate() && $Validation);
         $Validation = ($this->cr_stp->Validate() && $Validation);
-        $Validation = ($this->db_interest_charge->Validate() && $Validation);
-        $Validation = ($this->db_increasing_charge->Validate() && $Validation);
-        $Validation = ($this->t_customer_order_id->Validate() && $Validation);
         $Validation = ($this->p_finance_period_id->Validate() && $Validation);
         $Validation = ($this->total_penalty_amount->Validate() && $Validation);
+        $Validation = ($this->t_customer_order_id->Validate() && $Validation);
+        $Validation = ($this->debt_vat_amt->Validate() && $Validation);
+        $Validation = ($this->TextBox1->Validate() && $Validation);
+        $Validation = ($this->total_vat_amount->Validate() && $Validation);
+        $Validation = ($this->TextBox2->Validate() && $Validation);
+        $Validation = ($this->db_interest_charge->Validate() && $Validation);
+        $Validation = ($this->db_increasing_charge->Validate() && $Validation);
+        $Validation = ($this->TextBox3->Validate() && $Validation);
+        $Validation = ($this->TextBox4->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->finance_period_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->order_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->total_trans_amount->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->total_vat_amount->Errors->Count() == 0);
         $Validation =  $Validation && ($this->npwd->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_vat_setllement_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_cust_account_id->Errors->Count() == 0);
@@ -530,28 +546,32 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation =  $Validation && ($this->start_period->Errors->Count() == 0);
         $Validation =  $Validation && ($this->end_period->Errors->Count() == 0);
         $Validation =  $Validation && ($this->due_date->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->debt_vat_amt->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cr_adjustment->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cr_others->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cr_payment->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cr_stp->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->db_interest_charge->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->db_increasing_charge->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->total_penalty_amount->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->debt_vat_amt->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->TextBox1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->total_vat_amount->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->TextBox2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->db_interest_charge->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->db_increasing_charge->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->TextBox3->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->TextBox4->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-94EAC1AB
+//CheckErrors Method @23-10B775D8
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->finance_period_code->Errors->Count());
         $errors = ($errors || $this->order_no->Errors->Count());
         $errors = ($errors || $this->total_trans_amount->Errors->Count());
-        $errors = ($errors || $this->total_vat_amount->Errors->Count());
         $errors = ($errors || $this->npwd->Errors->Count());
         $errors = ($errors || $this->t_vat_setllement_id->Errors->Count());
         $errors = ($errors || $this->t_cust_account_id->Errors->Count());
@@ -567,17 +587,22 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $errors = ($errors || $this->end_period->Errors->Count());
         $errors = ($errors || $this->DatePicker_end_period->Errors->Count());
         $errors = ($errors || $this->due_date->Errors->Count());
-        $errors = ($errors || $this->debt_vat_amt->Errors->Count());
         $errors = ($errors || $this->cr_adjustment->Errors->Count());
         $errors = ($errors || $this->cr_others->Errors->Count());
         $errors = ($errors || $this->cr_payment->Errors->Count());
         $errors = ($errors || $this->cr_stp->Errors->Count());
-        $errors = ($errors || $this->db_interest_charge->Errors->Count());
-        $errors = ($errors || $this->db_increasing_charge->Errors->Count());
-        $errors = ($errors || $this->t_customer_order_id->Errors->Count());
         $errors = ($errors || $this->p_finance_period_id->Errors->Count());
         $errors = ($errors || $this->DatePicker_due_date->Errors->Count());
         $errors = ($errors || $this->total_penalty_amount->Errors->Count());
+        $errors = ($errors || $this->t_customer_order_id->Errors->Count());
+        $errors = ($errors || $this->debt_vat_amt->Errors->Count());
+        $errors = ($errors || $this->TextBox1->Errors->Count());
+        $errors = ($errors || $this->total_vat_amount->Errors->Count());
+        $errors = ($errors || $this->TextBox2->Errors->Count());
+        $errors = ($errors || $this->db_interest_charge->Errors->Count());
+        $errors = ($errors || $this->db_increasing_charge->Errors->Count());
+        $errors = ($errors || $this->TextBox3->Errors->Count());
+        $errors = ($errors || $this->TextBox4->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -688,7 +713,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-562B0ADB
+//Show Method @23-978B6177
     function Show()
     {
         global $CCSUseAmp;
@@ -719,7 +744,6 @@ function GetPrimaryKey($keyName)
                     $this->finance_period_code->SetValue($this->DataSource->finance_period_code->GetValue());
                     $this->order_no->SetValue($this->DataSource->order_no->GetValue());
                     $this->total_trans_amount->SetValue($this->DataSource->total_trans_amount->GetValue());
-                    $this->total_vat_amount->SetValue($this->DataSource->total_vat_amount->GetValue());
                     $this->npwd->SetValue($this->DataSource->npwd->GetValue());
                     $this->t_vat_setllement_id->SetValue($this->DataSource->t_vat_setllement_id->GetValue());
                     $this->t_cust_account_id->SetValue($this->DataSource->t_cust_account_id->GetValue());
@@ -733,20 +757,23 @@ function GetPrimaryKey($keyName)
                     $this->start_period->SetValue($this->DataSource->start_period->GetValue());
                     $this->end_period->SetValue($this->DataSource->end_period->GetValue());
                     $this->due_date->SetValue($this->DataSource->due_date->GetValue());
-                    $this->debt_vat_amt->SetValue($this->DataSource->debt_vat_amt->GetValue());
                     $this->cr_adjustment->SetValue($this->DataSource->cr_adjustment->GetValue());
                     $this->cr_others->SetValue($this->DataSource->cr_others->GetValue());
                     $this->cr_payment->SetValue($this->DataSource->cr_payment->GetValue());
                     $this->cr_stp->SetValue($this->DataSource->cr_stp->GetValue());
-                    $this->db_interest_charge->SetValue($this->DataSource->db_interest_charge->GetValue());
-                    $this->db_increasing_charge->SetValue($this->DataSource->db_increasing_charge->GetValue());
-                    $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
                     $this->p_finance_period_id->SetValue($this->DataSource->p_finance_period_id->GetValue());
                     $this->total_penalty_amount->SetValue($this->DataSource->total_penalty_amount->GetValue());
+                    $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
+                    $this->debt_vat_amt->SetValue($this->DataSource->debt_vat_amt->GetValue());
+                    $this->total_vat_amount->SetValue($this->DataSource->total_vat_amount->GetValue());
+                    $this->db_interest_charge->SetValue($this->DataSource->db_interest_charge->GetValue());
+                    $this->db_increasing_charge->SetValue($this->DataSource->db_increasing_charge->GetValue());
                 }
             } else {
                 $this->EditMode = false;
             }
+        }
+        if (!$this->FormSubmitted) {
         }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
@@ -754,7 +781,6 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->finance_period_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->order_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->total_trans_amount->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->total_vat_amount->Errors->ToString());
             $Error = ComposeStrings($Error, $this->npwd->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_vat_setllement_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_cust_account_id->Errors->ToString());
@@ -770,17 +796,22 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->end_period->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_end_period->Errors->ToString());
             $Error = ComposeStrings($Error, $this->due_date->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->debt_vat_amt->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cr_adjustment->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cr_others->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cr_payment->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cr_stp->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->db_interest_charge->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->db_increasing_charge->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_finance_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_due_date->Errors->ToString());
             $Error = ComposeStrings($Error, $this->total_penalty_amount->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->debt_vat_amt->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->TextBox1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->total_vat_amount->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->TextBox2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->db_interest_charge->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->db_increasing_charge->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->TextBox3->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->TextBox4->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -808,7 +839,6 @@ function GetPrimaryKey($keyName)
         $this->finance_period_code->Show();
         $this->order_no->Show();
         $this->total_trans_amount->Show();
-        $this->total_vat_amount->Show();
         $this->npwd->Show();
         $this->t_vat_setllement_id->Show();
         $this->t_cust_account_id->Show();
@@ -824,17 +854,22 @@ function GetPrimaryKey($keyName)
         $this->end_period->Show();
         $this->DatePicker_end_period->Show();
         $this->due_date->Show();
-        $this->debt_vat_amt->Show();
         $this->cr_adjustment->Show();
         $this->cr_others->Show();
         $this->cr_payment->Show();
         $this->cr_stp->Show();
-        $this->db_interest_charge->Show();
-        $this->db_increasing_charge->Show();
-        $this->t_customer_order_id->Show();
         $this->p_finance_period_id->Show();
         $this->DatePicker_due_date->Show();
         $this->total_penalty_amount->Show();
+        $this->t_customer_order_id->Show();
+        $this->debt_vat_amt->Show();
+        $this->TextBox1->Show();
+        $this->total_vat_amount->Show();
+        $this->TextBox2->Show();
+        $this->db_interest_charge->Show();
+        $this->db_increasing_charge->Show();
+        $this->TextBox3->Show();
+        $this->TextBox4->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -845,7 +880,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllementFormDataSource Class @23-AF9958CC
 
-//DataSource Variables @23-FD911D63
+//DataSource Variables @23-F18443B8
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -862,7 +897,6 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $finance_period_code;
     var $order_no;
     var $total_trans_amount;
-    var $total_vat_amount;
     var $npwd;
     var $t_vat_setllement_id;
     var $t_cust_account_id;
@@ -876,19 +910,24 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $start_period;
     var $end_period;
     var $due_date;
-    var $debt_vat_amt;
     var $cr_adjustment;
     var $cr_others;
     var $cr_payment;
     var $cr_stp;
-    var $db_interest_charge;
-    var $db_increasing_charge;
-    var $t_customer_order_id;
     var $p_finance_period_id;
     var $total_penalty_amount;
+    var $t_customer_order_id;
+    var $debt_vat_amt;
+    var $TextBox1;
+    var $total_vat_amount;
+    var $TextBox2;
+    var $db_interest_charge;
+    var $db_increasing_charge;
+    var $TextBox3;
+    var $TextBox4;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-D2FFD726
+//DataSourceClass_Initialize Event @23-BFCFA373
     function clst_vat_setllementFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -899,8 +938,6 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->order_no = new clsField("order_no", ccsText, "");
         
         $this->total_trans_amount = new clsField("total_trans_amount", ccsFloat, "");
-        
-        $this->total_vat_amount = new clsField("total_vat_amount", ccsFloat, "");
         
         $this->npwd = new clsField("npwd", ccsText, "");
         
@@ -928,8 +965,6 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->due_date = new clsField("due_date", ccsText, "");
         
-        $this->debt_vat_amt = new clsField("debt_vat_amt", ccsFloat, "");
-        
         $this->cr_adjustment = new clsField("cr_adjustment", ccsFloat, "");
         
         $this->cr_others = new clsField("cr_others", ccsFloat, "");
@@ -938,15 +973,27 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->cr_stp = new clsField("cr_stp", ccsFloat, "");
         
+        $this->p_finance_period_id = new clsField("p_finance_period_id", ccsFloat, "");
+        
+        $this->total_penalty_amount = new clsField("total_penalty_amount", ccsFloat, "");
+        
+        $this->t_customer_order_id = new clsField("t_customer_order_id", ccsFloat, "");
+        
+        $this->debt_vat_amt = new clsField("debt_vat_amt", ccsFloat, "");
+        
+        $this->TextBox1 = new clsField("TextBox1", ccsText, "");
+        
+        $this->total_vat_amount = new clsField("total_vat_amount", ccsFloat, "");
+        
+        $this->TextBox2 = new clsField("TextBox2", ccsText, "");
+        
         $this->db_interest_charge = new clsField("db_interest_charge", ccsFloat, "");
         
         $this->db_increasing_charge = new clsField("db_increasing_charge", ccsFloat, "");
         
-        $this->t_customer_order_id = new clsField("t_customer_order_id", ccsFloat, "");
+        $this->TextBox3 = new clsField("TextBox3", ccsText, "");
         
-        $this->p_finance_period_id = new clsField("p_finance_period_id", ccsFloat, "");
-        
-        $this->total_penalty_amount = new clsField("total_penalty_amount", ccsFloat, "");
+        $this->TextBox4 = new clsField("TextBox4", ccsText, "");
         
 
     }
@@ -979,13 +1026,12 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @23-868B54AD
+//SetValues Method @23-72FEF53F
     function SetValues()
     {
         $this->finance_period_code->SetDBValue($this->f("finance_period_code"));
         $this->order_no->SetDBValue($this->f("order_no"));
         $this->total_trans_amount->SetDBValue(trim($this->f("total_trans_amount")));
-        $this->total_vat_amount->SetDBValue(trim($this->f("total_vat_amount")));
         $this->npwd->SetDBValue($this->f("npwd"));
         $this->t_vat_setllement_id->SetDBValue(trim($this->f("t_vat_setllement_id")));
         $this->t_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
@@ -999,16 +1045,17 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->start_period->SetDBValue($this->f("start_period"));
         $this->end_period->SetDBValue($this->f("end_period"));
         $this->due_date->SetDBValue($this->f("due_date"));
-        $this->debt_vat_amt->SetDBValue(trim($this->f("debt_vat_amt")));
         $this->cr_adjustment->SetDBValue(trim($this->f("cr_adjustment")));
         $this->cr_others->SetDBValue(trim($this->f("cr_others")));
         $this->cr_payment->SetDBValue(trim($this->f("cr_payment")));
         $this->cr_stp->SetDBValue(trim($this->f("cr_stp")));
-        $this->db_interest_charge->SetDBValue(trim($this->f("db_interest_charge")));
-        $this->db_increasing_charge->SetDBValue(trim($this->f("db_increasing_charge")));
-        $this->t_customer_order_id->SetDBValue(trim($this->f("t_customer_order_id")));
         $this->p_finance_period_id->SetDBValue(trim($this->f("p_finance_period_id")));
         $this->total_penalty_amount->SetDBValue(trim($this->f("total_penalty_amount")));
+        $this->t_customer_order_id->SetDBValue(trim($this->f("t_customer_order_id")));
+        $this->debt_vat_amt->SetDBValue(trim($this->f("debt_vat_amt")));
+        $this->total_vat_amount->SetDBValue(trim($this->f("total_vat_amount")));
+        $this->db_interest_charge->SetDBValue(trim($this->f("db_interest_charge")));
+        $this->db_increasing_charge->SetDBValue(trim($this->f("db_increasing_charge")));
     }
 //End SetValues Method
 

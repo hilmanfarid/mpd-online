@@ -79,7 +79,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -131,17 +131,21 @@ $(document).ready(function()
                 <tr class="Caption">
                   <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
  
-                  <th scope="col">NPWPD&nbsp;</th>
+                  <th scope="col">NPWPD</th>
  
-                  <th scope="col">&nbsp;Nama WP</th>
+                  <th scope="col">Nama WP</th>
+ 
+                  <th scope="col">Jenis Pajak</th>
  
                   <th scope="col">Periode</th>
  
                   <th scope="col">No. Order</th>
  
-                  <th scope="col">Total Transaksi&nbsp;</th>
+                  <th scope="col">Total Transaksi</th>
  
-                  <th colspan="2" scope="col">Total Pajak&nbsp;</th>
+                  <th colspan="7" scope="col">Total Pajak</th>
+ 
+                  <th scope="col">&nbsp;Denda</th>
                 </tr>
  
                 <!-- BEGIN Row -->
@@ -149,20 +153,22 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_vat_setllementGridDLink_{t_vat_setllementGrid:rowNumber}">{DLink}</a></td> 
                   <td>{npwd}&nbsp;</td> 
                   <td>&nbsp;{wp_name}</td> 
+                  <td>&nbsp;{jenis_pajak}</td> 
                   <td>{finance_period_code}&nbsp;&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"></td> 
                   <td>{order_no}&nbsp;</td> 
                   <td>{total_trans_amount}&nbsp;</td> 
-                  <td colspan="2">{total_vat_amount}&nbsp;</td>
+                  <td style="TEXT-ALIGN: right" colspan="7">{total_vat_amount}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">&nbsp;total_penalty_amount</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="8">-</td>
+                  <td colspan="15">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b></b></td> 
-                  <td colspan="7">
+                  <td colspan="14">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -197,109 +203,113 @@ $(document).ready(function()
                 <table class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
-                    <td colspan="2">{Error}</td>
+                    <td colspan="11">{Error}</td>
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormorder_no">No. Order</label></td> 
-                    <td><input id="t_vat_setllementFormorder_no" class="ControlsRO" readonly maxlength="32" size="32" value="{order_no}" name="{order_no_Name}">&nbsp;<input id="t_vat_setllementFormp_rqst_type_id" type="hidden" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"></td>
+                    <td colspan="10"><input id="t_vat_setllementFormorder_no" class="ControlsRO" readonly maxlength="32" size="32" value="{order_no}" name="{order_no_Name}">&nbsp;<input id="t_vat_setllementFormp_rqst_type_id" type="hidden" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama WP&nbsp;</td> 
-                    <td><input tabindex="2" id="t_vat_setllementFormwp_name" class="ControlsRO" readonly maxlength="64" size="50" value="{wp_name}" name="{wp_name_Name}">&nbsp;</td>
+                    <td colspan="10"><input tabindex="2" id="t_vat_setllementFormwp_name" class="ControlsRO" readonly maxlength="64" size="50" value="{wp_name}" name="{wp_name_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat WP&nbsp;</td> 
-                    <td><textarea id="t_vat_setllementFormwp_address_name" class="ControlsRO" rows="3" cols="64" readonly name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
+                    <td colspan="10"><textarea id="t_vat_setllementFormwp_address_name" class="ControlsRO" rows="3" cols="64" readonly name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Jenis Pajak&nbsp;</td> 
-                    <td><input tabindex="2" id="t_vat_setllementFormjenis_pajak" class="ControlsRO" readonly maxlength="32" size="32" value="{jenis_pajak}" name="{jenis_pajak_Name}">&nbsp;</td>
+                    <td colspan="10"><input tabindex="2" id="t_vat_setllementFormjenis_pajak" class="ControlsRO" readonly maxlength="32" size="32" value="{jenis_pajak}" name="{jenis_pajak_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormfinance_period_code">NPWPD</label></td> 
-                    <td><input id="t_vat_setllementFormnpwd" class="ControlsRO" readonly maxlength="12" size="32" value="{npwd}" name="{npwd_Name}">&nbsp;<input id="t_vat_setllementFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"><input id="t_vat_setllementFormp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td>
+                    <td colspan="10"><input id="t_vat_setllementFormnpwd" class="ControlsRO" readonly maxlength="12" size="32" value="{npwd}" name="{npwd_Name}">&nbsp;<input id="t_vat_setllementFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"><input id="t_vat_setllementFormp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Periode Tahun&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormyear_code" class="ControlsRQ" readonly maxlength="32" size="32" value="{year_code}" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"></td>
+                    <td colspan="10"><input id="t_vat_setllementFormyear_code" class="ControlsRQ" readonly maxlength="32" size="32" value="{year_code}" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormfinance_period_code">Periode</label></td> 
-                    <td><input id="t_vat_setllementFormfinance_period_code" class="ControlsRQ" readonly maxlength="25" size="25" value="{finance_period_code}" name="{finance_period_code_Name}">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td>
+                    <td colspan="10"><input id="t_vat_setllementFormfinance_period_code" class="ControlsRQ" readonly maxlength="25" size="25" value="{finance_period_code}" name="{finance_period_code_Name}">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Masa Pajak&nbsp;&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormstart_period" class="ControlsRQ" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="12" value="{start_period}" name="{start_period_Name}">
+                    <td colspan="10"><input id="t_vat_setllementFormstart_period" class="ControlsRQ" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="12" value="{start_period}" name="{start_period_Name}">
                       <!-- BEGIN DatePicker DatePicker_start_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_start_period"><img id="t_vat_setllementFormDatePicker_start_period_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_start_period -->s/d <input id="t_vat_setllementFormend_period" class="ControlsRQ" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{end_period}" name="{end_period_Name}">&nbsp; 
                       <!-- BEGIN DatePicker DatePicker_end_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_end_period"><img id="t_vat_setllementFormDatePicker_end_period_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_period --></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormtotal_trans_amount">Total Transaksi</label></td> 
-                    <td><input id="t_vat_setllementFormtotal_trans_amount" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="20" value="{total_trans_amount}" name="{total_trans_amount_Name}">&nbsp;<input id="t_vat_setllementFormt_vat_setllement_id" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"></td>
-                  </tr>
- 
-                  <tr class="Controls">
-                    <td class="th"><label for="t_vat_setllementFormtotal_vat_amount">Total Pajak</label></td> 
-                    <td><input id="t_vat_setllementFormtotal_vat_amount" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="20" value="{total_vat_amount}" name="{total_vat_amount_Name}">&nbsp;<input id="t_vat_setllementFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"></td>
+                    <td colspan="10"><input id="t_vat_setllementFormtotal_trans_amount" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="20" value="{total_trans_amount}" name="{total_trans_amount_Name}">&nbsp;<input id="t_vat_setllementFormt_vat_setllement_id" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Total Penalti&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormtotal_penalty_amount" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="20" value="{total_penalty_amount}" name="{total_penalty_amount_Name}">&nbsp;</td>
+                    <td colspan="10"><input id="t_vat_setllementFormtotal_penalty_amount" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="20" value="{total_penalty_amount}" name="{total_penalty_amount_Name}">&nbsp;<input id="t_vat_setllementFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Tanggal jatuh tempo&nbsp;&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormdue_date" class="ControlsRQ" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="12" value="{due_date}" name="{due_date_Name}">
+                    <td colspan="10"><input id="t_vat_setllementFormdue_date" class="ControlsRQ" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="12" value="{due_date}" name="{due_date_Name}">
                       <!-- BEGIN DatePicker DatePicker_due_date --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_due_date"><img id="t_vat_setllementFormDatePicker_due_date_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_due_date --></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Dasar Pengenaan&nbsp;&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormdebt_vat_amt" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{debt_vat_amt}" name="{debt_vat_amt_Name}">&nbsp;</td>
+                    <td colspan="6"><input id="t_vat_setllementFormTextBox1" class="ControlsIN" style="VISIBILITY: hidden" size="10" value="{TextBox1}" name="{TextBox1_Name}"></td> 
+                    <td colspan="4"><input id="t_vat_setllementFormdebt_vat_amt" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{debt_vat_amt}" name="{debt_vat_amt_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Total Pajak</td> 
+                    <td colspan="6"><input id="t_vat_setllementFormTextBox2" class="ControlsIN" style="VISIBILITY: hidden" size="10" value="{TextBox2}" name="{TextBox2_Name}"></td> 
+                    <td colspan="4"><input id="t_vat_setllementFormtotal_vat_amount" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="20" value="{total_vat_amount}" name="{total_vat_amount_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kompensasi kelebihan dari tahun sebelumnya&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormcr_adjustment" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{cr_adjustment}" name="{cr_adjustment_Name}">&nbsp;</td>
+                    <td colspan="10"><input id="t_vat_setllementFormcr_adjustment" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{cr_adjustment}" name="{cr_adjustment_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Setoran yang dilakukan&nbsp;&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormcr_payment" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{cr_payment}" name="{cr_payment_Name}">&nbsp;</td>
+                    <td colspan="10"><input id="t_vat_setllementFormcr_payment" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{cr_payment}" name="{cr_payment_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Lain-lain&nbsp;&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormcr_others" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{cr_others}" name="{cr_others_Name}"></td>
+                    <td colspan="10"><input id="t_vat_setllementFormcr_others" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{cr_others}" name="{cr_others_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">STP (Pokok)&nbsp;&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormcr_stp" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{cr_stp}" name="{cr_stp_Name}">&nbsp;</td>
+                    <td colspan="10"><input id="t_vat_setllementFormcr_stp" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{cr_stp}" name="{cr_stp_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Bunga (Pasal 65 ayat(2))&nbsp;&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormdb_interest_charge" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{db_interest_charge}" name="{db_interest_charge_Name}">&nbsp;</td>
+                    <td colspan="8"><input id="t_vat_setllementFormTextBox3" class="ControlsIN" style="VISIBILITY: hidden" size="10" value="{TextBox3}" name="{TextBox3_Name}"></td> 
+                    <td colspan="2"><input id="t_vat_setllementFormdb_interest_charge" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{db_interest_charge}" name="{db_interest_charge_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kenaikan (Pasal 65 ayat (3))&nbsp;&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormdb_increasing_charge" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{db_increasing_charge}" name="{db_increasing_charge_Name}">&nbsp;</td>
+                    <td colspan="9"><input id="t_vat_setllementFormTextBox4" class="ControlsIN" style="VISIBILITY: hidden" size="10" value="{TextBox4}" name="{TextBox4_Name}"></td> 
+                    <td><input id="t_vat_setllementFormdb_increasing_charge" class="ControlsRQ" style="TEXT-ALIGN: right" maxlength="32" value="{db_increasing_charge}" name="{db_increasing_charge_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
-                    <td colspan="2" align="right">&nbsp; 
+                    <td colspan="11" align="right">&nbsp; 
                       <!-- BEGIN Button Button_Insert --><input id="t_vat_setllementFormButton_Insert" class="btn_tambah" style="DISPLAY: none" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
                       <!-- BEGIN Button Button_Delete --><input id="t_vat_setllementFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="SUBMIT" name="{Button_Name}"><!-- END Button Button_Delete --></td>
