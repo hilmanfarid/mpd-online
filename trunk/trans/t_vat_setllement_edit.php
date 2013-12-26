@@ -94,7 +94,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-64D4AE27
+//Show Method @2-E3AFD77B
     function Show()
     {
         global $Tpl;
@@ -105,6 +105,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
         $this->DataSource->Parameters["expr261"] = 1;
         $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
+        $this->DataSource->Parameters["expr373"] = 2;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -260,7 +261,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End SetOrder Method
 
-//Prepare Method @2-7A8AD033
+//Prepare Method @2-C2C1BDBF
     function Prepare()
     {
         global $CCSLocales;
@@ -269,15 +270,19 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp->AddParameter("1", "expr261", ccsFloat, "", "", $this->Parameters["expr261"], "", false);
         $this->wp->AddParameter("2", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->AddParameter("3", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("4", "expr373", ccsFloat, "", "", $this->Parameters["expr373"], "", false);
         $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "p_order_status_id", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsFloat),false);
         $this->wp->Criterion[2] = $this->wp->Operation(opContains, "upper(npwd)", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
         $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(finance_period_code)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
+        $this->wp->Criterion[4] = $this->wp->Operation(opEqual, "p_settlement_type_id", $this->wp->GetDBValue("4"), $this->ToSQL($this->wp->GetDBValue("4"), ccsFloat),false);
         $this->Where = $this->wp->opAND(
+             false, $this->wp->opAND(
              false, 
              $this->wp->Criterion[1], $this->wp->opOR(
              true, 
              $this->wp->Criterion[2], 
-             $this->wp->Criterion[3]));
+             $this->wp->Criterion[3])), 
+             $this->wp->Criterion[4]);
     }
 //End Prepare Method
 

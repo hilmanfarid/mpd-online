@@ -293,7 +293,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "", "TLR", 0, "L");
 		$this->Ln();
 		// $this->barisBaru3Kolom("C.", "AKUMULASI NILAI PEROLEHAN HAK SEBELUMNYA", "", "", "", "Rp", number_format(0, 0, ",", "."));
-		$this->barisBaru2($lbody1, "AKUMULASI NILAI PEROLEHAN HAK SEBELUMNYA", "", "Rp", "", "C.");
+		$this->barisBaru2($lbody1, "AKUMULASI NILAI PEROLEHAN HAK SEBELUMNYA", "", "Rp", 0, "C.");
 		
 		$this->Cell($this->lengthCell, $this->height, "", "TLR", 0, "L");
 		$this->Ln();
