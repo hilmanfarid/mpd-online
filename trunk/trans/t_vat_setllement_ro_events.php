@@ -26,42 +26,41 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_cetak_sptpd_BeforeShow
 
-//Custom Code @301-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
-	$nilai2 = $t_vat_setllementGrid->p_vat_type_id->GetValue();
-	$t_vat_setllementGrid->cetak_sptpd->SetValue("<input type='button' style='display:none;' value='CETAK' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
-  									 "cetakSptpd(".$nilai.",".$nilai2.")\">");
-	$action_button = CCGetFromGet("action_button","");
-	$action_button2 = CCGetFromGet("action_button2","");
-	if($action_button=='flag_payment' && $action_button2!='cetak_register'){
-		$dbConn = new clsDBConnSIKP();
-		$sql="select sikp.f_payment_manual(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
-		$dbConn->query($sql);
-		$dbConn->next_record();
-		echo "
-		<script>
-		alert('".$dbConn->f('f_payment_manual')."');
-		</script>
-		";
-		$dbConn->close();	
-	}else if($action_button2=='cetak_register'){
-		$dbConn = new clsDBConnSIKP();
-		$sql="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
-		$dbConn->query($sql);
-		$dbConn->next_record();
-		print_laporan($dbConn->f('f_print_register'));
-		/*echo "
-			<script>
-				window.open('../services/print_string.php?input_number=".$dbConn->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-			</script>
-		";*/
-		$dbConn->close();
-		exit;
-	}
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
+  	$nilai2 = $t_vat_setllementGrid->p_vat_type_id->GetValue();
+  	$t_vat_setllementGrid->cetak_sptpd->SetValue("<input type='button' style='display:none;' value='CETAK' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
+    									 "cetakSptpd(".$nilai.",".$nilai2.")\">");
+  	$action_button = CCGetFromGet("action_button","");
+  	$action_button2 = CCGetFromGet("action_button2","");
+  	if($action_button=='flag_payment' && $action_button2!='cetak_register'){
+  		$dbConn = new clsDBConnSIKP();
+  		$sql="select sikp.f_payment_manual(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  		$dbConn->query($sql);
+  		$dbConn->next_record();
+  		echo "
+  		<script>
+  		alert('".$dbConn->f('f_payment_manual')."');
+  		</script>
+  		";
+  		$dbConn->close();	
+  	}else if($action_button2=='cetak_register'){
+  		$dbConn = new clsDBConnSIKP();
+  		$sql="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  		$dbConn->query($sql);
+  		$dbConn->next_record();
+  		print_laporan($dbConn->f('f_print_register'));
+  		/*echo "
+  			<script>
+  				window.open('../services/print_string.php?input_number=".$dbConn->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+  			</script>
+  		";*/
+  		$dbConn->close();
+  		exit;
+  	}
+  // -------------------------
+
 
 //Close t_vat_setllementGrid_cetak_sptpd_BeforeShow @300-BF0BB7F2
     return $t_vat_setllementGrid_cetak_sptpd_BeforeShow;
@@ -77,14 +76,13 @@ function t_vat_setllementGrid_cetak_BeforeShow(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_cetak_BeforeShow
 
-//Custom Code @225-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$nilai1 = CCGetFromGet("CURR_DOC_ID","");
-	$t_vat_setllementGrid->cetak->SetValue("<input type='button' style='display:none;' value='CETAK SSPD' style='WIDTH: 75px; HEIGHT: 22px' class='Button' onclick=\"" .
-  									 "return cetak_sspd(".$nilai1.")\">");
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	$nilai1 = CCGetFromGet("CURR_DOC_ID","");
+  	$t_vat_setllementGrid->cetak->SetValue("<input type='button' style='display:none;' value='CETAK SSPD' style='WIDTH: 75px; HEIGHT: 22px' class='Button' onclick=\"" .
+    									 "return cetak_sspd(".$nilai1.")\">");
+  // -------------------------
+
 
 //Close t_vat_setllementGrid_cetak_BeforeShow @224-6B3874F7
     return $t_vat_setllementGrid_cetak_BeforeShow;
@@ -110,25 +108,24 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
    }
 // End Bdr  
 
-//Set Row Style @10-982C9472
-    $styles = array("Row", "AltRow");
-	// Start Bdr    
-      $img_radio= "<img border=\"0\" src=\"../images/radio.gif\">";
-      $Style = $styles[0];
-      
-      if ($Component->DataSource->t_vat_setllement_id->GetValue()== $selected_id) {
-      	$img_radio= "<img border=\"0\" src=\"../images/radio_s.gif\">";
-          $Style = $styles[1];
-          $is_show_form=1;
-      }	
-  // End Bdr  
-    if (count($styles)) {
-        //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
-        if (strlen($Style) && !strpos($Style, "="))
-            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
-        $Component->Attributes->SetValue("rowStyle", $Style);
-    }
-//End Set Row Style
+      $styles = array("Row", "AltRow");
+  	// Start Bdr    
+        $img_radio= "<img border=\"0\" src=\"../images/radio.gif\">";
+        $Style = $styles[0];
+        
+        if ($Component->DataSource->t_vat_setllement_id->GetValue()== $selected_id) {
+        	$img_radio= "<img border=\"0\" src=\"../images/radio_s.gif\">";
+            $Style = $styles[1];
+            $is_show_form=1;
+        }	
+    // End Bdr  
+      if (count($styles)) {
+          //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
+          if (strlen($Style) && !strpos($Style, "="))
+              $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+          $Component->Attributes->SetValue("rowStyle", $Style);
+      }
+
 	 $Component->DLink->SetValue($img_radio); // Bdr
 
 //Close t_vat_setllementGrid_BeforeShowRow @2-CAEE8B40
@@ -145,12 +142,11 @@ function t_vat_setllementGrid_BeforeSelect(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeSelect
 
-//Custom Code @124-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
+  // -------------------------
+
 
 //Close t_vat_setllementGrid_BeforeSelect @2-3DD75ADF
     return $t_vat_setllementGrid_BeforeSelect;
@@ -167,14 +163,13 @@ function Page_OnInitializeView(& $sender)
     global $t_vat_setllement_ro; //Compatibility
 //End Page_OnInitializeView
 
-//Custom Code @66-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	  global $selected_id;
-      $selected_id = -1;
-      $selected_id=CCGetFromGet("t_vat_setllement_id", $selected_id);
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	  global $selected_id;
+        $selected_id = -1;
+        $selected_id=CCGetFromGet("t_vat_setllement_id", $selected_id);
+  // -------------------------
+
 
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
@@ -189,12 +184,6 @@ function Page_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_ro; //Compatibility
 //End Page_BeforeShow
-
-//Custom Code @193-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
