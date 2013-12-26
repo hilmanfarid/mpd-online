@@ -51,6 +51,12 @@
 					<Features/>
 				</Label>
 				<Label id="250" fieldSourceType="DBColumn" dataType="Text" html="False" name="business_area" PathID="p_regionGridbusiness_area" fieldSource="business_area">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="255" fieldSourceType="DBColumn" dataType="Text" html="False" name="postal_code" PathID="p_regionGridpostal_code" fieldSource="postal_code">
 <Components/>
 <Events/>
 <Attributes/>
@@ -133,18 +139,17 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_regionForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_regionForm" customDeleteType="SQL" customDelete="DELETE FROM p_region 
-WHERE  p_region_id = {p_region_id}" activeCollection="USQLParameters" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="INSERT INTO p_region(p_region_id, p_business_area_id, region_name, description, updated_date, updated_by, p_region_level_id, parent_id, region_code) 
-VALUES(generate_id('sikp','p_region','p_region_id'), {p_business_area_id}, '{region_name}', '{description}', sysdate, '{updated_by}', '{p_region_level_id}', decode({parent_id},0,null,{parent_id}), '{region_code}')" customInsertType="SQL" dataSource="SELECT p_region_id, region_code, region_name, p_region_level_id, p_business_area_id, parent_id, description, to_char(updated_date,'DD-MON-YYYY') as updated_date, updated_by 
-FROM p_region
-WHERE p_region_id = {p_region_id} " customUpdate="UPDATE p_region SET 
+		<Record id="23" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_regionForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_regionForm" customDeleteType="SQL" customDelete="DELETE FROM p_region 
+WHERE  p_region_id = {p_region_id}" activeCollection="USQLParameters" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="INSERT INTO p_region(p_region_id, p_business_area_id, region_name, description, updated_date, updated_by, p_region_level_id, parent_id, region_code, postal_code) 
+VALUES(generate_id('sikp','p_region','p_region_id'), {p_business_area_id}, '{region_name}', '{description}', sysdate, '{updated_by}', '{p_region_level_id}', decode({parent_id},0,null,{parent_id}), '{region_code}', '{postal_code}')" customInsertType="SQL" dataSource="p_region" customUpdate="UPDATE p_region SET 
 region_code='{region_code}',
 region_name='{region_name}', 
 p_region_level_id={p_region_level_id},
 description='{description}', 
 updated_date=sysdate, 
 updated_by='{updated_by}',
-p_business_area_id = {p_business_area_id}
+p_business_area_id = {p_business_area_id},
+postal_code='{postal_code}'
 WHERE p_region_id={p_region_id}">
 			<Components>
 				<Button id="24" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="p_regionFormButton_Insert" removeParameters="FLAG">
@@ -245,12 +250,18 @@ WHERE p_region_id={p_region_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="252" fieldSourceType="DBColumn" dataType="Float" name="p_business_area_id" PathID="p_regionFormp_business_area_id" fieldSource="p_business_area_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
+				<Hidden id="252" fieldSourceType="DBColumn" dataType="Float" name="p_business_area_id" PathID="p_regionFormp_business_area_id" fieldSource="p_business_area_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<TextBox id="256" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="postal_code" fieldSource="postal_code" required="False" caption="Kode Pos" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="p_regionFormpostal_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
@@ -267,7 +278,8 @@ WHERE p_region_id={p_region_id}">
 				<SQLParameter id="240" parameterType="URL" variable="p_region_id" dataType="Float" parameterSource="p_region_id"/>
 			</SQLParameters>
 			<JoinTables>
-			</JoinTables>
+				<JoinTable id="259" tableName="p_region" schemaName="sikp" posLeft="10" posTop="10" posWidth="153" posHeight="180"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>
@@ -280,6 +292,7 @@ WHERE p_region_id={p_region_id}">
 				<SQLParameter id="222" variable="parent_id" dataType="Float" parameterType="Control" parameterSource="parent_id"/>
 				<SQLParameter id="248" variable="region_code" parameterType="Control" dataType="Text" parameterSource="region_code"/>
 				<SQLParameter id="253" variable="p_business_area_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_business_area_id"/>
+				<SQLParameter id="257" variable="postal_code" parameterType="Control" dataType="Text" parameterSource="postal_code"/>
 </ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="205" field="p_region_id" dataType="Float" parameterType="Control" parameterSource="p_region_id"/>
@@ -299,6 +312,7 @@ WHERE p_region_id={p_region_id}">
 				<SQLParameter id="244" variable="p_region_level_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_region_level_id"/>
 				<SQLParameter id="249" variable="region_code" parameterType="Control" dataType="Text" parameterSource="region_code"/>
 				<SQLParameter id="254" variable="p_business_area_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_business_area_id"/>
+				<SQLParameter id="258" variable="postal_code" parameterType="Control" dataType="Text" parameterSource="postal_code"/>
 </USQLParameters>
 			<UConditions>
 			</UConditions>

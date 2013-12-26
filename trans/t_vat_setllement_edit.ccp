@@ -70,7 +70,8 @@
 				<TableParameter id="261" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" logicOperator="And" leftBrackets="0" parameterSource="1"/>
 				<TableParameter id="312" conditionType="Parameter" useIsNull="False" field="upper(npwd)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="Or" parameterSource="s_keyword" leftBrackets="1"/>
 				<TableParameter id="313" conditionType="Parameter" useIsNull="False" field="upper(finance_period_code)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="And" parameterSource="s_keyword" rightBrackets="1"/>
-			</TableParameters>
+				<TableParameter id="373" conditionType="Parameter" useIsNull="False" field="p_settlement_type_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" logicOperator="And" parameterSource="2"/>
+</TableParameters>
 			<JoinTables>
 				<JoinTable id="248" tableName="v_vat_setllement" posLeft="10" posTop="10" posWidth="155" posHeight="180"/>
 			</JoinTables>
@@ -338,58 +339,58 @@
 				<CustomParameter id="341" field="p_finance_period_id" dataType="Float" parameterType="Control" parameterSource="p_finance_period_id"/>
 			</IFormElements>
 			<USPParameters>
-<SPParameter id="Key374" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0" parameterName="o_result_msg" parameterSource="o_result_msg"/>
-<SPParameter id="Key375" parameterName="i_finance_period_id" parameterSource="p_finance_period_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key376" parameterName="i_start_period" parameterSource="start_period" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key377" parameterName="i_end_period" parameterSource="end_period" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key378" parameterName="i_total_trans_amount" parameterSource="total_trans_amount" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key379" parameterName="i_total_vat_amount" parameterSource="total_vat_amount" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key380" parameterName="i_total_penalty_amount" parameterSource="total_penalty_amount" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key381" parameterName="i_due_date" parameterSource="due_date" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key382" parameterName="i_debt_vat_amt" parameterSource="debt_vat_amt" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key383" parameterName="i_cr_adjustment" parameterSource="cr_adjustment" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key384" parameterName="i_cr_payment" parameterSource="cr_payment" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key385" parameterName="i_cr_others" parameterSource="cr_others" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key386" parameterName="i_cr_stp" parameterSource="cr_stp" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key387" parameterName="i_db_interest_charge" parameterSource="db_interest_charge" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key388" parameterName="i_db_increasing_charge" parameterSource="db_increasing_charge" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key389" parameterName="i_vat_setllement_id" parameterSource="t_vat_setllement_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key390" parameterName="i_user" parameterSource="CCGetUserLogin()" dataType="Char" parameterType="Expression" dataSize="255" direction="Input" scale="10" precision="6"/>
-<SPParameter id="Key391" parameterName="i_status" parameterSource="'1'" dataType="Char" parameterType="Expression" dataSize="255" direction="Input" scale="10" precision="6"/>
-</USPParameters>
+				<SPParameter id="Key374" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0" parameterName="o_result_msg" parameterSource="o_result_msg"/>
+				<SPParameter id="Key375" parameterName="i_finance_period_id" parameterSource="p_finance_period_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key376" parameterName="i_start_period" parameterSource="start_period" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key377" parameterName="i_end_period" parameterSource="end_period" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key378" parameterName="i_total_trans_amount" parameterSource="total_trans_amount" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key379" parameterName="i_total_vat_amount" parameterSource="total_vat_amount" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key380" parameterName="i_total_penalty_amount" parameterSource="total_penalty_amount" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key381" parameterName="i_due_date" parameterSource="due_date" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key382" parameterName="i_debt_vat_amt" parameterSource="debt_vat_amt" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key383" parameterName="i_cr_adjustment" parameterSource="cr_adjustment" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key384" parameterName="i_cr_payment" parameterSource="cr_payment" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key385" parameterName="i_cr_others" parameterSource="cr_others" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key386" parameterName="i_cr_stp" parameterSource="cr_stp" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key387" parameterName="i_db_interest_charge" parameterSource="db_interest_charge" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key388" parameterName="i_db_increasing_charge" parameterSource="db_increasing_charge" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key389" parameterName="i_vat_setllement_id" parameterSource="t_vat_setllement_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key390" parameterName="i_user" parameterSource="CCGetUserLogin()" dataType="Char" parameterType="Expression" dataSize="255" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key391" parameterName="i_status" parameterSource="'1'" dataType="Char" parameterType="Expression" dataSize="255" direction="Input" scale="10" precision="6"/>
+			</USPParameters>
 			<USQLParameters>
 			</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>
 				<CustomParameter id="346" field="finance_period_code" dataType="Text" parameterType="Control" parameterSource="finance_period_code"/>
-<CustomParameter id="347" field="order_no" dataType="Text" parameterType="Control" parameterSource="order_no"/>
-<CustomParameter id="348" field="total_trans_amount" dataType="Float" parameterType="Control" parameterSource="total_trans_amount" format="#,##0.00"/>
-<CustomParameter id="349" field="total_vat_amount" dataType="Float" parameterType="Control" parameterSource="total_vat_amount" format="#,##0.00"/>
-<CustomParameter id="350" field="npwd" dataType="Text" parameterType="Control" parameterSource="npwd"/>
-<CustomParameter id="351" field="t_vat_setllement_id" dataType="Float" parameterType="Control" parameterSource="t_vat_setllement_id"/>
-<CustomParameter id="352" field="t_cust_account_id" dataType="Float" parameterType="Control" parameterSource="t_cust_account_id"/>
-<CustomParameter id="353" field="p_vat_type_id" dataType="Text" parameterType="Control" parameterSource="p_vat_type_id"/>
-<CustomParameter id="354" field="p_rqst_type_id" dataType="Float" parameterType="Control" parameterSource="p_rqst_type_id"/>
-<CustomParameter id="355" field="year_code" dataType="Text" parameterType="Control" parameterSource="year_code"/>
-<CustomParameter id="356" field="p_year_period_id" dataType="Float" parameterType="Control" parameterSource="p_year_period_id"/>
-<CustomParameter id="357" field="jenis_pajak" dataType="Text" parameterType="Control" parameterSource="jenis_pajak"/>
-<CustomParameter id="358" field="wp_name" dataType="Text" parameterType="Control" parameterSource="wp_name"/>
-<CustomParameter id="359" field="wp_address_name" dataType="Text" parameterType="Control" parameterSource="wp_address_name"/>
-<CustomParameter id="360" field="start_period" dataType="Text" parameterType="Control" parameterSource="start_period" format="dd-mmm-yyyy"/>
-<CustomParameter id="361" field="end_period" dataType="Text" parameterType="Control" parameterSource="end_period" format="dd-mmm-yyyy"/>
-<CustomParameter id="362" field="due_date" dataType="Text" parameterType="Control" parameterSource="due_date" format="dd-mmm-yyyy"/>
-<CustomParameter id="363" field="debt_vat_amt" dataType="Float" parameterType="Control" parameterSource="debt_vat_amt" format="#,##0.00"/>
-<CustomParameter id="364" field="cr_adjustment" dataType="Float" parameterType="Control" parameterSource="cr_adjustment" format="#,##0.00"/>
-<CustomParameter id="365" field="cr_others" dataType="Float" parameterType="Control" parameterSource="cr_others" format="#,##0.00"/>
-<CustomParameter id="366" field="cr_payment" dataType="Float" parameterType="Control" parameterSource="cr_payment" format="#,##0.00"/>
-<CustomParameter id="367" field="cr_stp" dataType="Float" parameterType="Control" parameterSource="cr_stp" format="#,##0.00"/>
-<CustomParameter id="368" field="db_interest_charge" dataType="Float" parameterType="Control" parameterSource="db_interest_charge" format="#,##0.00"/>
-<CustomParameter id="369" field="db_increasing_charge" dataType="Float" parameterType="Control" parameterSource="db_increasing_charge" format="#,##0.00"/>
-<CustomParameter id="370" field="t_customer_order_id" dataType="Float" parameterType="Control" parameterSource="t_customer_order_id"/>
-<CustomParameter id="371" field="p_finance_period_id" dataType="Float" parameterType="Control" parameterSource="p_finance_period_id"/>
-<CustomParameter id="372" field="total_penalty_amount" dataType="Float" parameterType="Control" parameterSource="total_penalty_amount" format="#,##0.00"/>
-</UFormElements>
+				<CustomParameter id="347" field="order_no" dataType="Text" parameterType="Control" parameterSource="order_no"/>
+				<CustomParameter id="348" field="total_trans_amount" dataType="Float" parameterType="Control" parameterSource="total_trans_amount" format="#,##0.00"/>
+				<CustomParameter id="349" field="total_vat_amount" dataType="Float" parameterType="Control" parameterSource="total_vat_amount" format="#,##0.00"/>
+				<CustomParameter id="350" field="npwd" dataType="Text" parameterType="Control" parameterSource="npwd"/>
+				<CustomParameter id="351" field="t_vat_setllement_id" dataType="Float" parameterType="Control" parameterSource="t_vat_setllement_id"/>
+				<CustomParameter id="352" field="t_cust_account_id" dataType="Float" parameterType="Control" parameterSource="t_cust_account_id"/>
+				<CustomParameter id="353" field="p_vat_type_id" dataType="Text" parameterType="Control" parameterSource="p_vat_type_id"/>
+				<CustomParameter id="354" field="p_rqst_type_id" dataType="Float" parameterType="Control" parameterSource="p_rqst_type_id"/>
+				<CustomParameter id="355" field="year_code" dataType="Text" parameterType="Control" parameterSource="year_code"/>
+				<CustomParameter id="356" field="p_year_period_id" dataType="Float" parameterType="Control" parameterSource="p_year_period_id"/>
+				<CustomParameter id="357" field="jenis_pajak" dataType="Text" parameterType="Control" parameterSource="jenis_pajak"/>
+				<CustomParameter id="358" field="wp_name" dataType="Text" parameterType="Control" parameterSource="wp_name"/>
+				<CustomParameter id="359" field="wp_address_name" dataType="Text" parameterType="Control" parameterSource="wp_address_name"/>
+				<CustomParameter id="360" field="start_period" dataType="Text" parameterType="Control" parameterSource="start_period" format="dd-mmm-yyyy"/>
+				<CustomParameter id="361" field="end_period" dataType="Text" parameterType="Control" parameterSource="end_period" format="dd-mmm-yyyy"/>
+				<CustomParameter id="362" field="due_date" dataType="Text" parameterType="Control" parameterSource="due_date" format="dd-mmm-yyyy"/>
+				<CustomParameter id="363" field="debt_vat_amt" dataType="Float" parameterType="Control" parameterSource="debt_vat_amt" format="#,##0.00"/>
+				<CustomParameter id="364" field="cr_adjustment" dataType="Float" parameterType="Control" parameterSource="cr_adjustment" format="#,##0.00"/>
+				<CustomParameter id="365" field="cr_others" dataType="Float" parameterType="Control" parameterSource="cr_others" format="#,##0.00"/>
+				<CustomParameter id="366" field="cr_payment" dataType="Float" parameterType="Control" parameterSource="cr_payment" format="#,##0.00"/>
+				<CustomParameter id="367" field="cr_stp" dataType="Float" parameterType="Control" parameterSource="cr_stp" format="#,##0.00"/>
+				<CustomParameter id="368" field="db_interest_charge" dataType="Float" parameterType="Control" parameterSource="db_interest_charge" format="#,##0.00"/>
+				<CustomParameter id="369" field="db_increasing_charge" dataType="Float" parameterType="Control" parameterSource="db_increasing_charge" format="#,##0.00"/>
+				<CustomParameter id="370" field="t_customer_order_id" dataType="Float" parameterType="Control" parameterSource="t_customer_order_id"/>
+				<CustomParameter id="371" field="p_finance_period_id" dataType="Float" parameterType="Control" parameterSource="p_finance_period_id"/>
+				<CustomParameter id="372" field="total_penalty_amount" dataType="Float" parameterType="Control" parameterSource="total_penalty_amount" format="#,##0.00"/>
+			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
 				<SQLParameter id="342" variable="t_customer_order_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_customer_order_id"/>

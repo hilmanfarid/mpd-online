@@ -24,12 +24,11 @@ function t_vat_setllementGrid_BeforeSelect(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeSelect
 
-//Custom Code @226-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
+  // -------------------------
+
 
 //Close t_vat_setllementGrid_BeforeSelect @2-3DD75ADF
     return $t_vat_setllementGrid_BeforeSelect;
@@ -60,25 +59,24 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
    }
 // End Bdr 
 
-//Set Row Style @315-982C9472
-    $styles = array("Row", "AltRow");
-	// Start Bdr    
-        $img_radio= "<img border=\"0\" src=\"../images/radio.gif\">";
-        $Style = $styles[0];
-        
-        if ($Component->DataSource->t_vat_setllement_id->GetValue()== $selected_id) {
-        	$img_radio= "<img border=\"0\" src=\"../images/radio_s.gif\">";
-            $Style = $styles[1];
-            $is_show_form=1;
-        }	
-    // End Bdr  
-    if (count($styles)) {
-        //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
-        if (strlen($Style) && !strpos($Style, "="))
-            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
-        $Component->Attributes->SetValue("rowStyle", $Style);
-    }
-//End Set Row Style
+      $styles = array("Row", "AltRow");
+  	// Start Bdr    
+          $img_radio= "<img border=\"0\" src=\"../images/radio.gif\">";
+          $Style = $styles[0];
+          
+          if ($Component->DataSource->t_vat_setllement_id->GetValue()== $selected_id) {
+          	$img_radio= "<img border=\"0\" src=\"../images/radio_s.gif\">";
+              $Style = $styles[1];
+              $is_show_form=1;
+          }	
+      // End Bdr  
+      if (count($styles)) {
+          //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
+          if (strlen($Style) && !strpos($Style, "="))
+              $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+          $Component->Attributes->SetValue("rowStyle", $Style);
+      }
+
 	 $Component->DLink->SetValue($img_radio); // Bdr
 //Close t_vat_setllementGrid_BeforeShowRow @2-CAEE8B40
     return $t_vat_setllementGrid_BeforeShowRow;
@@ -94,14 +92,13 @@ function Page_OnInitializeView(& $sender)
     global $t_vat_setllement_edit; //Compatibility
 //End Page_OnInitializeView
 
-//Custom Code @66-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	 global $selected_id;
-        $selected_id = -1;
-        $selected_id=CCGetFromGet("t_vat_setllement_id", $selected_id);
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	 global $selected_id;
+          $selected_id = -1;
+          $selected_id=CCGetFromGet("t_vat_setllement_id", $selected_id);
+  // -------------------------
+
 
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
@@ -116,12 +113,6 @@ function Page_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_edit; //Compatibility
 //End Page_BeforeShow
-
-//Custom Code @260-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;

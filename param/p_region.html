@@ -61,7 +61,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -119,6 +119,8 @@ $(document).ready(function()
  
                   <th scope="col">&nbsp;Kode Wilayah</th>
  
+                  <th scope="col">&nbsp;Kode Pos</th>
+ 
                   <th scope="col">Deskripsi</th>
                 </tr>
  
@@ -136,6 +138,7 @@ $(document).ready(function()
                     </div>
                   </td> 
                   <td>&nbsp;{business_area}</td> 
+                  <td>&nbsp;{postal_code}</td> 
                   <td>
                     <div align="left">
                       {description}&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -145,12 +148,12 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="5">data tidak ditemukan</td>
+                  <td colspan="6">data tidak ditemukan</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><a href="{Insert_Link_Src}" id="p_regionGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a>&nbsp;</td> 
-                  <td colspan="4">&nbsp; 
+                  <td colspan="5">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -213,6 +216,11 @@ $(document).ready(function()
                   </tr>
  
                   <tr class="Controls">
+                    <td class="th">Kode Pos</td> 
+                    <td><input onkeypress="return isNumberKey(event)" id="p_regionFormpostal_code" class="ControlsIN" maxlength="12" size="15" value="{postal_code}" name="{postal_code_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
                     <td class="th"><label for="p_regionFormdescription">Deskripsi</label></td> 
                     <td><input id="p_regionFormdescription" class="ControlsIN" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
                   </tr>
@@ -240,10 +248,18 @@ $(document).ready(function()
     </tr>
   </table>
 </div>
-  <script language="javascript">
+<script language="javascript">
         function statuswp() {
                 getFrom_LOV("p_regionForm", "p_business_area_id,area_name", "lov_2_field.php?TABLE=p_business_area&FIELD_0=p_business_area_id&FIELD_1=area_name&FIELD_2=description&LABEL1=Kode Wilayah&LABEL2=Deskripsi&HEADER_PAGE=KODE WILAYAH&HEADER_LOV=DAFTAR KODE WILAYAH");
         }
+function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
         </script>
 </body>
 </html>

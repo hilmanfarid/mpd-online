@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-CA1EE443
+//Class_Initialize Event @2-15E5B4E5
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -78,6 +78,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->finance_period_code = & new clsControl(ccsLabel, "finance_period_code", "finance_period_code", ccsText, "", CCGetRequestParam("finance_period_code", ccsGet, NULL), $this);
         $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "t_vat_setllement_id", ccsFloat, "", CCGetRequestParam("t_vat_setllement_id", ccsGet, NULL), $this);
         $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
+        $this->wp_name = & new clsControl(ccsLabel, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -94,7 +95,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-4E951673
+//Show Method @2-F44F484C
     function Show()
     {
         global $Tpl;
@@ -103,8 +104,6 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["expr261"] = 1;
-        $this->DataSource->Parameters["expr373"] = 4;
         $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
@@ -132,6 +131,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["finance_period_code"] = $this->finance_period_code->Visible;
             $this->ControlsVisible["t_vat_setllement_id"] = $this->t_vat_setllement_id->Visible;
             $this->ControlsVisible["npwd"] = $this->npwd->Visible;
+            $this->ControlsVisible["wp_name"] = $this->wp_name->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -147,6 +147,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->finance_period_code->SetValue($this->DataSource->finance_period_code->GetValue());
                 $this->t_vat_setllement_id->SetValue($this->DataSource->t_vat_setllement_id->GetValue());
                 $this->npwd->SetValue($this->DataSource->npwd->GetValue());
+                $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -157,6 +158,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->finance_period_code->Show();
                 $this->t_vat_setllement_id->Show();
                 $this->npwd->Show();
+                $this->wp_name->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -189,7 +191,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Show Method
 
-//GetErrors Method @2-B4B23835
+//GetErrors Method @2-0DAEEAA8
     function GetErrors()
     {
         $errors = "";
@@ -200,6 +202,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $errors = ComposeStrings($errors, $this->finance_period_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_vat_setllement_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->npwd->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -210,7 +213,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
 class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllementGridDataSource Class @2-F0AECE38
 
-//DataSource Variables @2-3A9E3928
+//DataSource Variables @2-DE0D827F
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -228,9 +231,10 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $finance_period_code;
     var $t_vat_setllement_id;
     var $npwd;
+    var $wp_name;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-C26FF617
+//DataSourceClass_Initialize Event @2-C38FA95E
     function clst_vat_setllementGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -248,6 +252,8 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->npwd = new clsField("npwd", ccsText, "");
         
+        $this->wp_name = new clsField("wp_name", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -261,39 +267,35 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End SetOrder Method
 
-//Prepare Method @2-85D1E314
+//Prepare Method @2-6B592DF6
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "expr261", ccsFloat, "", "", $this->Parameters["expr261"], "", false);
-        $this->wp->AddParameter("2", "expr373", ccsFloat, "", "", $this->Parameters["expr373"], "", false);
+        $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("2", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->AddParameter("3", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->AddParameter("4", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "p_order_status_id", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsFloat),false);
-        $this->wp->Criterion[2] = $this->wp->Operation(opEqual, "p_settlement_type_id", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsFloat),false);
-        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(npwd)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
-        $this->wp->Criterion[4] = $this->wp->Operation(opContains, "upper(finance_period_code)", $this->wp->GetDBValue("4"), $this->ToSQL($this->wp->GetDBValue("4"), ccsText),false);
-        $this->Where = $this->wp->opAND(
-             false, $this->wp->opAND(
+        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "upper(npwd)", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
+        $this->wp->Criterion[2] = $this->wp->Operation(opContains, "upper(wp_name)", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
+        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(finance_period_code)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
+        $this->Where = $this->wp->opOR(
+             true, $this->wp->opOR(
              false, 
              $this->wp->Criterion[1], 
-             $this->wp->Criterion[2]), $this->wp->opOR(
-             true, 
-             $this->wp->Criterion[3], 
-             $this->wp->Criterion[4]));
+             $this->wp->Criterion[2]), 
+             $this->wp->Criterion[3]);
     }
 //End Prepare Method
 
-//Open Method @2-786280E0
+//Open Method @2-9ED92B2B
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*)\n\n" .
-        "FROM v_vat_setllement";
+        "FROM v_vat_setllement_skpd_kb_jabatan";
         $this->SQL = "SELECT * \n\n" .
-        "FROM v_vat_setllement {SQL_Where} {SQL_OrderBy}";
+        "FROM v_vat_setllement_skpd_kb_jabatan {SQL_Where} {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -304,7 +306,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @2-6DF14179
+//SetValues Method @2-F531E067
     function SetValues()
     {
         $this->order_no->SetDBValue($this->f("order_no"));
@@ -313,6 +315,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->finance_period_code->SetDBValue($this->f("finance_period_code"));
         $this->t_vat_setllement_id->SetDBValue(trim($this->f("t_vat_setllement_id")));
         $this->npwd->SetDBValue($this->f("npwd"));
+        $this->wp_name->SetDBValue($this->f("wp_name"));
     }
 //End SetValues Method
 
@@ -963,12 +966,12 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @23-ACB07381
+//Open Method @23-E50088BA
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "SELECT * \n\n" .
-        "FROM v_vat_setllement {SQL_Where} {SQL_OrderBy}";
+        "FROM v_vat_setllement_skpd_kb_jabatan {SQL_Where} {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         $this->PageSize = 1;
         $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
