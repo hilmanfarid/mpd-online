@@ -2,7 +2,7 @@
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.no_kohir,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, 
 a.settlement_date, a.p_finance_period_id, 
-a.t_cust_account_id, a.npwd, a.total_trans_amount,
+a.t_cust_account_id, a.npwd, a.total_trans_amount, a.total_penalty_amount,
 a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id
 FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e
 WHERE a.p_finance_period_id = b.p_finance_period_id AND
@@ -205,11 +205,17 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Features/>
 				</Button>
 				<Hidden id="309" fieldSourceType="DBColumn" dataType="Integer" name="t_customer_order_id" PathID="t_vat_setllementGridt_customer_order_id" fieldSource="t_customer_order_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Label id="310" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_penalty_amount" fieldSource="total_penalty_amount" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridtotal_penalty_amount" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
