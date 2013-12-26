@@ -98,7 +98,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-3659215C
+//Show Method @2-E9FFF7E9
     function Show()
     {
         global $Tpl;
@@ -110,7 +110,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->DataSource->Parameters["urlt_cust_account_id"] = CCGetFromGet("t_cust_account_id", NULL);
         $this->DataSource->Parameters["urlp_finance_period_id"] = CCGetFromGet("p_finance_period_id", NULL);
         $this->DataSource->Parameters["urlp_rqst_type_id"] = CCGetFromGet("p_rqst_type_id", NULL);
-        $this->DataSource->Parameters["expr261"] = 1;
+        $this->DataSource->Parameters["expr283"] = 1;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -292,7 +292,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End SetOrder Method
 
-//Prepare Method @2-402DAB20
+//Prepare Method @2-5ED54C65
     function Prepare()
     {
         global $CCSLocales;
@@ -301,30 +301,26 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp->AddParameter("1", "urlt_cust_account_id", ccsFloat, "", "", $this->Parameters["urlt_cust_account_id"], "", false);
         $this->wp->AddParameter("2", "urlp_finance_period_id", ccsFloat, "", "", $this->Parameters["urlp_finance_period_id"], "", false);
         $this->wp->AddParameter("3", "urlp_rqst_type_id", ccsFloat, "", "", $this->Parameters["urlp_rqst_type_id"], "", false);
-        $this->wp->AddParameter("4", "expr261", ccsFloat, "", "", $this->Parameters["expr261"], "", false);
-        $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "t_cust_account_id", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsFloat),false);
-        $this->wp->Criterion[2] = $this->wp->Operation(opEqual, "p_finance_period_id", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsFloat),false);
-        $this->wp->Criterion[3] = $this->wp->Operation(opEqual, "p_rqst_type_id", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsFloat),false);
-        $this->wp->Criterion[4] = $this->wp->Operation(opEqual, "p_order_status_id", $this->wp->GetDBValue("4"), $this->ToSQL($this->wp->GetDBValue("4"), ccsFloat),false);
-        $this->Where = $this->wp->opAND(
-             false, $this->wp->opAND(
-             false, $this->wp->opAND(
-             false, 
-             $this->wp->Criterion[1], 
-             $this->wp->Criterion[2]), 
-             $this->wp->Criterion[3]), 
-             $this->wp->Criterion[4]);
+        $this->wp->AddParameter("4", "expr283", ccsFloat, "", "", $this->Parameters["expr283"], "", false);
     }
 //End Prepare Method
 
-//Open Method @2-786280E0
+//Open Method @2-2DB81D0E
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*)\n\n" .
-        "FROM v_vat_setllement";
-        $this->SQL = "SELECT * \n\n" .
-        "FROM v_vat_setllement {SQL_Where} {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
+        "FROM v_vat_setllement_sptpd\n" .
+        "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "AND p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . "\n" .
+        "AND p_rqst_type_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsFloat) . "\n" .
+        "AND p_order_status_id = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsFloat) . " ) cnt";
+        $this->SQL = "SELECT * \n" .
+        "FROM v_vat_setllement_sptpd\n" .
+        "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "AND p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . "\n" .
+        "AND p_rqst_type_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsFloat) . "\n" .
+        "AND p_order_status_id = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsFloat) . " ";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -745,7 +741,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End DataSourceClass_Initialize Event
 
-//Prepare Method @23-1736D257
+//Prepare Method @23-488D5930
     function Prepare()
     {
         global $CCSLocales;
@@ -753,18 +749,17 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlt_vat_setllement_id", ccsFloat, "", "", $this->Parameters["urlt_vat_setllement_id"], "", false);
         $this->AllParametersSet = $this->wp->AllParamsSet();
-        $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "t_vat_setllement_id", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsFloat),false);
-        $this->Where = 
-             $this->wp->Criterion[1];
     }
 //End Prepare Method
 
-//Open Method @23-ACB07381
+//Open Method @23-9A124615
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "SELECT * \n\n" .
-        "FROM v_vat_setllement {SQL_Where} {SQL_OrderBy}";
+        $this->SQL = "SELECT * \n" .
+        "FROM v_vat_setllement_sptpd\n" .
+        "WHERE t_vat_setllement_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ";
+        $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         $this->PageSize = 1;
         $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
