@@ -27,6 +27,7 @@ function Page_BeforeShow(& $sender)
 		$param_arr['date_end']=$t_laporan_harian_sptpd->date_end_laporan->GetValue();
 		$param_arr['p_vat_type_id']=$t_laporan_harian_sptpd->p_vat_type_id->GetValue();
 		$param_arr['p_vat_type_dtl_id']=$t_laporan_harian_sptpd->p_vat_type_dtl_id->GetValue();
+		$param_arr['vat_code_dtl']=$t_laporan_harian_sptpd->vat_code_dtl->GetValue();
 		if(empty($param_arr['date_start'])){
 			$param_arr['date_start']=$param_arr['year_code'].'-01-01';
 		}
@@ -66,7 +67,7 @@ function print_laporan($param_arr){
 	//$pdf->ln(8);
 	$pdf->SetWidths(array(40,200));
 	$pdf->ln(4);
-	$pdf->RowMultiBorderWithHeight(array("DAFTAR SPTPD",": "),array('',''),6);
+	$pdf->RowMultiBorderWithHeight(array("DAFTAR SPTPD",": ".$param_arr['vat_code_dtl']),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array("TAHUN",": ".$param_arr['year_code']),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString($param_arr['date_start'])." s/d ".dateToString($param_arr['date_end'])),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
@@ -84,7 +85,11 @@ function print_laporan($param_arr){
 	$pdf->ln(2);
 	$pdf->SetWidths(array(10,24,20,40,40,30,38,38,27,43,27,27));
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C'));
-	$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","NO. URUT","NAMA","ALAMAT","NPWPD","OMZET","KETETAPAN","KOHIR","MASA PAJAK","JENIS"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+	if(!empty($param_arr['p_vat_type_dtl_id'])){
+		$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","NO. URUT","NAMA","ALAMAT","NPWPD","OMZET","KETETAPAN","KOHIR","MASA PAJAK","JENIS"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+	}else{
+		$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","AYAT PAJAK","NAMA","ALAMAT","NPWPD","OMZET","KETETAPAN","KOHIR","MASA PAJAK","JENIS"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+	}
 	$pdf->SetFont('helvetica', '',10);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','L','L','L','L','R','R','L','C','C'));
@@ -104,9 +109,14 @@ function print_laporan($param_arr){
 					   'kohir' => $dbConn->f("kohir"),
 					   'start_period' => $start_period,
 					   'end_period' => $end_period,
-					   'jenis_pajak' => $dbConn->f("jenis")
+					   'jenis_pajak' => $dbConn->f("jenis"),
+					   'jenis_pajak_dtl' => $dbConn->f("jenis_dtl")
 						);
-		$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
+		if(!empty($param_arr['p_vat_type_dtl_id'])){
+			$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
+		}else{
+			$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['jenis_pajak_dtl'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
+		}
 		$jumlah+=$dbConn->f("amount");
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
 		$no++;

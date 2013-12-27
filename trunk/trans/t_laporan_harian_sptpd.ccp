@@ -62,7 +62,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_laporan_harian_sptpdvat_code_dtl" required="True" caption="Ayat Pajak">
+<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_laporan_harian_sptpdvat_code_dtl" required="True" caption="Ayat Pajak" fieldSource="vat_code_dtl">
 					<Components/>
 					<Events/>
 					<Attributes/>
