@@ -42,7 +42,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-CB39F31A
+//Class_Initialize Event @2-A80BF497
     function clsGridHistoryGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -59,7 +59,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
-            $this->PageSize = 10;
+            $this->PageSize = 12;
         else
             $this->PageSize = intval($this->PageSize);
         if ($this->PageSize > 100)
@@ -74,11 +74,11 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $this->periode_pelaporan = & new clsControl(ccsLabel, "periode_pelaporan", "periode_pelaporan", ccsText, "", CCGetRequestParam("periode_pelaporan", ccsGet, NULL), $this);
         $this->periode_awal_laporan = & new clsControl(ccsLabel, "periode_awal_laporan", "periode_awal_laporan", ccsText, "", CCGetRequestParam("periode_awal_laporan", ccsGet, NULL), $this);
         $this->tgl_pelaporan = & new clsControl(ccsLabel, "tgl_pelaporan", "tgl_pelaporan", ccsText, "", CCGetRequestParam("tgl_pelaporan", ccsGet, NULL), $this);
-        $this->total_transaksi = & new clsControl(ccsLabel, "total_transaksi", "total_transaksi", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("total_transaksi", ccsGet, NULL), $this);
-        $this->total_pajak = & new clsControl(ccsLabel, "total_pajak", "total_pajak", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("total_pajak", ccsGet, NULL), $this);
+        $this->total_transaksi = & new clsControl(ccsLabel, "total_transaksi", "total_transaksi", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_transaksi", ccsGet, NULL), $this);
+        $this->total_pajak = & new clsControl(ccsLabel, "total_pajak", "total_pajak", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_pajak", ccsGet, NULL), $this);
         $this->kuitansi_pembayaran = & new clsControl(ccsLabel, "kuitansi_pembayaran", "kuitansi_pembayaran", ccsText, "", CCGetRequestParam("kuitansi_pembayaran", ccsGet, NULL), $this);
         $this->tgl_pembayaran = & new clsControl(ccsLabel, "tgl_pembayaran", "tgl_pembayaran", ccsText, "", CCGetRequestParam("tgl_pembayaran", ccsGet, NULL), $this);
-        $this->payment_amount = & new clsControl(ccsLabel, "payment_amount", "payment_amount", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("payment_amount", ccsGet, NULL), $this);
+        $this->payment_amount = & new clsControl(ccsLabel, "payment_amount", "payment_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("payment_amount", ccsGet, NULL), $this);
         $this->periode_akhir_laporan = & new clsControl(ccsLabel, "periode_akhir_laporan", "periode_akhir_laporan", ccsText, "", CCGetRequestParam("periode_akhir_laporan", ccsGet, NULL), $this);
         $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "t_vat_setllement_id", ccsFloat, "", CCGetRequestParam("t_vat_setllement_id", ccsGet, NULL), $this);
         $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsFloat, "", CCGetRequestParam("t_cust_account_id", ccsGet, NULL), $this);
@@ -101,7 +101,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     }
 //End Initialize Method
 
-//Show Method @2-22E7CE1F
+//Show Method @2-1DDA7FDE
     function Show()
     {
         global $Tpl;
@@ -110,7 +110,6 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urlt_customer_id"] = CCGetFromGet("t_customer_id", NULL);
         $this->DataSource->Parameters["urlt_cust_acc_id"] = CCGetFromGet("t_cust_acc_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
@@ -314,18 +313,17 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End SetOrder Method
 
-//Prepare Method @2-68BC7834
+//Prepare Method @2-D3F6B1B1
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlt_customer_id", ccsFloat, "", "", $this->Parameters["urlt_customer_id"], 0, false);
-        $this->wp->AddParameter("2", "urlt_cust_acc_id", ccsFloat, "", "", $this->Parameters["urlt_cust_acc_id"], 0, false);
+        $this->wp->AddParameter("1", "urlt_cust_acc_id", ccsFloat, "", "", $this->Parameters["urlt_cust_acc_id"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-33F2021B
+//Open Method @2-DE00E52B
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -350,9 +348,8 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "     t_payment_receipt d\n" .
         "where a.p_finance_period_id = b.p_finance_period_id\n" .
         "      and a.t_cust_account_id = c.t_cust_account_id\n" .
-        "	  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . "\n" .
-        "      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
-        "      and c.t_customer_id in (select t_customer_id from t_customer_user where t_customer_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " )) cnt";
+        "	  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "      and a.t_vat_setllement_id = d.t_vat_setllement_id (+)) cnt";
         $this->SQL = "Select c.npwd , \n" .
         "	   a.t_vat_setllement_id,	\n" .
         "	   c.t_cust_account_id,\n" .
@@ -374,9 +371,8 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "     t_payment_receipt d\n" .
         "where a.p_finance_period_id = b.p_finance_period_id\n" .
         "      and a.t_cust_account_id = c.t_cust_account_id\n" .
-        "	  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . "\n" .
-        "      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
-        "      and c.t_customer_id in (select t_customer_id from t_customer_user where t_customer_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ){SQL_OrderBy}";
+        "	  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "      and a.t_vat_setllement_id = d.t_vat_setllement_id (+)  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

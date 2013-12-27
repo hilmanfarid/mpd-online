@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="HistoryGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="Select c.npwd , 
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="12" connection="ConnSIKP" name="HistoryGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="Select c.npwd , 
 	   a.t_vat_setllement_id,	
 	   c.t_cust_account_id,
        c.company_name, 
@@ -23,7 +23,6 @@ where a.p_finance_period_id = b.p_finance_period_id
       and a.t_cust_account_id = c.t_cust_account_id
 	  and a.t_cust_account_id = {t_cust_acc_id}
       and a.t_vat_setllement_id = d.t_vat_setllement_id (+) 
-      and c.t_customer_id in (select t_customer_id from t_customer_user where t_customer_id = {t_customer_id} )
 order by c.npwd , b.start_date desc
 ">
 			<Components>
@@ -63,13 +62,13 @@ order by c.npwd , b.start_date desc
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="129" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_transaksi" fieldSource="total_transaksi" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_transaksi" format="0">
+				<Label id="129" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_transaksi" fieldSource="total_transaksi" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_transaksi" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="130" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_pajak" fieldSource="total_pajak" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_pajak" format="0">
+				<Label id="130" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_pajak" fieldSource="total_pajak" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_pajak" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -87,7 +86,7 @@ order by c.npwd , b.start_date desc
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="133" fieldSourceType="DBColumn" dataType="Float" html="False" name="payment_amount" fieldSource="payment_amount" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridpayment_amount" format="0">
+				<Label id="133" fieldSourceType="DBColumn" dataType="Float" html="False" name="payment_amount" fieldSource="payment_amount" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridpayment_amount" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -153,7 +152,6 @@ order by c.npwd , b.start_date desc
 			<SPParameters>
 			</SPParameters>
 			<SQLParameters>
-				<SQLParameter id="135" variable="t_customer_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="t_customer_id"/>
 				<SQLParameter id="138" variable="t_cust_acc_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="t_cust_acc_id"/>
 			</SQLParameters>
 			<SecurityGroups/>
