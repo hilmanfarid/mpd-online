@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     // Class variables
 //End Variables
 
-//Class_Initialize Event @629-0141E6B5
+//Class_Initialize Event @629-007D19F8
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -59,9 +59,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $this->ErrorBlock = "Record t_vat_registrationForm/Error";
         $this->DataSource = new clst_vat_registrationFormDataSource($this);
         $this->ds = & $this->DataSource;
-        $this->InsertAllowed = true;
         $this->UpdateAllowed = true;
-        $this->DeleteAllowed = true;
         $this->ReadAllowed = true;
         if($this->Visible)
         {
@@ -214,6 +212,12 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->wp_p_region_id_kecamatan = & new clsControl(ccsHidden, "wp_p_region_id_kecamatan", "Kecamatan - WP", ccsFloat, "", CCGetRequestParam("wp_p_region_id_kecamatan", $Method, NULL), $this);
             $this->wp_p_region_id_kelurahan = & new clsControl(ccsHidden, "wp_p_region_id_kelurahan", "Kelurahan - WP", ccsFloat, "", CCGetRequestParam("wp_p_region_id_kelurahan", $Method, NULL), $this);
             $this->wp_mobile_no = & new clsControl(ccsTextBox, "wp_mobile_no", "No. Selular - WP", ccsText, "", CCGetRequestParam("wp_mobile_no", $Method, NULL), $this);
+            $this->bap_employee_name_1 = & new clsControl(ccsTextBox, "bap_employee_name_1", "Nama Petugas 1", ccsText, "", CCGetRequestParam("bap_employee_name_1", $Method, NULL), $this);
+            $this->bap_employee_name_2 = & new clsControl(ccsTextBox, "bap_employee_name_2", "Nama Petugas 2", ccsText, "", CCGetRequestParam("bap_employee_name_2", $Method, NULL), $this);
+            $this->bap_employee_no_1 = & new clsControl(ccsTextBox, "bap_employee_no_1", "NIP Petugas 1", ccsText, "", CCGetRequestParam("bap_employee_no_1", $Method, NULL), $this);
+            $this->bap_employee_no_2 = & new clsControl(ccsTextBox, "bap_employee_no_2", "NIP Petugas 2", ccsText, "", CCGetRequestParam("bap_employee_no_2", $Method, NULL), $this);
+            $this->bap_employee_job_pos_1 = & new clsControl(ccsTextBox, "bap_employee_job_pos_1", "Jabatan Petugas 1", ccsText, "", CCGetRequestParam("bap_employee_job_pos_1", $Method, NULL), $this);
+            $this->bap_employee_job_pos_2 = & new clsControl(ccsTextBox, "bap_employee_job_pos_2", "Jabatan Petugas 2", ccsText, "", CCGetRequestParam("bap_employee_job_pos_2", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -253,7 +257,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     }
 //End Initialize Method
 
-//Validate Method @629-CDB3FA0E
+//Validate Method @629-27ACBA9C
     function Validate()
     {
         global $CCSLocales;
@@ -365,6 +369,12 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->wp_p_region_id_kecamatan->Validate() && $Validation);
         $Validation = ($this->wp_p_region_id_kelurahan->Validate() && $Validation);
         $Validation = ($this->wp_mobile_no->Validate() && $Validation);
+        $Validation = ($this->bap_employee_name_1->Validate() && $Validation);
+        $Validation = ($this->bap_employee_name_2->Validate() && $Validation);
+        $Validation = ($this->bap_employee_no_1->Validate() && $Validation);
+        $Validation = ($this->bap_employee_no_2->Validate() && $Validation);
+        $Validation = ($this->bap_employee_job_pos_1->Validate() && $Validation);
+        $Validation = ($this->bap_employee_job_pos_2->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->created_by->Errors->Count() == 0);
         $Validation =  $Validation && ($this->updated_by->Errors->Count() == 0);
@@ -472,11 +482,17 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->wp_p_region_id_kecamatan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_p_region_id_kelurahan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_mobile_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->bap_employee_name_1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->bap_employee_name_2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->bap_employee_no_1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->bap_employee_no_2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->bap_employee_job_pos_1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->bap_employee_job_pos_2->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @629-357B8E19
+//CheckErrors Method @629-57762126
     function CheckErrors()
     {
         $errors = false;
@@ -588,6 +604,12 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->wp_p_region_id_kecamatan->Errors->Count());
         $errors = ($errors || $this->wp_p_region_id_kelurahan->Errors->Count());
         $errors = ($errors || $this->wp_mobile_no->Errors->Count());
+        $errors = ($errors || $this->bap_employee_name_1->Errors->Count());
+        $errors = ($errors || $this->bap_employee_name_2->Errors->Count());
+        $errors = ($errors || $this->bap_employee_no_1->Errors->Count());
+        $errors = ($errors || $this->bap_employee_no_2->Errors->Count());
+        $errors = ($errors || $this->bap_employee_job_pos_1->Errors->Count());
+        $errors = ($errors || $this->bap_employee_job_pos_2->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -609,7 +631,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @629-40269684
+//Operation Method @629-31DC1E22
     function Operation()
     {
         if(!$this->Visible)
@@ -645,7 +667,7 @@ function GetPrimaryKey($keyName)
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
         if($this->PressedButton == "Button_Delete") {
             $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "t_vat_registration_id"));
-            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete)) {
                 $Redirect = "";
             }
         } else if($this->PressedButton == "Button_Cancel") {
@@ -656,7 +678,7 @@ function GetPrimaryKey($keyName)
         } else if($this->Validate()) {
             if($this->PressedButton == "Button_Insert") {
                 $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
-                if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert) || !$this->InsertRow()) {
+                if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert)) {
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_Update") {
@@ -684,60 +706,19 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @629-0A015F26
-    function InsertRow()
-    {
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
-        if(!$this->InsertAllowed) return false;
-        $this->DataSource->registration_date->SetValue($this->registration_date->GetValue(true));
-        $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
-        $this->DataSource->p_region_id_kelurahan->SetValue($this->p_region_id_kelurahan->GetValue(true));
-        $this->DataSource->p_region_id_kecamatan->SetValue($this->p_region_id_kecamatan->GetValue(true));
-        $this->DataSource->p_region_id->SetValue($this->p_region_id->GetValue(true));
-        $this->DataSource->p_region_id_kel_owner->SetValue($this->p_region_id_kel_owner->GetValue(true));
-        $this->DataSource->p_region_id_kec_owner->SetValue($this->p_region_id_kec_owner->GetValue(true));
-        $this->DataSource->p_region_id_owner->SetValue($this->p_region_id_owner->GetValue(true));
-        $this->DataSource->company_name->SetValue($this->company_name->GetValue(true));
-        $this->DataSource->address_name->SetValue($this->address_name->GetValue(true));
-        $this->DataSource->p_job_position_id->SetValue($this->p_job_position_id->GetValue(true));
-        $this->DataSource->company_brand->SetValue($this->company_brand->GetValue(true));
-        $this->DataSource->address_no->SetValue($this->address_no->GetValue(true));
-        $this->DataSource->address_rt->SetValue($this->address_rt->GetValue(true));
-        $this->DataSource->address_rw->SetValue($this->address_rw->GetValue(true));
-        $this->DataSource->address_no_owner->SetValue($this->address_no_owner->GetValue(true));
-        $this->DataSource->address_rt_owner->SetValue($this->address_rt_owner->GetValue(true));
-        $this->DataSource->address_rw_owner->SetValue($this->address_rw_owner->GetValue(true));
-        $this->DataSource->phone_no->SetValue($this->phone_no->GetValue(true));
-        $this->DataSource->fax_no->SetValue($this->fax_no->GetValue(true));
-        $this->DataSource->zip_code->SetValue($this->zip_code->GetValue(true));
-        $this->DataSource->phone_no_owner->SetValue($this->phone_no_owner->GetValue(true));
-        $this->DataSource->company_owner->SetValue($this->company_owner->GetValue(true));
-        $this->DataSource->mobile_no_owner->SetValue($this->mobile_no_owner->GetValue(true));
-        $this->DataSource->fax_no_owner->SetValue($this->fax_no_owner->GetValue(true));
-        $this->DataSource->zip_code_owner->SetValue($this->zip_code_owner->GetValue(true));
-        $this->DataSource->mobile_no->SetValue($this->mobile_no->GetValue(true));
-        $this->DataSource->address_name_owner->SetValue($this->address_name_owner->GetValue(true));
-        $this->DataSource->t_vat_registration_id->SetValue($this->t_vat_registration_id->GetValue(true));
-        $this->DataSource->email->SetValue($this->email->GetValue(true));
-        $this->DataSource->company_additional_addr->SetValue($this->company_additional_addr->GetValue(true));
-        $this->DataSource->p_hotel_grade_id->SetValue($this->p_hotel_grade_id->GetValue(true));
-        $this->DataSource->p_rest_service_type_id->SetValue($this->p_rest_service_type_id->GetValue(true));
-        $this->DataSource->p_entertaintment_type_id->SetValue($this->p_entertaintment_type_id->GetValue(true));
-        $this->DataSource->p_parking_classification_id->SetValue($this->p_parking_classification_id->GetValue(true));
-        $this->DataSource->Insert();
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
-        return (!$this->CheckErrors());
-    }
-//End InsertRow Method
-
-//UpdateRow Method @629-B3C4049C
+//UpdateRow Method @629-E9E6043D
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
         $this->DataSource->t_vat_registration_id->SetValue($this->t_vat_registration_id->GetValue(true));
         $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
-        $this->DataSource->npwpd->SetValue($this->npwpd->GetValue(true));
+        $this->DataSource->bap_employee_no_1->SetValue($this->bap_employee_no_1->GetValue(true));
+        $this->DataSource->bap_employee_no_2->SetValue($this->bap_employee_no_2->GetValue(true));
+        $this->DataSource->bap_employee_name_1->SetValue($this->bap_employee_name_1->GetValue(true));
+        $this->DataSource->bap_employee_name_2->SetValue($this->bap_employee_name_2->GetValue(true));
+        $this->DataSource->bap_employee_job_pos_1->SetValue($this->bap_employee_job_pos_1->GetValue(true));
+        $this->DataSource->bap_employee_job_pos_2->SetValue($this->bap_employee_job_pos_2->GetValue(true));
         $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
         $this->DataSource->t_vat_registration_id->SetValue($this->t_vat_registration_id->GetValue(true));
         $this->DataSource->Update();
@@ -746,20 +727,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//DeleteRow Method @629-125C2F1A
-    function DeleteRow()
-    {
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
-        if(!$this->DeleteAllowed) return false;
-        $this->DataSource->t_vat_registration_id->SetValue($this->t_vat_registration_id->GetValue(true));
-        $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
-        $this->DataSource->Delete();
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
-        return (!$this->CheckErrors());
-    }
-//End DeleteRow Method
-
-//Show Method @629-5022FA6B
+//Show Method @629-427A2944
     function Show()
     {
         global $CCSUseAmp;
@@ -873,6 +841,12 @@ function GetPrimaryKey($keyName)
                     $this->wp_p_region_id_kecamatan->SetValue($this->DataSource->wp_p_region_id_kecamatan->GetValue());
                     $this->wp_p_region_id_kelurahan->SetValue($this->DataSource->wp_p_region_id_kelurahan->GetValue());
                     $this->wp_mobile_no->SetValue($this->DataSource->wp_mobile_no->GetValue());
+                    $this->bap_employee_name_1->SetValue($this->DataSource->bap_employee_name_1->GetValue());
+                    $this->bap_employee_name_2->SetValue($this->DataSource->bap_employee_name_2->GetValue());
+                    $this->bap_employee_no_1->SetValue($this->DataSource->bap_employee_no_1->GetValue());
+                    $this->bap_employee_no_2->SetValue($this->DataSource->bap_employee_no_2->GetValue());
+                    $this->bap_employee_job_pos_1->SetValue($this->DataSource->bap_employee_job_pos_1->GetValue());
+                    $this->bap_employee_job_pos_2->SetValue($this->DataSource->bap_employee_job_pos_2->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -991,6 +965,12 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->wp_p_region_id_kecamatan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_p_region_id_kelurahan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_mobile_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->bap_employee_name_1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->bap_employee_name_2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->bap_employee_no_1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->bap_employee_no_2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->bap_employee_job_pos_1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->bap_employee_job_pos_2->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1127,6 +1107,12 @@ function GetPrimaryKey($keyName)
         $this->wp_p_region_id_kecamatan->Show();
         $this->wp_p_region_id_kelurahan->Show();
         $this->wp_mobile_no->Show();
+        $this->bap_employee_name_1->Show();
+        $this->bap_employee_name_2->Show();
+        $this->bap_employee_no_1->Show();
+        $this->bap_employee_no_2->Show();
+        $this->bap_employee_job_pos_1->Show();
+        $this->bap_employee_job_pos_2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1137,16 +1123,14 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_registrationFormDataSource Class @629-5993B12E
 
-//DataSource Variables @629-A2F8DBFB
+//DataSource Variables @629-F29BD646
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
     var $ErrorBlock;
     var $CmdExecution;
 
-    var $InsertParameters;
     var $UpdateParameters;
-    var $DeleteParameters;
     var $wp;
     var $AllParametersSet;
 
@@ -1260,9 +1244,15 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $wp_p_region_id_kecamatan;
     var $wp_p_region_id_kelurahan;
     var $wp_mobile_no;
+    var $bap_employee_name_1;
+    var $bap_employee_name_2;
+    var $bap_employee_no_1;
+    var $bap_employee_no_2;
+    var $bap_employee_job_pos_1;
+    var $bap_employee_job_pos_2;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @629-5A96706A
+//DataSourceClass_Initialize Event @629-56E86D56
     function clst_vat_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1484,6 +1474,18 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->wp_mobile_no = new clsField("wp_mobile_no", ccsText, "");
         
+        $this->bap_employee_name_1 = new clsField("bap_employee_name_1", ccsText, "");
+        
+        $this->bap_employee_name_2 = new clsField("bap_employee_name_2", ccsText, "");
+        
+        $this->bap_employee_no_1 = new clsField("bap_employee_no_1", ccsText, "");
+        
+        $this->bap_employee_no_2 = new clsField("bap_employee_no_2", ccsText, "");
+        
+        $this->bap_employee_job_pos_1 = new clsField("bap_employee_job_pos_1", ccsText, "");
+        
+        $this->bap_employee_job_pos_2 = new clsField("bap_employee_job_pos_2", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1514,7 +1516,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End Open Method
 
-//SetValues Method @629-C0617165
+//SetValues Method @629-41772E7C
     function SetValues()
     {
         $this->created_by->SetDBValue($this->f("created_by"));
@@ -1599,157 +1601,16 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->wp_p_region_id_kecamatan->SetDBValue(trim($this->f("wp_p_region_id_kecamatan")));
         $this->wp_p_region_id_kelurahan->SetDBValue(trim($this->f("wp_p_region_id_kelurahan")));
         $this->wp_mobile_no->SetDBValue($this->f("wp_mobile_no"));
+        $this->bap_employee_name_1->SetDBValue($this->f("bap_employee_name_1"));
+        $this->bap_employee_name_2->SetDBValue($this->f("bap_employee_name_2"));
+        $this->bap_employee_no_1->SetDBValue($this->f("bap_employee_no_1"));
+        $this->bap_employee_no_2->SetDBValue($this->f("bap_employee_no_2"));
+        $this->bap_employee_job_pos_1->SetDBValue($this->f("bap_employee_job_pos_1"));
+        $this->bap_employee_job_pos_2->SetDBValue($this->f("bap_employee_job_pos_2"));
     }
 //End SetValues Method
 
-//Insert Method @629-A14EB153
-    function Insert()
-    {
-        global $CCSLocales;
-        global $DefaultDateFormat;
-        $this->CmdExecution = true;
-        $this->cp["created_by"] = new clsSQLParameter("expr699", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
-        $this->cp["updated_by"] = new clsSQLParameter("expr700", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
-        $this->cp["registration_date"] = new clsSQLParameter("ctrlregistration_date", ccsText, "", "", $this->registration_date->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["t_customer_order_id"] = new clsSQLParameter("ctrlt_customer_order_id", ccsFloat, "", "", $this->t_customer_order_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["p_region_id_kelurahan"] = new clsSQLParameter("ctrlp_region_id_kelurahan", ccsFloat, "", "", $this->p_region_id_kelurahan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["p_region_id_kecamatan"] = new clsSQLParameter("ctrlp_region_id_kecamatan", ccsFloat, "", "", $this->p_region_id_kecamatan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["p_region_id"] = new clsSQLParameter("ctrlp_region_id", ccsFloat, "", "", $this->p_region_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["p_region_id_kel_owner"] = new clsSQLParameter("ctrlp_region_id_kel_owner", ccsFloat, "", "", $this->p_region_id_kel_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["p_region_id_kec_owner"] = new clsSQLParameter("ctrlp_region_id_kec_owner", ccsFloat, "", "", $this->p_region_id_kec_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["p_region_id_owner"] = new clsSQLParameter("ctrlp_region_id_owner", ccsFloat, "", "", $this->p_region_id_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["company_name"] = new clsSQLParameter("ctrlcompany_name", ccsText, "", "", $this->company_name->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["address_name"] = new clsSQLParameter("ctrladdress_name", ccsText, "", "", $this->address_name->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["p_job_position_id"] = new clsSQLParameter("ctrlp_job_position_id", ccsFloat, "", "", $this->p_job_position_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["company_brand"] = new clsSQLParameter("ctrlcompany_brand", ccsText, "", "", $this->company_brand->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["address_no"] = new clsSQLParameter("ctrladdress_no", ccsText, "", "", $this->address_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["address_rt"] = new clsSQLParameter("ctrladdress_rt", ccsText, "", "", $this->address_rt->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["address_rw"] = new clsSQLParameter("ctrladdress_rw", ccsText, "", "", $this->address_rw->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["address_no_owner"] = new clsSQLParameter("ctrladdress_no_owner", ccsText, "", "", $this->address_no_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["address_rt_owner"] = new clsSQLParameter("ctrladdress_rt_owner", ccsText, "", "", $this->address_rt_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["address_rw_owner"] = new clsSQLParameter("ctrladdress_rw_owner", ccsText, "", "", $this->address_rw_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["phone_no"] = new clsSQLParameter("ctrlphone_no", ccsText, "", "", $this->phone_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["fax_no"] = new clsSQLParameter("ctrlfax_no", ccsText, "", "", $this->fax_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["zip_code"] = new clsSQLParameter("ctrlzip_code", ccsText, "", "", $this->zip_code->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["phone_no_owner"] = new clsSQLParameter("ctrlphone_no_owner", ccsText, "", "", $this->phone_no_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["company_owner"] = new clsSQLParameter("ctrlcompany_owner", ccsText, "", "", $this->company_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["mobile_no_owner"] = new clsSQLParameter("ctrlmobile_no_owner", ccsText, "", "", $this->mobile_no_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["fax_no_owner"] = new clsSQLParameter("ctrlfax_no_owner", ccsText, "", "", $this->fax_no_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["zip_code_owner"] = new clsSQLParameter("ctrlzip_code_owner", ccsText, "", "", $this->zip_code_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["mobile_no"] = new clsSQLParameter("ctrlmobile_no", ccsText, "", "", $this->mobile_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["address_name_owner"] = new clsSQLParameter("ctrladdress_name_owner", ccsText, "", "", $this->address_name_owner->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["t_vat_registration_id"] = new clsSQLParameter("ctrlt_vat_registration_id", ccsFloat, "", "", $this->t_vat_registration_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["email"] = new clsSQLParameter("ctrlemail", ccsText, "", "", $this->email->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["company_additional_addr"] = new clsSQLParameter("ctrlcompany_additional_addr", ccsText, "", "", $this->company_additional_addr->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["p_hotel_grade_id"] = new clsSQLParameter("ctrlp_hotel_grade_id", ccsFloat, "", "", $this->p_hotel_grade_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["p_rest_service_type_id"] = new clsSQLParameter("ctrlp_rest_service_type_id", ccsFloat, "", "", $this->p_rest_service_type_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["p_entertaintment_type_id"] = new clsSQLParameter("ctrlp_entertaintment_type_id", ccsFloat, "", "", $this->p_entertaintment_type_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["p_parking_classification_id"] = new clsSQLParameter("ctrlp_parking_classification_id", ccsFloat, "", "", $this->p_parking_classification_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
-        if (!is_null($this->cp["created_by"]->GetValue()) and !strlen($this->cp["created_by"]->GetText()) and !is_bool($this->cp["created_by"]->GetValue())) 
-            $this->cp["created_by"]->SetValue(CCGetUserLogin());
-        if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
-            $this->cp["updated_by"]->SetValue(CCGetUserLogin());
-        if (!is_null($this->cp["registration_date"]->GetValue()) and !strlen($this->cp["registration_date"]->GetText()) and !is_bool($this->cp["registration_date"]->GetValue())) 
-            $this->cp["registration_date"]->SetValue($this->registration_date->GetValue(true));
-        if (!is_null($this->cp["t_customer_order_id"]->GetValue()) and !strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue())) 
-            $this->cp["t_customer_order_id"]->SetValue($this->t_customer_order_id->GetValue(true));
-        if (!is_null($this->cp["p_region_id_kelurahan"]->GetValue()) and !strlen($this->cp["p_region_id_kelurahan"]->GetText()) and !is_bool($this->cp["p_region_id_kelurahan"]->GetValue())) 
-            $this->cp["p_region_id_kelurahan"]->SetValue($this->p_region_id_kelurahan->GetValue(true));
-        if (!is_null($this->cp["p_region_id_kecamatan"]->GetValue()) and !strlen($this->cp["p_region_id_kecamatan"]->GetText()) and !is_bool($this->cp["p_region_id_kecamatan"]->GetValue())) 
-            $this->cp["p_region_id_kecamatan"]->SetValue($this->p_region_id_kecamatan->GetValue(true));
-        if (!is_null($this->cp["p_region_id"]->GetValue()) and !strlen($this->cp["p_region_id"]->GetText()) and !is_bool($this->cp["p_region_id"]->GetValue())) 
-            $this->cp["p_region_id"]->SetValue($this->p_region_id->GetValue(true));
-        if (!is_null($this->cp["p_region_id_kel_owner"]->GetValue()) and !strlen($this->cp["p_region_id_kel_owner"]->GetText()) and !is_bool($this->cp["p_region_id_kel_owner"]->GetValue())) 
-            $this->cp["p_region_id_kel_owner"]->SetValue($this->p_region_id_kel_owner->GetValue(true));
-        if (!is_null($this->cp["p_region_id_kec_owner"]->GetValue()) and !strlen($this->cp["p_region_id_kec_owner"]->GetText()) and !is_bool($this->cp["p_region_id_kec_owner"]->GetValue())) 
-            $this->cp["p_region_id_kec_owner"]->SetValue($this->p_region_id_kec_owner->GetValue(true));
-        if (!is_null($this->cp["p_region_id_owner"]->GetValue()) and !strlen($this->cp["p_region_id_owner"]->GetText()) and !is_bool($this->cp["p_region_id_owner"]->GetValue())) 
-            $this->cp["p_region_id_owner"]->SetValue($this->p_region_id_owner->GetValue(true));
-        if (!is_null($this->cp["company_name"]->GetValue()) and !strlen($this->cp["company_name"]->GetText()) and !is_bool($this->cp["company_name"]->GetValue())) 
-            $this->cp["company_name"]->SetValue($this->company_name->GetValue(true));
-        if (!is_null($this->cp["address_name"]->GetValue()) and !strlen($this->cp["address_name"]->GetText()) and !is_bool($this->cp["address_name"]->GetValue())) 
-            $this->cp["address_name"]->SetValue($this->address_name->GetValue(true));
-        if (!is_null($this->cp["p_job_position_id"]->GetValue()) and !strlen($this->cp["p_job_position_id"]->GetText()) and !is_bool($this->cp["p_job_position_id"]->GetValue())) 
-            $this->cp["p_job_position_id"]->SetValue($this->p_job_position_id->GetValue(true));
-        if (!is_null($this->cp["company_brand"]->GetValue()) and !strlen($this->cp["company_brand"]->GetText()) and !is_bool($this->cp["company_brand"]->GetValue())) 
-            $this->cp["company_brand"]->SetValue($this->company_brand->GetValue(true));
-        if (!is_null($this->cp["address_no"]->GetValue()) and !strlen($this->cp["address_no"]->GetText()) and !is_bool($this->cp["address_no"]->GetValue())) 
-            $this->cp["address_no"]->SetValue($this->address_no->GetValue(true));
-        if (!is_null($this->cp["address_rt"]->GetValue()) and !strlen($this->cp["address_rt"]->GetText()) and !is_bool($this->cp["address_rt"]->GetValue())) 
-            $this->cp["address_rt"]->SetValue($this->address_rt->GetValue(true));
-        if (!is_null($this->cp["address_rw"]->GetValue()) and !strlen($this->cp["address_rw"]->GetText()) and !is_bool($this->cp["address_rw"]->GetValue())) 
-            $this->cp["address_rw"]->SetValue($this->address_rw->GetValue(true));
-        if (!is_null($this->cp["address_no_owner"]->GetValue()) and !strlen($this->cp["address_no_owner"]->GetText()) and !is_bool($this->cp["address_no_owner"]->GetValue())) 
-            $this->cp["address_no_owner"]->SetValue($this->address_no_owner->GetValue(true));
-        if (!is_null($this->cp["address_rt_owner"]->GetValue()) and !strlen($this->cp["address_rt_owner"]->GetText()) and !is_bool($this->cp["address_rt_owner"]->GetValue())) 
-            $this->cp["address_rt_owner"]->SetValue($this->address_rt_owner->GetValue(true));
-        if (!is_null($this->cp["address_rw_owner"]->GetValue()) and !strlen($this->cp["address_rw_owner"]->GetText()) and !is_bool($this->cp["address_rw_owner"]->GetValue())) 
-            $this->cp["address_rw_owner"]->SetValue($this->address_rw_owner->GetValue(true));
-        if (!is_null($this->cp["phone_no"]->GetValue()) and !strlen($this->cp["phone_no"]->GetText()) and !is_bool($this->cp["phone_no"]->GetValue())) 
-            $this->cp["phone_no"]->SetValue($this->phone_no->GetValue(true));
-        if (!is_null($this->cp["fax_no"]->GetValue()) and !strlen($this->cp["fax_no"]->GetText()) and !is_bool($this->cp["fax_no"]->GetValue())) 
-            $this->cp["fax_no"]->SetValue($this->fax_no->GetValue(true));
-        if (!is_null($this->cp["zip_code"]->GetValue()) and !strlen($this->cp["zip_code"]->GetText()) and !is_bool($this->cp["zip_code"]->GetValue())) 
-            $this->cp["zip_code"]->SetValue($this->zip_code->GetValue(true));
-        if (!is_null($this->cp["phone_no_owner"]->GetValue()) and !strlen($this->cp["phone_no_owner"]->GetText()) and !is_bool($this->cp["phone_no_owner"]->GetValue())) 
-            $this->cp["phone_no_owner"]->SetValue($this->phone_no_owner->GetValue(true));
-        if (!is_null($this->cp["company_owner"]->GetValue()) and !strlen($this->cp["company_owner"]->GetText()) and !is_bool($this->cp["company_owner"]->GetValue())) 
-            $this->cp["company_owner"]->SetValue($this->company_owner->GetValue(true));
-        if (!is_null($this->cp["mobile_no_owner"]->GetValue()) and !strlen($this->cp["mobile_no_owner"]->GetText()) and !is_bool($this->cp["mobile_no_owner"]->GetValue())) 
-            $this->cp["mobile_no_owner"]->SetValue($this->mobile_no_owner->GetValue(true));
-        if (!is_null($this->cp["fax_no_owner"]->GetValue()) and !strlen($this->cp["fax_no_owner"]->GetText()) and !is_bool($this->cp["fax_no_owner"]->GetValue())) 
-            $this->cp["fax_no_owner"]->SetValue($this->fax_no_owner->GetValue(true));
-        if (!is_null($this->cp["zip_code_owner"]->GetValue()) and !strlen($this->cp["zip_code_owner"]->GetText()) and !is_bool($this->cp["zip_code_owner"]->GetValue())) 
-            $this->cp["zip_code_owner"]->SetValue($this->zip_code_owner->GetValue(true));
-        if (!is_null($this->cp["mobile_no"]->GetValue()) and !strlen($this->cp["mobile_no"]->GetText()) and !is_bool($this->cp["mobile_no"]->GetValue())) 
-            $this->cp["mobile_no"]->SetValue($this->mobile_no->GetValue(true));
-        if (!is_null($this->cp["address_name_owner"]->GetValue()) and !strlen($this->cp["address_name_owner"]->GetText()) and !is_bool($this->cp["address_name_owner"]->GetValue())) 
-            $this->cp["address_name_owner"]->SetValue($this->address_name_owner->GetValue(true));
-        if (!is_null($this->cp["t_vat_registration_id"]->GetValue()) and !strlen($this->cp["t_vat_registration_id"]->GetText()) and !is_bool($this->cp["t_vat_registration_id"]->GetValue())) 
-            $this->cp["t_vat_registration_id"]->SetValue($this->t_vat_registration_id->GetValue(true));
-        if (!is_null($this->cp["email"]->GetValue()) and !strlen($this->cp["email"]->GetText()) and !is_bool($this->cp["email"]->GetValue())) 
-            $this->cp["email"]->SetValue($this->email->GetValue(true));
-        if (!is_null($this->cp["company_additional_addr"]->GetValue()) and !strlen($this->cp["company_additional_addr"]->GetText()) and !is_bool($this->cp["company_additional_addr"]->GetValue())) 
-            $this->cp["company_additional_addr"]->SetValue($this->company_additional_addr->GetValue(true));
-        if (!is_null($this->cp["p_hotel_grade_id"]->GetValue()) and !strlen($this->cp["p_hotel_grade_id"]->GetText()) and !is_bool($this->cp["p_hotel_grade_id"]->GetValue())) 
-            $this->cp["p_hotel_grade_id"]->SetValue($this->p_hotel_grade_id->GetValue(true));
-        if (!strlen($this->cp["p_hotel_grade_id"]->GetText()) and !is_bool($this->cp["p_hotel_grade_id"]->GetValue(true))) 
-            $this->cp["p_hotel_grade_id"]->SetText(0);
-        if (!is_null($this->cp["p_rest_service_type_id"]->GetValue()) and !strlen($this->cp["p_rest_service_type_id"]->GetText()) and !is_bool($this->cp["p_rest_service_type_id"]->GetValue())) 
-            $this->cp["p_rest_service_type_id"]->SetValue($this->p_rest_service_type_id->GetValue(true));
-        if (!strlen($this->cp["p_rest_service_type_id"]->GetText()) and !is_bool($this->cp["p_rest_service_type_id"]->GetValue(true))) 
-            $this->cp["p_rest_service_type_id"]->SetText(0);
-        if (!is_null($this->cp["p_entertaintment_type_id"]->GetValue()) and !strlen($this->cp["p_entertaintment_type_id"]->GetText()) and !is_bool($this->cp["p_entertaintment_type_id"]->GetValue())) 
-            $this->cp["p_entertaintment_type_id"]->SetValue($this->p_entertaintment_type_id->GetValue(true));
-        if (!strlen($this->cp["p_entertaintment_type_id"]->GetText()) and !is_bool($this->cp["p_entertaintment_type_id"]->GetValue(true))) 
-            $this->cp["p_entertaintment_type_id"]->SetText(0);
-        if (!is_null($this->cp["p_parking_classification_id"]->GetValue()) and !strlen($this->cp["p_parking_classification_id"]->GetText()) and !is_bool($this->cp["p_parking_classification_id"]->GetValue())) 
-            $this->cp["p_parking_classification_id"]->SetValue($this->p_parking_classification_id->GetValue(true));
-        if (!strlen($this->cp["p_parking_classification_id"]->GetText()) and !is_bool($this->cp["p_parking_classification_id"]->GetValue(true))) 
-            $this->cp["p_parking_classification_id"]->SetText(0);
-        $this->SQL = "INSERT INTO t_vat_registration(t_vat_registration_id, created_by, updated_by, creation_date, updated_date, registration_date, \n" .
-        "t_customer_order_id, p_region_id_kelurahan, p_region_id_kecamatan, p_region_id, \n" .
-        "p_region_id_kel_owner, p_region_id_kec_owner, p_region_id_owner, company_name, address_name, \n" .
-        "p_job_position_id, company_brand, address_no, address_rt, address_rw, address_no_owner, address_rt_owner, \n" .
-        "address_rw_owner, phone_no, fax_no, zip_code, phone_no_owner, company_owner, mobile_no_owner, \n" .
-        "fax_no_owner, zip_code_owner, mobile_no, address_name_owner, email, company_additional_addr, p_hotel_grade_id, p_rest_service_type_id, p_entertaintment_type_id, p_parking_classification_id) \n" .
-        "VALUES(generate_id('sikp','t_vat_registration','t_vat_registration_id'), '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', sysdate, sysdate, to_date('" . $this->SQLValue($this->cp["registration_date"]->GetDBValue(), ccsText) . "','DD-MON-YYYY HH24:MI:SS'), \n" .
-        "" . $this->SQLValue($this->cp["t_customer_order_id"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["p_region_id_kelurahan"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["p_region_id_kecamatan"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["p_region_id"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["p_region_id_kel_owner"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["p_region_id_kec_owner"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["p_region_id_owner"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["company_name"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_name"]->GetDBValue(), ccsText) . "', \n" .
-        "" . $this->SQLValue($this->cp["p_job_position_id"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["company_brand"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_no"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_rt"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_rw"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_no_owner"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_rt_owner"]->GetDBValue(), ccsText) . "', \n" .
-        "'" . $this->SQLValue($this->cp["address_rw_owner"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["phone_no"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["fax_no"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["zip_code"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["phone_no_owner"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["company_owner"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["mobile_no_owner"]->GetDBValue(), ccsText) . "', \n" .
-        "'" . $this->SQLValue($this->cp["fax_no_owner"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["zip_code_owner"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["mobile_no"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_name_owner"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["email"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["company_additional_addr"]->GetDBValue(), ccsText) . "', \n" .
-        "decode(" . $this->SQLValue($this->cp["p_hotel_grade_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["p_hotel_grade_id"]->GetDBValue(), ccsFloat) . "), decode(" . $this->SQLValue($this->cp["p_rest_service_type_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["p_rest_service_type_id"]->GetDBValue(), ccsFloat) . "), decode(" . $this->SQLValue($this->cp["p_entertaintment_type_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["p_entertaintment_type_id"]->GetDBValue(), ccsFloat) . "), decode(" . $this->SQLValue($this->cp["p_parking_classification_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["p_parking_classification_id"]->GetDBValue(), ccsFloat) . "))";
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
-        if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->query($this->SQL);
-            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
-        }
-    }
-//End Insert Method
-
-//Update Method @629-C757EA13
+//Update Method @629-AA334510
     function Update()
     {
         global $CCSLocales;
@@ -1757,7 +1618,12 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->CmdExecution = true;
         $this->cp["t_vat_registration_id"] = new clsSQLParameter("ctrlt_vat_registration_id", ccsFloat, "", "", $this->t_vat_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["t_customer_order_id"] = new clsSQLParameter("ctrlt_customer_order_id", ccsFloat, "", "", $this->t_customer_order_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["npwpd"] = new clsSQLParameter("ctrlnpwpd", ccsText, "", "", $this->npwpd->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bap_employee_no_1"] = new clsSQLParameter("ctrlbap_employee_no_1", ccsText, "", "", $this->bap_employee_no_1->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bap_employee_no_2"] = new clsSQLParameter("ctrlbap_employee_no_2", ccsText, "", "", $this->bap_employee_no_2->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bap_employee_name_1"] = new clsSQLParameter("ctrlbap_employee_name_1", ccsText, "", "", $this->bap_employee_name_1->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bap_employee_name_2"] = new clsSQLParameter("ctrlbap_employee_name_2", ccsText, "", "", $this->bap_employee_name_2->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bap_employee_job_pos_1"] = new clsSQLParameter("ctrlbap_employee_job_pos_1", ccsText, "", "", $this->bap_employee_job_pos_1->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bap_employee_job_pos_2"] = new clsSQLParameter("ctrlbap_employee_job_pos_2", ccsText, "", "", $this->bap_employee_job_pos_2->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["t_vat_registration_id"]->GetValue()) and !strlen($this->cp["t_vat_registration_id"]->GetText()) and !is_bool($this->cp["t_vat_registration_id"]->GetValue())) 
             $this->cp["t_vat_registration_id"]->SetValue($this->t_vat_registration_id->GetValue(true));
@@ -1767,10 +1633,25 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
             $this->cp["t_customer_order_id"]->SetValue($this->t_customer_order_id->GetValue(true));
         if (!strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue(true))) 
             $this->cp["t_customer_order_id"]->SetText(0);
-        if (!is_null($this->cp["npwpd"]->GetValue()) and !strlen($this->cp["npwpd"]->GetText()) and !is_bool($this->cp["npwpd"]->GetValue())) 
-            $this->cp["npwpd"]->SetValue($this->npwpd->GetValue(true));
+        if (!is_null($this->cp["bap_employee_no_1"]->GetValue()) and !strlen($this->cp["bap_employee_no_1"]->GetText()) and !is_bool($this->cp["bap_employee_no_1"]->GetValue())) 
+            $this->cp["bap_employee_no_1"]->SetValue($this->bap_employee_no_1->GetValue(true));
+        if (!is_null($this->cp["bap_employee_no_2"]->GetValue()) and !strlen($this->cp["bap_employee_no_2"]->GetText()) and !is_bool($this->cp["bap_employee_no_2"]->GetValue())) 
+            $this->cp["bap_employee_no_2"]->SetValue($this->bap_employee_no_2->GetValue(true));
+        if (!is_null($this->cp["bap_employee_name_1"]->GetValue()) and !strlen($this->cp["bap_employee_name_1"]->GetText()) and !is_bool($this->cp["bap_employee_name_1"]->GetValue())) 
+            $this->cp["bap_employee_name_1"]->SetValue($this->bap_employee_name_1->GetValue(true));
+        if (!is_null($this->cp["bap_employee_name_2"]->GetValue()) and !strlen($this->cp["bap_employee_name_2"]->GetText()) and !is_bool($this->cp["bap_employee_name_2"]->GetValue())) 
+            $this->cp["bap_employee_name_2"]->SetValue($this->bap_employee_name_2->GetValue(true));
+        if (!is_null($this->cp["bap_employee_job_pos_1"]->GetValue()) and !strlen($this->cp["bap_employee_job_pos_1"]->GetText()) and !is_bool($this->cp["bap_employee_job_pos_1"]->GetValue())) 
+            $this->cp["bap_employee_job_pos_1"]->SetValue($this->bap_employee_job_pos_1->GetValue(true));
+        if (!is_null($this->cp["bap_employee_job_pos_2"]->GetValue()) and !strlen($this->cp["bap_employee_job_pos_2"]->GetText()) and !is_bool($this->cp["bap_employee_job_pos_2"]->GetValue())) 
+            $this->cp["bap_employee_job_pos_2"]->SetValue($this->bap_employee_job_pos_2->GetValue(true));
         $this->SQL = "UPDATE t_vat_registration SET \n" .
-        "npwpd = '" . $this->SQLValue($this->cp["npwpd"]->GetDBValue(), ccsText) . "'\n" .
+        "bap_employee_no_1 = '" . $this->SQLValue($this->cp["bap_employee_no_1"]->GetDBValue(), ccsText) . "',\n" .
+        "bap_employee_no_2 = '" . $this->SQLValue($this->cp["bap_employee_no_2"]->GetDBValue(), ccsText) . "',\n" .
+        "bap_employee_name_1 = '" . $this->SQLValue($this->cp["bap_employee_name_1"]->GetDBValue(), ccsText) . "',\n" .
+        "bap_employee_name_2 = '" . $this->SQLValue($this->cp["bap_employee_name_2"]->GetDBValue(), ccsText) . "',\n" .
+        "bap_employee_job_pos_1 = '" . $this->SQLValue($this->cp["bap_employee_job_pos_1"]->GetDBValue(), ccsText) . "',\n" .
+        "bap_employee_job_pos_2 = '" . $this->SQLValue($this->cp["bap_employee_job_pos_2"]->GetDBValue(), ccsText) . "'\n" .
         "WHERE  t_customer_order_id = " . $this->SQLValue($this->cp["t_customer_order_id"]->GetDBValue(), ccsFloat) . " \n" .
         "AND t_vat_registration_id = " . $this->SQLValue($this->cp["t_vat_registration_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
@@ -1780,34 +1661,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         }
     }
 //End Update Method
-
-//Delete Method @629-98C92772
-    function Delete()
-    {
-        global $CCSLocales;
-        global $DefaultDateFormat;
-        $this->CmdExecution = true;
-        $this->cp["t_vat_registration_id"] = new clsSQLParameter("ctrlt_vat_registration_id", ccsFloat, "", "", $this->t_vat_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["t_customer_order_id"] = new clsSQLParameter("ctrlt_customer_order_id", ccsFloat, "", "", $this->t_customer_order_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
-        if (!is_null($this->cp["t_vat_registration_id"]->GetValue()) and !strlen($this->cp["t_vat_registration_id"]->GetText()) and !is_bool($this->cp["t_vat_registration_id"]->GetValue())) 
-            $this->cp["t_vat_registration_id"]->SetValue($this->t_vat_registration_id->GetValue(true));
-        if (!strlen($this->cp["t_vat_registration_id"]->GetText()) and !is_bool($this->cp["t_vat_registration_id"]->GetValue(true))) 
-            $this->cp["t_vat_registration_id"]->SetText(0);
-        if (!is_null($this->cp["t_customer_order_id"]->GetValue()) and !strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue())) 
-            $this->cp["t_customer_order_id"]->SetValue($this->t_customer_order_id->GetValue(true));
-        if (!strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue(true))) 
-            $this->cp["t_customer_order_id"]->SetText(0);
-        $this->SQL = "DELETE FROM t_vat_registration \n" .
-        "WHERE  t_vat_registration_id = " . $this->SQLValue($this->cp["t_vat_registration_id"]->GetDBValue(), ccsFloat) . " \n" .
-        "AND t_customer_order_id = " . $this->SQLValue($this->cp["t_customer_order_id"]->GetDBValue(), ccsFloat) . "";
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
-        if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->query($this->SQL);
-            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
-        }
-    }
-//End Delete Method
 
 } //End t_vat_registrationFormDataSource Class @629-FCB6E20C
 

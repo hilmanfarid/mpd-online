@@ -24,12 +24,6 @@ function t_vat_registrationForm_Button2_OnClick(& $sender)
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_Button2_OnClick
 
-//Custom Code @902-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 //Close t_vat_registrationForm_Button2_OnClick @901-30B4EE07
     return $t_vat_registrationForm_Button2_OnClick;
 }
@@ -43,12 +37,6 @@ function t_vat_registrationForm_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_BeforeSelect
-
-//Custom Code @686-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
 //Close t_vat_registrationForm_BeforeSelect @629-D64E68A4
     return $t_vat_registrationForm_BeforeSelect;
@@ -64,12 +52,6 @@ function t_vat_registrationForm_BeforeInsert(& $sender)
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_BeforeInsert
 
-//Custom Code @687-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 //Close t_vat_registrationForm_BeforeInsert @629-23179109
     return $t_vat_registrationForm_BeforeInsert;
 }
@@ -84,55 +66,54 @@ function t_vat_registrationForm_BeforeShow(& $sender)
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_BeforeShow
 
-//Custom Code @874-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	/*
-	if($t_vat_registrationForm->Hidden1->GetValue() == ""){
-		$t_vat_registrationForm->Button2->Visible = false;
-		$t_vat_registrationForm->Button_Update->Visible = true;
-		$t_vat_registrationForm->Button3->Visible = true;
-	}else{
-		$t_vat_registrationForm->Button2->Visible = true;
-		$t_vat_registrationForm->Button_Update->Visible = false;
-		$t_vat_registrationForm->Button3->Visible = false;
-	}
-	*/
-	$id = $t_vat_registrationForm->p_rqst_type_id->GetValue();
-	if($id == 1){
-  		$t_vat_registrationForm->Label1->setValue("Kelas Hotel");
-  		$t_vat_registrationForm->p_hotel_grade_id->Visible = true;
-  		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
-  		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
-  		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
-  	}else if($id == 2){
-  		$t_vat_registrationForm->Label1->setValue("Jenis Pelayanan");
-  		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
-  		$t_vat_registrationForm->p_rest_service_type_id->Visible = true;
-  		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
-  		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
-  	}else if($id == 3){
-  		$t_vat_registrationForm->Label1->setValue("Jenis Hiburan");
-  		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
-  		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
-  		$t_vat_registrationForm->p_entertaintment_type_id->Visible = true;
-  		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
-  	}else if($id == 4){
-  		$t_vat_registrationForm->Label1->setValue("Klasifikasi Temapat Parkir");
-  		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
-  		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
-  		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
-  		$t_vat_registrationForm->p_parking_classification_id->Visible = true;
+  // -------------------------
+      // Write your own code here.
+  	/*
+  	if($t_vat_registrationForm->Hidden1->GetValue() == ""){
+  		$t_vat_registrationForm->Button2->Visible = false;
+  		$t_vat_registrationForm->Button_Update->Visible = true;
+  		$t_vat_registrationForm->Button3->Visible = true;
   	}else{
-  		$t_vat_registrationForm->Label1->setValue("");
-  		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
-  		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
-  		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
-  		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
+  		$t_vat_registrationForm->Button2->Visible = true;
+  		$t_vat_registrationForm->Button_Update->Visible = false;
+  		$t_vat_registrationForm->Button3->Visible = false;
   	}
-	$t_vat_registrationForm->Label3->SetValue("Verifikasi Berhasil");
-// -------------------------
-//End Custom Code
+  	*/
+  	$id = $t_vat_registrationForm->p_rqst_type_id->GetValue();
+  	if($id == 1){
+    		$t_vat_registrationForm->Label1->setValue("Kelas Hotel");
+    		$t_vat_registrationForm->p_hotel_grade_id->Visible = true;
+    		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
+    		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
+    		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
+    	}else if($id == 2){
+    		$t_vat_registrationForm->Label1->setValue("Jenis Pelayanan");
+    		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
+    		$t_vat_registrationForm->p_rest_service_type_id->Visible = true;
+    		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
+    		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
+    	}else if($id == 3){
+    		$t_vat_registrationForm->Label1->setValue("Jenis Hiburan");
+    		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
+    		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
+    		$t_vat_registrationForm->p_entertaintment_type_id->Visible = true;
+    		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
+    	}else if($id == 4){
+    		$t_vat_registrationForm->Label1->setValue("Klasifikasi Temapat Parkir");
+    		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
+    		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
+    		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
+    		$t_vat_registrationForm->p_parking_classification_id->Visible = true;
+    	}else{
+    		$t_vat_registrationForm->Label1->setValue("");
+    		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
+    		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
+    		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
+    		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
+    	}
+  	$t_vat_registrationForm->Label3->SetValue("Verifikasi Berhasil");
+  // -------------------------
+
 
 //Close t_vat_registrationForm_BeforeShow @629-82B670AF
     return $t_vat_registrationForm_BeforeShow;
@@ -147,12 +128,6 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_customer_order_ro_bap; //Compatibility
 //End Page_OnInitializeView
-
-//Custom Code @66-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
