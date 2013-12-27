@@ -17,8 +17,9 @@
                 params += "&date_start_laporan="+document.getElementById("t_laporan_harian_sptpddate_start_laporan").value;
                 params += "&date_end_laporan="+document.getElementById("t_laporan_harian_sptpddate_end_laporan").value;
                 params += "&p_year_period_id="+document.getElementById("t_laporan_harian_sptpdp_year_period_id").value;
-				params += "&p_vat_type_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_id").value;
-				params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_dtl_id").value; 
+                                params += "&p_vat_type_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_id").value;
+                                params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_dtl_id").value;
+                                params += "&vat_code_dtl="+document.getElementById("t_laporan_harian_sptpdvat_code_dtl").value;  
                 window.open("t_laporan_harian_sptpd.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
 </script>
@@ -95,12 +96,15 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     </tr>
  
                     <tr>
-                      <td align="left">Ayat Pajak&nbsp;</td> 
+                      <td align="left">Jenis&nbsp;Pajak&nbsp;</td> 
                       <td>
                         <p>&nbsp;<input id="t_laporan_harian_sptpdvat_code" class="ControlsRQ" name="{vat_code_Name}" readonly maxlength="32" value="{vat_code}" size="32"><img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></p>
- 
-                        <p><input id="t_laporan_harian_sptpdvat_code_dtl" onchange="alert('changed')" class="ControlsRQ" name="{vat_code_dtl_Name}" readonly maxlength="32" value="{vat_code_dtl}" size="32"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_dtl_id" onchange="alert('tes');" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden"></p>
                       </td>
+                    </tr>
+ 
+                    <tr>
+                      <td align="left">&nbsp;Ayat Pajak</td> 
+                      <td>&nbsp; <input id="t_laporan_harian_sptpdvat_code_dtl" onchange="alert('changed')" class="ControlsRQ" name="{vat_code_dtl_Name}" readonly maxlength="32" value="{vat_code_dtl}" size="32"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_dtl_id" onchange="alert('tes');" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden"></td>
                     </tr>
  
                     <tr>
