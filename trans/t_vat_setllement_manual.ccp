@@ -106,7 +106,7 @@ WHERE  p_rqst_type_id = {p_rqst_type_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="163" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_trans_amount" caption="Jumlah Order" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_trans_amount" format="#,##0.00">
+				<TextBox id="163" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_trans_amount" caption="Jumlah Order" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_trans_amount" format="#,##0.00" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -166,7 +166,7 @@ WHERE  p_rqst_type_id = {p_rqst_type_id}">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="169" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormvat_code_dtl" required="True" caption="Ayat Pajak">
+				<TextBox id="169" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormvat_code_dtl" required="True" caption="Tipe Ayat">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -178,19 +178,19 @@ WHERE  p_rqst_type_id = {p_rqst_type_id}">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="172" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl_cls" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormvat_code_dtl_cls" required="False" caption="Ayat Pajak">
+				<TextBox id="172" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl_cls" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormvat_code_dtl_cls" required="False" caption="Kelas">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="173" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_cls_id" PathID="t_vat_setllementFormp_vat_type_dtl_cls_id" fieldSource="p_vat_type_dtl_cls_id">
+				<Hidden id="173" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_cls_id" PathID="t_vat_setllementFormp_vat_type_dtl_cls_id" fieldSource="p_vat_type_dtl_cls_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 			</Events>
 			<TableParameters>
