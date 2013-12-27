@@ -16,7 +16,9 @@
                 params += "&year_code="+document.getElementById("t_laporan_harian_sptpdyear_code").value;
                 params += "&date_start_laporan="+document.getElementById("t_laporan_harian_sptpddate_start_laporan").value;
                 params += "&date_end_laporan="+document.getElementById("t_laporan_harian_sptpddate_end_laporan").value;
-                params += "&p_year_period_id="+document.getElementById("t_laporan_harian_sptpdp_year_period_id").value; 
+                params += "&p_year_period_id="+document.getElementById("t_laporan_harian_sptpdp_year_period_id").value;
+				params += "&p_vat_type_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_id").value;
+				params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_dtl_id").value; 
                 window.open("t_laporan_harian_sptpd.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
 </script>
@@ -55,7 +57,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -93,6 +95,15 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     </tr>
  
                     <tr>
+                      <td align="left">Ayat Pajak&nbsp;</td> 
+                      <td>
+                        <p>&nbsp;<input id="t_laporan_harian_sptpdvat_code" class="ControlsRQ" name="{vat_code_Name}" readonly maxlength="32" value="{vat_code}" size="32"><img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></p>
+ 
+                        <p><input id="t_laporan_harian_sptpdvat_code_dtl" onchange="alert('changed')" class="ControlsRQ" name="{vat_code_dtl_Name}" readonly maxlength="32" value="{vat_code_dtl}" size="32"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_dtl_id" onchange="alert('tes');" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden"></p>
+                      </td>
+                    </tr>
+ 
+                    <tr>
                       <td colspan="2" align="right">
                         <!-- BEGIN Button Button1 --><input id="t_laporan_harian_sptpdButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
                     </tr>
@@ -117,6 +128,18 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 function lov_vat_type() {
                         getFrom_LOV('t_laporan_harian_sptpd','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
+        function lov_ayatpajak() {
+                        getFrom_LOV('t_laporan_harian_sptpd','p_vat_type_id,vat_code','lov_vat_type.php');
+                }
+function lov_tipeayat() {
+        var p_vat_type_id = document.getElementById("t_laporan_harian_sptpdp_vat_type_id").value;
+        if (p_vat_type_id != "" && p_vat_type_id != 0 && p_vat_type_id != false && p_vat_type_id != undefined &&  p_vat_type_id != null){
+           getFrom_LOV('t_laporan_harian_sptpd','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=p_vat_type_dtl&FIELD_0=p_vat_type_dtl_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Tipe Ayat&LABEL2=Deskripsi&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+        }else{
+            alert("Ayat Pajak belum Diisi");
+        }
+}
+
   </script>
   </body>
   </html>

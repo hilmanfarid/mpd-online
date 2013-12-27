@@ -1,16 +1,17 @@
 <?php
-//BindEvents Method @1-95601BB6
+//BindEvents Method @1-A6F5B247
 function BindEvents()
 {
     global $t_bphtb_registrationForm;
     $t_bphtb_registrationForm->Button2->CCSEvents["OnClick"] = "t_bphtb_registrationForm_Button2_OnClick";
+    $t_bphtb_registrationForm->Button3->CCSEvents["OnClick"] = "t_bphtb_registrationForm_Button3_OnClick";
     $t_bphtb_registrationForm->CCSEvents["BeforeSelect"] = "t_bphtb_registrationForm_BeforeSelect";
     $t_bphtb_registrationForm->CCSEvents["BeforeInsert"] = "t_bphtb_registrationForm_BeforeInsert";
     $t_bphtb_registrationForm->ds->CCSEvents["AfterExecuteDelete"] = "t_bphtb_registrationForm_ds_AfterExecuteDelete";
 }
 //End BindEvents Method
 
-//t_bphtb_registrationForm_Button2_OnClick @1037-41066659
+//t_bphtb_registrationForm_Button2_OnClick @71-41066659
 function t_bphtb_registrationForm_Button2_OnClick(& $sender)
 {
     $t_bphtb_registrationForm_Button2_OnClick = true;
@@ -19,18 +20,38 @@ function t_bphtb_registrationForm_Button2_OnClick(& $sender)
     global $t_bphtb_registrationForm; //Compatibility
 //End t_bphtb_registrationForm_Button2_OnClick
 
-//Custom Code @902-2A29BDB7
+//Custom Code @72-2A29BDB7
 // -------------------------
     // Write your own code here.
 // -------------------------
 //End Custom Code
 
-//Close t_bphtb_registrationForm_Button2_OnClick @1037-DE281A2F
+//Close t_bphtb_registrationForm_Button2_OnClick @71-DE281A2F
     return $t_bphtb_registrationForm_Button2_OnClick;
 }
 //End Close t_bphtb_registrationForm_Button2_OnClick
 
-//t_bphtb_registrationForm_BeforeSelect @94-50B4A263
+//t_bphtb_registrationForm_Button3_OnClick @73-6F1B2C91
+function t_bphtb_registrationForm_Button3_OnClick(& $sender)
+{
+    $t_bphtb_registrationForm_Button3_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_bphtb_registrationForm; //Compatibility
+//End t_bphtb_registrationForm_Button3_OnClick
+
+//Custom Code @74-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationForm_Button3_OnClick @73-1FA6C5EF
+    return $t_bphtb_registrationForm_Button3_OnClick;
+}
+//End Close t_bphtb_registrationForm_Button3_OnClick
+
+//t_bphtb_registrationForm_BeforeSelect @2-50B4A263
 function t_bphtb_registrationForm_BeforeSelect(& $sender)
 {
     $t_bphtb_registrationForm_BeforeSelect = true;
@@ -39,18 +60,18 @@ function t_bphtb_registrationForm_BeforeSelect(& $sender)
     global $t_bphtb_registrationForm; //Compatibility
 //End t_bphtb_registrationForm_BeforeSelect
 
-//Custom Code @842-2A29BDB7
+//Custom Code @77-2A29BDB7
 // -------------------------
     // Write your own code here.
 // -------------------------
 //End Custom Code
 
-//Close t_bphtb_registrationForm_BeforeSelect @94-EE18DB4A
+//Close t_bphtb_registrationForm_BeforeSelect @2-EE18DB4A
     return $t_bphtb_registrationForm_BeforeSelect;
 }
 //End Close t_bphtb_registrationForm_BeforeSelect
 
-//t_bphtb_registrationForm_BeforeInsert @94-DD9A285F
+//t_bphtb_registrationForm_BeforeInsert @2-DD9A285F
 function t_bphtb_registrationForm_BeforeInsert(& $sender)
 {
     $t_bphtb_registrationForm_BeforeInsert = true;
@@ -59,18 +80,18 @@ function t_bphtb_registrationForm_BeforeInsert(& $sender)
     global $t_bphtb_registrationForm; //Compatibility
 //End t_bphtb_registrationForm_BeforeInsert
 
-//Custom Code @853-2A29BDB7
+//Custom Code @78-2A29BDB7
 // -------------------------
     // Write your own code here.
 // -------------------------
 //End Custom Code
 
-//Close t_bphtb_registrationForm_BeforeInsert @94-1B4122E7
+//Close t_bphtb_registrationForm_BeforeInsert @2-1B4122E7
     return $t_bphtb_registrationForm_BeforeInsert;
 }
 //End Close t_bphtb_registrationForm_BeforeInsert
 
-//t_bphtb_registrationForm_ds_AfterExecuteDelete @94-5B1BB40B
+//t_bphtb_registrationForm_ds_AfterExecuteDelete @2-5B1BB40B
 function t_bphtb_registrationForm_ds_AfterExecuteDelete(& $sender)
 {
     $t_bphtb_registrationForm_ds_AfterExecuteDelete = true;
@@ -79,13 +100,13 @@ function t_bphtb_registrationForm_ds_AfterExecuteDelete(& $sender)
     global $t_bphtb_registrationForm; //Compatibility
 //End t_bphtb_registrationForm_ds_AfterExecuteDelete
 
-//Custom Code @954-2A29BDB7
+//Custom Code @79-2A29BDB7
 // -------------------------
     // Write your own code here.
 // -------------------------
 //End Custom Code
 
-//Close t_bphtb_registrationForm_ds_AfterExecuteDelete @94-1AE8B690
+//Close t_bphtb_registrationForm_ds_AfterExecuteDelete @2-1AE8B690
     return $t_bphtb_registrationForm_ds_AfterExecuteDelete;
 }
 //End Close t_bphtb_registrationForm_ds_AfterExecuteDelete
