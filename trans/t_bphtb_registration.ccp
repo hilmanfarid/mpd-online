@@ -242,8 +242,8 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 							<JoinLinks/>
 							<Fields/>
 							<Controls>
-								<Control id="952" name="npop_tkp" source="npoptkp" propertyValue="value" sourceId="936"/>
-							</Controls>
+								<Control id="1002"/>
+</Controls>
 							<ControlPoints/>
 							<Features/>
 						</PTAutoFill>

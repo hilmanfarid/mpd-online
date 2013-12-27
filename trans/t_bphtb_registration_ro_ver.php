@@ -10,9 +10,9 @@ include_once(RelativePath . "/Navigator.php");
 include_once(RelativePath . "/Services.php");
 //End Include Common Files
 
-class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9C17DAB3
+class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C17DAB3
 
-//Variables @94-D6FF3E86
+//Variables @2-D6FF3E86
 
     // Public variables
     var $ComponentType = "Record";
@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-A2F7D37E
+//Class_Initialize Event @2-EC4AE3A9
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -107,36 +107,26 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->object_kota->Required = true;
             $this->object_p_region_id = & new clsControl(ccsHidden, "object_p_region_id", "Kota/Kabupaten - WP", ccsFloat, "", CCGetRequestParam("object_p_region_id", $Method, NULL), $this);
             $this->object_p_region_id->Required = true;
-            $this->land_area = & new clsControl(ccsTextBox, "land_area", "land_area", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_area", $Method, NULL), $this);
-            $this->land_price_per_m = & new clsControl(ccsTextBox, "land_price_per_m", "land_price_per_m", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_price_per_m", $Method, NULL), $this);
-            $this->land_total_price = & new clsControl(ccsTextBox, "land_total_price", "land_total_price", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_total_price", $Method, NULL), $this);
-            $this->building_area = & new clsControl(ccsTextBox, "building_area", "building_area", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_area", $Method, NULL), $this);
-            $this->building_price_per_m = & new clsControl(ccsTextBox, "building_price_per_m", "building_price_per_m", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_price_per_m", $Method, NULL), $this);
-            $this->building_total_price = & new clsControl(ccsTextBox, "building_total_price", "building_total_price", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_total_price", $Method, NULL), $this);
+            $this->land_area = & new clsControl(ccsTextBox, "land_area", "land_area", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("land_area", $Method, NULL), $this);
+            $this->land_price_per_m = & new clsControl(ccsTextBox, "land_price_per_m", "land_price_per_m", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("land_price_per_m", $Method, NULL), $this);
+            $this->land_total_price = & new clsControl(ccsTextBox, "land_total_price", "land_total_price", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("land_total_price", $Method, NULL), $this);
+            $this->building_area = & new clsControl(ccsTextBox, "building_area", "building_area", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("building_area", $Method, NULL), $this);
+            $this->building_price_per_m = & new clsControl(ccsTextBox, "building_price_per_m", "building_price_per_m", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("building_price_per_m", $Method, NULL), $this);
+            $this->building_total_price = & new clsControl(ccsTextBox, "building_total_price", "building_total_price", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("building_total_price", $Method, NULL), $this);
             $this->wp_rt = & new clsControl(ccsTextBox, "wp_rt", "wp_rt", ccsText, "", CCGetRequestParam("wp_rt", $Method, NULL), $this);
             $this->wp_rw = & new clsControl(ccsTextBox, "wp_rw", "wp_rw", ccsText, "", CCGetRequestParam("wp_rw", $Method, NULL), $this);
             $this->object_rt = & new clsControl(ccsTextBox, "object_rt", "object_rt", ccsText, "", CCGetRequestParam("object_rt", $Method, NULL), $this);
             $this->object_rw = & new clsControl(ccsTextBox, "object_rw", "object_rw", ccsText, "", CCGetRequestParam("object_rw", $Method, NULL), $this);
             $this->njop_pbb = & new clsControl(ccsTextBox, "njop_pbb", "njop_pbb", ccsText, "", CCGetRequestParam("njop_pbb", $Method, NULL), $this);
             $this->object_address_name = & new clsControl(ccsTextBox, "object_address_name", "object_address_name", ccsText, "", CCGetRequestParam("object_address_name", $Method, NULL), $this);
-            $this->p_bphtb_legal_doc_type_id = & new clsControl(ccsListBox, "p_bphtb_legal_doc_type_id", "p_bphtb_legal_doc_type_id", ccsText, "", CCGetRequestParam("p_bphtb_legal_doc_type_id", $Method, NULL), $this);
-            $this->p_bphtb_legal_doc_type_id->DSType = dsSQL;
-            $this->p_bphtb_legal_doc_type_id->DataSource = new clsDBConnSIKP();
-            $this->p_bphtb_legal_doc_type_id->ds = & $this->p_bphtb_legal_doc_type_id->DataSource;
-            list($this->p_bphtb_legal_doc_type_id->BoundColumn, $this->p_bphtb_legal_doc_type_id->TextColumn, $this->p_bphtb_legal_doc_type_id->DBFormat) = array("p_bphtb_legal_doc_type_id", "code", "");
-            $this->p_bphtb_legal_doc_type_id->DataSource->SQL = "select p_bphtb_legal_doc_type_id,code\n" .
-            "from p_bphtb_legal_doc_type bphtb_legal\n" .
-            "left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id\n" .
-            "";
-            $this->p_bphtb_legal_doc_type_id->DataSource->Order = "";
-            $this->npop = & new clsControl(ccsTextBox, "npop", "npop", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("npop", $Method, NULL), $this);
-            $this->npop_tkp = & new clsControl(ccsTextBox, "npop_tkp", "npop_tkp", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("npop_tkp", $Method, NULL), $this);
-            $this->npop_kp = & new clsControl(ccsTextBox, "npop_kp", "npop_kp", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("npop_kp", $Method, NULL), $this);
-            $this->bphtb_amt = & new clsControl(ccsTextBox, "bphtb_amt", "bphtb_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("bphtb_amt", $Method, NULL), $this);
-            $this->bphtb_amt_final = & new clsControl(ccsTextBox, "bphtb_amt_final", "bphtb_amt_final", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("bphtb_amt_final", $Method, NULL), $this);
-            $this->bphtb_discount = & new clsControl(ccsTextBox, "bphtb_discount", "bphtb_discount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("bphtb_discount", $Method, NULL), $this);
+            $this->npop = & new clsControl(ccsTextBox, "npop", "npop", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("npop", $Method, NULL), $this);
+            $this->npop_tkp = & new clsControl(ccsTextBox, "npop_tkp", "npop_tkp", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("npop_tkp", $Method, NULL), $this);
+            $this->npop_kp = & new clsControl(ccsTextBox, "npop_kp", "npop_kp", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("npop_kp", $Method, NULL), $this);
+            $this->bphtb_amt = & new clsControl(ccsTextBox, "bphtb_amt", "bphtb_amt", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("bphtb_amt", $Method, NULL), $this);
+            $this->bphtb_amt_final = & new clsControl(ccsTextBox, "bphtb_amt_final", "bphtb_amt_final", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("bphtb_amt_final", $Method, NULL), $this);
+            $this->bphtb_discount = & new clsControl(ccsTextBox, "bphtb_discount", "bphtb_discount", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("bphtb_discount", $Method, NULL), $this);
             $this->description = & new clsControl(ccsTextBox, "description", "description", ccsText, "", CCGetRequestParam("description", $Method, NULL), $this);
-            $this->market_price = & new clsControl(ccsTextBox, "market_price", "market_price", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("market_price", $Method, NULL), $this);
+            $this->market_price = & new clsControl(ccsTextBox, "market_price", "market_price", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("market_price", $Method, NULL), $this);
             $this->phone_no = & new clsControl(ccsTextBox, "phone_no", "phone_no", ccsText, "", CCGetRequestParam("phone_no", $Method, NULL), $this);
             $this->mobile_phone_no = & new clsControl(ccsTextBox, "mobile_phone_no", "mobile_phone_no", ccsText, "", CCGetRequestParam("mobile_phone_no", $Method, NULL), $this);
             $this->total_price = & new clsControl(ccsTextBox, "total_price", "total_price", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_price", $Method, NULL), $this);
@@ -165,10 +155,20 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->SLOT_4 = & new clsControl(ccsHidden, "SLOT_4", "SLOT_4", ccsText, "", CCGetRequestParam("SLOT_4", $Method, NULL), $this);
             $this->SLOT_5 = & new clsControl(ccsHidden, "SLOT_5", "SLOT_5", ccsText, "", CCGetRequestParam("SLOT_5", $Method, NULL), $this);
             $this->MESSAGE = & new clsControl(ccsHidden, "MESSAGE", "MESSAGE", ccsText, "", CCGetRequestParam("MESSAGE", $Method, NULL), $this);
-            $this->Button5 = & new clsButton("Button5", $Method, $this);
-            $this->Button4 = & new clsButton("Button4", $Method, $this);
-            $this->Button3 = & new clsButton("Button3", $Method, $this);
             $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->Button3 = & new clsButton("Button3", $Method, $this);
+            $this->p_bphtb_legal_doc_type_id = & new clsControl(ccsListBox, "p_bphtb_legal_doc_type_id", "p_bphtb_legal_doc_type_id", ccsText, "", CCGetRequestParam("p_bphtb_legal_doc_type_id", $Method, NULL), $this);
+            $this->p_bphtb_legal_doc_type_id->DSType = dsSQL;
+            $this->p_bphtb_legal_doc_type_id->DataSource = new clsDBConnSIKP();
+            $this->p_bphtb_legal_doc_type_id->ds = & $this->p_bphtb_legal_doc_type_id->DataSource;
+            list($this->p_bphtb_legal_doc_type_id->BoundColumn, $this->p_bphtb_legal_doc_type_id->TextColumn, $this->p_bphtb_legal_doc_type_id->DBFormat) = array("p_bphtb_legal_doc_type_id", "code", "");
+            $this->p_bphtb_legal_doc_type_id->DataSource->SQL = "select p_bphtb_legal_doc_type_id,code\n" .
+            "from p_bphtb_legal_doc_type bphtb_legal\n" .
+            "left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id\n" .
+            "";
+            $this->p_bphtb_legal_doc_type_id->DataSource->Order = "";
+            $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
+            $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsText, "", CCGetRequestParam("p_rqst_type_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -197,7 +197,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Class_Initialize Event
 
-//Initialize Method @94-830DBF3E
+//Initialize Method @2-830DBF3E
     function Initialize()
     {
 
@@ -208,7 +208,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-575ED0F5
+//Validate Method @2-9A127693
     function Validate()
     {
         global $CCSLocales;
@@ -241,7 +241,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->object_rw->Validate() && $Validation);
         $Validation = ($this->njop_pbb->Validate() && $Validation);
         $Validation = ($this->object_address_name->Validate() && $Validation);
-        $Validation = ($this->p_bphtb_legal_doc_type_id->Validate() && $Validation);
         $Validation = ($this->npop->Validate() && $Validation);
         $Validation = ($this->npop_tkp->Validate() && $Validation);
         $Validation = ($this->npop_kp->Validate() && $Validation);
@@ -278,6 +277,9 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->SLOT_4->Validate() && $Validation);
         $Validation = ($this->SLOT_5->Validate() && $Validation);
         $Validation = ($this->MESSAGE->Validate() && $Validation);
+        $Validation = ($this->p_bphtb_legal_doc_type_id->Validate() && $Validation);
+        $Validation = ($this->t_customer_order_id->Validate() && $Validation);
+        $Validation = ($this->p_rqst_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -306,7 +308,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->object_rw->Errors->Count() == 0);
         $Validation =  $Validation && ($this->njop_pbb->Errors->Count() == 0);
         $Validation =  $Validation && ($this->object_address_name->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_bphtb_legal_doc_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->npop->Errors->Count() == 0);
         $Validation =  $Validation && ($this->npop_tkp->Errors->Count() == 0);
         $Validation =  $Validation && ($this->npop_kp->Errors->Count() == 0);
@@ -343,11 +344,14 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->SLOT_4->Errors->Count() == 0);
         $Validation =  $Validation && ($this->SLOT_5->Errors->Count() == 0);
         $Validation =  $Validation && ($this->MESSAGE->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_bphtb_legal_doc_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-12119579
+//CheckErrors Method @2-9AE600B3
     function CheckErrors()
     {
         $errors = false;
@@ -378,7 +382,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->object_rw->Errors->Count());
         $errors = ($errors || $this->njop_pbb->Errors->Count());
         $errors = ($errors || $this->object_address_name->Errors->Count());
-        $errors = ($errors || $this->p_bphtb_legal_doc_type_id->Errors->Count());
         $errors = ($errors || $this->npop->Errors->Count());
         $errors = ($errors || $this->npop_tkp->Errors->Count());
         $errors = ($errors || $this->npop_kp->Errors->Count());
@@ -415,13 +418,16 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->SLOT_4->Errors->Count());
         $errors = ($errors || $this->SLOT_5->Errors->Count());
         $errors = ($errors || $this->MESSAGE->Errors->Count());
+        $errors = ($errors || $this->p_bphtb_legal_doc_type_id->Errors->Count());
+        $errors = ($errors || $this->t_customer_order_id->Errors->Count());
+        $errors = ($errors || $this->p_rqst_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
     }
 //End CheckErrors Method
 
-//MasterDetail @94-ED598703
+//MasterDetail @2-ED598703
 function SetPrimaryKeys($keyArray)
 {
     $this->PrimaryKeys = $keyArray;
@@ -436,7 +442,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-E9A45C98
+//Operation Method @2-B89CE8C2
     function Operation()
     {
         if(!$this->Visible)
@@ -461,14 +467,10 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Delete";
             } else if($this->Button_Cancel->Pressed) {
                 $this->PressedButton = "Button_Cancel";
-            } else if($this->Button5->Pressed) {
-                $this->PressedButton = "Button5";
-            } else if($this->Button4->Pressed) {
-                $this->PressedButton = "Button4";
-            } else if($this->Button3->Pressed) {
-                $this->PressedButton = "Button3";
             } else if($this->Button2->Pressed) {
                 $this->PressedButton = "Button2";
+            } else if($this->Button3->Pressed) {
+                $this->PressedButton = "Button3";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -493,20 +495,12 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }
-            } else if($this->PressedButton == "Button5") {
-                if(!CCGetEvent($this->Button5->CCSEvents, "OnClick", $this->Button5)) {
-                    $Redirect = "";
-                }
-            } else if($this->PressedButton == "Button4") {
-                if(!CCGetEvent($this->Button4->CCSEvents, "OnClick", $this->Button4)) {
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button3") {
                 if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
-                    $Redirect = "";
-                }
-            } else if($this->PressedButton == "Button2") {
-                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -518,7 +512,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @94-451CBBE8
+//InsertRow Method @2-451CBBE8
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -561,7 +555,7 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @94-3DDAADC5
+//UpdateRow Method @2-3DDAADC5
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -604,7 +598,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//DeleteRow Method @94-299D98C3
+//DeleteRow Method @2-299D98C3
     function DeleteRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
@@ -615,7 +609,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-6850A702
+//Show Method @2-EA3DF806
     function Show()
     {
         global $CCSUseAmp;
@@ -671,7 +665,6 @@ function GetPrimaryKey($keyName)
                     $this->object_rw->SetValue($this->DataSource->object_rw->GetValue());
                     $this->njop_pbb->SetValue($this->DataSource->njop_pbb->GetValue());
                     $this->object_address_name->SetValue($this->DataSource->object_address_name->GetValue());
-                    $this->p_bphtb_legal_doc_type_id->SetValue($this->DataSource->p_bphtb_legal_doc_type_id->GetValue());
                     $this->npop->SetValue($this->DataSource->npop->GetValue());
                     $this->npop_tkp->SetValue($this->DataSource->npop_tkp->GetValue());
                     $this->npop_kp->SetValue($this->DataSource->npop_kp->GetValue());
@@ -683,6 +676,9 @@ function GetPrimaryKey($keyName)
                     $this->phone_no->SetValue($this->DataSource->phone_no->GetValue());
                     $this->mobile_phone_no->SetValue($this->DataSource->mobile_phone_no->GetValue());
                     $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
+                    $this->p_bphtb_legal_doc_type_id->SetValue($this->DataSource->p_bphtb_legal_doc_type_id->GetValue());
+                    $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
+                    $this->p_rqst_type_id->SetValue($this->DataSource->p_rqst_type_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -721,7 +717,6 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->object_rw->Errors->ToString());
             $Error = ComposeStrings($Error, $this->njop_pbb->Errors->ToString());
             $Error = ComposeStrings($Error, $this->object_address_name->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_bphtb_legal_doc_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->npop->Errors->ToString());
             $Error = ComposeStrings($Error, $this->npop_tkp->Errors->ToString());
             $Error = ComposeStrings($Error, $this->npop_kp->Errors->ToString());
@@ -758,6 +753,9 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->SLOT_4->Errors->ToString());
             $Error = ComposeStrings($Error, $this->SLOT_5->Errors->ToString());
             $Error = ComposeStrings($Error, $this->MESSAGE->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_bphtb_legal_doc_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_rqst_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -810,7 +808,6 @@ function GetPrimaryKey($keyName)
         $this->object_rw->Show();
         $this->njop_pbb->Show();
         $this->object_address_name->Show();
-        $this->p_bphtb_legal_doc_type_id->Show();
         $this->npop->Show();
         $this->npop_tkp->Show();
         $this->npop_kp->Show();
@@ -847,21 +844,22 @@ function GetPrimaryKey($keyName)
         $this->SLOT_4->Show();
         $this->SLOT_5->Show();
         $this->MESSAGE->Show();
-        $this->Button5->Show();
-        $this->Button4->Show();
-        $this->Button3->Show();
         $this->Button2->Show();
+        $this->Button3->Show();
+        $this->p_bphtb_legal_doc_type_id->Show();
+        $this->t_customer_order_id->Show();
+        $this->p_rqst_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
     }
 //End Show Method
 
-} //End t_bphtb_registrationForm Class @94-FCB6E20C
+} //End t_bphtb_registrationForm Class @2-FCB6E20C
 
-class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
+class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @2-BDFCC0BF
 
-//DataSource Variables @94-9593C44C
+//DataSource Variables @2-FB75C169
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -904,7 +902,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $object_rw;
     var $njop_pbb;
     var $object_address_name;
-    var $p_bphtb_legal_doc_type_id;
     var $npop;
     var $npop_tkp;
     var $npop_kp;
@@ -941,9 +938,12 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $SLOT_4;
     var $SLOT_5;
     var $MESSAGE;
+    var $p_bphtb_legal_doc_type_id;
+    var $t_customer_order_id;
+    var $p_rqst_type_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-7140A808
+//DataSourceClass_Initialize Event @2-2B333EDB
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1002,8 +1002,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->njop_pbb = new clsField("njop_pbb", ccsText, "");
         
         $this->object_address_name = new clsField("object_address_name", ccsText, "");
-        
-        $this->p_bphtb_legal_doc_type_id = new clsField("p_bphtb_legal_doc_type_id", ccsText, "");
         
         $this->npop = new clsField("npop", ccsFloat, "");
         
@@ -1077,6 +1075,12 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->MESSAGE = new clsField("MESSAGE", ccsText, "");
         
+        $this->p_bphtb_legal_doc_type_id = new clsField("p_bphtb_legal_doc_type_id", ccsText, "");
+        
+        $this->t_customer_order_id = new clsField("t_customer_order_id", ccsText, "");
+        
+        $this->p_rqst_type_id = new clsField("p_rqst_type_id", ccsText, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1114,7 +1118,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End DataSourceClass_Initialize Event
 
-//Prepare Method @94-72CC4444
+//Prepare Method @2-72CC4444
     function Prepare()
     {
         global $CCSLocales;
@@ -1125,11 +1129,12 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Prepare Method
 
-//Open Method @94-0CCC80F6
+//Open Method @2-9E5514CA
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "select a.*,\n" .
+        "cust_order.p_rqst_type_id,\n" .
         "b.region_name as wp_kota,\n" .
         "c.region_name as wp_kecamatan,\n" .
         "d.region_name as wp_kelurahan,\n" .
@@ -1153,6 +1158,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         "	on a.object_p_region_id_kel = g.p_region_id\n" .
         "left join p_bphtb_legal_doc_type as h\n" .
         "	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id\n" .
+        "left join t_customer_order as cust_order\n" .
+        "	on cust_order.t_customer_order_id = a.t_customer_order_id\n" .
         "where a.t_customer_order_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -1162,7 +1169,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-05F2AB04
+//SetValues Method @2-F4E41AC1
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1192,7 +1199,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->object_rw->SetDBValue($this->f("object_rw"));
         $this->njop_pbb->SetDBValue($this->f("njop_pbb"));
         $this->object_address_name->SetDBValue($this->f("object_address_name"));
-        $this->p_bphtb_legal_doc_type_id->SetDBValue($this->f("p_bphtb_legal_doc_type_id"));
         $this->npop->SetDBValue(trim($this->f("npop")));
         $this->npop_tkp->SetDBValue(trim($this->f("npop_tkp")));
         $this->npop_kp->SetDBValue(trim($this->f("npop_kp")));
@@ -1204,10 +1210,13 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->phone_no->SetDBValue($this->f("phone_no"));
         $this->mobile_phone_no->SetDBValue($this->f("mobile_phone_no"));
         $this->t_bphtb_registration_id->SetDBValue(trim($this->f("t_bphtb_registration_id")));
+        $this->p_bphtb_legal_doc_type_id->SetDBValue($this->f("p_bphtb_legal_doc_type_id"));
+        $this->t_customer_order_id->SetDBValue($this->f("t_customer_order_id"));
+        $this->p_rqst_type_id->SetDBValue($this->f("p_rqst_type_id"));
     }
 //End SetValues Method
 
-//Insert Method @94-D60BE9B9
+//Insert Method @2-D60BE9B9
     function Insert()
     {
         global $CCSLocales;
@@ -1426,14 +1435,14 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @94-3DCAB474
+//Update Method @2-A69AD1AE
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
         $this->cp["updated_by"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), NULL, false, $this->ErrorBlock);
-        $this->cp["updated_date"] = new clsSQLParameter("expr739", ccsText, "", "", date("Y-m-d H:i:s"), NULL, false, $this->ErrorBlock);
+        $this->cp["updated_date"] = new clsSQLParameter("expr98", ccsText, "", "", date("Y-m-d H:i:s"), NULL, false, $this->ErrorBlock);
         $this->cp["wp_p_region_id"] = new clsSQLParameter("ctrlwp_p_region_id", ccsFloat, "", "", $this->wp_p_region_id->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["wp_p_region_id_kel"] = new clsSQLParameter("ctrlwp_p_region_id_kel", ccsFloat, "", "", $this->wp_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["wp_name"] = new clsSQLParameter("ctrlwp_name", ccsText, "", "", $this->wp_name->GetValue(true), NULL, false, $this->ErrorBlock);
@@ -1597,7 +1606,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Update Method
 
-//Delete Method @94-AEEB9CE7
+//Delete Method @2-AEEB9CE7
     function Delete()
     {
         global $CCSLocales;
@@ -1622,7 +1631,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Delete Method
 
-} //End t_bphtb_registrationFormDataSource Class @94-FCB6E20C
+} //End t_bphtb_registrationFormDataSource Class @2-FCB6E20C
 
 //Initialize Page @1-0CAF5F81
 // Variables

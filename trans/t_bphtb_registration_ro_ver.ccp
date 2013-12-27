@@ -1,6 +1,7 @@
-<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
+<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="SQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration" dataSource="select a.*,
+		<Record id="2" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="UConditions" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration" dataSource="select a.*,
+cust_order.p_rqst_type_id,
 b.region_name as wp_kota,
 c.region_name as wp_kecamatan,
 d.region_name as wp_kelurahan,
@@ -24,490 +25,519 @@ left join p_region as g
 	on a.object_p_region_id_kel = g.p_region_id
 left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
-where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration" activeTableType="customDelete">
+left join t_customer_order as cust_order
+	on cust_order.t_customer_order_id = a.t_customer_order_id
+where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration" activeTableType="customUpdate">
 			<Components>
-				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
+				<Button id="3" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="96" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Submit" PathID="t_bphtb_registrationFormButton_Update" removeParameters="FLAG">
+				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Submit" PathID="t_bphtb_registrationFormButton_Update" removeParameters="FLAG">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="97" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Delete" PathID="t_bphtb_registrationFormButton_Delete" removeParameters="FLAG;t_vat_registration_id">
+				<Button id="5" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Delete" PathID="t_bphtb_registrationFormButton_Delete" removeParameters="FLAG;t_vat_registration_id">
 					<Components/>
 					<Events>
 						<Event name="OnClick" type="Client">
 							<Actions>
-								<Action actionName="Confirmation Message" actionCategory="General" id="98" message="Delete record?"/>
+								<Action actionName="Confirmation Message" actionCategory="General" id="6" message="Delete record?" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="99" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancel" PathID="t_bphtb_registrationFormButton_Cancel" returnPage="t_bphtb_registration_list.ccp" removeParameters="FLAG">
+				<Button id="7" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancel" PathID="t_bphtb_registrationFormButton_Cancel" returnPage="t_bphtb_registration_list.ccp" removeParameters="FLAG">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-				<TextBox id="869" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_kota" fieldSource="wp_kota" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormwp_kota" defaultValue="'KOTA BANDUNG'">
+				<TextBox id="8" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_kota" fieldSource="wp_kota" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormwp_kota" defaultValue="'KOTA BANDUNG'">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="871" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_kelurahan" fieldSource="wp_kelurahan" required="True" caption="Kelurahan - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormwp_kelurahan">
+				<TextBox id="9" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_kelurahan" fieldSource="wp_kelurahan" required="True" caption="Kelurahan - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormwp_kelurahan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="885" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id" fieldSource="wp_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
+				<Hidden id="10" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id" fieldSource="wp_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="887" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id_kec" fieldSource="wp_p_region_id_kec" caption="Kecamatan - WP" required="True">
+				<Hidden id="11" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id_kec" fieldSource="wp_p_region_id_kec" caption="Kecamatan - WP" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="889" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id_kel" fieldSource="wp_p_region_id_kel" caption="Kelurahan - WP" required="True">
+				<Hidden id="12" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id_kel" fieldSource="wp_p_region_id_kel" caption="Kelurahan - WP" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="870" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_kecamatan" caption="Kecamatan - WP" fieldSource="wp_kecamatan" required="True" PathID="t_bphtb_registrationFormwp_kecamatan">
+				<TextBox id="13" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_kecamatan" caption="Kecamatan - WP" fieldSource="wp_kecamatan" required="True" PathID="t_bphtb_registrationFormwp_kecamatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="898" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_name" PathID="t_bphtb_registrationFormwp_name" fieldSource="wp_name">
+				<TextBox id="14" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_name" PathID="t_bphtb_registrationFormwp_name" fieldSource="wp_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="899" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_address_name" PathID="t_bphtb_registrationFormwp_address_name" fieldSource="wp_address_name">
+				<TextBox id="15" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_address_name" PathID="t_bphtb_registrationFormwp_address_name" fieldSource="wp_address_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="900" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="npwp" PathID="t_bphtb_registrationFormnpwp" fieldSource="npwp">
+				<TextBox id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="npwp" PathID="t_bphtb_registrationFormnpwp" fieldSource="npwp">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="901" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kelurahan" fieldSource="wp_kelurahan" required="True" caption="Kelurahan - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kelurahan">
+				<TextBox id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kelurahan" fieldSource="wp_kelurahan" required="True" caption="Kelurahan - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kelurahan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="903" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kel" fieldSource="wp_p_region_id_kel" caption="Kelurahan - Object" required="True">
+				<Hidden id="18" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kel" fieldSource="wp_p_region_id_kel" caption="Kelurahan - Object" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="904" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kecamatan" caption="Kecamatan - WP" fieldSource="wp_kecamatan" required="True" PathID="t_bphtb_registrationFormobject_kecamatan">
+				<TextBox id="19" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kecamatan" caption="Kecamatan - WP" fieldSource="wp_kecamatan" required="True" PathID="t_bphtb_registrationFormobject_kecamatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="906" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kec" fieldSource="wp_p_region_id_kec" caption="Kecamatan - Object" required="True">
+				<Hidden id="20" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kec" fieldSource="wp_p_region_id_kec" caption="Kecamatan - Object" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="907" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kota" fieldSource="wp_kota" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kota" defaultValue="'KOTA BANDUNG'">
+				<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kota" fieldSource="wp_kota" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kota" defaultValue="'KOTA BANDUNG'">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="909" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id" fieldSource="wp_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
+				<Hidden id="22" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id" fieldSource="wp_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="922" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_area" PathID="t_bphtb_registrationFormland_area" defaultValue="0" fieldSource="land_area" format="#,##0.00">
+				<TextBox id="23" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_area" PathID="t_bphtb_registrationFormland_area" defaultValue="0" fieldSource="land_area" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="923" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_price_per_m" PathID="t_bphtb_registrationFormland_price_per_m" defaultValue="0" fieldSource="land_price_per_m" format="#,##0.00">
+				<TextBox id="24" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_price_per_m" PathID="t_bphtb_registrationFormland_price_per_m" defaultValue="0" fieldSource="land_price_per_m" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="924" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_total_price" PathID="t_bphtb_registrationFormland_total_price" defaultValue="0" fieldSource="land_total_price" format="#,##0.00">
+				<TextBox id="25" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_total_price" PathID="t_bphtb_registrationFormland_total_price" defaultValue="0" fieldSource="land_total_price" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="925" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_area" PathID="t_bphtb_registrationFormbuilding_area" defaultValue="0" fieldSource="building_area" format="#,##0.00">
+				<TextBox id="26" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_area" PathID="t_bphtb_registrationFormbuilding_area" defaultValue="0" fieldSource="building_area" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="926" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_price_per_m" PathID="t_bphtb_registrationFormbuilding_price_per_m" defaultValue="0" fieldSource="building_price_per_m" format="#,##0.00">
+				<TextBox id="27" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_price_per_m" PathID="t_bphtb_registrationFormbuilding_price_per_m" defaultValue="0" fieldSource="building_price_per_m" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="927" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_total_price" PathID="t_bphtb_registrationFormbuilding_total_price" defaultValue="0" fieldSource="building_total_price" format="#,##0.00">
+				<TextBox id="28" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_total_price" PathID="t_bphtb_registrationFormbuilding_total_price" defaultValue="0" fieldSource="building_total_price" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="928" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_rt" PathID="t_bphtb_registrationFormwp_rt" fieldSource="wp_rt">
+				<TextBox id="29" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_rt" PathID="t_bphtb_registrationFormwp_rt" fieldSource="wp_rt">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="929" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_rw" PathID="t_bphtb_registrationFormwp_rw" fieldSource="wp_rw">
+				<TextBox id="30" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_rw" PathID="t_bphtb_registrationFormwp_rw" fieldSource="wp_rw">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="930" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_rt" PathID="t_bphtb_registrationFormobject_rt" fieldSource="object_rt">
+				<TextBox id="31" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_rt" PathID="t_bphtb_registrationFormobject_rt" fieldSource="object_rt">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="931" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_rw" PathID="t_bphtb_registrationFormobject_rw" fieldSource="object_rw">
+				<TextBox id="32" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_rw" PathID="t_bphtb_registrationFormobject_rw" fieldSource="object_rw">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="932" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_pbb" PathID="t_bphtb_registrationFormnjop_pbb" fieldSource="njop_pbb">
+				<TextBox id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_pbb" PathID="t_bphtb_registrationFormnjop_pbb" fieldSource="njop_pbb">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="933" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_address_name" PathID="t_bphtb_registrationFormobject_address_name" fieldSource="object_address_name">
+				<TextBox id="34" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_address_name" PathID="t_bphtb_registrationFormobject_address_name" fieldSource="object_address_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="934" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="p_bphtb_legal_doc_type_id" PathID="t_bphtb_registrationFormp_bphtb_legal_doc_type_id" sourceType="SQL" connection="ConnSIKP" dataSource="select p_bphtb_legal_doc_type_id,code
+				<TextBox id="35" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop" PathID="t_bphtb_registrationFormnpop" fieldSource="npop" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="36" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop_tkp" PathID="t_bphtb_registrationFormnpop_tkp" fieldSource="npop_tkp" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="37" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop_kp" PathID="t_bphtb_registrationFormnpop_kp" fieldSource="npop_kp" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="38" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt" PathID="t_bphtb_registrationFormbphtb_amt" fieldSource="bphtb_amt" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="39" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final" PathID="t_bphtb_registrationFormbphtb_amt_final" fieldSource="bphtb_amt_final" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="40" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_discount" PathID="t_bphtb_registrationFormbphtb_discount" fieldSource="bphtb_discount" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="41" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="description" PathID="t_bphtb_registrationFormdescription" fieldSource="description">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="42" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="market_price" PathID="t_bphtb_registrationFormmarket_price" fieldSource="market_price" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="43" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="phone_no" PathID="t_bphtb_registrationFormphone_no" fieldSource="phone_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="44" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_phone_no" PathID="t_bphtb_registrationFormmobile_phone_no" fieldSource="mobile_phone_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="45" visible="Yes" fieldSourceType="CodeExpression" dataType="Float" name="total_price" PathID="t_bphtb_registrationFormtotal_price" defaultValue="0" fieldSource="$this-&gt;DataSource-&gt;land_total_price-&gt;GetValue()+$this-&gt;DataSource-&gt;building_total_price-&gt;GetValue()" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Hidden id="46" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_id" PathID="t_bphtb_registrationFormt_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="47" fieldSourceType="DBColumn" dataType="Text" name="TAKEN_CTL" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormTAKEN_CTL">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="48" fieldSourceType="DBColumn" dataType="Text" name="IS_TAKEN" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormIS_TAKEN">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="49" fieldSourceType="DBColumn" dataType="Text" name="CURR_DOC_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_DOC_ID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="50" fieldSourceType="DBColumn" dataType="Text" name="CURR_DOC_TYPE_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_DOC_TYPE_ID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="51" fieldSourceType="DBColumn" dataType="Text" name="CURR_PROC_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_PROC_ID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="52" fieldSourceType="DBColumn" dataType="Text" name="CURR_CTL_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_CTL_ID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="53" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_DOC" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_DOC">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="54" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_DONOR" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_DONOR">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="55" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_LOGIN" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_LOGIN">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="56" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_TAKEN" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_TAKEN">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="57" fieldSourceType="DBColumn" dataType="Text" name="IS_CREATE_DOC" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormIS_CREATE_DOC">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="58" fieldSourceType="DBColumn" dataType="Text" name="IS_MANUAL" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormIS_MANUAL">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="59" fieldSourceType="DBColumn" dataType="Text" name="CURR_PROC_STATUS" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_PROC_STATUS">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="60" fieldSourceType="DBColumn" dataType="Text" name="CURR_DOC_STATUS" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_DOC_STATUS">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="61" fieldSourceType="DBColumn" dataType="Text" name="PREV_DOC_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormPREV_DOC_ID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="62" fieldSourceType="DBColumn" dataType="Text" name="PREV_DOC_TYPE_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormPREV_DOC_TYPE_ID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="63" fieldSourceType="DBColumn" dataType="Text" name="PREV_PROC_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormPREV_PROC_ID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="64" fieldSourceType="DBColumn" dataType="Text" name="PREV_CTL_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormPREV_CTL_ID">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="65" fieldSourceType="DBColumn" dataType="Text" name="SLOT_1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="66" fieldSourceType="DBColumn" dataType="Text" name="SLOT_2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="67" fieldSourceType="DBColumn" dataType="Text" name="SLOT_3" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="68" fieldSourceType="DBColumn" dataType="Text" name="SLOT_4" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_4">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="69" fieldSourceType="DBColumn" dataType="Text" name="SLOT_5" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_5">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="70" fieldSourceType="DBColumn" dataType="Text" name="MESSAGE" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormMESSAGE">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Button id="71" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormButton2">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="72" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="73" urlType="Relative" enableValidation="True" isDefault="False" name="Button3" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormButton3">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="74" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<ListBox id="75" visible="Dynamic" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_bphtb_legal_doc_type_id" fieldSource="p_bphtb_legal_doc_type_id" connection="ConnSIKP" dataSource="select p_bphtb_legal_doc_type_id,code
 from p_bphtb_legal_doc_type bphtb_legal
 left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
-" boundColumn="p_bphtb_legal_doc_type_id" textColumn="code" features="(assigned)" fieldSource="p_bphtb_legal_doc_type_id">
+" boundColumn="p_bphtb_legal_doc_type_id" textColumn="code" features="(assigned)" PathID="t_bphtb_registrationFormp_bphtb_legal_doc_type_id">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="956"/>
+								<Action actionName="Custom Code" actionCategory="General" id="76" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
-					<Attributes/>
-					<Features>
-						<PTAutoFill id="951" enabled="True" valueField="value" sourceType="Table" name="PTAutoFill1" servicePage="../services/trans_t_bphtb_registration_t_bphtb_registrationForm_p_bphtb_legal_doc_type_id_PTAutoFill1.ccp" searchField="p_bphtb_legal_doc_type_id" connection="ConnSIKP" featureNameChanged="No" dataSource="p_bphtb_legal_doc_type, p_legal_doc_type" category="Prototype">
-							<Components/>
-							<Events/>
-							<TableParameters/>
-							<SPParameters/>
-							<SQLParameters/>
-							<JoinTables/>
-							<JoinLinks/>
-							<Fields/>
-							<Controls>
-								<Control id="952" name="npop_tkp" source="npoptkp" propertyValue="value" sourceId="936"/>
-							</Controls>
-							<ControlPoints/>
-							<Features/>
-						</PTAutoFill>
-					</Features>
 					<TableParameters/>
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables/>
 					<JoinLinks/>
 					<Fields/>
+					<Attributes/>
+					<Features>
+<PTAutoFill id="131" enabled="True" sourceType="SQL" name="PTAutoFill1" category="Prototype" featureNameChanged="No" connection="ConnSIKP" dataSource="select p_bphtb_legal_doc_type_id,code
+from p_bphtb_legal_doc_type bphtb_legal
+left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
+" ccsIdsOnly="False" valueField="value" servicePage="../services/trans_t_bphtb_registration_t_bphtb_registrationForm_p_bphtb_legal_doc_type_id_PTAutoFill1.ccp">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<Controls>
+<Control id="132" name="npop_tkp" source="npop_tkp" propertyValue="value" sourceId="36"/>
+</Controls>
+<ControlPoints/>
+<Features/>
+</PTAutoFill>
+</Features>
 				</ListBox>
-				<TextBox id="935" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop" PathID="t_bphtb_registrationFormnpop" fieldSource="npop" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="936" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop_tkp" PathID="t_bphtb_registrationFormnpop_tkp" fieldSource="npop_tkp" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="937" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop_kp" PathID="t_bphtb_registrationFormnpop_kp" fieldSource="npop_kp" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="938" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt" PathID="t_bphtb_registrationFormbphtb_amt" fieldSource="bphtb_amt" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="939" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final" PathID="t_bphtb_registrationFormbphtb_amt_final" fieldSource="bphtb_amt_final" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="940" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_discount" PathID="t_bphtb_registrationFormbphtb_discount" fieldSource="bphtb_discount" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="941" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="description" PathID="t_bphtb_registrationFormdescription" fieldSource="description">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="942" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="market_price" PathID="t_bphtb_registrationFormmarket_price" fieldSource="market_price" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="943" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="phone_no" PathID="t_bphtb_registrationFormphone_no" fieldSource="phone_no">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="944" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_phone_no" PathID="t_bphtb_registrationFormmobile_phone_no" fieldSource="mobile_phone_no">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="955" visible="Yes" fieldSourceType="CodeExpression" dataType="Float" name="total_price" PathID="t_bphtb_registrationFormtotal_price" defaultValue="0" fieldSource="$this-&gt;DataSource-&gt;land_total_price-&gt;GetValue()+$this-&gt;DataSource-&gt;building_total_price-&gt;GetValue()" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<Hidden id="997" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_id" PathID="t_bphtb_registrationFormt_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-				<Hidden id="877" fieldSourceType="DBColumn" dataType="Text" name="TAKEN_CTL" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormTAKEN_CTL">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="878" fieldSourceType="DBColumn" dataType="Text" name="IS_TAKEN" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormIS_TAKEN">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="879" fieldSourceType="DBColumn" dataType="Text" name="CURR_DOC_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_DOC_ID">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="880" fieldSourceType="DBColumn" dataType="Text" name="CURR_DOC_TYPE_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_DOC_TYPE_ID">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="881" fieldSourceType="DBColumn" dataType="Text" name="CURR_PROC_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_PROC_ID">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="882" fieldSourceType="DBColumn" dataType="Text" name="CURR_CTL_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_CTL_ID">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="883" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_DOC" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_DOC">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="884" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_DONOR" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_DONOR">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="1009" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_LOGIN" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_LOGIN">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="886" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_TAKEN" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_TAKEN">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="1012" fieldSourceType="DBColumn" dataType="Text" name="IS_CREATE_DOC" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormIS_CREATE_DOC">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="888" fieldSourceType="DBColumn" dataType="Text" name="IS_MANUAL" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormIS_MANUAL">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="1015" fieldSourceType="DBColumn" dataType="Text" name="CURR_PROC_STATUS" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_PROC_STATUS">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="890" fieldSourceType="DBColumn" dataType="Text" name="CURR_DOC_STATUS" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormCURR_DOC_STATUS">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="891" fieldSourceType="DBColumn" dataType="Text" name="PREV_DOC_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormPREV_DOC_ID">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="892" fieldSourceType="DBColumn" dataType="Text" name="PREV_DOC_TYPE_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormPREV_DOC_TYPE_ID">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="893" fieldSourceType="DBColumn" dataType="Text" name="PREV_PROC_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormPREV_PROC_ID">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="894" fieldSourceType="DBColumn" dataType="Text" name="PREV_CTL_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormPREV_CTL_ID">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="895" fieldSourceType="DBColumn" dataType="Text" name="SLOT_1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_1">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="1023" fieldSourceType="DBColumn" dataType="Text" name="SLOT_2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_2">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="897" fieldSourceType="DBColumn" dataType="Text" name="SLOT_3" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_3">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="1026" fieldSourceType="DBColumn" dataType="Text" name="SLOT_4" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_4">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="1028" fieldSourceType="DBColumn" dataType="Text" name="SLOT_5" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormSLOT_5">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="1030" fieldSourceType="DBColumn" dataType="Text" name="MESSAGE" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormMESSAGE">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Button id="1037" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormButton2">
-					<Components/>
-					<Events>
-						<Event name="OnClick" type="Server">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="902" eventType="Server"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
+				<Hidden id="133" fieldSourceType="DBColumn" dataType="Text" name="t_customer_order_id" PathID="t_bphtb_registrationFormt_customer_order_id" fieldSource="t_customer_order_id">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+<Hidden id="134" fieldSourceType="DBColumn" dataType="Text" name="p_rqst_type_id" PathID="t_bphtb_registrationFormp_rqst_type_id" fieldSource="p_rqst_type_id">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="842"/>
+						<Action actionName="Custom Code" actionCategory="General" id="77" eventType="Server"/>
 					</Actions>
 				</Event>
 				<Event name="BeforeInsert" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="853"/>
+						<Action actionName="Custom Code" actionCategory="General" id="78" eventType="Server"/>
 					</Actions>
 				</Event>
 				<Event name="AfterExecuteDelete" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="954"/>
+						<Action actionName="Custom Code" actionCategory="General" id="79" eventType="Server"/>
 					</Actions>
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="896" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
+				<TableParameter id="80" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="1038" variable="CURR_DOC_ID" parameterType="URL" dataType="Float" parameterSource="CURR_DOC_ID" defaultValue="0"/>
-</SQLParameters>
+				<SQLParameter id="81" variable="CURR_DOC_ID" parameterType="URL" dataType="Float" parameterSource="CURR_DOC_ID" defaultValue="0" designDefaultValue="505"/>
+			</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks/>
@@ -553,18 +583,18 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			<ISQLParameters>
 			</ISQLParameters>
 			<IFormElements>
-				<CustomParameter id="910" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
-				<CustomParameter id="911" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
-				<CustomParameter id="912" field="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
-				<CustomParameter id="913" field="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kecamatan"/>
-				<CustomParameter id="914" field="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kelurahan"/>
-				<CustomParameter id="915" field="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="wp_kecamatan"/>
-				<CustomParameter id="916" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="object_kelurahan"/>
-				<CustomParameter id="917" field="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kelurahan"/>
-				<CustomParameter id="918" field="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="object_kecamatan"/>
-				<CustomParameter id="919" field="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kecamatan"/>
-				<CustomParameter id="920" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="object_kota"/>
-				<CustomParameter id="921" field="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="object_p_region_id"/>
+				<CustomParameter id="82" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
+				<CustomParameter id="83" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
+				<CustomParameter id="84" field="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
+				<CustomParameter id="85" field="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kecamatan"/>
+				<CustomParameter id="86" field="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kelurahan"/>
+				<CustomParameter id="87" field="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="wp_kecamatan"/>
+				<CustomParameter id="88" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="object_kelurahan"/>
+				<CustomParameter id="89" field="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kelurahan"/>
+				<CustomParameter id="90" field="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="object_kecamatan"/>
+				<CustomParameter id="91" field="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kecamatan"/>
+				<CustomParameter id="92" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="object_kota"/>
+				<CustomParameter id="93" field="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="object_p_region_id"/>
 			</IFormElements>
 			<USPParameters>
 				<SPParameter id="Key905" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0" parameterName="o_res" parameterSource="o_res"/>
@@ -633,44 +663,44 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			<USQLParameters>
 			</USQLParameters>
 			<UConditions>
-				<TableParameter id="778" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
-				<TableParameter id="995" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
-				<TableParameter id="996" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
+				<TableParameter id="94" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
+				<TableParameter id="95" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
+				<TableParameter id="96" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
 			</UConditions>
 			<UFormElements>
-				<CustomParameter id="737" field="updated_by" dataType="Text" parameterType="Session" parameterSource="UserLogin" omitIfEmpty="True"/>
-				<CustomParameter id="739" field="updated_date" dataType="Text" parameterType="Expression" parameterSource="date(&quot;Y-m-d H:i:s&quot;)" format="dd-mmm-yyyy" omitIfEmpty="True"/>
-				<CustomParameter id="960" field="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id" omitIfEmpty="True"/>
-				<CustomParameter id="962" field="wp_p_region_id_kel" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kel" omitIfEmpty="True"/>
-				<CustomParameter id="964" field="wp_name" dataType="Text" parameterType="Control" parameterSource="wp_name" omitIfEmpty="True"/>
-				<CustomParameter id="965" field="wp_address_name" dataType="Text" parameterType="Control" parameterSource="wp_address_name" omitIfEmpty="True"/>
-				<CustomParameter id="966" field="npwp" dataType="Text" parameterType="Control" parameterSource="npwp" omitIfEmpty="True"/>
-				<CustomParameter id="970" field="object_p_region_id_kec" dataType="Text" parameterType="Control" parameterSource="object_p_region_id_kec" omitIfEmpty="True"/>
-				<CustomParameter id="972" field="object_p_region_id" dataType="Text" parameterType="Control" parameterSource="object_p_region_id" omitIfEmpty="True"/>
-				<CustomParameter id="973" field="land_area" dataType="Float" parameterType="Control" parameterSource="land_area" omitIfEmpty="True"/>
-				<CustomParameter id="974" field="land_price_per_m" dataType="Float" parameterType="Control" parameterSource="land_price_per_m" omitIfEmpty="True"/>
-				<CustomParameter id="975" field="land_total_price" dataType="Float" parameterType="Control" parameterSource="land_total_price" omitIfEmpty="True"/>
-				<CustomParameter id="976" field="building_area" dataType="Float" parameterType="Control" parameterSource="building_area" omitIfEmpty="True"/>
-				<CustomParameter id="977" field="building_price_per_m" dataType="Float" parameterType="Control" parameterSource="building_price_per_m" omitIfEmpty="True"/>
-				<CustomParameter id="978" field="building_total_price" dataType="Float" parameterType="Control" parameterSource="building_total_price" omitIfEmpty="True"/>
-				<CustomParameter id="979" field="wp_rt" dataType="Text" parameterType="Control" parameterSource="wp_rt" omitIfEmpty="True"/>
-				<CustomParameter id="980" field="wp_rw" dataType="Text" parameterType="Control" parameterSource="wp_rw" omitIfEmpty="True"/>
-				<CustomParameter id="981" field="object_rt" dataType="Text" parameterType="Control" parameterSource="object_rt" omitIfEmpty="True"/>
-				<CustomParameter id="982" field="object_rw" dataType="Text" parameterType="Control" parameterSource="object_rw" omitIfEmpty="True"/>
-				<CustomParameter id="983" field="njop_pbb" dataType="Text" parameterType="Control" parameterSource="njop_pbb" omitIfEmpty="True"/>
-				<CustomParameter id="984" field="object_address_name" dataType="Text" parameterType="Control" parameterSource="object_address_name" omitIfEmpty="True"/>
-				<CustomParameter id="985" field="p_bphtb_legal_doc_type_id" dataType="Text" parameterType="Control" parameterSource="p_bphtb_legal_doc_type_id" omitIfEmpty="True"/>
-				<CustomParameter id="986" field="npop" dataType="Float" parameterType="Control" parameterSource="npop" omitIfEmpty="True"/>
-				<CustomParameter id="987" field="npop_tkp" dataType="Float" parameterType="Control" parameterSource="npop_tkp" omitIfEmpty="True"/>
-				<CustomParameter id="988" field="npop_kp" dataType="Float" parameterType="Control" parameterSource="npop_kp" omitIfEmpty="True"/>
-				<CustomParameter id="989" field="bphtb_amt" dataType="Float" parameterType="Control" parameterSource="bphtb_amt" omitIfEmpty="True"/>
-				<CustomParameter id="990" field="bphtb_amt_final" dataType="Float" parameterType="Control" parameterSource="bphtb_amt_final" omitIfEmpty="True"/>
-				<CustomParameter id="991" field="bphtb_discount" dataType="Float" parameterType="Control" parameterSource="bphtb_discount" omitIfEmpty="True"/>
-				<CustomParameter id="992" field="description" dataType="Text" parameterType="Control" parameterSource="description" omitIfEmpty="True"/>
-				<CustomParameter id="993" field="market_price" dataType="Float" parameterType="Control" parameterSource="market_price" omitIfEmpty="True"/>
-				<CustomParameter id="994" field="mobile_phone_no" dataType="Text" parameterType="Control" parameterSource="mobile_phone_no" omitIfEmpty="True"/>
-				<CustomParameter id="998" field="wp_p_region_id_kec" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="wp_p_region_id_kec"/>
-				<CustomParameter id="999" field="object_p_region_id_kel" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="object_p_region_id_kel"/>
+				<CustomParameter id="97" field="updated_by" dataType="Text" parameterType="Session" parameterSource="UserLogin" omitIfEmpty="True"/>
+				<CustomParameter id="98" field="updated_date" dataType="Text" parameterType="Expression" parameterSource="date(&quot;Y-m-d H:i:s&quot;)" format="dd-mmm-yyyy" omitIfEmpty="True"/>
+				<CustomParameter id="99" field="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id" omitIfEmpty="True"/>
+				<CustomParameter id="100" field="wp_p_region_id_kel" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kel" omitIfEmpty="True"/>
+				<CustomParameter id="101" field="wp_name" dataType="Text" parameterType="Control" parameterSource="wp_name" omitIfEmpty="True"/>
+				<CustomParameter id="102" field="wp_address_name" dataType="Text" parameterType="Control" parameterSource="wp_address_name" omitIfEmpty="True"/>
+				<CustomParameter id="103" field="npwp" dataType="Text" parameterType="Control" parameterSource="npwp" omitIfEmpty="True"/>
+				<CustomParameter id="104" field="object_p_region_id_kec" dataType="Text" parameterType="Control" parameterSource="object_p_region_id_kec" omitIfEmpty="True"/>
+				<CustomParameter id="105" field="object_p_region_id" dataType="Text" parameterType="Control" parameterSource="object_p_region_id" omitIfEmpty="True"/>
+				<CustomParameter id="106" field="land_area" dataType="Float" parameterType="Control" parameterSource="land_area" omitIfEmpty="True"/>
+				<CustomParameter id="107" field="land_price_per_m" dataType="Float" parameterType="Control" parameterSource="land_price_per_m" omitIfEmpty="True"/>
+				<CustomParameter id="108" field="land_total_price" dataType="Float" parameterType="Control" parameterSource="land_total_price" omitIfEmpty="True"/>
+				<CustomParameter id="109" field="building_area" dataType="Float" parameterType="Control" parameterSource="building_area" omitIfEmpty="True"/>
+				<CustomParameter id="110" field="building_price_per_m" dataType="Float" parameterType="Control" parameterSource="building_price_per_m" omitIfEmpty="True"/>
+				<CustomParameter id="111" field="building_total_price" dataType="Float" parameterType="Control" parameterSource="building_total_price" omitIfEmpty="True"/>
+				<CustomParameter id="112" field="wp_rt" dataType="Text" parameterType="Control" parameterSource="wp_rt" omitIfEmpty="True"/>
+				<CustomParameter id="113" field="wp_rw" dataType="Text" parameterType="Control" parameterSource="wp_rw" omitIfEmpty="True"/>
+				<CustomParameter id="114" field="object_rt" dataType="Text" parameterType="Control" parameterSource="object_rt" omitIfEmpty="True"/>
+				<CustomParameter id="115" field="object_rw" dataType="Text" parameterType="Control" parameterSource="object_rw" omitIfEmpty="True"/>
+				<CustomParameter id="116" field="njop_pbb" dataType="Text" parameterType="Control" parameterSource="njop_pbb" omitIfEmpty="True"/>
+				<CustomParameter id="117" field="object_address_name" dataType="Text" parameterType="Control" parameterSource="object_address_name" omitIfEmpty="True"/>
+				<CustomParameter id="118" field="p_bphtb_legal_doc_type_id" dataType="Text" parameterType="Control" parameterSource="p_bphtb_legal_doc_type_id" omitIfEmpty="True"/>
+				<CustomParameter id="119" field="npop" dataType="Float" parameterType="Control" parameterSource="npop" omitIfEmpty="True"/>
+				<CustomParameter id="120" field="npop_tkp" dataType="Float" parameterType="Control" parameterSource="npop_tkp" omitIfEmpty="True"/>
+				<CustomParameter id="121" field="npop_kp" dataType="Float" parameterType="Control" parameterSource="npop_kp" omitIfEmpty="True"/>
+				<CustomParameter id="122" field="bphtb_amt" dataType="Float" parameterType="Control" parameterSource="bphtb_amt" omitIfEmpty="True"/>
+				<CustomParameter id="123" field="bphtb_amt_final" dataType="Float" parameterType="Control" parameterSource="bphtb_amt_final" omitIfEmpty="True"/>
+				<CustomParameter id="124" field="bphtb_discount" dataType="Float" parameterType="Control" parameterSource="bphtb_discount" omitIfEmpty="True"/>
+				<CustomParameter id="125" field="description" dataType="Text" parameterType="Control" parameterSource="description" omitIfEmpty="True"/>
+				<CustomParameter id="126" field="market_price" dataType="Float" parameterType="Control" parameterSource="market_price" omitIfEmpty="True"/>
+				<CustomParameter id="127" field="mobile_phone_no" dataType="Text" parameterType="Control" parameterSource="mobile_phone_no" omitIfEmpty="True"/>
+				<CustomParameter id="128" field="wp_p_region_id_kec" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="wp_p_region_id_kec"/>
+				<CustomParameter id="129" field="object_p_region_id_kel" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="object_p_region_id_kel"/>
 			</UFormElements>
 			<DSPParameters>
 				<SPParameter id="Key905" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0"/>
@@ -739,13 +769,13 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			<DSQLParameters>
 			</DSQLParameters>
 			<DConditions>
-				<TableParameter id="1000" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
+				<TableParameter id="130" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
 			</DConditions>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_bphtb_registration_ro_ver_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_ro_ver.php" forShow="True" url="t_bphtb_registration_ro_ver.php" comment="//" codePage="windows-1252"/>

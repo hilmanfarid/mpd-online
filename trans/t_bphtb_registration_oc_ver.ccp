@@ -43,7 +43,7 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 					<Events>
 						<Event name="OnClick" type="Client">
 							<Actions>
-								<Action actionName="Confirmation Message" actionCategory="General" id="98" message="Delete record?"/>
+								<Action actionName="Confirmation Message" actionCategory="General" id="98" message="Delete record?" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
@@ -83,7 +83,6 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 				<Hidden id="889" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id_kel" fieldSource="wp_p_region_id_kel" caption="Kelurahan - WP" required="True">
 					<Components/>
 					<Events/>
-
 					<Attributes/>
 					<Features/>
 				</Hidden>
@@ -463,38 +462,38 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 from p_bphtb_legal_doc_type bphtb_legal
 left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
 " boundColumn="p_bphtb_legal_doc_type_id" textColumn="code" features="(assigned)" PathID="t_bphtb_registrationFormp_bphtb_legal_doc_type_id">
-<Components/>
-<Events>
-<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="1041"/>
-</Actions>
-</Event>
-</Events>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
-</Components>
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="1041" eventType="Client"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="842"/>
+						<Action actionName="Custom Code" actionCategory="General" id="842" eventType="Server"/>
 					</Actions>
 				</Event>
 				<Event name="BeforeInsert" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="853"/>
+						<Action actionName="Custom Code" actionCategory="General" id="853" eventType="Server"/>
 					</Actions>
 				</Event>
 				<Event name="AfterExecuteDelete" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="954"/>
+						<Action actionName="Custom Code" actionCategory="General" id="954" eventType="Server"/>
 					</Actions>
 				</Event>
 			</Events>

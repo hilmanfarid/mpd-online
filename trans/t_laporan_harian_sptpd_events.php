@@ -25,6 +25,8 @@ function Page_BeforeShow(& $sender)
 		$param_arr['year_period_id']=$t_laporan_harian_sptpd->p_year_period_id->GetValue();
 		$param_arr['date_start']=$t_laporan_harian_sptpd->date_start_laporan->GetValue();
 		$param_arr['date_end']=$t_laporan_harian_sptpd->date_end_laporan->GetValue();
+		$param_arr['p_vat_type_id']=$t_laporan_harian_sptpd->p_vat_type_id->GetValue();
+		$param_arr['p_vat_type_dtl_id']=$t_laporan_harian_sptpd->p_vat_type_dtl_id->GetValue();
 		if(empty($param_arr['date_start'])){
 			$param_arr['date_start']=$param_arr['year_code'].'-01-01';
 		}
@@ -68,9 +70,14 @@ function print_laporan($param_arr){
 	$pdf->RowMultiBorderWithHeight(array("TAHUN",": ".$param_arr['year_code']),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString($param_arr['date_start'])." s/d ".dateToString($param_arr['date_end'])),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
-	
-	$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
-
+	/*echo '<pre>';
+	print_r($param_arr);
+	exit;*/
+	if(!empty($param_arr['p_vat_type_dtl_id'])){
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."',".$param_arr['p_vat_type_dtl_id'].")";
+	}else{
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY jenis ASC";
+	}
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',10);

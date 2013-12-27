@@ -45,7 +45,7 @@ class clsRecordt_laporan_harian_sptpd { //t_laporan_harian_sptpd Class @2-EFADBB
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-23710DBB
+//Class_Initialize Event @2-6D3787DB
     function clsRecordt_laporan_harian_sptpd($RelativePath, & $Parent)
     {
 
@@ -80,11 +80,17 @@ class clsRecordt_laporan_harian_sptpd { //t_laporan_harian_sptpd Class @2-EFADBB
             $this->date_end_laporan->Required = true;
             $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_laporan_harian_sptpd", "date_end_laporan", $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
+            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->vat_code->Required = true;
+            $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
+            $this->vat_code_dtl->Required = true;
+            $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-F151ECB7
+//Validate Method @2-A304BC1B
     function Validate()
     {
         global $CCSLocales;
@@ -95,17 +101,25 @@ class clsRecordt_laporan_harian_sptpd { //t_laporan_harian_sptpd Class @2-EFADBB
         $Validation = ($this->date_start_laporan->Validate() && $Validation);
         $Validation = ($this->date_end_laporan->Validate() && $Validation);
         $Validation = ($this->cetak_laporan->Validate() && $Validation);
+        $Validation = ($this->vat_code->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->vat_code_dtl->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_start_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code_dtl->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-B34A33D3
+//CheckErrors Method @2-C9B806E7
     function CheckErrors()
     {
         $errors = false;
@@ -116,6 +130,10 @@ class clsRecordt_laporan_harian_sptpd { //t_laporan_harian_sptpd Class @2-EFADBB
         $errors = ($errors || $this->date_end_laporan->Errors->Count());
         $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->cetak_laporan->Errors->Count());
+        $errors = ($errors || $this->vat_code->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->vat_code_dtl->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -168,7 +186,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-43D7432C
+//Show Method @2-E8843D78
     function Show()
     {
         global $CCSUseAmp;
@@ -199,6 +217,10 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code_dtl->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -224,6 +246,10 @@ function GetPrimaryKey($keyName)
         $this->date_end_laporan->Show();
         $this->DatePicker_end_start_laporan1->Show();
         $this->cetak_laporan->Show();
+        $this->vat_code->Show();
+        $this->p_vat_type_id->Show();
+        $this->vat_code_dtl->Show();
+        $this->p_vat_type_dtl_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-F706B51B
+//Class_Initialize Event @94-26DACE66
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -166,6 +166,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->SLOT_5 = & new clsControl(ccsHidden, "SLOT_5", "SLOT_5", ccsText, "", CCGetRequestParam("SLOT_5", $Method, NULL), $this);
             $this->MESSAGE = & new clsControl(ccsHidden, "MESSAGE", "MESSAGE", ccsText, "", CCGetRequestParam("MESSAGE", $Method, NULL), $this);
             $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->Button3 = & new clsButton("Button3", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -433,7 +434,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-781A040E
+//Operation Method @94-B89CE8C2
     function Operation()
     {
         if(!$this->Visible)
@@ -460,6 +461,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Cancel";
             } else if($this->Button2->Pressed) {
                 $this->PressedButton = "Button2";
+            } else if($this->Button3->Pressed) {
+                $this->PressedButton = "Button3";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -486,6 +489,10 @@ function GetPrimaryKey($keyName)
                 }
             } else if($this->PressedButton == "Button2") {
                 if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button3") {
+                if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
                     $Redirect = "";
                 }
             }
@@ -594,7 +601,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-3CAEAB85
+//Show Method @94-140A1BD4
     function Show()
     {
         global $CCSUseAmp;
@@ -827,6 +834,7 @@ function GetPrimaryKey($keyName)
         $this->SLOT_5->Show();
         $this->MESSAGE->Show();
         $this->Button2->Show();
+        $this->Button3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
