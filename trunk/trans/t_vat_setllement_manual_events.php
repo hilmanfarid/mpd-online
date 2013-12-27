@@ -41,10 +41,12 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 	if(!isset($kamar) || $kamar == '') $kamar = 'NULL';
 	
 	//bikin no order gak keluar
-	//$sql = "select * from f_vat_settlement_manual_new($cusAccId,$Period,'$npwd','$ms_start','$ms_end',$kamar,$tot,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id,'$User')";
-	
-	//bikin kos jadi masalah
-	$sql = "select * from f_vat_settlement_manual_new($cusAccId,$Period,'$npwd','$ms_start','$ms_end',$kamar,$tot,$p_vat_type_dtl_id,'$User')";
+	if($p_vat_type_dtl_cls_id == ""){
+		$p_vat_type_dtl_cls_id = 0;
+	}
+
+	$sql = "select * from f_vat_settlement_manual_new($cusAccId,$Period,'$npwd','$ms_start','$ms_end',$kamar,$tot,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id,'$User')";
+
 	//die($sql);
 	$dbConn->query($sql);
 	$dbConn->next_record();
