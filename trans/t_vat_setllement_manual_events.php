@@ -35,11 +35,12 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 	$kamar = trim($t_vat_setllementForm->qty_room_sold->GetValue());
 	$tot = $t_vat_setllementForm->total_trans_amount->GetValue();
 	$p_vat_type_dtl_id = $t_vat_setllementForm->p_vat_type_dtl_id->GetValue();
+	$p_vat_type_dtl_cls_id = $t_vat_setllementForm->p_vat_type_dtl_cls_id->GetValue();
 	$User = CCGetUserLogin();
 	
 	if(!isset($kamar) || $kamar == '') $kamar = 'NULL';
 	
-	$sql = "select * from f_vat_settlement_manual_new($cusAccId,$Period,'$npwd','$ms_start','$ms_end',$kamar,$tot,$p_vat_type_dtl_id,'$User')";
+	$sql = "select * from f_vat_settlement_manual_new($cusAccId,$Period,'$npwd','$ms_start','$ms_end',$kamar,$tot,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id,'$User')";
 
 	//die($sql);
 	$dbConn->query($sql);
