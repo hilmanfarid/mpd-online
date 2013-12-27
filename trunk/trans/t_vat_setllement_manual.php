@@ -45,7 +45,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-0376A6B3
+//Class_Initialize Event @23-20E9DB1E
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -88,6 +88,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "Periode Tahun", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
             $this->year_code->Required = true;
             $this->total_trans_amount = & new clsControl(ccsTextBox, "total_trans_amount", "Jumlah Order", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_trans_amount", $Method, NULL), $this);
+            $this->total_trans_amount->Required = true;
             $this->start_period = & new clsControl(ccsTextBox, "start_period", "Masa Pajak", ccsText, "", CCGetRequestParam("start_period", $Method, NULL), $this);
             $this->start_period->Required = true;
             $this->DatePicker_start_period = & new clsDatePicker("DatePicker_start_period", "t_vat_setllementForm", "start_period", $this);
@@ -98,11 +99,10 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->vat_code->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
-            $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
+            $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Tipe Ayat", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
             $this->vat_code_dtl->Required = true;
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
-            $this->vat_code_dtl_cls = & new clsControl(ccsTextBox, "vat_code_dtl_cls", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code_dtl_cls", $Method, NULL), $this);
-            $this->vat_code_dtl_cls->Required = true;
+            $this->vat_code_dtl_cls = & new clsControl(ccsTextBox, "vat_code_dtl_cls", "Kelas", ccsText, "", CCGetRequestParam("vat_code_dtl_cls", $Method, NULL), $this);
             $this->p_vat_type_dtl_cls_id = & new clsControl(ccsHidden, "p_vat_type_dtl_cls_id", "p_vat_type_dtl_cls_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_cls_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->creation_date->Value) && !strlen($this->creation_date->Value) && $this->creation_date->Value !== false)
