@@ -1,7 +1,12 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="629" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_registrationForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customUpdate="UPDATE t_vat_registration SET 
-npwpd = '{npwpd}'
+		<Record id="629" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_registrationForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customUpdate="UPDATE t_vat_registration SET 
+bap_employee_no_1 = '{bap_employee_no_1}',
+bap_employee_no_2 = '{bap_employee_no_2}',
+bap_employee_name_1 = '{bap_employee_name_1}',
+bap_employee_name_2 = '{bap_employee_name_2}',
+bap_employee_job_pos_1 = '{bap_employee_job_pos_1}',
+bap_employee_job_pos_2 = '{bap_employee_job_pos_2}'
 WHERE  t_customer_order_id = {t_customer_order_id} 
 AND t_vat_registration_id = {t_vat_registration_id}" customDelete="DELETE FROM t_vat_registration 
 WHERE  t_vat_registration_id = {t_vat_registration_id} 
@@ -755,6 +760,42 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<TextBox id="941" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="bap_employee_name_1" fieldSource="bap_employee_name_1" required="False" caption="Nama Petugas 1" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbap_employee_name_1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="942" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="bap_employee_name_2" fieldSource="bap_employee_name_2" required="False" caption="Nama Petugas 2" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbap_employee_name_2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="943" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="bap_employee_no_1" fieldSource="bap_employee_no_1" required="False" caption="NIP Petugas 1" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbap_employee_no_1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="944" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="bap_employee_no_2" fieldSource="bap_employee_no_2" required="False" caption="NIP Petugas 2" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbap_employee_no_2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="945" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="bap_employee_job_pos_1" fieldSource="bap_employee_job_pos_1" required="False" caption="Jabatan Petugas 1" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbap_employee_job_pos_1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="946" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="bap_employee_job_pos_2" fieldSource="bap_employee_job_pos_2" required="False" caption="Jabatan Petugas 2" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbap_employee_job_pos_2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -897,7 +938,12 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 			<USQLParameters>
 				<SQLParameter id="820" variable="t_vat_registration_id" dataType="Float" parameterType="Control" parameterSource="t_vat_registration_id" defaultValue="0"/>
 				<SQLParameter id="826" variable="t_customer_order_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_customer_order_id"/>
-				<SQLParameter id="905" variable="npwpd" parameterType="Control" dataType="Text" parameterSource="npwpd"/>
+				<SQLParameter id="947" variable="bap_employee_no_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_no_1"/>
+				<SQLParameter id="948" variable="bap_employee_no_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_no_2"/>
+				<SQLParameter id="949" variable="bap_employee_name_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_name_1"/>
+				<SQLParameter id="950" variable="bap_employee_name_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_name_2"/>
+				<SQLParameter id="951" variable="bap_employee_job_pos_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_job_pos_1"/>
+				<SQLParameter id="952" variable="bap_employee_job_pos_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_job_pos_2"/>
 			</USQLParameters>
 			<UConditions>
 				<TableParameter id="827" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_customer_order_id"/>
