@@ -15,11 +15,11 @@ $dbConn = new clsDBConnSIKP();
 $query="Select *
 from
   (
-  select kode_jns_pajak  as kode_rekening ,jns_pajak as rincian_object, sum(jumlah_terima) as jumlah  from f_rep_bpps(".$vatId.", ".$yearId.", '".$tglPenerimaan."',1)
-  group by kode_jns_pajak ,jns_pajak
+  select kode_jns_pajak||'.'||kode_ayat  as kode_rekening ,nama_ayat as rincian_object, sum(jumlah_terima) as jumlah  from f_rep_bpps(".$vatId.", ".$yearId.", '".$tglPenerimaan."',1)
+  group by kode_jns_pajak ,kode_ayat, nama_ayat
   UNION
-  select kode_jns_pajak  as kode_rekening ,jns_pajak as rincian_object, sum(jumlah_terima) as jumlah  from f_rep_bpps(".$vatId.", ".$yearId.", '".$tglPenerimaan."',2)
-  group by kode_jns_pajak ,jns_pajak
+  select kode_jns_pajak||'.'||kode_ayat  as kode_rekening ,nama_ayat as rincian_object, sum(jumlah_terima) as jumlah  from f_rep_bpps_denda(".$vatId.", ".$yearId.", '".$tglPenerimaan."',2)
+  group by kode_jns_pajak ,kode_ayat, nama_ayat
   )
 order by kode_rekening ";
 
@@ -27,7 +27,7 @@ $dbConn->query($query);
 
 while ($dbConn->next_record()) {
 		$data["kode_rekening"][] = $dbConn->f("kode_rekening");
-		$data["rincian_object"][] = $dbConn->f("rincian_object");
+		$data["rincian_object"][] = "P. ".$dbConn->f("rincian_object");
 		$data["jumlah"][] = $dbConn->f("jumlah");
 }
 

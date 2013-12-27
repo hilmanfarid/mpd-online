@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -79,6 +79,8 @@ $(document).ready(function()
  
                   <th scope="col">&nbsp;Total Pajak</th>
  
+                  <th scope="col">Denda&nbsp; </th>
+ 
                   <th scope="col">No Kohir&nbsp;</th>
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;CETAK SSPD</th>
@@ -95,6 +97,7 @@ $(document).ready(function()
                   <td>{order_no}<input id="t_vat_setllementGridp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td> 
                   <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_trans_amount}&nbsp;</td> 
                   <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_vat_amount}&nbsp;</td> 
+                  <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_penalty_amount}</td> 
                   <td style="COLOR: #008000; TEXT-ALIGN: right">{no_kohir}&nbsp;</td> 
                   <td style="TEXT-ALIGN: center">{cetak}&nbsp; 
                     <!-- BEGIN Button cetak_payment --><input class="btn_tambah" id="t_vat_setllementGridcetak_payment" style="DISPLAY: none" onclick="flagPayment('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" type="button" alt="Button2" value="Flag Payment" name="{Button_Name}"><!-- END Button cetak_payment --></td> 
@@ -104,12 +107,12 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="14">-</td>
+                  <td colspan="15">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b>&nbsp;</b></td> 
-                  <td style="TEXT-ALIGN: center" colspan="13">&nbsp; 
+                  <td style="TEXT-ALIGN: center" colspan="14">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
@@ -271,10 +274,10 @@ function submitter(){
 
 function cetakStpd(pid){
          
-		var urlLink = "?t_vat_setllement_id="+pid;
-		return popup("../report/cetak_formulir_stpd_pdf.php"+urlLink);
+                var urlLink = "?t_vat_setllement_id="+pid;
+                return popup("../report/cetak_formulir_stpd_pdf.php"+urlLink);
 
-					  /*
+                                          /*
                if (req == 1){
                      var urlLink = "?t_vat_setllement_id="+pid;
                      return popup("../report/cetak_sptpd_hotel_pdf.php"+urlLink);
@@ -293,7 +296,7 @@ function cetakStpd(pid){
                 }else{
                      alert("Jenis Permohonan Tidak Diketahui");      
                 }
-				*/
+                                */
               
 }
 

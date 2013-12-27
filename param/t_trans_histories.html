@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -42,20 +42,20 @@ $(document).ready(function()
     </div>
     <div class="th tab-button">
       <div class="tab-title-selected">
-        HISTORI LOG & TRANSAKSI 
+        HISTORI LOG &amp; TRANSAKSI 
       </div>
     </div>
-	<div class="th tab-button">
+    <div class="th tab-button">
       <label onclick="javascript:toPotensi()">
       <div class="tab-title">
-        DATA POTENSI
+        DATA POTENSI 
       </div>
       </label>
     </div>
-	<div class="th tab-button">
+    <div class="th tab-button">
       <label onclick="javascript:toDoc()">
       <div class="tab-title">
-        DOKUMEN PENDUKUNG
+        DOKUMEN PENDUKUNG 
       </div>
       </label>
     </div>
@@ -115,12 +115,12 @@ $(document).ready(function()
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_awal_laporan}&nbsp;s/d {periode_akhir_laporan}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pelaporan}</td> 
-                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_transaksi}&nbsp;</td> 
-                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{total_transaksi}&nbsp;</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{total_pajak}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap><a href="#" id="HistoryGridLink1_{HistoryGrid:rowNumber}" onclick="javascript:detailTransaksi({t_cust_account_id}, {t_vat_setllement_id})"><u>Lihat Transaksi</u></a></td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kuitansi_pembayaran}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pembayaran}&nbsp;</td> 
-                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{payment_amount}&nbsp;</td>
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{payment_amount}&nbsp;</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
