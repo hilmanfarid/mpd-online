@@ -23,8 +23,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -40,22 +40,22 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <!-- BEGIN Record t_vat_setllementSearch -->
         <form id="t_vat_setllementSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <input id="t_vat_setllementSearchTAKEN_CTL" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{TAKEN_CTL}" name="{TAKEN_CTL_Name}"><input id="t_vat_setllementSearchIS_TAKEN" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{IS_TAKEN}" name="{IS_TAKEN_Name}"><input id="t_vat_setllementSearchCURR_DOC_ID" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{CURR_DOC_ID}" name="{CURR_DOC_ID_Name}"><input id="t_vat_setllementSearchCURR_DOC_TYPE_ID" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{CURR_DOC_TYPE_ID}" name="{CURR_DOC_TYPE_ID_Name}"><input id="t_vat_setllementSearchCURR_PROC_ID" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{CURR_PROC_ID}" name="{CURR_PROC_ID_Name}"><input id="t_vat_setllementSearchCURR_CTL_ID" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{CURR_CTL_ID}" name="{CURR_CTL_ID_Name}"><input id="t_vat_setllementSearchUSER_ID_DOC" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{USER_ID_DOC}" name="{USER_ID_DOC_Name}"><input id="t_vat_setllementSearchUSER_ID_DONOR" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{USER_ID_DONOR}" name="{USER_ID_DONOR_Name}"><input id="t_vat_setllementSearchUSER_ID_LOGIN" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{USER_ID_LOGIN}" name="{USER_ID_LOGIN_Name}"><input id="t_vat_setllementSearchUSER_ID_TAKEN" style="HEIGHT: 22px; WIDTH: 40px" size="5" type="hidden" value="{USER_ID_TAKEN}" name="{USER_ID_TAKEN_Name}"><input id="t_vat_setllementSearchIS_CREATE_DOC" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{IS_CREATE_DOC}" name="{IS_CREATE_DOC_Name}">
-<input id="t_vat_setllementSearchIS_MANUAL" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{IS_MANUAL}" name="{IS_MANUAL_Name}"><input id="t_vat_setllementSearchCURR_PROC_STATUS" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{CURR_PROC_STATUS}" name="{CURR_PROC_STATUS_Name}"><input id="t_vat_setllementSearchCURR_DOC_STATUS" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{CURR_DOC_STATUS}" name="{CURR_DOC_STATUS_Name}"><input id="t_vat_setllementSearchPREV_DOC_ID" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{PREV_DOC_ID}" name="{PREV_DOC_ID_Name}"><input id="t_vat_setllementSearchPREV_DOC_TYPE_ID" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{PREV_DOC_TYPE_ID}" name="{PREV_DOC_TYPE_ID_Name}"><input id="t_vat_setllementSearchPREV_PROC_ID" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{PREV_PROC_ID}" name="{PREV_PROC_ID_Name}"><input id="t_vat_setllementSearchPREV_CTL_ID" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{PREV_CTL_ID}" name="{PREV_CTL_ID_Name}"><input id="t_vat_setllementSearchSLOT_1" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{SLOT_1}" name="{SLOT_1_Name}"><input id="t_vat_setllementSearchSLOT_2" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{SLOT_2}" name="{SLOT_2_Name}"><input id="t_vat_setllementSearchSLOT_3" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{SLOT_3}" name="{SLOT_3_Name}"><input id="t_vat_setllementSearchSLOT_4" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{SLOT_4}" name="{SLOT_4_Name}"><input id="t_vat_setllementSearchSLOT_5" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{SLOT_5}" name="{SLOT_5_Name}">
-<input id="t_vat_setllementSearchMESSAGE" style="HEIGHT: 22px; WIDTH: 36px" size="4" type="hidden" value="{MESSAGE}" name="{MESSAGE_Name}">
+          <input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchTAKEN_CTL" name="{TAKEN_CTL_Name}" value="{TAKEN_CTL}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchIS_TAKEN" name="{IS_TAKEN_Name}" value="{IS_TAKEN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_DOC_ID" name="{CURR_DOC_ID_Name}" value="{CURR_DOC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_DOC_TYPE_ID" name="{CURR_DOC_TYPE_ID_Name}" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_PROC_ID" name="{CURR_PROC_ID_Name}" value="{CURR_PROC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_CTL_ID" name="{CURR_CTL_ID_Name}" value="{CURR_CTL_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchUSER_ID_DOC" name="{USER_ID_DOC_Name}" value="{USER_ID_DOC}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchUSER_ID_DONOR" name="{USER_ID_DONOR_Name}" value="{USER_ID_DONOR}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchUSER_ID_LOGIN" name="{USER_ID_LOGIN_Name}" value="{USER_ID_LOGIN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchUSER_ID_TAKEN" name="{USER_ID_TAKEN_Name}" value="{USER_ID_TAKEN}" size="5" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchIS_CREATE_DOC" name="{IS_CREATE_DOC_Name}" value="{IS_CREATE_DOC}" size="4" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchIS_MANUAL" name="{IS_MANUAL_Name}" value="{IS_MANUAL}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_PROC_STATUS" name="{CURR_PROC_STATUS_Name}" value="{CURR_PROC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_DOC_STATUS" name="{CURR_DOC_STATUS_Name}" value="{CURR_DOC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_DOC_ID" name="{PREV_DOC_ID_Name}" value="{PREV_DOC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_DOC_TYPE_ID" name="{PREV_DOC_TYPE_ID_Name}" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_PROC_ID" name="{PREV_PROC_ID_Name}" value="{PREV_PROC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_CTL_ID" name="{PREV_CTL_ID_Name}" value="{PREV_CTL_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_1" name="{SLOT_1_Name}" value="{SLOT_1}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_2" name="{SLOT_2_Name}" value="{SLOT_2}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_3" name="{SLOT_3_Name}" value="{SLOT_3}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_4" name="{SLOT_4_Name}" value="{SLOT_4}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_5" name="{SLOT_5_Name}" value="{SLOT_5}" size="4" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchMESSAGE" name="{MESSAGE_Name}" value="{MESSAGE}" size="4" type="hidden">
         </form>
         <!-- END Record t_vat_setllementSearch --><br>
         <!-- BEGIN Grid t_vat_setllementGrid -->
-        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
             <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR SPTPD (Pelaporan Pajak)</strong></td> 
@@ -89,39 +89,43 @@ $(document).ready(function()
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;FLAG PAYMENT</th>
  
-                  <th style="TEXT-ALIGN: center" colspan="5" scope="col">CETAK REGISTER</th>
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;CETAK REGISTER</th>
+ 
+                  <th style="TEXT-ALIGN: center" colspan="5" scope="col"></th>
                 </tr>
  
                 <!-- BEGIN Row -->
                 <tr {t_vat_setllementGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center" nowrap>&nbsp;<a href="{DLink_Src}" id="t_vat_setllementGridDLink_{t_vat_setllementGrid:rowNumber}">{DLink}</a></td> 
-                  <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="t_vat_setllementGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink1}" src="../images/list.gif"></a></td> 
-                  <td style="TEXT-ALIGN: center"><a href="{ImageLink2}" id="t_vat_setllementGridImageLink2_{p_app_menuGrid:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a>&nbsp;</td> 
-                  <td>&nbsp;{wp_name}<input id="t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"></td> 
-                  <td>{npwd}&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"></td> 
-                  <td>{finance_period_code}&nbsp;<input id="t_vat_setllementGridp_rqst_type_id_{t_vat_setllementGrid:rowNumber}" type="hidden" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"></td> 
-                  <td>{order_no}<input id="t_vat_setllementGridp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td> 
-                  <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_trans_amount}&nbsp;</td> 
-                  <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_vat_amount}&nbsp;</td> 
-                  <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_penalty_amount}&nbsp;</td> 
-                  <td style="COLOR: #008000; TEXT-ALIGN: right">{no_kohir}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="t_vat_setllementGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/list.gif"></a></td> 
+                  <td style="TEXT-ALIGN: center"><a href="{ImageLink2}" id="t_vat_setllementGridImageLink2_{p_app_menuGrid:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a>&nbsp;</td> 
+                  <td>&nbsp;{wp_name}<input id="t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"></td> 
+                  <td>{npwd}&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden"></td> 
+                  <td>{finance_period_code}&nbsp;<input id="t_vat_setllementGridp_rqst_type_id_{t_vat_setllementGrid:rowNumber}" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"></td> 
+                  <td>{order_no}<input id="t_vat_setllementGridp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_trans_amount}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_vat_amount}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: center">&nbsp; 
+                    <!-- BEGIN Button cetak_payment --><input id="t_vat_setllementGridcetak_payment" class="btn_tambah" onclick="flagPayment('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" name="{Button_Name}" alt="Button2" value="Flag Payment" type="button"><!-- END Button cetak_payment --></td> 
                   <td style="TEXT-ALIGN: center">{cetak}&nbsp; 
-                    <!-- BEGIN Button cetak_payment --><input onclick="flagPayment('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" id="t_vat_setllementGridcetak_payment" class="btn_tambah" alt="Button2" type="button" value="Flag Payment" name="{Button_Name}"><!-- END Button cetak_payment --></td> 
+                    <!-- BEGIN Button cetak_register --><input id="t_vat_setllementGridcetak_register" class="btn_tambah" onclick="cetakRegister('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" name="{Button_Name}" alt="Button2" value="Cetak Register" type="button"><!-- END Button cetak_register --></td> 
                   <td style="TEXT-ALIGN: center" colspan="5">{cetak_sptpd}&nbsp; 
-                    <!-- BEGIN Button cetak_register --><input onclick="cetakRegister('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" id="t_vat_setllementGridcetak_register" class="btn_tambah" alt="Button2" type="button" value="Cetak Register" name="{Button_Name}"><!-- END Button cetak_register --></td>
+                    <!-- BEGIN Button cetak_register1 --><input id="t_vat_setllementGridcetak_register1" class="btn_tambah" onclick="TesDownload()" name="{Button_Name}" alt="Button2" value="(Uji Coba) Jangan Ditekan" type="button"><!-- END Button cetak_register1 --></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="17">-</td>
+                  <td colspan="18">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b>&nbsp;</b></td> 
                   <td></td> 
                   <td>&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right" colspan="14">
-                    <!-- BEGIN Button Button1 --><input onclick="submitter()" id="t_vat_setllementGridButton1" class="btn_tambah" alt="Button1" type="submit" value="SUBMIT" name="{Button_Name}"><!-- END Button Button1 --></td>
+                  <td style="TEXT-ALIGN: right" colspan="15">
+                    <!-- BEGIN Button Button1 --><input id="t_vat_setllementGridButton1" class="btn_tambah" onclick="submitter()" name="{Button_Name}" alt="Button1" value="SUBMIT" type="submit"><!-- END Button Button1 --></td>
                 </tr>
               </table>
             </td>
@@ -131,6 +135,76 @@ $(document).ready(function()
     </tr>
   </table>
 </div>
+<script language="VBScript">
+        Sub TesDownload()
+                HTTPDownload "http://172.16.20.2:81/mpd/print/test.txt", "C:\"
+        End Sub
+
+        Sub DirectPrint()
+                HTTPDownload "http://172.16.20.2:81/mpd/print/test.txt", "C:\"
+                Printing "C:\test.txt"
+        End Sub
+
+        Sub Printing(localfilepath)
+        'Usage: Printing "C:\example.txt"
+                Set objFSO = CreateObject("Scripting.FileSystemObject" )
+                strFolder = objFSO.GetParentFolderName(localfilepath)
+
+                Set objFSO = Nothing
+
+                Set objShell  = CreateObject("Shell.Application")
+                Set objFolder = objShell.Namespace(strFolder)
+                Set colFiles  = objFolder.Items
+
+                'Find the specified file
+                If colFiles.Count > 0 Then
+                        For Each objFile In colFiles
+                                If LCase(objFile.Path) = LCase(localfilepath) Then
+                                        'Print the file
+                                        objFile.InvokeVerbEx("Print")
+                                End If
+                        Next
+                End If
+        End Sub
+
+        Sub HTTPDownload(myURL, myPath)
+        'Usage: HTTPDownload "https://rapidleech.googlecode.com/files/rl23_v43_SVN422.zip", "C:\"
+
+                Dim i, objFile, objFSO, objHTTP, strFile, strMsg
+                Const ForReading = 1, ForWriting = 2, ForAppending = 8
+
+                Set objFSO = CreateObject("Scripting.FileSystemObject")
+
+                ' Check if the specified target file or folder exists,
+                ' and build the fully qualified path of the target file
+                If objFSO.FolderExists(myPath) Then
+                        strFile = objFSO.BuildPath(myPath, Mid(myURL, InStrRev(myURL, "/") + 1))
+                ElseIf objFSO.FolderExists(Left(myPath, InStrRev(myPath, "\") - 1)) Then
+                        strFile = myPath
+                Else
+                        WScript.Echo "ERROR: Target folder not found."
+                        Exit Sub
+                End If
+
+                ' Create or open the target file
+                Set objFile = objFSO.OpenTextFile(strFile, ForWriting, True)
+
+                ' Create an HTTP object
+                Set objHTTP = CreateObject("WinHttp.WinHttpRequest.5.1")
+
+                ' Download the specified URL
+                objHTTP.Open "GET", myURL, False
+                objHTTP.Send
+
+                ' Write the downloaded byte stream to the target file
+                For i = 1 To LenB(objHTTP.ResponseBody)
+                        objFile.Write Chr(AscB(MidB(objHTTP.ResponseBody, i, 1)))
+                Next
+
+                ' Close the target file
+                objFile.Close()
+        End Sub
+        </script>
 <script type="text/javascript" src="../js/lov.js"></script>
 <script language="javascript">
 function popup(url) 
