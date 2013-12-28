@@ -210,24 +210,24 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="308" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register" PathID="t_vat_setllementGridcetak_register">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register1" PathID="t_vat_setllementGridcetak_register1">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 <Hidden id="312" fieldSourceType="CodeExpression" dataType="Text" name="user" PathID="t_vat_setllementGriduser" fieldSource="CCGetUserLogin()">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
 </Hidden>
+<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register1" PathID="t_vat_setllementGridcetak_register1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="308" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register" PathID="t_vat_setllementGridcetak_register">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">

@@ -110,9 +110,9 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center">&nbsp; 
                     <!-- BEGIN Button cetak_payment --><input id="t_vat_setllementGridcetak_payment" class="btn_tambah" onclick="flagPayment('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" name="{Button_Name}" alt="Button2" value="Flag Payment" type="button"><!-- END Button cetak_payment --></td> 
                   <td style="TEXT-ALIGN: center">{cetak}&nbsp; 
-                    <!-- BEGIN Button cetak_register --><input id="t_vat_setllementGridcetak_register" class="btn_tambah" onclick="cetakRegister('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" name="{Button_Name}" alt="Button2" value="Cetak Register" type="button"><!-- END Button cetak_register --></td> 
-                  <td style="TEXT-ALIGN: center" colspan="5">{cetak_sptpd}&nbsp; 
-                    <!-- BEGIN Button cetak_register1 --><input id="t_vat_setllementGridcetak_register1" class="btn_tambah" onclick="DirectPrint()" name="{Button_Name}" alt="Button2" value="(Uji Coba) Jangan Ditekan" type="button"><!-- END Button cetak_register1 --></td>
+                    <!-- BEGIN Button cetak_register1 --><input id="t_vat_setllementGridcetak_register1" class="btn_tambah" onclick="DirectPrint()" name="{Button_Name}" alt="Button2" value="Cetak Register" type="button"><!-- END Button cetak_register1 -->&nbsp; </td> 
+                  <td style="TEXT-ALIGN: center" colspan="5">{cetak_sptpd} 
+                    <!-- BEGIN Button cetak_register --><input style="DISPLAY: none" id="t_vat_setllementGridcetak_register" class="btn_tambah" onclick="cetakRegister('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" name="{Button_Name}" alt="Button2" value="Cetak Register" type="button"><!-- END Button cetak_register -->&nbsp;&nbsp; </td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -138,22 +138,22 @@ $(document).ready(function()
 <script language="VBScript">
         Sub DirectPrint()
                 XHR()
-                Printing "C:\Register"
+                Printing "C:\Kode Register"
         End Sub
                 
                 Sub XHR()
                         Const ForWriting = 2
- 						Dim t_customer_order_id
-						Dim user
-						t_customer_order_id = Document.getElementByID("t_customer_order_id").Value
-						user = Document.getElementByID("user").Value
+                                                Dim t_customer_order_id
+                                                Dim user
+                                                t_customer_order_id = Document.getElementByID("t_customer_order_id").Value
+                                                user = Document.getElementByID("user").Value
                         strURL = "http://172.16.20.2:81/mpd/report/cetak_registrasi.php?t_customer_order_id=" & t_customer_order_id & "&user=" & user
                         Set objHTTP = CreateObject("MSXML2.XMLHTTP") 
                         Call objHTTP.Open("GET", strURL, FALSE) 
                         objHTTP.Send
                  
                         Set objFSO = CreateObject("Scripting.FileSystemObject")
-                        Set objFile = objFSO.CreateTextFile ("C:\Register", ForWriting)
+                        Set objFile = objFSO.CreateTextFile ("C:\Kode Register", ForWriting)
                         objFile.Write objHTTP.ResponseText
                         objFile.Close
                 End Sub
