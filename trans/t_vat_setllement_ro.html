@@ -138,7 +138,7 @@ $(document).ready(function()
 <script language="VBScript">
         Sub DirectPrint()
                 XHR()
-                Printing "C:\registrasi.txt"
+                Printing "C:\Register"
         End Sub
                 
                 Sub XHR()
@@ -153,7 +153,7 @@ $(document).ready(function()
                         objHTTP.Send
                  
                         Set objFSO = CreateObject("Scripting.FileSystemObject")
-                        Set objFile = objFSO.CreateTextFile ("C:\registrasi.txt", ForWriting)
+                        Set objFile = objFSO.CreateTextFile ("C:\Register", ForWriting)
                         objFile.Write objHTTP.ResponseText
                         objFile.Close
                 End Sub
