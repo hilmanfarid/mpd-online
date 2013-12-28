@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-0C786B71
+//Class_Initialize Event @2-598C71B5
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -90,10 +90,11 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->cetak->HTML = true;
         $this->no_kohir = & new clsControl(ccsLabel, "no_kohir", "no_kohir", ccsText, "", CCGetRequestParam("no_kohir", ccsGet, NULL), $this);
         $this->wp_name = & new clsControl(ccsLabel, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", ccsGet, NULL), $this);
-        $this->cetak_payment = & new clsButton("cetak_payment", ccsGet, $this);
-        $this->cetak_register = & new clsButton("cetak_register", ccsGet, $this);
         $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsInteger, "", CCGetRequestParam("t_customer_order_id", ccsGet, NULL), $this);
         $this->total_penalty_amount = & new clsControl(ccsLabel, "total_penalty_amount", "total_penalty_amount", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("total_penalty_amount", ccsGet, NULL), $this);
+        $this->cetak_payment = & new clsButton("cetak_payment", ccsGet, $this);
+        $this->cetak_register = & new clsButton("cetak_register", ccsGet, $this);
+        $this->cetak_register1 = & new clsButton("cetak_register1", ccsGet, $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
     }
 //End Class_Initialize Event
@@ -109,7 +110,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-427B1203
+//Show Method @2-C36F059E
     function Show()
     {
         global $Tpl;
@@ -153,10 +154,11 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["cetak"] = $this->cetak->Visible;
             $this->ControlsVisible["no_kohir"] = $this->no_kohir->Visible;
             $this->ControlsVisible["wp_name"] = $this->wp_name->Visible;
-            $this->ControlsVisible["cetak_payment"] = $this->cetak_payment->Visible;
-            $this->ControlsVisible["cetak_register"] = $this->cetak_register->Visible;
             $this->ControlsVisible["t_customer_order_id"] = $this->t_customer_order_id->Visible;
             $this->ControlsVisible["total_penalty_amount"] = $this->total_penalty_amount->Visible;
+            $this->ControlsVisible["cetak_payment"] = $this->cetak_payment->Visible;
+            $this->ControlsVisible["cetak_register"] = $this->cetak_register->Visible;
+            $this->ControlsVisible["cetak_register1"] = $this->cetak_register1->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -264,10 +266,11 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->cetak->Show();
                 $this->no_kohir->Show();
                 $this->wp_name->Show();
-                $this->cetak_payment->Show();
-                $this->cetak_register->Show();
                 $this->t_customer_order_id->Show();
                 $this->total_penalty_amount->Show();
+                $this->cetak_payment->Show();
+                $this->cetak_register->Show();
+                $this->cetak_register1->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
