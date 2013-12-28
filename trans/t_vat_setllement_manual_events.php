@@ -40,10 +40,8 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 	
 	if(!isset($kamar) || $kamar == '') $kamar = 'NULL';
 	
-	//bikin no order gak keluar
-	if($p_vat_type_dtl_cls_id == ""){
-		$p_vat_type_dtl_cls_id = 0;
-	}
+	//new fix
+	if(!isset($p_vat_type_dtl_cls_id) || $p_vat_type_dtl_cls_id == '') $p_vat_type_dtl_cls_id = 'NULL';
 
 	$sql = "select * from f_vat_settlement_manual_new($cusAccId,$Period,'$npwd','$ms_start','$ms_end',$kamar,$tot,$p_vat_type_dtl_id,$p_vat_type_dtl_cls_id,'$User')";
 
