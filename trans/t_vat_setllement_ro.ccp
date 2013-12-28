@@ -222,6 +222,12 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Attributes/>
 					<Features/>
 				</Button>
+<Hidden id="312" fieldSourceType="CodeExpression" dataType="Text" name="user" PathID="t_vat_setllementGriduser" fieldSource="CCGetUserLogin()">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
