@@ -86,6 +86,7 @@ class FormCetak extends FPDF {
 	var $aligns;
 	var $page_orientation;
 	var $page_size;
+	var $lengthCell;
 	
 	function FormCetak() {
 		$this->page_orientation = "P";
