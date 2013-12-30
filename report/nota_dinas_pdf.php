@@ -27,6 +27,7 @@ if (empty($idVatSS)) {
         $data["address_name"] = $dbConn->f("address_name");
         $data["company_brand"] = $dbConn->f("company_brand");
         $data["brand_address_name"] = $dbConn->f("brand_address_name");
+        $data["reg_letter_no"] = $dbConn->f("reg_letter_no");
     }
 	$dbConn->close();
 }
@@ -111,7 +112,7 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Nomor          :", "", 0, 'L');
-        $this->Cell($lengthJudul2, $this->height, "973/        /jakdaf/XI/2013", "", 0, 'L');
+        $this->Cell($lengthJudul2, $this->height, "973/" . $data["reg_letter_no"] . "/jakdaf/XI/2013", "", 0, 'L');
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Lampiran      :", "", 0, 'L');
@@ -130,7 +131,7 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal 25 November 2013, telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
+        $this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal " . date('d F Y') . ", telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
         $this->Ln(6);
 
         //data wajib pajak

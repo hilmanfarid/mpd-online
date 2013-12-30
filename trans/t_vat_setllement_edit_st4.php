@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-E9FBE641
+//Class_Initialize Event @2-7E79F635
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -73,13 +73,15 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->DLink->HTML = true;
         $this->DLink->Page = "t_vat_setllement_edit_st4.php";
         $this->order_no = & new clsControl(ccsLabel, "order_no", "order_no", ccsText, "", CCGetRequestParam("order_no", ccsGet, NULL), $this);
-        $this->total_trans_amount = & new clsControl(ccsLabel, "total_trans_amount", "total_trans_amount", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("total_trans_amount", ccsGet, NULL), $this);
+        $this->total_trans_amount = & new clsControl(ccsLabel, "total_trans_amount", "total_trans_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_trans_amount", ccsGet, NULL), $this);
         $this->total_vat_amount = & new clsControl(ccsLabel, "total_vat_amount", "total_vat_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_vat_amount", ccsGet, NULL), $this);
         $this->finance_period_code = & new clsControl(ccsLabel, "finance_period_code", "finance_period_code", ccsText, "", CCGetRequestParam("finance_period_code", ccsGet, NULL), $this);
         $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "t_vat_setllement_id", ccsFloat, "", CCGetRequestParam("t_vat_setllement_id", ccsGet, NULL), $this);
         $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
         $this->wp_name = & new clsControl(ccsLabel, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", ccsGet, NULL), $this);
         $this->jenis_pajak = & new clsControl(ccsLabel, "jenis_pajak", "jenis_pajak", ccsText, "", CCGetRequestParam("jenis_pajak", ccsGet, NULL), $this);
+        $this->total_penalty_amount = & new clsControl(ccsLabel, "total_penalty_amount", "total_penalty_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_penalty_amount", ccsGet, NULL), $this);
+        $this->settlement_type = & new clsControl(ccsLabel, "settlement_type", "settlement_type", ccsText, "", CCGetRequestParam("settlement_type", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -96,7 +98,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-4699E14E
+//Show Method @2-E0D24D13
     function Show()
     {
         global $Tpl;
@@ -134,6 +136,8 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["npwd"] = $this->npwd->Visible;
             $this->ControlsVisible["wp_name"] = $this->wp_name->Visible;
             $this->ControlsVisible["jenis_pajak"] = $this->jenis_pajak->Visible;
+            $this->ControlsVisible["total_penalty_amount"] = $this->total_penalty_amount->Visible;
+            $this->ControlsVisible["settlement_type"] = $this->settlement_type->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -151,6 +155,8 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->npwd->SetValue($this->DataSource->npwd->GetValue());
                 $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
                 $this->jenis_pajak->SetValue($this->DataSource->jenis_pajak->GetValue());
+                $this->total_penalty_amount->SetValue($this->DataSource->total_penalty_amount->GetValue());
+                $this->settlement_type->SetValue($this->DataSource->settlement_type->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -163,6 +169,8 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->npwd->Show();
                 $this->wp_name->Show();
                 $this->jenis_pajak->Show();
+                $this->total_penalty_amount->Show();
+                $this->settlement_type->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -195,7 +203,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Show Method
 
-//GetErrors Method @2-74B4DFBF
+//GetErrors Method @2-DCA7D675
     function GetErrors()
     {
         $errors = "";
@@ -208,6 +216,8 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $errors = ComposeStrings($errors, $this->npwd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->jenis_pajak->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->total_penalty_amount->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->settlement_type->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -218,7 +228,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
 class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllementGridDataSource Class @2-F0AECE38
 
-//DataSource Variables @2-1E88AEAA
+//DataSource Variables @2-FD4DA432
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -238,9 +248,11 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $npwd;
     var $wp_name;
     var $jenis_pajak;
+    var $total_penalty_amount;
+    var $settlement_type;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-1AE7503C
+//DataSourceClass_Initialize Event @2-73C4841C
     function clst_vat_setllementGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -261,6 +273,10 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp_name = new clsField("wp_name", ccsText, "");
         
         $this->jenis_pajak = new clsField("jenis_pajak", ccsText, "");
+        
+        $this->total_penalty_amount = new clsField("total_penalty_amount", ccsFloat, "");
+        
+        $this->settlement_type = new clsField("settlement_type", ccsText, "");
         
 
     }
@@ -314,7 +330,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @2-53885F6A
+//SetValues Method @2-4328DB51
     function SetValues()
     {
         $this->order_no->SetDBValue($this->f("order_no"));
@@ -325,6 +341,8 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->npwd->SetDBValue($this->f("npwd"));
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->jenis_pajak->SetDBValue($this->f("jenis_pajak"));
+        $this->total_penalty_amount->SetDBValue(trim($this->f("total_penalty_amount")));
+        $this->settlement_type->SetDBValue($this->f("settlement_type"));
     }
 //End SetValues Method
 

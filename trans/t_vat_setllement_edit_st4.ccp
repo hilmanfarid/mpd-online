@@ -17,7 +17,7 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="19" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_trans_amount" fieldSource="total_trans_amount" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridtotal_trans_amount" format="0">
+				<Label id="19" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_trans_amount" fieldSource="total_trans_amount" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridtotal_trans_amount" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -65,7 +65,19 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="384" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_penalty_amount" PathID="t_vat_setllementGridtotal_penalty_amount" fieldSource="total_penalty_amount" format="#,##0.00">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+<Label id="385" fieldSourceType="DBColumn" dataType="Text" html="False" name="settlement_type" PathID="t_vat_setllementGridsettlement_type" fieldSource="settlement_type">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -285,49 +297,49 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="380" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox1" PathID="t_vat_setllementFormTextBox1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="43" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_vat_amount" fieldSource="total_vat_amount" wizardCaption="Updated By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_vat_amount" format="#,##0.00" required="True" defaultValue="0">
+				<TextBox id="380" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox1" PathID="t_vat_setllementFormTextBox1">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="381" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox2" PathID="t_vat_setllementFormTextBox2">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="292" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="db_interest_charge" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormdb_interest_charge" format="#,##0.00" fieldSource="db_interest_charge" defaultValue="0" required="True">
+				<TextBox id="43" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_vat_amount" fieldSource="total_vat_amount" wizardCaption="Updated By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_vat_amount" format="#,##0.00" required="True" defaultValue="0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="293" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="db_increasing_charge" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormdb_increasing_charge" format="#,##0.00" fieldSource="db_increasing_charge" required="True" defaultValue="0">
+				<TextBox id="381" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox2" PathID="t_vat_setllementFormTextBox2">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="382" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox3" PathID="t_vat_setllementFormTextBox3">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="383" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox4" PathID="t_vat_setllementFormTextBox4">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-</Components>
+				<TextBox id="292" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="db_interest_charge" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormdb_interest_charge" format="#,##0.00" fieldSource="db_interest_charge" defaultValue="0" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="293" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="db_increasing_charge" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormdb_increasing_charge" format="#,##0.00" fieldSource="db_increasing_charge" required="True" defaultValue="0">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="382" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox3" PathID="t_vat_setllementFormTextBox3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="383" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox4" PathID="t_vat_setllementFormTextBox4">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+			</Components>
 			<Events>
 			</Events>
 			<TableParameters>
