@@ -11,7 +11,7 @@ $data = array();
 
 $dbConn = new clsDBConnSIKP();
 
-$query = 	"select a.wp_name, a.wp_address_name, a.company_name, a.address_name, b.code as job_name, a.bap_employee_no_1, a.bap_employee_name_1, a.bap_employee_no_2, a.bap_employee_name_2, a.bap_employee_job_pos_1, a.bap_employee_job_pos_2 " .
+$query = 	"select a.company_brand, a.brand_address_name, a.brand_address_no, a.wp_name, a.wp_address_name, a.company_name, a.address_name, b.code as job_name, a.bap_employee_no_1, a.bap_employee_name_1, a.bap_employee_no_2, a.bap_employee_name_2, a.bap_employee_job_pos_1, a.bap_employee_job_pos_2 " .
 			"from t_vat_registration a " .
 			"join p_job_position b " .
 			"on a.p_job_position_id = b.p_job_position_id " .
@@ -24,6 +24,9 @@ while ($dbConn->next_record()) {
 	$data["company_name"]			= $dbConn->f("company_name");
 	$data["address_name"]			= $dbConn->f("address_name");
 	$data["job_name"]				= $dbConn->f("job_name");
+	$data["company_brand"]			= $dbConn->f("company_brand");
+	$data["brand_address_name"]		= $dbConn->f("brand_address_name");
+	$data["brand_address_no"]		= $dbConn->f("brand_address_no");
 	$data["bap_employee_no_1"]		= $dbConn->f("bap_employee_no_1");
 	$data["bap_employee_no_2"]		= $dbConn->f("bap_employee_no_2");
 	$data["bap_employee_name_1"]	= $dbConn->f("bap_employee_name_1");
@@ -184,6 +187,42 @@ class FormCetak extends FPDF {
 			,
 			$this->height);
 
+		$this->RowMultiBorderWithHeight(array(
+			"",
+			"5.",
+			"Nama Merek Dagang",
+			": " . $data["company_brand"],
+			""
+			)
+			,
+			array(
+			"",
+			"",
+			"",
+			"",
+			""
+			)
+			,
+			$this->height);
+		
+		$this->RowMultiBorderWithHeight(array(
+			"",
+			"6.",
+			"Alamat Lokasi Usaha",
+			": " . $data["brand_address_name"] . " " . $data["brand_address_no"],
+			""
+			)
+			,
+			array(
+			"",
+			"",
+			"",
+			"",
+			""
+			)
+			,
+			$this->height);
+			
 		$this->Cell(10, $this->height + 2, "", "", 0, 'L');
 		$this->Cell(5, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1, $this->height + 2, "NPWD", "", 0, 'L');
