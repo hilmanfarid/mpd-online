@@ -595,7 +595,7 @@ class FormCetak extends FPDF {
 		$lbodyx2 = $lbodyx * 2;
 		$lbodyx3 = $lbodyx * 3;
 		$lbodyx5 = $lbodyx * 5;
-		
+
 		$this->Cell($subtractor, $this->height, "$section", "L", 0, "L");
 		$this->Cell($lbodyx3 + $lbodyx2, $this->height, "$field", "", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "$middle", "", 0, "L");

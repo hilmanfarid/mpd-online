@@ -24,6 +24,7 @@ $data=array();
 while ($dbConn->next_record()) {
 		$data[]= array(
 			'npwd' => $dbConn->f("npwd"),
+			'company_name' => $dbConn->f("company_name"),
 			'letter_no' => $dbConn->f("letter_no"),
 			'vat_code' => $dbConn->f("vat_code"),
 			'periode' => $dbConn->f("periode"),
@@ -154,7 +155,7 @@ class FormCetak extends FPDF {
 		$lkepada3 = $lkepada * 3;
 
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "Kepada Yth,", "R", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Kepada Yth, ".$data['company_name'], "R", 0, 'L');
 		$this->Ln();
 		
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
