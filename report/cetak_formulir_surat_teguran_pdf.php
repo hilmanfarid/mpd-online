@@ -328,7 +328,7 @@ class FormCetak extends FPDF {
 			array("",
 				$data["vat_code"],
 				$tahun[1],
-				$data["debt_periode_code"],
+				$bulan_string,
 				$data["tap_no"],
 				"-",
 				""
