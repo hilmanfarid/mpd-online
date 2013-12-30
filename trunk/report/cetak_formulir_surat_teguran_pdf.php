@@ -83,7 +83,9 @@ class FormCetak extends FPDF {
 	function PageCetak($data) {
 		$this->AliasNbPages();
 		$this->AddPage("P");
-		$this->SetFont('Arial', '', 10);
+		$this->AddFont('BKANT');
+		
+		$this->SetFont('BKANT', '', 10);
 		
 		$this->Image('../images/logo_pemda.png',25,12,25,25);
 		
@@ -98,17 +100,17 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader7, $this->height, "", "TR", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', 'B', 10);
+		$this->SetFont('BKANT', '', 10);
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', 'B', 14);
+		$this->SetFont('BKANT', '', 14);
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', '', 10);
+		$this->SetFont('BKANT', '', 10);
 		$this->Cell($lheader1, $this->height + 3, "", "L", 0, 'L');
 		$this->Cell($lheader7, $this->height + 3, "Jalan Wastukancana No. 2 Telp. 022. 4235052 - Bandung", "R", 0, 'C');
 		$this->Ln();
@@ -226,11 +228,11 @@ class FormCetak extends FPDF {
 		$this->Cell($lkepada2, $this->height, "Tempat", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', 'UB', 10);
+		$this->SetFont('BKANT', '', 10);
 		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN", "LR", 0, 'C');
 		$this->newLine();
 		
-		$this->SetFont('Arial', '', 10);
+		$this->SetFont('BKANT', '', 10);
 		/*$this->Cell($this->lengthCell, $this->height, "Nomor: ".$data["letter_no"], "LR", 0, 'C');
 		$this->newLine();*/
 		
@@ -275,7 +277,7 @@ class FormCetak extends FPDF {
 				$data["vat_code"],
 				$tahun[1],
 				$data["tap_no"]." - ".$data["tap_date"],
-				$data["due_date"],
+				$data["tap_no"],
 				$data["debt_amount"],
 				""
 			),
@@ -331,14 +333,14 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, ",", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4, $this->height, "KEPALA DINAS PELAYANAN PAJAK", "", 0, 'C');
+		$this->Cell($lbody4, $this->height, "an. KEPALA DINAS PELAYANAN PAJAK", "", 0, 'C');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4, $this->height, "KOTA BANDUNG", "", 0, 'C');
+		$this->Cell($lbody4, $this->height, "Kepala Bidang Pajak Pendaftaran", "", 0, 'C');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 
@@ -353,15 +355,15 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4, $this->height, $data["nama_kadin"], "", 0, 'C');
-		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
+		$this->Cell($lbody4-5, $this->height, "", "", 0, 'C');
+		$this->Cell($lbody4+10, $this->height, "H.SONI BAKHTIYAR, S.SOS, M.SI ", "B", 0, 'C');
+		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4 - 2, $this->height, "NIP. " . $data["nip_kadin"], "T", 0, 'L'); //isi nip
+		$this->Cell($lbody4 - 2, $this->height, "NIP. 19750625 1994031 1 00 1", "", 0, 'L'); //isi nip
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
