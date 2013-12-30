@@ -85,7 +85,7 @@ class FormCetak extends FPDF {
 		$this->AddPage("P");
 		$this->AddFont('BKANT');
 		
-		$this->SetFont('BKANT', '', 10);
+		$this->SetFont('BKANT', '', 12);
 		
 		$this->Image('../images/logo_pemda.png',25,12,25,25);
 		
@@ -100,17 +100,17 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader7, $this->height, "", "TR", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('BKANT', '', 10);
+		$this->SetFont('BKANT', '', 12);
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('BKANT', '', 14);
+		$this->SetFont('BKANT', '', 16);
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('BKANT', '', 10);
+		$this->SetFont('BKANT', '', 12);
 		$this->Cell($lheader1, $this->height + 3, "", "L", 0, 'L');
 		$this->Cell($lheader7, $this->height + 3, "Jalan Wastukancana No. 2 Telp. 022. 4235052 - Bandung", "R", 0, 'C');
 		$this->Ln();
@@ -228,15 +228,24 @@ class FormCetak extends FPDF {
 		$this->Cell($lkepada2, $this->height, "Tempat", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('BKANT', '', 10);
+		$this->SetFont('BKANT', '', 12);
 		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN", "LR", 0, 'C');
 		$this->newLine();
 		
-		$this->SetFont('BKANT', '', 10);
+		$this->SetFont('BKANT', '', 12);
 		/*$this->Cell($this->lengthCell, $this->height, "Nomor: ".$data["letter_no"], "LR", 0, 'C');
 		$this->newLine();*/
-		
-		$this->tulis("Menurut pembukuan kami hingga saat ini Saudara masih mempunyai tunggakan Pajak sebagai berikut:", "L");
+		$this->SetWidths(array(10,173, 5));
+		$this->RowMultiBorderWithHeight(array("",
+				"Menurut pembukuan kami hingga saat ini Saudara masih mempunyai tunggakan Pajak sebagai berikut:",
+				""
+			),
+			array("L",
+				"",
+				"R"
+			),
+			$this->height
+		);
 		//$this->newLine();
 		// Tabel
 		$ltable = $this->lengthCell / 14;
@@ -245,7 +254,7 @@ class FormCetak extends FPDF {
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
-		$this->SetWidths(array(5, $ltable6, $ltable1, $ltable2, $ltable1 + $ltable2 - 10, $ltable2, 5));
+		$this->SetWidths(array(5, $ltable6-16, $ltable1+2, $ltable2+7, $ltable1 + $ltable2 - 10+7, $ltable2, 5));
 		$this->SetAligns(array("L", "C", "C", "C", "C", "C", "L"));
 		
 		$this->RowMultiBorderWithHeight(
@@ -269,16 +278,27 @@ class FormCetak extends FPDF {
 		);
 		
 		
-		$this->SetWidths(array(5, $ltable6, $ltable1, $ltable2, $ltable1 + $ltable2 - 10, $ltable2, 5));
+		$this->SetWidths(array(5, $ltable6-16, $ltable1+2, $ltable2+7, $ltable1 + $ltable2 - 10+7, $ltable2, 5));
 		$this->SetAligns(array("L", "C", "C", "C", "C", "C", "L"));
 		$tahun = explode(" ",$data["periode"]);
+		$bulan_periode = explode(",",$data["debt_periode_code"]);
+		$bulan_string='';
+		$i=0;
+		foreach($bulan_periode as $item ){
+			$bulan = explode(" ",$item);
+			$bulan_string.= $bulan[0];
+			$i++;
+			if(!empty($bulan_periode[$i])){
+				$bulan_string.='\n';
+			}
+		}
 		$this->RowMultiBorderWithHeight(
 			array("",
 				$data["vat_code"],
 				$tahun[1],
-				$data["tap_no"]." - ".$data["tap_date"],
+				$data["debt_periode_code"],
 				$data["tap_no"],
-				$data["debt_amount"],
+				"-",
 				""
 			),
 			array("LR",
@@ -302,16 +322,42 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		
-		$this->tulis("Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Peraturan Daerah Nomor 20", "L");
+		/*$this->tulis("Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Peraturan Daerah Nomor 20", "L");
 		$this->tulis("Tahun 2011, maka diminta kepada Saudara agar melunasi jumlah Tunggakan dalam waktu 7 (tujuh) hari", "L");
 		$this->tulis("setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan dilanjutkan dengan", "L");
-		$this->tulis("penyerahan Surat Paksa.", "L");
+		$this->tulis("penyerahan Surat Paksa.", "L");*/
+		$this->SetAligns(array("L", "L", "L", "L", "L", "L", "L"));
+		$this->SetWidths(array(10,173, 5));
+		$this->RowMultiBorderWithHeight(array("",
+				"Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Peraturan Daerah Nomor 20 ".
+				"Tahun 2011, maka diminta kepada Saudara agar melunasi jumlah Tunggakan dalam waktu 7 (tujuh) hari ".
+				"setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan dilanjutkan dengan ".
+				"penyerahan Surat Paksa",
+				""
+			),
+			array("L",
+				"",
+				"R"
+			),
+			$this->height
+		);
 		
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
 		$this->Ln();
-		
-		$this->tulis("Dalam hal Saudara telah melunasi Tunggakan tersebut di atas, diminta agar Saudara segera melaporkan", "L");
-		$this->tulis("kepada", "L");
+		$this->SetWidths(array(10,173, 5));
+		$this->RowMultiBorderWithHeight(array("",
+				"Dalam hal Saudara telah melunasi Tunggakan tersebut di atas, diminta agar Saudara segera melaporkan kepada",
+				""
+			),
+			array("L",
+				"",
+				"R"
+			),
+			$this->height
+		);
+			
+		//$this->tulis("Dalam hal Saudara telah melunasi Tunggakan tersebut di atas, diminta agar Saudara segera melaporkan", "L");
+		//$this->tulis("kepada", "L");
 		
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
@@ -355,9 +401,9 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody4-5, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4+10, $this->height, "H.SONI BAKHTIYAR, S.SOS, M.SI ", "B", 0, 'C');
-		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
+		$this->Cell($lbody4-6, $this->height, "", "", 0, 'C');
+		$this->Cell($lbody4+20, $this->height, "H.SONI BAKHTIYAR, S.SOS, M.SI ", "B", 0, 'C');
+		$this->Cell($lbody2-14, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
