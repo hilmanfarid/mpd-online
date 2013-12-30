@@ -339,7 +339,25 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<Button id="386" urlType="Relative" enableValidation="True" isDefault="False" name="print_selected" wizardCaption="Add" PathID="t_vat_setllementFormprint_selected">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="387" urlType="Relative" enableValidation="True" isDefault="False" name="print_skpd" wizardCaption="Add" PathID="t_vat_setllementFormprint_skpd">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="388" urlType="Relative" enableValidation="True" isDefault="False" name="print_skpdkb" wizardCaption="Add" PathID="t_vat_setllementFormprint_skpdkb">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 			</Events>
 			<TableParameters>

@@ -384,7 +384,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-EC2B5DE5
+//Class_Initialize Event @23-D2A0F3FD
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -467,6 +467,9 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->db_increasing_charge->Required = true;
             $this->TextBox3 = & new clsControl(ccsTextBox, "TextBox3", "TextBox3", ccsText, "", CCGetRequestParam("TextBox3", $Method, NULL), $this);
             $this->TextBox4 = & new clsControl(ccsTextBox, "TextBox4", "TextBox4", ccsText, "", CCGetRequestParam("TextBox4", $Method, NULL), $this);
+            $this->print_selected = & new clsButton("print_selected", $Method, $this);
+            $this->print_skpd = & new clsButton("print_skpd", $Method, $this);
+            $this->print_skpdkb = & new clsButton("print_skpdkb", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->total_trans_amount->Value) && !strlen($this->total_trans_amount->Value) && $this->total_trans_amount->Value !== false)
                     $this->total_trans_amount->SetText(0);
@@ -642,7 +645,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-1579D4B7
+//Operation Method @23-A6FB722B
     function Operation()
     {
         if(!$this->Visible)
@@ -665,6 +668,12 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Update";
             } else if($this->Button_Delete->Pressed) {
                 $this->PressedButton = "Button_Delete";
+            } else if($this->print_selected->Pressed) {
+                $this->PressedButton = "print_selected";
+            } else if($this->print_skpd->Pressed) {
+                $this->PressedButton = "print_skpd";
+            } else if($this->print_skpdkb->Pressed) {
+                $this->PressedButton = "print_skpdkb";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -682,6 +691,18 @@ function GetPrimaryKey($keyName)
             } else if($this->PressedButton == "Button_Update") {
                 $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "print_selected") {
+                if(!CCGetEvent($this->print_selected->CCSEvents, "OnClick", $this->print_selected)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "print_skpd") {
+                if(!CCGetEvent($this->print_skpd->CCSEvents, "OnClick", $this->print_skpd)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "print_skpdkb") {
+                if(!CCGetEvent($this->print_skpdkb->CCSEvents, "OnClick", $this->print_skpdkb)) {
                     $Redirect = "";
                 }
             }
@@ -731,7 +752,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-978B6177
+//Show Method @23-9E263045
     function Show()
     {
         global $CCSUseAmp;
@@ -888,6 +909,9 @@ function GetPrimaryKey($keyName)
         $this->db_increasing_charge->Show();
         $this->TextBox3->Show();
         $this->TextBox4->Show();
+        $this->print_selected->Show();
+        $this->print_skpd->Show();
+        $this->print_skpdkb->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
