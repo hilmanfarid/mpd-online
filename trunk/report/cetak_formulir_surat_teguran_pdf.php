@@ -25,6 +25,7 @@ while ($dbConn->next_record()) {
 		$data[]= array(
 			'npwd' => $dbConn->f("npwd"),
 			'company_name' => $dbConn->f("company_name"),
+			'address' => $dbConn->f("address"),
 			'letter_no' => $dbConn->f("letter_no"),
 			'vat_code' => $dbConn->f("vat_code"),
 			'periode' => $dbConn->f("periode"),
@@ -124,7 +125,34 @@ class FormCetak extends FPDF {
 		$lbody2 = $lbody * 2;
 		$lbody3 = $lbody * 3;
 		
-		$this->Cell($lbody1, $this->height + 2, "NPWPD", "L", 0, 'C');
+
+		$this->SetWidths(array(20,2,$this->lengthCell-22));
+		$this->SetAligns(array("L","L","L"));
+		$posy = $this->getY();
+		$this->RowMultiBorderWithHeight(
+			array("Nomor",
+				":",
+				$data["letter_no"]
+			),
+			array("",
+				"",
+				""
+			),
+			3
+		);
+		$this->RowMultiBorderWithHeight(
+			array("Perihal",
+				":",
+				"SURAT TEGURAN"
+			),
+			array("L",
+				"",
+				"R"
+			),
+			3
+		);
+
+		/*$this->Cell($lbody1, $this->height + 2, "NPWPD", "L", 0, 'C');
 		$this->Cell($lbody1, $this->height + 2, "", "", 0, 'L');
 		$this->Cell($lbody2, $this->height + 2, "", "R", 0, 'L');
 		$this->Ln($this->height-4);
@@ -147,39 +175,67 @@ class FormCetak extends FPDF {
 		$this->kotakKosong(1, 34, 1);
 		$this->kotak(1, 34, 2,$arr1[9]);
 		$this->kotakKosong(1, 34, 1);
-		$this->kotak(1, 34, 2,$arr1[10]);
-		$this->newLine();
-		
+		$this->kotak(1, 34, 2,$arr1[10]);*/
+		//$this->newLine();
+		$this->setY($posy-3);
+		$today = getdate();
 		$lkepada = $this->lengthCell / 5;
 		$lkepada2 = $lkepada * 2;
 		$lkepada3 = $lkepada * 3;
+		
+		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Bandung, ".dateToString($today['year']."-".$today['mon']."-".$today['mday']), "R", 0, 'L');
+		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "Kepada Yth, ".$data['company_name'], "R", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Kepada Yth,", "R", 0, 'L');
 		$this->Ln();
-		
+
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "", "R", 0, 'L');
+		$this->Cell(20, $this->height, "Pimpinan ", "", 0, 'L');
+		$this->Cell(2, $this->height, ":", "", 0, 'L');
+		$this->Cell($lkepada2-22, $this->height, $data['company_name'], "R", 0, 'L');
 		$this->Ln();
-		
+
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "", "R", 0, 'L');
+		$this->Cell(20, $this->height, "NPWPD ", "", 0, 'L');
+		$this->Cell(2, $this->height, ":", "", 0, 'L');
+		$this->Cell($lkepada2-22, $this->height, $data['npwd'], "R", 0, 'L');
 		$this->Ln();
+
+		/*$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
+		$this->Cell($lkepada2, $this->height,$data['address'], "R", 0, 'L');
+		$this->Ln();*/
+		$this->SetWidths(array($lkepada3,$lkepada2));
+		$this->SetAligns(array("L","L"));
+		$this->RowMultiBorderWithHeight(
+			array("",
+				$data["address"]
+			),
+			array("L",
+				"R"
+			),
+			3
+		);
 		
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
 		$this->Cell($lkepada2, $this->height, "Di ", "R", 0, 'L');
-		$this->newLine();
+		$this->Ln();
+
+		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Tempat", "R", 0, 'C');
+		$this->Ln();
 		
 		$this->SetFont('Arial', 'UB', 10);
 		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN", "LR", 0, 'C');
-		$this->Ln();
-		
-		$this->SetFont('Arial', '', 10);
-		$this->Cell($this->lengthCell, $this->height, "Nomor: ".$data["letter_no"], "LR", 0, 'C');
 		$this->newLine();
 		
-		$this->tulis("Menurut pembukuan kami hingga saat ini Saudara masih mempunyai tunggakan Pajak sebagai berikut:", "L");
+		$this->SetFont('Arial', '', 10);
+		/*$this->Cell($this->lengthCell, $this->height, "Nomor: ".$data["letter_no"], "LR", 0, 'C');
+		$this->newLine();*/
 		
+		$this->tulis("Menurut pembukuan kami hingga saat ini Saudara masih mempunyai tunggakan Pajak sebagai berikut:", "L");
+		//$this->newLine();
 		// Tabel
 		$ltable = $this->lengthCell / 14;
 		$ltable1 = $ltable * 1;
@@ -187,16 +243,16 @@ class FormCetak extends FPDF {
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
-		$this->SetWidths(array(5, $ltable2, $ltable1, $ltable6, $ltable1 + $ltable2 - 10, $ltable2, 5));
+		$this->SetWidths(array(5, $ltable6, $ltable1, $ltable2, $ltable1 + $ltable2 - 10, $ltable2, 5));
 		$this->SetAligns(array("L", "C", "C", "C", "C", "C", "L"));
 		
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Jenis Pajak",
 				"Tahun",
-				"Nomor dan Tanggal  SKPDKB, SKPDKBT, STPD, Keputusan Keberatan, Keputusan Pembetulan, Keputusan  Banding*)",
-				"Tanggal Jatuh Tempo",
-				"Jumlah Tunggakan (Rp)",
+				"Bulan",
+				"SPTPD",
+				"TGL.SETOR",
 				""
 			),
 			array("LR",
@@ -211,13 +267,13 @@ class FormCetak extends FPDF {
 		);
 		
 		
-		$this->SetWidths(array(5, $ltable2, $ltable1, $ltable6, $ltable1 + $ltable2 - 10, $ltable2, 5));
+		$this->SetWidths(array(5, $ltable6, $ltable1, $ltable2, $ltable1 + $ltable2 - 10, $ltable2, 5));
 		$this->SetAligns(array("L", "C", "C", "C", "C", "C", "L"));
-		
+		$tahun = explode(" ",$data["periode"]);
 		$this->RowMultiBorderWithHeight(
 			array("",
 				$data["vat_code"],
-				$data["periode"],
+				$tahun[1],
 				$data["tap_no"]." - ".$data["tap_date"],
 				$data["due_date"],
 				$data["debt_amount"],
@@ -484,6 +540,27 @@ class FormCetak extends FPDF {
 	function __destruct() {
 		return null;
 	}
+}
+function dateToString($date){
+	if(empty($date)) return "";
+	
+	$monthname = array(0  => '-',
+	                   1  => 'Januari',
+	                   2  => 'Februari',
+	                   3  => 'Maret',
+	                   4  => 'April',
+	                   5  => 'Mei',
+	                   6  => 'Juni',
+	                   7  => 'Juli',
+	                   8  => 'Agustus',
+	                   9  => 'September',
+	                   10 => 'Oktober',
+	                   11 => 'November',
+	                   12 => 'Desember');    
+	
+	$pieces = explode('-', $date);
+	
+	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
 }
 
 $formulir = new FormCetak();
