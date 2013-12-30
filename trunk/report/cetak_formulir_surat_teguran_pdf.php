@@ -17,7 +17,7 @@ if(empty($t_customer_order_id)){
 }else{
 $dbConn = new clsDBConnSIKP();
 
-$query="select * from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list) where t_cust_account_id =36";
+$query="select * from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)";
 
 $dbConn->query($query);
 $data=array();
@@ -311,7 +311,7 @@ class FormCetak extends FPDF {
 		
 		
 		$this->SetWidths(array(5, $ltable6-16, $ltable1+2, $ltable2+7, $ltable1 + $ltable2 - 10+7, $ltable2, 5));
-		$this->SetAligns(array("L", "C", "C", "C", "C", "C", "L"));
+		$this->SetAligns(array("L", "C", "C", "C", "L", "C", "L"));
 		$tahun = explode(" ",$data["periode"]);
 
 		$bulan_periode = explode(",",$data['debt_period_code']);
