@@ -191,9 +191,9 @@ class FormCetak extends FPDF {
 
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
 		$this->Cell($lkepada2, $this->height, "Kepada Yth,", "R", 0, 'L');
-		$this->Ln(10);
+		$this->Ln();
 
-		
+		$this->SetAligns(array("L","L","L","L"));
 		$this->SetWidths(array($lkepada3,22,2,51.2));
 		$this->RowMultiBorderWithHeight(
 			array("",
@@ -206,7 +206,7 @@ class FormCetak extends FPDF {
 				"",
 				"R"
 			),
-			($this->height/2)-1
+			$this->height
 		);
 		
 		
@@ -216,12 +216,27 @@ class FormCetak extends FPDF {
 		$this->Cell($lkepada2-22, $this->height, $data['company_name'], "R", 0, 'L');
 		$this->Ln();*/
 
-		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
+		/*$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
 		$this->Cell(22, $this->height, "NPWPD ", "", 0, 'L');
 		$this->Cell(2, $this->height, ":", "", 0, 'L');
 		$this->Cell($lkepada2-24, $this->height, $data['npwd'], "R", 0, 'L');
-		$this->Ln();
-
+		$this->Ln();*/
+		
+		$this->SetAligns(array("L","L","L","L"));
+		$this->SetWidths(array($lkepada3,22,2,51.2));
+		$this->RowMultiBorderWithHeight(
+			array("",
+				"NPWPD",
+				":",
+				$data['npwd']
+			),
+			array("L",
+				"",
+				"",
+				"R"
+			),
+			$this->height/2
+		);
 		/*$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
 		$this->Cell($lkepada2, $this->height,$data['address'], "R", 0, 'L');
 		$this->Ln();*/
@@ -234,7 +249,7 @@ class FormCetak extends FPDF {
 			array("L",
 				"R"
 			),
-			3
+			$this->height
 		);
 		
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
