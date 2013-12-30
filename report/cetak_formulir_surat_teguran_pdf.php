@@ -80,7 +80,7 @@ class FormCetak extends FPDF {
 	}
 	*/
 	
-	function PageCetak($data) {
+	function PageCetak($data,$no_urut) {
 		$this->AliasNbPages();
 		$this->AddPage("P");
 		$this->AddFont('BKANT');
@@ -131,17 +131,32 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array(20,2,$this->lengthCell-22));
 		$this->SetAligns(array("L","L","L"));
 		$posy = $this->getY();
-		$this->RowMultiBorderWithHeight(
-			array("Nomor",
-				":",
-				$data["letter_no"]
-			),
-			array("",
-				"",
-				""
-			),
-			3
-		);
+		$data["letter_no"]=trim($data["letter_no"]);
+		if(!empty($data["letter_no"])){
+			$this->RowMultiBorderWithHeight(
+				array("Nomor",
+					":",
+					$data["letter_no"]."-".$no_urut
+				),
+				array("",
+					"",
+					""
+				),
+				3
+			);
+		}else{
+			$this->RowMultiBorderWithHeight(
+				array("Nomor",
+					":",
+					" - "
+				),
+				array("",
+					"",
+					""
+				),
+				3
+			);
+		}
 		$this->RowMultiBorderWithHeight(
 			array("Perihal",
 				":",
@@ -448,7 +463,8 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Cell(10, $this->height, "", "BL", 0, 'L');
-		$this->Cell($this->lengthCell - 10, $this->height, "*) Coret yang tidak perlu", "BR", 0, 'L');
+		//$this->Cell($this->lengthCell - 10, $this->height, "*) Coret yang tidak perlu", "BR", 0, 'L');
+		$this->Cell($this->lengthCell - 10, $this->height, "", "BR", 0, 'L');
 	}
 
 	function tulis($text, $align){
@@ -645,8 +661,10 @@ function dateToString($date){
 }
 
 $formulir = new FormCetak();
+$no_urut=0;
 foreach($data as $item){
-	$formulir->PageCetak($item);
+	$formulir->PageCetak($item,$no_urut);
+	$no_urut++;
 }
 $formulir->Output();
 
