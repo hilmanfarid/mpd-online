@@ -37,8 +37,6 @@ while ($dbConn->next_record()) {
 			'debt_period_code' =>  $dbConn->f("debt_period_code")
 		);
 }
-print_r($data);
-exit;
 	//nip & nama
 	$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin "
 		  ."FROM p_global_param "
@@ -333,7 +331,7 @@ class FormCetak extends FPDF {
 				$tahun[1],
 				$bulan_string,
 				$data["tap_no"],
-				$data['debt_periode_code'],
+				"-",
 				""
 			),
 			array("LR",
