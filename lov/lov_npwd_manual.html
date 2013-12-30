@@ -14,7 +14,6 @@ function clickReturn(retVal) {
         arrVal = retVal.split('#~#');
                 arrForm = strObj.split(',');
                 for (x=0;x<arrForm.length;x++) {
-                                alert(strForm+arrForm[x]+'='+arrVal[x])
                 window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
                 }
                 window.close();

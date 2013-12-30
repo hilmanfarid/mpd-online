@@ -319,8 +319,6 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
         $this->t_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
         $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
         $this->p_vat_type_dtl_id->SetDBValue($this->f("p_vat_type_dtl_id"));
-		echo $this->f("company_name");
-		exit;
     }
 //End SetValues Method
 
