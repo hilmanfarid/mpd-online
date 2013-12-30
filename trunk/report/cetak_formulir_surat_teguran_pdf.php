@@ -17,7 +17,7 @@ if(empty($t_customer_order_id)){
 }else{
 $dbConn = new clsDBConnSIKP();
 
-$query="select * from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)";
+$query="select * from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list) where t_cust_account_id=36";
 
 $dbConn->query($query);
 $data=array();
