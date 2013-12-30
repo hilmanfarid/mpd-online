@@ -1,0 +1,469 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_cust_order_legal_docFormButton_Delete_OnClick @97-E2E64A33
+function t_cust_order_legal_docFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_cust_order_legal_docFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close t_cust_order_legal_docFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_cust_order_legal_docFormButton_Delete_OnClick
+
+//t_cust_order_legal_docFormButton_Cancel_OnClick @99-6C05B6D9
+function t_cust_order_legal_docFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_cust_order_legal_docFormButton_Cancel_OnClick
+
+//bind_events @1-415A3D61
+function bind_events() {
+    addEventHandler("t_cust_order_legal_docFormButton_Delete", "click", t_cust_order_legal_docFormButton_Delete_OnClick);
+    addEventHandler("t_cust_order_legal_docFormButton_Cancel", "click", t_cust_order_legal_docFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DOKUMEN PENDUKUNG 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_cust_order_legal_docSearch -->
+        <form id="t_cust_order_legal_docSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="3">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field" colspan="2"><input id="t_cust_order_legal_docSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32">
+                      <td class="search-field">
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_cust_order_legal_docSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --><input style="WIDTH: 50px; HEIGHT: 22px" id="t_cust_order_legal_docSearcht_vat_registration_id" name="{t_vat_registration_id_Name}" value="{t_vat_registration_id}" size="6" type="hidden"><input style="WIDTH: 41px; HEIGHT: 22px" id="t_cust_order_legal_docSearchrqst_type_code" name="{rqst_type_code_Name}" value="{rqst_type_code}" size="5" type="hidden"><input style="WIDTH: 47px; HEIGHT: 22px" id="t_cust_order_legal_docSearchp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" size="6" type="hidden"><input style="WIDTH: 47px; HEIGHT: 22px" id="t_cust_order_legal_docSearcht_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" size="6" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchTAKEN_CTL" name="{TAKEN_CTL_Name}" value="{TAKEN_CTL}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchIS_TAKEN" name="{IS_TAKEN_Name}" value="{IS_TAKEN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchCURR_DOC_ID" name="{CURR_DOC_ID_Name}" value="{CURR_DOC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchCURR_DOC_TYPE_ID" name="{CURR_DOC_TYPE_ID_Name}" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchCURR_PROC_ID" name="{CURR_PROC_ID_Name}" value="{CURR_PROC_ID}" size="5" type="hidden">
+<input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchCURR_CTL_ID" name="{CURR_CTL_ID_Name}" value="{CURR_CTL_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchUSER_ID_DOC" name="{USER_ID_DOC_Name}" value="{USER_ID_DOC}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchUSER_ID_DONOR" name="{USER_ID_DONOR_Name}" value="{USER_ID_DONOR}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchUSER_ID_LOGIN" name="{USER_ID_LOGIN_Name}" value="{USER_ID_LOGIN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_cust_order_legal_docSearchUSER_ID_TAKEN" name="{USER_ID_TAKEN_Name}" value="{USER_ID_TAKEN}" size="5" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchIS_CREATE_DOC" name="{IS_CREATE_DOC_Name}" value="{IS_CREATE_DOC}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchIS_MANUAL" name="{IS_MANUAL_Name}" value="{IS_MANUAL}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchCURR_PROC_STATUS" name="{CURR_PROC_STATUS_Name}" value="{CURR_PROC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchCURR_DOC_STATUS" name="{CURR_DOC_STATUS_Name}" value="{CURR_DOC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchPREV_DOC_ID" name="{PREV_DOC_ID_Name}" value="{PREV_DOC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchPREV_DOC_TYPE_ID" name="{PREV_DOC_TYPE_ID_Name}" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchPREV_PROC_ID" name="{PREV_PROC_ID_Name}" value="{PREV_PROC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchPREV_CTL_ID" name="{PREV_CTL_ID_Name}" value="{PREV_CTL_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchSLOT_1" name="{SLOT_1_Name}" value="{SLOT_1}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchSLOT_2" name="{SLOT_2_Name}" value="{SLOT_2}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchSLOT_3" name="{SLOT_3_Name}" value="{SLOT_3}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchSLOT_4" name="{SLOT_4_Name}" value="{SLOT_4}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchSLOT_5" name="{SLOT_5_Name}" value="{SLOT_5}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_cust_order_legal_docSearchMESSAGE" name="{MESSAGE_Name}" value="{MESSAGE}" size="4" type="hidden"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_cust_order_legal_docSearch --><br>
+          <!-- BEGIN Grid t_cust_order_legal_docGrid -->
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>DAFTAR&nbsp;DOKUMEN PENDUKUNG</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Grid" cellspacing="0" cellpadding="0">
+                  <tr class="Caption">
+                    <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                    <th scope="col">Jenis Dokumen</th>
+ 
+                    <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama File</label></label></th>
+ 
+                    <th scope="col">Deskripsi&nbsp;</th>
+                  </tr>
+ 
+                  <!-- BEGIN Row -->
+                  <tr {t_cust_order_legal_docGrid:rowStyle}>
+                    <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_cust_order_legal_docGridDLink_{t_cust_order_legal_docGrid:rowNumber}">{DLink}</a></td> 
+                    <td>{legal_doc_desc}</td> 
+                    <td><a href="../files/{origin_file_name_Src}" id="t_cust_order_legal_docGridorigin_file_name_{t_cust_order_legal_docGrid:rowNumber}">{origin_file_name}</a>&nbsp;<input id="t_cust_order_legal_docGridt_cust_order_legal_doc_id_{t_cust_order_legal_docGrid:rowNumber}" name="{t_cust_order_legal_doc_id_Name}" value="{t_cust_order_legal_doc_id}" type="hidden"></td> 
+                    <td>{description}&nbsp;</td>
+                  </tr>
+ <!-- END Row -->
+                  <!-- BEGIN NoRecords -->
+                  <tr class="NoRecords">
+                    <td colspan="4">-</td>
+                  </tr>
+                  <!-- END NoRecords -->
+                  <tr class="Footer">
+                    <td><b><a href="{Insert_Link_Src}" id="t_cust_order_legal_docGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                    <td colspan="3">
+                      <!-- BEGIN Navigator Navigator -->
+                      <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                      <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                      <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                      <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                      <!-- BEGIN Pages -->
+                      <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                      <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                      <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                      <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                      <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                      <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <!-- END Grid t_cust_order_legal_docGrid --><br>
+          <!-- BEGIN Record t_cust_order_legal_docForm -->
+          <form id="t_cust_order_legal_docForm" enctype="{HTMLFormEnctype}" method="post" name="{HTMLFormName}" action="{Action}">
+            <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <tr>
+                <td valign="top">
+                  <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                      <td class="th"><strong>INFORMASI DOKUMEN PENDUKUNG</strong></td> 
+                      <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                    </tr>
+                  </table>
+ 
+                  <table class="Record" cellspacing="0" cellpadding="0">
+                    <!-- BEGIN Error -->
+                    <tr class="Error">
+                      <td colspan="4">{Error}</td>
+                    </tr>
+                    <!-- END Error -->
+                    <tr class="Controls">
+                      <td class="th">Jenis Dokumen</td> 
+                      <td colspan="3">
+                        <p>&nbsp;&nbsp;<input id="t_cust_order_legal_docFormfile_folder" name="{file_folder_Name}" value="{file_folder}" type="hidden">
+                        <select id="t_cust_order_legal_docFormp_legal_doc_type_id" onchange="document.getElementById('t_cust_order_legal_docFormlegal_doc_desc').value =this.options[this.selectedIndex].text" name="{p_legal_doc_type_id_Name}">
+                          <option selected value="">Select Value</option>
+                          {p_legal_doc_type_id_Options}
+                        </select>
+ <input id="t_cust_order_legal_docFormlegal_doc_desc" name="{legal_doc_desc_Name}" value="{legal_doc_desc}" type="hidden"><label for="t_cust_order_legal_docFormTextBox1" style="display: none;">&nbsp;</label></p>
+                      </td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Upload File</label></label></label></label></label></label></label></td> 
+                      <td colspan="3">
+                        <!-- BEGIN FileUpload file_name --><input id="t_cust_order_legal_docFormfile_nameControlName" name="{ControlName}" value="{State}" type="hidden">
+                        <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes.<!-- END Info -->
+                        <!-- BEGIN Upload --><label for="t_cust_order_legal_docFormfile_nameFileControl" style="display:none">File upload</label><input id="t_cust_order_legal_docFormfile_nameFileControl" class="ControlsRQ" name="{FileControl}" type="file"><!-- END Upload -->
+                        <!-- BEGIN DeleteControl --><label for="t_cust_order_legal_docFormfile_nameDeleteControl">HAPUS</label><input id="t_cust_order_legal_docFormfile_nameDeleteControl" name="{DeleteControl}" type="checkbox" {DeleteChecked}><!-- END DeleteControl --><!-- END FileUpload file_name --><label for="t_cust_order_legal_docFormt_customer_order_id" style="display: none;">t_customer_order_id</label><input id="t_cust_order_legal_docFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><label for="t_cust_order_legal_docFormorigin_file_name_ro">&nbsp;</label></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="th"><label for="t_cust_order_legal_docFormdescription">Deskripsi</label></td> 
+                      <td colspan="3"><input id="t_cust_order_legal_docFormdescription" class="ControlsIN" name="{description_Name}" maxlength="250" value="{description}" size="60">&nbsp;<input id="t_cust_order_legal_docFormorigin_file_name" name="{origin_file_name_Name}" value="{origin_file_name}" type="hidden"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="th"><label for="t_cust_order_legal_docFormcreated_by">Dibuat Oleh</label></td> 
+                      <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_cust_order_legal_docFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="16" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_cust_order_legal_docFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="th"><label for="t_cust_order_legal_docFormupdated_by">Diubah Oleh</label></td> 
+                      <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_cust_order_legal_docFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="16" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_cust_order_legal_docFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
+                    </tr>
+ 
+                    <tr class="Bottom">
+                      <td colspan="4" align="right">
+                        <!-- BEGIN Button Button1 --><input id="t_cust_order_legal_docFormButton1" class="btn_tambah" onclick="return cetak()" name="{Button_Name}" alt="Button1" value="CETAK TANDA TERIMA" type="submit"><!-- END Button Button1 -->
+                        <!-- BEGIN Button Button_Insert --><input id="t_cust_order_legal_docFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                        <!-- BEGIN Button Button_Update --><input id="t_cust_order_legal_docFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                        <!-- BEGIN Button Button_Delete --><input id="t_cust_order_legal_docFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                        <!-- BEGIN Button Button_Cancel --><input id="t_cust_order_legal_docFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input style="WIDTH: 76px; HEIGHT: 22px" id="t_cust_order_legal_docFormt_cust_order_legal_docGridPage" name="{t_cust_order_legal_docGridPage_Name}" value="{t_cust_order_legal_docGridPage}" size="10" type="hidden"><input id="t_cust_order_legal_docFormt_cust_order_legal_doc_id" name="{t_cust_order_legal_doc_id_Name}" value="{t_cust_order_legal_doc_id}" type="hidden"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_cust_order_legal_docForm --><br>
+          <br>
+          <br>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script type="text/javascript" src="../js/lov.js"></script>
+  <script language="javascript">
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function cetak() {
+         var currDocId = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_ID').value;      
+         var urlLink = "?CURR_DOC_ID="+currDocId;
+     return popup("../report/cetak_formulir_tanda_terima_pdf.php"+urlLink);
+}
+
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+
+function lov_doc() {
+        getFrom_LOV('t_cust_order_legal_docForm','p_legal_doc_type_id,legal_doc_desc','lov_2_field.php?TABLE=p_legal_doc_type&FIELD_0=p_legal_doc_type_id&FIELD_1=code&FIELD_2=description&LABEL1=Jenis Dokumen&LABEL2=Deskripsi&HEADER_PAGE=JENIS DOKUMEN&HEADER_LOV=DAFTAR JENIS DOKUMEN&ORDER=p_legal_doc_type_id');
+}
+
+function toOrder()
+{
+    var pid = document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value; 
+        var id_req=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+  var id_vat = document.getElementById("t_cust_order_legal_docSearcht_vat_registration_id").value;
+        var takenCtl = document.getElementById('t_cust_order_legal_docSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_cust_order_legal_docSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_cust_order_legal_docSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_cust_order_legal_docSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_cust_order_legal_docSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_cust_order_legal_docSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_cust_order_legal_docSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_cust_order_legal_docSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_cust_order_legal_docSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_cust_order_legal_docSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_cust_order_legal_docSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_cust_order_legal_docSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_cust_order_legal_docSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_cust_order_legal_docSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_cust_order_legal_docSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_cust_order_legal_docSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_cust_order_legal_docSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_cust_order_legal_docSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_cust_order_legal_docSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_cust_order_legal_docSearchSLOT_5').value;
+        var msg = document.getElementById('t_cust_order_legal_docSearchMESSAGE').value;
+                
+     location.href="t_customer_order_ro_ver.php?t_customer_order_id="+pid
+                                                                                                        +"&t_vat_registration_id="+id_vat
+                                                                                                        +"&p_rqst_type_id="+id_req
+                                                                                                        +"&TAKEN_CTL="+takenCtl
+                                                                                                        +"&IS_TAKEN="+isTaken
+                                                                                                        +"&CURR_DOC_ID="+currDocId
+                                                                                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                                        +"&CURR_PROC_ID="+currProcId
+                                                                                                        +"&CURR_CTL_ID="+currCtlId
+                                                                                                        +"&USER_ID_DOC="+userIdDoc
+                                                                                                        +"&USER_ID_DONOR="+userIdDonor
+                                                                                                        +"&USER_ID_LOGIN="+userIdLogin
+                                                                                                        +"&USER_ID_TAKEN="+userIdTaken
+                                                                                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                                        +"&IS_MANUAL="+isManual
+                                                                                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                                        +"&PREV_DOC_ID="+PrevDocId
+                                                                                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                                        +"&PREV_PROC_ID="+PrevProcId
+                                                                                                        +"&PREV_CTL_ID="+PrevCtlId
+                                                                                                        +"&SLOT_1="+slot1
+                                                                                                        +"&SLOT_2="+slot2
+                                                                                                        +"&SLOT_3="+slot3
+                                                                                                        +"&SLOT_4="+slot4
+                                                                                                        +"&SLOT_5="+slot5
+                                                                                                        +"&MESSAGE="+msg;
+}
+
+function toReg()
+{
+  var pid=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+  var req_code=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;
+  var id_req=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+  var id_vat = document.getElementById("t_cust_order_legal_docSearcht_vat_registration_id").value;      
+  location.href="t_vat_registration_ro.php?t_customer_order_id="+pid+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_vat_registration_id="+id_vat;
+}
+
+function toReg2()
+{
+  var pid=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+  var req_code=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;
+  var id_req=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+  var id_vat = document.getElementById("t_cust_order_legal_docSearcht_vat_registration_id").value;  
+  var takenCtl = document.getElementById('t_cust_order_legal_docSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_cust_order_legal_docSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_cust_order_legal_docSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_cust_order_legal_docSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_cust_order_legal_docSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_cust_order_legal_docSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_cust_order_legal_docSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_cust_order_legal_docSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_cust_order_legal_docSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_cust_order_legal_docSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_cust_order_legal_docSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_cust_order_legal_docSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_cust_order_legal_docSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_cust_order_legal_docSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_cust_order_legal_docSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_cust_order_legal_docSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_cust_order_legal_docSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_cust_order_legal_docSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_cust_order_legal_docSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_cust_order_legal_docSearchSLOT_5').value;
+        var msg = document.getElementById('t_cust_order_legal_docSearchMESSAGE').value;
+          
+  if (id_vat != 0)   {         
+  location.href="t_vat_reg_dtl_ro_ver.php?t_customer_order_id="+pid
+                                                                                +"&rqst_type_code="+req_code
+                                                                                +"&p_rqst_type_id="+id_req
+                                                                                +"&t_vat_registration_id="+id_vat
+                                                                                +"&TAKEN_CTL="+takenCtl
+                                                                                +"&IS_TAKEN="+isTaken
+                                                                                +"&CURR_DOC_ID="+currDocId
+                                                                                +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                +"&CURR_PROC_ID="+currProcId
+                                                                                +"&CURR_CTL_ID="+currCtlId
+                                                                                +"&USER_ID_DOC="+userIdDoc
+                                                                                +"&USER_ID_DONOR="+userIdDonor
+                                                                                +"&USER_ID_LOGIN="+userIdLogin
+                                                                                +"&USER_ID_TAKEN="+userIdTaken
+                                                                                +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                +"&IS_MANUAL="+isManual
+                                                                                +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                +"&PREV_DOC_ID="+PrevDocId
+                                                                                +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                +"&PREV_PROC_ID="+PrevProcId
+                                                                                +"&PREV_CTL_ID="+PrevCtlId
+                                                                                +"&SLOT_1="+slot1
+                                                                                +"&SLOT_2="+slot2
+                                                                                +"&SLOT_3="+slot3
+                                                                                +"&SLOT_4="+slot4
+                                                                                +"&SLOT_5="+slot5
+                                                                                +"&MESSAGE="+msg;
+  }else{
+        alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+  }     
+}
+
+function toActive()
+{
+  var pid=document.getElementById("t_cust_order_legal_docSearcht_customer_order_id").value;
+  var req_code=document.getElementById("t_cust_order_legal_docSearchrqst_type_code").value;
+  var id_req=document.getElementById("t_cust_order_legal_docSearchp_rqst_type_id").value;
+  var id_vat = document.getElementById("t_cust_order_legal_docSearcht_vat_registration_id").value;  
+  var takenCtl = document.getElementById('t_cust_order_legal_docSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_cust_order_legal_docSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_cust_order_legal_docSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_cust_order_legal_docSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_cust_order_legal_docSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_cust_order_legal_docSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_cust_order_legal_docSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_cust_order_legal_docSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_cust_order_legal_docSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_cust_order_legal_docSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_cust_order_legal_docSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_cust_order_legal_docSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_cust_order_legal_docSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_cust_order_legal_docSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_cust_order_legal_docSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_cust_order_legal_docSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_cust_order_legal_docSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_cust_order_legal_docSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_cust_order_legal_docSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_cust_order_legal_docSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_cust_order_legal_docSearchSLOT_5').value;
+        var msg = document.getElementById('t_cust_order_legal_docSearchMESSAGE').value;
+          
+  if (id_vat != 0)   {         
+  location.href="t_order_log_kronologis_ver.php?t_customer_order_id="+pid
+                                                                                +"&rqst_type_code="+req_code
+                                                                                +"&p_rqst_type_id="+id_req
+                                                                                +"&t_vat_registration_id="+id_vat
+                                                                                +"&TAKEN_CTL="+takenCtl
+                                                                                +"&IS_TAKEN="+isTaken
+                                                                                +"&CURR_DOC_ID="+currDocId
+                                                                                +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                +"&CURR_PROC_ID="+currProcId
+                                                                                +"&CURR_CTL_ID="+currCtlId
+                                                                                +"&USER_ID_DOC="+userIdDoc
+                                                                                +"&USER_ID_DONOR="+userIdDonor
+                                                                                +"&USER_ID_LOGIN="+userIdLogin
+                                                                                +"&USER_ID_TAKEN="+userIdTaken
+                                                                                +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                +"&IS_MANUAL="+isManual
+                                                                                +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                +"&PREV_DOC_ID="+PrevDocId
+                                                                                +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                +"&PREV_PROC_ID="+PrevProcId
+                                                                                +"&PREV_CTL_ID="+PrevCtlId
+                                                                                +"&SLOT_1="+slot1
+                                                                                +"&SLOT_2="+slot2
+                                                                                +"&SLOT_3="+slot3
+                                                                                +"&SLOT_4="+slot4
+                                                                                +"&SLOT_5="+slot5
+                                                                                +"&MESSAGE="+msg;
+  }else{
+        alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+  }     
+}
+</script>
+  </body>
+  </html>

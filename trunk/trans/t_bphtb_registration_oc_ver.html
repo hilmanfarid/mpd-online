@@ -141,28 +141,28 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
-    <div class="th tab-button">
+    <!--<div class="th tab-button">
       <label onclick="javascript:toOrder()">
       <div class="tab-title">
         DAFTAR BPHTB&nbsp; 
       </div>
       </label>
-    </div>
+    </div>-->
     <div class="th tab-button">
       <div class="tab-title-selected">
         FORMULIR PENDAFTARAN 
       </div>
     </div>
-    <!--<div class="th tab-button">
+    <div class="th tab-button">
       <label onclick="javascript:toReg3()">
       <div class="tab-title">
         DOKUMEN PENDUKUNG 
       </div>
       </label>
-    </div>-->
+    </div>
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -192,7 +192,7 @@ jQuery(document).ready(function()
                     <td class="th" colspan="3">&nbsp;A. Subjek Pajak</td> 
                     <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormt_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormTAKEN_CTL" name="{TAKEN_CTL_Name}" value="{TAKEN_CTL}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_TAKEN" name="{IS_TAKEN_Name}" value="{IS_TAKEN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_ID" name="{CURR_DOC_ID_Name}" value="{CURR_DOC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_TYPE_ID" name="{CURR_DOC_TYPE_ID_Name}" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_PROC_ID" name="{CURR_PROC_ID_Name}" value="{CURR_PROC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_CTL_ID" name="{CURR_CTL_ID_Name}" value="{CURR_CTL_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_DOC" name="{USER_ID_DOC_Name}" value="{USER_ID_DOC}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_DONOR" name="{USER_ID_DONOR_Name}" value="{USER_ID_DONOR}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_LOGIN" name="{USER_ID_LOGIN_Name}" value="{USER_ID_LOGIN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_TAKEN" name="{USER_ID_TAKEN_Name}" value="{USER_ID_TAKEN}" size="5" type="hidden">
 <input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_CREATE_DOC" name="{IS_CREATE_DOC_Name}" value="{IS_CREATE_DOC}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_MANUAL" name="{IS_MANUAL_Name}" value="{IS_MANUAL}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_PROC_STATUS" name="{CURR_PROC_STATUS_Name}" value="{CURR_PROC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_STATUS" name="{CURR_DOC_STATUS_Name}" value="{CURR_DOC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_DOC_ID" name="{PREV_DOC_ID_Name}" value="{PREV_DOC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_DOC_TYPE_ID" name="{PREV_DOC_TYPE_ID_Name}" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_PROC_ID" name="{PREV_PROC_ID_Name}" value="{PREV_PROC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_CTL_ID" name="{PREV_CTL_ID_Name}" value="{PREV_CTL_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_1" name="{SLOT_1_Name}" value="{SLOT_1}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_2" name="{SLOT_2_Name}" value="{SLOT_2}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_3" name="{SLOT_3_Name}" value="{SLOT_3}" size="4" type="hidden">
-<input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_4" name="{SLOT_4_Name}" value="{SLOT_4}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_5" name="{SLOT_5_Name}" value="{SLOT_5}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormMESSAGE" name="{MESSAGE_Name}" value="{MESSAGE}" size="4" type="hidden"></td>
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_4" name="{SLOT_4_Name}" value="{SLOT_4}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_5" name="{SLOT_5_Name}" value="{SLOT_5}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormMESSAGE" name="{MESSAGE_Name}" value="{MESSAGE}" size="4" type="hidden"><input id="t_bphtb_registrationFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><input id="t_bphtb_registrationFormp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -709,7 +709,7 @@ function toReg3()
 
         if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
     {
-     location.href="t_cust_order_legal_doc_ro_ver.php?t_customer_order_id="+pid
+     location.href="t_bphtb_legal_doc_ro_ver.php?t_customer_order_id="+pid
                                                                                                   +"&p_rqst_type_id="+id_req
                                                                                                   +"&t_bphtb_registration_id="+id_vat
                                                                                                   +"&TAKEN_CTL="+takenCtl

@@ -45,7 +45,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-7EFE1416
+//Class_Initialize Event @94-EC4AE3A9
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -166,6 +166,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             "left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id\n" .
             "";
             $this->p_bphtb_legal_doc_type_id->DataSource->Order = "";
+            $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
+            $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsText, "", CCGetRequestParam("p_rqst_type_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -205,7 +207,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-4CF5FBCC
+//Validate Method @94-9A127693
     function Validate()
     {
         global $CCSLocales;
@@ -275,6 +277,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->SLOT_5->Validate() && $Validation);
         $Validation = ($this->MESSAGE->Validate() && $Validation);
         $Validation = ($this->p_bphtb_legal_doc_type_id->Validate() && $Validation);
+        $Validation = ($this->t_customer_order_id->Validate() && $Validation);
+        $Validation = ($this->p_rqst_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -340,11 +344,13 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->SLOT_5->Errors->Count() == 0);
         $Validation =  $Validation && ($this->MESSAGE->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_bphtb_legal_doc_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-47B74D24
+//CheckErrors Method @94-9AE600B3
     function CheckErrors()
     {
         $errors = false;
@@ -412,6 +418,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->SLOT_5->Errors->Count());
         $errors = ($errors || $this->MESSAGE->Errors->Count());
         $errors = ($errors || $this->p_bphtb_legal_doc_type_id->Errors->Count());
+        $errors = ($errors || $this->t_customer_order_id->Errors->Count());
+        $errors = ($errors || $this->p_rqst_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -600,7 +608,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-10137B83
+//Show Method @94-EA3DF806
     function Show()
     {
         global $CCSUseAmp;
@@ -668,6 +676,8 @@ function GetPrimaryKey($keyName)
                     $this->mobile_phone_no->SetValue($this->DataSource->mobile_phone_no->GetValue());
                     $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
                     $this->p_bphtb_legal_doc_type_id->SetValue($this->DataSource->p_bphtb_legal_doc_type_id->GetValue());
+                    $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
+                    $this->p_rqst_type_id->SetValue($this->DataSource->p_rqst_type_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -743,6 +753,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->SLOT_5->Errors->ToString());
             $Error = ComposeStrings($Error, $this->MESSAGE->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_bphtb_legal_doc_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_rqst_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -834,6 +846,8 @@ function GetPrimaryKey($keyName)
         $this->Button2->Show();
         $this->Button3->Show();
         $this->p_bphtb_legal_doc_type_id->Show();
+        $this->t_customer_order_id->Show();
+        $this->p_rqst_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -844,7 +858,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-D61A65CD
+//DataSource Variables @94-FB75C169
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -924,9 +938,11 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $SLOT_5;
     var $MESSAGE;
     var $p_bphtb_legal_doc_type_id;
+    var $t_customer_order_id;
+    var $p_rqst_type_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-73C81D77
+//DataSourceClass_Initialize Event @94-2B333EDB
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1060,6 +1076,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->p_bphtb_legal_doc_type_id = new clsField("p_bphtb_legal_doc_type_id", ccsText, "");
         
+        $this->t_customer_order_id = new clsField("t_customer_order_id", ccsText, "");
+        
+        $this->p_rqst_type_id = new clsField("p_rqst_type_id", ccsText, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1108,11 +1128,12 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Prepare Method
 
-//Open Method @94-0CCC80F6
+//Open Method @94-9E5514CA
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "select a.*,\n" .
+        "cust_order.p_rqst_type_id,\n" .
         "b.region_name as wp_kota,\n" .
         "c.region_name as wp_kecamatan,\n" .
         "d.region_name as wp_kelurahan,\n" .
@@ -1136,6 +1157,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         "	on a.object_p_region_id_kel = g.p_region_id\n" .
         "left join p_bphtb_legal_doc_type as h\n" .
         "	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id\n" .
+        "left join t_customer_order as cust_order\n" .
+        "	on cust_order.t_customer_order_id = a.t_customer_order_id\n" .
         "where a.t_customer_order_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -1145,7 +1168,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-A9FA75F6
+//SetValues Method @94-F4E41AC1
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1187,6 +1210,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->mobile_phone_no->SetDBValue($this->f("mobile_phone_no"));
         $this->t_bphtb_registration_id->SetDBValue(trim($this->f("t_bphtb_registration_id")));
         $this->p_bphtb_legal_doc_type_id->SetDBValue($this->f("p_bphtb_legal_doc_type_id"));
+        $this->t_customer_order_id->SetDBValue($this->f("t_customer_order_id"));
+        $this->p_rqst_type_id->SetDBValue($this->f("p_rqst_type_id"));
     }
 //End SetValues Method
 
@@ -1450,7 +1475,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
         $wp = new clsSQLParameters($this->ErrorBlock);
         $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
-		if(!$wp->AllParamsSet()) {
+        if(!$wp->AllParamsSet()) {
             $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
         }
         $wp->AddParameter("2", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
@@ -1573,7 +1598,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->SQL = CCBuildUpdate("t_bphtb_registration", $this->UpdateFields, $this);
         $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
-		if($this->Errors->Count() == 0 && $this->CmdExecution) {
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
             $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
         }
