@@ -226,7 +226,7 @@ function lov_ayatclass() {
 function lov_tipeayat() {
         var p_vat_type_id = document.getElementById("t_vat_setllementFormp_vat_type_id").value;
         if (p_vat_type_id != "" && p_vat_type_id != 0 && p_vat_type_id != false && p_vat_type_id != undefined &&  p_vat_type_id != null){
-           getFrom_LOV('t_vat_setllementForm','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=p_vat_type_dtl&FIELD_0=p_vat_type_dtl_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Tipe Ayat&LABEL2=Deskripsi&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+           getFrom_LOV('t_vat_setllementForm','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=p_vat_type_dtl&FIELD_0=p_vat_type_dtl_id&FIELD_1=vat_code&FIELD_2=description&FIELD_3= and p_vat_type_id = '+document.getElementById('t_vat_setllementFormp_vat_type_id').value+'&LABEL1=Tipe Ayat&LABEL2=Deskripsi&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
         }else{
             alert("Ayat Pajak belum Diisi");
         }
