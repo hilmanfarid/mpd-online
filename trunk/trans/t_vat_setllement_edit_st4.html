@@ -12,6 +12,7 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
         arrLOV = LOV_NM.split("?");
         window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
 }
+
 </script>
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
@@ -312,7 +313,10 @@ $(document).ready(function()
                   </tr>
  
                   <tr class="Bottom">
-                    <td colspan="11" align="right">&nbsp; 
+                    <td colspan="11" align="right">
+                      <!-- BEGIN Button print_skpdkb --><input id="t_vat_setllementFormprint_skpdkb" class="btn_tambah" onclick="cetak_skpdkb()" name="{Button_Name}" alt="Add" value="CETAK SEMUA SKPDKB JABATAN" type="button"><!-- END Button print_skpdkb -->
+                      <!-- BEGIN Button print_skpd --><input id="t_vat_setllementFormprint_skpd" class="btn_tambah" onclick="cetak_skpd()" name="{Button_Name}" alt="Add" value="CETAK SEMUA SKPD" type="button"><!-- END Button print_skpd -->
+                      <!-- BEGIN Button print_selected --><input onclick="cetak()" id="t_vat_setllementFormprint_selected" class="btn_tambah" name="{Button_Name}" alt="Add" value="CETAK DATA TERPILIH" type="button"><!-- END Button print_selected -->&nbsp; 
                       <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
                       <!-- BEGIN Button Button_Delete --><input id="t_vat_setllementFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="SUBMIT" type="submit"><!-- END Button Button_Delete --></td>
@@ -355,6 +359,18 @@ function lov_period() {
 
 }
 
+function cetak_selected(){
+	var tid = document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
+    window.open("../report/cetak_formulir_skpdkb_jabatan.php?t_vat_setllement_id=" + tid, "_blank", "width=650,height=500,top=0,left=0");
+}
+
+function cetak_skpd(){
+    window.open("../report/cetak_formulir_skpdkb_jabatan.php?settlement_type='SKPD OFFICE'", "_blank", "width=650,height=500,top=0,left=0");
+}
+
+function cetak_skpdkb(){
+	window.open("../report/cetak_formulir_skpdkb_jabatan.php?settlement_type='SKPDKB JABATAN'", "_blank", "width=650,height=500,top=0,left=0");
+}
 </script>
 </body>
 </html>

@@ -18,16 +18,14 @@
 
 	
 	if($t_vat_setllement_id > 0){
-		$sql = "SELECT * FROM v_vat_setllement_skpd_kb_jabatan "
-			  . "WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
+		$sql = "SELECT * FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 	}
 	else{
-		$sql = "SELECT * "
-			  ."FROM v_vat_setllement_skpd_kb_jabatan "
-			  ."WHERE settlement_type = " . $settlement_type;
+		$sql = "SELECT * FROM v_vat_setllement_skpd_kb_jabatan WHERE settlement_type = " . $settlement_type;
 	}
 
 	$dbConn->query($sql);
+	$items = array();
 	while($dbConn->next_record()){
 		$data["t_cust_account_id"] = $dbConn->f("t_cust_account_id");
 		$data["wp_name"] = $dbConn->f("wp_name");
@@ -45,8 +43,9 @@
 		$data["cr_others"] = $dbConn->f("cr_others");
 		$data["db_interest_charge"] = $dbConn->f("db_interest_charge");
 		$data["db_increasing_charge"] = $dbConn->f("db_increasing_charge");
-	} 
-
+		$items[] = $data;
+	}
+	
 	$dbConn->close();
 
 class FormCetak extends FPDF {
@@ -556,7 +555,11 @@ class FormCetak extends FPDF {
 }
 
 $formulir = new FormCetak();
-$formulir->PageCetak($data);
-$formulir->Output();
+
+foreach($items as $data){
+	$formulir->PageCetak($data);
+}
+
+$formulir->Output("skpdkb_jabatan" . date("d F Y") . ".pdf", "D");
 
 ?>
