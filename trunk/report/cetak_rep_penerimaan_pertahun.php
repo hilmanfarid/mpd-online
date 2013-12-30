@@ -9,6 +9,7 @@ require("../include/qrcode/fpdf17/fpdf.php");
 $p_year_period_id	= CCGetFromGet("p_year_period_id", "");
 $p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
 $tgl_status			= CCGetFromGet("tgl_status", "");
+$p_account_status_id= CCGetFromGet("p_account_status_id", "");
 
 // $p_year_period_id	= 4;
 // $p_vat_type_id		= 1;
@@ -17,11 +18,12 @@ $tgl_status			= CCGetFromGet("tgl_status", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_penerimaan_pertahun($p_year_period_id, $p_vat_type_id, $tgl_status);";
+$query				= "select * from f_rep_penerimaan_pertahun_sts($p_year_period_id, $p_vat_type_id, $tgl_status, $p_account_status_id);";
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
-	$data["tahun"][]			= $dbConn->f("tahun");
+	$data["jenis_pajak"][]	= $dbConn->f("jenis_pajak");
+	$data["tahun"][]		= $dbConn->f("tahun");
 	$data["nama"][]			= $dbConn->f("nama");
 	$data["alamat"][]		= $dbConn->f("alamat");
 	$data["npwpd"][]		= $dbConn->f("npwpd");
@@ -207,7 +209,7 @@ class FormCetak extends FPDF {
 					$no,
 					$data["nama"][$i],
 					$data["alamat"][$i],
-					$data2[0],
+					$data2[12],
 					$data2[1],
 					$data2[2],
 					$data2[3],
@@ -259,7 +261,7 @@ class FormCetak extends FPDF {
 					"",
 					"",
 					$data["npwpd"][$i],
-					$data2[0],
+					$data2[12],
 					$data2[1],
 					$data2[2],
 					$data2[3],
@@ -310,7 +312,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR RESTORAN ", "", 0, 'C');
+		$nama_pajak = strtoupper(substr($data["jenis_pajak"][0], 5));
+		$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR " . $nama_pajak, "", 0, 'C');
 		$this->Ln();
 		$this->newLine();
 		$this->newLine();
@@ -318,10 +321,10 @@ class FormCetak extends FPDF {
 		$this->newLine();
 		$this->newLine();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "DANI ERNAWAN", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "", "", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "NIP. 19600202 198503 1 018", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "NIP. ", "", 0, 'L');
 		$this->Ln();
 	}
 
