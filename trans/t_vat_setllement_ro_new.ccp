@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
+<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions" showSyncDlg="false">
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="15" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.no_kohir,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, 
 a.settlement_date, a.p_finance_period_id, 
@@ -9,7 +9,11 @@ WHERE a.p_finance_period_id = b.p_finance_period_id AND
 a.t_customer_order_id = c.t_customer_order_id AND
 a.t_cust_account_id = d.t_cust_account_id AND
 c.p_rqst_type_id = e.p_rqst_type_id AND
-a.is_settled = 'Y'" parameterTypeListName="ParameterTypeList">
+a.is_settled = 'Y' AND
+( upper(d.wp_name) LIKE upper('%{s_keyword}%') OR 
+  upper(a.npwd) LIKE upper('%{s_keyword}%') OR
+  upper(a.no_kohir) LIKE upper('%{s_keyword}%')
+)" parameterTypeListName="ParameterTypeList">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_vat_setllement_ro_new.ccp" wizardThemeItem="GridA" PathID="t_vat_setllementGridDLink" removeParameters="FLAG">
 					<Components/>
@@ -128,7 +132,7 @@ a.is_settled = 'Y'" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Button>
-<Label id="300" fieldSourceType="DBColumn" dataType="Text" html="True" name="cetak_sptpd" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_setllementGridcetak_sptpd">
+				<Label id="300" fieldSourceType="DBColumn" dataType="Text" html="True" name="cetak_sptpd" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_setllementGridcetak_sptpd">
 					<Components/>
 					<Events>
 						<Event name="BeforeShow" type="Server">
@@ -140,13 +144,13 @@ a.is_settled = 'Y'" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Label>
-<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="BtnUbahDenda" PathID="t_vat_setllementGridBtnUbahDenda">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-</Components>
+				<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="BtnUbahDenda" PathID="t_vat_setllementGridBtnUbahDenda">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -168,7 +172,8 @@ a.is_settled = 'Y'" parameterTypeListName="ParameterTypeList">
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-			</SQLParameters>
+				<SQLParameter id="313" variable="s_keyword" parameterType="URL" dataType="Text" parameterSource="s_keyword"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -341,7 +346,43 @@ a.is_settled = 'Y'" parameterTypeListName="ParameterTypeList">
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+		<Record id="312" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="searchForm" returnPage="t_vat_setllement_ro_new.ccp" PathID="searchForm" connection="ConnSIKP">
+			<Components>
+				<TextBox id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_keyword" PathID="searchForms_keyword">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" operation="Search" PathID="searchFormButton_DoSearch">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
+			<Events/>
+			<TableParameters/>
+			<SPParameters/>
+			<SQLParameters/>
+			<JoinTables/>
+			<JoinLinks/>
+			<Fields/>
+			<ISPParameters/>
+			<ISQLParameters/>
+			<IFormElements/>
+			<USPParameters/>
+			<USQLParameters/>
+			<UConditions/>
+			<UFormElements/>
+			<DSPParameters/>
+			<DSQLParameters/>
+			<DConditions/>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</Record>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_vat_setllement_ro_new_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_vat_setllement_ro_new.php" forShow="True" url="t_vat_setllement_ro_new.php" comment="//" codePage="windows-1252"/>

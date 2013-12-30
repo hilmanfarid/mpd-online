@@ -108,7 +108,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-70513BAD
+//Show Method @2-D6BB6BC3
     function Show()
     {
         global $Tpl;
@@ -117,6 +117,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
         $this->RowNumber = 0;
 
+        $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -327,15 +328,17 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End SetOrder Method
 
-//Prepare Method @2-14D6CD9D
+//Prepare Method @2-25AA94A2
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
     }
 //End Prepare Method
 
-//Open Method @2-FE02C76C
+//Open Method @2-ACFA3A12
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -348,7 +351,11 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         "a.t_customer_order_id = c.t_customer_order_id AND\n" .
         "a.t_cust_account_id = d.t_cust_account_id AND\n" .
         "c.p_rqst_type_id = e.p_rqst_type_id AND\n" .
-        "a.is_settled = 'Y') cnt";
+        "a.is_settled = 'Y' AND\n" .
+        "( upper(d.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
+        "  upper(a.npwd) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
+        "  upper(a.no_kohir) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        ")) cnt";
         $this->SQL = "SELECT a.no_kohir,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, \n" .
         "a.settlement_date, a.p_finance_period_id, \n" .
         "a.t_cust_account_id, a.npwd, a.total_trans_amount,\n" .
@@ -358,7 +365,11 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         "a.t_customer_order_id = c.t_customer_order_id AND\n" .
         "a.t_cust_account_id = d.t_cust_account_id AND\n" .
         "c.p_rqst_type_id = e.p_rqst_type_id AND\n" .
-        "a.is_settled = 'Y'";
+        "a.is_settled = 'Y' AND\n" .
+        "( upper(d.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
+        "  upper(a.npwd) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
+        "  upper(a.no_kohir) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -697,6 +708,194 @@ function GetPrimaryKey($keyName)
 
 } //End t_vat_setllementSearch Class @3-FCB6E20C
 
+class clsRecordsearchForm { //searchForm Class @312-7BAF3A53
+
+//Variables @312-D6FF3E86
+
+    // Public variables
+    var $ComponentType = "Record";
+    var $ComponentName;
+    var $Parent;
+    var $HTMLFormAction;
+    var $PressedButton;
+    var $Errors;
+    var $ErrorBlock;
+    var $FormSubmitted;
+    var $FormEnctype;
+    var $Visible;
+    var $IsEmpty;
+
+    var $CCSEvents = "";
+    var $CCSEventResult;
+
+    var $RelativePath = "";
+
+    var $InsertAllowed = false;
+    var $UpdateAllowed = false;
+    var $DeleteAllowed = false;
+    var $ReadAllowed   = false;
+    var $EditMode      = false;
+    var $ds;
+    var $DataSource;
+    var $ValidatingControls;
+    var $Controls;
+    var $Attributes;
+
+    // Class variables
+//End Variables
+
+//Class_Initialize Event @312-68605B77
+    function clsRecordsearchForm($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Record searchForm/Error";
+        $this->ReadAllowed = true;
+        if($this->Visible)
+        {
+            $this->ComponentName = "searchForm";
+            $this->Attributes = new clsAttributes($this->ComponentName . ":");
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
+            if(sizeof($CCSForm) == 1)
+                $CCSForm[1] = "";
+            list($FormName, $FormMethod) = $CCSForm;
+            $this->FormEnctype = "application/x-www-form-urlencoded";
+            $this->FormSubmitted = ($FormName == $this->ComponentName);
+            $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+            $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
+            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+        }
+    }
+//End Class_Initialize Event
+
+//Validate Method @312-A144A629
+    function Validate()
+    {
+        global $CCSLocales;
+        $Validation = true;
+        $Where = "";
+        $Validation = ($this->s_keyword->Validate() && $Validation);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//CheckErrors Method @312-D6729123
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->s_keyword->Errors->Count());
+        $errors = ($errors || $this->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//MasterDetail @312-ED598703
+function SetPrimaryKeys($keyArray)
+{
+    $this->PrimaryKeys = $keyArray;
+}
+function GetPrimaryKeys()
+{
+    return $this->PrimaryKeys;
+}
+function GetPrimaryKey($keyName)
+{
+    return $this->PrimaryKeys[$keyName];
+}
+//End MasterDetail
+
+//Operation Method @312-9E4B0D0D
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        if(!$this->FormSubmitted) {
+            return;
+        }
+
+        if($this->FormSubmitted) {
+            $this->PressedButton = "Button_DoSearch";
+            if($this->Button_DoSearch->Pressed) {
+                $this->PressedButton = "Button_DoSearch";
+            }
+        }
+        $Redirect = "t_vat_setllement_ro_new.php";
+        if($this->Validate()) {
+            if($this->PressedButton == "Button_DoSearch") {
+                $Redirect = "t_vat_setllement_ro_new.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
+                if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            }
+        } else {
+            $Redirect = "";
+        }
+    }
+//End Operation Method
+
+//Show Method @312-7913FA87
+    function Show()
+    {
+        global $CCSUseAmp;
+        global $Tpl;
+        global $FileName;
+        global $CCSLocales;
+        $Error = "";
+
+        if(!$this->Visible)
+            return;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $RecordBlock = "Record " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
+        $this->EditMode = $this->EditMode && $this->ReadAllowed;
+        if (!$this->FormSubmitted) {
+        }
+
+        if($this->FormSubmitted || $this->CheckErrors()) {
+            $Error = "";
+            $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->EditMode ? $this->ComponentName . ":" . "Edit" : $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        $this->Attributes->Show();
+        if(!$this->Visible) {
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+
+        $this->s_keyword->Show();
+        $this->Button_DoSearch->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+    }
+//End Show Method
+
+} //End searchForm Class @312-FCB6E20C
+
 
 
 
@@ -733,7 +932,7 @@ include_once("./t_vat_setllement_ro_new_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-FFF8C4A3
+//Initialize Objects @1-09566450
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -742,8 +941,10 @@ $MainPage->Attributes = & $Attributes;
 // Controls
 $t_vat_setllementGrid = & new clsGridt_vat_setllementGrid("", $MainPage);
 $t_vat_setllementSearch = & new clsRecordt_vat_setllementSearch("", $MainPage);
+$searchForm = & new clsRecordsearchForm("", $MainPage);
 $MainPage->t_vat_setllementGrid = & $t_vat_setllementGrid;
 $MainPage->t_vat_setllementSearch = & $t_vat_setllementSearch;
+$MainPage->searchForm = & $searchForm;
 $t_vat_setllementGrid->Initialize();
 
 BindEvents();
@@ -767,11 +968,12 @@ $Attributes->SetValue("pathToRoot", "../");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-D0128F80
+//Execute Components @1-645F1565
 $t_vat_setllementSearch->Operation();
+$searchForm->Operation();
 //End Execute Components
 
-//Go to destination page @1-24AA2B5D
+//Go to destination page @1-A8F0C659
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -779,14 +981,16 @@ if($Redirect)
     header("Location: " . $Redirect);
     unset($t_vat_setllementGrid);
     unset($t_vat_setllementSearch);
+    unset($searchForm);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-47DC6C17
+//Show Page @1-496CA6DA
 $t_vat_setllementGrid->Show();
 $t_vat_setllementSearch->Show();
+$searchForm->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -794,11 +998,12 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-ADE72901
+//Unload Page @1-E4DEC959
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBConnSIKP->close();
 unset($t_vat_setllementGrid);
 unset($t_vat_setllementSearch);
+unset($searchForm);
 unset($Tpl);
 //End Unload Page
 

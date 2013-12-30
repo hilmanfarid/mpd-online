@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -50,7 +50,32 @@ $(document).ready(function()
 <input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchIS_MANUAL" name="{IS_MANUAL_Name}" value="{IS_MANUAL}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_PROC_STATUS" name="{CURR_PROC_STATUS_Name}" value="{CURR_PROC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_DOC_STATUS" name="{CURR_DOC_STATUS_Name}" value="{CURR_DOC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_DOC_ID" name="{PREV_DOC_ID_Name}" value="{PREV_DOC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_DOC_TYPE_ID" name="{PREV_DOC_TYPE_ID_Name}" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_PROC_ID" name="{PREV_PROC_ID_Name}" value="{PREV_PROC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_CTL_ID" name="{PREV_CTL_ID_Name}" value="{PREV_CTL_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_1" name="{SLOT_1_Name}" value="{SLOT_1}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_2" name="{SLOT_2_Name}" value="{SLOT_2}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_3" name="{SLOT_3_Name}" value="{SLOT_3}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_4" name="{SLOT_4_Name}" value="{SLOT_4}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_5" name="{SLOT_5_Name}" value="{SLOT_5}" size="4" type="hidden">
 <input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchMESSAGE" name="{MESSAGE_Name}" value="{MESSAGE}" size="4" type="hidden">
         </form>
-        <!-- END Record t_vat_setllementSearch --><br>
+        <!-- END Record t_vat_setllementSearch -->
+        <p>
+        <!-- BEGIN Record searchForm -->
+        <form id="searchForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"><label style="display: none;" for="searchFormOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="Cari" type="submit"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record searchForm --></p>
+ 
+        <p>&nbsp;</p>
         <!-- BEGIN Grid t_vat_setllementGrid -->
         <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
@@ -319,10 +344,10 @@ function cetakRegister(cust_order_id){
 }
 
 function viewFormUbahDenda(t_vat_setllement_id) {
-	url = "../trans/t_vat_setllement_ubah_denda.php?t_vat_setllement_id="+t_vat_setllement_id;
+        url = "../trans/t_vat_setllement_ubah_denda.php?t_vat_setllement_id="+t_vat_setllement_id;
 
-		params  = 'width=650';
-	    params += ', height=300';
+                params  = 'width=650';
+            params += ', height=300';
         params += ', top=0, left=0';
 
         newwin=window.open(url,'windowname4', params);
