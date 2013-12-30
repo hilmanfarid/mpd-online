@@ -49,12 +49,6 @@ upper(company_brand) like '%{s_keyword}%'">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="47" fieldSourceType="DBColumn" dataType="Float" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<Hidden id="48" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERvat_code_dtl" fieldSource="vat_code_dtl">
 					<Components/>
 					<Events/>
@@ -73,7 +67,13 @@ upper(company_brand) like '%{s_keyword}%'">
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Hidden id="51" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
