@@ -3,19 +3,43 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-EC40708D
+//BindEvents Method @1-8A2DB216
 function BindEvents()
 {
     global $t_vat_setllementGrid;
     global $CCSEvents;
-    $t_vat_setllementGrid->cetak_sptpd->CCSEvents["BeforeShow"] = "t_vat_setllementGrid_cetak_sptpd_BeforeShow";
     $t_vat_setllementGrid->cetak->CCSEvents["BeforeShow"] = "t_vat_setllementGrid_cetak_BeforeShow";
+    $t_vat_setllementGrid->cetak_sptpd->CCSEvents["BeforeShow"] = "t_vat_setllementGrid_cetak_sptpd_BeforeShow";
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
+
+//t_vat_setllementGrid_cetak_BeforeShow @224-89B763DE
+function t_vat_setllementGrid_cetak_BeforeShow(& $sender)
+{
+    $t_vat_setllementGrid_cetak_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementGrid; //Compatibility
+//End t_vat_setllementGrid_cetak_BeforeShow
+
+//Custom Code @225-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	//$nilai1 = CCGetFromGet("CURR_DOC_ID","");
+	$nilai1 = $t_vat_setllementGrid->t_customer_order_id->GetValue();
+	$t_vat_setllementGrid->cetak->SetValue("<input type='button' value='CETAK SSPD' style='WIDTH: 75px; HEIGHT: 22px' class='Button' onclick=\"" .
+  									 "return cetak_sspd(".$nilai1.")\">");
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementGrid_cetak_BeforeShow @224-6B3874F7
+    return $t_vat_setllementGrid_cetak_BeforeShow;
+}
+//End Close t_vat_setllementGrid_cetak_BeforeShow
 
 //t_vat_setllementGrid_cetak_sptpd_BeforeShow @300-21C2B684
 function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
@@ -74,30 +98,6 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
     return $t_vat_setllementGrid_cetak_sptpd_BeforeShow;
 }
 //End Close t_vat_setllementGrid_cetak_sptpd_BeforeShow
-
-//t_vat_setllementGrid_cetak_BeforeShow @224-89B763DE
-function t_vat_setllementGrid_cetak_BeforeShow(& $sender)
-{
-    $t_vat_setllementGrid_cetak_BeforeShow = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $t_vat_setllementGrid; //Compatibility
-//End t_vat_setllementGrid_cetak_BeforeShow
-
-//Custom Code @225-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	//$nilai1 = CCGetFromGet("CURR_DOC_ID","");
-	$nilai1 = $t_vat_setllementGrid->t_customer_order_id->GetValue();
-	$t_vat_setllementGrid->cetak->SetValue("<input type='button' value='CETAK SSPD' style='WIDTH: 75px; HEIGHT: 22px' class='Button' onclick=\"" .
-  									 "return cetak_sspd(".$nilai1.")\">");
-// -------------------------
-//End Custom Code
-
-//Close t_vat_setllementGrid_cetak_BeforeShow @224-6B3874F7
-    return $t_vat_setllementGrid_cetak_BeforeShow;
-}
-//End Close t_vat_setllementGrid_cetak_BeforeShow
 
 //t_vat_setllementGrid_BeforeShowRow @2-292D3A2A
 function t_vat_setllementGrid_BeforeShowRow(& $sender)
