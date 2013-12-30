@@ -311,7 +311,7 @@ class FormCetak extends FPDF {
 		
 		
 		$this->SetWidths(array(5, $ltable6-16, $ltable1+2, $ltable2+7, $ltable1 + $ltable2 - 10+7, $ltable2, 5));
-		$this->SetAligns(array("L", "C", "C", "C", "L", "C", "L"));
+		$this->SetAligns(array("L", "C", "C", "L", "C", "C", "L"));
 		$tahun = explode(" ",$data["periode"]);
 
 		$bulan_periode = explode(",",$data['debt_period_code']);
