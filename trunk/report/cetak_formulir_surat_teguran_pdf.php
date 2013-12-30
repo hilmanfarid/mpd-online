@@ -36,7 +36,8 @@ while ($dbConn->next_record()) {
 			'terbilang' =>  $dbConn->f("terbilang")
 		);
 }
-
+print_r($data);
+exit;
 	//nip & nama
 	$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin "
 		  ."FROM p_global_param "
