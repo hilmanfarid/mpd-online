@@ -33,11 +33,10 @@ while ($dbConn->next_record()) {
 			'tap_date' => $dbConn->f("tap_date"),
 			'due_date' => $dbConn->f("due_date"),
 			'debt_amount' => $dbConn->f("debt_amount"),
-			'terbilang' =>  $dbConn->f("terbilang")
+			'terbilang' =>  $dbConn->f("terbilang"),
+			'debt_periode_code' =>  $dbConn->f("debt_periode_code")
 		);
 }
-print_r($data);
-exit;
 	//nip & nama
 	$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin "
 		  ."FROM p_global_param "
