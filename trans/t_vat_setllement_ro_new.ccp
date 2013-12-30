@@ -68,18 +68,6 @@ a.is_settled = 'Y'" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="300" fieldSourceType="DBColumn" dataType="Text" html="True" name="cetak_sptpd" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_setllementGridcetak_sptpd">
-					<Components/>
-					<Events>
-						<Event name="BeforeShow" type="Server">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="301" eventType="Server"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Hidden id="304" fieldSourceType="DBColumn" dataType="Float" name="p_vat_type_id" PathID="t_vat_setllementGridp_vat_type_id" fieldSource="p_vat_type_id">
 					<Components/>
 					<Events/>
@@ -116,12 +104,6 @@ a.is_settled = 'Y'" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="308" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register" PathID="t_vat_setllementGridcetak_register">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<Hidden id="309" fieldSourceType="DBColumn" dataType="Integer" name="t_customer_order_id" PathID="t_vat_setllementGridt_customer_order_id" fieldSource="t_customer_order_id">
 					<Components/>
 					<Events/>
@@ -140,6 +122,30 @@ a.is_settled = 'Y'" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Label>
+				<Button id="308" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register" PathID="t_vat_setllementGridcetak_register">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Label id="300" fieldSourceType="DBColumn" dataType="Text" html="True" name="cetak_sptpd" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_setllementGridcetak_sptpd">
+					<Components/>
+					<Events>
+						<Event name="BeforeShow" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="301" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="BtnUbahDenda" PathID="t_vat_setllementGridBtnUbahDenda">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">

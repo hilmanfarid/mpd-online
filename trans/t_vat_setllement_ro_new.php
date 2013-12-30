@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-EFD5A9A1
+//Class_Initialize Event @2-90EE1D16
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -79,17 +79,18 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->total_trans_amount = & new clsControl(ccsLabel, "total_trans_amount", "total_trans_amount", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("total_trans_amount", ccsGet, NULL), $this);
         $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsFloat, "", CCGetRequestParam("p_rqst_type_id", ccsGet, NULL), $this);
         $this->total_vat_amount = & new clsControl(ccsLabel, "total_vat_amount", "total_vat_amount", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("total_vat_amount", ccsGet, NULL), $this);
-        $this->cetak_sptpd = & new clsControl(ccsLabel, "cetak_sptpd", "cetak_sptpd", ccsText, "", CCGetRequestParam("cetak_sptpd", ccsGet, NULL), $this);
-        $this->cetak_sptpd->HTML = true;
         $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsFloat, "", CCGetRequestParam("p_vat_type_id", ccsGet, NULL), $this);
         $this->cetak = & new clsControl(ccsLabel, "cetak", "cetak", ccsText, "", CCGetRequestParam("cetak", ccsGet, NULL), $this);
         $this->cetak->HTML = true;
         $this->no_kohir = & new clsControl(ccsLabel, "no_kohir", "no_kohir", ccsText, "", CCGetRequestParam("no_kohir", ccsGet, NULL), $this);
         $this->wp_name = & new clsControl(ccsLabel, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", ccsGet, NULL), $this);
         $this->cetak_payment = & new clsButton("cetak_payment", ccsGet, $this);
-        $this->cetak_register = & new clsButton("cetak_register", ccsGet, $this);
         $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsInteger, "", CCGetRequestParam("t_customer_order_id", ccsGet, NULL), $this);
         $this->total_penalty_amount = & new clsControl(ccsLabel, "total_penalty_amount", "total_penalty_amount", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("total_penalty_amount", ccsGet, NULL), $this);
+        $this->cetak_register = & new clsButton("cetak_register", ccsGet, $this);
+        $this->cetak_sptpd = & new clsControl(ccsLabel, "cetak_sptpd", "cetak_sptpd", ccsText, "", CCGetRequestParam("cetak_sptpd", ccsGet, NULL), $this);
+        $this->cetak_sptpd->HTML = true;
+        $this->BtnUbahDenda = & new clsButton("BtnUbahDenda", ccsGet, $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -107,7 +108,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-EB46E42C
+//Show Method @2-70513BAD
     function Show()
     {
         global $Tpl;
@@ -143,15 +144,16 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["total_trans_amount"] = $this->total_trans_amount->Visible;
             $this->ControlsVisible["p_rqst_type_id"] = $this->p_rqst_type_id->Visible;
             $this->ControlsVisible["total_vat_amount"] = $this->total_vat_amount->Visible;
-            $this->ControlsVisible["cetak_sptpd"] = $this->cetak_sptpd->Visible;
             $this->ControlsVisible["p_vat_type_id"] = $this->p_vat_type_id->Visible;
             $this->ControlsVisible["cetak"] = $this->cetak->Visible;
             $this->ControlsVisible["no_kohir"] = $this->no_kohir->Visible;
             $this->ControlsVisible["wp_name"] = $this->wp_name->Visible;
             $this->ControlsVisible["cetak_payment"] = $this->cetak_payment->Visible;
-            $this->ControlsVisible["cetak_register"] = $this->cetak_register->Visible;
             $this->ControlsVisible["t_customer_order_id"] = $this->t_customer_order_id->Visible;
             $this->ControlsVisible["total_penalty_amount"] = $this->total_penalty_amount->Visible;
+            $this->ControlsVisible["cetak_register"] = $this->cetak_register->Visible;
+            $this->ControlsVisible["cetak_sptpd"] = $this->cetak_sptpd->Visible;
+            $this->ControlsVisible["BtnUbahDenda"] = $this->BtnUbahDenda->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -184,15 +186,16 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->total_trans_amount->Show();
                 $this->p_rqst_type_id->Show();
                 $this->total_vat_amount->Show();
-                $this->cetak_sptpd->Show();
                 $this->p_vat_type_id->Show();
                 $this->cetak->Show();
                 $this->no_kohir->Show();
                 $this->wp_name->Show();
                 $this->cetak_payment->Show();
-                $this->cetak_register->Show();
                 $this->t_customer_order_id->Show();
                 $this->total_penalty_amount->Show();
+                $this->cetak_register->Show();
+                $this->cetak_sptpd->Show();
+                $this->BtnUbahDenda->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -226,7 +229,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Show Method
 
-//GetErrors Method @2-0B71241B
+//GetErrors Method @2-1761AAA7
     function GetErrors()
     {
         $errors = "";
@@ -238,13 +241,13 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $errors = ComposeStrings($errors, $this->total_trans_amount->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_rqst_type_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->total_vat_amount->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->cetak_sptpd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_vat_type_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->cetak->Errors->ToString());
         $errors = ComposeStrings($errors, $this->no_kohir->Errors->ToString());
         $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_customer_order_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->total_penalty_amount->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->cetak_sptpd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
