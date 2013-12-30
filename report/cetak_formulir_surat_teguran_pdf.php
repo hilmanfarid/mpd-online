@@ -34,7 +34,7 @@ while ($dbConn->next_record()) {
 			'due_date' => $dbConn->f("due_date"),
 			'debt_amount' => $dbConn->f("debt_amount"),
 			'terbilang' =>  $dbConn->f("terbilang"),
-			'debt_periode_code' =>  $dbConn->f("debt_periode_code")
+			'debt_period_code' =>  $dbConn->f("debt_period_code")
 		);
 }
 print_r($data);
