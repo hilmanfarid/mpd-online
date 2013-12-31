@@ -19,13 +19,16 @@ $query="select c.company_owner ,
 		c.address_name_owner ||nvl(address_no_owner,' ') as alamat_tinggal,
 		c.address_name ||nvl(address_no,' ') as alamat_pajak ,
 		b.p_vat_type_id,
+		type.vat_code,
 		c.reg_letter_no,
 		decode(c.p_hotel_grade_id,null,null,1,1,2,1,3,1,4,1,5,1,0) as klasifikasi
 from t_customer_order a,
 		p_rqst_type b,
-		t_vat_registration c
+		t_vat_registration c,
+		p_vat_type type
 where a.p_rqst_type_id = b.p_rqst_type_id
 	and a.t_customer_order_id = c.t_customer_order_id
+	and b.p_vat_type_id = type.p_vat_type_id
 	and a.t_customer_order_id = ".$t_customer_order_id;
 
 $dbConn->query($query);
@@ -38,6 +41,7 @@ while ($dbConn->next_record()) {
 		$data["p_vat_type_id"] = $dbConn->f("p_vat_type_id");
 		$data["reg_letter_no"] = $dbConn->f("reg_letter_no");
 		$data["klasifikasi"] = $dbConn->f("klasifikasi");
+		$data["vat_code"] = $dbConn->f("vat_code");
 }
 
 $dbConn->query("end;");
@@ -94,7 +98,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->SetFont('Times', '', 11);
-		$this->Cell($lengthCell, $this->height, "Nomor: " . $data["reg_letter_no"], 0, 0, 'C');
+		$this->Cell($lengthCell, $this->height, "Nomor: 973/" . $data["reg_letter_no"]."/".str_replace($data['vat_code'],'Pajak ','') ."/Disyanjak", 0, 0, 'C');
 		
 		// Body Atas
 		$this->Ln();
