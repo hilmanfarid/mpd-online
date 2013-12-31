@@ -62,17 +62,23 @@ upper(company_brand) like '%{s_keyword}%'">
 					<Features/>
 				</Label>
 				<Hidden id="51" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="52" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERvat_code_dtl" fieldSource="vat_code_dtl">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Label id="53" fieldSourceType="DBColumn" dataType="Text" html="False" name="vat_code2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERvat_code2" fieldSource="vat_code">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
-</Hidden>
-<Hidden id="52" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERvat_code_dtl" fieldSource="vat_code_dtl">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
+</Label>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">

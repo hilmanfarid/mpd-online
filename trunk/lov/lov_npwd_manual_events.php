@@ -18,12 +18,6 @@ function LOV_ORDER_PILIH_BeforeShow(& $sender)
     global $LOV_ORDER; //Compatibility
 //End LOV_ORDER_PILIH_BeforeShow
 
-//Custom Code @26-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 //Close LOV_ORDER_PILIH_BeforeShow @25-5BF0AA63
     return $LOV_ORDER_PILIH_BeforeShow;
 }
@@ -37,12 +31,6 @@ function LOV_ORDER_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $LOV_ORDER; //Compatibility
 //End LOV_ORDER_BeforeShowRow
-
-//Custom Code @32-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -74,12 +62,6 @@ function LOV_ORDER_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $LOV_ORDER; //Compatibility
 //End LOV_ORDER_BeforeSelect
-
-//Custom Code @35-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
   // -------------------------
       // Write your own code here.

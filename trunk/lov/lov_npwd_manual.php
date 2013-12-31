@@ -42,7 +42,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-5DF93735
+//Class_Initialize Event @2-0977368F
     function clsGridLOV_ORDER($RelativePath, & $Parent)
     {
         global $FileName;
@@ -79,6 +79,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
         $this->wp_address_name = & new clsControl(ccsLabel, "wp_address_name", "wp_address_name", ccsText, "", CCGetRequestParam("wp_address_name", ccsGet, NULL), $this);
         $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", ccsGet, NULL), $this);
         $this->vat_code_dtl = & new clsControl(ccsHidden, "vat_code_dtl", "vat_code_dtl", ccsText, "", CCGetRequestParam("vat_code_dtl", ccsGet, NULL), $this);
+        $this->vat_code2 = & new clsControl(ccsLabel, "vat_code2", "vat_code2", ccsText, "", CCGetRequestParam("vat_code2", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -95,7 +96,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     }
 //End Initialize Method
 
-//Show Method @2-8133DE37
+//Show Method @2-3D2034CD
     function Show()
     {
         global $Tpl;
@@ -134,6 +135,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
             $this->ControlsVisible["wp_address_name"] = $this->wp_address_name->Visible;
             $this->ControlsVisible["p_vat_type_dtl_id"] = $this->p_vat_type_dtl_id->Visible;
             $this->ControlsVisible["vat_code_dtl"] = $this->vat_code_dtl->Visible;
+            $this->ControlsVisible["vat_code2"] = $this->vat_code2->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -149,6 +151,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
                 $this->wp_address_name->SetValue($this->DataSource->wp_address_name->GetValue());
                 $this->p_vat_type_dtl_id->SetValue($this->DataSource->p_vat_type_dtl_id->GetValue());
                 $this->vat_code_dtl->SetValue($this->DataSource->vat_code_dtl->GetValue());
+                $this->vat_code2->SetValue($this->DataSource->vat_code2->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -161,6 +164,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
                 $this->wp_address_name->Show();
                 $this->p_vat_type_dtl_id->Show();
                 $this->vat_code_dtl->Show();
+                $this->vat_code2->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -193,7 +197,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     }
 //End Show Method
 
-//GetErrors Method @2-858AE953
+//GetErrors Method @2-DC45E289
     function GetErrors()
     {
         $errors = "";
@@ -206,6 +210,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
         $errors = ComposeStrings($errors, $this->wp_address_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_vat_type_dtl_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->vat_code_dtl->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->vat_code2->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -216,7 +221,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
 
 class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Class @2-A587E400
 
-//DataSource Variables @2-44C9AD9B
+//DataSource Variables @2-C5F3206C
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -236,9 +241,10 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     var $wp_address_name;
     var $p_vat_type_dtl_id;
     var $vat_code_dtl;
+    var $vat_code2;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-96C59043
+//DataSourceClass_Initialize Event @2-130A0C13
     function clsLOV_ORDERDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -259,6 +265,8 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
         $this->p_vat_type_dtl_id = new clsField("p_vat_type_dtl_id", ccsText, "");
         
         $this->vat_code_dtl = new clsField("vat_code_dtl", ccsText, "");
+        
+        $this->vat_code2 = new clsField("vat_code2", ccsText, "");
         
 
     }
@@ -310,7 +318,7 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Open Method
 
-//SetValues Method @2-5F84A354
+//SetValues Method @2-9F7864B2
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
@@ -321,6 +329,7 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
         $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
         $this->p_vat_type_dtl_id->SetDBValue($this->f("p_vat_type_dtl_id"));
         $this->vat_code_dtl->SetDBValue($this->f("vat_code_dtl"));
+        $this->vat_code2->SetDBValue($this->f("vat_code"));
     }
 //End SetValues Method
 
