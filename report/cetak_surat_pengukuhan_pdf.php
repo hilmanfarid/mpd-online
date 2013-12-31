@@ -93,6 +93,8 @@ class FormCetak extends FPDF {
 			$this->Cell($lengthCell, $this->height, "", 0, 0, "C");
 			$this->Ln();
 		}
+		$this->Ln();
+		$this->Ln();
 		$this->SetFont('Times', 'B', 12);
 		$this->Cell($lengthCell, $this->height, "SURAT PENGUKUHAN WAJIB PAJAK DAERAH", 0, 0, 'C');
 		$this->Ln();
