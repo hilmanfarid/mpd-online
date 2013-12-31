@@ -10,19 +10,19 @@
 <script src="../js/exporting.js"></script>
 <script>
     $(function () {
-        $.getJSON( "../services/t_status_pelaporan_wp_detil.php?status_id=1", function( items ) {
+        $.getJSON( "../services/t_status_pelaporan_wp_detil.php?status_id="+document.getElementById('hiddenFormstatus_id').value, function( items ) {
                         jumlah=[];
                         jenis=[];
             for(i=0;i < items.length;i++){
                 jumlah.push(parseFloat(items[i][2]));
                                 jenis.push(items[i][1]);
             }
-			var judul = '';
-			if(document.getElementById('hiddenFormstatus_id').value == 1){
-				judul = 'Dengan Status Aktif';
-			}else{
-				judul = 'Dengan Status Tidak Aktif';
-			}
+                        var judul = '';
+                        if(document.getElementById('hiddenFormstatus_id').value == 1){
+                                judul = 'Dengan Status Aktif';
+                        }else{
+                                judul = 'Dengan Status Tidak Aktif';
+                        }
             $('#container').highcharts({
                 chart: {
                     type: 'column'
@@ -67,12 +67,12 @@
     });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        STATUS PELAPORAN PAJAK 
+        JUMLAH WP&nbsp;
       </div>
     </div>
   </div>
@@ -86,7 +86,7 @@
           <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-              <td class="th"><strong>DAFTAR TRANSAKSI BULANAN WP </strong></td> 
+              <td class="th"><strong>DAFTAR JUMLAH WP PER JENIS PAJAK</strong></td> 
               <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
             </tr>
           </table>
