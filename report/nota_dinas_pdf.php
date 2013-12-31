@@ -112,7 +112,7 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Nomor          :", "", 0, 'L');
-        $this->Cell($lengthJudul2, $this->height, "973/" . $data["reg_letter_no"] . "/jakdaf/" . $this->romanNumerals(date("m")) . "/2013", "", 0, 'L');
+        $this->Cell($lengthJudul2, $this->height, "973/" . $data["reg_letter_no"] . "/dafda/" . $this->romanNumerals(date("m")) . "/2013", "", 0, 'L');
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Lampiran      :", "", 0, 'L');
