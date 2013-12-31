@@ -126,7 +126,7 @@ class FormCetak extends FPDF {
 		$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_owner"], 0, 0, 'L');
 		$this->Ln();
 		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "     Pajak", 0, 0, 'L');
+		$this->Cell($formLen1, $this->height, "    Pajak", 0, 0, 'L');
 		
 		// Form 2. Nama Badan/Perusahaan
 		$this->Ln();
@@ -142,10 +142,12 @@ class FormCetak extends FPDF {
 		$this->Cell($formLen1, $this->height, "3. Nomor Pokok Wajib Pajak Daerah", 0, 0, 'L');
 		$this->SetFont('Times', '', 11);
 		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
-		$this->Cell($formLen2 - $twelfth1, $this->height, $data["npwpd"], 0, 0, 'L');
+
+		$newstr = substr_replace($data["npwpd"],'.', 2, 0);
+		$this->Cell($formLen2 - $twelfth1, $this->height, $newstr, 0, 0, 'L');
 		$this->Ln();
 		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "     (NPWPD)", 0, 0, 'L');
+		$this->Cell($formLen1, $this->height, "    (NPWPD)", 0, 0, 'L');
 		
 		// Form 4. Alamat Tempat Tinggal
 		$this->Ln();
