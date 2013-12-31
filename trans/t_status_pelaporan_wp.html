@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script>
+    $(function () {
+        $.getJSON( "../services/getListWPActive.php", function( items ) {
+            for(i=0;i < items.length;i++){
+                items[i][1]=parseFloat(items[i][1]);
+            }
+            $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Jumlah Wajib Pajak'
+            },
+            tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: items
+            }]
+        });
+        });
+    });
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        STATUS PELAPORAN PAJAK 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <div style="WIDTH: 50%; FLOAT: left">
+    <!-- BEGIN Grid t_laporan_status_wp -->
+    <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tr>
+        <td valign="top">
+          <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+              <td class="th"><strong>DAFTAR TRANSAKSI BULANAN WP </strong></td> 
+              <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+            </tr>
+          </table>
+ 
+          <table class="Grid" cellspacing="0" cellpadding="0">
+            <tr class="Caption">
+              <th scope="col">Status</th>
+ 
+              <th scope="col">Jumlah</th>
+            </tr>
+ 
+            <!-- BEGIN Row -->
+            <tr {t_laporan_status_wp:rowStyle}>
+              <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid"><a href="t_status_pelaporan_wp_detil.php?status_id={status_id}" id="t_laporan_status_wpstatus_{t_laporan_status_wp:rowNumber}">{status}</a> <input type="hidden" name="{status_id_Name}" value="{status_id}" id="t_laporan_status_wpstatus_id_{t_laporan_status_wp:rowNumber}"></td> 
+              <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid">{jumlah} </td>
+            </tr>
+ <!-- END Row -->
+            <!-- BEGIN NoRecords -->
+            <tr class="NoRecords">
+              <td colspan="2">-</td>
+            </tr>
+            <!-- END NoRecords -->
+            <tr class="Footer">
+              <td></td> 
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- END Grid t_laporan_status_wp -->
+  </div>
+  <div style="MARGIN: 0px auto; WIDTH: 400px; HEIGHT: 400px" id="container">
+  </div>
+</div>
+</body>
+</html>
