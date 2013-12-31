@@ -43,7 +43,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-7A2E4C90
+//Class_Initialize Event @2-B1010F3F
     function clsGridt_target_realisasi_jenisGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -70,11 +70,11 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
         if ($this->PageNumber <= 0) $this->PageNumber = 1;
 
-        $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsText, "", CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
+        $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
         $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
         $this->DLink->HTML = true;
         $this->DLink->Page = "t_target_realisasi_jenis.php";
-        $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsText, "", CCGetRequestParam("target_amount", ccsGet, NULL), $this);
+        $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount", ccsGet, NULL), $this);
         $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsFloat, "", CCGetRequestParam("p_year_period_id", ccsGet, NULL), $this);
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
         $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsFloat, "", CCGetRequestParam("p_vat_type_id", ccsGet, NULL), $this);
@@ -344,7 +344,7 @@ $CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-B6FD4E52
+//Initialize Objects @1-50C1753F
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -355,13 +355,13 @@ $t_target_realisasi_jenisGrid = & new clsGridt_target_realisasi_jenisGrid("", $M
 $per_pajak = & new clsFlashChart("per_pajak", $MainPage);
 $per_pajak->CallbackParameter = "t_target_realisasi_jenisper_pajak";
 $per_pajak->Title = "Target vs Realisasi Per Jenis Pajak";
-$per_pajak->Width = 400;
-$per_pajak->Height = 300;
+$per_pajak->Width = 800;
+$per_pajak->Height = 400;
 $per_tahun = & new clsFlashChart("per_tahun", $MainPage);
 $per_tahun->CallbackParameter = "t_target_realisasi_jenisper_tahun";
 $per_tahun->Title = "Target vs Realisasi Tahunan";
-$per_tahun->Width = 400;
-$per_tahun->Height = 300;
+$per_tahun->Width = 800;
+$per_tahun->Height = 400;
 $MainPage->t_target_realisasi_jenisGrid = & $t_target_realisasi_jenisGrid;
 $MainPage->per_pajak = & $per_pajak;
 $MainPage->per_tahun = & $per_tahun;

@@ -11,7 +11,7 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="676" fieldSourceType="DBColumn" dataType="Text" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridrealisasi_amt" fieldSource="realisasi_amt">
+				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -26,7 +26,7 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Link>
-				<Label id="679" fieldSourceType="DBColumn" dataType="Text" html="False" name="target_amount" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridtarget_amount" fieldSource="target_amount">
+				<Label id="679" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridtarget_amount" fieldSource="target_amount" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -57,18 +57,18 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Features/>
 				</Hidden>
 				<Hidden id="868" fieldSourceType="DBColumn" dataType="Text" name="t_revenue_target_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridt_revenue_target_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-<Hidden id="869" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridp_year_period_id2">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="869" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridp_year_period_id2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -90,7 +90,7 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 			<JoinLinks/>
 			<Fields>
 				<Field id="870" fieldName="*"/>
-</Fields>
+			</Fields>
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="677" parameterType="URL" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id" DBFormat="0"/>
@@ -99,7 +99,7 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<FlashChart id="696" secured="False" dataSeriesIn="Columns" chartType="3d_pie" sourceType="SQL" defaultPageSize="25" returnValueType="Number" name="per_pajak" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="per_pajak" connection="ConnSIKP" activeCollection="SQLParameters" schemaName="Autumn" layout="5" gridCaptionField="-1" width="400" height="300" displayTitle="True" title="Target vs Realisasi Per Jenis Pajak" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="vertical" autoRotate="no" template="&lt;root&gt;
+		<FlashChart id="696" secured="False" dataSeriesIn="Columns" chartType="3d_pie" sourceType="SQL" defaultPageSize="25" returnValueType="Number" name="per_pajak" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="per_pajak" connection="ConnSIKP" activeCollection="SQLParameters" schemaName="Autumn" layout="5" gridCaptionField="-1" width="800" height="400" displayTitle="True" title="Target vs Realisasi Per Jenis Pajak" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="vertical" autoRotate="no" template="&lt;root&gt;
 	&lt;schema name=&quot;Autumn&quot;&gt;
 		&lt;mask/&gt;
 		&lt;colors/&gt;
@@ -135,8 +135,8 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id" parameterTypeListName="Parameter
 			<Attributes/>
 			<DataSeries>
 				<Field id="877" fieldName="target_amount" alias="Target"/>
-<Field id="878" fieldName="realisasi_amt" alias="Realisasi"/>
-</DataSeries>
+				<Field id="878" fieldName="realisasi_amt" alias="Realisasi"/>
+			</DataSeries>
 			<TableParameters>
 				<TableParameter id="722" conditionType="Parameter" useIsNull="False" field="p_year_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_year_period_id"/>
 				<TableParameter id="761" conditionType="Parameter" useIsNull="False" field="p_vat_type_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_vat_type_id"/>
@@ -149,20 +149,20 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id" parameterTypeListName="Parameter
 			</Fields>
 			<AllFields>
 				<Field id="873" fieldName="target_amount"/>
-<Field id="875" fieldName="realisasi_amt"/>
-</AllFields>
+				<Field id="875" fieldName="realisasi_amt"/>
+			</AllFields>
 			<SelectedFields>
 				<Field id="874" fieldName="target_amount" isExpression="True"/>
-<Field id="876" fieldName="realisasi_amt" isExpression="True"/>
-</SelectedFields>
+				<Field id="876" fieldName="realisasi_amt" isExpression="True"/>
+			</SelectedFields>
 			<SPParameters/>
 			<SQLParameters>
-<SQLParameter id="872" parameterType="URL" variable="t_revenue_target_id" dataType="Float" parameterSource="t_revenue_target_id" defaultValue="0"/>
-</SQLParameters>
+				<SQLParameter id="872" parameterType="URL" variable="t_revenue_target_id" dataType="Float" parameterSource="t_revenue_target_id" defaultValue="0"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Features/>
 		</FlashChart>
-		<FlashChart id="764" secured="False" dataSeriesIn="Columns" chartType="3d_columns" sourceType="Table" defaultPageSize="25" returnValueType="Number" name="per_tahun" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="per_tahun" connection="ConnSIKP" dataSource="v_revenue_target_vs_realisasi" activeCollection="TableParameters" schemaName="Autumn" layout="6" gridCaptionField="vat_code" isCaption="true" width="400" height="300" displayTitle="True" title="Target vs Realisasi Tahunan" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="degrees" autoRotate="yes" template="&lt;root&gt;
+		<FlashChart id="764" secured="False" dataSeriesIn="Columns" chartType="3d_columns" sourceType="Table" defaultPageSize="25" returnValueType="Number" name="per_tahun" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="per_tahun" connection="ConnSIKP" dataSource="v_revenue_target_vs_realisasi" activeCollection="TableParameters" schemaName="Autumn" layout="6" gridCaptionField="vat_code" isCaption="true" width="800" height="400" displayTitle="True" title="Target vs Realisasi Tahunan" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="degrees" autoRotate="yes" template="&lt;root&gt;
 	&lt;schema name=&quot;Autumn&quot;&gt;
 		&lt;mask/&gt;
 		&lt;colors/&gt;
