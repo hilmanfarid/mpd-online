@@ -56,25 +56,25 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="20" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_laporan_harian_sptpdp_vat_type_id" fieldSource="p_vat_type_id">
+				<Hidden id="20" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_laporan_harian_sptpdp_vat_type_id" fieldSource="p_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_laporan_harian_sptpdvat_code_dtl" required="True" caption="Ayat Pajak" fieldSource="vat_code_dtl">
+				<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_laporan_harian_sptpdvat_code_dtl" required="True" caption="Ayat Pajak" fieldSource="vat_code_dtl">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="23" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" PathID="t_laporan_harian_sptpdp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+				<Hidden id="23" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" PathID="t_laporan_harian_sptpdp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

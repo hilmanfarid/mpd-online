@@ -74,10 +74,13 @@ function print_laporan($param_arr){
 	/*echo '<pre>';
 	print_r($param_arr);
 	exit;*/
+	if(empty($param_arr['p_vat_type_id'])){
+		$param_arr['p_vat_type_id']='null';
+	}
 	if(!empty($param_arr['p_vat_type_dtl_id'])){
 		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."',".$param_arr['p_vat_type_dtl_id'].")";
 	}else{
-		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY jenis ASC";
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(".$param_arr['p_vat_type_id'].",".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY jenis ASC";
 	}
 	$dbConn->query($query);
 	$items=array();
@@ -110,12 +113,14 @@ function print_laporan($param_arr){
 					   'start_period' => $start_period,
 					   'end_period' => $end_period,
 					   'jenis_pajak' => $dbConn->f("jenis"),
-					   'jenis_pajak_dtl' => $dbConn->f("jenis_dtl")
+					   'jenis_pajak_dtl' => $dbConn->f("jenis_dtl"),
+					   'ayat_code' => $dbConn->f("ayat_code"),
+					   'ayat_code_dtl' => $dbConn->f("ayat_code_dtl")
 						);
 		if(!empty($param_arr['p_vat_type_dtl_id'])){
 			$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
 		}else{
-			$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['jenis_pajak_dtl'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
+			$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['ayat_code'].'.'.$item['ayat_code_dtl'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
 		}
 		$jumlah+=$dbConn->f("amount");
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
