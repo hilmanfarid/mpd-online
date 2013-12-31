@@ -84,12 +84,12 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', 'B', 10);
+		$this->SetFont('Arial', 'B', 12);
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
 		$this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', 'B', 14);
+		$this->SetFont('Arial', 'B', 16);
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
 		$this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "", 0, 'C');
 		$this->Ln();
@@ -103,6 +103,10 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader7, $this->height, "", "B", 0, 'C');
 		$this->Ln();
 		
+		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
+		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
 		
@@ -124,12 +128,20 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		// Nama Petugas
-		$this->isi("1.", "Nama", ": " . $data["bap_employee_name_1"]);
-		$this->isi("", "NIP", ": " . $data["bap_employee_no_1"]);
-		$this->isi("", "Jabatan", ": " . $data["bap_employee_job_pos_1"]);
-		$this->isi("2.", "Nama", ": " . $data["bap_employee_name_2"]);
-		$this->isi("", "NIP", ": " . $data["bap_employee_no_2"]);
-		$this->isi("", "Jabatan", ": " . $data["bap_employee_job_pos_2"]);
+		$titik = "........................................................................................................";
+		$nama_1 = ($data["bap_employee_name_1"] == "") ? $titik : $data["bap_employee_name_1"];
+		$nama_2 = ($data["bap_employee_name_2"] == "") ? $titik : $data["bap_employee_name_2"];
+		$no_1 = ($data["bap_employee_no_1"] == "") ? $titik : $data["bap_employee_no_1"];
+		$no_2 = ($data["bap_employee_no_2"] == "") ? $titik : $data["bap_employee_no_2"];
+		$job_1 = ($data["bap_employee_job_pos_1"] == "") ? $titik : $data["bap_employee_job_pos_1"];
+		$job_2 = ($data["bap_employee_job_pos_2"] == "") ? $titik : $data["bap_employee_job_pos_2"];
+		
+		$this->isi("1.", "Nama", ": " . $nama_1);
+		$this->isi("", "NIP", ": " . $no_1);
+		$this->isi("", "Jabatan", ": " . $job_1);
+		$this->isi("2.", "Nama", ": " . $nama_2);
+		$this->isi("", "NIP", ": " . $no_1);
+		$this->isi("", "Jabatan", ": " . $job_1);
 
 		// Body
 		$this->newLine();
@@ -259,13 +271,17 @@ class FormCetak extends FPDF {
 		$this->isi_full(".................................................................................................................................................................");
 		$this->isi_full(".................................................................................................................................................................");
 		$this->isi_full(".................................................................................................................................................................");
-		$this->isi_full(".................................................................................................................................................................");
+		// $this->isi_full(".................................................................................................................................................................");
 		$this->isi_full("Demikian Berita Acara Pemeriksaan ini dibuat dengan sebenar-benarnya.");
 		
 		$lbody = $this->lengthCell / 16;
 		$lbody2 = $lbody * 2;
 		$lbody4 = $lbody * 4;
 
+		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
+		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
 		

@@ -40,7 +40,7 @@ class FormCetak extends FPDF {
     var $yearCode = "";
     var $paperWSize = 210;
     var $paperHSize = 297;
-    var $height = 5;
+    var $height = 6;
     var $currX;
     var $currY;
     var $widths;
@@ -160,27 +160,31 @@ class FormCetak extends FPDF {
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "Alamat Usaha", "", "", 'L');
         $this->Cell($lengWP2, $this->height, ": ".$data["brand_address_name"], "", "", 'L');
-        $this->Ln(10);
+        $this->Ln();
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->MultiCell($lengthJudul2, $this->height, "Sehubungan dengan permohonan tersebut diatas mohon kiranya Bapak berkenan untuk memberikan NPWPD dan mengukuhkan sebagai Wajib Pajak Daerah Kota Bandung.", "", 'J');
-        $this->Ln(6);
+        $this->Ln();
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->MultiCell($lengthJudul2, $this->height, "Demikian permohonan kami sampaikan, atas perhatian Bapak kami mengucapkan terima kasih, serta mohon arahan lebih lanjut.", "", 'J');
-        $this->Ln(10);
+        $this->Ln();
 
         //TTD
         $this->SetFont('Times', 'B', 12);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
         $this->Cell($lengWP2, $this->height, "KEPALA SEKSI", "", "", 'C');
-        $this->Ln(6);
+        $this->Ln();
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
         $this->Cell($lengWP2, $this->height, "PENDAFTARAN DAN PENDATAAN", "", "", 'C');
-        $this->Ln(15);
+        $this->Ln();
+		$this->Ln();
+		$this->Ln();
+		$this->Ln();
+		$this->Ln();
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');

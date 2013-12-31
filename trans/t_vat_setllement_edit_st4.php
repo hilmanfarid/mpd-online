@@ -98,7 +98,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-E0D24D13
+//Show Method @2-20DA1592
     function Show()
     {
         global $Tpl;
@@ -145,7 +145,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                     $this->DataSource->SetValues();
                 }
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
-                $this->DLink->Parameters = CCGetQueryString("QueryString", array("FLAG", "ccsForm"));
+                $this->DLink->Parameters = CCGetQueryString("QueryString", array("FLAG,flag_delete", "ccsForm"));
                 $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_vat_setllement_id", $this->DataSource->f("t_vat_setllement_id"));
                 $this->order_no->SetValue($this->DataSource->order_no->GetValue());
                 $this->total_trans_amount->SetValue($this->DataSource->total_trans_amount->GetValue());
@@ -384,7 +384,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-D2A0F3FD
+//Class_Initialize Event @23-EC4F614C
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -415,7 +415,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
             $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
+            $this->submit = & new clsButton("submit", $Method, $this);
             $this->finance_period_code = & new clsControl(ccsTextBox, "finance_period_code", "finance_period_code", ccsText, "", CCGetRequestParam("finance_period_code", $Method, NULL), $this);
             $this->finance_period_code->Required = true;
             $this->order_no = & new clsControl(ccsTextBox, "order_no", "order_no", ccsText, "", CCGetRequestParam("order_no", $Method, NULL), $this);
@@ -470,6 +470,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->print_selected = & new clsButton("print_selected", $Method, $this);
             $this->print_skpd = & new clsButton("print_skpd", $Method, $this);
             $this->print_skpdkb = & new clsButton("print_skpdkb", $Method, $this);
+            $this->delete_selected = & new clsButton("delete_selected", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->total_trans_amount->Value) && !strlen($this->total_trans_amount->Value) && $this->total_trans_amount->Value !== false)
                     $this->total_trans_amount->SetText(0);
@@ -645,7 +646,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-A6FB722B
+//Operation Method @23-C1D29A92
     function Operation()
     {
         if(!$this->Visible)
@@ -666,20 +667,22 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Insert";
             } else if($this->Button_Update->Pressed) {
                 $this->PressedButton = "Button_Update";
-            } else if($this->Button_Delete->Pressed) {
-                $this->PressedButton = "Button_Delete";
+            } else if($this->submit->Pressed) {
+                $this->PressedButton = "submit";
             } else if($this->print_selected->Pressed) {
                 $this->PressedButton = "print_selected";
             } else if($this->print_skpd->Pressed) {
                 $this->PressedButton = "print_skpd";
             } else if($this->print_skpdkb->Pressed) {
                 $this->PressedButton = "print_skpdkb";
+            } else if($this->delete_selected->Pressed) {
+                $this->PressedButton = "delete_selected";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
-        if($this->PressedButton == "Button_Delete") {
+        if($this->PressedButton == "submit") {
             $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "t_vat_setllement_id"));
-            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
+            if(!CCGetEvent($this->submit->CCSEvents, "OnClick", $this->submit) || !$this->DeleteRow()) {
                 $Redirect = "";
             }
         } else if($this->Validate()) {
@@ -703,6 +706,11 @@ function GetPrimaryKey($keyName)
                 }
             } else if($this->PressedButton == "print_skpdkb") {
                 if(!CCGetEvent($this->print_skpdkb->CCSEvents, "OnClick", $this->print_skpdkb)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "delete_selected") {
+                $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "flat_delete"));
+                if(!CCGetEvent($this->delete_selected->CCSEvents, "OnClick", $this->delete_selected)) {
                     $Redirect = "";
                 }
             }
@@ -752,7 +760,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-9E263045
+//Show Method @23-52C8F65A
     function Show()
     {
         global $CCSUseAmp;
@@ -863,7 +871,7 @@ function GetPrimaryKey($keyName)
         $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
         $this->Button_Insert->Visible = !$this->EditMode && $this->InsertAllowed;
         $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
-        $this->Button_Delete->Visible = $this->EditMode && $this->DeleteAllowed;
+        $this->submit->Visible = $this->EditMode && $this->DeleteAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -874,7 +882,7 @@ function GetPrimaryKey($keyName)
 
         $this->Button_Insert->Show();
         $this->Button_Update->Show();
-        $this->Button_Delete->Show();
+        $this->submit->Show();
         $this->finance_period_code->Show();
         $this->order_no->Show();
         $this->total_trans_amount->Show();
@@ -912,6 +920,7 @@ function GetPrimaryKey($keyName)
         $this->print_selected->Show();
         $this->print_skpd->Show();
         $this->print_skpdkb->Show();
+        $this->delete_selected->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
