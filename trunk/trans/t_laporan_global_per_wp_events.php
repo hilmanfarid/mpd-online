@@ -21,8 +21,8 @@ function Page_BeforeShow(& $sender)
     // Write your own code here.
     if($t_laporan_global_per_wp->cetak_laporan->GetValue()=='T'){
 		$param_arr=array();
-		$param_arr['year_code']=$t_laporan_global_per_wp->year_code->GetValue();
-		$param_arr['year_period_id']=$t_laporan_global_per_wp->p_year_period_id->GetValue();
+		//$param_arr['year_code']=$t_laporan_global_per_wp->year_code->GetValue();
+		//$param_arr['year_period_id']=$t_laporan_global_per_wp->p_year_period_id->GetValue();
 		$param_arr['date_start']=$t_laporan_global_per_wp->date_start_laporan->GetValue();
 		$param_arr['date_end']=$t_laporan_global_per_wp->date_end_laporan->GetValue();
 		if(empty($param_arr['date_start'])){
@@ -59,16 +59,15 @@ function print_laporan($param_arr){
 	$pdf->SetFont('helvetica', '',12);
 	$pdf->SetWidths(array(200));
 	$pdf->ln(1);
-    $pdf->RowMultiBorderWithHeight(array("Laporan Penerimaan Global per Tanggal / Penerimaan"),array('',''),6);
+    $pdf->RowMultiBorderWithHeight(array("Laporan Penerimaan Global"),array('',''),6);
 	//$pdf->ln(8);
 	$pdf->SetWidths(array(30,200));
 	$pdf->ln(4);
 	$pdf->RowMultiBorderWithHeight(array("Jenis Pajak",": ".$param_arr['rqst_type_code']),array('',''),6);
-	$pdf->RowMultiBorderWithHeight(array("Tahun",": ".$param_arr['year_code']),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array("Tanggal",": ".dateToString($param_arr['date_start'])." s/d ".dateToString($param_arr['date_end'])),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="select * from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
+	$query="select * from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
 
 	$dbConn->query($query);
 	$items=array();
