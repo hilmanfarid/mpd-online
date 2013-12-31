@@ -291,7 +291,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End SetOrder Method
 
-//Prepare Method @2-6B592DF6
+//Prepare Method @2-CC4B495C
     function Prepare()
     {
         global $CCSLocales;
@@ -300,15 +300,19 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->AddParameter("2", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->AddParameter("3", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("4", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->Criterion[1] = $this->wp->Operation(opContains, "upper(npwd)", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
         $this->wp->Criterion[2] = $this->wp->Operation(opContains, "upper(wp_name)", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
-        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(finance_period_code)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
+        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(settlement_type)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
+        $this->wp->Criterion[4] = $this->wp->Operation(opContains, "upper(finance_period_code)", $this->wp->GetDBValue("4"), $this->ToSQL($this->wp->GetDBValue("4"), ccsText),false);
         $this->Where = $this->wp->opOR(
              true, $this->wp->opOR(
+             false, $this->wp->opOR(
              false, 
              $this->wp->Criterion[1], 
              $this->wp->Criterion[2]), 
-             $this->wp->Criterion[3]);
+             $this->wp->Criterion[3]), 
+             $this->wp->Criterion[4]);
     }
 //End Prepare Method
 

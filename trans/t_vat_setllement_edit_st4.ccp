@@ -93,7 +93,8 @@
 			<TableParameters>
 				<TableParameter id="312" conditionType="Parameter" useIsNull="False" field="upper(npwd)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="Or" parameterSource="s_keyword" leftBrackets="1"/>
 				<TableParameter id="375" conditionType="Parameter" useIsNull="False" field="upper(wp_name)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="Or" parameterSource="s_keyword"/>
-				<TableParameter id="313" conditionType="Parameter" useIsNull="False" field="upper(finance_period_code)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="And" parameterSource="s_keyword" rightBrackets="1"/>
+				<TableParameter id="390" conditionType="Parameter" useIsNull="False" field="upper(settlement_type)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="Or" parameterSource="s_keyword"/>
+<TableParameter id="313" conditionType="Parameter" useIsNull="False" field="upper(finance_period_code)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="And" parameterSource="s_keyword" rightBrackets="1"/>
 			</TableParameters>
 			<JoinTables>
 				<JoinTable id="376" tableName="v_vat_setllement_skpd_kb_jabatan" schemaName="sikp" posLeft="10" posTop="10" posWidth="160" posHeight="180"/>
@@ -363,7 +364,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events>
 			</Events>
 			<TableParameters>
