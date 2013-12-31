@@ -15,26 +15,19 @@ ELSE
 	'2'
 END" parameterTypeListName="ParameterTypeList">
 			<Components>
-				<Link id="15" fieldSourceType="DBColumn" dataType="Text" html="False" name="status" fieldSource="status" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_laporan_status_wpstatus" visible="Yes" hrefType="Page" urlType="Relative" preserveParameters="GET">
-<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-					<LinkParameters/>
-</Link>
-<Label id="71" fieldSourceType="DBColumn" dataType="Float" html="False" name="jumlah" fieldSource="jumlah" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_laporan_status_wpjumlah" format="0">
+				<Label id="71" fieldSourceType="DBColumn" dataType="Float" html="False" name="jumlah" fieldSource="jumlah" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_laporan_status_wpjumlah" format="0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
 				<Hidden id="80" fieldSourceType="DBColumn" dataType="Text" html="False" name="status_id" PathID="t_laporan_status_wpstatus_id" fieldSource="status_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -62,7 +55,7 @@ END" parameterTypeListName="ParameterTypeList">
 			<Attributes/>
 			<Features/>
 		</Grid>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_status_pelaporan_wp_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_status_pelaporan_wp.php" forShow="True" url="t_status_pelaporan_wp.php" comment="//" codePage="windows-1252"/>
