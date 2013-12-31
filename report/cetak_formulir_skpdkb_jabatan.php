@@ -63,6 +63,7 @@ class FormCetak extends FPDF {
 	var $lengthCell;
 	var $paperWSize = 210;
 	var $paperHSize = 297;
+	//9.5" x 11" = 24.13 x 27.94
 	
 	function FormCetak() {
 		$this->FPDF();

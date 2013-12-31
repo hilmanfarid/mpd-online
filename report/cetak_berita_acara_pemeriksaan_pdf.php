@@ -308,7 +308,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody4 - 2, $this->height, "", "T", 0, 'L');
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4 - 2, $this->height, "NIP. " . $data["bap_employee_no_1"], "T", 0, 'C');
+		$this->Cell($lbody4 - 2, $this->height, "NIP. " . $data["bap_employee_no_1"], "T", 0, 'L');
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();
@@ -355,7 +355,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4 - 2, $this->height, "NIP. " . $data["bap_employee_no_2"], "T", 0, 'C');
+		$this->Cell($lbody4 - 2, $this->height, "NIP. " . $data["bap_employee_no_2"], "T", 0, 'L');
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();

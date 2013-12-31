@@ -112,7 +112,7 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Nomor          :", "", 0, 'L');
-        $this->Cell($lengthJudul2, $this->height, "973/" . $data["reg_letter_no"] . "/jakdaf/XI/2013", "", 0, 'L');
+        $this->Cell($lengthJudul2, $this->height, "973/" . $data["reg_letter_no"] . "/jakdaf/" . $this->romanNumerals(date("m")) . "/2013", "", 0, 'L');
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Lampiran      :", "", 0, 'L');
@@ -197,6 +197,41 @@ class FormCetak extends FPDF {
         $this->Ln(6);
     }
 
+	function romanNumerals($num){ 
+		$n = intval($num); 
+		$res = ''; 
+
+		/*** roman_numerals array  ***/ 
+		$roman_numerals = array( 
+			'M'  => 1000, 
+			'CM' => 900, 
+			'D'  => 500, 
+			'CD' => 400, 
+			'C'  => 100, 
+			'XC' => 90, 
+			'L'  => 50, 
+			'XL' => 40, 
+			'X'  => 10, 
+			'IX' => 9, 
+			'V'  => 5, 
+			'IV' => 4, 
+			'I'  => 1); 
+
+		foreach ($roman_numerals as $roman => $number){ 
+			/*** divide to get  matches ***/ 
+			$matches = intval($n / $number); 
+
+			/*** assign the roman char * $matches ***/ 
+			$res .= str_repeat($roman, $matches); 
+
+			/*** substract from the number ***/ 
+			$n = $n % $number; 
+		} 
+
+		/*** return the res ***/ 
+		return $res; 
+	}
+	
     function getNumberFormat($number, $dec) {
         if (!empty($number)) {
             return number_format($number, $dec);
