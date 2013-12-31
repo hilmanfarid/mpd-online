@@ -144,9 +144,8 @@ class FormCetak extends FPDF {
 		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
 
 		$newstr = substr_replace($data["npwpd"],'.', 2, 0);
-		$newstr = substr_replace($newstr,'.', 6, 0);
-		$newstr = substr_replace($newstr,'.', 11, 0);
-		$newstr = substr_replace($newstr,'.', 14, 0);
+		$newstr = substr_replace($newstr,'.', 10, 0);
+		$newstr = substr_replace($newstr,'.', 13, 0);
 		$this->Cell($formLen2 - $twelfth1, $this->height, $newstr, 0, 0, 'L');
 		$this->Ln();
 		$this->SetFont('Times', 'B', 11);
