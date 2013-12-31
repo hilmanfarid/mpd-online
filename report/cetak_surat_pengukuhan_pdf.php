@@ -99,7 +99,8 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('Times', '', 11);
 		$this->Cell($lengthCell, $this->height, "Nomor: 973/" . $data["reg_letter_no"]."/".str_replace($data['vat_code'],'Pajak ','') ."/Disyanjak", 0, 0, 'C');
-		
+		print_r($data);
+		exit;
 		// Body Atas
 		$this->Ln();
 		$this->Ln();
