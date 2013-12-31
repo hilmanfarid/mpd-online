@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script>
+    $(function () {
+        $.getJSON( "../services/t_status_pelaporan_wp_detil.php?status_id=1", function( items ) {
+                        jumlah=[];
+                        jenis=[];
+            for(i=0;i < items.length;i++){
+                jumlah.push(parseFloat(items[i][2]));
+                                jenis.push(items[i][1]);
+            }
+			var judul = '';
+			if(document.getElementById('hiddenFormstatus_id').value == 1){
+				judul = 'Dengan Status Aktif';
+			}else{
+				judul = 'Dengan Status Tidak Aktif';
+			}
+            $('#container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Jumlah Wajib Pajak Per Jenis Pajak '+judul
+                },
+                subtitle: {
+                    text: 'Disyanjak Kota Bandung'
+                },
+                xAxis: {
+                    categories: jenis
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Jumlah WP'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                                        showInLegend: false,
+                    name: '',
+                    data: jumlah
+        
+                }]
+            });
+        });
+    });
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        STATUS PELAPORAN PAJAK 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <div style="WIDTH: 50%">
+    <!-- BEGIN Grid t_laporan_status_wp_detil -->
+    <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tr>
+        <td valign="top">
+          <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+              <td class="th"><strong>DAFTAR TRANSAKSI BULANAN WP </strong></td> 
+              <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+            </tr>
+          </table>
+ 
+          <table class="Grid" cellspacing="0" cellpadding="0">
+            <tr class="Caption">
+              <th scope="col">Jenis Pajak</th>
+ 
+              <th scope="col">Jumlah</th>
+            </tr>
+ 
+            <!-- BEGIN Row -->
+            <tr {t_laporan_status_wp_detil:rowStyle}>
+              <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid">{vat_code} </td> 
+              <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid">{jumlah} </td>
+            </tr>
+ <!-- END Row -->
+            <!-- BEGIN NoRecords -->
+            <tr class="NoRecords">
+              <td colspan="2">-</td>
+            </tr>
+            <!-- END NoRecords -->
+            <tr class="Footer">
+              <td></td> 
+              <td></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- END Grid t_laporan_status_wp_detil -->
+  </div>
+  <!-- BEGIN Record hiddenForm -->
+  <form style="DISPLAY: none" id="hiddenForm" method="post" name="{HTMLFormName}" action="{Action}">
+    <table border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td valign="top">
+          <table class="Header" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td class="HeaderLeft"><img border="0" alt="" src="../Styles/rwnet/Images/Spacer.gif"></td> 
+              <td class="th"><strong>NewRecord1</strong></td> 
+              <td class="HeaderRight"><img border="0" alt="" src="../Styles/rwnet/Images/Spacer.gif"></td>
+            </tr>
+          </table>
+ 
+          <table class="Record" cellspacing="0" cellpadding="0">
+            <!-- BEGIN Error -->
+            <tr class="Error">
+              <td colspan="2">{Error}</td>
+            </tr>
+            <!-- END Error -->
+            <tr class="Bottom">
+              <td colspan="2" align="right">&nbsp; <input id="hiddenFormstatus_id" name="{status_id_Name}" value="{status_id}" type="hidden"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <!-- END Record hiddenForm -->
+  <div style="MIN-WIDTH: 400px; MARGIN: 0px auto; HEIGHT: 400px" id="container">
+  </div>
+</div>
+</body>
+</html>
