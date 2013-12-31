@@ -13,11 +13,11 @@
                 }
         function printLaporan(){
                 var params = "?cetak_laporan="+document.getElementById("t_laporan_global_per_wpcetak_laporan").value;
-                params += "&year_code="+document.getElementById("t_laporan_global_per_wpyear_code").value;
+                //params += "&year_code="+document.getElementById("t_laporan_global_per_wpyear_code").value;
                 params += "&date_start_laporan="+document.getElementById("t_laporan_global_per_wpdate_start_laporan").value;
                 params += "&date_end_laporan="+document.getElementById("t_laporan_global_per_wpdate_end_laporan").value;
                 params += "&p_rqst_type_id="+document.getElementById("t_laporan_global_per_wpp_rqst_type_id").value;
-                params += "&p_year_period_id="+document.getElementById("t_laporan_global_per_wpp_year_period_id").value; 
+                //params += "&p_year_period_id="+document.getElementById("t_laporan_global_per_wpp_year_period_id").value; 
                 params += "&rqst_type_code="+document.getElementById("t_laporan_global_per_wprqst_type_code").value;
                                 window.open("t_laporan_global_per_wp.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
@@ -57,7 +57,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -88,33 +88,28 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   </tr>
  
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Tahun 
-                      <td class="search-field"><input id="t_laporan_global_per_wpyear_code" class="ControlsRQ" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_global_per_wpp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td>
-                    </tr>
+                    <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Tanggal</label></td> 
+                    <td class="search-field"><label for="t_laporan_global_per_wpdate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_global_per_wpdate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_global_per_wpDatePicker_date_start_laporan1"><img id="t_laporan_global_per_wpDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_global_per_wpdate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_global_per_wpDatePicker_end_start_laporan1"><img id="t_laporan_global_per_wpDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
+                  </tr>
  
-                    <tr class="Controls">
-                      <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Tanggal</label></td> 
-                      <td class="search-field"><label for="t_laporan_global_per_wpdate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_global_per_wpdate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
-                        <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_global_per_wpDatePicker_date_start_laporan1"><img id="t_laporan_global_per_wpDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_global_per_wpdate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
-                        <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_global_per_wpDatePicker_end_start_laporan1"><img id="t_laporan_global_per_wpDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
-                    </tr>
- 
-                    <tr>
-                      <td colspan="2" align="right">
-                        <!-- BEGIN Button Button1 --><input id="t_laporan_global_per_wpButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </form>
-          <!-- END Record t_laporan_global_per_wp --><br>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <script type="text/javascript" src="../js/lov.js"></script>
-  <script language="javascript">
+                  <tr>
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button1 --><input id="t_laporan_global_per_wpButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_laporan_global_per_wp --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
         function lov_year_period() {
                 getFrom_LOV('t_laporan_global_per_wp','p_year_period_id,year_code','lov_year_period.php');
         }
@@ -125,5 +120,5 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                         getFrom_LOV('t_laporan_global_per_wp','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
   </script>
-  </body>
-  </html>
+</body>
+</html>

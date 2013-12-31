@@ -45,7 +45,7 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-02F37072
+//Class_Initialize Event @2-FB4CC830
     function clsRecordt_laporan_global_per_wp($RelativePath, & $Parent)
     {
 
@@ -72,9 +72,6 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
             $this->rqst_type_code = & new clsControl(ccsTextBox, "rqst_type_code", "rqst_type_code", ccsText, "", CCGetRequestParam("rqst_type_code", $Method, NULL), $this);
             $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
-            $this->year_code = & new clsControl(ccsTextBox, "year_code", "Periode Tahun", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
-            $this->year_code->Required = true;
-            $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsFloat, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->date_start_laporan = & new clsControl(ccsTextBox, "date_start_laporan", "date_start_laporan", ccsText, "", CCGetRequestParam("date_start_laporan", $Method, NULL), $this);
             $this->date_start_laporan->Required = true;
             $this->DatePicker_date_start_laporan1 = & new clsDatePicker("DatePicker_date_start_laporan1", "t_laporan_global_per_wp", "date_start_laporan", $this);
@@ -86,7 +83,7 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
     }
 //End Class_Initialize Event
 
-//Validate Method @2-AB796C5C
+//Validate Method @2-72147CC3
     function Validate()
     {
         global $CCSLocales;
@@ -94,16 +91,12 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
         $Where = "";
         $Validation = ($this->rqst_type_code->Validate() && $Validation);
         $Validation = ($this->cetak_laporan->Validate() && $Validation);
-        $Validation = ($this->year_code->Validate() && $Validation);
-        $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->date_start_laporan->Validate() && $Validation);
         $Validation = ($this->date_end_laporan->Validate() && $Validation);
         $Validation = ($this->p_rqst_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->rqst_type_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_start_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
@@ -111,14 +104,12 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
     }
 //End Validate Method
 
-//CheckErrors Method @2-C59720AD
+//CheckErrors Method @2-D323D99E
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->rqst_type_code->Errors->Count());
         $errors = ($errors || $this->cetak_laporan->Errors->Count());
-        $errors = ($errors || $this->year_code->Errors->Count());
-        $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->date_start_laporan->Errors->Count());
         $errors = ($errors || $this->DatePicker_date_start_laporan1->Errors->Count());
         $errors = ($errors || $this->date_end_laporan->Errors->Count());
@@ -176,7 +167,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-EA6C2802
+//Show Method @2-BF3833F9
     function Show()
     {
         global $CCSUseAmp;
@@ -202,8 +193,6 @@ function GetPrimaryKey($keyName)
             $Error = "";
             $Error = ComposeStrings($Error, $this->rqst_type_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->date_start_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_date_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
@@ -229,8 +218,6 @@ function GetPrimaryKey($keyName)
         $this->rqst_type_code->Show();
         $this->Button1->Show();
         $this->cetak_laporan->Show();
-        $this->year_code->Show();
-        $this->p_year_period_id->Show();
         $this->date_start_laporan->Show();
         $this->DatePicker_date_start_laporan1->Show();
         $this->date_end_laporan->Show();
