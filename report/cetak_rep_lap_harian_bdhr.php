@@ -99,7 +99,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "Tahun " . $data["tahun"], "R", 0, 'C');		
+		$this->Cell($lheader4, $this->height, "Tahun " . $data["tahun"][0], "R", 0, 'C');		
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
@@ -129,14 +129,22 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array($ltable1, $ltable3, $ltable4*2.2+4, $ltable4*1.1, $ltable*4.04, $ltable4*1.3-4));
 		$this->SetAligns(array("C", "L", "L", "R", "R", "R"));
 		$no = 1;
+		
 		$jumlahperjenis = array();
 		$jumlahtotal = 0;
 		$jumlahtemp = 0;
+		$jumlahperjenis_harilalu = array();
+		$jumlahtotal_harilalu = 0;
+		$jumlahtemp_harilalu = 0;
+		$jumlahperjenis_hariini = array();
+		$jumlahtotal_hariini = 0;
+		$jumlahtemp_hariini = 0;
+		
 		for ($i = 0; $i < count($data['nomor_ayat']); $i++) {
 			//print data
 			$this->RowMultiBorderWithHeight(array($no,
 												  $data["nomor_ayat"][$i] . " " . $data["kode_jns_trans"][$i],
-												  "P. ".$data["nama_ayat"][$i],
+												  "P. " . strtoupper($data["nama_ayat"][$i]),
 												  number_format($data["jml_hari_ini"][$i], 0, ',', '.'),
 												  number_format($data["jml_sd_hari_lalu"][$i], 0, ',', '.'),
 												  number_format($data["jml_sd_hari_ini"][$i], 0, ',', '.')
@@ -154,6 +162,10 @@ class FormCetak extends FPDF {
 			//hitung jml_hari_ini sampai baris ini
 			$jumlahtemp += $data["jml_hari_ini"][$i];
 			$jumlahtotal += $data["jml_hari_ini"][$i];
+			$jumlahtemp_harilalu += $data["jml_sd_hari_lalu"][$i];
+			$jumlahtotal_harilalu += $data["jml_sd_hari_lalu"][$i];
+			$jumlahtemp_hariini += $data["jml_sd_hari_ini"][$i];
+			$jumlahtotal_hariini += $data["jml_sd_hari_ini"][$i];
 			
 			//cek apakah perlu bikin baris jumlah
 			//jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
@@ -161,17 +173,27 @@ class FormCetak extends FPDF {
 			$jenissesudah = $data["nama_jns_pajak"][$i + 1];
 			if($jenis != $jenissesudah){
 				$jumlahperjenis[] = $jumlahtemp;
-				$this->Cell($ltable16+12.7, $this->height + 2, "JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]), "TBLR", 0, 'C');
-				$this->Cell($ltable4+6.76, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
+				$jumlahperjenis_harilalu[] = $jumlahtemp_harilalu;
+				$jumlahperjenis_hariini[] = $jumlahtemp_hariini;
+				$this->Cell($ltable1 + $ltable3 + $ltable4*2.2+4, $this->height + 2, "JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]), "TBLR", 0, 'C');
+				$this->Cell($ltable4*1.1, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable*4.04, $this->height + 2, number_format($jumlahtemp_harilalu, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable4*1.3-4, $this->height + 2, number_format($jumlahtemp_hariini, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtemp = 0;
+				$jumlahtemp_harilalu = 0;
+				$jumlahtemp_hariini = 0;
 			}
 			
 			if($i == count($data['nomor_ayat']) - 1){
-				$this->Cell($ltable16+12.7, $this->height + 2, "JUMLAH TOTAL", "TBLR", 0, 'C');
-				$this->Cell($ltable4+6.76, $this->height + 2, number_format($jumlahtotal, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable1 + $ltable3 + $ltable4*2.2+4, $this->height + 2, "JUMLAH TOTAL", "TBLR", 0, 'C');
+				$this->Cell($ltable4*1.1, $this->height + 2, number_format($jumlahtotal, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable*4.04, $this->height + 2, number_format($jumlahtotal_harilalu, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable4*1.3-4, $this->height + 2, number_format($jumlahtotal_hariini, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtotal = 0;
+				$jumlahtotal_harilalu = 0;
+				$jumlahtotal_hariini = 0;
 			}
 		}
 
