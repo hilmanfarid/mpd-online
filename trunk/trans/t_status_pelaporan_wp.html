@@ -48,12 +48,12 @@
     });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        STATUS PELAPORAN PAJAK 
+        JUMLAH WP&nbsp;
       </div>
     </div>
   </div>
@@ -67,7 +67,7 @@
           <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-              <td class="th"><strong>DAFTAR TRANSAKSI BULANAN WP </strong></td> 
+              <td class="th"><strong>JUMLAH WP BERDASARKAN STATUS</strong></td> 
               <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
             </tr>
           </table>
@@ -81,7 +81,7 @@
  
             <!-- BEGIN Row -->
             <tr {t_laporan_status_wp:rowStyle}>
-              <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid"><a href="t_status_pelaporan_wp_detil.php?status_id={status_id}" id="t_laporan_status_wpstatus_{t_laporan_status_wp:rowNumber}">{status}</a> <input type="hidden" name="{status_id_Name}" value="{status_id}" id="t_laporan_status_wpstatus_id_{t_laporan_status_wp:rowNumber}"></td> 
+              <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid"><a href="t_status_pelaporan_wp_detil.php?status_id={status_id}" id="t_laporan_status_wpstatus_{t_laporan_status_wp:rowNumber}">{status}</a> <input id="t_laporan_status_wpstatus_id_{t_laporan_status_wp:rowNumber}" name="{status_id_Name}" value="{status_id}" type="hidden"></td> 
               <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid">{jumlah} </td>
             </tr>
  <!-- END Row -->
