@@ -75,6 +75,7 @@ class FormCetak extends FPDF {
 		$this->startX = $this->paperWSize-42;
 		$this->lengthCell = $this->startX+20;
 	}
+	
 	/*
 	function Header() {
 		
@@ -561,6 +562,7 @@ foreach($items as $data){
 	$formulir->PageCetak($data);
 }
 
-$formulir->Output("skpdkb_jabatan" . date("d F Y") . ".pdf", "D");
+// $formulir->Output("skpdkb_jabatan" . date("d F Y") . ".pdf", "D");
+$formulir->Output();
 
 ?>

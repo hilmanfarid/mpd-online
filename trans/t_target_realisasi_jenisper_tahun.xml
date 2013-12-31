@@ -25,7 +25,7 @@
 	</objects>
 	<data>
 		<columns>
-			<column field="target_amount" name="target_amount"/><column field="realisasi_amt" name="realisasi_amt"/></columns>
+			<column field="target_amount" name="Target"/><column field="realisasi_amt" name="Realisasi"/></columns>
 		<rows><!-- BEGIN Row --><row col1="{target_amount}" col2="{realisasi_amt}" name="{vat_code}"/><!-- END Row --></rows></data>
 </root>
 
