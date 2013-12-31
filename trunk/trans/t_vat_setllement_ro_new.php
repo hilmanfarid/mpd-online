@@ -338,7 +338,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @2-ACFA3A12
+//Open Method @2-1BCCF0C1
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -351,7 +351,6 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         "a.t_customer_order_id = c.t_customer_order_id AND\n" .
         "a.t_cust_account_id = d.t_cust_account_id AND\n" .
         "c.p_rqst_type_id = e.p_rqst_type_id AND\n" .
-        "a.is_settled = 'Y' AND\n" .
         "( upper(d.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
         "  upper(a.npwd) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
         "  upper(a.no_kohir) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
@@ -365,7 +364,6 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         "a.t_customer_order_id = c.t_customer_order_id AND\n" .
         "a.t_cust_account_id = d.t_cust_account_id AND\n" .
         "c.p_rqst_type_id = e.p_rqst_type_id AND\n" .
-        "a.is_settled = 'Y' AND\n" .
         "( upper(d.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
         "  upper(a.npwd) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
         "  upper(a.no_kohir) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .

@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions" showSyncDlg="false">
+<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="15" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.no_kohir,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, 
 a.settlement_date, a.p_finance_period_id, 
@@ -9,7 +9,6 @@ WHERE a.p_finance_period_id = b.p_finance_period_id AND
 a.t_customer_order_id = c.t_customer_order_id AND
 a.t_cust_account_id = d.t_cust_account_id AND
 c.p_rqst_type_id = e.p_rqst_type_id AND
-a.is_settled = 'Y' AND
 ( upper(d.wp_name) LIKE upper('%{s_keyword}%') OR 
   upper(a.npwd) LIKE upper('%{s_keyword}%') OR
   upper(a.no_kohir) LIKE upper('%{s_keyword}%')
@@ -173,7 +172,7 @@ a.is_settled = 'Y' AND
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="313" variable="s_keyword" parameterType="URL" dataType="Text" parameterSource="s_keyword"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -382,7 +381,7 @@ a.is_settled = 'Y' AND
 			<Attributes/>
 			<Features/>
 		</Record>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_vat_setllement_ro_new_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_vat_setllement_ro_new.php" forShow="True" url="t_vat_setllement_ro_new.php" comment="//" codePage="windows-1252"/>
