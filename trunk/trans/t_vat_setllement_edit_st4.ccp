@@ -2,7 +2,7 @@
 	<Components>
 		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" dataSource="v_vat_setllement_skpd_kb_jabatan">
 			<Components>
-				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_vat_setllement_edit_st4.ccp" wizardThemeItem="GridA" PathID="t_vat_setllementGridDLink" removeParameters="FLAG">
+				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_vat_setllement_edit_st4.ccp" wizardThemeItem="GridA" PathID="t_vat_setllementGridDLink" removeParameters="FLAG,flag_delete">
 					<Components/>
 					<Events/>
 					<LinkParameters>
@@ -66,18 +66,18 @@
 					<Features/>
 				</Label>
 				<Label id="384" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_penalty_amount" PathID="t_vat_setllementGridtotal_penalty_amount" fieldSource="total_penalty_amount" format="#,##0.00">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="385" fieldSourceType="DBColumn" dataType="Text" html="False" name="settlement_type" PathID="t_vat_setllementGridsettlement_type" fieldSource="settlement_type">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="385" fieldSourceType="DBColumn" dataType="Text" html="False" name="settlement_type" PathID="t_vat_setllementGridsettlement_type" fieldSource="settlement_type">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -123,7 +123,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="26" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Delete" PathID="t_vat_setllementFormButton_Delete" removeParameters="FLAG;t_vat_setllement_id">
+				<Button id="26" urlType="Relative" enableValidation="False" isDefault="False" name="submit" operation="Delete" wizardCaption="Delete" PathID="t_vat_setllementFormsubmit" removeParameters="FLAG;t_vat_setllement_id">
 					<Components/>
 					<Events>
 						<Event name="OnClick" type="Client">
@@ -345,13 +345,19 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="387" urlType="Relative" enableValidation="True" isDefault="False" name="print_skpd" wizardCaption="Add" PathID="t_vat_setllementFormprint_skpd">
+				<Button id="387" urlType="Relative" enableValidation="True" isDefault="False" name="print_skpd" wizardCaption="Add" PathID="t_vat_setllementFormprint_skpd">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="388" urlType="Relative" enableValidation="True" isDefault="False" name="print_skpdkb" wizardCaption="Add" PathID="t_vat_setllementFormprint_skpdkb">
+				<Button id="388" urlType="Relative" enableValidation="True" isDefault="False" name="print_skpdkb" wizardCaption="Add" PathID="t_vat_setllementFormprint_skpdkb">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="389" urlType="Relative" enableValidation="True" isDefault="False" name="delete_selected" wizardCaption="Add" PathID="t_vat_setllementFormdelete_selected" removeParameters="flat_delete">
 					<Components/>
 					<Events/>
 					<Attributes/>

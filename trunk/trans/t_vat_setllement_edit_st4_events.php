@@ -113,7 +113,16 @@ function Page_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_edit_st4; //Compatibility
 //End Page_BeforeShow
-
+		global $selected_id;
+		$selected_id = CCGetFromGet("t_vat_setllement_id", $selected_id);
+		$flag_delete = CCGetFromGet("flag_delete", "");
+		if($flag_delete == "true"){
+			$dbConn = new clsDBConnSIKP();
+			$dbConn->query("select f_del_vat_setllement($selected_id, 0, 'x')");
+			$dbConn->close();
+			header("Location: t_vat_setllement_edit_st4.php");
+		}
+		
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
 }
