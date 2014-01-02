@@ -543,7 +543,7 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Features/>
 				</TextBox>
 				<ListBox id="904" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Float" returnValueType="Number" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id" caption="Nama Ayat" connection="ConnSIKP" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select * from v_p_vat_type_dtl_rqst_type
-where p_rqst_type_id = {p_rqst_type_id}" boundColumn="p_vat_type_dtl_id" textColumn="nama_ayat">
+where p_rqst_type_id = {p_rqst_type_id}" boundColumn="p_vat_type_dtl_id" textColumn="nama_ayat" required="True">
 					<Components/>
 					<Events/>
 					<TableParameters/>

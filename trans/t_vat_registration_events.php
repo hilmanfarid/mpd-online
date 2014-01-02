@@ -18,6 +18,12 @@ function t_vat_registrationForm_Button1_OnClick(& $sender)
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_Button1_OnClick
 
+//Custom Code @862-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       // Write your own code here.
   	$dbConn1 = new clsDBConnSIKP();
@@ -77,11 +83,17 @@ function t_vat_registrationForm_BeforeSelect(& $sender)
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_BeforeSelect
 
+//Custom Code @842-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       // Write your own code here.
   	//kalau update hilangkan kode verifikasi
   	$vatId = $t_vat_registrationForm->t_vat_registration_id->GetValue();
-  	if (empty($vatId)){
+  	/*if (empty($vatId)){
   		$t_vat_registrationForm->validation_code->Visible = true;
   		$t_vat_registrationForm->Label3->SetValue("");
   	}else{
@@ -93,7 +105,7 @@ function t_vat_registrationForm_BeforeSelect(& $sender)
   	if ($msg == "berhasil"){
   		$t_vat_registrationForm->validation_code->Visible = false;
   		$t_vat_registrationForm->Label3->SetValue("Verifikasi Berhasil");
-  	}
+  	}*/
   
   // -------------------------
 
@@ -111,6 +123,12 @@ function t_vat_registrationForm_BeforeInsert(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_BeforeInsert
+
+//Custom Code @853-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 //Close t_vat_registrationForm_BeforeInsert @94-23179109
     return $t_vat_registrationForm_BeforeInsert;
