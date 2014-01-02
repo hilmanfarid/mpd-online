@@ -71,14 +71,14 @@ function print_laporan($param_arr){
 
 	$dbConn->query($query);
 	$items=array();
-	$pdf->SetFont('helvetica', '',10);
+	$pdf->SetFont('helvetica', '',8);
 	$pdf->ln(2);
-	$pdf->SetWidths(array(10,50,60,20,35,35,27,27));
+	$pdf->SetWidths(array(10,55,60,23,25,18,32,32));
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C'));
-	$pdf->RowMultiBorderWithHeight(array("NO","NAMA WP","ALAMAT","NPWPD","BESARNYA","BANYAKNYA SSPD","JENIS PAJAK","KETERANGAN"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
-	$pdf->SetFont('helvetica', '',10);
+	$pdf->RowMultiBorderWithHeight(array("NO","NAMA WP","ALAMAT","NPWPD","BESARNYA","JML SSPD","JENIS PAJAK","KETERANGAN"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+	$pdf->SetFont('helvetica', '',8);
 	$no =1;
-	$pdf->SetAligns(Array('C','L','L','R','R','L','L'));
+	$pdf->SetAligns(Array('C','L','L','R','R','R','L'));
 	$jumlah =0;
 	$jumlah=0;
 	while($dbConn->next_record()){
@@ -95,7 +95,7 @@ function print_laporan($param_arr){
 		$no++;
 	}
 	$pdf->SetAligns(Array('C','R','R','R','R','L'));
-	$pdf->SetWidths(array(140,35,35));
+	$pdf->SetWidths(array(148,25,18));
 	$pdf->RowMultiBorderWithHeight(array('Jumlah','Rp. '.number_format($jumlah, 2, ',', '.'),$jumlah_wp),array('LB','LB','LBR'),6);
 	$pdf->SetWidths(array(123,50));
 	$pdf->SetAligns('L');
