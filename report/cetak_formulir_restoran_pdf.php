@@ -642,7 +642,8 @@ class FormCetak extends FPDF {
 											  'LR')
 											  ,$this->height);
 		}
-
+		print_r($dataBaru);
+		exit;
 		$this->Cell($kol1, $this->height, "", "LB", 0, 'C');
 		$this->Cell($kol2, $this->height, "", "B", 0, 'C');
 		$this->Cell($kol3, $this->height, "", "B", 0, 'C');
@@ -672,7 +673,7 @@ class FormCetak extends FPDF {
 		$this->Cell($ttd2, $this->height, "Tanda Tangan", "TRB", 0, 'L');
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height*6, "", 1, 0, 'C');
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$data["barcode"],124,$this->getY()+3,25,0,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-online/include/qrcode/generate-qr.php?param='.$data["barcode"],124,$this->getY()+3,25,0,'PNG');
 		$this->Ln();
 		
 		//petugas 
