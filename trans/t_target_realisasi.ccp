@@ -14,13 +14,13 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="676" fieldSourceType="DBColumn" dataType="Text" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridrealisasi_amt" fieldSource="realisasi_amt">
+				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="679" fieldSourceType="DBColumn" dataType="Text" html="False" name="target_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridtarget_amt" fieldSource="target_amt">
+				<Label id="679" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridtarget_amt" fieldSource="target_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
