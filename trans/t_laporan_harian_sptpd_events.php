@@ -68,7 +68,7 @@ function print_laporan($param_arr){
 	$pdf->SetWidths(array(40,200));
 	$pdf->ln(4);
 	$pdf->RowMultiBorderWithHeight(array("DAFTAR SPTPD",": ".$param_arr['vat_code_dtl']),array('',''),6);
-	$pdf->RowMultiBorderWithHeight(array("TAHUN",": ".$param_arr['year_code']),array('',''),6);
+	//$pdf->RowMultiBorderWithHeight(array("TAHUN",": ".$param_arr['year_code']),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString($param_arr['date_start'])." s/d ".dateToString($param_arr['date_end'])),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	/*echo '<pre>';
@@ -80,7 +80,7 @@ function print_laporan($param_arr){
 	if(!empty($param_arr['p_vat_type_dtl_id'])){
 		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."',".$param_arr['p_vat_type_dtl_id'].")";
 	}else{
-		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(".$param_arr['p_vat_type_id'].",".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY jenis ASC";
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(".$param_arr['p_vat_type_id'].",2001,'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY jenis ASC";
 	}
 	$dbConn->query($query);
 	$items=array();
