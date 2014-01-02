@@ -1,5 +1,5 @@
 <?php
-//Include Common Files @1-49BB6696
+//Include Common Files @1-072AC6A0
 define("RelativePath", "..");
 define("PathToCurrentPage", "/trans/");
 define("FileName", "t_target_realisasi_jenis_bulan.php");
@@ -7,7 +7,6 @@ include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
-include_once(RelativePath . "/Services.php");
 //End Include Common Files
 
 class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_bulanForm Class @726-7303F36A
@@ -319,15 +318,11 @@ $Charset = $Charset ? $Charset : "windows-1252";
 include_once("./t_target_realisasi_jenis_bulan_events.php");
 //End Include events file
 
-//BeforeInitialize Binding @1-17AC9191
-$CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
-//End BeforeInitialize Binding
-
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-7B863EA9
+//Initialize Objects @1-728E3E3D
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -335,19 +330,7 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_target_realisasi_jenis_bulanForm = & new clsRecordt_target_realisasi_jenis_bulanForm("", $MainPage);
-$t_target_realisasi_jenis_bulanFlashjenis_bulan = & new clsFlashChart("t_target_realisasi_jenis_bulanFlashjenis_bulan", $MainPage);
-$t_target_realisasi_jenis_bulanFlashjenis_bulan->CallbackParameter = "t_target_realisasi_jenis_bulant_target_realisasi_jenis_bulanFlashjenis_bulan";
-$t_target_realisasi_jenis_bulanFlashjenis_bulan->Title = "Target vs Realisasi Per Jenis Pajak Bulanan";
-$t_target_realisasi_jenis_bulanFlashjenis_bulan->Width = 700;
-$t_target_realisasi_jenis_bulanFlashjenis_bulan->Height = 400;
-$t_target_realisasi_jenis_bulanFlashbulan = & new clsFlashChart("t_target_realisasi_jenis_bulanFlashbulan", $MainPage);
-$t_target_realisasi_jenis_bulanFlashbulan->CallbackParameter = "t_target_realisasi_jenis_bulant_target_realisasi_jenis_bulanFlashbulan";
-$t_target_realisasi_jenis_bulanFlashbulan->Title = "Target vs Realisasi Bulanan";
-$t_target_realisasi_jenis_bulanFlashbulan->Width = 700;
-$t_target_realisasi_jenis_bulanFlashbulan->Height = 400;
 $MainPage->t_target_realisasi_jenis_bulanForm = & $t_target_realisasi_jenis_bulanForm;
-$MainPage->t_target_realisasi_jenis_bulanFlashjenis_bulan = & $t_target_realisasi_jenis_bulanFlashjenis_bulan;
-$MainPage->t_target_realisasi_jenis_bulanFlashbulan = & $t_target_realisasi_jenis_bulanFlashbulan;
 $t_target_realisasi_jenis_bulanForm->Initialize();
 
 BindEvents();
@@ -387,10 +370,8 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-9DC159C8
+//Show Page @1-5F706F8D
 $t_target_realisasi_jenis_bulanForm->Show();
-$t_target_realisasi_jenis_bulanFlashjenis_bulan->Show();
-$t_target_realisasi_jenis_bulanFlashbulan->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
