@@ -349,7 +349,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-3756D1B1
+//Class_Initialize Event @23-45CB8350
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -409,6 +409,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
             $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->no_kohir = & new clsControl(ccsTextBox, "no_kohir", "No Kohir", ccsText, "", CCGetRequestParam("no_kohir", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->total_trans_amount->Value) && !strlen($this->total_trans_amount->Value) && $this->total_trans_amount->Value !== false)
                     $this->total_trans_amount->SetText(0);
@@ -567,7 +568,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-0AFEE430
+//Operation Method @23-C5CE8626
     function Operation()
     {
         if(!$this->Visible)
@@ -592,6 +593,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Delete";
             } else if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -613,6 +616,10 @@ function GetPrimaryKey($keyName)
                 }
             } else if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -661,7 +668,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-F6F86063
+//Show Method @23-DD067E82
     function Show()
     {
         global $CCSUseAmp;
@@ -803,6 +810,7 @@ function GetPrimaryKey($keyName)
         $this->p_finance_period_id->Show();
         $this->Button1->Show();
         $this->no_kohir->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();

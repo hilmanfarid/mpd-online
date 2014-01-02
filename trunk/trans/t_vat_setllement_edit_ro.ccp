@@ -293,6 +293,12 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<Button id="346" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_vat_setllementFormButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events>
 			</Events>
