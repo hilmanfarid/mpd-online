@@ -58,6 +58,15 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
         $t_vat_setllementForm->EditMode = $t_vat_setllementForm->DataSource->AllParametersSet;
         
    }
+   
+	$flag_delete = CCGetFromGet("flag_delete", "");
+	if($flag_delete == "true"){
+		$selected_id = CCGetFromGet("t_vat_setllement_id", $selected_id);
+		$dbConn = new clsDBConnSIKP();
+		$dbConn->query("select f_del_vat_setllement($selected_id, 0, 'x')");
+		$dbConn->close();
+		header("Location: t_vat_setllement_edit_ro.php");
+	}
 // End Bdr 
 
 //Set Row Style @315-982C9472
