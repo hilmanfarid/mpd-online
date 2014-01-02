@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_rqst_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+        $("#t_vat_setllementFormp_vat_type_dtl_id").bind("change paste keyup", function() {
+           alert('tes'); 
+        });
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+
+
+function doInquiry() {
+
+        var no_registrasi = document.getElementById('t_vat_setllementFormno_registrasi').value;
+        location.href = 't_payment_bphtb.php?no_registrasi=' + no_registrasi;
+
+}
+
+
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        Pembayaran BPHTB 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_setllementForm -->
+        <form id="t_vat_setllementForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>PEMBAYARAN BPTHB</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="3">{Error}</td>
+                  </tr>
+                  <!-- END Error -->{Label1} 
+                  <tr class="Controls">
+                    <td class="th">No Registrasi</td> 
+                    <td class="th">:</td> 
+                    <td><input id="t_vat_setllementFormno_registrasi" class="ControlsIN" name="{no_registrasi_Name}" value="{no_registrasi}" size="25"><input id="t_vat_setllementFormbit48" name="{bit48_Name}" value="{bit48}" type="hidden"><input id="t_vat_setllementFormnilai_pembayaran" name="{nilai_pembayaran_Name}" value="{nilai_pembayaran}" type="hidden"><label for="t_vat_setllementFormTextBox1" style="display: none;">&nbsp;</label> 
+                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" onclick="doInquiry();" name="{Button_Name}" alt="Button1" value="Inquiry" type="button"><!-- END Button Button1 --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"></td> 
+                    <td class="th"></td> 
+                    <td><textarea style="WIDTH: 418px; HEIGHT: 157px" id="t_vat_setllementFormTextArea1" cols="36" rows="5" readonly name="{TextArea1_Name}">{TextArea1}</textarea><input id="t_vat_setllementFormno_reg" name="{no_reg_Name}" value="{no_reg}" type="hidden"></td> 
+                    <script type="text/javascript">$("#t_vat_setllementFormtotal_trans_amount").maskMoney({thousands:',', precision: 0, defaultZero:false});</script>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="3" align="right">
+                      <!-- BEGIN Button BtnBayar --><input id="t_vat_setllementFormBtnBayar" class="btn_tambah" name="{Button_Name}" alt="Button2" value="Bayar" type="submit"><!-- END Button BtnBayar -->&nbsp;&nbsp;{LabelBayar}&nbsp; </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_setllementForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+
+</script>
+</body>
+</html>
