@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @94-5A819
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-B7E61750
+//Class_Initialize Event @94-B7FD3005
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -223,6 +223,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @94-5A819
             $this->p_vat_type_dtl_id->DataSource->SQL = "select * from v_p_vat_type_dtl_rqst_type\n" .
             "where p_rqst_type_id = " . $this->p_vat_type_dtl_id->DataSource->SQLValue($this->p_vat_type_dtl_id->DataSource->wp->GetDBValue("1"), ccsFloat) . "";
             $this->p_vat_type_dtl_id->DataSource->Order = "";
+            $this->p_vat_type_dtl_id->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -1720,7 +1721,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
              . $this->ToSQL($this->cp["privateanswer"]->GetDBValue(), $this->cp["privateanswer"]->DataType) . ", "
              . $this->ToSQL($this->cp["i_mode"]->GetDBValue(), $this->cp["i_mode"]->DataType) . ");";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
-        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+		if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
 			while ($this->next_record()){
 			$hasil = $this->f("f_crud_vat_reg");

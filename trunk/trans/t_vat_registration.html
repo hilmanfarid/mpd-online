@@ -5,7 +5,7 @@
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
@@ -26,6 +26,10 @@ function t_vat_registrationFormButton_Delete_OnClick()
 {
     var result = true;
 //End t_vat_registrationFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
 
 //Close t_vat_registrationFormButton_Delete_OnClick @97-BC33A33A
     return result;
@@ -60,8 +64,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toOrder()">
@@ -92,19 +96,19 @@ $(document).ready(function()
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <!-- BEGIN Record t_vat_registrationForm -->
-        <form id="t_vat_registrationForm" name="{HTMLFormName}" action="{Action}" method="post">
-          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <form id="t_vat_registrationForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td valign="top">
-                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI FORMULIR PENDAFTARAN</strong></td> 
-                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
                 </table>
  
@@ -116,19 +120,19 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nomor Order</label></label>&nbsp; </label></label></label></label></label></label></label></td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_vat_registrationFormorder_no" tabindex="2" readonly maxlength="14" value="{order_no}" name="{order_no_Name}">&nbsp;<input id="t_vat_registrationFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"><input id="t_vat_registrationFormp_rqst_type_id" type="hidden" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"><input id="t_vat_registrationFormt_vat_registration_id" type="hidden" value="{t_vat_registration_id}" name="{t_vat_registration_id_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormorder_no" class="ControlsRO" tabindex="2" name="{order_no_Name}" readonly maxlength="14" value="{order_no}">&nbsp;<input id="t_vat_registrationFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><input id="t_vat_registrationFormp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"><input id="t_vat_registrationFormt_vat_registration_id" name="{t_vat_registration_id_Name}" value="{t_vat_registration_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Tanggal Pendaftaran&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_vat_registrationFormregistration_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="25" value="{registration_date}" name="{registration_date_Name}">&nbsp;<input id="t_vat_registrationFormrqst_type_code" style="WIDTH: 83px; HEIGHT: 22px" type="hidden" size="11" value="{rqst_type_code}" name="{rqst_type_code_Name}"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormregistration_date" class="ControlsRO" name="{registration_date_Name}" readonly maxlength="100" value="{registration_date}" size="25">&nbsp;<input style="WIDTH: 83px; HEIGHT: 22px" id="t_vat_registrationFormrqst_type_code" name="{rqst_type_code_Name}" value="{rqst_type_code}" size="11" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama Ayat&nbsp;</td> 
                     <td colspan="3">
-                      <select id="t_vat_registrationFormp_vat_type_dtl_id" name="{p_vat_type_dtl_id_Name}">
-                        <option value="" selected>Pilih</option>
+                      <select id="t_vat_registrationFormp_vat_type_dtl_id" class="ControlsRQ" name="{p_vat_type_dtl_id_Name}">
+                        <option selected value="">Pilih</option>
                         {p_vat_type_dtl_id_Options}
                       </select>
  </td>
@@ -136,12 +140,12 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">User Name&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormwp_user_name" tabindex="2" maxlength="32" size="32" value="{wp_user_name}" name="{wp_user_name_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_user_name" class="ControlsRQ" tabindex="2" name="{wp_user_name_Name}" maxlength="32" value="{wp_user_name}" size="32"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Password</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormwp_user_pwd" tabindex="2" type="password" maxlength="32" size="32" value="{wp_user_pwd}" name="{wp_user_pwd_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_user_pwd" class="ControlsRQ" tabindex="2" name="{wp_user_pwd_Name}" maxlength="32" value="{wp_user_pwd}" size="32" type="password">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -152,103 +156,103 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Nama Wajib Pajak&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormwp_name" tabindex="2" maxlength="64" size="50" value="{wp_name}" name="{wp_name_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_name" class="ControlsRQ" tabindex="2" name="{wp_name_Name}" maxlength="64" value="{wp_name}" size="50"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat Wajib Pajak&nbsp;</td> 
-                    <td colspan="3"><textarea class="ControlsRQ" id="t_vat_registrationFormwp_address_name" name="{wp_address_name_Name}" rows="3" cols="64">{wp_address_name}</textarea>&nbsp;</td>
+                    <td colspan="3"><textarea id="t_vat_registrationFormwp_address_name" class="ControlsRQ" cols="64" rows="3" name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormwp_address_no" tabindex="2" maxlength="20" size="10" value="{wp_address_no}" name="{wp_address_no_Name}">&nbsp;Rt/Rw <input class="ControlsIN" id="t_vat_registrationFormwp_address_rt" tabindex="2" maxlength="5" size="5" value="{wp_address_rt}" name="{wp_address_rt_Name}">&nbsp;/ <input class="ControlsIN" id="t_vat_registrationFormwp_address_rw" tabindex="2" maxlength="5" size="5" value="{wp_address_rw}" name="{wp_address_rw_Name}">&nbsp;&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_address_no" class="ControlsRQ" tabindex="2" name="{wp_address_no_Name}" maxlength="20" value="{wp_address_no}" size="10">&nbsp;Rt/Rw <input id="t_vat_registrationFormwp_address_rt" class="ControlsIN" tabindex="2" name="{wp_address_rt_Name}" maxlength="5" value="{wp_address_rt}" size="5">&nbsp;/ <input id="t_vat_registrationFormwp_address_rw" class="ControlsIN" tabindex="2" name="{wp_address_rw_Name}" maxlength="5" value="{wp_address_rw}" size="5">&nbsp;&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kota/Kabupaten&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormwp_kota" tabindex="2" readonly maxlength="32" size="32" value="{wp_kota}" name="{wp_kota_Name}">&nbsp;<img onclick="javascript:lov_region_wp1()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormwp_p_region_id" type="hidden" value="{wp_p_region_id}" name="{wp_p_region_id_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_kota" class="ControlsRQ" tabindex="2" name="{wp_kota_Name}" readonly maxlength="32" value="{wp_kota}" size="32">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormwp_p_region_id" name="{wp_p_region_id_Name}" value="{wp_p_region_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kecamatan&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormwp_kecamatan" tabindex="2" readonly maxlength="32" size="32" value="{wp_kecamatan}" name="{wp_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_wp2()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormwp_p_region_id_kecamatan" type="hidden" value="{wp_p_region_id_kecamatan}" name="{wp_p_region_id_kecamatan_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_kecamatan" class="ControlsRQ" tabindex="2" name="{wp_kecamatan_Name}" readonly maxlength="32" value="{wp_kecamatan}" size="32">&nbsp;<img onclick="javascript:lov_region_wp2()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormwp_p_region_id_kecamatan" name="{wp_p_region_id_kecamatan_Name}" value="{wp_p_region_id_kecamatan}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelurahan&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormwp_kelurahan" tabindex="2" readonly maxlength="32" size="32" value="{wp_kelurahan}" name="{wp_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_wp3()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormwp_p_region_id_kelurahan" type="hidden" value="{wp_p_region_id_kelurahan}" name="{wp_p_region_id_kelurahan_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_kelurahan" class="ControlsRQ" tabindex="2" name="{wp_kelurahan_Name}" readonly maxlength="32" value="{wp_kelurahan}" size="32">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormwp_p_region_id_kelurahan" name="{wp_p_region_id_kelurahan_Name}" value="{wp_p_region_id_kelurahan}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Telephon&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormwp_phone_no" tabindex="2" maxlength="20" value="{wp_phone_no}" name="{wp_phone_no_Name}">&nbsp;No. Selular <input class="ControlsIN" id="t_vat_registrationFormwp_mobile_no" tabindex="2" maxlength="20" value="{wp_mobile_no}" name="{wp_mobile_no_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_phone_no" class="ControlsIN" tabindex="2" name="{wp_phone_no_Name}" maxlength="20" value="{wp_phone_no}">&nbsp;No. Selular <input id="t_vat_registrationFormwp_mobile_no" class="ControlsIN" tabindex="2" name="{wp_mobile_no_Name}" maxlength="20" value="{wp_mobile_no}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Email&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormwp_email" tabindex="2" maxlength="64" size="50" value="{wp_email}" name="{wp_email_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_email" class="ControlsIN" tabindex="2" name="{wp_email_Name}" maxlength="64" value="{wp_email}" size="50">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Fax&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormwp_fax_no" tabindex="2" maxlength="20" value="{wp_fax_no}" name="{wp_fax_no_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_fax_no" class="ControlsIN" tabindex="2" name="{wp_fax_no_Name}" maxlength="20" value="{wp_fax_no}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Pos&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormwp_zip_code" tabindex="2" maxlength="5" size="6" value="{wp_zip_code}" name="{wp_zip_code_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormwp_zip_code" class="ControlsIN" tabindex="2" name="{wp_zip_code_Name}" maxlength="5" value="{wp_zip_code}" size="6">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
-                    <td class="" colspan="4">
+                    <td colspan="4">
                       <p align="center">KETERANGAN&nbsp;PERUSAHAAN/BADAN</p>
                     </td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama Badan/Perusahaan</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormcompany_name" tabindex="2" maxlength="64" size="50" value="{company_name}" name="{company_name_Name}">&nbsp;&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormcompany_name" class="ControlsRQ" tabindex="2" name="{company_name_Name}" maxlength="64" value="{company_name}" size="50">&nbsp;&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat Badan</td> 
-                    <td colspan="3"><textarea class="ControlsRQ" id="t_vat_registrationFormaddress_name" name="{address_name_Name}" rows="3" cols="64">{address_name}</textarea>&nbsp;</td>
+                    <td colspan="3"><textarea id="t_vat_registrationFormaddress_name" class="ControlsRQ" cols="64" rows="3" name="{address_name_Name}">{address_name}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormaddress_no" tabindex="2" maxlength="20" size="10" value="{address_no}" name="{address_no_Name}">&nbsp;Rt/Rw&nbsp;<input class="ControlsIN" id="t_vat_registrationFormaddress_rt" tabindex="2" maxlength="5" size="5" value="{address_rt}" name="{address_rt_Name}">&nbsp;/ <input class="ControlsIN" id="t_vat_registrationFormaddress_rw" tabindex="2" maxlength="5" size="5" value="{address_rw}" name="{address_rw_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormaddress_no" class="ControlsRQ" tabindex="2" name="{address_no_Name}" maxlength="20" value="{address_no}" size="10">&nbsp;Rt/Rw&nbsp;<input id="t_vat_registrationFormaddress_rt" class="ControlsIN" tabindex="2" name="{address_rt_Name}" maxlength="5" value="{address_rt}" size="5">&nbsp;/ <input id="t_vat_registrationFormaddress_rw" class="ControlsIN" tabindex="2" name="{address_rw_Name}" maxlength="5" value="{address_rw}" size="5"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kota/Kabupaten&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormkota_code" tabindex="2" readonly maxlength="32" size="32" value="{kota_code}" name="{kota_code_Name}">&nbsp;<img onclick="javascript:lov_region1()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormp_region_id" type="hidden" value="{p_region_id}" name="{p_region_id_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormkota_code" class="ControlsRQ" tabindex="2" name="{kota_code_Name}" readonly maxlength="32" value="{kota_code}" size="32">&nbsp;<img onclick="javascript:lov_region1()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id" name="{p_region_id_Name}" value="{p_region_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kecamatan&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormkecamatan_code" tabindex="2" readonly maxlength="32" size="32" value="{kecamatan_code}" name="{kecamatan_code_Name}">&nbsp;<img onclick="javascript:lov_region2()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormp_region_id_kecamatan" type="hidden" value="{p_region_id_kecamatan}" name="{p_region_id_kecamatan_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormkecamatan_code" class="ControlsRQ" tabindex="2" name="{kecamatan_code_Name}" readonly maxlength="32" value="{kecamatan_code}" size="32">&nbsp;<img onclick="javascript:lov_region2()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_kecamatan" name="{p_region_id_kecamatan_Name}" value="{p_region_id_kecamatan}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelurahan</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormkelurahan_code" tabindex="2" readonly maxlength="32" size="32" value="{kelurahan_code}" name="{kelurahan_code_Name}">&nbsp;<img onclick="javascript:lov_region3()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormp_region_id_kelurahan" type="hidden" value="{p_region_id_kelurahan}" name="{p_region_id_kelurahan_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormkelurahan_code" class="ControlsRQ" tabindex="2" name="{kelurahan_code_Name}" readonly maxlength="32" value="{kelurahan_code}" size="32">&nbsp;<img onclick="javascript:lov_region3()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_kelurahan" name="{p_region_id_kelurahan_Name}" value="{p_region_id_kelurahan}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Telephon</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormphone_no" tabindex="2" maxlength="20" value="{phone_no}" name="{phone_no_Name}">&nbsp;<input class="" id="t_vat_registrationFormmobile_no" tabindex="2" type="hidden" maxlength="20" value="{mobile_no}" name="{mobile_no_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormphone_no" class="ControlsIN" tabindex="2" name="{phone_no_Name}" maxlength="20" value="{phone_no}">&nbsp;<input id="t_vat_registrationFormmobile_no" tabindex="2" name="{mobile_no_Name}" maxlength="20" value="{mobile_no}" type="hidden">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Fax&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormfax_no" tabindex="2" maxlength="20" value="{fax_no}" name="{fax_no_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormfax_no" class="ControlsIN" tabindex="2" name="{fax_no_Name}" maxlength="20" value="{fax_no}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Pos&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormzip_code" tabindex="2" maxlength="5" size="6" value="{zip_code}" name="{zip_code_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormzip_code" class="ControlsIN" tabindex="2" name="{zip_code_Name}" maxlength="5" value="{zip_code}" size="6">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -259,108 +263,108 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Nama Merk&nbsp;Dagang&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormcompany_brand" tabindex="2" maxlength="64" size="50" value="{company_brand}" name="{company_brand_Name}">&nbsp;&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormcompany_brand" class="ControlsRQ" tabindex="2" name="{company_brand_Name}" maxlength="64" value="{company_brand}" size="50">&nbsp;&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat Lokasi Usaha</td> 
-                    <td colspan="3"><textarea class="ControlsRQ" id="t_vat_registrationFormbrand_address_name" name="{brand_address_name_Name}" rows="3" cols="64">{brand_address_name}</textarea>&nbsp;</td>
+                    <td colspan="3"><textarea id="t_vat_registrationFormbrand_address_name" class="ControlsRQ" cols="64" rows="3" name="{brand_address_name_Name}">{brand_address_name}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormbrand_address_no" tabindex="2" maxlength="20" size="10" value="{brand_address_no}" name="{brand_address_no_Name}">&nbsp;Rt/Rw <input class="ControlsIN" id="t_vat_registrationFormbrand_address_rt" tabindex="2" maxlength="5" size="5" value="{brand_address_rt}" name="{brand_address_rt_Name}">&nbsp;/ <input class="ControlsIN" id="t_vat_registrationFormbrand_address_rw" tabindex="2" maxlength="5" size="5" value="{brand_address_rw}" name="{brand_address_rw_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_address_no" class="ControlsRQ" tabindex="2" name="{brand_address_no_Name}" maxlength="20" value="{brand_address_no}" size="10">&nbsp;Rt/Rw <input id="t_vat_registrationFormbrand_address_rt" class="ControlsIN" tabindex="2" name="{brand_address_rt_Name}" maxlength="5" value="{brand_address_rt}" size="5">&nbsp;/ <input id="t_vat_registrationFormbrand_address_rw" class="ControlsIN" tabindex="2" name="{brand_address_rw_Name}" maxlength="5" value="{brand_address_rw}" size="5"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kota/Kabupaten&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormbrand_kota" tabindex="2" readonly maxlength="32" size="32" value="{brand_kota}" name="{brand_kota_Name}">&nbsp;<img onclick="javascript:lov_region_brand1()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id" type="hidden" value="{brand_p_region_id}" name="{brand_p_region_id_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_kota" class="ControlsRQ" tabindex="2" name="{brand_kota_Name}" readonly maxlength="32" value="{brand_kota}" size="32">&nbsp;<img onclick="javascript:lov_region_brand1()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id" name="{brand_p_region_id_Name}" value="{brand_p_region_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kecamatan&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormbrand_kecamatan" tabindex="2" readonly maxlength="32" size="32" value="{brand_kecamatan}" name="{brand_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_brand2()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id_kec" type="hidden" value="{brand_p_region_id_kec}" name="{brand_p_region_id_kec_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_kecamatan" class="ControlsRQ" tabindex="2" name="{brand_kecamatan_Name}" readonly maxlength="32" value="{brand_kecamatan}" size="32">&nbsp;<img onclick="javascript:lov_region_brand2()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id_kec" name="{brand_p_region_id_kec_Name}" value="{brand_p_region_id_kec}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelurahan&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormbrand_kelurahan" tabindex="2" readonly maxlength="32" size="32" value="{brand_kelurahan}" name="{brand_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_brand3()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id_kel" type="hidden" value="{brand_p_region_id_kel}" name="{brand_p_region_id_kel_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_kelurahan" class="ControlsRQ" tabindex="2" name="{brand_kelurahan_Name}" readonly maxlength="32" value="{brand_kelurahan}" size="32">&nbsp;<img onclick="javascript:lov_region_brand3()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id_kel" name="{brand_p_region_id_kel_Name}" value="{brand_p_region_id_kel}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Telephon&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormbrand_phone_no" tabindex="2" maxlength="20" value="{brand_phone_no}" name="{brand_phone_no_Name}">&nbsp;No. Selular <input class="ControlsIN" id="t_vat_registrationFormbrand_mobile_no" tabindex="2" maxlength="20" value="{brand_mobile_no}" name="{brand_mobile_no_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_phone_no" class="ControlsIN" tabindex="2" name="{brand_phone_no_Name}" maxlength="20" value="{brand_phone_no}">&nbsp;No. Selular <input id="t_vat_registrationFormbrand_mobile_no" class="ControlsIN" tabindex="2" name="{brand_mobile_no_Name}" maxlength="20" value="{brand_mobile_no}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Fax&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormbrand_fax_no" tabindex="2" maxlength="20" value="{brand_fax_no}" name="{brand_fax_no_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_fax_no" class="ControlsIN" tabindex="2" name="{brand_fax_no_Name}" maxlength="20" value="{brand_fax_no}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Pos&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormbrand_zip_code" tabindex="2" maxlength="5" size="6" value="{brand_zip_code}" name="{brand_zip_code_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_zip_code" class="ControlsIN" tabindex="2" name="{brand_zip_code_Name}" maxlength="5" value="{brand_zip_code}" size="6">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
-                    <td class="" colspan="4">
+                    <td colspan="4">
                       <p align="center">KETERANGAN&nbsp;PEMILIK/PENGELOLA</p>
                     </td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama Pemilik/Pengelola&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormcompany_owner" tabindex="2" maxlength="64" size="50" value="{company_owner}" name="{company_owner_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormcompany_owner" class="ControlsRQ" tabindex="2" name="{company_owner_Name}" maxlength="64" value="{company_owner}" size="50">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Jabatan</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormjob_position_code" tabindex="2" readonly maxlength="48" size="48" value="{job_position_code}" name="{job_position_code_Name}">&nbsp;<img onclick="javascript:lov_job()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormp_job_position_id" type="hidden" value="{p_job_position_id}" name="{p_job_position_id_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormjob_position_code" class="ControlsRQ" tabindex="2" name="{job_position_code_Name}" readonly maxlength="48" value="{job_position_code}" size="48">&nbsp;<img onclick="javascript:lov_job()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_job_position_id" name="{p_job_position_id_Name}" value="{p_job_position_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat&nbsp;Tempat Tinggal</td> 
-                    <td colspan="3"><textarea class="ControlsRQ" id="t_vat_registrationFormaddress_name_owner" name="{address_name_owner_Name}" rows="3" cols="64">{address_name_owner}</textarea>&nbsp;</td>
+                    <td colspan="3"><textarea id="t_vat_registrationFormaddress_name_owner" class="ControlsRQ" cols="64" rows="3" name="{address_name_owner_Name}">{address_name_owner}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormaddress_no_owner" tabindex="2" maxlength="20" size="10" value="{address_no_owner}" name="{address_no_owner_Name}">&nbsp;Rt/Rw&nbsp;<input class="ControlsIN" id="t_vat_registrationFormaddress_rt_owner" tabindex="2" maxlength="5" size="5" value="{address_rt_owner}" name="{address_rt_owner_Name}">&nbsp;/ <input class="ControlsIN" id="t_vat_registrationFormaddress_rw_owner" tabindex="2" maxlength="5" size="5" value="{address_rw_owner}" name="{address_rw_owner_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormaddress_no_owner" class="ControlsRQ" tabindex="2" name="{address_no_owner_Name}" maxlength="20" value="{address_no_owner}" size="10">&nbsp;Rt/Rw&nbsp;<input id="t_vat_registrationFormaddress_rt_owner" class="ControlsIN" tabindex="2" name="{address_rt_owner_Name}" maxlength="5" value="{address_rt_owner}" size="5">&nbsp;/ <input id="t_vat_registrationFormaddress_rw_owner" class="ControlsIN" tabindex="2" name="{address_rw_owner_Name}" maxlength="5" value="{address_rw_owner}" size="5"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kota/Kabupaten&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormkota_own_code" tabindex="2" readonly maxlength="32" size="32" value="{kota_own_code}" name="{kota_own_code_Name}">&nbsp;<img onclick="javascript:lov_region_own1()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormp_region_id_owner" type="hidden" value="{p_region_id_owner}" name="{p_region_id_owner_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormkota_own_code" class="ControlsRQ" tabindex="2" name="{kota_own_code_Name}" readonly maxlength="32" value="{kota_own_code}" size="32">&nbsp;<img onclick="javascript:lov_region_own1()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_owner" name="{p_region_id_owner_Name}" value="{p_region_id_owner}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kecamatan&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormkecamatan_own_code" tabindex="2" readonly maxlength="32" size="32" value="{kecamatan_own_code}" name="{kecamatan_own_code_Name}">&nbsp;<img onclick="javascript:lov_region_own2()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormp_region_id_kec_owner" type="hidden" value="{p_region_id_kec_owner}" name="{p_region_id_kec_owner_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormkecamatan_own_code" class="ControlsRQ" tabindex="2" name="{kecamatan_own_code_Name}" readonly maxlength="32" value="{kecamatan_own_code}" size="32">&nbsp;<img onclick="javascript:lov_region_own2()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_kec_owner" name="{p_region_id_kec_owner_Name}" value="{p_region_id_kec_owner}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelurahan&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormkelurahan_own_code" tabindex="2" readonly maxlength="32" size="32" value="{kelurahan_own_code}" name="{kelurahan_own_code_Name}">&nbsp;<img onclick="javascript:lov_region_own3()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_registrationFormp_region_id_kel_owner" type="hidden" value="{p_region_id_kel_owner}" name="{p_region_id_kel_owner_Name}"></td>
+                    <td colspan="3"><input id="t_vat_registrationFormkelurahan_own_code" class="ControlsRQ" tabindex="2" name="{kelurahan_own_code_Name}" readonly maxlength="32" value="{kelurahan_own_code}" size="32">&nbsp;<img onclick="javascript:lov_region_own3()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_kel_owner" name="{p_region_id_kel_owner_Name}" value="{p_region_id_kel_owner}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Email&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormemail" tabindex="2" maxlength="64" size="50" value="{email}" name="{email_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormemail" class="ControlsIN" tabindex="2" name="{email_Name}" maxlength="64" value="{email}" size="50">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Telephon&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormphone_no_owner" tabindex="2" maxlength="20" value="{phone_no_owner}" name="{phone_no_owner_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormphone_no_owner" class="ControlsIN" tabindex="2" name="{phone_no_owner_Name}" maxlength="20" value="{phone_no_owner}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Fax&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormfax_no_owner" tabindex="2" maxlength="20" value="{fax_no_owner}" name="{fax_no_owner_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormfax_no_owner" class="ControlsIN" tabindex="2" name="{fax_no_owner_Name}" maxlength="20" value="{fax_no_owner}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Pos&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsIN" id="t_vat_registrationFormzip_code_owner" tabindex="2" maxlength="5" size="6" value="{zip_code_owner}" name="{zip_code_owner_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormzip_code_owner" class="ControlsIN" tabindex="2" name="{zip_code_owner_Name}" maxlength="5" value="{zip_code_owner}" size="6">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -372,8 +376,8 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="th">Pilih Pertanyaan ?&nbsp;</td> 
                     <td colspan="3">
-                      <select class="ControlsRQ" id="t_vat_registrationFormp_private_question_id" name="{p_private_question_id_Name}">
-                        <option value="" selected>Pilih</option>
+                      <select id="t_vat_registrationFormp_private_question_id" class="ControlsRQ" name="{p_private_question_id_Name}">
+                        <option selected value="">Pilih</option>
                         {p_private_question_id_Options}
                       </select>
  &nbsp;</td>
@@ -381,7 +385,7 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Jawaban&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormprivate_answer" tabindex="2" maxlength="64" size="50" value="{private_answer}" name="{private_answer_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_vat_registrationFormprivate_answer" class="ControlsRQ" tabindex="2" name="{private_answer_Name}" maxlength="64" value="{private_answer}" size="50">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -390,34 +394,34 @@ $(document).ready(function()
                     </td>
                   </tr>
  
-                  <tr class="Controls">
+                  <tr style="DISPLAY: none" class="Controls">
                     <td class="th">Kode&nbsp;Validasi&nbsp;</td> 
                     <td colspan="3">
-                      <!-- BEGIN TextBox validation_code --><input class="ControlsRQ" id="t_vat_registrationFormvalidation_code" tabindex="2" maxlength="20" value="{validation_code}" name="{validation_code_Name}"><!-- END TextBox validation_code -->&nbsp;{Label3}</td>
+                      <!-- BEGIN TextBox validation_code --><input id="t_vat_registrationFormvalidation_code" class="ControlsRQ" tabindex="2" name="{validation_code_Name}" maxlength="20" value="{validation_code}"><!-- END TextBox validation_code -->&nbsp;{Label3}</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Selular</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_vat_registrationFormmobile_no_owner" tabindex="2" maxlength="20" value="{mobile_no_owner}" name="{mobile_no_owner_Name}">&nbsp; 
-                      <!-- BEGIN Button Button1 --><input class="Button" id="t_vat_registrationFormButton1" onclick="return submitDummy()" type="submit" alt="Button1" value="Validasi Via Handphone" name="{Button_Name}"><!-- END Button Button1 -->&nbsp; {pesan}</td>
+                    <td colspan="3"><input id="t_vat_registrationFormmobile_no_owner" class="ControlsRQ" tabindex="2" name="{mobile_no_owner_Name}" maxlength="20" value="{mobile_no_owner}">&nbsp; 
+                      <!-- BEGIN Button Button1 --><input style="DISPLAY: none" id="t_vat_registrationFormButton1" class="Button" onclick="return submitDummy()" name="{Button_Name}" alt="Button1" value="Validasi Via Handphone" type="submit"><!-- END Button Button1 -->&nbsp; {pesan}</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_registrationFormcreated_by">Dibuat Oleh</label></td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_vat_registrationFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="t_vat_registrationFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="16" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_registrationFormupdated_by">Diubah Oleh</label></td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_vat_registrationFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="t_vat_registrationFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="16" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
                   </tr>
  
                   <tr class="Bottom">
-                    <td align="right" colspan="4">
-                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_vat_registrationFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_vat_registrationFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_vat_registrationFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_vat_registrationFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                    <td colspan="4" align="right">
+                      <!-- BEGIN Button Button_Insert --><input id="t_vat_registrationFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_vat_registrationFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_vat_registrationFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="t_vat_registrationFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --></td>
                   </tr>
                 </table>
               </td>
