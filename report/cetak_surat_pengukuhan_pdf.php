@@ -14,10 +14,10 @@ $dbConn = new clsDBConnSIKP();
 $query="begin;";
 $dbConn->query($query);
 $query="select c.company_owner ,
-		c.company_name,
+		c.brand_name,
 		c.npwpd,
 		c.address_name_owner ||nvl(address_no_owner,' ') as alamat_tinggal,
-		c.address_name ||nvl(address_no,' ') as alamat_pajak ,
+		c.brand_address_name ||nvl(brand_address_no,' ') as alamat_pajak ,
 		b.p_vat_type_id,
 		type.vat_code,
 		c.reg_letter_no,
@@ -134,7 +134,7 @@ class FormCetak extends FPDF {
 		$this->Cell($formLen1, $this->height, "2. Nama Badan/Perusahaan", 0, 0, 'L');
 		$this->SetFont('Times', '', 11);
 		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
-		$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_name"], 0, 0, 'L');
+		$this->Cell($formLen2 - $twelfth1, $this->height, $data["brand_name"], 0, 0, 'L');
 		
 		// Form 3. NPWPD
 		$this->Ln();
