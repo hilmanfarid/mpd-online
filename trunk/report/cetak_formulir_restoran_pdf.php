@@ -642,8 +642,6 @@ class FormCetak extends FPDF {
 											  'LR')
 											  ,$this->height);
 		}
-		print_r($dataBaru);
-		exit;
 		$this->Cell($kol1, $this->height, "", "LB", 0, 'C');
 		$this->Cell($kol2, $this->height, "", "B", 0, 'C');
 		$this->Cell($kol3, $this->height, "", "B", 0, 'C');
