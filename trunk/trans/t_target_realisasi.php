@@ -43,7 +43,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-FB8C33A3
+//Class_Initialize Event @2-8BEFADA4
     function clsGridt_target_realisasiGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -71,8 +71,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         if ($this->PageNumber <= 0) $this->PageNumber = 1;
 
         $this->year_code = & new clsControl(ccsLabel, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", ccsGet, NULL), $this);
-        $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsText, "", CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
-        $this->target_amt = & new clsControl(ccsLabel, "target_amt", "target_amt", ccsText, "", CCGetRequestParam("target_amt", ccsGet, NULL), $this);
+        $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
+        $this->target_amt = & new clsControl(ccsLabel, "target_amt", "target_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amt", ccsGet, NULL), $this);
         $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
         $this->DLink->HTML = true;
         $this->DLink->Page = "t_target_realisasi.php";
@@ -218,7 +218,7 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     var $p_year_period_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-33AB90D0
+//DataSourceClass_Initialize Event @2-2B95069C
     function clst_target_realisasiGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -226,9 +226,9 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         $this->Initialize();
         $this->year_code = new clsField("year_code", ccsText, "");
         
-        $this->realisasi_amt = new clsField("realisasi_amt", ccsText, "");
+        $this->realisasi_amt = new clsField("realisasi_amt", ccsFloat, "");
         
-        $this->target_amt = new clsField("target_amt", ccsText, "");
+        $this->target_amt = new clsField("target_amt", ccsFloat, "");
         
         $this->p_year_period_id = new clsField("p_year_period_id", ccsText, "");
         
@@ -271,12 +271,12 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Open Method
 
-//SetValues Method @2-145D9EC3
+//SetValues Method @2-05E9112A
     function SetValues()
     {
         $this->year_code->SetDBValue($this->f("year_code"));
-        $this->realisasi_amt->SetDBValue($this->f("realisasi_amt"));
-        $this->target_amt->SetDBValue($this->f("target_amt"));
+        $this->realisasi_amt->SetDBValue(trim($this->f("realisasi_amt")));
+        $this->target_amt->SetDBValue(trim($this->f("target_amt")));
         $this->p_year_period_id->SetDBValue($this->f("p_year_period_id"));
     }
 //End SetValues Method
