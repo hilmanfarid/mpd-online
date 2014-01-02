@@ -5,19 +5,147 @@
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script language="javascript" type="text/javascript">
-$(document).ready(function()
-{
-    $(window).scroll(function()
-    {
-            $('#tabtop').css('top', $(window).scrollTop());
-    });
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script>
+$(function () {
+	$.getJSON( "../services/detail_jenis_bulan.php?t_revenue_target_id="+document.getElementById("t_target_realisasi_jenis_bulanFormt_revenue_target_id").value, function( items ) {
+		var target_amount = [];
+		var realisasi_amt = [];
+		var bulan = [];
+		var vat_code = [];
+		var detail_vat_code = [];
+		
+		var jumlah_detail = items.length / 12;
+		
+		for(i = 0; i < jumlah_detail; i++){
+			target_amount[i] = [];
+			realisasi_amt[i] = [];
+			bulan[i] = [];
+			vat_code[i] = [];
+			detail_vat_code[i] = [];
+
+			for(j = 0; j < 12; j++){
+				target_amount[i][j] = items[j * 2 + i][0];
+				realisasi_amt[i][j] = items[j * 2 + i][1];
+				bulan[i][j] = items[j * 2 + i][2];
+				vat_code[i][j] = items[j * 2 + i][3];
+				detail_vat_code[i][j] = items[j * 2 + i][4];
+			}
+		}
+
+		data_series = [];
+		for(i = 0; i < jumlah_detail; i++){
+			data_series.push({showInLegend: true, name: "Target " + detail_vat_code[i][0], data: target_amount[i]});
+			data_series.push({showInLegend: true, name: "Realisasi " + detail_vat_code[i][0], data: realisasi_amt[i]});
+		}
+		
+		var judul = vat_code[0][0];
+
+		$("#container").highcharts({
+			chart: {
+				type: "column"
+			},
+			title: {
+				text: "Target vs Realisasi " + judul + " Bulanan"
+			},
+			subtitle: {
+				text: "Disyanjak Kota Bandung"
+			},
+			xAxis: {
+				categories: bulan[0]
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: ""
+				}
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y}</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: data_series
+		});
+	});
+});
+$(function () {
+	$.getJSON( "../services/jenis_bulan.php?t_revenue_target_id="+document.getElementById("t_target_realisasi_jenis_bulanFormt_revenue_target_id").value, function( items ) {
+		var target_amount = [];
+		var realisasi_amt = [];
+		var bulan = [];
+		var vat_code = [];
+		
+		var jumlah = items.length;
+		
+		for(i = 0; i < jumlah; i++){
+			target_amount[i] = items[i][0];
+			realisasi_amt[i] = items[i][1];
+			bulan[i] = items[i][2];
+			vat_code[i] = items[i][3];
+		}
+
+		data_series = [];
+		for(i = 0; i < jumlah; i++){
+			data_series.push({showInLegend: true, name: "Target " + vat_code[0], data: target_amount[i]});
+			data_series.push({showInLegend: true, name: "Realisasi " + vat_code[0], data: realisasi_amt[i]});
+		}
+		
+		var judul = vat_code[0];
+
+		$("#container2").highcharts({
+			chart: {
+				type: "column"
+			},
+			title: {
+				text: "Target vs Realisasi " + judul + " Bulanan"
+			},
+			subtitle: {
+				text: "Disyanjak Kota Bandung"
+			},
+			xAxis: {
+				categories: bulan
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: ""
+				}
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y}</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
+			},
+			plotOptions: {
+				column: {
+					pointPadding: 0.2,
+					borderWidth: 0
+				}
+			},
+			series: [{showInLegend: true, name: "Target " + vat_code[0], data: target_amount},
+			{showInLegend: true, name: "Realisasi " + vat_code[0], data: realisasi_amt}]
+		});
+	});
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toTarget()">
@@ -54,36 +182,16 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
-        <p>&nbsp; 
-        <!-- BEGIN FlashChart t_target_realisasi_jenis_bulanFlashjenis_bulan -->
-        <object title="{Title}" tabindex="1" accesskey="q" height="{Height}" width="{Width}" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-          <param name="movie" value="{Src}" />
-          <param name="quality" value="high" />
-          <param name="wmode" value="transparent" />
-          <param name="scale" value="exactfit" />
-          <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
- 
-        </object>
-        <!-- END FlashChart t_target_realisasi_jenis_bulanFlashjenis_bulan --></p>
- 
-        <p>&nbsp; 
-        <!-- BEGIN FlashChart t_target_realisasi_jenis_bulanFlashbulan -->
-        <object title="{Title}" tabindex="1" accesskey="q" height="{Height}" width="{Width}" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-          <param name="movie" value="{Src}" />
-          <param name="quality" value="high" />
-          <param name="wmode" value="transparent" />
-          <param name="scale" value="exactfit" />
-          <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
- 
-        </object>
-        <!-- END FlashChart t_target_realisasi_jenis_bulanFlashbulan --></p>
+        <div id="container"></div>
+ 		<div id="container2"></div>
+        <p>&nbsp; </p>
         <!-- BEGIN Record t_target_realisasi_jenis_bulanForm -->
         <form id="t_target_realisasi_jenis_bulanForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" type="hidden" value="{t_revenue_target_id}" name="{t_revenue_target_id_Name}"></h2>
+          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"></h2>
         </form>
         <!-- END Record t_target_realisasi_jenis_bulanForm --></td>
     </tr>
