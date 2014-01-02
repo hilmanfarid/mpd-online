@@ -16,8 +16,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -54,15 +54,15 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td><br>
         <!-- BEGIN Grid t_target_realisasiGrid -->
-        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="50%" border="0">
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
           <tr>
             <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR TARGET VS REALISASI</strong></td> 
@@ -92,9 +92,9 @@ $(document).ready(function()
 <a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a> 
                     </div>
                   </td> 
-                  <td>{year_code}<input id="t_target_realisasiGridp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"></td> 
-                  <td>{target_amt}</td> 
-                  <td>{realisasi_amt}</td>
+                  <td>{year_code}<input id="t_target_realisasiGridp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
+                  <td>Rp. {target_amt}</td> 
+                  <td>Rp. {realisasi_amt}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -121,10 +121,10 @@ $(document).ready(function()
             </td>
           </tr>
         </table>
-        &nbsp;<input id="t_target_realisasiGridp_year_period_id2" type="hidden" value="{p_year_period_id2}" name="{p_year_period_id2_Name}"><!-- END Grid t_target_realisasiGrid -->
+        &nbsp;<input id="t_target_realisasiGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden"><!-- END Grid t_target_realisasiGrid -->
         <p>&nbsp; 
         <!-- BEGIN FlashChart t_target_realisasiFlash_tahunan -->
-        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{Width}" height="{Height}" accesskey="q" tabindex="1" title="{Title}">
+        <object title="{Title}" tabindex="1" accesskey="q" height="{Height}" width="{Width}" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
           <param name="movie" value="{Src}" />
           <param name="quality" value="high" />
           <param name="wmode" value="transparent" />

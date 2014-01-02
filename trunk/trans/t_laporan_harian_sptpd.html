@@ -58,7 +58,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -83,7 +83,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td colspan="2">{Error}</td>
                   </tr>
                   <!-- END Error -->
-                  <tr class="Controls">
+                  <tr class="Controls" style="DISPLAY: none;">
                     <td class="search-field">&nbsp;Tahun 
                       <td class="search-field"><input id="t_laporan_harian_sptpdyear_code" class="ControlsRQ" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_laporan_harian_sptpdcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden"></td>
                     </tr>
@@ -102,7 +102,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                       </td>
                     </tr>
  
-                    <tr style="display:none;">
+                    <tr style="DISPLAY: none">
                       <td align="left">&nbsp;Ayat Pajak</td> 
                       <td>&nbsp; <input id="t_laporan_harian_sptpdvat_code_dtl" onchange="alert('changed')" class="ControlsRQ" name="{vat_code_dtl_Name}" readonly maxlength="32" value="{vat_code_dtl}" size="32"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_dtl_id" onchange="alert('tes');" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden"></td>
                     </tr>
