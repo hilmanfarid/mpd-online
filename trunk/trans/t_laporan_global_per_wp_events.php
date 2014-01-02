@@ -50,7 +50,7 @@ function print_laporan($param_arr){
 	$_FONT = 'Times';
 	$_FONTSIZE = 10;
     $pdf = new PDF_MC_Table();
-    $pdf->AddPage('Portrait', 'Letter');
+    $pdf->AddPage('Landscape', 'Letter');
     $pdf->SetFont('helvetica', '', $_FONTSIZE);
 	$pdf->SetRightMargin(5);
 	$pdf->SetLeftMargin(5);
@@ -73,7 +73,7 @@ function print_laporan($param_arr){
 	$items=array();
 	$pdf->SetFont('helvetica', '',10);
 	$pdf->ln(2);
-	$pdf->SetWidths(array(10,40,20,20,25,35,27,27));
+	$pdf->SetWidths(array(10,50,60,20,35,35,27,27));
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C'));
 	$pdf->RowMultiBorderWithHeight(array("NO","NAMA WP","ALAMAT","NPWPD","BESARNYA","BANYAKNYA SSPD","JENIS PAJAK","KETERANGAN"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
 	$pdf->SetFont('helvetica', '',10);
@@ -95,7 +95,7 @@ function print_laporan($param_arr){
 		$no++;
 	}
 	$pdf->SetAligns(Array('C','R','R','R','R','L'));
-	$pdf->SetWidths(array(90,25,35));
+	$pdf->SetWidths(array(140,35,35));
 	$pdf->RowMultiBorderWithHeight(array('Jumlah','Rp. '.number_format($jumlah, 2, ',', '.'),$jumlah_wp),array('LB','LB','LBR'),6);
 	$pdf->SetWidths(array(123,50));
 	$pdf->SetAligns('L');
