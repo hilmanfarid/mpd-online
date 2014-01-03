@@ -129,6 +129,16 @@ function print_laporan($param_arr){
 	$pdf->SetWidths(array(259,40,40));
 	$pdf->SetAligns(Array('C','R','R'));
 	$pdf->RowMultiBorderWithHeight(array('JUMLAH', 'Rp ' . number_format($jumlah_omzet, 2, ',', '.'), 'Rp ' . number_format($jumlah_ketetapan, 2, ',', '.')),array('LB','LB','LBR'),6);
+	
+	//signature
+	$pdf->SetWidths(array(259,80));
+	$pdf->SetAligns(Array('C','C'));
+	$pdf->RowMultiBorderWithHeight(array('', ''),array('',''),12);
+	$pdf->RowMultiBorderWithHeight(array('', 'Bandung' . ', ' . date('d F Y')),array('',''),6);
+	$pdf->RowMultiBorderWithHeight(array('', ''),array('',''),36);
+	$pdf->SetAligns(Array('C','L'));
+	$pdf->RowMultiBorderWithHeight(array('', 'Nama:'),array('','T'),6);
+	$pdf->RowMultiBorderWithHeight(array('', 'Jabatan:'),array('',''),6);
 	$pdf->Output("","I");
 	echo 'tes';
 	exit;	
