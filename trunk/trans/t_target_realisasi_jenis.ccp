@@ -85,8 +85,8 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 				<TableParameter id="718" conditionType="Parameter" useIsNull="False" field="p_year_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" DBFormat="0" parameterSource="p_year_period_id"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="717" tableName="v_revenue_target_vs_realisasi" schemaName="sikp" posLeft="10" posTop="10" posWidth="150" posHeight="180"/>
-			</JoinTables>
+				<JoinTable id="717" tableName="v_revenue_target_vs_realisasi" posWidth="150" posHeight="180" posLeft="10" posTop="10"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="870" fieldName="*"/>
@@ -142,8 +142,8 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id" parameterTypeListName="Parameter
 				<TableParameter id="761" conditionType="Parameter" useIsNull="False" field="p_vat_type_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_vat_type_id"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="721" tableName="v_revenue_target_vs_realisasi" schemaName="sikp" posLeft="10" posTop="10" posWidth="150" posHeight="180"/>
-			</JoinTables>
+				<JoinTable id="721" tableName="v_revenue_target_vs_realisasi" posWidth="150" posHeight="180" posLeft="10" posTop="10"/>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>
