@@ -34,7 +34,7 @@ where a.p_rqst_type_id = b.p_rqst_type_id
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 		$data["company_owner"] = $dbConn->f("company_owner");
-		$data["company_name"] = $dbConn->f("company_name");
+		$data["brand_name"] = $dbConn->f("brand_name");
 		$data["npwpd"] = $dbConn->f("npwpd");
 		$data["alamat_tinggal"] = $dbConn->f("alamat_tinggal");
 		$data["alamat_pajak"] = $dbConn->f("alamat_pajak");
