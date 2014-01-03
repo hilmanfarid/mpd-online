@@ -14,12 +14,6 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Label id="679" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridtarget_amt" fieldSource="target_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
@@ -47,6 +41,18 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="750" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridpercentage">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
@@ -77,66 +83,6 @@
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<FlashChart id="696" secured="False" dataSeriesIn="Columns" chartType="3d_pie" sourceType="SQL" defaultPageSize="25" returnValueType="Number" name="t_target_realisasiFlash_tahunan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiFlash_tahunan" connection="ConnSIKP" dataSource="SELECT target_amt, realisasi_amt 
-FROM v_target_vs_real_anual
-WHERE p_year_period_id = {p_year_period_id}" activeCollection="SQLParameters" schemaName="Autumn" layout="5" gridCaptionField="-1" width="400" height="300" displayTitle="True" title="Target vs Realisasi Tahunan" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="degrees" autoRotate="yes" template="&lt;root&gt;
-	&lt;schema name=&quot;Autumn&quot;&gt;
-		&lt;mask/&gt;
-		&lt;colors/&gt;
-	&lt;/schema&gt;
-	&lt;separator decimal=&quot;,&quot; group=&quot;&quot;/&gt;
-	&lt;background border=&quot;yes&quot;/&gt;
-	&lt;chartarea border=&quot;yes&quot;&gt;
-		&lt;grid line_style=&quot;medium&quot; visible=&quot;yes&quot;/&gt;
-		&lt;vertical_axis visible=&quot;yes&quot;/&gt;
-		&lt;horizontal_axis visible=&quot;yes&quot; rotation=&quot;degrees&quot; autoRotate=&quot;yes&quot;/&gt;
-		&lt;chart line_thick=&quot;2&quot; enabled=&quot;yes&quot; type=&quot;3d_pie&quot; series=&quot;columns&quot;&gt;
-			&lt;inscriptions visible=&quot;yes&quot;/&gt;
-			&lt;animation type=&quot;none&quot;/&gt;
-			&lt;markers size=&quot;8&quot; type=&quot;0&quot;/&gt;
-			&lt;hints border=&quot;yes&quot; enabled=&quot;yes&quot;/&gt;
-		&lt;/chart&gt;
-		&lt;legend sqr_size=&quot;12&quot; sqr_borders=&quot;yes&quot; border_thick=&quot;0&quot; position=&quot;right-center&quot; layout=&quot;vertical&quot; visible=&quot;yes&quot;/&gt;
-		&lt;title position=&quot;top&quot; align=&quot;center&quot; border=&quot;no&quot; alpha=&quot;100&quot; visible=&quot;yes&quot; text=&quot;Target vs Realisasi Tahunan&quot;/&gt;
-	&lt;/chartarea&gt;
-	&lt;objects&gt;
-	&lt;/objects&gt;
-	&lt;data&gt;
-		&lt;columns&gt;
-			&lt;column field=&quot;target_amt&quot; name=&quot;target_amt&quot;/&gt;&lt;column field=&quot;realisasi_amt&quot; name=&quot;realisasi_amt&quot;/&gt;&lt;/columns&gt;
-		&lt;rows&gt;&lt;!-- BEGIN Row --&gt;&lt;row col1=&quot;{target_amt}&quot; col2=&quot;{realisasi_amt}&quot;/&gt;&lt;!-- END Row --&gt;&lt;/rows&gt;&lt;/data&gt;
-&lt;/root&gt;
-" parameterTypeListName="ParameterTypeList">
-			<Components/>
-			<Events/>
-			<Attributes/>
-			<DataSeries>
-				<Field id="746" fieldName="target_amt" alias="target_amt"/>
-				<Field id="747" fieldName="realisasi_amt" alias="realisasi_amt"/>
-			</DataSeries>
-			<TableParameters>
-				<TableParameter id="701" conditionType="Parameter" useIsNull="False" field="p_year_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" DBFormat="0" parameterSource="p_year_period_id"/>
-			</TableParameters>
-			<JoinTables>
-			</JoinTables>
-			<JoinLinks/>
-			<Fields>
-			</Fields>
-			<AllFields>
-				<Field id="742" fieldName="target_amt"/>
-				<Field id="744" fieldName="realisasi_amt"/>
-			</AllFields>
-			<SelectedFields>
-				<Field id="743" tableName="v_target_vs_real_anual" fieldName="target_amt" isExpression="False"/>
-				<Field id="745" tableName="v_target_vs_real_anual" fieldName="realisasi_amt" isExpression="False"/>
-			</SelectedFields>
-			<SPParameters/>
-			<SQLParameters>
-				<SQLParameter id="749" parameterType="URL" variable="p_year_period_id" dataType="Float" DBFormat="0" parameterSource="p_year_period_id" defaultValue="0"/>
-			</SQLParameters>
-			<SecurityGroups/>
-			<Features/>
-		</FlashChart>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_target_realisasi_events.php" forShow="False" comment="//" codePage="windows-1252"/>

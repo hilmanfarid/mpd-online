@@ -27,22 +27,23 @@ $(function () {
 			detail_vat_code[i] = [];
 
 			for(j = 0; j < 12; j++){
-				target_amount[i][j] = items[j * 2 + i][0];
-				realisasi_amt[i][j] = items[j * 2 + i][1];
-				bulan[i][j] = items[j * 2 + i][2];
-				vat_code[i][j] = items[j * 2 + i][3];
-				detail_vat_code[i][j] = items[j * 2 + i][4];
+				target_amount[i][j] = items[i + j * jumlah_detail][0];
+				realisasi_amt[i][j] = items[i + j * jumlah_detail][1];
+				bulan[i][j] = items[i + j * jumlah_detail][2];
+				vat_code[i][j] = items[i + j * jumlah_detail][3];
+				detail_vat_code[i][j] = items[i + j * jumlah_detail][4];
 			}
 		}
-
+		
+		var series_colors = ['#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce', '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'];
 		data_series = [];
 		for(i = 0; i < jumlah_detail; i++){
-			data_series.push({showInLegend: true, name: "Target " + detail_vat_code[i][0], data: target_amount[i]});
-			data_series.push({showInLegend: true, name: "Realisasi " + detail_vat_code[i][0], data: realisasi_amt[i]});
+			data_series.push({showInLegend: true, name: "Target " + detail_vat_code[i][0], data: target_amount[i], stack: "Target", color: series_colors[i]});
+			data_series.push({showInLegend: true, name: "Realisasi " + detail_vat_code[i][0], data: realisasi_amt[i], stack: "Realisasi", color: series_colors[i]});
 		}
 		
 		var judul = vat_code[0][0];
-
+		
 		$("#container").highcharts({
 			chart: {
 				type: "column"
@@ -60,20 +61,25 @@ $(function () {
 				min: 0,
 				title: {
 					text: ""
+				},
+				stackLabels: {
+					enabled: true,
+                    formatter: function() {
+						mil = this.total / 1000000000; //1M
+						mil = Math.round(mil * Math.pow(10, 3)) / Math.pow(10, 3);
+	                    return mil + " M";
+                	}
 				}
 			},
 			tooltip: {
-				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y}</b></td></tr>',
-				footerFormat: '</table>',
-				shared: true,
-				useHTML: true
+				pointFormat: "{series.name}: <b>{point.y:,.2f}<b><br/>"+
+				"Total: <b>{point.stackTotal:,.2f}</b>"
 			},
 			plotOptions: {
 				column: {
 					pointPadding: 0.2,
-					borderWidth: 0
+					borderWidth: 0,
+					stacking: 'normal'
 				}
 			},
 			series: data_series
