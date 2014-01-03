@@ -16,7 +16,6 @@ function Page_BeforeShow(& $sender)
     global $t_laporan_harian_sptpd; //Compatibility
 //End Page_BeforeShow
 
-//Custom Code @10-2A29BDB7
 // -------------------------
     // Write your own code here.
     if($t_laporan_harian_sptpd->cetak_laporan->GetValue()=='T'){
@@ -38,7 +37,7 @@ function Page_BeforeShow(& $sender)
 	}
 	
 // -------------------------
-//End Custom Code
+
 
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
@@ -78,10 +77,11 @@ function print_laporan($param_arr){
 		$param_arr['p_vat_type_id']='null';
 	}
 	if(!empty($param_arr['p_vat_type_dtl_id'])){
-		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."',".$param_arr['p_vat_type_dtl_id'].")";
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."',".$param_arr['p_vat_type_dtl_id'].") ORDER BY jenis, tanggal ASC";
 	}else{
-		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(".$param_arr['p_vat_type_id'].",2001,'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY jenis ASC";
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(".$param_arr['p_vat_type_id'].",2001,'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY jenis, tanggal ASC";
 	}
+	die($query);
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',10);
