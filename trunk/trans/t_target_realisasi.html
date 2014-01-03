@@ -5,14 +5,48 @@
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script language="javascript" type="text/javascript">
-$(document).ready(function()
-{
-    $(window).scroll(function()
-    {
-            $('#tabtop').css('top', $(window).scrollTop());
-    });
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script>
+$(function () {
+	$.getJSON( "../services/target_realisasi_tahun.php?p_year_period_id="+document.getElementById("t_target_realisasiGridp_year_period_id2").value, function( items ) {
+		var target_amount = items[0][0];
+		var realisasi_amt = items[0][1];
+		var tahun = items[0][2];
+		
+		$("#container").highcharts({
+			title: {
+				text: "Target vs Realisasi " + tahun
+			},
+			subtitle: {
+				text: "Disyanjak Kota Bandung"
+			},
+			tooltip: {
+				pointFormat: "{series.name}: <b>{point.y:,.2f}<b><br/>"
+			},
+			plotOptions: {
+				pie: {
+	                allowPointSelect: true,
+	                cursor: 'pointer',
+	                dataLabels: {
+	                    enabled: true,
+	                    color: '#000000',
+	                    connectorColor: '#000000',
+	                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+	                }
+            	}
+			},
+			series: [{
+				type: "pie",
+            	name: "Target vs Realisasi " + tahun,
+				data: [
+					["Target", target_amount],
+					["Realisasi", realisasi_amt]
+				]
+			}]
+		});
+	});
 });
 </script>
 </head>
@@ -78,11 +112,13 @@ $(document).ready(function()
                   </div>
                   </th>
  
-                  <th scope="col">Tahun</th>
+                  <th style="TEXT-ALIGN: center" scope="col">Tahun</th>
  
-                  <th scope="col">Target</th>
+                  <th style="TEXT-ALIGN: center" scope="col">Target</th>
  
-                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Realisasi</label></label></th>
+                  <th style="TEXT-ALIGN: center" scope="col">Realisasi</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Persentase</th>
                 </tr>
  
                 <!-- BEGIN Row -->
@@ -93,17 +129,18 @@ $(document).ready(function()
                     </div>
                   </td> 
                   <td>{year_code}<input id="t_target_realisasiGridp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
-                  <td>Rp. {target_amt}</td> 
-                  <td>Rp. {realisasi_amt}</td>
+                  <td style="TEXT-ALIGN: right">{target_amt}</td> 
+                  <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{percentage}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="4">-</td>
+                  <td colspan="5">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td colspan="4">
+                  <td colspan="5">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -121,21 +158,10 @@ $(document).ready(function()
             </td>
           </tr>
         </table>
-        &nbsp;<input id="t_target_realisasiGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden"><!-- END Grid t_target_realisasiGrid -->
-        <p>&nbsp; 
-        <!-- BEGIN FlashChart t_target_realisasiFlash_tahunan -->
-        <object title="{Title}" tabindex="1" accesskey="q" height="{Height}" width="{Width}" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-          <param name="movie" value="{Src}" />
-          <param name="quality" value="high" />
-          <param name="wmode" value="transparent" />
-          <param name="scale" value="exactfit" />
-          <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
- 
-        </object>
-        <!-- END FlashChart t_target_realisasiFlash_tahunan --></p>
-      </td>
+        &nbsp;<input id="t_target_realisasiGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden"><!-- END Grid t_target_realisasiGrid --></td>
     </tr>
   </table>
+  <div id="container" style="width:50%;"></div>
 </div>
 <script language="javascript">
 function toJenis()
