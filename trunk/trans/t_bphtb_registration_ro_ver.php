@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-EC4AE3A9
+//Class_Initialize Event @2-6D8ED392
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -169,6 +169,9 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
             $this->p_bphtb_legal_doc_type_id->DataSource->Order = "";
             $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
             $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsText, "", CCGetRequestParam("p_rqst_type_id", $Method, NULL), $this);
+            $this->verificated_by = & new clsControl(ccsTextBox, "verificated_by", "verificated_by", ccsText, "", CCGetRequestParam("verificated_by", $Method, NULL), $this);
+            $this->verificated_nip = & new clsControl(ccsTextBox, "verificated_nip", "verificated_nip", ccsText, "", CCGetRequestParam("verificated_nip", $Method, NULL), $this);
+            $this->registration_no = & new clsControl(ccsTextBox, "registration_no", "registration_no", ccsText, "", CCGetRequestParam("registration_no", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -208,7 +211,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     }
 //End Initialize Method
 
-//Validate Method @2-9A127693
+//Validate Method @2-280EF87D
     function Validate()
     {
         global $CCSLocales;
@@ -280,6 +283,9 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $Validation = ($this->p_bphtb_legal_doc_type_id->Validate() && $Validation);
         $Validation = ($this->t_customer_order_id->Validate() && $Validation);
         $Validation = ($this->p_rqst_type_id->Validate() && $Validation);
+        $Validation = ($this->verificated_by->Validate() && $Validation);
+        $Validation = ($this->verificated_nip->Validate() && $Validation);
+        $Validation = ($this->registration_no->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -347,11 +353,14 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $Validation =  $Validation && ($this->p_bphtb_legal_doc_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->verificated_by->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->verificated_nip->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->registration_no->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-9AE600B3
+//CheckErrors Method @2-9FD35B4C
     function CheckErrors()
     {
         $errors = false;
@@ -421,6 +430,9 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $errors = ($errors || $this->p_bphtb_legal_doc_type_id->Errors->Count());
         $errors = ($errors || $this->t_customer_order_id->Errors->Count());
         $errors = ($errors || $this->p_rqst_type_id->Errors->Count());
+        $errors = ($errors || $this->verificated_by->Errors->Count());
+        $errors = ($errors || $this->verificated_nip->Errors->Count());
+        $errors = ($errors || $this->registration_no->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -555,7 +567,7 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @2-3DDAADC5
+//UpdateRow Method @2-C17E6DAA
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -592,6 +604,8 @@ function GetPrimaryKey($keyName)
         $this->DataSource->mobile_phone_no->SetValue($this->mobile_phone_no->GetValue(true));
         $this->DataSource->wp_p_region_id_kec->SetValue($this->wp_p_region_id_kec->GetValue(true));
         $this->DataSource->object_p_region_id_kel->SetValue($this->object_p_region_id_kel->GetValue(true));
+        $this->DataSource->verificated_by->SetValue($this->verificated_by->GetValue(true));
+        $this->DataSource->verificated_nip->SetValue($this->verificated_nip->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -609,7 +623,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @2-EA3DF806
+//Show Method @2-171B27CD
     function Show()
     {
         global $CCSUseAmp;
@@ -679,6 +693,9 @@ function GetPrimaryKey($keyName)
                     $this->p_bphtb_legal_doc_type_id->SetValue($this->DataSource->p_bphtb_legal_doc_type_id->GetValue());
                     $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
                     $this->p_rqst_type_id->SetValue($this->DataSource->p_rqst_type_id->GetValue());
+                    $this->verificated_by->SetValue($this->DataSource->verificated_by->GetValue());
+                    $this->verificated_nip->SetValue($this->DataSource->verificated_nip->GetValue());
+                    $this->registration_no->SetValue($this->DataSource->registration_no->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -756,6 +773,9 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->p_bphtb_legal_doc_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_rqst_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->verificated_by->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->verificated_nip->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->registration_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -849,6 +869,9 @@ function GetPrimaryKey($keyName)
         $this->p_bphtb_legal_doc_type_id->Show();
         $this->t_customer_order_id->Show();
         $this->p_rqst_type_id->Show();
+        $this->verificated_by->Show();
+        $this->verificated_nip->Show();
+        $this->registration_no->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -859,7 +882,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @2-BDFCC0BF
 
-//DataSource Variables @2-FB75C169
+//DataSource Variables @2-BB31552C
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -941,9 +964,12 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $p_bphtb_legal_doc_type_id;
     var $t_customer_order_id;
     var $p_rqst_type_id;
+    var $verificated_by;
+    var $verificated_nip;
+    var $registration_no;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-2B333EDB
+//DataSourceClass_Initialize Event @2-EB67CE30
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1081,6 +1107,12 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->p_rqst_type_id = new clsField("p_rqst_type_id", ccsText, "");
         
+        $this->verificated_by = new clsField("verificated_by", ccsText, "");
+        
+        $this->verificated_nip = new clsField("verificated_nip", ccsText, "");
+        
+        $this->registration_no = new clsField("registration_no", ccsText, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1115,6 +1147,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["mobile_phone_no"] = array("Name" => "mobile_phone_no", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["wp_p_region_id_kec"] = array("Name" => "wp_p_region_id_kec", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["object_p_region_id_kel"] = array("Name" => "object_p_region_id_kel", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["verificated_by"] = array("Name" => "verificated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["verificated_nip"] = array("Name" => "verificated_nip", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -1169,7 +1203,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @2-F4E41AC1
+//SetValues Method @2-99B00976
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1213,6 +1247,9 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->p_bphtb_legal_doc_type_id->SetDBValue($this->f("p_bphtb_legal_doc_type_id"));
         $this->t_customer_order_id->SetDBValue($this->f("t_customer_order_id"));
         $this->p_rqst_type_id->SetDBValue($this->f("p_rqst_type_id"));
+        $this->verificated_by->SetDBValue($this->f("verificated_by"));
+        $this->verificated_nip->SetDBValue($this->f("verificated_nip"));
+        $this->registration_no->SetDBValue($this->f("registration_no"));
     }
 //End SetValues Method
 
@@ -1435,7 +1472,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @2-A69AD1AE
+//Update Method @2-722B2DFF
     function Update()
     {
         global $CCSLocales;
@@ -1474,6 +1511,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["mobile_phone_no"] = new clsSQLParameter("ctrlmobile_phone_no", ccsText, "", "", $this->mobile_phone_no->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["wp_p_region_id_kec"] = new clsSQLParameter("ctrlwp_p_region_id_kec", ccsFloat, "", "", $this->wp_p_region_id_kec->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["verificated_by"] = new clsSQLParameter("ctrlverificated_by", ccsText, "", "", $this->verificated_by->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["verificated_nip"] = new clsSQLParameter("ctrlverificated_nip", ccsText, "", "", $this->verificated_nip->GetValue(true), NULL, false, $this->ErrorBlock);
         $wp = new clsSQLParameters($this->ErrorBlock);
         $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
         if(!$wp->AllParamsSet()) {
@@ -1554,6 +1593,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["wp_p_region_id_kec"]->SetValue($this->wp_p_region_id_kec->GetValue(true));
         if (!is_null($this->cp["object_p_region_id_kel"]->GetValue()) and !strlen($this->cp["object_p_region_id_kel"]->GetText()) and !is_bool($this->cp["object_p_region_id_kel"]->GetValue())) 
             $this->cp["object_p_region_id_kel"]->SetValue($this->object_p_region_id_kel->GetValue(true));
+        if (!is_null($this->cp["verificated_by"]->GetValue()) and !strlen($this->cp["verificated_by"]->GetText()) and !is_bool($this->cp["verificated_by"]->GetValue())) 
+            $this->cp["verificated_by"]->SetValue($this->verificated_by->GetValue(true));
+        if (!is_null($this->cp["verificated_nip"]->GetValue()) and !strlen($this->cp["verificated_nip"]->GetText()) and !is_bool($this->cp["verificated_nip"]->GetValue())) 
+            $this->cp["verificated_nip"]->SetValue($this->verificated_nip->GetValue(true));
         $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
         $wp->Criterion[2] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("2"), $this->ToSQL($wp->GetDBValue("2"), ccsFloat),false);
         $wp->Criterion[3] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("3"), $this->ToSQL($wp->GetDBValue("3"), ccsFloat),false);
@@ -1596,6 +1639,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["mobile_phone_no"]["Value"] = $this->cp["mobile_phone_no"]->GetDBValue(true);
         $this->UpdateFields["wp_p_region_id_kec"]["Value"] = $this->cp["wp_p_region_id_kec"]->GetDBValue(true);
         $this->UpdateFields["object_p_region_id_kel"]["Value"] = $this->cp["object_p_region_id_kel"]->GetDBValue(true);
+        $this->UpdateFields["verificated_by"]["Value"] = $this->cp["verificated_by"]->GetDBValue(true);
+        $this->UpdateFields["verificated_nip"]["Value"] = $this->cp["verificated_nip"]->GetDBValue(true);
         $this->SQL = CCBuildUpdate("t_bphtb_registration", $this->UpdateFields, $this);
         $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
