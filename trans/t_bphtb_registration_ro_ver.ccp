@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="2" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="UConditions" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration" dataSource="select a.*,
+		<Record id="2" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="UFormElements" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration" dataSource="select a.*,
 cust_order.p_rqst_type_id,
 b.region_name as wp_kota,
 c.region_name as wp_kecamatan,
@@ -27,7 +27,7 @@ left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
 left join t_customer_order as cust_order
 	on cust_order.t_customer_order_id = a.t_customer_order_id
-where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration" activeTableType="customUpdate">
+where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration" activeTableType="t_bphtb_registration">
 			<Components>
 				<Button id="3" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
 					<Components/>
@@ -481,38 +481,56 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Fields/>
 					<Attributes/>
 					<Features>
-<PTAutoFill id="131" enabled="True" sourceType="SQL" name="PTAutoFill1" category="Prototype" featureNameChanged="No" connection="ConnSIKP" dataSource="select p_bphtb_legal_doc_type_id,code
+						<PTAutoFill id="131" enabled="True" sourceType="SQL" name="PTAutoFill1" category="Prototype" featureNameChanged="No" connection="ConnSIKP" dataSource="select p_bphtb_legal_doc_type_id,code
 from p_bphtb_legal_doc_type bphtb_legal
 left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
 " ccsIdsOnly="False" valueField="value" servicePage="../services/trans_t_bphtb_registration_t_bphtb_registrationForm_p_bphtb_legal_doc_type_id_PTAutoFill1.ccp">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Controls>
-<Control id="132" name="npop_tkp" source="npop_tkp" propertyValue="value" sourceId="36"/>
-</Controls>
-<ControlPoints/>
-<Features/>
-</PTAutoFill>
-</Features>
+							<Components/>
+							<Events/>
+							<TableParameters/>
+							<SPParameters/>
+							<SQLParameters/>
+							<JoinTables/>
+							<JoinLinks/>
+							<Fields/>
+							<Controls>
+								<Control id="132" name="npop_tkp" source="npop_tkp" propertyValue="value" sourceId="36"/>
+							</Controls>
+							<ControlPoints/>
+							<Features/>
+						</PTAutoFill>
+					</Features>
 				</ListBox>
 				<Hidden id="133" fieldSourceType="DBColumn" dataType="Text" name="t_customer_order_id" PathID="t_bphtb_registrationFormt_customer_order_id" fieldSource="t_customer_order_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="134" fieldSourceType="DBColumn" dataType="Text" name="p_rqst_type_id" PathID="t_bphtb_registrationFormp_rqst_type_id" fieldSource="p_rqst_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<TextBox id="135" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="verificated_by" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormverificated_by" fieldSource="verificated_by">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
-</Hidden>
-<Hidden id="134" fieldSourceType="DBColumn" dataType="Text" name="p_rqst_type_id" PathID="t_bphtb_registrationFormp_rqst_type_id" fieldSource="p_rqst_type_id">
+</TextBox>
+<TextBox id="136" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="verificated_nip" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormverificated_nip" fieldSource="verificated_nip">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
-</Hidden>
+</TextBox>
+<TextBox id="137" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="registration_no" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormregistration_no" fieldSource="registration_no">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -701,7 +719,9 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<CustomParameter id="127" field="mobile_phone_no" dataType="Text" parameterType="Control" parameterSource="mobile_phone_no" omitIfEmpty="True"/>
 				<CustomParameter id="128" field="wp_p_region_id_kec" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="wp_p_region_id_kec"/>
 				<CustomParameter id="129" field="object_p_region_id_kel" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="object_p_region_id_kel"/>
-			</UFormElements>
+				<CustomParameter id="138" field="verificated_by" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="verificated_by"/>
+<CustomParameter id="139" field="verificated_nip" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="verificated_nip"/>
+</UFormElements>
 			<DSPParameters>
 				<SPParameter id="Key905" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0"/>
 				<SPParameter id="Key906" parameterName="icode" parameterSource="icode" dataType="Char" parameterType="URL" dataSize="255" direction="Input" scale="0" precision="0"/>
@@ -775,7 +795,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			<Attributes/>
 			<Features/>
 		</Record>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_bphtb_registration_ro_ver_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_ro_ver.php" forShow="True" url="t_bphtb_registration_ro_ver.php" comment="//" codePage="windows-1252"/>
