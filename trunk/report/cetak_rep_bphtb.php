@@ -71,6 +71,9 @@ while ($dbConn->next_record()) {
 	$data["bphtb_discount"]			= $dbConn->f("bphtb_discount");
 	$data["bphtb_amt_final"]		= $dbConn->f("bphtb_amt_final");
 	$data["registration_no"]		= $dbConn->f("registration_no");
+	$data["verificated_by"]			= $dbConn->f("verificated_by");
+	$data["verificated_nip"]		= $dbConn->f("verificated_nip");
+
 }
 
 $dbConn->close();
@@ -267,8 +270,13 @@ class FormCetak extends FPDF {
 		$this->newLine();
 		$this->newLine();
 		$this->newLine();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
+		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
+		$this->Cell($lbody1 + 270, $this->height - 3, "( ".$data['verificated_by']." )", "", 0, 'C');
+		$this->newLine();
+		$this->Cell($lbody1 + 270, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
+
+			
 	}
 	
 	function barisBaru2($subtractor, $field, $middle, $currency, $data){
