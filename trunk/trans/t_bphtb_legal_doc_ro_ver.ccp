@@ -435,7 +435,7 @@ where t_cust_order_legal_doc.t_cust_order_legal_doc_id={t_cust_order_legal_doc_i
 						<SQLParameter id="723" variable="p_legal_doc_type_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_legal_doc_type_id"/>
 						<SQLParameter id="725" variable="t_cust_order_legal_doc_id" parameterType="URL" defaultValue="0" dataType="Text" parameterSource="t_cust_order_legal_doc_id"/>
 						<SQLParameter id="726" variable="t_customer_order_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="t_customer_order_id"/>
-</SQLParameters>
+					</SQLParameters>
 					<JoinTables/>
 					<JoinLinks/>
 					<Fields/>

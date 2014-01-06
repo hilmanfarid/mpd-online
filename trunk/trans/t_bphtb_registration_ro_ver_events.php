@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-A6F5B247
+//BindEvents Method @1-ECC4C064
 function BindEvents()
 {
     global $t_bphtb_registrationForm;
@@ -8,6 +8,8 @@ function BindEvents()
     $t_bphtb_registrationForm->CCSEvents["BeforeSelect"] = "t_bphtb_registrationForm_BeforeSelect";
     $t_bphtb_registrationForm->CCSEvents["BeforeInsert"] = "t_bphtb_registrationForm_BeforeInsert";
     $t_bphtb_registrationForm->ds->CCSEvents["AfterExecuteDelete"] = "t_bphtb_registrationForm_ds_AfterExecuteDelete";
+    $t_bphtb_registrationForm->CCSEvents["BeforeShow"] = "t_bphtb_registrationForm_BeforeShow";
+    $t_bphtb_registrationForm->ds->CCSEvents["AfterExecuteSelect"] = "t_bphtb_registrationForm_ds_AfterExecuteSelect";
 }
 //End BindEvents Method
 
@@ -110,4 +112,44 @@ function t_bphtb_registrationForm_ds_AfterExecuteDelete(& $sender)
     return $t_bphtb_registrationForm_ds_AfterExecuteDelete;
 }
 //End Close t_bphtb_registrationForm_ds_AfterExecuteDelete
+
+//t_bphtb_registrationForm_BeforeShow @2-8B0D3CFC
+function t_bphtb_registrationForm_BeforeShow(& $sender)
+{
+    $t_bphtb_registrationForm_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_bphtb_registrationForm; //Compatibility
+//End t_bphtb_registrationForm_BeforeShow
+
+//Custom Code @140-2A29BDB7
+// -------------------------
+    
+// -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationForm_BeforeShow @2-4D732B32
+    return $t_bphtb_registrationForm_BeforeShow;
+}
+//End Close t_bphtb_registrationForm_BeforeShow
+
+//t_bphtb_registrationForm_ds_AfterExecuteSelect @2-624E9AA7
+function t_bphtb_registrationForm_ds_AfterExecuteSelect(& $sender)
+{
+    $t_bphtb_registrationForm_ds_AfterExecuteSelect = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_bphtb_registrationForm; //Compatibility
+//End t_bphtb_registrationForm_ds_AfterExecuteSelect
+
+//Custom Code @141-2A29BDB7
+// -------------------------
+	
+// -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationForm_ds_AfterExecuteSelect @2-BCBC28C3
+    return $t_bphtb_registrationForm_ds_AfterExecuteSelect;
+}
+//End Close t_bphtb_registrationForm_ds_AfterExecuteSelect
 ?>

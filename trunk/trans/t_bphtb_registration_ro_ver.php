@@ -969,7 +969,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $registration_no;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-EB67CE30
+//DataSourceClass_Initialize Event @2-E5DBE2CF
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1147,7 +1147,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["mobile_phone_no"] = array("Name" => "mobile_phone_no", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["wp_p_region_id_kec"] = array("Name" => "wp_p_region_id_kec", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["object_p_region_id_kel"] = array("Name" => "object_p_region_id_kel", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["verificated_by"] = array("Name" => "verificated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["verificated_by"] = array("Name" => "verificated_by", "Value" => "", "DataType" => ccsText);
         $this->UpdateFields["verificated_nip"] = array("Name" => "verificated_nip", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
@@ -1472,7 +1472,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @2-722B2DFF
+//Update Method @2-A386FEB9
     function Update()
     {
         global $CCSLocales;
@@ -1511,7 +1511,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["mobile_phone_no"] = new clsSQLParameter("ctrlmobile_phone_no", ccsText, "", "", $this->mobile_phone_no->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["wp_p_region_id_kec"] = new clsSQLParameter("ctrlwp_p_region_id_kec", ccsFloat, "", "", $this->wp_p_region_id_kec->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["verificated_by"] = new clsSQLParameter("ctrlverificated_by", ccsText, "", "", $this->verificated_by->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["verificated_by"] = new clsSQLParameter("ctrlverificated_by", ccsText, "", "", $this->verificated_by->GetValue(true), updated_by, false, $this->ErrorBlock);
         $this->cp["verificated_nip"] = new clsSQLParameter("ctrlverificated_nip", ccsText, "", "", $this->verificated_nip->GetValue(true), NULL, false, $this->ErrorBlock);
         $wp = new clsSQLParameters($this->ErrorBlock);
         $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
@@ -1595,6 +1595,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["object_p_region_id_kel"]->SetValue($this->object_p_region_id_kel->GetValue(true));
         if (!is_null($this->cp["verificated_by"]->GetValue()) and !strlen($this->cp["verificated_by"]->GetText()) and !is_bool($this->cp["verificated_by"]->GetValue())) 
             $this->cp["verificated_by"]->SetValue($this->verificated_by->GetValue(true));
+        if (!strlen($this->cp["verificated_by"]->GetText()) and !is_bool($this->cp["verificated_by"]->GetValue(true))) 
+            $this->cp["verificated_by"]->SetText(updated_by);
         if (!is_null($this->cp["verificated_nip"]->GetValue()) and !strlen($this->cp["verificated_nip"]->GetText()) and !is_bool($this->cp["verificated_nip"]->GetValue())) 
             $this->cp["verificated_nip"]->SetValue($this->verificated_nip->GetValue(true));
         $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);

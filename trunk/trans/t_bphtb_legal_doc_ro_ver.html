@@ -67,11 +67,21 @@ $(document).ready(function()
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
-    <div class="th tab-button">
+    
+	<div class="th tab-button">
+      <label onclick="javascript:toBack()">
+      <div class="tab-title">
+        FORMULIR PENDAFTARAN 
+      </div>
+      </label>
+    </div> 
+
+	<div class="th tab-button">
       <div class="tab-title-selected">
         DOKUMEN PENDUKUNG 
       </div>
     </div>
+
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -236,6 +246,11 @@ $(document).ready(function()
   </div>
   <script type="text/javascript" src="../js/lov.js"></script>
   <script language="javascript">
+
+function toBack() {
+	history.go(-1);
+}
+
 function popup(url) 
 {
         params  = 'width=650';
