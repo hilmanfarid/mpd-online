@@ -70,6 +70,7 @@ while ($dbConn->next_record()) {
 	$data["bphtb_amt"]				= $dbConn->f("bphtb_amt");
 	$data["bphtb_discount"]			= $dbConn->f("bphtb_discount");
 	$data["bphtb_amt_final"]		= $dbConn->f("bphtb_amt_final");
+	$data["registration_no"]		= $dbConn->f("registration_no");
 }
 
 $dbConn->close();
@@ -122,8 +123,10 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "BEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN", "", 0, "C");
 		$this->Ln();
 		$this->newLine();
-		$this->Cell($this->lengthCell, $this->height, "JENIS TRANSAKSI: ", "", 0, "C");
+		$this->Cell($this->lengthCell, $this->height, "JENIS TRANSAKSI: ".strtoupper($data['doc_name']), "", 0, "C");
 		$this->Ln();
+		$this->Cell($this->lengthCell, $this->height, "NO REGISTRASI: ".strtoupper($data['registration_no']), "", 0, "C");
+		
 		$this->newLine();
 		$this->newLine();
 		
@@ -251,6 +254,7 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont("Arial", "B", 10);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "PETUGAS PEMERIKSA", "", 0, 'C');
