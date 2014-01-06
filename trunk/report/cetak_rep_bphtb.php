@@ -147,7 +147,7 @@ class FormCetak extends FPDF {
 		$this->barisBaru("", "7 Kabupaten/Kota", ": " . $data["wp_region"]);
 		$this->Ln();
 		
-		$this->barisBaru("B", "1 Nomor Objek Pajak (NOP) PBB", ": " . $data["njop_pbb"]);
+		$this->barisBaru("B", "1 Nomor Objek Pajak PBB ", ": " . $data["njop_pbb"]);
 		$this->barisBaru("", "2 Letak tanah atau bangunan", ": " . $data["object_address_name"]);
 		$this->barisBaru("", "3 RT/RW", ": " . $data["object_rt"] . "/" . $data["object_rw"]);
 		$this->barisBaru("", "4 Kelurahan/Desa", ": " . $data["object_region_kel"]);
