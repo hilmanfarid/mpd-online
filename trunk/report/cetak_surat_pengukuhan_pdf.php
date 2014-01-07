@@ -21,15 +21,18 @@ $query="select c.company_owner ,
 		b.p_vat_type_id,
 		type.vat_code,
 		c.reg_letter_no,
-		decode(c.p_hotel_grade_id,null,null,1,1,2,1,3,1,4,1,5,1,0) as klasifikasi
+		decode(c.p_hotel_grade_id,null,null,1,1,2,1,3,1,4,1,5,1,0) as klasifikasi,
+		d.vat_code as detail_jenis_pajak
 from t_customer_order a,
 		p_rqst_type b,
 		t_vat_registration c,
-		p_vat_type type
+		p_vat_type type,
+		p_vat_type_dtl d
 where a.p_rqst_type_id = b.p_rqst_type_id
 	and a.t_customer_order_id = c.t_customer_order_id
 	and b.p_vat_type_id = type.p_vat_type_id
-	and a.t_customer_order_id = ".$t_customer_order_id;
+	and c.p_vat_type_dtl_id = d.p_vat_type_dtl_id
+	and a.t_customer_order_id =".$t_customer_order_id;
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
@@ -42,6 +45,7 @@ while ($dbConn->next_record()) {
 		$data["reg_letter_no"] = $dbConn->f("reg_letter_no");
 		$data["klasifikasi"] = $dbConn->f("klasifikasi");
 		$data["vat_code"] = $dbConn->f("vat_code");
+		$data["detail_jenis_pajak"] = $dbConn->f("detail_jenis_pajak");
 }
 
 $dbConn->query("end;");
@@ -200,14 +204,26 @@ class FormCetak extends FPDF {
 		
 		$bintang = " ";
 		$melati = " ";
-		switch($data["klasifikasi"]){
-			case 1: $bintang = "X"; break;
-			case 0: $melati = "X"; break;
+		$detail_bintang = array();
+		$detail_melati = array();
+		if(strpos(strtolower($data["detail_jenis_pajak"]), "bintang") !== false){ //HOTEL BINTANG X
+			preg_match("/\d+/", $data["detail_jenis_pajak"], $detail_bintang);
+			$bintang = $detail_bintang[0];
 		}
-		if(is_null($data["klasifikasi"])){
-			$bintang = " ";
-			$melati = " ";
+		else if(strpos(strtolower($data["detail_jenis_pajak"]), "melati") !== false){ //HOTEL MELATI X
+			preg_match("/\d+/", $data["detail_jenis_pajak"], $detail_melati);
+			$melati = $detail_melati[0];
 		}
+		
+		// switch($data["klasifikasi"]){
+			// case 1: $bintang = "X"; break;
+			// case 0: $melati = "X"; break;
+		// }
+		
+		// if(is_null($data["klasifikasi"])){
+			// $bintang = " ";
+			// $melati = " ";
+		// }
 		
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 1
 		$this->SetCourier();
