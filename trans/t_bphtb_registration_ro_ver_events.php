@@ -124,7 +124,10 @@ function t_bphtb_registrationForm_BeforeShow(& $sender)
 
 //Custom Code @140-2A29BDB7
 // -------------------------
-    
+	$pemeriksa = $t_bphtb_registrationForm->verificated_by->GetValue();
+    if( empty($pemeriksa) ) {
+		$t_bphtb_registrationForm->verificated_by->SetValue( CCGetUserLogin() );
+	}
 // -------------------------
 //End Custom Code
 

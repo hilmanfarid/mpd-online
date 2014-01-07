@@ -729,7 +729,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<CustomParameter id="127" field="mobile_phone_no" dataType="Text" parameterType="Control" parameterSource="mobile_phone_no" omitIfEmpty="True"/>
 				<CustomParameter id="128" field="wp_p_region_id_kec" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="wp_p_region_id_kec"/>
 				<CustomParameter id="129" field="object_p_region_id_kel" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="object_p_region_id_kel"/>
-				<CustomParameter id="138" field="verificated_by" dataType="Text" parameterType="Control" omitIfEmpty="False" parameterSource="verificated_by" defaultValue="updated_by"/>
+				<CustomParameter id="138" field="verificated_by" dataType="Text" parameterType="Control" omitIfEmpty="False" parameterSource="verificated_by"/>
 <CustomParameter id="139" field="verificated_nip" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="verificated_nip"/>
 </UFormElements>
 			<DSPParameters>
