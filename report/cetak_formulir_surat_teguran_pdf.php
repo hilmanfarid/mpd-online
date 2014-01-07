@@ -377,10 +377,11 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("L", "L", "L", "L", "L", "L", "L"));
 		$this->SetWidths(array(10,173, 5));
 		$this->RowMultiBorderWithHeight(array("",
-				"Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Peraturan Daerah Nomor 20 ".
-				"Tahun 2011, maka diminta kepada Saudara agar melunasi jumlah Tunggakan dalam waktu 7 (tujuh) hari ".
-				"setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan dilanjutkan dengan ".
-				"penyerahan Surat Paksa",
+				"Sampai saat ini belum melunasi pembayaran pajak\n\n".
+				"Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang-undang Nomor 28 Tahun 2009 dan Peraturan Daerah Nomor 20 ".
+				"Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi jumlah tunggakan dalam waktu 7 (tujuh) hari ".
+				"setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti dengan ".
+				"penyerahan Surat Paksa.",
 				""
 			),
 			array("L",
@@ -394,7 +395,22 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->SetWidths(array(10,173, 5));
 		$this->RowMultiBorderWithHeight(array("",
-				"Dalam hal Saudara telah melunasi Tunggakan tersebut di atas, diminta agar Saudara segera melaporkan kepada",
+				"Apabila saudara telah melaksanakan pembayaran pajak tersebut, kami mohon untuk dapat memperlihatkan SSPD yang telah divalidasi ".
+				"dengan melampirkan photo copy dokumen yang dimaksud.",
+				""
+			),
+			array("L",
+				"",
+				"R"
+			),
+			$this->height
+		);
+		
+		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
+		$this->Ln();
+		$this->SetWidths(array(10,173, 5));
+		$this->RowMultiBorderWithHeight(array("",
+				"Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan terima kasih.",
 				""
 			),
 			array("L",
