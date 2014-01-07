@@ -171,6 +171,7 @@ class FormCetak extends FPDF {
 			//jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
 			$jenis = $data["nama_jns_pajak"][$i];
 			$jenissesudah = $data["nama_jns_pajak"][$i + 1];
+			$this->SetFont('Arial', 'B', 10);
 			if($jenis != $jenissesudah){
 				$jumlahperjenis[] = $jumlahtemp;
 				$jumlahperjenis_harilalu[] = $jumlahtemp_harilalu;
@@ -195,6 +196,7 @@ class FormCetak extends FPDF {
 				$jumlahtotal_harilalu = 0;
 				$jumlahtotal_hariini = 0;
 			}
+			$this->SetFont('Arial', '', 10);
 		}
 
 		$this->Ln();
