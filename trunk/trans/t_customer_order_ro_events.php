@@ -87,6 +87,9 @@ function t_vat_registrationForm_BeforeShow(& $sender)
 //Custom Code @874-2A29BDB7
 // -------------------------
     // Write your own code here.
+	if(CCGetFromGet('IS_VIEW_ONLY')=='Y'){
+		$t_vat_registrationForm->Button2->Visible=false;
+	}
 	$id = $t_vat_registrationForm->p_rqst_type_id->GetValue();
 	if($id == 1){
   		$t_vat_registrationForm->Label1->setValue("Kelas Hotel");
