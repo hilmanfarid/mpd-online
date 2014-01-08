@@ -8,8 +8,20 @@ $user = CCGetUserLogin();
 ?>
 <html>
 <head>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script>
+	var refreshIntervalId = setInterval(function(){
+		$.getJSON( "../services/session_check.php", function( data ) {
+			var items = [];
+			if(data.UserName == '' || data.UserName == null || data.UserName == "undefinied")
+			window.parent.document.location='../index.php';
+			$.each( data, function( key, val ) {
+				//items.push( "<li id='" + key + "'>" + val + "</li>" );
+			});
+		});
+		
+    },20000);
     function callModal()
      {
         window.parent.myModal(); // I know this wont work.. just an example
