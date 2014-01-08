@@ -15,11 +15,14 @@ $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 // $p_year_period_id	= 4;
 // $tgl_penerimaan		= '15-12-2013';
 
+$tahun = date("Y", strtotime(str_replace("'", "", $tgl_penerimaan)));
+
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
 $query				= "select * from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
+
 while ($dbConn->next_record()) {
 	$data[]= array(
 	"kode_jns_trans"	=> $dbConn->f("kode_jns_trans"),
@@ -31,25 +34,17 @@ while ($dbConn->next_record()) {
 	"nama_ayat"		=> $dbConn->f("nama_ayat"),
 	"no_kohir"		=> $dbConn->f("no_kohir"),
 	"wp_name"			=> $dbConn->f("wp_name"),
+	"wp_address_name"	=> $dbConn->f("wp_address_name"),
+	"wp_address_no"		=> $dbConn->f("wp_address_no"),
 	"npwpd"			=> $dbConn->f("npwpd"),
 	"jumlah_terima"	=> $dbConn->f("jumlah_terima"),
 	"masa_pajak"		=> $dbConn->f("masa_pajak"),
 	"kd_tap"			=> $dbConn->f("kd_tap"),
 	"keterangan"		=> $dbConn->f("keterangan"),
 	"payment_date"		=> $dbConn->f("payment_date"),
+	"tahun"		=> $tahun,
 	"jam"		=> $dbConn->f("jam"));
 }
-/*
-if ($data["no_urut"] != "") {
-//barcode
-	$bcr = "select f_gen_barcode('".$data["no_urut"]."')";
-	$dbConn->query($bcr);
-	while($dbConn->next_record()){
-		$data["barcode"] = $dbConn->f("f_gen_barcode");
-	}
-}
-//end barcode
-*/
 $dbConn->close();
 
 class FormCetak extends FPDF {
@@ -100,15 +95,15 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "SSPD", "R", 0, 'C');
+		$this->Cell($lheader4, $this->height, "BPPS", "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "(SURAT SETORAN PAJAK DAERAH)", "R", 0, 'C');
+		$this->Cell($lheader4, $this->height, "(BUKU PEMBANTU PENERIMAAN SEJENIS)", "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "Tahun " . $data["tahun"], "R", 0, 'C');		
+		$this->Cell($lheader4, $this->height, "Tahun " . $data["tahun"][0], "R", 0, 'C');		
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
