@@ -15,14 +15,14 @@ $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 // $p_year_period_id	= 4;
 // $tgl_penerimaan		= '15-12-2013';
 
-$tahun = date("Y", strtotime(str_replace("'", "", $tgl_penerimaan)));
 
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
 $query				= "select * from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
-
+$tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
+$tahun = date("Y", strtotime($tgl_penerimaan));
 while ($dbConn->next_record()) {
 	$data[]= array(
 	"kode_jns_trans"	=> $dbConn->f("kode_jns_trans"),
@@ -75,7 +75,7 @@ class FormCetak extends FPDF {
 	}
 	*/
 	
-	function PageCetak($data, $user, $tahun) {
+	function PageCetak($data, $user, $tahun, $tgl_penerimaan) {
 		$this->AliasNbPages();
 		$this->AddPage("L");
 		$this->SetFont('Arial', '', 10);
@@ -106,7 +106,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "", "R", 0, 'C');
+		$this->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
 		$this->Cell($lheader3, $this->height, "", "BR", 0, 'L');
@@ -130,7 +130,7 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable3, $this->height + 2, "NPWPD", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "JUMLAH", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "MASA PAJAK", "TBLR", 0, 'C');
-		$this->Cell($ltable2, $this->height + 2, "KD TAP", "TBLR", 0, 'C');
+		$this->Cell($ltable2, $this->height + 2, "TGL TAP", "TBLR", 0, 'C');
 		$this->Cell($ltable2, $this->height + 2, "KET.", "TBLR", 0, 'C');
 		$this->Ln();
 
@@ -398,6 +398,6 @@ class FormCetak extends FPDF {
 }
 
 $formulir = new FormCetak();
-$formulir->PageCetak($data, $user, $tahun);
+$formulir->PageCetak($data, $user, $tahun, $tgl_penerimaan);
 $formulir->Output();
 ?>
