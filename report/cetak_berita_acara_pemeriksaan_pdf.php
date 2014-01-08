@@ -283,7 +283,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-		$this->Ln();
+		//$this->Ln();
 		
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
