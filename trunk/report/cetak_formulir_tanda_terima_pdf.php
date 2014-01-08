@@ -12,11 +12,19 @@ $dbConn = new clsDBConnSIKP();
 
 $query = "begin;";
 $dbConn->query($query);
-
-$query = "select  b.code || decode(a.legal_doc_desc,null,'',' ('||a.legal_doc_desc||')') as doc_name, c.order_no,cust_account.wp_name,cust_account.address_name
-from t_cust_order_legal_doc a, p_legal_doc_type b,t_customer_order c,t_cust_account cust_account
-where a.p_legal_doc_type_id = b.p_legal_doc_type_id 
-and a.t_customer_order_id = ".$t_customer_order_id." and c.t_customer_order_id = a.t_customer_order_id and cust_account.t_customer_order_id=a.t_customer_order_id";
+$query = "SELECT * from(
+SELECT
+	 b.code || decode(a.legal_doc_desc,null,'',' ('||a.legal_doc_desc||')') as doc_name, c.order_no,A.t_customer_order_id
+FROM
+	t_cust_order_legal_doc A,
+	p_legal_doc_type b,
+	t_customer_order C
+WHERE
+	A .p_legal_doc_type_id = b.p_legal_doc_type_id
+AND A .t_customer_order_id = ".$t_customer_order_id."
+AND C .t_customer_order_id = A .t_customer_order_id) base_doc
+LEFT JOIN	t_cust_account cust_account ON cust_account.t_customer_order_id = base_doc.t_customer_order_id
+";
 $dbConn->query($query);
 $i=0;
 while ($dbConn->next_record()) {
@@ -194,14 +202,20 @@ class FormCetak extends FPDF {
 		$kolom2 = ($this->lengthCell * 5) / 8;
 		$this->SetWidths(array($kolom1, $kolom2));
 		$this->SetAligns(array("L", "L"));
-	   	$this->RowMultiBorderWithHeight(array("Nama",
+		if(empty($data["wp_name"])){
+			$this->printIsi('Nama', 2);
+		}else{
+	   		$this->RowMultiBorderWithHeight(array("Nama",
 											  ":  ".$data["wp_name"])
 											  ,
 										array('L',
 										      'R')
 											  ,$this->height*2);
 		
-	   	
+	   	}
+		if(empty($data["address_name"])){
+			$this->printIsi('Alamat', 2);
+		}else{
 	   	$this->RowMultiBorderWithHeight(array("Alamat",
 											  ":  ".$data["address_name"])
 											  ,
@@ -209,6 +223,7 @@ class FormCetak extends FPDF {
 										      'R')
 											  ,$this->height*2);
 		
+		}
 		/*
         $this->printIsi('Telah Menerima', 4, $data);
 		*/
