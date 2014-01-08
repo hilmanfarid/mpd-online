@@ -172,7 +172,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -222,13 +222,13 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">No Registrasi&nbsp;</td> 
-                    <td colspan="6"><label for="t_bphtb_registrationFormregistration_no" style="display: none;">&nbsp;</label><input style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" id="t_bphtb_registrationFormregistration_no" name="{registration_no_Name}" readonly value="{registration_no}"></td>
+                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormregistration_no">&nbsp;</label><input style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" id="t_bphtb_registrationFormregistration_no" name="{registration_no_Name}" readonly value="{registration_no}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama</label></label></label></label></label></label></label></td> 
-                    <td colspan="6"><label for="t_bphtb_registrationFormwp_name" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" name="{wp_name_Name}" value="{wp_name}">&nbsp;</td>
+                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormwp_name">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" name="{wp_name_Name}" value="{wp_name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -287,7 +287,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Nomor Objek Pajak</td> 
-                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" value="{njop_pbb}"></td>
+                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormnjop_pbb">&nbsp;</label><input id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" value="{njop_pbb}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -413,20 +413,20 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Pemeriksa</td> 
-                    <td colspan="6"><label for="t_bphtb_registrationFormverificated_by" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormverificated_by" name="{verificated_by_Name}" value="{verificated_by}" size="26"></td>
+                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormverificated_by">&nbsp;</label><input id="t_bphtb_registrationFormverificated_by" name="{verificated_by_Name}" value="{verificated_by}" size="26"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">NIP</td> 
-                    <td colspan="6"><label for="t_bphtb_registrationFormverificated_nip" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormverificated_nip" name="{verificated_nip_Name}" value="{verificated_nip}"></td>
+                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormverificated_nip">&nbsp;</label><input id="t_bphtb_registrationFormverificated_nip" name="{verificated_nip_Name}" value="{verificated_nip}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="9" align="right">&nbsp; 
                       <!-- BEGIN Button Button3 --><input id="t_bphtb_registrationFormButton3" class="btn_tambah" onclick="printLaporan();" name="{Button_Name}" alt="Button2" value="CETAK NOTA VERIFIKASI" type="submit"><!-- END Button Button3 -->&nbsp; 
                       <!-- BEGIN Button Button2 --><input id="t_bphtb_registrationFormButton2" class="btn_tambah" onclick="submitter();return false;" name="{Button_Name}" alt="Button2" value="SUBMIT" type="submit"><!-- END Button Button2 -->
-                      <!-- BEGIN Button Button_Insert --><input id="t_bphtb_registrationFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_bphtb_registrationFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input id="t_bphtb_registrationFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
                       <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="t_bphtb_registrationFormButton_Delete" class="btn_tambah" disabled name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
                       <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_bphtb_registrationFormButton_Cancel" class="btn_tambah" disabled name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --></td>

@@ -52,18 +52,18 @@ order by regis.t_bphtb_registration_id DESC">
 					<Features/>
 				</Label>
 				<Button id="702" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_bphtb_registration_listButton1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-<Hidden id="704" fieldSourceType="DBColumn" dataType="Text" html="False" name="t_customer_order_id" fieldSource="t_customer_order_id" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_registration_listt_customer_order_id">
-<Components/>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Hidden id="704" fieldSourceType="DBColumn" dataType="Text" html="False" name="t_customer_order_id" fieldSource="t_customer_order_id" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_registration_listt_customer_order_id">
+					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -152,9 +152,9 @@ order by regis.t_bphtb_registration_id DESC">
 			</Actions>
 		</Event>
 		<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="703"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="703"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
