@@ -138,7 +138,12 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 						<Action actionName="Custom Code" actionCategory="General" id="124" eventType="Server"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="316"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 			</TableParameters>
 			<JoinTables>

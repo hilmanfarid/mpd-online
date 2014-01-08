@@ -3,13 +3,14 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-3C50AC06
+//BindEvents Method @1-FDFEAE1D
 function BindEvents()
 {
     global $t_vat_setllementGrid;
     global $CCSEvents;
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
+    $t_vat_setllementGrid->CCSEvents["BeforeShow"] = "t_vat_setllementGrid_BeforeShow";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
@@ -130,6 +131,30 @@ function t_vat_setllementGrid_BeforeSelect(& $sender)
     return $t_vat_setllementGrid_BeforeSelect;
 }
 //End Close t_vat_setllementGrid_BeforeSelect
+
+//t_vat_setllementGrid_BeforeShow @2-27F9F7A4
+function t_vat_setllementGrid_BeforeShow(& $sender)
+{
+    $t_vat_setllementGrid_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementGrid; //Compatibility
+//End t_vat_setllementGrid_BeforeShow
+
+//Custom Code @316-2A29BDB7
+// -------------------------
+    if(CCGetFromGet("s_keyword") == "") {
+		$t_vat_setllementGrid->Visible = false;
+	}else {
+		$t_vat_setllementGrid->Visible = true;
+	}
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementGrid_BeforeShow @2-542B3DA4
+    return $t_vat_setllementGrid_BeforeShow;
+}
+//End Close t_vat_setllementGrid_BeforeShow
 
 
 //Page_OnInitializeView @1-4A78AFD3
