@@ -28,6 +28,9 @@ if (empty($idVatSS)) {
         $data["company_brand"] = $dbConn->f("company_brand");
         $data["brand_address_name"] = $dbConn->f("brand_address_name");
         $data["reg_letter_no"] = $dbConn->f("reg_letter_no");
+		$data["wp_name"] = $dbConn->f("wp_name");
+		$data["wp_address_name"] = $dbConn->f("wp_address_name");
+		$data["wp_address_no"] = $dbConn->f("wp_address_no");
     }
 	$dbConn->close();
 }
@@ -112,7 +115,7 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Nomor          :", "", 0, 'L');
-        $this->Cell($lengthJudul2, $this->height, "973/               -Dafda/" . $this->romanNumerals(date("m")) . "/2013", "", 0, 'L');
+        $this->Cell($lengthJudul2, $this->height, "973/               -Dafda/" . $this->romanNumerals(date("m")) . "/" . date("Y"), "", 0, 'L');
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Lampiran      :", "", 0, 'L');
@@ -139,7 +142,7 @@ class FormCetak extends FPDF {
         $lengWP2 = $lengthJudul2 * 2/3;
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "Nama Perusahaan", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, ": ".$data["company_name"], "", "", 'L');
+        $this->Cell($lengWP2, $this->height, ": ".$data["wp_name"], "", "", 'L');
         $this->Ln(5);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
@@ -149,7 +152,7 @@ class FormCetak extends FPDF {
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "Alamat", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, ": ".$data["address_name"], "", "", 'L');
+        $this->Cell($lengWP2, $this->height, ": ".$data["wp_address_name"]. " " . $data["wp_address_no"], "", "", 'L');
         $this->Ln(5);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
