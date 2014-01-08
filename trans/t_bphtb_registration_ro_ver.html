@@ -146,7 +146,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 jQuery.noConflict();
 jQuery(document).ready(function()
 {
-        jQuery(".numeric-field").maskMoney({thousands:',', precision: 0, defaultZero:false});
+        jQuery(".numeric-field").maskMoney({thousands:',', precision: 0, defaultZero:true,allowZero: true});
     jQuery(window).scroll(function()
     {
             jQuery('#tabtop').css('top', jQuery(window).scrollTop());
@@ -172,7 +172,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -222,13 +222,13 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">No Registrasi&nbsp;</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormregistration_no">&nbsp;</label><input style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" id="t_bphtb_registrationFormregistration_no" name="{registration_no_Name}" readonly value="{registration_no}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormregistration_no" style="display: none;">&nbsp;</label><input style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" id="t_bphtb_registrationFormregistration_no" name="{registration_no_Name}" readonly value="{registration_no}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama</label></label></label></label></label></label></label></td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormwp_name">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" name="{wp_name_Name}" value="{wp_name}">&nbsp;</td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormwp_name" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" name="{wp_name_Name}" value="{wp_name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -287,7 +287,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Nomor Objek Pajak</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormnjop_pbb">&nbsp;</label><input id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" value="{njop_pbb}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" value="{njop_pbb}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -343,7 +343,7 @@ jQuery(document).ready(function()
                     <td class="th" colspan="2">&nbsp;Tanah</td> 
                     <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" class="numeric-field" onkeyup="hitungTotalTanah();" name="{land_area_Name}" value="{land_area}">&nbsp;m2</td> 
                     <td class="th">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_price_per_m" class="numeric-field" onkeyup="hitungTotalTanah();" name="{land_price_per_m_Name}" value="{land_price_per_m}"></td> 
-                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" class="numeric-field" name="{land_total_price_Name}" readonly value="{land_total_price}"></td>
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" name="{land_total_price_Name}" readonly value="{land_total_price}"></td>
                   </tr>
  
                   <tr class="Controls" onkeyup="document.getElementById(&amp;quot;t_bphtb_registrationFormland_total_price&amp;quot;).value=hitungTotalTanah();">
@@ -351,7 +351,7 @@ jQuery(document).ready(function()
                     <td class="th" colspan="2">&nbsp;Bangunan</td> 
                     <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" class="numeric-field" onkeyup="hitungTotalBangunan();" name="{building_area_Name}" value="{building_area}">&nbsp;m2</td> 
                     <td>&nbsp;Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_price_per_m" class="numeric-field" onkeyup="hitungTotalBangunan();" name="{building_price_per_m_Name}" value="{building_price_per_m}"></td> 
-                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" class="numeric-field" name="{building_total_price_Name}" readonly value="{building_total_price}"></td>
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" name="{building_total_price_Name}" readonly value="{building_total_price}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -413,13 +413,13 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Pemeriksa</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormverificated_by">&nbsp;</label><input id="t_bphtb_registrationFormverificated_by" name="{verificated_by_Name}" value="{verificated_by}" size="26"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormverificated_by" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormverificated_by" name="{verificated_by_Name}" value="{verificated_by}" size="26"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">NIP</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormverificated_nip">&nbsp;</label><input id="t_bphtb_registrationFormverificated_nip" name="{verificated_nip_Name}" value="{verificated_nip}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormverificated_nip" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormverificated_nip" name="{verificated_nip_Name}" value="{verificated_nip}"></td>
                   </tr>
  
                   <tr class="Bottom">
@@ -597,17 +597,25 @@ function toReg3()
 
 function hitungTotalTanah(){
                 //alert(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,./g ,''));
-        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
-        hasil=ReplaceNumberWithCommas(hasil);
-                document.getElementById('t_bphtb_registrationFormland_total_price').value=hasil;
-                var total_price=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
-        document.getElementById('t_bphtb_registrationFormtotal_price').value = total_price;
-        getNPOP();
-        hitungNPOPKP();
+        var hasil=0;
+                if(document.getElementById("t_bphtb_registrationFormland_area").value==0||document.getElementById("t_bphtb_registrationFormland_price_per_m").value==0){
+                        hasil=0
+                }else{
+                        hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
+                }
+                document.getElementById('t_bphtb_registrationFormland_total_price').value=ReplaceNumberWithCommas(hasil);
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
+                getNPOP();
+                hitungNPOPKP();
 }
 function hitungTotalBangunan(){
-        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
-        document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
+                var hasil=0;
+                if(document.getElementById("t_bphtb_registrationFormbuilding_area").value==0||document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value==0){
+                        hasil=0
+                }else{
+                        hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
+                }
+                document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
                 document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 

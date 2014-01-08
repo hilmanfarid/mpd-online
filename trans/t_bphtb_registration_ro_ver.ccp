@@ -161,7 +161,7 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="25" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_total_price" PathID="t_bphtb_registrationFormland_total_price" defaultValue="0" fieldSource="land_total_price" format="#,##">
+				<TextBox id="25" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_total_price" PathID="t_bphtb_registrationFormland_total_price" defaultValue="0" fieldSource="land_total_price" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -179,7 +179,7 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="28" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_total_price" PathID="t_bphtb_registrationFormbuilding_total_price" defaultValue="0" fieldSource="building_total_price" format="#,##">
+				<TextBox id="28" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_total_price" PathID="t_bphtb_registrationFormbuilding_total_price" defaultValue="0" fieldSource="building_total_price" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -808,6 +808,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_bphtb_registration_ro_ver_events.php" forShow="False" comment="//" codePage="windows-1252"/>
+
 		<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_ro_ver.php" forShow="True" url="t_bphtb_registration_ro_ver.php" comment="//" codePage="windows-1252"/>
 	</CodeFiles>
 	<SecurityGroups/>
