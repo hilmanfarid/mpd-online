@@ -14,8 +14,10 @@ $user = CCGetUserLogin();
 	var refreshIntervalId = setInterval(function(){
 		$.getJSON( "../services/session_check.php", function( data ) {
 			var items = [];
-			if(data.UserName == '' || data.UserName == null || data.UserName == "undefinied")
-			window.parent.document.location='../index.php';
+			if(data.UserName == '' || data.UserName == null || data.UserName == "undefinied"){
+				alert('Session Anda Telah Habis, Silahkan Login Kembali');
+				window.parent.document.location='../index.php';
+			}
 			$.each( data, function( key, val ) {
 				//items.push( "<li id='" + key + "'>" + val + "</li>" );
 			});
