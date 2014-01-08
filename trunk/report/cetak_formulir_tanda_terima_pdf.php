@@ -205,7 +205,7 @@ class FormCetak extends FPDF {
 		if(empty($data["wp_name"])){
 			$this->printIsi('Nama', 2);
 		}else{
-	   		$this->RowMultiBorderWithHeight(array("Nama",
+	   		$this->RowMultiBorderWithHeight(array("       "."Nama",
 											  ":  ".$data["wp_name"])
 											  ,
 										array('L',
@@ -216,7 +216,7 @@ class FormCetak extends FPDF {
 		if(empty($data["address_name"])){
 			$this->printIsi('Alamat', 2);
 		}else{
-	   	$this->RowMultiBorderWithHeight(array("Alamat",
+	   	$this->RowMultiBorderWithHeight(array("       "."Alamat",
 											  ":  ".$data["address_name"])
 											  ,
 										array('L',
@@ -233,7 +233,7 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("L", "L"));
 		for ($i=0; $i<count($data['doc_name']); $i++) {
 			if($i==0){
-				$this->RowMultiBorderWithHeight(array("Dokumen",
+				$this->RowMultiBorderWithHeight(array("       "."Dokumen",
 													  ":  - ".$data["doc_name"][$i])
 													  ,
 												array('L',
