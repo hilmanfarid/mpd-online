@@ -16,9 +16,9 @@ if (empty($idVatSS)) {
     echo "Data Tidak Ditemukan";
     exit;
 }else {
-    $sql = "SELECT * "
-        . "FROM t_vat_registration "
-        . "WHERE t_customer_order_id = " . $idVatSS;
+    $sql = "select *, b.vat_code from t_vat_registration a, p_vat_type_dtl b ".
+	"where a.t_customer_order_id = $idVatSS ".
+	"and a.p_vat_type_dtl_id = b.p_vat_type_dtl_id";
 
     $dbConn->query($sql);
     while ($dbConn->next_record()) {
@@ -27,10 +27,12 @@ if (empty($idVatSS)) {
         $data["address_name"] = $dbConn->f("address_name");
         $data["company_brand"] = $dbConn->f("company_brand");
         $data["brand_address_name"] = $dbConn->f("brand_address_name");
+        $data["brand_address_no"] = $dbConn->f("brand_address_no");
         $data["reg_letter_no"] = $dbConn->f("reg_letter_no");
 		$data["wp_name"] = $dbConn->f("wp_name");
-		$data["wp_address_name"] = $dbConn->f("wp_address_name");
-		$data["wp_address_no"] = $dbConn->f("wp_address_no");
+		$data["address_name_owner"] = $dbConn->f("address_name_owner");
+		$data["address_no_owner"] = $dbConn->f("address_no_owner");
+		$data["vat_code"] = $dbConn->f("vat_code");
     }
 	$dbConn->close();
 }
@@ -141,8 +143,8 @@ class FormCetak extends FPDF {
         $lengWP1 = $lengthJudul2 * 1/3;
         $lengWP2 = $lengthJudul2 * 2/3;
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->Cell($lengWP1, $this->height, "Nama Perusahaan", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, ": ".$data["wp_name"], "", "", 'L');
+        $this->Cell($lengWP1, $this->height, "Nama Merk Dagang", "", "", 'L');
+        $this->Cell($lengWP2, $this->height, ": ".$data["company_brand"], "", "", 'L');
         $this->Ln(5);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
@@ -152,17 +154,17 @@ class FormCetak extends FPDF {
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "Alamat", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, ": ".$data["wp_address_name"]. " " . $data["wp_address_no"], "", "", 'L');
+        $this->Cell($lengWP2, $this->height, ": ".$data["address_name_owner"]. " " . $data["address_no_owner"], "", "", 'L');
         $this->Ln(5);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "Jenis Usaha", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, ": ".$data["company_brand"], "", "", 'L');
+        $this->Cell($lengWP2, $this->height, ": ".$data["vat_code"], "", "", 'L');
         $this->Ln(5);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "Alamat Usaha", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, ": ".$data["brand_address_name"], "", "", 'L');
+        $this->Cell($lengWP2, $this->height, ": ".$data["brand_address_name"] . " ".$data["brand_address_no"], "", "", 'L');
         $this->Ln();
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');

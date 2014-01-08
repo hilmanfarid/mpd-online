@@ -42,7 +42,6 @@ while ($dbConn->next_record()) {
 	"kd_tap"			=> $dbConn->f("kd_tap"),
 	"keterangan"		=> $dbConn->f("keterangan"),
 	"payment_date"		=> $dbConn->f("payment_date"),
-	"tahun"		=> $tahun,
 	"jam"		=> $dbConn->f("jam"));
 }
 $dbConn->close();
@@ -76,7 +75,7 @@ class FormCetak extends FPDF {
 	}
 	*/
 	
-	function PageCetak($data, $user) {
+	function PageCetak($data, $user, $tahun) {
 		$this->AliasNbPages();
 		$this->AddPage("L");
 		$this->SetFont('Arial', '', 10);
@@ -103,7 +102,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "Tahun " . $data["tahun"][0], "R", 0, 'C');		
+		$this->Cell($lheader4, $this->height, "Tahun " . $tahun, "R", 0, 'C');		
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
@@ -399,6 +398,6 @@ class FormCetak extends FPDF {
 }
 
 $formulir = new FormCetak();
-$formulir->PageCetak($data, $user);
+$formulir->PageCetak($data, $user, $tahun);
 $formulir->Output();
 ?>
