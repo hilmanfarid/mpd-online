@@ -113,7 +113,7 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="901" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kelurahan" fieldSource="wp_kelurahan" required="True" caption="Kelurahan - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kelurahan">
+				<TextBox id="901" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kelurahan" fieldSource="object_kelurahan" required="True" caption="Kelurahan - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kelurahan">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -125,25 +125,25 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="904" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kecamatan" caption="Kecamatan - WP" fieldSource="wp_kecamatan" required="True" PathID="t_bphtb_registrationFormobject_kecamatan">
+				<TextBox id="904" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kecamatan" caption="Kecamatan - WP" fieldSource="object_kecamatan" required="True" PathID="t_bphtb_registrationFormobject_kecamatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="906" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kec" fieldSource="wp_p_region_id_kec" caption="Kecamatan - Object" required="True">
+				<Hidden id="906" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kec" fieldSource="object_p_region_id_kec" caption="Kecamatan - Object" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="907" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kota" fieldSource="wp_kota" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kota" defaultValue="'KOTA BANDUNG'">
+				<TextBox id="907" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kota" fieldSource="object_region" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kota" defaultValue="'KOTA BANDUNG'">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="909" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id" fieldSource="wp_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
+				<Hidden id="909" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id" fieldSource="wp_p_region_idobject_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -488,13 +488,13 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="134" fieldSourceType="DBColumn" dataType="Text" name="p_rqst_type_id" PathID="t_bphtb_registrationFormp_rqst_type_id" fieldSource="p_rqst_type_id">
+				<Hidden id="134" fieldSourceType="DBColumn" dataType="Text" name="p_rqst_type_id" PathID="t_bphtb_registrationFormp_rqst_type_id" fieldSource="p_rqst_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>

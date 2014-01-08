@@ -1203,7 +1203,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @2-99B00976
+//SetValues Method @2-557BC1F3
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1215,12 +1215,12 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
         $this->npwp->SetDBValue($this->f("npwp"));
-        $this->object_kelurahan->SetDBValue($this->f("wp_kelurahan"));
-        $this->object_p_region_id_kel->SetDBValue(trim($this->f("wp_p_region_id_kel")));
-        $this->object_kecamatan->SetDBValue($this->f("wp_kecamatan"));
-        $this->object_p_region_id_kec->SetDBValue(trim($this->f("wp_p_region_id_kec")));
-        $this->object_kota->SetDBValue($this->f("wp_kota"));
-        $this->object_p_region_id->SetDBValue(trim($this->f("wp_p_region_id")));
+        $this->object_kelurahan->SetDBValue($this->f("object_kelurahan"));
+        $this->object_p_region_id_kel->SetDBValue(trim($this->f("object_p_region_id_kel")));
+        $this->object_kecamatan->SetDBValue($this->f("object_kecamatan"));
+        $this->object_p_region_id_kec->SetDBValue(trim($this->f("object_p_region_id_kec")));
+		$this->object_kota->SetDBValue($this->f("object_region"));
+        $this->object_p_region_id->SetDBValue(trim($this->f("object_p_region_id")));
         $this->land_area->SetDBValue(trim($this->f("land_area")));
         $this->land_price_per_m->SetDBValue(trim($this->f("land_price_per_m")));
         $this->land_total_price->SetDBValue(trim($this->f("land_total_price")));
@@ -1472,7 +1472,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @2-6B7EE127
+//Update Method @2-A386FEB9
     function Update()
     {
         global $CCSLocales;
@@ -1511,7 +1511,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["mobile_phone_no"] = new clsSQLParameter("ctrlmobile_phone_no", ccsText, "", "", $this->mobile_phone_no->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["wp_p_region_id_kec"] = new clsSQLParameter("ctrlwp_p_region_id_kec", ccsFloat, "", "", $this->wp_p_region_id_kec->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["verificated_by"] = new clsSQLParameter("ctrlverificated_by", ccsText, "", "", $this->verificated_by->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["verificated_by"] = new clsSQLParameter("ctrlverificated_by", ccsText, "", "", $this->verificated_by->GetValue(true), updated_by, false, $this->ErrorBlock);
         $this->cp["verificated_nip"] = new clsSQLParameter("ctrlverificated_nip", ccsText, "", "", $this->verificated_nip->GetValue(true), NULL, false, $this->ErrorBlock);
         $wp = new clsSQLParameters($this->ErrorBlock);
         $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
@@ -1595,6 +1595,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["object_p_region_id_kel"]->SetValue($this->object_p_region_id_kel->GetValue(true));
         if (!is_null($this->cp["verificated_by"]->GetValue()) and !strlen($this->cp["verificated_by"]->GetText()) and !is_bool($this->cp["verificated_by"]->GetValue())) 
             $this->cp["verificated_by"]->SetValue($this->verificated_by->GetValue(true));
+        if (!strlen($this->cp["verificated_by"]->GetText()) and !is_bool($this->cp["verificated_by"]->GetValue(true))) 
+            $this->cp["verificated_by"]->SetText(updated_by);
         if (!is_null($this->cp["verificated_nip"]->GetValue()) and !strlen($this->cp["verificated_nip"]->GetText()) and !is_bool($this->cp["verificated_nip"]->GetValue())) 
             $this->cp["verificated_nip"]->SetValue($this->verificated_nip->GetValue(true));
         $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);

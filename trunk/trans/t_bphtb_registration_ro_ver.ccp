@@ -113,37 +113,37 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kelurahan" fieldSource="wp_kelurahan" required="True" caption="Kelurahan - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kelurahan">
+				<TextBox id="17" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kelurahan" fieldSource="object_kelurahan" required="True" caption="Kelurahan - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kelurahan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="18" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kel" fieldSource="wp_p_region_id_kel" caption="Kelurahan - Object" required="True">
+				<Hidden id="18" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kel" fieldSource="object_p_region_id_kel" caption="Kelurahan - Object" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="19" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kecamatan" caption="Kecamatan - WP" fieldSource="wp_kecamatan" required="True" PathID="t_bphtb_registrationFormobject_kecamatan">
+				<TextBox id="19" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kecamatan" caption="Kecamatan - WP" fieldSource="object_kecamatan" required="True" PathID="t_bphtb_registrationFormobject_kecamatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="20" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kec" fieldSource="wp_p_region_id_kec" caption="Kecamatan - Object" required="True">
+				<Hidden id="20" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id_kec" fieldSource="object_p_region_id_kec" caption="Kecamatan - Object" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kota" fieldSource="wp_kota" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kota" defaultValue="'KOTA BANDUNG'">
+				<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="object_kota" fieldSource="object_region" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormobject_kota" defaultValue="'KOTA BANDUNG'">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="22" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id" fieldSource="wp_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
+				<Hidden id="22" fieldSourceType="DBColumn" dataType="Float" name="object_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormobject_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True" fieldSource="object_p_region_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -514,24 +514,24 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Features/>
 				</Hidden>
 				<TextBox id="135" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="verificated_by" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormverificated_by" fieldSource="verificated_by">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="136" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="verificated_nip" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormverificated_nip" fieldSource="verificated_nip">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="137" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="registration_no" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormregistration_no" fieldSource="registration_no">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="136" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="verificated_nip" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormverificated_nip" fieldSource="verificated_nip">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="137" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="registration_no" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormregistration_no" fieldSource="registration_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -549,16 +549,16 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="140"/>
-</Actions>
-</Event>
-<Event name="AfterExecuteSelect" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="141"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="140"/>
+					</Actions>
+				</Event>
+				<Event name="AfterExecuteSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="141"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="80" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
 			</TableParameters>
@@ -729,9 +729,9 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<CustomParameter id="127" field="mobile_phone_no" dataType="Text" parameterType="Control" parameterSource="mobile_phone_no" omitIfEmpty="True"/>
 				<CustomParameter id="128" field="wp_p_region_id_kec" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="wp_p_region_id_kec"/>
 				<CustomParameter id="129" field="object_p_region_id_kel" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="object_p_region_id_kel"/>
-				<CustomParameter id="138" field="verificated_by" dataType="Text" parameterType="Control" omitIfEmpty="False" parameterSource="verificated_by"/>
-<CustomParameter id="139" field="verificated_nip" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="verificated_nip"/>
-</UFormElements>
+				<CustomParameter id="138" field="verificated_by" dataType="Text" parameterType="Control" omitIfEmpty="False" parameterSource="verificated_by" defaultValue="updated_by"/>
+				<CustomParameter id="139" field="verificated_nip" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="verificated_nip"/>
+			</UFormElements>
 			<DSPParameters>
 				<SPParameter id="Key905" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0"/>
 				<SPParameter id="Key906" parameterName="icode" parameterSource="icode" dataType="Char" parameterType="URL" dataSize="255" direction="Input" scale="0" precision="0"/>
