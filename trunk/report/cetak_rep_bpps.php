@@ -153,7 +153,7 @@ class FormCetak extends FPDF {
 			//print data
 			$this->RowMultiBorderWithHeight(array($no,
 												  $item["kode_jns_pajak"]." ".$item["kode_ayat"],
-												  $item["jns_pajak"],
+												  $item["nama_ayat"],
 												  $item["no_kohir"],
 												  $item["wp_name"],
 												  $item["npwpd"],
