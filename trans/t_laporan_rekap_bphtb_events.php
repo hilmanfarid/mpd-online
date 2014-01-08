@@ -91,6 +91,7 @@ function print_laporan($param_arr){
 			LEFT JOIN t_customer_order cust_order ON cust_order.t_customer_order_id = reg_bphtb.t_customer_order_id 
 			WHERE cust_order.p_order_status_id <> 1";
 	$query.=$whereClause;
+	$query.=" order by trunc(reg_bphtb.creation_date) ASC,upper(wp_name) ASC";
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
