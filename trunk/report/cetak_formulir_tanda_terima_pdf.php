@@ -13,14 +13,21 @@ $dbConn = new clsDBConnSIKP();
 $query = "begin;";
 $dbConn->query($query);
 
-$query = "select  b.code || decode(a.legal_doc_desc,null,'',' ('||a.legal_doc_desc||')') as doc_name, c.order_no
-from t_cust_order_legal_doc a, p_legal_doc_type b,t_customer_order c
+$query = "select  b.code || decode(a.legal_doc_desc,null,'',' ('||a.legal_doc_desc||')') as doc_name, c.order_no,cust_account.wp_name,cust_account.address_name
+from t_cust_order_legal_doc a, p_legal_doc_type b,t_customer_order c,t_cust_account cust_account
 where a.p_legal_doc_type_id = b.p_legal_doc_type_id 
-and a.t_customer_order_id = ".$t_customer_order_id." and c.t_customer_order_id = a.t_customer_order_id";
+and a.t_customer_order_id = ".$t_customer_order_id." and c.t_customer_order_id = a.t_customer_order_id and cust_account.t_customer_order_id=a.t_customer_order_id";
 $dbConn->query($query);
+$i=0;
 while ($dbConn->next_record()) {
-	$data["doc_name"] = $dbConn->f("doc_name");
-	$data["order_no"] = $dbConn->f("order_no");
+	$data["doc_name"][$i] = $dbConn->f("doc_name");
+	
+	if($i==0){
+		$data["order_no"] = $dbConn->f("order_no");
+		$data["wp_name"] = $dbConn->f("wp_name");
+		$data["address_name"] = $dbConn->f("address_name");
+	}
+	$i++;
 }
 
 $dbConn->query("end;");
@@ -180,8 +187,28 @@ class FormCetak extends FPDF {
         $this->seEnter();
 
         //--------------- ISI
-        $this->printIsi('Nama', 2);
-        $this->printIsi('Alamat', 3);
+        //$this->printIsi('Nama', 2);
+        //$this->printIsi('Alamat', 3, $data);
+	   	$this->SetFont('Arial', '', 10);
+		$kolom1 = ($this->lengthCell * 3) / 8;
+		$kolom2 = ($this->lengthCell * 5) / 8;
+		$this->SetWidths(array($kolom1, $kolom2));
+		$this->SetAligns(array("L", "L"));
+	   	$this->RowMultiBorderWithHeight(array("Nama",
+											  ":  ".$data["wp_name"])
+											  ,
+										array('L',
+										      'R')
+											  ,$this->height*2);
+		
+	   	
+	   	$this->RowMultiBorderWithHeight(array("Alamat",
+											  ":  ".$data["address_name"])
+											  ,
+										array('L',
+										      'R')
+											  ,$this->height*2);
+		
 		/*
         $this->printIsi('Telah Menerima', 4, $data);
 		*/
@@ -190,12 +217,21 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array($kolom1, $kolom2));
 		$this->SetAligns(array("L", "L"));
 		for ($i=0; $i<count($data['doc_name']); $i++) {
-		$this->RowMultiBorderWithHeight(array("       Telah Menerima",
-											  ":  ".$data["doc_name"])
-											  ,
-										array('L',
-										      'R')
-											  ,$this->height);
+			if($i==0){
+				$this->RowMultiBorderWithHeight(array("Dokumen",
+													  ":  - ".$data["doc_name"][$i])
+													  ,
+												array('L',
+												      'R')
+													  ,$this->height*1.5);
+			}else{
+				$this->RowMultiBorderWithHeight(array("",
+													  "   - ".$data["doc_name"][$i])
+													  ,
+												array('L',
+												      'R')
+													  ,$this->height*1.5);
+			}
 		}
 		
         $this->seEnter();
