@@ -15,9 +15,11 @@ function ReplaceNumberWithCommas(yourNumber) {
     return n.join(".");
 }
 function setNormalValue(){
-        jQuery(".numeric-field").each(function() {
-                var thisVal=jQuery(this).val();
-        jQuery(this).val(thisVal.replace(/,/g ,''));
+    jQuery(".numeric-field").each(function() {
+        var thisVal=jQuery(this).val();
+		if(thisVal!=0){
+        	jQuery(this).val(thisVal.replace(/,/g ,''));
+		}
     });
 }
 function getFrom_LOV(formName,fieldList,LOV_NM)
@@ -137,7 +139,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 jQuery.noConflict();
 jQuery(document).ready(function()
 {
-        jQuery(".numeric-field").maskMoney({thousands:',', precision: 0, defaultZero:false});
+	jQuery(".numeric-field").maskMoney({thousands:',', precision: 0, defaultZero:true});
     jQuery(window).scroll(function()
     {
             jQuery('#tabtop').css('top', jQuery(window).scrollTop());
@@ -567,15 +569,25 @@ function toReg3()
 
 function hitungTotalTanah(){
                 //alert(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,./g ,''));
-        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
-        document.getElementById('t_bphtb_registrationFormland_total_price').value=ReplaceNumberWithCommas(hasil);
+        var hasil=0;
+		if(document.getElementById("t_bphtb_registrationFormland_area").value==0||document.getElementById("t_bphtb_registrationFormland_price_per_m").value==0){
+			hasil=0
+		}else{
+			hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
+		}
+		document.getElementById('t_bphtb_registrationFormland_total_price').value=ReplaceNumberWithCommas(hasil);
                 document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 hitungNPOPKP();
 }
 function hitungTotalBangunan(){
-        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
-        document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
+		var hasil=0;
+		if(document.getElementById("t_bphtb_registrationFormbuilding_area").value==0||document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value==0){
+			hasil=0
+		}else{
+			hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
+		}
+		document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
                 document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 

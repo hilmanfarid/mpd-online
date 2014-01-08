@@ -513,16 +513,27 @@ function toReg3()
 */
 
 function hitungTotalTanah(){
-        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value)*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value);
-        document.getElementById('t_bphtb_registrationFormland_total_price').value=hasil;
-                document.getElementById('t_bphtb_registrationFormtotal_price').value=parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value)+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value);
+                //alert(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,./g ,''));
+        var hasil=0;
+		if(document.getElementById("t_bphtb_registrationFormland_area").value==0||document.getElementById("t_bphtb_registrationFormland_price_per_m").value==0){
+			hasil=0
+		}else{
+			hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
+		}
+		document.getElementById('t_bphtb_registrationFormland_total_price').value=ReplaceNumberWithCommas(hasil);
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 hitungNPOPKP();
 }
 function hitungTotalBangunan(){
-        var hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value)*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value);
-        document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=hasil;
-                document.getElementById('t_bphtb_registrationFormtotal_price').value=parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value)+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value);
+		var hasil=0;
+		if(document.getElementById("t_bphtb_registrationFormbuilding_area").value==0||document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value==0){
+			hasil=0
+		}else{
+			hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
+		}
+		document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 
 }

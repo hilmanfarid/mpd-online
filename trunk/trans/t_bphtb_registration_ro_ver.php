@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-6D8ED392
+//Class_Initialize Event @2-9546CA5B
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -109,10 +109,10 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
             $this->object_p_region_id->Required = true;
             $this->land_area = & new clsControl(ccsTextBox, "land_area", "land_area", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("land_area", $Method, NULL), $this);
             $this->land_price_per_m = & new clsControl(ccsTextBox, "land_price_per_m", "land_price_per_m", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("land_price_per_m", $Method, NULL), $this);
-            $this->land_total_price = & new clsControl(ccsTextBox, "land_total_price", "land_total_price", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("land_total_price", $Method, NULL), $this);
+            $this->land_total_price = & new clsControl(ccsTextBox, "land_total_price", "land_total_price", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_total_price", $Method, NULL), $this);
             $this->building_area = & new clsControl(ccsTextBox, "building_area", "building_area", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("building_area", $Method, NULL), $this);
             $this->building_price_per_m = & new clsControl(ccsTextBox, "building_price_per_m", "building_price_per_m", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("building_price_per_m", $Method, NULL), $this);
-            $this->building_total_price = & new clsControl(ccsTextBox, "building_total_price", "building_total_price", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("building_total_price", $Method, NULL), $this);
+            $this->building_total_price = & new clsControl(ccsTextBox, "building_total_price", "building_total_price", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_total_price", $Method, NULL), $this);
             $this->wp_rt = & new clsControl(ccsTextBox, "wp_rt", "wp_rt", ccsText, "", CCGetRequestParam("wp_rt", $Method, NULL), $this);
             $this->wp_rw = & new clsControl(ccsTextBox, "wp_rw", "wp_rw", ccsText, "", CCGetRequestParam("wp_rw", $Method, NULL), $this);
             $this->object_rt = & new clsControl(ccsTextBox, "object_rt", "object_rt", ccsText, "", CCGetRequestParam("object_rt", $Method, NULL), $this);
@@ -1219,7 +1219,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->object_p_region_id_kel->SetDBValue(trim($this->f("object_p_region_id_kel")));
         $this->object_kecamatan->SetDBValue($this->f("object_kecamatan"));
         $this->object_p_region_id_kec->SetDBValue(trim($this->f("object_p_region_id_kec")));
-		$this->object_kota->SetDBValue($this->f("object_region"));
+        $this->object_kota->SetDBValue($this->f("object_region"));
         $this->object_p_region_id->SetDBValue(trim($this->f("object_p_region_id")));
         $this->land_area->SetDBValue(trim($this->f("land_area")));
         $this->land_price_per_m->SetDBValue(trim($this->f("land_price_per_m")));
