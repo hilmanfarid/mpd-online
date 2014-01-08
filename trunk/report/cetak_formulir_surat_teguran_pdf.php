@@ -376,52 +376,20 @@ class FormCetak extends FPDF {
 		$this->tulis("penyerahan Surat Paksa.", "L");*/
 		$this->SetAligns(array("L", "L", "L", "L", "L", "L", "L"));
 		$this->SetWidths(array(10,173, 5));
-		$this->RowMultiBorderWithHeight(array("",
-				"Sampai saat ini belum melunasi pembayaran pajak\n\n".
-				"Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang-undang Nomor 28 Tahun 2009 dan Peraturan Daerah Nomor 20 ".
-				"Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi jumlah tunggakan dalam waktu 7 (tujuh) hari ".
-				"setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti dengan ".
-				"penyerahan Surat Paksa.",
-				""
-			),
-			array("L",
-				"",
-				"R"
-			),
-			$this->height
-		);
-		
-		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
-		$this->Ln();
-		$this->SetWidths(array(10,173, 5));
-		$this->RowMultiBorderWithHeight(array("",
-				"Apabila saudara telah melaksanakan pembayaran pajak tersebut, kami mohon untuk dapat memperlihatkan SSPD yang telah divalidasi ".
-				"dengan melampirkan photo copy dokumen yang dimaksud.",
-				""
-			),
-			array("L",
-				"",
-				"R"
-			),
-			$this->height
-		);
-		
-		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
-		$this->Ln();
-		$this->SetWidths(array(10,173, 5));
-		$this->RowMultiBorderWithHeight(array("",
-				"Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan terima kasih.",
-				""
-			),
-			array("L",
-				"",
-				"R"
-			),
-			$this->height
-		);
-			
-		//$this->tulis("Dalam hal Saudara telah melunasi Tunggakan tersebut di atas, diminta agar Saudara segera melaporkan", "L");
-		//$this->tulis("kepada", "L");
+		$this->tulis("Sampai saat ini belum melunasi pembayaran pajak.", "L");
+		$this->tulis("", "L");
+		$this->tulis("Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang-undang", "FJ");
+		$this->tulis("Nomor 28 Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70,", "FJ");
+		$this->tulis("maka diminta kepada Saudara agar melunasi jumlah tunggakan dalam waktu 7 (tujuh) hari", "FJ");
+		$this->tulis("setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan", "FJ");
+		$this->tulis("akan ditindaklanjuti dengan penyerahan Surat Paksa.", "L");
+		$this->tulis("", "L");
+		$this->tulis("Apabila saudara telah melaksanakan pembayaran pajak tersebut, kami mohon untuk", "FJ");
+		$this->tulis("dapat memperlihatkan SSPD yang telah divalidasi dengan melampirkan photo copy", "FJ");
+		$this->tulis("dokumen yang dimaksud.", "L");
+		$this->tulis("", "L");
+		$this->tulis("Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan", "FJ");
+		$this->tulis("terima kasih.", "L");
 		
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
@@ -466,14 +434,14 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4-6, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4+20, $this->height, "H.SONI BAKHTIYAR, S.SOS, M.SI ", "B", 0, 'C');
+		$this->Cell($lbody4+20, $this->height, "H. SONI BAKHTIYAR, S.Sos, M.Si", "B", 0, 'C');
 		$this->Cell($lbody2-14, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4 - 2, $this->height, "NIP. 19750625 1994031 1 00 1", "", 0, 'L'); //isi nip
+		$this->Cell($lbody4 - 2, $this->height, "NIP. 19750625 199403 1 001", "", 0, 'L'); //isi nip
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
@@ -483,10 +451,106 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell - 10, $this->height, "", "BR", 0, 'L');
 	}
 
+	function CellFJ($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='')
+	{
+		$k=$this->k;
+		if($this->y+$h>$this->PageBreakTrigger and !$this->InFooter and $this->AcceptPageBreak())
+		{
+			$x=$this->x;
+			$ws=$this->ws;
+			if($ws>0)
+			{
+				$this->ws=0;
+				$this->_out('0 Tw');
+			}
+			$this->AddPage($this->CurOrientation);
+			$this->x=$x;
+			if($ws>0)
+			{
+				$this->ws=$ws;
+				$this->_out(sprintf('%.3f Tw', $ws*$k));
+			}
+		}
+		if($w==0)
+			$w=$this->w-$this->rMargin-$this->x;
+		$s='';
+		if($fill==1 or $border==1)
+		{
+			if($fill==1)
+				$op=($border==1) ? 'B' : 'f';
+			else
+				$op='S';
+			$s=sprintf('%.2f %.2f %.2f %.2f re %s ', $this->x*$k, ($this->h-$this->y)*$k, $w*$k, -$h*$k, $op);
+		}
+		if(is_string($border))
+		{
+			$x=$this->x;
+			$y=$this->y;
+			if(is_int(strpos($border, 'L')))
+				$s.=sprintf('%.2f %.2f m %.2f %.2f l S ', $x*$k, ($this->h-$y)*$k, $x*$k, ($this->h-($y+$h))*$k);
+			if(is_int(strpos($border, 'T')))
+				$s.=sprintf('%.2f %.2f m %.2f %.2f l S ', $x*$k, ($this->h-$y)*$k, ($x+$w)*$k, ($this->h-$y)*$k);
+			if(is_int(strpos($border, 'R')))
+				$s.=sprintf('%.2f %.2f m %.2f %.2f l S ', ($x+$w)*$k, ($this->h-$y)*$k, ($x+$w)*$k, ($this->h-($y+$h))*$k);
+			if(is_int(strpos($border, 'B')))
+				$s.=sprintf('%.2f %.2f m %.2f %.2f l S ', $x*$k, ($this->h-($y+$h))*$k, ($x+$w)*$k, ($this->h-($y+$h))*$k);
+		}
+		if($txt!='')
+		{
+			if($align=='R')
+				$dx=$w-$this->cMargin-$this->GetStringWidth($txt);
+			elseif($align=='C')
+				$dx=($w-$this->GetStringWidth($txt))/2;
+			elseif($align=='FJ')
+			{
+				//Set word spacing
+				$wmax=($w-2*$this->cMargin);
+				$this->ws=($wmax-$this->GetStringWidth($txt))/substr_count($txt, ' ');
+				$this->_out(sprintf('%.3f Tw', $this->ws*$this->k));
+				$dx=$this->cMargin;
+			}
+			else
+				$dx=$this->cMargin;
+			$txt=str_replace(')', '\\)', str_replace('(', '\\(', str_replace('\\', '\\\\', $txt)));
+			if($this->ColorFlag)
+				$s.='q '.$this->TextColor.' ';
+			$s.=sprintf('BT %.2f %.2f Td (%s) Tj ET', ($this->x+$dx)*$k, ($this->h-($this->y+.5*$h+.3*$this->FontSize))*$k, $txt);
+			if($this->underline)
+				$s.=' '.$this->_dounderline($this->x+$dx, $this->y+.5*$h+.3*$this->FontSize, $txt);
+			if($this->ColorFlag)
+				$s.=' Q';
+			if($link)
+			{
+				if($align=='FJ')
+					$wlink=$wmax;
+				else
+					$wlink=$this->GetStringWidth($txt);
+				$this->Link($this->x+$dx, $this->y+.5*$h-.5*$this->FontSize, $wlink, $this->FontSize, $link);
+			}
+		}
+		if($s)
+			$this->_out($s);
+		if($align=='FJ')
+		{
+			//Remove word spacing
+			$this->_out('0 Tw');
+			$this->ws=0;
+		}
+		$this->lasth=$h;
+		if($ln>0)
+		{
+			$this->y+=$h;
+			if($ln==1)
+				$this->x=$this->lMargin;
+		}
+		else
+			$this->x+=$w;
+	}
+
 	function tulis($text, $align){
 		$this->Cell(10, $this->height, "", "L", 0, 'C');
-		$this->Cell($this->lengthCell - 20, $this->height, $text, "", 0, $align);
-		$this->Cell(10, $this->height, "", "R", 0, 'C');
+		$this->CellFJ(173, $this->height, $text, "", 0, $align);
+		$this->Cell(5, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 	}
 	
