@@ -298,7 +298,8 @@ function Task_Buka_BeforeShow(& $sender)
 			   };
            }else{
 		   	   $openform = $openform . "&TAKEN_CTL=&IS_TAKEN=&IS_VIEW_ONLY=Y"; 
-		       $openform =  "javascript:view_task('" . $openform . "'); return false;" ; 
+		       //$openform =  "javascript:view_task('" . $openform . "'); return false;" ; 
+			   $openform =  "javascript:location.href='" . $openform . "'; return false;" ; 
 			   $Task->Buka->Attributes->SetValue('taskbuka', $openform);	 
            };
 // -------------------------
