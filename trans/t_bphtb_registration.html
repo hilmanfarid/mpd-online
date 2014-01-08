@@ -163,7 +163,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -600,7 +600,7 @@ function hitungNPOPKP(){
                 document.getElementById('t_bphtb_registrationFormnpop_kp').value=ReplaceNumberWithCommas(parseFloat(npokp)-parseFloat(npotkp));
                hitungTerutang(document.getElementById('t_bphtb_registrationFormnpop_kp').value.replace(/,/g ,''));
 }
-function hitungTerutang(nilai){	
+function hitungTerutang(nilai){ 
         var terutang = Math.ceil(nilai/100*5);
         document.getElementById('t_bphtb_registrationFormbphtb_amt').value=ReplaceNumberWithCommas(terutang);
                 hitungPembayaran();

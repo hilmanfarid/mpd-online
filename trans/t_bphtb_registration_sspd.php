@@ -1169,7 +1169,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-D8FB4067
+//SetValues Method @94-B740F441
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1181,11 +1181,11 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
         $this->npwp->SetDBValue($this->f("npwp"));
-        $this->object_kelurahan->SetDBValue($this->f("wp_kelurahan"));
+        $this->object_kelurahan->SetDBValue($this->f("object_kelurahan"));
         $this->object_p_region_id_kel->SetDBValue(trim($this->f("wp_p_region_id_kel")));
-        $this->object_kecamatan->SetDBValue($this->f("wp_kecamatan"));
+        $this->object_kecamatan->SetDBValue($this->f("object_kecamatan"));
         $this->object_p_region_id_kec->SetDBValue(trim($this->f("wp_p_region_id_kec")));
-        $this->object_kota->SetDBValue($this->f("wp_kota"));
+        $this->object_kota->SetDBValue($this->f("object_kota"));
         $this->object_p_region_id->SetDBValue(trim($this->f("wp_p_region_id")));
         $this->land_area->SetDBValue(trim($this->f("land_area")));
         $this->land_price_per_m->SetDBValue(trim($this->f("land_price_per_m")));
