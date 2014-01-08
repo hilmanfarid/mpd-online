@@ -313,6 +313,7 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lbody2, $this->height, "Nama Jelas:", "", 0, 'L');
 		$this->ln(4);
+		$this->Cell($lbody2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4 - 2, $this->height, $data["wp_name"], "", 0, 'C');
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
@@ -332,6 +333,7 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lbody2, $this->height, "Jabatan:", "", 0, 'L');
 		$this->ln(4);
+		$this->Cell($lbody2, $this->height, "Jabatan:", "", 0, 'L');
 		$this->Cell($lbody4 - 2, $this->height, $data["job_name"], "", 0, 'C');
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
