@@ -12,7 +12,8 @@ c.p_rqst_type_id = e.p_rqst_type_id AND
 ( upper(d.wp_name) LIKE upper('%{s_keyword}%') OR 
   upper(a.npwd) LIKE upper('%{s_keyword}%') OR
   upper(a.no_kohir) LIKE upper('%{s_keyword}%')
-)" parameterTypeListName="ParameterTypeList">
+)
+ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeList">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_vat_setllement_ro_new.ccp" wizardThemeItem="GridA" PathID="t_vat_setllementGridDLink" removeParameters="FLAG">
 					<Components/>
