@@ -1047,7 +1047,7 @@ class clsTaskDataSource extends clsDBConnSIKP {  //TaskDataSource Class @16-7E9C
         $this->SQL = "select * from pack_task_profile.user_task_list (" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "," . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . ",'" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "','" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "','{skeyword}') \n" .
         "where trunc(donor_date) = nvl(to_date('" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "','DD-MON-YYYY'),trunc(donor_date)) \n" .
         "and keyword like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' ";
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+		$this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
         else
