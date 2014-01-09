@@ -86,13 +86,15 @@ function Page_BeforeInitialize(& $sender)
         $Service->SetFormatter($formatter);
 //End belum_lapor Initialization
 
-//belum_lapor DataSource @678-C44E386F
+//belum_lapor DataSource @678-FDD262AE
         $Service->DataSource = new clsDBConnSIKP();
         $Service->ds = & $Service->DataSource;
         $Service->DataSource->Parameters["urlp_finance_period_id"] = CCGetFromGet("p_finance_period_id", NULL);
+        $Service->DataSource->Parameters["urlactive"] = CCGetFromGet("active", NULL);
         $Service->DataSource->wp = new clsSQLParameters();
         $Service->DataSource->wp->AddParameter("1", "urlp_finance_period_id", ccsFloat, "", "", $Service->DataSource->Parameters["urlp_finance_period_id"], 0, false);
-        $Service->DataSource->SQL = "select vat_code, jml_wp from f_status_belum_lapor(" . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . ")";
+        $Service->DataSource->wp->AddParameter("2", "urlactive", ccsFloat, "", "", $Service->DataSource->Parameters["urlactive"], 0, false);
+        $Service->DataSource->SQL = "select * from f_status_belum_lapor(" . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . ", " . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("2"), ccsFloat) . ")";
         $Service->DataSource->Order = "";
         $Service->DataSource->PageSize = 25;
         $Service->SetDataSourceQuery($Service->DataSource->OptimizeSQL(CCBuildSQL($Service->DataSource->SQL, $Service->DataSource->Where, $Service->DataSource->Order)));

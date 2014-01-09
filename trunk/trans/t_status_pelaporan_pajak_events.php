@@ -18,16 +18,6 @@ function t_status_pelaporan_pajakGrid_BeforeShowRow(& $sender)
     global $t_status_pelaporan_pajakGrid; //Compatibility
 //End t_status_pelaporan_pajakGrid_BeforeShowRow
 
-//Set Row Style @10-982C9472
-    $styles = array("Row", "AltRow");
-    if (count($styles)) {
-        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
-        if (strlen($Style) && !strpos($Style, "="))
-            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
-        $Component->Attributes->SetValue("rowStyle", $Style);
-    }
-//End Set Row Style
-
 //Close t_status_pelaporan_pajakGrid_BeforeShowRow @2-E5A5F85A
     return $t_status_pelaporan_pajakGrid_BeforeShowRow;
 }
@@ -42,16 +32,22 @@ function Page_OnInitializeView(& $sender)
     global $t_status_pelaporan_pajak; //Compatibility
 //End Page_OnInitializeView
 
-//Custom Code @66-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 	global $selected_id;
 	$selected_id = -1;
 	$selected_id=CCGetFromGet("p_finance_period_id", $selected_id);
-
+	$status_lapor = CCGetFromGet("status_lapor", NULL);
+	if(strpos(strtolower($status_lapor), "sudah lapor wp active") !== false){
+		header("Location: ./t_status_pelaporan_pajak_sudah_lapor.php?active=1&p_finance_period_id=" . $selected_id);
+	}
+	if(strpos(strtolower($status_lapor), "sudah lapor wp non active") !== false){
+		header("Location: ./t_status_pelaporan_pajak_sudah_lapor.php?active=0&p_finance_period_id=" . $selected_id);
+	}
+	if(strpos(strtolower($status_lapor), "belum lapor wp active") !== false){
+		header("Location: ./t_status_pelaporan_pajak_belum_lapor.php?active=1&p_finance_period_id=" . $selected_id);
+	}
+	if(strpos(strtolower($status_lapor), "belum lapor wp non active") !== false){
+		header("Location: ./t_status_pelaporan_pajak_belum_lapor.php?active=0&p_finance_period_id=" . $selected_id);
+	}
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
 }
@@ -75,35 +71,13 @@ function Page_BeforeInitialize(& $sender)
         $Service->SetFormatter($formatter);
 //End status_lapor Initialization
 
-//status_lapor DataSource @686-410BE811
+//status_lapor DataSource @686-9D607CC4
         $Service->DataSource = new clsDBConnSIKP();
         $Service->ds = & $Service->DataSource;
         $Service->DataSource->Parameters["urlp_finance_period_id"] = CCGetFromGet("p_finance_period_id", NULL);
         $Service->DataSource->wp = new clsSQLParameters();
         $Service->DataSource->wp->AddParameter("1", "urlp_finance_period_id", ccsFloat, "", "", $Service->DataSource->Parameters["urlp_finance_period_id"], 0, false);
-        $Service->DataSource->SQL = "select STATUS_LAPOR , JML\n" .
-        "from \n" .
-        "(\n" .
-        "  select 'SUDAH LAPOR' as STATUS_LAPOR , count(*) as JML\n" .
-        "  from t_cust_account a\n" .
-        "  where exists (select 1 \n" .
-        "              from t_vat_setllement x\n" .
-        "              where x.t_cust_account_id = a.t_cust_account_id\n" .
-        "                    and x.p_finance_period_id = " . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "              )\n" .
-        "        -- and trunc(a.registration_date) < (select start_date from p_finance_period where p_finance_period_id = " . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "        --                               )\n" .
-        "  UNION ALL\n" .
-        "  select 'BELUM LAPOR' as STATUS_LAPOR , count(*) as JML\n" .
-        "  from t_cust_account a\n" .
-        "  where not exists (select 1 \n" .
-        "              from t_vat_setllement x\n" .
-        "              where x.t_cust_account_id = a.t_cust_account_id\n" .
-        "                    and x.p_finance_period_id = " . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "              )\n" .
-        "        -- and trunc(a.registration_date) < (select start_date from p_finance_period where p_finance_period_id = " . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "        --                               )\n" .
-        ")";
+        $Service->DataSource->SQL = "select * from f_rep_status_lapor_pajak(" . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . ")";
         $Service->DataSource->Order = "";
         $Service->DataSource->PageSize = 25;
         $Service->SetDataSourceQuery($Service->DataSource->OptimizeSQL(CCBuildSQL($Service->DataSource->SQL, $Service->DataSource->Where, $Service->DataSource->Order)));

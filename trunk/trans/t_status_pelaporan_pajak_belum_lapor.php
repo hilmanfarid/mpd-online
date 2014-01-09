@@ -43,7 +43,7 @@ class clsGridt_status_pelaporan_pajak_belum_laporGrid { //t_status_pelaporan_paj
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-5056B61F
+//Class_Initialize Event @2-B2BD0A5E
     function clsGridt_status_pelaporan_pajak_belum_laporGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -75,7 +75,7 @@ class clsGridt_status_pelaporan_pajak_belum_laporGrid { //t_status_pelaporan_paj
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", ccsGet, NULL), $this);
-        $this->status_lapor = & new clsControl(ccsHidden, "status_lapor", "status_lapor", ccsText, "", CCGetRequestParam("status_lapor", ccsGet, NULL), $this);
+        $this->active = & new clsControl(ccsHidden, "active", "active", ccsText, "", CCGetRequestParam("active", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -90,7 +90,7 @@ class clsGridt_status_pelaporan_pajak_belum_laporGrid { //t_status_pelaporan_paj
     }
 //End Initialize Method
 
-//Show Method @2-CAC7A298
+//Show Method @2-943E853B
     function Show()
     {
         global $Tpl;
@@ -100,6 +100,7 @@ class clsGridt_status_pelaporan_pajak_belum_laporGrid { //t_status_pelaporan_paj
         $this->RowNumber = 0;
 
         $this->DataSource->Parameters["urlp_finance_period_id"] = CCGetFromGet("p_finance_period_id", NULL);
+        $this->DataSource->Parameters["urlactive"] = CCGetFromGet("active", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -162,7 +163,7 @@ class clsGridt_status_pelaporan_pajak_belum_laporGrid { //t_status_pelaporan_paj
         }
         $this->Navigator->Show();
         $this->p_finance_period_id->Show();
-        $this->status_lapor->Show();
+        $this->active->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -224,22 +225,23 @@ class clst_status_pelaporan_pajak_belum_laporGridDataSource extends clsDBConnSIK
     }
 //End SetOrder Method
 
-//Prepare Method @2-87BF4B13
+//Prepare Method @2-6D824427
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlp_finance_period_id", ccsFloat, "", "", $this->Parameters["urlp_finance_period_id"], 0, false);
+        $this->wp->AddParameter("2", "urlactive", ccsFloat, "", "", $this->Parameters["urlactive"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-8F6FC91D
+//Open Method @2-8FED38D8
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select * from f_status_belum_lapor(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")) cnt";
-        $this->SQL = "select * from f_status_belum_lapor(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")";
+        $this->CountSQL = "SELECT COUNT(*) FROM (select * from f_status_belum_lapor(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ", " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . ")) cnt";
+        $this->SQL = "select * from f_status_belum_lapor(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ", " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
