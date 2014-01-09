@@ -58,11 +58,6 @@ function Page_OnInitializeView(& $sender)
 		global $selected_id;
 		$selected_id = -1;
 		$selected_id=CCGetFromGet("p_finance_period_id", $selected_id);
-
-		/*$status = strtolower(CCGetFromGet("status_lapor", ""));
-		if(strcmp($status, "belum lapor") == 0){
-			header("Location: ../report");
-		}*/
   // -------------------------
 
 //Close Page_OnInitializeView @1-81DF8332

@@ -5,8 +5,71 @@
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script>
+    $(function () {
+        p_finance_period_id = $("#t_status_pelaporan_pajak_belum_laporGridp_finance_period_id").val();
+                active = $("#t_status_pelaporan_pajak_belum_laporGridactive").val();
+                if(p_finance_period_id == "" || active == "") return false;
+
+        $.getJSON( "../services/status_lapor_belum_lapor.php?p_finance_period_id="+p_finance_period_id+"&active="+active, function( items ) {
+                        jumlah=[];
+                        jenis=[];
+            for(i=0;i < items.length;i++){
+                jumlah.push(parseFloat(items[i][3]));
+                                jenis.push(items[i][2]);
+            }
+			
+                        var judul = '';
+                        if(active == 1){
+                                judul = 'Dengan Status Aktif';
+                        }else{
+                                judul = 'Dengan Status Tidak Aktif';
+                        }
+            $('#container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Jumlah Wajib Pajak Belum Lapor '+judul
+                },
+                subtitle: {
+                    text: 'Disyanjak Kota Bandung'
+                },
+                xAxis: {
+                    categories: jenis
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Jumlah WP'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                                        showInLegend: false,
+                    name: 'Jumlah WP',
+                    data: jumlah
+        
+                }]
+            });
+        });
+    });
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
         arrLOV = LOV_NM.split("?");
@@ -23,8 +86,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toPelaporan()">
@@ -40,28 +103,17 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table style="WIDTH: 75%" class="module-container" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td>
-        <div align="left">
-          <!-- BEGIN FlashChart belum_lapor -->
-          <object title="{Title}" tabindex="1" accesskey="q" height="{Height}" width="{Width}" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-            <param name="movie" value="{Src}" />
-            <param name="quality" value="high" />
-            <param name="wmode" value="transparent" />
-            <param name="scale" value="exactfit" />
-            <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
- 
-          </object>
-          <!-- END FlashChart belum_lapor -->
-        </div>
+        
         <br>
         <!-- BEGIN Grid t_status_pelaporan_pajak_belum_laporGrid -->
-        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="50%" border="0">
+        <table style="WIDTH: 50%" class="grid-table-container" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR&nbsp;PELAPORAN PAJAK</strong></td> 
@@ -71,20 +123,20 @@ $(document).ready(function()
  
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <tr class="Caption">
-                  <th scope="col">Jenis Pajak</th>
+                  <th style="TEXT-ALIGN: center" scope="col">Jenis Pajak</th>
  
-                  <th scope="col">Jumlah WP Belum Lapor Pajak</th>
+                  <th style="TEXT-ALIGN: center" scope="col">Jumlah WP Belum Lapor Pajak</th>
                 </tr>
  
                 <!-- BEGIN Row -->
                 <tr {t_status_pelaporan_pajak_belum_laporGrid:rowStyle}>
                   <td>{vat_code}</td> 
-                  <td>
-                    <div align="center">
+                  <td style="TEXT-ALIGN: right">
+                    <div>
                       {jml_wp} 
                     </div>
  
-                    <div align="right">
+                    <div>
                     </div>
                   </td>
                 </tr>
@@ -113,7 +165,11 @@ $(document).ready(function()
             </td>
           </tr>
         </table>
-        <input id="t_status_pelaporan_pajak_belum_laporGridp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"><input id="t_status_pelaporan_pajak_belum_laporGridstatus_lapor" type="hidden" value="{status_lapor}" name="{status_lapor_Name}"><!-- END Grid t_status_pelaporan_pajak_belum_laporGrid --></td>
+		<div align="left">
+          <div id="container">
+          </div>
+        </div>
+        <input id="t_status_pelaporan_pajak_belum_laporGridp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_status_pelaporan_pajak_belum_laporGridactive" name="{active_Name}" value="{active}" type="hidden"><!-- END Grid t_status_pelaporan_pajak_belum_laporGrid --></td>
     </tr>
   </table>
 </div>

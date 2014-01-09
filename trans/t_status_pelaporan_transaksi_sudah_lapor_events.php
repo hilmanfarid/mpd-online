@@ -55,11 +55,6 @@ function Page_OnInitializeView(& $sender)
 		global $selected_id;
 		$selected_id = -1;
 		$selected_id=CCGetFromGet("p_finance_period_id", $selected_id);
-
-		$status = strtolower(CCGetFromGet("status_lapor", ""));
-		if(strpos($status, "belum") !== false){
-			header("Location: t_status_pelaporan_transaksi_belum_lapor.php?p_finance_period_id=" . $selected_id);
-		}
   // -------------------------
 
 //Close Page_OnInitializeView @1-81DF8332

@@ -5,8 +5,165 @@
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script>
+    $(function () {
+        p_finance_period_id = $("#t_status_pelaporan_pajak_sudah_laporGridp_finance_period_id").val();
+		active = $("#t_status_pelaporan_pajak_sudah_laporGridactive").val();
+                
+		if(p_finance_period_id == "" || active == "") {
+			return false;
+		}
+
+        $.getJSON( "../services/status_lapor_sudah_lapor.php?p_finance_period_id="+p_finance_period_id+"&active="+active, function( items ) {
+                        jumlah = [];
+						nilai_lapor = [];
+						nilai_denda = [];
+                        tanggal = [];
+						
+            for(i=0;i < items.length;i++){
+                jumlah.push(parseFloat(items[i][2]));
+				nilai_lapor.push(parseFloat(items[i][3]));
+				nilai_denda.push(parseFloat(items[i][4]));
+				tanggal.push(items[i][1]);
+            }
+			
+                        var judul = '';
+                        if(active == 1){
+                                judul = 'Dengan Status Aktif';
+                        }else{
+                                judul = 'Dengan Status Tidak Aktif';
+                        }
+			
+			//============================================== CONTAINER 1 ==============================
+            $('#container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Jumlah Wajib Pajak Sudah Lapor '+judul
+                },
+                subtitle: {
+                    text: 'Disyanjak Kota Bandung'
+                },
+                xAxis: {
+                    categories: tanggal
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Jumlah WP'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+					showInLegend: false,
+                    name: 'Jumlah WP',
+                    data: jumlah
+        
+                }]
+            });
+			
+			//============================================== CONTAINER 2 ==============================
+            $('#container2').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Nilai Lapor Wajib Pajak Sudah Lapor '+judul
+                },
+                subtitle: {
+                    text: 'Disyanjak Kota Bandung'
+                },
+                xAxis: {
+                    categories: tanggal
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Nilai Lapor'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+					showInLegend: false,
+                    name: 'Nilai Lapor',
+                    data: nilai_lapor
+        
+                }]
+            });
+
+			//============================================== CONTAINER 3 ==============================
+            $('#container3').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Nilai Denda Wajib Pajak Sudah Lapor '+judul
+                },
+                subtitle: {
+                    text: 'Disyanjak Kota Bandung'
+                },
+                xAxis: {
+                    categories: tanggal
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Nilai Denda'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+					showInLegend: false,
+                    name: 'Nilai Denda',
+                    data: nilai_denda
+        
+                }]
+            });
+        });
+    });
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
         arrLOV = LOV_NM.split("?");
@@ -23,8 +180,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toPelaporan()">
@@ -40,48 +197,16 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
-        <div align="left">
-          <!-- BEGIN FlashChart jml_lapor -->
-          <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{Width}" height="{Height}" accesskey="q" tabindex="1" title="{Title}">
-            <param name="movie" value="{Src}" />
-            <param name="quality" value="high" />
-            <param name="wmode" value="transparent" />
-            <param name="scale" value="exactfit" />
-            <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
- 
-          </object>
-          <!-- END FlashChart jml_lapor -->
-          <!-- BEGIN FlashChart nilai_lapor -->
-          <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{Width}" height="{Height}" accesskey="q" tabindex="1" title="{Title}" style="display:inline-block;">
-            <param name="movie" value="{Src}" />
-            <param name="quality" value="high" />
-            <param name="wmode" value="transparent" />
-            <param name="scale" value="exactfit" />
-            <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
- 
-          </object>
-          <!-- END FlashChart nilai_lapor -->
-          <!-- BEGIN FlashChart nilai_denda -->
-          <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="{Width}" height="{Height}" accesskey="q" tabindex="1" title="{Title}" style="display:inline-block;">
-            <param name="movie" value="{Src}" />
-            <param name="quality" value="high" />
-            <param name="wmode" value="transparent" />
-            <param name="scale" value="exactfit" />
-            <embed src="{Src}" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="{Width}" height="{Height}" scale="exactfit" wmode="transparent"></embed>
- 
-          </object>
-          <!-- END FlashChart nilai_denda -->
-        </div>
         <br>
         <!-- BEGIN Grid t_status_pelaporan_pajak_sudah_laporGrid -->
-        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="50%" border="0">
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
           <tr>
             <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR&nbsp;PELAPORAN PAJAK</strong></td> 
@@ -147,7 +272,12 @@ $(document).ready(function()
             </td>
           </tr>
         </table>
-        <input id="t_status_pelaporan_pajak_sudah_laporGridp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"><input id="t_status_pelaporan_pajak_sudah_laporGridstatus_lapor" type="hidden" value="{status_lapor}" name="{status_lapor_Name}"><!-- END Grid t_status_pelaporan_pajak_sudah_laporGrid --></td>
+		<div align="left">
+		<div id="container" width="75%"></div>
+		<div id="container2" width="75%"></div>
+		<div id="container3" width="75%" ></div>
+        </div>
+        <input id="t_status_pelaporan_pajak_sudah_laporGridp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_status_pelaporan_pajak_sudah_laporGridactive" name="{active_Name}" value="{active}" type="hidden"><!-- END Grid t_status_pelaporan_pajak_sudah_laporGrid --></td>
     </tr>
   </table>
 </div>

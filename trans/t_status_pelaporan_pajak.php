@@ -43,7 +43,7 @@ class clsGridt_status_pelaporan_pajakGrid { //t_status_pelaporan_pajakGrid class
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-C8AB661A
+//Class_Initialize Event @2-8EF30C03
     function clsGridt_status_pelaporan_pajakGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -72,7 +72,7 @@ class clsGridt_status_pelaporan_pajakGrid { //t_status_pelaporan_pajakGrid class
 
         $this->jml = & new clsControl(ccsLabel, "jml", "jml", ccsText, "", CCGetRequestParam("jml", ccsGet, NULL), $this);
         $this->status_lapor = & new clsControl(ccsLink, "status_lapor", "status_lapor", ccsText, "", CCGetRequestParam("status_lapor", ccsGet, NULL), $this);
-        $this->status_lapor->Page = "t_status_pelaporan_pajak_sudah_lapor.php";
+        $this->status_lapor->Page = "t_status_pelaporan_pajak.php";
         $this->status = & new clsControl(ccsHidden, "status", "status", ccsText, "", CCGetRequestParam("status", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -91,7 +91,7 @@ class clsGridt_status_pelaporan_pajakGrid { //t_status_pelaporan_pajakGrid class
     }
 //End Initialize Method
 
-//Show Method @2-E28CB72C
+//Show Method @2-B5B21322
     function Show()
     {
         global $Tpl;
@@ -134,7 +134,7 @@ class clsGridt_status_pelaporan_pajakGrid { //t_status_pelaporan_pajakGrid class
                 $this->status_lapor->SetValue($this->DataSource->status_lapor->GetValue());
                 $this->status_lapor->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->status_lapor->Parameters = CCAddParam($this->status_lapor->Parameters, "p_finance_period_id", CCGetFromGet("p_finance_period_id", NULL));
-                $this->status_lapor->Parameters = CCAddParam($this->status_lapor->Parameters, "status_lapor", $this->DataSource->f("status_lapor"));
+                $this->status_lapor->Parameters = CCAddParam($this->status_lapor->Parameters, "status_lapor", $this->DataSource->f("status"));
                 $this->status->SetValue($this->DataSource->status->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
@@ -244,56 +244,12 @@ class clst_status_pelaporan_pajakGridDataSource extends clsDBConnSIKP {  //t_sta
     }
 //End Prepare Method
 
-//Open Method @2-F03E05EB
+//Open Method @2-4CE0CC8D
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select STATUS_LAPOR , JML\n" .
-        "from \n" .
-        "(\n" .
-        "  select 'SUDAH LAPOR' as STATUS_LAPOR , count(*) as JML\n" .
-        "  from t_cust_account a\n" .
-        "  where exists (select 1 \n" .
-        "              from t_vat_setllement x\n" .
-        "              where x.t_cust_account_id = a.t_cust_account_id\n" .
-        "                    and x.p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "              )\n" .
-        "        -- and trunc(a.registration_date) < (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "        --                               )\n" .
-        "  UNION ALL\n" .
-        "  select 'BELUM LAPOR' as STATUS_LAPOR , count(*) as JML\n" .
-        "  from t_cust_account a\n" .
-        "  where not exists (select 1 \n" .
-        "              from t_vat_setllement x\n" .
-        "              where x.t_cust_account_id = a.t_cust_account_id\n" .
-        "                    and x.p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "              )\n" .
-        "        -- and trunc(a.registration_date) < (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "        --                               )\n" .
-        ")) cnt";
-        $this->SQL = "select STATUS_LAPOR , JML\n" .
-        "from \n" .
-        "(\n" .
-        "  select 'SUDAH LAPOR' as STATUS_LAPOR , count(*) as JML\n" .
-        "  from t_cust_account a\n" .
-        "  where exists (select 1 \n" .
-        "              from t_vat_setllement x\n" .
-        "              where x.t_cust_account_id = a.t_cust_account_id\n" .
-        "                    and x.p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "              )\n" .
-        "        -- and trunc(a.registration_date) < (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "        --                               )\n" .
-        "  UNION ALL\n" .
-        "  select 'BELUM LAPOR' as STATUS_LAPOR , count(*) as JML\n" .
-        "  from t_cust_account a\n" .
-        "  where not exists (select 1 \n" .
-        "              from t_vat_setllement x\n" .
-        "              where x.t_cust_account_id = a.t_cust_account_id\n" .
-        "                    and x.p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "              )\n" .
-        "        -- and trunc(a.registration_date) < (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "        --                               )\n" .
-        ")";
+        $this->CountSQL = "SELECT COUNT(*) FROM (select * from f_rep_status_lapor_pajak(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")) cnt";
+        $this->SQL = "select * from f_rep_status_lapor_pajak(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -304,12 +260,12 @@ class clst_status_pelaporan_pajakGridDataSource extends clsDBConnSIKP {  //t_sta
     }
 //End Open Method
 
-//SetValues Method @2-ABFBB5EB
+//SetValues Method @2-BB9CD946
     function SetValues()
     {
         $this->jml->SetDBValue($this->f("jml"));
-        $this->status_lapor->SetDBValue($this->f("status_lapor"));
-        $this->status->SetDBValue($this->f("status_lapor"));
+        $this->status_lapor->SetDBValue($this->f("status"));
+        $this->status->SetDBValue($this->f("status"));
     }
 //End SetValues Method
 
@@ -351,7 +307,7 @@ class clsRecordt_status_pelaporan_pajakSearch { //t_status_pelaporan_pajakSearch
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-F687A9C0
+//Class_Initialize Event @3-791E848D
     function clsRecordt_status_pelaporan_pajakSearch($RelativePath, & $Parent)
     {
 
@@ -377,11 +333,7 @@ class clsRecordt_status_pelaporan_pajakSearch { //t_status_pelaporan_pajakSearch
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->code_period = & new clsControl(ccsTextBox, "code_period", "code_period", ccsText, "", CCGetRequestParam("code_period", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
-            $this->p_finance_period_id = & new clsControl(ccsTextBox, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
-            if(!$this->FormSubmitted) {
-                if(!is_array($this->p_finance_period_id->Value) && !strlen($this->p_finance_period_id->Value) && $this->p_finance_period_id->Value !== false)
-                    $this->p_finance_period_id->SetText(1);
-            }
+            $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
