@@ -88,7 +88,7 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('BKANT', '', 12);
 		
-		$this->Image('../images/logo_pemda.png',25,17,25,25);
+		// $this->Image('../images/logo_pemda.png',25,17,25,25);
 		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
@@ -99,35 +99,35 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('BKANT', '', 12);
 		
-		$this->Cell($lheader1, $this->height, "", "LT", 0, 'L');
-		$this->Cell($lheader7, $this->height, "", "TR", 0, 'C');
-		$this->Ln();
-		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lheader7, $this->height, "", "R", 0, 'C');
-		$this->Ln();
+		// $this->Cell($lheader1, $this->height, "", "LT", 0, 'L');
+		// $this->Cell($lheader7, $this->height, "", "TR", 0, 'C');
+		// $this->Ln();
+		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
+		// $this->Cell($lheader7, $this->height, "", "R", 0, 'C');
+		// $this->Ln();
 		
-		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
-		$this->Ln();
+		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
+		// $this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
+		// $this->Ln();
 		
-		$this->SetFont('BKANT', '', 16);
-		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		$this->Ln();
+		// $this->SetFont('BKANT', '', 16);
+		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
+		// $this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		// $this->Ln();
 		
-		$this->SetFont('BKANT', '', 12);
-		$this->Cell($lheader1, $this->height + 3, "", "L", 0, 'L');
-		$this->Cell($lheader7, $this->height + 3, "Jalan Wastukancana No. 2 Telp. 022. 4235052 - Bandung", "R", 0, 'C');
-		$this->Ln();
+		// $this->SetFont('BKANT', '', 12);
+		// $this->Cell($lheader1, $this->height + 3, "", "L", 0, 'L');
+		// $this->Cell($lheader7, $this->height + 3, "Jalan Wastukancana No. 2 Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+		// $this->Ln();
 		
-		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lheader7, $this->height, "", "R", 0, 'C');
-		$this->Ln();
-		$this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
-		$this->Cell($lheader7, $this->height, "", "BR", 0, 'C');
-		$this->Ln();
+		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
+		// $this->Cell($lheader7, $this->height, "", "R", 0, 'C');
+		// $this->Ln();
+		// $this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
+		// $this->Cell($lheader7, $this->height, "", "BR", 0, 'C');
+		// $this->Ln();
 		
-		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
+		$this->Cell($this->lengthCell, $this->height, "", "TLR", 0, 'L');
 		$this->Ln();
 		
 		$lbody = $this->lengthCell / 4;
@@ -250,6 +250,8 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->SetFont('BKANT', '', 12);
+		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
+		$this->newLine();
 		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN", "LR", 0, 'C');
 		$this->newLine();
 		
@@ -269,22 +271,23 @@ class FormCetak extends FPDF {
 		);
 		//$this->newLine();
 		// Tabel
-		$ltable = $this->lengthCell / 14;
+		$ltable = ($this->lengthCell - 15) / 14;
 		$ltable1 = $ltable * 1;
 		$ltable2 = $ltable * 2;
+		$ltable3 = $ltable * 3;
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
-		$this->SetWidths(array(5, $ltable6-16, $ltable1+2, $ltable2+7, $ltable1 + $ltable2 - 10+7, $ltable2, 5));
+		$this->SetWidths(array(10, $ltable4, $ltable2, $ltable2, $ltable3, $ltable3, 5));
 		$this->SetAligns(array("L", "C", "C", "C", "C", "C", "L"));
 		
 		$this->RowMultiBorderWithHeight(
 			array("",
-				"Jenis Pajak",
-				"Tahun",
-				"Bulan",
+				"JENIS PAJAK",
+				"TAHUN",
+				"BULAN",
 				"SPTPD",
-				"TGL.SETOR",
+				"TGL. SETOR",
 				""
 			),
 			array("LR",
@@ -299,7 +302,7 @@ class FormCetak extends FPDF {
 		);
 		
 		
-		$this->SetWidths(array(5, $ltable6-16, $ltable1+2, $ltable2+7, $ltable1 + $ltable2 - 10+7, $ltable2, 5));
+		$this->SetWidths(array(10, $ltable4, $ltable2, $ltable2, $ltable3, $ltable3, 5));
 		$this->SetAligns(array("L", "C", "C", "L", "C", "C", "L"));
 		$tahun = explode(" ",$data["periode"]);
 
@@ -356,6 +359,10 @@ class FormCetak extends FPDF {
 		$this->tulis("", "L");
 		$this->tulis("Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan terima kasih.", "L");
 		
+		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
+		$this->Ln();
+		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
+		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
 		
