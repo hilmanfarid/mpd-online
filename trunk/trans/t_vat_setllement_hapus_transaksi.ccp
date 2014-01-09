@@ -20,7 +20,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -33,11 +33,11 @@
 					</Actions>
 				</Event>
 				<Event name="AfterUpdate" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="23"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="23"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters/>

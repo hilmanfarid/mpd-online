@@ -165,7 +165,7 @@ function t_vat_setllementForm_AfterInsert(& $sender)
 // -------------------------
     // Write your own code here.
 	$msg = pg_fetch_array($t_vat_setllementForm->DataSource->result_pembayaran);
-	if(substr($long_code, 0, 2) != "00") {	
+	if(substr($msg['o_ret_code'], 0, 2) != "00") {	
 
 		echo "<script> alert('".$msg['o_ret_code']."'); 
 			location.href = 't_payment_bphtb.php';
@@ -174,7 +174,7 @@ function t_vat_setllementForm_AfterInsert(& $sender)
 	}else {
 		$t_vat_setllementForm->Label1->SetValue('<span style="color:blue;"> Pembayaran Berhasil Dilakukan </span>');
 		
-		$pieces = explode("@",$long_code);
+		$pieces = explode("@",$msg['o_ret_code']);
 		$pieces2nd = str_replace("|", "\n", $pieces[1]);
 		$t_vat_setllementForm->TextArea1->SetValue($pieces2nd);
 		$t_vat_setllementForm->BtnBayar->Visible = false;

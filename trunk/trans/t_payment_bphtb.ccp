@@ -4,42 +4,42 @@
 FROM t_bphtb_registration">
 			<Components>
 				<TextBox id="174" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="no_registrasi" PathID="t_vat_setllementFormno_registrasi">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextArea id="175" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextArea1" PathID="t_vat_setllementFormTextArea1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextArea>
-<Label id="176" fieldSourceType="DBColumn" dataType="Text" html="True" name="LabelBayar" PathID="t_vat_setllementFormLabelBayar" fieldSource="LabelBayar">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Hidden id="177" fieldSourceType="DBColumn" dataType="Text" name="bit48" PathID="t_vat_setllementFormbit48" fieldSource="bit48">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-<Hidden id="178" fieldSourceType="DBColumn" dataType="Integer" name="nilai_pembayaran" PathID="t_vat_setllementFormnilai_pembayaran" fieldSource="nilai_pembayaran">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-<Label id="180" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="t_vat_setllementFormLabel1" fieldSource="Label1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Button id="164" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_vat_setllementFormButton1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextArea id="175" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextArea1" PathID="t_vat_setllementFormTextArea1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextArea>
+				<Label id="176" fieldSourceType="DBColumn" dataType="Text" html="True" name="LabelBayar" PathID="t_vat_setllementFormLabelBayar" fieldSource="LabelBayar">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Hidden id="177" fieldSourceType="DBColumn" dataType="Text" name="bit48" PathID="t_vat_setllementFormbit48" fieldSource="bit48">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="178" fieldSourceType="DBColumn" dataType="Integer" name="nilai_pembayaran" PathID="t_vat_setllementFormnilai_pembayaran" fieldSource="nilai_pembayaran">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Label id="180" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="t_vat_setllementFormLabel1" fieldSource="Label1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Button id="164" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_vat_setllementFormButton1">
 					<Components/>
 					<Events>
 						<Event name="OnClick" type="Server">
@@ -51,31 +51,31 @@ FROM t_bphtb_registration">
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="181" urlType="Relative" enableValidation="True" isDefault="False" name="BtnBayar" PathID="t_vat_setllementFormBtnBayar" operation="Insert">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-<Hidden id="185" fieldSourceType="DBColumn" dataType="Text" name="no_reg" PathID="t_vat_setllementFormno_reg" fieldSource="no_reg">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+				<Button id="181" urlType="Relative" enableValidation="True" isDefault="False" name="BtnBayar" PathID="t_vat_setllementFormBtnBayar" operation="Insert">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Hidden id="185" fieldSourceType="DBColumn" dataType="Text" name="no_reg" PathID="t_vat_setllementFormno_reg" fieldSource="no_reg">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="179"/>
-</Actions>
-</Event>
-<Event name="AfterInsert" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="186"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="179"/>
+					</Actions>
+				</Event>
+				<Event name="AfterInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="186"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 			</TableParameters>
 			<SPParameters/>
@@ -83,16 +83,16 @@ FROM t_bphtb_registration">
 			</SQLParameters>
 			<JoinTables>
 				<JoinTable id="187" tableName="chatting" schemaName="sikp" posLeft="10" posTop="10" posWidth="95" posHeight="136"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>
 			<ISPParameters/>
 			<ISQLParameters>
 				<SQLParameter id="182" variable="bit48" parameterType="Control" dataType="Text" parameterSource="bit48"/>
-<SQLParameter id="183" variable="no_reg" parameterType="Control" dataType="Text" parameterSource="no_reg"/>
-<SQLParameter id="184" variable="nilai_pembayaran" parameterType="Control" dataType="Text" parameterSource="nilai_pembayaran"/>
-</ISQLParameters>
+				<SQLParameter id="183" variable="no_reg" parameterType="Control" dataType="Text" parameterSource="no_reg"/>
+				<SQLParameter id="184" variable="nilai_pembayaran" parameterType="Control" dataType="Text" parameterSource="nilai_pembayaran"/>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="133" field="p_rqst_type_id" dataType="Float" parameterType="Control" parameterSource="p_rqst_type_id"/>
 				<CustomParameter id="134" field="code" dataType="Text" parameterType="Control" parameterSource="code"/>
