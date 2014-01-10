@@ -23,18 +23,17 @@ function t_vat_setllementForm_ds_AfterExecuteUpdate(& $sender)
     global $t_vat_setllementForm; //Compatibility
 //End t_vat_setllementForm_ds_AfterExecuteUpdate
 
-//Custom Code @344-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$id_vat = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
-		$redirectloader = "t_vat_setllement_edit_ro.php?t_vat_setllement_id=".$id_vat."";
-		echo ("<script language='javascript'>");
-        echo (" parent.window.opener.location.href = '" . $redirectloader . "';");
-		echo (" window.close(); ");
-		echo ("</script>"); 
-		exit;
-// -------------------------
-//End Custom Code
+  // -------------------------
+      // Write your own code here.
+  	$id_vat = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
+  		$redirectloader = "t_vat_setllement_edit_ro.php?t_vat_setllement_id=".$id_vat."";
+  		echo ("<script language='javascript'>");
+          echo (" parent.window.opener.location.href = '" . $redirectloader . "';");
+  		echo (" window.close(); ");
+  		echo ("</script>"); 
+  		exit;
+  // -------------------------
+
 
 //Close t_vat_setllementForm_ds_AfterExecuteUpdate @23-21827B74
     return $t_vat_setllementForm_ds_AfterExecuteUpdate;
@@ -50,12 +49,6 @@ function Page_OnInitializeView(& $sender)
     global $t_vat_setllement_update; //Compatibility
 //End Page_OnInitializeView
 
-//Custom Code @66-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
 }
@@ -69,12 +62,6 @@ function Page_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_update; //Compatibility
 //End Page_BeforeShow
-
-//Custom Code @260-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
