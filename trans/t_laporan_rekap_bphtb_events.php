@@ -64,12 +64,12 @@ function print_laporan($param_arr){
 	$dbConn = new clsDBConnSIKP();
 	$whereClause='';
 	if(!empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
-		$whereClause.=" AND reg_bphtb.creation_date >= '".$param_arr['date_start']."'";
-		$whereClause.=" AND reg_bphtb.creation_date <= '".$param_arr['date_end']."'";
+		$whereClause.=" AND (trunc(reg_bphtb.creation_date) BETWEEN '".$param_arr['date_start']."'";
+		$whereClause.=" AND '".$param_arr['date_end']."')";
 	}else if(!empty($param_arr['date_start'])&&empty($param_arr['date_end'])){
-		$whereClause.=" AND reg_bphtb.creation_date >= '".$param_arr['date_start']."'";
+		$whereClause.=" AND trunc(reg_bphtb.creation_date) >= '".$param_arr['date_start']."'";
 	}else if(empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
-		$whereClause.=" AND reg_bphtb.creation_date <= '".$param_arr['date_end']."'";
+		$whereClause.=" AND trunc(reg_bphtb.creation_date) <= '".$param_arr['date_end']."'";
 	}
 
 	$query="SELECT
@@ -98,9 +98,9 @@ function print_laporan($param_arr){
 	$pdf->ln(2);
 	$pdf->SetWidths(array(10,24,20,15,40,18,22,25,20,61,61,27));
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C','C'));
-	$pdf->SetWidths(array(10,30,25,40,40,25,18,28,25,30,25,40,18,18,18,18,18));
+	$pdf->SetWidths(array(10,28,23,37,30,35,18,28,22,30,25,40,18,18,18,18,18));
 	$pdf->SetFont('arial', '',7);
-	$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","NO.REGISTRASI","NAMA WP","JENIS TRANSAKSI","NJOP","LUAS TANAH(M2)","HARGA TANAH(Rp)","LUAS BANGUNAN(M2)","HARGA BANGUNAN(Rp)","HARGA TAKSIRAN(Rp)","NILAI PAJAK YANG HARUS DIBAYAR(Rp)"),array('LTB','LTB','LBT','LTB','TLB','TLB','TLB','TLB','TLB','TLBR'),5);
+	$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","NO.REGISTRASI","NAMA WP","JENIS TRANSAKSI","NOP","LUAS TANAH(M2)","HARGA TANAH(Rp)","LUAS BANGUNAN(M2)","HARGA BANGUNAN(Rp)","HARGA TAKSIRAN(Rp)","NILAI PAJAK YANG HARUS DIBAYAR(Rp)"),array('LTB','LTB','LBT','LTB','TLB','TLB','TLB','TLB','TLB','TLBR'),5);
 	$pdf->SetFont('arial', '',8);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','L','L','L','L','R','R','R','R','R','R','R','R','R','R','R','R'));

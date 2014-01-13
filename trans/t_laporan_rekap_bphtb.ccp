@@ -38,7 +38,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
