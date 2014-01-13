@@ -64,6 +64,11 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
       }
 
 	 $Component->DLink->SetValue($img_radio); // Bdr
+
+	 $target = $Component->DataSource->target_amount->GetValue();
+	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
+	 $percent = number_format($realisasi / $target * 100, 2, ".", ",");
+	 $Component->percentage->SetValue("$percent %");
 //Close t_target_realisasi_jenisGrid_BeforeShowRow @2-1478D09A
     return $t_target_realisasi_jenisGrid_BeforeShowRow;
 }
@@ -87,97 +92,6 @@ function Page_OnInitializeView(& $sender)
     return $Page_OnInitializeView;
 }
 //End Close Page_OnInitializeView
-
-//Page_BeforeInitialize @1-B048A2ED
-function Page_BeforeInitialize(& $sender)
-{
-    $Page_BeforeInitialize = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $t_target_realisasi_jenis; //Compatibility
-//End Page_BeforeInitialize
-
-//per_pajak Initialization @696-6756941A
-    if ('t_target_realisasi_jenisper_pajak' == CCGetParam('callbackControl')) {
-        global $CCSLocales;
-        $Service = new Service();
-        $formatter = new TemplateFormatter();
-        $formatter->SetTemplate(file_get_contents(RelativePath . "/trans/" . "t_target_realisasi_jenisper_pajak.xml"));
-        $Service->SetFormatter($formatter);
-//End per_pajak Initialization
-
-//per_pajak DataSource @696-866E4826
-        $Service->DataSource = new clsDBConnSIKP();
-        $Service->ds = & $Service->DataSource;
-        $Service->DataSource->Parameters["urlt_revenue_target_id"] = CCGetFromGet("t_revenue_target_id", NULL);
-        $Service->DataSource->wp = new clsSQLParameters();
-        $Service->DataSource->wp->AddParameter("1", "urlt_revenue_target_id", ccsFloat, "", "", $Service->DataSource->Parameters["urlt_revenue_target_id"], 0, false);
-        $Service->DataSource->SQL = "SELECT target_amount, realisasi_amt\n" .
-        "FROM v_revenue_target_vs_realisasi\n" .
-        "WHERE t_revenue_target_id = " . $Service->DataSource->SQLValue($Service->DataSource->wp->GetDBValue("1"), ccsFloat) . " {SQL_OrderBy}";
-        $Service->DataSource->Order = "p_vat_type_id";
-        $Service->DataSource->PageSize = 25;
-        $Service->SetDataSourceQuery($Service->DataSource->OptimizeSQL(CCBuildSQL($Service->DataSource->SQL, $Service->DataSource->Where, $Service->DataSource->Order)));
-//End per_pajak DataSource
-
-//per_pajak Execution @696-57765666
-        $Service->AddDataSetValue("Title", "Target vs Realisasi Per Jenis Pajak");
-        $Service->AddHttpHeader("Cache-Control", "cache, must-revalidate");
-        $Service->AddHttpHeader("Pragma", "public");
-        $Service->AddHttpHeader("Content-type", "text/xml");
-        $Service->DisplayHeaders();
-        echo $Service->Execute();
-//End per_pajak Execution
-
-//per_pajak Tail @696-27890EF8
-        exit;
-    }
-//End per_pajak Tail
-
-//per_tahun Initialization @764-4DD3B284
-    if ('t_target_realisasi_jenisper_tahun' == CCGetParam('callbackControl')) {
-        global $CCSLocales;
-        $Service = new Service();
-        $formatter = new TemplateFormatter();
-        $formatter->SetTemplate(file_get_contents(RelativePath . "/trans/" . "t_target_realisasi_jenisper_tahun.xml"));
-        $Service->SetFormatter($formatter);
-//End per_tahun Initialization
-
-//per_tahun DataSource @764-7221A293
-        $Service->DataSource = new clsDBConnSIKP();
-        $Service->ds = & $Service->DataSource;
-        $Service->DataSource->SQL = "SELECT * \n" .
-"FROM v_revenue_target_vs_realisasi {SQL_Where} {SQL_OrderBy}";
-        $Service->DataSource->Order = "p_vat_type_id";
-        $Service->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
-        $Service->DataSource->wp = new clsSQLParameters();
-        $Service->DataSource->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", "", $Service->DataSource->Parameters["urlp_year_period_id"], "", false);
-        $Service->DataSource->wp->Criterion[1] = $Service->DataSource->wp->Operation(opEqual, "p_year_period_id", $Service->DataSource->wp->GetDBValue("1"), $Service->DataSource->ToSQL($Service->DataSource->wp->GetDBValue("1"), ccsFloat),false);
-        $Service->DataSource->Where = 
-             $Service->DataSource->wp->Criterion[1];
-        $Service->DataSource->Order = "p_vat_type_id";
-        $Service->DataSource->PageSize = 25;
-        $Service->SetDataSourceQuery($Service->DataSource->OptimizeSQL(CCBuildSQL($Service->DataSource->SQL, $Service->DataSource->Where, $Service->DataSource->Order)));
-//End per_tahun DataSource
-
-//per_tahun Execution @764-7C85A659
-        $Service->AddDataSetValue("Title", "Target vs Realisasi Tahunan");
-        $Service->AddHttpHeader("Cache-Control", "cache, must-revalidate");
-        $Service->AddHttpHeader("Pragma", "public");
-        $Service->AddHttpHeader("Content-type", "text/xml");
-        $Service->DisplayHeaders();
-        echo $Service->Execute();
-//End per_tahun Execution
-
-//per_tahun Tail @764-27890EF8
-        exit;
-    }
-//End per_tahun Tail
-
-//Close Page_BeforeInitialize @1-23E6A029
-    return $Page_BeforeInitialize;
-}
-//End Close Page_BeforeInitialize
 
 
 ?>

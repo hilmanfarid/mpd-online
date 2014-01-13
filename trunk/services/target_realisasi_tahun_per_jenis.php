@@ -1,15 +1,15 @@
 <?php
-//Include Common Files @1-45897C08
+//Include Common Files @1-E5D113C8
 define("RelativePath", "..");
-define("PathToCurrentPage", "/trans/");
-define("FileName", "t_target_realisasi_jenis.php");
+define("PathToCurrentPage", "/services/");
+define("FileName", "target_realisasi_tahun_per_jenis.php");
 include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
 //End Include Common Files
 
-class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class @2-36C2AB77
+class clsGridSELECT_t_revenue_target_i { //SELECT_t_revenue_target_i class @2-3F292803
 
 //Variables @2-AC1EDBB9
 
@@ -42,24 +42,24 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-072C3102
-    function clsGridt_target_realisasi_jenisGrid($RelativePath, & $Parent)
+//Class_Initialize Event @2-EF5BEB1C
+    function clsGridSELECT_t_revenue_target_i($RelativePath, & $Parent)
     {
         global $FileName;
         global $CCSLocales;
         global $DefaultDateFormat;
-        $this->ComponentName = "t_target_realisasi_jenisGrid";
+        $this->ComponentName = "SELECT_t_revenue_target_i";
         $this->Visible = True;
         $this->Parent = & $Parent;
         $this->RelativePath = $RelativePath;
         $this->Errors = new clsErrors();
-        $this->ErrorBlock = "Grid t_target_realisasi_jenisGrid";
+        $this->ErrorBlock = "Grid SELECT_t_revenue_target_i";
         $this->Attributes = new clsAttributes($this->ComponentName . ":");
-        $this->DataSource = new clst_target_realisasi_jenisGridDataSource($this);
+        $this->DataSource = new clsSELECT_t_revenue_target_iDataSource($this);
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
-            $this->PageSize = 5;
+            $this->PageSize = 10;
         else
             $this->PageSize = intval($this->PageSize);
         if ($this->PageSize > 100)
@@ -69,20 +69,9 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
         if ($this->PageNumber <= 0) $this->PageNumber = 1;
 
-        $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
-        $this->DLink->HTML = true;
-        $this->DLink->Page = "t_target_realisasi_jenis.php";
-        $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount", ccsGet, NULL), $this);
-        $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsFloat, "", CCGetRequestParam("p_year_period_id", ccsGet, NULL), $this);
+        $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsFloat, "", CCGetRequestParam("target_amount", ccsGet, NULL), $this);
+        $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsFloat, "", CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
-        $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsFloat, "", CCGetRequestParam("p_vat_type_id", ccsGet, NULL), $this);
-        $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
-        $this->percentage = & new clsControl(ccsLabel, "percentage", "percentage", ccsFloat, "", CCGetRequestParam("percentage", ccsGet, NULL), $this);
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
-        $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
-        $this->year_code = & new clsControl(ccsLabel, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", ccsGet, NULL), $this);
-        $this->t_revenue_target_id = & new clsControl(ccsHidden, "t_revenue_target_id", "t_revenue_target_id", ccsText, "", CCGetRequestParam("t_revenue_target_id", ccsGet, NULL), $this);
-        $this->p_year_period_id2 = & new clsControl(ccsHidden, "p_year_period_id2", "p_year_period_id2", ccsText, "", CCGetRequestParam("p_year_period_id2", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -97,7 +86,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     }
 //End Initialize Method
 
-//Show Method @2-D7190DCE
+//Show Method @2-7618D684
     function Show()
     {
         global $Tpl;
@@ -126,44 +115,33 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
 
 
         if (!$this->IsEmpty) {
-            $this->ControlsVisible["DLink"] = $this->DLink->Visible;
             $this->ControlsVisible["target_amount"] = $this->target_amount->Visible;
-            $this->ControlsVisible["p_year_period_id"] = $this->p_year_period_id->Visible;
-            $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
-            $this->ControlsVisible["p_vat_type_id"] = $this->p_vat_type_id->Visible;
             $this->ControlsVisible["realisasi_amt"] = $this->realisasi_amt->Visible;
-            $this->ControlsVisible["percentage"] = $this->percentage->Visible;
+            $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
+                // Parse Separator
+                if($this->RowNumber) {
+                    $this->Attributes->Show();
+                    $Tpl->parseto("Separator", true, "Row");
+                }
                 $this->RowNumber++;
                 if ($this->HasRecord) {
                     $this->DataSource->next_record();
                     $this->DataSource->SetValues();
                 }
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
-                $this->DLink->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-                $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_revenue_target_id", $this->DataSource->f("t_revenue_target_id"));
                 $this->target_amount->SetValue($this->DataSource->target_amount->GetValue());
-                $this->p_year_period_id->SetValue($this->DataSource->p_year_period_id->GetValue());
-                $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
-                $this->p_vat_type_id->SetValue($this->DataSource->p_vat_type_id->GetValue());
                 $this->realisasi_amt->SetValue($this->DataSource->realisasi_amt->GetValue());
+                $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
-                $this->DLink->Show();
                 $this->target_amount->Show();
-                $this->p_year_period_id->Show();
-                $this->vat_code->Show();
-                $this->p_vat_type_id->Show();
                 $this->realisasi_amt->Show();
-                $this->percentage->Show();
+                $this->vat_code->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
-        }
-        else { // Show NoRecords block if no records are found
-            $this->Attributes->Show();
-            $Tpl->parse("NoRecords", false);
         }
 
         $errors = $this->GetErrors();
@@ -173,48 +151,30 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
             $Tpl->block_path = $ParentPath;
             return;
         }
-        $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
-        $this->Navigator->PageSize = $this->PageSize;
-        if ($this->DataSource->RecordsCount == "CCS not counted")
-            $this->Navigator->TotalPages = $this->DataSource->AbsolutePage + ($this->DataSource->next_record() ? 1 : 0);
-        else
-            $this->Navigator->TotalPages = $this->DataSource->PageCount();
-        if ($this->Navigator->TotalPages <= 1) {
-            $this->Navigator->Visible = false;
-        }
-        $this->year_code->SetValue($this->DataSource->year_code->GetValue());
-        $this->Navigator->Show();
-        $this->year_code->Show();
-        $this->t_revenue_target_id->Show();
-        $this->p_year_period_id2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
     }
 //End Show Method
 
-//GetErrors Method @2-7B50B01D
+//GetErrors Method @2-5C64C800
     function GetErrors()
     {
         $errors = "";
-        $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
         $errors = ComposeStrings($errors, $this->target_amount->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->p_year_period_id->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->p_vat_type_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->realisasi_amt->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->percentage->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
     }
 //End GetErrors Method
 
-} //End t_target_realisasi_jenisGrid Class @2-FCB6E20C
+} //End SELECT_t_revenue_target_i Class @2-FCB6E20C
 
-class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_target_realisasi_jenisGridDataSource Class @2-927688D1
+class clsSELECT_t_revenue_target_iDataSource extends clsDBConnSIKP {  //SELECT_t_revenue_target_iDataSource Class @2-FF59DFE5
 
-//DataSource Variables @2-0858EFB8
+//DataSource Variables @2-8F535642
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -226,33 +186,23 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
 
 
     // Datasource fields
-    var $realisasi_amt;
     var $target_amount;
-    var $p_year_period_id;
-    var $year_code;
+    var $realisasi_amt;
     var $vat_code;
-    var $p_vat_type_id;
-	var $t_revenue_target_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-62F60A06
-    function clst_target_realisasi_jenisGridDataSource(& $Parent)
+//DataSourceClass_Initialize Event @2-80A5F372
+    function clsSELECT_t_revenue_target_iDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
-        $this->ErrorBlock = "Grid t_target_realisasi_jenisGrid";
+        $this->ErrorBlock = "Grid SELECT_t_revenue_target_i";
         $this->Initialize();
-        $this->realisasi_amt = new clsField("realisasi_amt", ccsText, "");
+        $this->target_amount = new clsField("target_amount", ccsFloat, "");
         
-        $this->target_amount = new clsField("target_amount", ccsText, "");
-        
-        $this->p_year_period_id = new clsField("p_year_period_id", ccsFloat, "");
-        
-        $this->year_code = new clsField("year_code", ccsText, "");
+        $this->realisasi_amt = new clsField("realisasi_amt", ccsFloat, "");
         
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
-        $this->p_vat_type_id = new clsField("p_vat_type_id", ccsFloat, "");
-        $this->t_revenue_target_id = new clsField("t_revenue_target_id", ccsFloat, "");
 
     }
 //End DataSourceClass_Initialize Event
@@ -266,24 +216,36 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     }
 //End SetOrder Method
 
-//Prepare Method @2-B5759643
+//Prepare Method @2-4352EB1D
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $this->Parameters["urlp_year_period_id"], "", false);
+        $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", "", $this->Parameters["urlp_year_period_id"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-8AEFD667
+//Open Method @2-7AC13CAD
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT t_revenue_target_id,\n" .
+        "p_year_period_id,\n" .
+        "p_vat_type_id,\n" .
+        "vat_code,\n" .
+        "year_code,\n" .
+        "target_amount,\n" .
+        "realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
         "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ") cnt";
-        $this->SQL = "SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
+        $this->SQL = "SELECT t_revenue_target_id,\n" .
+        "p_year_period_id,\n" .
+        "p_vat_type_id,\n" .
+        "vat_code,\n" .
+        "year_code,\n" .
+        "target_amount,\n" .
+        "realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
         "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -296,22 +258,18 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     }
 //End Open Method
 
-//SetValues Method @2-D0D103EE
+//SetValues Method @2-A230A65A
     function SetValues()
     {
-        $this->realisasi_amt->SetDBValue($this->f("realisasi_amt"));
-        $this->target_amount->SetDBValue($this->f("target_amount"));
-        $this->p_year_period_id->SetDBValue(trim($this->f("p_year_period_id")));
-        $this->year_code->SetDBValue($this->f("year_code"));
+        $this->target_amount->SetDBValue(trim($this->f("target_amount")));
+        $this->realisasi_amt->SetDBValue(trim($this->f("realisasi_amt")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
-        $this->p_vat_type_id->SetDBValue(trim($this->f("p_vat_type_id")));
-		$this->t_revenue_target_id->SetDBValue(trim($this->f("t_revenue_target_id")));
     }
 //End SetValues Method
 
-} //End t_target_realisasi_jenisGridDataSource Class @2-FCB6E20C
+} //End SELECT_t_revenue_target_iDataSource Class @2-FCB6E20C
 
-//Initialize Page @1-DA4A0FED
+//Initialize Page @1-B71E4F87
 // Variables
 $FileName = "";
 $Redirect = "";
@@ -327,34 +285,27 @@ $CCSEventResult = "";
 
 $FileName = FileName;
 $Redirect = "";
-$TemplateFileName = "t_target_realisasi_jenis.html";
+$TemplateFileName = "target_realisasi_tahun_per_jenis.html";
 $BlockToParse = "main";
 $TemplateEncoding = "CP1252";
 $ContentType = "text/html";
 $PathToRoot = "../";
-$Charset = $Charset ? $Charset : "windows-1252";
 //End Initialize Page
-
-//Include events file @1-21B6C6C6
-include_once("./t_target_realisasi_jenis_events.php");
-//End Include events file
 
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-45BC4E75
+//Initialize Objects @1-BFC844A8
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
 $MainPage->Attributes = & $Attributes;
 
 // Controls
-$t_target_realisasi_jenisGrid = & new clsGridt_target_realisasi_jenisGrid("", $MainPage);
-$MainPage->t_target_realisasi_jenisGrid = & $t_target_realisasi_jenisGrid;
-$t_target_realisasi_jenisGrid->Initialize();
-
-BindEvents();
+$SELECT_t_revenue_target_i = & new clsGridSELECT_t_revenue_target_i("", $MainPage);
+$MainPage->SELECT_t_revenue_target_i = & $SELECT_t_revenue_target_i;
+$SELECT_t_revenue_target_i->Initialize();
 
 $CCSEventResult = CCGetEvent($CCSEvents, "AfterInitialize", $MainPage);
 
@@ -375,20 +326,20 @@ $Attributes->SetValue("pathToRoot", "../");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Go to destination page @1-5CE28AF9
+//Go to destination page @1-D0B68123
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
     $DBConnSIKP->close();
     header("Location: " . $Redirect);
-    unset($t_target_realisasi_jenisGrid);
+    unset($SELECT_t_revenue_target_i);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-10E119DA
-$t_target_realisasi_jenisGrid->Show();
+//Show Page @1-EFCA07E9
+$SELECT_t_revenue_target_i->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -396,10 +347,10 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-1BB07572
+//Unload Page @1-F604BD42
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBConnSIKP->close();
-unset($t_target_realisasi_jenisGrid);
+unset($SELECT_t_revenue_target_i);
 unset($Tpl);
 //End Unload Page
 
