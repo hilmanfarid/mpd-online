@@ -5,7 +5,7 @@
 <title>t_customer_order_ro</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
@@ -26,10 +26,6 @@ function t_debt_letterFormButton_Delete_OnClick()
 {
     var result = true;
 //End t_debt_letterFormButton_Delete_OnClick
-
-//Confirmation Message @633-8243B274
-    return confirm('Delete record?');
-//End Confirmation Message
 
 //Confirmation Message @633//End Confirmation Message
 
@@ -66,8 +62,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -91,19 +87,19 @@ $(document).ready(function()
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <!-- BEGIN Record t_debt_letterForm -->
-        <form id="t_debt_letterForm" name="{HTMLFormName}" action="{Action}" method="post">
-          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <form id="t_debt_letterForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td valign="top">
-                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>DETAIL&nbsp;FORMULIR PENDAFTARAN</strong></td> 
-                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
                 </table>
  
@@ -115,60 +111,60 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nomor Order</label></label>&nbsp; </label></label></label></label></label></label></label></td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormorder_no" tabindex="2" readonly maxlength="14" value="{order_no}" name="{order_no_Name}">&nbsp;<input id="t_debt_letterFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"><input id="t_debt_letterFormt_debt_letter_id" type="hidden" value="{t_debt_letter_id}" name="{t_debt_letter_id_Name}"></td>
+                    <td colspan="3"><input id="t_debt_letterFormorder_no" class="ControlsRO" tabindex="2" name="{order_no_Name}" readonly maxlength="14" value="{order_no}">&nbsp;<input id="t_debt_letterFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><input id="t_debt_letterFormt_debt_letter_id" name="{t_debt_letter_id_Name}" value="{t_debt_letter_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Periode</td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormfinance_period_code" tabindex="2" readonly maxlength="32" size="32" value="{finance_period_code}" name="{finance_period_code_Name}">&nbsp;<input id="t_debt_letterFormp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td>
+                    <td colspan="3"><input id="t_debt_letterFormfinance_period_code" class="ControlsRO" tabindex="2" name="{finance_period_code_Name}" readonly maxlength="32" value="{finance_period_code}" size="32">&nbsp;<input id="t_debt_letterFormp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Jenis&nbsp;Surat&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormleter_type" tabindex="2" readonly maxlength="32" size="32" value="{leter_type}" name="{leter_type_Name}">&nbsp;<input id="t_debt_letterFormp_debt_letter_type_id" type="hidden" value="{p_debt_letter_type_id}" name="{p_debt_letter_type_id_Name}"></td>
+                    <td colspan="3"><input id="t_debt_letterFormleter_type" class="ControlsRO" tabindex="2" name="{leter_type_Name}" readonly maxlength="32" value="{leter_type}" size="32">&nbsp;<input id="t_debt_letterFormp_debt_letter_type_id" name="{p_debt_letter_type_id_Name}" value="{p_debt_letter_type_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Tanggal&nbsp;Surat&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormletter_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="25" value="{letter_date}" name="{letter_date_Name}">&nbsp;<input id="t_debt_letterFormTAKEN_CTL" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{TAKEN_CTL}" name="{TAKEN_CTL_Name}"><input id="t_debt_letterFormIS_TAKEN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{IS_TAKEN}" name="{IS_TAKEN_Name}"><input id="t_debt_letterFormCURR_DOC_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_DOC_ID}" name="{CURR_DOC_ID_Name}"><input id="t_debt_letterFormCURR_DOC_TYPE_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_DOC_TYPE_ID}" name="{CURR_DOC_TYPE_ID_Name}"><input id="t_debt_letterFormCURR_PROC_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_PROC_ID}" name="{CURR_PROC_ID_Name}"><input id="t_debt_letterFormCURR_CTL_ID" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{CURR_CTL_ID}" name="{CURR_CTL_ID_Name}"><input id="t_debt_letterFormUSER_ID_DOC" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_DOC}" name="{USER_ID_DOC_Name}"><input id="t_debt_letterFormUSER_ID_DONOR" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_DONOR}" name="{USER_ID_DONOR_Name}"><input id="t_debt_letterFormUSER_ID_LOGIN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_LOGIN}" name="{USER_ID_LOGIN_Name}"><input id="t_debt_letterFormUSER_ID_TAKEN" style="WIDTH: 40px; HEIGHT: 22px" type="hidden" size="5" value="{USER_ID_TAKEN}" name="{USER_ID_TAKEN_Name}">
-<input id="t_debt_letterFormIS_CREATE_DOC" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{IS_CREATE_DOC}" name="{IS_CREATE_DOC_Name}"><input id="t_debt_letterFormIS_MANUAL" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{IS_MANUAL}" name="{IS_MANUAL_Name}"><input id="t_debt_letterFormCURR_PROC_STATUS" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{CURR_PROC_STATUS}" name="{CURR_PROC_STATUS_Name}"><input id="t_debt_letterFormCURR_DOC_STATUS" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{CURR_DOC_STATUS}" name="{CURR_DOC_STATUS_Name}"><input id="t_debt_letterFormPREV_DOC_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_DOC_ID}" name="{PREV_DOC_ID_Name}"><input id="t_debt_letterFormPREV_DOC_TYPE_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_DOC_TYPE_ID}" name="{PREV_DOC_TYPE_ID_Name}"><input id="t_debt_letterFormPREV_PROC_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_PROC_ID}" name="{PREV_PROC_ID_Name}"><input id="t_debt_letterFormPREV_CTL_ID" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{PREV_CTL_ID}" name="{PREV_CTL_ID_Name}"><input id="t_debt_letterFormSLOT_1" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_1}" name="{SLOT_1_Name}"><input id="t_debt_letterFormSLOT_2" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_2}" name="{SLOT_2_Name}"><input id="t_debt_letterFormSLOT_3" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_3}" name="{SLOT_3_Name}"><input id="t_debt_letterFormSLOT_4" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_4}" name="{SLOT_4_Name}">
-<input id="t_debt_letterFormSLOT_5" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{SLOT_5}" name="{SLOT_5_Name}"><input id="t_debt_letterFormMESSAGE" style="WIDTH: 36px; HEIGHT: 22px" type="hidden" size="4" value="{MESSAGE}" name="{MESSAGE_Name}"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_debt_letterFormletter_date" class="ControlsRO" name="{letter_date_Name}" readonly maxlength="100" value="{letter_date}" size="25">&nbsp;<input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormTAKEN_CTL" name="{TAKEN_CTL_Name}" value="{TAKEN_CTL}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormIS_TAKEN" name="{IS_TAKEN_Name}" value="{IS_TAKEN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormCURR_DOC_ID" name="{CURR_DOC_ID_Name}" value="{CURR_DOC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormCURR_DOC_TYPE_ID" name="{CURR_DOC_TYPE_ID_Name}" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormCURR_PROC_ID" name="{CURR_PROC_ID_Name}" value="{CURR_PROC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormCURR_CTL_ID" name="{CURR_CTL_ID_Name}" value="{CURR_CTL_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormUSER_ID_DOC" name="{USER_ID_DOC_Name}" value="{USER_ID_DOC}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormUSER_ID_DONOR" name="{USER_ID_DONOR_Name}" value="{USER_ID_DONOR}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormUSER_ID_LOGIN" name="{USER_ID_LOGIN_Name}" value="{USER_ID_LOGIN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_debt_letterFormUSER_ID_TAKEN" name="{USER_ID_TAKEN_Name}" value="{USER_ID_TAKEN}" size="5" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormIS_CREATE_DOC" name="{IS_CREATE_DOC_Name}" value="{IS_CREATE_DOC}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormIS_MANUAL" name="{IS_MANUAL_Name}" value="{IS_MANUAL}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormCURR_PROC_STATUS" name="{CURR_PROC_STATUS_Name}" value="{CURR_PROC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormCURR_DOC_STATUS" name="{CURR_DOC_STATUS_Name}" value="{CURR_DOC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormPREV_DOC_ID" name="{PREV_DOC_ID_Name}" value="{PREV_DOC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormPREV_DOC_TYPE_ID" name="{PREV_DOC_TYPE_ID_Name}" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormPREV_PROC_ID" name="{PREV_PROC_ID_Name}" value="{PREV_PROC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormPREV_CTL_ID" name="{PREV_CTL_ID_Name}" value="{PREV_CTL_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormSLOT_1" name="{SLOT_1_Name}" value="{SLOT_1}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormSLOT_2" name="{SLOT_2_Name}" value="{SLOT_2}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormSLOT_3" name="{SLOT_3_Name}" value="{SLOT_3}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormSLOT_4" name="{SLOT_4_Name}" value="{SLOT_4}" size="4" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormSLOT_5" name="{SLOT_5_Name}" value="{SLOT_5}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_debt_letterFormMESSAGE" name="{MESSAGE_Name}" value="{MESSAGE}" size="4" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Surat Teguran Ke -&nbsp;</td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormsequence_no" readonly maxlength="2" size="2" value="{sequence_no}" name="{sequence_no_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_debt_letterFormsequence_no" class="ControlsRO" name="{sequence_no_Name}" readonly maxlength="2" value="{sequence_no}" size="2">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nomor Surat</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_debt_letterFormletter_no" tabindex="2" maxlength="32" size="32" value="{letter_no}" name="{letter_no_Name}">&nbsp;<input id="t_debt_letterFormis_approve_1" type="hidden" value="{is_approve_1}" name="{is_approve_1_Name}"><input id="t_debt_letterFormis_approve_2" type="hidden" value="{is_approve_2}" name="{is_approve_2_Name}"><input id="t_debt_letterFormis_approve_3" type="hidden" value="{is_approve_3}" name="{is_approve_3_Name}"></td>
+                    <td colspan="3"><input id="t_debt_letterFormletter_no" class="ControlsRQ" tabindex="2" name="{letter_no_Name}" maxlength="32" value="{letter_no}" size="32">&nbsp;<input id="t_debt_letterFormis_approve_1" name="{is_approve_1_Name}" value="{is_approve_1}" type="hidden"><input id="t_debt_letterFormis_approve_2" name="{is_approve_2_Name}" value="{is_approve_2}" type="hidden"><input id="t_debt_letterFormis_approve_3" name="{is_approve_3_Name}" value="{is_approve_3}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">SMS Konten</td> 
-                    <td colspan="3"><input class="ControlsRQ" id="t_debt_letterFormsms_content" tabindex="2" maxlength="128" size="100" value="{sms_content}" name="{sms_content_Name}">&nbsp;</td>
+                    <td colspan="3"><input id="t_debt_letterFormsms_content" class="ControlsRQ" tabindex="2" name="{sms_content_Name}" maxlength="128" value="{sms_content}" size="100">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_debt_letterFormcreated_by">Dibuat Oleh</label></td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="t_debt_letterFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_debt_letterFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="16" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_debt_letterFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_debt_letterFormupdated_by">Diubah Oleh</label></td> 
-                    <td colspan="3"><input class="ControlsRO" id="t_debt_letterFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="t_debt_letterFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_debt_letterFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="16" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_debt_letterFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
                   </tr>
  
                   <tr class="Bottom">
-                    <td align="right" colspan="4">&nbsp;&nbsp; 
-                      <!-- BEGIN Button Button4 --><input class="btn_tambah" id="t_debt_letterFormButton4" onclick="view_debt()" type="submit" alt="Button2" value="VIEW DAFTAR SURAT TEGURAN" name="{Button_Name}"><!-- END Button Button4 -->
-                      <!-- BEGIN Button Button3 --><input class="btn_tambah" id="t_debt_letterFormButton3" onclick="cetak_debt()" type="submit" alt="Button2" value="CETAK SURAT TEGURAN" name="{Button_Name}"><!-- END Button Button3 -->
-                      <!-- BEGIN Button Button2 --><input class="btn_tambah" id="t_debt_letterFormButton2" onclick="submitter()" type="submit" alt="Button2" value="SUBMIT" name="{Button_Name}"><!-- END Button Button2 -->
-                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_debt_letterFormButton_Insert" style="DISPLAY: none" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_debt_letterFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_debt_letterFormButton_Delete" style="DISPLAY: none" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="t_debt_letterFormButton_Cancel" style="DISPLAY: none" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                    <td colspan="4" align="right">&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button4 --><input id="t_debt_letterFormButton4" class="btn_tambah" onclick="view_debt()" name="{Button_Name}" alt="Button2" value="VIEW DAFTAR SURAT TEGURAN" type="button"><!-- END Button Button4 -->
+                      <!-- BEGIN Button Button3 --><input id="t_debt_letterFormButton3" class="btn_tambah" onclick="cetak_debt()" name="{Button_Name}" alt="Button2" value="CETAK SURAT TEGURAN" type="submit"><!-- END Button Button3 -->
+                      <!-- BEGIN Button Button2 --><input id="t_debt_letterFormButton2" class="btn_tambah" onclick="submitter()" name="{Button_Name}" alt="Button2" value="SUBMIT" type="submit"><!-- END Button Button2 -->
+                      <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_debt_letterFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_debt_letterFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="t_debt_letterFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_debt_letterFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --></td>
                   </tr>
                 </table>
               </td>
@@ -384,9 +380,10 @@ function submitter(){
 }
 
 function view_debt(){
-                var id_cus =document.getElementById('t_debt_letterFormt_customer_order_id').value;
+                var id_cus = document.getElementById('t_debt_letterFormt_customer_order_id').value;
         var urlLink = "?t_customer_order_id="+id_cus;
-        return popup("../report/view_daftar_surat_teguran_pdf.php"+urlLink);
+        //return popup("../report/view_daftar_surat_teguran_pdf.php"+urlLink);
+		return popup("../trans/t_debt_letter_view.php"+urlLink);
 }
 
 function cetak_debt(){
