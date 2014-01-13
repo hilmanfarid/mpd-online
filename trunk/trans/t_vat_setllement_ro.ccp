@@ -180,12 +180,6 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="305" fieldSourceType="DBColumn" dataType="Text" html="False" name="no_kohir" fieldSource="no_kohir" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridno_kohir" format="#,##">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Label id="306" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_name" PathID="t_vat_setllementGridwp_name" fieldSource="wp_name">
 					<Components/>
 					<Events/>
@@ -210,24 +204,36 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Attributes/>
 					<Features/>
 				</Button>
-<Hidden id="312" fieldSourceType="CodeExpression" dataType="Text" name="user" PathID="t_vat_setllementGriduser" fieldSource="CCGetUserLogin()">
+				<Hidden id="312" fieldSourceType="CodeExpression" dataType="Text" name="user" PathID="t_vat_setllementGriduser" fieldSource="CCGetUserLogin()">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register1" PathID="t_vat_setllementGridcetak_register1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="308" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register" PathID="t_vat_setllementGridcetak_register">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Label id="313" fieldSourceType="CodeExpression" dataType="Float" html="False" name="total_total" PathID="t_vat_setllementGridtotal_total" format="#,##">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
-</Hidden>
-<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register1" PathID="t_vat_setllementGridcetak_register1">
+</Label>
+<Label id="305" fieldSourceType="DBColumn" dataType="Text" html="False" name="no_kohir" fieldSource="no_kohir" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridno_kohir" format="#,##">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
-				</Button>
-<Button id="308" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register" PathID="t_vat_setllementGridcetak_register">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
+				</Label>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">

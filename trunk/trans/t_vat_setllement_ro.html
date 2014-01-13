@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -79,13 +79,14 @@ $(document).ready(function()
  
                   <th scope="col">No. Order</th>
  
+				<th scope="col">No Kohir</th>
                   <th scope="col">Total Transaksi&nbsp;</th>
  
                   <th scope="col">&nbsp;Total Pajak</th>
  
                   <th scope="col">&nbsp;Denda</th>
  
-                  <th scope="col">No Kohir&nbsp;</th>
+                  <th scope="col">&nbsp;Total</th>
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;FLAG PAYMENT</th>
  
@@ -103,10 +104,12 @@ $(document).ready(function()
                   <td>{npwd}&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden"></td> 
                   <td>{finance_period_code}&nbsp;<input id="t_vat_setllementGridp_rqst_type_id_{t_vat_setllementGrid:rowNumber}" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"></td> 
                   <td>{order_no}<input id="t_vat_setllementGridp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td> 
-                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_trans_amount}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_vat_amount}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}</td>
+				  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_trans_amount}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_vat_amount}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_total}</td> 
+                  
                   <td style="TEXT-ALIGN: center">&nbsp; 
                     <!-- BEGIN Button cetak_payment --><input id="t_vat_setllementGridcetak_payment" class="btn_tambah" onclick="flagPayment('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" name="{Button_Name}" alt="Button2" value="Flag Payment" type="button"><!-- END Button cetak_payment --></td> 
                   <td style="TEXT-ALIGN: center">{cetak}&nbsp; 
@@ -117,14 +120,14 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="18">-</td>
+                  <td colspan="19">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b>&nbsp;</b></td> 
                   <td></td> 
                   <td>&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right" colspan="15">
+                  <td style="TEXT-ALIGN: right" colspan="16">
                     <!-- BEGIN Button Button1 --><input id="t_vat_setllementGridButton1" class="btn_tambah" onclick="submitter()" name="{Button_Name}" alt="Button1" value="SUBMIT" type="submit"><!-- END Button Button1 --></td>
                 </tr>
               </table>
