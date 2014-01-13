@@ -341,7 +341,7 @@ decode({p_hotel_grade_id},0,null,{p_hotel_grade_id}), decode({p_rest_service_typ
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeInsert" type="Server">
 					<Actions>

@@ -6,6 +6,7 @@ include_once(RelativePath . "/Common.php");
 include_once("../include/fpdf.php");
 
 $t_customer_order_id = CCGetFromGet("t_customer_order_id", "");
+$p_vat_type_id = CCGetFromGet("p_vat_type_id", "");
 //$t_customer_order_id = 67;
 $data = array();
 
@@ -15,18 +16,19 @@ if(empty($t_customer_order_id)){
 }else{
 $dbConn = new clsDBConnSIKP();
 
-$query="select * from f_debt_letter_list(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)";
+$query="select * from f_debt_letter_list($t_customer_order_id) where p_vat_type_id = $p_vat_type_id";
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 		$data["npwd"][] = $dbConn->f("npwd");
 		$data["company_name"][] = $dbConn->f("company_name");
+		$data["address_name"][] = $dbConn->f("address_name");
 		$data["vat_code"][] = $dbConn->f("vat_code");
-		$data["tap_no"][] = $dbConn->f("tap_no");
-		$data["tap_date"][] = $dbConn->f("tap_date");
-		//$data["due_date"][] = $dbConn->f("due_date");
+		$data["due_date"][] = $dbConn->f("due_date");
+		$data["start_date"][] = $dbConn->f("start_date");
+		$data["end_date"][] = $dbConn->f("end_date");
 		$data["debt_amount"][] = $dbConn->f("debt_amount");
-
+		$data["description"][] = $dbConn->f("description");
 }
 
 $dbConn->close();
@@ -60,42 +62,54 @@ class FormCetak extends FPDF {
 		$startY = $this->GetY();
 		$startX = $this->paperWSize-42;
 		$lengthCell = $startX+20;		
-		$this->SetFont('Arial', '', 10);
 		
-		$kol1 = ($lengthCell * 3) / 18;
-		$kol2 = ($lengthCell * 3) / 18;
-		$kol3 = ($lengthCell * 3) / 18; 
-		$kol4 = ($lengthCell * 3) / 18;
-		$kol5 = ($lengthCell * 3) / 18; 
-		$kol5 = ($lengthCell * 3) / 18; 
+		$kol = $lengthCell / 18;
+		$kol1 = $kol * 1;
+		$kol2 = $kol * 2;
+		$kol3 = $kol * 3;
+		$kol4 = $kol * 4;
+		$kol5 = $kol * 5;
 		
-		$this->Cell($lengthCell, $this->height, "VIEW DAFTAR SURAT TEGURAN", 0, 0, 'C');
+		$this->SetFont('Arial', 'B', 10);
+		$this->Cell($lengthCell, $this->height, "DAFTAR SURAT TEGURAN " . strtoupper($data["vat_code"][0]), 0, 0, 'C');
 		$this->Ln(10);
-		$this->Cell($kol1, $this->height, "NPWPD", 1, 0, 'C');
-		$this->Cell($kol2, $this->height, "Nama", 1, 0, 'C');
-		$this->Cell($kol3, $this->height, "Jenis Pajak", 1, 0, 'C');
-		$this->Cell($kol4, $this->height, "No. Ketetapan", 1, 0, 'C');
-		$this->Cell($kol5, $this->height, "Tgl. Jatuh Tempo", 1, 0, 'C');
-		$this->Cell($kol6, $this->height, "Tagihan (Rp.)", 1, 0, 'C');
+		$this->SetFont('Arial', '', 10);
+		$this->Cell($kol1, $this->height, "NO", 1, 0, 'C');
+		$this->Cell($kol2, $this->height, "NPWPD", 1, 0, 'C');
+		$this->Cell($kol3, $this->height, "NAMA", 1, 0, 'C');
+		$this->Cell($kol3, $this->height, "ALAMAT", 1, 0, 'C');
+		$this->Cell($kol2, $this->height, "JATUH TEMPO", 1, 0, 'C');
+		$this->Cell($kol2, $this->height, "MASA PAJAK", 1, 0, 'C');
+		$this->Cell($kol2, $this->height, "BESARNYA", 1, 0, 'C');
+		$this->Cell($kol3, $this->height, "KETERANGAN", 1, 0, 'C');
 		$this->Ln();
 		
-		$this->SetWidths(array($kol1, $kol2, $kol3, $kol4, $kol5, $kol6));
-		$this->SetAligns(array("L", "L", "L", "L", "C", "R"));
+		$this->SetWidths(array($kol1, $kol2, $kol3, $kol3, $kol2, $kol2, $kol2, $kol3));
+		$this->SetAligns(array("C", "L", "L", "L", "C", "C", "R", "L"));
 		for ($i=0; $i<count($data['npwd']); $i++) {
-		$this->RowMultiBorderWithHeight(array($data["npwd"][$i],
-											  $data["company_name"][$i],
-											  $data["vat_code"][$i],
-											  $data["tap_no"][$i]." - ".$data["tap_date"][$i],
-											  "", //$data["due_date"][$i]
-											  $data["debt_amount"][$i])
-											 ,
-										array('TBLR',
-											  'TBLR',
-											  'TBLR',
-											  'TBLR',
-											  'TBLR',
-											  'TBLR')
-											  ,$this->height);
+			$this->RowMultiBorderWithHeight(
+				array(
+					$i + 1,
+					$data["npwd"][$i],
+					$data["company_name"][$i],
+					$data["address_name"][$i],
+					$data["due_date"][$i],
+					$data["start_date"][$i]." - ".$data["end_date"][$i],
+					$data["debt_amount"][$i],
+					$data["description"][$i]
+				),
+				array(
+					'TBLR',
+					'TBLR',
+					'TBLR',
+					'TBLR',
+					'TBLR',
+					'TBLR',
+					'TBLR',
+					'TBLR'
+				),
+				$this->height
+			);
 		}		
 		
 	}
