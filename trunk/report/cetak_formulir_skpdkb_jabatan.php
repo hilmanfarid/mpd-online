@@ -18,10 +18,10 @@
 
 	
 	if($t_vat_setllement_id > 0){
-		$sql = "SELECT * FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
+		$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 	}
 	else{
-		$sql = "SELECT * FROM v_vat_setllement_skpd_kb_jabatan WHERE settlement_type = " . $settlement_type;
+		$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE settlement_type = " . $settlement_type;
 	}
 
 	$dbConn->query($sql);
@@ -44,6 +44,8 @@
 		$data["db_interest_charge"] = $dbConn->f("db_interest_charge");
 		$data["total_penalty_amount"] = $dbConn->f("total_penalty_amount");
 		$data["db_increasing_charge"] = $dbConn->f("db_increasing_charge");
+		$data["settlement_date"] = $dbConn->f("settlement_date");
+		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
 		$items[] = $data;
 	}
 	
@@ -83,7 +85,7 @@ class FormCetak extends FPDF {
 	}
 	*/
 	
-	function PageCetak($data, $user) {
+	function PageCetak($data) {
 		$this->AliasNbPages();
 		$this->AddPage("P");
 		$this->SetFont('Arial', '', 10);
@@ -345,7 +347,7 @@ class FormCetak extends FPDF {
 		$this->tulis("dikenakan sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -387,7 +389,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height, ": ".$data["wp_address_name"], "R", 0, 'L');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y"), "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Yang menerima, ", "R", 0, 'C');
