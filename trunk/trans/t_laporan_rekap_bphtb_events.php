@@ -106,6 +106,7 @@ function print_laporan($param_arr){
 	$pdf->SetAligns(Array('C','L','L','L','L','L','R','R','R','R','R','R','R','R','R','R','R','R'));
 	$jumlah =0;
 	$jumlah=0;
+	$total_nilai_pajak = 0;
 	while($dbConn->next_record()){
 		$items[]= $item = array(
 					   'creation_date' => $dbConn->f("creation_date"), 	
@@ -136,11 +137,16 @@ function print_laporan($param_arr){
 											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
 		$jumlah+=$dbConn->f("amount");
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
+		$total_nilai_pajak += $item['bphtb_amt_final'];
 		$no++;
 	}
+	$pdf->SetWidths(array(286,40));
+	$pdf->SetAligns(Array('C','R'));
+	$pdf->SetFont('arial', 'B',8);
+	$pdf->RowMultiBorderWithHeight(array("TOTAL", number_format($total_nilai_pajak,2,",",".")), array('LB','LBR'), 6);
 	/*print_r($items);
 	exit;*/
-	$pdf->SetWidths(array(250,70));
+	//$pdf->SetWidths(array(250,70));
 	$pdf->ln(8);
 	//$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
 	$pdf->Output("","I");
