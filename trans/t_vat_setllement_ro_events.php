@@ -28,8 +28,13 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
 
   // -------------------------
       // Write your own code here.
+	$pajak = $t_vat_setllementGrid->total_vat_amount->GetValue();
+	$denda = $t_vat_setllementGrid->total_penalty_amount->GetValue();
+	$totaltotal = $pajak + $denda;
+	$t_vat_setllementGrid->total_total->SetValue($totaltotal);
   	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
   	$nilai2 = $t_vat_setllementGrid->p_vat_type_id->GetValue();
+
   	$t_vat_setllementGrid->cetak_sptpd->SetValue("<input type='button' style='display:none;' value='CETAK' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
     									 "cetakSptpd(".$nilai.",".$nilai2.")\">");
   	$action_button = CCGetFromGet("action_button","");
