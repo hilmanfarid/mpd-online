@@ -11,11 +11,13 @@
 <script>
 $(function () {
 	$.getJSON( "../services/target_realisasi_tahun.php?p_year_period_id="+document.getElementById("t_target_realisasiGridp_year_period_id2").value, function( items ) {
-		var target_amount = items[0][0];
+		var target_amt = items[0][0];
 		var realisasi_amt = items[0][1];
 		var tahun = items[0][2];
-		
 		$("#container").highcharts({
+			chart: {
+				type: "column"
+			},
 			title: {
 				text: "Target vs Realisasi " + tahun
 			},
@@ -23,28 +25,23 @@ $(function () {
 				text: "Disyanjak Kota Bandung"
 			},
 			tooltip: {
-				pointFormat: "{series.name}: <b>{point.y:,.2f}<b><br/>"
+				
+			},
+			xAxis: {
+				categories: [tahun]
 			},
 			plotOptions: {
-				pie: {
-	                allowPointSelect: true,
-	                cursor: 'pointer',
-	                dataLabels: {
-	                    enabled: true,
-	                    color: '#000000',
-	                    connectorColor: '#000000',
-	                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-	                }
-            	}
+				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+					'<td style="padding:0"><b>{point.y}</b></td></tr>',
+				footerFormat: '</table>',
+				shared: true,
+				useHTML: true
 			},
-			series: [{
-				type: "pie",
-            	name: "Target vs Realisasi " + tahun,
-				data: [
-					["Target", target_amount],
-					["Realisasi", realisasi_amt]
-				]
-			}]
+			series: [
+			{showInLegend: true, name: "Target " + tahun, data: [target_amt]},
+			{showInLegend: true, name: "Realisasi " + tahun, data: [realisasi_amt]}
+			]
 		});
 	});
 });
