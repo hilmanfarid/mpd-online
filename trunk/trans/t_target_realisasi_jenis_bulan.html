@@ -9,82 +9,86 @@
 <script src="../js/highcharts.js"></script>
 <script src="../js/exporting.js"></script>
 <script>
-$(function () {
-	$.getJSON( "../services/detail_jenis_bulan.php?t_revenue_target_id="+document.getElementById("t_target_realisasi_jenis_bulanFormt_revenue_target_id").value, function( items ) {
-		var target_amount = [];
-		var realisasi_amt = [];
-		var bulan = [];
-		var vat_code = [];
-		var detail_vat_code = [];
-		
-		var jumlah_detail = items.length / 12;
-		
-		for(i = 0; i < jumlah_detail; i++){
-			target_amount[i] = [];
-			realisasi_amt[i] = [];
-			bulan[i] = [];
-			vat_code[i] = [];
-			detail_vat_code[i] = [];
+$(function() {
+    $.getJSON("../services/count_detail_jenis_bulan.php?t_revenue_target_id="
+            + $("#t_target_realisasi_jenis_bulanFormt_revenue_target_id").val(), function(data) {
+        $.getJSON("../services/detail_jenis_bulan.php?t_revenue_target_id=" + document.getElementById("t_target_realisasi_jenis_bulanFormt_revenue_target_id").value, function(items) {
+            var target_amount = [];
+            var realisasi_amt = [];
+            var bulan = [];
+            var vat_code = [];
+            var detail_vat_code = [];
+            var jumlah_detail;
+            jumlah_detail = data;
+//            $.getJSON("../services/count_detail_jenis_bulan.php?t_revenue_target_id=" + document.getElementById("t_target_realisasi_jenis_bulanFormt_revenue_target_id").value, function(count) {
+//                jumlah_detail = count[0];
+//            });
+            var jumlah_bulan = items.length / jumlah_detail;
+            for (i = 0; i < jumlah_detail; i++) {
+                target_amount[i] = [];
+                realisasi_amt[i] = [];
+                bulan[i] = [];
+                vat_code[i] = [];
+                detail_vat_code[i] = [];
+                for (j = 0; j < jumlah_bulan; j++) {
+                    target_amount[i][j] = items[i + j * jumlah_detail][0];
+                    realisasi_amt[i][j] = items[i + j * jumlah_detail][1];
+                    bulan[i][j] = items[i + j * jumlah_detail][2];
+                    vat_code[i][j] = items[i + j * jumlah_detail][3];
+                    detail_vat_code[i][j] = items[i + j * jumlah_detail][4];
+                }
+            }
+            console.log(target_amount);
+            var series_colors = ['#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce', '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'];
+            data_series = [];
+            for (i = 0; i < jumlah_detail; i++) {
+                data_series.push({showInLegend: true, name: "Target " + detail_vat_code[i][0], data: target_amount[i], stack: "Target", color: series_colors[i]});
+                data_series.push({showInLegend: true, name: "Realisasi " + detail_vat_code[i][0], data: realisasi_amt[i], stack: "Realisasi", color: series_colors[i]});
+            }
 
-			for(j = 0; j < 12; j++){
-				target_amount[i][j] = items[i + j * jumlah_detail][0];
-				realisasi_amt[i][j] = items[i + j * jumlah_detail][1];
-				bulan[i][j] = items[i + j * jumlah_detail][2];
-				vat_code[i][j] = items[i + j * jumlah_detail][3];
-				detail_vat_code[i][j] = items[i + j * jumlah_detail][4];
-			}
-		}
-		
-		var series_colors = ['#2f7ed8', '#0d233a', '#8bbc21', '#910000', '#1aadce', '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'];
-		data_series = [];
-		for(i = 0; i < jumlah_detail; i++){
-			data_series.push({showInLegend: true, name: "Target " + detail_vat_code[i][0], data: target_amount[i], stack: "Target", color: series_colors[i]});
-			data_series.push({showInLegend: true, name: "Realisasi " + detail_vat_code[i][0], data: realisasi_amt[i], stack: "Realisasi", color: series_colors[i]});
-		}
-		
-		var judul = vat_code[0][0];
-		
-		$("#container").highcharts({
-			chart: {
-				type: "column"
-			},
-			title: {
-				text: "Target vs Realisasi " + judul + " Bulanan"
-			},
-			subtitle: {
-				text: "Disyanjak Kota Bandung"
-			},
-			xAxis: {
-				categories: bulan[0]
-			},
-			yAxis: {
-				min: 0,
-				title: {
-					text: ""
-				},
-				stackLabels: {
-					enabled: true,
-                    formatter: function() {
-						mil = this.total / 1000000000; //1M
-						mil = Math.round(mil * Math.pow(10, 3)) / Math.pow(10, 3);
-	                    return mil + " M";
-                	}
-				}
-			},
-			tooltip: {
-				pointFormat: "{series.name}: <b>{point.y:,.2f}<b><br/>"+
-				"Total: <b>{point.stackTotal:,.2f}</b>"
-			},
-			plotOptions: {
-				column: {
-					pointPadding: 0.2,
-					borderWidth: 0,
-					stacking: 'normal'
-				}
-			},
-			series: data_series
-		});
-	});
+            var judul = vat_code[0][0];
+            $("#container").highcharts({
+                chart: {
+                    type: "column"
+                },
+                title: {
+                    text: "Target vs Realisasi " + judul + " Bulanan"
+                },
+                subtitle: {
+                    text: "Disyanjak Kota Bandung"
+                },
+                xAxis: {
+                    categories: bulan[0]
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: ""
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        formatter: function() {
+                            mil = this.total / 1000000000; //1M
+                            mil = Math.round(mil * Math.pow(10, 3)) / Math.pow(10, 3);
+                            return mil + " M";
+                        }
+                    }
+                },
+                tooltip: {
+                    pointFormat: "{series.name}: <b>{point.y:,.2f}<b><br/>" +
+                            "Total: <b>{point.stackTotal:,.2f}</b>"
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0,
+                        stacking: 'normal'
+                    }
+                },
+                series: data_series
+            });
+        });
+    });
 });
 $(function () {
 	$.getJSON( "../services/jenis_bulan.php?t_revenue_target_id="+document.getElementById("t_target_realisasi_jenis_bulanFormt_revenue_target_id").value, function( items ) {
