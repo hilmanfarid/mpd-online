@@ -242,16 +242,16 @@ class FormCetak extends FPDF {
 		$this->Cell($lkepada2, $this->height, "          Tempat", "R", 0, 'L');
 		$this->Ln();
 		
-		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "", "R", 0, 'C');
-		$this->Ln();
+		// $this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
+		// $this->Cell($lkepada2, $this->height, "", "R", 0, 'C');
+		// $this->Ln();
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
 		$this->Cell($lkepada2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->SetFont('BKANT', '', 12);
-		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
-		$this->newLine();
+		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
+		// $this->newLine();
 		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN", "LR", 0, 'C');
 		$this->newLine();
 		
@@ -359,10 +359,10 @@ class FormCetak extends FPDF {
 		$this->tulis("", "L");
 		$this->tulis("Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan terima kasih.", "L");
 		
-		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
-		$this->Ln();
-		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
-		$this->Ln();
+		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
+		// $this->Ln();
+		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
+		// $this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
 		
