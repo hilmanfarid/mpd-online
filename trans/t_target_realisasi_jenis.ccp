@@ -11,12 +11,6 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Link id="690" visible="Yes" fieldSourceType="CodeExpression" dataType="Text" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridDLink" hrefSource="t_target_realisasi_jenis.ccp" wizardUseTemplateBlock="False">
 					<Components/>
 					<Events/>
@@ -68,6 +62,18 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="871" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridpercentage">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -86,7 +92,7 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 			</TableParameters>
 			<JoinTables>
 				<JoinTable id="717" tableName="v_revenue_target_vs_realisasi" posWidth="150" posHeight="180" posLeft="10" posTop="10"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="870" fieldName="*"/>
@@ -99,145 +105,11 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<FlashChart id="696" secured="False" dataSeriesIn="Columns" chartType="3d_pie" sourceType="SQL" defaultPageSize="25" returnValueType="Number" name="per_pajak" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="per_pajak" connection="ConnSIKP" activeCollection="SQLParameters" schemaName="Autumn" layout="5" gridCaptionField="-1" width="800" height="400" displayTitle="True" title="Target vs Realisasi Per Jenis Pajak" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="vertical" autoRotate="no" template="&lt;root&gt;
-	&lt;schema name=&quot;Autumn&quot;&gt;
-		&lt;mask/&gt;
-		&lt;colors/&gt;
-	&lt;/schema&gt;
-	&lt;separator decimal=&quot;,&quot; group=&quot;&quot;/&gt;
-	&lt;background border=&quot;yes&quot;/&gt;
-	&lt;chartarea border=&quot;yes&quot;&gt;
-		&lt;grid line_style=&quot;medium&quot; visible=&quot;yes&quot;/&gt;
-		&lt;vertical_axis visible=&quot;yes&quot;/&gt;
-		&lt;horizontal_axis visible=&quot;yes&quot; rotation=&quot;vertical&quot; autoRotate=&quot;no&quot;/&gt;
-		&lt;chart line_thick=&quot;2&quot; enabled=&quot;yes&quot; type=&quot;3d_pie&quot; series=&quot;columns&quot;&gt;
-			&lt;inscriptions visible=&quot;yes&quot;/&gt;
-			&lt;animation type=&quot;none&quot;/&gt;
-			&lt;markers size=&quot;8&quot; type=&quot;0&quot;/&gt;
-			&lt;hints border=&quot;yes&quot; enabled=&quot;yes&quot;/&gt;
-		&lt;/chart&gt;
-		&lt;legend sqr_size=&quot;12&quot; sqr_borders=&quot;yes&quot; border_thick=&quot;0&quot; position=&quot;right-center&quot; layout=&quot;vertical&quot; visible=&quot;yes&quot;/&gt;
-		&lt;title position=&quot;top&quot; align=&quot;center&quot; border=&quot;no&quot; alpha=&quot;100&quot; visible=&quot;yes&quot; text=&quot;Target vs Realisasi Per Jenis Pajak&quot;/&gt;
-	&lt;/chartarea&gt;
-	&lt;objects&gt;
-	&lt;/objects&gt;
-	&lt;data&gt;
-		&lt;columns&gt;
-			&lt;column field=&quot;target_amount&quot; name=&quot;Target&quot;/&gt;&lt;column field=&quot;realisasi_amt&quot; name=&quot;Realisasi&quot;/&gt;&lt;/columns&gt;
-		&lt;rows&gt;&lt;!-- BEGIN Row --&gt;&lt;row col1=&quot;{target_amount}&quot; col2=&quot;{realisasi_amt}&quot;/&gt;&lt;!-- END Row --&gt;&lt;/rows&gt;&lt;/data&gt;
-&lt;/root&gt;
-" dataSource="SELECT target_amount, realisasi_amt
-FROM v_revenue_target_vs_realisasi
-WHERE t_revenue_target_id = {t_revenue_target_id}
-ORDER BY p_vat_type_id" orderBy="p_vat_type_id" parameterTypeListName="ParameterTypeList">
-			<Components/>
-			<Events/>
-			<Attributes/>
-			<DataSeries>
-				<Field id="877" fieldName="target_amount" alias="Target"/>
-				<Field id="878" fieldName="realisasi_amt" alias="Realisasi"/>
-			</DataSeries>
-			<TableParameters>
-				<TableParameter id="722" conditionType="Parameter" useIsNull="False" field="p_year_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_year_period_id"/>
-				<TableParameter id="761" conditionType="Parameter" useIsNull="False" field="p_vat_type_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_vat_type_id"/>
-			</TableParameters>
-			<JoinTables>
-				<JoinTable id="721" tableName="v_revenue_target_vs_realisasi" posWidth="150" posHeight="180" posLeft="10" posTop="10"/>
-</JoinTables>
-			<JoinLinks/>
-			<Fields>
-			</Fields>
-			<AllFields>
-				<Field id="873" fieldName="target_amount"/>
-				<Field id="875" fieldName="realisasi_amt"/>
-			</AllFields>
-			<SelectedFields>
-				<Field id="874" fieldName="target_amount" isExpression="True"/>
-				<Field id="876" fieldName="realisasi_amt" isExpression="True"/>
-			</SelectedFields>
-			<SPParameters/>
-			<SQLParameters>
-				<SQLParameter id="872" parameterType="URL" variable="t_revenue_target_id" dataType="Float" parameterSource="t_revenue_target_id" defaultValue="0"/>
-			</SQLParameters>
-			<SecurityGroups/>
-			<Features/>
-		</FlashChart>
-		<FlashChart id="764" secured="False" dataSeriesIn="Columns" chartType="3d_columns" sourceType="Table" defaultPageSize="25" returnValueType="Number" name="per_tahun" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="per_tahun" connection="ConnSIKP" dataSource="v_revenue_target_vs_realisasi" activeCollection="TableParameters" schemaName="Autumn" layout="6" gridCaptionField="vat_code" isCaption="true" width="800" height="400" displayTitle="True" title="Target vs Realisasi Tahunan" displayLegend="True" displayLabels="True" displayGridLines="True" directionType="degrees" autoRotate="yes" template="&lt;root&gt;
-	&lt;schema name=&quot;Autumn&quot;&gt;
-		&lt;mask/&gt;
-		&lt;colors/&gt;
-	&lt;/schema&gt;
-	&lt;separator decimal=&quot;,&quot; group=&quot;&quot;/&gt;
-	&lt;background border=&quot;yes&quot;/&gt;
-	&lt;chartarea border=&quot;yes&quot;&gt;
-		&lt;grid line_style=&quot;medium&quot; visible=&quot;yes&quot;/&gt;
-		&lt;vertical_axis visible=&quot;yes&quot;/&gt;
-		&lt;horizontal_axis visible=&quot;yes&quot; rotation=&quot;degrees&quot; autoRotate=&quot;yes&quot;/&gt;
-		&lt;chart line_thick=&quot;2&quot; enabled=&quot;yes&quot; type=&quot;3d_columns&quot; series=&quot;columns&quot;&gt;
-			&lt;inscriptions visible=&quot;yes&quot;/&gt;
-			&lt;animation type=&quot;none&quot;/&gt;
-			&lt;markers size=&quot;8&quot; type=&quot;0&quot;/&gt;
-			&lt;hints border=&quot;yes&quot; enabled=&quot;yes&quot;/&gt;
-		&lt;/chart&gt;
-		&lt;legend sqr_size=&quot;12&quot; sqr_borders=&quot;yes&quot; border_thick=&quot;0&quot; position=&quot;right-bottom&quot; layout=&quot;vertical&quot; visible=&quot;yes&quot;/&gt;
-		&lt;title position=&quot;top&quot; align=&quot;center&quot; border=&quot;no&quot; alpha=&quot;100&quot; visible=&quot;yes&quot; text=&quot;Target vs Realisasi Tahunan&quot;/&gt;
-	&lt;/chartarea&gt;
-	&lt;objects&gt;
-	&lt;/objects&gt;
-	&lt;data&gt;
-		&lt;columns&gt;
-			&lt;column field=&quot;target_amount&quot; name=&quot;target_amount&quot;/&gt;&lt;column field=&quot;realisasi_amt&quot; name=&quot;realisasi_amt&quot;/&gt;&lt;/columns&gt;
-		&lt;rows&gt;&lt;!-- BEGIN Row --&gt;&lt;row col1=&quot;{target_amount}&quot; col2=&quot;{realisasi_amt}&quot; name=&quot;{vat_code}&quot;/&gt;&lt;!-- END Row --&gt;&lt;/rows&gt;&lt;/data&gt;
-&lt;/root&gt;
-" orderBy="p_vat_type_id">
-			<Components/>
-			<Events/>
-			<Attributes/>
-			<DataSeries>
-				<Field id="803" fieldName="target_amount" alias="Target"/>
-				<Field id="804" fieldName="realisasi_amt" alias="Realisasi"/>
-			</DataSeries>
-			<TableParameters>
-				<TableParameter id="766" conditionType="Parameter" useIsNull="False" field="p_year_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_year_period_id"/>
-			</TableParameters>
-			<JoinTables>
-				<JoinTable id="765" tableName="v_revenue_target_vs_realisasi" schemaName="sikp" posLeft="10" posTop="10" posWidth="150" posHeight="180"/>
-			</JoinTables>
-			<JoinLinks/>
-			<Fields/>
-			<AllFields>
-				<Field id="786" fieldName="t_revenue_target_id"/>
-				<Field id="787" fieldName="p_year_period_id"/>
-				<Field id="788" fieldName="p_vat_type_id"/>
-				<Field id="789" fieldName="target_code"/>
-				<Field id="790" fieldName="target_amt"/>
-				<Field id="791" fieldName="description"/>
-				<Field id="792" fieldName="creation_date"/>
-				<Field id="793" fieldName="created_by"/>
-				<Field id="794" fieldName="updated_date"/>
-				<Field id="795" fieldName="updated_by"/>
-				<Field id="796" fieldName="vat_code"/>
-				<Field id="797" fieldName="year_code"/>
-				<Field id="798" fieldName="target_amount"/>
-				<Field id="800" fieldName="realisasi_amt"/>
-			</AllFields>
-			<SelectedFields>
-				<Field id="799" tableName="v_revenue_target_vs_realisasi" fieldName="target_amount" isExpression="False"/>
-				<Field id="801" tableName="v_revenue_target_vs_realisasi" fieldName="realisasi_amt" isExpression="False"/>
-				<Field id="802" tableName="v_revenue_target_vs_realisasi" fieldName="vat_code" isExpression="False"/>
-			</SelectedFields>
-			<SPParameters/>
-			<SQLParameters/>
-			<SecurityGroups/>
-			<Features/>
-		</FlashChart>
 	</Components>
 	<CodeFiles>
-		<CodeFile id="FlashChartXML696" language="PHPTemplates" name="t_target_realisasi_jenisper_pajak.xml" forShow="False" comment="&lt;!--" commentEnd="--&gt;" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="t_target_realisasi_jenis_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-		<CodeFile id="Code" language="PHPTemplates" name="t_target_realisasi_jenis.php" forShow="True" url="t_target_realisasi_jenis.php" comment="//" codePage="windows-1252"/>
-		<CodeFile id="FlashChartXML764" language="PHPTemplates" name="t_target_realisasi_jenisper_tahun.xml" forShow="False" comment="&lt;!--" commentEnd="--&gt;" codePage="windows-1252"/>
-	</CodeFiles>
+<CodeFile id="Code" language="PHPTemplates" name="t_target_realisasi_jenis.php" forShow="True" url="t_target_realisasi_jenis.php" comment="//" codePage="windows-1252"/>
+</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
