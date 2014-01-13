@@ -77,12 +77,12 @@
 					<Features/>
 				</Button>
 				<Hidden id="729" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_status_pelaporan_pajakSearchp_finance_period_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -106,7 +106,6 @@
 		</Record>
 	</Components>
 	<CodeFiles>
-		<CodeFile id="FlashChartXML686" language="PHPTemplates" name="t_status_pelaporan_pajakstatus_lapor.xml" forShow="False" comment="&lt;!--" commentEnd="--&gt;" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="t_status_pelaporan_pajak_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_status_pelaporan_pajak.php" forShow="True" url="t_status_pelaporan_pajak.php" comment="//" codePage="windows-1252"/>
 	</CodeFiles>

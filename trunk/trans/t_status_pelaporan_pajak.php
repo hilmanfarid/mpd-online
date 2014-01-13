@@ -1,5 +1,5 @@
 <?php
-//Include Common Files @1-EB97B312
+//Include Common Files @1-67CD45EA
 define("RelativePath", "..");
 define("PathToCurrentPage", "/trans/");
 define("FileName", "t_status_pelaporan_pajak.php");
@@ -7,7 +7,6 @@ include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
-include_once(RelativePath . "/Services.php");
 //End Include Common Files
 
 class clsGridt_status_pelaporan_pajakGrid { //t_status_pelaporan_pajakGrid class @2-33A80695
@@ -493,15 +492,11 @@ $Charset = $Charset ? $Charset : "windows-1252";
 include_once("./t_status_pelaporan_pajak_events.php");
 //End Include events file
 
-//BeforeInitialize Binding @1-17AC9191
-$CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
-//End BeforeInitialize Binding
-
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-B9F70BA6
+//Initialize Objects @1-FBC15394
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -509,14 +504,8 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_status_pelaporan_pajakGrid = & new clsGridt_status_pelaporan_pajakGrid("", $MainPage);
-$status_lapor = & new clsFlashChart("status_lapor", $MainPage);
-$status_lapor->CallbackParameter = "t_status_pelaporan_pajakstatus_lapor";
-$status_lapor->Title = "Status Pelaporan Pajak";
-$status_lapor->Width = 700;
-$status_lapor->Height = 300;
 $t_status_pelaporan_pajakSearch = & new clsRecordt_status_pelaporan_pajakSearch("", $MainPage);
 $MainPage->t_status_pelaporan_pajakGrid = & $t_status_pelaporan_pajakGrid;
-$MainPage->status_lapor = & $status_lapor;
 $MainPage->t_status_pelaporan_pajakSearch = & $t_status_pelaporan_pajakSearch;
 $t_status_pelaporan_pajakGrid->Initialize();
 
@@ -558,9 +547,8 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-9A103EFD
+//Show Page @1-1161C12B
 $t_status_pelaporan_pajakGrid->Show();
-$status_lapor->Show();
 $t_status_pelaporan_pajakSearch->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
