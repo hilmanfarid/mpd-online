@@ -759,11 +759,11 @@ function create_tree($filename, $conn, $frmain_name = "frmain", $query_string = 
 	  <tr>
 	    <td valign="top" height="100%" style="background-color:#fffff; color:#000080">
 	
-		<script language="JavaScript" src="../js/<?=$js_file?>"></script>
+		<script language="JavaScript" src="../js/<?php echo $js_file; ?>"></script>
 		<script language="JavaScript">
 
 		var tree_tpl = {
-			'target'  : '<?=$frmain_name?>',	// name of the frame links will be opened in
+			'target'  : '<?php echo $frmain_name; ?>',	// name of the frame links will be opened in
 						// other possible values are: _blank, _parent, _search, _self and _top
 			'icon_e'  : '../images/empty.gif', // empty image
 			'icon_l'  : '../images/line.gif',  // vertical line
@@ -914,11 +914,11 @@ function create_tree_bulk($filename, $results,$rowcount, $frmain_name = "frmain"
 	  <tr>
 	    <td valign="top" height="100%" style="background-color:#fffff; color:#000080">
 	
-		<script language="JavaScript" src="../js/<?=$js_file?>"></script>
+		<script language="JavaScript" src="../js/<?php echo $js_file; ?>"></script>
 		<script language="JavaScript">
 
 		var tree_tpl = {
-			'target'  : '<?=$frmain_name?>',	// name of the frame links will be opened in
+			'target'  : '<?php echo $frmain_name; ?>',	// name of the frame links will be opened in
 						// other possible values are: _blank, _parent, _search, _self and _top
 			'icon_e'  : '../images/empty.gif', // empty image
 			'icon_l'  : '../images/line.gif',  // vertical line
