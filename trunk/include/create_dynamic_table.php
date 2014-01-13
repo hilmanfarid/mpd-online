@@ -795,7 +795,7 @@ function create_tree($filename, $conn, $frmain_name = "frmain", $query_string = 
 		[
 			
 		  
-			<?
+			<?php
 				$PLevel= array (-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1);
 				$level = 0;
 				$nplevel = 0;
@@ -858,7 +858,7 @@ function create_tree($filename, $conn, $frmain_name = "frmain", $query_string = 
 
 		</script>
 
-		<?
+		<?php
 		$conn->Close();
 		?>
 
@@ -870,7 +870,7 @@ function create_tree($filename, $conn, $frmain_name = "frmain", $query_string = 
 
 	</html>
 
-<?
+<?php
 }
 
 function create_tree_bulk($filename, $results,$rowcount, $frmain_name = "frmain", $query_string = "", $js_file="white_tree.js") 
@@ -950,7 +950,7 @@ function create_tree_bulk($filename, $results,$rowcount, $frmain_name = "frmain"
 		[
 			
 		  
-			<?
+			<?php
 				$PLevel= array (-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1);
 				$level = 0;
 				$nplevel = 0;
@@ -1063,7 +1063,7 @@ function create_tree_bulk($filename, $results,$rowcount, $frmain_name = "frmain"
 
 		</script>
 
-		<?
+		<?php
 		//$conn->Close();
 		unset($results);
 		?>
@@ -1076,6 +1076,6 @@ function create_tree_bulk($filename, $results,$rowcount, $frmain_name = "frmain"
 
 	</html>
 
-<?
+<?php
 }
 ?>
