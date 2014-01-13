@@ -1,5 +1,5 @@
 <?php
-//Include Common Files @1-6BC09169
+//Include Common Files @1-429EAF9B
 define("RelativePath", "..");
 define("PathToCurrentPage", "/trans/");
 define("FileName", "t_target_realisasi.php");
@@ -7,7 +7,6 @@ include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
-include_once(RelativePath . "/Services.php");
 //End Include Common Files
 
 class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
@@ -240,10 +239,10 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-B8EC5FD1
+//SetOrder Method @2-9E1383D1
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "p_year_period_id";
+        $this->Order = "";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -317,15 +316,11 @@ $Charset = $Charset ? $Charset : "windows-1252";
 include_once("./t_target_realisasi_events.php");
 //End Include events file
 
-//BeforeInitialize Binding @1-17AC9191
-$CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
-//End BeforeInitialize Binding
-
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-BA71A727
+//Initialize Objects @1-9CE01F82
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -333,13 +328,7 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_target_realisasiGrid = & new clsGridt_target_realisasiGrid("", $MainPage);
-$t_target_realisasiFlash_tahunan = & new clsFlashChart("t_target_realisasiFlash_tahunan", $MainPage);
-$t_target_realisasiFlash_tahunan->CallbackParameter = "t_target_realisasit_target_realisasiFlash_tahunan";
-$t_target_realisasiFlash_tahunan->Title = "Target vs Realisasi Tahunan";
-$t_target_realisasiFlash_tahunan->Width = 400;
-$t_target_realisasiFlash_tahunan->Height = 300;
 $MainPage->t_target_realisasiGrid = & $t_target_realisasiGrid;
-$MainPage->t_target_realisasiFlash_tahunan = & $t_target_realisasiFlash_tahunan;
 $t_target_realisasiGrid->Initialize();
 
 BindEvents();
@@ -375,9 +364,8 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-CEF008C7
+//Show Page @1-FB7C1F28
 $t_target_realisasiGrid->Show();
-$t_target_realisasiFlash_tahunan->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
