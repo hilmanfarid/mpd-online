@@ -92,9 +92,9 @@ $(document).ready(function()
 	</form>
  	<br>	
 
-	<table class="<?echo $cls; ?>" cellspacing="0" cellpadding="0" border="0">
+	<table class="<?php echo $cls; ?>" cellspacing="0" cellpadding="0" border="0">
 	<tr>
-	<td><?echo create_info_ama()?></td>
+	<td><?php echo create_info_ama();?></td>
 	</tr>
 	</table>
 
