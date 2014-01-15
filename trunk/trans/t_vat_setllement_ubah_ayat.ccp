@@ -3,7 +3,7 @@
 		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="formPerubahanAyat" returnPage="t_vat_setllement_ubah_ayat.ccp" PathID="formPerubahanAyat" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="USQLParameters" dataSource="SELECT a.*, b.p_vat_type_id, b.nomor_ayat, b.nama_ayat, b.nama_jns_pajak 
 FROM  t_vat_setllement AS a
 LEFT JOIN v_p_vat_type_dtl_rep AS b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
-WHERE a.t_vat_setllement_id = {t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT f_update_type_ayat({t_vat_setllement_id},{p_vat_type_dtl_id}, '{user_name}') AS msg">
+WHERE a.t_vat_setllement_id = {t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT f_update_type_ayat({t_vat_setllement_id},{p_vat_type_dtl_id}, '{alasan}', '{user_name}') AS msg">
 			<Components>
 				<Button id="16" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="formPerubahanAyatButton1" operation="Update">
 					<Components/>
@@ -47,6 +47,12 @@ WHERE a.t_vat_setllement_id = {t_vat_setllement_id}" customUpdateType="SQL" cust
 					<Attributes/>
 					<Features/>
 				</Hidden>
+<TextArea id="37" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="alasan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="formPerubahanAyatalasan" fieldSource="alasan">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
 </Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
@@ -90,6 +96,7 @@ WHERE a.t_vat_setllement_id = {t_vat_setllement_id}" customUpdateType="SQL" cust
 				<SQLParameter id="34" variable="t_vat_setllement_id" parameterType="Control" dataType="Integer" parameterSource="t_vat_setllement_id" defaultValue="0"/>
 <SQLParameter id="35" variable="p_vat_type_dtl_id" parameterType="Control" dataType="Integer" parameterSource="p_vat_type_dtl_id" defaultValue="0"/>
 <SQLParameter id="36" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
+<SQLParameter id="38" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
 </USQLParameters>
 			<UConditions/>
 			<UFormElements>
