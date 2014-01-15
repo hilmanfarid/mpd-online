@@ -68,13 +68,13 @@ function print_laporan($p_rqst_type_id,$year_code,$year_period_id,$date_start,$d
 	$pdf->SetWidths(array(30,200));
 	$pdf->ln(4);
 	$pdf->RowMultiBorderWithHeight(array("Jenis Pajak",": ".$rqst_type_code),array('',''),6);
-	$pdf->RowMultiBorderWithHeight(array("Tahun",": ".$year_code),array('',''),6);
+	//$pdf->RowMultiBorderWithHeight(array("Tahun",": ".$year_code),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array("Tanggal",": ".dateToString($date_start)." s/d ".dateToString($date_end)),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	if($jenis_tahun=='pajak'){
 		$query="select * from sikp.f_laporan_per_thn_pajak(".$p_rqst_type_id.",".$year_period_id.",'".$date_start."', '".$date_end."')";
 	}else if($jenis_tahun=='bayar'){
-		$query = "select * from sikp.f_laporan_per_thn_bayar(".$p_rqst_type_id.",".$year_code.",'".$date_start."', '".$date_end."')";
+		$query = "select * from sikp.f_laporan_per_thn_bayar(".$p_rqst_type_id.",2013,'".$date_start."', '".$date_end."')";
 	}
 	$dbConn->query($query);
 	$items=array();
