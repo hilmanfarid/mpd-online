@@ -70,7 +70,8 @@ function print_laporan($param_arr){
 	$dbConn = new clsDBConnSIKP();
 	
 	$query="select * from sikp.f_laporan_pencetakan_bulanan(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
-
+	//print_r($query);
+	//exit;
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
@@ -107,11 +108,12 @@ function print_laporan($param_arr){
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
 		$no++;
 	}
+	print_r($items);
+	exit;
 	$pdf->SetWidths(array(250,70));
 	$pdf->ln(8);
 	$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
 	$pdf->Output("","I");
-	echo 'tes';
 	exit;	
 }
 function dateToString($date){

@@ -68,7 +68,6 @@ function print_laporan($param_arr){
 	$dbConn = new clsDBConnSIKP();
 	
 	$query="select * from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
-
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',8);
