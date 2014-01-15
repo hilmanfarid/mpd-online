@@ -45,7 +45,7 @@ class clsRecordformPerubahanAyat { //formPerubahanAyat Class @3-12C0C589
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-F96434EA
+//Class_Initialize Event @3-E45005EA
     function clsRecordformPerubahanAyat($RelativePath, & $Parent)
     {
 
@@ -82,6 +82,7 @@ class clsRecordformPerubahanAyat { //formPerubahanAyat Class @3-12C0C589
             $this->vat_code_dtl->Required = true;
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
             $this->alasan = & new clsControl(ccsTextArea, "alasan", "alasan", ccsText, "", CCGetRequestParam("alasan", $Method, NULL), $this);
+            $this->alasan->Required = true;
         }
     }
 //End Class_Initialize Event
