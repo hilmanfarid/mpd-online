@@ -1,0 +1,152 @@
+<!CCSDOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
+<head><style needdelete>td {border-style:dotted;border-width:1px;border-color:#aaaaaa;} table {border-style:dashed;border-width:1px;border-color:#aaaaaa;}</style>
+<meta ccsServiceable="true" name="GENERATOR" content="CodeCharge Studio 4.3.00.7676"/><meta ccsServiceable="true" http-equiv="content-type" content="text/html; charset=windows-1252"/>
+
+<title>t_customer_order</title>
+
+
+<link ccsServiceable="true" rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css"/>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-7D374560
+
+var t_rep_penerimaan_pertahunSearch_DatePicker_tgl_penerimaan = new Object(); 
+t_rep_penerimaan_pertahunSearch_DatePicker_tgl_penerimaan.format           = "dd-mm-yyyy";
+t_rep_penerimaan_pertahunSearch_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
+t_rep_penerimaan_pertahunSearch_DatePicker_tgl_penerimaan.relativePathPart = "../";
+t_rep_penerimaan_pertahunSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//End CCS script
+</script>
+
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN PENERIMAAN PER TAHUN&nbsp; 
+      </div>
+ 
+    </div>
+ 
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <span contentEditable="true"  style="display:block;border-style:dashed;border-color:#FF3333; border-width:thin" ccsType="Component" ccsId="3" ccsServiceable="true" ccsName="t_rep_penerimaan_pertahunSearch" >
+        
+<form ccsServiceable="true" id="t_rep_penerimaan_pertahunSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td> 
+                  </tr>
+ <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Jenis Pajak</td> 
+                    <td class="search-field"><input ccsServiceable="true" ccsId="561" ccsName="vat_code" ccsType="Component" id="t_rep_penerimaan_pertahunSearchvat_code" class="ControlsRQ" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}"/></td> 
+                    <td><img ccsServiceable="true" onclick="javascript:jenispajak()" border="0" src="../images/view.gif"/><input ccsServiceable="true" ccsId="562" ccsName="p_vat_type_id" ccsType="Component" id="t_rep_penerimaan_pertahunSearchp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"/></td> 
+                    <td class="search-field"></td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Periode Tahun</td> 
+                    <td class="search-field"><input ccsServiceable="true" ccsId="560" ccsName="year_code" ccsType="Component" id="t_rep_penerimaan_pertahunSearchyear_code" class="ControlsRQ" maxlength="32" size="32" value="{year_code}" name="{year_code_Name}"/></td> 
+                    <td><img ccsServiceable="true" onclick="javascript:periodetahun()" border="0" src="../images/view.gif"/><input ccsServiceable="true" ccsId="563" ccsName="p_year_period_id" ccsType="Component" id="t_rep_penerimaan_pertahunSearchp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"/></td> 
+                    <td class="search-field"></td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Tanggal Status</td> 
+                    <td class="search-field"><input ccsServiceable="true" ccsId="559" ccsName="tgl_penerimaan" ccsType="Component" id="t_rep_penerimaan_pertahunSearchtgl_penerimaan" class="ControlsRQ" maxlength="32" size="32" value="{tgl_penerimaan}" name="{tgl_penerimaan_Name}"/></td> 
+                    <td>
+                      <span ccsId="191" ccsName="DatePicker_tgl_penerimaan" ccsType="DatePicker" ccsControlType="DatePicker" ccsControlName="DatePicker_tgl_penerimaan" ccsExtendedHtml="true" atomicselection="true"  ccsServiceable="true" ccsExtendedHtmlSpan="true"><a ccsServiceable="true" href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan"><img ccsServiceable="true" id="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"/></a>&nbsp;</span></td> 
+                    <td class="search-field">&nbsp;</td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Status WP</td> 
+                    <td class="search-field"><input ccsServiceable="true" ccsId="564" ccsName="code" ccsType="Component" id="t_rep_penerimaan_pertahunSearchcode" class="ControlsIN" maxlength="32" size="32" value="{code}" name="{code_Name}"/>
+                      <td><img ccsServiceable="true" onclick="javascript:statuswp()" border="0" src="../images/view.gif"/><input ccsServiceable="true" ccsId="565" ccsName="p_account_status_id" ccsType="Component" id="t_rep_penerimaan_pertahunSearchp_account_status_id" type="hidden" value="{p_account_status_id}" name="{p_account_status_id_Name}"/></td> 
+                      <td class="search-field">
+                        <input ccsServiceable="true" ccsId="4" ccsName="Button_DoSearch" ccsType="Component" ccsExtendedHtml="true" onclick="cetak(); return false;" id="t_rep_penerimaan_pertahunSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="TAMPILKAN" name="{Button_Name}"/></td> 
+                    </tr>
+ 
+                  </table>
+ </td> 
+              </tr>
+ 
+            </table>
+ 
+          </form>
+
+ &nbsp;</span>
+          <div align="left">
+          </div>
+ </td> 
+      </tr>
+ 
+    </table>
+ 
+  </div>
+ 
+  <script language="javascript">
+                function jenispajak() {
+                getFrom_LOV('t_rep_penerimaan_pertahunSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+        }
+
+        function periodetahun() {
+                getFrom_LOV('t_rep_penerimaan_pertahunSearch','p_year_period_id,year_code','lov_year_period.php');
+        }
+
+        function statuswp() {
+                getFrom_LOV("t_rep_penerimaan_pertahunSearch", "p_account_status_id,code", "lov_2_field.php?TABLE=p_account_status&FIELD_0=p_account_status_id&FIELD_1=code&FIELD_2=description&LABEL1=Status Akun&LABEL2=Deskripsi&HEADER_PAGE=STATUS AKUN&HEADER_LOV=DAFTAR STATUS AKUN");
+        }
+
+        function cetak()
+        {
+                tgl_penerimaan = document.getElementById("t_rep_penerimaan_pertahunSearchtgl_penerimaan").value;
+                p_year_period_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_year_period_id").value;
+                p_vat_type_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_vat_type_id").value;
+                                p_account_status_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_account_status_id").value;
+                
+                                window.open("../report/cetak_rep_penerimaan_pertahun.php?tgl_status='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id + "&p_account_status_id=" + p_account_status_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        }
+        </script>
+  
+</body>
+</html>
