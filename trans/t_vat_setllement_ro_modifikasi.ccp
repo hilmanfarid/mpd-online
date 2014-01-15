@@ -120,7 +120,13 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="315" urlType="Relative" enableValidation="True" isDefault="False" name="BtnHapusTransaksi" PathID="t_vat_setllementGridBtnHapusTransaksi">
+				<Button id="315" urlType="Relative" enableValidation="True" isDefault="False" name="BtnHapusTransaksi" PathID="t_vat_setllementGridBtnHapusTransaksi">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="317" urlType="Relative" enableValidation="True" isDefault="False" name="BtnUbahAyat" PathID="t_vat_setllementGridBtnUbahAyat">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -139,11 +145,11 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="316"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="316"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 			</TableParameters>
 			<JoinTables>
