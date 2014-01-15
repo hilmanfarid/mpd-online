@@ -114,10 +114,10 @@ class FormCetak extends FPDF {
 		$this->ln(8);
 		$this->SetAligns(array("C","C"));
 		$this->SetWidths(array($kol1+$kol2+$kol3+$kol3+$kol2+$kol2, $kol2+$kol3));
-		$this->RowMultiBorderWithHeight(array('','Kepala Seksi Piutang'),array('',''),$this->height);
-		$this->ln(16);
+		$this->RowMultiBorderWithHeight(array('',"Kepala Seksi Piutang\n\n\n\n\n\nRACHMAT SATIADI, S.Ip., M.Si\nNIP.19691104 199803 1 007"),array('',''),$this->height);
+		/*$this->ln(16);
 		$this->RowMultiBorderWithHeight(array('','RACHMAT SATIADI, S.Ip., M.Si'),array('',''),$this->height);
-		$this->RowMultiBorderWithHeight(array('','NIP.19691104 199803 1 007'),array('',''),$this->height);		
+		$this->RowMultiBorderWithHeight(array('','NIP.19691104 199803 1 007'),array('',''),$this->height);	*/	
 		
 	}
 
