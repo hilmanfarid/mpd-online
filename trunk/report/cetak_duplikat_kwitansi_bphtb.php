@@ -21,20 +21,25 @@ class FormCetak extends FPDF {
 	var $height = 5;
 	
 	function FormCetak() {
-		$this->FPDF("P", "in", array(9.5, 5.5));
+		$this->FPDF("L", "mm", array(241.3, 139.7));
+		$this->lMargin = 30;
 	}
 	
 	function __construct() {
 		$this->FormCetak();
-		$this->startY = $this->GetY();
-		$this->startX = $this->paperWSize-72;
-		$this->lengthCell = $this->startX+20;
 	}
 	
 	function PageCetak($data) {
 		$this->AddPage();
-		$this->SetFont('Arial', '', 10);
-		$this->Cell(0, $this->height, $data["f_bphtb_receipt_duplicate"], 0, 0, "L");
+		$this->SetFont('Courier', '', 10);
+		// $this->Cell(0, $this->height, $data["f_bphtb_receipt_duplicate"], 0, 0, "L");
+		
+		$this->Ln(30);
+		$data = explode("\n", $data["f_bphtb_receipt_duplicate"]);
+		foreach($data as $datum){
+			$this->Cell(241.3, $this->height, $datum, 0, 0, "L");
+			$this->Ln();
+		}
 	}
 	
 	function Footer() {
