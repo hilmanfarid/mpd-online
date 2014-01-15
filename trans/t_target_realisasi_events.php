@@ -19,6 +19,12 @@ function t_target_realisasiGrid_BeforeShowRow(& $sender)
     global $t_target_realisasiGrid; //Compatibility
 //End t_target_realisasiGrid_BeforeShowRow
 
+//Custom Code @725-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 global $selected_id;
 
 		if ($selected_id<0) {
@@ -49,7 +55,11 @@ global $selected_id;
 	 $Component->DLink->SetValue($img_radio); // Bdr
 	 $target = $Component->DataSource->target_amt->GetValue();
 	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
-	 $percent = number_format($realisasi / $target * 100, 2, ".", ",");
+	 if(!empty($target)) {
+	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
+	 }else {
+		$percent = 0;
+	 }
 	 $Component->percentage->SetValue("$percent %");
 //Close t_target_realisasiGrid_BeforeShowRow @2-DFE61ABB
     return $t_target_realisasiGrid_BeforeShowRow;
@@ -64,6 +74,12 @@ function t_target_realisasiGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_target_realisasiGrid; //Compatibility
 //End t_target_realisasiGrid_BeforeSelect
+
+//Custom Code @735-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 // Write your own code here.
   	$Component->DataSource->Parameters["p_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
@@ -81,6 +97,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_target_realisasi; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 // -------------------------
       // Write your own code here.
