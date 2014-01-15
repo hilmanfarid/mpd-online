@@ -17,13 +17,11 @@ function Page_BeforeShow(& $sender)
 //End Page_BeforeShow
 
   // -------------------------
-      if($t_laporan_penerimaan_bphtb->cetak_laporan->GetValue()=='T'){
   		$param_arr=array();
 		if(empty($param_arr['uid'])){
   			$param_arr['uid']=CCGetFromGet('uid');
   		}
   		print_laporan($param_arr);
-  	}
   // -------------------------
 
 
