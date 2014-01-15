@@ -55,9 +55,8 @@ function print_laporan($param_arr){
 	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString(date("Y-m-d"), true)),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array("NAMA USER",": ".$param_arr['uid']),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
-	$whereClause='';
-
-	$whereClause.=" AND (trunc(a.payment_date) = '". date("Y-m-d") ."'";
+	$whereClause=" WHERE ";
+	$whereClause.=" to_char(a.payment_date, 'YYYY-mm-dd') = '". date("Y-m-d") ."'";
 	$whereClause .= " AND a.p_cg_terminal_id = '" . $param_arr['uid'] . "'";
 
 	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date,
@@ -68,6 +67,7 @@ function print_laporan($param_arr){
 			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id";
 	$query.= $whereClause;
 	$query.= " ORDER BY a.receipt_no ASC";
+	die($query);
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
