@@ -19,12 +19,6 @@ function Page_BeforeShow(& $sender)
   // -------------------------
       if($t_laporan_penerimaan_bphtb->cetak_laporan->GetValue()=='T'){
   		$param_arr=array();
-  		if(empty($param_arr['date_start'])){
-  			$param_arr['date_start']=CCGetFromGet('date_start');
-  		}
-  		if(empty($param_arr['date_end'])){
-  			$param_arr['date_end']=CCGetFromGet('date_end');
-  		}
 		if(empty($param_arr['uid'])){
   			$param_arr['uid']=CCGetFromGet('uid');
   		}
@@ -60,20 +54,12 @@ function print_laporan($param_arr){
 	//$pdf->ln(8);
 	$pdf->SetWidths(array(40,200));
 	$pdf->ln(4);
-	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString($param_arr['date_start'], true)." s/d ".dateToString($param_arr['date_end'], true)),array('',''),6);
+	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString(date("Y-m-d"), true)),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array("NAMA USER",": ".$param_arr['uid'], true)),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	$whereClause='';
 
-	if(!empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
-		$whereClause.=" AND (trunc(a.payment_date) BETWEEN '".$param_arr['date_start']."'";
-		$whereClause.=" AND '".$param_arr['date_end']."')";
-	}else if(!empty($param_arr['date_start'])&&empty($param_arr['date_end'])){
-		$whereClause.=" AND trunc(a.payment_date) >= '".$param_arr['date_start']."'";
-	}else if(empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
-		$whereClause.=" AND trunc(a.payment_date) <= '".$param_arr['date_end']."'";
-	}
-
+	$whereClause.=" AND (trunc(a.payment_date) = '". date("Y-m-d") ."'";
 	$whereClause .= " AND a.p_cg_terminal_id = '" . $param_arr['uid'] . "'";
 
 	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date,
