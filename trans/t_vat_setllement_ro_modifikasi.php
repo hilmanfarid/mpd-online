@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-94DDC9B3
+//Class_Initialize Event @2-A8F9D56B
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -87,6 +87,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->BtnUbahDenda = & new clsButton("BtnUbahDenda", ccsGet, $this);
         $this->BtnUbahNilaiTransaksi = & new clsButton("BtnUbahNilaiTransaksi", ccsGet, $this);
         $this->BtnHapusTransaksi = & new clsButton("BtnHapusTransaksi", ccsGet, $this);
+        $this->BtnUbahAyat = & new clsButton("BtnUbahAyat", ccsGet, $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -104,7 +105,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-E2DE1F6F
+//Show Method @2-CBC373F6
     function Show()
     {
         global $Tpl;
@@ -149,6 +150,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["BtnUbahDenda"] = $this->BtnUbahDenda->Visible;
             $this->ControlsVisible["BtnUbahNilaiTransaksi"] = $this->BtnUbahNilaiTransaksi->Visible;
             $this->ControlsVisible["BtnHapusTransaksi"] = $this->BtnHapusTransaksi->Visible;
+            $this->ControlsVisible["BtnUbahAyat"] = $this->BtnUbahAyat->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -189,6 +191,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->BtnUbahDenda->Show();
                 $this->BtnUbahNilaiTransaksi->Show();
                 $this->BtnHapusTransaksi->Show();
+                $this->BtnUbahAyat->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -976,7 +979,15 @@ if($Redirect)
 //End Go to destination page
 
 //Show Page @1-496CA6DA
-$t_vat_setllementGrid->Show();
+//Custom Code @316-2A29BDB7
+// -------------------------
+    if(CCGetFromGet("s_keyword") == "") {
+		$t_vat_setllementGrid->Visible = false;
+	}else {
+		$t_vat_setllementGrid->Show();
+	}
+// -------------------------
+//End Custom Code
 $t_vat_setllementSearch->Show();
 $searchForm->Show();
 $Tpl->block_path = "";
