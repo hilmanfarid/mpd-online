@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -64,7 +64,7 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
+                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"><label style="display: none;" for="searchFormOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="Cari" type="submit"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -110,7 +110,9 @@ $(document).ready(function()
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;HAPUS TRANSAKSI</th>
  
-                  <th scope="col">&nbsp;UBAH TOTAL TRANSAKSI</th>
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;UBAH AYAT</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;UBAH TOTAL TRANSAKSI</th>
  
                   <th style="TEXT-ALIGN: center" colspan="6" scope="col">UBAH DENDA</th>
                 </tr>
@@ -127,21 +129,23 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}</td> 
                   <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}&nbsp;</td> 
                   <td style="TEXT-ALIGN: center">
-                    <!-- BEGIN Button BtnHapusTransaksi --><input style="WIDTH: 104px; HEIGHT: 23px" id="t_vat_setllementGridBtnHapusTransaksi" class="Button" onclick="viewFormHapusTransaksi({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Hapus Transaksi" size="14" type="button"><!-- END Button BtnHapusTransaksi --></td> 
+                    <!-- BEGIN Button BtnHapusTransaksi --><input style="WIDTH: 104px; HEIGHT: 23px" id="t_vat_setllementGridBtnHapusTransaksi" class="Button" onclick="viewFormHapusTransaksi({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Hapus Transaksi" type="button"><!-- END Button BtnHapusTransaksi --></td> 
                   <td>
-                    <!-- BEGIN Button BtnUbahNilaiTransaksi --><input style="WIDTH: 131px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahNilaiTransaksi" class="Button" onclick="viewFormUbahNilaiTransaksi({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Total Trans" size="16" type="button"><!-- END Button BtnUbahNilaiTransaksi --></td> 
+                    <!-- BEGIN Button BtnUbahAyat --><input style="WIDTH: 88px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahAyat" class="Button" onclick="viewFormUbahAyat({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Ayat" type="button"><!-- END Button BtnUbahAyat --></td> 
+                  <td>
+                    <!-- BEGIN Button BtnUbahNilaiTransaksi --><input style="WIDTH: 128px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahNilaiTransaksi" class="Button" onclick="viewFormUbahNilaiTransaksi({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Total Trans" type="button"><!-- END Button BtnUbahNilaiTransaksi --></td> 
                   <td style="TEXT-ALIGN: center" colspan="6">
-                    <!-- BEGIN Button BtnUbahDenda --><input style="WIDTH: 94px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahDenda" class="Button" onclick="viewFormUbahDenda({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Denda" size="17" type="button"><!-- END Button BtnUbahDenda --></td>
+                    <!-- BEGIN Button BtnUbahDenda --><input style="WIDTH: 94px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahDenda" class="Button" onclick="viewFormUbahDenda({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Denda" type="button"><!-- END Button BtnUbahDenda --></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="17">-</td>
+                  <td colspan="18">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b>&nbsp;</b></td> 
-                  <td style="TEXT-ALIGN: center" colspan="16">&nbsp; 
+                  <td style="TEXT-ALIGN: center" colspan="17">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -330,24 +334,24 @@ function cetakStpd(pid){
 }
 
 function cetak_sspd(idCus){
-                 var urlLink = "?t_customer_order_id="+idCus;
-         return popup("../report/cetak_formulir_sspd_pdf.php"+urlLink);
+        var urlLink = "?t_customer_order_id="+idCus;
+        return popup("../report/cetak_formulir_sspd_pdf.php"+urlLink);
 }
 function flagPayment(cust_order_id){
-                var id_order = document.getElementById(cust_order_id).value;
-                if(confirm("Apakah Anda Yakin Untuk Menambahkan Flag Payment?"))
+        var id_order = document.getElementById(cust_order_id).value;
+        if(confirm("Apakah Anda Yakin Untuk Menambahkan Flag Payment?"))
         location.href=document.URL+"&action_button=flag_payment&t_customer_order_id="+id_order;
 }
 function cetakRegister(cust_order_id){
-                var id_order = document.getElementById(cust_order_id).value;
+        var id_order = document.getElementById(cust_order_id).value;
         location.href=document.URL+"&action_button2=cetak_register&t_customer_order_id="+id_order;
 }
 
 function viewFormUbahDenda(t_vat_setllement_id) {
         url = "../trans/t_vat_setllement_ubah_denda.php?t_vat_setllement_id="+t_vat_setllement_id;
 
-                params  = 'width=650';
-            params += ', height=300';
+        params  = 'width=650';
+        params += ', height=300';
         params += ', top=0, left=0';
 
         newwin=window.open(url,'windowname4', params);
@@ -359,8 +363,8 @@ function viewFormUbahDenda(t_vat_setllement_id) {
 function viewFormHapusTransaksi(t_vat_setllement_id) {
         url = "../trans/t_vat_setllement_hapus_transaksi.php?t_vat_setllement_id="+t_vat_setllement_id;
 
-                params  = 'width=650';
-            params += ', height=300';
+        params  = 'width=650';
+        params += ', height=300';
         params += ', top=0, left=0';
 
         newwin=window.open(url,'windowname4', params);
@@ -372,8 +376,21 @@ function viewFormHapusTransaksi(t_vat_setllement_id) {
 function viewFormUbahNilaiTransaksi(t_vat_setllement_id) {
         url = "../trans/t_vat_setllement_ubah_nilai_transaksi.php?t_vat_setllement_id="+t_vat_setllement_id;
 
-                params  = 'width=650';
-            params += ', height=300';
+        params  = 'width=650';
+        params += ', height=300';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function viewFormUbahAyat(t_vat_setllement_id) {
+        
+        url = "../trans/t_vat_setllement_ubah_ayat.php?t_vat_setllement_id="+t_vat_setllement_id;
+                
+		params  = 'width=650';
+        params += ', height=300';
         params += ', top=0, left=0';
 
         newwin=window.open(url,'windowname4', params);
