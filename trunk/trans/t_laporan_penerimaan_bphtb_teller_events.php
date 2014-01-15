@@ -55,7 +55,7 @@ function print_laporan($param_arr){
 	$pdf->SetWidths(array(40,200));
 	$pdf->ln(4);
 	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString(date("Y-m-d"), true)),array('',''),6);
-	$pdf->RowMultiBorderWithHeight(array("NAMA USER",": ".$param_arr['uid'], true)),array('',''),6);
+	$pdf->RowMultiBorderWithHeight(array("NAMA USER",": ".$param_arr['uid']),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	$whereClause='';
 
