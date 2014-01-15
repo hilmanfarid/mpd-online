@@ -67,7 +67,7 @@ function print_laporan($param_arr){
 			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id";
 	$query.= $whereClause;
 	$query.= " ORDER BY a.receipt_no ASC";
-	die($query);
+	// die($query);
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
