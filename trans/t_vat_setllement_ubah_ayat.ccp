@@ -47,7 +47,7 @@ WHERE a.t_vat_setllement_id = {t_vat_setllement_id}" customUpdateType="SQL" cust
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextArea id="37" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="alasan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="formPerubahanAyatalasan" fieldSource="alasan">
+<TextArea id="37" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="alasan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="formPerubahanAyatalasan" fieldSource="alasan" required="True">
 <Components/>
 <Events/>
 <Attributes/>
