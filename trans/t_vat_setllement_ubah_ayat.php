@@ -45,7 +45,7 @@ class clsRecordformPerubahanAyat { //formPerubahanAyat Class @3-12C0C589
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-08B88226
+//Class_Initialize Event @3-F96434EA
     function clsRecordformPerubahanAyat($RelativePath, & $Parent)
     {
 
@@ -81,6 +81,7 @@ class clsRecordformPerubahanAyat { //formPerubahanAyat Class @3-12C0C589
             $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Tipe Ayat", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
             $this->vat_code_dtl->Required = true;
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
+            $this->alasan = & new clsControl(ccsTextArea, "alasan", "alasan", ccsText, "", CCGetRequestParam("alasan", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -96,7 +97,7 @@ class clsRecordformPerubahanAyat { //formPerubahanAyat Class @3-12C0C589
     }
 //End Initialize Method
 
-//Validate Method @3-B3C37DAB
+//Validate Method @3-1C0EB4D1
     function Validate()
     {
         global $CCSLocales;
@@ -108,6 +109,7 @@ class clsRecordformPerubahanAyat { //formPerubahanAyat Class @3-12C0C589
         $Validation = ($this->nama_jns_pajak->Validate() && $Validation);
         $Validation = ($this->vat_code_dtl->Validate() && $Validation);
         $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
+        $Validation = ($this->alasan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->nomor_ayat->Errors->Count() == 0);
         $Validation =  $Validation && ($this->nama_ayat->Errors->Count() == 0);
@@ -115,11 +117,12 @@ class clsRecordformPerubahanAyat { //formPerubahanAyat Class @3-12C0C589
         $Validation =  $Validation && ($this->nama_jns_pajak->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code_dtl->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->alasan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-795D54AC
+//CheckErrors Method @3-C5DE60A1
     function CheckErrors()
     {
         $errors = false;
@@ -129,6 +132,7 @@ class clsRecordformPerubahanAyat { //formPerubahanAyat Class @3-12C0C589
         $errors = ($errors || $this->nama_jns_pajak->Errors->Count());
         $errors = ($errors || $this->vat_code_dtl->Errors->Count());
         $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
+        $errors = ($errors || $this->alasan->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -186,20 +190,21 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//UpdateRow Method @3-352E0948
+//UpdateRow Method @3-7AE64B45
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
         $this->DataSource->t_vat_setllement_id->SetValue($this->t_vat_setllement_id->GetValue(true));
         $this->DataSource->p_vat_type_dtl_id->SetValue($this->p_vat_type_dtl_id->GetValue(true));
+        $this->DataSource->alasan->SetValue($this->alasan->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @3-3713455D
+//Show Method @3-B4F7180D
     function Show()
     {
         global $CCSUseAmp;
@@ -231,6 +236,7 @@ function GetPrimaryKey($keyName)
                     $this->nama_ayat->SetValue($this->DataSource->nama_ayat->GetValue());
                     $this->t_vat_setllement_id->SetValue($this->DataSource->t_vat_setllement_id->GetValue());
                     $this->nama_jns_pajak->SetValue($this->DataSource->nama_jns_pajak->GetValue());
+                    $this->alasan->SetValue($this->DataSource->alasan->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -247,6 +253,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->nama_jns_pajak->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code_dtl->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->alasan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -273,6 +280,7 @@ function GetPrimaryKey($keyName)
         $this->nama_jns_pajak->Show();
         $this->vat_code_dtl->Show();
         $this->p_vat_type_dtl_id->Show();
+        $this->alasan->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -283,7 +291,7 @@ function GetPrimaryKey($keyName)
 
 class clsformPerubahanAyatDataSource extends clsDBConnSIKP {  //formPerubahanAyatDataSource Class @3-DA5ECD96
 
-//DataSource Variables @3-B3AD47C3
+//DataSource Variables @3-65ACF45F
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -302,9 +310,10 @@ class clsformPerubahanAyatDataSource extends clsDBConnSIKP {  //formPerubahanAya
     var $nama_jns_pajak;
     var $vat_code_dtl;
     var $p_vat_type_dtl_id;
+    var $alasan;
 //End DataSource Variables
 	var $itemResult;
-//DataSourceClass_Initialize Event @3-4EDAF3FB
+//DataSourceClass_Initialize Event @3-4567C4C3
     function clsformPerubahanAyatDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -321,6 +330,8 @@ class clsformPerubahanAyatDataSource extends clsDBConnSIKP {  //formPerubahanAya
         $this->vat_code_dtl = new clsField("vat_code_dtl", ccsText, "");
         
         $this->p_vat_type_dtl_id = new clsField("p_vat_type_dtl_id", ccsText, "");
+        
+        $this->alasan = new clsField("alasan", ccsText, "");
         
 
     }
@@ -353,13 +364,14 @@ class clsformPerubahanAyatDataSource extends clsDBConnSIKP {  //formPerubahanAya
     }
 //End Open Method
 
-//SetValues Method @3-72A22DC4
+//SetValues Method @3-C670D095
     function SetValues()
     {
         $this->nomor_ayat->SetDBValue($this->f("nomor_ayat"));
         $this->nama_ayat->SetDBValue($this->f("nama_ayat"));
         $this->t_vat_setllement_id->SetDBValue($this->f("t_vat_setllement_id"));
         $this->nama_jns_pajak->SetDBValue($this->f("nama_jns_pajak"));
+        $this->alasan->SetDBValue($this->f("alasan"));
     }
 //End SetValues Method
 
