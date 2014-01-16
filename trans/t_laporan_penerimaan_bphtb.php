@@ -45,7 +45,7 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-4A85CC7E
+//Class_Initialize Event @2-24FBABED
     function clsRecordt_laporan_penerimaan_bphtb($RelativePath, & $Parent)
     {
 
@@ -77,11 +77,21 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
             $this->date_end_laporan->Required = true;
             $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_laporan_penerimaan_bphtb", "date_end_laporan", $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
+            $this->receipt_no = & new clsControl(ccsTextBox, "receipt_no", "receipt_no", ccsText, "", CCGetRequestParam("receipt_no", $Method, NULL), $this);
+            $this->njop_pbb = & new clsControl(ccsTextBox, "njop_pbb", "njop_pbb", ccsText, "", CCGetRequestParam("njop_pbb", $Method, NULL), $this);
+            $this->wp_name = & new clsControl(ccsTextBox, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", $Method, NULL), $this);
+            $this->p_region_id_kecamatan = & new clsControl(ccsHidden, "p_region_id_kecamatan", "p_region_id_kecamatan", ccsText, "", CCGetRequestParam("p_region_id_kecamatan", $Method, NULL), $this);
+            $this->nama_kecamatan = & new clsControl(ccsTextBox, "nama_kecamatan", "Kecamatan", ccsText, "", CCGetRequestParam("nama_kecamatan", $Method, NULL), $this);
+            $this->nama_kecamatan->Required = true;
+            $this->p_region_id_kelurahan = & new clsControl(ccsHidden, "p_region_id_kelurahan", "p_region_id_kelurahan", ccsText, "", CCGetRequestParam("p_region_id_kelurahan", $Method, NULL), $this);
+            $this->nama_kelurahan = & new clsControl(ccsTextBox, "nama_kelurahan", "Kelurahan", ccsText, "", CCGetRequestParam("nama_kelurahan", $Method, NULL), $this);
+            $this->nama_kelurahan->Required = true;
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-5EA3805B
+//Validate Method @2-3755B497
     function Validate()
     {
         global $CCSLocales;
@@ -90,15 +100,29 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
         $Validation = ($this->date_start_laporan->Validate() && $Validation);
         $Validation = ($this->date_end_laporan->Validate() && $Validation);
         $Validation = ($this->cetak_laporan->Validate() && $Validation);
+        $Validation = ($this->receipt_no->Validate() && $Validation);
+        $Validation = ($this->njop_pbb->Validate() && $Validation);
+        $Validation = ($this->wp_name->Validate() && $Validation);
+        $Validation = ($this->p_region_id_kecamatan->Validate() && $Validation);
+        $Validation = ($this->nama_kecamatan->Validate() && $Validation);
+        $Validation = ($this->p_region_id_kelurahan->Validate() && $Validation);
+        $Validation = ($this->nama_kelurahan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->date_start_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->receipt_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->njop_pbb->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->wp_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_region_id_kecamatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kecamatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_region_id_kelurahan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kelurahan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-A5435318
+//CheckErrors Method @2-8C15FD1F
     function CheckErrors()
     {
         $errors = false;
@@ -107,6 +131,13 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
         $errors = ($errors || $this->date_end_laporan->Errors->Count());
         $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->cetak_laporan->Errors->Count());
+        $errors = ($errors || $this->receipt_no->Errors->Count());
+        $errors = ($errors || $this->njop_pbb->Errors->Count());
+        $errors = ($errors || $this->wp_name->Errors->Count());
+        $errors = ($errors || $this->p_region_id_kecamatan->Errors->Count());
+        $errors = ($errors || $this->nama_kecamatan->Errors->Count());
+        $errors = ($errors || $this->p_region_id_kelurahan->Errors->Count());
+        $errors = ($errors || $this->nama_kelurahan->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -127,7 +158,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-A5268472
+//Operation Method @2-963408FB
     function Operation()
     {
         if(!$this->Visible)
@@ -144,12 +175,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button1";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = "t_laporan_penerimaan_bphtb.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -159,7 +196,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-1420977C
+//Show Method @2-3EB77176
     function Show()
     {
         global $CCSUseAmp;
@@ -188,6 +225,13 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->receipt_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->njop_pbb->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->wp_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_region_id_kecamatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kecamatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_region_id_kelurahan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kelurahan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -211,6 +255,14 @@ function GetPrimaryKey($keyName)
         $this->date_end_laporan->Show();
         $this->DatePicker_end_start_laporan1->Show();
         $this->cetak_laporan->Show();
+        $this->receipt_no->Show();
+        $this->njop_pbb->Show();
+        $this->wp_name->Show();
+        $this->p_region_id_kecamatan->Show();
+        $this->nama_kecamatan->Show();
+        $this->p_region_id_kelurahan->Show();
+        $this->nama_kelurahan->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
