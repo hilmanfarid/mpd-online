@@ -16,12 +16,26 @@ function Page_BeforeShow(& $sender)
     global $t_laporan_penerimaan_bphtb_teller; //Compatibility
 //End Page_BeforeShow
 
+//Custom Code @10-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
   		$param_arr=array();
 		if(empty($param_arr['uid'])){
   			$param_arr['uid']=CCGetFromGet('uid');
   		}
-  		print_laporan($param_arr);
+		if(empty($param_arr['report_type'])){
+  			$param_arr['report_type']=CCGetFromGet('report_type');
+  		}
+
+		if($param_arr['report_type'] == 'excel') {
+			print_excel($param_arr);
+		}else {
+  			print_laporan($param_arr);
+		}
   // -------------------------
 
 
@@ -153,5 +167,107 @@ function dateToString($date, $complete = false){
 		return $pieces[2].'/'.$pieces[1].'/'.$pieces[0];
 	else
 		return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
+}
+
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
+
+function print_excel($param_arr) {
+	
+	
+	startExcel("teller_report_".date('Y-m-d'));
+	echo "<div><h3> LAPORAN PENERIMAAN BPHTB </h3></div>";	
+
+	echo '<table>
+			<tr>
+				<td><b>TANGGAL</b></td>
+				<td><b>: '.dateToString(date('Y-m-d'),true).'</b></td>
+			</tr>
+			<tr>
+				<td><b>NAMA USER</b></td>
+				<td><b>: '.$param_arr['uid'].'</b></td>
+			</tr>
+		</table>
+	';
+
+	echo '<table border="1">';
+	echo '<tr>
+		<th>NO</th>
+		<th>NO TRANSAKSI</th>
+		<th>NOP</th>
+		<th>TGL</th>
+		<th>NAMA</th>
+		<th>ALAMAT</th>
+		<th>KELURAHAN</th>
+		<th>KECAMATAN</th>
+		<th>LUAS TANAH</th>
+		<th>LUAS BGN</th>
+		<th>NJOP (Rp)</th>
+		<th>TOTAL BAYAR (Rp)</th>
+	</tr>';	
+	
+	$dbConn = new clsDBConnSIKP();
+	$whereClause=" WHERE ";
+	$whereClause.=" to_char(a.payment_date, 'YYYY-mm-dd') = '". date("Y-m-d") ."'";
+	$whereClause .= " AND a.p_cg_terminal_id = '" . $param_arr['uid'] . "'";
+
+	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date,
+					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount    
+					FROM t_payment_receipt_bphtb AS a
+			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
+			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
+			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id";
+	$query.= $whereClause;
+	$query.= " ORDER BY a.receipt_no ASC";
+	$dbConn->query($query);	
+	
+	$total_nilai_penerimaan = 0;
+	$no = 1;
+	while($dbConn->next_record()){
+		$item = array(
+						   'receipt_no' => $dbConn->f("receipt_no"), 	
+						   'njop_pbb' => $dbConn->f("njop_pbb"),
+						   'payment_date' => $dbConn->f("payment_date"),
+						   'wp_name' => $dbConn->f("wp_name"),
+						   'wp_address_name' => $dbConn->f("wp_address_name"),
+						   'kelurahan_name' => $dbConn->f("kelurahan_name"),
+						   'kecamatan_name' => $dbConn->f("kecamatan_name"),
+						   'land_area' => $dbConn->f("land_area"),
+						   'building_area' => $dbConn->f("building_area"),
+						   'land_total_price' => $dbConn->f("land_total_price"),
+						   'payment_amount' => $dbConn->f("payment_amount")
+						);
+
+		echo '<tr>';
+		echo '<td align="center">'.$no.'</td>';
+		echo '<td align="left">'.$item['receipt_no'].'</td>';
+		echo '<td align="left">'.$item['njop_pbb'].'</td>';
+		echo '<td align="center">'.dateToString($item['payment_date']).'</td>';
+		echo '<td align="left">'.$item['wp_name'].'</td>';
+		echo '<td align="left">'.$item['wp_address_name'].'</td>';
+		echo '<td align="left">'.$item['kelurahan_name'].'</td>';
+		echo '<td align="left">'.$item['kecamatan_name'].'</td>';
+		echo '<td align="right">'.$item['land_area'].'</td>';
+		echo '<td align="right">'.$item['building_area'].'</td>';
+		echo '<td align="right">'.number_format($item['land_total_price'],2,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['payment_amount'],2,",",".").'</td>';
+		echo '</tr>';
+
+		$total_nilai_penerimaan += $item['payment_amount'];
+		$no++;
+	}
+	
+	echo '<tr>
+		<td align="center" colspan="11"> <b>TOTAL</b> </td>
+		<td align="right"><b>'.number_format($total_nilai_penerimaan,2,",",".").' </b></td>
+	</tr>';
+	echo '</table>';
+	exit;
 }
 ?>
