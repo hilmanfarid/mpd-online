@@ -21,11 +21,18 @@ function Page_BeforeShow(& $sender)
     if($t_laporan_penerimaan_bphtb->cetak_laporan->GetValue()=='T'){
 		$param_arr=array();
 		if(empty($param_arr['date_start'])){
-			$param_arr['date_start']=CCGetFromGet('date_start');
+			$param_arr['date_start']= CCGetFromGet('date_start');
 		}
 		if(empty($param_arr['date_end'])){
-			$param_arr['date_end']=CCGetFromGet('date_end');
+			$param_arr['date_end']= CCGetFromGet('date_end');
 		}
+
+		$param_arr['receipt_no'] = CCGetFromGet('receipt_no');
+		$param_arr['njop_pbb'] = CCGetFromGet('njop_pbb');
+		$param_arr['wp_name'] = CCGetFromGet('wp_name');
+		$param_arr['p_region_id_kecamatan'] = CCGetFromGet('p_region_id_kecamatan');
+		$param_arr['p_region_id_kelurahan'] = CCGetFromGet('p_region_id_kelurahan');
+
 		print_laporan($param_arr);
 	}
 // -------------------------
@@ -61,24 +68,52 @@ function print_laporan($param_arr){
 	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString($param_arr['date_start'], true)." s/d ".dateToString($param_arr['date_end'], true)),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	$whereClause='';
+	$criteria = array();	
 
 	if(!empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
-		$whereClause.=" AND (trunc(a.payment_date) BETWEEN '".$param_arr['date_start']."'";
-		$whereClause.=" AND '".$param_arr['date_end']."')";
+		$criteria[] = " (trunc(a.payment_date) BETWEEN '".$param_arr['date_start']."' AND '".$param_arr['date_end']."') ";
+
 	}else if(!empty($param_arr['date_start'])&&empty($param_arr['date_end'])){
-		$whereClause.=" AND trunc(a.payment_date) >= '".$param_arr['date_start']."'";
+		$criteria[] = " trunc(a.payment_date) >= '".$param_arr['date_start']."' ";
+
 	}else if(empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
-		$whereClause.=" AND trunc(a.payment_date) <= '".$param_arr['date_end']."'";
+		$criteria[] = " trunc(a.payment_date) <= '".$param_arr['date_end']."' ";
 	}
 
+	if(!empty($param_arr['receipt_no'])) {
+		$criteria[] = " a.receipt_no ILIKE '%".$param_arr['receipt_no']."%' ";
+	}
+
+	if(!empty($param_arr['njop_pbb'])) {
+		$criteria[] = " b.njop_pbb = '".$param_arr['njop_pbb']."' ";
+	}
+
+	if(!empty($param_arr['wp_name'])) {
+		$criteria[] = " b.wp_name ILIKE '%".$param_arr['wp_name']."%' ";
+	}
+
+
+	if(!empty($param_arr['p_region_id_kecamatan'])) {
+		$criteria[] = " b.wp_p_region_id_kec = ".$param_arr['p_region_id_kecamatan'];
+	}
+	
+	if(!empty($param_arr['p_region_id_kelurahan'])) {
+		$criteria[] = " b.wp_p_region_id_kel = ".$param_arr['p_region_id_kelurahan'];
+	}
+	
+	$whereClause = join(" AND ", $criteria);
 	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date,
 					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount    
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
 			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id";
-	$query.= $whereClause;
+	if(!empty($whereClause))
+		$query.= " WHERE ".$whereClause;
 	$query.= " ORDER BY a.receipt_no ASC";
+
+	//print_r($query);
+	//exit;
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
@@ -88,7 +123,7 @@ function print_laporan($param_arr){
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C','C'));
 	$pdf->SetWidths(array(10,28,35,21,41,51,28,28,21,21,25,28));
 	$pdf->SetFont('arial', 'B',7);
-	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL","NAMA","ALAMAT","KELURAHAN","KECAMATAN","LUAS TANAH","LUAS BGN","NJOP (Rp)","TOTAL BAYAR (Rp)"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','TLBR'),5);
+	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","NAMA","ALAMAT","KELURAHAN","KECAMATAN","LUAS TANAH","LUAS BGN","NJOP (Rp)","TOTAL BAYAR (Rp)"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','TLBR'),5);
 	/* END HEADER */	
 
 	
