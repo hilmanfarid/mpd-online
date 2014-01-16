@@ -63,8 +63,8 @@
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_penerimaan_bphtb_teller_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="t_laporan_penerimaan_bphtb_teller.php" forShow="True" url="t_laporan_penerimaan_bphtb_teller.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="t_laporan_penerimaan_bphtb_teller.php" forShow="True" url="t_laporan_penerimaan_bphtb_teller.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
