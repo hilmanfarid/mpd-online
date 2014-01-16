@@ -604,5 +604,10 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 	<Attributes/>
 	<Features/>
 	<Events>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="1003"/>
+</Actions>
+</Event>
+</Events>
 </Page>
