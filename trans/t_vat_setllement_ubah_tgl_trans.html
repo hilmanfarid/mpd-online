@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LOV</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<!--start user-->
+<script language="javascript">
+function clickReturn(retVal) {
+                strObj = document.getElementById('LOVOBJ').value;
+                strForm = document.getElementById('LOVFORM').value;
+        arrVal = retVal.split('#~#');
+                arrForm = strObj.split(',');
+                for (x=0;x<arrForm.length;x++) {
+                window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
+                }
+                window.close();
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+//Begin CCS script
+
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<!--end user-->
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-7265A328
+
+var formPerubahanTglTrans_DatePicker_settlement_date1 = new Object(); 
+formPerubahanTglTrans_DatePicker_settlement_date1.format           = "yyyy-mm-dd";
+formPerubahanTglTrans_DatePicker_settlement_date1.style            = "Styles/sikp/Style.css";
+formPerubahanTglTrans_DatePicker_settlement_date1.relativePathPart = "../";
+formPerubahanTglTrans_DatePicker_settlement_date1.themeVersion = "3.0";
+
+var formPerubahanTglTrans_DatePicker_settlement_date_new1 = new Object(); 
+formPerubahanTglTrans_DatePicker_settlement_date_new1.format           = "yyyy-mm-dd";
+formPerubahanTglTrans_DatePicker_settlement_date_new1.style            = "Styles/sikp/Style.css";
+formPerubahanTglTrans_DatePicker_settlement_date_new1.relativePathPart = "../";
+formPerubahanTglTrans_DatePicker_settlement_date_new1.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//bind_events @1-BF0EB765
+function bind_events() {
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        UBAH TANGGAL TRANSAKSI 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table style="WIDTH: 100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Record formPerubahanTglTrans -->
+        <form id="formPerubahanTglTrans" method="post" name="{HTMLFormName}" action="{Action}">
+          <table style="WIDTH: 565px; HEIGHT: 229px" class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table style="WIDTH: 100.02%; HEIGHT: 212px" class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="3">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr>
+                    <td>&nbsp;Tanggal Sebelumnya</td> 
+                    <td>:&nbsp;</td> 
+                    <td><input style="WIDTH: 119px; HEIGHT: 20px" id="formPerubahanTglTranssettlement_date" class="ControlsIN" name="{settlement_date_Name}" value="{settlement_date}" size="14">
+                      <!-- BEGIN DatePicker DatePicker_settlement_date1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="formPerubahanTglTransDatePicker_settlement_date1"><img id="formPerubahanTglTransDatePicker_settlement_date1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_settlement_date1 --></td>
+                  </tr>
+ 
+                  <tr>
+                    <td>&nbsp;</td> 
+                    <td>&nbsp;</td> 
+                    <td></td>
+                  </tr>
+ 
+                  <tr>
+                    <td>&nbsp;Ubah Tanggal</td> 
+                    <td>:&nbsp;</td> 
+                    <td><input style="WIDTH: 120px; HEIGHT: 20px" id="formPerubahanTglTranssettlement_date_new" class="ControlsRQ" name="{settlement_date_new_Name}" value="{settlement_date_new}" size="13">
+                      <!-- BEGIN DatePicker DatePicker_settlement_date_new1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="formPerubahanTglTransDatePicker_settlement_date_new1"><img id="formPerubahanTglTransDatePicker_settlement_date_new1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_settlement_date_new1 --></td>
+                  </tr>
+ 
+                  <tr>
+                    <td>&nbsp;</td> 
+                    <td>&nbsp;</td> 
+                    <td><textarea style="WIDTH: 243px; HEIGHT: 54px" id="formPerubahanTglTransalasan" class="ControlsRQ" cols="23" rows="3" name="{alasan_Name}">{alasan}</textarea></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td></td> 
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button1 --><input id="formPerubahanTglTransButton1" class="btn_tambah" name="{Button_Name}" alt="Button1" value="Update" type="submit"><!-- END Button Button1 --><input id="formPerubahanTglTranst_vat_setllement_id" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record formPerubahanTglTrans --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<br>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+
+function lov_tipeayat() {
+        getFrom_LOV('formPerubahanAyat','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=v_p_vat_type_dtl_rep&FIELD_0=p_vat_type_dtl_id&FIELD_1=nama_ayat&FIELD_2=nomor_ayat&FIELD_3= and p_vat_type_id != 7&LABEL1=Nama Ayat&LABEL2=Nomor Ayat&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+}
+</script>
+</body>
+</html>
