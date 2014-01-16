@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-A8F9D56B
+//Class_Initialize Event @2-2DEB5BBE
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -88,6 +88,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->BtnUbahNilaiTransaksi = & new clsButton("BtnUbahNilaiTransaksi", ccsGet, $this);
         $this->BtnHapusTransaksi = & new clsButton("BtnHapusTransaksi", ccsGet, $this);
         $this->BtnUbahAyat = & new clsButton("BtnUbahAyat", ccsGet, $this);
+        $this->BtnUbahTgl = & new clsButton("BtnUbahTgl", ccsGet, $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -105,7 +106,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-CBC373F6
+//Show Method @2-6B044EF6
     function Show()
     {
         global $Tpl;
@@ -151,6 +152,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["BtnUbahNilaiTransaksi"] = $this->BtnUbahNilaiTransaksi->Visible;
             $this->ControlsVisible["BtnHapusTransaksi"] = $this->BtnHapusTransaksi->Visible;
             $this->ControlsVisible["BtnUbahAyat"] = $this->BtnUbahAyat->Visible;
+            $this->ControlsVisible["BtnUbahTgl"] = $this->BtnUbahTgl->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -192,6 +194,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->BtnUbahNilaiTransaksi->Show();
                 $this->BtnHapusTransaksi->Show();
                 $this->BtnUbahAyat->Show();
+                $this->BtnUbahTgl->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
