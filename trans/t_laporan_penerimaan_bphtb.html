@@ -4,7 +4,8 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>t_laporan_penerimaan_pajak</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
-<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css" />
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script>
                 function getFrom_LOV(formName,fieldList,LOV_NM)
                 {
@@ -15,8 +16,19 @@
                 var params = "?cetak_laporan="+document.getElementById("t_laporan_penerimaan_bphtbcetak_laporan").value;
                 params += "&date_start="+document.getElementById("t_laporan_penerimaan_bphtbdate_start_laporan").value;
                 params += "&date_end="+document.getElementById("t_laporan_penerimaan_bphtbdate_end_laporan").value;
-                window.open("t_laporan_penerimaan_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+                params += "&receipt_no="+document.getElementById("t_laporan_penerimaan_bphtbreceipt_no").value;
+                params += "&njop_pbb="+document.getElementById("t_laporan_penerimaan_bphtbnjop_pbb").value;
+                params += "&wp_name="+document.getElementById("t_laporan_penerimaan_bphtbwp_name").value;
+                params += "&p_region_id_kecamatan="+document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kecamatan").value;
+                params += "&p_region_id_kelurahan="+document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kelurahan").value;
+                
+                                
+                                window.open("t_laporan_penerimaan_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
+
+                function doReset(){
+                        location.href = 't_laporan_penerimaan_bphtb.php';
+                }
 </script>
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
@@ -53,16 +65,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
         LAPORAN PENERIMAAN BPHTB 
       </div>
- 
     </div>
- 
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -77,32 +87,54 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 <table class="Record">
                   <!-- BEGIN Error -->
                   <tr>
-                    <td colspan="2">{Error}</td> 
+                    <td colspan="2">{Error}</td>
                   </tr>
- <!-- END Error -->
+                  <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Tanggal</label></td> 
-                    <td class="search-field"><label for="t_laporan_penerimaan_bphtbdate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_penerimaan_bphtbdate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
-                      <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_penerimaan_bphtbDatePicker_date_start_laporan1"><img id="t_laporan_penerimaan_bphtbDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_penerimaan_bphtbdate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
-                      <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_penerimaan_bphtbDatePicker_end_start_laporan1"><img id="t_laporan_penerimaan_bphtbDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td> 
+                    <td class="search-field"><label for="t_laporan_penerimaan_bphtbdate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_penerimaan_bphtbdate_start_laporan" class="ControlsIN" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_penerimaan_bphtbDatePicker_date_start_laporan1"><img id="t_laporan_penerimaan_bphtbDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_penerimaan_bphtbdate_end_laporan" class="ControlsIN" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_penerimaan_bphtbDatePicker_end_start_laporan1"><img id="t_laporan_penerimaan_bphtbDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
+                  </tr>
+ 
+                  <tr>
+                    <td align="left">No Transaksi&nbsp;</td> 
+                    <td><input id="t_laporan_penerimaan_bphtbreceipt_no" class="ControlsIN" name="{receipt_no_Name}" value="{receipt_no}" size="22"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td align="left">NOP&nbsp;</td> 
+                    <td><input id="t_laporan_penerimaan_bphtbnjop_pbb" class="ControlsIN" name="{njop_pbb_Name}" value="{njop_pbb}" size="22"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td align="left">Nama</td> 
+                    <td><input id="t_laporan_penerimaan_bphtbwp_name" class="ControlsIN" name="{wp_name_Name}" value="{wp_name}" size="22"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td align="left">Kecamatan</td> 
+                    <td><input id="t_laporan_penerimaan_bphtbnama_kecamatan" class="ControlsIN" name="{nama_kecamatan_Name}" maxlength="32" value="{nama_kecamatan}" size="32">&nbsp;<img onclick="javascript:lov_region2()" border="0" src="../images/view.gif">&nbsp;<input id="t_laporan_penerimaan_bphtbp_region_id_kecamatan" name="{p_region_id_kecamatan_Name}" value="{p_region_id_kecamatan}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td align="left">Kelurahan</td> 
+                    <td><input id="t_laporan_penerimaan_bphtbnama_kelurahan" class="ControlsIN" name="{nama_kelurahan_Name}" readonly maxlength="32" value="{nama_kelurahan}" size="32">&nbsp;<img onclick="javascript:lov_region3()" border="0" src="../images/view.gif">&nbsp;<input id="t_laporan_penerimaan_bphtbp_region_id_kelurahan" name="{p_region_id_kelurahan_Name}" value="{p_region_id_kelurahan}" type="hidden"></td>
                   </tr>
  
                   <tr>
                     <td colspan="2" align="right"><input id="t_laporan_penerimaan_bphtbcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden">
-                      <!-- BEGIN Button Button1 --><input id="t_laporan_penerimaan_bphtbButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td> 
+                      <!-- BEGIN Button Button1 --><input id="t_laporan_penerimaan_bphtbButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 -->&nbsp; &nbsp;
+                      <!-- BEGIN Button Button2 --><input id="t_laporan_penerimaan_bphtbButton2" class="btn_tambah" onclick="doReset()" name="{Button_Name}" alt="Button2" value="Reset" type="button"><!-- END Button Button2 --></td>
                   </tr>
- 
                 </table>
- </td> 
+              </td>
             </tr>
- 
           </table>
- 
         </form>
- <!-- END Record t_laporan_penerimaan_bphtb --><br>
-      </td> 
+        <!-- END Record t_laporan_penerimaan_bphtb --><br>
+      </td>
     </tr>
- 
   </table>
 </div>
 <script type="text/javascript" src="../js/lov.js"></script>
@@ -113,9 +145,33 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         function lov_rqst() {
                 getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_rqst_type&FIELD_0=p_rqst_type_id&FIELD_1=code&FIELD_2=description&FIELD_3=And p_rqst_type_id in (1,2,3,4,5)&LABEL1=Jenis Permohonan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PERMOHONAN&HEADER_LOV=DAFTAR JENIS PERMOHONAN&ORDER=p_rqst_type_id');
         }
-                function lov_vat_type() {
-                        getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
+        function lov_vat_type() {
+                getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
+        }
+
+                
+                function lov_region1() {
+                        getFrom_LOV('t_cust_account_updateForm','p_region_id,nama_kota','lov_region.php');
                 }
+
+                function lov_region2() {
+                                var kota = 749;     //kota bandung     
+                                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                                        getFrom_LOV('t_laporan_penerimaan_bphtb','p_region_id_kecamatan,nama_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                                }else{
+                                        alert("KOTA/KABUPATEN Belum Diisi");
+                                }
+                }
+
+                function lov_region3() {
+                                var kec = document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kecamatan").value;          
+                                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                                        getFrom_LOV('t_laporan_penerimaan_bphtb','p_region_id_kelurahan,nama_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                                }else{
+                                        alert("KECAMATAN Belum Diisi");
+                                }
+                }
+
   </script>
 </body>
 </html>
