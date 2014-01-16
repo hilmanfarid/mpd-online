@@ -246,15 +246,15 @@ function print_excel($param_arr) {
 
 		echo '<tr>';
 		echo '<td align="center">'.$no.'</td>';
-		echo '<td align="left">'.$item['receipt_no'].'</td>';
-		echo '<td align="left">'.$item['njop_pbb'].'</td>';
+		echo '<td align="left">&nbsp;'.$item['receipt_no'].'</td>';
+		echo '<td align="left">&nbsp;'.$item['njop_pbb'].'</td>';
 		echo '<td align="center">'.dateToString($item['payment_date']).'</td>';
-		echo '<td align="left">'.$item['wp_name'].'</td>';
+		echo '<td align="left">'.trim(strtoupper($item['wp_name'])).'</td>';
 		echo '<td align="left">'.$item['wp_address_name'].'</td>';
 		echo '<td align="left">'.$item['kelurahan_name'].'</td>';
 		echo '<td align="left">'.$item['kecamatan_name'].'</td>';
-		echo '<td align="right">'.$item['land_area'].'</td>';
-		echo '<td align="right">'.$item['building_area'].'</td>';
+		echo '<td align="right">'.number_format($item['land_area'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['building_area'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['land_total_price'],2,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['payment_amount'],2,",",".").'</td>';
 		echo '</tr>';
