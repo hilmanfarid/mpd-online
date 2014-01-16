@@ -10,49 +10,49 @@
 <script src="../js/exporting.js"></script>
 <script>
 $(function () {
-	$.getJSON( "../services/target_realisasi_tahun.php?p_year_period_id="+document.getElementById("t_target_realisasiGridp_year_period_id2").value, function( items ) {
-		var target_amt = items[0][0];
-		var realisasi_amt = items[0][1];
-		var tahun = items[0][2];
-		$("#container").highcharts({
-			chart: {
-				type: "column"
-			},
-			title: {
-				text: "Target vs Realisasi " + tahun
-			},
-			subtitle: {
-				text: "Disyanjak Kota Bandung"
-			},
-			tooltip: {
-				
-			},
-			xAxis: {
-				categories: [tahun]
-			},
-			yAxis: {
-				title: {
+        $.getJSON( "../services/target_realisasi_tahun.php?p_year_period_id="+document.getElementById("t_target_realisasiGridp_year_period_id2").value, function( items ) {
+                var target_amt = items[0][0];
+                var realisasi_amt = items[0][1];
+                var tahun = items[0][2];
+                $("#container").highcharts({
+                        chart: {
+                                type: "column"
+                        },
+                        title: {
+                                text: "Target vs Realisasi " + tahun
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        tooltip: {
+                                
+                        },
+                        xAxis: {
+                                categories: [tahun]
+                        },
+                        yAxis: {
+                                title: {
                     text: ""
                 }
-			},
-			plotOptions: {
-				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y}</b></td></tr>',
-				footerFormat: '</table>',
-				shared: true,
-				useHTML: true
-			},
-			series: [
-			{showInLegend: true, name: "Target " + tahun, data: [target_amt]},
-			{showInLegend: true, name: "Realisasi " + tahun, data: [realisasi_amt]}
-			]
-		});
-	});
+                        },
+                        plotOptions: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        series: [
+                        {showInLegend: true, name: "Target " + tahun, data: [target_amt]},
+                        {showInLegend: true, name: "Realisasi " + tahun, data: [realisasi_amt]}
+                        ]
+                });
+        });
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -71,20 +71,6 @@ $(function () {
       <label onclick="javascript:toBulanan()">
       <div class="tab-title">
         BULANAN PER JENIS PAJAK 
-      </div>
-      </label>
-    </div>
-    <div class="th tab-button">
-      <label onclick="javascript:toMingguan()">
-      <div class="tab-title">
-        MINGGUAN PER JENIS PAJAK 
-      </div>
-      </label>
-    </div>
-    <div class="th tab-button">
-      <label onclick="javascript:toHarian()">
-      <div class="tab-title">
-        HARIAN PER JENIS PAJAK 
       </div>
       </label>
     </div>
@@ -163,7 +149,8 @@ $(function () {
         &nbsp;<input id="t_target_realisasiGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden"><!-- END Grid t_target_realisasiGrid --></td>
     </tr>
   </table>
-  <div id="container" style="width:50%;"></div>
+  <div style="WIDTH: 50%" id="container">
+  </div>
 </div>
 <script language="javascript">
 function toJenis()

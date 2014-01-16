@@ -1,11 +1,13 @@
 <?php
-//BindEvents Method @1-AF6EC633
+//BindEvents Method @1-4E5D6B6E
 function BindEvents()
 {
     global $t_bphtb_registrationForm;
+    global $CCSEvents;
     $t_bphtb_registrationForm->CCSEvents["BeforeSelect"] = "t_bphtb_registrationForm_BeforeSelect";
     $t_bphtb_registrationForm->CCSEvents["BeforeInsert"] = "t_bphtb_registrationForm_BeforeInsert";
     $t_bphtb_registrationForm->ds->CCSEvents["AfterExecuteDelete"] = "t_bphtb_registrationForm_ds_AfterExecuteDelete";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
 
@@ -68,4 +70,29 @@ function t_bphtb_registrationForm_ds_AfterExecuteDelete(& $sender)
     return $t_bphtb_registrationForm_ds_AfterExecuteDelete;
 }
 //End Close t_bphtb_registrationForm_ds_AfterExecuteDelete
+
+//Page_BeforeShow @1-5375E5DA
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_bphtb_registration; //Compatibility
+//End Page_BeforeShow
+
+//Custom Code @1003-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	global $t_bphtb_registrationForm;
+	$del_button = CCGetFromGet('allow_delete');
+	if($del_button=='F'){
+		$t_bphtb_registrationForm->DeleteAllowed = false;
+	}
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
 ?>

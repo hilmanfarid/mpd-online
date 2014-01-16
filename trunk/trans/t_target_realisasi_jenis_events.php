@@ -18,6 +18,12 @@ function t_target_realisasi_jenisGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_target_realisasi_jenisGrid; //Compatibility
 //End t_target_realisasi_jenisGrid_BeforeSelect
+
+//Custom Code @693-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 // Write your own code here.
   	$Component->DataSource->Parameters["t_revenue_target_id"] = CCGetFromGet("t_revenue_target_id", NULL);
 // -------------------------
@@ -34,6 +40,12 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_target_realisasi_jenisGrid; //Compatibility
 //End t_target_realisasi_jenisGrid_BeforeShowRow
+
+//Custom Code @694-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 		global $selected_id;
 
 		if ($selected_id<0) {
@@ -82,6 +94,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_target_realisasi_jenis; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 // -------------------------
       // Write your own code here.
   	  global $selected_id;

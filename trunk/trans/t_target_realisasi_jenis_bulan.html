@@ -91,70 +91,70 @@ $(function() {
     });
 });
 $(function () {
-	$.getJSON( "../services/jenis_bulan.php?t_revenue_target_id="+document.getElementById("t_target_realisasi_jenis_bulanFormt_revenue_target_id").value, function( items ) {
-		var target_amount = [];
-		var realisasi_amt = [];
-		var bulan = [];
-		var vat_code = [];
-		
-		var jumlah = items.length;
-		
-		for(i = 0; i < jumlah; i++){
-			target_amount[i] = items[i][0];
-			realisasi_amt[i] = items[i][1];
-			bulan[i] = items[i][2];
-			vat_code[i] = items[i][3];
-		}
+        $.getJSON( "../services/jenis_bulan.php?t_revenue_target_id="+document.getElementById("t_target_realisasi_jenis_bulanFormt_revenue_target_id").value, function( items ) {
+                var target_amount = [];
+                var realisasi_amt = [];
+                var bulan = [];
+                var vat_code = [];
+                
+                var jumlah = items.length;
+                
+                for(i = 0; i < jumlah; i++){
+                        target_amount[i] = items[i][0];
+                        realisasi_amt[i] = items[i][1];
+                        bulan[i] = items[i][2];
+                        vat_code[i] = items[i][3];
+                }
 
-		data_series = [];
-		for(i = 0; i < jumlah; i++){
-			data_series.push({showInLegend: true, name: "Target " + vat_code[0], data: target_amount[i]});
-			data_series.push({showInLegend: true, name: "Realisasi " + vat_code[0], data: realisasi_amt[i]});
-		}
-		
-		var judul = vat_code[0];
+                data_series = [];
+                for(i = 0; i < jumlah; i++){
+                        data_series.push({showInLegend: true, name: "Target " + vat_code[0], data: target_amount[i]});
+                        data_series.push({showInLegend: true, name: "Realisasi " + vat_code[0], data: realisasi_amt[i]});
+                }
+                
+                var judul = vat_code[0];
 
-		$("#container2").highcharts({
-			chart: {
-				type: "column"
-			},
-			title: {
-				text: "Target vs Realisasi " + judul + " Bulanan"
-			},
-			subtitle: {
-				text: "Disyanjak Kota Bandung"
-			},
-			xAxis: {
-				categories: bulan
-			},
-			yAxis: {
-				min: 0,
-				title: {
-					text: ""
-				}
-			},
-			tooltip: {
-				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y}</b></td></tr>',
-				footerFormat: '</table>',
-				shared: true,
-				useHTML: true
-			},
-			plotOptions: {
-				column: {
-					pointPadding: 0.2,
-					borderWidth: 0
-				}
-			},
-			series: [{showInLegend: true, name: "Target " + vat_code[0], data: target_amount},
-			{showInLegend: true, name: "Realisasi " + vat_code[0], data: realisasi_amt}]
-		});
-	});
+                $("#container2").highcharts({
+                        chart: {
+                                type: "column"
+                        },
+                        title: {
+                                text: "Target vs Realisasi " + judul + " Bulanan"
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        xAxis: {
+                                categories: bulan
+                        },
+                        yAxis: {
+                                min: 0,
+                                title: {
+                                        text: ""
+                                }
+                        },
+                        tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        plotOptions: {
+                                column: {
+                                        pointPadding: 0.2,
+                                        borderWidth: 0
+                                }
+                        },
+                        series: [{showInLegend: true, name: "Target " + vat_code[0], data: target_amount},
+                        {showInLegend: true, name: "Realisasi " + vat_code[0], data: realisasi_amt}]
+                });
+        });
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -176,29 +176,19 @@ $(function () {
         BULANAN PER JENIS PAJAK 
       </div>
     </div>
-    <div class="th tab-button">
-      <label onclick="javascript:toMingguan()">
-      <div class="tab-title">
-        MINGGUAN PER JENIS PAJAK 
-      </div>
-      </label>
-    </div>
-    <div class="th tab-button">
-      <label onclick="javascript:toHarian()">
-      <div class="tab-title">
-        HARIAN PER JENIS PAJAK 
-      </div>
-      </label>
-    </div>
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
-        <div id="container"></div>
- 		<div id="container2"></div>
-        <p>&nbsp; </p>
+        <div id="container">
+        </div>
+ 
+        <div id="container2">
+        </div>
+ 
+        <p></p>
         <!-- BEGIN Record t_target_realisasi_jenis_bulanForm -->
         <form id="t_target_realisasi_jenis_bulanForm" method="post" name="{HTMLFormName}" action="{Action}">
           <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"></h2>
