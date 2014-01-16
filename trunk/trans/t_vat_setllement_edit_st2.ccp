@@ -68,8 +68,8 @@
 			</Events>
 			<TableParameters>
 				<TableParameter id="261" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" logicOperator="And" leftBrackets="0" parameterSource="1"/>
-				<TableParameter id="373" conditionType="Parameter" useIsNull="False" field="p_settlement_type_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" logicOperator="And" parameterSource="2"/>
-<TableParameter id="312" conditionType="Parameter" useIsNull="False" field="upper(npwd)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="Or" parameterSource="s_keyword" leftBrackets="1"/>
+				<TableParameter id="373" conditionType="Parameter" useIsNull="False" field="p_settlement_type_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" logicOperator="And" parameterSource="1"/>
+				<TableParameter id="312" conditionType="Parameter" useIsNull="False" field="upper(npwd)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="Or" parameterSource="s_keyword" leftBrackets="1"/>
 				<TableParameter id="313" conditionType="Parameter" useIsNull="False" field="upper(finance_period_code)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="And" parameterSource="s_keyword" rightBrackets="1"/>
 			</TableParameters>
 			<JoinTables>

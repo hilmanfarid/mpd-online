@@ -94,7 +94,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-2A830678
+//Show Method @2-F5308D5D
     function Show()
     {
         global $Tpl;
@@ -104,7 +104,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->RowNumber = 0;
 
         $this->DataSource->Parameters["expr261"] = 1;
-        $this->DataSource->Parameters["expr373"] = 2;
+        $this->DataSource->Parameters["expr373"] = 1;
         $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
