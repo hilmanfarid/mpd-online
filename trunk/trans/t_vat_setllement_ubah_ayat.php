@@ -376,7 +376,7 @@ class clsformPerubahanAyatDataSource extends clsDBConnSIKP {  //formPerubahanAya
     }
 //End SetValues Method
 
-//Update Method @3-C5F78DEC
+//Update Method @3-C4D7F482
     function Update()
     {
         global $CCSLocales;
@@ -385,6 +385,7 @@ class clsformPerubahanAyatDataSource extends clsDBConnSIKP {  //formPerubahanAya
         $this->cp["t_vat_setllement_id"] = new clsSQLParameter("ctrlt_vat_setllement_id", ccsInteger, "", "", $this->t_vat_setllement_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["p_vat_type_dtl_id"] = new clsSQLParameter("ctrlp_vat_type_dtl_id", ccsInteger, "", "", $this->p_vat_type_dtl_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["user_name"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
+        $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["t_vat_setllement_id"]->GetValue()) and !strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue())) 
             $this->cp["t_vat_setllement_id"]->SetValue($this->t_vat_setllement_id->GetValue(true));
@@ -396,7 +397,9 @@ class clsformPerubahanAyatDataSource extends clsDBConnSIKP {  //formPerubahanAya
             $this->cp["p_vat_type_dtl_id"]->SetText(0);
         if (!is_null($this->cp["user_name"]->GetValue()) and !strlen($this->cp["user_name"]->GetText()) and !is_bool($this->cp["user_name"]->GetValue())) 
             $this->cp["user_name"]->SetValue(CCGetSession("UserLogin", NULL));
-        $this->SQL = "SELECT f_update_type_ayat(" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . "," . $this->SQLValue($this->cp["p_vat_type_dtl_id"]->GetDBValue(), ccsInteger) . ", '" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "') AS msg";
+        if (!is_null($this->cp["alasan"]->GetValue()) and !strlen($this->cp["alasan"]->GetText()) and !is_bool($this->cp["alasan"]->GetValue())) 
+            $this->cp["alasan"]->SetValue($this->alasan->GetValue(true));
+        $this->SQL = "SELECT f_update_type_ayat(" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . "," . $this->SQLValue($this->cp["p_vat_type_dtl_id"]->GetDBValue(), ccsInteger) . ", '" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "') AS msg";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->itemResult = $this->query($this->SQL);
