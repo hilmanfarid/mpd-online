@@ -381,7 +381,7 @@ function GetPrimaryKey($keyName)
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_Update") {
-                $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
+                $Redirect = "t_bphtb_registration_list_update.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }
@@ -914,7 +914,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-ED945886
+//SetValues Method @94-A217801F
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -927,7 +927,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
         $this->npwp->SetDBValue($this->f("npwp"));
         $this->object_kelurahan->SetDBValue($this->f("object_kelurahan"));
-        $this->object_p_region_id_kel->SetDBValue(trim($this->f("wp_p_regiobject_p_region_id_kelon_id_kel")));
+        $this->object_p_region_id_kel->SetDBValue(trim($this->f("object_p_region_id_kel")));
         $this->object_kecamatan->SetDBValue($this->f("object_kecamatan"));
         $this->object_p_region_id_kec->SetDBValue(trim($this->f("object_p_region_id_kec")));
         $this->object_kota->SetDBValue($this->f("object_region"));
