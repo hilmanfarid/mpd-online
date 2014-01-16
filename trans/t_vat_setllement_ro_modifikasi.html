@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -64,7 +64,7 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"><label style="display: none;" for="searchFormOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
+                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="Cari" type="submit"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -77,7 +77,7 @@ $(document).ready(function()
  
         <p>&nbsp;</p>
         <!-- BEGIN Grid t_vat_setllementGrid -->
-        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="1050">
           <tr>
             <td valign="top">
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
@@ -112,7 +112,9 @@ $(document).ready(function()
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;UBAH AYAT</th>
  
-                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;UBAH TOTAL TRANSAKSI</th>
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;UBAH TGL</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;UBAH TOTAL TRANS.</th>
  
                   <th style="TEXT-ALIGN: center" colspan="6" scope="col">UBAH DENDA</th>
                 </tr>
@@ -133,6 +135,8 @@ $(document).ready(function()
                   <td>
                     <!-- BEGIN Button BtnUbahAyat --><input style="WIDTH: 88px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahAyat" class="Button" onclick="viewFormUbahAyat({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Ayat" type="button"><!-- END Button BtnUbahAyat --></td> 
                   <td>
+                    <!-- BEGIN Button BtnUbahTgl --><input style="WIDTH: 88px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahTgl" class="Button" onclick="viewFormUbahTanggalTrans({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Tgl" type="button"><!-- END Button BtnUbahTgl --></td> 
+                  <td>
                     <!-- BEGIN Button BtnUbahNilaiTransaksi --><input style="WIDTH: 128px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahNilaiTransaksi" class="Button" onclick="viewFormUbahNilaiTransaksi({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Total Trans" type="button"><!-- END Button BtnUbahNilaiTransaksi --></td> 
                   <td style="TEXT-ALIGN: center" colspan="6">
                     <!-- BEGIN Button BtnUbahDenda --><input style="WIDTH: 94px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahDenda" class="Button" onclick="viewFormUbahDenda({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Denda" type="button"><!-- END Button BtnUbahDenda --></td>
@@ -140,12 +144,12 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="18">-</td>
+                  <td colspan="19">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b>&nbsp;</b></td> 
-                  <td style="TEXT-ALIGN: center" colspan="17">&nbsp; 
+                  <td style="TEXT-ALIGN: center" colspan="18">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -389,7 +393,20 @@ function viewFormUbahAyat(t_vat_setllement_id) {
         
         url = "../trans/t_vat_setllement_ubah_ayat.php?t_vat_setllement_id="+t_vat_setllement_id;
                 
-		params  = 'width=650';
+                params  = 'width=650';
+        params += ', height=300';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function viewFormUbahTanggalTrans(t_vat_setllement_id) {
+        
+        url = "../trans/t_vat_setllement_ubah_tgl_trans.php?t_vat_setllement_id="+t_vat_setllement_id;
+                
+                params  = 'width=650';
         params += ', height=300';
         params += ', top=0, left=0';
 
