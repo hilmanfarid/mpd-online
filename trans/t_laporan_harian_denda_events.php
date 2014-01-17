@@ -70,7 +70,41 @@ function print_laporan($param_arr){
 	$dbConn = new clsDBConnSIKP();
 	
 	//$query="select * from sikp.f_laporan_harian_denda(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
-	$query="select *, 
+	$query="select 
+	nama,
+	alamat,
+	npwpd,
+	to_char(trunc(start_period), 'DD-MM-YYYY') AS start_period_formated,
+	to_char(trunc(end_period), 'DD-MM-YYYY') AS end_period_formated,
+	no_kohir,
+	to_char(trunc(tgl_masuk), 'DD-MM-YYYY') AS tgl_masuk_formated,
+	to_char(trunc(jatuh_tempo), 'DD-MM-YYYY') AS jatuh_tempo_formated,
+	to_char(trunc(tgl_bayar), 'DD-MM-YYYY') AS tgl_bayar_formated,
+	sum(skpdkb_amount) as skpdkb_amount,
+	to_char(trunc(skpdkb_tgl_tap), 'DD-MM-YYYY') AS skpdkb_tgl_tap_formated,
+	to_char(trunc(skpdkb_tgl_bayar), 'DD-MM-YYYY') AS skpdkb_tgl_bayar_formated,
+	sum(denda_amount) as denda_amount,
+	to_char(trunc(denda_tgl_tap), 'DD-MM-YYYY') AS denda_tgl_tap_formated,
+	to_char(trunc(denda_tgl_bayar), 'DD-MM-YYYY') AS denda_tgl_bayar_formated,
+	sum(sptpd_amount) as sptpd_amount
+from sikp.f_laporan_harian_denda(1,2014,'1-1-2014','30-12-2014')	
+GROUP BY
+	nama,
+	alamat,
+	npwpd,
+	trunc(start_period),
+	trunc(end_period),
+	no_kohir,
+	trunc(tgl_masuk),
+	trunc(jatuh_tempo),
+	trunc(tgl_bayar),
+	trunc(skpdkb_tgl_tap),
+	trunc(skpdkb_tgl_bayar),
+	trunc(denda_tgl_tap),
+	trunc(denda_tgl_bayar)
+ORDER BY nama,trunc(start_period) ASC";
+	
+	/*"select *, 
 	to_char(start_period, 'DD-MM-YYYY') AS start_period_formated,
 	to_char(end_period, 'DD-MM-YYYY') AS end_period_formated,
 	to_char(tgl_masuk, 'DD-MM-YYYY') AS tgl_masuk_formated,
@@ -80,23 +114,27 @@ function print_laporan($param_arr){
 	to_char(skpdkb_tgl_bayar, 'DD-MM-YYYY') AS skpdkb_tgl_bayar_formated,
 	to_char(denda_tgl_tap, 'DD-MM-YYYY') AS denda_tgl_tap_formated,
 	to_char(denda_tgl_bayar, 'DD-MM-YYYY') AS denda_tgl_bayar_formated from sikp.f_laporan_harian_denda(1,2014,'1-1-2014','30-12-2014')";
+	*/
 	$dbConn->query($query);
 	$items=array();
-	$pdf->SetFont('helvetica', '',9);
+	$pdf->SetFont('arial', '',8);
 	$pdf->ln(2);
-	$pdf->SetWidths(array(10,24,20,15,40,18,22,25,20,61,61,27));
+	$pdf->SetWidths(array(10,24,20,15,37,18,18,19,22,19,61,61,17));
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C'));
-	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","","",""),array('LT','LT','LT','LT','LT','LT','LT','LT','LT','LT','LT','LTR'),6);
-	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","SKPDKB","DENDA","JUMLAH"),array('L','L','L','L','L','L','L','L','L','L','L','LR'),4);
-	$pdf->RowMultiBorderWithHeight(array("NO","NAMA","ALAMAT","NPWPD","MASA PAJAK","NO KOHIR","TGL MASUK","JATUH TEMPO","TGL BAYAR","","",""),array('L','L','L','L','L','L','L','L','L','L','L','LR'),4);
-	$pdf->SetWidths(array(10,24,20,15,40,18,22,25,20,16,15,14,16,16,15,14,16,27));
+	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","","","",""),array('LT','LT','LT','LT','LT','LT','LT','LT','LT','LT','LT','LT','LTR'),6);
+	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","","SKPDKB","DENDA","JUMLAH"),array('L','L','L','L','L','L','L','L','L','L','L','L','LR'),4);
+	$pdf->RowMultiBorderWithHeight(array("NO","NAMA","ALAMAT","NPWPD","MASA PAJAK","NO KOHIR","BESARNYA","TGL MASUK","JATUH TEMPO","TGL BAYAR","","",""),array('L','L','L','L','L','L','L','L','L','L','L','L','LR'),4);
+	$pdf->SetWidths(array(10,24,20,15,37,18,18,19,22,19,16,15,14,16,16,15,14,16,17));
 	$pdf->SetFont('arial', '',7);
-	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","BESARNYA","NO KOHIR","TGL TAP","TGL BAYAR","BESARNYA","NO KOHIR","TGL TAP","TGL BAYAR",""),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),9);
+	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","","BESARNYA","NO KOHIR","TGL TAP","TGL BAYAR","BESARNYA","NO KOHIR","TGL TAP","TGL BAYAR",""),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),9);
 	$pdf->SetFont('arial', '',8);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','L','L','L','L','L','L','L','L','L'));
 	$jumlah =0;
 	$jumlah=0;
+	$total_skpdkb=0;
+	$total_sptpd=0;
+	$total_denda=0;
 	while($dbConn->next_record()){
 		$items[]= $item = array('nama' => $dbConn->f("nama"),
 					   'alamat' => $dbConn->f("alamat"),
@@ -115,15 +153,21 @@ function print_laporan($param_arr){
 					   'denda_no_kohir' => $dbConn->f("denda_no_kohir"),
 					   'denda_tgl_tap' => $dbConn->f("denda_tgl_tap_formated"),
 					   'denda_tgl_bayar' => $dbConn->f("denda_tgl_bayar_formated"),
+					   'sptpd_amount' => $dbConn->f("sptpd_amount")
 						);
 		//$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
-		if(){
-			$pdf->RowMultiBorderWithHeight(array($no,$item['nama'],$item['alamat'],$item['npwpd'],$item['start_period']." s/d ".$item['end_period'],$item['no_kohir'],$item['tgl_masuk'],$item['jatuh_tempo'],$item['tgl_bayar'],'Rp. '.number_format($item['skpdkb_amount'], 2, ',', '.'),$item['skpdkb_no_kohir'],$item['skpdkb_tgl_tap'],$item['skpdkb_tgl_bayar'],'Rp. '.number_format($item['denda_amount'], 2, ',', '.'),$item['denda_no_kohir'],$item['denda_tgl_tap'],$item['denda_tgl_bayar'],""),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),6);
-		}
-		$jumlah+=$dbConn->f("amount");
+		//if(){
+		$jumlah = $item['skpdkb_amount']+$item['denda_amount']+$item['sptpd_amount'];
+			$pdf->RowMultiBorderWithHeight(array($no,$item['nama'],$item['alamat'],$item['npwpd'],$item['start_period']." s/d ".$item['end_period'],$item['no_kohir'],'Rp. '.number_format($item['sptpd_amount'], 2, ',', '.'),$item['tgl_masuk'],$item['jatuh_tempo'],$item['tgl_bayar'],'Rp. '.number_format($item['skpdkb_amount'], 2, ',', '.'),$item['skpdkb_no_kohir'],$item['skpdkb_tgl_tap'],$item['skpdkb_tgl_bayar'],'Rp. '.number_format($item['denda_amount'], 2, ',', '.'),$item['denda_no_kohir'],$item['denda_tgl_tap'],$item['denda_tgl_bayar'],'Rp. '.number_format($jumlah, 2, ',', '.')),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),6);
+		
+		$total_skpdkb+=$item['skpdkb_amount'];
+		$total_sptpd+=$item['denda_amount'];
+		$total_denda+=$item['sptpd_amount'];
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
 		$no++;
 	}
+	$pdf->SetWidths(array(10+24+20+15+37+18,18,19+22+19,16,15+14+16,16,15+14+16+17));
+	$pdf->RowMultiBorderWithHeight(array("",'Rp. '.number_format($total_sptpd, 2, ',', '.'),"",'Rp. '.number_format($total_skpdkb, 2, ',', '.'),"",'Rp. '.number_format($total_denda, 2, ',', '.'),""),array('LRTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR'),6);
 	$pdf->SetWidths(array(250,70));
 	$pdf->ln(8);
 	$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
