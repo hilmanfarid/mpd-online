@@ -31,13 +31,19 @@ $(document).ready(function()
 <script language="JavaScript" type="text/javascript">
 //End Include Common JSFunctions
 
-//Date Picker Object Definitions @1-A4139E39
+//Date Picker Object Definitions @1-3D64AD49
 
 var t_rep_bppsSearch_DatePicker_tgl_penerimaan = new Object(); 
 t_rep_bppsSearch_DatePicker_tgl_penerimaan.format           = "dd-mm-yyyy";
 t_rep_bppsSearch_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
 t_rep_bppsSearch_DatePicker_tgl_penerimaan.relativePathPart = "../";
 t_rep_bppsSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+var t_rep_bppsSearch_DatePicker_tgl_penerimaan_last1 = new Object(); 
+t_rep_bppsSearch_DatePicker_tgl_penerimaan_last1.format           = "dd-mm-yyyy";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan_last1.style            = "Styles/sikp/Style.css";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan_last1.relativePathPart = "../";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan_last1.themeVersion = "3.0";
 
 //End Date Picker Object Definitions
 
@@ -51,7 +57,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -78,23 +84,21 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Jenis Pajak</td> 
-                    <td class="search-field"><input id="t_rep_bppsSearchvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="32"></td> 
-                    <td><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_bppsSearchp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td> 
+                    <td class="search-field" colspan="2"><input id="t_rep_bppsSearchvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="32">&nbsp;<img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_bppsSearchp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td> 
                     <td class="search-field"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">Periode Tahun</td> 
-                    <td class="search-field"><input id="t_rep_bppsSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="32"></td> 
-                    <td><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"><input id="t_rep_bppsSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
+                    <td class="search-field" colspan="2"><input id="t_rep_bppsSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"><input id="t_rep_bppsSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
                     <td class="search-field"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">Tanggal Penerimaan</td> 
-                    <td class="search-field"><input id="t_rep_bppsSearchtgl_penerimaan" class="ControlsRQ" name="{tgl_penerimaan_Name}" maxlength="32" value="{tgl_penerimaan}" size="32">
-                      <td>
-                        <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_bppsSearchDatePicker_tgl_penerimaan"><img id="t_rep_bppsSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;</td> 
+                    <td class="search-field" colspan="2"><input style="WIDTH: 95px; HEIGHT: 20px" id="t_rep_bppsSearchtgl_penerimaan" class="ControlsRQ" name="{tgl_penerimaan_Name}" maxlength="32" value="{tgl_penerimaan}" size="11">
+                      <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_bppsSearchDatePicker_tgl_penerimaan"><img id="t_rep_bppsSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp; s.d&nbsp;&nbsp; <input style="WIDTH: 95px; HEIGHT: 20px" id="t_rep_bppsSearchtgl_penerimaan_last" class="ControlsRQ" name="{tgl_penerimaan_last_Name}" maxlength="32" value="{tgl_penerimaan_last}" size="11">
+                      <!-- BEGIN DatePicker DatePicker_tgl_penerimaan_last1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_bppsSearchDatePicker_tgl_penerimaan_last1"><img id="t_rep_bppsSearchDatePicker_tgl_penerimaan_last1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan_last1 -->
                       <td class="search-field"></td>
                     </tr>
  
@@ -108,7 +112,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  </td> 
                       <td>&nbsp;</td> 
                       <td class="search-field">&nbsp; 
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch --></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="button"><!-- END Button Button_DoSearch --></td>
                     </tr>
                   </table>
                 </td>
@@ -134,10 +138,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         function cetak()
         {
                 tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
-                p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
+                
+				p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
                 p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
-				var i_flag_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
-                window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                var i_flag_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
+                window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
         </script>
   </body>
