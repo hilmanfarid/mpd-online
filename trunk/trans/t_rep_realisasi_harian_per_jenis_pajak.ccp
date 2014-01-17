@@ -2,19 +2,19 @@
 	<Components>
 		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_rep_bppsSearch" returnPage="t_rep_realisasi_harian_per_jenis_pajak.ccp" PathID="t_rep_bppsSearch" pasteActions="pasteActions">
 			<Components>
-				<TextBox id="559" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan" PathID="t_rep_bppsSearchtgl_penerimaan" format="dd-mm-yyyy">
+				<TextBox id="559" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan" PathID="t_rep_bppsSearchtgl_penerimaan" format="dd-mm-yyyy" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="560" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" PathID="t_rep_bppsSearchyear_code">
+				<TextBox id="560" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" PathID="t_rep_bppsSearchyear_code" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="561" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" PathID="t_rep_bppsSearchvat_code">
+				<TextBox id="561" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" PathID="t_rep_bppsSearchvat_code" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -39,7 +39,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<ListBox id="564" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_rep_bppsSearchListBox1" connection="ConnSIKP" _valueOfList="2" _nameOfList="Denda" dataSource="1;Pokok;2;Denda" fieldSource="i_flag_setoran">
+				<ListBox id="564" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_rep_bppsSearchListBox1" connection="ConnSIKP" _valueOfList="2" _nameOfList="Denda" dataSource="1;Pokok;2;Denda" fieldSource="i_flag_setoran" required="True">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -57,7 +57,7 @@
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<TextBox id="565" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan_last" PathID="t_rep_bppsSearchtgl_penerimaan_last" format="dd-mm-yyyy">
+<TextBox id="565" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan_last" PathID="t_rep_bppsSearchtgl_penerimaan_last" format="dd-mm-yyyy" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
