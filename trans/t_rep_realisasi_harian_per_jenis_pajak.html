@@ -105,14 +105,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <tr class="Controls">
                       <td class="search-field">Jenis Setoran</td> 
                       <td class="search-field">
-                        <select id="t_rep_bppsSearchListBox1" name="{ListBox1_Name}">
+                        <select id="t_rep_bppsSearchListBox1" class="ControlsRQ" name="{ListBox1_Name}">
                           <option selected value="">Select Value</option>
                           {ListBox1_Options}
                         </select>
  </td> 
                       <td>&nbsp;</td> 
                       <td class="search-field">&nbsp; 
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="button"><!-- END Button Button_DoSearch --></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch --></td>
                     </tr>
                   </table>
                 </td>
@@ -137,14 +137,19 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 
         function cetak()
         {
-                tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
-                tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
+                var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
+                var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
                 
-				p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
-                p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
+				var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
                 var i_flag_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
-                window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-        }
+                
+				if(empty(tgl_penerimaan) || empty(tgl_penerimaan_last) || empty(p_year_period_id) || empty(p_vat_type_id) || empty(i_flag_setoran)) {
+					alert("Semua Filter Harus Diisi");
+				}else {
+					window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        		}
+		}
         </script>
   </body>
   </html>
