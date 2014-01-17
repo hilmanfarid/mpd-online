@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-E4A1AEB3
+//Class_Initialize Event @3-1DA8EC0C
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -70,16 +70,21 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->tgl_penerimaan = & new clsControl(ccsTextBox, "tgl_penerimaan", "tgl_penerimaan", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("tgl_penerimaan", $Method, NULL), $this);
+            $this->tgl_penerimaan->Required = true;
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
+            $this->year_code->Required = true;
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->vat_code->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
             $this->ListBox1->DSType = dsListOfValues;
             $this->ListBox1->Values = array(array("1", "Pokok"), array("2", "Denda"));
+            $this->ListBox1->Required = true;
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_rep_bppsSearch", "tgl_penerimaan", $this);
             $this->tgl_penerimaan_last = & new clsControl(ccsTextBox, "tgl_penerimaan_last", "tgl_penerimaan_last", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("tgl_penerimaan_last", $Method, NULL), $this);
+            $this->tgl_penerimaan_last->Required = true;
             $this->DatePicker_tgl_penerimaan_last1 = & new clsDatePicker("DatePicker_tgl_penerimaan_last1", "t_rep_bppsSearch", "tgl_penerimaan_last", $this);
         }
     }
