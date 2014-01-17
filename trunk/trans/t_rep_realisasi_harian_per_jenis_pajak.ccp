@@ -8,12 +8,6 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<DatePicker id="191" name="DatePicker_tgl_penerimaan" control="tgl_penerimaan" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_bppsSearchDatePicker_tgl_penerimaan">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</DatePicker>
 				<TextBox id="560" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" PathID="t_rep_bppsSearchyear_code">
 					<Components/>
 					<Events/>
@@ -57,7 +51,25 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<DatePicker id="191" name="DatePicker_tgl_penerimaan" control="tgl_penerimaan" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_bppsSearchDatePicker_tgl_penerimaan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+<TextBox id="565" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan_last" PathID="t_rep_bppsSearchtgl_penerimaan_last" format="dd-mm-yyyy">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<DatePicker id="566" name="DatePicker_tgl_penerimaan_last1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_bppsSearchDatePicker_tgl_penerimaan_last1" control="tgl_penerimaan_last" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</DatePicker>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -82,8 +94,8 @@
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_realisasi_harian_per_jenis_pajak_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="t_rep_realisasi_harian_per_jenis_pajak.php" forShow="True" url="t_rep_realisasi_harian_per_jenis_pajak.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="t_rep_realisasi_harian_per_jenis_pajak.php" forShow="True" url="t_rep_realisasi_harian_per_jenis_pajak.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
