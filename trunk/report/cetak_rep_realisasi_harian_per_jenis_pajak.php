@@ -10,6 +10,7 @@ $p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
 $p_year_period_id	= CCGetFromGet("p_year_period_id", "");
 $tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
 $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
+$tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
 
 // $p_vat_type_id		= 1;
 // $p_year_period_id	= 4;
@@ -19,9 +20,10 @@ $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+$query				= "select * from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
 $tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
+$tgl_penerimaan_last = str_replace("'", "", $tgl_penerimaan_last);
 $tahun = date("Y", strtotime($tgl_penerimaan));
 while ($dbConn->next_record()) {
 	$data[]= array(
@@ -75,7 +77,7 @@ class FormCetak extends FPDF {
 	}
 	*/
 	
-	function PageCetak($data, $user, $tahun, $tgl_penerimaan) {
+	function PageCetak($data, $user, $tahun, $tgl_penerimaan, $tgl_penerimaan_last) {
 		$this->AliasNbPages();
 		$this->AddPage("L");
 		$this->SetFont('Arial', '', 10);
@@ -106,7 +108,11 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
+		if($tgl_penerimaan == $tgl_penerimaan_last)
+			$this->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
+		else 
+			$this->Cell($lheader4, $this->height, "Tanggal Penerimaan : " . $tgl_penerimaan. " s/d ".$tgl_penerimaan_last, "R", 0, 'C');
+			
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
 		$this->Cell($lheader3, $this->height, "", "BR", 0, 'L');
@@ -207,31 +213,23 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->newLine();
 		$this->newLine();
+		$this->newLine();
 		
-		$lbody = $this->lengthCell / 4;
+		$this->SetAligns(array("C", "C"));
+		$this->SetWidths(array(180, 120));
+		$this->RowMultiBorderWithHeight( array("","Bandung, " . date("d F Y")."\n\n\n\n\n\n\n\n(....................................)"), array("",""), 5 );
+	
+	    
+		/*$lbody = $this->lengthCell / 4;
 		$lbody1 = $lbody * 1;
 		$lbody2 = $lbody * 2;
 		$lbody3 = $lbody * 3;
 		
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
-		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "", "", 0, 'C');
-		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		//$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
-		$this->Ln();
-		$this->newLine();
-		$this->newLine();
-		$this->newLine();
-		$this->newLine();
-		$this->newLine();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
-	}
+		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');*/
+		//$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y")."\n\n\n\n\n(....................................)" /*. $data["tanggal"]*/, "", 0, 'C');
+    }
 
 	function newLine(){
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
@@ -398,6 +396,6 @@ class FormCetak extends FPDF {
 }
 
 $formulir = new FormCetak();
-$formulir->PageCetak($data, $user, $tahun, $tgl_penerimaan);
+$formulir->PageCetak($data, $user, $tahun, $tgl_penerimaan, $tgl_penerimaan_last);
 $formulir->Output();
 ?>
