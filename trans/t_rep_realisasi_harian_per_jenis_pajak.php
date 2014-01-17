@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-EF83D08C
+//Class_Initialize Event @3-E4A1AEB3
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -70,7 +70,6 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->tgl_penerimaan = & new clsControl(ccsTextBox, "tgl_penerimaan", "tgl_penerimaan", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("tgl_penerimaan", $Method, NULL), $this);
-            $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_rep_bppsSearch", "tgl_penerimaan", $this);
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
@@ -79,11 +78,14 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
             $this->ListBox1->DSType = dsListOfValues;
             $this->ListBox1->Values = array(array("1", "Pokok"), array("2", "Denda"));
+            $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_rep_bppsSearch", "tgl_penerimaan", $this);
+            $this->tgl_penerimaan_last = & new clsControl(ccsTextBox, "tgl_penerimaan_last", "tgl_penerimaan_last", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("tgl_penerimaan_last", $Method, NULL), $this);
+            $this->DatePicker_tgl_penerimaan_last1 = & new clsDatePicker("DatePicker_tgl_penerimaan_last1", "t_rep_bppsSearch", "tgl_penerimaan_last", $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-88AC5CB8
+//Validate Method @3-2DADD603
     function Validate()
     {
         global $CCSLocales;
@@ -95,6 +97,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->ListBox1->Validate() && $Validation);
+        $Validation = ($this->tgl_penerimaan_last->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
@@ -102,21 +105,24 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->ListBox1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->tgl_penerimaan_last->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-099975B9
+//CheckErrors Method @3-BD80A82A
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->tgl_penerimaan->Errors->Count());
-        $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->year_code->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->ListBox1->Errors->Count());
+        $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
+        $errors = ($errors || $this->tgl_penerimaan_last->Errors->Count());
+        $errors = ($errors || $this->DatePicker_tgl_penerimaan_last1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -169,7 +175,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-EB85544A
+//Show Method @3-A7363E9D
     function Show()
     {
         global $CCSUseAmp;
@@ -195,12 +201,14 @@ function GetPrimaryKey($keyName)
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
             $Error = ComposeStrings($Error, $this->tgl_penerimaan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->ListBox1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->tgl_penerimaan_last->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan_last1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -219,13 +227,15 @@ function GetPrimaryKey($keyName)
         }
 
         $this->tgl_penerimaan->Show();
-        $this->DatePicker_tgl_penerimaan->Show();
         $this->year_code->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
         $this->p_year_period_id->Show();
         $this->Button_DoSearch->Show();
         $this->ListBox1->Show();
+        $this->DatePicker_tgl_penerimaan->Show();
+        $this->tgl_penerimaan_last->Show();
+        $this->DatePicker_tgl_penerimaan_last1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
