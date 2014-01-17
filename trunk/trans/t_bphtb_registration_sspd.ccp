@@ -510,7 +510,19 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Button id="1041" urlType="Relative" enableValidation="True" isDefault="False" name="register_btn" PathID="t_bphtb_registrationFormregister_btn">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
+<Hidden id="1042" fieldSourceType="DBColumn" dataType="Text" name="registration_no" PathID="t_bphtb_registrationFormregistration_no" fieldSource="registration_no">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
