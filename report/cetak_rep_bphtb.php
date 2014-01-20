@@ -73,7 +73,7 @@ while ($dbConn->next_record()) {
 	$data["registration_no"]		= $dbConn->f("registration_no");
 	$data["verificated_by"]			= $dbConn->f("verificated_by");
 	$data["verificated_nip"]		= $dbConn->f("verificated_nip");
-
+	$data["jenis_harga_bphtb"]		= $dbConn->f("jenis_harga_bphtb");
 }
 
 $dbConn->close();
@@ -218,13 +218,15 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "");
 		$this->Ln();
 		
+		$jenis_harga = array(1 => 'Harga Transaksi',2 =>  'Harga Pasar',3 => 'Harga Lelang');
+
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($lbodyx1, $this->height, "", "BL", 0, "");
 		$this->Cell($lbodyx1, $this->height, "", "B", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "BR", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "", "B", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "", "B", 0, "R");
-		$this->Cell($lbodyx1, $this->height, "Harga Pasar", "BR", 0, "C");
+		$this->Cell($lbodyx1, $this->height, $jenis_harga[$jenis_harga_bphtb], "BR", 0, "C");
 		$this->Cell($lbodyx1, $this->height, "Rp", "B", 0, "L");
 		$this->Cell($lbodyx1, $this->height, number_format($data["market_price"], 0, ",", "."), "B", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "BR", 0, "");
@@ -259,7 +261,8 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
 		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+		$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR BPHTB", "", 0, 'C');
+		$this->Cell($lbody3 - $lbody1 - 20, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "PETUGAS PEMERIKSA", "", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
@@ -272,9 +275,11 @@ class FormCetak extends FPDF {
 		$this->newLine();
 		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
-		$this->Cell($lbody1 + 270, $this->height - 3, "( ".$data['verificated_by']." )", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height - 3, "(INDRA WISNU.SE)", "", 0, 'C');
+		$this->Cell(202, $this->height - 3, "( ".$data['verificated_by']." )", "", 0, 'C');
 		$this->newLine();
-		$this->Cell($lbody1 + 270, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height - 4, "NIP : 19731031.2009.1.1001 ", "", 0, 'C');
+		$this->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
 
 			
 	}
