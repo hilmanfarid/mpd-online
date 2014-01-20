@@ -43,7 +43,11 @@ class clsRecordt_laporan_harian_denda { //t_laporan_harian_denda Class @2-0082D9
     var $Attributes;
 //End Variables
 
+<<<<<<< .mine
+//Class_Initialize Event @2-EBE1E159
+=======
 //Class_Initialize Event @2-33CD8398
+>>>>>>> .r324
     function clsRecordt_laporan_harian_denda($RelativePath, & $Parent)
     {
 
@@ -67,25 +71,37 @@ class clsRecordt_laporan_harian_denda { //t_laporan_harian_denda Class @2-0082D9
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+            $this->TextBox1 = & new clsControl(ccsTextBox, "TextBox1", "TextBox1", ccsText, "", CCGetRequestParam("TextBox1", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
+<<<<<<< .mine
+//Validate Method @2-CE3E40DD
+=======
 //Validate Method @2-367945B8
+>>>>>>> .r324
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
+        $Validation = ($this->TextBox1->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->TextBox1->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
+<<<<<<< .mine
+//CheckErrors Method @2-AAE05F9B
+=======
 //CheckErrors Method @2-E8CE9E37
+>>>>>>> .r324
     function CheckErrors()
     {
         $errors = false;
+        $errors = ($errors || $this->TextBox1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -123,7 +139,11 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
+<<<<<<< .mine
+//Show Method @2-BD93DCDA
+=======
 //Show Method @2-D978379E
+>>>>>>> .r324
     function Show()
     {
         global $CCSUseAmp;
@@ -145,6 +165,7 @@ function GetPrimaryKey($keyName)
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
+            $Error = ComposeStrings($Error, $this->TextBox1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -162,6 +183,7 @@ function GetPrimaryKey($keyName)
             return;
         }
 
+        $this->TextBox1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
