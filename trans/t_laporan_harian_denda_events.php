@@ -25,6 +25,7 @@ function Page_BeforeShow(& $sender)
 		$param_arr['year_period_id']=$t_laporan_harian_denda->p_year_period_id->GetValue();
 		$param_arr['date_start']=$t_laporan_harian_denda->date_start_laporan->GetValue();
 		$param_arr['date_end']=$t_laporan_harian_denda->date_end_laporan->GetValue();
+		$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
 		if(empty($param_arr['date_start'])){
 			$param_arr['date_start']=$param_arr['year_code'].'-01-01';
 		}
@@ -87,7 +88,7 @@ function print_laporan($param_arr){
 	to_char(trunc(denda_tgl_tap), 'DD-MM-YYYY') AS denda_tgl_tap_formated,
 	to_char(trunc(denda_tgl_bayar), 'DD-MM-YYYY') AS denda_tgl_bayar_formated,
 	sum(sptpd_amount) as sptpd_amount
-from sikp.f_laporan_harian_denda(1,2014,'1-1-2014','30-12-2014')	
+from sikp.f_laporan_harian_denda(".$param_arr['p_vat_type_id'].",2014,'".$param_arr['date_start']."','".$param_arr['date_end']."')	
 GROUP BY
 	nama,
 	alamat,
@@ -115,6 +116,8 @@ ORDER BY nama,trunc(start_period) ASC";
 	to_char(denda_tgl_tap, 'DD-MM-YYYY') AS denda_tgl_tap_formated,
 	to_char(denda_tgl_bayar, 'DD-MM-YYYY') AS denda_tgl_bayar_formated from sikp.f_laporan_harian_denda(1,2014,'1-1-2014','30-12-2014')";
 	*/
+	echo $query;
+	exit;
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('arial', '',8);

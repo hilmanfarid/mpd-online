@@ -36,7 +36,7 @@
 				decimal: '.',
 				precision: 2,
 				defaultZero: true,
-				allowZero: false,
+				allowZero: true,
 				allowNegative: false
 			}, settings);
 
