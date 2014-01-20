@@ -2,7 +2,13 @@
 	<Components>
 		<Record id="2" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_laporan_harian_denda" wizardCaption="Search T Payment Receipt " wizardOrientation="Vertical" wizardFormMethod="post" returnPage="t_laporan_harian_denda.ccp" PathID="t_laporan_harian_denda" pasteActions="pasteActions">
 			<Components>
-			</Components>
+				<TextBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TextBox1" PathID="t_laporan_harian_dendaTextBox1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
