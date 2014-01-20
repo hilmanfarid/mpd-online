@@ -1,4 +1,4 @@
-<?php
+s<?php
 //BindEvents Method @1-ECC4C064
 function BindEvents()
 {

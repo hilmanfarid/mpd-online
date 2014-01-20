@@ -141,7 +141,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <!--<div class="th tab-button">
@@ -334,7 +334,11 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;</td> 
-                    <td colspan="5">&nbsp;Harga Transaksi Pasar</td> 
+                    <td colspan="5">
+                      <select id="t_bphtb_registrationFormjenis_harga_bphtb" name="{jenis_harga_bphtb_Name}">
+                        {jenis_harga_bphtb_Options}
+                      </select>
+ :</td> 
                     <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" class="numeric-field" onkeyup="getNPOP();" name="{market_price_Name}" value="{market_price}"></td>
                   </tr>
  
@@ -550,24 +554,24 @@ function toReg3()
 function hitungTotalTanah(){
                 //alert(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,./g ,''));
         var hasil=0;
-		if(document.getElementById("t_bphtb_registrationFormland_area").value==0||document.getElementById("t_bphtb_registrationFormland_price_per_m").value==0){
-			hasil=0
-		}else{
-			hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
-		}
-		document.getElementById('t_bphtb_registrationFormland_total_price').value=ReplaceNumberWithCommas(hasil);
+                if(document.getElementById("t_bphtb_registrationFormland_area").value==0||document.getElementById("t_bphtb_registrationFormland_price_per_m").value==0){
+                        hasil=0
+                }else{
+                        hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
+                }
+                document.getElementById('t_bphtb_registrationFormland_total_price').value=ReplaceNumberWithCommas(hasil);
                 document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 hitungNPOPKP();
 }
 function hitungTotalBangunan(){
-		var hasil=0;
-		if(document.getElementById("t_bphtb_registrationFormbuilding_area").value==0||document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value==0){
-			hasil=0
-		}else{
-			hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
-		}
-		document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
+                var hasil=0;
+                if(document.getElementById("t_bphtb_registrationFormbuilding_area").value==0||document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value==0){
+                        hasil=0
+                }else{
+                        hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
+                }
+                document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
                 document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
                 getNPOP();
                 

@@ -1,6 +1,11 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="v_t_revenue_target_dtlGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="v_t_revenue_target_dtl" orderBy="p_vat_type_id desc">
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="v_t_revenue_target_dtlGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT * 
+FROM v_t_revenue_target_dtl
+WHERE (upper(periode) LIKE '%{s_keyword}%'
+OR vat_code ILIKE '%{s_keyword}%')
+AND t_revenue_target_id = {t_revenue_target_id} 
+ORDER BY p_vat_type_id desc" orderBy="p_vat_type_id desc">
 			<Components>
 				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_revenue_target_dtl.ccp" removeParameters="t_revenue_target_dtl_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="v_t_revenue_target_dtlGridInsert_Link">
 					<Components/>
@@ -91,14 +96,15 @@
 				<TableParameter id="139" conditionType="Parameter" useIsNull="False" field="t_revenue_target_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_revenue_target_id"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="138" tableName="v_t_revenue_target_dtl" posLeft="10" posTop="10" posWidth="160" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-			</SQLParameters>
+				<SQLParameter id="205" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
+<SQLParameter id="206" parameterType="URL" variable="t_revenue_target_id" dataType="Float" parameterSource="t_revenue_target_id" designDefaultValue="9"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

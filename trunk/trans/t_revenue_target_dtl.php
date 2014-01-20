@@ -267,7 +267,7 @@ class clsv_t_revenue_target_dtlGridDataSource extends clsDBConnSIKP {  //v_t_rev
     }
 //End SetOrder Method
 
-//Prepare Method @2-17B4E75C
+//Prepare Method @2-4BF3FFE4
     function Prepare()
     {
         global $CCSLocales;
@@ -275,23 +275,23 @@ class clsv_t_revenue_target_dtlGridDataSource extends clsDBConnSIKP {  //v_t_rev
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->AddParameter("2", "urlt_revenue_target_id", ccsFloat, "", "", $this->Parameters["urlt_revenue_target_id"], "", false);
-        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "upper(periode)", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
-        $this->wp->Criterion[2] = $this->wp->Operation(opEqual, "t_revenue_target_id", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsFloat),false);
-        $this->Where = $this->wp->opAND(
-             false, 
-             $this->wp->Criterion[1], 
-             $this->wp->Criterion[2]);
     }
 //End Prepare Method
 
-//Open Method @2-1600A97D
+//Open Method @2-2165550B
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*)\n\n" .
-        "FROM v_t_revenue_target_dtl";
-        $this->SQL = "SELECT * \n\n" .
-        "FROM v_t_revenue_target_dtl {SQL_Where} {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
+        "FROM v_t_revenue_target_dtl\n" .
+        "WHERE (upper(periode) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR vat_code ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        "AND t_revenue_target_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . ") cnt";
+        $this->SQL = "SELECT * \n" .
+        "FROM v_t_revenue_target_dtl\n" .
+        "WHERE (upper(periode) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR vat_code ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        "AND t_revenue_target_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . "  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

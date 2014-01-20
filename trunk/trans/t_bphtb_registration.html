@@ -165,7 +165,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -356,7 +356,11 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;</td> 
-                    <td colspan="5">&nbsp;Harga Transaksi Pasar</td> 
+                    <td colspan="5">
+                      <select id="t_bphtb_registrationFormjenis_harga_bphtb" name="{jenis_harga_bphtb_Name}">
+                        {jenis_harga_bphtb_Options}
+                      </select>
+                      : </td> 
                     <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" class="numeric-field" onkeyup="getNPOP();" name="{market_price_Name}" value="{market_price}"></td>
                   </tr>
  
