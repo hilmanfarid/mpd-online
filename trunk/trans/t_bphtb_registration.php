@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-C4F450EA
+//Class_Initialize Event @94-B58FB8C9
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -144,6 +144,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->jenis_harga_bphtb = & new clsControl(ccsListBox, "jenis_harga_bphtb", "jenis_harga_bphtb", ccsText, "", CCGetRequestParam("jenis_harga_bphtb", $Method, NULL), $this);
             $this->jenis_harga_bphtb->DSType = dsListOfValues;
             $this->jenis_harga_bphtb->Values = array(array("1", "Harga Transaksi"), array("2", "Harga Pasar"), array("3", "Harga Lelang"));
+            $this->Button3 = & new clsButton("Button3", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -497,7 +498,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-7E1FFF29
+//Show Method @94-ACF5C28C
     function Show()
     {
         global $CCSUseAmp;
@@ -685,6 +686,7 @@ function GetPrimaryKey($keyName)
         $this->total_price->Show();
         $this->t_bphtb_registration_id->Show();
         $this->jenis_harga_bphtb->Show();
+        $this->Button3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
