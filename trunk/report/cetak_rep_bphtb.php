@@ -260,9 +260,10 @@ class FormCetak extends FPDF {
 		
 			
 		$this->SetFont("Arial", "i", 8);
-		$this->Cell($lbody1 + 10, $this->height, "Keterangan: Nota ini bukan bukti pembayaran", "", 0, 'L');
+		
+		$this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran", "", 0, 'L');
 		$this->Ln();
-		$this->Cell($lbody1 + 10, $this->height, "Catatan: ".$data["description"], "", 0, 'L');
+		$this->Cell($lbody1 + 10, $this->height, "            Catatan: ".$data["description"], "", 0, 'L');
 		
 		$this->SetFont("Arial", "B", 10);
 		$this->Ln();
