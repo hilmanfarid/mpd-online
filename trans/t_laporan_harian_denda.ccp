@@ -132,6 +132,24 @@
 			<Attributes/>
 			<Features/>
 		</DatePicker>
+<TextBox id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="vat_code" required="True" caption="Ayat Pajak">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</TextBox>
+<TextBox id="34" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_start_laporan" PathID="date_start_laporan" format="yyyy-mm-dd" required="True">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</TextBox>
+<Hidden id="35" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="p_vat_type_id" fieldSource="p_vat_type_id">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Hidden>
 </Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_harian_denda_events.php" forShow="False" comment="//" codePage="windows-1252"/>
