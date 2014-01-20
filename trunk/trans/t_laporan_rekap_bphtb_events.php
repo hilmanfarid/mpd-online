@@ -92,21 +92,23 @@ function print_laporan($param_arr){
 			WHERE cust_order.p_order_status_id <> 1";
 	$query.=$whereClause;
 	$query.=" order by trunc(reg_bphtb.creation_date) ASC,upper(wp_name) ASC";
+	
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
 	$pdf->ln(2);
 	$pdf->SetWidths(array(10,24,20,15,40,18,22,25,20,61,61,27));
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C','C'));
-	$pdf->SetWidths(array(10,28,23,37,30,35,18,28,22,30,25,40,18,18,18,18,18));
+	$pdf->SetWidths(array(10,24,23,37,30,35,18,28,24,28,25,40,18,18,18,18,18));
 	$pdf->SetFont('arial', '',7);
-	$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","NO.REGISTRASI","NAMA WP","JENIS TRANSAKSI","NOP","LUAS TANAH(M2)","HARGA TANAH(Rp)","LUAS BANGUNAN(M2)","HARGA BANGUNAN(Rp)","HARGA TAKSIRAN(Rp)","NILAI PAJAK YANG HARUS DIBAYAR(Rp)"),array('LTB','LTB','LBT','LTB','TLB','TLB','TLB','TLB','TLB','TLBR'),5);
+	$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","NO.REGISTRASI","NAMA WP","JENIS TRANSAKSI","NOP","LT / LB","HARGA TANAH(Rp)","HARGA BANGUNAN(Rp)","TOTAL NJOP (Rp)","HARGA PASAR / TRANSAKSI / LELANG (Rp)","NILAI PAJAK YANG HARUS DIBAYAR(Rp)"),array('LTB','LTB','LBT','LTB','TLB','TLB','TLB','TLB','TLB','TLBR'),5);
 	$pdf->SetFont('arial', '',8);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','L','L','L','L','R','R','R','R','R','R','R','R','R','R','R','R'));
 	$jumlah =0;
 	$jumlah=0;
 	$total_nilai_pajak = 0;
+	$nilai_njop = 0;
 	while($dbConn->next_record()){
 		$items[]= $item = array(
 					   'creation_date' => $dbConn->f("creation_date"), 	
@@ -122,16 +124,19 @@ function print_laporan($param_arr){
 					   'market_price' => $dbConn->f("market_price"),
 					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final")
 						);
+		
+		$nilai_njop = $dbConn->f("building_total_price") + $dbConn->f("land_total_price");
+		
 		$pdf->RowMultiBorderWithHeight(array($no,
 											dateToString($item['creation_date']),
 											$item['registration_no'],
 											$item['wp_name'],
 											$item['description'],
 											$item['njop_pbb'],
-											number_format($item['land_area'],0,",","."),
+											number_format($item['land_area'],0,",",".")." / ".number_format($item['building_area'],0,",","."),
 											number_format($item['land_total_price'],2,",","."),
-											number_format($item['building_area'],0,",","."),
 											number_format($item['building_total_price'],2,",","."),
+											number_format($nilai_njop,2,",","."),
 											number_format($item['market_price'],2,",","."),
 											number_format($item['bphtb_amt_final'],2,",",".")
 											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
@@ -140,14 +145,21 @@ function print_laporan($param_arr){
 		$total_nilai_pajak += $item['bphtb_amt_final'];
 		$no++;
 	}
-	$pdf->SetWidths(array(286,40));
+	$pdf->SetWidths(array(282,40));
 	$pdf->SetAligns(Array('C','R'));
 	$pdf->SetFont('arial', 'B',8);
 	$pdf->RowMultiBorderWithHeight(array("TOTAL", number_format($total_nilai_pajak,2,",",".")), array('LB','LBR'), 6);
 	/*print_r($items);
 	exit;*/
 	//$pdf->SetWidths(array(250,70));
-	$pdf->ln(8);
+	$pdf->ln(12);
+	
+	$pdf->SetAligns(array("C", "C"));
+	$pdf->SetWidths(array(169, 163));
+	$pdf->RowMultiBorderWithHeight( array("Mengetahui, \n Kepala Seksi Penyelesaian Piutang \n\n\n\n\n\n\n\n RAHMAT SATIADI, SIP, M.Si. \n  ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ ","\n Koordinator BPHTB"."\n\n\n\n\n\n\n\n INDRA WISNU, SE. \n ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ "), array("",""), 4 );
+	$pdf->RowMultiBorderWithHeight( array("NIP : 19691104.1998.03.1.007","NIP : 19731031.2009.1.1001"), array("",""), 1 );
+	
+	    
 	//$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
 	$pdf->Output("","I");
 	exit;	
@@ -171,7 +183,7 @@ function dateToString($date){
 	
 	$pieces = explode('-', $date);
 	
-	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
+	return $pieces[2].'/'.$monthname[(int)$pieces[1]].'/'.$pieces[0];
 }
 
 ?>
