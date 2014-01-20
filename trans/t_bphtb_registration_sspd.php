@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-DB78750C
+//Class_Initialize Event @94-DB1321E1
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -171,6 +171,9 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsText, "", CCGetRequestParam("p_rqst_type_id", $Method, NULL), $this);
             $this->register_btn = & new clsButton("register_btn", $Method, $this);
             $this->registration_no = & new clsControl(ccsHidden, "registration_no", "registration_no", ccsText, "", CCGetRequestParam("registration_no", $Method, NULL), $this);
+            $this->jenis_harga_bphtb = & new clsControl(ccsListBox, "jenis_harga_bphtb", "jenis_harga_bphtb", ccsText, "", CCGetRequestParam("jenis_harga_bphtb", $Method, NULL), $this);
+            $this->jenis_harga_bphtb->DSType = dsListOfValues;
+            $this->jenis_harga_bphtb->Values = array(array("1", "Harga Transaksi"), array("2", "Harga Pasar"), array("3", "Harga Lelang"));
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -210,7 +213,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-1265E609
+//Validate Method @94-AC31F84A
     function Validate()
     {
         global $CCSLocales;
@@ -283,6 +286,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->t_customer_order_id->Validate() && $Validation);
         $Validation = ($this->p_rqst_type_id->Validate() && $Validation);
         $Validation = ($this->registration_no->Validate() && $Validation);
+        $Validation = ($this->jenis_harga_bphtb->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -351,11 +355,12 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->registration_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->jenis_harga_bphtb->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-119F675F
+//CheckErrors Method @94-0A63620F
     function CheckErrors()
     {
         $errors = false;
@@ -426,6 +431,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->t_customer_order_id->Errors->Count());
         $errors = ($errors || $this->p_rqst_type_id->Errors->Count());
         $errors = ($errors || $this->registration_no->Errors->Count());
+        $errors = ($errors || $this->jenis_harga_bphtb->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -620,7 +626,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-BE5F0E3B
+//Show Method @94-F8829A30
     function Show()
     {
         global $CCSUseAmp;
@@ -635,6 +641,7 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->p_bphtb_legal_doc_type_id->Prepare();
+        $this->jenis_harga_bphtb->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -691,6 +698,7 @@ function GetPrimaryKey($keyName)
                     $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
                     $this->p_rqst_type_id->SetValue($this->DataSource->p_rqst_type_id->GetValue());
                     $this->registration_no->SetValue($this->DataSource->registration_no->GetValue());
+                    $this->jenis_harga_bphtb->SetValue($this->DataSource->jenis_harga_bphtb->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -769,6 +777,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_rqst_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->registration_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->jenis_harga_bphtb->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -864,6 +873,7 @@ function GetPrimaryKey($keyName)
         $this->p_rqst_type_id->Show();
         $this->register_btn->Show();
         $this->registration_no->Show();
+        $this->jenis_harga_bphtb->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -874,7 +884,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-FA27E2E0
+//DataSource Variables @94-77A1B403
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -957,9 +967,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $t_customer_order_id;
     var $p_rqst_type_id;
     var $registration_no;
+    var $jenis_harga_bphtb;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-8EB13B5E
+//DataSourceClass_Initialize Event @94-B258B9DD
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1099,6 +1110,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->registration_no = new clsField("registration_no", ccsText, "");
         
+        $this->jenis_harga_bphtb = new clsField("jenis_harga_bphtb", ccsText, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1187,7 +1200,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-A9CA8008
+//SetValues Method @94-22BF4590
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1232,6 +1245,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->t_customer_order_id->SetDBValue($this->f("t_customer_order_id"));
         $this->p_rqst_type_id->SetDBValue($this->f("p_rqst_type_id"));
         $this->registration_no->SetDBValue($this->f("registration_no"));
+        $this->jenis_harga_bphtb->SetDBValue($this->f("jenis_harga_bphtb"));
     }
 //End SetValues Method
 
