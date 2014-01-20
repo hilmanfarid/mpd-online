@@ -74,6 +74,7 @@ while ($dbConn->next_record()) {
 	$data["verificated_by"]			= $dbConn->f("verificated_by");
 	$data["verificated_nip"]		= $dbConn->f("verificated_nip");
 	$data["jenis_harga_bphtb"]		= $dbConn->f("jenis_harga_bphtb");
+	$data["description"]			= $dbConn->f("description");
 }
 
 $dbConn->close();
@@ -218,7 +219,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "");
 		$this->Ln();
 		
-		$jenis_harga = array(1 => 'Harga Transaksi',2 =>  'Harga Pasar',3 => 'Harga Lelang');
+		if(empty($jenis_harga_bphtb)) $jenis_harga_bphtb = 99;
+		$jenis_harga = array(1 => 'Harga Transaksi',2 =>  'Harga Pasar',3 => 'Harga Lelang', 99 => 'Harga Pasar');
 
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($lbodyx1, $this->height, "", "BL", 0, "");
@@ -250,29 +252,38 @@ class FormCetak extends FPDF {
 		$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
 		
 		$this->newLine();
-		$this->newLine();
-		
+				
 		$lbody = $this->lengthCell / 4;
 		$lbody1 = $lbody * 1;
 		$lbody2 = $lbody * 2;
 		$lbody3 = $lbody * 3;
 		
+			
+		$this->SetFont("Arial", "i", 8);
+		$this->Cell($lbody1 + 10, $this->height, "Keterangan: Nota ini bukan bukti pembayaran", "", 0, 'L');
+		$this->Ln();
+		$this->Cell($lbody1 + 10, $this->height, "Catatan: ".$data["description"], "", 0, 'L');
+		
 		$this->SetFont("Arial", "B", 10);
+		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
 		$this->Ln();
-		$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR BPHTB", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR PEMERIKSA", "", 0, 'C');
 		$this->Cell($lbody3 - $lbody1 - 20, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "PETUGAS PEMERIKSA", "", 0, 'C');
 		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "BPHTB", "", 0, 'C');
+		$this->Cell($lbody3 - $lbody1 - 20, $this->height, "", "", 0, 'L');
+		$this->Cell($lbody1 + 10, $this->height, "BPHTB", "", 0, 'C');
+		$this->Ln();
+		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+		
 		$this->Ln();
 		$this->newLine();
 		$this->newLine();
 		$this->newLine();
-		$this->newLine();
-		$this->newLine();
+		
 		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height - 3, "(INDRA WISNU.SE)", "", 0, 'C');
