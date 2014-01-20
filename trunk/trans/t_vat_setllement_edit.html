@@ -5,7 +5,7 @@
 <title>p_entertaintment_type</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
@@ -51,6 +51,10 @@ function t_vat_setllementFormButton_Delete_OnClick()
     var result = true;
 //End t_vat_setllementFormButton_Delete_OnClick
 
+//Confirmation Message @27-B1A89A24
+    return confirm('Submit record?');
+//End Confirmation Message
+
     return confirm('Delete record?');
 
 //Close t_vat_setllementFormButton_Delete_OnClick @26-BC33A33A
@@ -79,8 +83,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -90,12 +94,12 @@ $(document).ready(function()
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <!-- BEGIN Record t_vat_setllementSearch -->
-        <form id="t_vat_setllementSearch" name="{HTMLFormName}" action="{Action}" method="post">
-          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+        <form id="t_vat_setllementSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -105,9 +109,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input class="ControlsIN" id="t_vat_setllementSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field"><input id="t_vat_setllementSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="t_vat_setllementSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_vat_setllementSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
@@ -116,20 +120,20 @@ $(document).ready(function()
         </form>
         <!-- END Record t_vat_setllementSearch --><br>
         <!-- BEGIN Grid t_vat_setllementGrid -->
-        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
             <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR SPTPD</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <tr class="Caption">
-                  <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
  
                   <th scope="col">NPWPD&nbsp;</th>
  
@@ -139,14 +143,14 @@ $(document).ready(function()
  
                   <th scope="col">Total Transaksi&nbsp;</th>
  
-                  <th scope="col" colspan="2">Total Pajak&nbsp;</th>
+                  <th colspan="2" scope="col">Total Pajak&nbsp;</th>
                 </tr>
  
                 <!-- BEGIN Row -->
                 <tr {t_vat_setllementGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_vat_setllementGridDLink_{t_vat_setllementGrid:rowNumber}">{DLink}</a></td> 
                   <td>{npwd}&nbsp;</td> 
-                  <td>{finance_period_code}&nbsp;&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"></td> 
+                  <td>{finance_period_code}&nbsp;&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden"></td> 
                   <td>{order_no}&nbsp;</td> 
                   <td>{total_trans_amount}&nbsp;</td> 
                   <td colspan="2">{total_vat_amount}&nbsp;</td>
@@ -161,17 +165,17 @@ $(document).ready(function()
                   <td><b></b></td> 
                   <td colspan="6">
                     <!-- BEGIN Navigator Navigator -->
-                    <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
-                    <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
-                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
-                    <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
                     <!-- BEGIN Pages -->
                     <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
                     <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
-                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
-                    <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
-                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
-                    <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
                 </tr>
               </table>
             </td>
@@ -179,127 +183,133 @@ $(document).ready(function()
         </table>
         <!-- END Grid t_vat_setllementGrid --><br>
         <!-- BEGIN Record t_vat_setllementForm -->
-        <form id="t_vat_setllementForm" name="{HTMLFormName}" action="{Action}" method="post">
-          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <form id="t_vat_setllementForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td valign="top">
-                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
-                    <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI SPTPD</strong></td> 
-                    <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
                 </table>
  
                 <table class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
-                    <td colspan="2">{Error}</td>
+                    <td colspan="3">{Error}</td>
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormorder_no">No. Order</label></td> 
-                    <td><input class="ControlsRO" id="t_vat_setllementFormorder_no" readonly maxlength="32" size="32" value="{order_no}" name="{order_no_Name}">&nbsp;<input id="t_vat_setllementFormp_rqst_type_id" type="hidden" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"></td>
+                    <td colspan="2"><input id="t_vat_setllementFormorder_no" class="ControlsRO" name="{order_no_Name}" readonly maxlength="32" value="{order_no}" size="32">&nbsp;<input id="t_vat_setllementFormp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama WP&nbsp;</td> 
-                    <td><input class="ControlsRO" id="t_vat_setllementFormwp_name" tabindex="2" readonly maxlength="64" size="50" value="{wp_name}" name="{wp_name_Name}">&nbsp;</td>
+                    <td colspan="2"><input id="t_vat_setllementFormwp_name" class="ControlsRO" tabindex="2" name="{wp_name_Name}" readonly maxlength="64" value="{wp_name}" size="50">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat WP&nbsp;</td> 
-                    <td><textarea class="ControlsRO" id="t_vat_setllementFormwp_address_name" name="{wp_address_name_Name}" rows="3" readonly cols="64">{wp_address_name}</textarea>&nbsp;</td>
+                    <td colspan="2"><textarea id="t_vat_setllementFormwp_address_name" class="ControlsRO" cols="64" rows="3" readonly name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Jenis Pajak&nbsp;</td> 
-                    <td><input class="ControlsRO" id="t_vat_setllementFormjenis_pajak" tabindex="2" readonly maxlength="32" size="32" value="{jenis_pajak}" name="{jenis_pajak_Name}">&nbsp;</td>
+                    <td colspan="2"><input id="t_vat_setllementFormjenis_pajak" class="ControlsRO" tabindex="2" name="{jenis_pajak_Name}" readonly maxlength="32" value="{jenis_pajak}" size="32">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormfinance_period_code">NPWPD</label></td> 
-                    <td><input class="ControlsRO" id="t_vat_setllementFormnpwd" readonly maxlength="12" size="32" value="{npwd}" name="{npwd_Name}">&nbsp;<input id="t_vat_setllementFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"><input id="t_vat_setllementFormp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td>
+                    <td colspan="2"><input id="t_vat_setllementFormnpwd" class="ControlsRO" name="{npwd_Name}" readonly maxlength="12" value="{npwd}" size="32">&nbsp;<input id="t_vat_setllementFormt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"><input id="t_vat_setllementFormp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Periode Tahun&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormyear_code" readonly maxlength="32" size="32" value="{year_code}" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_setllementFormp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"></td>
+                    <td colspan="2"><input id="t_vat_setllementFormyear_code" class="ControlsRQ" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormfinance_period_code">Periode</label></td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormfinance_period_code" readonly maxlength="25" size="25" value="{finance_period_code}" name="{finance_period_code_Name}">&nbsp;<img onclick="javascript:lov_period()" src="../images/view.gif" border="0">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td>
+                    <td colspan="2"><input id="t_vat_setllementFormfinance_period_code" class="ControlsRQ" name="{finance_period_code_Name}" readonly maxlength="25" value="{finance_period_code}" size="25">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Masa Pajak&nbsp;&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormstart_period" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="12" value="{start_period}" name="{start_period_Name}">
-                      <!-- BEGIN DatePicker DatePicker_start_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_start_period"><img id="t_vat_setllementFormDatePicker_start_period_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_start_period -->s/d <input class="ControlsRQ" id="t_vat_setllementFormend_period" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{end_period}" name="{end_period_Name}">&nbsp; 
-                      <!-- BEGIN DatePicker DatePicker_end_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_end_period"><img id="t_vat_setllementFormDatePicker_end_period_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_end_period --></td>
+                    <td colspan="2"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormstart_period" class="ControlsRQ" name="{start_period_Name}" readonly maxlength="100" value="{start_period}" size="12">
+                      <!-- BEGIN DatePicker DatePicker_start_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_start_period"><img id="t_vat_setllementFormDatePicker_start_period_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_start_period -->s/d <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormend_period" class="ControlsRQ" name="{end_period_Name}" readonly maxlength="100" value="{end_period}" size="15">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_end_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_end_period"><img id="t_vat_setllementFormDatePicker_end_period_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_period --></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormtotal_trans_amount">Total Transaksi</label></td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormtotal_trans_amount" style="TEXT-ALIGN: right" maxlength="20" value="{total_trans_amount}" name="{total_trans_amount_Name}">&nbsp;<input id="t_vat_setllementFormt_vat_setllement_id" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"></td>
+                    <td colspan="2"><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_trans_amount" class="ControlsRQ" name="{total_trans_amount_Name}" maxlength="20" value="{total_trans_amount}">&nbsp;<input id="t_vat_setllementFormt_vat_setllement_id" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormtotal_vat_amount">Total Pajak</label></td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormtotal_vat_amount" style="TEXT-ALIGN: right" maxlength="20" value="{total_vat_amount}" name="{total_vat_amount_Name}">&nbsp;<input id="t_vat_setllementFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"></td>
+                    <td colspan="2"><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_vat_amount" class="ControlsRQ" name="{total_vat_amount_Name}" maxlength="20" value="{total_vat_amount}">&nbsp;<input id="t_vat_setllementFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Total Penalti&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormtotal_penalty_amount" style="TEXT-ALIGN: right" maxlength="20" value="{total_penalty_amount}" name="{total_penalty_amount_Name}">&nbsp;</td>
+                    <td colspan="2"><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_penalty_amount" class="ControlsRQ" name="{total_penalty_amount_Name}" maxlength="20" value="{total_penalty_amount}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Tanggal jatuh tempo&nbsp;&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormdue_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="12" value="{due_date}" name="{due_date_Name}">
-                      <!-- BEGIN DatePicker DatePicker_due_date --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_due_date"><img id="t_vat_setllementFormDatePicker_due_date_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_due_date --></td>
+                    <td colspan="2"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormdue_date" class="ControlsRQ" name="{due_date_Name}" readonly maxlength="100" value="{due_date}" size="12">
+                      <!-- BEGIN DatePicker DatePicker_due_date --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_due_date"><img id="t_vat_setllementFormDatePicker_due_date_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_due_date --></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Dasar Pengenaan&nbsp;&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormdebt_vat_amt" style="TEXT-ALIGN: right" maxlength="32" value="{debt_vat_amt}" name="{debt_vat_amt_Name}">&nbsp;</td>
+                    <td><input style="VISIBILITY: hidden" id="t_vat_setllementFormTextBox1" class="ControlsIN" name="{TextBox1_Name}" value="{TextBox1}" size="11"></td> 
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdebt_vat_amt" class="ControlsRQ" name="{debt_vat_amt_Name}" maxlength="32" value="{debt_vat_amt}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kompensasi kelebihan dari tahun sebelumnya&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormcr_adjustment" style="TEXT-ALIGN: right" maxlength="32" value="{cr_adjustment}" name="{cr_adjustment_Name}">&nbsp;</td>
+                    <td><input style="VISIBILITY: hidden" id="t_vat_setllementFormTextBox2" class="ControlsIN" name="{TextBox2_Name}" value="{TextBox2}" size="11"></td> 
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_adjustment" class="ControlsRQ" name="{cr_adjustment_Name}" maxlength="32" value="{cr_adjustment}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Setoran yang dilakukan&nbsp;&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormcr_payment" style="TEXT-ALIGN: right" maxlength="32" value="{cr_payment}" name="{cr_payment_Name}">&nbsp;</td>
+                    <td colspan="2"><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_payment" class="ControlsRQ" name="{cr_payment_Name}" maxlength="32" value="{cr_payment}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Lain-lain&nbsp;&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormcr_others" style="TEXT-ALIGN: right" maxlength="32" value="{cr_others}" name="{cr_others_Name}"></td>
+                    <td colspan="2"><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_others" class="ControlsRQ" name="{cr_others_Name}" maxlength="32" value="{cr_others}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">STP (Pokok)&nbsp;&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormcr_stp" style="TEXT-ALIGN: right" maxlength="32" value="{cr_stp}" name="{cr_stp_Name}">&nbsp;</td>
+                    <td colspan="2"><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_stp" class="ControlsRQ" name="{cr_stp_Name}" maxlength="32" value="{cr_stp}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Bunga (Pasal 65 ayat(2))&nbsp;&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormdb_interest_charge" style="TEXT-ALIGN: right" maxlength="32" value="{db_interest_charge}" name="{db_interest_charge_Name}">&nbsp;</td>
+                    <td><input style="VISIBILITY: hidden" id="t_vat_setllementFormTextBox3" class="ControlsIN" name="{TextBox3_Name}" value="{TextBox3}" size="11">&nbsp;</td> 
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdb_interest_charge" class="ControlsRQ" name="{db_interest_charge_Name}" maxlength="32" value="{db_interest_charge}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kenaikan (Pasal 65 ayat (3))&nbsp;&nbsp;</td> 
-                    <td><input class="ControlsRQ" id="t_vat_setllementFormdb_increasing_charge" style="TEXT-ALIGN: right" maxlength="32" value="{db_increasing_charge}" name="{db_increasing_charge_Name}">&nbsp;</td>
+                    <td><input style="VISIBILITY: hidden" id="t_vat_setllementFormTextBox4" class="ControlsIN" name="{TextBox4_Name}" value="{TextBox4}" size="11">&nbsp;</td> 
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdb_increasing_charge" class="ControlsRQ" name="{db_increasing_charge_Name}" maxlength="32" value="{db_increasing_charge}"></td>
                   </tr>
  
                   <tr class="Bottom">
-                    <td align="right" colspan="2">&nbsp; 
-                      <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="t_vat_setllementFormButton_Insert" style="DISPLAY: none" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="t_vat_setllementFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="t_vat_setllementFormButton_Delete" type="submit" alt="Delete" value="SUBMIT" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                    <td style="TEXT-ALIGN: left">
+                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" onclick="viewFormSetllementManualSKPDKB();" name="{Button_Name}" alt="Button1" value="Tambah" type="button"><!-- END Button Button1 -->&nbsp; </td> 
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_vat_setllementFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="SUBMIT" type="submit"><!-- END Button Button_Delete --></td>
                   </tr>
                 </table>
               </td>
@@ -311,7 +321,7 @@ $(document).ready(function()
     </tr>
   </table>
 </div>
-<script src="../js/lov.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/lov.js"></script>
 <script language="javascript">
 function popup(url) 
 {
@@ -337,6 +347,18 @@ function lov_period() {
             alert("Periode Tahun Year belum Diisi");
         }       
 
+}
+
+function viewFormSetllementManualSKPDKB() {
+        url = "../trans/t_vat_setllement_manual_skpdkb.php";
+
+                params  = 'width=650';
+            params += ', height=470';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
 }
 
 </script>
