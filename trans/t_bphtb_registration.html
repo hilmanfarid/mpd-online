@@ -14,6 +14,10 @@ function ReplaceNumberWithCommas(yourNumber) {
     //Combines the two sections
     return n.join(".");
 }
+function printLaporan(){
+                var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
+        window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+}
 function setNormalValue(){
     jQuery(".numeric-field").each(function() {
         var thisVal=jQuery(this).val();
@@ -165,7 +169,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -401,7 +405,8 @@ jQuery(document).ready(function()
                   </tr>
  
                   <tr class="Bottom">
-                    <td colspan="9" align="right">
+                    <td colspan="9" align="right">&nbsp;
+                      <!-- BEGIN Button Button3 --><input id="t_bphtb_registrationFormButton3" class="btn_tambah" onclick="printLaporan();" name="{Button_Name}" alt="Button2" value="CETAK NOTA VERIFIKASI" type="submit"><!-- END Button Button3 -->
                       <!-- BEGIN Button Button_Insert --><input id="t_bphtb_registrationFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input id="t_bphtb_registrationFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
                       <!-- BEGIN Button Button_Delete --><input id="t_bphtb_registrationFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
