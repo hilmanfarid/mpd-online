@@ -400,7 +400,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @94-93D095CC
+//InsertRow Method @94-32F57722
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -436,7 +436,6 @@ function GetPrimaryKey($keyName)
         $this->DataSource->bphtb_amt->SetValue($this->bphtb_amt->GetValue(true));
         $this->DataSource->bphtb_discount->SetValue($this->bphtb_discount->GetValue(true));
         $this->DataSource->bphtb_amt_final->SetValue($this->bphtb_amt_final->GetValue(true));
-        $this->DataSource->jenis_harga_bphtb->SetValue($this->jenis_harga_bphtb->GetValue(true));
         $this->DataSource->description->SetValue($this->description->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
@@ -976,7 +975,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End SetValues Method
 
-//Insert Method @94-4A32EB9B
+//Insert Method @94-32FDE8B3
     function Insert()
     {
         global $CCSLocales;
@@ -1013,7 +1012,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["bphtb_amt"] = new clsSQLParameter("ctrlbphtb_amt", ccsFloat, "", "", $this->bphtb_amt->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["bphtb_discount"] = new clsSQLParameter("ctrlbphtb_discount", ccsFloat, "", "", $this->bphtb_discount->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["bphtb_amt_final"] = new clsSQLParameter("ctrlbphtb_amt_final", ccsFloat, "", "", $this->bphtb_amt_final->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["jenis_harga_bphtb"] = new clsSQLParameter("ctrljenis_harga_bphtb", ccsFloat, "", "", $this->jenis_harga_bphtb->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "-", false, $this->ErrorBlock);
         $this->cp["i_user"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
         $this->cp["o_t_bphtb_registration_id"] = new clsSQLParameter("urlo_t_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("o_t_bphtb_registration_id", NULL), "", false, $this->ErrorBlock);
@@ -1143,10 +1141,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["bphtb_amt_final"]->SetValue($this->bphtb_amt_final->GetValue(true));
         if (!strlen($this->cp["bphtb_amt_final"]->GetText()) and !is_bool($this->cp["bphtb_amt_final"]->GetValue(true))) 
             $this->cp["bphtb_amt_final"]->SetText(0);
-        if (!is_null($this->cp["jenis_harga_bphtb"]->GetValue()) and !strlen($this->cp["jenis_harga_bphtb"]->GetText()) and !is_bool($this->cp["jenis_harga_bphtb"]->GetValue())) 
-            $this->cp["jenis_harga_bphtb"]->SetValue($this->jenis_harga_bphtb->GetValue(true));
-        if (!strlen($this->cp["jenis_harga_bphtb"]->GetText()) and !is_bool($this->cp["jenis_harga_bphtb"]->GetValue(true))) 
-            $this->cp["jenis_harga_bphtb"]->SetText(0);
         if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
             $this->cp["description"]->SetValue($this->description->GetValue(true));
         if (!strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue(true))) 
@@ -1188,7 +1182,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
              . $this->ToSQL($this->cp["bphtb_amt"]->GetDBValue(), $this->cp["bphtb_amt"]->DataType) . ", "
              . $this->ToSQL($this->cp["bphtb_discount"]->GetDBValue(), $this->cp["bphtb_discount"]->DataType) . ", "
              . $this->ToSQL($this->cp["bphtb_amt_final"]->GetDBValue(), $this->cp["bphtb_amt_final"]->DataType) . ", "
-             . $this->ToSQL($this->cp["jenis_harga_bphtb"]->GetDBValue(), $this->cp["jenis_harga_bphtb"]->DataType) . ", "
              . $this->ToSQL($this->cp["description"]->GetDBValue(), $this->cp["description"]->DataType) . ", "
              . $this->ToSQL($this->cp["i_user"]->GetDBValue(), $this->cp["i_user"]->DataType) . ", "
              . $this->ToSQL($this->cp["o_t_bphtb_registration_id"]->GetDBValue(), $this->cp["o_t_bphtb_registration_id"]->DataType) . ", "
