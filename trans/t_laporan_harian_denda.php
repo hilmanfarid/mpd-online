@@ -11,7 +11,7 @@ include_once(RelativePath . "/Navigator.php");
 
 class clsRecordt_laporan_harian_denda { //t_laporan_harian_denda Class @2-0082D9FD
 
-//Variables @2-D6FF3E86
+//Variables @2-37BB2AF0
 
     // Public variables
     var $ComponentType = "Record";
@@ -41,11 +41,9 @@ class clsRecordt_laporan_harian_denda { //t_laporan_harian_denda Class @2-0082D9
     var $ValidatingControls;
     var $Controls;
     var $Attributes;
-
-    // Class variables
 //End Variables
 
-//Class_Initialize Event @2-8DCF01F3
+//Class_Initialize Event @2-33CD8398
     function clsRecordt_laporan_harian_denda($RelativePath, & $Parent)
     {
 
@@ -69,53 +67,25 @@ class clsRecordt_laporan_harian_denda { //t_laporan_harian_denda Class @2-0082D9
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->Button1 = & new clsButton("Button1", $Method, $this);
-            $this->year_code = & new clsControl(ccsTextBox, "year_code", "Periode Tahun", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
-            $this->year_code->Required = true;
-            $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsFloat, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
-            $this->date_start_laporan = & new clsControl(ccsTextBox, "date_start_laporan", "date_start_laporan", ccsText, "", CCGetRequestParam("date_start_laporan", $Method, NULL), $this);
-            $this->date_start_laporan->Required = true;
-            $this->DatePicker_date_start_laporan1 = & new clsDatePicker("DatePicker_date_start_laporan1", "t_laporan_harian_denda", "date_start_laporan", $this);
-            $this->date_end_laporan = & new clsControl(ccsTextBox, "date_end_laporan", "date_end_laporan", ccsText, "", CCGetRequestParam("date_end_laporan", $Method, NULL), $this);
-            $this->date_end_laporan->Required = true;
-            $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_laporan_harian_denda", "date_end_laporan", $this);
-            $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-F151ECB7
+//Validate Method @2-367945B8
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
-        $Validation = ($this->year_code->Validate() && $Validation);
-        $Validation = ($this->p_year_period_id->Validate() && $Validation);
-        $Validation = ($this->date_start_laporan->Validate() && $Validation);
-        $Validation = ($this->date_end_laporan->Validate() && $Validation);
-        $Validation = ($this->cetak_laporan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
-        $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->date_start_laporan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-B34A33D3
+//CheckErrors Method @2-E8CE9E37
     function CheckErrors()
     {
         $errors = false;
-        $errors = ($errors || $this->year_code->Errors->Count());
-        $errors = ($errors || $this->p_year_period_id->Errors->Count());
-        $errors = ($errors || $this->date_start_laporan->Errors->Count());
-        $errors = ($errors || $this->DatePicker_date_start_laporan1->Errors->Count());
-        $errors = ($errors || $this->date_end_laporan->Errors->Count());
-        $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
-        $errors = ($errors || $this->cetak_laporan->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -136,7 +106,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-5697889A
+//Operation Method @2-3BB07479
     function Operation()
     {
         if(!$this->Visible)
@@ -149,26 +119,11 @@ function GetPrimaryKey($keyName)
             return;
         }
 
-        if($this->FormSubmitted) {
-            $this->PressedButton = "Button1";
-            if($this->Button1->Pressed) {
-                $this->PressedButton = "Button1";
-            }
-        }
         $Redirect = "t_laporan_harian_denda.php";
-        if($this->Validate()) {
-            if($this->PressedButton == "Button1") {
-                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
-                    $Redirect = "";
-                }
-            }
-        } else {
-            $Redirect = "";
-        }
     }
 //End Operation Method
 
-//Show Method @2-43D7432C
+//Show Method @2-D978379E
     function Show()
     {
         global $CCSUseAmp;
@@ -187,18 +142,9 @@ function GetPrimaryKey($keyName)
         $ParentPath = $Tpl->block_path;
         $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
         $this->EditMode = $this->EditMode && $this->ReadAllowed;
-        if (!$this->FormSubmitted) {
-        }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
-            $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->date_start_laporan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->DatePicker_date_start_laporan1->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -216,14 +162,6 @@ function GetPrimaryKey($keyName)
             return;
         }
 
-        $this->Button1->Show();
-        $this->year_code->Show();
-        $this->p_year_period_id->Show();
-        $this->date_start_laporan->Show();
-        $this->DatePicker_date_start_laporan1->Show();
-        $this->date_end_laporan->Show();
-        $this->DatePicker_end_start_laporan1->Show();
-        $this->cetak_laporan->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -265,13 +203,28 @@ include_once("./t_laporan_harian_denda_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-C5B7BA74
+//Initialize Objects @1-3CF2637C
 $Attributes = new clsAttributes("page:");
 $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_laporan_harian_denda = & new clsRecordt_laporan_harian_denda("", $MainPage);
+$DatePicker_date_start_laporan1 = & new clsDatePicker("DatePicker_date_start_laporan1", "t_laporan_harian_denda", "date_start_laporan", $MainPage);
+$date_end_laporan = & new clsControl(ccsTextBox, "date_end_laporan", "date_end_laporan", ccsText, "", CCGetRequestParam("date_end_laporan", ccsGet, NULL), $MainPage);
+$date_end_laporan->Required = true;
+$DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_laporan_harian_denda", "date_end_laporan", $MainPage);
+$vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $MainPage);
+$vat_code->Required = true;
+$date_start_laporan = & new clsControl(ccsTextBox, "date_start_laporan", "date_start_laporan", ccsText, "", CCGetRequestParam("date_start_laporan", ccsGet, NULL), $MainPage);
+$date_start_laporan->Required = true;
+$p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", ccsGet, NULL), $MainPage);
 $MainPage->t_laporan_harian_denda = & $t_laporan_harian_denda;
+$MainPage->DatePicker_date_start_laporan1 = & $DatePicker_date_start_laporan1;
+$MainPage->date_end_laporan = & $date_end_laporan;
+$MainPage->DatePicker_end_start_laporan1 = & $DatePicker_end_start_laporan1;
+$MainPage->vat_code = & $vat_code;
+$MainPage->date_start_laporan = & $date_start_laporan;
+$MainPage->p_vat_type_id = & $p_vat_type_id;
 
 BindEvents();
 
@@ -309,8 +262,14 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-5176EAAB
+//Show Page @1-FAC720A9
 $t_laporan_harian_denda->Show();
+$DatePicker_date_start_laporan1->Show();
+$DatePicker_end_start_laporan1->Show();
+$date_end_laporan->Show();
+$vat_code->Show();
+$date_start_laporan->Show();
+$p_vat_type_id->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
