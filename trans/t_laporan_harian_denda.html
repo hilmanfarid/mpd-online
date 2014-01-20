@@ -55,7 +55,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -69,8 +69,9 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
-        <!-- BEGIN Record t_laporan_harian_denda -->
+        <!-- BEGIN Record t_laporan_harian_denda --><!-- END Record t_laporan_harian_denda -->
         <form id="t_laporan_harian_denda" method="post" name="{HTMLFormName}" action="{Action}">
+          <!-- BEGIN Record t_laporan_harian_denda -->
           <table class="search-field">
             <tr>
               <td valign="top">
@@ -86,28 +87,43 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     </tr>
  
                     <tr class="Controls">
-                      <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">&nbsp;</label></td> 
-                      <td style="DISPLAY: none" class="search-field"><label for="t_laporan_harian_dendadate_start_laporan" style="display: none;">&nbsp;</label><input style="DISPLAY: none" id="t_laporan_harian_dendadate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
-                        <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_dendaDatePicker_date_start_laporan1"><img id="t_laporan_harian_dendaDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 --><input style="DISPLAY: none" id="t_laporan_harian_dendadate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
-                        <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_dendaDatePicker_end_start_laporan1"><img id="t_laporan_harian_dendaDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
-                    </tr>
+                      <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">&nbsp;</label> 
+                        <tr class="Controls">
+                          <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Tanggal</label></td> 
+                          <td class="search-field"><label for="t_laporan_harian_dendadate_start_laporan1" style="display: none;">&nbsp;</label><input id="t_laporan_harian_dendadate_start_laporan2" class="ControlsRQ" name="{date_start_laporan2_Name}" value="{date_start_laporan2}">&nbsp; 
+                            <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="DatePicker_date_start_laporan1"><img id="DatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_date_start_laporan1 -->s/d <input id="date_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
+                            <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="DatePicker_end_start_laporan1"><img id="DatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_end_start_laporan1 --></td>
+                        </tr>
  
-                    <tr>
-                      <td colspan="2" align="right">
-                        <!-- BEGIN Button Button1 --><input id="t_laporan_harian_dendaButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </form>
-          <!-- END Record t_laporan_harian_denda --><br>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <script type="text/javascript" src="../js/lov.js"></script>
-  <script language="javascript">
+                        <tr>
+                          <td align="left">Jenis Pajak </td> 
+                          <td>
+                            <p>&nbsp;</p>
+                          </td>
+                        </tr>
+                        <!-- END Record t_laporan_harian_denda --></td> 
+                      <tr>
+                        <td style="DISPLAY: none" class="search-field"><label for="t_laporan_harian_dendadate_start_laporan" style="display: none;">&nbsp;</label><input style="DISPLAY: none" id="t_laporan_harian_dendadate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
+                          <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_dendaDatePicker_date_start_laporan1"><img id="t_laporan_harian_dendaDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 --><input style="DISPLAY: none" id="t_laporan_harian_dendadate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
+                          <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_dendaDatePicker_end_start_laporan1"><img id="t_laporan_harian_dendaDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
+                      </tr>
+ 
+                      <tr>
+                        <td colspan="2" align="right">
+                          <!-- BEGIN Button Button1 --><input id="t_laporan_harian_dendaButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </form>
+            &nbsp;</span><br>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <script type="text/javascript" src="../js/lov.js"></script>
+    <script language="javascript">
         function lov_year_period() {
                 getFrom_LOV('t_laporan_harian_denda','p_year_period_id,year_code','lov_year_period.php');
         }
@@ -118,5 +134,5 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                         getFrom_LOV('t_laporan_harian_denda','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
   </script>
-  </body>
-  </html>
+    </body>
+    </html>

@@ -50,7 +50,49 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<TextBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_start_laporan1" PathID="t_laporan_harian_dendadate_start_laporan1" format="yyyy-mm-dd" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<DatePicker id="20" name="DatePicker_date_start_laporan2" PathID="t_laporan_harian_dendaDatePicker_date_start_laporan2" control="date_start_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+<TextBox id="22" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_end_laporan1" PathID="t_laporan_harian_dendadate_end_laporan1" format="yyyy-mm-dd" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<DatePicker id="24" name="DatePicker_end_start_laporan2" PathID="t_laporan_harian_dendaDatePicker_end_start_laporan2" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+<TextBox id="26" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_laporan_harian_dendavat_code" required="True" caption="Ayat Pajak">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Hidden id="28" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_laporan_harian_dendap_vat_type_id" fieldSource="p_vat_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<TextBox id="29" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_start_laporan2" PathID="t_laporan_harian_dendadate_start_laporan2" format="yyyy-mm-dd" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -72,7 +114,25 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+		<DatePicker id="30" name="DatePicker_date_start_laporan1" PathID="DatePicker_date_start_laporan1" control="date_start_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</DatePicker>
+<TextBox id="31" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_end_laporan" PathID="date_end_laporan" format="yyyy-mm-dd" required="True">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</TextBox>
+<DatePicker id="32" name="DatePicker_end_start_laporan1" PathID="DatePicker_end_start_laporan1" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</DatePicker>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_harian_denda_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_laporan_harian_denda.php" forShow="True" url="t_laporan_harian_denda.php" comment="//" codePage="windows-1252"/>
