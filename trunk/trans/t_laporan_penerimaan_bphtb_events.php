@@ -157,7 +157,7 @@ function print_laporan($param_arr){
 											number_format($item['land_area'],0),
 											number_format($item['building_area'],0),
 											number_format($item['land_total_price'],0,",","."),
-											number_format($item['payment_amount'],2,",",".")
+											number_format($item['payment_amount'],0,",",".")
 											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
 		
 		$total_nilai_penerimaan += $item['payment_amount'];
@@ -170,7 +170,7 @@ function print_laporan($param_arr){
 	$pdf->SetWidths(array(309,28));
 	$pdf->SetAligns(Array('C','R'));
 	$pdf->SetFont('arial', 'B',8);
-	$pdf->RowMultiBorderWithHeight(array("TOTAL", number_format($total_nilai_penerimaan,2,",",".")), array('LB','LBR'), 6);
+	$pdf->RowMultiBorderWithHeight(array("TOTAL", number_format($total_nilai_penerimaan,0,",",".")), array('LB','LBR'), 6);
 	/* END BOTTOM */
 
 	$pdf->ln(8);
