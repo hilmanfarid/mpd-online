@@ -263,8 +263,22 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran", "", 0, 'L');
 		$this->Ln();
-		$this->Cell($lbody1 + 10, $this->height, "            Catatan: ".$data["description"], "", 0, 'L');
-		
+		//$this->Cell($lbody1 + 10, $this->height, "            Catatan: ".$data["description"], "", 0, 'L');
+		$this->SetWidths(array(9, 150, $lbodyx2));
+		$this->SetAligns(array("L", "L"));
+		$this->RowMultiBorderWithHeight(
+			array
+			(	
+				"",
+				"Catatan : ".$data["description"]
+			),
+			array
+			(
+				"",
+				""
+			),
+			$this->height-2);		
+
 		$this->SetFont("Arial", "B", 10);
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
@@ -282,13 +296,11 @@ class FormCetak extends FPDF {
 		
 		$this->Ln();
 		$this->newLine();
-		$this->newLine();
-		$this->newLine();
-		
+		$this->newLine();				
 		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height - 3, "(INDRA WISNU.SE)", "", 0, 'C');
-		$this->Cell(202, $this->height - 3, "( ".$data['verificated_by']." )", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height - 4, "(INDRA WISNU, SE.)", "", 0, 'C');
+		$this->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
 		$this->newLine();
 		$this->Cell($lbody1 + 10, $this->height - 4, "NIP : 19731031.2009.1.1001 ", "", 0, 'C');
 		$this->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
