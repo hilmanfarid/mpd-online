@@ -175,13 +175,22 @@ ORDER BY
 					   'sptpd_amount' => $dbConn->f("sptpd_amount")
 						);
 		//$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
-		//if(){
+		if($item['skpdkb_amount']==0){
+			$item['skpdkb_no_kohir'] = "";
+			$item['skpdkb_tgl_tap'] = "";
+			$item['skpdkb_tgl_bayar'] = "";
+		}
+		if($item['denda_amount']==0){
+			$item['denda_no_kohir'] = "";
+			$item['denda_tgl_tap'] = "";
+			$item['denda_tgl_bayar'] = "";
+		}
 		$jumlah = $item['skpdkb_amount']+$item['denda_amount']+$item['sptpd_amount'];
 			$pdf->RowMultiBorderWithHeight(array($no,$item['nama'],$item['alamat'],$item['npwpd'],$item['start_period']." s/d ".$item['end_period'],$item['no_kohir'],'Rp. '.number_format($item['sptpd_amount'], 2, ',', '.'),$item['tgl_masuk'],$item['jatuh_tempo'],$item['tgl_bayar'],'Rp. '.number_format($item['skpdkb_amount'], 2, ',', '.'),$item['skpdkb_no_kohir'],$item['skpdkb_tgl_tap'],$item['skpdkb_tgl_bayar'],'Rp. '.number_format($item['denda_amount'], 2, ',', '.'),$item['denda_no_kohir'],$item['denda_tgl_tap'],$item['denda_tgl_bayar'],'Rp. '.number_format($jumlah, 2, ',', '.')),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),6);
 		
 		$total_skpdkb+=$item['skpdkb_amount'];
-		$total_sptpd+=$item['denda_amount'];
-		$total_denda+=$item['sptpd_amount'];
+		$total_sptpd+=$item['sptpd_amount'];
+		$total_denda+=$item['denda_amount'];
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
 		$no++;
 	}
