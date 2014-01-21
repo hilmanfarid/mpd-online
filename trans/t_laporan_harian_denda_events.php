@@ -71,39 +71,55 @@ function print_laporan($param_arr){
 	$dbConn = new clsDBConnSIKP();
 	
 	//$query="select * from sikp.f_laporan_harian_denda(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
-	$query="select 
+	$query="
+SELECT
 	nama,
 	alamat,
 	npwpd,
-	to_char(trunc(start_period), 'DD-MM-YYYY') AS start_period_formated,
-	to_char(trunc(end_period), 'DD-MM-YYYY') AS end_period_formated,
+	to_char(
+		trunc(start_period),
+		'DD-MM-YYYY'
+	) AS start_period_formated,
+	to_char(
+		trunc(end_period),
+		'DD-MM-YYYY'
+	) AS end_period_formated,
 	no_kohir,
-	to_char(trunc(tgl_masuk), 'DD-MM-YYYY') AS tgl_masuk_formated,
-	to_char(trunc(jatuh_tempo), 'DD-MM-YYYY') AS jatuh_tempo_formated,
-	to_char(trunc(tgl_bayar), 'DD-MM-YYYY') AS tgl_bayar_formated,
-	sum(skpdkb_amount) as skpdkb_amount,
-	to_char(trunc(skpdkb_tgl_tap), 'DD-MM-YYYY') AS skpdkb_tgl_tap_formated,
-	to_char(trunc(skpdkb_tgl_bayar), 'DD-MM-YYYY') AS skpdkb_tgl_bayar_formated,
-	sum(denda_amount) as denda_amount,
-	to_char(trunc(denda_tgl_tap), 'DD-MM-YYYY') AS denda_tgl_tap_formated,
-	to_char(trunc(denda_tgl_bayar), 'DD-MM-YYYY') AS denda_tgl_bayar_formated,
-	sum(sptpd_amount) as sptpd_amount
-from sikp.f_laporan_harian_denda(".$param_arr['p_vat_type_id'].",2014,'".$param_arr['date_start']."','".$param_arr['date_end']."')	
-GROUP BY
+	to_char(
+		trunc(tgl_masuk),
+		'DD-MM-YYYY'
+	) AS tgl_masuk_formated,
+	to_char(
+		trunc(jatuh_tempo),
+		'DD-MM-YYYY'
+	) AS jatuh_tempo_formated,
+	to_char(
+		trunc(tgl_bayar),
+		'DD-MM-YYYY'
+	) AS tgl_bayar_formated,
+	skpdkb_amount,
+	to_char(
+		trunc(skpdkb_tgl_tap),
+		'DD-MM-YYYY'
+	) AS skpdkb_tgl_tap_formated,
+	to_char(
+		trunc(skpdkb_tgl_bayar),
+		'DD-MM-YYYY'
+	) AS skpdkb_tgl_bayar_formated,
+	denda_amount,
+	to_char(
+		trunc(denda_tgl_tap),
+		'DD-MM-YYYY'
+	) AS denda_tgl_tap_formated,
+	to_char(
+		trunc(denda_tgl_bayar),
+		'DD-MM-YYYY'
+	) AS denda_tgl_bayar_formated,
+	sptpd_amount
+from sikp.f_laporan_harian_denda(".$param_arr['p_vat_type_id'].",2014,'".$param_arr['date_start']."','".$param_arr['date_end']."')
+ORDER BY
 	nama,
-	alamat,
-	npwpd,
-	trunc(start_period),
-	trunc(end_period),
-	no_kohir,
-	trunc(tgl_masuk),
-	trunc(jatuh_tempo),
-	trunc(tgl_bayar),
-	trunc(skpdkb_tgl_tap),
-	trunc(skpdkb_tgl_bayar),
-	trunc(denda_tgl_tap),
-	trunc(denda_tgl_bayar)
-ORDER BY nama,trunc(start_period) ASC";
+	trunc(start_period) ASC";
 	
 	/*"select *, 
 	to_char(start_period, 'DD-MM-YYYY') AS start_period_formated,
@@ -116,8 +132,8 @@ ORDER BY nama,trunc(start_period) ASC";
 	to_char(denda_tgl_tap, 'DD-MM-YYYY') AS denda_tgl_tap_formated,
 	to_char(denda_tgl_bayar, 'DD-MM-YYYY') AS denda_tgl_bayar_formated from sikp.f_laporan_harian_denda(1,2014,'1-1-2014','30-12-2014')";
 	*/
-	echo $query;
-	exit;
+	//echo $query;
+	//exit;
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('arial', '',8);
