@@ -219,7 +219,7 @@ class FormCetak extends FPDF {
 					  number_format(abs($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i]), 0, ',', '.'),
 					  number_format($data["sptpd_thn_lalu"][$i], 0, ',', '.'),
 					  //abs(number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i], 0, ',', '.'))
-					  number_format(abs($data["sptpd_thn_lalu"][$i]-$data["jml_sd_hari_ini"][$i]), 0, ',', '.')
+					  number_format(abs($data["sptpd_thn_lalu"][$i]+$data["jml_sd_hari_ini"][$i]), 0, ',', '.')
 					  ),
 				array("TBLR",
 					  "TBLR",
@@ -293,7 +293,7 @@ class FormCetak extends FPDF {
 							number_format(abs(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini)), 0, ',', '.'),
 							number_format(abs(array_sum($j_slktk)), 0, ',', '.'),
 							number_format($tot_sptpd_thn_lalu, 0, ',', '.'),
-							number_format(abs(array_sum($j_slk1thn)), 0, ',', '.')
+							number_format(array_sum($j_jml_sd_hari_ini)+$tot_sptpd_thn_lalu, 0, ',', '.')
 						  ),
 					array("TBLR",
 							"TBLR",
@@ -376,7 +376,7 @@ class FormCetak extends FPDF {
 							number_format(abs($j_t_count_sptpd_jml_hari_ini-$j_t_count_jml_hari_ini), 0, ',', '.'),
 							number_format(abs($j_t_slktk), 0, ',', '.'),
 							number_format(abs($tot_sptpd_thn_lalu_all), 0, ',', '.'),
-							number_format(abs($j_t_slk1thn), 0, ',', '.')
+							number_format(abs($j_t_jml_sd_hari_ini+$tot_sptpd_thn_lalu_all), 0, ',', '.')
 						  ),
 					array("TBLR",
 						  "TBLR",
