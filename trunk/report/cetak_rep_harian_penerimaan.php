@@ -39,6 +39,7 @@ while ($dbConn->next_record()) {
 	$data["count_sptpd_jml_hari_ini"][]		= $dbConn->f("count_sptpd_jml_hari_ini");
 	$data["count_sptpd_jml_sd_hari_lalu"][]	= $dbConn->f("count_sptpd_jml_sd_hari_lalu");
 	$data["count_sptpd_jml_sd_hari_ini"][]	= $dbConn->f("count_sptpd_jml_sd_hari_ini");
+	$data["sptpd_thn_lalu"][]	= $dbConn->f("sptpd_thn_lalu");
 	$data["sptpd"][]	= $dbConn->f("sptpd");
 	$data["target"][]	= $dbConn->f("target");
 	
@@ -138,18 +139,18 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable1, $this->height, "", "BLR", 0, 'C');
 		$this->Cell($ltable5, $this->height, "", "BLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
-		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
+		$this->Cell($ltable1, $this->height, "SSPD", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "BESAR", "TBLR", 0, 'C');
-		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
+		$this->Cell($ltable1, $this->height, "SSPD", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "BESAR", "TBLR", 0, 'C');
-		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
+		$this->Cell($ltable1, $this->height, "SSPD", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "BESAR", "TBLR", 0, 'C');
 		$this->Cell($ltable1, $this->height, "%", "TBLR", 0, 'C');
-		$this->Cell($ltable1, $this->height, "SSPD", "TBLR", 0, 'C');
+		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "HARI INI", "TBLR", 0, 'C');
-		$this->Cell($ltable1, $this->height, "SSPD", "TBLR", 0, 'C');
+		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "SD HR LALU", "TBLR", 0, 'C');
-		$this->Cell($ltable1, $this->height, "SSPD", "TBLR", 0, 'C');
+		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "SD HR INI", "TBLR", 0, 'C');
 		$this->Cell($ltable1, $this->height, "", "BLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "THD KETETAPAN", "BLR", 0, 'C');
@@ -188,6 +189,8 @@ class FormCetak extends FPDF {
 		$j_slk1thn= array();
 		
 		$no = 1;
+		$tot_sptpd_thn_lalu=0;
+		$tot_sptpd_thn_lalu_all=0;
 		for ($i = 0; $i < count($data["nama_ayat"]); $i++) {
 			//isi kolom
 			$this->SetWidths(array($ltable1, $ltable2, $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
@@ -212,10 +215,11 @@ class FormCetak extends FPDF {
 					  number_format($data["sptpd_jml_sd_hari_lalu"][$i], 0, ',', '.'),
 					  number_format($data["count_sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
 					  number_format($data["sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
-					  0,
-					  number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i], 0, ',', '.'),
-					  number_format(0, 0, ',', '.'),
-					  number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i], 0, ',', '.')
+					  number_format(abs($data["count_sptpd_jml_hari_ini"][$i] - $data["count_jml_hari_ini"][$i]), 0, ',', '.'),
+					  number_format(abs($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i]), 0, ',', '.'),
+					  number_format($data["sptpd_thn_lalu"][$i], 0, ',', '.'),
+					  //abs(number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i], 0, ',', '.'))
+					  number_format(abs($data["sptpd_thn_lalu"][$i]-$data["jml_sd_hari_ini"][$i]), 0, ',', '.')
 					  ),
 				array("TBLR",
 					  "TBLR",
@@ -256,9 +260,9 @@ class FormCetak extends FPDF {
 			$j_count_sptpd_jml_sd_hari_ini[] = $data["count_sptpd_jml_sd_hari_ini"][$i];
 			$j_sptpd_jml_sd_hari_ini[] = $data["sptpd_jml_sd_hari_ini"][$i];
 			$j_sptpd[] = 0;
-			$j_slktk[] = $data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i];
+			$j_slktk[] = abs($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i]);
 			$j_slk4bln[] = 0;
-			$j_slk1thn[] = $data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i];
+			$j_slk1thn[] = abs($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i]);
 			
 			$this->SetWidths(array($ltable1 + $ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
 			$this->SetAligns(array("C", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
@@ -266,7 +270,8 @@ class FormCetak extends FPDF {
 			//jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
 			$jenis = $data["nama_jns_pajak"][$i];
 			$jenissesudah = $data["nama_jns_pajak"][$i + 1];
-			
+			$tot_sptpd_thn_lalu = $tot_sptpd_thn_lalu + $data['sptpd_thn_lalu'][$i];
+			$tot_sptpd_thn_lalu_all = $tot_sptpd_thn_lalu_all + $data['sptpd_thn_lalu'][$i];
 			$this->SetFont('Arial', 'B', 6);
 			if($jenis != $jenissesudah){
 				$this->RowMultiBorderWithHeight(
@@ -285,10 +290,10 @@ class FormCetak extends FPDF {
 							number_format(array_sum($j_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
 							number_format(array_sum($j_count_sptpd_jml_sd_hari_ini), 0, ',', '.'),
 							number_format(array_sum($j_sptpd_jml_sd_hari_ini), 0, ',', '.'),
-							0,
-							number_format(array_sum($j_slktk), 0, ',', '.'),
-							number_format(0, 0, ',', '.'),
-							number_format(array_sum($j_slk1thn), 0, ',', '.')
+							number_format(abs(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini)), 0, ',', '.'),
+							number_format(abs(array_sum($j_slktk)), 0, ',', '.'),
+							number_format($tot_sptpd_thn_lalu, 0, ',', '.'),
+							number_format(abs(array_sum($j_slk1thn)), 0, ',', '.')
 						  ),
 					array("TBLR",
 							"TBLR",
@@ -325,9 +330,9 @@ class FormCetak extends FPDF {
 				$j_t_count_sptpd_jml_sd_hari_ini	+= array_sum($j_count_sptpd_jml_sd_hari_ini);
 				$j_t_sptpd_jml_sd_hari_ini	+= array_sum($j_sptpd_jml_sd_hari_ini);
 				$j_t_sptpd = 0;
-				$j_t_slktk += array_sum($j_slktk);
+				$j_t_slktk += abs(array_sum($j_slktk));
 				$j_t_slk4bln = 0;
-				$j_t_slk1thn += array_sum($j_slk1thn);
+				$j_t_slk1thn +=abs(array_sum($j_slk1thn));
 				
 				//Re-initialize
 				$j_target = array();
@@ -347,6 +352,7 @@ class FormCetak extends FPDF {
 				$j_slktk = array();
 				$j_slk4bln = array();
 				$j_slk1thn= array();
+				$tot_sptpd_thn_lalu=0;
 			}
 			
 			//Total
@@ -367,10 +373,10 @@ class FormCetak extends FPDF {
 							number_format($j_t_sptpd_jml_sd_hari_lalu, 0, ',', '.'),
 							number_format($j_t_count_sptpd_jml_sd_hari_ini, 0, ',', '.'),
 							number_format($j_t_sptpd_jml_sd_hari_ini, 0, ',', '.'),
-							0,
-							number_format($j_t_slktk, 0, ',', '.'),
-							number_format(0, 0, ',', '.'),
-							number_format($j_t_slk1thn, 0, ',', '.')
+							number_format(abs($j_t_count_sptpd_jml_hari_ini-$j_t_count_jml_hari_ini), 0, ',', '.'),
+							number_format(abs($j_t_slktk), 0, ',', '.'),
+							number_format(abs($tot_sptpd_thn_lalu_all), 0, ',', '.'),
+							number_format(abs($j_t_slk1thn), 0, ',', '.')
 						  ),
 					array("TBLR",
 						  "TBLR",
