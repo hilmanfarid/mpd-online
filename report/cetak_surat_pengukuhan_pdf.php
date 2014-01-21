@@ -204,15 +204,25 @@ class FormCetak extends FPDF {
 		
 		$bintang = " ";
 		$melati = " ";
+		$losmen = " ";
 		$detail_bintang = array();
 		$detail_melati = array();
+		$detail_losmen = array();
 		if(strpos(strtolower($data["detail_jenis_pajak"]), "bintang") !== false){ //HOTEL BINTANG X
 			preg_match("/\d+/", $data["detail_jenis_pajak"], $detail_bintang);
-			$bintang = $detail_bintang[0];
+			$bintang = "X";
+			//$bintang = $detail_bintang[0];
 		}
 		else if(strpos(strtolower($data["detail_jenis_pajak"]), "melati") !== false){ //HOTEL MELATI X
 			preg_match("/\d+/", $data["detail_jenis_pajak"], $detail_melati);
-			$melati = $detail_melati[0];
+			//$melati = $detail_melati[0];
+			$melati = "X";
+		}
+		else if(strpos(strtolower($data["detail_jenis_pajak"]), "rumah kos") !== false){ //HOTEL MELATI X
+			preg_match("/\d+/", $data["detail_jenis_pajak"], $detail_losmen);
+			//$losmen = $detail_losmen[0];
+			$losmen = "X";
+			$hotel=" ";
 		}
 		
 		// switch($data["klasifikasi"]){
@@ -273,7 +283,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($formLen1 + $twelfth1, $this->height, "", 0, 0, 'L');
 		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[ ]", "", 0, 'L');
+		$this->Cell($kotakLen1, $this->height, "[$losmen]", "", 0, 'L');
 		$this->SetTimes();
 		$this->Cell($kotakLen9 * 2 + $kotakLen1, $this->height, " Pajak Sewa Menyewa/Kontrak Rumah dan/atau", "", 0, 'L');
 		$this->Ln();
