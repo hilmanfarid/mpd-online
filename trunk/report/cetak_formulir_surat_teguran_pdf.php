@@ -17,7 +17,7 @@ if(empty($t_customer_order_id)){
 }else{
 $dbConn = new clsDBConnSIKP();
 
-$query="select *, to_char(letter_date,'yyyy-mm-dd') AS letter_date_text from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)";
+$query="select * from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)";
 
 $dbConn->query($query);
 $data=array();
@@ -35,7 +35,7 @@ while ($dbConn->next_record()) {
 			'debt_amount' => $dbConn->f("debt_amount"),
 			'terbilang' =>  $dbConn->f("terbilang"),
 			'debt_period_code' =>  $dbConn->f("debt_period_code"),
-			'letter_date_text' => $dbConn->f("letter_date_text")
+			'letter_date_txt' => $dbConn->f("letter_date_txt")
 		);
 }
 	//nip & nama
@@ -184,7 +184,7 @@ class FormCetak extends FPDF {
 		$lkepada3 = $lkepada * 3;
 		
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "Bandung, ".dateToString($data['letter_date_text']), "R", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Bandung, ".$data['letter_date_txt'], "R", 0, 'L');
 		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
@@ -307,7 +307,7 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("L", "C", "C", "L", "C", "C", "L"));
 		$tahun = explode(" ",$data["periode"]);
 
-		$bulan_periode = explode(",",$data['debt_period_code']);
+		$bulan_periode = explode(",",$data['periode']);
 		$bulan_string='';
 		$i=0;
 		foreach($bulan_periode as $item ){
@@ -377,7 +377,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4, $this->height, "Bandung, " . dateToString($data['letter_date_text']) /*. $data["tanggal"]*/, "", 0, 'C');
+		$this->Cell($lbody4, $this->height, "Bandung, " . dateToString(date('Y-m-d')) /*. $data["tanggal"]*/, "", 0, 'C');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
