@@ -133,11 +133,14 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable1 + $ltable3, $this->height, "HARI INI", "TBLR", 0, 'C');
 		$this->Cell($ltable1 + $ltable3, $this->height, "SD HARI LALU", "TBLR", 0, 'C');
 		$this->Cell($ltable1 + $ltable3 + $ltable1, $this->height, "SD HARI INI", "TBLR", 0, 'C');
-		$this->Cell($ltable1 + $ltable3 + $ltable1 + $ltable3 + $ltable1 + $ltable3, $this->height, "REALISASI PENERIMAAN MURNI", "TBLR", 0, 'C');
+		//$this->Cell($ltable1 + $ltable3 + $ltable1 + $ltable3 + $ltable1 + $ltable3, $this->height, "REALISASI PENERIMAAN MURNI", "TBLR", 0, 'C');
+		$this->Cell($ltable1 + $ltable3, $this->height, "HARI INI", "TBLR", 0, 'C');
+		$this->Cell($ltable1 + $ltable3, $this->height, "SD HARI LALU", "TBLR", 0, 'C');
+		$this->Cell($ltable1 + $ltable3, $this->height, "SD HARI INI", "TBLR", 0, 'C');
 		$this->Cell($ltable1, $this->height, "SPTPD", "TLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "SISA LEBIH/KRG", "TLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "REALISASI THD", "TLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "SISA LEBIH/KRG", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "JML REALISASI", "TLR", 0, 'C');
 		$this->Ln();
 		$this->Cell($ltable1, $this->height, "", "BLR", 0, 'C');
 		$this->Cell($ltable5, $this->height, "", "BLR", 0, 'C');
@@ -150,15 +153,15 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable3, $this->height, "BESAR", "TBLR", 0, 'C');
 		$this->Cell($ltable1, $this->height, "%", "TBLR", 0, 'C');
 		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "HARI INI", "TBLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "BESAR", "TBLR", 0, 'C');
 		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "SD HR LALU", "TBLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "BESAR", "TBLR", 0, 'C');
 		$this->Cell($ltable1, $this->height, "SPTPD", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "SD HR INI", "TBLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "BESAR", "TBLR", 0, 'C');
 		$this->Cell($ltable1, $this->height, "", "BLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "THD KETETAPAN", "BLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "PIUTANG", "BLR", 0, 'C');
-		$this->Cell($ltable3, $this->height, "1 TAHUN", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
 		$this->Ln();		
 		$this->Cell($ltable1, $this->height, "A", "BLR", 0, 'C');
 		$this->Cell($ltable5, $this->height, "B", "BLR", 0, 'C');
@@ -238,11 +241,11 @@ class FormCetak extends FPDF {
 					  number_format($data["sptpd_jml_sd_hari_lalu"][$i], 0, ',', '.'),
 					  number_format($data["count_sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
 					  number_format($data["sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
-					  number_format(abs($data["count_sptpd_jml_hari_ini"][$i] - $data["count_jml_hari_ini"][$i]), 0, ',', '.'),
-					  number_format(abs($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i]), 0, ',', '.'),
+					  number_format($data["count_sptpd_jml_hari_ini"][$i] - $data["count_jml_hari_ini"][$i], 0, ',', '.'),
+					  number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i], 0, ',', '.'),
 					  number_format($data["sptpd_thn_lalu"][$i], 0, ',', '.'),
 					  //abs(number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i], 0, ',', '.'))
-					  number_format(abs($data["sptpd_thn_lalu"][$i]+$data["jml_sd_hari_ini"][$i]), 0, ',', '.')
+					  number_format($data["sptpd_thn_lalu"][$i]+$data["jml_sd_hari_ini"][$i], 0, ',', '.')
 					  ),
 				array("TBLR",
 					  "TBLR",
@@ -283,9 +286,9 @@ class FormCetak extends FPDF {
 			$j_count_sptpd_jml_sd_hari_ini[] = $data["count_sptpd_jml_sd_hari_ini"][$i];
 			$j_sptpd_jml_sd_hari_ini[] = $data["sptpd_jml_sd_hari_ini"][$i];
 			$j_sptpd[] = 0;
-			$j_slktk[] = abs($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i]);
+			$j_slktk[] = $data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i];
 			$j_slk4bln[] = 0;
-			$j_slk1thn[] = abs($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i]);
+			$j_slk1thn[] = $data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i];
 			
 			$this->SetWidths(array($ltable1 + $ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
 			$this->SetAligns(array("C", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
@@ -313,8 +316,8 @@ class FormCetak extends FPDF {
 							number_format(array_sum($j_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
 							number_format(array_sum($j_count_sptpd_jml_sd_hari_ini), 0, ',', '.'),
 							number_format(array_sum($j_sptpd_jml_sd_hari_ini), 0, ',', '.'),
-							number_format(abs(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini)), 0, ',', '.'),
-							number_format(abs(array_sum($j_slktk)), 0, ',', '.'),
+							number_format(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini), 0, ',', '.'),
+							number_format(array_sum($j_slktk), 0, ',', '.'),
 							number_format($tot_sptpd_thn_lalu, 0, ',', '.'),
 							number_format(array_sum($j_jml_sd_hari_ini)+$tot_sptpd_thn_lalu, 0, ',', '.')
 						  ),
@@ -353,9 +356,9 @@ class FormCetak extends FPDF {
 				$j_t_count_sptpd_jml_sd_hari_ini	+= array_sum($j_count_sptpd_jml_sd_hari_ini);
 				$j_t_sptpd_jml_sd_hari_ini	+= array_sum($j_sptpd_jml_sd_hari_ini);
 				$j_t_sptpd = 0;
-				$j_t_slktk += abs(array_sum($j_slktk));
+				$j_t_slktk += array_sum($j_slktk);
 				$j_t_slk4bln = 0;
-				$j_t_slk1thn +=abs(array_sum($j_slk1thn));
+				$j_t_slk1thn +=array_sum($j_slk1thn);
 				
 				//Re-initialize
 				$j_target = array();
@@ -396,10 +399,10 @@ class FormCetak extends FPDF {
 							number_format($j_t_sptpd_jml_sd_hari_lalu, 0, ',', '.'),
 							number_format($j_t_count_sptpd_jml_sd_hari_ini, 0, ',', '.'),
 							number_format($j_t_sptpd_jml_sd_hari_ini, 0, ',', '.'),
-							number_format(abs($j_t_count_sptpd_jml_hari_ini-$j_t_count_jml_hari_ini), 0, ',', '.'),
-							number_format(abs($j_t_slktk), 0, ',', '.'),
-							number_format(abs($tot_sptpd_thn_lalu_all), 0, ',', '.'),
-							number_format(abs($j_t_jml_sd_hari_ini+$tot_sptpd_thn_lalu_all), 0, ',', '.')
+							number_format($j_t_count_sptpd_jml_hari_ini-$j_t_count_jml_hari_ini, 0, ',', '.'),
+							number_format($j_t_slktk, 0, ',', '.'),
+							number_format($tot_sptpd_thn_lalu_all, 0, ',', '.'),
+							number_format($j_t_jml_sd_hari_ini+$tot_sptpd_thn_lalu_all, 0, ',', '.')
 						  ),
 					array("TBLR",
 						  "TBLR",
@@ -440,8 +443,11 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
 		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
+		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+		//$this->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
+		$this->SetWidtHs(array($lbody3 - 10,$lbody1 + 10));
+		$this->SetAligns(array("C", "C","C","C","C"));
+		$this->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN"),array("",""),$this->height);
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
@@ -450,9 +456,12 @@ class FormCetak extends FPDF {
 		$this->newLine();
 		$this->newLine();
 		$this->newLine();
-		$this->newLine();
+		//$this->newLine();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "(Drs. H. UGAS RAHMANSYAH, SAP, MAP)", "", 0, 'C');
+		$this->Ln();
+		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+		$this->Cell($lbody1 + 10, $this->height, "(NIP 19640127 199703 1001)", "", 0, 'C');
 	}
 
 	function newLine(){
