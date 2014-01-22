@@ -10,15 +10,17 @@ $p_year_period_id	= CCGetFromGet("p_year_period_id", "");
 $p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
 $tgl_status			= CCGetFromGet("tgl_status", "");
 $p_account_status_id= CCGetFromGet("p_account_status_id", "");
+$status_bayar = CCGetFromGet("status_bayar", "");
 
 // $p_year_period_id	= 4;
 // $p_vat_type_id		= 1;
 // $tgl_status			= '15-12-2013';
+if(empty($status_bayar)) $status_bayar = "NULL";
 
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_penerimaan_pertahun_sts($p_year_period_id, $p_vat_type_id, $tgl_status, $p_account_status_id);";
+$query				= "select * from f_rep_penerimaan_pertahun_sts_new($p_year_period_id, $p_vat_type_id, $tgl_status, $p_account_status_id, $status_bayar);";
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
