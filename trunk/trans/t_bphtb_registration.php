@@ -388,7 +388,7 @@ function GetPrimaryKey($keyName)
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_Update") {
-                $Redirect = "t_bphtb_registration_list_update.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
+                $Redirect = "t_bphtb_registration.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }
@@ -401,7 +401,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @94-32F57722
+//InsertRow Method @94-B3F51670
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -438,13 +438,14 @@ function GetPrimaryKey($keyName)
         $this->DataSource->bphtb_discount->SetValue($this->bphtb_discount->GetValue(true));
         $this->DataSource->bphtb_amt_final->SetValue($this->bphtb_amt_final->GetValue(true));
         $this->DataSource->description->SetValue($this->description->GetValue(true));
+        $this->DataSource->jenis_harga_bphtb->SetValue($this->jenis_harga_bphtb->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @94-3DDAADC5
+//UpdateRow Method @94-5C8C9D91
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -481,6 +482,7 @@ function GetPrimaryKey($keyName)
         $this->DataSource->mobile_phone_no->SetValue($this->mobile_phone_no->GetValue(true));
         $this->DataSource->wp_p_region_id_kec->SetValue($this->wp_p_region_id_kec->GetValue(true));
         $this->DataSource->object_p_region_id_kel->SetValue($this->object_p_region_id_kel->GetValue(true));
+        $this->DataSource->jenis_harga_bphtb->SetValue($this->jenis_harga_bphtb->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -756,7 +758,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $jenis_harga_bphtb;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-61B76C99
+//DataSourceClass_Initialize Event @94-F60C6733
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -878,6 +880,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["mobile_phone_no"] = array("Name" => "mobile_phone_no", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["wp_p_region_id_kec"] = array("Name" => "wp_p_region_id_kec", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["object_p_region_id_kel"] = array("Name" => "object_p_region_id_kel", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["jenis_harga_bphtb"] = array("Name" => "jenis_harga_bphtb", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -975,7 +978,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End SetValues Method
 
-//Insert Method @94-32FDE8B3
+//Insert Method @94-97CE17C3
     function Insert()
     {
         global $CCSLocales;
@@ -1014,6 +1017,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["bphtb_amt_final"] = new clsSQLParameter("ctrlbphtb_amt_final", ccsFloat, "", "", $this->bphtb_amt_final->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "-", false, $this->ErrorBlock);
         $this->cp["i_user"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
+        $this->cp["jenis_harga_bphtb"] = new clsSQLParameter("ctrljenis_harga_bphtb", ccsFloat, "", "", $this->jenis_harga_bphtb->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["o_t_bphtb_registration_id"] = new clsSQLParameter("urlo_t_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("o_t_bphtb_registration_id", NULL), "", false, $this->ErrorBlock);
         $this->cp["o_mess"] = new clsSQLParameter("urlo_mess", ccsText, "", "", CCGetFromGet("o_mess", NULL), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
@@ -1147,6 +1151,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["description"]->SetText("-");
         if (!is_null($this->cp["i_user"]->GetValue()) and !strlen($this->cp["i_user"]->GetText()) and !is_bool($this->cp["i_user"]->GetValue())) 
             $this->cp["i_user"]->SetValue(CCGetSession("UserLogin", NULL));
+        if (!is_null($this->cp["jenis_harga_bphtb"]->GetValue()) and !strlen($this->cp["jenis_harga_bphtb"]->GetText()) and !is_bool($this->cp["jenis_harga_bphtb"]->GetValue())) 
+            $this->cp["jenis_harga_bphtb"]->SetValue($this->jenis_harga_bphtb->GetValue(true));
         if (!is_null($this->cp["o_t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["o_t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["o_t_bphtb_registration_id"]->GetValue())) 
             $this->cp["o_t_bphtb_registration_id"]->SetText(CCGetFromGet("o_t_bphtb_registration_id", NULL));
         if (!is_null($this->cp["o_mess"]->GetValue()) and !strlen($this->cp["o_mess"]->GetText()) and !is_bool($this->cp["o_mess"]->GetValue())) 
@@ -1184,6 +1190,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
              . $this->ToSQL($this->cp["bphtb_amt_final"]->GetDBValue(), $this->cp["bphtb_amt_final"]->DataType) . ", "
              . $this->ToSQL($this->cp["description"]->GetDBValue(), $this->cp["description"]->DataType) . ", "
              . $this->ToSQL($this->cp["i_user"]->GetDBValue(), $this->cp["i_user"]->DataType) . ", "
+             . $this->ToSQL($this->cp["jenis_harga_bphtb"]->GetDBValue(), $this->cp["jenis_harga_bphtb"]->DataType) . ", "
              . $this->ToSQL($this->cp["o_t_bphtb_registration_id"]->GetDBValue(), $this->cp["o_t_bphtb_registration_id"]->DataType) . ", "
              . $this->ToSQL($this->cp["o_mess"]->GetDBValue(), $this->cp["o_mess"]->DataType) . ");";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
@@ -1194,7 +1201,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @94-3DCAB474
+//Update Method @94-E02FEA6F
     function Update()
     {
         global $CCSLocales;
@@ -1233,6 +1240,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["mobile_phone_no"] = new clsSQLParameter("ctrlmobile_phone_no", ccsText, "", "", $this->mobile_phone_no->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["wp_p_region_id_kec"] = new clsSQLParameter("ctrlwp_p_region_id_kec", ccsFloat, "", "", $this->wp_p_region_id_kec->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["jenis_harga_bphtb"] = new clsSQLParameter("ctrljenis_harga_bphtb", ccsText, "", "", $this->jenis_harga_bphtb->GetValue(true), NULL, false, $this->ErrorBlock);
         $wp = new clsSQLParameters($this->ErrorBlock);
         $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
         if(!$wp->AllParamsSet()) {
@@ -1313,6 +1321,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["wp_p_region_id_kec"]->SetValue($this->wp_p_region_id_kec->GetValue(true));
         if (!is_null($this->cp["object_p_region_id_kel"]->GetValue()) and !strlen($this->cp["object_p_region_id_kel"]->GetText()) and !is_bool($this->cp["object_p_region_id_kel"]->GetValue())) 
             $this->cp["object_p_region_id_kel"]->SetValue($this->object_p_region_id_kel->GetValue(true));
+        if (!is_null($this->cp["jenis_harga_bphtb"]->GetValue()) and !strlen($this->cp["jenis_harga_bphtb"]->GetText()) and !is_bool($this->cp["jenis_harga_bphtb"]->GetValue())) 
+            $this->cp["jenis_harga_bphtb"]->SetValue($this->jenis_harga_bphtb->GetValue(true));
         $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
         $wp->Criterion[2] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("2"), $this->ToSQL($wp->GetDBValue("2"), ccsFloat),false);
         $wp->Criterion[3] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("3"), $this->ToSQL($wp->GetDBValue("3"), ccsFloat),false);
@@ -1355,6 +1365,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["mobile_phone_no"]["Value"] = $this->cp["mobile_phone_no"]->GetDBValue(true);
         $this->UpdateFields["wp_p_region_id_kec"]["Value"] = $this->cp["wp_p_region_id_kec"]->GetDBValue(true);
         $this->UpdateFields["object_p_region_id_kel"]["Value"] = $this->cp["object_p_region_id_kel"]->GetDBValue(true);
+        $this->UpdateFields["jenis_harga_bphtb"]["Value"] = $this->cp["jenis_harga_bphtb"]->GetDBValue(true);
         $this->SQL = CCBuildUpdate("t_bphtb_registration", $this->UpdateFields, $this);
         $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);

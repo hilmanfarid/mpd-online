@@ -123,7 +123,7 @@ function print_laporan($param_arr){
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C','C'));
 	$pdf->SetWidths(array(10,28,35,21,41,51,28,28,21,21,25,28));
 	$pdf->SetFont('arial', 'B',7);
-	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","NAMA","ALAMAT","KELURAHAN","KECAMATAN","LUAS TANAH","LUAS BGN","NJOP (Rp)","TOTAL BAYAR (Rp)"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','TLBR'),5);
+	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","NAMA","ALAMAT","KELURAHAN","KECAMATAN","LT/LB","LUAS BGN","NJOP (Rp)","TOTAL BAYAR (Rp)"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','TLBR'),5);
 	/* END HEADER */	
 
 	

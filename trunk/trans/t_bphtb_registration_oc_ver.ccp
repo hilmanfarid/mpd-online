@@ -495,18 +495,18 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Features/>
 				</Hidden>
 				<ListBox id="1005" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="jenis_harga_bphtb" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormjenis_harga_bphtb" connection="ConnSIKP" _valueOfList="3" _nameOfList="Harga Lelang" dataSource="1;Harga Transaksi;2;Harga Pasar;3;Harga Lelang" fieldSource="jenis_harga_bphtb">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
-</Components>
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -695,6 +695,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<CustomParameter id="998" field="wp_p_region_id_kec" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="wp_p_region_id_kec"/>
 				<CustomParameter id="999" field="object_p_region_id_kel" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="object_p_region_id_kel"/>
 				<CustomParameter id="1042" field="jenis_harga_bphtb" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="jenis_harga_bphtb"/>
+				<CustomParameter id="1043" field="jenis_harga_bphtb" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="jenis_harga_bphtb"/>
 </UFormElements>
 			<DSPParameters>
 				<SPParameter id="Key905" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0"/>

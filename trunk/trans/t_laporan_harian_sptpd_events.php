@@ -79,9 +79,8 @@ function print_laporan($param_arr){
 	if(!empty($param_arr['p_vat_type_dtl_id'])){
 		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."',".$param_arr['p_vat_type_dtl_id'].") ORDER BY tanggal, jenis ASC";
 	}else{
-		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(".$param_arr['p_vat_type_id'].",2001,'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY tanggal, jenis ASC";
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(".$param_arr['p_vat_type_id'].",2001,'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY trunc(tanggal),ayat_code_dtl, jenis ASC";
 	}
-	
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',10);
