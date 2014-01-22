@@ -16,6 +16,12 @@ function Page_OnInitializeView(& $sender)
     global $t_rep_penerimaan_pertahun; //Compatibility
 //End Page_OnInitializeView
 
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
 }
