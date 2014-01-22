@@ -39,25 +39,37 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="191" name="DatePicker_tgl_penerimaan" control="tgl_penerimaan" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan">
+				<DatePicker id="191" name="DatePicker_tgl_penerimaan" control="tgl_penerimaan" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<TextBox id="564" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="code" PathID="t_rep_penerimaan_pertahunSearchcode">
+				<TextBox id="564" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="code" PathID="t_rep_penerimaan_pertahunSearchcode">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="565" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_penerimaan_pertahunSearchp_account_status_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+				<Hidden id="565" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_penerimaan_pertahunSearchp_account_status_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<ListBox id="566" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="status_bayar" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_rep_penerimaan_pertahunSearchstatus_bayar" fieldSource="status_bayar" connection="ConnSIKP" _nameOfList="Bayar" dataSource="1;Tidak Bayar;2;Bayar" _valueOfList="2">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
