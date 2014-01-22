@@ -15,6 +15,7 @@ $status_bayar = CCGetFromGet("status_bayar", "");
 // $p_year_period_id	= 4;
 // $p_vat_type_id		= 1;
 // $tgl_status			= '15-12-2013';
+if(empty($p_account_status_id)) $p_account_status_id = "NULL";
 if(empty($status_bayar)) $status_bayar = "NULL";
 
 $user				= CCGetUserLogin();
