@@ -45,7 +45,7 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-7364A9A4
+//Class_Initialize Event @3-AA0AB0A0
     function clsRecordt_rep_penerimaan_pertahunSearch($RelativePath, & $Parent)
     {
 
@@ -78,11 +78,14 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_rep_penerimaan_pertahunSearch", "tgl_penerimaan", $this);
             $this->code = & new clsControl(ccsTextBox, "code", "code", ccsText, "", CCGetRequestParam("code", $Method, NULL), $this);
             $this->p_account_status_id = & new clsControl(ccsHidden, "p_account_status_id", "p_account_status_id", ccsText, "", CCGetRequestParam("p_account_status_id", $Method, NULL), $this);
+            $this->status_bayar = & new clsControl(ccsListBox, "status_bayar", "status_bayar", ccsText, "", CCGetRequestParam("status_bayar", $Method, NULL), $this);
+            $this->status_bayar->DSType = dsListOfValues;
+            $this->status_bayar->Values = array(array("1", "Tidak Bayar"), array("2", "Bayar"));
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-7F630050
+//Validate Method @3-49DD4D86
     function Validate()
     {
         global $CCSLocales;
@@ -95,6 +98,7 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
         $Validation = ($this->tgl_penerimaan->Validate() && $Validation);
         $Validation = ($this->code->Validate() && $Validation);
         $Validation = ($this->p_account_status_id->Validate() && $Validation);
+        $Validation = ($this->status_bayar->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
@@ -103,11 +107,12 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_account_status_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->status_bayar->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-AE9862BC
+//CheckErrors Method @3-1DDEA9D9
     function CheckErrors()
     {
         $errors = false;
@@ -119,6 +124,7 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
         $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->code->Errors->Count());
         $errors = ($errors || $this->p_account_status_id->Errors->Count());
+        $errors = ($errors || $this->status_bayar->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -171,7 +177,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-ACBA8B56
+//Show Method @3-0061221F
     function Show()
     {
         global $CCSUseAmp;
@@ -185,6 +191,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->status_bayar->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -203,6 +210,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_account_status_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->status_bayar->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -229,6 +237,7 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_tgl_penerimaan->Show();
         $this->code->Show();
         $this->p_account_status_id->Show();
+        $this->status_bayar->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
