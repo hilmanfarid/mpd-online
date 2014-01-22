@@ -72,9 +72,9 @@ function print_laporan($param_arr){
 	$items=array();
 	$pdf->SetFont('helvetica', '',8);
 	$pdf->ln(2);
-	$pdf->SetWidths(array(10,55,60,23,25,18,32,32));
+	$pdf->SetWidths(array(10,55,60,23,25,18,43,32));
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C'));
-	$pdf->RowMultiBorderWithHeight(array("NO","NAMA WP","ALAMAT","NPWPD","BESARNYA","JML SSPD","JENIS PAJAK","KETERANGAN"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+	$pdf->RowMultiBorderWithHeight(array("NO","NAMA WP","ALAMAT","NPWPD","BESARNYA","JML SSPD","NAMA AYAT","KETERANGAN"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
 	$pdf->SetFont('helvetica', '',8);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','L','R','R','R','L'));
