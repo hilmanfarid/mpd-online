@@ -210,11 +210,15 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height + 2, ": " /*. $data["ayat"]*/, "R", 0, 'L');
 		$this->Ln($this->height - 4);
 		
-
-		$arr_ayat = str_split(rtrim($data["vat_code"]));
 		
 		// Ayat Pajak
 		$this->Cell($lbody1 + 3, $this->height, ":", "L", 0, 'R');
+		if(!empty($data["vat_code"])) {
+			$arr_ayat = str_split($data["vat_code"]);
+		} else {
+			$arr_ayat = array();
+			$this->kotak(1, 45, 1," - ");
+		}		
 		//$this->kotak(1, 34, 6, "");
 		for($i = 0; $i < count($arr_ayat); $i++) {
 			if($arr_ayat[$i] != " ")
