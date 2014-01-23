@@ -16,7 +16,7 @@ $dbConn->query($query);
 $query="select c.company_owner ,
 		c.company_brand,
 		c.npwpd,
-		c.address_name_owner ||nvl(address_no_owner,' ') as alamat_tinggal,
+		c.address_name_ozwner ||nvl(address_no_owner,' ') as alamat_tinggal,
 		c.brand_address_name ||nvl(brand_address_no,' ') as alamat_pajak ,
 		b.p_vat_type_id,
 		type.vat_code,
