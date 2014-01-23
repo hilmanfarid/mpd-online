@@ -103,7 +103,7 @@ function print_laporan($p_rqst_type_id,$year_code,$year_period_id,$date_start,$d
 	$pdf->SetWidths(array(123,50));
 	$pdf->SetAligns('L');
 	$pdf->ln(4);
-	$pdf->RowMultiBorderWithHeight(array('','KASIR VOP'),array('',''),6);
+	$pdf->RowMultiBorderWithHeight(array('','KASIE VOP'),array('',''),6);
 	$pdf->Output("","I");
 	echo 'tes';
 	exit;	
