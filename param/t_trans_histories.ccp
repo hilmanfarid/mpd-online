@@ -8,6 +8,7 @@
        to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, 
        a.total_trans_amount as total_transaksi,
        a.total_vat_amount as total_pajak ,
+	   a.total_penalty_amount as total_denda,
        d.receipt_no as kuitansi_pembayaran,
        to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,
        d.payment_amount,
@@ -128,7 +129,13 @@ order by c.npwd , b.start_date desc
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Label id="143" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_denda" fieldSource="total_denda" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_denda" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
