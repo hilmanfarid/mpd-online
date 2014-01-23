@@ -90,16 +90,16 @@ function print_laporan($param_arr){
 						);
 		$pdf->RowMultiBorderWithHeight(array($no,$dbConn->f("nama_wp"),$dbConn->f("alamat_wp"),$dbConn->f("npwpd"),'Rp. '.number_format($dbConn->f("amount"), 2, ',', '.'),$dbConn->f("tot_sspd"),$dbConn->f('jenis_pajak'),''),array('LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
 		$jumlah+=$dbConn->f("amount");
-	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
+		$jumlah_wp+=$dbConn->f("tot_sspd");
 		$no++;
 	}
 	$pdf->SetAligns(Array('C','R','R','R','R','L'));
 	$pdf->SetWidths(array(148,25,18));
-	$pdf->RowMultiBorderWithHeight(array('Jumlah','Rp. '.number_format($jumlah, 2, ',', '.'),$jumlah_wp),array('LB','LB','LBR'),6);
+	$pdf->RowMultiBorderWithHeight(array('Jumlah','Rp. '.number_format($jumlah, 2, ',', '.'),number_format($jumlah_wp, 0, ',', '.')),array('LB','LB','LBR'),6);
 	$pdf->SetWidths(array(123,50));
 	$pdf->SetAligns('L');
 	$pdf->ln(4);
-	$pdf->RowMultiBorderWithHeight(array('','KASIR VOP'),array('',''),6);
+	$pdf->RowMultiBorderWithHeight(array('','KASIE VOP'),array('',''),6);
 	$pdf->Output("","I");
 	echo 'tes';
 	exit;	
