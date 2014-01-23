@@ -77,8 +77,6 @@ function print_laporan($p_rqst_type_id,$year_code,$year_period_id,$date_start,$d
 		$query = "select * from sikp.f_laporan_per_thn_bayar(".$p_rqst_type_id.",2013,'".$date_start."', '".$date_end."')";
 	}
 	$dbConn->query($query);
-	echo $query;
-	exit;
 	$items=array();
 	$pdf->SetFont('helvetica', '',13);
 	$pdf->ln(2);
