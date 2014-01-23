@@ -46,9 +46,12 @@
 		$data["db_increasing_charge"] = $dbConn->f("db_increasing_charge");
 		$data["settlement_date"] = $dbConn->f("settlement_date");
 		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
+		$data["total_trans_amount"] = $dbConn->f("total_trans_amount");
+		$data["vat_code"] = $dbConn->f("vat_code");
+				
 		$items[] = $data;
 	}
-	
+
 	$dbConn->close();
 
 class FormCetak extends FPDF {
@@ -207,9 +210,18 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height + 2, ": " /*. $data["ayat"]*/, "R", 0, 'L');
 		$this->Ln($this->height - 4);
 		
+
+		$arr_ayat = str_split(rtrim($data["vat_code"]));
+		
 		// Ayat Pajak
 		$this->Cell($lbody1 + 3, $this->height, ":", "L", 0, 'R');
-		$this->kotak(1, 34, 6, "");
+		//$this->kotak(1, 34, 6, "");
+		for($i = 0; $i < count($arr_ayat); $i++) {
+			if($arr_ayat[$i] != " ")
+				$this->kotak(1, 45, 1,$arr_ayat[$i]);
+			else
+				$this->kotakKosong(1, 34, 1);
+		}
 		$this->Ln();
 		// ==========
 		
@@ -225,14 +237,14 @@ class FormCetak extends FPDF {
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "1. Dasar Pengenaan", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["debt_vat_amt"],2,",","."), "", 0, 'R');
+		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["total_trans_amount"],2,",","."), "", 0, 'R');
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "2. Pajak yang Terutang", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["terutang"],2,",","."), "", 0, 'R');
+		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["debt_vat_amt"],2,",","."), "", 0, 'R');
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
@@ -271,13 +283,14 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		
+		
+		
 		// $this->tulis("4. Jumlah kekurangan pembayaran Pokok Pajak (2-3d)", "L");
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody2 - 5, $this->height, "4. Jumlah kekurangan pembayaran Pokok Pajak (2-3d)", "", 0, 'L');
+		$this->Cell($lbody3 - 5, $this->height, "4. Jumlah kekurangan pembayaran Pokok Pajak (2-3d)", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["terutang"] - $jumno3,2,",","."), "", 0, 'R');
-		$this->Cell(10, $this->height, "", "", 0, 'R');
-		$this->Cell($lbody1, $this->height, "", "R", 0, 'L');
+		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["debt_vat_amt"] - $jumno3,2,",","."), "", 0, 'R');
+		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
 		$this->tulis("5. Sanksi Administrasi", "L");
@@ -307,7 +320,7 @@ class FormCetak extends FPDF {
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
-		$jumno4 = $data["terutang"] - $jumno3;
+		$jumno4 = $data["debt_vat_amt"] - $jumno3;
 		$total = $jumno4 + $jumno5;
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "6. Jumlah yang masih harus dibayar (4 + 5c)", "", 0, 'L');
