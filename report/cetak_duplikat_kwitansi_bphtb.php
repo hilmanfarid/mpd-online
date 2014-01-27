@@ -37,7 +37,7 @@ class FormCetak extends FPDF {
 		$exp_data = explode("\n", $data["f_bphtb_receipt_duplicate"]); //get no kuitansi
 		$exp_data1 = explode(":", $exp_data[0]);
 	
-		$encImageData = '0000';
+		$encImageData = '';
 		$dbConn = new clsDBConnSIKP();
 		$query = "select f_encrypt_str('".trim($exp_data1[1])."') AS enc_data";
 
@@ -77,10 +77,10 @@ class FormCetak extends FPDF {
 		$this->Cell(40, $this->height + 7, "", "B", 0, 'L');
 		$this->Cell(101, $this->height + 7, "Bukti Pembayaran Pajak BPHTB", "B", 0, 'C');
 		$this->Cell(40, $this->height + 7, "", "B", 0, 'L');
-	
+
 		$this->Ln(5);
 		$this->Ln();
-		
+
 		$this->SetFont('Courier', '', 10);
 		$data = explode("\n", $data["f_bphtb_receipt_duplicate"]);
 		foreach($data as $datum){
