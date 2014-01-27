@@ -42,7 +42,7 @@ class clsGridp_year_periodGrid { //p_year_periodGrid class @2-6AF049A4
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-598FA5D0
+//Class_Initialize Event @2-A18EF98F
     function clsGridp_year_periodGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -77,7 +77,7 @@ class clsGridp_year_periodGrid { //p_year_periodGrid class @2-6AF049A4
         $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsFloat, "", CCGetRequestParam("p_year_period_id", ccsGet, NULL), $this);
         $this->start_date = & new clsControl(ccsLabel, "start_date", "start_date", ccsText, "", CCGetRequestParam("start_date", ccsGet, NULL), $this);
         $this->end_date = & new clsControl(ccsLabel, "end_date", "end_date", ccsText, "", CCGetRequestParam("end_date", ccsGet, NULL), $this);
-        $this->target_amt = & new clsControl(ccsLabel, "target_amt", "target_amt", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("target_amt", ccsGet, NULL), $this);
+        $this->target_amt = & new clsControl(ccsLabel, "target_amt", "target_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amt", ccsGet, NULL), $this);
         $this->ImageLink1 = & new clsControl(ccsImageLink, "ImageLink1", "ImageLink1", ccsText, "", CCGetRequestParam("ImageLink1", ccsGet, NULL), $this);
         $this->ImageLink1->Page = "t_revenue_target.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);

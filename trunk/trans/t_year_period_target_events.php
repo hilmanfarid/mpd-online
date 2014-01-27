@@ -21,6 +21,16 @@ function p_year_periodGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_year_periodGrid; //Compatibility
 //End p_year_periodGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
     global $selected_id;
     global $add_flag;
     global $is_show_form;
@@ -61,6 +71,12 @@ function p_year_periodGrid_BeforeShow(& $sender)
     global $p_year_periodGrid; //Compatibility
 //End p_year_periodGrid_BeforeShow
 
+//Custom Code @95-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       
   // -------------------------
@@ -79,6 +95,12 @@ function p_year_periodGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_year_periodGrid; //Compatibility
 //End p_year_periodGrid_BeforeSelect
+
+//Custom Code @97-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -99,6 +121,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_year_period_target; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
     global $selected_id;

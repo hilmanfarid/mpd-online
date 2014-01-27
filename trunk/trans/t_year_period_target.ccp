@@ -47,7 +47,7 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="100" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amt" fieldSource="target_amt" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="p_year_periodGridtarget_amt" format="0">
+				<Label id="100" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amt" fieldSource="target_amt" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="p_year_periodGridtarget_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
