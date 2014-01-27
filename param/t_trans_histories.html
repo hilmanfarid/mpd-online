@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -83,12 +83,14 @@ $(document).ready(function()
  
                   <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="2" scope="col">Nama Badan</th>
  
-                  <th style="TEXT-ALIGN: center" colspan="7" scope="col">Pelaporan Pajak</th>
+                  <th style="TEXT-ALIGN: center" colspan="8" scope="col">Pelaporan Pajak</th>
  
                   <th style="TEXT-ALIGN: center" colspan="3" scope="col">&nbsp;Pembayaran</th>
                 </tr>
  
                 <tr class="Caption">
+                  <th scope="col">&nbsp;Jenis Ketetapan</th>
+ 
                   <th scope="col">Periode Pelaporan</th>
  
                   <th scope="col">&nbsp;Periode Transaksi</th>
@@ -114,12 +116,13 @@ $(document).ready(function()
                 <tr {HistoryGrid:rowStyle}>
                   <td style="BORDER-LEFT: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{npwd}<input id="HistoryGridt_vat_setllement_id" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden">&nbsp;<input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" size="13" type="hidden"></td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{company_name}</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;{type_code}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_awal_laporan}&nbsp;s/d {periode_akhir_laporan}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pelaporan}</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_transaksi}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
-                  <td style="TEXT-ALIGN: right; color: red; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;{total_denda}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: red; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;{total_denda}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap><a href="#" id="HistoryGridLink1_{HistoryGrid:rowNumber}" onclick="javascript:detailTransaksi({t_cust_account_id}, {t_vat_setllement_id})"><u>Lihat Transaksi</u></a></td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kuitansi_pembayaran}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pembayaran}&nbsp;</td> 
@@ -128,11 +131,11 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="12">-</td>
+                  <td colspan="13">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td colspan="12">
+                  <td colspan="13">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->

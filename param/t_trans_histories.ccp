@@ -15,15 +15,18 @@
        c.t_cust_account_id ,
        b.p_finance_period_id ,
        to_char(b.start_date,'DD-MON-YYYY') as periode_awal_laporan,
-       to_char(b.end_date,'DD-MON-YYYY') as periode_akhir_laporan
+       to_char(b.end_date,'DD-MON-YYYY') as periode_akhir_laporan,
+	   e.code as type_code
 from t_vat_setllement a ,
      p_finance_period b,
      t_cust_account c,
-     t_payment_receipt d
+     t_payment_receipt d,
+	 p_settlement_type e
 where a.p_finance_period_id = b.p_finance_period_id
       and a.t_cust_account_id = c.t_cust_account_id
 	  and a.t_cust_account_id = {t_cust_acc_id}
       and a.t_vat_setllement_id = d.t_vat_setllement_id (+) 
+	  and a.p_settlement_type_id = e.p_settlement_type_id
 order by c.npwd , b.start_date desc
 ">
 			<Components>
@@ -130,6 +133,12 @@ order by c.npwd , b.start_date desc
 					<Features/>
 				</Hidden>
 				<Label id="143" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_denda" fieldSource="total_denda" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_denda" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="144" fieldSourceType="DBColumn" dataType="Text" html="False" name="type_code" fieldSource="type_code" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtype_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
