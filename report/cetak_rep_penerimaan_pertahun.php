@@ -23,6 +23,8 @@ $data				= array();
 $dbConn				= new clsDBConnSIKP();
 $query				= "select * from f_rep_penerimaan_pertahun_sts_new($p_year_period_id, $p_vat_type_id, $tgl_status, $p_account_status_id, $status_bayar);";
 
+print_r($query);exit;
+
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 	$data["jenis_pajak"][]	= $dbConn->f("jenis_pajak");
