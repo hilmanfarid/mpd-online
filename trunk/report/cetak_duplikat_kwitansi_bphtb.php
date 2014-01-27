@@ -55,7 +55,6 @@ class FormCetak extends FPDF {
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,179,13,25,25,'PNG');
 		//$this->Image('http://172.16.20.2:81/mpd/include/qrcode/generate-qr.php?param='.encImageData,179,13,25,25,'PNG');
 		
-
 		$this->SetFont('Arial', '', 11);
 
 		$this->Cell(40, $this->height, "", "", 0, 'L');
@@ -74,17 +73,11 @@ class FormCetak extends FPDF {
 		$this->Cell(101, $this->height, "Telp. 022 4235052 - Bandung", "", 0, 'C');
 		$this->Cell(40, $this->height, "", "", 0, 'L');
 		$this->Ln();
-
 		$this->SetFont('Arial', 'B', 14);
 		$this->Cell(40, $this->height + 7, "", "B", 0, 'L');
 		$this->Cell(101, $this->height + 7, "Bukti Pembayaran Pajak BPHTB", "B", 0, 'C');
 		$this->Cell(40, $this->height + 7, "", "B", 0, 'L');
 	
-		//$this->Cell(180, $this->height, "", "T", 0, "C");
-		//$this->Ln();
-		//$this->Cell(180, $this->height, "BUKTI PEMBAYARAN BPHTB", "", 0, "C");
-		//$this->Ln();
-		//$this->Cell(180, $this->height, "", "B", 0, "C");
 		$this->Ln(5);
 		$this->Ln();
 		
