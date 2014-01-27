@@ -37,7 +37,7 @@ class FormCetak extends FPDF {
 		$exp_data = explode("\n", $data["f_bphtb_receipt_duplicate"]); //get no kuitansi
 		$exp_data1 = explode(":", $exp_data[0]);
 	
-		$encImageData = '';
+		$encImageData = '0000';
 		$dbConn = new clsDBConnSIKP();
 		$query = "select f_encrypt_str('".trim($exp_data1[1])."') AS enc_data";
 
