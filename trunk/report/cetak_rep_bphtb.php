@@ -246,10 +246,25 @@ class FormCetak extends FPDF {
 		
 		$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak (NPOP)", "", "Rp", $data["npop"]);
 		$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP)", "", "Rp", $data["npop_tkp"]);
-		$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp", $data["npop_kp"]);
-		$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", $data["bphtb_amt"]);
+		if($data["npop_kp"]==0){
+			$this->barisBaruStr($lbody1, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp","NIHIL");
+		}else{
+			$this->barisBaru2($lbody1, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp", $data["npop_kp"]);
+		}
+		
+		if($data["npop_kp"]==0){
+			$this->barisBaruStr($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", "NIHIL");
+		}else{
+			$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", $data["bphtb_amt"]);
+		}
+		
 		$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan potongan", "", "Rp", $data["bphtb_discount"]);
-		$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
+		if($data["npop_kp"]==0){
+			$this->barisBaruStr($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", "NIHIL");
+		}else{
+			$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
+		}
+		
 		
 		$this->newLine();
 				
@@ -320,6 +335,21 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx1, $this->height, "$middle", "", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "$currency", "", 0, "L");
 		$this->Cell($lbodyx2, $this->height, number_format($data, 0, ",", "."), "", 0, "R");
+		$this->Ln();
+	}
+
+	function barisBaruStr($subtractor, $field, $middle, $currency, $data){
+		$lbodyx = ($this->lengthCell - $subtractor) / 9;
+		$lbodyx1 = $lbodyx * 1;
+		$lbodyx2 = $lbodyx * 2;
+		$lbodyx3 = $lbodyx * 3;
+		$lbodyx5 = $lbodyx * 5;
+		
+		$this->Cell($subtractor, $this->height, "", "", 0, "L");
+		$this->Cell($lbodyx3 + $lbodyx2, $this->height, "$field", "", 0, "L");
+		$this->Cell($lbodyx1, $this->height, "$middle", "", 0, "L");
+		$this->Cell($lbodyx1, $this->height, " ", "", 0, "L");
+		$this->Cell($lbodyx2, $this->height, $data, "", 0, "R");
 		$this->Ln();
 	}
 	
