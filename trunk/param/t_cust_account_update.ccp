@@ -504,8 +504,8 @@ WHERE t_cust_account_id={t_cust_account_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="605" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="p_account_status_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_cust_account_updateFormp_account_status_id" fieldSource="p_account_status_id" connection="ConnSIKP" dataSource="p_account_status" orderBy="p_account_status_id" boundColumn="p_account_status_id" textColumn="code" required="True">
-					<Components/>
+				<TextBox id="605" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="status_code" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_cust_account_updateFormstatus_code" fieldSource="status_code" connection="ConnSIKP" dataSource="p_account_status" orderBy="p_account_status_id" boundColumn="p_account_status_id" textColumn="code" required="True" html="False">
+<Components/>
 					<Events/>
 					<TableParameters/>
 					<SPParameters/>
@@ -517,19 +517,25 @@ WHERE t_cust_account_id={t_cust_account_id}">
 					<Fields/>
 					<Attributes/>
 					<Features/>
-				</ListBox>
-				<TextBox id="621" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_ayat" fieldSource="nama_ayat" required="True" caption="Nama Ayat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_ayat">
+				</TextBox>
+<TextBox id="621" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_ayat" fieldSource="nama_ayat" required="True" caption="Nama Ayat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_ayat">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="622" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+				<Hidden id="622" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Button id="623" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_cust_account_updateFormButton1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
