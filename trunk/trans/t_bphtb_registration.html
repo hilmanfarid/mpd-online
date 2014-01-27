@@ -618,8 +618,12 @@ function hitungNPOPKP(){
                                 if(npokp=='' || npokp=='undefined'){
                                         npokp=0;
                                 }
-                document.getElementById('t_bphtb_registrationFormnpop_kp').value=ReplaceNumberWithCommas(parseFloat(npokp)-parseFloat(npotkp));
-               hitungTerutang(document.getElementById('t_bphtb_registrationFormnpop_kp').value.replace(/,/g ,''));
+               if((parseFloat(npokp)-parseFloat(npotkp)) < 0){
+			   		document.getElementById('t_bphtb_registrationFormnpop_kp').value=ReplaceNumberWithCommas(0);
+			   }else{
+			   		document.getElementById('t_bphtb_registrationFormnpop_kp').value=ReplaceNumberWithCommas(parseFloat(npokp)-parseFloat(npotkp));
+               }
+			   hitungTerutang(document.getElementById('t_bphtb_registrationFormnpop_kp').value.replace(/,/g ,''));
 }
 function hitungTerutang(nilai){ 
         var terutang = Math.ceil(nilai/100*5);
@@ -635,7 +639,11 @@ function hitungPembayaran(){
         if(diskon=='' || diskon=='undefined'){
                 diskon=0;
         }
-        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
+		if(document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value < 0){
+			document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=0;
+		}else{
+        	document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
+		}
 }
 </script>
 </body>
