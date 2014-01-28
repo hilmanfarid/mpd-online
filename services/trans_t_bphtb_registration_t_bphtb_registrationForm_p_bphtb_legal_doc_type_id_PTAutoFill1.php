@@ -42,7 +42,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-3436EC62
+//Class_Initialize Event @2-695049DE
     function clsGridp_bphtb_legal_doc_type_p($RelativePath, & $Parent)
     {
         global $FileName;
@@ -84,6 +84,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
         $this->p_legal_doc_type_created_by = & new clsControl(ccsLabel, "p_legal_doc_type_created_by", "p_legal_doc_type_created_by", ccsText, "", CCGetRequestParam("p_legal_doc_type_created_by", ccsGet, NULL), $this);
         $this->p_legal_doc_type_updated_date = & new clsControl(ccsLabel, "p_legal_doc_type_updated_date", "p_legal_doc_type_updated_date", ccsDate, $DefaultDateFormat, CCGetRequestParam("p_legal_doc_type_updated_date", ccsGet, NULL), $this);
         $this->p_legal_doc_type_updated_by = & new clsControl(ccsLabel, "p_legal_doc_type_updated_by", "p_legal_doc_type_updated_by", ccsText, "", CCGetRequestParam("p_legal_doc_type_updated_by", ccsGet, NULL), $this);
+        $this->doc_cons = & new clsControl(ccsLabel, "doc_cons", "doc_cons", ccsText, "", CCGetRequestParam("doc_cons", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -98,7 +99,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
     }
 //End Initialize Method
 
-//Show Method @2-E99C563A
+//Show Method @2-6924AAB9
     function Show()
     {
         global $Tpl;
@@ -142,6 +143,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
             $this->ControlsVisible["p_legal_doc_type_created_by"] = $this->p_legal_doc_type_created_by->Visible;
             $this->ControlsVisible["p_legal_doc_type_updated_date"] = $this->p_legal_doc_type_updated_date->Visible;
             $this->ControlsVisible["p_legal_doc_type_updated_by"] = $this->p_legal_doc_type_updated_by->Visible;
+            $this->ControlsVisible["doc_cons"] = $this->doc_cons->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 // Parse Separator
                 if($this->RowNumber) {
@@ -169,6 +171,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
                 $this->p_legal_doc_type_created_by->SetValue($this->DataSource->p_legal_doc_type_created_by->GetValue());
                 $this->p_legal_doc_type_updated_date->SetValue($this->DataSource->p_legal_doc_type_updated_date->GetValue());
                 $this->p_legal_doc_type_updated_by->SetValue($this->DataSource->p_legal_doc_type_updated_by->GetValue());
+                $this->doc_cons->SetValue($this->DataSource->doc_cons->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -187,6 +190,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
                 $this->p_legal_doc_type_created_by->Show();
                 $this->p_legal_doc_type_updated_date->Show();
                 $this->p_legal_doc_type_updated_by->Show();
+                $this->doc_cons->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -205,7 +209,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
     }
 //End Show Method
 
-//GetErrors Method @2-B8BB6163
+//GetErrors Method @2-F2A4DB05
     function GetErrors()
     {
         $errors = "";
@@ -224,6 +228,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
         $errors = ComposeStrings($errors, $this->p_legal_doc_type_created_by->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_legal_doc_type_updated_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_legal_doc_type_updated_by->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->doc_cons->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -234,7 +239,7 @@ class clsGridp_bphtb_legal_doc_type_p { //p_bphtb_legal_doc_type_p class @2-0840
 
 class clsp_bphtb_legal_doc_type_pDataSource extends clsDBConnSIKP {  //p_bphtb_legal_doc_type_pDataSource Class @2-BAFD5D02
 
-//DataSource Variables @2-955F76DF
+//DataSource Variables @2-CA0C453A
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -261,9 +266,10 @@ class clsp_bphtb_legal_doc_type_pDataSource extends clsDBConnSIKP {  //p_bphtb_l
     var $p_legal_doc_type_created_by;
     var $p_legal_doc_type_updated_date;
     var $p_legal_doc_type_updated_by;
+    var $doc_cons;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-944AEB66
+//DataSourceClass_Initialize Event @2-33ED6A9D
     function clsp_bphtb_legal_doc_type_pDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -298,6 +304,8 @@ class clsp_bphtb_legal_doc_type_pDataSource extends clsDBConnSIKP {  //p_bphtb_l
         $this->p_legal_doc_type_updated_date = new clsField("p_legal_doc_type_updated_date", ccsDate, $this->DateFormat);
         
         $this->p_legal_doc_type_updated_by = new clsField("p_legal_doc_type_updated_by", ccsText, "");
+        
+        $this->doc_cons = new clsField("doc_cons", ccsText, "");
         
 
     }
@@ -352,7 +360,7 @@ class clsp_bphtb_legal_doc_type_pDataSource extends clsDBConnSIKP {  //p_bphtb_l
     }
 //End Open Method
 
-//SetValues Method @2-50D868C2
+//SetValues Method @2-774B0B58
     function SetValues()
     {
         $this->p_bphtb_legal_doc_type_id->SetDBValue(trim($this->f("p_bphtb_legal_doc_type_id")));
@@ -370,6 +378,7 @@ class clsp_bphtb_legal_doc_type_pDataSource extends clsDBConnSIKP {  //p_bphtb_l
         $this->p_legal_doc_type_created_by->SetDBValue($this->f("created_by"));
         $this->p_legal_doc_type_updated_date->SetDBValue(trim($this->f("updated_date")));
         $this->p_legal_doc_type_updated_by->SetDBValue($this->f("updated_by"));
+        $this->doc_cons->SetDBValue($this->f("doc_cons"));
     }
 //End SetValues Method
 
