@@ -505,7 +505,7 @@ WHERE t_cust_account_id={t_cust_account_id}">
 					<Features/>
 				</TextBox>
 				<TextBox id="605" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="status_code" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_cust_account_updateFormstatus_code" fieldSource="status_code" connection="ConnSIKP" dataSource="p_account_status" orderBy="p_account_status_id" boundColumn="p_account_status_id" textColumn="code" required="True" html="False">
-<Components/>
+					<Components/>
 					<Events/>
 					<TableParameters/>
 					<SPParameters/>
@@ -518,7 +518,7 @@ WHERE t_cust_account_id={t_cust_account_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="621" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_ayat" fieldSource="nama_ayat" required="True" caption="Nama Ayat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_ayat">
+				<TextBox id="621" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_ayat" fieldSource="nama_ayat" required="True" caption="Nama Ayat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_ayat">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -531,11 +531,17 @@ WHERE t_cust_account_id={t_cust_account_id}">
 					<Features/>
 				</Hidden>
 				<Button id="623" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_cust_account_updateFormButton1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Hidden id="624" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_id" PathID="t_cust_account_updateFormp_account_status_id" fieldSource="p_account_status_id">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
-</Button>
+</Hidden>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -624,6 +630,7 @@ WHERE t_cust_account_id={t_cust_account_id}">
 				<SQLParameter id="518" variable="fax_no" parameterType="Control" dataType="Text" parameterSource="fax_no"/>
 				<SQLParameter id="519" variable="zip_code" parameterType="Control" dataType="Text" parameterSource="zip_code"/>
 				<SQLParameter id="520" variable="updated_by" parameterType="Control" dataType="Text" parameterSource="updated_by"/>
+
 				<SQLParameter id="521" variable="t_cust_account_id" parameterType="Control" dataType="Text" parameterSource="t_cust_account_id"/>
 				<SQLParameter id="524" variable="npwd" parameterType="Control" dataType="Text" parameterSource="npwd"/>
 				<SQLParameter id="575" variable="wp_name" parameterType="Control" dataType="Text" parameterSource="wp_name"/>

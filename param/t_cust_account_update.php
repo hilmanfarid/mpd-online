@@ -359,7 +359,7 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-38B5F1BA
+//Class_Initialize Event @94-06DB5F99
     function clsRecordt_cust_account_updateForm($RelativePath, & $Parent)
     {
 
@@ -482,6 +482,7 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
             $this->nama_ayat->Required = true;
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
             $this->Button1 = & new clsButton("Button1", $Method, $this);
+            $this->p_account_status_id = & new clsControl(ccsHidden, "p_account_status_id", "p_account_status_id", ccsText, "", CCGetRequestParam("p_account_status_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->p_region_id->Value) && !strlen($this->p_region_id->Value) && $this->p_region_id->Value !== false)
                     $this->p_region_id->SetText(749);
@@ -514,7 +515,7 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
     }
 //End Initialize Method
 
-//Validate Method @94-AC14DD1A
+//Validate Method @94-AF055738
     function Validate()
     {
         global $CCSLocales;
@@ -583,6 +584,7 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
         $Validation = ($this->status_code->Validate() && $Validation);
         $Validation = ($this->nama_ayat->Validate() && $Validation);
         $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
+        $Validation = ($this->p_account_status_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_cust_account_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_cust_account_id->Errors->Count() == 0);
@@ -644,11 +646,12 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
         $Validation =  $Validation && ($this->status_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->nama_ayat->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_account_status_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-75ACF247
+//CheckErrors Method @94-40378EED
     function CheckErrors()
     {
         $errors = false;
@@ -712,6 +715,7 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
         $errors = ($errors || $this->status_code->Errors->Count());
         $errors = ($errors || $this->nama_ayat->Errors->Count());
         $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
+        $errors = ($errors || $this->p_account_status_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -839,7 +843,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @94-B043A778
+//Show Method @94-C7E0D307
     function Show()
     {
         global $CCSUseAmp;
@@ -926,6 +930,7 @@ function GetPrimaryKey($keyName)
                     $this->status_code->SetValue($this->DataSource->status_code->GetValue());
                     $this->nama_ayat->SetValue($this->DataSource->nama_ayat->GetValue());
                     $this->p_vat_type_dtl_id->SetValue($this->DataSource->p_vat_type_dtl_id->GetValue());
+                    $this->p_account_status_id->SetValue($this->DataSource->p_account_status_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -996,6 +1001,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->status_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->nama_ayat->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_account_status_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1078,6 +1084,7 @@ function GetPrimaryKey($keyName)
         $this->nama_ayat->Show();
         $this->p_vat_type_dtl_id->Show();
         $this->Button1->Show();
+        $this->p_account_status_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1088,7 +1095,7 @@ function GetPrimaryKey($keyName)
 
 class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_account_updateFormDataSource Class @94-3D3B7BED
 
-//DataSource Variables @94-A179E994
+//DataSource Variables @94-44EA0EAF
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1161,9 +1168,10 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
     var $status_code;
     var $nama_ayat;
     var $p_vat_type_dtl_id;
+    var $p_account_status_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-63D8D4D1
+//DataSourceClass_Initialize Event @94-694813EB
     function clst_cust_account_updateFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1289,6 +1297,8 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
         
         $this->p_vat_type_dtl_id = new clsField("p_vat_type_dtl_id", ccsText, "");
         
+        $this->p_account_status_id = new clsField("p_account_status_id", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1321,7 +1331,7 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
     }
 //End Open Method
 
-//SetValues Method @94-72143A87
+//SetValues Method @94-4F460F0F
     function SetValues()
     {
         $this->t_cust_account_id->SetDBValue($this->f("t_cust_account_id"));
@@ -1383,6 +1393,7 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
         $this->status_code->SetDBValue($this->f("status_code"));
         $this->nama_ayat->SetDBValue($this->f("nama_ayat"));
         $this->p_vat_type_dtl_id->SetDBValue($this->f("p_vat_type_dtl_id"));
+        $this->p_account_status_id->SetDBValue($this->f("p_account_status_id"));
     }
 //End SetValues Method
 
