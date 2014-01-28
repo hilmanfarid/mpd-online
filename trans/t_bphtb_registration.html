@@ -110,8 +110,12 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(send
         onSuccess: function(transport) {
             var valuesRow = eval(transport.responseText)[0];
             if (typeof(valuesRow) != "undefined") {
-                getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["npoptkp"]);
-            } else {
+				if(valuesRow["npoptkp"] <=1 ){
+					getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["npoptkp"]*(document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
+				}else{
+                	getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["npoptkp"]);
+            	}
+			} else {
                 getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = "0";
             }
                         hitungNPOPKP();
