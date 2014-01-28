@@ -112,7 +112,7 @@ WHERE  p_rqst_type_id = {p_rqst_type_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="start_period" required="True" caption="Masa Pajak" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormstart_period" defaultValue="date(&quot;d-M-Y&quot;)" format="dd-mmm-yyyy">
+				<TextBox id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="start_period" required="True" caption="Masa Pajak" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormstart_period" format="dd-mm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -124,7 +124,7 @@ WHERE  p_rqst_type_id = {p_rqst_type_id}">
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-				<TextBox id="35" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="end_period" required="False" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormend_period" format="dd-mmm-yyyy">
+				<TextBox id="35" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="end_period" required="False" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormend_period" format="dd-mm-yyyy">
 					<Components/>
 					<Events/>
 					<Attributes/>
