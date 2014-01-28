@@ -111,8 +111,10 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(send
             var valuesRow = eval(transport.responseText)[0];
             if (typeof(valuesRow) != "undefined") {
 				if(valuesRow["npoptkp"] <=1 ){
+					alert((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
 					getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["npoptkp"]*(document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
 				}else{
+					alert(valuesRow["npoptkp"]);
                 	getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["npoptkp"]);
             	}
 			} else {
