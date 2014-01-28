@@ -351,7 +351,13 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Hidden id="1007" fieldSourceType="DBColumn" dataType="Text" name="nilai_doc" PathID="t_bphtb_registrationFormnilai_doc">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
