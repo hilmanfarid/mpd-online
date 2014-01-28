@@ -20,7 +20,7 @@ $tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+$query				= "select *,trunc(payment_date) from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
 $tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
 $tgl_penerimaan_last = str_replace("'", "", $tgl_penerimaan_last);
@@ -137,7 +137,7 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable3, $this->height + 2, "JUMLAH", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "MASA PAJAK", "TBLR", 0, 'C');
 		$this->Cell($ltable2, $this->height + 2, "TGL TAP", "TBLR", 0, 'C');
-		$this->Cell($ltable2, $this->height + 2, "KET.", "TBLR", 0, 'C');
+		$this->Cell($ltable2, $this->height + 2, "TGL BAYAR.", "TBLR", 0, 'C');
 		$this->Ln();
 
 		//isi kolom
@@ -160,7 +160,7 @@ class FormCetak extends FPDF {
 												  number_format($item["jumlah_terima"], 0, ',', '.'),
 												  $item["masa_pajak"],
 												  $item["kd_tap"],
-												  $item["keterangan"]
+												  $item["payment_date"]
 												  ),
 											array('TBLR',
 												  'TBLR',
