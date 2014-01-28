@@ -110,15 +110,26 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(send
         onSuccess: function(transport) {
             var valuesRow = eval(transport.responseText)[0];
             if (typeof(valuesRow) != "undefined") {
-                                if(valuesRow["npoptkp"] <=1 ){
-                                        //alert((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
-                                        getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["npoptkp"]*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
-                                		document.getElementById('t_bphtb_registrationFormnilai_doc').value=valuesRow["npoptkp"];
+                                if(valuesRow["doc_cons"] > 0 && valuesRow["doc_cons"] != '' ){
+
+                                        getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["doc_cons"]*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
+                                		document.getElementById('t_bphtb_registrationFormnilai_doc').value=valuesRow["doc_cons"];
+										if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
+						                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,'')*valuesRow["doc_cons"]);
+						                }else{
+						                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas((document.getElementById('t_bphtb_registrationFormmarket_price').value).replace(/,/g ,'')*valuesRow["doc_cons"]);
+						                }
 								}else{
-                                        //alert(valuesRow["npoptkp"]);
+										if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
+						                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''));
+						                }else{
+						                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''));
+						                }
+										document.getElementById('t_bphtb_registrationFormnilai_doc').value='';
+								}
                         getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["npoptkp"]);
-                }
-                        } else {
+
+            } else {
                 getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = "0";
             }
                         hitungNPOPKP();
@@ -615,10 +626,11 @@ function getNPOP(){
                         document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''));
                 }
                 var npotkp_cons = document.getElementById('t_bphtb_registrationFormnilai_doc').value;
-                if(npotkp_cons <=1 && npotkp_cons != ''){
+                if(npotkp_cons >= 0 && npotkp_cons != ''){
                         //alert((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
-                        document.getElementById('t_bphtb_registrationFormnpop_tkp').value = ReplaceNumberWithCommas(npotkp_cons*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
-                }
+                        //document.getElementById('t_bphtb_registrationFormnpop_tkp').value = ReplaceNumberWithCommas(npotkp_cons*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
+                		document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas((document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,'')*npotkp_cons);
+				}
                 hitungNPOPKP();
 }
 function hitungNPOPKP(){
