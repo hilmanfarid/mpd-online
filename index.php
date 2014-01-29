@@ -6,6 +6,17 @@
 
  if (CCGetUserLogin()!="")
  {
+ $dbConn = new clsDBConnSIKP();
+	
+	$query="SELECT user_role.code FROM sikp.p_app_user usr
+	LEFT JOIN sikp.p_app_user_role roles on usr.p_app_user_id = roles.p_app_user_id
+	LEFT join sikp.p_app_role user_role on user_role.p_app_role_id = roles.p_app_role_id
+	where usr.app_user_name = '".CCGetUserLogin()."'";
+	$dbConn->query($query);
+	$items=array();
+	while($dbConn->next_record()){
+		$items = array('code' => $dbConn->f("code"));
+	}
 ?>
 <html>
 <head>
@@ -87,7 +98,14 @@
     <frame name="header" src="main/sikp_header.php" noresize="noresize" scrolling="no" />
     <frameset id="TENGAH" framespacing="1" frameborder="0" cols="20%,*">
         <frame name="frmmenu" src="main/sikp_menu.php" noresize="noresize" scrolling="no"/>
-        <frame name="frmmain" src="main/sikp_home.php" noresize="noresize" scrolling="yes" />
+		<?php
+			if($items['code']=='WALIKOTA'){
+			?>
+        	<frame name="frmmain" src="main/p_change_pass_only.php" noresize="noresize" scrolling="yes" />
+			<?php }else{ ?>
+			<frame name="frmmain" src="main/sikp_home.php" noresize="noresize" scrolling="yes" />
+			<?php } ?>
+		?>
     </frameset>
     <frame name="footer" src="main/sikp_footer.html" noresize="noresize" scrolling="no" />
     <noframes>
