@@ -48,7 +48,7 @@ function print_laporan($p_rqst_type_id,$year_code,$year_period_id,$date_start,$d
 	include "../include/fpdf17/mc_table.php";
 	$_BORDER = 0;
 	$_FONT = 'Times';
-	$_FONTSIZE = 10;
+	$_FONTSIZE = 8;
     $pdf = new PDF_MC_Table();
     $pdf->AddPage('Portrait', 'Letter');
     $pdf->SetFont('helvetica', '', $_FONTSIZE);
@@ -56,7 +56,7 @@ function print_laporan($p_rqst_type_id,$year_code,$year_period_id,$date_start,$d
 	$pdf->SetLeftMargin(5);
 	$pdf->SetAutoPageBreak(false,0);
 
-	$pdf->SetFont('helvetica', '',13);
+	$pdf->SetFont('helvetica', '',9);
 	$pdf->SetWidths(array(200));
 	$pdf->ln(1);
     	if($jenis_tahun=='pajak'){
@@ -78,11 +78,11 @@ function print_laporan($p_rqst_type_id,$year_code,$year_period_id,$date_start,$d
 	}
 	$dbConn->query($query);
 	$items=array();
-	$pdf->SetFont('helvetica', '',13);
+	$pdf->SetFont('helvetica', '',8);
 	$pdf->ln(2);
 	$pdf->SetWidths(array(10,40,40,33,37,40));
 	$pdf->RowMultiBorderWithHeight(array("NO","BULAN","BESARNYA","JUMLAH WP","JUMLAH SSPD","KETERANGAN"),array('LTB','LTB','LTB','LTB','LTB','LTBR'),6);
-	$pdf->SetFont('helvetica', '',13);
+	$pdf->SetFont('helvetica', '',8);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','R','R','R','L'));
 	$jumlah =0;
@@ -102,8 +102,10 @@ function print_laporan($p_rqst_type_id,$year_code,$year_period_id,$date_start,$d
 	$pdf->RowMultiBorderWithHeight(array('Jumlah','Rp. '.number_format($jumlah, 2, ',', '.'),$jumlah_wp,'',''),array('LB','LB','LB','LB','LBR'),6);
 	$pdf->SetWidths(array(123,50));
 	$pdf->SetAligns('L');
-	$pdf->ln(4);
-	$pdf->RowMultiBorderWithHeight(array('','KASIE VOP'),array('',''),6);
+		$pdf->ln(5);
+	$pdf->SetWidtHs(array(130,70));
+	$pdf->SetAligns(array("C", "C","C","C","C"));
+	$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
 	$pdf->Output("","I");
 	echo 'tes';
 	exit;	

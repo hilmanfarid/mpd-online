@@ -98,8 +98,10 @@ function print_laporan($param_arr){
 	$pdf->RowMultiBorderWithHeight(array('Jumlah','Rp. '.number_format($jumlah, 2, ',', '.'),number_format($jumlah_wp, 0, ',', '.')),array('LB','LB','LBR'),6);
 	$pdf->SetWidths(array(123,50));
 	$pdf->SetAligns('L');
-	$pdf->ln(4);
-	$pdf->RowMultiBorderWithHeight(array('','KASIE VOP'),array('',''),6);
+	$pdf->ln(5);
+	$pdf->SetWidtHs(array(200,70));
+	$pdf->SetAligns(array("C", "C","C","C","C"));
+	$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
 	$pdf->Output("","I");
 	echo 'tes';
 	exit;	
