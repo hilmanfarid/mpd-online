@@ -16,6 +16,12 @@ function Page_BeforeShow(& $sender)
     global $t_laporan_harian_sptpd; //Compatibility
 //End Page_BeforeShow
 
+//Custom Code @10-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 // -------------------------
     // Write your own code here.
     if($t_laporan_harian_sptpd->cetak_laporan->GetValue()=='T'){
@@ -130,14 +136,18 @@ function print_laporan($param_arr){
 	$pdf->RowMultiBorderWithHeight(array('JUMLAH', 'Rp ' . number_format($jumlah_omzet, 2, ',', '.'), 'Rp ' . number_format($jumlah_ketetapan, 2, ',', '.')),array('LB','LB','LBR'),6);
 	
 	//signature
-	$pdf->SetWidths(array(259,80));
-	$pdf->SetAligns(Array('C','C'));
+	//$pdf->SetWidths(array(259,80));
+	/*$pdf->SetAligns(Array('C','C'));
 	$pdf->RowMultiBorderWithHeight(array('', ''),array('',''),12);
 	$pdf->RowMultiBorderWithHeight(array('', 'Bandung' . ', ' . date('d F Y')),array('',''),6);
 	$pdf->RowMultiBorderWithHeight(array('', ''),array('',''),36);
 	$pdf->SetAligns(Array('C','L'));
 	$pdf->RowMultiBorderWithHeight(array('', 'Nama:'),array('','T'),6);
-	$pdf->RowMultiBorderWithHeight(array('', 'Jabatan:'),array('',''),6);
+	$pdf->RowMultiBorderWithHeight(array('', 'Jabatan:'),array('',''),6);*/
+	$pdf->ln(5);
+	$pdf->SetWidtHs(array(239,90));
+	$pdf->SetAligns(array("C", "C","C","C","C"));
+	$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
 	$pdf->Output("","I");
 	echo 'tes';
 	exit;	

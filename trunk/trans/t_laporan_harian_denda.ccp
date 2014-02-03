@@ -56,13 +56,13 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="19" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_laporan_harian_dendap_vat_type_id" fieldSource="p_vat_type_id">
+				<Hidden id="19" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_laporan_harian_dendap_vat_type_id" fieldSource="p_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

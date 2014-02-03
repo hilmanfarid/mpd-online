@@ -198,7 +198,10 @@ ORDER BY
 	$pdf->RowMultiBorderWithHeight(array("",'Rp. '.number_format($total_sptpd, 2, ',', '.'),"",'Rp. '.number_format($total_skpdkb, 2, ',', '.'),"",'Rp. '.number_format($total_denda, 2, ',', '.'),""),array('LRTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR'),6);
 	$pdf->SetWidths(array(250,70));
 	$pdf->ln(8);
-	$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
+	$pdf->SetWidtHs(array(239,90));
+	$pdf->SetAligns(array("C", "C","C","C","C"));
+	$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
+	//$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
 	$pdf->Output("","I");
 	echo 'tes';
 	exit;	

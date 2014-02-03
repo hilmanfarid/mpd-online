@@ -115,9 +115,9 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(send
                                         getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["doc_cons"]*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
                                 		document.getElementById('t_bphtb_registrationFormnilai_doc').value=valuesRow["doc_cons"];
 										if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
-						                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,'')*valuesRow["doc_cons"]);
+						                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,'')*valuesRow["doc_cons"]));
 						                }else{
-						                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas((document.getElementById('t_bphtb_registrationFormmarket_price').value).replace(/,/g ,'')*valuesRow["doc_cons"]);
+						                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormmarket_price').value).replace(/,/g ,'')*valuesRow["doc_cons"]));
 						                }
 								}else{
 										if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
@@ -629,7 +629,7 @@ function getNPOP(){
                 if(npotkp_cons >= 0 && npotkp_cons != ''){
                         //alert((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
                         //document.getElementById('t_bphtb_registrationFormnpop_tkp').value = ReplaceNumberWithCommas(npotkp_cons*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
-                		document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas((document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,'')*npotkp_cons);
+                		document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,'')*npotkp_cons));
 				}
                 hitungNPOPKP();
 }
