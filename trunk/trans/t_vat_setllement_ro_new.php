@@ -986,7 +986,15 @@ if($Redirect)
 //End Go to destination page
 
 //Show Page @1-496CA6DA
-$t_vat_setllementGrid->Show();
+//Custom Code @316-2A29BDB7
+// -------------------------
+    if(CCGetFromGet("s_keyword") == "") {
+		$t_vat_setllementGrid->Visible = false;
+	}else {
+		$t_vat_setllementGrid->Show();
+	}
+// -------------------------
+//End Custom Code
 $t_vat_setllementSearch->Show();
 $searchForm->Show();
 $Tpl->block_path = "";
