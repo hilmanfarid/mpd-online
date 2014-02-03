@@ -258,13 +258,16 @@ class FormCetak extends FPDF {
 		
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "2. Sanksi administrasi bunga (Pasal 67 ayat (2)", "", 0, 'L');
-		$this->Cell($lbody1-10, $this->height, "Rp " . $data["penalty_amt"], "B", 0, 'L');
+		$this->Cell(6, $this->height, "Rp " , "B", 0, 'L');
+		$this->Cell($lbody1-16, $this->height, $this->getNumberFormat($data["penalty_amt"],2), "B", 0, 'R');
 		$this->Cell(10, $this->height, "" /*. $data["ayat"]*/, "R", 0, 'L');
 		$this->Ln();
 		
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "3. Jumlah yang masih harus dibayar (1 + 2a)", "", 0, 'L');
-		$this->Cell($lbody1, $this->height, "Rp " . $data["penalty_amt"], "R", 0, 'L');
+		$this->Cell(6, $this->height, "Rp " , "", 0, 'L');
+		$this->Cell($lbody1-16, $this->height,$this->getNumberFormat($data["penalty_amt"],2), "", 0, 'R');
+		$this->Cell(10, $this->height, "" /*. $data["ayat"]*/, "R", 0, 'L');
 		$this->Ln();
 		
 		$this->Cell($this->lengthCell, $this->height, "", "BLR", 0, 'L');
