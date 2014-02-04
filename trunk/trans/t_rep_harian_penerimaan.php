@@ -45,7 +45,7 @@ class clsRecordt_rep_harian_penerimaan { //t_rep_harian_penerimaan Class @2-F33F
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-EDA0D9AC
+//Class_Initialize Event @2-D5D087CD
     function clsRecordt_rep_harian_penerimaan($RelativePath, & $Parent)
     {
 
@@ -76,6 +76,7 @@ class clsRecordt_rep_harian_penerimaan { //t_rep_harian_penerimaan Class @2-F33F
             $this->date_end_laporan = & new clsControl(ccsTextBox, "date_end_laporan", "date_end_laporan", ccsText, "", CCGetRequestParam("date_end_laporan", $Method, NULL), $this);
             $this->date_end_laporan->Required = true;
             $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_rep_harian_penerimaan", "date_end_laporan", $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -123,7 +124,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-378029A9
+//Operation Method @2-D7A601D1
     function Operation()
     {
         if(!$this->Visible)
@@ -140,12 +141,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button1";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = "t_rep_harian_penerimaan.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -155,7 +162,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-1E7399CA
+//Show Method @2-72909588
     function Show()
     {
         global $CCSUseAmp;
@@ -205,6 +212,7 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_date_start_laporan1->Show();
         $this->date_end_laporan->Show();
         $this->DatePicker_end_start_laporan1->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
