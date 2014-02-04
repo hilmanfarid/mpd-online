@@ -20,6 +20,7 @@ $tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
+$filter_piutang		= CCGetFromGet("filter_piutang", "all"); 
 $query				= "select *,trunc(payment_date) from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
 $tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
