@@ -17,6 +17,12 @@
                 params += "&end_date='"+$("#t_rep_harian_penerimaandate_end_laporan").val()+"'";
                 window.open("../report/cetak_rep_harian_penerimaan.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
+		function printLaporanSum(){
+                var params = "?start_date='"+$("#t_rep_harian_penerimaandate_start_laporan").val()+"'";
+                params += "&end_date='"+$("#t_rep_harian_penerimaandate_end_laporan").val()+"'";
+				params += "&cetak_summary=T";
+                window.open("../report/cetak_rep_harian_penerimaan.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+        }
 </script>
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
@@ -53,7 +59,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -86,8 +92,9 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   </tr>
  
                   <tr>
-                    <td colspan="2" align="right">
-                      <!-- BEGIN Button Button1 --><input id="t_rep_harian_penerimaanButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Tampilkan" type="button"><!-- END Button Button1 --></td>
+                    <td colspan="2" align="right">&nbsp;
+                      <!-- BEGIN Button Button2 --><input id="t_rep_harian_penerimaanButton2" class="btn_tambah" onclick="printLaporanSum()" name="{Button_Name}" alt="Button1" value="Tampilkan Summary" type="button"><!-- END Button Button2 -->
+                      <!-- BEGIN Button Button1 --><input id="t_rep_harian_penerimaanButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Tampilkan Detil" type="button"><!-- END Button Button1 --></td>
                   </tr>
                 </table>
               </td>
