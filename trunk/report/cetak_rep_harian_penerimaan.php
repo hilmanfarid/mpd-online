@@ -75,7 +75,8 @@ class FormCetak extends FPDF {
 	}
 	*/
 	
-	function PageCetak($data, $user, $start_date, $end_date) {
+	function PageCetak($data, $user, $start_date, $end_date) {		
+	$cetak_summary		= CCGetFromGet("cetak_summary", "");
 		$this->AliasNbPages();
 		$this->AddPage("L");
 		$this->SetFont('Arial', '', 10);
@@ -217,58 +218,61 @@ class FormCetak extends FPDF {
 		$no = 1;
 		$tot_sptpd_thn_lalu=0;
 		$tot_sptpd_thn_lalu_all=0;
+		$no_jumlah=1;
 		for ($i = 0; $i < count($data["nama_ayat"]); $i++) {
 			//isi kolom
 			$this->SetWidths(array($ltable1, $ltable2, $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
 			$this->SetAligns(array("C", "C", "L", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
 			//print data
 			$this->SetFont('Arial', '', 6);
-			$this->RowMultiBorderWithHeight(
-				array($no,
-					  $data["kode_jns_pjk"][$i] . "." . $data["type_ayat"][$i],
-					  $data["nama_ayat"][$i],
-					  number_format($data["target"][$i], 0, ',', '.'),
-					  number_format($data["count_jml_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["jml_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["count_jml_sd_hari_lalu"][$i], 0, ',', '.'),
-					  number_format($data["jml_sd_hari_lalu"][$i], 0, ',', '.'),
-					  number_format($data["count_jml_sd_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["jml_sd_hari_ini"][$i], 0, ',', '.'),
-					  0,
-					  number_format($data["count_sptpd_jml_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["sptpd_jml_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["count_sptpd_jml_sd_hari_lalu"][$i], 0, ',', '.'),
-					  number_format($data["sptpd_jml_sd_hari_lalu"][$i], 0, ',', '.'),
-					  number_format($data["count_sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["count_sptpd_jml_hari_ini"][$i] - $data["count_jml_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i], 0, ',', '.'),
-					  number_format($data["sptpd_thn_lalu"][$i], 0, ',', '.'),
-					  //abs(number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i], 0, ',', '.'))
-					  number_format($data["sptpd_thn_lalu"][$i]+$data["jml_sd_hari_ini"][$i], 0, ',', '.')
-					  ),
-				array("TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR",
-					  "TBLR"
-					  ),
-				$this->height);
+			if($cetak_summary!='T'){
+				$this->RowMultiBorderWithHeight(
+					array($no,
+						  $data["kode_jns_pjk"][$i] . "." . $data["type_ayat"][$i],
+						  $data["nama_ayat"][$i],
+						  number_format($data["target"][$i], 0, ',', '.'),
+						  number_format($data["count_jml_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["jml_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["count_jml_sd_hari_lalu"][$i], 0, ',', '.'),
+						  number_format($data["jml_sd_hari_lalu"][$i], 0, ',', '.'),
+						  number_format($data["count_jml_sd_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["jml_sd_hari_ini"][$i], 0, ',', '.'),
+						  0,
+						  number_format($data["count_sptpd_jml_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["sptpd_jml_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["count_sptpd_jml_sd_hari_lalu"][$i], 0, ',', '.'),
+						  number_format($data["sptpd_jml_sd_hari_lalu"][$i], 0, ',', '.'),
+						  number_format($data["count_sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["count_sptpd_jml_hari_ini"][$i] - $data["count_jml_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["sptpd_thn_lalu"][$i], 0, ',', '.'),
+						  //abs(number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i], 0, ',', '.'))
+						  number_format($data["sptpd_thn_lalu"][$i]+$data["jml_sd_hari_ini"][$i], 0, ',', '.')
+						  ),
+					array("TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR"
+						  ),
+					$this->height);
+			}
 			$no++;
 
 			//hitung jml_hari_ini sampai baris ini
@@ -300,48 +304,95 @@ class FormCetak extends FPDF {
 			$tot_sptpd_thn_lalu_all = $tot_sptpd_thn_lalu_all + $data['sptpd_thn_lalu'][$i];
 			$this->SetFont('Arial', 'B', 6);
 			if($jenis != $jenissesudah){
-				$this->RowMultiBorderWithHeight(
-					array("JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]),
-							number_format(array_sum($j_target), 0, ',', '.'),
-							number_format(array_sum($j_count_jml_hari_ini), 0, ',', '.'),
-							number_format(array_sum($j_jml_hari_ini), 0, ',', '.'),
-							number_format(array_sum($j_count_jml_sd_hari_lalu), 0, ',', '.'),
-							number_format(array_sum($j_jml_sd_hari_lalu), 0, ',', '.'),
-							number_format(array_sum($j_count_jml_sd_hari_ini), 0, ',', '.'),
-							number_format(array_sum($j_jml_sd_hari_ini), 0, ',', '.'),
-							0,
-							number_format(array_sum($j_count_sptpd_jml_hari_ini), 0, ',', '.'),
-							number_format(array_sum($j_sptpd_jml_hari_ini), 0, ',', '.'),
-							number_format(array_sum($j_count_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
-							number_format(array_sum($j_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
-							number_format(array_sum($j_count_sptpd_jml_sd_hari_ini), 0, ',', '.'),
-							number_format(array_sum($j_sptpd_jml_sd_hari_ini), 0, ',', '.'),
-							number_format(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini), 0, ',', '.'),
-							number_format(array_sum($j_slktk), 0, ',', '.'),
-							number_format($tot_sptpd_thn_lalu, 0, ',', '.'),
-							number_format(array_sum($j_jml_sd_hari_ini)+$tot_sptpd_thn_lalu, 0, ',', '.')
-						  ),
-					array("TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR",
-							"TBLR"
-						  ),
-					  $this->height);
-				
+				if($cetak_summary!='T'){
+					$this->RowMultiBorderWithHeight(
+						array("JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]),
+								number_format(array_sum($j_target), 0, ',', '.'),
+								number_format(array_sum($j_count_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_count_jml_sd_hari_lalu), 0, ',', '.'),
+								number_format(array_sum($j_jml_sd_hari_lalu), 0, ',', '.'),
+								number_format(array_sum($j_count_jml_sd_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_jml_sd_hari_ini), 0, ',', '.'),
+								0,
+								number_format(array_sum($j_count_sptpd_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_sptpd_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_count_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
+								number_format(array_sum($j_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
+								number_format(array_sum($j_count_sptpd_jml_sd_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_sptpd_jml_sd_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_slktk), 0, ',', '.'),
+								number_format($tot_sptpd_thn_lalu, 0, ',', '.'),
+								number_format(array_sum($j_jml_sd_hari_ini)+$tot_sptpd_thn_lalu, 0, ',', '.')
+							  ),
+						array("TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR"
+							  ),
+						  $this->height);
+				}else{
+					$this->SetWidths(array($ltable1,$ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
+					$this->SetAligns(array("L","L", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));	
+					$this->RowMultiBorderWithHeight(
+						array($no_jumlah,"JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]),
+								number_format(array_sum($j_target), 0, ',', '.'),
+								number_format(array_sum($j_count_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_count_jml_sd_hari_lalu), 0, ',', '.'),
+								number_format(array_sum($j_jml_sd_hari_lalu), 0, ',', '.'),
+								number_format(array_sum($j_count_jml_sd_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_jml_sd_hari_ini), 0, ',', '.'),
+								0,
+								number_format(array_sum($j_count_sptpd_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_sptpd_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_count_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
+								number_format(array_sum($j_sptpd_jml_sd_hari_lalu), 0, ',', '.'),
+								number_format(array_sum($j_count_sptpd_jml_sd_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_sptpd_jml_sd_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_count_sptpd_jml_hari_ini)-array_sum($j_count_jml_hari_ini), 0, ',', '.'),
+								number_format(array_sum($j_slktk), 0, ',', '.'),
+								number_format($tot_sptpd_thn_lalu, 0, ',', '.'),
+								number_format(array_sum($j_jml_sd_hari_ini)+$tot_sptpd_thn_lalu, 0, ',', '.')
+							  ),
+						array("TLBR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR",
+								"TBLR"
+							  ),
+						  $this->height);
+						  $no_jumlah++;
+				}
 				$j_t_target	+= array_sum($j_target);
 				$j_t_count_jml_hari_ini	+= array_sum($j_count_jml_hari_ini);
 				$j_t_jml_hari_ini	+= array_sum($j_jml_hari_ini);
@@ -382,7 +433,51 @@ class FormCetak extends FPDF {
 			}
 			
 			//Total
-			if($i == count($data['nama_ayat']) - 1){
+			if($i == count($data['nama_ayat']) - 1 && $cetak_summary!='T'){
+				$this->RowMultiBorderWithHeight(
+					array("JUMLAH TOTAL",
+							number_format($j_t_target, 0, ',', '.'),
+							number_format($j_t_count_jml_hari_ini, 0, ',', '.'),
+							number_format($j_t_jml_hari_ini, 0, ',', '.'),
+							number_format($j_t_count_jml_sd_hari_lalu, 0, ',', '.'),
+							number_format($j_t_jml_sd_hari_lalu, 0, ',', '.'),
+							number_format($j_t_count_jml_sd_hari_ini, 0, ',', '.'),
+							number_format($j_t_jml_sd_hari_ini, 0, ',', '.'),
+							0,
+							number_format($j_t_count_sptpd_jml_hari_ini, 0, ',', '.'),
+							number_format($j_t_sptpd_jml_hari_ini, 0, ',', '.'),
+							number_format($j_t_count_sptpd_jml_sd_hari_lalu, 0, ',', '.'),
+							number_format($j_t_sptpd_jml_sd_hari_lalu, 0, ',', '.'),
+							number_format($j_t_count_sptpd_jml_sd_hari_ini, 0, ',', '.'),
+							number_format($j_t_sptpd_jml_sd_hari_ini, 0, ',', '.'),
+							number_format($j_t_count_sptpd_jml_hari_ini-$j_t_count_jml_hari_ini, 0, ',', '.'),
+							number_format($j_t_slktk, 0, ',', '.'),
+							number_format($tot_sptpd_thn_lalu_all, 0, ',', '.'),
+							number_format($j_t_jml_sd_hari_ini+$tot_sptpd_thn_lalu_all, 0, ',', '.')
+						  ),
+					array("TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR",
+						  "TBLR"
+						  ),
+					  $this->height);
+			}else if($i == count($data['nama_ayat']) - 1){
+				$this->SetWidths(array($ltable1 + $ltable2 + $ltable3, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable1, $ltable3, $ltable3, $ltable3));
+				$this->SetAligns(array("C", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
 				$this->RowMultiBorderWithHeight(
 					array("JUMLAH TOTAL",
 							number_format($j_t_target, 0, ',', '.'),
