@@ -1,19 +1,17 @@
 <?php
-//Include Common Files @1-A73F644B
+//Include Common Files @1-13A25C4E
 define("RelativePath", "..");
 define("PathToCurrentPage", "/trans/");
-define("FileName", "t_debt_letter_view.php");
+define("FileName", "t_laporan_piutang_pajak.php");
 include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
 //End Include Common Files
 
+class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD102CE
 
-
-class clsRecordLOV { //LOV Class @3-40E97705
-
-//Variables @3-D6FF3E86
+//Variables @2-D6FF3E86
 
     // Public variables
     var $ComponentType = "Record";
@@ -47,8 +45,8 @@ class clsRecordLOV { //LOV Class @3-40E97705
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-C871C7A0
-    function clsRecordLOV($RelativePath, & $Parent)
+//Class_Initialize Event @2-5FA990D3
+    function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
         global $FileName;
@@ -58,11 +56,11 @@ class clsRecordLOV { //LOV Class @3-40E97705
         $this->Parent = & $Parent;
         $this->RelativePath = $RelativePath;
         $this->Errors = new clsErrors();
-        $this->ErrorBlock = "Record LOV/Error";
+        $this->ErrorBlock = "Record t_laporan_piutang_pajak/Error";
         $this->ReadAllowed = true;
         if($this->Visible)
         {
-            $this->ComponentName = "LOV";
+            $this->ComponentName = "t_laporan_piutang_pajak";
             $this->Attributes = new clsAttributes($this->ComponentName . ":");
             $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
@@ -71,63 +69,54 @@ class clsRecordLOV { //LOV Class @3-40E97705
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
-            $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
+            $this->Button1 = & new clsButton("Button1", $Method, $this);
+            $this->year_code = & new clsControl(ccsTextBox, "year_code", "Periode Tahun", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
+            $this->year_code->Required = true;
+            $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsFloat, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
+            $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
+            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->vat_code->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
-            $this->cetak = & new clsControl(ccsHidden, "cetak", "cetak", ccsText, "", CCGetRequestParam("cetak", $Method, NULL), $this);
-            $this->p_account_status_id = & new clsControl(ccsListBox, "p_account_status_id", "p_account_status_id", ccsText, "", CCGetRequestParam("p_account_status_id", $Method, NULL), $this);
-            $this->p_account_status_id->Multiple = true;
-            $this->p_account_status_id->DSType = dsSQL;
-            $this->p_account_status_id->DataSource = new clsDBConnSIKP();
-            $this->p_account_status_id->ds = & $this->p_account_status_id->DataSource;
-            list($this->p_account_status_id->BoundColumn, $this->p_account_status_id->TextColumn, $this->p_account_status_id->DBFormat) = array("p_account_status_id", "code", "");
-            $this->p_account_status_id->DataSource->SQL = "select * from p_account_status";
-            $this->p_account_status_id->DataSource->Order = "";
-            $this->p_account_status_array = & new clsControl(ccsHidden, "p_account_status_array", "p_account_status_array", ccsText, "", CCGetRequestParam("p_account_status_array", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-4B5E524C
+//Validate Method @2-1F03B81F
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
+        $Validation = ($this->year_code->Validate() && $Validation);
+        $Validation = ($this->p_year_period_id->Validate() && $Validation);
+        $Validation = ($this->cetak_laporan->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
-        $Validation = ($this->t_customer_order_id->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
-        $Validation = ($this->cetak->Validate() && $Validation);
-        $Validation = ($this->p_account_status_id->Validate() && $Validation);
-        $Validation = ($this->p_account_status_array->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->cetak->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_account_status_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_account_status_array->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-C33065D0
+//CheckErrors Method @2-DD9FFD03
     function CheckErrors()
     {
         $errors = false;
+        $errors = ($errors || $this->year_code->Errors->Count());
+        $errors = ($errors || $this->p_year_period_id->Errors->Count());
+        $errors = ($errors || $this->cetak_laporan->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
-        $errors = ($errors || $this->t_customer_order_id->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
-        $errors = ($errors || $this->cetak->Errors->Count());
-        $errors = ($errors || $this->p_account_status_id->Errors->Count());
-        $errors = ($errors || $this->p_account_status_array->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
 //End CheckErrors Method
 
-//MasterDetail @3-ED598703
+//MasterDetail @2-ED598703
 function SetPrimaryKeys($keyArray)
 {
     $this->PrimaryKeys = $keyArray;
@@ -142,7 +131,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-42735F63
+//Operation Method @2-616A4249
     function Operation()
     {
         if(!$this->Visible)
@@ -156,15 +145,15 @@ function GetPrimaryKey($keyName)
         }
 
         if($this->FormSubmitted) {
-            $this->PressedButton = "Button_DoSearch";
-            if($this->Button_DoSearch->Pressed) {
-                $this->PressedButton = "Button_DoSearch";
+            $this->PressedButton = "Button1";
+            if($this->Button1->Pressed) {
+                $this->PressedButton = "Button1";
             }
         }
-        $Redirect = "t_debt_letter_view.php";
+        $Redirect = "t_laporan_piutang_pajak.php";
         if($this->Validate()) {
-            if($this->PressedButton == "Button_DoSearch") {
-                if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+            if($this->PressedButton == "Button1") {
+                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
                     $Redirect = "";
                 }
             }
@@ -174,7 +163,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-8D85360C
+//Show Method @2-A9EED8E7
     function Show()
     {
         global $CCSUseAmp;
@@ -188,7 +177,6 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
-        $this->p_account_status_id->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -199,12 +187,11 @@ function GetPrimaryKey($keyName)
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
+            $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->cetak->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_account_status_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_account_status_array->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -222,21 +209,22 @@ function GetPrimaryKey($keyName)
             return;
         }
 
+        $this->Button1->Show();
+        $this->year_code->Show();
+        $this->p_year_period_id->Show();
+        $this->cetak_laporan->Show();
         $this->vat_code->Show();
-        $this->Button_DoSearch->Show();
-        $this->t_customer_order_id->Show();
         $this->p_vat_type_id->Show();
-        $this->cetak->Show();
-        $this->p_account_status_id->Show();
-        $this->p_account_status_array->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
 //End Show Method
 
-} //End LOV Class @3-FCB6E20C
+} //End t_laporan_piutang_pajak Class @2-FCB6E20C
 
-//Initialize Page @1-B6470467
+
+
+//Initialize Page @1-A430AD4F
 // Variables
 $FileName = "";
 $Redirect = "";
@@ -252,7 +240,7 @@ $CCSEventResult = "";
 
 $FileName = FileName;
 $Redirect = "";
-$TemplateFileName = "t_debt_letter_view.html";
+$TemplateFileName = "t_laporan_piutang_pajak.html";
 $BlockToParse = "main";
 $TemplateEncoding = "CP1252";
 $ContentType = "text/html";
@@ -260,27 +248,23 @@ $PathToRoot = "../";
 $Charset = $Charset ? $Charset : "windows-1252";
 //End Initialize Page
 
-//Include events file @1-EA05C306
-include_once("./t_debt_letter_view_events.php");
+//Include events file @1-1EB74974
+include_once("./t_laporan_piutang_pajak_events.php");
 //End Include events file
-
-//BeforeInitialize Binding @1-17AC9191
-$CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
-//End BeforeInitialize Binding
 
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-5961C8C0
-$DBConnSIKP = new clsDBConnSIKP();
-$MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
+//Initialize Objects @1-09E0A718
 $Attributes = new clsAttributes("page:");
 $MainPage->Attributes = & $Attributes;
 
 // Controls
-$LOV = & new clsRecordLOV("", $MainPage);
-$MainPage->LOV = & $LOV;
+$t_laporan_piutang_pajak = & new clsRecordt_laporan_piutang_pajak("", $MainPage);
+$MainPage->t_laporan_piutang_pajak = & $t_laporan_piutang_pajak;
+
+BindEvents();
 
 $CCSEventResult = CCGetEvent($CCSEvents, "AfterInitialize", $MainPage);
 
@@ -301,24 +285,23 @@ $Attributes->SetValue("pathToRoot", "../");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-0F06B063
-$LOV->Operation();
+//Execute Components @1-704CC6E8
+$t_laporan_piutang_pajak->Operation();
 //End Execute Components
 
-//Go to destination page @1-4C2A1E6D
+//Go to destination page @1-03A7ACFB
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
-    $DBConnSIKP->close();
     header("Location: " . $Redirect);
-    unset($LOV);
+    unset($t_laporan_piutang_pajak);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-1CEBCD98
-$LOV->Show();
+//Show Page @1-433A8E1F
+$t_laporan_piutang_pajak->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -326,10 +309,9 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-3F6169EB
+//Unload Page @1-21C95434
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
-$DBConnSIKP->close();
-unset($LOV);
+unset($t_laporan_piutang_pajak);
 unset($Tpl);
 //End Unload Page
 

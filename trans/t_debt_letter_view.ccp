@@ -27,6 +27,24 @@
 					<Features/>
 				</Hidden>
 				<Hidden id="64" fieldSourceType="DBColumn" dataType="Text" name="cetak" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVcetak">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<ListBox id="66" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_account_status_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="LOVp_account_status_id" fieldSource="p_account_status_id" connection="ConnSIKP" dataSource="select * from p_account_status" boundColumn="p_account_status_id" textColumn="code">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<Attributes/>
+<Features/>
+</ListBox>
+<Hidden id="67" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_array" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVp_account_status_array">
 <Components/>
 <Events/>
 <Attributes/>
@@ -58,16 +76,16 @@
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="t_debt_letter_view.php" forShow="True" url="t_debt_letter_view.php" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="t_debt_letter_view_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
 	<Features/>
 	<Events>
-<Event name="BeforeInitialize" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="65"/>
-</Actions>
-</Event>
-</Events>
+		<Event name="BeforeInitialize" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="65"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
