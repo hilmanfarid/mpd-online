@@ -13,11 +13,17 @@ $dbConn = new clsDBConnSIKP();
 
 $query="begin;";
 $dbConn->query($query);
-$query="select c.company_owner ,
+$query="select 
+		c.wp_name,
+		c.wp_address_name || ' ' || nvl(wp_address_no,' ') as wp_address_name,
+		c.company_owner ,
 		c.company_brand,
 		c.npwpd,
+		c.company_name,
+		c.address_name || ' ' || nvl(address_no,' ') as company_address,
 		c.address_name_owner ||nvl(address_no_owner,' ') as alamat_tinggal,
 		c.brand_address_name ||nvl(brand_address_no,' ') as alamat_pajak ,
+		c.brand_address_name || ' ' || nvl(brand_address_no,' ') as alamat_brand ,
 		b.p_vat_type_id,
 		type.vat_code,
 		c.reg_letter_no,
@@ -36,11 +42,16 @@ where a.p_rqst_type_id = b.p_rqst_type_id
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
+		$data["wp_name"] = $dbConn->f("wp_name");
+		$data["wp_address_name"] = $dbConn->f("wp_address_name");
 		$data["company_owner"] = $dbConn->f("company_owner");
 		$data["company_brand"] = $dbConn->f("company_brand");
+		$data["company_name"] = $dbConn->f("company_name");
+		$data["company_address"] = $dbConn->f("company_address");
 		$data["npwpd"] = $dbConn->f("npwpd");
 		$data["alamat_tinggal"] = $dbConn->f("alamat_tinggal");
 		$data["alamat_pajak"] = $dbConn->f("alamat_pajak");
+		$data["alamat_brand"] = $dbConn->f("alamat_brand");
 		$data["p_vat_type_id"] = $dbConn->f("p_vat_type_id");
 		$data["reg_letter_no"] = $dbConn->f("reg_letter_no");
 		$data["klasifikasi"] = $dbConn->f("klasifikasi");
@@ -122,28 +133,18 @@ class FormCetak extends FPDF {
 		$twelfth = $lengthCell / 12;
 		$twelfth1 = $twelfth * 1;
 		
-		// Form 1. Nama Orang/Pribadi/Penanggung Pajak
+		// Form 1. Wajib Pajak
 		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "1. Nama Orang/Pribadi/Penanggung", 0, 0, 'L');
+		$this->Cell($formLen1, $this->height, "1. Wajib Pajak", 0, 0, 'L');
 		$this->SetFont('Times', '', 11);
 		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
-		$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_owner"], 0, 0, 'L');
-		$this->Ln();
-		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "    Pajak", 0, 0, 'L');
+		$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_name"], 0, 0, 'L');
 		
-		// Form 2. Nama Badan/Perusahaan
+
+		// Form 2. NPWPD
 		$this->Ln();
 		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "2. Nama Badan/Perusahaan", 0, 0, 'L');
-		$this->SetFont('Times', '', 11);
-		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
-		$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_brand"], 0, 0, 'L');
-		
-		// Form 3. NPWPD
-		$this->Ln();
-		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "3. Nomor Pokok Wajib Pajak Daerah", 0, 0, 'L');
+		$this->Cell($formLen1, $this->height, "2. Nomor Pokok Wajib Pajak Daerah", 0, 0, 'L');
 		$this->SetFont('Times', '', 11);
 		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
 
@@ -154,31 +155,96 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->SetFont('Times', 'B', 11);
 		$this->Cell($formLen1, $this->height, "    (NPWPD)", 0, 0, 'L');
+
+			
+		if(empty($data['company_name']) or $data['company_name'] == '-' or $data['company_name'] == 'A' or strlen($data['company_name']) < 3 ) { 
+			//PERORANGAN
+			
+			// Form 3. Nama Merek Dagang
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "3. Nama Merek Dagang", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_brand"], 0, 0, 'L');
+			
+			// Form 4. Alamat Merek Dagang
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "5. Alamat Merek Dagang", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_brand"], 0, 0, 'L');
 		
-		// Form 4. Alamat Tempat Tinggal
-		$this->Ln();
-		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "4. Alamat Tempat Tinggal", 0, 0, 'L');
-		$this->SetFont('Times', '', 11);
-		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
-		$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_tinggal"], 0, 0, 'L');
+			// Form 5. Alamat Wajib Pajak
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "6. Alamat Wajib Pajak", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], 0, 0, 'L');
+			
+			// Form 6. Jenis Pajak
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "6. Jenis Pajak", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+
+		} else { //PERUSAHAAN
+
+			// Form 3. Nama Badan/Perusahaan
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "3. Nama Badan/Perusahaan", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_name"], 0, 0, 'L');
 		
-		// Form 5. Alamat Perusahaan
-		$this->Ln();
-		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "5. Alamat Perusahaan", 0, 0, 'L');
-		$this->SetFont('Times', '', 11);
-		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
-		$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_pajak"], 0, 0, 'L');
+				
+			// Form 4. Nama Merek Dagang
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "4. Nama Merek Dagang", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_brand"], 0, 0, 'L');
 		
-		// Form 6. Kewajiban Wajib Pajak
-		$this->Ln();
-		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "6. Kewajiban Wajib Pajak", 0, 0, 'L');
-		$this->SetFont('Times', '', 11);
-		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			// Form 5. Alamat Merek Dagang
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "5. Alamat Merek Dagang", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_brand"], 0, 0, 'L');
 		
-		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan
+
+			// Form 6. Alamat Wajib Pajak
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "6. Alamat Wajib Pajak", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], 0, 0, 'L');
+		
+			// Form 7. Alamat Badan/Perusahaan
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "7. Alamat Badan/Perusahaan", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_address"], 0, 0, 'L');
+		
+
+			// Form 8. Jenis Pajak
+			$this->Ln();
+			$this->SetFont('Times', 'B', 11);
+			$this->Cell($formLen1, $this->height, "8. Jenis Pajak", 0, 0, 'L');
+			$this->SetFont('Times', '', 11);
+			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+		}
+
+		// Form 8. Jenis Pajak -> Kotak Pilihan
 		$kotakLen = ($formLen2 - $twelfth1) / 20;
 		$kotakLen1 = $kotakLen * 1;
 		$kotakLen3 = $kotakLen * 3;
