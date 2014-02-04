@@ -156,6 +156,7 @@ ORDER BY
 	$pdf->SetAligns(Array('C','L','L','L','L','L','L','L','L','L','L'));
 	$jumlah =0;
 	$jumlah=0;
+	$jumlah_selisih=0;
 	$total_skpdkb=0;
 	$total_sptpd=0;
 	$total_denda=0;
@@ -192,6 +193,7 @@ ORDER BY
 			$item['denda_tgl_bayar'] = "";
 		}
 		$jumlah = $item['skpdkb_amount']+$item['sptpd_amount']-$item['payment_amount'];
+		$jumlah_selisih += $jumlah;
 		$pdf->RowMultiBorderWithHeight(array($no,$item['nama'],$item['alamat'],$item['npwpd'],$item['start_period']." s/d ".$item['end_period'],$item['no_kohir'],'Rp. '.number_format($item['sptpd_amount'], 2, ',', '.'),$item['tgl_masuk'],$item['jatuh_tempo'],$item['tgl_bayar'],'Rp. '.number_format($item['skpdkb_amount'], 2, ',', '.'),$item['skpdkb_no_kohir'],$item['skpdkb_tgl_tap'],$item['skpdkb_tgl_bayar'],'Rp. '.number_format($item['denda_amount'], 2, ',', '.'),$item['denda_no_kohir'],$item['denda_tgl_tap'],$item['denda_tgl_bayar'],'Rp. '.number_format($jumlah, 2, ',', '.')),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),6);
 		
 		$total_skpdkb+=$item['skpdkb_amount'];
@@ -200,8 +202,8 @@ ORDER BY
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
 		$no++;
 	}
-	$pdf->SetWidths(array(10+24+20+15+37+18,18,19+22+19,16,15+14+16,16,15+14+16+17));
-	$pdf->RowMultiBorderWithHeight(array("",'Rp. '.number_format($total_sptpd, 2, ',', '.'),"",'Rp. '.number_format($total_skpdkb, 2, ',', '.'),"",'Rp. '.number_format($total_denda, 2, ',', '.'),""),array('LRTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR'),6);
+	$pdf->SetWidths(array(10+24+20+15+37+18,18,19+22+19,16,15+14+16,16,15+14+16,17));
+	$pdf->RowMultiBorderWithHeight(array("",'Rp. '.number_format($total_sptpd, 2, ',', '.'),"",'Rp. '.number_format($total_skpdkb, 2, ',', '.'),"",'Rp. '.number_format($total_denda, 2, ',', '.'),"",'Rp. '.number_format($jumlah_selisih, 2, ',', '.')),array('LRTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR'),6);
 	$pdf->SetWidths(array(250,70));
 	$pdf->ln(8);
 	$pdf->SetWidtHs(array(239,90));
@@ -365,8 +367,8 @@ ORDER BY
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
 		$no++;
 	}
-	$pdf->SetWidths(array(10+24+20+15+37+18,18,19+22+19,16,15+14+16,16,15+14+16+17));
-	$pdf->RowMultiBorderWithHeight(array("",'Rp. '.number_format($total_sptpd, 2, ',', '.'),"",'Rp. '.number_format($total_skpdkb, 2, ',', '.'),"",'Rp. '.number_format($total_denda, 2, ',', '.'),""),array('LRTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR'),6);
+	$pdf->SetWidths(array(10+24+20+15+37+18,18,19+22+19,16,15+14+16,16,15+14+16,17));
+	$pdf->RowMultiBorderWithHeight(array("",'Rp. '.number_format($total_sptpd, 2, ',', '.'),"",'Rp. '.number_format($total_skpdkb, 2, ',', '.'),"",'Rp. '.number_format($total_denda, 2, ',', '.'),"",$jumlah_selisih),array('LRTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR'),6);
 	$pdf->SetWidths(array(250,70));
 	$pdf->ln(8);
 	$pdf->SetWidtHs(array(239,90));
