@@ -32,7 +32,13 @@
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-			</Components>
+				<Button id="18" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_rep_harian_penerimaanButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
