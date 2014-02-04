@@ -181,6 +181,7 @@ ORDER BY
 					   'sptpd_amount' => $dbConn->f("sptpd_amount"),
 					   'payment_amount' => $dbConn->f("payment_amount")
 						);
+		
 		//$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'],'Rp. '.number_format($item['omzet'], 2, ',', '.'),'Rp. '.number_format($item['ketetapan'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
 		if($item['skpdkb_amount']==0){
 			$item['skpdkb_no_kohir'] = "";
