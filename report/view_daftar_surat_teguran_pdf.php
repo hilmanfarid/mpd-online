@@ -17,7 +17,6 @@ if(empty($t_customer_order_id)){
 $dbConn = new clsDBConnSIKP();
 
 $query="select * from f_debt_letter_list($t_customer_order_id) where p_vat_type_id = $p_vat_type_id";
-
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 		$data["npwd"][] = $dbConn->f("npwd");
