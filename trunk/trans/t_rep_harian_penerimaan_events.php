@@ -16,6 +16,12 @@ function Page_BeforeShow(& $sender)
     global $t_rep_harian_penerimaan; //Compatibility
 //End Page_BeforeShow
 
+//Custom Code @10-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
 }
