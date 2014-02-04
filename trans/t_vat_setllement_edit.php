@@ -354,7 +354,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-FC87E169
+//Class_Initialize Event @23-22782153
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -438,6 +438,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->TextBox2 = & new clsControl(ccsTextBox, "TextBox2", "TextBox2", ccsText, "", CCGetRequestParam("TextBox2", $Method, NULL), $this);
             $this->TextBox3 = & new clsControl(ccsTextBox, "TextBox3", "TextBox3", ccsText, "", CCGetRequestParam("TextBox3", $Method, NULL), $this);
             $this->TextBox4 = & new clsControl(ccsTextBox, "TextBox4", "TextBox4", ccsText, "", CCGetRequestParam("TextBox4", $Method, NULL), $this);
+            $this->Button_Cetak = & new clsButton("Button_Cetak", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->total_trans_amount->Value) && !strlen($this->total_trans_amount->Value) && $this->total_trans_amount->Value !== false)
                     $this->total_trans_amount->SetText(0);
@@ -613,7 +614,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-0AFEE430
+//Operation Method @23-C0758646
     function Operation()
     {
         if(!$this->Visible)
@@ -638,6 +639,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Delete";
             } else if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button_Cetak->Pressed) {
+                $this->PressedButton = "Button_Cetak";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -659,6 +662,10 @@ function GetPrimaryKey($keyName)
                 }
             } else if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_Cetak") {
+                if(!CCGetEvent($this->Button_Cetak->CCSEvents, "OnClick", $this->Button_Cetak)) {
                     $Redirect = "";
                 }
             }
@@ -708,7 +715,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-A0DF8BD1
+//Show Method @23-4CB3D11D
     function Show()
     {
         global $CCSUseAmp;
@@ -866,6 +873,7 @@ function GetPrimaryKey($keyName)
         $this->TextBox2->Show();
         $this->TextBox3->Show();
         $this->TextBox4->Show();
+        $this->Button_Cetak->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
