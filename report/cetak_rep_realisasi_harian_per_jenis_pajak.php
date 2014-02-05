@@ -15,13 +15,28 @@ $tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
 // $p_vat_type_id		= 1;
 // $p_year_period_id	= 4;
 // $tgl_penerimaan		= '15-12-2013';
-
+$date_start=str_replace("'", "",$tgl_penerimaan);
+$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
 
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$filter_piutang		= CCGetFromGet("filter_piutang", "all"); 
-$query				= "select *,trunc(payment_date) from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+$jenis_laporan		= CCGetFromGet("jenis_laporan", "all"); 
+if($jenis_laporan == 'all'){
+	$query	= "select *,trunc(payment_date) from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
+}else if($jenis_laporan == 'piutang'){
+	$query	= "select *,trunc(payment_date) 
+	from f_rep_bpps_piutang($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+WHERE
+	EXTRACT (YEAR FROM rep.settlement_date) < $year_date
+	order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
+}else if($jenis_laporan == 'murni'){
+	$query	= "select *,trunc(payment_date) 
+	from f_rep_bpps_piutang($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+WHERE
+	EXTRACT (YEAR FROM rep.settlement_date) = $year_date
+	order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+}
 $dbConn->query($query);
 $tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
 $tgl_penerimaan_last = str_replace("'", "", $tgl_penerimaan_last);
