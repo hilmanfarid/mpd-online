@@ -102,7 +102,7 @@
 				<TableParameter id="558" conditionType="Parameter" useIsNull="False" field="upper(order_status_code)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="And" parameterSource="s_keyword" rightBrackets="1"/>
 				<TableParameter id="626" conditionType="Expression" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="In" parameterType="Expression" logicOperator="And" expression="p_rqst_type_id IN (1,2,3,4,5)" parameterSource="1,2,3,4,5"/>
 				<TableParameter id="631" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" logicOperator="And" parameterSource="1"/>
-</TableParameters>
+			</TableParameters>
 			<JoinTables>
 				<JoinTable id="557" tableName="v_customer_order" posLeft="10" posTop="10" posWidth="154" posHeight="180"/>
 			</JoinTables>
@@ -270,25 +270,36 @@ WHERE t_customer_order_id = {t_customer_order_id}">
 					<Features/>
 				</Hidden>
 				<Button id="629" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customer_orderFormButton1">
-<Components/>
-<Events>
-<Event name="OnClick" type="Server">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="630"/>
+							</Actions>
+						</Event>
+						<Event name="OnClick" type="Client">
 <Actions>
-<Action actionName="Custom Code" actionCategory="General" id="630"/>
+<Action actionName="Custom Code" actionCategory="General" id="635"/>
 </Actions>
 </Event>
 </Events>
-<Attributes/>
-<Features/>
-</Button>
-<Hidden id="633" fieldSourceType="DBColumn" dataType="Text" name="pesan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customer_orderFormpesan">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
-			<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Hidden id="633" fieldSourceType="DBColumn" dataType="Text" name="pesan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customer_orderFormpesan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
+			<Events>
+<Event name="OnSubmit" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="634"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 				<TableParameter id="563" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
 			</TableParameters>

@@ -217,30 +217,6 @@ ORDER BY
 }
 
 function cetakExcel($param_arr){
-	include "../include/fpdf17/mc_table.php";
-	$_BORDER = 0;
-	$_FONT = 'Times';
-	$_FONTSIZE = 10;
-    $pdf = new PDF_MC_Table();
-	$size = $pdf->_getpagesize('Legal');
-	$pdf->DefPageSize = $size;
-	$pdf->CurPageSize = $size;
-    $pdf->AddPage('Landscape', 'Legal');
-    $pdf->SetFont('helvetica', '', $_FONTSIZE);
-	$pdf->SetRightMargin(5);
-	$pdf->SetLeftMargin(9);
-	$pdf->SetAutoPageBreak(false,0);
-
-	$pdf->SetFont('helvetica', '',12);
-	$pdf->SetWidths(array(200));
-	$pdf->ln(1);
-    $pdf->RowMultiBorderWithHeight(array("Laporan penerimaan"),array('',''),6);
-	//$pdf->ln(8);
-	$pdf->SetWidths(array(40,200));
-	$pdf->ln(4);
-	$pdf->RowMultiBorderWithHeight(array("DAFTAR SPTPD",": "),array('',''),6);
-	//$pdf->RowMultiBorderWithHeight(array("TAHUN",": ".$param_arr['year_code']),array('',''),6);
-	//$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString($param_arr['date_start'])." s/d ".dateToString($param_arr['date_end'])),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	
 	//$query="select * from sikp.f_laporan_harian_denda(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
@@ -309,24 +285,91 @@ ORDER BY
 	//exit;
 	$dbConn->query($query);
 	$items=array();
-	$pdf->SetFont('arial', '',8);
-	$pdf->ln(2);
-	$pdf->SetWidths(array(10,24,20,15,37,18,18,19,22,19,61,61,17));
-	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C'));
-	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","","","",""),array('LT','LT','LT','LT','LT','LT','LT','LT','LT','LT','LT','LT','LTR'),6);
-	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","","SKPDKB","DENDA","SELISIH"),array('L','L','L','L','L','L','L','L','L','L','L','L','LR'),4);
-	$pdf->RowMultiBorderWithHeight(array("NO","NAMA","ALAMAT","NPWPD","MASA PAJAK","NO KOHIR","BESARNYA","TGL MASUK","JATUH TEMPO","TGL BAYAR","","",""),array('L','L','L','L','L','L','L','L','L','L','L','L','LR'),4);
-	$pdf->SetWidths(array(10,24,20,15,37,18,18,19,22,19,16,15,14,16,16,15,14,16,17));
-	$pdf->SetFont('arial', '',7);
-	$pdf->RowMultiBorderWithHeight(array("","","","","","","","","","","BESARNYA","NO KOHIR","TGL TAP","TGL BAYAR","BESARNYA","NO KOHIR","TGL TAP","TGL BAYAR",""),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),9);
-	$pdf->SetFont('arial', '',8);
 	$no =1;
-	$pdf->SetAligns(Array('C','L','L','L','L','L','L','L','L','L','L'));
 	$jumlah =0;
 	$jumlah=0;
 	$total_skpdkb=0;
 	$total_sptpd=0;
 	$total_denda=0;
+	$filename = "laporan_harian_denda.xls";
+	header("Content-type: application/vnd.ms-excel");
+	   header("Content-Disposition: attachment; filename=$filename");
+	   header("Expires: 0");
+	   header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	   header("Pragma: public");
+	echo "<h1>Laporan Penerimaan SPTPD<h1>";
+	echo "<h2>Tanggal : ".$param_arr['date_start']." s/d ".$param_arr['date_start']."</h2>";
+	echo "<table border=1>";
+	echo "<tr>
+			<th rowspan=2>
+				No
+			</th >
+			<th rowspan=2>
+				NAMA
+			</th>
+			<th rowspan=2>
+				ALAMAT
+			</th>
+			<th rowspan=2>
+				NPWPD
+			</th>
+			<th width='200px' rowspan=2>
+				MASA PAJAK
+			</th>
+			<th rowspan=2>
+				NO KOHIR
+			</th>
+			<th rowspan=2>
+				BESARNYA
+			</th>
+			<th colspan=4>
+				SKPDKB
+			</th>
+			<th colspan=4>
+				DENDA
+			</th>
+			<th>
+				SELISIH
+			</th>
+		</tr>";
+	echo "<tr>
+			<th>
+				TANGGAL MASUK
+			</th>
+			<th>
+				JATUH TEMPO
+			</th>
+			<th>
+				TANGGAL BAYAR
+			</th>
+			<th>
+				BESARNYA
+			</th>
+			<th>
+				NO KOHIR
+			</th>
+			<th>
+				TANGGAL TAP
+			</th>
+			<th>
+				TANGGAL BAYAR
+			</th>
+			<th>
+				BESARNYA
+			</th>
+			<th>
+				NO KOHIR
+			</th>
+			<th>
+				TANGGAL TAP
+			</th>
+			<th>
+				TANGGAL BAYAR
+			</th>
+			<th>
+				&nbsp
+			</th>
+		</tr>";
 	while($dbConn->next_record()){
 		$items[]= $item = array('nama' => $dbConn->f("nama"),
 					   'alamat' => $dbConn->f("alamat"),
@@ -360,24 +403,75 @@ ORDER BY
 			$item['denda_tgl_bayar'] = "";
 		}
 		$jumlah = $item['skpdkb_amount']+$item['sptpd_amount']-$item['payment_amount'];
-		$pdf->RowMultiBorderWithHeight(array($no,$item['nama'],$item['alamat'],$item['npwpd'],$item['start_period']." s/d ".$item['end_period'],$item['no_kohir'],'Rp. '.number_format($item['sptpd_amount'], 2, ',', '.'),$item['tgl_masuk'],$item['jatuh_tempo'],$item['tgl_bayar'],'Rp. '.number_format($item['skpdkb_amount'], 2, ',', '.'),$item['skpdkb_no_kohir'],$item['skpdkb_tgl_tap'],$item['skpdkb_tgl_bayar'],'Rp. '.number_format($item['denda_amount'], 2, ',', '.'),$item['denda_no_kohir'],$item['denda_tgl_tap'],$item['denda_tgl_bayar'],'Rp. '.number_format($jumlah, 2, ',', '.')),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),6);
 		
 		$total_skpdkb+=$item['skpdkb_amount'];
 		$total_sptpd+=$item['sptpd_amount'];
 		$total_denda+=$item['denda_amount'];
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
+
+		echo "<tr>
+			<td>
+				$no
+			</td>
+			<td>
+				".$item['nama']."
+			</td>
+			<td>
+				".$item['alamat']."
+			</td>
+			<td>
+				".$item['npwpd']."
+			</td>
+			<td width='200px'>
+				".$item['start_period']." s/d ".$item['end_period']."
+			</td>
+			<td>
+				".$item['no_kohir']."
+			</td>
+			<td align='right'>
+				Rp. ".number_format($item['sptpd_amount'], 2, ',', '.')."
+			</td>
+			<td>
+				".$item['tgl_masuk']."
+			</td>
+			<td>
+				".$item['jatuh_tempo']."
+			</td>
+			<td>
+				".$item['tgl_bayar']."
+			</td>
+			<td align='right'>
+				Rp. ".number_format($item['skpdkb_amount'], 2, ',', '.')."
+			</td>
+			<td>
+				".$item['skpdkb_no_kohir']."
+			</td>
+			<td>
+				".$item['skpdkb_tgl_tap']."
+			</td>
+			<td>
+				".$item['skpdkb_tgl_bayar']."
+			</td>
+			<td align='right'>
+				Rp. ".number_format($item['denda_amount'], 2, ',', '.')."
+			</td>
+			<td>
+				".$item['denda_no_kohir']."
+			</td>
+			<td>
+				".$item['denda_tgl_tap']."
+			</td>
+			<td>
+				".$item['denda_tgl_bayar']."
+			</td>
+			<td align='right'>
+				Rp. ".number_format($jumlah, 2, ',', '.')."
+			</td>
+		</tr>
+		";
 		$no++;
 	}
-	$pdf->SetWidths(array(10+24+20+15+37+18,18,19+22+19,16,15+14+16,16,15+14+16,17));
-	$pdf->RowMultiBorderWithHeight(array("",'Rp. '.number_format($total_sptpd, 2, ',', '.'),"",'Rp. '.number_format($total_skpdkb, 2, ',', '.'),"",'Rp. '.number_format($total_denda, 2, ',', '.'),"",$jumlah_selisih),array('LRTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR','LTBR'),6);
-	$pdf->SetWidths(array(250,70));
-	$pdf->ln(8);
-	$pdf->SetWidtHs(array(239,90));
-	$pdf->SetAligns(array("C", "C","C","C","C"));
-	$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
-	//$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
-	$pdf->Output("","I");
-	echo 'tes';
+	echo "</table>";
 	exit;	
 }
 function dateToString($date){
