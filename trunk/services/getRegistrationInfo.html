@@ -1,0 +1,264 @@
+<div id="regis-form">
+  <!-- BEGIN Grid f_SELECT_FROM_v_vat_regis -->
+  <table class="Record" cellspacing="0" cellpadding="0">
+    <!-- BEGIN Error -->
+    <tr class="Error">
+      <td colspan="4">{Error}</td>
+    </tr>
+    <!-- END Error -->
+    <tr class="Controls">
+      <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nomor Order</label></label> </label></label></label></label></label></label></label></td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisorder_no" class="ControlsRO" tabindex="2" name="{order_no_Name}" readonly maxlength="14" value="{order_no}"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regist_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regist_vat_registration_id1" name="{t_vat_registration_id1_Name}" value="{t_vat_registration_id1}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Tanggal Pendaftaran </td> 
+      <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="getRegistrationInfof_SELECT_FROM_v_vat_regisregistration_date" class="ControlsRO" name="{registration_date_Name}" readonly maxlength="100" value="{registration_date}" size="25"><input style="WIDTH: 83px; HEIGHT: 22px" id="getRegistrationInfof_SELECT_FROM_v_vat_regisrqst_type_code" name="{rqst_type_code_Name}" value="{rqst_type_code}" size="11" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Nama Ayat </td> 
+      <td colspan="3">
+        <select id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_vat_type_dtl_id" class="ControlsRQ" disabled name="{p_vat_type_dtl_id_Name}">
+          <option selected value="">Pilih</option>
+          {p_vat_type_dtl_id_Options}
+        </select>
+ </td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">User Name </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_user_name" class="ControlsRQ" tabindex="2" name="{wp_user_name_Name}" readonly maxlength="32" value="{wp_user_name}" size="32"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Password</td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_user_pwd" class="ControlsRQ" tabindex="2" name="{wp_user_pwd_Name}" readonly maxlength="32" value="{wp_user_pwd}" size="32" type="password"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td colspan="4">
+        <p align="center">KETERANGAN WAJIB PAJAK</p>
+      </td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Nama Wajib Pajak </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_name" class="ControlsRQ" tabindex="2" name="{wp_name_Name}" readonly maxlength="64" value="{wp_name}" size="50"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Alamat Wajib Pajak </td> 
+      <td colspan="3"><textarea id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_address_name" class="ControlsRQ" cols="64" rows="3" readonly name="{wp_address_name_Name}">{wp_address_name}</textarea></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No</td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_address_no" class="ControlsRQ" tabindex="2" name="{wp_address_no_Name}" readonly maxlength="20" value="{wp_address_no}" size="10">Rt/Rw <input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_address_rt" class="ControlsIN" tabindex="2" name="{wp_address_rt_Name}" readonly maxlength="5" value="{wp_address_rt}" size="5">/ <input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_address_rw" class="ControlsIN" tabindex="2" name="{wp_address_rw_Name}" readonly maxlength="5" value="{wp_address_rw}" size="5"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kota/Kabupaten </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_kota" class="ControlsRQ" tabindex="2" name="{wp_kota_Name}" readonly maxlength="32" value="{wp_kota}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_p_region_id" name="{wp_p_region_id_Name}" value="{wp_p_region_id}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kecamatan </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_kecamatan" class="ControlsRQ" tabindex="2" name="{wp_kecamatan_Name}" readonly maxlength="32" value="{wp_kecamatan}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_p_region_id_kecamatan" name="{wp_p_region_id_kecamatan_Name}" value="{wp_p_region_id_kecamatan}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kelurahan </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_kelurahan" class="ControlsRQ" tabindex="2" name="{wp_kelurahan_Name}" readonly maxlength="32" value="{wp_kelurahan}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_p_region_id_kelurahan" name="{wp_p_region_id_kelurahan_Name}" value="{wp_p_region_id_kelurahan}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No. Telephon </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_phone_no" class="ControlsIN" tabindex="2" name="{wp_phone_no_Name}" readonly maxlength="20" value="{wp_phone_no}">No. Selular <input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_mobile_no" class="ControlsIN" tabindex="2" name="{wp_mobile_no_Name}" readonly maxlength="20" value="{wp_mobile_no}"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Email </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_email" class="ControlsIN" tabindex="2" name="{wp_email_Name}" readonly maxlength="64" value="{wp_email}" size="50"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No. Fax </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_fax_no" class="ControlsIN" tabindex="2" name="{wp_fax_no_Name}" readonly maxlength="20" value="{wp_fax_no}"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kode Pos </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiswp_zip_code" class="ControlsIN" tabindex="2" name="{wp_zip_code_Name}" readonly maxlength="5" value="{wp_zip_code}" size="6"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td colspan="4">
+        <p align="center">KETERANGAN PERUSAHAAN/BADAN</p>
+      </td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Nama Badan/Perusahaan</td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiscompany_name" class="ControlsRQ" tabindex="2" name="{company_name_Name}" readonly maxlength="64" value="{company_name}" size="50"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Alamat Badan</td> 
+      <td colspan="3"><textarea id="getRegistrationInfof_SELECT_FROM_v_vat_regisaddress_name" class="ControlsRQ" cols="64" rows="3" readonly name="{address_name_Name}">{address_name}</textarea></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No</td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisaddress_no" class="ControlsRQ" tabindex="2" name="{address_no_Name}" readonly maxlength="20" value="{address_no}" size="10">Rt/Rw <input id="getRegistrationInfof_SELECT_FROM_v_vat_regisaddress_rt" class="ControlsIN" tabindex="2" name="{address_rt_Name}" readonly maxlength="5" value="{address_rt}" size="5">/ <input id="getRegistrationInfof_SELECT_FROM_v_vat_regisaddress_rw" class="ControlsIN" tabindex="2" name="{address_rw_Name}" readonly maxlength="5" value="{address_rw}" size="5"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kota/Kabupaten </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiskota_code" class="ControlsRQ" tabindex="2" name="{kota_code_Name}" readonly maxlength="32" value="{kota_code}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_region_id" name="{p_region_id_Name}" value="{p_region_id}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kecamatan </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiskecamatan_code" class="ControlsRQ" tabindex="2" name="{kecamatan_code_Name}" readonly maxlength="32" value="{kecamatan_code}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_region_id_kecamatan" name="{p_region_id_kecamatan_Name}" value="{p_region_id_kecamatan}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kelurahan</td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiskelurahan_code" class="ControlsRQ" tabindex="2" name="{kelurahan_code_Name}" readonly maxlength="32" value="{kelurahan_code}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_region_id_kelurahan" name="{p_region_id_kelurahan_Name}" value="{p_region_id_kelurahan}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No. Telephon</td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisphone_no" class="ControlsIN" tabindex="2" name="{phone_no_Name}" readonly maxlength="20" value="{phone_no}"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regismobile_no" tabindex="2" name="{mobile_no_Name}" maxlength="20" value="{mobile_no}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No. Fax </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisfax_no" class="ControlsIN" tabindex="2" name="{fax_no_Name}" readonly maxlength="20" value="{fax_no}"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kode Pos </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiszip_code" class="ControlsIN" tabindex="2" name="{zip_code_Name}" readonly maxlength="5" value="{zip_code}" size="6"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td colspan="4">
+        <p align="center">KETERANGAN MERK DAGANG</p>
+      </td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Nama Merk Dagang </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiscompany_brand" class="ControlsRQ" tabindex="2" name="{company_brand_Name}" readonly maxlength="64" value="{company_brand}" size="50"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Alamat Lokasi Usaha</td> 
+      <td colspan="3"><textarea id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_address_name" class="ControlsRQ" cols="64" rows="3" readonly name="{brand_address_name_Name}">{brand_address_name}</textarea></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_address_no" class="ControlsRQ" tabindex="2" name="{brand_address_no_Name}" maxlength="20" value="{brand_address_no}" size="10">Rt/Rw <input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_address_rt" class="ControlsIN" tabindex="2" name="{brand_address_rt_Name}" maxlength="5" value="{brand_address_rt}" size="5">/ <input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_address_rw" class="ControlsIN" tabindex="2" name="{brand_address_rw_Name}" maxlength="5" value="{brand_address_rw}" size="5"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kota/Kabupaten </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_kota" class="ControlsRQ" tabindex="2" name="{brand_kota_Name}" readonly maxlength="32" value="{brand_kota}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_p_region_id" name="{brand_p_region_id_Name}" value="{brand_p_region_id}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kecamatan </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_kecamatan" class="ControlsRQ" tabindex="2" name="{brand_kecamatan_Name}" readonly maxlength="32" value="{brand_kecamatan}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_p_region_id_kec" name="{brand_p_region_id_kec_Name}" value="{brand_p_region_id_kec}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kelurahan </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_kelurahan" class="ControlsRQ" tabindex="2" name="{brand_kelurahan_Name}" readonly maxlength="32" value="{brand_kelurahan}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_p_region_id_kel" name="{brand_p_region_id_kel_Name}" value="{brand_p_region_id_kel}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No. Telephon </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_phone_no" class="ControlsIN" tabindex="2" name="{brand_phone_no_Name}" readonly maxlength="20" value="{brand_phone_no}">No. Selular <input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_mobile_no" class="ControlsIN" tabindex="2" name="{brand_mobile_no_Name}" readonly maxlength="20" value="{brand_mobile_no}"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No. Fax </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_fax_no" class="ControlsIN" tabindex="2" name="{brand_fax_no_Name}" readonly maxlength="20" value="{brand_fax_no}"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kode Pos </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisbrand_zip_code" class="ControlsIN" tabindex="2" name="{brand_zip_code_Name}" readonly maxlength="5" value="{brand_zip_code}" size="6"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td colspan="4">
+        <p align="center">KETERANGAN PEMILIK/PENGELOLA</p>
+      </td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Nama Pemilik/Pengelola </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiscompany_owner" class="ControlsRQ" tabindex="2" name="{company_owner_Name}" readonly maxlength="64" value="{company_owner}" size="50"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Jabatan</td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisjob_position_code" class="ControlsRQ" tabindex="2" name="{job_position_code_Name}" readonly maxlength="48" value="{job_position_code}" size="48"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_job_position_id" name="{p_job_position_id_Name}" value="{p_job_position_id}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Alamat Tempat Tinggal</td> 
+      <td colspan="3"><textarea id="getRegistrationInfof_SELECT_FROM_v_vat_regisaddress_name_owner" class="ControlsRQ" cols="64" rows="3" readonly name="{address_name_owner_Name}">{address_name_owner}</textarea></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisaddress_no_owner" class="ControlsRQ" tabindex="2" name="{address_no_owner_Name}" readonly maxlength="20" value="{address_no_owner}" size="10">Rt/Rw <input id="getRegistrationInfof_SELECT_FROM_v_vat_regisaddress_rt_owner" class="ControlsIN" tabindex="2" name="{address_rt_owner_Name}" readonly maxlength="5" value="{address_rt_owner}" size="5">/ <input id="getRegistrationInfof_SELECT_FROM_v_vat_regisaddress_rw_owner" class="ControlsIN" tabindex="2" name="{address_rw_owner_Name}" readonly maxlength="5" value="{address_rw_owner}" size="5"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kota/Kabupaten </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiskota_own_code" class="ControlsRQ" tabindex="2" name="{kota_own_code_Name}" readonly maxlength="32" value="{kota_own_code}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_region_id_owner" name="{p_region_id_owner_Name}" value="{p_region_id_owner}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kecamatan </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiskecamatan_own_code" class="ControlsRQ" tabindex="2" name="{kecamatan_own_code_Name}" readonly maxlength="32" value="{kecamatan_own_code}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_region_id_kec_owner" name="{p_region_id_kec_owner_Name}" value="{p_region_id_kec_owner}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kelurahan </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiskelurahan_own_code" class="ControlsRQ" tabindex="2" name="{kelurahan_own_code_Name}" readonly maxlength="32" value="{kelurahan_own_code}" size="32"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisp_region_id_kel_owner" name="{p_region_id_kel_owner_Name}" value="{p_region_id_kel_owner}" type="hidden"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Email </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisemail" class="ControlsIN" tabindex="2" name="{email_Name}" readonly maxlength="64" value="{email}" size="50"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No. Telephon </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisphone_no_owner" class="ControlsIN" tabindex="2" name="{phone_no_owner_Name}" readonly maxlength="20" value="{phone_no_owner}"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">No. Fax </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regisfax_no_owner" class="ControlsIN" tabindex="2" name="{fax_no_owner_Name}" readonly maxlength="20" value="{fax_no_owner}"></td>
+    </tr>
+ 
+    <tr class="Controls">
+      <td class="th">Kode Pos </td> 
+      <td colspan="3"><input id="getRegistrationInfof_SELECT_FROM_v_vat_regiszip_code_owner" class="ControlsIN" tabindex="2" name="{zip_code_owner_Name}" readonly maxlength="5" value="{zip_code_owner}" size="6"></td>
+    </tr>
+ 
+    <tr style="DISPLAY: none" class="Controls">
+    </tr>
+  </table>
+  <p></p>
+</div>
+<p>&nbsp;</p>
+<!-- END Grid f_SELECT_FROM_v_vat_regis -->
