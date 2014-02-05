@@ -5,8 +5,22 @@
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script src="../js/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="../include/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="../include/jquery.multiselect.css">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../include/jquery-ui.min.js"></script>
 <script language="JavaScript" type="text/javascript">
+var actionType="";
+var regis_list="";
+function doFunctionForYes() {
+    alert("Yes");
+    $('#msg').show();
+}
+
+function doFunctionForNo() {
+    alert("No");
+    $('#msg').show();
+}
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
         arrLOV = LOV_NM.split("?");
@@ -36,6 +50,88 @@ function t_customer_orderFormButton_Delete_OnClick()
 }
 //End Close t_customer_orderFormButton_Delete_OnClick
 
+//t_customer_orderFormButton1_OnClick @629-2BFA9497
+function t_customer_orderFormButton1_OnClick()
+{
+    var result = true;
+//End t_customer_orderFormButton1_OnClick
+
+//Custom Code @635-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+	actionType="submit";
+    // -------------------------
+//End Custom Code
+
+//Close t_customer_orderFormButton1_OnClick @629-BC33A33A
+    return result;
+}
+//End Close t_customer_orderFormButton1_OnClick
+
+//t_customer_orderForm_OnSubmit @94-847EF66C
+function t_customer_orderForm_OnSubmit()
+{
+    var result = true;
+//End t_customer_orderForm_OnSubmit
+
+//Custom Code @634-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+	if(actionType=='submit'){
+		var idelement;
+	  	if(idelement = document.getElementById('t_customer_orderFormt_customer_order_id')){
+			var pid=idelement.value;
+			var VatId = document.getElementById("t_customer_orderFormt_vat_registration_id").value;
+			var order_no=document.getElementById("t_customer_orderFormorder_no").value;
+			var id_req=document.getElementById("t_customer_orderFormp_rqst_type_id").value;
+			if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null){
+				
+			} else {
+				return false;
+			}
+		} else {
+		 alert("Pilih salah satu ORDER!");
+		}
+		result = $('<div></div>').appendTo('body')
+		    .html(regis_list)
+		    .dialog({
+			    modal: true,
+			    title: 'Anda Yakin Untuk Melakukan Submit Pada Data Ini?',
+			    zIndex: 10000,
+			    autoOpen: true,
+			    width: 'auto',
+				height: '400',
+			    resizable: true,
+			    buttons: {
+			        Yes: function () {
+			            result = true;
+						$('#t_customer_orderForm').append("<input name='Button1' type=hidden value='SUBMIT'/>");
+						$('#t_customer_orderForm').submit();		
+			        },
+			        No: function () {
+			            result = false;
+			            $(this).dialog("close");
+						return false;
+			        }
+			    },
+			    close: function (event, ui) {
+			        $(this).remove();
+			    }
+			});
+			$('#msg').hide();	
+		actionType="";
+	return false;
+	}
+	
+	
+    // -------------------------
+//End Custom Code
+
+//Close t_customer_orderForm_OnSubmit @94-BC33A33A
+    return result;
+}
+//End Close t_customer_orderForm_OnSubmit
+
 //t_customer_orderFormButton_Cancel_OnClick @99-4F26411C
 function t_customer_orderFormButton_Cancel_OnClick()
 {
@@ -43,9 +139,11 @@ function t_customer_orderFormButton_Cancel_OnClick()
 }
 //End t_customer_orderFormButton_Cancel_OnClick
 
-//bind_events @1-A1E5E995
+//bind_events @1-9F8ECD6F
 function bind_events() {
     addEventHandler("t_customer_orderFormButton_Delete", "click", t_customer_orderFormButton_Delete_OnClick);
+    addEventHandler("t_customer_orderFormButton1", "click", t_customer_orderFormButton1_OnClick);
+    addEventHandler("t_customer_orderForm", "submit", t_customer_orderForm_OnSubmit);
     addEventHandler("t_customer_orderFormButton_Cancel", "click", t_customer_orderFormButton_Cancel_OnClick);
 }
 //End bind_events
@@ -250,6 +348,14 @@ $(document).ready(function()
 </div>
 <script language="javascript">
 
+var ajax = $.ajax({
+			url: "../services/getRegistrationInfo.php?t_customer_order_id="+document.getElementById('t_customer_orderFormt_customer_order_id').value,
+			cache: false
+		})
+		.done(function( html ) {
+			regis_list=html;
+		});
+
 var pesan = document.getElementById('t_customer_orderFormpesan').value;
 if (pesan != "" ){ 
         alert(pesan);
@@ -347,6 +453,10 @@ function cetak(reqId,pid){
         }else{
                 alert("Jenis Permohonan Tidak Diketahui");      
         }
+}
+function confDialog(){
+	alert('tes');
+	return false;
 }
 </script>
 </body>
