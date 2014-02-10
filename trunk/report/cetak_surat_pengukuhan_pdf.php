@@ -171,7 +171,7 @@ class FormCetak extends FPDF {
 			// Form 4. Alamat Merek Dagang
 			$this->Ln();
 			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "5. Alamat Lokasi Usaha", 0, 0, 'L');
+			$this->Cell($formLen1, $this->height, "4. Alamat Lokasi Usaha", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
 			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_brand"], 0, 0, 'L');
@@ -179,7 +179,7 @@ class FormCetak extends FPDF {
 			// Form 5. Alamat Wajib Pajak
 			$this->Ln();
 			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "6. Alamat Wajib Pajak", 0, 0, 'L');
+			$this->Cell($formLen1, $this->height, "5. Alamat Wajib Pajak", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
 			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], 0, 0, 'L');
@@ -190,6 +190,7 @@ class FormCetak extends FPDF {
 			$this->Cell($formLen1, $this->height, "6. Jenis Pajak", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
 			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+
 
 		} else { //PERUSAHAAN
 
