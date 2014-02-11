@@ -63,6 +63,31 @@ class FormCetak extends FPDF {
 	*/
 	
 	function PageCetak($data, $user, $tgl_penerimaan) {
+		$kabid = CCGetFromGet('kabid');
+		$bphtb_row=array();
+		if($kabid=='T'){
+			$dbConn = new clsDBConnSIKP();
+	  		$sql="select(
+					select sum(payment_vat_amount) from t_payment_receipt_bphtb pay_bphtb
+					where extract(year from pay_bphtb.payment_date ::date) = extract(year from '".$tgl_penerimaan."'::date)
+					) as sd_hari_ini,
+					(
+					select sum(payment_vat_amount) from t_payment_receipt_bphtb pay_bphtb
+					where trunc(pay_bphtb.payment_date) = '".$tgl_penerimaan."'
+					) as hari_ini,
+					(
+					select sum(payment_vat_amount) from t_payment_receipt_bphtb pay_bphtb
+					where extract(year from pay_bphtb.payment_date ::date) = extract(year from '".$tgl_penerimaan."'::date)
+					and trunc(pay_bphtb.payment_date) <= '".$tgl_penerimaan."'::date - 1
+					) as sd_hari_kemarin;";
+	  		$dbConn->query($sql);
+	  		while($dbConn->next_record()){
+				$bphtb_row['sd_hari_ini'] = $dbConn->f('sd_hari_ini');
+				$bphtb_row['sd_hari_kemarin'] = $dbConn->f('sd_hari_kemarin');
+				$bphtb_row['hari_ini'] = $dbConn->f('hari_ini');
+			}
+	  		$dbConn->close();
+		}
 		$this->AliasNbPages();
 		$this->AddPage("L");
 		$this->SetFont('Arial', '', 10);
@@ -134,6 +159,11 @@ class FormCetak extends FPDF {
 		
 		for ($i = 0; $i < count($data['nomor_ayat']); $i++) {
 			//print data
+			if($kabid=='T' && $data['nama_ayat'][$i]=='BPHTB'){
+				$data["jml_hari_ini"][$i]=$bphtb_row['hari_ini'];
+				$data["jml_sd_hari_lalu"][$i]=$bphtb_row['sd_hari_kemarin'];
+				$data["jml_sd_hari_ini"][$i]=$bphtb_row['sd_hari_ini'];
+			}
 			$this->RowMultiBorderWithHeight(array($no,
 												  $data["nomor_ayat"][$i] . " " . $data["kode_jns_trans"][$i],
 												  "P. " . strtoupper($data["nama_ayat"][$i]),
@@ -202,26 +232,28 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
-		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
-		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		//$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
-		$this->Ln();
-		$this->newLine();
-		$this->newLine();
-		$this->newLine();
-		$this->newLine();
-		$this->newLine();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "(                ABDURACHIM                )", "", 0, 'C');
-		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "NIP. 19590622 198503 1 003", "", 0, 'C');
-		$this->Ln();
+		if($kabid != 'T'){
+			$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+			$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "", 0, 'C');
+			$this->Ln();
+			$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+			$this->Cell($lbody1 + 10, $this->height, "BENDAHARA PENERIMAAN, ", "", 0, 'C');
+			$this->Ln();
+			$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+			//$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "", 0, 'C');
+			$this->Ln();
+			$this->newLine();
+			$this->newLine();
+			$this->newLine();
+			$this->newLine();
+			$this->newLine();
+			$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+			$this->Cell($lbody1 + 10, $this->height, "(                ABDURACHIM                )", "", 0, 'C');
+			$this->Ln();
+			$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+			$this->Cell($lbody1 + 10, $this->height, "NIP. 19590622 198503 1 003", "", 0, 'C');
+			$this->Ln();
+		}
 	}
 
 	function newLine(){
