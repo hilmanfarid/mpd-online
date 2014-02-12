@@ -668,14 +668,20 @@ function getNPOP(){
                         document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''));
                 }    
                 var npotkp_cons = document.getElementById('t_bphtb_registrationFormnilai_doc').value;
+				if(npotkp_cons==''){
+					npotkp_cons=0;
+				}
                 if(npotkp_cons >= 0 && npotkp_cons != ''){
                         //alert((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
                         //document.getElementById('t_bphtb_registrationFormnpop_tkp').value = ReplaceNumberWithCommas(npotkp_cons*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
                                 document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,'')*npotkp_cons));
                                 }
                                 var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
-                var persen_kurang = document.getElementById('t_bphtb_registrationFormadd_disc_percent').value
-                                document.getElementById('t_bphtb_registrationFormadd_discount').value=ReplaceNumberWithCommas(npop - Math.ceil(npop*persen_kurang));
+                var persen_kurang = document.getElementById('t_bphtb_registrationFormadd_disc_percent').value;
+				if(persen_kurang==''){
+					persen_kurang=0;
+				}
+                                document.getElementById('t_bphtb_registrationFormadd_discount').value=ReplaceNumberWithCommas(Math.ceil(npop*persen_kurang));
                 hitungNPOPKP();
 }
 function hitungNPOPKP(){        
@@ -687,7 +693,7 @@ function hitungNPOPKP(){
                                 if(npokp=='' || npokp=='undefined'){
                                         npokp=0;
                                 }
-                                                                var add_discount = document.getElementById('t_bphtb_registrationFormadd_discount').value.replace(/,/g ,'');
+                                var add_discount = document.getElementById('t_bphtb_registrationFormadd_discount').value.replace(/,/g ,'');
                                 if(add_discount=='' || add_discount=='undefined'){
                                         add_discount=0;
                                 }

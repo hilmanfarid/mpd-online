@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-EA370273
+//Class_Initialize Event @94-619D2B09
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -141,7 +141,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->mobile_phone_no = & new clsControl(ccsTextBox, "mobile_phone_no", "mobile_phone_no", ccsText, "", CCGetRequestParam("mobile_phone_no", $Method, NULL), $this);
             $this->total_price = & new clsControl(ccsTextBox, "total_price", "total_price", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_price", $Method, NULL), $this);
             $this->t_bphtb_registration_id = & new clsControl(ccsHidden, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsInteger, "", CCGetRequestParam("t_bphtb_registration_id", $Method, NULL), $this);
-            $this->jenis_harga_bphtb = & new clsControl(ccsListBox, "jenis_harga_bphtb", "jenis_harga_bphtb", ccsText, "", CCGetRequestParam("jenis_harga_bphtb", $Method, NULL), $this);
+            $this->jenis_harga_bphtb = & new clsControl(ccsListBox, "jenis_harga_bphtb", "jenis_harga_bphtb", ccsInteger, "", CCGetRequestParam("jenis_harga_bphtb", $Method, NULL), $this);
             $this->jenis_harga_bphtb->DSType = dsListOfValues;
             $this->jenis_harga_bphtb->Values = array(array("1", "Harga Transaksi"), array("2", "Harga Pasar"), array("3", "Harga Lelang"));
             $this->Button3 = & new clsButton("Button3", $Method, $this);
@@ -174,6 +174,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
                     $this->building_total_price->SetText(0);
                 if(!is_array($this->total_price->Value) && !strlen($this->total_price->Value) && $this->total_price->Value !== false)
                     $this->total_price->SetText(0);
+                if(!is_array($this->jenis_harga_bphtb->Value) && !strlen($this->jenis_harga_bphtb->Value) && $this->jenis_harga_bphtb->Value !== false)
+                    $this->jenis_harga_bphtb->SetText(0);
                 if(!is_array($this->nilai_doc->Value) && !strlen($this->nilai_doc->Value) && $this->nilai_doc->Value !== false)
                     $this->nilai_doc->SetText(0);
             }
@@ -797,7 +799,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $add_discount;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-18A87D38
+//DataSourceClass_Initialize Event @94-9D398B60
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -883,7 +885,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsInteger, "");
         
-        $this->jenis_harga_bphtb = new clsField("jenis_harga_bphtb", ccsText, "");
+        $this->jenis_harga_bphtb = new clsField("jenis_harga_bphtb", ccsInteger, "");
         
         $this->nilai_doc = new clsField("nilai_doc", ccsFloat, "");
         
@@ -981,7 +983,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-E3D49A1E
+//SetValues Method @94-957D9812
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1023,7 +1025,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->phone_no->SetDBValue($this->f("phone_no"));
         $this->mobile_phone_no->SetDBValue($this->f("mobile_phone_no"));
         $this->t_bphtb_registration_id->SetDBValue(trim($this->f("t_bphtb_registration_id")));
-        $this->jenis_harga_bphtb->SetDBValue($this->f("jenis_harga_bphtb"));
+        $this->jenis_harga_bphtb->SetDBValue(trim($this->f("jenis_harga_bphtb")));
         $this->bphtb_legal_doc_description->SetDBValue($this->f("bphtb_legal_doc_description"));
         $this->add_disc_percent->SetDBValue($this->f("add_disc_percent"));
     }
