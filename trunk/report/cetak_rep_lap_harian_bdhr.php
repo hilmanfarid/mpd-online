@@ -70,6 +70,7 @@ class FormCetak extends FPDF {
 	  		$sql="select(
 					select sum(payment_vat_amount) from t_payment_receipt_bphtb pay_bphtb
 					where extract(year from pay_bphtb.payment_date ::date) = extract(year from '".$tgl_penerimaan."'::date)
+					and and trunc(pay_bphtb.payment_date) <= '".$tgl_penerimaan."'::date
 					) as sd_hari_ini,
 					(
 					select sum(payment_vat_amount) from t_payment_receipt_bphtb pay_bphtb
