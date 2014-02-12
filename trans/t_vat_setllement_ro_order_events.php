@@ -307,6 +307,9 @@ function t_vat_setllementForm_BeforeSelect(& $sender)
 	//$_SESSION['thisFormParam']='';
 	if(!empty($_POST['t_customer_order_id'])||!empty($_GET['t_customer_order_id'])){
 		$t_vat_setllementForm->EditMode=true;
+		$t_vat_setllementForm->Visible=true;
+	}else{
+		$t_vat_setllementForm->Visible=false;
 	}
 	     // Write your own code here.
 // -------------------------
