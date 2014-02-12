@@ -2,16 +2,31 @@
 //include_once(RelativePath . "/include/sessi.inc");
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
-
-//BindEvents Method @1-EC40708D
+$no_kohir = CCGetFromGet('s_keyword');
+	if(!empty($no_kohir)){
+		$dbConn = new clsDBConnSIKP();
+  		$sql="select t_customer_order_id from t_vat_setllement where no_kohir='".$no_kohir."'";
+  		$dbConn->query($sql);
+  		$dbConn->next_record();
+		$_POST['t_customer_order_id']=$_GET['t_customer_order_id'] = $dbConn->f('t_customer_order_id');
+  		$dbConn->close();		
+	}else{
+		$_POST['t_customer_order_id']=$_GET['t_customer_order_id'] = CCGetFromGet('CURR_DOC_ID');
+	}
+//exit;
+//BindEvents Method @1-1720D2CA
 function BindEvents()
 {
     global $t_vat_setllementGrid;
+    global $t_vat_setllementForm;
     global $CCSEvents;
     $t_vat_setllementGrid->cetak_sptpd->CCSEvents["BeforeShow"] = "t_vat_setllementGrid_cetak_sptpd_BeforeShow";
     $t_vat_setllementGrid->cetak->CCSEvents["BeforeShow"] = "t_vat_setllementGrid_cetak_BeforeShow";
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
+    $t_vat_setllementForm->no_kohir->CCSEvents["BeforeShow"] = "t_vat_setllementForm_no_kohir_BeforeShow";
+    $t_vat_setllementForm->CCSEvents["BeforeShow"] = "t_vat_setllementForm_BeforeShow";
+    $t_vat_setllementForm->CCSEvents["BeforeSelect"] = "t_vat_setllementForm_BeforeSelect";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
@@ -25,6 +40,12 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_cetak_sptpd_BeforeShow
+
+//Custom Code @301-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -81,6 +102,12 @@ function t_vat_setllementGrid_cetak_BeforeShow(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_cetak_BeforeShow
 
+//Custom Code @225-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       // Write your own code here.
   	$nilai1 = CCGetFromGet("CURR_DOC_ID","");
@@ -102,6 +129,16 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
 
 // Start Bdr
     global $selected_id;
@@ -147,6 +184,12 @@ function t_vat_setllementGrid_BeforeSelect(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeSelect
 
+//Custom Code @124-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       // Write your own code here.
   	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
@@ -158,6 +201,118 @@ function t_vat_setllementGrid_BeforeSelect(& $sender)
 }
 //End Close t_vat_setllementGrid_BeforeSelect
 
+//DEL  // -------------------------
+//DEL      // Write your own code here.
+//DEL  	$dbConn1 = new clsDBConnSIKP();
+//DEL  	$Idorder = $t_vat_setllementForm->t_customer_order_id->GetValue();
+//DEL  	$cari = "select f_generate_kohir(".$Idorder.") from dual";
+//DEL  	$dbConn1->query($cari);
+//DEL  	while($dbConn1->next_record()){
+//DEL  		$kode = $dbConn1->f("f_generate_kohir");
+//DEL  	}
+//DEL  
+//DEL  	$t_vat_setllementForm->no_kohir->SetValue($kode);
+//DEL  	return;
+//DEL  // -------------------------
+
+//t_vat_setllementForm_no_kohir_BeforeShow @315-2DA5C188
+function t_vat_setllementForm_no_kohir_BeforeShow(& $sender)
+{
+    $t_vat_setllementForm_no_kohir_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementForm; //Compatibility
+//End t_vat_setllementForm_no_kohir_BeforeShow
+
+//Custom Code @354-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementForm_no_kohir_BeforeShow @315-752B465F
+    return $t_vat_setllementForm_no_kohir_BeforeShow;
+}
+//End Close t_vat_setllementForm_no_kohir_BeforeShow
+
+//t_vat_setllementForm_BeforeShow @23-FE2321F2
+function t_vat_setllementForm_BeforeShow(& $sender)
+{
+    $t_vat_setllementForm_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementForm; //Compatibility
+//End t_vat_setllementForm_BeforeShow
+	global $t_vat_setllementGrid;
+//Custom Code @380-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$pajak = $t_vat_setllementGrid->total_vat_amount->GetValue();
+	$denda = $t_vat_setllementGrid->total_penalty_amount->GetValue();
+	$totaltotal = $pajak + $denda;
+	$t_vat_setllementGrid->total_total->SetValue($totaltotal);
+  	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
+  	$nilai2 = $t_vat_setllementGrid->p_vat_type_id->GetValue();
+
+  	$t_vat_setllementGrid->cetak_sptpd->SetValue("<input type='button' style='display:none;' value='CETAK' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
+    									 "cetakSptpd(".$nilai.",".$nilai2.")\">");
+  	$action_button = CCGetFromGet("action_button","");
+  	$action_button2 = CCGetFromGet("action_button2","");
+  	if($action_button=='flag_payment' && $action_button2!='cetak_register'){
+  		$dbConn = new clsDBConnSIKP();
+  		$sql="select sikp.f_payment_manual(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  		$dbConn->query($sql);
+  		$dbConn->next_record();
+  		echo "
+  		<script>
+  		alert('".$dbConn->f('f_payment_manual')."');
+  		</script>
+  		";
+  		$dbConn->close();	
+  	}else if($action_button2=='cetak_register'){
+  		$dbConn = new clsDBConnSIKP();
+  		$sql="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  		$dbConn->query($sql);
+  		$dbConn->next_record();
+  		print_laporan($dbConn->f('f_print_register'));
+  		/*echo "
+  			<script>
+  				window.open('../services/print_string.php?input_number=".$dbConn->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+  			</script>
+  		";*/
+  		$dbConn->close();
+  		exit;
+  	}
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementForm_BeforeShow @23-08204CD1
+    return $t_vat_setllementForm_BeforeShow;
+}
+//End Close t_vat_setllementForm_BeforeShow
+
+//t_vat_setllementForm_BeforeSelect @23-46687DEC
+function t_vat_setllementForm_BeforeSelect(& $sender)
+{
+    $t_vat_setllementForm_BeforeSelect = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementForm; //Compatibility
+//End t_vat_setllementForm_BeforeSelect
+
+//Custom Code @381-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	//$_SESSION['thisFormParam']='';
+	 $t_vat_setllementForm->EditMode=true;
+	     // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementForm_BeforeSelect @23-489DCACD
+    return $t_vat_setllementForm_BeforeSelect;
+}
+//End Close t_vat_setllementForm_BeforeSelect
 
 //Page_OnInitializeView @1-EFFF9779
 function Page_OnInitializeView(& $sender)
@@ -167,6 +322,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_ro; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -190,10 +351,36 @@ function Page_BeforeShow(& $sender)
     global $t_vat_setllement_ro; //Compatibility
 //End Page_BeforeShow
 
+//Custom Code @193-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
 }
 //End Close Page_BeforeShow
+
+//Page_BeforeInitialize @1-CFC118DB
+function Page_BeforeInitialize(& $sender)
+{
+    $Page_BeforeInitialize = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllement_ro; //Compatibility
+//End Page_BeforeInitialize
+
+//Custom Code @384-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeInitialize @1-23E6A029
+    return $Page_BeforeInitialize;
+}
+//End Close Page_BeforeInitialize
 
 function print_laporan($param_arr){
 	include "../include/fpdf17/mc_table.php";

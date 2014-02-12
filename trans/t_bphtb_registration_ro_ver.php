@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-0905212A
+//Class_Initialize Event @2-D19FB251
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -175,6 +175,12 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
             $this->jenis_harga_bphtb = & new clsControl(ccsListBox, "jenis_harga_bphtb", "jenis_harga_bphtb", ccsText, "", CCGetRequestParam("jenis_harga_bphtb", $Method, NULL), $this);
             $this->jenis_harga_bphtb->DSType = dsListOfValues;
             $this->jenis_harga_bphtb->Values = array(array("1", "Harga Transaksi"), array("2", "Harga Pasar"), array("3", "Harga Lelang"));
+            $this->bphtb_legal_doc_description = & new clsControl(ccsTextBox, "bphtb_legal_doc_description", "bphtb_legal_doc_description", ccsText, "", CCGetRequestParam("bphtb_legal_doc_description", $Method, NULL), $this);
+            $this->nilai_doc = & new clsControl(ccsHidden, "nilai_doc", "nilai_doc", ccsText, "", CCGetRequestParam("nilai_doc", $Method, NULL), $this);
+            $this->add_disc_percent = & new clsControl(ccsListBox, "add_disc_percent", "add_disc_percent", ccsText, "", CCGetRequestParam("add_disc_percent", $Method, NULL), $this);
+            $this->add_disc_percent->DSType = dsListOfValues;
+            $this->add_disc_percent->Values = array(array("0", "0%"), array("0.25", "25%"), array("0.5", "50%"), array("0.75", "75%"), array("1", "100%"));
+            $this->add_discount = & new clsControl(ccsTextBox, "add_discount", "add_discount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("add_discount", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -214,7 +220,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     }
 //End Initialize Method
 
-//Validate Method @2-EEAE5F79
+//Validate Method @2-3F7F95EB
     function Validate()
     {
         global $CCSLocales;
@@ -290,6 +296,10 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $Validation = ($this->verificated_nip->Validate() && $Validation);
         $Validation = ($this->registration_no->Validate() && $Validation);
         $Validation = ($this->jenis_harga_bphtb->Validate() && $Validation);
+        $Validation = ($this->bphtb_legal_doc_description->Validate() && $Validation);
+        $Validation = ($this->nilai_doc->Validate() && $Validation);
+        $Validation = ($this->add_disc_percent->Validate() && $Validation);
+        $Validation = ($this->add_discount->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -361,11 +371,15 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $Validation =  $Validation && ($this->verificated_nip->Errors->Count() == 0);
         $Validation =  $Validation && ($this->registration_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->jenis_harga_bphtb->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->bphtb_legal_doc_description->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nilai_doc->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->add_disc_percent->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->add_discount->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-34CE59ED
+//CheckErrors Method @2-AB321ABF
     function CheckErrors()
     {
         $errors = false;
@@ -439,6 +453,10 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $errors = ($errors || $this->verificated_nip->Errors->Count());
         $errors = ($errors || $this->registration_no->Errors->Count());
         $errors = ($errors || $this->jenis_harga_bphtb->Errors->Count());
+        $errors = ($errors || $this->bphtb_legal_doc_description->Errors->Count());
+        $errors = ($errors || $this->nilai_doc->Errors->Count());
+        $errors = ($errors || $this->add_disc_percent->Errors->Count());
+        $errors = ($errors || $this->add_discount->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -573,7 +591,7 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @2-C17E6DAA
+//UpdateRow Method @2-D8ACCD27
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -612,6 +630,8 @@ function GetPrimaryKey($keyName)
         $this->DataSource->object_p_region_id_kel->SetValue($this->object_p_region_id_kel->GetValue(true));
         $this->DataSource->verificated_by->SetValue($this->verificated_by->GetValue(true));
         $this->DataSource->verificated_nip->SetValue($this->verificated_nip->GetValue(true));
+        $this->DataSource->bphtb_legal_doc_description->SetValue($this->bphtb_legal_doc_description->GetValue(true));
+        $this->DataSource->add_disc_percent->SetValue($this->add_disc_percent->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -629,7 +649,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @2-2A307C82
+//Show Method @2-7CE259EB
     function Show()
     {
         global $CCSUseAmp;
@@ -645,6 +665,7 @@ function GetPrimaryKey($keyName)
 
         $this->p_bphtb_legal_doc_type_id->Prepare();
         $this->jenis_harga_bphtb->Prepare();
+        $this->add_disc_percent->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -704,6 +725,8 @@ function GetPrimaryKey($keyName)
                     $this->verificated_nip->SetValue($this->DataSource->verificated_nip->GetValue());
                     $this->registration_no->SetValue($this->DataSource->registration_no->GetValue());
                     $this->jenis_harga_bphtb->SetValue($this->DataSource->jenis_harga_bphtb->GetValue());
+                    $this->bphtb_legal_doc_description->SetValue($this->DataSource->bphtb_legal_doc_description->GetValue());
+                    $this->add_disc_percent->SetValue($this->DataSource->add_disc_percent->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -785,6 +808,10 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->verificated_nip->Errors->ToString());
             $Error = ComposeStrings($Error, $this->registration_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->jenis_harga_bphtb->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->bphtb_legal_doc_description->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nilai_doc->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->add_disc_percent->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->add_discount->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -882,6 +909,10 @@ function GetPrimaryKey($keyName)
         $this->verificated_nip->Show();
         $this->registration_no->Show();
         $this->jenis_harga_bphtb->Show();
+        $this->bphtb_legal_doc_description->Show();
+        $this->nilai_doc->Show();
+        $this->add_disc_percent->Show();
+        $this->add_discount->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -892,7 +923,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @2-BDFCC0BF
 
-//DataSource Variables @2-6E971544
+//DataSource Variables @2-50B0DFC3
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -978,9 +1009,13 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $verificated_nip;
     var $registration_no;
     var $jenis_harga_bphtb;
+    var $bphtb_legal_doc_description;
+    var $nilai_doc;
+    var $add_disc_percent;
+    var $add_discount;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-224C553E
+//DataSourceClass_Initialize Event @2-DAF97C14
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1126,6 +1161,14 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->jenis_harga_bphtb = new clsField("jenis_harga_bphtb", ccsText, "");
         
+        $this->bphtb_legal_doc_description = new clsField("bphtb_legal_doc_description", ccsText, "");
+        
+        $this->nilai_doc = new clsField("nilai_doc", ccsText, "");
+        
+        $this->add_disc_percent = new clsField("add_disc_percent", ccsText, "");
+        
+        $this->add_discount = new clsField("add_discount", ccsFloat, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1162,6 +1205,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["object_p_region_id_kel"] = array("Name" => "object_p_region_id_kel", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
         $this->UpdateFields["verificated_by"] = array("Name" => "verificated_by", "Value" => "", "DataType" => ccsText);
         $this->UpdateFields["verificated_nip"] = array("Name" => "verificated_nip", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["bphtb_legal_doc_description"] = array("Name" => "bphtb_legal_doc_description", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
+        $this->UpdateFields["add_disc_percent"] = array("Name" => "add_disc_percent", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -1216,7 +1261,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @2-A910566C
+//SetValues Method @2-9262ABD9
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1264,6 +1309,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->verificated_nip->SetDBValue($this->f("verificated_nip"));
         $this->registration_no->SetDBValue($this->f("registration_no"));
         $this->jenis_harga_bphtb->SetDBValue($this->f("jenis_harga_bphtb"));
+        $this->bphtb_legal_doc_description->SetDBValue($this->f("bphtb_legal_doc_description"));
+        $this->add_disc_percent->SetDBValue($this->f("add_disc_percent"));
     }
 //End SetValues Method
 
@@ -1486,7 +1533,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @2-A386FEB9
+//Update Method @2-07158003
     function Update()
     {
         global $CCSLocales;
@@ -1527,6 +1574,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["verificated_by"] = new clsSQLParameter("ctrlverificated_by", ccsText, "", "", $this->verificated_by->GetValue(true), updated_by, false, $this->ErrorBlock);
         $this->cp["verificated_nip"] = new clsSQLParameter("ctrlverificated_nip", ccsText, "", "", $this->verificated_nip->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["bphtb_legal_doc_description"] = new clsSQLParameter("ctrlbphtb_legal_doc_description", ccsText, "", "", $this->bphtb_legal_doc_description->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["add_disc_percent"] = new clsSQLParameter("ctrladd_disc_percent", ccsFloat, "", "", $this->add_disc_percent->GetValue(true), NULL, false, $this->ErrorBlock);
         $wp = new clsSQLParameters($this->ErrorBlock);
         $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
         if(!$wp->AllParamsSet()) {
@@ -1613,6 +1662,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["verificated_by"]->SetText(updated_by);
         if (!is_null($this->cp["verificated_nip"]->GetValue()) and !strlen($this->cp["verificated_nip"]->GetText()) and !is_bool($this->cp["verificated_nip"]->GetValue())) 
             $this->cp["verificated_nip"]->SetValue($this->verificated_nip->GetValue(true));
+        if (!is_null($this->cp["bphtb_legal_doc_description"]->GetValue()) and !strlen($this->cp["bphtb_legal_doc_description"]->GetText()) and !is_bool($this->cp["bphtb_legal_doc_description"]->GetValue())) 
+            $this->cp["bphtb_legal_doc_description"]->SetValue($this->bphtb_legal_doc_description->GetValue(true));
+        if (!is_null($this->cp["add_disc_percent"]->GetValue()) and !strlen($this->cp["add_disc_percent"]->GetText()) and !is_bool($this->cp["add_disc_percent"]->GetValue())) 
+            $this->cp["add_disc_percent"]->SetValue($this->add_disc_percent->GetValue(true));
         $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
         $wp->Criterion[2] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("2"), $this->ToSQL($wp->GetDBValue("2"), ccsFloat),false);
         $wp->Criterion[3] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("3"), $this->ToSQL($wp->GetDBValue("3"), ccsFloat),false);
@@ -1657,6 +1710,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["object_p_region_id_kel"]["Value"] = $this->cp["object_p_region_id_kel"]->GetDBValue(true);
         $this->UpdateFields["verificated_by"]["Value"] = $this->cp["verificated_by"]->GetDBValue(true);
         $this->UpdateFields["verificated_nip"]["Value"] = $this->cp["verificated_nip"]->GetDBValue(true);
+        $this->UpdateFields["bphtb_legal_doc_description"]["Value"] = $this->cp["bphtb_legal_doc_description"]->GetDBValue(true);
+        $this->UpdateFields["add_disc_percent"]["Value"] = $this->cp["add_disc_percent"]->GetDBValue(true);
         $this->SQL = CCBuildUpdate("t_bphtb_registration", $this->UpdateFields, $this);
         $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
