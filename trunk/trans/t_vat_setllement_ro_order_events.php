@@ -6,7 +6,6 @@ $no_kohir = CCGetFromGet('s_keyword');
 	if(!empty($no_kohir)){
 		$dbConn = new clsDBConnSIKP();
   		$sql="select t_customer_order_id from t_vat_setllement where no_kohir='".$no_kohir."'";
-		die($sql);
   		$dbConn->query($sql);
   		$dbConn->next_record();
 		$_POST['t_customer_order_id']=$_GET['t_customer_order_id'] = $dbConn->f('t_customer_order_id');
