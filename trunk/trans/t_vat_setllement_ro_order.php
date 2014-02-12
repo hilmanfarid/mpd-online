@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-3C1411F1
+//Class_Initialize Event @2-0707F8DC
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -71,7 +71,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
         $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
         $this->DLink->HTML = true;
-        $this->DLink->Page = "t_vat_setllement_ro.php";
+        $this->DLink->Page = "t_vat_setllement_ro_order.php";
         $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
         $this->finance_period_code = & new clsControl(ccsLabel, "finance_period_code", "finance_period_code", ccsText, "", CCGetRequestParam("finance_period_code", ccsGet, NULL), $this);
         $this->order_no = & new clsControl(ccsLabel, "order_no", "order_no", ccsText, "", CCGetRequestParam("order_no", ccsGet, NULL), $this);
@@ -1110,7 +1110,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @355-AC90659A
+//Operation Method @355-D43274FB
     function Operation()
     {
         if(!$this->Visible)
@@ -1129,10 +1129,10 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_DoSearch";
             }
         }
-        $Redirect = "t_vat_setllement_ro.php";
+        $Redirect = "t_vat_setllement_ro_order.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
-                $Redirect = "t_vat_setllement_ro.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
+                $Redirect = "t_vat_setllement_ro_order.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
                     $Redirect = "";
                 }
