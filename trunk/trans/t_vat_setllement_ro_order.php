@@ -1,8 +1,8 @@
 <?php
-//Include Common Files @1-69AF305A
+//Include Common Files @1-F10C59ED
 define("RelativePath", "..");
 define("PathToCurrentPage", "/trans/");
-define("FileName", "t_vat_setllement_ro.php");
+define("FileName", "t_vat_setllement_ro_order.php");
 include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
@@ -112,7 +112,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-C48DDD7C
+//Show Method @2-0B328E3F
     function Show()
     {
         global $Tpl;
@@ -121,7 +121,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urlCURR_DOC_ID"] = CCGetFromGet("CURR_DOC_ID", NULL);
+        $this->DataSource->Parameters["urlt_customer_order_id"] = CCGetFromGet("t_customer_order_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -406,13 +406,13 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End SetOrder Method
 
-//Prepare Method @2-D3EF19EA
+//Prepare Method @2-F9A3DF44
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlCURR_DOC_ID", ccsFloat, "", "", $this->Parameters["urlCURR_DOC_ID"], 0, false);
+        $this->wp->AddParameter("1", "urlt_customer_order_id", ccsFloat, "", "", $this->Parameters["urlt_customer_order_id"], 0, false);
     }
 //End Prepare Method
 
@@ -470,9 +470,11 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
 
 } //End t_vat_setllementGridDataSource Class @2-FCB6E20C
 
-class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E11780
 
-//Variables @3-D6FF3E86
+
+class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
+
+//Variables @23-D6FF3E86
 
     // Public variables
     var $ComponentType = "Record";
@@ -506,8 +508,8 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-233DCD3A
-    function clsRecordt_vat_setllementSearch($RelativePath, & $Parent)
+//Class_Initialize Event @23-041BCC88
+    function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
         global $FileName;
@@ -517,140 +519,138 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
         $this->Parent = & $Parent;
         $this->RelativePath = $RelativePath;
         $this->Errors = new clsErrors();
-        $this->ErrorBlock = "Record t_vat_setllementSearch/Error";
+        $this->ErrorBlock = "Record t_vat_setllementForm/Error";
+        $this->DataSource = new clst_vat_setllementFormDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->UpdateAllowed = true;
         $this->ReadAllowed = true;
         if($this->Visible)
         {
-            $this->ComponentName = "t_vat_setllementSearch";
+            $this->ComponentName = "t_vat_setllementForm";
             $this->Attributes = new clsAttributes($this->ComponentName . ":");
             $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
+            $this->EditMode = ($FormMethod == "Edit");
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->TAKEN_CTL = & new clsControl(ccsHidden, "TAKEN_CTL", "TAKEN_CTL", ccsText, "", CCGetRequestParam("TAKEN_CTL", $Method, NULL), $this);
-            $this->IS_TAKEN = & new clsControl(ccsHidden, "IS_TAKEN", "IS_TAKEN", ccsText, "", CCGetRequestParam("IS_TAKEN", $Method, NULL), $this);
-            $this->CURR_DOC_ID = & new clsControl(ccsHidden, "CURR_DOC_ID", "CURR_DOC_ID", ccsText, "", CCGetRequestParam("CURR_DOC_ID", $Method, NULL), $this);
-            $this->CURR_DOC_TYPE_ID = & new clsControl(ccsHidden, "CURR_DOC_TYPE_ID", "CURR_DOC_TYPE_ID", ccsText, "", CCGetRequestParam("CURR_DOC_TYPE_ID", $Method, NULL), $this);
-            $this->CURR_PROC_ID = & new clsControl(ccsHidden, "CURR_PROC_ID", "CURR_PROC_ID", ccsText, "", CCGetRequestParam("CURR_PROC_ID", $Method, NULL), $this);
-            $this->CURR_CTL_ID = & new clsControl(ccsHidden, "CURR_CTL_ID", "CURR_CTL_ID", ccsText, "", CCGetRequestParam("CURR_CTL_ID", $Method, NULL), $this);
-            $this->USER_ID_DOC = & new clsControl(ccsHidden, "USER_ID_DOC", "USER_ID_DOC", ccsText, "", CCGetRequestParam("USER_ID_DOC", $Method, NULL), $this);
-            $this->USER_ID_DONOR = & new clsControl(ccsHidden, "USER_ID_DONOR", "USER_ID_DONOR", ccsText, "", CCGetRequestParam("USER_ID_DONOR", $Method, NULL), $this);
-            $this->USER_ID_LOGIN = & new clsControl(ccsHidden, "USER_ID_LOGIN", "USER_ID_LOGIN", ccsText, "", CCGetRequestParam("USER_ID_LOGIN", $Method, NULL), $this);
-            $this->USER_ID_TAKEN = & new clsControl(ccsHidden, "USER_ID_TAKEN", "USER_ID_TAKEN", ccsText, "", CCGetRequestParam("USER_ID_TAKEN", $Method, NULL), $this);
-            $this->IS_CREATE_DOC = & new clsControl(ccsHidden, "IS_CREATE_DOC", "IS_CREATE_DOC", ccsText, "", CCGetRequestParam("IS_CREATE_DOC", $Method, NULL), $this);
-            $this->IS_MANUAL = & new clsControl(ccsHidden, "IS_MANUAL", "IS_MANUAL", ccsText, "", CCGetRequestParam("IS_MANUAL", $Method, NULL), $this);
-            $this->CURR_PROC_STATUS = & new clsControl(ccsHidden, "CURR_PROC_STATUS", "CURR_PROC_STATUS", ccsText, "", CCGetRequestParam("CURR_PROC_STATUS", $Method, NULL), $this);
-            $this->CURR_DOC_STATUS = & new clsControl(ccsHidden, "CURR_DOC_STATUS", "CURR_DOC_STATUS", ccsText, "", CCGetRequestParam("CURR_DOC_STATUS", $Method, NULL), $this);
-            $this->PREV_DOC_ID = & new clsControl(ccsHidden, "PREV_DOC_ID", "PREV_DOC_ID", ccsText, "", CCGetRequestParam("PREV_DOC_ID", $Method, NULL), $this);
-            $this->PREV_DOC_TYPE_ID = & new clsControl(ccsHidden, "PREV_DOC_TYPE_ID", "PREV_DOC_TYPE_ID", ccsText, "", CCGetRequestParam("PREV_DOC_TYPE_ID", $Method, NULL), $this);
-            $this->PREV_PROC_ID = & new clsControl(ccsHidden, "PREV_PROC_ID", "PREV_PROC_ID", ccsText, "", CCGetRequestParam("PREV_PROC_ID", $Method, NULL), $this);
-            $this->PREV_CTL_ID = & new clsControl(ccsHidden, "PREV_CTL_ID", "PREV_CTL_ID", ccsText, "", CCGetRequestParam("PREV_CTL_ID", $Method, NULL), $this);
-            $this->SLOT_1 = & new clsControl(ccsHidden, "SLOT_1", "SLOT_1", ccsText, "", CCGetRequestParam("SLOT_1", $Method, NULL), $this);
-            $this->SLOT_2 = & new clsControl(ccsHidden, "SLOT_2", "SLOT_2", ccsText, "", CCGetRequestParam("SLOT_2", $Method, NULL), $this);
-            $this->SLOT_3 = & new clsControl(ccsHidden, "SLOT_3", "SLOT_3", ccsText, "", CCGetRequestParam("SLOT_3", $Method, NULL), $this);
-            $this->SLOT_4 = & new clsControl(ccsHidden, "SLOT_4", "SLOT_4", ccsText, "", CCGetRequestParam("SLOT_4", $Method, NULL), $this);
-            $this->SLOT_5 = & new clsControl(ccsHidden, "SLOT_5", "SLOT_5", ccsText, "", CCGetRequestParam("SLOT_5", $Method, NULL), $this);
-            $this->MESSAGE = & new clsControl(ccsHidden, "MESSAGE", "MESSAGE", ccsText, "", CCGetRequestParam("MESSAGE", $Method, NULL), $this);
+            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
+            $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "Id", ccsFloat, "", CCGetRequestParam("t_vat_setllement_id", $Method, NULL), $this);
+            $this->is_anomali = & new clsControl(ccsListBox, "is_anomali", "Anomali ?", ccsText, "", CCGetRequestParam("is_anomali", $Method, NULL), $this);
+            $this->is_anomali->DSType = dsListOfValues;
+            $this->is_anomali->Values = array(array("N", "TIDAK"), array("Y", "YA"));
+            $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsFloat, "", CCGetRequestParam("t_cust_account_id", $Method, NULL), $this);
+            $this->no_kohir = & new clsControl(ccsTextBox, "no_kohir", "Nomor Kohir", ccsText, "", CCGetRequestParam("no_kohir", $Method, NULL), $this);
+            $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsFloat, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
+            $this->npwd = & new clsControl(ccsTextBox, "npwd", "NPWD", ccsText, "", CCGetRequestParam("npwd", $Method, NULL), $this);
+            $this->order_no = & new clsControl(ccsTextBox, "order_no", "Nomor Order", ccsText, "", CCGetRequestParam("order_no", $Method, NULL), $this);
+            $this->finance_period_code = & new clsControl(ccsTextBox, "finance_period_code", "Periode", ccsText, "", CCGetRequestParam("finance_period_code", $Method, NULL), $this);
+            $this->start_period = & new clsControl(ccsTextBox, "start_period", "Masa Pajak", ccsText, "", CCGetRequestParam("start_period", $Method, NULL), $this);
+            $this->end_period = & new clsControl(ccsTextBox, "end_period", "end_period", ccsText, "", CCGetRequestParam("end_period", $Method, NULL), $this);
+            $this->total_trans_amount = & new clsControl(ccsTextBox, "total_trans_amount", "Total Transaksi", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_trans_amount", $Method, NULL), $this);
+            $this->total_vat_amount = & new clsControl(ccsTextBox, "total_vat_amount", "Total Pajak", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_vat_amount", $Method, NULL), $this);
+            $this->jenis_pajak = & new clsControl(ccsTextBox, "jenis_pajak", "Jenis Pajak", ccsText, "", CCGetRequestParam("jenis_pajak", $Method, NULL), $this);
+            $this->due_date = & new clsControl(ccsTextBox, "due_date", "due_date", ccsText, "", CCGetRequestParam("due_date", $Method, NULL), $this);
+            $this->due_date->Required = true;
+            $this->wp_name = & new clsControl(ccsTextBox, "wp_name", "Nama Wajib Pajak", ccsText, "", CCGetRequestParam("wp_name", $Method, NULL), $this);
+            $this->wp_address_name = & new clsControl(ccsTextArea, "wp_address_name", "Alamat Wajib Pajak", ccsText, "", CCGetRequestParam("wp_address_name", $Method, NULL), $this);
+            $this->cetak_payment = & new clsButton("cetak_payment", $Method, $this);
+            $this->cetak_register1 = & new clsButton("cetak_register1", $Method, $this);
+            $this->user = & new clsControl(ccsHidden, "user", "user", ccsText, "", CCGetRequestParam("user", $Method, NULL), $this);
+            if(!$this->FormSubmitted) {
+                if(!is_array($this->due_date->Value) && !strlen($this->due_date->Value) && $this->due_date->Value !== false)
+                    $this->due_date->SetText(date("d-M-Y h:i:s"));
+            }
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-6E518196
+//Initialize Method @23-E8596F60
+    function Initialize()
+    {
+
+        if(!$this->Visible)
+            return;
+
+        $this->DataSource->Parameters["urlt_customer_order_id"] = CCGetFromGet("t_customer_order_id", NULL);
+    }
+//End Initialize Method
+
+//Validate Method @23-69F64DCE
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
-        $Validation = ($this->TAKEN_CTL->Validate() && $Validation);
-        $Validation = ($this->IS_TAKEN->Validate() && $Validation);
-        $Validation = ($this->CURR_DOC_ID->Validate() && $Validation);
-        $Validation = ($this->CURR_DOC_TYPE_ID->Validate() && $Validation);
-        $Validation = ($this->CURR_PROC_ID->Validate() && $Validation);
-        $Validation = ($this->CURR_CTL_ID->Validate() && $Validation);
-        $Validation = ($this->USER_ID_DOC->Validate() && $Validation);
-        $Validation = ($this->USER_ID_DONOR->Validate() && $Validation);
-        $Validation = ($this->USER_ID_LOGIN->Validate() && $Validation);
-        $Validation = ($this->USER_ID_TAKEN->Validate() && $Validation);
-        $Validation = ($this->IS_CREATE_DOC->Validate() && $Validation);
-        $Validation = ($this->IS_MANUAL->Validate() && $Validation);
-        $Validation = ($this->CURR_PROC_STATUS->Validate() && $Validation);
-        $Validation = ($this->CURR_DOC_STATUS->Validate() && $Validation);
-        $Validation = ($this->PREV_DOC_ID->Validate() && $Validation);
-        $Validation = ($this->PREV_DOC_TYPE_ID->Validate() && $Validation);
-        $Validation = ($this->PREV_PROC_ID->Validate() && $Validation);
-        $Validation = ($this->PREV_CTL_ID->Validate() && $Validation);
-        $Validation = ($this->SLOT_1->Validate() && $Validation);
-        $Validation = ($this->SLOT_2->Validate() && $Validation);
-        $Validation = ($this->SLOT_3->Validate() && $Validation);
-        $Validation = ($this->SLOT_4->Validate() && $Validation);
-        $Validation = ($this->SLOT_5->Validate() && $Validation);
-        $Validation = ($this->MESSAGE->Validate() && $Validation);
+        $Validation = ($this->t_vat_setllement_id->Validate() && $Validation);
+        $Validation = ($this->is_anomali->Validate() && $Validation);
+        $Validation = ($this->t_cust_account_id->Validate() && $Validation);
+        $Validation = ($this->no_kohir->Validate() && $Validation);
+        $Validation = ($this->t_customer_order_id->Validate() && $Validation);
+        $Validation = ($this->npwd->Validate() && $Validation);
+        $Validation = ($this->order_no->Validate() && $Validation);
+        $Validation = ($this->finance_period_code->Validate() && $Validation);
+        $Validation = ($this->start_period->Validate() && $Validation);
+        $Validation = ($this->end_period->Validate() && $Validation);
+        $Validation = ($this->total_trans_amount->Validate() && $Validation);
+        $Validation = ($this->total_vat_amount->Validate() && $Validation);
+        $Validation = ($this->jenis_pajak->Validate() && $Validation);
+        $Validation = ($this->due_date->Validate() && $Validation);
+        $Validation = ($this->wp_name->Validate() && $Validation);
+        $Validation = ($this->wp_address_name->Validate() && $Validation);
+        $Validation = ($this->user->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
-        $Validation =  $Validation && ($this->TAKEN_CTL->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->IS_TAKEN->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->CURR_DOC_ID->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->CURR_DOC_TYPE_ID->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->CURR_PROC_ID->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->CURR_CTL_ID->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->USER_ID_DOC->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->USER_ID_DONOR->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->USER_ID_LOGIN->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->USER_ID_TAKEN->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->IS_CREATE_DOC->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->IS_MANUAL->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->CURR_PROC_STATUS->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->CURR_DOC_STATUS->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->PREV_DOC_ID->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->PREV_DOC_TYPE_ID->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->PREV_PROC_ID->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->PREV_CTL_ID->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->SLOT_1->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->SLOT_2->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->SLOT_3->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->SLOT_4->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->SLOT_5->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->MESSAGE->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_vat_setllement_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->is_anomali->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_cust_account_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->no_kohir->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->npwd->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->order_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->finance_period_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->start_period->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->end_period->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->total_trans_amount->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->total_vat_amount->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->jenis_pajak->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->due_date->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->wp_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->wp_address_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->user->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-308FBB1C
+//CheckErrors Method @23-6043D3E4
     function CheckErrors()
     {
         $errors = false;
-        $errors = ($errors || $this->TAKEN_CTL->Errors->Count());
-        $errors = ($errors || $this->IS_TAKEN->Errors->Count());
-        $errors = ($errors || $this->CURR_DOC_ID->Errors->Count());
-        $errors = ($errors || $this->CURR_DOC_TYPE_ID->Errors->Count());
-        $errors = ($errors || $this->CURR_PROC_ID->Errors->Count());
-        $errors = ($errors || $this->CURR_CTL_ID->Errors->Count());
-        $errors = ($errors || $this->USER_ID_DOC->Errors->Count());
-        $errors = ($errors || $this->USER_ID_DONOR->Errors->Count());
-        $errors = ($errors || $this->USER_ID_LOGIN->Errors->Count());
-        $errors = ($errors || $this->USER_ID_TAKEN->Errors->Count());
-        $errors = ($errors || $this->IS_CREATE_DOC->Errors->Count());
-        $errors = ($errors || $this->IS_MANUAL->Errors->Count());
-        $errors = ($errors || $this->CURR_PROC_STATUS->Errors->Count());
-        $errors = ($errors || $this->CURR_DOC_STATUS->Errors->Count());
-        $errors = ($errors || $this->PREV_DOC_ID->Errors->Count());
-        $errors = ($errors || $this->PREV_DOC_TYPE_ID->Errors->Count());
-        $errors = ($errors || $this->PREV_PROC_ID->Errors->Count());
-        $errors = ($errors || $this->PREV_CTL_ID->Errors->Count());
-        $errors = ($errors || $this->SLOT_1->Errors->Count());
-        $errors = ($errors || $this->SLOT_2->Errors->Count());
-        $errors = ($errors || $this->SLOT_3->Errors->Count());
-        $errors = ($errors || $this->SLOT_4->Errors->Count());
-        $errors = ($errors || $this->SLOT_5->Errors->Count());
-        $errors = ($errors || $this->MESSAGE->Errors->Count());
+        $errors = ($errors || $this->t_vat_setllement_id->Errors->Count());
+        $errors = ($errors || $this->is_anomali->Errors->Count());
+        $errors = ($errors || $this->t_cust_account_id->Errors->Count());
+        $errors = ($errors || $this->no_kohir->Errors->Count());
+        $errors = ($errors || $this->t_customer_order_id->Errors->Count());
+        $errors = ($errors || $this->npwd->Errors->Count());
+        $errors = ($errors || $this->order_no->Errors->Count());
+        $errors = ($errors || $this->finance_period_code->Errors->Count());
+        $errors = ($errors || $this->start_period->Errors->Count());
+        $errors = ($errors || $this->end_period->Errors->Count());
+        $errors = ($errors || $this->total_trans_amount->Errors->Count());
+        $errors = ($errors || $this->total_vat_amount->Errors->Count());
+        $errors = ($errors || $this->jenis_pajak->Errors->Count());
+        $errors = ($errors || $this->due_date->Errors->Count());
+        $errors = ($errors || $this->wp_name->Errors->Count());
+        $errors = ($errors || $this->wp_address_name->Errors->Count());
+        $errors = ($errors || $this->user->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
+        $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
     }
 //End CheckErrors Method
 
-//MasterDetail @3-ED598703
+//MasterDetail @23-ED598703
 function SetPrimaryKeys($keyArray)
 {
     $this->PrimaryKeys = $keyArray;
@@ -665,7 +665,452 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-765FCAFF
+//Operation Method @23-52D0105A
+    function Operation()
+    {
+        if(!$this->Visible)
+            return;
+
+        global $Redirect;
+        global $FileName;
+
+        $this->DataSource->Prepare();
+        if(!$this->FormSubmitted) {
+            $this->EditMode = $this->DataSource->AllParametersSet;
+            return;
+        }
+
+        if($this->FormSubmitted) {
+            $this->PressedButton = $this->EditMode ? "Button_Update" : "cetak_payment";
+            if($this->Button_Update->Pressed) {
+                $this->PressedButton = "Button_Update";
+            } else if($this->cetak_payment->Pressed) {
+                $this->PressedButton = "cetak_payment";
+            } else if($this->cetak_register1->Pressed) {
+                $this->PressedButton = "cetak_register1";
+            }
+        }
+        $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
+        if($this->Validate()) {
+            if($this->PressedButton == "Button_Update") {
+                $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
+                if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "cetak_payment") {
+                if(!CCGetEvent($this->cetak_payment->CCSEvents, "OnClick", $this->cetak_payment)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "cetak_register1") {
+                if(!CCGetEvent($this->cetak_register1->CCSEvents, "OnClick", $this->cetak_register1)) {
+                    $Redirect = "";
+                }
+            }
+        } else {
+            $Redirect = "";
+        }
+        if ($Redirect)
+            $this->DataSource->close();
+    }
+//End Operation Method
+
+//UpdateRow Method @23-E964B810
+    function UpdateRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
+        if(!$this->UpdateAllowed) return false;
+        $this->DataSource->is_anomali->SetValue($this->is_anomali->GetValue(true));
+        $this->DataSource->t_vat_setllement_id->SetValue($this->t_vat_setllement_id->GetValue(true));
+        $this->DataSource->no_kohir->SetValue($this->no_kohir->GetValue(true));
+        $this->DataSource->Update();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
+        return (!$this->CheckErrors());
+    }
+//End UpdateRow Method
+
+//Show Method @23-C38248F3
+    function Show()
+    {
+        global $CCSUseAmp;
+        global $Tpl;
+        global $FileName;
+        global $CCSLocales;
+        $Error = "";
+
+        if(!$this->Visible)
+            return;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+        $this->is_anomali->Prepare();
+
+        $RecordBlock = "Record " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $RecordBlock;
+        $this->EditMode = $this->EditMode && $this->ReadAllowed;
+        if($this->EditMode) {
+            if($this->DataSource->Errors->Count()){
+                $this->Errors->AddErrors($this->DataSource->Errors);
+                $this->DataSource->Errors->clear();
+            }
+            $this->DataSource->Open();
+            if($this->DataSource->Errors->Count() == 0 && $this->DataSource->next_record()) {
+                $this->DataSource->SetValues();
+                if(!$this->FormSubmitted){
+                    $this->t_vat_setllement_id->SetValue($this->DataSource->t_vat_setllement_id->GetValue());
+                    $this->is_anomali->SetValue($this->DataSource->is_anomali->GetValue());
+                    $this->t_cust_account_id->SetValue($this->DataSource->t_cust_account_id->GetValue());
+                    $this->no_kohir->SetValue($this->DataSource->no_kohir->GetValue());
+                    $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
+                    $this->npwd->SetValue($this->DataSource->npwd->GetValue());
+                    $this->order_no->SetValue($this->DataSource->order_no->GetValue());
+                    $this->finance_period_code->SetValue($this->DataSource->finance_period_code->GetValue());
+                    $this->start_period->SetValue($this->DataSource->start_period->GetValue());
+                    $this->end_period->SetValue($this->DataSource->end_period->GetValue());
+                    $this->total_trans_amount->SetValue($this->DataSource->total_trans_amount->GetValue());
+                    $this->total_vat_amount->SetValue($this->DataSource->total_vat_amount->GetValue());
+                    $this->jenis_pajak->SetValue($this->DataSource->jenis_pajak->GetValue());
+                    $this->due_date->SetValue($this->DataSource->due_date->GetValue());
+                    $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
+                    $this->wp_address_name->SetValue($this->DataSource->wp_address_name->GetValue());
+                }
+            } else {
+                $this->EditMode = false;
+            }
+        }
+        if (!$this->FormSubmitted) {
+            $this->user->SetText(CCGetUserLogin());
+        }
+
+        if($this->FormSubmitted || $this->CheckErrors()) {
+            $Error = "";
+            $Error = ComposeStrings($Error, $this->t_vat_setllement_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->is_anomali->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_cust_account_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->no_kohir->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->npwd->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->order_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->finance_period_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->start_period->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->end_period->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->total_trans_amount->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->total_vat_amount->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->jenis_pajak->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->due_date->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->wp_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->wp_address_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->user->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
+            $Tpl->SetVar("Error", $Error);
+            $Tpl->Parse("Error", false);
+        }
+        $CCSForm = $this->EditMode ? $this->ComponentName . ":" . "Edit" : $this->ComponentName;
+        $this->HTMLFormAction = $FileName . "?" . CCAddParam(CCGetQueryString("QueryString", ""), "ccsForm", $CCSForm);
+        $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
+        $Tpl->SetVar("HTMLFormName", $this->ComponentName);
+        $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
+        $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        $this->Attributes->Show();
+        if(!$this->Visible) {
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+
+        $this->Button_Update->Show();
+        $this->t_vat_setllement_id->Show();
+        $this->is_anomali->Show();
+        $this->t_cust_account_id->Show();
+        $this->no_kohir->Show();
+        $this->t_customer_order_id->Show();
+        $this->npwd->Show();
+        $this->order_no->Show();
+        $this->finance_period_code->Show();
+        $this->start_period->Show();
+        $this->end_period->Show();
+        $this->total_trans_amount->Show();
+        $this->total_vat_amount->Show();
+        $this->jenis_pajak->Show();
+        $this->due_date->Show();
+        $this->wp_name->Show();
+        $this->wp_address_name->Show();
+        $this->cetak_payment->Show();
+        $this->cetak_register1->Show();
+        $this->user->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+} //End t_vat_setllementForm Class @23-FCB6E20C
+
+class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllementFormDataSource Class @23-AF9958CC
+
+//DataSource Variables @23-77F7C1EF
+    var $Parent = "";
+    var $CCSEvents = "";
+    var $CCSEventResult;
+    var $ErrorBlock;
+    var $CmdExecution;
+
+    var $UpdateParameters;
+    var $wp;
+    var $AllParametersSet;
+
+
+    // Datasource fields
+    var $t_vat_setllement_id;
+    var $is_anomali;
+    var $t_cust_account_id;
+    var $no_kohir;
+    var $t_customer_order_id;
+    var $npwd;
+    var $order_no;
+    var $finance_period_code;
+    var $start_period;
+    var $end_period;
+    var $total_trans_amount;
+    var $total_vat_amount;
+    var $jenis_pajak;
+    var $due_date;
+    var $wp_name;
+    var $wp_address_name;
+    var $user;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @23-3395A667
+    function clst_vat_setllementFormDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Record t_vat_setllementForm/Error";
+        $this->Initialize();
+        $this->t_vat_setllement_id = new clsField("t_vat_setllement_id", ccsFloat, "");
+        
+        $this->is_anomali = new clsField("is_anomali", ccsText, "");
+        
+        $this->t_cust_account_id = new clsField("t_cust_account_id", ccsFloat, "");
+        
+        $this->no_kohir = new clsField("no_kohir", ccsText, "");
+        
+        $this->t_customer_order_id = new clsField("t_customer_order_id", ccsFloat, "");
+        
+        $this->npwd = new clsField("npwd", ccsText, "");
+        
+        $this->order_no = new clsField("order_no", ccsText, "");
+        
+        $this->finance_period_code = new clsField("finance_period_code", ccsText, "");
+        
+        $this->start_period = new clsField("start_period", ccsText, "");
+        
+        $this->end_period = new clsField("end_period", ccsText, "");
+        
+        $this->total_trans_amount = new clsField("total_trans_amount", ccsFloat, "");
+        
+        $this->total_vat_amount = new clsField("total_vat_amount", ccsFloat, "");
+        
+        $this->jenis_pajak = new clsField("jenis_pajak", ccsText, "");
+        
+        $this->due_date = new clsField("due_date", ccsText, "");
+        
+        $this->wp_name = new clsField("wp_name", ccsText, "");
+        
+        $this->wp_address_name = new clsField("wp_address_name", ccsText, "");
+        
+        $this->user = new clsField("user", ccsText, "");
+        
+
+    }
+//End DataSourceClass_Initialize Event
+
+//Prepare Method @23-0AD94F65
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urlt_customer_order_id", ccsText, "", "", $this->Parameters["urlt_customer_order_id"], "", false);
+        $this->AllParametersSet = $this->wp->AllParamsSet();
+    }
+//End Prepare Method
+
+//Open Method @23-75D2CAAF
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->SQL = "SELECT *\n" .
+        "FROM v_vat_setllement_ro\n" .
+        "WHERE t_customer_order_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "";
+        $this->Order = "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        $this->PageSize = 1;
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+    }
+//End Open Method
+
+//SetValues Method @23-67E78B86
+    function SetValues()
+    {
+        $this->t_vat_setllement_id->SetDBValue(trim($this->f("t_vat_setllement_id")));
+        $this->is_anomali->SetDBValue($this->f("is_anomali"));
+        $this->t_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
+        $this->no_kohir->SetDBValue($this->f("no_kohir"));
+        $this->t_customer_order_id->SetDBValue(trim($this->f("t_customer_order_id")));
+        $this->npwd->SetDBValue($this->f("npwd"));
+        $this->order_no->SetDBValue($this->f("order_no"));
+        $this->finance_period_code->SetDBValue($this->f("finance_period_code"));
+        $this->start_period->SetDBValue($this->f("start_period"));
+        $this->end_period->SetDBValue($this->f("end_period"));
+        $this->total_trans_amount->SetDBValue(trim($this->f("total_trans_amount")));
+        $this->total_vat_amount->SetDBValue(trim($this->f("total_vat_amount")));
+        $this->jenis_pajak->SetDBValue($this->f("jenis_pajak"));
+        $this->due_date->SetDBValue($this->f("due_date"));
+        $this->wp_name->SetDBValue($this->f("wp_name"));
+        $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
+    }
+//End SetValues Method
+
+//Update Method @23-8D274A74
+    function Update()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->cp["is_anomali"] = new clsSQLParameter("ctrlis_anomali", ccsText, "", "", $this->is_anomali->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["t_vat_setllement_id"] = new clsSQLParameter("ctrlt_vat_setllement_id", ccsFloat, "", "", $this->t_vat_setllement_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["no_kohir"] = new clsSQLParameter("ctrlno_kohir", ccsText, "", "", $this->no_kohir->GetValue(true), "", false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
+        if (!is_null($this->cp["is_anomali"]->GetValue()) and !strlen($this->cp["is_anomali"]->GetText()) and !is_bool($this->cp["is_anomali"]->GetValue())) 
+            $this->cp["is_anomali"]->SetValue($this->is_anomali->GetValue(true));
+        if (!is_null($this->cp["t_vat_setllement_id"]->GetValue()) and !strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue())) 
+            $this->cp["t_vat_setllement_id"]->SetValue($this->t_vat_setllement_id->GetValue(true));
+        if (!strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue(true))) 
+            $this->cp["t_vat_setllement_id"]->SetText(0);
+        if (!is_null($this->cp["no_kohir"]->GetValue()) and !strlen($this->cp["no_kohir"]->GetText()) and !is_bool($this->cp["no_kohir"]->GetValue())) 
+            $this->cp["no_kohir"]->SetValue($this->no_kohir->GetValue(true));
+        $this->SQL = "UPDATE t_vat_setllement SET\n" .
+        "is_anomali = '" . $this->SQLValue($this->cp["is_anomali"]->GetDBValue(), ccsText) . "',\n" .
+        "no_kohir='" . $this->SQLValue($this->cp["no_kohir"]->GetDBValue(), ccsText) . "' \n" .
+        "WHERE t_vat_setllement_id = " . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsFloat) . " ";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
+        }
+    }
+//End Update Method
+
+} //End t_vat_setllementFormDataSource Class @23-FCB6E20C
+
+class clsRecordt_vat_setllement_dtlSearch { //t_vat_setllement_dtlSearch Class @355-A55E5ABA
+
+//Variables @355-D6FF3E86
+
+    // Public variables
+    var $ComponentType = "Record";
+    var $ComponentName;
+    var $Parent;
+    var $HTMLFormAction;
+    var $PressedButton;
+    var $Errors;
+    var $ErrorBlock;
+    var $FormSubmitted;
+    var $FormEnctype;
+    var $Visible;
+    var $IsEmpty;
+
+    var $CCSEvents = "";
+    var $CCSEventResult;
+
+    var $RelativePath = "";
+
+    var $InsertAllowed = false;
+    var $UpdateAllowed = false;
+    var $DeleteAllowed = false;
+    var $ReadAllowed   = false;
+    var $EditMode      = false;
+    var $ds;
+    var $DataSource;
+    var $ValidatingControls;
+    var $Controls;
+    var $Attributes;
+
+    // Class variables
+//End Variables
+
+//Class_Initialize Event @355-0798A001
+    function clsRecordt_vat_setllement_dtlSearch($RelativePath, & $Parent)
+    {
+
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->Visible = true;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Record t_vat_setllement_dtlSearch/Error";
+        $this->ReadAllowed = true;
+        if($this->Visible)
+        {
+            $this->ComponentName = "t_vat_setllement_dtlSearch";
+            $this->Attributes = new clsAttributes($this->ComponentName . ":");
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
+            if(sizeof($CCSForm) == 1)
+                $CCSForm[1] = "";
+            list($FormName, $FormMethod) = $CCSForm;
+            $this->FormEnctype = "application/x-www-form-urlencoded";
+            $this->FormSubmitted = ($FormName == $this->ComponentName);
+            $Method = $this->FormSubmitted ? ccsPost : ccsGet;
+            $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
+            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+        }
+    }
+//End Class_Initialize Event
+
+//Validate Method @355-A144A629
+    function Validate()
+    {
+        global $CCSLocales;
+        $Validation = true;
+        $Where = "";
+        $Validation = ($this->s_keyword->Validate() && $Validation);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
+        $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
+        return (($this->Errors->Count() == 0) && $Validation);
+    }
+//End Validate Method
+
+//CheckErrors Method @355-D6729123
+    function CheckErrors()
+    {
+        $errors = false;
+        $errors = ($errors || $this->s_keyword->Errors->Count());
+        $errors = ($errors || $this->Errors->Count());
+        return $errors;
+    }
+//End CheckErrors Method
+
+//MasterDetail @355-ED598703
+function SetPrimaryKeys($keyArray)
+{
+    $this->PrimaryKeys = $keyArray;
+}
+function GetPrimaryKeys()
+{
+    return $this->PrimaryKeys;
+}
+function GetPrimaryKey($keyName)
+{
+    return $this->PrimaryKeys[$keyName];
+}
+//End MasterDetail
+
+//Operation Method @355-AC90659A
     function Operation()
     {
         if(!$this->Visible)
@@ -678,11 +1123,27 @@ function GetPrimaryKey($keyName)
             return;
         }
 
+        if($this->FormSubmitted) {
+            $this->PressedButton = "Button_DoSearch";
+            if($this->Button_DoSearch->Pressed) {
+                $this->PressedButton = "Button_DoSearch";
+            }
+        }
         $Redirect = "t_vat_setllement_ro.php";
+        if($this->Validate()) {
+            if($this->PressedButton == "Button_DoSearch") {
+                $Redirect = "t_vat_setllement_ro.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
+                if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            }
+        } else {
+            $Redirect = "";
+        }
     }
 //End Operation Method
 
-//Show Method @3-20EE37E5
+//Show Method @355-7913FA87
     function Show()
     {
         global $CCSUseAmp;
@@ -706,30 +1167,7 @@ function GetPrimaryKey($keyName)
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
-            $Error = ComposeStrings($Error, $this->TAKEN_CTL->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->IS_TAKEN->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->CURR_DOC_ID->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->CURR_DOC_TYPE_ID->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->CURR_PROC_ID->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->CURR_CTL_ID->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->USER_ID_DOC->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->USER_ID_DONOR->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->USER_ID_LOGIN->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->USER_ID_TAKEN->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->IS_CREATE_DOC->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->IS_MANUAL->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->CURR_PROC_STATUS->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->CURR_DOC_STATUS->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->PREV_DOC_ID->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->PREV_DOC_TYPE_ID->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->PREV_PROC_ID->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->PREV_CTL_ID->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->SLOT_1->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->SLOT_2->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->SLOT_3->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->SLOT_4->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->SLOT_5->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->MESSAGE->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -747,42 +1185,20 @@ function GetPrimaryKey($keyName)
             return;
         }
 
-        $this->TAKEN_CTL->Show();
-        $this->IS_TAKEN->Show();
-        $this->CURR_DOC_ID->Show();
-        $this->CURR_DOC_TYPE_ID->Show();
-        $this->CURR_PROC_ID->Show();
-        $this->CURR_CTL_ID->Show();
-        $this->USER_ID_DOC->Show();
-        $this->USER_ID_DONOR->Show();
-        $this->USER_ID_LOGIN->Show();
-        $this->USER_ID_TAKEN->Show();
-        $this->IS_CREATE_DOC->Show();
-        $this->IS_MANUAL->Show();
-        $this->CURR_PROC_STATUS->Show();
-        $this->CURR_DOC_STATUS->Show();
-        $this->PREV_DOC_ID->Show();
-        $this->PREV_DOC_TYPE_ID->Show();
-        $this->PREV_PROC_ID->Show();
-        $this->PREV_CTL_ID->Show();
-        $this->SLOT_1->Show();
-        $this->SLOT_2->Show();
-        $this->SLOT_3->Show();
-        $this->SLOT_4->Show();
-        $this->SLOT_5->Show();
-        $this->MESSAGE->Show();
+        $this->s_keyword->Show();
+        $this->Button_DoSearch->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
 //End Show Method
 
-} //End t_vat_setllementSearch Class @3-FCB6E20C
+} //End t_vat_setllement_dtlSearch Class @355-FCB6E20C
 
 
 
 
 
-//Initialize Page @1-544D17EA
+//Initialize Page @1-BFFB911E
 // Variables
 $FileName = "";
 $Redirect = "";
@@ -798,7 +1214,7 @@ $CCSEventResult = "";
 
 $FileName = FileName;
 $Redirect = "";
-$TemplateFileName = "t_vat_setllement_ro.html";
+$TemplateFileName = "t_vat_setllement_ro_order.html";
 $BlockToParse = "main";
 $TemplateEncoding = "CP1252";
 $ContentType = "text/html";
@@ -806,15 +1222,19 @@ $PathToRoot = "../";
 $Charset = $Charset ? $Charset : "windows-1252";
 //End Initialize Page
 
-//Include events file @1-E1F0AD86
-include_once("./t_vat_setllement_ro_events.php");
+//Include events file @1-0168D645
+include_once("./t_vat_setllement_ro_order_events.php");
 //End Include events file
+
+//BeforeInitialize Binding @1-17AC9191
+$CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
+//End BeforeInitialize Binding
 
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-FFF8C4A3
+//Initialize Objects @1-726CB197
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -822,10 +1242,13 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_vat_setllementGrid = & new clsGridt_vat_setllementGrid("", $MainPage);
-$t_vat_setllementSearch = & new clsRecordt_vat_setllementSearch("", $MainPage);
+$t_vat_setllementForm = & new clsRecordt_vat_setllementForm("", $MainPage);
+$t_vat_setllement_dtlSearch = & new clsRecordt_vat_setllement_dtlSearch("", $MainPage);
 $MainPage->t_vat_setllementGrid = & $t_vat_setllementGrid;
-$MainPage->t_vat_setllementSearch = & $t_vat_setllementSearch;
+$MainPage->t_vat_setllementForm = & $t_vat_setllementForm;
+$MainPage->t_vat_setllement_dtlSearch = & $t_vat_setllement_dtlSearch;
 $t_vat_setllementGrid->Initialize();
+$t_vat_setllementForm->Initialize();
 
 BindEvents();
 
@@ -848,26 +1271,29 @@ $Attributes->SetValue("pathToRoot", "../");
 $Attributes->Show();
 //End Initialize HTML Template
 
-//Execute Components @1-D0128F80
-$t_vat_setllementSearch->Operation();
+//Execute Components @1-DD0E0558
+$t_vat_setllementForm->Operation();
+$t_vat_setllement_dtlSearch->Operation();
 //End Execute Components
 
-//Go to destination page @1-24AA2B5D
+//Go to destination page @1-0402F6BE
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
     $DBConnSIKP->close();
     header("Location: " . $Redirect);
     unset($t_vat_setllementGrid);
-    unset($t_vat_setllementSearch);
+    unset($t_vat_setllementForm);
+    unset($t_vat_setllement_dtlSearch);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-47DC6C17
+//Show Page @1-8AF6FC46
 $t_vat_setllementGrid->Show();
-$t_vat_setllementSearch->Show();
+$t_vat_setllementForm->Show();
+$t_vat_setllement_dtlSearch->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -875,11 +1301,12 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-ADE72901
+//Unload Page @1-F1A37573
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBConnSIKP->close();
 unset($t_vat_setllementGrid);
-unset($t_vat_setllementSearch);
+unset($t_vat_setllementForm);
+unset($t_vat_setllement_dtlSearch);
 unset($Tpl);
 //End Unload Page
 
