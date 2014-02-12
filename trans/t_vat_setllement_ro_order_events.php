@@ -305,7 +305,9 @@ function t_vat_setllementForm_BeforeSelect(& $sender)
 // -------------------------
     // Write your own code here.
 	//$_SESSION['thisFormParam']='';
-	 $t_vat_setllementForm->EditMode=true;
+	if(!empty($_POST['t_customer_order_id'])||!empty($_GET['t_customer_order_id'])){
+		$t_vat_setllementForm->EditMode=true;
+	}
 	     // Write your own code here.
 // -------------------------
 //End Custom Code
