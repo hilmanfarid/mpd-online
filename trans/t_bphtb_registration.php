@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-4CF18D1A
+//Class_Initialize Event @94-EA370273
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -145,7 +145,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->jenis_harga_bphtb->DSType = dsListOfValues;
             $this->jenis_harga_bphtb->Values = array(array("1", "Harga Transaksi"), array("2", "Harga Pasar"), array("3", "Harga Lelang"));
             $this->Button3 = & new clsButton("Button3", $Method, $this);
-            $this->nilai_doc = & new clsControl(ccsHidden, "nilai_doc", "nilai_doc", ccsText, "", CCGetRequestParam("nilai_doc", $Method, NULL), $this);
+            $this->nilai_doc = & new clsControl(ccsHidden, "nilai_doc", "nilai_doc", ccsFloat, "", CCGetRequestParam("nilai_doc", $Method, NULL), $this);
             $this->bphtb_legal_doc_description = & new clsControl(ccsTextBox, "bphtb_legal_doc_description", "bphtb_legal_doc_description", ccsText, "", CCGetRequestParam("bphtb_legal_doc_description", $Method, NULL), $this);
             $this->add_disc_percent = & new clsControl(ccsListBox, "add_disc_percent", "add_disc_percent", ccsText, "", CCGetRequestParam("add_disc_percent", $Method, NULL), $this);
             $this->add_disc_percent->DSType = dsListOfValues;
@@ -174,6 +174,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
                     $this->building_total_price->SetText(0);
                 if(!is_array($this->total_price->Value) && !strlen($this->total_price->Value) && $this->total_price->Value !== false)
                     $this->total_price->SetText(0);
+                if(!is_array($this->nilai_doc->Value) && !strlen($this->nilai_doc->Value) && $this->nilai_doc->Value !== false)
+                    $this->nilai_doc->SetText(0);
             }
         }
     }
@@ -795,7 +797,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $add_discount;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-D067D934
+//DataSourceClass_Initialize Event @94-18A87D38
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -883,7 +885,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->jenis_harga_bphtb = new clsField("jenis_harga_bphtb", ccsText, "");
         
-        $this->nilai_doc = new clsField("nilai_doc", ccsText, "");
+        $this->nilai_doc = new clsField("nilai_doc", ccsFloat, "");
         
         $this->bphtb_legal_doc_description = new clsField("bphtb_legal_doc_description", ccsText, "");
         
