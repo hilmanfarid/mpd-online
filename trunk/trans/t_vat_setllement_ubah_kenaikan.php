@@ -1,8 +1,8 @@
 <?php
-//Include Common Files @1-999F3986
+//Include Common Files @1-C7BF4F98
 define("RelativePath", "..");
 define("PathToCurrentPage", "/trans/");
-define("FileName", "t_vat_setllement_ubah_denda.php");
+define("FileName", "t_vat_setllement_ubah_kenaikan.php");
 include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
@@ -45,7 +45,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-C8832B0F
+//Class_Initialize Event @3-A300104C
     function clsRecordLOV($RelativePath, & $Parent)
     {
 
@@ -72,13 +72,16 @@ class clsRecordLOV { //LOV Class @3-40E97705
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->nilai_denda = & new clsControl(ccsTextBox, "nilai_denda", "nilai_denda", ccsText, "", CCGetRequestParam("nilai_denda", $Method, NULL), $this);
-            $this->deskripsi = & new clsControl(ccsTextArea, "deskripsi", "deskripsi", ccsText, "", CCGetRequestParam("deskripsi", $Method, NULL), $this);
-            $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "t_vat_setllement_id", ccsText, "", CCGetRequestParam("t_vat_setllement_id", $Method, NULL), $this);
+            $this->is_desc = & new clsControl(ccsTextArea, "is_desc", "is_desc", ccsText, "", CCGetRequestParam("is_desc", $Method, NULL), $this);
             $this->Button1 = & new clsButton("Button1", $Method, $this);
-            $this->flag_piutang = & new clsControl(ccsListBox, "flag_piutang", "flag_piutang", ccsText, "", CCGetRequestParam("flag_piutang", $Method, NULL), $this);
-            $this->flag_piutang->DSType = dsListOfValues;
-            $this->flag_piutang->Values = array(array("0", "Ubah Nilai"), array("1", "Jadikan Ketetapan Denda"));
+            $this->in_flag_numeric = & new clsControl(ccsListBox, "in_flag_numeric", "in_flag_numeric", ccsText, "", CCGetRequestParam("in_flag_numeric", $Method, NULL), $this);
+            $this->in_flag_numeric->DSType = dsListOfValues;
+            $this->in_flag_numeric->Values = array(array("1", "Ya"), array("0", "Tidak"));
+            $this->i_vat_setllement_id = & new clsControl(ccsHidden, "i_vat_setllement_id", "i_vat_setllement_id", ccsText, "", CCGetRequestParam("i_vat_setllement_id", $Method, NULL), $this);
+            if(!$this->FormSubmitted) {
+                if(!is_array($this->in_flag_numeric->Value) && !strlen($this->in_flag_numeric->Value) && $this->in_flag_numeric->Value !== false)
+                    $this->in_flag_numeric->SetText(0);
+            }
         }
     }
 //End Class_Initialize Event
@@ -93,33 +96,30 @@ class clsRecordLOV { //LOV Class @3-40E97705
     }
 //End Initialize Method
 
-//Validate Method @3-21B10BBB
+//Validate Method @3-7CA84CE5
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
-        $Validation = ($this->nilai_denda->Validate() && $Validation);
-        $Validation = ($this->deskripsi->Validate() && $Validation);
-        $Validation = ($this->t_vat_setllement_id->Validate() && $Validation);
-        $Validation = ($this->flag_piutang->Validate() && $Validation);
+        $Validation = ($this->is_desc->Validate() && $Validation);
+        $Validation = ($this->in_flag_numeric->Validate() && $Validation);
+        $Validation = ($this->i_vat_setllement_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
-        $Validation =  $Validation && ($this->nilai_denda->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->deskripsi->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->t_vat_setllement_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->flag_piutang->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->is_desc->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->in_flag_numeric->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->i_vat_setllement_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-E656FEF2
+//CheckErrors Method @3-4801CDCC
     function CheckErrors()
     {
         $errors = false;
-        $errors = ($errors || $this->nilai_denda->Errors->Count());
-        $errors = ($errors || $this->deskripsi->Errors->Count());
-        $errors = ($errors || $this->t_vat_setllement_id->Errors->Count());
-        $errors = ($errors || $this->flag_piutang->Errors->Count());
+        $errors = ($errors || $this->is_desc->Errors->Count());
+        $errors = ($errors || $this->in_flag_numeric->Errors->Count());
+        $errors = ($errors || $this->i_vat_setllement_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -141,7 +141,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-85DCC2A3
+//Operation Method @3-793C2D42
     function Operation()
     {
         if(!$this->Visible)
@@ -162,7 +162,7 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button1";
             }
         }
-        $Redirect = "t_vat_setllement_ubah_denda.php";
+        $Redirect = "t_vat_setllement_ubah_kenaikan.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1) || !$this->InsertRow()) {
@@ -192,7 +192,7 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//Show Method @3-C5FEDD3F
+//Show Method @3-BA04780C
     function Show()
     {
         global $CCSUseAmp;
@@ -206,7 +206,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
-        $this->flag_piutang->Prepare();
+        $this->in_flag_numeric->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -221,8 +221,8 @@ function GetPrimaryKey($keyName)
             if($this->DataSource->Errors->Count() == 0 && $this->DataSource->next_record()) {
                 $this->DataSource->SetValues();
                 if(!$this->FormSubmitted){
-                    $this->t_vat_setllement_id->SetValue($this->DataSource->t_vat_setllement_id->GetValue());
-                    $this->flag_piutang->SetValue($this->DataSource->flag_piutang->GetValue());
+                    $this->in_flag_numeric->SetValue($this->DataSource->in_flag_numeric->GetValue());
+                    $this->i_vat_setllement_id->SetValue($this->DataSource->i_vat_setllement_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -233,10 +233,9 @@ function GetPrimaryKey($keyName)
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
-            $Error = ComposeStrings($Error, $this->nilai_denda->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->deskripsi->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->t_vat_setllement_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->flag_piutang->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->is_desc->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->in_flag_numeric->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->i_vat_setllement_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -256,11 +255,10 @@ function GetPrimaryKey($keyName)
             return;
         }
 
-        $this->nilai_denda->Show();
-        $this->deskripsi->Show();
-        $this->t_vat_setllement_id->Show();
+        $this->is_desc->Show();
         $this->Button1->Show();
-        $this->flag_piutang->Show();
+        $this->in_flag_numeric->Show();
+        $this->i_vat_setllement_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -271,7 +269,7 @@ function GetPrimaryKey($keyName)
 
 class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026EF
 
-//DataSource Variables @3-1A5C88DC
+//DataSource Variables @3-52970670
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -284,25 +282,22 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
 
 
     // Datasource fields
-    var $nilai_denda;
-    var $deskripsi;
-    var $t_vat_setllement_id;
-    var $flag_piutang;
+    var $is_desc;
+    var $in_flag_numeric;
+    var $i_vat_setllement_id;
 //End DataSource Variables
 	var $itemResult;
-//DataSourceClass_Initialize Event @3-78AEB2B5
+//DataSourceClass_Initialize Event @3-15614471
     function clsLOVDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
         $this->ErrorBlock = "Record LOV/Error";
         $this->Initialize();
-        $this->nilai_denda = new clsField("nilai_denda", ccsText, "");
+        $this->is_desc = new clsField("is_desc", ccsText, "");
         
-        $this->deskripsi = new clsField("deskripsi", ccsText, "");
+        $this->in_flag_numeric = new clsField("in_flag_numeric", ccsText, "");
         
-        $this->t_vat_setllement_id = new clsField("t_vat_setllement_id", ccsText, "");
-        
-        $this->flag_piutang = new clsField("flag_piutang", ccsText, "");
+        $this->i_vat_setllement_id = new clsField("i_vat_setllement_id", ccsText, "");
         
 
     }
@@ -329,11 +324,11 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End Open Method
 
-//SetValues Method @3-50B2ACA4
+//SetValues Method @3-EE1FC09D
     function SetValues()
     {
-        $this->t_vat_setllement_id->SetDBValue($this->f("t_vat_setllement_id"));
-        $this->flag_piutang->SetDBValue($this->f("flag_piutang"));
+        $this->in_flag_numeric->SetDBValue($this->f("flag_piutang"));
+        $this->i_vat_setllement_id->SetDBValue($this->f("i_vat_setllement_id"));
     }
 //End SetValues Method
 
@@ -375,7 +370,7 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
 
 } //End LOVDataSource Class @3-FCB6E20C
 
-//Initialize Page @1-5CB552F9
+//Initialize Page @1-8D500EBA
 // Variables
 $FileName = "";
 $Redirect = "";
@@ -391,7 +386,7 @@ $CCSEventResult = "";
 
 $FileName = FileName;
 $Redirect = "";
-$TemplateFileName = "t_vat_setllement_ubah_denda.html";
+$TemplateFileName = "t_vat_setllement_ubah_kenaikan.html";
 $BlockToParse = "main";
 $TemplateEncoding = "CP1252";
 $ContentType = "text/html";
@@ -399,8 +394,8 @@ $PathToRoot = "../";
 $Charset = $Charset ? $Charset : "windows-1252";
 //End Initialize Page
 
-//Include events file @1-5D5501BC
-include_once("./t_vat_setllement_ubah_denda_events.php");
+//Include events file @1-D2075928
+include_once("./t_vat_setllement_ubah_kenaikan_events.php");
 //End Include events file
 
 //Before Initialize @1-E870CEBC

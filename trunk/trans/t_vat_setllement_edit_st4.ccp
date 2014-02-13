@@ -364,7 +364,13 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Button id="391" urlType="Relative" enableValidation="True" isDefault="False" name="ubah_kenaikan" wizardCaption="Add" PathID="t_vat_setllementFormubah_kenaikan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 			</Events>
 			<TableParameters>
@@ -499,7 +505,6 @@
 			<ISPParameters/>
 			<ISQLParameters/>
 			<IFormElements/>
-
 			<USPParameters/>
 			<USQLParameters/>
 			<UConditions/>
