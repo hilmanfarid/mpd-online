@@ -690,7 +690,7 @@ function getNPOP(){
                                 }
                                 var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
                 var persen_kurang = document.getElementById('t_bphtb_registrationFormadd_disc_percent').value
-                                document.getElementById('t_bphtb_registrationFormadd_discount').value=ReplaceNumberWithCommas(npop - Math.ceil(npop*persen_kurang));
+                                document.getElementById('t_bphtb_registrationFormadd_discount').value=ReplaceNumberWithCommas(Math.ceil(npop*persen_kurang));
                 hitungNPOPKP();
 }
 function hitungNPOPKP(){        

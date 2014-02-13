@@ -250,7 +250,7 @@ function t_vat_setllementForm_BeforeShow(& $sender)
 	$pajak = $t_vat_setllementGrid->total_vat_amount->GetValue();
 	$denda = $t_vat_setllementGrid->total_penalty_amount->GetValue();
 	$totaltotal = $pajak + $denda;
-	$t_vat_setllementGrid->total_total->SetValue($totaltotal);
+	$t_vat_setllementForm->total_total->SetValue($totaltotal);
   	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
   	$nilai2 = $t_vat_setllementGrid->p_vat_type_id->GetValue();
 
