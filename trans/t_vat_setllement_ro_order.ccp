@@ -413,10 +413,15 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
+<TextBox id="388" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="receipt_no" fieldSource="receipt_no" caption="Nomor Order" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormreceipt_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
-				<Event name="BeforeShow" type="Server">
-<Actions>
+				<Event name="BeforeShow" type="Server"><Actions>
 <Action actionName="Custom Code" actionCategory="General" id="380" eventType="Server"/>
 </Actions>
 </Event>
