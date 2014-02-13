@@ -24,6 +24,12 @@ function t_vat_setllementGrid_BeforeSelect(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeSelect
 
+//Custom Code @226-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       // Write your own code here.
   	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
@@ -43,6 +49,16 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeShowRow
+
+//Set Row Style @315-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
 
 // Start Bdr
     global $t_vat_setllementForm;
@@ -92,6 +108,12 @@ function Page_OnInitializeView(& $sender)
     global $t_vat_setllement_edit_st4; //Compatibility
 //End Page_OnInitializeView
 
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       // Write your own code here.
   	 global $selected_id;
@@ -113,6 +135,12 @@ function Page_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_edit_st4; //Compatibility
 //End Page_BeforeShow
+
+//Custom Code @260-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 		global $selected_id;
 		$selected_id = CCGetFromGet("t_vat_setllement_id", $selected_id);
 		$flag_delete = CCGetFromGet("flag_delete", "");
