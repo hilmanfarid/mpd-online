@@ -508,7 +508,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-AA86B82C
+//Class_Initialize Event @23-6B20CFC2
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -561,6 +561,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->user = & new clsControl(ccsHidden, "user", "user", ccsText, "", CCGetRequestParam("user", $Method, NULL), $this);
             $this->total_penalty_amount = & new clsControl(ccsTextBox, "total_penalty_amount", "Total Pajak", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_penalty_amount", $Method, NULL), $this);
             $this->total_total = & new clsControl(ccsTextBox, "total_total", "Total Pajak", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_total", $Method, NULL), $this);
+            $this->receipt_no = & new clsControl(ccsTextBox, "receipt_no", "Nomor Order", ccsText, "", CCGetRequestParam("receipt_no", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->due_date->Value) && !strlen($this->due_date->Value) && $this->due_date->Value !== false)
                     $this->due_date->SetText(date("d-M-Y h:i:s"));
@@ -580,7 +581,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     }
 //End Initialize Method
 
-//Validate Method @23-498BCDAF
+//Validate Method @23-0091E932
     function Validate()
     {
         global $CCSLocales;
@@ -605,6 +606,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation = ($this->user->Validate() && $Validation);
         $Validation = ($this->total_penalty_amount->Validate() && $Validation);
         $Validation = ($this->total_total->Validate() && $Validation);
+        $Validation = ($this->receipt_no->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_vat_setllement_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->is_anomali->Errors->Count() == 0);
@@ -625,11 +627,12 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation =  $Validation && ($this->user->Errors->Count() == 0);
         $Validation =  $Validation && ($this->total_penalty_amount->Errors->Count() == 0);
         $Validation =  $Validation && ($this->total_total->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->receipt_no->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-FA9F1C7F
+//CheckErrors Method @23-A93A4FA2
     function CheckErrors()
     {
         $errors = false;
@@ -652,6 +655,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $errors = ($errors || $this->user->Errors->Count());
         $errors = ($errors || $this->total_penalty_amount->Errors->Count());
         $errors = ($errors || $this->total_total->Errors->Count());
+        $errors = ($errors || $this->receipt_no->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -736,7 +740,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @23-CE1A88EE
+//Show Method @23-D2755E73
     function Show()
     {
         global $CCSUseAmp;
@@ -783,6 +787,7 @@ function GetPrimaryKey($keyName)
                     $this->wp_address_name->SetValue($this->DataSource->wp_address_name->GetValue());
                     $this->total_penalty_amount->SetValue($this->DataSource->total_penalty_amount->GetValue());
                     $this->total_total->SetValue($this->DataSource->total_total->GetValue());
+                    $this->receipt_no->SetValue($this->DataSource->receipt_no->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -813,6 +818,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->user->Errors->ToString());
             $Error = ComposeStrings($Error, $this->total_penalty_amount->Errors->ToString());
             $Error = ComposeStrings($Error, $this->total_total->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->receipt_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -854,6 +860,7 @@ function GetPrimaryKey($keyName)
         $this->user->Show();
         $this->total_penalty_amount->Show();
         $this->total_total->Show();
+        $this->receipt_no->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -864,7 +871,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllementFormDataSource Class @23-AF9958CC
 
-//DataSource Variables @23-F8EADE29
+//DataSource Variables @23-935901F7
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -896,9 +903,10 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $user;
     var $total_penalty_amount;
     var $total_total;
+    var $receipt_no;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-B84C13E4
+//DataSourceClass_Initialize Event @23-A6A732DD
     function clst_vat_setllementFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -942,6 +950,8 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->total_total = new clsField("total_total", ccsFloat, "");
         
+        $this->receipt_no = new clsField("receipt_no", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -972,7 +982,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @23-6B18AC64
+//SetValues Method @23-529D88A4
     function SetValues()
     {
         $this->t_vat_setllement_id->SetDBValue(trim($this->f("t_vat_setllement_id")));
@@ -993,6 +1003,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
         $this->total_penalty_amount->SetDBValue(trim($this->f("total_penalty_amount")));
         $this->total_total->SetDBValue(trim($this->f("total_total")));
+        $this->receipt_no->SetDBValue($this->f("receipt_no"));
     }
 //End SetValues Method
 
