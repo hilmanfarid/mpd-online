@@ -245,7 +245,8 @@ class FormCetak extends FPDF {
 						  number_format($data["count_sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
 						  number_format($data["sptpd_jml_sd_hari_ini"][$i], 0, ',', '.'),
 						  number_format($data["count_sptpd_jml_hari_ini"][$i] - $data["count_jml_hari_ini"][$i], 0, ',', '.'),
-						  number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i], 0, ',', '.'),
+						  //number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i], 0, ',', '.'),
+						  number_format($data["jml_sd_hari_ini"][$i], 0, ',', '.'),
 						  number_format($data["sptpd_thn_lalu"][$i], 0, ',', '.'),
 						  //abs(number_format($data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i], 0, ',', '.'))
 						  number_format($data["sptpd_thn_lalu"][$i]+$data["jml_sd_hari_ini"][$i], 0, ',', '.')
@@ -290,7 +291,8 @@ class FormCetak extends FPDF {
 			$j_count_sptpd_jml_sd_hari_ini[] = $data["count_sptpd_jml_sd_hari_ini"][$i];
 			$j_sptpd_jml_sd_hari_ini[] = $data["sptpd_jml_sd_hari_ini"][$i];
 			$j_sptpd[] = 0;
-			$j_slktk[] = $data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i];
+			//$j_slktk[] = $data["sptpd_jml_sd_hari_ini"][$i]-$data["jml_sd_hari_ini"][$i];
+			$j_slktk[] = $data["jml_sd_hari_ini"][$i];
 			$j_slk4bln[] = 0;
 			$j_slk1thn[] = $data["sptpd_jml_sd_hari_ini"][$i]-$data["target"][$i];
 			
