@@ -388,7 +388,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-EC4F614C
+//Class_Initialize Event @23-70264E61
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -475,6 +475,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->print_skpd = & new clsButton("print_skpd", $Method, $this);
             $this->print_skpdkb = & new clsButton("print_skpdkb", $Method, $this);
             $this->delete_selected = & new clsButton("delete_selected", $Method, $this);
+            $this->ubah_kenaikan = & new clsButton("ubah_kenaikan", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->total_trans_amount->Value) && !strlen($this->total_trans_amount->Value) && $this->total_trans_amount->Value !== false)
                     $this->total_trans_amount->SetText(0);
@@ -650,7 +651,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-C1D29A92
+//Operation Method @23-9C5BF4DF
     function Operation()
     {
         if(!$this->Visible)
@@ -681,6 +682,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "print_skpdkb";
             } else if($this->delete_selected->Pressed) {
                 $this->PressedButton = "delete_selected";
+            } else if($this->ubah_kenaikan->Pressed) {
+                $this->PressedButton = "ubah_kenaikan";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -715,6 +718,10 @@ function GetPrimaryKey($keyName)
             } else if($this->PressedButton == "delete_selected") {
                 $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "flat_delete"));
                 if(!CCGetEvent($this->delete_selected->CCSEvents, "OnClick", $this->delete_selected)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "ubah_kenaikan") {
+                if(!CCGetEvent($this->ubah_kenaikan->CCSEvents, "OnClick", $this->ubah_kenaikan)) {
                     $Redirect = "";
                 }
             }
@@ -764,7 +771,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-52C8F65A
+//Show Method @23-A9A7C77E
     function Show()
     {
         global $CCSUseAmp;
@@ -925,6 +932,7 @@ function GetPrimaryKey($keyName)
         $this->print_skpd->Show();
         $this->print_skpdkb->Show();
         $this->delete_selected->Show();
+        $this->ubah_kenaikan->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();

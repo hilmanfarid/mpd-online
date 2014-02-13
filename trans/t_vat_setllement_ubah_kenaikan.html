@@ -18,6 +18,13 @@ function clickReturn(retVal) {
                 }
                 window.close();
 }
+function setUbah(){
+        var param='ubah=T';
+		param += '&i_vat_setllement='+document.getElementById('LOVi_vat_setllement_id').value;
+        param += '&in_flag_numeric='+document.getElementById('LOVin_flag_numeric').value;
+        param += '&is_desc='+document.getElementById('LOVis_desc').value;
+        window.location.href='t_vat_setllement_ubah_kenaikan.php?'+param;
+}
 </script>
 <!--end user-->
 <script language="javascript" type="text/javascript">
@@ -30,7 +37,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -56,28 +63,23 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Nilai Denda :</td> 
-                    <td class="search-field"><input id="LOVt_vat_setllement_id" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden">&nbsp;<input style="WIDTH: 84px; HEIGHT: 22px" id="LOVnilai_denda" class="ControlsIN" name="{nilai_denda_Name}" value="{nilai_denda}" size="9"></td>
-                  </tr>
- 
-                  <tr class="Controls">
-                    <td class="search-field">Jenis Perubahan :</td> 
-                    <td class="search-field">
-                      <select id="LOVflag_piutang" name="{flag_piutang_Name}">
-                        {flag_piutang_Options}
+                    <td class="search-field">Kenakan Kenaikan&nbsp;:</td> 
+                    <td class="search-field">&nbsp; 
+                      <select id="LOVin_flag_numeric" name="{in_flag_numeric_Name}">
+                        {in_flag_numeric_Options}
                       </select>
- </td>
+ <input id="LOVi_vat_setllement_id" name="{i_vat_setllement_id_Name}" value="{i_vat_setllement_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Deskripsi :</td> 
-                    <td class="search-field">&nbsp; <textarea style="WIDTH: 240px; HEIGHT: 54px" id="LOVdeskripsi" class="ControlsIN" cols="19" rows="3" name="{deskripsi_Name}">{deskripsi}</textarea></td>
+                    <td class="search-field">Alasan :</td> 
+                    <td class="search-field">&nbsp; <textarea style="WIDTH: 240px; HEIGHT: 54px" id="LOVis_desc" class="ControlsIN" cols="19" rows="3" name="{is_desc_Name}">{is_desc}</textarea></td>
                   </tr>
  
                   <tr class="Controls">
                     <td>&nbsp;</td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button1 --><input id="LOVButton1" class="btn_tambah" name="{Button_Name}" alt="Button1" value="Simpan" type="submit"><!-- END Button Button1 --></td>
+                      <!-- BEGIN Button Button1 --><input id="LOVButton1" class="btn_tambah" onclick="setUbah()" name="{Button_Name}" alt="Button1" value="Simpan" type="button"><!-- END Button Button1 --></td>
                   </tr>
                 </table>
               </td>
