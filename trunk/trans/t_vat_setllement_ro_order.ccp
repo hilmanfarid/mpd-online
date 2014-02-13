@@ -401,6 +401,18 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
+<TextBox id="386" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_penalty_amount" caption="Total Pajak" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_penalty_amount" format="#,##0.00" fieldSource="total_penalty_amount">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="387" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_total" caption="Total Pajak" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_total" format="#,##0.00" fieldSource="total_total">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
