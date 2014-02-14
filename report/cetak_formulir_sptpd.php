@@ -330,7 +330,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$dbConn2 = new clsDBConnSIKP();
-		$total = (isset($total)) ? $total : 0;
+		$total = (isset($total)) ? abs($total) : 0;
 		$hrf = "select replace(f_terbilang('". $total . "','IDR'), '  ', ' ') as dengan_huruf";
 		$dbConn2->query($hrf);	
 		while($dbConn2->next_record()){
