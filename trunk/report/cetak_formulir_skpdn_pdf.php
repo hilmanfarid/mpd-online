@@ -35,6 +35,10 @@ if (empty($idVatSS)){
 		$data["cr_stp"] = $dbConn->f("cr_stp");
 		$data["db_interest_charge"] = $dbConn->f("db_interest_charge");
 		$data["db_increasing_charge"] = $dbConn->f("db_increasing_charge");
+		$data["vat_code"] = $dbConn->f("nomor_ayat");
+		$data["total_trans_amount"] = $dbConn->f("total_trans_amount");
+
+		
 	} 
 	
 	$kpd = "select wp_name, wp_address_name, wp_kota
@@ -225,8 +229,26 @@ class FormCetak extends FPDF {
 		$this->Ln($this->height - 4);
 		
 		// Ayat Pajak
-		$this->Cell($lbody1 + 3, $this->height, ":", "L", 0, 'R');
+		/*$this->Cell($lbody1 + 3, $this->height, ":", "L", 0, 'R');
 		$this->kotak(1, 34, 6, "");
+		$this->Ln();*/
+		// ==========
+
+		// Ayat Pajak
+		$this->Cell($lbody1 + 3, $this->height, ":", "L", 0, 'R');
+		if(!empty($data["vat_code"])) {
+			$arr_ayat = str_split($data["vat_code"]);
+		} else {
+			$arr_ayat = array();
+			$this->kotak(1, 45, 1," - ");
+		}		
+		//$this->kotak(1, 34, 6, "");
+		for($i = 0; $i < count($arr_ayat); $i++) {
+			if($arr_ayat[$i] != " ")
+				$this->kotak(1, 45, 1,$arr_ayat[$i]);
+			else
+				$this->kotakKosong(1, 34, 1);
+		}
 		$this->Ln();
 		// ==========
 		
@@ -239,12 +261,23 @@ class FormCetak extends FPDF {
 		
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "1. Dasar Pengenaan", "", 0, 'L');
-		$this->Cell($lbody1, $this->height, "Rp ".number_format($data["debt_vat_amt"],2,",","."), "R", 0, 'L');
+		$this->Cell(5, $this->height, "Rp ", "", 0, 'L');
+		$this->Cell($lbody1-15, $this->height, number_format($data["total_trans_amount"],2,",","."), "", 0, 'R');
+		$this->Cell(10, $this->height, "", "R", 0, 'L');
 		$this->Ln();
-		
+
+		/*$this->Cell($lbody1, $this->height, "Rp ", "", 0, 'L');
+		$this->Cell($lbody1 - 10, $this->height, number_format($data["total_trans_amount"],2,",","."), "", 0, 'R');
+		$this->Cell(10, $this->height, "", "R", 0, 'R');
+*/
+				
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "2. Pajak yang Terutang", "", 0, 'L');
-		$this->Cell($lbody1, $this->height, "Rp ".number_format($data["terutang"],2,",","."), "R", 0, 'L');
+		//$this->Cell($lbody1, $this->height, "Rp ".number_format($data["terutang"],2,",","."), "R", 0, 'L');
+		$this->Cell(5, $this->height, "Rp ", "", 0, 'L');
+		$this->Cell($lbody1-15, $this->height, number_format($data["terutang"],2,",","."), "", 0, 'R');
+		$this->Cell(10, $this->height, "", "R", 0, 'L');
+		
 		$this->Ln();
 		
 		$this->tulis("3. Kredit Pajak", "L");
