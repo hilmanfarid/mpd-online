@@ -75,20 +75,20 @@ function print_laporan($param_arr){
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
 	$pdf->ln(2);
-	$pdf->SetWidths(array(28,43,23,23,35,35,25,35,35,20,20));
+	$pdf->SetWidths(array(28,43,23,23,35,35,25,35,35,25,20));
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C'));
 	$pdf->RowMultiBorderWithHeight(array(
-									"npwd" ,
-									"masa_pajak",
-									"tgl_tap",
-									"no_kohir",
-									"sisa",
-									"sisa_revisi",
-									"tgl_bayar",
-									"besarnya",
-									"sisa_piutang",
-									"keterangan",
-									"year_code"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+									"NPWD" ,
+									"MASA PAJAK",
+									"TGL TAP",
+									"NO KOHIR",
+									"SISA",
+									"SISA REVISI",
+									"TGL BAYAR",
+									"BESARNYA",
+									"SISA PIUTANG",
+									"KETERANGAN",
+									"TAHUN"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
 	$pdf->SetFont('helvetica', '',9);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','C','L','R','R','C','R','R','L','L'));

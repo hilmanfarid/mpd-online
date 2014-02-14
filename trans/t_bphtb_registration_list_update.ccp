@@ -8,15 +8,6 @@ regis.wp_name ILIKE '%{s_keyword}%')
 AND cust_order.p_order_status_id = 2
 order by regis.t_bphtb_registration_id DESC">
 			<Components>
-				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_bphtb_registration.ccp" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_bphtb_registration_listInsert_Link">
-					<Components/>
-					<Events/>
-					<LinkParameters>
-						<LinkParameter id="67" sourceType="Expression" name="FLAG" source="&quot;ADD&quot;"/>
-					</LinkParameters>
-					<Attributes/>
-					<Features/>
-				</Link>
 				<Navigator id="22" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
 					<Components/>
 					<Events/>

@@ -21,7 +21,7 @@ function LOV_BeforeShow(& $sender)
 //Custom Code @8-2A29BDB7
 // -------------------------
     // Write your own code here.
-	$i_vat_setllement = CCGetFromGet('i_vat_setllement');
+	$i_vat_setllement = CCGetFromGet('i_vat_setllement_id');
 	$ubah = CCGetFromGet('ubah');
 	$in_flag_numeric = CCGetFromGet('in_flag_numeric');
 	$is_desc = CCGetFromGet('is_desc');
