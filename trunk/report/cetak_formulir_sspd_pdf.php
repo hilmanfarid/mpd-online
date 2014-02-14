@@ -368,7 +368,14 @@ class FormCetak extends FPDF {
 		$this->Cell($lowTable1, $this->height + 2, "Petugas Tempat Pembayaran", "LR", 0, 'C');
 		$this->Cell($lowTable1, $this->height + 2, ".....................", "LR", 0, 'C');
 		if ($data["no_urut"] != "") {
-			$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$data["barcode"],30,$this->getY(),25,0,'PNG');
+			$dbConn = new clsDBConnSIKP();
+			$query = "select f_encrypt_str('".$data["no_urut"]."') AS enc_data";
+
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$encImageData = $dbConn->f("enc_data");
+			}
+			$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,30,$this->getY(),25,0,'PNG');
 		}
 		$this->Ln();
 		$this->Cell($lowTable1, $this->height + 2, "", "LR", 0, 'C');
