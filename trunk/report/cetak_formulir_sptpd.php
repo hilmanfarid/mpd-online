@@ -31,7 +31,7 @@
 		$data["npwd"] = $dbConn->f("npwd");
 		$data["due_date"] = $dbConn->f("due_date");
 		$data["no_urut"] = $dbConn->f("order_no");
-		$data["jenis_pajak"] = $dbConn->f("jenis_pajak");
+		$data["jenis_pajak"] = $dbConn->f("nama_ayat");
 		$data["debt_vat_amt"] = $dbConn->f("debt_vat_amt");
 		$data["terutang"] = $dbConn->f("terutang");
 		$data["cr_adjustment"] = $dbConn->f("cr_adjustment");
@@ -43,7 +43,7 @@
 		$data["settlement_date"] = $dbConn->f("settlement_date");
 		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
 		$data["total_trans_amount"] = $dbConn->f("total_trans_amount");
-		$data["vat_code"] = $dbConn->f("vat_code");
+		$data["vat_code"] = $dbConn->f("nomor_ayat");
 				
 		$items[] = $data;
 	}
