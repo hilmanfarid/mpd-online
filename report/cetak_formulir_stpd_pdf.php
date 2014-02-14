@@ -298,6 +298,16 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
+		
+		$dbConn = new clsDBConnSIKP();
+		$query = "select f_encrypt_str('".$data["order_no"]."') AS enc_data";
+
+		$dbConn->query($query);
+		while ($dbConn->next_record()) {
+			$encImageData = $dbConn->f("enc_data");
+		}
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,30,$this->getY(),25,0,'PNG');
+	
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
