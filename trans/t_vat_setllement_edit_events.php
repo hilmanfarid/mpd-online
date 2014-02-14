@@ -3,13 +3,15 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-38C08D62
+//BindEvents Method @1-52E52620
 function BindEvents()
 {
     global $t_vat_setllementGrid;
+    global $t_vat_setllementForm;
     global $CCSEvents;
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
+    $t_vat_setllementForm->Button2->CCSEvents["OnClick"] = "t_vat_setllementForm_Button2_OnClick";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
@@ -98,6 +100,45 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
     return $t_vat_setllementGrid_BeforeShowRow;
 }
 //End Close t_vat_setllementGrid_BeforeShowRow
+
+//t_vat_setllementForm_Button2_OnClick @381-08A3AA5F
+function t_vat_setllementForm_Button2_OnClick(& $sender)
+{
+    $t_vat_setllementForm_Button2_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementForm; //Compatibility
+//End t_vat_setllementForm_Button2_OnClick
+
+//Custom Code @382-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$dbConn1 = new clsDBConnSIKP();
+	$Idorder = $t_vat_setllementForm->t_customer_order_id->GetValue();
+	$cari = "select f_generate_kohir(".$Idorder.") from dual";
+	$dbConn1->query($cari);
+	while($dbConn1->next_record()){
+		$kode = $dbConn1->f("f_generate_kohir");
+	}
+
+	$t_vat_setllementForm->no_kohir->SetValue($kode);
+
+
+	$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
+	$i_no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
+	
+	
+	$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."') from dual";
+	$dbConn1->query($sql_update_kohir);
+		
+	return;
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementForm_Button2_OnClick @381-F4594333
+    return $t_vat_setllementForm_Button2_OnClick;
+}
+//End Close t_vat_setllementForm_Button2_OnClick
 
 //Page_OnInitializeView @1-84DB3C9E
 function Page_OnInitializeView(& $sender)
