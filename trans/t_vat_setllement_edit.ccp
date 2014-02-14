@@ -106,7 +106,8 @@
 						<Event name="OnClick" type="Client">
 							<Actions>
 								<Action actionName="Confirmation Message" actionCategory="General" id="27" message="Submit record?" eventType="Client"/>
-							</Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="383"/>
+</Actions>
 						</Event>
 					</Events>
 					<Attributes/>
@@ -325,6 +326,24 @@
 				<Button id="379" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Cetak" wizardCaption="Submit" PathID="t_vat_setllementFormButton_Cetak">
 					<Components/>
 					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<TextBox id="380" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="no_kohir" PathID="t_vat_setllementFormno_kohir" fieldSource="no_kohir" caption="Nomor Kohir">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Button id="381" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_setllementFormButton2">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="382"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
