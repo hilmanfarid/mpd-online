@@ -31,7 +31,7 @@
 		$data["npwd"] = $dbConn->f("npwd");
 		$data["due_date"] = $dbConn->f("due_date");
 		$data["no_urut"] = $dbConn->f("order_no");
-		$data["jenis_pajak"] = $dbConn->f("nama_ayat");
+		$data["jenis_pajak"] = $dbConn->f("jenis_pajak");
 		$data["debt_vat_amt"] = $dbConn->f("debt_vat_amt");
 		$data["terutang"] = $dbConn->f("terutang");
 		$data["cr_adjustment"] = $dbConn->f("cr_adjustment");
