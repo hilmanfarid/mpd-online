@@ -1,4 +1,4 @@
-<?php
+<?php 
 //Include Common Files @1-D69AF621
 define("RelativePath", "..");
 define("PathToCurrentPage", "/trans/");
@@ -354,7 +354,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-22782153
+//Class_Initialize Event @23-F79FBE06
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -439,6 +439,8 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->TextBox3 = & new clsControl(ccsTextBox, "TextBox3", "TextBox3", ccsText, "", CCGetRequestParam("TextBox3", $Method, NULL), $this);
             $this->TextBox4 = & new clsControl(ccsTextBox, "TextBox4", "TextBox4", ccsText, "", CCGetRequestParam("TextBox4", $Method, NULL), $this);
             $this->Button_Cetak = & new clsButton("Button_Cetak", $Method, $this);
+            $this->no_kohir = & new clsControl(ccsTextBox, "no_kohir", "Nomor Kohir", ccsText, "", CCGetRequestParam("no_kohir", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->total_trans_amount->Value) && !strlen($this->total_trans_amount->Value) && $this->total_trans_amount->Value !== false)
                     $this->total_trans_amount->SetText(0);
@@ -482,7 +484,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     }
 //End Initialize Method
 
-//Validate Method @23-214A6F8E
+//Validate Method @23-1EAB3759
     function Validate()
     {
         global $CCSLocales;
@@ -519,6 +521,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation = ($this->TextBox2->Validate() && $Validation);
         $Validation = ($this->TextBox3->Validate() && $Validation);
         $Validation = ($this->TextBox4->Validate() && $Validation);
+        $Validation = ($this->no_kohir->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->finance_period_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->order_no->Errors->Count() == 0);
@@ -551,11 +554,12 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation =  $Validation && ($this->TextBox2->Errors->Count() == 0);
         $Validation =  $Validation && ($this->TextBox3->Errors->Count() == 0);
         $Validation =  $Validation && ($this->TextBox4->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->no_kohir->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-7B4370DE
+//CheckErrors Method @23-26B902A2
     function CheckErrors()
     {
         $errors = false;
@@ -593,6 +597,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $errors = ($errors || $this->TextBox2->Errors->Count());
         $errors = ($errors || $this->TextBox3->Errors->Count());
         $errors = ($errors || $this->TextBox4->Errors->Count());
+        $errors = ($errors || $this->no_kohir->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -614,7 +619,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-C0758646
+//Operation Method @23-1BED6CBD
     function Operation()
     {
         if(!$this->Visible)
@@ -641,6 +646,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button1";
             } else if($this->Button_Cetak->Pressed) {
                 $this->PressedButton = "Button_Cetak";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -666,6 +673,10 @@ function GetPrimaryKey($keyName)
                 }
             } else if($this->PressedButton == "Button_Cetak") {
                 if(!CCGetEvent($this->Button_Cetak->CCSEvents, "OnClick", $this->Button_Cetak)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -715,7 +726,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-4CB3D11D
+//Show Method @23-6D6DAF28
     function Show()
     {
         global $CCSUseAmp;
@@ -770,6 +781,7 @@ function GetPrimaryKey($keyName)
                     $this->cr_adjustment->SetValue($this->DataSource->cr_adjustment->GetValue());
                     $this->db_interest_charge->SetValue($this->DataSource->db_interest_charge->GetValue());
                     $this->db_increasing_charge->SetValue($this->DataSource->db_increasing_charge->GetValue());
+                    $this->no_kohir->SetValue($this->DataSource->no_kohir->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -814,6 +826,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->TextBox2->Errors->ToString());
             $Error = ComposeStrings($Error, $this->TextBox3->Errors->ToString());
             $Error = ComposeStrings($Error, $this->TextBox4->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->no_kohir->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -874,6 +887,8 @@ function GetPrimaryKey($keyName)
         $this->TextBox3->Show();
         $this->TextBox4->Show();
         $this->Button_Cetak->Show();
+        $this->no_kohir->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -884,7 +899,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllementFormDataSource Class @23-AF9958CC
 
-//DataSource Variables @23-BBA77852
+//DataSource Variables @23-879A9478
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -929,9 +944,10 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $TextBox2;
     var $TextBox3;
     var $TextBox4;
+    var $no_kohir;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-8A3DFEAB
+//DataSourceClass_Initialize Event @23-B622ED80
     function clst_vat_setllementFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -999,6 +1015,8 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->TextBox4 = new clsField("TextBox4", ccsText, "");
         
+        $this->no_kohir = new clsField("no_kohir", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1030,7 +1048,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @23-9B14BFD6
+//SetValues Method @23-B557813E
     function SetValues()
     {
         $this->finance_period_code->SetDBValue($this->f("finance_period_code"));
@@ -1060,6 +1078,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->cr_adjustment->SetDBValue(trim($this->f("cr_adjustment")));
         $this->db_interest_charge->SetDBValue(trim($this->f("db_interest_charge")));
         $this->db_increasing_charge->SetDBValue(trim($this->f("db_increasing_charge")));
+        $this->no_kohir->SetDBValue($this->f("no_kohir"));
     }
 //End SetValues Method
 
