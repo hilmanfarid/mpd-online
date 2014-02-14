@@ -42,7 +42,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-6C3F1335
+//Class_Initialize Event @2-CE9EE76E
     function clsGridt_bphtb_registration_list($RelativePath, & $Parent)
     {
         global $FileName;
@@ -77,8 +77,6 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         $this->DLink->Page = "t_bphtb_registration_list_update.php";
         $this->t_bphtb_registration_id = & new clsControl(ccsLabel, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsText, "", CCGetRequestParam("t_bphtb_registration_id", ccsGet, NULL), $this);
         $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", ccsGet, NULL), $this);
-        $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
-        $this->Insert_Link->Page = "t_bphtb_registration.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -95,7 +93,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Initialize Method
 
-//Show Method @2-A598B58B
+//Show Method @2-4B0905D3
     function Show()
     {
         global $Tpl;
@@ -167,8 +165,6 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
             $Tpl->block_path = $ParentPath;
             return;
         }
-        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
-        $this->Insert_Link->Parameters = CCAddParam($this->Insert_Link->Parameters, "FLAG", "ADD");
         $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
         $this->Navigator->PageSize = $this->PageSize;
         if ($this->DataSource->RecordsCount == "CCS not counted")
@@ -178,7 +174,6 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         if ($this->Navigator->TotalPages <= 1) {
             $this->Navigator->Visible = false;
         }
-        $this->Insert_Link->Show();
         $this->Navigator->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;

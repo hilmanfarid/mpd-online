@@ -2,7 +2,7 @@
 	<Components>
 		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="LOV" returnPage="t_vat_setllement_ubah_denda.ccp" PathID="LOV" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="ISQLParameters" customInsertType="SQL" customInsert="SELECT f_update_penalty_new({t_vat_setllement_id},{flag_piutang},{nilai_denda}, '{deskripsi}', '{user_name}') AS msg" dataSource="t_vat_setllement">
 			<Components>
-				<TextBox id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nilai_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVnilai_denda">
+				<TextBox id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nilai_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVnilai_denda" fieldSource="nilai_denda">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -27,18 +27,18 @@
 					<Features/>
 				</Button>
 				<ListBox id="24" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="flag_piutang" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="LOVflag_piutang" fieldSource="flag_piutang" connection="ConnSIKP" _valueOfList="1" _nameOfList="Jadikan Ketetapan Denda" dataSource="0;Ubah Nilai;1;Jadikan Ketetapan Denda" defaultValue="0">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
-</Components>
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -64,7 +64,7 @@
 				<SQLParameter id="20" variable="deskripsi" parameterType="Control" dataType="Text" parameterSource="deskripsi"/>
 				<SQLParameter id="21" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
 				<SQLParameter id="23" variable="flag_piutang" parameterType="Control" dataType="Text" parameterSource="flag_piutang"/>
-</ISQLParameters>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="17" field="t_vat_setllement_id" dataType="Text" parameterType="Control" parameterSource="t_vat_setllement_id"/>
 			</IFormElements>

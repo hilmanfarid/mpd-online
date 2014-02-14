@@ -131,7 +131,7 @@ $(document).ready(function()
                   <td>{cetak_sptpd} 
                     <!-- BEGIN Button cetak_register --><input style="DISPLAY: none" id="t_vat_setllementGridcetak_register" class="btn_tambah" onclick="cetakRegister('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" name="{Button_Name}" alt="Button2" value="Cetak Register" type="button"><!-- END Button cetak_register --></td> 
                   <td style="TEXT-ALIGN: center" colspan="6">&nbsp; 
-                    <!-- BEGIN Button BtnUbahDenda --><input id="t_vat_setllementGridBtnUbahDenda" class="Button" onclick="viewFormUbahDenda({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Denda" type="button"><!-- END Button BtnUbahDenda --></td>
+                    <!-- BEGIN Button BtnUbahDenda --><input id="t_vat_setllementGridBtnUbahDenda" class="Button" onclick="viewFormUbahDenda({t_vat_setllement_id},'{total_penalty_amount}');" name="{Button_Name}" alt="Button2" value="Ubah Denda" type="button"><!-- END Button BtnUbahDenda --></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -343,8 +343,8 @@ function cetakRegister(cust_order_id){
         location.href=document.URL+"&action_button2=cetak_register&t_customer_order_id="+id_order;
 }
 
-function viewFormUbahDenda(t_vat_setllement_id) {
-        url = "../trans/t_vat_setllement_ubah_denda.php?t_vat_setllement_id="+t_vat_setllement_id;
+function viewFormUbahDenda(t_vat_setllement_id,denda) {
+        url = "../trans/t_vat_setllement_ubah_denda.php?t_vat_setllement_id="+t_vat_setllement_id+"&nilai_denda="+denda.replace(/,/g ,'');
 
                 params  = 'width=650';
             params += ', height=300';
