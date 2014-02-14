@@ -3,7 +3,7 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-8C893625
+//BindEvents Method @1-4232DD01
 function BindEvents()
 {
     global $t_vat_setllementGrid;
@@ -14,6 +14,7 @@ function BindEvents()
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
     $t_vat_setllementForm->Button1->CCSEvents["OnClick"] = "t_vat_setllementForm_Button1_OnClick";
+    $t_vat_setllementForm->CCSEvents["BeforeShow"] = "t_vat_setllementForm_BeforeShow";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
@@ -44,7 +45,7 @@ function t_vat_setllementGrid_cetak1_BeforeShow(& $sender)
 	if ($nilai == 1){
 		$t_vat_setllementGrid->cetak1->SetValue("<input type='button' value='CETAK' style='WIDTH: 55px; HEIGHT: 22px' class='Button' onclick=\"" .
   									 "return cetak1(".$vatId.",".$ReqId.")\">");
-	}else if($nilai == 2){
+	}else if($nilai == 2 or $nilai == 4){
 		$t_vat_setllementGrid->cetak1->SetValue("<input type='button' value='CETAK' style='WIDTH: 55px; HEIGHT: 22px' class='Button' onclick=\"" .
   									 "return cetak2(".$vatId.")\">");
 	}else{
@@ -183,6 +184,13 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 	}
 
 	$t_vat_setllementForm->no_kohir->SetValue($kode);
+
+	$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
+	$i_no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
+	
+	
+	$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."') from dual";
+	$dbConn1->query($sql_update_kohir);
 	return;
 // -------------------------
 //End Custom Code
@@ -191,6 +199,29 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
     return $t_vat_setllementForm_Button1_OnClick;
 }
 //End Close t_vat_setllementForm_Button1_OnClick
+
+//t_vat_setllementForm_BeforeShow @23-FE2321F2
+function t_vat_setllementForm_BeforeShow(& $sender)
+{
+    $t_vat_setllementForm_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementForm; //Compatibility
+//End t_vat_setllementForm_BeforeShow
+
+//Custom Code @357-2A29BDB7
+// -------------------------
+    $no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
+	if(!empty($no_kohir)) {
+		$t_vat_setllementForm->Button1->Visible = false;
+	}
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementForm_BeforeShow @23-08204CD1
+    return $t_vat_setllementForm_BeforeShow;
+}
+//End Close t_vat_setllementForm_BeforeShow
 
 
 //Page_OnInitializeView @1-4199983C
