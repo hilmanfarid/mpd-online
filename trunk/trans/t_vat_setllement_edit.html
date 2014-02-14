@@ -52,10 +52,21 @@ function t_vat_setllementFormButton_Delete_OnClick()
 //End t_vat_setllementFormButton_Delete_OnClick
 
 //Confirmation Message @27-B1A89A24
-    return confirm('Submit record?');
+    
 //End Confirmation Message
 
-    return confirm('Delete record?');
+//Custom Code @383-2A29BDB7
+    // -------------------------
+    var no_kohir = document.getElementById("t_vat_setllementFormno_kohir").value;
+	if(no_kohir == "") {
+		alert('No Kohir Belum Diisi');
+		return false;
+	}
+
+    // -------------------------
+//End Custom Code
+
+    return confirm('Submit record?');
 
 //Close t_vat_setllementFormButton_Delete_OnClick @26-BC33A33A
     return result;
@@ -83,7 +94,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -203,7 +214,8 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormorder_no">No. Order</label></td> 
-                    <td colspan="2"><input id="t_vat_setllementFormorder_no" class="ControlsRO" name="{order_no_Name}" readonly maxlength="32" value="{order_no}" size="32">&nbsp;<input id="t_vat_setllementFormp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"></td>
+                    <td colspan="2"><input style="WIDTH: 154px; HEIGHT: 20px" id="t_vat_setllementFormorder_no" class="ControlsRO" name="{order_no_Name}" readonly maxlength="32" value="{order_no}" size="19">&nbsp; No Kohir : <input id="t_vat_setllementFormp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"><input id="t_vat_setllementFormno_kohir" class="ControlsRQ" name="{no_kohir_Name}" readonly maxlength="12" value="{no_kohir}" size="12">&nbsp;
+                      <!-- BEGIN Button Button2 --><input id="t_vat_setllementFormButton2" class="Button" onclick="cek()" name="{Button_Name}" alt="Button1" value="Generate Code" type="submit"><!-- END Button Button2 --></td>
                   </tr>
  
                   <tr class="Controls">
@@ -307,9 +319,9 @@ $(document).ready(function()
                     <td style="TEXT-ALIGN: left">
                       <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" onclick="viewFormSetllementManualSKPDKB();" name="{Button_Name}" alt="Button1" value="Tambah" type="button"><!-- END Button Button1 -->&nbsp; </td> 
                     <td colspan="2" align="right">
-                      <!-- BEGIN Button Button_Cetak --><input id="t_vat_setllementFormButton_Cetak" onclick="cetak_selected()" class="btn_tambah" name="{Button_Name}" alt="Submit" value="CETAK DATA TERPILIH" type="button"><!-- END Button Button_Cetak -->
+                      <!-- BEGIN Button Button_Cetak --><input id="t_vat_setllementFormButton_Cetak" class="btn_tambah" onclick="cetak_selected()" name="{Button_Name}" alt="Submit" value="CETAK DATA TERPILIH" type="button"><!-- END Button Button_Cetak -->
                       <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" name="{Button_Name}" style="display:none;" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
                       <!-- BEGIN Button Button_Delete --><input id="t_vat_setllementFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="SUBMIT" type="submit"><!-- END Button Button_Delete --></td>
                   </tr>
                 </table>
