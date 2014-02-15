@@ -41,7 +41,13 @@
 				</Button>
 				<ListBox id="564" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_rep_bppsSearchListBox1" connection="ConnSIKP" _valueOfList="2" _nameOfList="Denda" dataSource="1;Pokok;2;Denda" fieldSource="i_flag_setoran" required="True">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="568"/>
+</Actions>
+</Event>
+</Events>
 					<TableParameters/>
 					<SPParameters/>
 					<SQLParameters/>
@@ -70,18 +76,18 @@
 					<Features/>
 				</DatePicker>
 				<ListBox id="567" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="jenis_laporan" wizardEmptyCaption="Select Value" PathID="t_rep_bppsSearchjenis_laporan" connection="ConnSIKP" _valueOfList="murni" _nameOfList="MURNI" dataSource="all;SEMUA;piutang;PIUTANG;murni;MURNI" required="True">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
-</Components>
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

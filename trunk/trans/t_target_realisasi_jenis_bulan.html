@@ -9,6 +9,12 @@
 <script src="../js/highcharts.js"></script>
 <script src="../js/exporting.js"></script>
 <script>
+function cetak(tgl_penerimaan,p_vat_type_id,i_flag_setoran,tgl_penerimaan_last,jenis_laporan)
+{
+	var p_year_period_id = document.getElementById('t_target_realisasi_jenis_bulanFormp_year_period_id').value;
+            window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'&jenis_laporan="+jenis_laporan, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+}
+
 $(function() {
     $.getJSON("../services/count_detail_jenis_bulan.php?t_revenue_target_id="
             + $("#t_target_realisasi_jenis_bulanFormt_revenue_target_id").val(), function(data) {
@@ -154,7 +160,7 @@ $(function () {
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -180,6 +186,75 @@ $(function () {
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Grid t_target_realisasiGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR TARGET VS REALISASI</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col">Bulan</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Target</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Pokok&nbsp;</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Denda</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Piutang</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Total</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Persentase</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_target_realisasiGrid:rowStyle}>
+                  <td>{bulan}<input id="t_target_realisasiGridp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_target_realisasiGridp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_target_realisasiGridstart_date" name="{start_date_Name}" value="{start_date}" type="hidden"><input id="t_target_realisasiGridend_date" name="{end_date_Name}" value="{end_date}" type="hidden"></td> 
+                  <td style="TEXT-ALIGN: right">{target_amount}</td> 
+                  <td onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','murni')" style="color: red;text-decoration: underline;cursor: pointer; cursor: hand;TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
+                  <td onclick="cetak('{start_date}',{p_vat_type_id},2,'{end_date}','all')" style="color: red;text-decoration: underline;cursor: pointer; cursor: hand;TEXT-ALIGN: right">{penalty_amt}&nbsp;</td> 
+                  <td onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','piutang')" style="color: red;text-decoration: underline;cursor: pointer; cursor: hand;TEXT-ALIGN: right">{debt_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{total_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{percentage}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="7">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="7">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}"><u>{Page_Number}</u></a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_target_realisasiGrid --></td>
+    </tr>
+ 
     <tr>
       <td>
         <div id="container">

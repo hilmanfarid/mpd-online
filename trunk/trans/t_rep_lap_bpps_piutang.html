@@ -47,8 +47,31 @@ t_rep_bppsSearch_DatePicker_tgl_penerimaan_last1.themeVersion = "3.0";
 
 //End Date Picker Object Definitions
 
-//bind_events @1-BF0EB765
+//t_rep_bppsSearchListBox1_OnChange @564-F87B3C7E
+function t_rep_bppsSearchListBox1_OnChange()
+{
+    var result = true;
+//End t_rep_bppsSearchListBox1_OnChange
+
+//Custom Code @568-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+	if(this.value==1){
+		
+	}else{
+		
+	}
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_bppsSearchListBox1_OnChange @564-BC33A33A
+    return result;
+}
+//End Close t_rep_bppsSearchListBox1_OnChange
+
+//bind_events @1-D18AA454
 function bind_events() {
+    addEventHandler("t_rep_bppsSearchListBox1", "change", t_rep_bppsSearchListBox1_OnChange);
 }
 //End bind_events
 

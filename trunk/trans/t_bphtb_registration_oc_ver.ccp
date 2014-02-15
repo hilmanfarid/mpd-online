@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="UFormElements" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration" dataSource="select a.*,
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="UFormElements" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" dataSource="select a.*,
 cust_order.p_rqst_type_id,
 b.region_name as wp_kota,
 c.region_name as wp_kecamatan,
@@ -343,6 +343,7 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 				</Hidden>
 				<Hidden id="1009" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_LOGIN" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_LOGIN">
 					<Components/>
+
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -481,20 +482,20 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Fields/>
 					<Attributes/>
 					<Features>
-<PTAutoFill id="1045" enabled="True" valueField="value" sourceType="Table" name="PTAutoFill1" category="Prototype" featureNameChanged="No" servicePage="../services/trans_t_bphtb_registration_t_bphtb_registrationForm_p_bphtb_legal_doc_type_id_PTAutoFill1.ccp">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Controls/>
-<ControlPoints/>
-<Features/>
-</PTAutoFill>
-</Features>
+						<PTAutoFill id="1045" enabled="True" valueField="value" sourceType="Table" name="PTAutoFill1" category="Prototype" featureNameChanged="No" servicePage="../services/trans_t_bphtb_registration_t_bphtb_registrationForm_p_bphtb_legal_doc_type_id_PTAutoFill1.ccp">
+							<Components/>
+							<Events/>
+							<TableParameters/>
+							<SPParameters/>
+							<SQLParameters/>
+							<JoinTables/>
+							<JoinLinks/>
+							<Fields/>
+							<Controls/>
+							<ControlPoints/>
+							<Features/>
+						</PTAutoFill>
+					</Features>
 				</ListBox>
 				<Hidden id="133" fieldSourceType="DBColumn" dataType="Text" name="t_customer_order_id" PathID="t_bphtb_registrationFormt_customer_order_id" fieldSource="t_customer_order_id">
 					<Components/>
@@ -526,13 +527,13 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="1007" fieldSourceType="DBColumn" dataType="Text" name="nilai_doc" PathID="t_bphtb_registrationFormnilai_doc">
+				<Hidden id="1007" fieldSourceType="DBColumn" dataType="Text" name="nilai_doc" PathID="t_bphtb_registrationFormnilai_doc">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<ListBox id="1044" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="add_disc_percent" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormadd_disc_percent" connection="ConnSIKP" _valueOfList="0.75" _nameOfList="75%" dataSource="0;0%;0.25;25%;0.5;50%;0.75;75%;1;100%" fieldSource="add_disc_percent">
+				<ListBox id="1044" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="add_disc_percent" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormadd_disc_percent" connection="ConnSIKP" _valueOfList="0.75" _nameOfList="75%" dataSource="0;0%;0.25;25%;0.5;50%;0.75;75%;1;100%" fieldSource="add_disc_percent">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
@@ -550,13 +551,13 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<TextBox id="1011" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="add_discount" PathID="t_bphtb_registrationFormadd_discount" format="#,##0.00">
+				<TextBox id="1011" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="add_discount" PathID="t_bphtb_registrationFormadd_discount" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -747,8 +748,8 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<CustomParameter id="1042" field="jenis_harga_bphtb" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="jenis_harga_bphtb"/>
 				<CustomParameter id="1043" field="jenis_harga_bphtb" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="jenis_harga_bphtb"/>
 				<CustomParameter id="1046" field="bphtb_legal_doc_description" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="bphtb_legal_doc_description"/>
-<CustomParameter id="1047" field="add_disc_percent" dataType="Single" parameterType="Control" omitIfEmpty="True" parameterSource="add_disc_percent"/>
-</UFormElements>
+				<CustomParameter id="1047" field="add_disc_percent" dataType="Single" parameterType="Control" omitIfEmpty="True" parameterSource="add_disc_percent"/>
+			</UFormElements>
 			<DSPParameters>
 				<SPParameter id="Key905" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0"/>
 				<SPParameter id="Key906" parameterName="icode" parameterSource="icode" dataType="Char" parameterType="URL" dataSize="255" direction="Input" scale="0" precision="0"/>

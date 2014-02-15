@@ -65,7 +65,9 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 			$tid = $Component->DataSource->t_revenue_target_id->GetValue();
 			$Component->t_revenue_target_id->SetValue($tid);
 			$pid = $Component->DataSource->p_year_period_id->GetValue();
+			$vat_id = $Component->DataSource->p_vat_type_id->GetValue();
 			$Component->p_year_period_id2->SetValue($pid);
+			$Component->p_vat_type_id2->SetValue($vat_id);
         }	
     // End Bdr  
       if (count($styles)) {
