@@ -16,6 +16,8 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Events/>
 					<LinkParameters>
 						<LinkParameter id="763" sourceType="DataField" name="t_revenue_target_id" source="t_revenue_target_id"/>
+						<LinkParameter id="872" sourceType="DataField" name="p_year_period_id" source="p_year_period_id"/>
+						<LinkParameter id="873" sourceType="DataField" name="p_vat_type_id" source="p_vat_type_id"/>
 					</LinkParameters>
 					<Attributes/>
 					<Features/>
@@ -74,7 +76,13 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Hidden id="874" fieldSourceType="DBColumn" dataType="Float" name="p_vat_type_id2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridp_vat_type_id2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -92,7 +100,7 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 			</TableParameters>
 			<JoinTables>
 				<JoinTable id="717" tableName="v_revenue_target_vs_realisasi" posWidth="150" posHeight="180" posLeft="10" posTop="10"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="870" fieldName="*"/>

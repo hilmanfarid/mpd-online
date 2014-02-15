@@ -288,6 +288,362 @@ class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  /
 
 } //End t_target_realisasi_jenis_bulanFormDataSource Class @726-FCB6E20C
 
+class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
+
+//Variables @2-AC1EDBB9
+
+    // Public variables
+    var $ComponentType = "Grid";
+    var $ComponentName;
+    var $Visible;
+    var $Errors;
+    var $ErrorBlock;
+    var $ds;
+    var $DataSource;
+    var $PageSize;
+    var $IsEmpty;
+    var $ForceIteration = false;
+    var $HasRecord = false;
+    var $SorterName = "";
+    var $SorterDirection = "";
+    var $PageNumber;
+    var $RowNumber;
+    var $ControlsVisible = array();
+
+    var $CCSEvents = "";
+    var $CCSEventResult;
+
+    var $RelativePath = "";
+    var $Attributes;
+
+    // Grid Controls
+    var $StaticControls;
+    var $RowControls;
+//End Variables
+
+//Class_Initialize Event @2-82FAF812
+    function clsGridt_target_realisasiGrid($RelativePath, & $Parent)
+    {
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->ComponentName = "t_target_realisasiGrid";
+        $this->Visible = True;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Grid t_target_realisasiGrid";
+        $this->Attributes = new clsAttributes($this->ComponentName . ":");
+        $this->DataSource = new clst_target_realisasiGridDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
+        if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
+            $this->PageSize = 12;
+        else
+            $this->PageSize = intval($this->PageSize);
+        if ($this->PageSize > 100)
+            $this->PageSize = 100;
+        if($this->PageSize == 0)
+            $this->Errors->addError("<p>Form: Grid " . $this->ComponentName . "<br>Error: (CCS06) Invalid page size.</p>");
+        $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
+        if ($this->PageNumber <= 0) $this->PageNumber = 1;
+
+        $this->bulan = & new clsControl(ccsLabel, "bulan", "bulan", ccsText, "", CCGetRequestParam("bulan", ccsGet, NULL), $this);
+        $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount", ccsGet, NULL), $this);
+        $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", ccsGet, NULL), $this);
+        $this->percentage = & new clsControl(ccsLabel, "percentage", "percentage", ccsFloat, "", CCGetRequestParam("percentage", ccsGet, NULL), $this);
+        $this->penalty_amt = & new clsControl(ccsLabel, "penalty_amt", "penalty_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("penalty_amt", ccsGet, NULL), $this);
+        $this->debt_amt = & new clsControl(ccsLabel, "debt_amt", "debt_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_amt", ccsGet, NULL), $this);
+        $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
+        $this->total_amt = & new clsControl(ccsLabel, "total_amt", "total_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_amt", ccsGet, NULL), $this);
+        $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", ccsGet, NULL), $this);
+        $this->start_date = & new clsControl(ccsHidden, "start_date", "start_date", ccsText, "", CCGetRequestParam("start_date", ccsGet, NULL), $this);
+        $this->end_date = & new clsControl(ccsHidden, "end_date", "end_date", ccsText, "", CCGetRequestParam("end_date", ccsGet, NULL), $this);
+        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+    }
+//End Class_Initialize Event
+
+//Initialize Method @2-90E704C5
+    function Initialize()
+    {
+        if(!$this->Visible) return;
+
+        $this->DataSource->PageSize = & $this->PageSize;
+        $this->DataSource->AbsolutePage = & $this->PageNumber;
+        $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
+    }
+//End Initialize Method
+
+//Show Method @2-29F988BB
+    function Show()
+    {
+        global $Tpl;
+        global $CCSLocales;
+        if(!$this->Visible) return;
+
+        $this->RowNumber = 0;
+
+        $this->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
+        $this->DataSource->Parameters["urlp_vat_type_id"] = CCGetFromGet("p_vat_type_id", NULL);
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $this->DataSource->Prepare();
+        $this->DataSource->Open();
+        $this->HasRecord = $this->DataSource->has_next_record();
+        $this->IsEmpty = ! $this->HasRecord;
+        $this->Attributes->Show();
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        if(!$this->Visible) return;
+
+        $GridBlock = "Grid " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+
+
+        if (!$this->IsEmpty) {
+            $this->ControlsVisible["bulan"] = $this->bulan->Visible;
+            $this->ControlsVisible["target_amount"] = $this->target_amount->Visible;
+            $this->ControlsVisible["p_finance_period_id"] = $this->p_finance_period_id->Visible;
+            $this->ControlsVisible["percentage"] = $this->percentage->Visible;
+            $this->ControlsVisible["penalty_amt"] = $this->penalty_amt->Visible;
+            $this->ControlsVisible["debt_amt"] = $this->debt_amt->Visible;
+            $this->ControlsVisible["realisasi_amt"] = $this->realisasi_amt->Visible;
+            $this->ControlsVisible["total_amt"] = $this->total_amt->Visible;
+            $this->ControlsVisible["p_vat_type_id"] = $this->p_vat_type_id->Visible;
+            $this->ControlsVisible["start_date"] = $this->start_date->Visible;
+            $this->ControlsVisible["end_date"] = $this->end_date->Visible;
+            while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
+                $this->RowNumber++;
+                if ($this->HasRecord) {
+                    $this->DataSource->next_record();
+                    $this->DataSource->SetValues();
+                }
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
+                $this->bulan->SetValue($this->DataSource->bulan->GetValue());
+                $this->target_amount->SetValue($this->DataSource->target_amount->GetValue());
+                $this->p_finance_period_id->SetValue($this->DataSource->p_finance_period_id->GetValue());
+                $this->penalty_amt->SetValue($this->DataSource->penalty_amt->GetValue());
+                $this->debt_amt->SetValue($this->DataSource->debt_amt->GetValue());
+                $this->realisasi_amt->SetValue($this->DataSource->realisasi_amt->GetValue());
+                $this->total_amt->SetValue($this->DataSource->total_amt->GetValue());
+                $this->p_vat_type_id->SetValue($this->DataSource->p_vat_type_id->GetValue());
+                $this->start_date->SetValue($this->DataSource->start_date->GetValue());
+                $this->end_date->SetValue($this->DataSource->end_date->GetValue());
+                $this->Attributes->SetValue("rowNumber", $this->RowNumber);
+                $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
+                $this->Attributes->Show();
+                $this->bulan->Show();
+                $this->target_amount->Show();
+                $this->p_finance_period_id->Show();
+                $this->percentage->Show();
+                $this->penalty_amt->Show();
+                $this->debt_amt->Show();
+                $this->realisasi_amt->Show();
+                $this->total_amt->Show();
+                $this->p_vat_type_id->Show();
+                $this->start_date->Show();
+                $this->end_date->Show();
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+                $Tpl->parse("Row", true);
+            }
+        }
+        else { // Show NoRecords block if no records are found
+            $this->Attributes->Show();
+            $Tpl->parse("NoRecords", false);
+        }
+
+        $errors = $this->GetErrors();
+        if(strlen($errors))
+        {
+            $Tpl->replaceblock("", $errors);
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+        $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
+        $this->Navigator->PageSize = $this->PageSize;
+        if ($this->DataSource->RecordsCount == "CCS not counted")
+            $this->Navigator->TotalPages = $this->DataSource->AbsolutePage + ($this->DataSource->next_record() ? 1 : 0);
+        else
+            $this->Navigator->TotalPages = $this->DataSource->PageCount();
+        if ($this->Navigator->TotalPages <= 1) {
+            $this->Navigator->Visible = false;
+        }
+        $this->Navigator->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+//GetErrors Method @2-7835902D
+    function GetErrors()
+    {
+        $errors = "";
+        $errors = ComposeStrings($errors, $this->bulan->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->target_amount->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->p_finance_period_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->percentage->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->penalty_amt->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->debt_amt->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->realisasi_amt->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->total_amt->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->p_vat_type_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->start_date->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->end_date->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
+        return $errors;
+    }
+//End GetErrors Method
+
+} //End t_target_realisasiGrid Class @2-FCB6E20C
+
+class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_realisasiGridDataSource Class @2-9A91A27E
+
+//DataSource Variables @2-3D3DBFEE
+    var $Parent = "";
+    var $CCSEvents = "";
+    var $CCSEventResult;
+    var $ErrorBlock;
+    var $CmdExecution;
+
+    var $CountSQL;
+    var $wp;
+
+
+    // Datasource fields
+    var $bulan;
+    var $target_amount;
+    var $p_finance_period_id;
+    var $penalty_amt;
+    var $debt_amt;
+    var $realisasi_amt;
+    var $total_amt;
+    var $p_vat_type_id;
+    var $start_date;
+    var $end_date;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @2-83C02FBB
+    function clst_target_realisasiGridDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Grid t_target_realisasiGrid";
+        $this->Initialize();
+        $this->bulan = new clsField("bulan", ccsText, "");
+        
+        $this->target_amount = new clsField("target_amount", ccsFloat, "");
+        
+        $this->p_finance_period_id = new clsField("p_finance_period_id", ccsText, "");
+        
+        $this->penalty_amt = new clsField("penalty_amt", ccsFloat, "");
+        
+        $this->debt_amt = new clsField("debt_amt", ccsFloat, "");
+        
+        $this->realisasi_amt = new clsField("realisasi_amt", ccsFloat, "");
+        
+        $this->total_amt = new clsField("total_amt", ccsFloat, "");
+        
+        $this->p_vat_type_id = new clsField("p_vat_type_id", ccsText, "");
+        
+        $this->start_date = new clsField("start_date", ccsText, "");
+        
+        $this->end_date = new clsField("end_date", ccsText, "");
+        
+
+    }
+//End DataSourceClass_Initialize Event
+
+//SetOrder Method @2-13FF2B55
+    function SetOrder($SorterName, $SorterDirection)
+    {
+        $this->Order = "MAX(start_date) ASC";
+        $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
+            "");
+    }
+//End SetOrder Method
+
+//Prepare Method @2-CFF5271D
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", "", $this->Parameters["urlp_year_period_id"], 0, false);
+        $this->wp->AddParameter("2", "urlp_vat_type_id", ccsText, "", "", $this->Parameters["urlp_vat_type_id"], "", false);
+    }
+//End Prepare Method
+
+//Open Method @2-B1B685C8
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT\n" .
+        "	MAX(p_year_period_id) as p_year_period_id,\n" .
+        "	to_char(MAX(start_date),'dd-mm-yyyy') as start_date,\n" .
+        "	to_char(MAX(end_date),'dd-mm-yyyy') as end_date,\n" .
+        "	MAX(p_vat_type_id) as p_vat_type_id,\n" .
+        "	MAX(bulan) as bulan,\n" .
+        "	SUM (target_amount) as target_amount,\n" .
+        "	SUM (realisasi_amt) as realisasi_amt,\n" .
+        "	MAX (penalty_amt) as penalty_amt,\n" .
+        "	SUM (debt_amt) as debt_amt\n" .
+        "FROM\n" .
+        "	f_target_vs_real_monthly ()\n" .
+        "WHERE\n" .
+        "	p_year_period_id=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "AND p_vat_type_id =" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "\n" .
+        "\n" .
+        "GROUP BY p_finance_period_id) cnt";
+        $this->SQL = "SELECT\n" .
+        "	MAX(p_year_period_id) as p_year_period_id,\n" .
+        "	to_char(MAX(start_date),'dd-mm-yyyy') as start_date,\n" .
+        "	to_char(MAX(end_date),'dd-mm-yyyy') as end_date,\n" .
+        "	MAX(p_vat_type_id) as p_vat_type_id,\n" .
+        "	MAX(bulan) as bulan,\n" .
+        "	SUM (target_amount) as target_amount,\n" .
+        "	SUM (realisasi_amt) as realisasi_amt,\n" .
+        "	MAX (penalty_amt) as penalty_amt,\n" .
+        "	SUM (debt_amt) as debt_amt\n" .
+        "FROM\n" .
+        "	f_target_vs_real_monthly ()\n" .
+        "WHERE\n" .
+        "	p_year_period_id=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "AND p_vat_type_id =" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "\n" .
+        "\n" .
+        "GROUP BY p_finance_period_id {SQL_OrderBy}";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        if ($this->CountSQL) 
+            $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
+        else
+            $this->RecordsCount = "CCS not counted";
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+    }
+//End Open Method
+
+//SetValues Method @2-ACB82AB2
+    function SetValues()
+    {
+        $this->bulan->SetDBValue($this->f("bulan"));
+        $this->target_amount->SetDBValue(trim($this->f("target_amount")));
+        $this->p_finance_period_id->SetDBValue($this->f("p_year_period_id"));
+        $this->penalty_amt->SetDBValue(trim($this->f("penalty_amt")));
+        $this->debt_amt->SetDBValue(trim($this->f("debt_amt")));
+        $this->realisasi_amt->SetDBValue(trim($this->f("realisasi_amt")));
+        $this->total_amt->SetDBValue(trim($this->f("target_amount")));
+        $this->p_vat_type_id->SetDBValue($this->f("p_vat_type_id"));
+        $this->start_date->SetDBValue($this->f("start_date"));
+        $this->end_date->SetDBValue($this->f("end_date"));
+    }
+//End SetValues Method
+
+} //End t_target_realisasiGridDataSource Class @2-FCB6E20C
+
 
 
 //Initialize Page @1-51B41586
@@ -322,7 +678,7 @@ include_once("./t_target_realisasi_jenis_bulan_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-728E3E3D
+//Initialize Objects @1-78F30F08
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -330,8 +686,11 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_target_realisasi_jenis_bulanForm = & new clsRecordt_target_realisasi_jenis_bulanForm("", $MainPage);
+$t_target_realisasiGrid = & new clsGridt_target_realisasiGrid("", $MainPage);
 $MainPage->t_target_realisasi_jenis_bulanForm = & $t_target_realisasi_jenis_bulanForm;
+$MainPage->t_target_realisasiGrid = & $t_target_realisasiGrid;
 $t_target_realisasi_jenis_bulanForm->Initialize();
+$t_target_realisasiGrid->Initialize();
 
 BindEvents();
 
@@ -358,20 +717,22 @@ $Attributes->Show();
 $t_target_realisasi_jenis_bulanForm->Operation();
 //End Execute Components
 
-//Go to destination page @1-2069D1A9
+//Go to destination page @1-0FEAE12B
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
     $DBConnSIKP->close();
     header("Location: " . $Redirect);
     unset($t_target_realisasi_jenis_bulanForm);
+    unset($t_target_realisasiGrid);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-5F706F8D
+//Show Page @1-05B8D7E6
 $t_target_realisasi_jenis_bulanForm->Show();
+$t_target_realisasiGrid->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -379,10 +740,11 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-1C98030F
+//Unload Page @1-E80B1EBD
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBConnSIKP->close();
 unset($t_target_realisasi_jenis_bulanForm);
+unset($t_target_realisasiGrid);
 unset($Tpl);
 //End Unload Page
 

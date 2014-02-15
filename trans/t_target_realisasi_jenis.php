@@ -42,7 +42,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-66A0DC00
+//Class_Initialize Event @2-9618C8A3
     function clsGridt_target_realisasi_jenisGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -83,6 +83,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->year_code = & new clsControl(ccsLabel, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", ccsGet, NULL), $this);
         $this->t_revenue_target_id = & new clsControl(ccsHidden, "t_revenue_target_id", "t_revenue_target_id", ccsText, "", CCGetRequestParam("t_revenue_target_id", ccsGet, NULL), $this);
         $this->p_year_period_id2 = & new clsControl(ccsHidden, "p_year_period_id2", "p_year_period_id2", ccsText, "", CCGetRequestParam("p_year_period_id2", ccsGet, NULL), $this);
+        $this->p_vat_type_id2 = & new clsControl(ccsHidden, "p_vat_type_id2", "p_vat_type_id2", ccsFloat, "", CCGetRequestParam("p_vat_type_id2", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -97,7 +98,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     }
 //End Initialize Method
 
-//Show Method @2-D7190DCE
+//Show Method @2-1EAFBB84
     function Show()
     {
         global $Tpl;
@@ -142,6 +143,8 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
                 $this->DLink->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_revenue_target_id", $this->DataSource->f("t_revenue_target_id"));
+                $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "p_year_period_id", $this->DataSource->f("p_year_period_id"));
+                $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "p_vat_type_id", $this->DataSource->f("p_vat_type_id"));
                 $this->target_amount->SetValue($this->DataSource->target_amount->GetValue());
                 $this->p_year_period_id->SetValue($this->DataSource->p_year_period_id->GetValue());
                 $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
@@ -187,6 +190,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->year_code->Show();
         $this->t_revenue_target_id->Show();
         $this->p_year_period_id2->Show();
+        $this->p_vat_type_id2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -229,9 +233,11 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     var $realisasi_amt;
     var $target_amount;
     var $p_year_period_id;
+	//var $p_year_period_id2;
     var $year_code;
     var $vat_code;
     var $p_vat_type_id;
+	//var $p_vat_type_id2;
 	var $t_revenue_target_id;
 //End DataSource Variables
 
@@ -246,12 +252,13 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         $this->target_amount = new clsField("target_amount", ccsText, "");
         
         $this->p_year_period_id = new clsField("p_year_period_id", ccsFloat, "");
-        
+        //$this->p_year_period_id2 = new clsField("p_year_period_id2", ccsFloat, "");
         $this->year_code = new clsField("year_code", ccsText, "");
         
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
         $this->p_vat_type_id = new clsField("p_vat_type_id", ccsFloat, "");
+		//$this->p_vat_type_id2 = new clsField("p_vat_type_id2", ccsFloat, "");
         $this->t_revenue_target_id = new clsField("t_revenue_target_id", ccsFloat, "");
 
     }
@@ -286,7 +293,7 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         $this->SQL = "SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
         "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "  {SQL_OrderBy}";
-		$this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
         else
@@ -302,9 +309,11 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         $this->realisasi_amt->SetDBValue($this->f("realisasi_amt"));
         $this->target_amount->SetDBValue($this->f("target_amount"));
         $this->p_year_period_id->SetDBValue(trim($this->f("p_year_period_id")));
+		//$this->p_year_period_id2->SetDBValue(trim($this->f("p_year_period_id2")));
         $this->year_code->SetDBValue($this->f("year_code"));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->p_vat_type_id->SetDBValue(trim($this->f("p_vat_type_id")));
+		//$this->p_vat_type_id2->SetDBValue(trim($this->f("p_vat_type_id2")));
 		$this->t_revenue_target_id->SetDBValue(trim($this->f("t_revenue_target_id")));
     }
 //End SetValues Method

@@ -120,7 +120,7 @@ $(function () {
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -214,7 +214,7 @@ $(function () {
             </td>
           </tr>
         </table>
-        <input id="t_target_realisasi_jenisGridt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"><input id="t_target_realisasi_jenisGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden"><!-- END Grid t_target_realisasi_jenisGrid -->
+        <input id="t_target_realisasi_jenisGridt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"><input id="t_target_realisasi_jenisGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden">&nbsp;<input id="t_target_realisasi_jenisGridp_vat_type_id2" name="{p_vat_type_id2_Name}" value="{p_vat_type_id2}" type="hidden"><!-- END Grid t_target_realisasi_jenisGrid -->
         <div style="WIDTH: 45%; DISPLAY: inline-block" id="container">
         </div>
  
@@ -247,12 +247,14 @@ function toTarget()
 function toBulanan()
 {
   var idelement;
+  var id_tahun = document.getElementById("t_target_realisasi_jenisGridp_year_period_id2").value;
+  var id_vat = document.getElementById("t_target_realisasi_jenisGridp_vat_type_id2").value;
   if (idelement = document.getElementById("t_target_realisasi_jenisGridt_revenue_target_id"))
   {
     var pid=idelement.value;
     if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
     {
-     location.href="t_target_realisasi_jenis_bulan.php?t_revenue_target_id="+pid;
+     location.href="t_target_realisasi_jenis_bulan.php?t_revenue_target_id="+pid+"&p_vat_type_id="+id_vat+"&p_year_period_id="+id_tahun;
     } else {
      alert("Pilih salah satu TAHUN!");
     }
