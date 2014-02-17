@@ -578,7 +578,7 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Prepare Method
 
-//Open Method @2-B1B685C8
+//Open Method @2-61BA2ADB
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -593,11 +593,7 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         "	MAX (penalty_amt) as penalty_amt,\n" .
         "	SUM (debt_amt) as debt_amt\n" .
         "FROM\n" .
-        "	f_target_vs_real_monthly ()\n" .
-        "WHERE\n" .
-        "	p_year_period_id=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "AND p_vat_type_id =" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "\n" .
-        "\n" .
+        "	f_target_vs_real_monthly_new(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
         "GROUP BY p_finance_period_id) cnt";
         $this->SQL = "SELECT\n" .
         "	MAX(p_year_period_id) as p_year_period_id,\n" .
@@ -610,11 +606,7 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         "	MAX (penalty_amt) as penalty_amt,\n" .
         "	SUM (debt_amt) as debt_amt\n" .
         "FROM\n" .
-        "	f_target_vs_real_monthly ()\n" .
-        "WHERE\n" .
-        "	p_year_period_id=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "AND p_vat_type_id =" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "\n" .
-        "\n" .
+        "	f_target_vs_real_monthly_new(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
         "GROUP BY p_finance_period_id {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 

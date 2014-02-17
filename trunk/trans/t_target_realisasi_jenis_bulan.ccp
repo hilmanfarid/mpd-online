@@ -62,11 +62,7 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 	MAX (penalty_amt) as penalty_amt,
 	SUM (debt_amt) as debt_amt
 FROM
-	f_target_vs_real_monthly ()
-WHERE
-	p_year_period_id={p_year_period_id}
-AND p_vat_type_id ={p_vat_type_id}
-
+	f_target_vs_real_monthly_new({p_year_period_id},{p_vat_type_id})
 GROUP BY p_finance_period_id
 
 ORDER BY MAX(start_date) ASC">
@@ -107,43 +103,43 @@ ORDER BY MAX(start_date) ASC">
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="893" fieldSourceType="DBColumn" dataType="Float" html="False" name="debt_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddebt_amt" fieldSource="debt_amt" format="#,##0.00">
+				<Label id="893" fieldSourceType="DBColumn" dataType="Float" html="False" name="debt_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddebt_amt" fieldSource="debt_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
+				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="894" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridtotal_amt" fieldSource="target_amount" format="#,##0.00">
+				<Label id="894" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridtotal_amt" fieldSource="target_amount" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Hidden id="895" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridp_vat_type_id" fieldSource="p_vat_type_id">
+				<Hidden id="895" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridp_vat_type_id" fieldSource="p_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="896" fieldSourceType="DBColumn" dataType="Text" name="start_date" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridstart_date" fieldSource="start_date">
+				<Hidden id="896" fieldSourceType="DBColumn" dataType="Text" name="start_date" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridstart_date" fieldSource="start_date">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="897" fieldSourceType="DBColumn" dataType="Text" name="end_date" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridend_date" fieldSource="end_date">
+				<Hidden id="897" fieldSourceType="DBColumn" dataType="Text" name="end_date" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridend_date" fieldSource="end_date">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -168,12 +164,12 @@ ORDER BY MAX(start_date) ASC">
 			<SQLParameters>
 				<SQLParameter id="677" parameterType="URL" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id" defaultValue="0"/>
 				<SQLParameter id="898" variable="p_vat_type_id" parameterType="URL" dataType="Text" parameterSource="p_vat_type_id"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
 		</Grid>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_target_realisasi_jenis_bulan_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_target_realisasi_jenis_bulan.php" forShow="True" url="t_target_realisasi_jenis_bulan.php" comment="//" codePage="windows-1252"/>
