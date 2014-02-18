@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LOV</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<link rel="stylesheet" type="text/css" href="../include/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="../include/jquery.multiselect.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../include/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../include/jquery.multiselect.min.js"></script>
+<!--start user-->
+<script language="javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<!--end user-->
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+    $("select").multiselect({
+       selectedText: "# dari # dipilih",
+       noneSelectedText: "PILH STATUS",
+	   click: function(event, ui){
+	        //$("#LOVp_account_status_array").val($("#LOVp_account_status_id").multiselect("getChecked"));
+			//alert(this.menu);
+			var values = $("#LOVp_account_status_id").multiselect("getChecked");
+			//alert(values.length);
+			var arr_val = [];
+			for(i = 0;i < values.length;i++){
+				arr_val.push(values[i].value);
+				//alert(i);
+			}
+			$("#LOVp_account_status_array").val(arr_val);
+
+	    }
+    });
+    $("select").multiselect("uncheckAll");
+	/*$("#LOVp_account_status_id").on("click", function(event, ui) { 
+		$("#LOVp_account_status_array").value($("#LOVp_account_status_id").multiselect("getChecked"));
+	});*/
+
+
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        JENIS PAJAK&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table style="WIDTH: 100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Record LOV -->
+        <form id="LOV" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="LOVvat_code" class="ControlsIN" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="32">&nbsp;<img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="LOVButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CETAK" type="submit"><!-- END Button Button_DoSearch --><input id="LOVt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><input id="LOVp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="LOVcetak" name="{cetak_Name}" value="T" type="hidden"></td>
+                  </tr>
+ 
+                  <tr style="display:none;" class="Controls">
+                    <td class="search-field">
+                      <select id="LOVp_account_status_id" name="{p_account_status_id_Name}" multiple="multiple">
+                        {p_account_status_id_Options}
+                      </select>
+ </td> 
+                    <td class="search-field">&nbsp;<input id="LOVp_account_status_array" name="{p_account_status_array_Name}" value="{p_account_status_array}" type="hidden"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record LOV --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function jenispajak() {
+        getFrom_LOV('LOV','p_vat_type_id,vat_code','lov_vat_type.php');
+}
+</script>
+</body>
+</html>
