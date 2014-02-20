@@ -264,10 +264,10 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-9B541AA8
+//SetOrder Method @2-9E1383D1
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "p_vat_type_id";
+        $this->Order = "";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -283,16 +283,40 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     }
 //End Prepare Method
 
-//Open Method @2-8AEFD667
+//Open Method @2-81EC1771
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM ((SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
-        "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ") cnt";
-        $this->SQL = "SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
+        "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "ORDER BY p_vat_type_id)\n" .
+        "UNION\n" .
+        "(select '999',max(p_finance_period.p_year_period_id),max(c.p_vat_type_id),'DENDA','',0,sum(round(b.penalty_amt))\n" .
+        "            from t_payment_receipt a  , t_vat_penalty b,  p_vat_type_dtl c , p_vat_type d, p_finance_period\n" .
+        "            where a.t_vat_setllement_id = b.t_vat_setllement_id\n" .
+        "                  and a.p_vat_type_dtl_id = c.p_vat_type_dtl_id\n" .
+        "                  and c.p_vat_type_id = d.p_vat_type_id\n" .
+        "                  and (trunc(a.payment_date) <= trunc(p_finance_period.end_date)\n" .
+        "                  and trunc(a.payment_date) >= trunc(p_finance_period.start_date))\n" .
+        "									and p_finance_period.p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "                  and decode(c.p_vat_type_id,7,d.code||c.code,d.penalty_code) IN ('140702','140701','140703','140707'))\n" .
+        ") cnt";
+        $this->SQL = "(SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
-        "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "  {SQL_OrderBy}";
+        "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "ORDER BY p_vat_type_id)\n" .
+        "UNION\n" .
+        "(select '999',max(p_finance_period.p_year_period_id),max(c.p_vat_type_id),'DENDA','',0,sum(round(b.penalty_amt))\n" .
+        "            from t_payment_receipt a  , t_vat_penalty b,  p_vat_type_dtl c , p_vat_type d, p_finance_period\n" .
+        "            where a.t_vat_setllement_id = b.t_vat_setllement_id\n" .
+        "                  and a.p_vat_type_dtl_id = c.p_vat_type_dtl_id\n" .
+        "                  and c.p_vat_type_id = d.p_vat_type_id\n" .
+        "                  and (trunc(a.payment_date) <= trunc(p_finance_period.end_date)\n" .
+        "                  and trunc(a.payment_date) >= trunc(p_finance_period.start_date))\n" .
+        "									and p_finance_period.p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "                  and decode(c.p_vat_type_id,7,d.code||c.code,d.penalty_code) IN ('140702','140701','140703','140707'))\n" .
+        "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
