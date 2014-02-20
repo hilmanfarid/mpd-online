@@ -283,7 +283,7 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     }
 //End Prepare Method
 
-//Open Method @2-81EC1771
+//Open Method @2-F6815882
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -292,31 +292,35 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
         "ORDER BY p_vat_type_id)\n" .
         "UNION\n" .
-        "(select '999',max(p_finance_period.p_year_period_id),max(c.p_vat_type_id),'DENDA','',0,sum(round(b.penalty_amt))\n" .
-        "            from t_payment_receipt a  , t_vat_penalty b,  p_vat_type_dtl c , p_vat_type d, p_finance_period\n" .
-        "            where a.t_vat_setllement_id = b.t_vat_setllement_id\n" .
-        "                  and a.p_vat_type_dtl_id = c.p_vat_type_dtl_id\n" .
-        "                  and c.p_vat_type_id = d.p_vat_type_id\n" .
-        "                  and (trunc(a.payment_date) <= trunc(p_finance_period.end_date)\n" .
-        "                  and trunc(a.payment_date) >= trunc(p_finance_period.start_date))\n" .
-        "									and p_finance_period.p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "                  and decode(c.p_vat_type_id,7,d.code||c.code,d.penalty_code) IN ('140702','140701','140703','140707'))\n" .
-        ") cnt";
+        "(SELECT\n" .
+        "	'999',\n" .
+        "	" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "	,\n" .
+        "	MAX (p_vat_type_id),\n" .
+        "	'DENDA',\n" .
+        "	'',\n" .
+        "	0,\n" .
+        "	SUM (round(jml_sd_hari_ini))\n" .
+        "FROM\n" .
+        "	sikp.f_rep_lap_harian_bdhr_baru (" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")\n" .
+        "where nomor_ayat IN('140701','140702','140703','140707'))) cnt";
         $this->SQL = "(SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
         "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
         "ORDER BY p_vat_type_id)\n" .
         "UNION\n" .
-        "(select '999',max(p_finance_period.p_year_period_id),max(c.p_vat_type_id),'DENDA','',0,sum(round(b.penalty_amt))\n" .
-        "            from t_payment_receipt a  , t_vat_penalty b,  p_vat_type_dtl c , p_vat_type d, p_finance_period\n" .
-        "            where a.t_vat_setllement_id = b.t_vat_setllement_id\n" .
-        "                  and a.p_vat_type_dtl_id = c.p_vat_type_dtl_id\n" .
-        "                  and c.p_vat_type_id = d.p_vat_type_id\n" .
-        "                  and (trunc(a.payment_date) <= trunc(p_finance_period.end_date)\n" .
-        "                  and trunc(a.payment_date) >= trunc(p_finance_period.start_date))\n" .
-        "									and p_finance_period.p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "                  and decode(c.p_vat_type_id,7,d.code||c.code,d.penalty_code) IN ('140702','140701','140703','140707'))\n" .
-        "";
+        "(SELECT\n" .
+        "	'999',\n" .
+        "	" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "	,\n" .
+        "	MAX (p_vat_type_id),\n" .
+        "	'DENDA',\n" .
+        "	'',\n" .
+        "	0,\n" .
+        "	SUM (round(jml_sd_hari_ini))\n" .
+        "FROM\n" .
+        "	sikp.f_rep_lap_harian_bdhr_baru (" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")\n" .
+        "where nomor_ayat IN('140701','140702','140703','140707'))";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
