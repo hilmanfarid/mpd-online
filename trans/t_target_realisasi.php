@@ -239,10 +239,10 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-9E1383D1
+//SetOrder Method @2-6B4AFA0B
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "";
+        $this->Order = "year_code DESC";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -256,14 +256,16 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Prepare Method
 
-//Open Method @2-612ECA88
+//Open Method @2-548EEC6B
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*)\n\n" .
-        "FROM v_target_vs_real_anual";
-        $this->SQL = "SELECT * \n\n" .
-        "FROM v_target_vs_real_anual {SQL_Where} {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT p_year_period_id, year_code, sum(target_amount) as target_amt, sum(realisasi_amt) as realisasi_amt\n" .
+        "FROM v_revenue_target_vs_realisasi\n" .
+        "GROUP BY  p_year_period_id, year_code) cnt";
+        $this->SQL = "SELECT p_year_period_id, year_code, sum(target_amount) as target_amt, sum(realisasi_amt) as realisasi_amt\n" .
+        "FROM v_revenue_target_vs_realisasi\n" .
+        "GROUP BY  p_year_period_id, year_code {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
