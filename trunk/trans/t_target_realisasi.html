@@ -116,7 +116,7 @@ $(function () {
 <a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a> 
                     </div>
                   </td> 
-                  <td>{year_code}<input id="t_target_realisasiGridp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
+                  <td onClick="location.href='t_target_realisasi_jenis_bulan_all.php?p_year_period_id={p_year_period_id}'" style="color: #FF0000;cursor: pointer;text-decoration: underline;">{year_code}<input id="t_target_realisasiGridp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
                   <td style="TEXT-ALIGN: right">{target_amt}</td> 
                   <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{percentage}</td>

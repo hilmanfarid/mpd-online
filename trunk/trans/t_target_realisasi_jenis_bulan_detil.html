@@ -28,9 +28,9 @@ function cetak(tgl_penerimaan,p_vat_type_id,i_flag_setoran,tgl_penerimaan_last,j
       </label>
     </div>
     <div class="th tab-button">
-      <label onclick="javascript:toJenis()">
+      <label onclick="javascript:toBulan()">
       <div class="tab-title">
-        PER JENIS PAJAK 
+        BULANAN
       </div>
       </label>
     </div>
@@ -149,7 +149,7 @@ function cetak(tgl_penerimaan,p_vat_type_id,i_flag_setoran,tgl_penerimaan_last,j
                 <tr {t_target_realisasiGrid1:rowStyle}>
                   <td>
                     <div style="WIDTH: 240px">
-                      {ayat}
+                      {ayat} 
                     </div>
                     <input id="t_target_realisasiGrid1p_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_target_realisasiGrid1p_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_target_realisasiGrid1start_date" name="{start_date_Name}" value="{start_date}" type="hidden"><input id="t_target_realisasiGrid1end_date" name="{end_date_Name}" value="{end_date}" type="hidden"></td> 
                   <td style="TEXT-ALIGN: right">{target_amount}</td> 
@@ -201,7 +201,7 @@ function cetak(tgl_penerimaan,p_vat_type_id,i_flag_setoran,tgl_penerimaan_last,j
         <p></p>
         <!-- BEGIN Record t_target_realisasi_jenis_bulanForm -->
         <form id="t_target_realisasi_jenis_bulanForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"></h2>
+          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"><input type="hidden" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" id="t_target_realisasi_jenis_bulanFormp_finance_period_id"></h2>
         </form>
         <!-- END Record t_target_realisasi_jenis_bulanForm --></td>
     </tr>
@@ -211,7 +211,7 @@ function cetak(tgl_penerimaan,p_vat_type_id,i_flag_setoran,tgl_penerimaan_last,j
 function toTarget()
 {
   var idelement;
-  if (idelement = document.getElementById("t_target_realisasi_jenis_bulanFormp_year_period_id"))
+  if (idelement = document.getElementById("t_target_realisasi_jenis_bulanFormp_finance_period_id"))
   {
     var pid=idelement.value;
     if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
@@ -225,20 +225,20 @@ function toTarget()
   }
 }
 
-function toJenis()
+function toBulan()
 {
   var idelement;
-  if (idelement = document.getElementById("t_target_realisasi_jenis_bulanFormp_year_period_id"))
+  if (idelement = document.getElementById("t_target_realisasi_jenis_bulanFormp_finance_period_id"))
   {
     var pid=idelement.value;
     if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
     {
-     location.href="t_target_realisasi_jenis.php?p_year_period_id="+pid;
+     location.href="t_target_realisasi_jenis_bulan_all.php?t_revenue_target_id="+document.getElementById('t_target_realisasi_jenis_bulanFormt_revenue_target_id').value+"&p_year_period_id="+document.getElementById('t_target_realisasi_jenis_bulanFormp_year_period_id').value+"&p_finance_period_id="+pid;
     } else {
-     alert("Pilih salah satu TAHUN!");
+     alert("Pilih salah satu BULAN!");
     }
   } else {
-     alert("Pilih salah satu TAHUN!");
+     alert("Pilih salah satu BULAN!");
   }
 }
 </script>

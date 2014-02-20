@@ -45,7 +45,7 @@ class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_b
     // Class variables
 //End Variables
 
-//Class_Initialize Event @726-A399AF55
+//Class_Initialize Event @726-04E3484A
     function clsRecordt_target_realisasi_jenis_bulanForm($RelativePath, & $Parent)
     {
 
@@ -74,6 +74,7 @@ class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_b
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->t_revenue_target_id = & new clsControl(ccsHidden, "t_revenue_target_id", "t_revenue_target_id", ccsText, "", CCGetRequestParam("t_revenue_target_id", $Method, NULL), $this);
+            $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -89,7 +90,7 @@ class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_b
     }
 //End Initialize Method
 
-//Validate Method @726-36522410
+//Validate Method @726-6FAFB618
     function Validate()
     {
         global $CCSLocales;
@@ -97,19 +98,22 @@ class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_b
         $Where = "";
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->t_revenue_target_id->Validate() && $Validation);
+        $Validation = ($this->p_finance_period_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_revenue_target_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @726-FE7DA4E6
+//CheckErrors Method @726-995911EE
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->t_revenue_target_id->Errors->Count());
+        $errors = ($errors || $this->p_finance_period_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -152,7 +156,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @726-B7633DE2
+//Show Method @726-8FB45FC5
     function Show()
     {
         global $CCSUseAmp;
@@ -182,6 +186,7 @@ function GetPrimaryKey($keyName)
                 if(!$this->FormSubmitted){
                     $this->p_year_period_id->SetValue($this->DataSource->p_year_period_id->GetValue());
                     $this->t_revenue_target_id->SetValue($this->DataSource->t_revenue_target_id->GetValue());
+                    $this->p_finance_period_id->SetValue($this->DataSource->p_finance_period_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -192,6 +197,7 @@ function GetPrimaryKey($keyName)
             $Error = "";
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_revenue_target_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_finance_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -212,6 +218,7 @@ function GetPrimaryKey($keyName)
 
         $this->p_year_period_id->Show();
         $this->t_revenue_target_id->Show();
+        $this->p_finance_period_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -222,7 +229,7 @@ function GetPrimaryKey($keyName)
 
 class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  //t_target_realisasi_jenis_bulanFormDataSource Class @726-820383E0
 
-//DataSource Variables @726-481B584C
+//DataSource Variables @726-8CB61290
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -236,9 +243,10 @@ class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  /
     // Datasource fields
     var $p_year_period_id;
     var $t_revenue_target_id;
+    var $p_finance_period_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @726-11BC8790
+//DataSourceClass_Initialize Event @726-E5F38117
     function clst_target_realisasi_jenis_bulanFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -247,6 +255,8 @@ class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  /
         $this->p_year_period_id = new clsField("p_year_period_id", ccsText, "");
         
         $this->t_revenue_target_id = new clsField("t_revenue_target_id", ccsText, "");
+        
+        $this->p_finance_period_id = new clsField("p_finance_period_id", ccsText, "");
         
 
     }
@@ -278,11 +288,12 @@ class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  /
     }
 //End Open Method
 
-//SetValues Method @726-FC6620A9
+//SetValues Method @726-129C85A5
     function SetValues()
     {
         $this->p_year_period_id->SetDBValue($this->f("p_year_period_id"));
         $this->t_revenue_target_id->SetDBValue($this->f("t_revenue_target_id"));
+        $this->p_finance_period_id->SetDBValue($this->f("p_finance_period_id"));
     }
 //End SetValues Method
 

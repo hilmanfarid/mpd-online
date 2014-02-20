@@ -52,6 +52,7 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 			<Features/>
 		</Record>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="12" connection="ConnSIKP" name="t_target_realisasiGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT
+	MAX(p_finance_period_id) as p_finance_period_id,
 	MAX(p_year_period_id) as p_year_period_id,
 	to_char(MAX(start_date),'dd-mm-yyyy') as start_date,
 	to_char(MAX(end_date),'dd-mm-yyyy') as end_date,
@@ -85,7 +86,7 @@ ORDER BY MAX(start_date) ASC">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Hidden id="716" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridp_finance_period_id" fieldSource="p_year_period_id">
+				<Hidden id="716" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridp_finance_period_id" fieldSource="p_finance_period_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -139,6 +140,15 @@ ORDER BY MAX(start_date) ASC">
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Link id="690" visible="Yes" fieldSourceType="CodeExpression" dataType="Text" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridDLink" hrefSource="t_target_realisasi_jenis_bulan.ccp" wizardUseTemplateBlock="False">
+					<Components/>
+					<Events/>
+					<LinkParameters>
+						<LinkParameter id="691" sourceType="DataField" format="yyyy-mm-dd" name="p_finance_period_id" source="p_finance_period_id"/>
+					</LinkParameters>
+					<Attributes/>
+					<Features/>
+				</Link>
 			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
@@ -169,6 +179,131 @@ ORDER BY MAX(start_date) ASC">
 			<Attributes/>
 			<Features/>
 		</Grid>
+		<Grid id="900" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="12" connection="ConnSIKP" name="t_target_realisasiGrid1" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT
+	MAX(target.p_finance_period_id) as p_finance_period_id,
+	MAX(target.p_year_period_id) as p_year_period_id,
+	to_char(MAX(target.start_date),'dd-mm-yyyy') as start_date,
+	to_char(MAX(target.end_date),'dd-mm-yyyy') as end_date,
+	MAX(target.p_vat_type_id) as p_vat_type_id,
+	MAX(target.bulan) as bulan,
+	SUM (target.target_amount) as target_amount,
+	SUM (target.realisasi_amt) as realisasi_amt,
+	MAX (target.penalty_amt) as penalty_amt,
+	SUM (target.debt_amt) as debt_amt,
+	MAX(dtl.vat_code) as ayat
+FROM
+	f_target_vs_real_monthly_new({p_year_period_id},{p_vat_type_id}) target,
+	p_vat_type_dtl dtl
+WHERE
+	dtl.p_vat_type_dtl_id = target.p_vat_type_dtl_id
+	AND (target.p_finance_period_id = {p_finance_period_id} or {p_finance_period_id} is null)
+GROUP BY target.p_vat_type_dtl_id
+
+ORDER BY MAX(dtl.vat_code) ASC">
+			<Components>
+				<Navigator id="901" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+				<Label id="902" fieldSourceType="DBColumn" dataType="Text" html="False" name="ayat" fieldSource="ayat" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_target_realisasiGrid1ayat">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="903" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1target_amount" fieldSource="target_amount" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Hidden id="904" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1p_finance_period_id" fieldSource="p_finance_period_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Label id="905" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1percentage">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="906" fieldSourceType="DBColumn" dataType="Float" html="False" name="penalty_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1penalty_amt" fieldSource="penalty_amt" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="907" fieldSourceType="DBColumn" dataType="Float" html="False" name="debt_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1debt_amt" fieldSource="debt_amt" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="908" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1realisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="909" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1total_amt" fieldSource="target_amount" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Hidden id="910" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1p_vat_type_id" fieldSource="p_vat_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="911" fieldSourceType="DBColumn" dataType="Text" name="start_date" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1start_date" fieldSource="start_date">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="912" fieldSourceType="DBColumn" dataType="Text" name="end_date" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1end_date" fieldSource="end_date">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
+			<Events>
+				<Event name="BeforeShowRow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="915"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="916" eventType="Server"/>
+					</Actions>
+				</Event>
+			</Events>
+			<TableParameters>
+			</TableParameters>
+			<JoinTables>
+			</JoinTables>
+			<JoinLinks/>
+			<Fields>
+				<Field id="917" fieldName="*"/>
+			</Fields>
+			<SPParameters/>
+			<SQLParameters>
+				<SQLParameter id="918" parameterType="URL" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id" defaultValue="0"/>
+				<SQLParameter id="919" variable="p_vat_type_id" parameterType="URL" dataType="Text" parameterSource="p_vat_type_id" defaultValue="null"/>
+				<SQLParameter id="920" variable="p_finance_period_id" parameterType="URL" defaultValue="'null'" dataType="Text" parameterSource="p_finance_period_id" designDefaultValue="null"/>
+			</SQLParameters>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</Grid>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_target_realisasi_jenis_bulan_events.php" forShow="False" comment="//" codePage="windows-1252"/>
@@ -179,5 +314,10 @@ ORDER BY MAX(start_date) ASC">
 	<Attributes/>
 	<Features/>
 	<Events>
+		<Event name="OnInitializeView" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="899"/>
+			</Actions>
+		</Event>
 	</Events>
 </Page>
