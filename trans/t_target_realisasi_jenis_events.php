@@ -81,7 +81,11 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 
 	 $target = $Component->DataSource->target_amount->GetValue();
 	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
-	 $percent = number_format($realisasi / $target * 100, 2, ".", ",");
+	 if(!empty($target)){
+	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
+	 }else{
+	 	$percent =0;
+	 }
 	 $Component->percentage->SetValue("$percent %");
 //Close t_target_realisasi_jenisGrid_BeforeShowRow @2-1478D09A
     return $t_target_realisasi_jenisGrid_BeforeShowRow;

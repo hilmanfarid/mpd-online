@@ -1,9 +1,20 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions" connection="ConnSIKP">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="7" connection="ConnSIKP" name="t_target_realisasi_jenisGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="7" connection="ConnSIKP" name="t_target_realisasi_jenisGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="(SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt
 FROM v_revenue_target_vs_realisasi
-WHERE p_year_period_id = {p_year_period_id} 
-ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
+WHERE p_year_period_id = {p_year_period_id}
+ORDER BY p_vat_type_id)
+UNION
+(select '999',max(p_finance_period.p_year_period_id),max(c.p_vat_type_id),'DENDA','',0,sum(round(b.penalty_amt))
+            from t_payment_receipt a  , t_vat_penalty b,  p_vat_type_dtl c , p_vat_type d, p_finance_period
+            where a.t_vat_setllement_id = b.t_vat_setllement_id
+                  and a.p_vat_type_dtl_id = c.p_vat_type_dtl_id
+                  and c.p_vat_type_id = d.p_vat_type_id
+                  and (trunc(a.payment_date) &lt;= trunc(p_finance_period.end_date)
+                  and trunc(a.payment_date) &gt;= trunc(p_finance_period.start_date))
+									and p_finance_period.p_year_period_id = {p_year_period_id}
+                  and decode(c.p_vat_type_id,7,d.code||c.code,d.penalty_code) IN ('140702','140701','140703','140707'))
+" orderBy="p_vat_type_id">
 			<Components>
 				<Navigator id="22" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
 					<Components/>
@@ -82,7 +93,7 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -99,7 +110,6 @@ ORDER BY p_vat_type_id" orderBy="p_vat_type_id">
 				<TableParameter id="718" conditionType="Parameter" useIsNull="False" field="p_year_period_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" DBFormat="0" parameterSource="p_year_period_id"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="717" tableName="v_revenue_target_vs_realisasi" posWidth="150" posHeight="180" posLeft="10" posTop="10"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
