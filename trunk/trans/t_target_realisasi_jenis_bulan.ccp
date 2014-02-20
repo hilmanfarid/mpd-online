@@ -277,7 +277,7 @@ ORDER BY MAX(dtl.vat_code) ASC">
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="915"/>
+						<Action actionName="Custom Code" actionCategory="General" id="915" eventType="Server"/>
 					</Actions>
 				</Event>
 				<Event name="BeforeSelect" type="Server">
