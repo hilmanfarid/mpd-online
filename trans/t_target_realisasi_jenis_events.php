@@ -69,16 +69,15 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 			$Component->p_year_period_id2->SetValue($pid);
 			$Component->p_vat_type_id2->SetValue($vat_id);
         }	
-    // End Bdr  
-      if (count($styles)) {
+    // End Bdr
+	  $pid_t = $Component->DataSource->t_revenue_target_id->GetValue();  
+      if (count($styles) && $pid!=999) {
           //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
           if (strlen($Style) && !strpos($Style, "="))
               $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
           $Component->Attributes->SetValue("rowStyle", $Style);
       }
-
 	 $Component->DLink->SetValue($img_radio); // Bdr
-
 	 $target = $Component->DataSource->target_amount->GetValue();
 	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
 	 if(!empty($target)){

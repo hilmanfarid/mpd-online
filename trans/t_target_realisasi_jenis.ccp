@@ -5,16 +5,18 @@ FROM v_revenue_target_vs_realisasi
 WHERE p_year_period_id = {p_year_period_id}
 ORDER BY p_vat_type_id)
 UNION
-(select '999',max(p_finance_period.p_year_period_id),max(c.p_vat_type_id),'DENDA','',0,sum(round(b.penalty_amt))
-            from t_payment_receipt a  , t_vat_penalty b,  p_vat_type_dtl c , p_vat_type d, p_finance_period
-            where a.t_vat_setllement_id = b.t_vat_setllement_id
-                  and a.p_vat_type_dtl_id = c.p_vat_type_dtl_id
-                  and c.p_vat_type_id = d.p_vat_type_id
-                  and (trunc(a.payment_date) &lt;= trunc(p_finance_period.end_date)
-                  and trunc(a.payment_date) &gt;= trunc(p_finance_period.start_date))
-									and p_finance_period.p_year_period_id = {p_year_period_id}
-                  and decode(c.p_vat_type_id,7,d.code||c.code,d.penalty_code) IN ('140702','140701','140703','140707'))
-" orderBy="p_vat_type_id">
+(SELECT
+	'999',
+	{p_year_period_id}
+	,
+	MAX (p_vat_type_id),
+	'DENDA',
+	'',
+	0,
+	SUM (round(jml_sd_hari_ini))
+FROM
+	sikp.f_rep_lap_harian_bdhr_baru ({p_year_period_id})
+where nomor_ayat IN('140701','140702','140703','140707'))" orderBy="p_vat_type_id">
 			<Components>
 				<Navigator id="22" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
 					<Components/>
