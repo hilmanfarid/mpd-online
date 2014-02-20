@@ -137,7 +137,7 @@ class FormCetak extends FPDF {
 		$this->SetFont('Times', 'B', 11);
 		$this->Cell($formLen1, $this->height, "1. Wajib Pajak", 0, 0, 'L');
 		$this->SetFont('Times', '', 11);
-		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+		$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 		$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_name"], 0, 0, 'L');
 		
 
@@ -146,7 +146,7 @@ class FormCetak extends FPDF {
 		$this->SetFont('Times', 'B', 11);
 		$this->Cell($formLen1, $this->height, "2. Nomor Pokok Wajib Pajak Daerah", 0, 0, 'L');
 		$this->SetFont('Times', '', 11);
-		$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+		$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 
 		$newstr = substr_replace($data["npwpd"],'.', 2, 0);
 		$newstr = substr_replace($newstr,'.', 10, 0);
@@ -165,7 +165,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "3. Nama Merek Dagang", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_brand"], 0, 0, 'L');
 			
 			// Form 4. Alamat Merek Dagang
@@ -173,7 +173,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "4. Alamat Lokasi Usaha", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_brand"], 0, 0, 'L');
 		
 			// Form 5. Alamat Wajib Pajak
@@ -181,7 +181,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "5. Alamat Wajib Pajak", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], 0, 0, 'L');
 			
 			// Form 6. Jenis Pajak
@@ -189,7 +189,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "6. Jenis Pajak", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 
 
 		} else { //PERUSAHAAN
@@ -199,7 +199,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "3. Nama Badan/Perusahaan", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_name"], 0, 0, 'L');
 		
 				
@@ -208,7 +208,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "4. Nama Merek Dagang", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_brand"], 0, 0, 'L');
 		
 			// Form 5. Alamat Merek Dagang
@@ -216,7 +216,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "5. Alamat Lokasi Usaha", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_brand"], 0, 0, 'L');
 		
 
@@ -225,7 +225,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "6. Alamat Wajib Pajak", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], 0, 0, 'L');
 		
 			// Form 7. Alamat Badan/Perusahaan
@@ -233,7 +233,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "7. Alamat Badan/Perusahaan", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_address"], 0, 0, 'L');
 		
 
@@ -242,7 +242,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "8. Jenis Pajak", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1, $this->height, " : ", 0, 0, 'C');
+			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 		}
 
 		// Form 8. Jenis Pajak -> Kotak Pilihan
@@ -314,7 +314,7 @@ class FormCetak extends FPDF {
 		
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 2
 		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1, $this->height, "", 0, 0, 'L');
+		$this->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
 		$this->SetCourier();
 		$this->Cell($kotakLen1, $this->height, "[$hiburan]", "", 0, 'L');
 		$this->SetTimes();
@@ -326,7 +326,7 @@ class FormCetak extends FPDF {
 		
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 3
 		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1, $this->height, "", 0, 0, 'L');
+		$this->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
 		$this->SetCourier();
 		$this->Cell($kotakLen1, $this->height, "[$restoran]", "", 0, 'L');
 		$this->SetTimes();
@@ -334,7 +334,7 @@ class FormCetak extends FPDF {
 		
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 4
 		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1, $this->height, "", 0, 0, 'L');
+		$this->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
 		$this->SetCourier();
 		$this->Cell($kotakLen1, $this->height, "[$hotel]", "", 0, 'L');
 		$this->SetTimes();
@@ -348,7 +348,7 @@ class FormCetak extends FPDF {
 		
 		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 5
 		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1, $this->height, "", 0, 0, 'L');
+		$this->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
 		$this->SetCourier();
 		$this->Cell($kotakLen1, $this->height, "[$losmen]", "", 0, 'L');
 		$this->SetTimes();
