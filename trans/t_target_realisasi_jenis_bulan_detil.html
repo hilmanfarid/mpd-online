@@ -153,9 +153,9 @@ function cetak(tgl_penerimaan,p_vat_type_id,i_flag_setoran,tgl_penerimaan_last,j
                     </div>
                     <input id="t_target_realisasiGrid1p_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_target_realisasiGrid1p_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_target_realisasiGrid1start_date" name="{start_date_Name}" value="{start_date}" type="hidden"><input id="t_target_realisasiGrid1end_date" name="{end_date_Name}" value="{end_date}" type="hidden"></td> 
                   <td style="TEXT-ALIGN: right">{target_amount}</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','murni')">{realisasi_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},2,'{end_date}','all')">{penalty_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','piutang')">{debt_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right;">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right;">{penalty_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right;">{debt_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{total_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{percentage}</td>
                 </tr>
