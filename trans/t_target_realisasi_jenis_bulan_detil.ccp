@@ -2,7 +2,7 @@
 	<Components>
 		<Record id="726" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_target_realisasi_jenis_bulanForm" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" actionPage="t_target_realisasi" errorSummator="Error" wizardFormMethod="post" PathID="t_target_realisasi_jenis_bulanForm" connection="ConnSIKP" activeCollection="SQLParameters" dataSource="SELECT * 
 FROM v_revenue_target_vs_realisasi_month
-WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="ParameterTypeList">
+WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="ParameterTypeList" pasteActions="pasteActions">
 			<Components>
 				<Hidden id="731" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenis_bulanFormp_year_period_id" fieldSource="p_year_period_id">
 					<Components/>
@@ -16,7 +16,13 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Hidden id="930" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenis_bulanFormp_finance_period_id" fieldSource="p_finance_period_id" html="False">
+<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
