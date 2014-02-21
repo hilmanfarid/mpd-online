@@ -256,15 +256,15 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Prepare Method
 
-//Open Method @2-B4FE75FB
+//Open Method @2-023FD52C
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select * from v_target_realisasi_updated\n" .
-        "where target_amt > 0 OR realisasi_amt > 0\n" .
+        "where target_amt > 0 AND realisasi_amt > 0\n" .
         ") cnt";
         $this->SQL = "select * from v_target_realisasi_updated\n" .
-        "where target_amt > 0 OR realisasi_amt > 0\n" .
+        "where target_amt > 0 AND realisasi_amt > 0\n" .
         "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
