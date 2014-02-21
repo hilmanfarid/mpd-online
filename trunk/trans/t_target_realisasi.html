@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta http-equiv="refresh" content="30" />
+<meta http-equiv="refresh" content="300" />
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
@@ -52,9 +52,62 @@ $(function () {
         });
 });
 
+$(function () {
+        $.getJSON( "../services/t_target_realisasi_bulan_all.php?p_year_period_id="+document.getElementById("t_target_realisasiGridp_year_period_id2").value, function( items ) {
+                var target_amount = [];
+                var realisasi_amt = [];
+                var vat_code = [];
+                
+                var jumlah = items.length;
+                
+                for(i = 0; i < jumlah; i++){
+                        target_amount[i] = parseFloat(items[i][1]);
+                        realisasi_amt[i] = parseFloat(items[i][2])+parseFloat(items[i][3])+parseFloat(items[i][4]);
+                        vat_code[i] = items[i][0];
+                }
+                $("#container2").highcharts({
+                        chart: {
+                                type: "column"
+                        },
+                        title: {
+                                text: "Target vs Realisasi Tahunan"
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        xAxis: {
+                                categories: vat_code
+                        },
+                        yAxis: {
+                                min: 0,
+                                title: {
+                                        text: ""
+                                }
+                        },
+                        tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        plotOptions: {
+                                column: {
+                                        pointPadding: 0.2,
+                                        borderWidth: 0
+                                }
+                        },
+                        series: [
+                        {showInLegend: true, name: "Target", data: target_amount},
+                        {showInLegend: true, name: "Realisasi", data: realisasi_amt}
+                        ]
+                });
+        });
+});
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -118,7 +171,7 @@ $(function () {
 <a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a> 
                     </div>
                   </td> 
-                  <td onClick="location.href='t_target_realisasi_jenis_bulan_all.php?p_year_period_id={p_year_period_id}'" style="color: #FF0000;cursor: pointer;text-decoration: underline;">{year_code}<input id="t_target_realisasiGridp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
+                  <td style="COLOR: #ff0000; CURSOR: pointer; TEXT-DECORATION: underline" onclick="location.href='t_target_realisasi_jenis_bulan_all.php?p_year_period_id={p_year_period_id}'">{year_code}<input id="t_target_realisasiGridp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
                   <td style="TEXT-ALIGN: right">{target_amt}</td> 
                   <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{percentage}</td>
@@ -151,7 +204,9 @@ $(function () {
         &nbsp;<input id="t_target_realisasiGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden"><!-- END Grid t_target_realisasiGrid --></td>
     </tr>
   </table>
-  <div style="WIDTH: 50%" id="container">
+  <div style="WIDTH: 50%; DISPLAY: inline-block" id="container">
+  </div>
+  <div style="WIDTH: 45%; DISPLAY: inline-block" id="container2">
   </div>
 </div>
 <script language="javascript">
