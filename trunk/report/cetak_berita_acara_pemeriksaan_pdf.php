@@ -140,8 +140,8 @@ class FormCetak extends FPDF {
 		$this->isi("", "NIP", ": " . $no_1);
 		$this->isi("", "Jabatan", ": " . $job_1);
 		$this->isi("2.", "Nama", ": " . $nama_2);
-		$this->isi("", "NIP", ": " . $no_1);
-		$this->isi("", "Jabatan", ": " . $job_1);
+		$this->isi("", "NIP", ": " . $no_2);
+		$this->isi("", "Jabatan", ": " . $job_2);
 
 		// Body
 		$this->newLine();
