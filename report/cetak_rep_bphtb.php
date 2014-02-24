@@ -220,12 +220,12 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "", "", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "", "", 0, "R");
-		$this->Cell($lbodyx1, $this->height, "NJOP PBB", "R", 0, "C");
+		$this->Cell($lbodyx1, $this->height, "NJOP PBB", "R", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
 		$this->Cell($lbodyx1, $this->height, number_format($data["land_total_price"] + $data["building_total_price"], 0, ",", "."), "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "");
 		$this->Ln();
-		
+		$jenis_harga_bphtb = $data["jenis_harga_bphtb"];
 		if(empty($jenis_harga_bphtb)) $jenis_harga_bphtb = 99;
 		$jenis_harga = array(1 => 'Harga Transaksi',2 =>  'Harga Pasar',3 => 'Harga Lelang', 99 => 'Harga Pasar');
 
@@ -234,8 +234,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx1, $this->height, "", "B", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "BR", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "", "B", 0, "L");
-		$this->Cell($lbodyx1, $this->height, "", "B", 0, "R");
-		$this->Cell($lbodyx1, $this->height, $jenis_harga[$jenis_harga_bphtb], "BR", 0, "C");
+		$this->Cell($lbodyx1-20, $this->height, "", "B", 0, "R");
+		$this->Cell($lbodyx1+20, $this->height, $jenis_harga[$jenis_harga_bphtb], "RB", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "Rp", "B", 0, "L");
 		$this->Cell($lbodyx1, $this->height, number_format($data["market_price"], 0, ",", "."), "B", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "BR", 0, "");
