@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-28E67677
+//Class_Initialize Event @3-F14B83A8
     function clsRecordt_rep_lap_harian_bdhrSearch($RelativePath, & $Parent)
     {
 
@@ -72,29 +72,34 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
             $this->tgl_penerimaan = & new clsControl(ccsTextBox, "tgl_penerimaan", "tgl_penerimaan", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("tgl_penerimaan", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_rep_lap_harian_bdhrSearch", "tgl_penerimaan", $this);
+            $this->kabid = & new clsControl(ccsHidden, "kabid", "kabid", ccsText, "", CCGetRequestParam("kabid", $Method, NULL), $this);
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-0E47C695
+//Validate Method @3-0A44BDF0
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
         $Validation = ($this->tgl_penerimaan->Validate() && $Validation);
+        $Validation = ($this->kabid->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->kabid->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-E3BA5D0A
+//CheckErrors Method @3-4E09CF6D
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
+        $errors = ($errors || $this->kabid->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -115,7 +120,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-6E509D8F
+//Operation Method @3-9D170D4D
     function Operation()
     {
         if(!$this->Visible)
@@ -132,12 +137,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoSearch1->Pressed) {
+                $this->PressedButton = "Button_DoSearch1";
             }
         }
         $Redirect = "t_rep_lap_harian.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch1") {
+                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
             }
@@ -147,7 +158,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-3383D9B3
+//Show Method @3-1B7C0047
     function Show()
     {
         global $CCSUseAmp;
@@ -173,6 +184,7 @@ function GetPrimaryKey($keyName)
             $Error = "";
             $Error = ComposeStrings($Error, $this->tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->kabid->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -193,6 +205,8 @@ function GetPrimaryKey($keyName)
         $this->tgl_penerimaan->Show();
         $this->Button_DoSearch->Show();
         $this->DatePicker_tgl_penerimaan->Show();
+        $this->kabid->Show();
+        $this->Button_DoSearch1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -232,7 +246,7 @@ include_once("./t_rep_lap_harian_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-AFD3E9A0
+//Initialize Objects @1-1C9E65A8
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -240,7 +254,10 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_rep_lap_harian_bdhrSearch = & new clsRecordt_rep_lap_harian_bdhrSearch("", $MainPage);
+$Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", ccsGet, NULL), $MainPage);
+$Label1->HTML = true;
 $MainPage->t_rep_lap_harian_bdhrSearch = & $t_rep_lap_harian_bdhrSearch;
+$MainPage->Label1 = & $Label1;
 
 BindEvents();
 
@@ -279,8 +296,9 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-91DA098A
+//Show Page @1-1F5BAE74
 $t_rep_lap_harian_bdhrSearch->Show();
+$Label1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);

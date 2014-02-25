@@ -22,11 +22,18 @@
 					<Features/>
 				</DatePicker>
 				<Hidden id="560" fieldSourceType="DBColumn" dataType="Text" name="kabid" PathID="t_rep_lap_harian_bdhrSearchkabid">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Button id="563" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_lap_harian_bdhrSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
@@ -49,7 +56,13 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+		<Label id="561" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_lap_harian_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_rep_lap_harian.php" forShow="True" url="t_rep_lap_harian.php" comment="//" codePage="windows-1252"/>
@@ -64,5 +77,10 @@
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="562"/>
+</Actions>
+</Event>
+</Events>
 </Page>
