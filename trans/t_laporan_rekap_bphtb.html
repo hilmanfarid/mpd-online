@@ -15,7 +15,8 @@
                 var params = "?cetak_laporan="+document.getElementById("t_laporan_rekap_bphtbcetak_laporan").value;
                 params += "&date_start="+document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value;
                 params += "&date_end="+document.getElementById("t_laporan_rekap_bphtbdate_end_laporan").value;
-                window.open("t_laporan_rekap_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+                params += "&filter_lap=" + document.getElementById("t_laporan_rekap_bphtbListBox1").value;
+                                window.open("t_laporan_rekap_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
 </script>
 <script language="JavaScript" type="text/javascript">
@@ -53,7 +54,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -83,6 +84,16 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td class="search-field"><label for="t_laporan_rekap_bphtbdate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_rekap_bphtbdate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
                       <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_rekap_bphtbDatePicker_date_start_laporan1"><img id="t_laporan_rekap_bphtbDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_rekap_bphtbdate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
                       <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_rekap_bphtbDatePicker_end_start_laporan1"><img id="t_laporan_rekap_bphtbDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Tampilkan</td> 
+                    <td class="search-field">
+                      <select id="t_laporan_rekap_bphtbListBox1" name="{ListBox1_Name}">
+                        <option selected value="">Semua Data</option>
+                        {ListBox1_Options}
+                      </select>
+ </td>
                   </tr>
  
                   <tr>
