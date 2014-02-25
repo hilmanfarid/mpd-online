@@ -15,6 +15,10 @@ function clickReturn(retVal) {
                 arrForm = strObj.split(',');
                 for (x=0;x<arrForm.length;x++) {
                 window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
+				var range= window.opener.document.getElementById(strForm+arrForm[x]);
+        		if(range.onchange){
+					range.onchange({target: range});
+				}
                 }
                 window.close();
 }
