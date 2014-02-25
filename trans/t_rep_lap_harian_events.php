@@ -130,7 +130,7 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 		$output.='<th>PAJAK/RETRIBUSI</th>';
 		$output.='<th>JUMLAH HARI INI</th>';
 		$output.='<th>JUMLAH S/D HARI YANG LALU</th>';
-		$output.='<th>JUMLAH S/S HARI INI</th>';
+		$output.='<th>JUMLAH S/D HARI INI</th>';
 		$output.='</tr>';
 				
 		$no = 1;
