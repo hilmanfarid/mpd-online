@@ -51,7 +51,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -82,7 +82,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                       <td>
                         <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan"><img id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;</td> 
                       <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch --><input id="t_rep_lap_harian_bdhrSearchkabid" name="{kabid_Name}" value="T" type="hidden"></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD PDF" type="submit"><!-- END Button Button_DoSearch -->&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch1" class="btn_tambah" onclick="tampil(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchkabid" name="{kabid_Name}" value="T" type="hidden"></td>
                     </tr>
                   </table>
                 </td>
@@ -102,6 +103,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                         tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
                         window.open("../report/cetak_rep_lap_harian_bdhr.php?tgl_penerimaan='" + tgl_penerimaan + "'&kabid=T", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
                 }
+				function tampil()
+                {
+                        tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
+                       	location.href="t_rep_lap_harian.php?tgl_penerimaan=" + tgl_penerimaan + "&kabid=T&tampil=T";
+                }
         </script>
+  <br>
+  <br>
+  {Label1} 
   </body>
   </html>
