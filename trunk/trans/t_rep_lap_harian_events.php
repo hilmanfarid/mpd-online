@@ -165,10 +165,10 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 					 <td>
 							'.number_format($data["jml_hari_ini"][$i], 0, ',', '.').'	
 					 </td>
-					 <td>
+					 <td align="right">
 					 		'.number_format($data["jml_sd_hari_lalu"][$i], 0, ',', '.').'												  
 					 </td>
-					 <td>
+					 <td align="right">
 					 		'.number_format($data["jml_sd_hari_ini"][$i], 0, ',', '.').'
 					 </td>';
 			$output.='</tr>';
@@ -194,8 +194,8 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 				$output.='<tr>';
 				$output.='<td align="center" colspan=3>'.strtoupper($data["nama_jns_pajak"][$i]).'</td>';
 				$output.='<td>'.number_format($jumlahtemp, 0, ',', '.').'</td>';
-				$output.='<td>'.number_format($jumlahtemp_harilalu, 0, ',', '.').'</td>';
-				$output.='<td>'.number_format($jumlahtemp_hariini, 0, ',', '.').'</td>';
+				$output.='<td align="right">'.number_format($jumlahtemp_harilalu, 0, ',', '.').'</td>';
+				$output.='<td align="right">'.number_format($jumlahtemp_hariini, 0, ',', '.').'</td>';
 				$output.='</tr>';				
 
 				$jumlahtemp = 0;
@@ -207,8 +207,8 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 				$output.='<tr>';
 				$output.='<td align="center" colspan=3>JUMLAH TOTAL</td>';
 				$output.='<td>'.number_format($jumlahtotal, 0, ',', '.').'</td>';
-				$output.='<td>'.number_format($jumlahtotal_harilalu, 0, ',', '.').'</td>';
-				$output.='<td>'.number_format($jumlahtotal_hariini, 0, ',', '.').'</td>';
+				$output.='<td align="right">'.number_format($jumlahtotal_harilalu, 0, ',', '.').'</td>';
+				$output.='<td align="right">'.number_format($jumlahtotal_hariini, 0, ',', '.').'</td>';
 				$output.='</tr>';
 				$jumlahtotal = 0;
 				$jumlahtotal_harilalu = 0;
