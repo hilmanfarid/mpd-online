@@ -45,7 +45,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-B7A43674
+//Class_Initialize Event @2-FACA89A4
     function clsRecordt_laporan_rekap_bphtb($RelativePath, & $Parent)
     {
 
@@ -77,11 +77,14 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
             $this->date_end_laporan->Required = true;
             $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_laporan_rekap_bphtb", "date_end_laporan", $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
+            $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
+            $this->ListBox1->DSType = dsListOfValues;
+            $this->ListBox1->Values = array(array("1", "Sudah Bayar"), array("2", "Belum Bayar"));
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-5EA3805B
+//Validate Method @2-BC08DCC9
     function Validate()
     {
         global $CCSLocales;
@@ -90,15 +93,17 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
         $Validation = ($this->date_start_laporan->Validate() && $Validation);
         $Validation = ($this->date_end_laporan->Validate() && $Validation);
         $Validation = ($this->cetak_laporan->Validate() && $Validation);
+        $Validation = ($this->ListBox1->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->date_start_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->ListBox1->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-A5435318
+//CheckErrors Method @2-8CDD11CC
     function CheckErrors()
     {
         $errors = false;
@@ -107,6 +112,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
         $errors = ($errors || $this->date_end_laporan->Errors->Count());
         $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->cetak_laporan->Errors->Count());
+        $errors = ($errors || $this->ListBox1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -159,7 +165,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-1420977C
+//Show Method @2-B81C7A98
     function Show()
     {
         global $CCSUseAmp;
@@ -173,6 +179,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->ListBox1->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -188,6 +195,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->ListBox1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -211,6 +219,7 @@ function GetPrimaryKey($keyName)
         $this->date_end_laporan->Show();
         $this->DatePicker_end_start_laporan1->Show();
         $this->cetak_laporan->Show();
+        $this->ListBox1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
