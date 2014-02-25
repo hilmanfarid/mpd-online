@@ -38,7 +38,19 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<ListBox id="18" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_laporan_rekap_bphtbListBox1" dataSource="1;Sudah Bayar;2;Belum Bayar">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<Attributes/>
+<Features/>
+</ListBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
