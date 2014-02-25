@@ -116,7 +116,7 @@ function PageCetak($data, $user, $tgl_penerimaan) {
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>INFORMASI PAJAK BELUM BAYAR</strong></td> 
+                  <td class="th"><strong>LAPORAN HARIAN</strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
