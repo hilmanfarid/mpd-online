@@ -279,6 +279,7 @@ function showPiutang(){
                 var type_id= parseFloat(document.getElementById("t_vat_setllementFormp_vat_type_dtl_id").value);
 				if(type_id == null || type_id==0 || type_id =='')return;
                 if( $.inArray( type_id, no_block ) > -1 ){ 
+					$('#table-piutang').fadeOut(1000);
 					$('#table-piutang-detil').empty();
 					return;
 				}
