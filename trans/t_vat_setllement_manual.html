@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>p_rqst_type</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
-<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css" />
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
 <script language="JavaScript" type="text/javascript">
@@ -76,9 +76,9 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 <script language="javascript" type="text/javascript">
 $(document).ready(function()
 {
-        $("#t_vat_setllementFormp_vat_type_dtl_id").bind("change paste keyup", function() {
-           alert('tes'); 
-        });
+    /*$("#t_vat_setllementFormp_vat_type_dtl_id").bind("change paste keyup", function() {
+       alert('tes'); 
+    });*/
     $(window).scroll(function()
     {
             $('#tabtop').css('top', $(window).scrollTop());
@@ -93,9 +93,7 @@ $(document).ready(function()
       <div class="tab-title-selected">
         PELAPORAN PAJAK MANUAL 
       </div>
- 
     </div>
- 
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -111,57 +109,56 @@ $(document).ready(function()
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI PELAPORAN PAJAK MANUAL</strong></td> 
-                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
- 
                 </table>
  
                 <table class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
-                    <td colspan="2">{Error}</td> 
+                    <td colspan="2">{Error}</td>
                   </tr>
- <!-- END Error -->
+                  <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="p_rqst_typeFormcode">NPWPD</label>&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormnpwd" class="ControlsRQ" name="{npwd_Name}" readonly maxlength="32" value="{npwd}" size="32">&nbsp;<img onclick="javascript:lov_npwd()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                    <td><input id="t_vat_setllementFormnpwd" class="ControlsRQ" name="{npwd_Name}" readonly maxlength="32" value="{npwd}" size="32">&nbsp;<img onclick="javascript:lov_npwd()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama</td> 
-                    <td><input id="t_vat_setllementFormcompany_name" class="ControlsRO" name="{company_name_Name}" readonly maxlength="14" value="{company_name}" size="32"></td> 
+                    <td><input id="t_vat_setllementFormcompany_name" class="ControlsRO" name="{company_name_Name}" readonly maxlength="14" value="{company_name}" size="32"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Periode Tahun&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormyear_code" class="ControlsRQ" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
+                    <td><input id="t_vat_setllementFormyear_code" class="ControlsRQ" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Periode&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormfinance_period_code" class="ControlsRQ" name="{finance_period_code_Name}" readonly maxlength="32" value="{finance_period_code}" size="32">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td> 
+                    <td><input id="t_vat_setllementFormfinance_period_code" class="ControlsRQ" name="{finance_period_code_Name}" readonly maxlength="32" value="{finance_period_code}" size="32">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" onchange="showPiutang()" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_rqst_typeFormcode">Masa Pajak&nbsp;</label></td> 
                     <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormstart_period" class="ControlsRQ" name="{start_period_Name}" maxlength="100" value="{start_period}" size="12">
                       <!-- BEGIN DatePicker DatePicker_start_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_start_period"><img id="t_vat_setllementFormDatePicker_start_period_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_start_period -->s/d <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormend_period" class="ControlsIN" name="{end_period_Name}" maxlength="100" value="{end_period}" size="15">
-                      <!-- BEGIN DatePicker DatePicker_end_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_end_period"><img id="t_vat_setllementFormDatePicker_end_period_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_period --></td> 
+                      <!-- BEGIN DatePicker DatePicker_end_period --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_vat_setllementFormDatePicker_end_period"><img id="t_vat_setllementFormDatePicker_end_period_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_period --></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Ayat Pajak</td> 
-                    <td><input id="t_vat_setllementFormvat_code" class="ControlsRQ" name="{vat_code_Name}" readonly maxlength="32" value="{vat_code}" size="32">&nbsp;<img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_vat_setllementFormp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td> 
+                    <td><input id="t_vat_setllementFormvat_code" class="ControlsRQ" name="{vat_code_Name}" readonly maxlength="32" value="{vat_code}" size="32">&nbsp;<img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_vat_setllementFormp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Tipe Ayat</td> 
-                    <td><input id="t_vat_setllementFormvat_code_dtl" onchange="alert('changed')" class="ControlsRQ" name="{vat_code_dtl_Name}" readonly maxlength="32" value="{vat_code_dtl}" size="32">&nbsp;<img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_vat_setllementFormp_vat_type_dtl_id" onchange="alert('tes');" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden">&nbsp; </td> 
+                    <td><input id="t_vat_setllementFormvat_code_dtl" class="ControlsRQ" name="{vat_code_dtl_Name}" readonly maxlength="32" value="{vat_code_dtl}" size="32">&nbsp;<img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_vat_setllementFormp_vat_type_dtl_id" onchange="showPiutang()" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden">&nbsp; </td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelas</td> 
-                    <td><input id="t_vat_setllementFormvat_code_dtl_cls" onchange="alert('changed')" class="ControlsIN" name="{vat_code_dtl_cls_Name}" readonly maxlength="32" value="{vat_code_dtl_cls}" size="32">&nbsp;<img onclick="javascript:lov_ayatclass()" border="0" src="../images/view.gif"><input id="t_vat_setllementFormp_vat_type_dtl_cls_id" onchange="alert('tes');" name="{p_vat_type_dtl_cls_id_Name}" value="{p_vat_type_dtl_cls_id}" type="hidden"></td> 
+                    <td><input id="t_vat_setllementFormvat_code_dtl_cls" class="ControlsIN" name="{vat_code_dtl_cls_Name}" readonly maxlength="32" value="{vat_code_dtl_cls}" size="32">&nbsp;<img onclick="javascript:lov_ayatclass()" border="0" src="../images/view.gif"><input id="t_vat_setllementFormp_vat_type_dtl_cls_id" name="{p_vat_type_dtl_cls_id_Name}" value="{p_vat_type_dtl_cls_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -172,17 +169,17 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Jumlah Kamar/Kursi&nbsp;Terjual&nbsp;</td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormqty_room_sold" class="ControlsIN" name="{qty_room_sold_Name}" maxlength="5" value="{qty_room_sold}" size="5">&nbsp;</td> 
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormqty_room_sold" class="ControlsIN" name="{qty_room_sold_Name}" maxlength="5" value="{qty_room_sold}" size="5">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormcreated_by">Dibuat Oleh</label></td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="12" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="12" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormupdated_by">Diubah Oleh</label></td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="15" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="15" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
                   </tr>
  
                   <tr class="Bottom">
@@ -191,24 +188,56 @@ $(document).ready(function()
                       <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
                       <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --></td> 
+                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --></td>
                   </tr>
- 
                 </table>
- </td> 
+              </td>
             </tr>
- 
           </table>
- 
         </form>
- <!-- END Record t_vat_setllementForm --><br>
+        <!-- END Record t_vat_setllementForm --><br>
       </td> 
-    </tr>
+      <td valign="top">
+        <table style="DISPLAY: none" id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>INFORMASI PAJAK BELUM BAYAR</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
  
+              <table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th scope="col">&nbsp;PERIODE</th>
+ 
+                  <th scope="col">&nbsp;JENIS</th>
+                </tr>
+ 
+                <tr>
+                  <td>1 </td> 
+                  <td>tes </td>
+                </tr>
+ 
+                <tr>
+                  <td>2 </td> 
+                  <td>tes </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
   </table>
-</div>
-<script type="text/javascript" src="../js/lov.js"></script>
-<script language="javascript">
+  <table>
+    <div>
+    </div>
+ 
+    <script type="text/javascript" src="../js/lov.js"></script>
+    <script language="javascript">
 function lov_npwd() {
         getFrom_LOV('t_vat_setllementForm','t_cust_account_id,npwd,company_name,p_vat_type_id,vat_code,p_vat_type_dtl_id,vat_code_dtl','lov_npwd_manual.php');
 }
@@ -242,6 +271,89 @@ function lov_tipeayat() {
             alert("Ayat Pajak belum Diisi");
         }
 }
+function showPiutang(){
+        /*$('#table-piutang').show(1000,function(){
+                $('#table-piutang .Grid').css('display','table')      
+        });*/
+                var no_block = [15,17,21,27,30,41,42,43];
+                var type_id= parseFloat(document.getElementById("t_vat_setllementFormp_vat_type_dtl_id").value);
+				if(type_id == null || type_id==0 || type_id =='')return;
+                if( $.inArray( type_id, no_block ) > -1 ){ 
+					$('#table-piutang-detil').empty();
+					return;
+				}
+        $.getJSON( "../services/getPembayaranBolong.php?t_cust_account_id="+document.getElementById("t_vat_setllementFormt_cust_account_id").value+"&p_finance_period_id="+document.getElementById("t_vat_setllementFormp_finance_period_id").value, function( items ) {
+                jumlah = items.length;
+                if(jumlah < 1)return;
+				$('#table-piutang-detil').empty();
+				$('#table-piutang-detil').append(
+                                                        '<tr>'+
+                                                                '<th>'+
+                                                                        'PERIODE'+
+                                                                '</th>'+
+                                                                '<th>'+
+                                                                        'STATUS'+
+                                                                '</th>'+
+                                                        '</tr>'
+                                                )
+                for(i = 0; i < jumlah; i++){
+                        $('#table-piutang-detil').append(
+                                                        '<tr>'+
+                                                                '<td>'+
+                                                                        items[i][2]+
+                                                                '</td>'+
+                                                                '<td>'+
+                                                                        items[i][1]+
+                                                                '</td>'+
+                                                        '</tr>'
+                                                )
+                }
+                                $('#table-piutang').fadeIn(1000);
+        })
+}
 </script>
-</body>
-</html>
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+  </div>
+  </body>
+  </html>
