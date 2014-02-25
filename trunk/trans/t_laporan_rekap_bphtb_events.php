@@ -27,6 +27,8 @@ function Page_BeforeShow(& $sender)
 		if(empty($param_arr['date_end'])){
 			$param_arr['date_end']=CCGetFromGet('date_end');
 		}
+
+		$param_arr['filter_lap'] = CCGetFromGet('filter_lap');
 		print_laporan($param_arr);
 	}
 	
@@ -52,11 +54,21 @@ function print_laporan($param_arr){
 	$pdf->SetRightMargin(5);
 	$pdf->SetLeftMargin(9);
 	$pdf->SetAutoPageBreak(false,0);
+	
+
+	$textFilter = '';
+	if(!empty($param_arr['filter_lap'])) {
+		if($param_arr['filter_lap'] == 1) //sudah bayar
+			$textFilter = '(Sudah Bayar)';
+		if($param_arr['filter_lap'] == 2) //belum bayar
+			$textFilter = '(Belum Bayar)';
+	}
+
 
 	$pdf->SetFont('helvetica', '',12);
 	$pdf->SetWidths(array(200));
 	$pdf->ln(1);
-    $pdf->RowMultiBorderWithHeight(array("DAFTAR NOTA VERIFIKASI BPHTB "),array('',''),6);
+    $pdf->RowMultiBorderWithHeight(array("DAFTAR NOTA VERIFIKASI BPHTB ".$textFilter),array('',''),6);
 	//$pdf->ln(8);
 	$pdf->SetWidths(array(40,200));
 	$pdf->ln(4);
@@ -70,6 +82,14 @@ function print_laporan($param_arr){
 		$whereClause.=" AND trunc(reg_bphtb.creation_date) >= '".$param_arr['date_start']."'";
 	}else if(empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
 		$whereClause.=" AND trunc(reg_bphtb.creation_date) <= '".$param_arr['date_end']."'";
+	}
+
+	if(!empty($param_arr['filter_lap'])) {
+		
+		if($param_arr['filter_lap'] == 1) //sudah bayar
+			$whereClause.= " AND (payment.receipt_no is not null or payment.receipt_no <> '') ";
+		if($param_arr['filter_lap'] == 2) //belum bayar
+			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
 	}
 
 	$query="SELECT
@@ -89,6 +109,7 @@ function print_laporan($param_arr){
 				sikp.t_bphtb_registration reg_bphtb
 			LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
 			LEFT JOIN t_customer_order cust_order ON cust_order.t_customer_order_id = reg_bphtb.t_customer_order_id 
+			LEFT JOIN t_payment_receipt_bphtb payment ON reg_bphtb.t_bphtb_registration_id = payment.t_bphtb_registration_id 
 			WHERE cust_order.p_order_status_id <> 1";
 	$query.=$whereClause;
 	$query.=" order by trunc(reg_bphtb.creation_date) ASC,upper(wp_name) ASC";
