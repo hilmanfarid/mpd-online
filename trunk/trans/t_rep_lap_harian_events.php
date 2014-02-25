@@ -192,10 +192,10 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 				$jumlahperjenis_hariini[] = $jumlahtemp_hariini;
 				
 				$output.='<tr>';
-				$output.='<td align="center" colspan=3>'.strtoupper($data["nama_jns_pajak"][$i]).'</td>';
-				$output.='<td>'.number_format($jumlahtemp, 0, ',', '.').'</td>';
-				$output.='<td align="right">'.number_format($jumlahtemp_harilalu, 0, ',', '.').'</td>';
-				$output.='<td align="right">'.number_format($jumlahtemp_hariini, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="center" colspan=3>'.strtoupper($data["nama_jns_pajak"][$i]).'</td>';
+				$output.='<td style="font-weight:bold;">'.number_format($jumlahtemp, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp_harilalu, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp_hariini, 0, ',', '.').'</td>';
 				$output.='</tr>';				
 
 				$jumlahtemp = 0;
@@ -205,10 +205,10 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 			
 			if($i == count($data['nomor_ayat']) - 1){
 				$output.='<tr>';
-				$output.='<td align="center" colspan=3>JUMLAH TOTAL</td>';
-				$output.='<td>'.number_format($jumlahtotal, 0, ',', '.').'</td>';
-				$output.='<td align="right">'.number_format($jumlahtotal_harilalu, 0, ',', '.').'</td>';
-				$output.='<td align="right">'.number_format($jumlahtotal_hariini, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="center" colspan=3>JUMLAH TOTAL</td>';
+				$output.='<td style="font-weight:bold;">'.number_format($jumlahtotal, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal_harilalu, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal_hariini, 0, ',', '.').'</td>';
 				$output.='</tr>';
 				$jumlahtotal = 0;
 				$jumlahtotal_harilalu = 0;
