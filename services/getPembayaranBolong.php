@@ -42,7 +42,7 @@ class clsGridSELECT_x_receipt_no_x_p_f { //SELECT_x_receipt_no_x_p_f class @2-B1
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-A55EED7E
+//Class_Initialize Event @2-3033C34D
     function clsGridSELECT_x_receipt_no_x_p_f($RelativePath, & $Parent)
     {
         global $FileName;
@@ -72,6 +72,7 @@ class clsGridSELECT_x_receipt_no_x_p_f { //SELECT_x_receipt_no_x_p_f class @2-B1
         $this->p_finance_period_id = & new clsControl(ccsLabel, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", ccsGet, NULL), $this);
         $this->description = & new clsControl(ccsLabel, "description", "description", ccsText, "", CCGetRequestParam("description", ccsGet, NULL), $this);
         $this->code = & new clsControl(ccsLabel, "code", "code", ccsText, "", CCGetRequestParam("code", ccsGet, NULL), $this);
+        $this->activation_date = & new clsControl(ccsLabel, "activation_date", "activation_date", ccsText, "", CCGetRequestParam("activation_date", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -86,7 +87,7 @@ class clsGridSELECT_x_receipt_no_x_p_f { //SELECT_x_receipt_no_x_p_f class @2-B1
     }
 //End Initialize Method
 
-//Show Method @2-961F280C
+//Show Method @2-35E58274
     function Show()
     {
         global $Tpl;
@@ -97,6 +98,7 @@ class clsGridSELECT_x_receipt_no_x_p_f { //SELECT_x_receipt_no_x_p_f class @2-B1
 
         $this->DataSource->Parameters["urlp_finance_period_id"] = CCGetFromGet("p_finance_period_id", NULL);
         $this->DataSource->Parameters["urlt_cust_account_id"] = CCGetFromGet("t_cust_account_id", NULL);
+        $this->DataSource->Parameters["expr189"] = $this->activation_date;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -119,6 +121,7 @@ class clsGridSELECT_x_receipt_no_x_p_f { //SELECT_x_receipt_no_x_p_f class @2-B1
             $this->ControlsVisible["p_finance_period_id"] = $this->p_finance_period_id->Visible;
             $this->ControlsVisible["description"] = $this->description->Visible;
             $this->ControlsVisible["code"] = $this->code->Visible;
+            $this->ControlsVisible["activation_date"] = $this->activation_date->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 // Parse Separator
                 if($this->RowNumber) {
@@ -134,12 +137,14 @@ class clsGridSELECT_x_receipt_no_x_p_f { //SELECT_x_receipt_no_x_p_f class @2-B1
                 $this->p_finance_period_id->SetValue($this->DataSource->p_finance_period_id->GetValue());
                 $this->description->SetValue($this->DataSource->description->GetValue());
                 $this->code->SetValue($this->DataSource->code->GetValue());
+                $this->activation_date->SetValue($this->DataSource->activation_date->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
                 $this->p_finance_period_id->Show();
                 $this->description->Show();
                 $this->code->Show();
+                $this->activation_date->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -158,13 +163,14 @@ class clsGridSELECT_x_receipt_no_x_p_f { //SELECT_x_receipt_no_x_p_f class @2-B1
     }
 //End Show Method
 
-//GetErrors Method @2-8BF2C6E4
+//GetErrors Method @2-FCFEF8E0
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->p_finance_period_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->description->Errors->ToString());
         $errors = ComposeStrings($errors, $this->code->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->activation_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -175,7 +181,7 @@ class clsGridSELECT_x_receipt_no_x_p_f { //SELECT_x_receipt_no_x_p_f class @2-B1
 
 class clsSELECT_x_receipt_no_x_p_fDataSource extends clsDBConnSIKP {  //SELECT_x_receipt_no_x_p_fDataSource Class @2-B4104131
 
-//DataSource Variables @2-A91A8B6E
+//DataSource Variables @2-77A3D91D
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -190,9 +196,10 @@ class clsSELECT_x_receipt_no_x_p_fDataSource extends clsDBConnSIKP {  //SELECT_x
     var $p_finance_period_id;
     var $description;
     var $code;
+    var $activation_date;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-2751D637
+//DataSourceClass_Initialize Event @2-169B9B23
     function clsSELECT_x_receipt_no_x_p_fDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -203,6 +210,8 @@ class clsSELECT_x_receipt_no_x_p_fDataSource extends clsDBConnSIKP {  //SELECT_x
         $this->description = new clsField("description", ccsText, "");
         
         $this->code = new clsField("code", ccsText, "");
+        
+        $this->activation_date = new clsField("activation_date", ccsText, "");
         
 
     }
@@ -217,7 +226,7 @@ class clsSELECT_x_receipt_no_x_p_fDataSource extends clsDBConnSIKP {  //SELECT_x
     }
 //End SetOrder Method
 
-//Prepare Method @2-4D9805D4
+//Prepare Method @2-500FAB5E
     function Prepare()
     {
         global $CCSLocales;
@@ -225,10 +234,11 @@ class clsSELECT_x_receipt_no_x_p_fDataSource extends clsDBConnSIKP {  //SELECT_x
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlp_finance_period_id", ccsText, "", "", $this->Parameters["urlp_finance_period_id"], "", false);
         $this->wp->AddParameter("2", "urlt_cust_account_id", ccsText, "", "", $this->Parameters["urlt_cust_account_id"], "", false);
+        $this->wp->AddParameter("3", "expr189", ccsText, "", "", $this->Parameters["expr189"], "", false);
     }
 //End Prepare Method
 
-//Open Method @2-D409C49E
+//Open Method @2-DD975FEB
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -250,7 +260,8 @@ class clsSELECT_x_receipt_no_x_p_fDataSource extends clsDBConnSIKP {  //SELECT_x
         "					where f_per.p_finance_period_id = x.p_finance_period_id(+)\n" .
         "					and f_per.end_date < (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . ")\n" .
         "					and f_per.start_date >= '01-01-2013'\n" .
-        "					and (receipt_no is null or receipt_no ='')) cnt";
+        "					and (receipt_no is null or receipt_no ='')\n" .
+        "					and f_per.start_date >= '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "') cnt";
         $this->SQL = "SELECT x.receipt_no,\n" .
         "x.p_finance_period_id,\n" .
         "x.description,\n" .
@@ -270,6 +281,7 @@ class clsSELECT_x_receipt_no_x_p_fDataSource extends clsDBConnSIKP {  //SELECT_x
         "					and f_per.end_date < (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . ")\n" .
         "					and f_per.start_date >= '01-01-2013'\n" .
         "					and (receipt_no is null or receipt_no ='')\n" .
+        "					and f_per.start_date >= '" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "'\n" .
         "					 {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -281,12 +293,13 @@ class clsSELECT_x_receipt_no_x_p_fDataSource extends clsDBConnSIKP {  //SELECT_x
     }
 //End Open Method
 
-//SetValues Method @2-DD53298D
+//SetValues Method @2-026CBEDE
     function SetValues()
     {
         $this->p_finance_period_id->SetDBValue(trim($this->f("p_finance_period_id")));
         $this->description->SetDBValue($this->f("description"));
         $this->code->SetDBValue($this->f("code"));
+        $this->activation_date->SetDBValue($this->f("activation_date"));
     }
 //End SetValues Method
 
@@ -315,11 +328,19 @@ $ContentType = "text/html";
 $PathToRoot = "../";
 //End Initialize Page
 
+//Include events file @1-DFDE3FA3
+include_once("./getPembayaranBolong_events.php");
+//End Include events file
+
+//BeforeInitialize Binding @1-17AC9191
+$CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
+//End BeforeInitialize Binding
+
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-0C3E796E
+//Initialize Objects @1-F7E4AADA
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -329,6 +350,8 @@ $MainPage->Attributes = & $Attributes;
 $SELECT_x_receipt_no_x_p_f = & new clsGridSELECT_x_receipt_no_x_p_f("", $MainPage);
 $MainPage->SELECT_x_receipt_no_x_p_f = & $SELECT_x_receipt_no_x_p_f;
 $SELECT_x_receipt_no_x_p_f->Initialize();
+
+BindEvents();
 
 $CCSEventResult = CCGetEvent($CCSEvents, "AfterInitialize", $MainPage);
 
