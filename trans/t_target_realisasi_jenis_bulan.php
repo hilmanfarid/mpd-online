@@ -586,7 +586,7 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Prepare Method
 
-//Open Method @2-D7E228A3
+//Open Method @2-DAC08CAC
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -597,10 +597,10 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         "	to_char(MAX(end_date),'dd-mm-yyyy') as end_date,\n" .
         "	MAX(p_vat_type_id) as p_vat_type_id,\n" .
         "	MAX(bulan) as bulan,\n" .
-        "	SUM (target_amount) as target_amount,\n" .
-        "	SUM (realisasi_amt) as realisasi_amt,\n" .
+        "	ROUND(SUM (target_amount)) as target_amount,\n" .
+        "	ROUND(SUM (realisasi_amt)) as realisasi_amt,\n" .
         "	MAX (penalty_amt) as penalty_amt,\n" .
-        "	SUM (debt_amt) as debt_amt\n" .
+        "	ROUND(SUM (debt_amt)) as debt_amt\n" .
         "FROM\n" .
         "	f_target_vs_real_monthly_new(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
         "GROUP BY p_finance_period_id) cnt";
@@ -611,10 +611,10 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         "	to_char(MAX(end_date),'dd-mm-yyyy') as end_date,\n" .
         "	MAX(p_vat_type_id) as p_vat_type_id,\n" .
         "	MAX(bulan) as bulan,\n" .
-        "	SUM (target_amount) as target_amount,\n" .
-        "	SUM (realisasi_amt) as realisasi_amt,\n" .
+        "	ROUND(SUM (target_amount)) as target_amount,\n" .
+        "	ROUND(SUM (realisasi_amt)) as realisasi_amt,\n" .
         "	MAX (penalty_amt) as penalty_amt,\n" .
-        "	SUM (debt_amt) as debt_amt\n" .
+        "	ROUND(SUM (debt_amt)) as debt_amt\n" .
         "FROM\n" .
         "	f_target_vs_real_monthly_new(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
         "GROUP BY p_finance_period_id {SQL_OrderBy}";
@@ -679,7 +679,7 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @900-346DF80F
+//Class_Initialize Event @900-08665D2A
     function clsGridt_target_realisasiGrid1($RelativePath, & $Parent)
     {
         global $FileName;
@@ -710,7 +710,6 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
         $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount", ccsGet, NULL), $this);
         $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", ccsGet, NULL), $this);
         $this->percentage = & new clsControl(ccsLabel, "percentage", "percentage", ccsFloat, "", CCGetRequestParam("percentage", ccsGet, NULL), $this);
-        $this->penalty_amt = & new clsControl(ccsLabel, "penalty_amt", "penalty_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("penalty_amt", ccsGet, NULL), $this);
         $this->debt_amt = & new clsControl(ccsLabel, "debt_amt", "debt_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_amt", ccsGet, NULL), $this);
         $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
         $this->total_amt = & new clsControl(ccsLabel, "total_amt", "total_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_amt", ccsGet, NULL), $this);
@@ -733,7 +732,7 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
     }
 //End Initialize Method
 
-//Show Method @900-53681401
+//Show Method @900-E8350955
     function Show()
     {
         global $Tpl;
@@ -768,7 +767,6 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
             $this->ControlsVisible["target_amount"] = $this->target_amount->Visible;
             $this->ControlsVisible["p_finance_period_id"] = $this->p_finance_period_id->Visible;
             $this->ControlsVisible["percentage"] = $this->percentage->Visible;
-            $this->ControlsVisible["penalty_amt"] = $this->penalty_amt->Visible;
             $this->ControlsVisible["debt_amt"] = $this->debt_amt->Visible;
             $this->ControlsVisible["realisasi_amt"] = $this->realisasi_amt->Visible;
             $this->ControlsVisible["total_amt"] = $this->total_amt->Visible;
@@ -785,7 +783,6 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
                 $this->ayat->SetValue($this->DataSource->ayat->GetValue());
                 $this->target_amount->SetValue($this->DataSource->target_amount->GetValue());
                 $this->p_finance_period_id->SetValue($this->DataSource->p_finance_period_id->GetValue());
-                $this->penalty_amt->SetValue($this->DataSource->penalty_amt->GetValue());
                 $this->debt_amt->SetValue($this->DataSource->debt_amt->GetValue());
                 $this->realisasi_amt->SetValue($this->DataSource->realisasi_amt->GetValue());
                 $this->total_amt->SetValue($this->DataSource->total_amt->GetValue());
@@ -799,7 +796,6 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
                 $this->target_amount->Show();
                 $this->p_finance_period_id->Show();
                 $this->percentage->Show();
-                $this->penalty_amt->Show();
                 $this->debt_amt->Show();
                 $this->realisasi_amt->Show();
                 $this->total_amt->Show();
@@ -838,7 +834,7 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
     }
 //End Show Method
 
-//GetErrors Method @900-243EA99B
+//GetErrors Method @900-3CA2F0B6
     function GetErrors()
     {
         $errors = "";
@@ -846,7 +842,6 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
         $errors = ComposeStrings($errors, $this->target_amount->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_finance_period_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->percentage->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->penalty_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->debt_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->realisasi_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->total_amt->Errors->ToString());
@@ -863,7 +858,7 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @900-103E
 
 class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_realisasiGrid1DataSource Class @900-25560BF8
 
-//DataSource Variables @900-BA0EBE2A
+//DataSource Variables @900-94395054
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -878,7 +873,6 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
     var $ayat;
     var $target_amount;
     var $p_finance_period_id;
-    var $penalty_amt;
     var $debt_amt;
     var $realisasi_amt;
     var $total_amt;
@@ -887,7 +881,7 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
     var $end_date;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @900-4E9D1282
+//DataSourceClass_Initialize Event @900-424FDFF1
     function clst_target_realisasiGrid1DataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -898,8 +892,6 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
         $this->target_amount = new clsField("target_amount", ccsFloat, "");
         
         $this->p_finance_period_id = new clsField("p_finance_period_id", ccsText, "");
-        
-        $this->penalty_amt = new clsField("penalty_amt", ccsFloat, "");
         
         $this->debt_amt = new clsField("debt_amt", ccsFloat, "");
         
@@ -917,10 +909,10 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @900-AA08798F
+//SetOrder Method @900-9E1383D1
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "MAX(dtl.vat_code) ASC";
+        $this->Order = "";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -938,21 +930,21 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
     }
 //End Prepare Method
 
-//Open Method @900-BA115FE8
+//Open Method @900-832603B5
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM ((SELECT\n" .
         "	MAX(target.p_finance_period_id) as p_finance_period_id,\n" .
         "	MAX(target.p_year_period_id) as p_year_period_id,\n" .
         "	to_char(MAX(target.start_date),'dd-mm-yyyy') as start_date,\n" .
         "	to_char(MAX(target.end_date),'dd-mm-yyyy') as end_date,\n" .
         "	MAX(target.p_vat_type_id) as p_vat_type_id,\n" .
         "	MAX(target.bulan) as bulan,\n" .
-        "	SUM (target.target_amount) as target_amount,\n" .
-        "	SUM (target.realisasi_amt) as realisasi_amt,\n" .
-        "	MAX (target.penalty_amt) as penalty_amt,\n" .
-        "	SUM (target.debt_amt) as debt_amt,\n" .
+        "	ROUND(SUM (target.target_amount)) as target_amount,\n" .
+        "	ROUND(SUM (target.realisasi_amt)) as realisasi_amt,\n" .
+        "	ROUND(SUM (target.penalty_amt)) as penalty_amt,\n" .
+        "	ROUND(SUM (target.debt_amt)) as debt_amt,\n" .
         "	MAX(dtl.vat_code) as ayat\n" .
         "FROM\n" .
         "	f_target_vs_real_monthly_new(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") target,\n" .
@@ -960,18 +952,32 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
         "WHERE\n" .
         "	dtl.p_vat_type_dtl_id = target.p_vat_type_dtl_id\n" .
         "	AND (target.p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . " is null)\n" .
-        "GROUP BY target.p_vat_type_dtl_id) cnt";
-        $this->SQL = "SELECT\n" .
+        "GROUP BY target.p_vat_type_dtl_id\n" .
+        "\n" .
+        "ORDER BY MAX(dtl.vat_code) ASC)\n" .
+        "UNION\n" .
+        "(select 999,\n" .
+        "	" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ",\n" .
+        "	'',\n" .
+        "	'',\n" .
+        "	0,\n" .
+        "	'',\n" .
+        "	0,\n" .
+        "	f_get_total_denda_ayat(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") as jumlah,\n" .
+        "	0,\n" .
+        "	0,\n" .
+        "	'DENDA')) cnt";
+        $this->SQL = "(SELECT\n" .
         "	MAX(target.p_finance_period_id) as p_finance_period_id,\n" .
         "	MAX(target.p_year_period_id) as p_year_period_id,\n" .
         "	to_char(MAX(target.start_date),'dd-mm-yyyy') as start_date,\n" .
         "	to_char(MAX(target.end_date),'dd-mm-yyyy') as end_date,\n" .
         "	MAX(target.p_vat_type_id) as p_vat_type_id,\n" .
         "	MAX(target.bulan) as bulan,\n" .
-        "	SUM (target.target_amount) as target_amount,\n" .
-        "	SUM (target.realisasi_amt) as realisasi_amt,\n" .
-        "	MAX (target.penalty_amt) as penalty_amt,\n" .
-        "	SUM (target.debt_amt) as debt_amt,\n" .
+        "	ROUND(SUM (target.target_amount)) as target_amount,\n" .
+        "	ROUND(SUM (target.realisasi_amt)) as realisasi_amt,\n" .
+        "	ROUND(SUM (target.penalty_amt)) as penalty_amt,\n" .
+        "	ROUND(SUM (target.debt_amt)) as debt_amt,\n" .
         "	MAX(dtl.vat_code) as ayat\n" .
         "FROM\n" .
         "	f_target_vs_real_monthly_new(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") target,\n" .
@@ -979,7 +985,21 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
         "WHERE\n" .
         "	dtl.p_vat_type_dtl_id = target.p_vat_type_dtl_id\n" .
         "	AND (target.p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . " or " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . " is null)\n" .
-        "GROUP BY target.p_vat_type_dtl_id {SQL_OrderBy}";
+        "GROUP BY target.p_vat_type_dtl_id\n" .
+        "\n" .
+        "ORDER BY MAX(dtl.vat_code) ASC)\n" .
+        "UNION\n" .
+        "(select 999,\n" .
+        "	" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ",\n" .
+        "	'',\n" .
+        "	'',\n" .
+        "	0,\n" .
+        "	'',\n" .
+        "	0,\n" .
+        "	f_get_total_denda_ayat(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") as jumlah,\n" .
+        "	0,\n" .
+        "	0,\n" .
+        "	'DENDA')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -990,13 +1010,12 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
     }
 //End Open Method
 
-//SetValues Method @900-1BCC79D9
+//SetValues Method @900-4DB832D8
     function SetValues()
     {
         $this->ayat->SetDBValue($this->f("ayat"));
         $this->target_amount->SetDBValue(trim($this->f("target_amount")));
         $this->p_finance_period_id->SetDBValue($this->f("p_finance_period_id"));
-        $this->penalty_amt->SetDBValue(trim($this->f("penalty_amt")));
         $this->debt_amt->SetDBValue(trim($this->f("debt_amt")));
         $this->realisasi_amt->SetDBValue(trim($this->f("realisasi_amt")));
         $this->total_amt->SetDBValue(trim($this->f("target_amount")));

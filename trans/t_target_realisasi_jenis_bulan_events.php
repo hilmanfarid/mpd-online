@@ -127,10 +127,10 @@ function t_target_realisasiGrid1_BeforeShowRow(& $sender)
 	global $selected_id;
 	 $target = $Component->DataSource->target_amount->GetValue();
 	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
-	 $penalty = $Component->DataSource->penalty_amt->GetValue();
+	 //$penalty = $Component->DataSource->penalty_amt->GetValue();
 	 $debt = $Component->DataSource->debt_amt->GetValue();
 	 if(!empty($target)) {
-	 	$percent = number_format(($realisasi+$penalty+$debt) / $target * 100, 2, ".", ",");
+	 	$percent = number_format(($realisasi+$debt) / $target * 100, 2, ".", ",");
 	 }else {
 		$percent = 0;
 	 }
