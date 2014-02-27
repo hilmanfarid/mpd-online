@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_laporan_penerimaan_pajak</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script>
+                function getFrom_LOV(formName,fieldList,LOV_NM)
+                {
+                        arrLOV = LOV_NM.split("?");
+                        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+                }
+        function printLaporan(){
+                var params = "?cetak_laporan="+document.getElementById("t_laporan_per_npwpdcetak_laporan").value;
+                params += "&year_code="+document.getElementById("t_laporan_per_npwpdyear_code").value;
+                params += "&date_start_laporan="+document.getElementById("t_laporan_per_npwpddate_start_laporan").value;
+                params += "&date_end_laporan="+document.getElementById("t_laporan_per_npwpddate_end_laporan").value;
+                params += "&p_year_period_id="+document.getElementById("t_laporan_per_npwpdp_year_period_id").value;
+                                params += "&p_vat_type_id="+document.getElementById("t_laporan_per_npwpdp_vat_type_id").value;
+                                params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_per_npwpdp_vat_type_dtl_id").value;
+                                params += "&vat_code_dtl="+document.getElementById("t_laporan_per_npwpdvat_code_dtl").value;  
+                window.open("t_laporan_per_npwpd.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+        }
+                function tampilkan(){
+                var params = "?npwpd="+document.getElementById("t_laporan_per_npwpdnpwpd").value;
+                                params+="&p_finance_period_id="+document.getElementById("t_laporan_per_npwpdp_finance_period_id").value;
+                                params+="&p_finance_period_id1="+document.getElementById("t_laporan_per_npwpdp_finance_period_id1").value;
+                                params+="&periode="+document.getElementById("t_laporan_per_npwpdperiode").value;
+                                params+="&periode1="+document.getElementById("t_laporan_per_npwpdperiode1").value;
+                location.href="t_laporan_per_npwpd.php"+params;
+        }
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN PENCETAKAN HARIAN PENERIMAAN SPTPD&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_laporan_per_npwpd -->
+        <form id="t_laporan_per_npwpd" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field">
+            <tr>
+              <td valign="top">
+                <table class="Record">
+                  <!-- BEGIN Error -->
+                  <tr>
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Periode Pelaporan</label></td> 
+                    <td class="search-field"><label for="t_laporan_per_npwpddate_start_laporan" style="display: none;">&nbsp;</label>&nbsp;<input id="t_laporan_per_npwpdperiode" class="ControlsRQ" name="{periode_Name}" maxlength="32" value="{periode}" size="32">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif"><input id="t_laporan_per_npwpdp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden">&nbsp;&nbsp;s/d <input id="t_laporan_per_npwpdperiode1" class="ControlsRQ" name="{periode1_Name}" maxlength="32" value="{periode1}" size="32">&nbsp;<input id="t_laporan_per_npwpdp_finance_period_id1" name="{p_finance_period_id1_Name}" value="{p_finance_period_id1}" type="hidden"><img onclick="javascript:lov_period1()" border="0" src="../images/view.gif">&nbsp; <input id="t_laporan_per_npwpdcetak_laporan" name="{cetak_laporan_Name}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td align="left">NPWPD&nbsp;</td> 
+                    <td>
+                      <p>&nbsp;<input id="t_laporan_per_npwpdnpwpd" name="{npwpd_Name}" value="{npwpd}"></p>
+                    </td>
+                  </tr>
+ 
+                  <tr>
+                    <td colspan="2" align="right">&nbsp; 
+                      <!-- BEGIN Button Button2 --><input id="t_laporan_per_npwpdButton2" class="btn_tambah" onclick="tampilkan()" name="{Button_Name}" alt="Button1" value="Tampilkan" type="button"><!-- END Button Button2 -->
+                      <!-- BEGIN Button Button1 --><input id="t_laporan_per_npwpdButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_laporan_per_npwpd -->
+        <p>&nbsp;</p>
+ 
+        <p><br>
+        &nbsp;</p>
+      </td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+        function lov_period() {
+                        getFrom_LOV("t_laporan_per_npwpd","p_finance_period_id,periode","lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode&LABEL2=Deskripsi&HEADER_PAGE=PERIODE&HEADER_LOV=DAFTAR PERIODE&FIELD_3=ORDER BY start_date DESC");
+        }
+        function lov_period1() {
+                        getFrom_LOV("t_laporan_per_npwpd","p_finance_period_id1,periode1","lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode&LABEL2=Deskripsi&HEADER_PAGE=PERIODE&HEADER_LOV=DAFTAR PERIODE&FIELD_3=ORDER BY start_date DESC");
+        }
+        function lov_year_period() {
+                getFrom_LOV('t_laporan_per_npwpd','p_year_period_id,year_code','lov_year_period.php');
+        }
+        function lov_rqst() {
+                getFrom_LOV('t_laporan_per_npwpd','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_rqst_type&FIELD_0=p_rqst_type_id&FIELD_1=code&FIELD_2=description&FIELD_3=And p_rqst_type_id in (1,2,3,4,5)&LABEL1=Jenis Permohonan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PERMOHONAN&HEADER_LOV=DAFTAR JENIS PERMOHONAN&ORDER=p_rqst_type_id');
+        }
+                function lov_vat_type() {
+                        getFrom_LOV('t_laporan_per_npwpd','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
+                }
+        function lov_ayatpajak() {
+                        getFrom_LOV('t_laporan_per_npwpd','p_vat_type_id,vat_code','lov_vat_type.php');
+                }
+function lov_tipeayat() {
+        var p_vat_type_id = document.getElementById("t_laporan_per_npwpdp_vat_type_id").value;
+        if (p_vat_type_id != "" && p_vat_type_id != 0 && p_vat_type_id != false && p_vat_type_id != undefined &&  p_vat_type_id != null){
+           getFrom_LOV('t_laporan_per_npwpd','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=p_vat_type_dtl&FIELD_0=p_vat_type_dtl_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Tipe Ayat&LABEL2=Deskripsi&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+        }else{
+            alert("Ayat Pajak belum Diisi");
+        }
+}
+
+  </script>
+<!-- BEGIN Grid HistoryGrid -->
+<table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td valign="top">
+      <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+          <td class="th"><strong>HISTORY TRANSAKSI WAJIB PAJAK <input style="WIDTH: 112px; HEIGHT: 22px" id="HistoryGridcustomer_name" name="{customer_name_Name}" value="{customer_name}" size="15" type="hidden">&nbsp;<input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_customer_id" name="{t_customer_id_Name}" value="{t_customer_id}" size="13" type="hidden"><input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_cust_acc_id" name="{t_cust_acc_id_Name}" value="{t_cust_acc_id}" size="13" type="hidden"></strong></td> 
+          <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid" cellspacing="0" cellpadding="0">
+        <tr class="Caption">
+          <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" scope="col">Nama Badan</th>
+ 
+          <th scope="col">Periode Pelaporan</th>
+ 
+          <th scope="col">&nbsp;Periode Transaksi</th>
+ 
+          <th scope="col">&nbsp;Tgl. Pelaporan</th>
+ 
+          <th scope="col">Total Transaksi&nbsp;</th>
+ 
+          <th scope="col">&nbsp;Total Pajak</th>
+ 
+          <th scope="col">&nbsp;No. Kwitansi</th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr {HistoryGrid:rowStyle}>
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{company_name}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_awal_laporan}&nbsp;s/d {periode_akhir_laporan}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pelaporan}</td> 
+          <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_transaksi}&nbsp;</td> 
+          <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
+          <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kuitansi_pembayaran}</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords">
+          <td colspan="7">-</td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer">
+          <td colspan="7">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}"><u>{Page_Number}</u></a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid HistoryGrid -->
+</body>
+</html>
