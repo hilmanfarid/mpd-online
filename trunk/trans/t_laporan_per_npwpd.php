@@ -269,7 +269,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @29-62BF11D0
+//Class_Initialize Event @29-61F5CCAA
     function clsGridHistoryGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -286,7 +286,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
-            $this->PageSize = 12;
+            $this->PageSize = 24;
         else
             $this->PageSize = intval($this->PageSize);
         if ($this->PageSize > 100)
@@ -516,7 +516,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Prepare Method
 
-//Open Method @29-E7093CB9
+//Open Method @29-94FB6F3D
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -546,7 +546,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "      and a.t_cust_account_id = c.t_cust_account_id\n" .
         "	  and a.npwd = '" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "'\n" .
         "	  and b.start_date >= (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . ")\n" .
-        "	  and b.end_date <= (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . ")\n" .
+        "	  and b.end_date <= (select end_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . ")\n" .
         "      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
         "	  and a.p_settlement_type_id = e.p_settlement_type_id) cnt";
         $this->SQL = "Select c.npwd , \n" .
@@ -575,7 +575,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "      and a.t_cust_account_id = c.t_cust_account_id\n" .
         "	  and a.npwd = '" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "'\n" .
         "	  and b.start_date >= (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . ")\n" .
-        "	  and b.end_date <= (select start_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . ")\n" .
+        "	  and b.end_date <= (select end_date from p_finance_period where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . ")\n" .
         "      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
         "	  and a.p_settlement_type_id = e.p_settlement_type_id {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
