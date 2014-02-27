@@ -72,7 +72,7 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Grid id="29" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="12" connection="ConnSIKP" name="HistoryGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="Select c.npwd , 
+		<Grid id="29" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="24" connection="ConnSIKP" name="HistoryGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="Select c.npwd , 
 	   a.t_vat_setllement_id,	
 	   c.t_cust_account_id,
        c.company_name, 
@@ -98,7 +98,7 @@ where a.p_finance_period_id = b.p_finance_period_id
       and a.t_cust_account_id = c.t_cust_account_id
 	  and a.npwd = '{npwd}'
 	  and b.start_date &gt;= (select start_date from p_finance_period where p_finance_period_id = {p_finance_period_id})
-	  and b.end_date &lt;= (select start_date from p_finance_period where p_finance_period_id = {p_finance_period_id1})
+	  and b.end_date &lt;= (select end_date from p_finance_period where p_finance_period_id = {p_finance_period_id1})
       and a.t_vat_setllement_id = d.t_vat_setllement_id (+) 
 	  and a.p_settlement_type_id = e.p_settlement_type_id
 order by c.npwd , b.start_date desc
