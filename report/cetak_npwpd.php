@@ -40,7 +40,8 @@ $query = "Select c.npwd ,
 			  and b.start_date >= (select start_date from p_finance_period where p_finance_period_id = $p_awal_period )
               and b.end_date <= (select end_date from p_finance_period where p_finance_period_id = $p_akhir_period )
 			  and a.t_vat_setllement_id = d.t_vat_setllement_id (+) 
-        	  and a.p_settlement_type_id = e.p_settlement_type_id ";
+        	  and a.p_settlement_type_id = e.p_settlement_type_id 
+			  order by b.start_date desc";
 $dbConn->query($query);
 
 while ($dbConn->next_record()) {
