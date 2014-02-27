@@ -58,10 +58,10 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 	to_char(MAX(end_date),'dd-mm-yyyy') as end_date,
 	MAX(p_vat_type_id) as p_vat_type_id,
 	MAX(bulan) as bulan,
-	SUM (target_amount) as target_amount,
-	SUM (realisasi_amt) as realisasi_amt,
+	ROUND(SUM (target_amount)) as target_amount,
+	ROUND(SUM (realisasi_amt)) as realisasi_amt,
 	MAX (penalty_amt) as penalty_amt,
-	SUM (debt_amt) as debt_amt
+	ROUND(SUM (debt_amt)) as debt_amt
 FROM
 	f_target_vs_real_monthly_new({p_year_period_id},{p_vat_type_id})
 GROUP BY p_finance_period_id
@@ -179,17 +179,17 @@ ORDER BY MAX(start_date) ASC">
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Grid id="900" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="12" connection="ConnSIKP" name="t_target_realisasiGrid1" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT
+		<Grid id="900" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="12" connection="ConnSIKP" name="t_target_realisasiGrid1" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="(SELECT
 	MAX(target.p_finance_period_id) as p_finance_period_id,
 	MAX(target.p_year_period_id) as p_year_period_id,
 	to_char(MAX(target.start_date),'dd-mm-yyyy') as start_date,
 	to_char(MAX(target.end_date),'dd-mm-yyyy') as end_date,
 	MAX(target.p_vat_type_id) as p_vat_type_id,
 	MAX(target.bulan) as bulan,
-	SUM (target.target_amount) as target_amount,
-	SUM (target.realisasi_amt) as realisasi_amt,
-	MAX (target.penalty_amt) as penalty_amt,
-	SUM (target.debt_amt) as debt_amt,
+	ROUND(SUM (target.target_amount)) as target_amount,
+	ROUND(SUM (target.realisasi_amt)) as realisasi_amt,
+	ROUND(SUM (target.penalty_amt)) as penalty_amt,
+	ROUND(SUM (target.debt_amt)) as debt_amt,
 	MAX(dtl.vat_code) as ayat
 FROM
 	f_target_vs_real_monthly_new({p_year_period_id},{p_vat_type_id}) target,
@@ -199,7 +199,19 @@ WHERE
 	AND (target.p_finance_period_id = {p_finance_period_id} or {p_finance_period_id} is null)
 GROUP BY target.p_vat_type_dtl_id
 
-ORDER BY MAX(dtl.vat_code) ASC">
+ORDER BY MAX(dtl.vat_code) ASC)
+UNION
+(select 999,
+	{p_year_period_id},
+	'',
+	'',
+	0,
+	'',
+	0,
+	f_get_total_denda_ayat({p_year_period_id},{p_finance_period_id},{p_vat_type_id}) as jumlah,
+	0,
+	0,
+	'DENDA')">
 			<Components>
 				<Navigator id="901" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
 					<Components/>
@@ -226,12 +238,6 @@ ORDER BY MAX(dtl.vat_code) ASC">
 					<Features/>
 				</Hidden>
 				<Label id="905" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1percentage">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-				<Label id="906" fieldSourceType="DBColumn" dataType="Float" html="False" name="penalty_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGrid1penalty_amt" fieldSource="penalty_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>

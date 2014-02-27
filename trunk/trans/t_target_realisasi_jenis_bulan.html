@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta http-equiv="refresh" content="30" />
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<meta http-equiv="refresh" content="30">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 <script src="../js/highcharts.js"></script>
@@ -161,7 +161,7 @@ $(function () {
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -278,8 +278,6 @@ $(function () {
  
                   <th style="TEXT-ALIGN: center" scope="col">Pokok&nbsp;</th>
  
-                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Denda</th>
- 
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;Piutang</th>
  
                   <th style="TEXT-ALIGN: center" scope="col">Total</th>
@@ -289,22 +287,25 @@ $(function () {
  
                 <!-- BEGIN Row -->
                 <tr {t_target_realisasiGrid1:rowStyle}>
-                  <td><div style="width:240px">{ayat}</div><input id="t_target_realisasiGrid1p_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_target_realisasiGrid1p_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_target_realisasiGrid1start_date" name="{start_date_Name}" value="{start_date}" type="hidden"><input id="t_target_realisasiGrid1end_date" name="{end_date_Name}" value="{end_date}" type="hidden"></td> 
+                  <td>
+                    <div style="WIDTH: 240px">
+                      {ayat}
+                    </div>
+                    <input id="t_target_realisasiGrid1p_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_target_realisasiGrid1p_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_target_realisasiGrid1start_date" name="{start_date_Name}" value="{start_date}" type="hidden"><input id="t_target_realisasiGrid1end_date" name="{end_date_Name}" value="{end_date}" type="hidden"></td> 
                   <td style="TEXT-ALIGN: right">{target_amount}</td> 
-                  <td style="TEXT-ALIGN: right;">{realisasi_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right;">{penalty_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right;">{debt_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{debt_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{total_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{percentage}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="7">-</td>
+                  <td colspan="6">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td colspan="7">
+                  <td colspan="6">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
