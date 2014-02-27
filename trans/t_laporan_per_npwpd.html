@@ -12,15 +12,12 @@
                         window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
                 }
         function printLaporan(){
-                var params = "?cetak_laporan="+document.getElementById("t_laporan_per_npwpdcetak_laporan").value;
-                params += "&year_code="+document.getElementById("t_laporan_per_npwpdyear_code").value;
-                params += "&date_start_laporan="+document.getElementById("t_laporan_per_npwpddate_start_laporan").value;
-                params += "&date_end_laporan="+document.getElementById("t_laporan_per_npwpddate_end_laporan").value;
-                params += "&p_year_period_id="+document.getElementById("t_laporan_per_npwpdp_year_period_id").value;
-                                params += "&p_vat_type_id="+document.getElementById("t_laporan_per_npwpdp_vat_type_id").value;
-                                params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_per_npwpdp_vat_type_dtl_id").value;
-                                params += "&vat_code_dtl="+document.getElementById("t_laporan_per_npwpdvat_code_dtl").value;  
-                window.open("t_laporan_per_npwpd.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+               	var params = "?npwpd="+document.getElementById("t_laporan_per_npwpdnpwpd").value;
+                                params+="&p_finance_period_id="+document.getElementById("t_laporan_per_npwpdp_finance_period_id").value;
+                                params+="&p_finance_period_id1="+document.getElementById("t_laporan_per_npwpdp_finance_period_id1").value;
+                                params+="&periode="+document.getElementById("t_laporan_per_npwpdperiode").value;
+                                params+="&periode1="+document.getElementById("t_laporan_per_npwpdperiode1").value;
+                window.open("../report/cetak_npwpd.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
                 function tampilkan(){
                 var params = "?npwpd="+document.getElementById("t_laporan_per_npwpdnpwpd").value;
