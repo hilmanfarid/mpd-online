@@ -51,7 +51,8 @@ while ($dbConn->next_record()) {
 	"periode_akhir_laporan"		=> $dbConn->f("periode_akhir_laporan"),
 	"tgl_pelaporan"	=> $dbConn->f("tgl_pelaporan"),
 	"total_pajak"		=> $dbConn->f("total_pajak"),
-	"kuitansi_pembayaran"		=> $dbConn->f("kuitansi_pembayaran")
+	"kuitansi_pembayaran"		=> $dbConn->f("kuitansi_pembayaran"),
+	"type_code" => $dbConn->f("type_code")
 	);
 }
 $dbConn->close();
@@ -114,15 +115,16 @@ class FormCetak extends FPDF {
 		$ltable8 = $ltable * 8;
 		
 		$this->Cell($ltable4, $this->height + 2, "NAMA BADAN", "TBLR", 0, 'C');
+		$this->Cell($ltable3, $this->height + 2, "JENIS KETETAPAN", "TBLR", 0, 'C');
 		$this->Cell($ltable6, $this->height + 2, "PERIODE TRANSAKSI", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "TGL PELAPORAN", "TBLR", 0, 'C');
-		$this->Cell($ltable4, $this->height + 2, "TOTAL PAJAK", "TBLR", 0, 'C');
-		$this->Cell($ltable7, $this->height + 2, "NO. KWITANSI", "TBLR", 0, 'C');
+		$this->Cell($ltable3, $this->height + 2, "TOTAL PAJAK", "TBLR", 0, 'C');
+		$this->Cell($ltable5, $this->height + 2, "NO. KWITANSI", "TBLR", 0, 'C');
 		$this->Ln();
 
 		//isi kolom
-		$this->SetWidths(array($ltable4, $ltable6, $ltable3, $ltable4, $ltable7));
-		$this->SetAligns(array("L", "C", "C", "R", "L"));
+		$this->SetWidths(array($ltable4, $ltable3, $ltable6, $ltable3, $ltable3, $ltable5));
+		$this->SetAligns(array("L", "C", "C","C", "R", "L"));
 		$no = 1;
 		$jumlahperayat = array();
 		$jumlahperwaktu = array();
@@ -133,12 +135,14 @@ class FormCetak extends FPDF {
 			//print data
 			$this->RowMultiBorderWithHeight(array(
 												  $item["company_name"],
+												  $item["type_code"],
 												  $item["periode_awal_laporan"]." s.d ".$item["periode_akhir_laporan"],
 												  $item["tgl_pelaporan"],
 												  number_format($item["total_pajak"], 0, ',', '.'),
 												  $item["kuitansi_pembayaran"],
 												  ),
 											array('TBLR',
+												  'TBLR',
 												  'TBLR',
 												  'TBLR',
 												  'TBLR',
