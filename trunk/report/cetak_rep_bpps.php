@@ -227,10 +227,12 @@ class FormCetak extends FPDF {
 		$this->newLine();
 		$this->newLine();
 		$this->newLine();
-		$this->newLine();
-		$this->newLine();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "(                ABDURACHIM                )", "", 0, 'C');
+		$this->Ln();
+		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
+		$this->Cell($lbody1 + 10, $this->height, "NIP. 19590622 198503 1 008", "", 0, 'C');
+		$this->Ln();
 	}
 
 	function newLine(){
