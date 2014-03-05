@@ -128,7 +128,7 @@ function GetCetakHTML($data, $date_start, $date_end) {
               		</table>';
 	
 	$output .= '<h2>DAFTAR NOTA VERIFIKASI BPHTB </h2>';
-	$output .= '<h2>TANGGAL : '.dateToString($date_start)." s/d ".dateToString($date_end).'</h2> <br/>';
+	$output .= '<h2>TANGGAL : '.dateToString($date_start, "-")." s/d ".dateToString($date_end, "-").'</h2> <br/>';
 
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
                 <tr class="Caption">';
