@@ -72,7 +72,7 @@ function print_laporan($param_arr){
 	//$pdf->ln(8);
 	$pdf->SetWidths(array(40,200));
 	$pdf->ln(4);
-	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString($param_arr['date_start'])." s/d ".dateToString($param_arr['date_end'])),array('',''),6);
+	$pdf->RowMultiBorderWithHeight(array("TANGGAL",": ".dateToString($param_arr['date_start'], "-")." s/d ".dateToString($param_arr['date_end'], "-")),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	$whereClause='';
 	if(!empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
@@ -185,7 +185,7 @@ function print_laporan($param_arr){
 	$pdf->Output("","I");
 	exit;	
 }
-function dateToString($date){
+function dateToString($date, $strip = '/'){
 	if(empty($date)) return "";
 	
 	$monthname = array(0  => '-',
@@ -204,7 +204,7 @@ function dateToString($date){
 	
 	$pieces = explode('-', $date);
 	
-	return $pieces[2].'/'.$monthname[(int)$pieces[1]].'/'.$pieces[0];
+	return $pieces[2].$strip.$monthname[(int)$pieces[1]].$strip.$pieces[0];
 }
 
 ?>
