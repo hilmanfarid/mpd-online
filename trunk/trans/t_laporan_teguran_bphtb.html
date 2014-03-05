@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_laporan_penerimaan_pajak</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script>
+                function getFrom_LOV(formName,fieldList,LOV_NM)
+                {
+                        arrLOV = LOV_NM.split("?");
+                        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+                }
+        function printLaporan(){
+                var params = "?cetak_laporan="+document.getElementById("t_laporan_rekap_bphtbcetak_laporan").value;
+                params += "&date_start="+document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value;
+                params += "&date_end="+document.getElementById("t_laporan_rekap_bphtbdate_end_laporan").value;
+                params += "&filter_lap=" + document.getElementById("t_laporan_rekap_bphtbListBox1").value;
+                                window.open("t_laporan_rekap_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+        }
+
+                function tampilkanLaporan(){
+                        var params = "?doAction=view_html";
+                        params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+                                params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+                                                location.href="t_laporan_teguran_bphtb.php"+params;
+                }
+
+                function cetakSuratTeguranAll() {
+					var params = "";
+					params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+                	params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+                	window.open("../report/cetak_surat_teguran_bphtb_pdf.php?"+params, "_blank", "toolbar=0,location=0,menubar=0");
+                }
+
+				function cetakSuratTeguran(t_bphtb_registration_id) {
+                	var params = "";
+					params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+                	params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+                	params += "&t_bphtb_registration_id="+t_bphtb_registration_id;
+					window.open("../report/cetak_surat_teguran_bphtb_pdf.php?"+params, "_blank", "toolbar=0,location=0,menubar=0");
+                
+                }
+
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-4E3EF8BC
+
+var t_laporan_teguran_bphtb_DatePicker_date_start_laporan1 = new Object(); 
+t_laporan_teguran_bphtb_DatePicker_date_start_laporan1.format           = "yyyy-mm-dd";
+t_laporan_teguran_bphtb_DatePicker_date_start_laporan1.style            = "Styles/sikp/Style.css";
+t_laporan_teguran_bphtb_DatePicker_date_start_laporan1.relativePathPart = "../";
+t_laporan_teguran_bphtb_DatePicker_date_start_laporan1.themeVersion = "3.0";
+
+var t_laporan_teguran_bphtb_DatePicker_end_start_laporan1 = new Object(); 
+t_laporan_teguran_bphtb_DatePicker_end_start_laporan1.format           = "yyyy-mm-dd";
+t_laporan_teguran_bphtb_DatePicker_end_start_laporan1.style            = "Styles/sikp/Style.css";
+t_laporan_teguran_bphtb_DatePicker_end_start_laporan1.relativePathPart = "../";
+t_laporan_teguran_bphtb_DatePicker_end_start_laporan1.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//bind_events @1-BF0EB765
+function bind_events() {
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN TEGURAN BPHTB&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_laporan_teguran_bphtb -->
+        <form id="t_laporan_teguran_bphtb" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field">
+            <tr>
+              <td valign="top">
+                <table class="Record">
+                  <!-- BEGIN Error -->
+                  <tr>
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Tanggal</label></td> 
+                    <td class="search-field"><label for="t_laporan_teguran_bphtbdate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_teguran_bphtbdate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_teguran_bphtbDatePicker_date_start_laporan1"><img id="t_laporan_teguran_bphtbDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_teguran_bphtbdate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_teguran_bphtbDatePicker_end_start_laporan1"><img id="t_laporan_teguran_bphtbDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
+                  </tr>
+ 
+                  <tr>
+                    <td colspan="2" align="right"><input id="t_laporan_teguran_bphtbcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden">
+                      <!-- BEGIN Button Button3 --><input id="t_laporan_teguran_bphtbButton3" class="btn_tambah" onclick="cetakSuratTeguranAll(); return false;" name="{Button_Name}" alt="Button1" value="Cetak Surat Teguran" type="button"><!-- END Button Button3 -->
+                      <!-- BEGIN Button Button2 --><input id="t_laporan_teguran_bphtbButton2" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Button1" value="Tampilkan" type="button"><!-- END Button Button2 --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_laporan_teguran_bphtb --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp; {Label1}
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+        function lov_year_period() {
+                getFrom_LOV('t_laporan_pencetakan_bulanan','p_year_period_id,year_code','lov_year_period.php');
+        }
+        function lov_rqst() {
+                getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_rqst_type&FIELD_0=p_rqst_type_id&FIELD_1=code&FIELD_2=description&FIELD_3=And p_rqst_type_id in (1,2,3,4,5)&LABEL1=Jenis Permohonan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PERMOHONAN&HEADER_LOV=DAFTAR JENIS PERMOHONAN&ORDER=p_rqst_type_id');
+        }
+                function lov_vat_type() {
+                        getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
+                }
+  </script>
+</p>
+<p></p>
+</body>
+</html>
