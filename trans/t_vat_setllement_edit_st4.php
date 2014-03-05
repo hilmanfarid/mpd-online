@@ -282,10 +282,10 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-CD6CFD58
+//SetOrder Method @2-3D689C8A
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "finance_period_code ASC";
+        $this->Order = " settlement_type ASC";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
