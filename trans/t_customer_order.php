@@ -280,7 +280,7 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
     }
 //End SetOrder Method
 
-//Prepare Method @2-309DA2CF
+//Prepare Method @2-5CA777B2
     function Prepare()
     {
         global $CCSLocales;
@@ -294,7 +294,7 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
         $this->wp->Criterion[2] = $this->wp->Operation(opContains, "upper(rqst_type_code)", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
         $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(order_status_code)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
         $this->wp->Criterion[4] = "( p_rqst_type_id IN (1,2,3,4,5) )";
-        $this->wp->Criterion[5] = $this->wp->Operation(opEqual, "p_order_status_id", $this->wp->GetDBValue("5"), $this->ToSQL($this->wp->GetDBValue("5"), ccsFloat),false);
+        $this->wp->Criterion[5] = $this->wp->Operation(opGreaterThanOrEqual, "p_order_status_id", $this->wp->GetDBValue("5"), $this->ToSQL($this->wp->GetDBValue("5"), ccsFloat),false);
         $this->Where = $this->wp->opAND(
              false, $this->wp->opAND(
              false, $this->wp->opOR(

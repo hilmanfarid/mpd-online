@@ -101,7 +101,7 @@
 				<TableParameter id="554" conditionType="Parameter" useIsNull="False" field="upper(rqst_type_code)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="Or" parameterSource="s_keyword"/>
 				<TableParameter id="558" conditionType="Parameter" useIsNull="False" field="upper(order_status_code)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="And" parameterSource="s_keyword" rightBrackets="1"/>
 				<TableParameter id="626" conditionType="Expression" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="In" parameterType="Expression" logicOperator="And" expression="p_rqst_type_id IN (1,2,3,4,5)" parameterSource="1,2,3,4,5"/>
-				<TableParameter id="631" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="Equal" parameterType="Expression" logicOperator="And" parameterSource="1"/>
+				<TableParameter id="631" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="GreaterThanOrEqual" parameterType="Expression" logicOperator="And" parameterSource="1"/>
 			</TableParameters>
 			<JoinTables>
 				<JoinTable id="557" tableName="v_customer_order" posLeft="10" posTop="10" posWidth="154" posHeight="180"/>
@@ -278,11 +278,11 @@ WHERE t_customer_order_id = {t_customer_order_id}">
 							</Actions>
 						</Event>
 						<Event name="OnClick" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="635"/>
-</Actions>
-</Event>
-</Events>
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="635"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
@@ -294,12 +294,12 @@ WHERE t_customer_order_id = {t_customer_order_id}">
 				</Hidden>
 			</Components>
 			<Events>
-<Event name="OnSubmit" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="634"/>
-</Actions>
-</Event>
-</Events>
+				<Event name="OnSubmit" type="Client">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="634"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="563" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
 			</TableParameters>
