@@ -28,6 +28,14 @@
 
                 function cetakSuratTeguranAll() {
 					var params = "";
+					var date_start = document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+					var date_end = document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+
+					if(date_start == "" || date_end == "") {
+						alert("Filter Tanggal Harus Diisi");
+						return false;
+					}
+
 					params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
                 	params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
                 	window.open("../report/cetak_surat_teguran_bphtb_pdf.php?"+params, "_blank", "toolbar=0,location=0,menubar=0");
