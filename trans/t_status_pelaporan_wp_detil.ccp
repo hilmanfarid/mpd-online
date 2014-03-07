@@ -56,7 +56,7 @@ CASE WHEN cust_account.p_account_status_id = 1 THEN '1' ELSE '2' END" parameterT
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="80" variable="status_id" parameterType="URL" defaultValue="0" dataType="Text" parameterSource="status_id" designDefaultValue="1"/>
+				<SQLParameter id="80" variable="status_id" parameterType="Expression" defaultValue="1" dataType="Text" parameterSource="1" designDefaultValue="1"/>
 			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -64,7 +64,7 @@ CASE WHEN cust_account.p_account_status_id = 1 THEN '1' ELSE '2' END" parameterT
 		</Grid>
 		<Record id="81" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="hiddenForm" actionPage="t_status_pelaporan_wp_detil" errorSummator="Error" wizardFormMethod="post" PathID="hiddenForm">
 			<Components>
-				<Hidden id="82" fieldSourceType="DBColumn" dataType="Text" name="status_id" PathID="hiddenFormstatus_id" fieldSource="status_id">
+				<Hidden id="82" fieldSourceType="DBColumn" dataType="Text" name="status_id" PathID="hiddenFormstatus_id" fieldSource="status_id" defaultValue="1">
 					<Components/>
 					<Events/>
 					<Attributes/>

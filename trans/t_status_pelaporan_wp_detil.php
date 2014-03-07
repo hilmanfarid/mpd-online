@@ -86,7 +86,7 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
     }
 //End Initialize Method
 
-//Show Method @2-4B79C697
+//Show Method @2-E23B1D97
     function Show()
     {
         global $Tpl;
@@ -95,7 +95,7 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urlstatus_id"] = CCGetFromGet("status_id", NULL);
+        $this->DataSource->Parameters["expr80"] = 1;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -215,13 +215,13 @@ class clst_laporan_status_wp_detilDataSource extends clsDBConnSIKP {  //t_lapora
     }
 //End SetOrder Method
 
-//Prepare Method @2-1F471024
+//Prepare Method @2-84FF4723
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlstatus_id", ccsText, "", "", $this->Parameters["urlstatus_id"], 0, false);
+        $this->wp->AddParameter("1", "expr80", ccsText, "", "", $this->Parameters["expr80"], 1, false);
     }
 //End Prepare Method
 
@@ -314,7 +314,7 @@ class clsRecordhiddenForm { //hiddenForm Class @81-A98E3296
     // Class variables
 //End Variables
 
-//Class_Initialize Event @81-3FCCD65D
+//Class_Initialize Event @81-2196F5CA
     function clsRecordhiddenForm($RelativePath, & $Parent)
     {
 
@@ -339,6 +339,10 @@ class clsRecordhiddenForm { //hiddenForm Class @81-A98E3296
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->status_id = & new clsControl(ccsHidden, "status_id", "status_id", ccsText, "", CCGetRequestParam("status_id", $Method, NULL), $this);
+            if(!$this->FormSubmitted) {
+                if(!is_array($this->status_id->Value) && !strlen($this->status_id->Value) && $this->status_id->Value !== false)
+                    $this->status_id->SetText(1);
+            }
         }
     }
 //End Class_Initialize Event
