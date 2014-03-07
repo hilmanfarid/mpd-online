@@ -42,7 +42,7 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-4E8B8FB3
+//Class_Initialize Event @2-07FCF00D
     function clsGridt_laporan_status_wp_detil($RelativePath, & $Parent)
     {
         global $FileName;
@@ -71,6 +71,7 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
 
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
         $this->jumlah = & new clsControl(ccsLabel, "jumlah", "jumlah", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("jumlah", ccsGet, NULL), $this);
+        $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -85,7 +86,7 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
     }
 //End Initialize Method
 
-//Show Method @2-01050D2E
+//Show Method @2-4B79C697
     function Show()
     {
         global $Tpl;
@@ -116,6 +117,7 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
         if (!$this->IsEmpty) {
             $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
             $this->ControlsVisible["jumlah"] = $this->jumlah->Visible;
+            $this->ControlsVisible["p_vat_type_id"] = $this->p_vat_type_id->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -125,11 +127,13 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
                 $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
                 $this->jumlah->SetValue($this->DataSource->jumlah->GetValue());
+                $this->p_vat_type_id->SetValue($this->DataSource->p_vat_type_id->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
                 $this->vat_code->Show();
                 $this->jumlah->Show();
+                $this->p_vat_type_id->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -152,12 +156,13 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
     }
 //End Show Method
 
-//GetErrors Method @2-75A47CC6
+//GetErrors Method @2-99780416
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->jumlah->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->p_vat_type_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -168,7 +173,7 @@ class clsGridt_laporan_status_wp_detil { //t_laporan_status_wp_detil class @2-FB
 
 class clst_laporan_status_wp_detilDataSource extends clsDBConnSIKP {  //t_laporan_status_wp_detilDataSource Class @2-B3585EF2
 
-//DataSource Variables @2-D163FD35
+//DataSource Variables @2-9FDFA302
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -182,9 +187,10 @@ class clst_laporan_status_wp_detilDataSource extends clsDBConnSIKP {  //t_lapora
     // Datasource fields
     var $vat_code;
     var $jumlah;
+    var $p_vat_type_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-5C461F97
+//DataSourceClass_Initialize Event @2-06BD2D1F
     function clst_laporan_status_wp_detilDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -193,6 +199,8 @@ class clst_laporan_status_wp_detilDataSource extends clsDBConnSIKP {  //t_lapora
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
         $this->jumlah = new clsField("jumlah", ccsFloat, "");
+        
+        $this->p_vat_type_id = new clsField("p_vat_type_id", ccsText, "");
         
 
     }
@@ -217,13 +225,14 @@ class clst_laporan_status_wp_detilDataSource extends clsDBConnSIKP {  //t_lapora
     }
 //End Prepare Method
 
-//Open Method @2-E78BE6A9
+//Open Method @2-372E2316
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (SELECT\n" .
         "	CASE WHEN cust_account.p_account_status_id = 1 THEN '1' ELSE '2' END as status,\n" .
         "	vat_type.vat_code,\n" .
+        "	vat_type.p_vat_type_id,\n" .
         "	COUNT (*) as jumlah\n" .
         "FROM\n" .
         "	t_cust_account cust_account\n" .
@@ -232,10 +241,12 @@ class clst_laporan_status_wp_detilDataSource extends clsDBConnSIKP {  //t_lapora
         "WHERE CASE WHEN cust_account.p_account_status_id = 1 THEN '1' ELSE '2' END = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "\n" .
         "GROUP BY\n" .
         "	vat_type.vat_code,\n" .
+        "	vat_type.p_vat_type_id,\n" .
         "CASE WHEN cust_account.p_account_status_id = 1 THEN '1' ELSE '2' END) cnt";
         $this->SQL = "SELECT\n" .
         "	CASE WHEN cust_account.p_account_status_id = 1 THEN '1' ELSE '2' END as status,\n" .
         "	vat_type.vat_code,\n" .
+        "	vat_type.p_vat_type_id,\n" .
         "	COUNT (*) as jumlah\n" .
         "FROM\n" .
         "	t_cust_account cust_account\n" .
@@ -244,6 +255,7 @@ class clst_laporan_status_wp_detilDataSource extends clsDBConnSIKP {  //t_lapora
         "WHERE CASE WHEN cust_account.p_account_status_id = 1 THEN '1' ELSE '2' END = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "\n" .
         "GROUP BY\n" .
         "	vat_type.vat_code,\n" .
+        "	vat_type.p_vat_type_id,\n" .
         "CASE WHEN cust_account.p_account_status_id = 1 THEN '1' ELSE '2' END";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -255,11 +267,12 @@ class clst_laporan_status_wp_detilDataSource extends clsDBConnSIKP {  //t_lapora
     }
 //End Open Method
 
-//SetValues Method @2-9AC03A89
+//SetValues Method @2-FC5A6B12
     function SetValues()
     {
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->jumlah->SetDBValue(trim($this->f("jumlah")));
+        $this->p_vat_type_id->SetDBValue($this->f("p_vat_type_id"));
     }
 //End SetValues Method
 
