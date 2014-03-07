@@ -8,7 +8,16 @@
 <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 <script src="../js/highcharts.js"></script>
 <script src="../js/exporting.js"></script>
+<style>
+	#linkWp:hover{
+		color:red;
+	}
+</style>
 <script>
+	function cetakAllWp(vat_type){
+		var params = "?p_vat_type_id="+vat_type;
+                window.open("../report/cetak_status_wp_detil.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+	}
     $(function () {
         $.getJSON( "../services/t_status_pelaporan_wp_detil.php?status_id="+document.getElementById('hiddenFormstatus_id').value, function( items ) {
                         jumlah=[];
@@ -67,12 +76,12 @@
     });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        JUMLAH WP&nbsp;
+        JUMLAH WP&nbsp; 
       </div>
     </div>
   </div>
@@ -100,7 +109,7 @@
  
             <!-- BEGIN Row -->
             <tr {t_laporan_status_wp_detil:rowStyle}>
-              <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid">{vat_code} </td> 
+              <td id="linkWp" onClick="cetakAllWp({p_vat_type_id})" style="BORDER-BOTTOM: #dcdcdc 1px solid;cursor: pointer; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid">{vat_code} <input id="t_laporan_status_wp_detilp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td> 
               <td style="BORDER-BOTTOM: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid; BORDER-TOP: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid">{jumlah} </td>
             </tr>
  <!-- END Row -->
