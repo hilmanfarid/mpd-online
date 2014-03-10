@@ -15,7 +15,7 @@
 					<Features/>
 				</TextArea>
 				<ListBox id="39" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_account_status_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_cust_acc_status_editFormp_account_status_id" connection="ConnSIKP" dataSource="select * from p_account_status
-where p_account_status_id in (1,5,4)" boundColumn="p_account_status_id" textColumn="code">
+where p_account_status_id in (1,5,3)" boundColumn="p_account_status_id" textColumn="code">
 					<Components/>
 					<Events/>
 					<TableParameters/>

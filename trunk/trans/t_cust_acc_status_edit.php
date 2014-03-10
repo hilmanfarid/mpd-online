@@ -45,7 +45,7 @@ class clsRecordt_cust_acc_status_editForm { //t_cust_acc_status_editForm Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-85EB5FB0
+//Class_Initialize Event @3-DD1E3390
     function clsRecordt_cust_acc_status_editForm($RelativePath, & $Parent)
     {
 
@@ -82,7 +82,7 @@ class clsRecordt_cust_acc_status_editForm { //t_cust_acc_status_editForm Class @
             $this->p_account_status_id->ds = & $this->p_account_status_id->DataSource;
             list($this->p_account_status_id->BoundColumn, $this->p_account_status_id->TextColumn, $this->p_account_status_id->DBFormat) = array("p_account_status_id", "code", "");
             $this->p_account_status_id->DataSource->SQL = "select * from p_account_status\n" .
-            "where p_account_status_id in (1,5,4)";
+            "where p_account_status_id in (1,5,3)";
             $this->p_account_status_id->DataSource->Order = "";
             $this->valid_to = & new clsControl(ccsTextBox, "valid_to", "valid_to", ccsText, "", CCGetRequestParam("valid_to", $Method, NULL), $this);
             $this->valid_to->Required = true;
