@@ -262,9 +262,10 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_setllementForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_vat_setllementForm" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customUpdateType="SQL" dataSource="SELECT *
-FROM v_vat_setllement_ro
-WHERE t_customer_order_id = {thisFormParam}" customUpdate="UPDATE t_vat_setllement SET
+		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_setllementForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_vat_setllementForm" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customUpdateType="SQL" dataSource="select sett.*,vat_type.code||' '||dtl.code as no_ayat from v_vat_setllement_ro sett
+left join p_vat_type_dtl dtl on sett.p_vat_type_dtl_id = dtl.p_vat_type_dtl_id
+left join p_vat_type vat_type on vat_type.p_vat_type_id = dtl.p_vat_type_id
+where t_customer_order_id  = {thisFormParam}" customUpdate="UPDATE t_vat_setllement SET
 is_anomali = '{is_anomali}',
 no_kohir='{no_kohir}' 
 WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
@@ -389,31 +390,37 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="383" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register1" PathID="t_vat_setllementFormcetak_register1">
+				<Button id="383" urlType="Relative" enableValidation="True" isDefault="False" name="cetak_register1" PathID="t_vat_setllementFormcetak_register1">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-<Hidden id="385" fieldSourceType="CodeExpression" dataType="Text" name="user" PathID="t_vat_setllementFormuser" fieldSource="CCGetUserLogin()">
+				<Hidden id="385" fieldSourceType="CodeExpression" dataType="Text" name="user" PathID="t_vat_setllementFormuser" fieldSource="CCGetUserLogin()">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="386" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_penalty_amount" caption="Total Pajak" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_penalty_amount" format="#,##0.00" fieldSource="total_penalty_amount">
+				<TextBox id="386" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_penalty_amount" caption="Total Pajak" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_penalty_amount" format="#,##0.00" fieldSource="total_penalty_amount">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="387" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_total" caption="Total Pajak" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_total" format="#,##0.00" fieldSource="total_total">
+				<TextBox id="387" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="total_total" caption="Total Pajak" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormtotal_total" format="#,##0.00" fieldSource="total_total">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="388" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="receipt_no" fieldSource="receipt_no" caption="Nomor Order" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormreceipt_no">
+				<TextBox id="388" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="receipt_no" fieldSource="receipt_no" caption="Nomor Order" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormreceipt_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="389" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="no_ayat" fieldSource="no_ayat" caption="no_ayat" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormno_ayat">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -421,16 +428,17 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 				</TextBox>
 </Components>
 			<Events>
-				<Event name="BeforeShow" type="Server"><Actions>
-<Action actionName="Custom Code" actionCategory="General" id="380" eventType="Server"/>
-</Actions>
-</Event>
-<Event name="BeforeSelect" type="Server">
+				<Event name="BeforeShow" type="Server">
 <Actions>
-<Action actionName="Custom Code" actionCategory="General" id="381" eventType="Server"/>
-</Actions>
-</Event>
-</Events>
+						<Action actionName="Custom Code" actionCategory="General" id="380" eventType="Server"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="381" eventType="Server"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="333" conditionType="Parameter" useIsNull="False" field="t_vat_setllement_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_vat_setllement_id"/>
 			</TableParameters>
@@ -540,9 +548,9 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 			</Actions>
 		</Event>
 		<Event name="BeforeInitialize" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="384"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="384"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
