@@ -37,6 +37,7 @@ WHERE
 	EXTRACT (YEAR FROM rep.settlement_date) = $year_date
 	order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 }
+//die($query);
 $dbConn->query($query);
 $tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
 $tgl_penerimaan_last = str_replace("'", "", $tgl_penerimaan_last);
