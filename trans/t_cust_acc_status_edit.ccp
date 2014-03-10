@@ -14,37 +14,38 @@
 					<Attributes/>
 					<Features/>
 				</TextArea>
-				<ListBox id="39" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_account_status_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_cust_acc_status_editFormp_account_status_id" connection="ConnSIKP" dataSource="select * from p_account_status" boundColumn="p_account_status_id" textColumn="code">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
-<TextBox id="14" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="valid_to" format="dd-mm-yyyy" required="True" PathID="t_cust_acc_status_editFormvalid_to">
+				<ListBox id="39" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_account_status_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_cust_acc_status_editFormp_account_status_id" connection="ConnSIKP" dataSource="select * from p_account_status
+where p_account_status_id in (1,5,4)" boundColumn="p_account_status_id" textColumn="code">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<TextBox id="14" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="valid_to" format="dd-mm-yyyy" required="True" PathID="t_cust_acc_status_editFormvalid_to">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="15" name="DatePicker_date_start_laporan1" style="../Styles/sikp/Style.css" control="valid_to" PathID="t_cust_acc_status_editFormDatePicker_date_start_laporan1">
+				<DatePicker id="15" name="DatePicker_date_start_laporan1" style="../Styles/sikp/Style.css" control="valid_to" PathID="t_cust_acc_status_editFormDatePicker_date_start_laporan1">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<Hidden id="7" fieldSourceType="DBColumn" dataType="Text" name="t_cust_account_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_acc_status_editFormt_cust_account_id" fieldSource="t_cust_account_id">
+				<Hidden id="7" fieldSourceType="DBColumn" dataType="Text" name="t_cust_account_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_acc_status_editFormt_cust_account_id" fieldSource="t_cust_account_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -68,7 +69,7 @@
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="40" variable="t_cust_account_id" parameterType="URL" defaultValue="0" dataType="Integer" parameterSource="t_cust_account_id"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables/>
 			<JoinLinks/>
 			<Fields/>
@@ -85,11 +86,11 @@
 			<USPParameters/>
 			<USQLParameters>
 				<SQLParameter id="41" variable="t_cust_account_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_cust_account_id"/>
-<SQLParameter id="42" variable="p_account_status_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_account_status_id"/>
-<SQLParameter id="43" variable="description" parameterType="Control" dataType="Text" parameterSource="description"/>
-<SQLParameter id="44" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
-<SQLParameter id="45" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
-</USQLParameters>
+				<SQLParameter id="42" variable="p_account_status_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_account_status_id"/>
+				<SQLParameter id="43" variable="description" parameterType="Control" dataType="Text" parameterSource="description"/>
+				<SQLParameter id="44" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
+				<SQLParameter id="45" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
+			</USQLParameters>
 			<UConditions/>
 			<UFormElements>
 				<CustomParameter id="11" field="t_vat_setllement_id" dataType="Text" parameterType="Control" parameterSource="t_vat_setllement_id"/>
