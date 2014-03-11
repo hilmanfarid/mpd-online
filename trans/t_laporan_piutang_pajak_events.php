@@ -28,7 +28,7 @@ function Page_BeforeShow(& $sender)
 		$param_arr=array();
 		$param_arr['year_period_id']=$t_laporan_piutang_pajak->p_year_period_id->GetValue();
 		$param_arr['p_vat_type_id']=$t_laporan_piutang_pajak->p_vat_type_id->GetValue();
-		
+		$param_arr['year_code']=$t_laporan_piutang_pajak->year_code->GetValue();
 		print_laporan($param_arr);
 		exit;
 	}
@@ -70,7 +70,7 @@ function print_laporan($param_arr){
 	/*echo '<pre>';
 	print_r($param_arr);
 	exit;*/
-	$query="select *,to_char(tgl_tap,'dd-mm-yyyy') as tgl_tap_formated,to_char(tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated from t_piutang_pajak_penetapan where p_vat_type_id=".$param_arr['p_vat_type_id']." and p_year_period_id = ".$param_arr['year_period_id'];
+	$query="select *,to_char(tgl_tap,'dd-mm-yyyy') as tgl_tap_formated,to_char(tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated from t_piutang_pajak_penetapan_final where p_vat_type_id=".$param_arr['p_vat_type_id']." and p_year_period_id = ".$param_arr['year_period_id'];
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
