@@ -6,7 +6,7 @@ LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
 LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
 
 WHERE upper(a.company_owner) like upper('%{s_keyword}%') 
-       or upper(a.address_name_owner) like upper('%{s_keyword}%')
+       and upper(a.address_name_owner) like upper('%{s_keyword}%')
        and upper(b.npwd) like upper('%{s_npwd}%')
        and upper(b.wp_name) like upper('%{s_wp_name}%')
        and upper(b.company_name) like upper('%{s_company_name}%')
