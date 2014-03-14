@@ -1,17 +1,16 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select *
-from t_customer a 
-where (upper(a.company_owner) like upper('%{s_keyword}%') 
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, c.vat_code
+FROM t_customer a
+LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
+LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
+
+WHERE upper(a.company_owner) like upper('%{s_keyword}%') 
        or upper(a.address_name_owner) like upper('%{s_keyword}%')
-       )
-       and exists (select 1 from t_cust_account x
-                   where x.t_customer_id = a.t_customer_id 
-                        and upper(x.npwd) like upper('%{s_npwd}%')
-                        and upper(x.wp_name) like upper('%{s_wp_name}%')
-                        and upper(x.company_name) like upper('%{s_company_name}%')
-                        and upper(x.company_brand) like upper('%{s_company_brand}%')
-                  )">
+       and upper(b.npwd) like upper('%{s_npwd}%')
+       and upper(b.wp_name) like upper('%{s_wp_name}%')
+       and upper(b.company_name) like upper('%{s_company_name}%')
+       and upper(b.company_brand) like upper('%{s_company_brand}%')">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_customer.ccp" wizardThemeItem="GridA" PathID="t_customerGridDLink" removeParameters="FLAG">
 					<Components/>
@@ -86,7 +85,13 @@ where (upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="523" fieldSourceType="DBColumn" dataType="Text" html="False" name="vat_code" fieldSource="vat_code" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridvat_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
