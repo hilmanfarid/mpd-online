@@ -309,7 +309,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End Prepare Method
 
-//Open Method @2-59DB2758
+//Open Method @2-D35A7F53
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -319,7 +319,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
         "\n" .
         "WHERE upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
-        "       or upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        "       and upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         "       and upper(b.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
         "       and upper(b.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
         "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
@@ -330,7 +330,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
         "\n" .
         "WHERE upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
-        "       or upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        "       and upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         "       and upper(b.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
         "       and upper(b.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
         "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
