@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-2DEB5BBE
+//Class_Initialize Event @2-C3D7B389
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -74,7 +74,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->DLink->Page = "t_vat_setllement_ro_modifikasi.php";
         $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
         $this->finance_period_code = & new clsControl(ccsLabel, "finance_period_code", "finance_period_code", ccsText, "", CCGetRequestParam("finance_period_code", ccsGet, NULL), $this);
-        $this->order_no = & new clsControl(ccsLabel, "order_no", "order_no", ccsText, "", CCGetRequestParam("order_no", ccsGet, NULL), $this);
+        $this->order_no = & new clsControl(ccsHidden, "order_no", "order_no", ccsText, "", CCGetRequestParam("order_no", ccsGet, NULL), $this);
         $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "t_vat_setllement_id", ccsFloat, "", CCGetRequestParam("t_vat_setllement_id", ccsGet, NULL), $this);
         $this->total_trans_amount = & new clsControl(ccsLabel, "total_trans_amount", "total_trans_amount", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("total_trans_amount", ccsGet, NULL), $this);
         $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsFloat, "", CCGetRequestParam("p_rqst_type_id", ccsGet, NULL), $this);
@@ -89,6 +89,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->BtnHapusTransaksi = & new clsButton("BtnHapusTransaksi", ccsGet, $this);
         $this->BtnUbahAyat = & new clsButton("BtnUbahAyat", ccsGet, $this);
         $this->BtnUbahTgl = & new clsButton("BtnUbahTgl", ccsGet, $this);
+        $this->sett_code = & new clsControl(ccsLabel, "sett_code", "sett_code", ccsText, "", CCGetRequestParam("sett_code", ccsGet, NULL), $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -106,7 +107,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-6B044EF6
+//Show Method @2-199DAAE6
     function Show()
     {
         global $Tpl;
@@ -153,6 +154,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["BtnHapusTransaksi"] = $this->BtnHapusTransaksi->Visible;
             $this->ControlsVisible["BtnUbahAyat"] = $this->BtnUbahAyat->Visible;
             $this->ControlsVisible["BtnUbahTgl"] = $this->BtnUbahTgl->Visible;
+            $this->ControlsVisible["sett_code"] = $this->sett_code->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -174,6 +176,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
                 $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
                 $this->total_penalty_amount->SetValue($this->DataSource->total_penalty_amount->GetValue());
+                $this->sett_code->SetValue($this->DataSource->sett_code->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -195,6 +198,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->BtnHapusTransaksi->Show();
                 $this->BtnUbahAyat->Show();
                 $this->BtnUbahTgl->Show();
+                $this->sett_code->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -228,7 +232,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Show Method
 
-//GetErrors Method @2-A8A27C4D
+//GetErrors Method @2-F36CD2E4
     function GetErrors()
     {
         $errors = "";
@@ -245,6 +249,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_customer_order_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->total_penalty_amount->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->sett_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -255,7 +260,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
 class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllementGridDataSource Class @2-F0AECE38
 
-//DataSource Variables @2-DD4850F9
+//DataSource Variables @2-4FC44507
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -279,9 +284,10 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $wp_name;
     var $t_customer_order_id;
     var $total_penalty_amount;
+    var $sett_code;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-BDCBEB97
+//DataSourceClass_Initialize Event @2-882CBA5E
     function clst_vat_setllementGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -311,6 +317,8 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->total_penalty_amount = new clsField("total_penalty_amount", ccsFloat, "");
         
+        $this->sett_code = new clsField("sett_code", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -334,32 +342,34 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @2-DAE38A2F
+//Open Method @2-ADBEC6D5
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT a.no_kohir,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, \n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, \n" .
         "a.settlement_date, a.p_finance_period_id, \n" .
         "a.t_cust_account_id, a.npwd, a.total_trans_amount,\n" .
         "a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id\n" .
-        "FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e\n" .
+        "FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e,p_settlement_type sett_type\n" .
         "WHERE a.p_finance_period_id = b.p_finance_period_id AND\n" .
         "a.t_customer_order_id = c.t_customer_order_id AND\n" .
         "a.t_cust_account_id = d.t_cust_account_id AND\n" .
         "c.p_rqst_type_id = e.p_rqst_type_id AND\n" .
+        "sett_type.p_settlement_type_id = a.p_settlement_type_id(+) AND\n" .
         "( upper(d.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
         "  upper(a.npwd) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
         "  upper(a.no_kohir) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         ")) cnt";
-        $this->SQL = "SELECT a.no_kohir,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, \n" .
+        $this->SQL = "SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, \n" .
         "a.settlement_date, a.p_finance_period_id, \n" .
         "a.t_cust_account_id, a.npwd, a.total_trans_amount,\n" .
         "a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id\n" .
-        "FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e\n" .
+        "FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e,p_settlement_type sett_type\n" .
         "WHERE a.p_finance_period_id = b.p_finance_period_id AND\n" .
         "a.t_customer_order_id = c.t_customer_order_id AND\n" .
         "a.t_cust_account_id = d.t_cust_account_id AND\n" .
         "c.p_rqst_type_id = e.p_rqst_type_id AND\n" .
+        "sett_type.p_settlement_type_id = a.p_settlement_type_id(+) AND\n" .
         "( upper(d.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
         "  upper(a.npwd) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
         "  upper(a.no_kohir) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
@@ -374,7 +384,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @2-063E86C3
+//SetValues Method @2-9B144063
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
@@ -389,6 +399,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->t_customer_order_id->SetDBValue(trim($this->f("t_customer_order_id")));
         $this->total_penalty_amount->SetDBValue(trim($this->f("total_penalty_amount")));
+        $this->sett_code->SetDBValue($this->f("sett_code"));
     }
 //End SetValues Method
 
