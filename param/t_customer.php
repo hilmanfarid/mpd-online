@@ -42,7 +42,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-1D9906F2
+//Class_Initialize Event @2-3917530A
     function clsGridt_customerGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -82,6 +82,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
         $this->address_no_owner = & new clsControl(ccsLabel, "address_no_owner", "address_no_owner", ccsText, "", CCGetRequestParam("address_no_owner", ccsGet, NULL), $this);
         $this->address_rt_owner = & new clsControl(ccsLabel, "address_rt_owner", "address_rt_owner", ccsText, "", CCGetRequestParam("address_rt_owner", ccsGet, NULL), $this);
         $this->address_rw_owner = & new clsControl(ccsLabel, "address_rw_owner", "address_rw_owner", ccsText, "", CCGetRequestParam("address_rw_owner", ccsGet, NULL), $this);
+        $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -98,7 +99,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     }
 //End Initialize Method
 
-//Show Method @2-F9707E88
+//Show Method @2-5652C8BF
     function Show()
     {
         global $Tpl;
@@ -141,6 +142,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
             $this->ControlsVisible["address_no_owner"] = $this->address_no_owner->Visible;
             $this->ControlsVisible["address_rt_owner"] = $this->address_rt_owner->Visible;
             $this->ControlsVisible["address_rw_owner"] = $this->address_rw_owner->Visible;
+            $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -161,6 +163,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
                 $this->address_no_owner->SetValue($this->DataSource->address_no_owner->GetValue());
                 $this->address_rt_owner->SetValue($this->DataSource->address_rt_owner->GetValue());
                 $this->address_rw_owner->SetValue($this->DataSource->address_rw_owner->GetValue());
+                $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -174,6 +177,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
                 $this->address_no_owner->Show();
                 $this->address_rt_owner->Show();
                 $this->address_rw_owner->Show();
+                $this->vat_code->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -206,7 +210,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     }
 //End Show Method
 
-//GetErrors Method @2-4BFDA850
+//GetErrors Method @2-B1101C19
     function GetErrors()
     {
         $errors = "";
@@ -220,6 +224,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
         $errors = ComposeStrings($errors, $this->address_no_owner->Errors->ToString());
         $errors = ComposeStrings($errors, $this->address_rt_owner->Errors->ToString());
         $errors = ComposeStrings($errors, $this->address_rw_owner->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -230,7 +235,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
 
 class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataSource Class @2-DC00010F
 
-//DataSource Variables @2-8411FB00
+//DataSource Variables @2-D26CDEDC
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -250,9 +255,10 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     var $address_no_owner;
     var $address_rt_owner;
     var $address_rw_owner;
+    var $vat_code;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-B93A5B6E
+//DataSourceClass_Initialize Event @2-084494A2
     function clst_customerGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -273,6 +279,8 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         $this->address_rt_owner = new clsField("address_rt_owner", ccsText, "");
         
         $this->address_rw_owner = new clsField("address_rw_owner", ccsText, "");
+        
+        $this->vat_code = new clsField("vat_code", ccsText, "");
         
 
     }
@@ -301,34 +309,32 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End Prepare Method
 
-//Open Method @2-48E7C419
+//Open Method @2-59DB2758
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select *\n" .
-        "from t_customer a \n" .
-        "where (upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select a.*, c.vat_code\n" .
+        "FROM t_customer a\n" .
+        "LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id\n" .
+        "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
+        "\n" .
+        "WHERE upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
         "       or upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
-        "       )\n" .
-        "       and exists (select 1 from t_cust_account x\n" .
-        "                   where x.t_customer_id = a.t_customer_id \n" .
-        "                        and upper(x.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
-        "                        and upper(x.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
-        "                        and upper(x.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
-        "                        and upper(x.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
-        "                  )) cnt";
-        $this->SQL = "select *\n" .
-        "from t_customer a \n" .
-        "where (upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
+        "       and upper(b.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
+        "       and upper(b.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
+        "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
+        "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')) cnt";
+        $this->SQL = "select a.*, c.vat_code\n" .
+        "FROM t_customer a\n" .
+        "LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id\n" .
+        "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
+        "\n" .
+        "WHERE upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
         "       or upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
-        "       )\n" .
-        "       and exists (select 1 from t_cust_account x\n" .
-        "                   where x.t_customer_id = a.t_customer_id \n" .
-        "                        and upper(x.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
-        "                        and upper(x.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
-        "                        and upper(x.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
-        "                        and upper(x.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
-        "                  )";
+        "       and upper(b.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
+        "       and upper(b.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
+        "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
+        "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -339,7 +345,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End Open Method
 
-//SetValues Method @2-13F669CF
+//SetValues Method @2-8BEFBBC5
     function SetValues()
     {
         $this->company_owner->SetDBValue($this->f("company_owner"));
@@ -350,6 +356,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         $this->address_no_owner->SetDBValue($this->f("address_no_owner"));
         $this->address_rt_owner->SetDBValue($this->f("address_rt_owner"));
         $this->address_rw_owner->SetDBValue($this->f("address_rw_owner"));
+        $this->vat_code->SetDBValue($this->f("vat_code"));
     }
 //End SetValues Method
 
