@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, b.npwd, c.vat_code, d.vat_code as detail_pajak_code
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, b.npwd, c.vat_code, d.vat_code as nama_ayat
 FROM t_customer a
 LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
 LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
@@ -12,7 +12,8 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
        and upper(b.wp_name) like upper('%{s_wp_name}%')
        and upper(b.company_name) like upper('%{s_company_name}%')
        and upper(b.company_brand) like upper('%{s_company_brand}%')
-	   and b.p_vat_type_id like '%{p_vat_type_id}%'">
+	   and b.p_vat_type_id like '%{p_vat_type_id}%'
+	   and b.p_vat_type_dtl_id like '%{p_vat_type_dtl_id}%'">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_customer_report.ccp" wizardThemeItem="GridA" PathID="t_customerGridDLink" removeParameters="FLAG">
 					<Components/>
@@ -93,19 +94,19 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="524" fieldSourceType="DBColumn" dataType="Text" html="False" name="detail_pajak_code" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGriddetail_pajak_code" fieldSource="detail_pajak_code">
+				<Label id="524" fieldSourceType="DBColumn" dataType="Text" html="False" name="nama_ayat" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridnama_ayat" fieldSource="nama_ayat">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="525" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwd" fieldSource="npwd" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridnpwd">
+				<Label id="525" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwd" fieldSource="npwd" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridnpwd">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -134,6 +135,7 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 				<SQLParameter id="485" variable="s_company_name" parameterType="URL" dataType="Text" parameterSource="s_company_name"/>
 				<SQLParameter id="486" variable="s_company_brand" parameterType="URL" dataType="Text" parameterSource="s_company_brand"/>
 				<SQLParameter id="529" variable="p_vat_type_id" parameterType="URL" dataType="Text" parameterSource="p_vat_type_id"/>
+				<SQLParameter id="536" variable="p_vat_type_dtl_id" parameterType="URL" dataType="Text" parameterSource="p_vat_type_dtl_id"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
@@ -183,26 +185,38 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="528" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customerSearchp_vat_type_id" fieldSource="p_vat_type_id">
+				<Hidden id="528" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customerSearchp_vat_type_id" fieldSource="p_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Button id="530" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoPrint" wizardCaption="Search" PathID="t_customerSearchButton_DoPrint">
+				<Button id="530" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoPrint" wizardCaption="Search" PathID="t_customerSearchButton_DoPrint">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
+				<TextBox id="533" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_ayat" fieldSource="nama_ayat" required="False" caption="Nama Ayat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_customerSearchnama_ayat">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Hidden id="535" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customerSearchp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 </Components>
 			<Events>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="532"/>
-</Actions>
-</Event>
-</Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="532"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters/>
