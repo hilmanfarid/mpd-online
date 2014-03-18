@@ -45,6 +45,7 @@ function LOV_AfterInsert(& $sender)
 	
     echo "<script> 
 		alert('".$row['msg']."');
+		window.opener.location.reload();
 		window.close();
 	</script>";
 	exit;
