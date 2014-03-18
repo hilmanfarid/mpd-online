@@ -42,7 +42,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-87D9EDD0
+//Class_Initialize Event @2-46FA97AB
     function clsGridt_customerGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -83,7 +83,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
         $this->address_rt_owner = & new clsControl(ccsLabel, "address_rt_owner", "address_rt_owner", ccsText, "", CCGetRequestParam("address_rt_owner", ccsGet, NULL), $this);
         $this->address_rw_owner = & new clsControl(ccsLabel, "address_rw_owner", "address_rw_owner", ccsText, "", CCGetRequestParam("address_rw_owner", ccsGet, NULL), $this);
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
-        $this->detail_pajak_code = & new clsControl(ccsLabel, "detail_pajak_code", "detail_pajak_code", ccsText, "", CCGetRequestParam("detail_pajak_code", ccsGet, NULL), $this);
+        $this->nama_ayat = & new clsControl(ccsLabel, "nama_ayat", "nama_ayat", ccsText, "", CCGetRequestParam("nama_ayat", ccsGet, NULL), $this);
         $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -101,7 +101,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     }
 //End Initialize Method
 
-//Show Method @2-AD24E1BB
+//Show Method @2-FC7D4875
     function Show()
     {
         global $Tpl;
@@ -116,6 +116,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
         $this->DataSource->Parameters["urls_company_name"] = CCGetFromGet("s_company_name", NULL);
         $this->DataSource->Parameters["urls_company_brand"] = CCGetFromGet("s_company_brand", NULL);
         $this->DataSource->Parameters["urlp_vat_type_id"] = CCGetFromGet("p_vat_type_id", NULL);
+        $this->DataSource->Parameters["urlp_vat_type_dtl_id"] = CCGetFromGet("p_vat_type_dtl_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -146,7 +147,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
             $this->ControlsVisible["address_rt_owner"] = $this->address_rt_owner->Visible;
             $this->ControlsVisible["address_rw_owner"] = $this->address_rw_owner->Visible;
             $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
-            $this->ControlsVisible["detail_pajak_code"] = $this->detail_pajak_code->Visible;
+            $this->ControlsVisible["nama_ayat"] = $this->nama_ayat->Visible;
             $this->ControlsVisible["npwd"] = $this->npwd->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
@@ -169,7 +170,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
                 $this->address_rt_owner->SetValue($this->DataSource->address_rt_owner->GetValue());
                 $this->address_rw_owner->SetValue($this->DataSource->address_rw_owner->GetValue());
                 $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
-                $this->detail_pajak_code->SetValue($this->DataSource->detail_pajak_code->GetValue());
+                $this->nama_ayat->SetValue($this->DataSource->nama_ayat->GetValue());
                 $this->npwd->SetValue($this->DataSource->npwd->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
@@ -185,7 +186,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
                 $this->address_rt_owner->Show();
                 $this->address_rw_owner->Show();
                 $this->vat_code->Show();
-                $this->detail_pajak_code->Show();
+                $this->nama_ayat->Show();
                 $this->npwd->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
@@ -219,7 +220,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     }
 //End Show Method
 
-//GetErrors Method @2-A09C0198
+//GetErrors Method @2-D5C8E3DF
     function GetErrors()
     {
         $errors = "";
@@ -234,7 +235,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
         $errors = ComposeStrings($errors, $this->address_rt_owner->Errors->ToString());
         $errors = ComposeStrings($errors, $this->address_rw_owner->Errors->ToString());
         $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->detail_pajak_code->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->nama_ayat->Errors->ToString());
         $errors = ComposeStrings($errors, $this->npwd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
@@ -246,7 +247,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
 
 class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataSource Class @2-DC00010F
 
-//DataSource Variables @2-8D3988BC
+//DataSource Variables @2-D256020D
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -267,11 +268,11 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     var $address_rt_owner;
     var $address_rw_owner;
     var $vat_code;
-    var $detail_pajak_code;
+    var $nama_ayat;
     var $npwd;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-CEFD4250
+//DataSourceClass_Initialize Event @2-0860F2C1
     function clst_customerGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -295,7 +296,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
-        $this->detail_pajak_code = new clsField("detail_pajak_code", ccsText, "");
+        $this->nama_ayat = new clsField("nama_ayat", ccsText, "");
         
         $this->npwd = new clsField("npwd", ccsText, "");
         
@@ -312,7 +313,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End SetOrder Method
 
-//Prepare Method @2-D7B50F3F
+//Prepare Method @2-E9065F00
     function Prepare()
     {
         global $CCSLocales;
@@ -324,14 +325,15 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         $this->wp->AddParameter("4", "urls_company_name", ccsText, "", "", $this->Parameters["urls_company_name"], "", false);
         $this->wp->AddParameter("5", "urls_company_brand", ccsText, "", "", $this->Parameters["urls_company_brand"], "", false);
         $this->wp->AddParameter("6", "urlp_vat_type_id", ccsText, "", "", $this->Parameters["urlp_vat_type_id"], "", false);
+        $this->wp->AddParameter("7", "urlp_vat_type_dtl_id", ccsText, "", "", $this->Parameters["urlp_vat_type_dtl_id"], "", false);
     }
 //End Prepare Method
 
-//Open Method @2-04109B0D
+//Open Method @2-58F1AF4D
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select a.*, b.npwd, c.vat_code, d.vat_code as detail_pajak_code\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select a.*, b.npwd, c.vat_code, d.vat_code as nama_ayat\n" .
         "FROM t_customer a\n" .
         "LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id\n" .
         "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
@@ -343,8 +345,9 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         "       and upper(b.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
         "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
         "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
-        "	   and b.p_vat_type_id like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%') cnt";
-        $this->SQL = "select a.*, b.npwd, c.vat_code, d.vat_code as detail_pajak_code\n" .
+        "	   and b.p_vat_type_id like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%'\n" .
+        "	   and b.p_vat_type_dtl_id like '%" . $this->SQLValue($this->wp->GetDBValue("7"), ccsText) . "%') cnt";
+        $this->SQL = "select a.*, b.npwd, c.vat_code, d.vat_code as nama_ayat\n" .
         "FROM t_customer a\n" .
         "LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id\n" .
         "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
@@ -356,7 +359,8 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         "       and upper(b.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
         "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
         "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
-        "	   and b.p_vat_type_id like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%'";
+        "	   and b.p_vat_type_id like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%'\n" .
+        "	   and b.p_vat_type_dtl_id like '%" . $this->SQLValue($this->wp->GetDBValue("7"), ccsText) . "%'";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -367,7 +371,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End Open Method
 
-//SetValues Method @2-86D4D131
+//SetValues Method @2-A41827F5
     function SetValues()
     {
         $this->company_owner->SetDBValue($this->f("company_owner"));
@@ -379,7 +383,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         $this->address_rt_owner->SetDBValue($this->f("address_rt_owner"));
         $this->address_rw_owner->SetDBValue($this->f("address_rw_owner"));
         $this->vat_code->SetDBValue($this->f("vat_code"));
-        $this->detail_pajak_code->SetDBValue($this->f("detail_pajak_code"));
+        $this->nama_ayat->SetDBValue($this->f("nama_ayat"));
         $this->npwd->SetDBValue($this->f("npwd"));
     }
 //End SetValues Method
@@ -422,7 +426,7 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-7572121C
+//Class_Initialize Event @3-7D38D254
     function clsRecordt_customerSearch($RelativePath, & $Parent)
     {
 
@@ -455,12 +459,13 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Jenis Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->Button_DoPrint = & new clsButton("Button_DoPrint", $Method, $this);
-            $this->cetak_laporan = & new clsControl(ccsTextBox, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
+            $this->nama_ayat = & new clsControl(ccsTextBox, "nama_ayat", "Nama Ayat", ccsText, "", CCGetRequestParam("nama_ayat", $Method, NULL), $this);
+            $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-B262B9FB
+//Validate Method @3-7DAD9D8F
     function Validate()
     {
         global $CCSLocales;
@@ -473,7 +478,8 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
         $Validation = ($this->s_company_brand->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
-        $Validation = ($this->cetak_laporan->Validate() && $Validation);
+        $Validation = ($this->nama_ayat->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_npwd->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_wp_name->Errors->Count() == 0);
@@ -482,12 +488,13 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
         $Validation =  $Validation && ($this->s_company_brand->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_ayat->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-4B281603
+//CheckErrors Method @3-49F42259
     function CheckErrors()
     {
         $errors = false;
@@ -498,7 +505,8 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
         $errors = ($errors || $this->s_company_brand->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
-        $errors = ($errors || $this->cetak_laporan->Errors->Count());
+        $errors = ($errors || $this->nama_ayat->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -558,7 +566,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-E54FE432
+//Show Method @3-39CE5AB0
     function Show()
     {
         global $CCSUseAmp;
@@ -589,7 +597,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->s_company_brand->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_ayat->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -616,7 +625,8 @@ function GetPrimaryKey($keyName)
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
         $this->Button_DoPrint->Show();
-        $this->cetak_laporan->Show();
+        $this->nama_ayat->Show();
+        $this->p_vat_type_dtl_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
