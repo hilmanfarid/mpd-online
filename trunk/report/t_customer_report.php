@@ -7,6 +7,7 @@ include_once("../include/fpdf.php");
 
 $s_npwd = CCGetFromGet("s_npwd", "");
 $p_vat_type_id = CCGetFromGet("p_vat_type_id", "");
+$p_vat_type_dtl_id = CCGetFromGet("p_vat_type_dtl_id", "");
 $s_wp_name = CCGetFromGet("s_wp_name", "");
 $s_company_name = CCGetFromGet("s_company_name", "");
 $s_company_brand = CCGetFromGet("s_company_brand", "");
@@ -34,7 +35,9 @@ WHERE upper(a.company_owner) like upper('%$s_keyword%')
        and upper(b.wp_name) like upper('%$s_wp_name%')
        and upper(b.company_name) like upper('%$s_company_name%')
        and upper(b.company_brand) like upper('%$s_company_brand%')
-	   and b.p_vat_type_id like '%$p_vat_type_id%'";
+	   and b.p_vat_type_id like '%$p_vat_type_id%'
+	   and b.p_vat_type_dtl_id like '%$p_vat_type_dtl_id%'
+	   ";
 
 $dbConn->query($query);
 
@@ -99,7 +102,7 @@ class FormCetak extends FPDF {
 		$this->Cell($kol2, $this->height, "NPWD", 1, 0, 'C');
 		$this->Cell($kol3, $this->height, "Alamat", 1, 0, 'C');
 		$this->Cell($kol2, $this->height, "Jenis Pajak", 1, 0, 'C');
-		$this->Cell($kol2+10, $this->height, "Deskripsi", 1, 0, 'C');
+		$this->Cell($kol2+10, $this->height, "Ayat Pajak", 1, 0, 'C');
 		$this->Cell($kol2, $this->height, "No Selular", 1, 0, 'C');
 		$this->Cell($kol2, $this->height, "Email", 1, 0, 'C');
 		$this->Ln();
@@ -107,7 +110,7 @@ class FormCetak extends FPDF {
 
 		$this->SetFont('Arial', '', 8);
 		$this->SetWidths(array($kol1-7, $kol4, $kol2, $kol3, $kol2, $kol2+10, $kol2, $kol2));
-		$this->SetAligns(array("C", "L", "L", "L", "C", "C", "L", "L"));
+		$this->SetAligns(array("C", "L", "L", "L", "C", "L", "L", "L"));
 		for ($i=0; $i<count($data['company_owner']); $i++) {
 			$this->RowMultiBorderWithHeight(
 				array(
