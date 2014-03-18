@@ -72,7 +72,21 @@ function t_customerGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_customerGrid; //Compatibility
 //End t_customerGrid_BeforeSelect
-
+	
+	/*
+			select *
+			from t_customer a 
+			where (upper(a.company_owner) like upper('%{s_keyword}%') 
+			       or upper(a.address_name_owner) like upper('%{s_keyword}%')
+			       )
+	       and exists (select 1 from t_cust_account x
+	                   where x.t_customer_id = a.t_customer_id 
+	                        and upper(x.npwd) like upper('%{s_npwd}%')
+	                        and upper(x.wp_name) like upper('%{s_wp_name}%')
+	                        and upper(x.company_name) like upper('%{s_company_name}%')
+	                        and upper(x.company_brand) like upper('%{s_company_brand}%')
+                  		)
+	*/
 //Custom Code @129-2A29BDB7
 // -------------------------
     // Write your own code here.
