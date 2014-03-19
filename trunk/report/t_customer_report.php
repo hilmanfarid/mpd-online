@@ -37,6 +37,7 @@ WHERE upper(a.company_owner) like upper('%$s_keyword%')
        and upper(b.company_brand) like upper('%$s_company_brand%')
 	   and b.p_vat_type_id like '%$p_vat_type_id%'
 	   and b.p_vat_type_dtl_id like '%$p_vat_type_dtl_id%'
+	   and b.p_account_status_id = 1
 	   ";
 
 $dbConn->query($query);
