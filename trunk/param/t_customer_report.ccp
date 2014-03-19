@@ -13,7 +13,8 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
        and upper(b.company_name) like upper('%{s_company_name}%')
        and upper(b.company_brand) like upper('%{s_company_brand}%')
 	   and b.p_vat_type_id like '%{p_vat_type_id}%'
-	   and b.p_vat_type_dtl_id like '%{p_vat_type_dtl_id}%'">
+	   and b.p_vat_type_dtl_id like '%{p_vat_type_dtl_id}%'
+	   and b.p_account_status_id = 1">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_customer_report.ccp" wizardThemeItem="GridA" PathID="t_customerGridDLink" removeParameters="FLAG">
 					<Components/>
@@ -136,7 +137,7 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 				<SQLParameter id="486" variable="s_company_brand" parameterType="URL" dataType="Text" parameterSource="s_company_brand"/>
 				<SQLParameter id="529" variable="p_vat_type_id" parameterType="URL" dataType="Text" parameterSource="p_vat_type_id"/>
 				<SQLParameter id="536" variable="p_vat_type_dtl_id" parameterType="URL" dataType="Text" parameterSource="p_vat_type_dtl_id"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -203,13 +204,13 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="535" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customerSearchp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+				<Hidden id="535" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customerSearchp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
