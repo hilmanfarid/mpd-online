@@ -48,6 +48,10 @@ function p_finance_periodFormButton_Delete_OnClick()
     var result = true;
 //End p_finance_periodFormButton_Delete_OnClick
 
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
 //Close p_finance_periodFormButton_Delete_OnClick @26-BC33A33A
     return result;
 }
@@ -81,29 +85,29 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toPeriod()">
       <div class="tab-title">
-        TAHUN PELAPORAN PAJAK</label>
+        TAHUN PELAPORAN PAJAK</label> 
       </div>
     </div>
     <div class="th tab-button">
       <div class="tab-title-selected">
-        PERIODE PELAPORAN PAJAK
+        PERIODE PELAPORAN PAJAK 
       </div>
     </div>
   </div>
 </div>
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <!-- BEGIN Record p_finance_periodSearch -->
         <form id="p_finance_periodSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -113,9 +117,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="p_finance_periodSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field"><input id="p_finance_periodSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="p_finance_periodSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="p_finance_periodSearchp_year_periodGridPage" style="HEIGHT: 22px; WIDTH: 47px" size="6" type="hidden" value="{p_year_periodGridPage}" name="{p_year_periodGridPage_Name}"><input id="p_finance_periodSearchp_year_period_id" style="HEIGHT: 22px; WIDTH: 44px" size="6" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"><input id="p_finance_periodSearchperiode_s_keyword" type="hidden" value="{periode_s_keyword}" name="{periode_s_keyword_Name}"></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_finance_periodSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --><input style="WIDTH: 47px; HEIGHT: 22px" id="p_finance_periodSearchp_year_periodGridPage" name="{p_year_periodGridPage_Name}" value="{p_year_periodGridPage}" size="6" type="hidden"><input style="WIDTH: 44px; HEIGHT: 22px" id="p_finance_periodSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" size="6" type="hidden"><input id="p_finance_periodSearchperiode_s_keyword" name="{periode_s_keyword_Name}" value="{periode_s_keyword}" type="hidden"></td>
                   </tr>
                 </table>
               </td>
@@ -124,10 +128,10 @@ $(document).ready(function()
         </form>
         <!-- END Record p_finance_periodSearch --><br>
         <!-- BEGIN Grid p_finance_periodGrid -->
-        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
             <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR PERIODE PELAPORAN PAJAK</strong></td> 
@@ -147,27 +151,39 @@ $(document).ready(function()
  
                   <th scope="col">End Date&nbsp;</th>
  
+                  <th scope="col">&nbsp;Jatuh Tempo</th>
+ 
+                  <th scope="col">&nbsp;Teguran 1</th>
+ 
+                  <th scope="col">&nbsp;Teguran 2</th>
+ 
+                  <th scope="col">&nbsp;Teguran 3</th>
+ 
                   <th scope="col"><label for="p_app_menuFormdescription">Deskripsi</label></th>
                 </tr>
  
                 <!-- BEGIN Row -->
                 <tr {p_finance_periodGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_finance_periodGridDLink_{p_finance_periodGrid:rowNumber}">{DLink}</a></td> 
-                  <td>{code}&nbsp;<input id="p_finance_periodGridp_finance_period_id_{p_finance_periodGrid:rowNumber}" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td> 
+                  <td>{code}&nbsp;<input id="p_finance_periodGridp_finance_period_id_{p_finance_periodGrid:rowNumber}" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td> 
                   <td>{status_code}</td> 
                   <td>{start_date}&nbsp;</td> 
                   <td>{end_date}&nbsp;</td> 
+                  <td>{due_in_day}&nbsp;hari</td> 
+                  <td>{debt_letter_1}&nbsp;hari</td> 
+                  <td>{debt_letter_2}&nbsp;hari</td> 
+                  <td>{debt_letter_3}&nbsp;hari</td> 
                   <td>{description}&nbsp;</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="6">-</td>
+                  <td colspan="10">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b><a href="{Insert_Link_Src}" id="p_finance_periodGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
-                  <td colspan="5">
+                  <td colspan="9">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -188,10 +204,10 @@ $(document).ready(function()
         <!-- END Grid p_finance_periodGrid --><br>
         <!-- BEGIN Record p_finance_periodForm -->
         <form id="p_finance_periodForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td valign="top">
-                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI PERIODE PELAPORAN PAJAK</strong></td> 
@@ -207,44 +223,64 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="p_finance_periodFormcode">Bulan</label></td> 
-                    <td colspan="3"><input id="p_finance_periodFormcode" class="ControlsRQ" maxlength="32" size="24" value="{code}" name="{code_Name}"></td>
+                    <td colspan="3"><input id="p_finance_periodFormcode" class="ControlsRQ" name="{code_Name}" maxlength="32" value="{code}" size="24"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_finance_periodFormstatus_code">Status</label></td> 
-                    <td colspan="3"><input id="p_finance_periodFormstatus_code" class="ControlsRQ" maxlength="12" size="24" value="{status_code}" name="{status_code_Name}">&nbsp;<img onclick="javascript:lov_p_data_status_list()" border="0" src="../images/view.gif">&nbsp;<input id="p_finance_periodFormp_status_list_id" type="hidden" value="{p_status_list_id}" name="{p_status_list_id_Name}"></td>
+                    <td colspan="3"><input id="p_finance_periodFormstatus_code" class="ControlsRQ" name="{status_code_Name}" maxlength="12" value="{status_code}" size="24">&nbsp;<img onclick="javascript:lov_p_data_status_list()" border="0" src="../images/view.gif">&nbsp;<input id="p_finance_periodFormp_status_list_id" name="{p_status_list_id_Name}" value="{p_status_list_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Start Date</td> 
-                    <td><input id="p_finance_periodFormstart_date" class="ControlsRQ" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{start_date}" name="{start_date_Name}">
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_finance_periodFormstart_date" class="ControlsRQ" name="{start_date_Name}" readonly maxlength="100" value="{start_date}" size="15">
                       <!-- BEGIN DatePicker DatePicker_start_date --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_finance_periodFormDatePicker_start_date"><img id="p_finance_periodFormDatePicker_start_date_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_start_date --></td> 
                     <td>End&nbsp;Date</td> 
-                    <td><input id="p_finance_periodFormend_date" class="ControlsRQ" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{end_date}" name="{end_date_Name}">&nbsp; 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_finance_periodFormend_date" class="ControlsRQ" name="{end_date_Name}" readonly maxlength="100" value="{end_date}" size="15">&nbsp; 
                       <!-- BEGIN DatePicker DatePicker_valid_from1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_finance_periodFormDatePicker_valid_from1"><img id="p_finance_periodFormDatePicker_valid_from1_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_from1 --></td>
                   </tr>
  
                   <tr class="Controls">
+                    <td class="th">Jatuh Tempo</td> 
+                    <td colspan="3"><input style="WIDTH: 97px; HEIGHT: 20px" id="p_finance_periodFormdue_in_day" class="ControlsIN" name="{due_in_day_Name}" maxlength="250" value="{due_in_day}" size="13">&nbsp;hari</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Teguran 1</td> 
+                    <td colspan="3"><input style="WIDTH: 97px; HEIGHT: 20px" id="p_finance_periodFormdebt_letter_1" class="ControlsIN" name="{debt_letter_1_Name}" maxlength="250" value="{debt_letter_1}" size="13">&nbsp;hari</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Teguran 2</td> 
+                    <td colspan="3"><input style="WIDTH: 97px; HEIGHT: 20px" id="p_finance_periodFormdebt_letter_2" class="ControlsIN" name="{debt_letter_2_Name}" maxlength="250" value="{debt_letter_2}" size="13">&nbsp;hari</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Teguran 3</td> 
+                    <td colspan="3"><input style="WIDTH: 97px; HEIGHT: 20px" id="p_finance_periodFormdebt_letter_3" class="ControlsIN" name="{debt_letter_3_Name}" maxlength="250" value="{debt_letter_3}" size="13">&nbsp;hari</td>
+                  </tr>
+ 
+                  <tr class="Controls">
                     <td class="th"><label for="p_finance_periodFormdescription"><label for="p_app_menuFormdescription">Deskripsi</label></label></td> 
-                    <td colspan="3"><input id="p_finance_periodFormdescription" class="ControlsIN" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
+                    <td colspan="3"><input id="p_finance_periodFormdescription" class="ControlsIN" name="{description_Name}" maxlength="250" value="{description}" size="50"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_finance_periodFormcreated_by">Dibuat Oleh</label></td> 
-                    <td colspan="3"><input id="p_finance_periodFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="p_finance_periodFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="p_finance_periodFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="12" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_finance_periodFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_finance_periodFormupdated_by">Diubah Oleh</label></td> 
-                    <td colspan="3"><input id="p_finance_periodFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="p_finance_periodFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="p_finance_periodFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="15" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_finance_periodFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="4" align="right">
-                      <!-- BEGIN Button Button_Insert --><input id="p_finance_periodFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="p_finance_periodFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input id="p_finance_periodFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input id="p_finance_periodFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_finance_periodFormp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"><input id="p_finance_periodFormp_finance_period_id_{p_finance_periodGrid:rowNumber}" type="hidden" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"><input id="p_finance_periodFormp_finance_periodGridPage" type="hidden" value="{p_finance_periodGridPage}" name="{p_finance_periodGridPage_Name}"></td>
+                      <!-- BEGIN Button Button_Insert --><input id="p_finance_periodFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="p_finance_periodFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_finance_periodFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_finance_periodFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input id="p_finance_periodFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="p_finance_periodFormp_finance_period_id_{p_finance_periodGrid:rowNumber}" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="p_finance_periodFormp_finance_periodGridPage" name="{p_finance_periodGridPage_Name}" value="{p_finance_periodGridPage}" type="hidden"></td>
                   </tr>
                 </table>
               </td>
