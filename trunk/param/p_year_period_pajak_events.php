@@ -1,7 +1,7 @@
 <?php
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
-//BindEvents Method @1-643E5733
+//BindEvents Method @1-34EA230E
 function BindEvents()
 {
     global $p_year_periodGrid;
@@ -10,6 +10,7 @@ function BindEvents()
     $p_year_periodGrid->CCSEvents["BeforeShow"] = "p_year_periodGrid_BeforeShow";
     $p_year_periodGrid->CCSEvents["BeforeSelect"] = "p_year_periodGrid_BeforeSelect";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
 
@@ -21,6 +22,16 @@ function p_year_periodGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_year_periodGrid; //Compatibility
 //End p_year_periodGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
 	global $p_year_periodForm;
     global $selected_id;
     global $add_flag;
@@ -66,6 +77,12 @@ function p_year_periodGrid_BeforeShow(& $sender)
     global $p_year_periodGrid; //Compatibility
 //End p_year_periodGrid_BeforeShow
 
+//Custom Code @95-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       
   // -------------------------
@@ -84,6 +101,12 @@ function p_year_periodGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_year_periodGrid; //Compatibility
 //End p_year_periodGrid_BeforeSelect
+
+//Custom Code @97-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -105,6 +128,12 @@ function Page_OnInitializeView(& $sender)
     global $p_year_period_pajak; //Compatibility
 //End Page_OnInitializeView
 
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
     global $selected_id;
       $selected_id = -1;
@@ -117,5 +146,50 @@ function Page_OnInitializeView(& $sender)
 }
 //End Close Page_OnInitializeView
 
+//Page_BeforeShow @1-1DDE243E
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $p_year_period_pajak; //Compatibility
+//End Page_BeforeShow
+	
+//Custom Code @122-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+	$generate_status = CCGetFromGet("generate_status","");
+	$year_code = CCGetFromGet("year_code","");
 
+	if(!empty($generate_status)) {
+	
+		$dbConn = new clsDBConnSIKP();
+		$sql ="select * from p_gen_period(".$year_code.") as msg";
+		$dbConn->query($sql);
+		$dbConn->next_record();
+		$msg = $dbConn->f("msg");	
+		$dbConn->close();
+		
+		if(empty($msg)) {
+			echo "<script> 
+			alert('OK');
+			window.opener.location.reload();
+			window.close();
+			</script>";
+		
+		}else {
+			echo "<script> 
+			alert('".$msg."');
+			window.opener.location.reload();
+			window.close();
+			</script>";
+		}
+	}
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
 ?>
