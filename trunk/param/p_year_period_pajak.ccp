@@ -274,7 +274,13 @@ a.p_year_period_id = {p_year_period_id}">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Button id="123" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Generate" PathID="p_year_periodFormButton_Generate">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
+</Components>
 			<Events/>
 			<TableParameters>
 			</TableParameters>
@@ -359,5 +365,10 @@ a.p_year_period_id = {p_year_period_id}">
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="122"/>
+</Actions>
+</Event>
+</Events>
 </Page>
