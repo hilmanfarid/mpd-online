@@ -4,7 +4,8 @@
 to_char(a.end_date,'DD-MON-YYYY') end_date, a.description,
 to_char(a.updated_date,'DD-MON-YYYY') updated_date,
 a.updated_by,to_char(a.creation_date,'DD-MON-YYYY') creation_date, a.created_by,
-b.code status_code, a.p_status_list_id
+b.code status_code, a.p_status_list_id,
+nvl(a.due_in_day,0) as due_in_day, nvl(a.debt_letter_1,0) as debt_letter_1, nvl(a.debt_letter_2,0) as debt_letter_2, nvl(a.debt_letter_3,0) as debt_letter_3
 FROM p_finance_period a, p_status_list b, p_year_period c 
 WHERE a.p_status_list_id = b.p_status_list_id AND 
 a.p_year_period_id = c.p_year_period_id AND
@@ -73,7 +74,31 @@ ORDER BY a.p_finance_period_id DESC " name="p_finance_periodGrid" pageSizeLimit=
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="132" fieldSourceType="DBColumn" dataType="Text" html="False" name="due_in_day" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="p_finance_periodGriddue_in_day" fieldSource="due_in_day">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="133" fieldSourceType="DBColumn" dataType="Text" html="False" name="debt_letter_1" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="p_finance_periodGriddebt_letter_1" fieldSource="debt_letter_1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="134" fieldSourceType="DBColumn" dataType="Text" html="False" name="debt_letter_2" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="p_finance_periodGriddebt_letter_2" fieldSource="debt_letter_2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="135" fieldSourceType="DBColumn" dataType="Text" html="False" name="debt_letter_3" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="p_finance_periodGriddebt_letter_3" fieldSource="debt_letter_3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -81,16 +106,16 @@ ORDER BY a.p_finance_period_id DESC " name="p_finance_periodGrid" pageSizeLimit=
 					</Actions>
 				</Event>
 				<Event name="BeforeSelect" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="130"/>
-</Actions>
-</Event>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="131"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="130"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="131"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="8" conditionType="Parameter" useIsNull="False" field="code" dataType="Text" searchConditionType="Contains" parameterType="URL" parameterSource="s_keyword" logicOperator="Or" orderNumber="1" leftBrackets="1"/>
 				<TableParameter id="9" conditionType="Parameter" useIsNull="False" field="description" dataType="Text" searchConditionType="Contains" parameterType="URL" parameterSource="s_keyword" logicOperator="Or" orderNumber="2" rightBrackets="1"/>
@@ -163,20 +188,25 @@ ORDER BY a.p_finance_period_id DESC " name="p_finance_periodGrid" pageSizeLimit=
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_finance_periodForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_finance_periodForm" customDeleteType="SQL" customDelete="DELETE FROM p_finance_period WHERE  p_finance_period_id = {p_finance_period_id}" activeCollection="DSQLParameters" activeTableType="customDelete" customUpdateType="SQL" customUpdate="UPDATE p_finance_period 
+		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_finance_periodForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_finance_periodForm" customDeleteType="SQL" customDelete="DELETE FROM p_finance_period WHERE  p_finance_period_id = {p_finance_period_id}" activeCollection="USQLParameters" activeTableType="customDelete" customUpdateType="SQL" customUpdate="UPDATE p_finance_period 
 SET code='{code}', 
 p_status_list_id={p_status_list_id},
 start_date=to_date('{start_date}','DD-MON-YYYY'),
 end_date=to_date('{end_date}','DD-MON-YYYY'),
 description='{description}', 
 updated_date=sysdate, 
-updated_by='{updated_by}' 
-WHERE p_finance_period_id = {p_finance_period_id}" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="INSERT INTO p_finance_period(p_finance_period_id, code, p_status_list_id, start_date, end_date, description, creation_date, created_by, updated_date, updated_by, p_year_period_id) 
-VALUES(generate_id('sikp','p_finance_period','p_finance_period_id'), '{code}', {p_status_list_id}, to_date('{start_date}','DD-MON-YYYY'), to_date('{end_date}','DD-MON-YYYY'), '{description}', sysdate, '{created_by}', sysdate, '{updated_by}', {p_year_period_id})" customInsertType="SQL" dataSource="SELECT a.p_finance_period_id, a.p_year_period_id, a.code, to_char(a.start_date,'DD-MON-YYYY') start_date,
+updated_by='{updated_by}',
+due_in_day = {due_in_day},
+debt_letter_1 = {debt_letter_1},
+debt_letter_2 = {debt_letter_2},
+debt_letter_3 = {debt_letter_3}
+WHERE p_finance_period_id = {p_finance_period_id}" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="INSERT INTO p_finance_period(p_finance_period_id, code, p_status_list_id, start_date, end_date, description, creation_date, created_by, updated_date, updated_by, p_year_period_id, due_in_day, debt_letter_1, debt_letter_2, debt_letter_3) 
+VALUES(generate_id('sikp','p_finance_period','p_finance_period_id'), '{code}', {p_status_list_id}, to_date('{start_date}','DD-MON-YYYY'), to_date('{end_date}','DD-MON-YYYY'), '{description}', sysdate, '{created_by}', sysdate, '{updated_by}', {p_year_period_id}, {due_in_day}, {debt_letter_1}, {debt_letter_2}, {debt_letter_3})" customInsertType="SQL" dataSource="SELECT a.p_finance_period_id, a.p_year_period_id, a.code, to_char(a.start_date,'DD-MON-YYYY') start_date,
 to_char(a.end_date,'DD-MON-YYYY') end_date, a.description,
 to_char(a.updated_date,'DD-MON-YYYY') updated_date,
 a.updated_by,to_char(a.creation_date,'DD-MON-YYYY') creation_date, a.created_by,
-b.code status_code, a.p_status_list_id
+b.code status_code, a.p_status_list_id,
+nvl(a.due_in_day,0) as due_in_day, nvl(a.debt_letter_1,0) as debt_letter_1, nvl(a.debt_letter_2,0) as debt_letter_2, nvl(a.debt_letter_3,0) as debt_letter_3
 FROM p_finance_period a, p_status_list b, p_year_period c 
 WHERE a.p_status_list_id = b.p_status_list_id AND
 a.p_finance_period_id = {p_finance_period_id}">
@@ -301,7 +331,31 @@ a.p_finance_period_id = {p_finance_period_id}">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<TextBox id="136" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="due_in_day" fieldSource="due_in_day" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="p_finance_periodFormdue_in_day">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="137" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="debt_letter_1" fieldSource="debt_letter_1" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="p_finance_periodFormdebt_letter_1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="138" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="debt_letter_2" fieldSource="debt_letter_2" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="p_finance_periodFormdebt_letter_2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="139" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="debt_letter_3" fieldSource="debt_letter_3" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="p_finance_periodFormdebt_letter_3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events/>
 			<TableParameters>
 			</TableParameters>
@@ -323,7 +377,11 @@ a.p_finance_period_id = {p_finance_period_id}">
 				<SQLParameter id="101" variable="start_date" parameterType="Control" dataType="Text" parameterSource="start_date"/>
 				<SQLParameter id="102" variable="end_date" parameterType="Control" dataType="Text" parameterSource="end_date"/>
 				<SQLParameter id="127" variable="p_year_period_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_year_period_id"/>
-			</ISQLParameters>
+				<SQLParameter id="140" variable="due_in_day" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="due_in_day"/>
+<SQLParameter id="141" variable="debt_letter_1" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="debt_letter_1"/>
+<SQLParameter id="142" variable="debt_letter_2" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="debt_letter_2"/>
+<SQLParameter id="143" variable="debt_letter_3" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="debt_letter_3"/>
+</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="71" field="p_app_role_id" dataType="Float" parameterType="Control" parameterSource="p_app_role_id"/>
 				<CustomParameter id="72" field="code" dataType="Text" parameterType="Control" parameterSource="code"/>
@@ -345,7 +403,11 @@ a.p_finance_period_id = {p_finance_period_id}">
 				<SQLParameter id="103" variable="start_date" parameterType="Control" dataType="Text" parameterSource="start_date"/>
 				<SQLParameter id="104" variable="end_date" parameterType="Control" dataType="Text" parameterSource="end_date"/>
 				<SQLParameter id="126" variable="p_finance_period_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_finance_period_id"/>
-			</USQLParameters>
+				<SQLParameter id="144" variable="due_in_day" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="due_in_day"/>
+<SQLParameter id="145" variable="debt_letter_1" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="debt_letter_1"/>
+<SQLParameter id="146" variable="debt_letter_2" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="debt_letter_2"/>
+<SQLParameter id="147" variable="debt_letter_3" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="debt_letter_3"/>
+</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>
