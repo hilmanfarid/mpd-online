@@ -21,6 +21,16 @@ function p_finance_periodGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_finance_periodGrid; //Compatibility
 //End p_finance_periodGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
 global $p_finance_periodForm;
     global $selected_id;
     global $add_flag;
@@ -65,6 +75,12 @@ function p_finance_periodGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_finance_periodGrid; //Compatibility
 //End p_finance_periodGrid_BeforeSelect
+
+//Custom Code @130-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
   // -------------------------
       // Write your own code here.
           $Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
@@ -83,6 +99,12 @@ function p_finance_periodGrid_BeforeShow(& $sender)
     global $p_finance_periodGrid; //Compatibility
 //End p_finance_periodGrid_BeforeShow
 
+//Custom Code @131-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close p_finance_periodGrid_BeforeShow @2-36CAD4B5
     return $p_finance_periodGrid_BeforeShow;
 }
@@ -96,6 +118,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_finance_period; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
     global $selected_id;
