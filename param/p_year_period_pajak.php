@@ -535,7 +535,7 @@ class clsRecordp_year_periodForm { //p_year_periodForm Class @23-9E7647B7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-5B4BB714
+//Class_Initialize Event @23-52222110
     function clsRecordp_year_periodForm($RelativePath, & $Parent)
     {
 
@@ -591,6 +591,7 @@ class clsRecordp_year_periodForm { //p_year_periodForm Class @23-9E7647B7
             $this->DatePicker_valid_from1 = & new clsDatePicker("DatePicker_valid_from1", "p_year_periodForm", "end_date", $this);
             $this->p_status_list_id = & new clsControl(ccsHidden, "p_status_list_id", "p_status_list_id", ccsFloat, "", CCGetRequestParam("p_status_list_id", $Method, NULL), $this);
             $this->p_year_periodGridPage = & new clsControl(ccsHidden, "p_year_periodGridPage", "p_year_periodGridPage", ccsText, "", CCGetRequestParam("p_year_periodGridPage", $Method, NULL), $this);
+            $this->Button_Generate = & new clsButton("Button_Generate", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->creation_date->Value) && !strlen($this->creation_date->Value) && $this->creation_date->Value !== false)
                     $this->creation_date->SetText(date("d-M-Y"));
@@ -690,7 +691,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-9D3CB318
+//Operation Method @23-0AC4877E
     function Operation()
     {
         if(!$this->Visible)
@@ -715,6 +716,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Delete";
             } else if($this->Button_Cancel->Pressed) {
                 $this->PressedButton = "Button_Cancel";
+            } else if($this->Button_Generate->Pressed) {
+                $this->PressedButton = "Button_Generate";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -737,6 +740,10 @@ function GetPrimaryKey($keyName)
             } else if($this->PressedButton == "Button_Update") {
                 $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_Generate") {
+                if(!CCGetEvent($this->Button_Generate->CCSEvents, "OnClick", $this->Button_Generate)) {
                     $Redirect = "";
                 }
             }
@@ -793,7 +800,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-AEB6BC0D
+//Show Method @23-AA9A0F0A
     function Show()
     {
         global $CCSUseAmp;
@@ -895,6 +902,7 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_valid_from1->Show();
         $this->p_status_list_id->Show();
         $this->p_year_periodGridPage->Show();
+        $this->Button_Generate->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
