@@ -5,7 +5,7 @@
 <title>p_year_period</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function getFrom_LOV(formName,fieldList,LOV_NM)
 {
@@ -44,6 +44,10 @@ function p_year_periodFormButton_Delete_OnClick()
     var result = true;
 //End p_year_periodFormButton_Delete_OnClick
 
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
 //Close p_year_periodFormButton_Delete_OnClick @26-BC33A33A
     return result;
 }
@@ -77,175 +81,195 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div class="tab-container" id="tabtop" style="BORDER-TOP: #a2a2a2 1px solid; WIDTH: 99.9%; POSITION: absolute; HEIGHT: 37px">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        TAHUN PELAPORAN PAJAK
+        TAHUN PELAPORAN PAJAK 
       </div>
     </div>
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
-<table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
-  <tr>
-    <td>
-      <!-- BEGIN Record p_year_periodSearch -->
-      <form id="p_year_periodSearch" name="{HTMLFormName}" action="{Action}" method="post">
-        <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record p_year_periodSearch -->
+        <form id="p_year_periodSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="p_year_periodSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_year_periodSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_year_periodSearch --><br>
+        <!-- BEGIN Grid p_year_periodGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
             <td valign="top">
-              <table class="Record" cellspacing="0" cellpadding="0">
-                <!-- BEGIN Error -->
-                <tr class="Error">
-                  <td colspan="2">{Error}</td>
-                </tr>
-                <!-- END Error -->
-                <tr class="Controls">
-                  <td class="search-field"><input class="ControlsIN" id="p_year_periodSearchs_keyword" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
-                  <td class="search-field">
-                    <!-- BEGIN Button Button_DoSearch --><input class="btn_tambah" id="p_year_periodSearchButton_DoSearch" type="submit" alt="Search" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </form>
-      <!-- END Record p_year_periodSearch --><br>
-      <!-- BEGIN Grid p_year_periodGrid -->
-      <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
-        <tr>
-          <td valign="top">
-            <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
-              <tr>
-                <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
-                <td class="th"><strong>DAFTAR TAHUN PELAPORAN PAJAK</strong></td> 
-                <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
-              </tr>
-            </table>
- 
-            <table class="Grid" cellspacing="0" cellpadding="0">
-              <tr class="Caption">
-                <th style="TEXT-ALIGN: center" scope="col" width="1%">#</th>
- 
-                <th style="TEXT-ALIGN: center" scope="col">Bulan&nbsp;</th>
- 
-                <th scope="col">Tahun</th>
- 
-                <th scope="col">&nbsp;Status</th>
- 
-                <th scope="col"><label for="p_app_menuFormdescription">Deskripsi</label></th>
-              </tr>
- 
-              <!-- BEGIN Row -->
-              <tr {p_year_periodGrid:rowStyle}>
-                <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_year_periodGridDLink_{p_year_periodGrid:rowNumber}">{DLink}</a></td> 
-                <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="p_year_periodGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px" alt="{ImageLink1}" src="../images/table.gif"></a>&nbsp;</td> 
-                <td>{year_code}&nbsp;<input id="p_year_periodGridp_year_period_id_{p_year_periodGrid:rowNumber}" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"></td> 
-                <td>&nbsp;{p_status_list_code}</td> 
-                <td>{description}&nbsp;</td>
-              </tr>
- <!-- END Row -->
-              <!-- BEGIN NoRecords -->
-              <tr class="NoRecords">
-                <td colspan="5">-</td>
-              </tr>
-              <!-- END NoRecords -->
-              <tr class="Footer">
-                <td><b><a href="{Insert_Link_Src}" id="p_year_periodGridInsert_Link"><img src="../images/insert_link.gif" border="0"></a></b></td> 
-                <td colspan="4">
-                  <!-- BEGIN Navigator Navigator -->
-                  <!-- BEGIN First_On --><a href="{First_URL}"><img alt="{First_URL}" src="../Styles/sikp/Images/First.gif" border="0"></a> <!-- END First_On -->
-                  <!-- BEGIN First_Off --><img alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif" border="0"><!-- END First_Off -->
-                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
-                  <!-- BEGIN Prev_Off --><img alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp; 
-                  <!-- BEGIN Pages -->
-                  <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
-                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
-                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif" border="0"></a> <!-- END Next_On -->
-                  <!-- BEGIN Next_Off --><img alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif" border="0"><!-- END Next_Off -->
-                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif" border="0"></a> <!-- END Last_On -->
-                  <!-- BEGIN Last_Off --><img alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-      <!-- END Grid p_year_periodGrid --><br>
-      <!-- BEGIN Record p_year_periodForm -->
-      <form id="p_year_periodForm" name="{HTMLFormName}" action="{Action}" method="post">
-        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
-          <tr>
-            <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td class="HeaderLeft"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td> 
-                  <td class="th"><strong>INFORMASI TAHUN PELAPORAN PAJAK</strong></td> 
-                  <td class="HeaderRight"><img alt="" src="../Styles/sikp/Images/Spacer.gif" border="0"></td>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR TAHUN PELAPORAN PAJAK</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
-              <table class="grid-table" cellspacing="0" cellpadding="0">
-                <!-- BEGIN Error -->
-                <tr class="Error">
-                  <td colspan="4">{Error}</td>
-                </tr>
-                <!-- END Error -->
-                <tr class="Controls">
-                  <td class="th"><label for="p_year_periodFormyear_code">Tahun</label></td> 
-                  <td colspan="3"><input class="ControlsRQ" id="p_year_periodFormyear_code" maxlength="32" size="24" value="{year_code}" name="{year_code_Name}"></td>
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Bulan&nbsp;</th>
+ 
+                  <th scope="col">Tahun</th>
+ 
+                  <th scope="col">&nbsp;Status</th>
+ 
+                  <th scope="col"><label for="p_app_menuFormdescription">Deskripsi</label></th>
                 </tr>
  
-                <tr class="Controls">
-                  <td class="th"><label for="p_year_periodFormp_status_list_code">Status</label></td> 
-                  <td colspan="3"><input class="ControlsRQ" id="p_year_periodFormp_status_list_code" maxlength="12" size="24" value="{p_status_list_code}" name="{p_status_list_code_Name}">&nbsp;<img onclick="javascript:lov_p_data_status_list()" src="../images/view.gif" border="0">&nbsp;<input id="p_year_periodFormp_status_list_id" type="hidden" value="{p_status_list_id}" name="{p_status_list_id_Name}"></td>
+                <!-- BEGIN Row -->
+                <tr {p_year_periodGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_year_periodGridDLink_{p_year_periodGrid:rowNumber}">{DLink}</a></td> 
+                  <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="p_year_periodGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a>&nbsp;</td> 
+                  <td>{year_code}&nbsp;<input id="p_year_periodGridp_year_period_id_{p_year_periodGrid:rowNumber}" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
+                  <td>&nbsp;{p_status_list_code}</td> 
+                  <td>{description}&nbsp;</td>
                 </tr>
- 
-                <tr class="Controls">
-                  <td class="th">Start Date</td> 
-                  <td><input class="ControlsRQ" id="p_year_periodFormstart_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{start_date}" name="{start_date_Name}">
-                    <!-- BEGIN DatePicker DatePicker_start_date --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_year_periodFormDatePicker_start_date"><img id="p_year_periodFormDatePicker_start_date_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_start_date --></td> 
-                  <td>End&nbsp;Date</td> 
-                  <td><input class="ControlsRQ" id="p_year_periodFormend_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{end_date}" name="{end_date_Name}">&nbsp; 
-                    <!-- BEGIN DatePicker DatePicker_valid_from1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_year_periodFormDatePicker_valid_from1"><img id="p_year_periodFormDatePicker_valid_from1_Image" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif" border="0"></a><!-- END DatePicker DatePicker_valid_from1 --></td>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="5">-</td>
                 </tr>
- 
-                <tr class="Controls">
-                  <td class="th"><label for="p_year_periodFormdescription"><label for="p_app_menuFormdescription">Deskripsi</label></label></td> 
-                  <td colspan="3"><input class="ControlsIN" id="p_year_periodFormdescription" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
-                </tr>
- 
-                <tr class="Controls">
-                  <td class="th"><label for="p_year_periodFormcreated_by">Dibuat Oleh</label></td> 
-                  <td colspan="3"><input class="ControlsRO" id="p_year_periodFormcreated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input class="ControlsRO" id="p_year_periodFormcreation_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
-                </tr>
- 
-                <tr class="Controls">
-                  <td class="th"><label for="p_year_periodFormupdated_by">Diubah Oleh</label></td> 
-                  <td colspan="3"><input class="ControlsRO" id="p_year_periodFormupdated_by" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input class="ControlsRO" id="p_year_periodFormupdated_date" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
-                </tr>
- 
-                <tr class="Bottom">
-                  <td align="right" colspan="4">
-                    <!-- BEGIN Button Button_Insert --><input class="btn_tambah" id="p_year_periodFormButton_Insert" type="submit" alt="Add" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input class="btn_tambah" id="p_year_periodFormButton_Update" type="submit" alt="Submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                    <!-- BEGIN Button Button_Delete --><input class="btn_tambah" id="p_year_periodFormButton_Delete" type="submit" alt="Delete" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                    <!-- BEGIN Button Button_Cancel --><input class="btn_tambah" id="p_year_periodFormButton_Cancel" type="submit" alt="Cancel" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_year_periodFormp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"><input id="p_year_periodFormp_year_periodGridPage" type="hidden" value="{p_year_periodGridPage}" name="{p_year_periodGridPage_Name}"></td>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="p_year_periodGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
                 </tr>
               </table>
             </td>
           </tr>
         </table>
-      </form>
-      <!-- END Record p_year_periodForm --><br>
-    </td>
-  </tr>
-</table>
+        <!-- END Grid p_year_periodGrid --><br>
+        <!-- BEGIN Record p_year_periodForm -->
+        <form id="p_year_periodForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI TAHUN PELAPORAN PAJAK</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="grid-table" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="5">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th" width="200"><label for="p_year_periodFormyear_code">Tahun</label></td> 
+                    <td colspan="4"><input id="p_year_periodFormyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="24"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_year_periodFormp_status_list_code">Status</label></td> 
+                    <td colspan="4"><input id="p_year_periodFormp_status_list_code" class="ControlsRQ" name="{p_status_list_code_Name}" maxlength="12" value="{p_status_list_code}" size="24">&nbsp;<img onclick="javascript:lov_p_data_status_list()" border="0" src="../images/view.gif">&nbsp;<input id="p_year_periodFormp_status_list_id" name="{p_status_list_id_Name}" value="{p_status_list_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Start Date</td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormstart_date" class="ControlsRQ" name="{start_date_Name}" readonly maxlength="100" value="{start_date}" size="15">
+                      <!-- BEGIN DatePicker DatePicker_start_date --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_year_periodFormDatePicker_start_date"><img id="p_year_periodFormDatePicker_start_date_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_start_date --></td> 
+                    <td>End&nbsp;Date</td> 
+                    <td colspan="2"><input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormend_date" class="ControlsRQ" name="{end_date_Name}" readonly maxlength="100" value="{end_date}" size="15">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_valid_from1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="p_year_periodFormDatePicker_valid_from1"><img id="p_year_periodFormDatePicker_valid_from1_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_from1 --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_year_periodFormdescription"><label for="p_app_menuFormdescription">Deskripsi</label></label></td> 
+                    <td colspan="4"><input id="p_year_periodFormdescription" class="ControlsIN" name="{description_Name}" maxlength="250" value="{description}" size="50"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_year_periodFormcreated_by">Dibuat Oleh</label></td> 
+                    <td colspan="4"><input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="12" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_year_periodFormupdated_by">Diubah Oleh</label></td> 
+                    <td colspan="4"><input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="15" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td style="TEXT-ALIGN: left">
+                      <!-- BEGIN Button Button_Generate --><input style="WIDTH: 182px; HEIGHT: 26px" id="p_year_periodFormButton_Generate" class="btn_tambah" onclick="DoGenerate();" name="{Button_Name}" alt="Button1" value="Generate Periode Keuangan" size="19" type="button"><!-- END Button Button_Generate --></td> 
+                    <td colspan="4" align="right">
+                      <!-- BEGIN Button Button_Insert --><input id="p_year_periodFormButton_Insert1" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="p_year_periodFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_year_periodFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_year_periodFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input id="p_year_periodFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="p_year_periodFormp_year_periodGridPage" name="{p_year_periodGridPage_Name}" value="{p_year_periodGridPage}" type="hidden"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_year_periodForm --><br>
+      </td>
+    </tr>
+  </table>
 </div>
 <script language="javascript">
 function lov_p_data_status_list() {
         getFrom_LOV('p_year_periodForm','p_status_list_id,p_status_list_code','lov_2_field.php?TABLE=p_status_list&FIELD_0=p_status_list_id&FIELD_1=code&FIELD_2=description&LABEL1=Status Data&LABEL2=Deskripsi&HEADER_PAGE=STATUS DATA&HEADER_LOV=DAFTAR STATUS DATA&ORDER=listing_no');
+}
+
+function DoGenerate() {
+        var year_code = document.getElementById('p_year_periodFormyear_code').value;
+        if(year_code == "") {
+                alert('Inputkan Nilai Tahun / Pilih Salah Satu Tahun Pelaporan Pajak');
+                return false;
+        }
+
+        url = "../param/p_year_period_pajak.php?generate_status=Y&year_code="+year_code;
+                
+    params  = 'width=300';
+    params += ', height=300';
+    params += ', top=0, left=0';
+
+    newwin=window.open(url,'windowname4', params);
+    if (window.focus) {newwin.focus()}
+    return false;
 }
 
 </script>
