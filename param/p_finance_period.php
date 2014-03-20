@@ -42,7 +42,7 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-37BB94EC
+//Class_Initialize Event @2-E4E43778
     function clsGridp_finance_periodGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -78,6 +78,10 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
         $this->status_code = & new clsControl(ccsLabel, "status_code", "status_code", ccsText, "", CCGetRequestParam("status_code", ccsGet, NULL), $this);
         $this->start_date = & new clsControl(ccsLabel, "start_date", "start_date", ccsText, "", CCGetRequestParam("start_date", ccsGet, NULL), $this);
         $this->end_date = & new clsControl(ccsLabel, "end_date", "end_date", ccsText, "", CCGetRequestParam("end_date", ccsGet, NULL), $this);
+        $this->due_in_day = & new clsControl(ccsLabel, "due_in_day", "due_in_day", ccsText, "", CCGetRequestParam("due_in_day", ccsGet, NULL), $this);
+        $this->debt_letter_1 = & new clsControl(ccsLabel, "debt_letter_1", "debt_letter_1", ccsText, "", CCGetRequestParam("debt_letter_1", ccsGet, NULL), $this);
+        $this->debt_letter_2 = & new clsControl(ccsLabel, "debt_letter_2", "debt_letter_2", ccsText, "", CCGetRequestParam("debt_letter_2", ccsGet, NULL), $this);
+        $this->debt_letter_3 = & new clsControl(ccsLabel, "debt_letter_3", "debt_letter_3", ccsText, "", CCGetRequestParam("debt_letter_3", ccsGet, NULL), $this);
         $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
         $this->Insert_Link->Page = "p_finance_period.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
@@ -96,7 +100,7 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
     }
 //End Initialize Method
 
-//Show Method @2-D08F4D6D
+//Show Method @2-4B6055D3
     function Show()
     {
         global $Tpl;
@@ -133,6 +137,10 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
             $this->ControlsVisible["status_code"] = $this->status_code->Visible;
             $this->ControlsVisible["start_date"] = $this->start_date->Visible;
             $this->ControlsVisible["end_date"] = $this->end_date->Visible;
+            $this->ControlsVisible["due_in_day"] = $this->due_in_day->Visible;
+            $this->ControlsVisible["debt_letter_1"] = $this->debt_letter_1->Visible;
+            $this->ControlsVisible["debt_letter_2"] = $this->debt_letter_2->Visible;
+            $this->ControlsVisible["debt_letter_3"] = $this->debt_letter_3->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -148,6 +156,10 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
                 $this->status_code->SetValue($this->DataSource->status_code->GetValue());
                 $this->start_date->SetValue($this->DataSource->start_date->GetValue());
                 $this->end_date->SetValue($this->DataSource->end_date->GetValue());
+                $this->due_in_day->SetValue($this->DataSource->due_in_day->GetValue());
+                $this->debt_letter_1->SetValue($this->DataSource->debt_letter_1->GetValue());
+                $this->debt_letter_2->SetValue($this->DataSource->debt_letter_2->GetValue());
+                $this->debt_letter_3->SetValue($this->DataSource->debt_letter_3->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -158,6 +170,10 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
                 $this->status_code->Show();
                 $this->start_date->Show();
                 $this->end_date->Show();
+                $this->due_in_day->Show();
+                $this->debt_letter_1->Show();
+                $this->debt_letter_2->Show();
+                $this->debt_letter_3->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -193,7 +209,7 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
     }
 //End Show Method
 
-//GetErrors Method @2-42080BCE
+//GetErrors Method @2-B97AFDAC
     function GetErrors()
     {
         $errors = "";
@@ -204,6 +220,10 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
         $errors = ComposeStrings($errors, $this->status_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->start_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->end_date->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->due_in_day->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->debt_letter_1->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->debt_letter_2->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->debt_letter_3->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -214,7 +234,7 @@ class clsGridp_finance_periodGrid { //p_finance_periodGrid class @2-206FDD55
 
 class clsp_finance_periodGridDataSource extends clsDBConnSIKP {  //p_finance_periodGridDataSource Class @2-B8EC396A
 
-//DataSource Variables @2-8481C230
+//DataSource Variables @2-3E5CB93D
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -232,9 +252,13 @@ class clsp_finance_periodGridDataSource extends clsDBConnSIKP {  //p_finance_per
     var $status_code;
     var $start_date;
     var $end_date;
+    var $due_in_day;
+    var $debt_letter_1;
+    var $debt_letter_2;
+    var $debt_letter_3;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-F501DF98
+//DataSourceClass_Initialize Event @2-C391975E
     function clsp_finance_periodGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -251,6 +275,14 @@ class clsp_finance_periodGridDataSource extends clsDBConnSIKP {  //p_finance_per
         $this->start_date = new clsField("start_date", ccsText, "");
         
         $this->end_date = new clsField("end_date", ccsText, "");
+        
+        $this->due_in_day = new clsField("due_in_day", ccsText, "");
+        
+        $this->debt_letter_1 = new clsField("debt_letter_1", ccsText, "");
+        
+        $this->debt_letter_2 = new clsField("debt_letter_2", ccsText, "");
+        
+        $this->debt_letter_3 = new clsField("debt_letter_3", ccsText, "");
         
 
     }
@@ -276,7 +308,7 @@ class clsp_finance_periodGridDataSource extends clsDBConnSIKP {  //p_finance_per
     }
 //End Prepare Method
 
-//Open Method @2-878F81AB
+//Open Method @2-C70F4947
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -284,7 +316,8 @@ class clsp_finance_periodGridDataSource extends clsDBConnSIKP {  //p_finance_per
         "to_char(a.end_date,'DD-MON-YYYY') end_date, a.description,\n" .
         "to_char(a.updated_date,'DD-MON-YYYY') updated_date,\n" .
         "a.updated_by,to_char(a.creation_date,'DD-MON-YYYY') creation_date, a.created_by,\n" .
-        "b.code status_code, a.p_status_list_id\n" .
+        "b.code status_code, a.p_status_list_id,\n" .
+        "nvl(a.due_in_day,0) as due_in_day, nvl(a.debt_letter_1,0) as debt_letter_1, nvl(a.debt_letter_2,0) as debt_letter_2, nvl(a.debt_letter_3,0) as debt_letter_3\n" .
         "FROM p_finance_period a, p_status_list b, p_year_period c \n" .
         "WHERE a.p_status_list_id = b.p_status_list_id AND \n" .
         "a.p_year_period_id = c.p_year_period_id AND\n" .
@@ -295,7 +328,8 @@ class clsp_finance_periodGridDataSource extends clsDBConnSIKP {  //p_finance_per
         "to_char(a.end_date,'DD-MON-YYYY') end_date, a.description,\n" .
         "to_char(a.updated_date,'DD-MON-YYYY') updated_date,\n" .
         "a.updated_by,to_char(a.creation_date,'DD-MON-YYYY') creation_date, a.created_by,\n" .
-        "b.code status_code, a.p_status_list_id\n" .
+        "b.code status_code, a.p_status_list_id,\n" .
+        "nvl(a.due_in_day,0) as due_in_day, nvl(a.debt_letter_1,0) as debt_letter_1, nvl(a.debt_letter_2,0) as debt_letter_2, nvl(a.debt_letter_3,0) as debt_letter_3\n" .
         "FROM p_finance_period a, p_status_list b, p_year_period c \n" .
         "WHERE a.p_status_list_id = b.p_status_list_id AND \n" .
         "a.p_year_period_id = c.p_year_period_id AND\n" .
@@ -312,7 +346,7 @@ class clsp_finance_periodGridDataSource extends clsDBConnSIKP {  //p_finance_per
     }
 //End Open Method
 
-//SetValues Method @2-9D55A151
+//SetValues Method @2-8AC2A8A8
     function SetValues()
     {
         $this->code->SetDBValue($this->f("code"));
@@ -321,6 +355,10 @@ class clsp_finance_periodGridDataSource extends clsDBConnSIKP {  //p_finance_per
         $this->status_code->SetDBValue($this->f("status_code"));
         $this->start_date->SetDBValue($this->f("start_date"));
         $this->end_date->SetDBValue($this->f("end_date"));
+        $this->due_in_day->SetDBValue($this->f("due_in_day"));
+        $this->debt_letter_1->SetDBValue($this->f("debt_letter_1"));
+        $this->debt_letter_2->SetDBValue($this->f("debt_letter_2"));
+        $this->debt_letter_3->SetDBValue($this->f("debt_letter_3"));
     }
 //End SetValues Method
 
@@ -568,7 +606,7 @@ class clsRecordp_finance_periodForm { //p_finance_periodForm Class @23-5457F780
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-1C003042
+//Class_Initialize Event @23-A2615429
     function clsRecordp_finance_periodForm($RelativePath, & $Parent)
     {
 
@@ -625,6 +663,10 @@ class clsRecordp_finance_periodForm { //p_finance_periodForm Class @23-5457F780
             $this->p_status_list_id = & new clsControl(ccsHidden, "p_status_list_id", "p_status_list_id", ccsFloat, "", CCGetRequestParam("p_status_list_id", $Method, NULL), $this);
             $this->p_finance_periodGridPage = & new clsControl(ccsHidden, "p_finance_periodGridPage", "p_finance_periodGridPage", ccsText, "", CCGetRequestParam("p_finance_periodGridPage", $Method, NULL), $this);
             $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsFloat, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
+            $this->due_in_day = & new clsControl(ccsTextBox, "due_in_day", "Description", ccsText, "", CCGetRequestParam("due_in_day", $Method, NULL), $this);
+            $this->debt_letter_1 = & new clsControl(ccsTextBox, "debt_letter_1", "Description", ccsText, "", CCGetRequestParam("debt_letter_1", $Method, NULL), $this);
+            $this->debt_letter_2 = & new clsControl(ccsTextBox, "debt_letter_2", "Description", ccsText, "", CCGetRequestParam("debt_letter_2", $Method, NULL), $this);
+            $this->debt_letter_3 = & new clsControl(ccsTextBox, "debt_letter_3", "Description", ccsText, "", CCGetRequestParam("debt_letter_3", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->creation_date->Value) && !strlen($this->creation_date->Value) && $this->creation_date->Value !== false)
                     $this->creation_date->SetText(date("d-M-Y"));
@@ -650,7 +692,7 @@ class clsRecordp_finance_periodForm { //p_finance_periodForm Class @23-5457F780
     }
 //End Initialize Method
 
-//Validate Method @23-EF37925E
+//Validate Method @23-92A60E58
     function Validate()
     {
         global $CCSLocales;
@@ -669,6 +711,10 @@ class clsRecordp_finance_periodForm { //p_finance_periodForm Class @23-5457F780
         $Validation = ($this->p_status_list_id->Validate() && $Validation);
         $Validation = ($this->p_finance_periodGridPage->Validate() && $Validation);
         $Validation = ($this->p_finance_period_id->Validate() && $Validation);
+        $Validation = ($this->due_in_day->Validate() && $Validation);
+        $Validation = ($this->debt_letter_1->Validate() && $Validation);
+        $Validation = ($this->debt_letter_2->Validate() && $Validation);
+        $Validation = ($this->debt_letter_3->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
@@ -683,11 +729,15 @@ class clsRecordp_finance_periodForm { //p_finance_periodForm Class @23-5457F780
         $Validation =  $Validation && ($this->p_status_list_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_periodGridPage->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->due_in_day->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->debt_letter_1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->debt_letter_2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->debt_letter_3->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-843E901C
+//CheckErrors Method @23-F24AF80A
     function CheckErrors()
     {
         $errors = false;
@@ -706,6 +756,10 @@ class clsRecordp_finance_periodForm { //p_finance_periodForm Class @23-5457F780
         $errors = ($errors || $this->p_status_list_id->Errors->Count());
         $errors = ($errors || $this->p_finance_periodGridPage->Errors->Count());
         $errors = ($errors || $this->p_finance_period_id->Errors->Count());
+        $errors = ($errors || $this->due_in_day->Errors->Count());
+        $errors = ($errors || $this->debt_letter_1->Errors->Count());
+        $errors = ($errors || $this->debt_letter_2->Errors->Count());
+        $errors = ($errors || $this->debt_letter_3->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -785,7 +839,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @23-DA2C95A4
+//InsertRow Method @23-3B6A06F5
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -796,13 +850,17 @@ function GetPrimaryKey($keyName)
         $this->DataSource->start_date->SetValue($this->start_date->GetValue(true));
         $this->DataSource->end_date->SetValue($this->end_date->GetValue(true));
         $this->DataSource->p_year_period_id->SetValue($this->p_year_period_id->GetValue(true));
+        $this->DataSource->due_in_day->SetValue($this->due_in_day->GetValue(true));
+        $this->DataSource->debt_letter_1->SetValue($this->debt_letter_1->GetValue(true));
+        $this->DataSource->debt_letter_2->SetValue($this->debt_letter_2->GetValue(true));
+        $this->DataSource->debt_letter_3->SetValue($this->debt_letter_3->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @23-85BB045B
+//UpdateRow Method @23-7EE5937C
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -813,6 +871,10 @@ function GetPrimaryKey($keyName)
         $this->DataSource->start_date->SetValue($this->start_date->GetValue(true));
         $this->DataSource->end_date->SetValue($this->end_date->GetValue(true));
         $this->DataSource->p_finance_period_id->SetValue($this->p_finance_period_id->GetValue(true));
+        $this->DataSource->due_in_day->SetValue($this->due_in_day->GetValue(true));
+        $this->DataSource->debt_letter_1->SetValue($this->debt_letter_1->GetValue(true));
+        $this->DataSource->debt_letter_2->SetValue($this->debt_letter_2->GetValue(true));
+        $this->DataSource->debt_letter_3->SetValue($this->debt_letter_3->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -831,7 +893,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-9106BEF2
+//Show Method @23-577B1366
     function Show()
     {
         global $CCSUseAmp;
@@ -871,6 +933,10 @@ function GetPrimaryKey($keyName)
                     $this->end_date->SetValue($this->DataSource->end_date->GetValue());
                     $this->p_status_list_id->SetValue($this->DataSource->p_status_list_id->GetValue());
                     $this->p_finance_period_id->SetValue($this->DataSource->p_finance_period_id->GetValue());
+                    $this->due_in_day->SetValue($this->DataSource->due_in_day->GetValue());
+                    $this->debt_letter_1->SetValue($this->DataSource->debt_letter_1->GetValue());
+                    $this->debt_letter_2->SetValue($this->DataSource->debt_letter_2->GetValue());
+                    $this->debt_letter_3->SetValue($this->DataSource->debt_letter_3->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -896,6 +962,10 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->p_status_list_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_finance_periodGridPage->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_finance_period_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->due_in_day->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->debt_letter_1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->debt_letter_2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->debt_letter_3->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -936,6 +1006,10 @@ function GetPrimaryKey($keyName)
         $this->p_status_list_id->Show();
         $this->p_finance_periodGridPage->Show();
         $this->p_finance_period_id->Show();
+        $this->due_in_day->Show();
+        $this->debt_letter_1->Show();
+        $this->debt_letter_2->Show();
+        $this->debt_letter_3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -946,7 +1020,7 @@ function GetPrimaryKey($keyName)
 
 class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_periodFormDataSource Class @23-E7DBAF9E
 
-//DataSource Variables @23-ED16E706
+//DataSource Variables @23-9800AF71
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -974,9 +1048,13 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
     var $p_status_list_id;
     var $p_finance_periodGridPage;
     var $p_finance_period_id;
+    var $due_in_day;
+    var $debt_letter_1;
+    var $debt_letter_2;
+    var $debt_letter_3;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-69F68EB7
+//DataSourceClass_Initialize Event @23-C872A152
     function clsp_finance_periodFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1008,6 +1086,14 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
         
         $this->p_finance_period_id = new clsField("p_finance_period_id", ccsFloat, "");
         
+        $this->due_in_day = new clsField("due_in_day", ccsText, "");
+        
+        $this->debt_letter_1 = new clsField("debt_letter_1", ccsText, "");
+        
+        $this->debt_letter_2 = new clsField("debt_letter_2", ccsText, "");
+        
+        $this->debt_letter_3 = new clsField("debt_letter_3", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1023,7 +1109,7 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
     }
 //End Prepare Method
 
-//Open Method @23-C993C918
+//Open Method @23-ECB8FBE6
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1031,7 +1117,8 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
         "to_char(a.end_date,'DD-MON-YYYY') end_date, a.description,\n" .
         "to_char(a.updated_date,'DD-MON-YYYY') updated_date,\n" .
         "a.updated_by,to_char(a.creation_date,'DD-MON-YYYY') creation_date, a.created_by,\n" .
-        "b.code status_code, a.p_status_list_id\n" .
+        "b.code status_code, a.p_status_list_id,\n" .
+        "nvl(a.due_in_day,0) as due_in_day, nvl(a.debt_letter_1,0) as debt_letter_1, nvl(a.debt_letter_2,0) as debt_letter_2, nvl(a.debt_letter_3,0) as debt_letter_3\n" .
         "FROM p_finance_period a, p_status_list b, p_year_period c \n" .
         "WHERE a.p_status_list_id = b.p_status_list_id AND\n" .
         "a.p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "";
@@ -1043,7 +1130,7 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
     }
 //End Open Method
 
-//SetValues Method @23-88A81537
+//SetValues Method @23-0B8BA1ED
     function SetValues()
     {
         $this->p_year_period_id->SetDBValue(trim($this->f("p_year_period_id")));
@@ -1058,10 +1145,14 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
         $this->end_date->SetDBValue($this->f("end_date"));
         $this->p_status_list_id->SetDBValue(trim($this->f("p_status_list_id")));
         $this->p_finance_period_id->SetDBValue(trim($this->f("p_finance_period_id")));
+        $this->due_in_day->SetDBValue($this->f("due_in_day"));
+        $this->debt_letter_1->SetDBValue($this->f("debt_letter_1"));
+        $this->debt_letter_2->SetDBValue($this->f("debt_letter_2"));
+        $this->debt_letter_3->SetDBValue($this->f("debt_letter_3"));
     }
 //End SetValues Method
 
-//Insert Method @23-A7707DA1
+//Insert Method @23-BF203FD7
     function Insert()
     {
         global $CCSLocales;
@@ -1075,6 +1166,10 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
         $this->cp["start_date"] = new clsSQLParameter("ctrlstart_date", ccsText, "", "", $this->start_date->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["end_date"] = new clsSQLParameter("ctrlend_date", ccsText, "", "", $this->end_date->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["p_year_period_id"] = new clsSQLParameter("ctrlp_year_period_id", ccsFloat, "", "", $this->p_year_period_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["due_in_day"] = new clsSQLParameter("ctrldue_in_day", ccsFloat, "", "", $this->due_in_day->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["debt_letter_1"] = new clsSQLParameter("ctrldebt_letter_1", ccsFloat, "", "", $this->debt_letter_1->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["debt_letter_2"] = new clsSQLParameter("ctrldebt_letter_2", ccsFloat, "", "", $this->debt_letter_2->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["debt_letter_3"] = new clsSQLParameter("ctrldebt_letter_3", ccsFloat, "", "", $this->debt_letter_3->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["code"]->GetValue()) and !strlen($this->cp["code"]->GetText()) and !is_bool($this->cp["code"]->GetValue())) 
             $this->cp["code"]->SetValue($this->code->GetValue(true));
@@ -1096,8 +1191,24 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
             $this->cp["p_year_period_id"]->SetValue($this->p_year_period_id->GetValue(true));
         if (!strlen($this->cp["p_year_period_id"]->GetText()) and !is_bool($this->cp["p_year_period_id"]->GetValue(true))) 
             $this->cp["p_year_period_id"]->SetText(0);
-        $this->SQL = "INSERT INTO p_finance_period(p_finance_period_id, code, p_status_list_id, start_date, end_date, description, creation_date, created_by, updated_date, updated_by, p_year_period_id) \n" .
-        "VALUES(generate_id('sikp','p_finance_period','p_finance_period_id'), '" . $this->SQLValue($this->cp["code"]->GetDBValue(), ccsText) . "', " . $this->SQLValue($this->cp["p_status_list_id"]->GetDBValue(), ccsFloat) . ", to_date('" . $this->SQLValue($this->cp["start_date"]->GetDBValue(), ccsText) . "','DD-MON-YYYY'), to_date('" . $this->SQLValue($this->cp["end_date"]->GetDBValue(), ccsText) . "','DD-MON-YYYY'), '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', " . $this->SQLValue($this->cp["p_year_period_id"]->GetDBValue(), ccsFloat) . ")";
+        if (!is_null($this->cp["due_in_day"]->GetValue()) and !strlen($this->cp["due_in_day"]->GetText()) and !is_bool($this->cp["due_in_day"]->GetValue())) 
+            $this->cp["due_in_day"]->SetValue($this->due_in_day->GetValue(true));
+        if (!strlen($this->cp["due_in_day"]->GetText()) and !is_bool($this->cp["due_in_day"]->GetValue(true))) 
+            $this->cp["due_in_day"]->SetText(0);
+        if (!is_null($this->cp["debt_letter_1"]->GetValue()) and !strlen($this->cp["debt_letter_1"]->GetText()) and !is_bool($this->cp["debt_letter_1"]->GetValue())) 
+            $this->cp["debt_letter_1"]->SetValue($this->debt_letter_1->GetValue(true));
+        if (!strlen($this->cp["debt_letter_1"]->GetText()) and !is_bool($this->cp["debt_letter_1"]->GetValue(true))) 
+            $this->cp["debt_letter_1"]->SetText(0);
+        if (!is_null($this->cp["debt_letter_2"]->GetValue()) and !strlen($this->cp["debt_letter_2"]->GetText()) and !is_bool($this->cp["debt_letter_2"]->GetValue())) 
+            $this->cp["debt_letter_2"]->SetValue($this->debt_letter_2->GetValue(true));
+        if (!strlen($this->cp["debt_letter_2"]->GetText()) and !is_bool($this->cp["debt_letter_2"]->GetValue(true))) 
+            $this->cp["debt_letter_2"]->SetText(0);
+        if (!is_null($this->cp["debt_letter_3"]->GetValue()) and !strlen($this->cp["debt_letter_3"]->GetText()) and !is_bool($this->cp["debt_letter_3"]->GetValue())) 
+            $this->cp["debt_letter_3"]->SetValue($this->debt_letter_3->GetValue(true));
+        if (!strlen($this->cp["debt_letter_3"]->GetText()) and !is_bool($this->cp["debt_letter_3"]->GetValue(true))) 
+            $this->cp["debt_letter_3"]->SetText(0);
+        $this->SQL = "INSERT INTO p_finance_period(p_finance_period_id, code, p_status_list_id, start_date, end_date, description, creation_date, created_by, updated_date, updated_by, p_year_period_id, due_in_day, debt_letter_1, debt_letter_2, debt_letter_3) \n" .
+        "VALUES(generate_id('sikp','p_finance_period','p_finance_period_id'), '" . $this->SQLValue($this->cp["code"]->GetDBValue(), ccsText) . "', " . $this->SQLValue($this->cp["p_status_list_id"]->GetDBValue(), ccsFloat) . ", to_date('" . $this->SQLValue($this->cp["start_date"]->GetDBValue(), ccsText) . "','DD-MON-YYYY'), to_date('" . $this->SQLValue($this->cp["end_date"]->GetDBValue(), ccsText) . "','DD-MON-YYYY'), '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', " . $this->SQLValue($this->cp["p_year_period_id"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["due_in_day"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["debt_letter_1"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["debt_letter_2"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["debt_letter_3"]->GetDBValue(), ccsFloat) . ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -1106,7 +1217,7 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
     }
 //End Insert Method
 
-//Update Method @23-0F39AE73
+//Update Method @23-708B363A
     function Update()
     {
         global $CCSLocales;
@@ -1119,6 +1230,10 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
         $this->cp["start_date"] = new clsSQLParameter("ctrlstart_date", ccsText, "", "", $this->start_date->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["end_date"] = new clsSQLParameter("ctrlend_date", ccsText, "", "", $this->end_date->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["p_finance_period_id"] = new clsSQLParameter("ctrlp_finance_period_id", ccsFloat, "", "", $this->p_finance_period_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["due_in_day"] = new clsSQLParameter("ctrldue_in_day", ccsFloat, "", "", $this->due_in_day->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["debt_letter_1"] = new clsSQLParameter("ctrldebt_letter_1", ccsFloat, "", "", $this->debt_letter_1->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["debt_letter_2"] = new clsSQLParameter("ctrldebt_letter_2", ccsFloat, "", "", $this->debt_letter_2->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["debt_letter_3"] = new clsSQLParameter("ctrldebt_letter_3", ccsFloat, "", "", $this->debt_letter_3->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["code"]->GetValue()) and !strlen($this->cp["code"]->GetText()) and !is_bool($this->cp["code"]->GetValue())) 
             $this->cp["code"]->SetValue($this->code->GetValue(true));
@@ -1138,6 +1253,22 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
             $this->cp["p_finance_period_id"]->SetValue($this->p_finance_period_id->GetValue(true));
         if (!strlen($this->cp["p_finance_period_id"]->GetText()) and !is_bool($this->cp["p_finance_period_id"]->GetValue(true))) 
             $this->cp["p_finance_period_id"]->SetText(0);
+        if (!is_null($this->cp["due_in_day"]->GetValue()) and !strlen($this->cp["due_in_day"]->GetText()) and !is_bool($this->cp["due_in_day"]->GetValue())) 
+            $this->cp["due_in_day"]->SetValue($this->due_in_day->GetValue(true));
+        if (!strlen($this->cp["due_in_day"]->GetText()) and !is_bool($this->cp["due_in_day"]->GetValue(true))) 
+            $this->cp["due_in_day"]->SetText(0);
+        if (!is_null($this->cp["debt_letter_1"]->GetValue()) and !strlen($this->cp["debt_letter_1"]->GetText()) and !is_bool($this->cp["debt_letter_1"]->GetValue())) 
+            $this->cp["debt_letter_1"]->SetValue($this->debt_letter_1->GetValue(true));
+        if (!strlen($this->cp["debt_letter_1"]->GetText()) and !is_bool($this->cp["debt_letter_1"]->GetValue(true))) 
+            $this->cp["debt_letter_1"]->SetText(0);
+        if (!is_null($this->cp["debt_letter_2"]->GetValue()) and !strlen($this->cp["debt_letter_2"]->GetText()) and !is_bool($this->cp["debt_letter_2"]->GetValue())) 
+            $this->cp["debt_letter_2"]->SetValue($this->debt_letter_2->GetValue(true));
+        if (!strlen($this->cp["debt_letter_2"]->GetText()) and !is_bool($this->cp["debt_letter_2"]->GetValue(true))) 
+            $this->cp["debt_letter_2"]->SetText(0);
+        if (!is_null($this->cp["debt_letter_3"]->GetValue()) and !strlen($this->cp["debt_letter_3"]->GetText()) and !is_bool($this->cp["debt_letter_3"]->GetValue())) 
+            $this->cp["debt_letter_3"]->SetValue($this->debt_letter_3->GetValue(true));
+        if (!strlen($this->cp["debt_letter_3"]->GetText()) and !is_bool($this->cp["debt_letter_3"]->GetValue(true))) 
+            $this->cp["debt_letter_3"]->SetText(0);
         $this->SQL = "UPDATE p_finance_period \n" .
         "SET code='" . $this->SQLValue($this->cp["code"]->GetDBValue(), ccsText) . "', \n" .
         "p_status_list_id=" . $this->SQLValue($this->cp["p_status_list_id"]->GetDBValue(), ccsFloat) . ",\n" .
@@ -1145,7 +1276,11 @@ class clsp_finance_periodFormDataSource extends clsDBConnSIKP {  //p_finance_per
         "end_date=to_date('" . $this->SQLValue($this->cp["end_date"]->GetDBValue(), ccsText) . "','DD-MON-YYYY'),\n" .
         "description='" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
         "updated_date=sysdate, \n" .
-        "updated_by='" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "' \n" .
+        "updated_by='" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "',\n" .
+        "due_in_day = " . $this->SQLValue($this->cp["due_in_day"]->GetDBValue(), ccsFloat) . ",\n" .
+        "debt_letter_1 = " . $this->SQLValue($this->cp["debt_letter_1"]->GetDBValue(), ccsFloat) . ",\n" .
+        "debt_letter_2 = " . $this->SQLValue($this->cp["debt_letter_2"]->GetDBValue(), ccsFloat) . ",\n" .
+        "debt_letter_3 = " . $this->SQLValue($this->cp["debt_letter_3"]->GetDBValue(), ccsFloat) . "\n" .
         "WHERE p_finance_period_id = " . $this->SQLValue($this->cp["p_finance_period_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
