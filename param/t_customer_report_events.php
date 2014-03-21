@@ -29,7 +29,7 @@ function t_customerGrid_BeforeShowRow(& $sender)
     global $selected_id;
     global $add_flag;
     global $is_show_form;
-
+	
     if ($selected_id<0 && $add_flag!="ADD") {
     	$selected_id = $Component->DataSource->t_customer_id->GetValue();
         $t_customer_updateForm->DataSource->Parameters["urlt_customer_id"] = $selected_id;
@@ -74,7 +74,16 @@ function t_customerGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_customerGrid; //Compatibility
 //End t_customerGrid_BeforeSelect
-	
+	$p_vat_type_id = CCGetFromGet('p_vat_type_id');
+	$p_vat_type_dtl_id = CCGetFromGet('p_vat_type_dtl_id');
+	/*if(empty($p_vat_type_id)){
+		$t_customerGrid->DataSource->Parameters["urlp_vat_type_id"]='%%';
+	}*/
+	if(empty($p_vat_type_dtl_id)){
+		$t_customerGrid->DataSource->Parameters["urlp_vat_type_dtl_id"]='';
+	}else{
+		$t_customerGrid->DataSource->Parameters["urlp_vat_type_dtl_id"]=' AND b.p_vat_type_dtl_id ='.$p_vat_type_dtl_id;
+	}
 	/*
 			select *
 			from t_customer a 
