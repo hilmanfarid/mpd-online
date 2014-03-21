@@ -800,7 +800,7 @@ function Page_BeforeShow(& $sender)
   		$t_vat_reg_dtl_ppj_nplGrid->Visible = true;
   		$t_vat_reg_dtl_hotel_srvcGrid->Visible = false;
   	}else{
-  		alert("Jenis Permohonan Tidak Diketahui");
+  		echo 'alert("Jenis Permohonan Tidak Diketahui");';
   	}
   // -------------------------
 
