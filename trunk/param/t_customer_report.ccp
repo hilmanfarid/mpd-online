@@ -13,7 +13,7 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
        and upper(b.company_name) like upper('%{s_company_name}%')
        and upper(b.company_brand) like upper('%{s_company_brand}%')
 	   and b.p_vat_type_id like '%{p_vat_type_id}%'
-	   and b.p_vat_type_dtl_id like '%{p_vat_type_dtl_id}%'
+	   {p_vat_type_dtl_id}
 	   and b.p_account_status_id = 1">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_customer_report.ccp" wizardThemeItem="GridA" PathID="t_customerGridDLink" removeParameters="FLAG">
