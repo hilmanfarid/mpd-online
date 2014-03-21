@@ -329,7 +329,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End Prepare Method
 
-//Open Method @2-3F065EDD
+//Open Method @2-448FD8E5
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -346,7 +346,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
         "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
         "	   and b.p_vat_type_id like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%'\n" .
-        "	   and b.p_vat_type_dtl_id like '%" . $this->SQLValue($this->wp->GetDBValue("7"), ccsText) . "%'\n" .
+        "	   " . $this->SQLValue($this->wp->GetDBValue("7"), ccsText) . "\n" .
         "	   and b.p_account_status_id = 1) cnt";
         $this->SQL = "select a.*, b.npwd, c.vat_code, d.vat_code as nama_ayat\n" .
         "FROM t_customer a\n" .
@@ -361,18 +361,18 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
         "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
         "	   and b.p_vat_type_id like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%'\n" .
-        "	   and b.p_vat_type_dtl_id like '%" . $this->SQLValue($this->wp->GetDBValue("7"), ccsText) . "%'\n" .
+        "	   " . $this->SQLValue($this->wp->GetDBValue("7"), ccsText) . "\n" .
         "	   and b.p_account_status_id = 1";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
         else
             $this->RecordsCount = "CCS not counted";
-        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+		$this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
     }
 //End Open Method
-
+ 
 //SetValues Method @2-A41827F5
     function SetValues()
     {
