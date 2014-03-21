@@ -42,7 +42,8 @@ $query = "SELECT
 	building_area,
 	building_total_price,
 	market_price,
-	bphtb_amt_final
+	bphtb_amt_final,
+	object_address_name
 FROM
 	sikp.t_bphtb_registration reg_bphtb
 LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
@@ -74,7 +75,8 @@ while ($dbConn->next_record()) {
 		'building_area' => $dbConn->f("building_area"),
 		'building_total_price' => $dbConn->f("building_total_price"),
 		'market_price' => $dbConn->f("market_price"),
-		'bphtb_amt_final' => $dbConn->f("bphtb_amt_final")
+		'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
+		'object_address_name' => $dbConn->f("object_address_name"),
 	);
 }
 
@@ -166,7 +168,7 @@ class FormCetak extends FPDF {
 			$this->RowMultiBorderWithHeight(
 				array("Nomor",
 					":",
-					/*$data["letter_no"]."-".$no_urut*/"-",
+					/*$data["letter_no"]."-".$no_urut*/"",
 					"-Disyanjak"
 				),
 				array("",
@@ -180,7 +182,7 @@ class FormCetak extends FPDF {
 			$this->RowMultiBorderWithHeight(
 				array("Nomor",
 					":",
-					/*" - "*/"-",
+					/*" - "*/"",
 					"-Disyanjak"
 				),
 				array("",
@@ -199,7 +201,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array("Sifat",
 				":",
-				"-"
+				"  Biasa"
 			),
 			array("",
 				"",
@@ -211,7 +213,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array("Lampiran",
 				":",
-				"-"
+				"  -"
 			),
 			array("",
 				"",
@@ -223,7 +225,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array("Perihal",
 				":",
-				"Konfirmasi Data"
+				"  Konfirmasi Data"
 			),
 			array("",
 				"",
@@ -239,7 +241,8 @@ class FormCetak extends FPDF {
 		$lkepada3 = $lkepada * 3;
 		
 		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "Bandung, ".$data['creation_date'], "", 0, 'L');
+		$this->Cell($lkepada2-20, $this->height, "Bandung,", "", 0, 'L');
+		$this->Cell("", $this->height, date("Y"), "", 0, 'L');
 		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
@@ -282,16 +285,15 @@ class FormCetak extends FPDF {
 		$this->SetFont('ARIAL', '', 12);
 		/*$this->Cell($this->lengthCell, $this->height, "Nomor: ".$data["letter_no"], "LR", 0, 'C');
 		$this->newLine();*/
-		$this->tulis("Dengan ini dipermaklumkan bahwa berdasarkan data yang kami terima dari KPP Pratama Bandung Karees,", "FJ");
-		$this->tulis("ternyata Wajib Pajak BPHTB :","L");
+		$this->tulis("Dengan ini dipermaklumkan bahwa berdasarkan data pembukuan kami hingga saat ini saudara :", "L");
 		$this->tulis("", "L");
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","50","2",""));
+		$this->SetWidths(array("20","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				"Atas Nama",
+				"Nama",
 				":",
-				$data['wp_name']
+				"  ".$data['wp_name']
 			),
 			array("",
 				"",
@@ -302,12 +304,31 @@ class FormCetak extends FPDF {
 		);
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","50","2",""));
+		$this->SetWidths(array("20","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Alamat",
 				":",
-				$data['wp_address_name']
+				"  ".$data['wp_address_name']
+			),
+			array("",
+				"",
+				"",
+				""
+			),
+			3
+		);
+
+		$this->tulis("Dengan Objek Pajak:", "L");
+		$this->tulis("", "L");
+
+		$this->SetAligns(array("L","L","L","L"));
+		$this->SetWidths(array("20","30","2",""));
+		$this->RowMultiBorderWithHeight(
+			array("",
+				"Alamat",
+				":",
+				"  ".$data['object_address_name']
 			),
 			array("",
 				"",
@@ -318,12 +339,12 @@ class FormCetak extends FPDF {
 		);
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","50","2",""));
+		$this->SetWidths(array("20","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				"Nomor Nota Verifikasi",
+				"NOP",
 				":",
-				$data['registration_no']
+				"  ".$data['njop_pbb']
 			),
 			array("",
 				"",
@@ -333,19 +354,53 @@ class FormCetak extends FPDF {
 			3
 		);
 		//$this->newLine();
-		$this->Cell(10, $this->height, "", "", 0, 'L');
-		$this->Cell("135", $this->height, "Sampai Saat ini belum melakukan pembayaran pajak BPHTB Tahun", "", 0, "J");
-		$this->Cell("20", $this->height, "", "", 0, 'L');
-		$this->Cell("15", $this->height, "dengan Pajak Terutang", "", 0, 'L');
+		//$this->Cell(10, $this->height, "", "", 0, 'L');
+		$this->tulis("Sampai Saat ini belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Pajak Terutang sebesar", "FJ");
+		//$this->Cell("", $this->height, "Sampai Saat ini belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Pajak Terutang", "", 0, "FJ");
+		//$this->Cell("20", $this->height, date("Y"), "", 0, 'L');
+		//$this->Cell("15", $this->height, "dengan Pajak Terutang", "", 0, 'L');
 
-		$this->Ln();
-		$this->Cell(10, $this->height, "", "", 0, 'L');
-		$this->Cell("68", $this->height, "dengan Pajak Terutang sebesar Rp", "", 0, "J");
-		$this->Cell("20", $this->height, number_format($data['bphtb_amt_final'],2,",","."), "", 0, 'L');
+		//$this->Ln();
+		$this->tulis("Rp. ".number_format($data['bphtb_amt_final'],2,",",".")." yang berdasarkan : ", "L");
+		//$this->Cell(10, $this->height, "", "", 0, 'L');
+		//$this->Cell("68", $this->height, "Rp. ", "", 0, "J");
+		//$this->Cell("20", $this->height, number_format($data['bphtb_amt_final'],2,",","."), "", 0, 'L');
 		
-		$this->newLine();
+		$this->Ln();
+		$this->SetAligns(array("L","L","L","L"));
+		$this->SetWidths(array(10,"80","2",""));
+		$this->RowMultiBorderWithHeight(
+			array("",
+				"Nota Verifikasi BPHTB No. Registrasi",
+				":",
+				"  ".$data['registration_no'] 
+			),
+			array("",
+				"",
+				"",
+				""
+			),
+			3
+		);
+		$this->SetAligns(array("L","L","L","L"));
+		$this->SetWidths(array(10,"80","2",""));
+		$this->RowMultiBorderWithHeight(
+			array("",
+				"Tanggal",
+				":",
+				"  ".dateToString($data['creation_date'])
+			),
+			array("",
+				"",
+				"",
+				""
+			),
+			3
+		);
+
+		//$this->newLine();
 		$this->tulis("Berkenaan dengan hal tersebut di atas, kami mohon agar saudara dapat hadir selambat-lambatnya", "FJ");
-		$this->tulis("7 (tujuh) hari setelah diterimanya surat ini, pada :","L");
+		$this->tulis("7 (tujuh) hari setelah diterimanya surat ini, setiap hari kerja :","L");
 		
 		$this->Ln();
 		$this->SetAligns(array("L","L","L","L"));
@@ -354,7 +409,7 @@ class FormCetak extends FPDF {
 			array("",
 				"Hari",
 				":",
-				"Senin-Jum'at"
+				"  Senin-Jum'at"
 			),
 			array("",
 				"",
@@ -370,7 +425,7 @@ class FormCetak extends FPDF {
 			array("",
 				"Jam",
 				":",
-				"08.00 s.d 16.00 WIB" 
+				"  08.00 s.d 16.00 WIB" 
 			),
 			array("",
 				"",
@@ -386,7 +441,7 @@ class FormCetak extends FPDF {
 			array("",
 				"Tempat",
 				":",
-				"Seksi Penyelesaian Piutang Pajak Bidang Pajak Pendaftaran"
+				"  Seksi Penyelesaian Piutang Pajak Bidang Pajak Pendaftaran"
 			),
 			array("",
 				"",
@@ -396,17 +451,17 @@ class FormCetak extends FPDF {
 			2
 		);
 		$this->Cell(52, $this->height, "", "", 0, 'L');
-		$this->Cell("", $this->height, "DINAS PELAYANAN PAJAK", "", 0, "J");
+		$this->Cell("", $this->height, "  DINAS PELAYANAN PAJAK Kota Bandung ", "", 0, "J");
 		$this->Ln();
 		$this->Cell(52, $this->height, "", "", 0, 'L');
-		$this->Cell("", $this->height, "Kota Bandung Jl. Wastukecana No. 2 Bandung.", "", 0, "J");
+		$this->Cell("", $this->height, "  Jl. Wastukecana No. 2 Bandung.", "", 0, "J");
 
 		$this->newLine();
 
-		$this->tulis("Apabila saudara telah melaksanakan pembayaran pajak tersebut, kami mohon untuk dapat memperlihatkan", "FJ");
-		$this->tulis("SSB (Surat Setoran BPHTB) yang telah divalidasi beserta Resi Pembayaran dari Bank dengan melampirkan", "FJ");
-		$this->tulis("photo copy dokumen yang dimaksud.", "L");
-		$this->tulis("", "L");
+		//$this->tulis("Apabila saudara telah melaksanakan pembayaran pajak tersebut, kami mohon untuk dapat memperlihatkan", "FJ");
+		//$this->tulis("SSB (Surat Setoran BPHTB) yang telah divalidasi beserta Resi Pembayaran dari Bank dengan melampirkan", "FJ");
+		//$this->tulis("photo copy dokumen yang dimaksud.", "L");
+		//$this->tulis("", "L");
 		//$this->newLine();
 		$this->tulis("Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan terima kasih.", "L");
 		
@@ -854,8 +909,8 @@ class FormCetak extends FPDF {
 		return null;
 	}
 }
-function dateToString($date){
-	if(empty($date)) return "";
+function dateToString($tanggal){
+	if(empty($tanggal)) return "";
 	
 	$monthname = array(0  => '-',
 	                   1  => 'Januari',
@@ -871,7 +926,7 @@ function dateToString($date){
 	                   11 => 'November',
 	                   12 => 'Desember');    
 	
-	$pieces = explode('-', $date);
+	$pieces = explode('-', $tanggal);
 	
 	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
 }
