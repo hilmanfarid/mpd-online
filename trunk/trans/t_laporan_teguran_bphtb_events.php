@@ -46,7 +46,7 @@ function Page_BeforeShow(& $sender)
 				$whereClause.=" AND trunc(reg_bphtb.creation_date) <= '".$param_arr['date_end']."'";
 			}
 
-			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+			$whereClause.= " AND NOT EXISTS (SELECT 1 FROM t_payment_receipt_bphtb as x WHERE x.t_bphtb_registration_id = reg_bphtb.t_bphtb_registration_id) ";
 			$query="SELECT
 				reg_bphtb.t_bphtb_registration_id,
 				to_char(reg_bphtb.creation_date, 'YYYY-MM-DD') as creation_date,
@@ -65,7 +65,6 @@ function Page_BeforeShow(& $sender)
 				sikp.t_bphtb_registration reg_bphtb
 			LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
 			LEFT JOIN t_customer_order cust_order ON cust_order.t_customer_order_id = reg_bphtb.t_customer_order_id 
-			LEFT JOIN t_payment_receipt_bphtb payment ON reg_bphtb.t_bphtb_registration_id = payment.t_bphtb_registration_id 
 			WHERE cust_order.p_order_status_id <> 1";
 			
 			$query.= $whereClause;
