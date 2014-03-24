@@ -32,20 +32,20 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="565" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_sisa_piutangSearchp_vat_type_id">
+				<Hidden id="565" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_sisa_piutangSearchp_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_sisa_piutangSearchButton_DoSearch">
+				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_sisa_piutangSearchButton_DoSearch">
 					<Components/>
 					<Events>
 					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -73,7 +73,7 @@
 			<Attributes/>
 			<Features/>
 		</Label>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_sisa_piutang_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_rep_sisa_piutang.php" forShow="True" url="t_rep_sisa_piutang.php" comment="//" codePage="windows-1252"/>
@@ -89,9 +89,9 @@
 			</Actions>
 		</Event>
 		<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="566"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="566"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
