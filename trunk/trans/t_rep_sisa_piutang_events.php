@@ -126,7 +126,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak) {
 		$output.='<th align="center" colspan="2">TEGURAN I <br/> '.$data[0]['f_teg1_sts'].'</th>';
 		$output.='<th align="center" colspan="2">TEGURAN II <br/> '.$data[0]['f_teg2_sts'].'</th>';
 		$output.='<th align="center" colspan="2">TEGURAN III <br/> '.$data[0]['f_teg3_sts'].'</th>';
-		$output.='<th align="center" rowspan="2">AKSI</th>';
+		$output.='<th align="center" rowspan="2">AKSI'.$data[0]['f_action_date'].'</th>';
 		$output.='</tr>';
     	
 		$output.='<tr >';
