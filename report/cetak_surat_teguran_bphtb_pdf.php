@@ -25,7 +25,7 @@ if(!empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
 	$whereClause.= " AND trunc(reg_bphtb.creation_date) <= '".$param_arr['date_end']."'";
 }
 
-$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+$whereClause.= " AND NOT EXISTS (SELECT 1 FROM t_payment_receipt_bphtb as x WHERE x.t_bphtb_registration_id = reg_bphtb.t_bphtb_registration_id) ";
 
 $query = "SELECT
 	reg_bphtb.t_bphtb_registration_id,
