@@ -89,15 +89,26 @@ function Page_BeforeShow(& $sender)
 							  (f_teg3_amount > 0) ";
 			}
 			
-
 			$data = array();
 			$dbConn->query($query);
 			while ($dbConn->next_record()) {
 				$data[] = $dbConn->Record;
 			}
-
 			$dbConn->close();
-			$Label1->SetText(GetCetakHTML($data, $param_arr['pajak_periode'], $param_arr['jenis_pajak']));
+			
+			// ----- AMBIL JATUH TEMPO ------
+			$dbConn2	= new clsDBConnSIKP();
+			$tgl_jatuh_tempo = '';
+			$qJatuhTempo = "SELECT (end_date + due_in_day) AS jatuh_tempo FROM p_finance_period
+								WHERE p_finance_period_id = ".$param_arr['p_finance_period_id'];
+			$dbConn2->query($qJatuhTempo);
+			
+			while ($dbConn2->next_record()) {
+				$tgl_jatuh_tempo = $dbConn2->f('jatuh_tempo');
+			}
+			$dbConn2->close();
+
+			$Label1->SetText(GetCetakHTML($data, $param_arr['pajak_periode'], $param_arr['jenis_pajak'], $tgl_jatuh_tempo));
 
 		}else {
 			/* Tampilkan Alert */
@@ -114,8 +125,8 @@ function Page_BeforeShow(& $sender)
 }
 //End Close Page_BeforeShow
 
-function GetCetakHTML($data, $pajak_periode, $jenis_pajak) {
-
+function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo) {
+	
 	$output = '';
 	
 	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -132,7 +143,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak) {
 	
 	$output .= '<h2>JENIS PAJAK : '.$jenis_pajak.' </h2>';
 	$output .= '<h2>PERIODE PAJAK : '.$pajak_periode.'</h2>';
-	$output .= '<h2>JATUH TEMPO : </h2> <br/>';
+	$output .= '<h2>JATUH TEMPO : '.$tgl_jatuh_tempo.'</h2> <br/>';
 
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
                 <tr >';
