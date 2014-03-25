@@ -23,12 +23,12 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN STATUS PIUTANG 
+        LAPORAN STATUS&nbsp;SURAT TEGURAN&nbsp; 
       </div>
     </div>
   </div>
@@ -70,10 +70,22 @@ $(document).ready(function()
                   </tr>
  
                   <tr class="Controls">
+                    <td class="search-field">Status</td> 
+                    <td class="search-field">
+                      <select id="t_rep_sisa_piutangSearchListBox1" name="{ListBox1_Name}">
+                        <option selected value="">GLOBAL</option>
+                        {ListBox1_Options}
+                      </select>
+ </td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
+                  <tr>
                     <td class="search-field">&nbsp;</td> 
-                    <td class="search-field">&nbsp;</td> 
-                    <td>
+                    <td align="right">
                       <!-- BEGIN Button Button_DoSearch --><input id="t_rep_sisa_piutangSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch --></td> 
+                    <td></td> 
                     <td class="search-field">&nbsp;</td>
                   </tr>
                 </table>
@@ -131,20 +143,24 @@ $(document).ready(function()
                                 
                 if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "") {
                         alert("Semua Filter Harus Diisi");
-						return;
+                                                return;
                 }
                 
                 tahun_periode = document.getElementById("t_rep_sisa_piutangSearchyear_code").value;
                 pajak_periode = document.getElementById("t_rep_sisa_piutangSearchcode").value;
                 jenis_pajak = document.getElementById("t_rep_sisa_piutangSearchvat_code").value;
                 
+                                status = document.getElementById("t_rep_sisa_piutangSearchListBox1").value;
+                
+
                 var params = "?doAction=view_html";
                 params += "&p_year_period_id="+p_year_period_id;
-        		params += "&p_finance_period_id="+p_finance_period_id;
-        		params += "&p_vat_type_id="+p_vat_type_id;
-				params += "&tahun_periode="+tahun_periode;
-        		params += "&pajak_periode="+pajak_periode;
-        		params += "&jenis_pajak="+jenis_pajak;
+                        params += "&p_finance_period_id="+p_finance_period_id;
+                        params += "&p_vat_type_id="+p_vat_type_id;
+                                params += "&tahun_periode="+tahun_periode;
+                        params += "&pajak_periode="+pajak_periode;
+                        params += "&jenis_pajak="+jenis_pajak;
+                                                params += "&status="+status;
         
                 location.href="t_rep_sisa_piutang.php"+params;
         }
