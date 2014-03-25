@@ -45,7 +45,7 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-3ED47F0D
+//Class_Initialize Event @3-D0DBA8C0
     function clsRecordt_rep_sisa_piutangSearch($RelativePath, & $Parent)
     {
 
@@ -76,12 +76,15 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->vat_code->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
+            $this->ListBox1->DSType = dsListOfValues;
+            $this->ListBox1->Values = array(array("1", "BELUM BAYAR"), array("2", "SUDAH BAYAR"));
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-20DC6238
+//Validate Method @3-58A9D118
     function Validate()
     {
         global $CCSLocales;
@@ -93,6 +96,7 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
         $Validation = ($this->year_code->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->ListBox1->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
@@ -100,11 +104,12 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->ListBox1->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-40C59293
+//CheckErrors Method @3-54A59E0C
     function CheckErrors()
     {
         $errors = false;
@@ -114,6 +119,7 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
         $errors = ($errors || $this->year_code->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->ListBox1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -166,7 +172,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-720E18D3
+//Show Method @3-92E68817
     function Show()
     {
         global $CCSUseAmp;
@@ -180,6 +186,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->ListBox1->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -196,6 +203,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->ListBox1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -219,6 +227,7 @@ function GetPrimaryKey($keyName)
         $this->year_code->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
+        $this->ListBox1->Show();
         $this->Button_DoSearch->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
