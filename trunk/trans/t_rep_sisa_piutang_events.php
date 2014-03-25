@@ -144,7 +144,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak) {
 			$output .= '<td align="center">'.($i+1).'</td>';
 			$output .= '<td align="left">'.$data[$i]['nama'].'</td>';
 			$output .= '<td align="center">'.$data[$i]['npwpd'].'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_amout'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_amount'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_penalty'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg1_amount'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg1_penalty'],0,",",".").'</td>';
@@ -152,7 +152,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak) {
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg2_penalty'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_amount'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_penalty'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['jml_piutang'],0,",",".").'</td>';
+			$output .= '<td align="right">'.$data[$i]['jml_piutang'].'</td>';
 			
 			$output .= '</tr>';
 		}
