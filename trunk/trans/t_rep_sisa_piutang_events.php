@@ -144,7 +144,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo) {
 	
 	$output .= '<h2>JENIS PAJAK : '.$jenis_pajak.' </h2>';
 	$output .= '<h2>PERIODE PAJAK : '.$pajak_periode.'</h2>';
-	$output .= '<h2>JATUH TEMPO : '.dateToString($tgl_jatuh_tempo).'</h2> <br/>';
+	$output .= '<h2>JATUH TEMPO : '.strtoupper(dateToString($tgl_jatuh_tempo)).'</h2> <br/>';
 
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
                 <tr >';
