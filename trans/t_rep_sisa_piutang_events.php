@@ -152,7 +152,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak) {
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg2_penalty'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_amount'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_penalty'],0,",",".").'</td>';
-			$output .= '<td align="right">'.$data[$i]['jml_piutang'].'</td>';
+			$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
 			
 			$output .= '</tr>';
 		}
