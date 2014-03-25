@@ -38,14 +38,26 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_sisa_piutangSearchButton_DoSearch">
+				<ListBox id="567" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_rep_sisa_piutangSearchListBox1" connection="ConnSIKP" _valueOfList="2" _nameOfList="SUDAH BAYAR" dataSource="1;BELUM BAYAR;2;SUDAH BAYAR">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<Attributes/>
+<Features/>
+</ListBox>
+<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_sisa_piutangSearchButton_DoSearch">
 					<Components/>
 					<Events>
 					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
