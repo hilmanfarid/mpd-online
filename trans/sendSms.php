@@ -22,8 +22,7 @@
                     Pesan :
                 </td>
                 <td>
-                    <textarea name="message">
-                    </textarea>
+                    <textarea name="message"></textarea>
                 </td>
             </tr>
             <tr>
