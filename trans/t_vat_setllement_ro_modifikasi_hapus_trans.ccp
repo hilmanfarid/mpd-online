@@ -9,6 +9,7 @@ WHERE a.p_finance_period_id = b.p_finance_period_id AND
 a.t_customer_order_id = c.t_customer_order_id AND
 a.t_cust_account_id = d.t_cust_account_id AND
 c.p_rqst_type_id = e.p_rqst_type_id AND
+upper(sett_type.code) = 'SKPDKB JABATAN' AND
 sett_type.p_settlement_type_id = a.p_settlement_type_id(+) AND
 ( upper(d.wp_name) LIKE upper('%{s_keyword}%') OR 
   upper(a.npwd) LIKE upper('%{s_keyword}%') OR
@@ -245,6 +246,7 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Events/>
 					<Attributes/>
 					<Features/>
+
 				</Hidden>
 				<Hidden id="241" fieldSourceType="DBColumn" dataType="Text" name="PREV_DOC_TYPE_ID" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_setllementSearchPREV_DOC_TYPE_ID">
 					<Components/>
