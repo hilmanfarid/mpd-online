@@ -1,9 +1,15 @@
 <?php
 function sendSms(){
     include 'save_excel.php';
-    $npwd = $_POST['npwd'];
-    $no_telp = $_POST['no_telp'];
-    $message = $_POST['message'];
+    if(isset($_GET){
+        $npwd = $_GET['npwd'];
+        $no_telp = $_GET['no_telp'];
+        $message = $_GET['message'];
+    }else if(isset($_POST)){
+        $npwd = $_POST['npwd'];
+        $no_telp = $_POST['no_telp'];
+        $message = $_POST['message'];
+    }
     $file_name = createExcel($no_telp,$npwd);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,"http://smsblast.radbdg.net/_libz/usersignin.php");
