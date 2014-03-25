@@ -42,4 +42,4 @@ function sendSms(){
     $server_output = curl_exec ($ch);
     curl_close ($ch);
 }
-sendSms
+sendSms();
