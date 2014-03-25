@@ -10,8 +10,6 @@ function sendSms(){
         $no_telp = $_POST['no_telp'];
         $message = $_POST['message'];
     }
-    print_r(json_encode($_GET));
-    exit;
     $file_name = createExcel($no_telp,$npwd);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,"http://smsblast.radbdg.net/_libz/usersignin.php");
