@@ -14,6 +14,26 @@ $param_arr['date_start'] = $date_start;
 $param_arr['date_end'] = $date_end;
 
 $dbConn	= new clsDBConnSIKP();
+
+$dbConn2	= new clsDBConnSIKP();
+
+$query2 = "SELECT value from sikp.p_global_param where code ='NOMOR_SURAT_KONFIRMASI'";
+//$rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
+//$dbConn->query($query);
+//$dbConn->next_record();
+//$nomor_surat=$dbConn->f("value");
+//$rs = $dbConn2->query($query2) or die("Cannot execute query: $query\n");
+//$row = pg_fetch_row($rs);
+///*
+$dbConn2->query($query2);
+$nomor_surat = "";
+
+while ($dbConn2->next_record()) {
+	$nomor_surat = $dbConn2->f("value");
+}
+
+$dbConn2->close();
+//*/
 						
 $whereClause='';
 if(!empty($param_arr['date_start'])&&!empty($param_arr['date_end'])){
@@ -77,6 +97,7 @@ while ($dbConn->next_record()) {
 		'market_price' => $dbConn->f("market_price"),
 		'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
 		'object_address_name' => $dbConn->f("object_address_name"),
+		'nomor_surat' => $nomor_surat 
 	);
 }
 
@@ -85,7 +106,7 @@ $dbConn->close();
 
 class FormCetak extends FPDF {
 	var $fontSize = 10;
-	var $fontFam = 'Arial';
+	var $fontFam = 'BKANT';
 	var $yearId=0;
 	var $yearCode="";
 	var $paperWSize = 241.3;
@@ -119,7 +140,7 @@ class FormCetak extends FPDF {
 		$this->AddPage("P");
 		$this->AddFont('BKANT');
 		
-		$this->SetFont('ARIAL', '', 12);
+		$this->SetFont('BKANT', '', 12);
 		
 		// $this->Image('../images/logo_pemda.png',25,17,25,25);
 		
@@ -130,28 +151,28 @@ class FormCetak extends FPDF {
 		$lheader4 = $lheader * 4;
 		$lheader7 = $lheader * 7;
 		
-		$this->SetFont('ARIAL', '', 12);
+		$this->SetFont('BKANT', '', 12);
 
 		$this->Image('../images/logo_pemda.png',17,13,25,25);
 
-		$this->SetFont('ARIAL', 'B', 14);
+		$this->SetFont('TIMES', 'B', 14);
 		$this->Cell(40, $this->height, "", "", 0, 'L');
 		$this->Cell(181, $this->height, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
 		
 		$this->Ln();
-		$this->SetFont('ARIAL', 'B', 20);
+		$this->SetFont('TIMES', 'B', 20);
 		$this->Cell(40, $this->height+10, "", "", 0, 'L');
 		$this->Cell(181, $this->height+10, "D I N A S  P E L A Y A N A N  P A J A K", "", 0, 'C');
 		
 		$this->Ln();
-		$this->SetFont('ARIAL', '', 12);
+		$this->SetFont('BKANT', '', 12);
 		$this->Cell(40, $this->height, "", "", 0, 'L');
 		$this->Cell(181, $this->height, "Jalan Wastukancana No 2 Telp. 022 4235052 - Bandung", "", 0, 'C');
 
 		$this->Ln(5);
 		$this->Ln();
 		
-		$this->SetFont('ARIAL', '', 12);
+		$this->SetFont('BKANT', '', 12);
 		$this->Cell($this->lengthCell, $this->height, "", "T", 100, 'L');
 		$this->Ln();
 		
@@ -160,7 +181,7 @@ class FormCetak extends FPDF {
 		$lbody2 = $lbody * 2;
 		$lbody3 = $lbody * 3;
 
-		$this->SetWidths(array(20,2,50,49));
+		$this->SetWidths(array(21,2,50,49));
 		$this->SetAligns(array("L","L","L","L"));
 		$posy = $this->getY();
 		$data["letter_no"] = trim($data["letter_no"]);
@@ -182,7 +203,7 @@ class FormCetak extends FPDF {
 			$this->RowMultiBorderWithHeight(
 				array("Nomor",
 					":",
-					/*" - "*/"",
+					"  ".$data["nomor_surat"],
 					"-Disyanjak"
 				),
 				array("",
@@ -194,7 +215,7 @@ class FormCetak extends FPDF {
 			);
 		}
 
-		$this->SetWidths(array(20,2,$this->lengthCell-22));
+		$this->SetWidths(array(21,2,$this->lengthCell-22));
 		$this->SetAligns(array("L","L","L"));
 		$posy = $this->getY();
 
@@ -238,15 +259,15 @@ class FormCetak extends FPDF {
 		$today = getdate();
 		$lkepada = $this->lengthCell / 5;
 		$lkepada2 = $lkepada * 2;
-		$lkepada3 = $lkepada * 3;
+		$lkepada3 = $lkepada * 3+20;
 		
 		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
-		$this->Cell($lkepada2-20, $this->height, "Bandung,", "", 0, 'L');
-		$this->Cell("", $this->height, date("Y"), "", 0, 'L');
+		$this->Cell($lkepada2-60, $this->height, "Bandung,", "", 0, 'L');
+		$this->Cell(30, $this->height, dateToday(), "", 0, 'R');
 		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "Kepada Yth,", "", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Kepada Yth.", "", 0, 'L');
 		$this->Ln();
 
 		$this->SetAligns(array("L","L"));
@@ -277,18 +298,19 @@ class FormCetak extends FPDF {
 		$this->Cell($lkepada2, $this->height, "", "", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('ARIAL', '', 12);
 		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
 		// $this->newLine();
 		//$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN", "", 0, 'C');
 		
-		$this->SetFont('ARIAL', '', 12);
+		$this->SetFont('BKANT', '', 12);
 		/*$this->Cell($this->lengthCell, $this->height, "Nomor: ".$data["letter_no"], "LR", 0, 'C');
 		$this->newLine();*/
-		$this->tulis("Dengan ini dipermaklumkan bahwa berdasarkan data pembukuan kami hingga saat ini saudara :", "L");
+		//$this->Cell(20, $this->height, "", "", 0, 'L');
+		$this->tulis2("Dengan ini dipermaklumkan bahwa berdasarkan data pembukuan kami hingga saat ini", "FJ");
+		$this->tulis("saudara :", "L");
 		$this->tulis("", "L");
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","30","2",""));
+		$this->SetWidths(array("34","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Nama",
@@ -304,7 +326,7 @@ class FormCetak extends FPDF {
 		);
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","30","2",""));
+		$this->SetWidths(array("34","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Alamat",
@@ -319,11 +341,11 @@ class FormCetak extends FPDF {
 			3
 		);
 
-		$this->tulis("Dengan Objek Pajak:", "L");
+		$this->tulis2("Dengan Objek Pajak:", "L");
 		$this->tulis("", "L");
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","30","2",""));
+		$this->SetWidths(array("34","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Alamat",
@@ -339,7 +361,7 @@ class FormCetak extends FPDF {
 		);
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","30","2",""));
+		$this->SetWidths(array("34","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"NOP",
@@ -355,20 +377,20 @@ class FormCetak extends FPDF {
 		);
 		//$this->newLine();
 		//$this->Cell(10, $this->height, "", "", 0, 'L');
-		$this->tulis("Sampai Saat ini belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Pajak Terutang sebesar", "FJ");
+		$this->tulis2("Sampai Saat ini belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Pajak", "FJ");
 		//$this->Cell("", $this->height, "Sampai Saat ini belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Pajak Terutang", "", 0, "FJ");
 		//$this->Cell("20", $this->height, date("Y"), "", 0, 'L');
 		//$this->Cell("15", $this->height, "dengan Pajak Terutang", "", 0, 'L');
 
 		//$this->Ln();
-		$this->tulis("Rp. ".number_format($data['bphtb_amt_final'],2,",",".")." yang berdasarkan : ", "L");
+		$this->tulis("Terutang sebesar Rp. ".number_format($data['bphtb_amt_final'],2,",",".")." yang berdasarkan : ", "L");
 		//$this->Cell(10, $this->height, "", "", 0, 'L');
 		//$this->Cell("68", $this->height, "Rp. ", "", 0, "J");
 		//$this->Cell("20", $this->height, number_format($data['bphtb_amt_final'],2,",","."), "", 0, 'L');
 		
 		$this->Ln();
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array(10,"80","2",""));
+		$this->SetWidths(array(34,"80","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Nota Verifikasi BPHTB No. Registrasi",
@@ -383,7 +405,7 @@ class FormCetak extends FPDF {
 			3
 		);
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array(10,"80","2",""));
+		$this->SetWidths(array(34,"80","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Tanggal",
@@ -399,12 +421,12 @@ class FormCetak extends FPDF {
 		);
 
 		//$this->newLine();
-		$this->tulis("Berkenaan dengan hal tersebut di atas, kami mohon agar saudara dapat hadir selambat-lambatnya", "FJ");
-		$this->tulis("7 (tujuh) hari setelah diterimanya surat ini, setiap hari kerja :","L");
+		$this->tulis2("Berkenaan dengan hal tersebut di atas, kami mohon agar saudara dapat hadir selambat-", "FJ");
+		$this->tulis("lambatnya 7 (tujuh) hari setelah diterimanya surat ini, setiap hari kerja :","L");
 		
 		$this->Ln();
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","30","2",""));
+		$this->SetWidths(array("34","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Hari",
@@ -420,7 +442,7 @@ class FormCetak extends FPDF {
 		);
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","30","2",""));
+		$this->SetWidths(array("34","30","2",""));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Jam",
@@ -436,7 +458,7 @@ class FormCetak extends FPDF {
 		);
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array("20","30","2","163"));
+		$this->SetWidths(array("34","30","2","163"));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Tempat",
@@ -450,10 +472,10 @@ class FormCetak extends FPDF {
 			),
 			2
 		);
-		$this->Cell(52, $this->height, "", "", 0, 'L');
+		$this->Cell(66, $this->height, "", "", 0, 'L');
 		$this->Cell("", $this->height, "  DINAS PELAYANAN PAJAK Kota Bandung ", "", 0, "J");
 		$this->Ln();
-		$this->Cell(52, $this->height, "", "", 0, 'L');
+		$this->Cell(66, $this->height, "", "", 0, 'L');
 		$this->Cell("", $this->height, "  Jl. Wastukecana No. 2 Bandung.", "", 0, "J");
 
 		$this->newLine();
@@ -463,7 +485,7 @@ class FormCetak extends FPDF {
 		//$this->tulis("photo copy dokumen yang dimaksud.", "L");
 		//$this->tulis("", "L");
 		//$this->newLine();
-		$this->tulis("Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan terima kasih.", "L");
+		$this->tulis2("Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan terima kasih.", "FJ");		
 		
 		/*$this->SetAligns(array("L","L","L"));
 		$this->SetWidths(array("10","","20"));
@@ -577,7 +599,7 @@ class FormCetak extends FPDF {
 		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		// $this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-		$this->Ln();
+		//$this->Ln();
 		
 		$lbody = $this->lengthCell / 16;
 		$lbody2 = $lbody * 2;
@@ -632,7 +654,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 
-		$this->SetFont('ARIAL', '', 10);
+		$this->SetFont('BKANT', '', 12);
 		$this->Ln();
 		$this->Cell(10, $this->height, "", "", 0, 'L');
 		$this->Cell("", $this->height, "Tembusan, disampaikan kepada Yth. :", "", 0, 'L');
@@ -739,8 +761,15 @@ class FormCetak extends FPDF {
 	}
 
 	function tulis($text, $align){
+		$this->Cell(25, $this->height, "", "", 0, 'C');
+		$this->CellFJ(189, $this->height, $text, "", 0, $align);
 		$this->Cell(10, $this->height, "", "", 0, 'C');
-		$this->CellFJ(201, $this->height, $text, "", 0, $align);
+		$this->Ln();
+	}
+
+	function tulis2($text, $align){
+		$this->Cell(34, $this->height, "", "", 0, 'C');
+		$this->CellFJ(175, $this->height, $text, "", 0, $align);
 		$this->Cell(10, $this->height, "", "", 0, 'C');
 		$this->Ln();
 	}
@@ -929,6 +958,29 @@ function dateToString($tanggal){
 	$pieces = explode('-', $tanggal);
 	
 	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
+}
+
+function dateToday(){
+	$tanggal=date("m Y");
+	if(empty($tanggal)) return "";
+	
+	$monthname = array(0  => '-',
+	                   01  => 'Januari',
+	                   02  => 'Februari',
+	                   03  => 'Maret',
+	                   04  => 'April',
+	                   05  => 'Mei',
+	                   06  => 'Juni',
+	                   07  => 'Juli',
+	                   08  => 'Agustus',
+	                   09  => 'September',
+	                   10 => 'Oktober',
+	                   11 => 'November',
+	                   12 => 'Desember');    
+	
+	$pieces = explode(' ', $tanggal);
+	
+	return $monthname[(int)$pieces[0]].' '.$pieces[1];
 }
 
 $formulir = new FormCetak();
