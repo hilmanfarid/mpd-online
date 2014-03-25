@@ -1,7 +1,7 @@
 <?php
 function sendSms(){
     include 'save_excel.php';
-    if(isset($_GET){
+    if(isset($_GET)){
         $npwd = $_GET['npwd'];
         $no_telp = $_GET['no_telp'];
         $message = $_GET['message'];
