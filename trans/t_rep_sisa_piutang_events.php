@@ -99,8 +99,9 @@ function Page_BeforeShow(& $sender)
 			// ----- AMBIL JATUH TEMPO ------
 			$dbConn2	= new clsDBConnSIKP();
 			$tgl_jatuh_tempo = '';
-			$qJatuhTempo = "SELECT (end_date + due_in_day) AS jatuh_tempo FROM p_finance_period
-								WHERE p_finance_period_id = ".$param_arr['p_finance_period_id'];
+			$qJatuhTempo = "SELECT trunc((trunc(end_date) + due_in_day)) AS jatuh_tempo 
+							FROM p_finance_period 
+							WHERE p_finance_period_id = ".$param_arr['p_finance_period_id'];
 			$dbConn2->query($qJatuhTempo);
 			
 			while ($dbConn2->next_record()) {
@@ -143,7 +144,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo) {
 	
 	$output .= '<h2>JENIS PAJAK : '.$jenis_pajak.' </h2>';
 	$output .= '<h2>PERIODE PAJAK : '.$pajak_periode.'</h2>';
-	$output .= '<h2>JATUH TEMPO : '.$tgl_jatuh_tempo.'</h2> <br/>';
+	$output .= '<h2>JATUH TEMPO : '.dateToString($tgl_jatuh_tempo).'</h2> <br/>';
 
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
                 <tr >';
@@ -193,4 +194,27 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo) {
 	
 	return $output;
 }
+
+function dateToString($date){
+	if(empty($date)) return "";
+	
+	$monthname = array(0  => '-',
+	                   1  => 'Januari',
+	                   2  => 'Februari',
+	                   3  => 'Maret',
+	                   4  => 'April',
+	                   5  => 'Mei',
+	                   6  => 'Juni',
+	                   7  => 'Juli',
+	                   8  => 'Agustus',
+	                   9  => 'September',
+	                   10 => 'Oktober',
+	                   11 => 'November',
+	                   12 => 'Desember');    
+	
+	$pieces = explode('-', $date);
+	
+	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
+}
+
 ?>
