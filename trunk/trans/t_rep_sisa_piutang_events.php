@@ -57,6 +57,7 @@ function Page_BeforeShow(& $sender)
 		$param_arr['tahun_periode'] = CCGetFromGet('tahun_periode');
 		$param_arr['pajak_periode'] = CCGetFromGet('pajak_periode');
 		$param_arr['jenis_pajak'] = CCGetFromGet('jenis_pajak');
+		$param_arr['status'] = CCGetFromGet('status');
 
 		$t_rep_sisa_piutangSearch->p_year_period_id->SetValue($param_arr['p_year_period_id']);
 		$t_rep_sisa_piutangSearch->p_finance_period_id->SetValue($param_arr['p_finance_period_id']);
@@ -65,12 +66,30 @@ function Page_BeforeShow(& $sender)
 		$t_rep_sisa_piutangSearch->year_code->SetValue($param_arr['tahun_periode']);
 		$t_rep_sisa_piutangSearch->code->SetValue($param_arr['pajak_periode']);
 		$t_rep_sisa_piutangSearch->vat_code->SetValue($param_arr['jenis_pajak']);
+		
+		$t_rep_sisa_piutangSearch->ListBox1->SetValue($param_arr['status']);
 
 		if(!empty($param_arr['p_finance_period_id']) and !empty($param_arr['p_vat_type_id'])) {
 			
 			$dbConn	= new clsDBConnSIKP();
-			$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)";
 			
+			if(empty($param_arr['status'])) { /* GLOBAL */
+				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)";
+			}
+			else if($param_arr['status'] == '1') { /* BELUM BAYAR */
+				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+						WHERE ((f_teg1_amount is null) OR (f_teg1_amount < 1)) AND
+							  ((f_teg2_amount is null) OR (f_teg2_amount < 1)) AND
+							  ((f_teg3_amount is null) OR (f_teg3_amount < 1))";
+			
+			}else if($param_arr['status'] == '2') { /* SUDAH BAYAR */
+				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+						WHERE (f_teg1_amount > 0) OR 
+							  (f_teg2_amount > 0) OR 
+							  (f_teg3_amount > 0) ";
+			}
+			
+
 			$data = array();
 			$dbConn->query($query);
 			while ($dbConn->next_record()) {
@@ -106,13 +125,14 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak) {
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>LAPORAN STATUS PIUTANG</strong></td> 
+                  		<td class="th"><strong>LAPORAN STATUS SURAT TEGURAN</strong></td> 
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               		</table>';
 	
 	$output .= '<h2>JENIS PAJAK : '.$jenis_pajak.' </h2>';
-	$output .= '<h2>JATUH TEMPO : '.$pajak_periode.'</h2> <br/>';
+	$output .= '<h2>PERIODE PAJAK : '.$pajak_periode.'</h2>';
+	$output .= '<h2>JATUH TEMPO : </h2> <br/>';
 
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
                 <tr >';
