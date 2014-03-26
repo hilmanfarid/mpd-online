@@ -199,15 +199,15 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 			}else if($status == '1') /* BELUM BAYAR */ {
 				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
 			}else if($status == '2') /* SUDAH BAYAR */ {
-				if($data[$i]['bayar_setelah'] == 't') {
+				if($data[$i]['bayar_setelah'] == 't' or $data[$i]['bayar_setelah'] == true) {
 					$output .= '<td align="right"> </td>';
 					$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
 				}else {
-					$output .= '<td align="right"> </td>';
-					$output .= '<td align="right"> </td>';
+					$output .= '<td align="right"></td>';
+					$output .= '<td align="right"></td>';
 				}				
 			}
-
+ 
 			$output .= '</tr>';
 		}
 	
