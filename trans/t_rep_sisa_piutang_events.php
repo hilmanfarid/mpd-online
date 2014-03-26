@@ -165,7 +165,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 		$output.='<th align="center" colspan="2">TEGURAN III <br/> '.$data[0]['f_teg3_sts'].'</th>';
 		$output.='<th align="center" rowspan="2">AKSI <br/>'.$data[0]['f_action_date'].'</th>';
 		if($status == '2') /* SUDAH BAYAR */ {
-			$output.='<th align="center" rowspan="2">PEMBAYARAN SETELAH <br/>'.$data[0]['f_action_date'].'</th>';
+			$output.='<th align="center" rowspan="2" width="150">PEMBAYARAN SETELAH <br/>'.$data[0]['f_action_date'].'</th>';
 		}
 		$output.='</tr>';
     	
@@ -199,9 +199,13 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 			}else if($status == '1') /* BELUM BAYAR */ {
 				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
 			}else if($status == '2') /* SUDAH BAYAR */ {
-				
-				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
-				$output .= '<td align="right">'.$data[$i]['bayar_setelah'].'</td>';
+				if($data[$i]['bayar_setelah'] == 't') {
+					$output .= '<td align="right">&nsbp;</td>';
+					$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
+				}else {
+					$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
+					$output .= '<td align="right">&nbsp;</td>';
+				}				
 			}
 
 			$output .= '</tr>';
