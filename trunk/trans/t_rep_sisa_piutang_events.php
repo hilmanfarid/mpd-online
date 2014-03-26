@@ -201,7 +201,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 			}else if($status == '2') /* SUDAH BAYAR */ {
 				if($data[$i]['bayar_setelah'] == 't') {
 					$output .= '<td align="right"> </td>';
-					$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
+					$output .= '<td align="right">'. number_format($data[$i]['f_action_sts'],0,",",".").'</td>';
 				}else {
 					$output .= '<td align="right"></td>';
 					$output .= '<td align="right"></td>';
