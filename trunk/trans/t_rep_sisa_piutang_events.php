@@ -189,17 +189,18 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_penalty'],0,",",".").'</td>';
 			
 			if($status == '') {
-				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
+				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? ' ' : $data[$i]['f_action_sts'];
+				$output .= '<td align="right">'.$kolom_aksi.'</td>';
 			}else if($status == '1') /* BELUM BAYAR */ {
 				
-				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? '-' : $data[$i]['f_action_sts'];
-				$kolom_after = is_numeric($data[$i]['f_action_sts']) ? $data[$i]['f_action_sts'] : '-';
+				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? ' ' : $data[$i]['f_action_sts'];
+				$kolom_after = is_numeric($data[$i]['f_action_sts']) ? $data[$i]['f_action_sts'] : ' ';
 
 				$output .= '<td align="right">'.$kolom_aksi.'</td>';
 				$output .= '<td align="right">'.$kolom_after.'</td>';
 
 			}else if($status == '2') /* SUDAH BAYAR */ {
-				$output .= '<td align="right"> - </td>';
+				$output .= '<td align="right">  </td>';
 			}
 
 			$output .= '</tr>';
