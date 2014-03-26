@@ -85,7 +85,8 @@ function Page_BeforeShow(& $sender)
 							  ";
 			
 			}else if($param_arr['status'] == '2') { /* SUDAH BAYAR */
-				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+				$query="SELECT *, (f_amount IS NULL AND f_teg1_amount IS NULL AND f_teg2_amount IS NULL AND f_teg3_amount IS NULL AND f_action_sts > 0) AS bayar_setelah
+						FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
 						WHERE (f_teg1_amount > 0) OR 
 							  (f_teg2_amount > 0) OR 
 							  (f_teg3_amount > 0) 
@@ -163,7 +164,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 		$output.='<th align="center" colspan="2">TEGURAN II <br/> '.$data[0]['f_teg2_sts'].'</th>';
 		$output.='<th align="center" colspan="2">TEGURAN III <br/> '.$data[0]['f_teg3_sts'].'</th>';
 		$output.='<th align="center" rowspan="2">AKSI <br/>'.$data[0]['f_action_date'].'</th>';
-		if($status == '1') /* BELUM BAYAR */ {
+		if($status == '2') /* SUDAH BAYAR */ {
 			$output.='<th align="center" rowspan="2">PEMBAYARAN SETELAH <br/>'.$data[0]['f_action_date'].'</th>';
 		}
 		$output.='</tr>';
@@ -196,15 +197,11 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? number_format($data[$i]['f_action_sts'],0,",",".") : $data[$i]['f_action_sts'];
 				$output .= '<td align="right">'.$kolom_aksi.'</td>';
 			}else if($status == '1') /* BELUM BAYAR */ {
-				
-				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? ' ' : $data[$i]['f_action_sts'];
-				$kolom_after = is_numeric($data[$i]['f_action_sts']) ? $data[$i]['f_action_sts'] : ' ';
-
-				$output .= '<td align="right">'.$kolom_aksi.'</td>';
-				$output .= '<td align="right">'.$kolom_after.'</td>';
-
+				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
 			}else if($status == '2') /* SUDAH BAYAR */ {
-				$output .= '<td align="right">  </td>';
+				
+				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
+				$output .= '<td align="right">'.$data[$i]['bayar_setelah'].'</td>';
 			}
 
 			$output .= '</tr>';
