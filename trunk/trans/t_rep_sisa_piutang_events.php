@@ -109,7 +109,7 @@ function Page_BeforeShow(& $sender)
 			}
 			$dbConn2->close();
 
-			$Label1->SetText(GetCetakHTML($data, $param_arr['pajak_periode'], $param_arr['jenis_pajak'], $tgl_jatuh_tempo));
+			$Label1->SetText(GetCetakHTML($data, $param_arr['pajak_periode'], $param_arr['jenis_pajak'], $tgl_jatuh_tempo, $param_arr['status']));
 
 		}else {
 			/* Tampilkan Alert */
@@ -126,7 +126,7 @@ function Page_BeforeShow(& $sender)
 }
 //End Close Page_BeforeShow
 
-function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo) {
+function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $status) {
 	
 	$output = '';
 	
@@ -151,14 +151,17 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo) {
 
 
 		$output.='<th align="center" rowspan="2">NO</th>';
-		$output.='<th align="center" rowspan="2">WAJIB PAJAK</th>';
-		$output.='<th align="center" rowspan="2">NPWPD</th>';
+		$output.='<th align="center" rowspan="2" width="200">WAJIB PAJAK</th>';
+		$output.='<th align="center" rowspan="2" width="90">NPWPD</th>';
 		$output.='<th align="center" rowspan="2">SPTPD</th>';
 		$output.='<th align="center" rowspan="2">STPD</th>';
 		$output.='<th align="center" colspan="2">TEGURAN I <br/> '.$data[0]['f_teg1_sts'].'</th>';
 		$output.='<th align="center" colspan="2">TEGURAN II <br/> '.$data[0]['f_teg2_sts'].'</th>';
 		$output.='<th align="center" colspan="2">TEGURAN III <br/> '.$data[0]['f_teg3_sts'].'</th>';
 		$output.='<th align="center" rowspan="2">AKSI <br/>'.$data[0]['f_action_date'].'</th>';
+		if($status == '1') /* BELUM BAYAR */ {
+			$output.='<th align="center" rowspan="2">PEMBAYARAN SETELAH <br/>'.$data[0]['f_action_date'].'</th>';
+		}
 		$output.='</tr>';
     	
 		$output.='<tr >';
@@ -184,8 +187,21 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo) {
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg2_penalty'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_amount'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_penalty'],0,",",".").'</td>';
-			$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
 			
+			if($status == '') {
+				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
+			}else if($status == '1') /* BELUM BAYAR */ {
+				
+				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? '-' : $data[$i]['f_action_sts'];
+				$kolom_after = is_numeric($data[$i]['f_action_sts']) ? $data[$i]['f_action_sts'] : '-';
+
+				$output .= '<td align="right">'.$kolom_aksi.'</td>';
+				$output .= '<td align="right">'.$kolom_after.'</td>';
+
+			}else if($status == '2') /* SUDAH BAYAR */ {
+				$output .= '<td align="right"> - </td>';
+			}
+
 			$output .= '</tr>';
 		}
 	
