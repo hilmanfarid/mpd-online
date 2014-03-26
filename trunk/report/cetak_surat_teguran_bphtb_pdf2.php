@@ -274,7 +274,7 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array($lkepada3,""));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				$data['wp_name']
+				substr($data['wp_name'],0, 23)
 			),
 			array("",
 				""
