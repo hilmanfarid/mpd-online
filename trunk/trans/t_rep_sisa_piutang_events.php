@@ -80,13 +80,17 @@ function Page_BeforeShow(& $sender)
 				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
 						WHERE ((f_teg1_amount is null) OR (f_teg1_amount < 1)) AND
 							  ((f_teg2_amount is null) OR (f_teg2_amount < 1)) AND
-							  ((f_teg3_amount is null) OR (f_teg3_amount < 1))";
+							  ((f_teg3_amount is null) OR (f_teg3_amount < 1))
+							  AND NOT textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
+							  ";
 			
 			}else if($param_arr['status'] == '2') { /* SUDAH BAYAR */
 				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
 						WHERE (f_teg1_amount > 0) OR 
 							  (f_teg2_amount > 0) OR 
-							  (f_teg3_amount > 0) ";
+							  (f_teg3_amount > 0) 
+							  OR textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
+							  ";
 			}
 			
 			$data = array();
@@ -189,7 +193,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_penalty'],0,",",".").'</td>';
 			
 			if($status == '') {
-				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? ' ' : $data[$i]['f_action_sts'];
+				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? number_format($data[$i]['f_action_sts'],0,",",".") : $data[$i]['f_action_sts'];
 				$output .= '<td align="right">'.$kolom_aksi.'</td>';
 			}else if($status == '1') /* BELUM BAYAR */ {
 				
