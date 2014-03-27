@@ -109,7 +109,7 @@ function Page_BeforeShow(& $sender)
 							( 	SELECT to_char((trunc(end_date) + 1), 'yyyy-mm-dd') 
 								FROM p_finance_period 
 								WHERE p_finance_period_id = ".$param_arr['p_finance_period_id'].")";
-		
+			
 			while ($dbConn2->next_record()) {
 				$tgl_jatuh_tempo = $dbConn2->f('jatuh_tempo');
 			}
