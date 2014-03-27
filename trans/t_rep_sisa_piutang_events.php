@@ -104,14 +104,13 @@ function Page_BeforeShow(& $sender)
 			// ----- AMBIL JATUH TEMPO ------
 			$dbConn2	= new clsDBConnSIKP();
 			$tgl_jatuh_tempo = '';
-			$qJatuhTempo = "SELECT to_char((trunc(start_date) + due_in_day)) FROM p_finance_period
-							WHERE to_char(trunc(start_date),'yyyy-mm-dd') 
-							IN (
-								SELECT to_char((trunc(end_date) + 1), 'yyyy-mm-dd') 
-								FROM p_finance_period
+			$qJatuhTempo = "SELECT to_char((trunc(start_date) + due_in_day-1)) 
+							FROM p_finance_period WHERE to_char(trunc(start_date),'yyyy-mm-dd') IN 
+							( 	SELECT to_char((trunc(end_date) + 1), 'yyyy-mm-dd') 
+								FROM p_finance_period 
 								WHERE p_finance_period_id = ".$param_arr['p_finance_period_id'].")";
-			$dbConn2->query($qJatuhTempo);
-			
+		
+			print_r($qJatuhTempo); exit;
 			while ($dbConn2->next_record()) {
 				$tgl_jatuh_tempo = $dbConn2->f('jatuh_tempo');
 			}
