@@ -104,7 +104,7 @@ function Page_BeforeShow(& $sender)
 			// ----- AMBIL JATUH TEMPO ------
 			$dbConn2	= new clsDBConnSIKP();
 			$tgl_jatuh_tempo = '';
-			$qJatuhTempo = "SELECT to_char((trunc(start_date) + due_in_day-1)) 
+			$qJatuhTempo = "SELECT to_char((trunc(start_date) + due_in_day-1)) AS jatuh_tempo
 							FROM p_finance_period WHERE to_char(trunc(start_date),'yyyy-mm-dd') IN 
 							( 	SELECT to_char((trunc(end_date) + 1), 'yyyy-mm-dd') 
 								FROM p_finance_period 
