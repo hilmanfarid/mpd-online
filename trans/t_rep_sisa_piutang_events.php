@@ -111,8 +111,10 @@ function Page_BeforeShow(& $sender)
 								WHERE p_finance_period_id = ".$param_arr['p_finance_period_id'].")";
 			
 			while ($dbConn2->next_record()) {
+			print_r( $dbConn2->Record);
 				$tgl_jatuh_tempo = $dbConn2->f('jatuh_tempo');
 			}
+			exit;
 			$dbConn2->close();
 
 			$Label1->SetText(GetCetakHTML($data, $param_arr['pajak_periode'], $param_arr['jenis_pajak'], $tgl_jatuh_tempo, $param_arr['status']));
