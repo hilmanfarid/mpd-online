@@ -141,7 +141,7 @@ function print_excel_umum($param_arr) {
 			</tr>
 			<tr>
 				<td>JUMLAH </td>
-				<td>'.$jumlah_total.'</td>
+				<td align="right">'.$jumlah_total.'</td>
 				<td>&nbsp; </td>
 			</tr>
 		</table> <br/><br/>
@@ -242,35 +242,35 @@ function print_excel_detil($param_arr) {
 			<tr>
 				<td>WP PATUH</td>
 				<td>'.$hotel_patuh.'</td>
-				<td>'.$hotel_persen_patuh.'</td>
+				<td>'.round($hotel_persen_patuh,2).'</td>
 				<td>'.$restoran_patuh.'</td>
-				<td>'.$restoran_persen_patuh.'</td>
+				<td>'.round($restoran_persen_patuh,2).'</td>
 				<td>'.$hiburan_patuh.'</td>
-				<td>'.$hiburan_persen_patuh.'</td>
+				<td>'.round($hiburan_persen_patuh,2).'</td>
 				<td>'.$parkir_patuh.'</td>
-				<td>'.$parkir_persen_patuh.'</td>
+				<td>'.round($parkir_persen_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>WP KURANG PATUH</td>
 				<td>'.$hotel_kurang_patuh.'</td>
-				<td>'.$hotel_persen_kurang_patuh.'</td>
+				<td>'.round($hotel_persen_kurang_patuh,2).'</td>
 				<td>'.$restoran_kurang_patuh.'</td>
-				<td>'.$restoran_persen_kurang_patuh.'</td>
+				<td>'.round($restoran_persen_kurang_patuh,2).'</td>
 				<td>'.$hiburan_kurang_patuh.'</td>
-				<td>'.$hiburan_persen_kurang_patuh.'</td>
+				<td>'.round($hiburan_persen_kurang_patuh,2).'</td>
 				<td>'.$parkir_kurang_patuh.'</td>
-				<td>'.$parkir_persen_kurang_patuh.'</td>
+				<td>'.round($parkir_persen_kurang_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>WP TIDAK PATUH</td>
 				<td>'.$hotel_tidak_patuh.'</td>
-				<td>'.$hotel_persen_tidak_patuh.'</td>
+				<td>'.round($hotel_persen_tidak_patuh,2).'</td>
 				<td>'.$restoran_tidak_patuh.'</td>
-				<td>'.$restoran_persen_tidak_patuh.'</td>
+				<td>'.round($restoran_persen_tidak_patuh,2).'</td>
 				<td>'.$hiburan_tidak_patuh.'</td>
-				<td>'.$hiburan_persen_tidak_patuh.'</td>
+				<td>'.round($hiburan_persen_tidak_patuh,2).'</td>
 				<td>'.$parkir_tidak_patuh.'</td>
-				<td>'.$parkir_persen_tidak_patuh.'</td>
+				<td>'.round($parkir_persen_tidak_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>JUMLAH</td>
