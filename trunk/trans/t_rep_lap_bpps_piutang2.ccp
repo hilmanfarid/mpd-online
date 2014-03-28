@@ -44,7 +44,7 @@
 					<Events>
 						<Event name="OnChange" type="Client">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="568"/>
+								<Action actionName="Custom Code" actionCategory="General" id="568" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
@@ -87,7 +87,14 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<Button id="569" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoPrint" PathID="t_rep_bppsSearchButton_DoPrint">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -107,9 +114,16 @@
 			<DConditions/>
 			<SecurityGroups/>
 			<Attributes/>
+
 			<Features/>
 		</Record>
-	</Components>
+		<Label id="21" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_lap_bpps_piutang2_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_rep_lap_bpps_piutang2.php" forShow="True" url="t_rep_lap_bpps_piutang2.php" comment="//" codePage="windows-1252"/>
