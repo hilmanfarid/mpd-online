@@ -351,6 +351,7 @@ function createGroupBar($waktu, $data_bar) {
 	$b3plot->SetLegend('TIDAK PATUH');
 
 	$graph->title->Set("INDEX KEPATUHAN WP");
+	$graph->title->SetFont(FF_ARIAL,FS_BOLD,20);
 
 	// Display the graph
 	$graph->Stroke("../graphfiles/bar_kepatuhan_".$waktu.".png");
@@ -373,6 +374,7 @@ function createPie($waktu, $data_pie) {
 
 	// Set A title for the plot
 	$graph->title->Set("INDEX KEPATUHAN WP");
+	$graph->title->SetFont(FF_ARIAL,FS_BOLD,20);
 	
 	// Create
 	$p1 = new PiePlot3D($data);
@@ -380,7 +382,7 @@ function createPie($waktu, $data_pie) {
 	$p1->SetCenter(0.5,0.45);
 	$p1->ShowBorder();
 	$p1->SetColor('black');
-	$p1->SetTheme("pastel");
+	
 	$graph->Add($p1);
 	
 	//unlink('../graphfiles/pie_kepatuhan.png');
