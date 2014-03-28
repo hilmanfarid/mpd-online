@@ -167,7 +167,7 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 		$output.='<th align="center" colspan="2">TEGURAN III <br/> '.$data[0]['f_teg3_sts'].'</th>';
 		$output.='<th align="center" rowspan="2">AKSI <br/>'.$data[0]['f_action_date'].'</th>';
 		if($status == '2') /* SUDAH BAYAR */ {
-			$output.='<th align="center" rowspan="2" width="150">PEMBAYARAN SETELAH <br/>'.$data[0]['f_action_date'].'</th>';
+			$output.='<th align="center" rowspan="2" width="150">PEMBAYARAN <br/> SETELAH <br/>'.$data[0]['f_action_date'].'</th>';
 		}
 		$output.='</tr>';
     	
