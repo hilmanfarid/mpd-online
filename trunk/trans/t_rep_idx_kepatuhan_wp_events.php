@@ -101,7 +101,7 @@ function print_excel_umum($param_arr) {
 	startExcel("index_kepatuhan_all_".$param_arr['tahun_periode']."_".$param_arr['pajak_periode']);
 	echo "<div><h3> INDEX KEPATUHAN WAJIB PAJAK </h3></div>";	
 	echo "<div><b>TAHUN PAJAK : ".$param_arr['tahun_periode']."</b></div>";	
-	echo "<div><b>PERIODE PAJAK : ".$param_arr['pajak_periode']."</b></div>";	
+	echo "<div><b>PERIODE PAJAK : ".$param_arr['pajak_periode']."</b></div><br/>";	
 
 	$jumlah_total = getGrandTotal($param_arr['p_finance_period_id']);
 	
@@ -166,7 +166,7 @@ function print_excel_detil($param_arr) {
 	startExcel("index_kepatuhan_detil_".$param_arr['tahun_periode']."_".$param_arr['pajak_periode']);
 	echo "<div><h3> INDEX KEPATUHAN WAJIB PAJAK </h3></div>";	
 	echo "<div><b>TAHUN PAJAK : ".$param_arr['tahun_periode']."</b></div>";	
-	echo "<div><b>PERIODE PAJAK : ".$param_arr['pajak_periode']."</b></div>";
+	echo "<div><b>PERIODE PAJAK : ".$param_arr['pajak_periode']."</b></div> <br/>";
 	
 	
 	$grand_total_hotel = getGrandTotalPerJenisPajak(1, $param_arr['p_finance_period_id']);
