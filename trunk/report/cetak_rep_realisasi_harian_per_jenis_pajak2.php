@@ -203,7 +203,7 @@ class FormCetak extends FPDF {
 			$ayatsesudah = $data[$i+1]["kode_ayat"];
 			if(($ayat != $ayatsesudah&&count($data)>1)||empty($data[$i+1])){
 				$jumlahperayat[] = $jumlahtemp;
-				$this->Cell($ltable22, $this->height + 2, "JUMLAH " . strtoupper($item["jns_pajak"]), "TBLR", 0, 'C');
+				$this->Cell($ltable22, $this->height + 2, "JUMLAH PAJAK ".$item["nama_ayat"], "TBLR", 0, 'C');
 				$this->Cell($ltable4, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtemp = 0;
