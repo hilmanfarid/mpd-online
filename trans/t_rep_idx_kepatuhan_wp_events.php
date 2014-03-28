@@ -318,7 +318,7 @@ function createGroupBar($waktu, $data_bar) {
 	$graph = new Graph(400,300,'auto');
 	$graph->SetScale("textlin");
 
-	$theme_class = new VividTheme;
+	$theme_class = new UniversalTheme;
 	$graph->SetTheme($theme_class);
 
 	
