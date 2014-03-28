@@ -12,9 +12,9 @@ class UniversalTheme extends Theme
 
     function GetColorList() {
         return array(
-            '#61a9f3',#blue
-            '#f381b9',#red
-            '#61E3A9',#green
+            '#056FD8',
+            '#AE0000',
+            '#8AE952',
 
             #'#D56DE2',
             '#85eD82',
