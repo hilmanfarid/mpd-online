@@ -23,19 +23,25 @@ $data				= array();
 $dbConn				= new clsDBConnSIKP();
 $jenis_laporan		= CCGetFromGet("jenis_laporan", "all"); 
 if($jenis_laporan == 'all'){
-	$query	= "select *,trunc(payment_date) from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
+	$query	= "select *,trunc(payment_date) 
+	from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
+	//echo $query;
+	//exit;
 }else if($jenis_laporan == 'piutang'){
+	$border= $year_date-1;
 	$query	= "select *,trunc(payment_date) 
 	from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 WHERE
 	SUBSTRING(rep.masa_pajak,22,4) < $year_date
-	AND SUBSTRING(rep.masa_pajak,19,2) < 12
+	AND 
+		(NOT (SUBSTRING(rep.masa_pajak,22,4) = $border
+		AND SUBSTRING(rep.masa_pajak,19,2) = 12))
 	order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
 	//echo $query;
 	//exit;
 }else if($jenis_laporan == 'murni'){
 	$query	= "select *,trunc(payment_date) 
-	from f_rep_bpps_piutang($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+	from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 WHERE
 	EXTRACT (YEAR FROM rep.settlement_date) = $year_date
 	order by kode_jns_trans, kode_jns_pajak, kode_ayat";
@@ -151,18 +157,18 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
 		$this->Cell($ltable2, $this->height + 2, "NO. AYAT", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "NAMA AYAT", "TBLR", 0, 'C');
-		$this->Cell($ltable2, $this->height + 2, "NO. KOHIR", "TBLR", 0, 'C');
+		//$this->Cell($ltable2, $this->height + 2, "NO. KOHIR", "TBLR", 0, 'C');
 		$this->Cell($ltable5, $this->height + 2, "NAMA WP", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "NPWPD", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "JUMLAH", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "MASA PAJAK", "TBLR", 0, 'C');
 		$this->Cell($ltable2, $this->height + 2, "TGL TAP", "TBLR", 0, 'C');
-		$this->Cell($ltable2, $this->height + 2, "TGL BAYAR.", "TBLR", 0, 'C');
+		$this->Cell($ltable2*2, $this->height + 2, "TGL BAYAR.", "TBLR", 0, 'C');
 		$this->Ln();
 
 		//isi kolom
-		$this->SetWidths(array($ltable1, $ltable2, $ltable3, $ltable2, $ltable5, $ltable3, $ltable3, $ltable3, $ltable2, $ltable2));
-		$this->SetAligns(array("C", "L", "L", "L", "L", "L", "R", "L", "L", "L"));
+		$this->SetWidths(array($ltable1, $ltable2, $ltable3, $ltable5, $ltable3, $ltable3, $ltable3, $ltable2, $ltable2*2));
+		$this->SetAligns(array("C", "L", "L", "L", "L", "R", "L", "L", "L"));
 		$no = 1;
 		$jumlahperayat = array();
 		$jumlahperwaktu = array();
@@ -174,7 +180,7 @@ class FormCetak extends FPDF {
 			$this->RowMultiBorderWithHeight(array($no,
 												  $item["kode_jns_pajak"]." ".$item["kode_ayat"],
 												  $item["nama_ayat"],
-												  $item["no_kohir"],
+												  //$item["no_kohir"],
 												  $item["wp_name"],
 												  $item["npwpd"],
 												  number_format($item["jumlah_terima"], 0, ',', '.'),
