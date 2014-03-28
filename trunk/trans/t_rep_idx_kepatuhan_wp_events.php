@@ -114,7 +114,7 @@ function print_excel_umum($param_arr) {
 	$prosentase_tidak_patuh = $total_tidak_patuh / $jumlah_total * 100;
 	
 	$waktu = time();
-	$data = array(round($total_patuh,2), round($total_kurang_patuh,2), round($total_tidak_patuh,2));
+	$data = array($total_patuh, $total_kurang_patuh, $total_tidak_patuh);
 	createPie($waktu, $data);
 	
 	echo '
@@ -127,17 +127,17 @@ function print_excel_umum($param_arr) {
 			<tr>
 				<td>WP PATUH</td>
 				<td>'.$total_patuh.'</td>
-				<td>'.$prosentase_patuh.'</td>
+				<td>'.round($prosentase_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>WP KURANG PATUH</td>
 				<td>'.$total_kurang_patuh.' </td>
-				<td>'.$prosentase_kurang_patuh.'</td>
+				<td>'.round($prosentase_kurang_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>WP TIDAK PATUH</td>
 				<td>'.$total_tidak_patuh.' </td>
-				<td>'.$prosentase_tidak_patuh.'</td>
+				<td>'.round($prosentase_tidak_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>JUMLAH </td>
