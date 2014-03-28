@@ -305,7 +305,7 @@ function createGroupBar($waktu, $data_bar) {
 
 
 	// Create the graph. These two calls are always required
-	$graph = new Graph(600,400,'auto');
+	$graph = new Graph(800,600,'auto');
 	$graph->SetScale("textlin");
 
 	$theme_class = new UniversalTheme;
