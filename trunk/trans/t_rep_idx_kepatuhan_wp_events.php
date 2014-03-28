@@ -326,10 +326,11 @@ function createGroupBar($waktu, $data_bar) {
 	$gbplot = new GroupBarPlot(array($b1plot,$b2plot,$b3plot));
 	// ...and add it to the graPH
 	$graph->Add($gbplot);
-
+	$graph->SetLegends(array('PATUH', 'KURANG PATUH', 'TIDAK PATUH'));
 
 	$b1plot->SetColor("white");
 	$b1plot->SetFillColor("#cc1111");
+	
 
 	$b2plot->SetColor("white");
 	$b2plot->SetFillColor("#11cccc");
