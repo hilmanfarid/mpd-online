@@ -123,7 +123,7 @@ function print_excel_umum($param_arr) {
 				<th width="15">NO</th>
 				<th width="150">KRITERIA </th>
 				<th width="150">JUMLAH WP</th>
-				<th width="150">%</th>
+				<th width="150">PERSENTASE (%)</th>
 			</tr>
 			<tr>
 				<td>1</td>
