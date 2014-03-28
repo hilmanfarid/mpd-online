@@ -326,17 +326,19 @@ function createGroupBar($waktu, $data_bar) {
 	$gbplot = new GroupBarPlot(array($b1plot,$b2plot,$b3plot));
 	// ...and add it to the graPH
 	$graph->Add($gbplot);
-	$graph->SetLegends(array('PATUH', 'KURANG PATUH', 'TIDAK PATUH'));
+
 
 	$b1plot->SetColor("white");
 	$b1plot->SetFillColor("#cc1111");
-	
+	$b1plot->SetLegend('PATUH');
 
 	$b2plot->SetColor("white");
 	$b2plot->SetFillColor("#11cccc");
+	$b2plot->SetLegend('KURANG PATUH');
 
 	$b3plot->SetColor("white");
 	$b3plot->SetFillColor("#1111cc");
+	$b3plot->SetLegend('TIDAK PATUH');
 
 	$graph->title->Set("INDEX KEPATUHAN WP");
 
