@@ -94,7 +94,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -114,7 +114,6 @@
 			<DConditions/>
 			<SecurityGroups/>
 			<Attributes/>
-
 			<Features/>
 		</Record>
 		<Label id="21" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
@@ -123,7 +122,7 @@
 			<Attributes/>
 			<Features/>
 		</Label>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_lap_bpps_piutang2_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_rep_lap_bpps_piutang2.php" forShow="True" url="t_rep_lap_bpps_piutang2.php" comment="//" codePage="windows-1252"/>
