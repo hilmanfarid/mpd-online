@@ -12,9 +12,9 @@ class VividTheme extends Theme
 
     function GetColorList() {
         return array(
-            '#056FD8',
-            '#AE0000',
             '#8AE952',
+            '#056FD8',
+            '#AE0000',            
             '#FFFB11',
             '#FF4A26',
             '#FDFF98',
