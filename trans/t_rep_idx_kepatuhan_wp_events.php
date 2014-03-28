@@ -248,49 +248,49 @@ function print_excel_detil($param_arr) {
 			<tr>
 				<td align="center">1</td>
 				<td>WP PATUH</td>
-				<td>'.$hotel_patuh.'</td>
-				<td>'.round($hotel_persen_patuh,2).'</td>
-				<td>'.$restoran_patuh.'</td>
-				<td>'.round($restoran_persen_patuh,2).'</td>
-				<td>'.$hiburan_patuh.'</td>
-				<td>'.round($hiburan_persen_patuh,2).'</td>
-				<td>'.$parkir_patuh.'</td>
-				<td>'.round($parkir_persen_patuh,2).'</td>
+				<td align="right">'.$hotel_patuh.'</td>
+				<td align="right">'.round($hotel_persen_patuh,2).'</td>
+				<td align="right">'.$restoran_patuh.'</td>
+				<td align="right">'.round($restoran_persen_patuh,2).'</td>
+				<td align="right">'.$hiburan_patuh.'</td>
+				<td align="right">'.round($hiburan_persen_patuh,2).'</td>
+				<td align="right">'.$parkir_patuh.'</td>
+				<td align="right">'.round($parkir_persen_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td align="center">2</td>
 				<td>WP KURANG PATUH</td>
-				<td>'.$hotel_kurang_patuh.'</td>
-				<td>'.round($hotel_persen_kurang_patuh,2).'</td>
-				<td>'.$restoran_kurang_patuh.'</td>
-				<td>'.round($restoran_persen_kurang_patuh,2).'</td>
-				<td>'.$hiburan_kurang_patuh.'</td>
-				<td>'.round($hiburan_persen_kurang_patuh,2).'</td>
-				<td>'.$parkir_kurang_patuh.'</td>
-				<td>'.round($parkir_persen_kurang_patuh,2).'</td>
+				<td align="right">'.$hotel_kurang_patuh.'</td>
+				<td align="right">'.round($hotel_persen_kurang_patuh,2).'</td>
+				<td align="right">'.$restoran_kurang_patuh.'</td>
+				<td align="right">'.round($restoran_persen_kurang_patuh,2).'</td>
+				<td align="right">'.$hiburan_kurang_patuh.'</td>
+				<td align="right">'.round($hiburan_persen_kurang_patuh,2).'</td>
+				<td align="right">'.$parkir_kurang_patuh.'</td>
+				<td align="right">'.round($parkir_persen_kurang_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td align="center">3</td>
 				<td>WP TIDAK PATUH</td>
-				<td>'.$hotel_tidak_patuh.'</td>
-				<td>'.round($hotel_persen_tidak_patuh,2).'</td>
-				<td>'.$restoran_tidak_patuh.'</td>
-				<td>'.round($restoran_persen_tidak_patuh,2).'</td>
-				<td>'.$hiburan_tidak_patuh.'</td>
-				<td>'.round($hiburan_persen_tidak_patuh,2).'</td>
-				<td>'.$parkir_tidak_patuh.'</td>
-				<td>'.round($parkir_persen_tidak_patuh,2).'</td>
+				<td align="right">'.$hotel_tidak_patuh.'</td>
+				<td align="right">'.round($hotel_persen_tidak_patuh,2).'</td>
+				<td align="right">'.$restoran_tidak_patuh.'</td>
+				<td align="right">'.round($restoran_persen_tidak_patuh,2).'</td>
+				<td align="right">'.$hiburan_tidak_patuh.'</td>
+				<td align="right">'.round($hiburan_persen_tidak_patuh,2).'</td>
+				<td align="right">'.$parkir_tidak_patuh.'</td>
+				<td align="right">'.round($parkir_persen_tidak_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
 				<td>JUMLAH</td>
-				<td><b>'.$grand_total_hotel.'</b></td>
+				<td align="right"><b>'.$grand_total_hotel.'</b></td>
 				<td>&nbsp;</td>
-				<td><b>'.$grand_total_restoran.'</b></td>
+				<td align="right"><b>'.$grand_total_restoran.'</b></td>
 				<td>&nbsp;</td>
-				<td><b>'.$grand_total_hiburan.'</b></td>
+				<td align="right"><b>'.$grand_total_hiburan.'</b></td>
 				<td>&nbsp;</td>
-				<td><b>'.$grand_total_parkir.'</b></td>
+				<td align="right"><b>'.$grand_total_parkir.'</b></td>
 				<td>&nbsp;</td>
 			</tr>
 		</table>
