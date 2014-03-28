@@ -43,19 +43,25 @@ function Page_BeforeShow(& $sender)
 		$dbConn				= new clsDBConnSIKP();
 		$jenis_laporan		= CCGetFromGet("jenis_laporan", "all"); 
 		if($jenis_laporan == 'all'){
-			$query	= "select *,trunc(payment_date) from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
+			$query	= "select *,trunc(payment_date) 
+			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
+			//echo $query;
+			//exit;
 		}else if($jenis_laporan == 'piutang'){
+			$border= $year_date-1;
 			$query	= "select *,trunc(payment_date) 
 			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
 			SUBSTRING(rep.masa_pajak,22,4) < $year_date
-			AND SUBSTRING(rep.masa_pajak,19,2) < 12
+			AND 
+				(NOT (SUBSTRING(rep.masa_pajak,22,4) = $border
+				AND SUBSTRING(rep.masa_pajak,19,2) = 12))
 			order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
 			//echo $query;
 			//exit;
 		}else if($jenis_laporan == 'murni'){
 			$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
 			EXTRACT (YEAR FROM rep.settlement_date) = $year_date
 			order by kode_jns_trans, kode_jns_pajak, kode_ayat";
@@ -142,6 +148,7 @@ function GetCetakHTML($data) {
 		$output.='</tr>';
     
 	$jumlahtemp = 0;
+	$jumlahperayat = 0;
 	$i=0;
 	foreach($data as $item) {
 		$output .= '<tr>';
@@ -167,7 +174,7 @@ function GetCetakHTML($data) {
 		$ayat = $item["kode_ayat"];
 		$ayatsesudah = $data[$i+1]["kode_ayat"];
 		if(($ayat != $ayatsesudah&&count($data)>1)||empty($data[$i+1])){
-			//$jumlahperayat[] = $jumlahtemp;
+			$jumlahperayat += $jumlahtemp;
 			$output .= '<tr>';
 				$output .= '<td align="CENTER" colspan=5>JUMLAH PAJAK '.$item["nama_ayat"].'</td>';
 				$output .= '<td align="right">Rp. '.number_format($jumlahtemp, 2, ',', '.').'</td>';
@@ -177,6 +184,10 @@ function GetCetakHTML($data) {
 		}
 		$i=$i+1;
 	}
+	$output .= '<tr>';
+		$output .= '<td align="CENTER" colspan=5>TOTAL PAJAK</td>';
+		$output .= '<td align="right">Rp. '.number_format($jumlahperayat, 2, ',', '.').'</td>';
+	$output .= '</tr>';
 	
 	$output.='</td></tr></table>';
 	$output.='</table>';
