@@ -369,7 +369,7 @@ function createPie($waktu, $data_pie) {
 	// Create the Pie Graph. 
 	$graph = new PieGraph(400,300);
 
-	$theme_class= new RoseTheme;
+	$theme_class= new VividTheme;
 	$graph->SetTheme($theme_class);
 
 	// Set A title for the plot
