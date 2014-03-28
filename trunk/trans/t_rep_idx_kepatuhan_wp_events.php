@@ -339,15 +339,15 @@ function createGroupBar($waktu, $data_bar) {
 
 
 	$b1plot->SetColor("white");
-	$b1plot->SetFillColor("#cc1111");
+	$b1plot->SetFillColor("#056FD8");
 	$b1plot->SetLegend('PATUH');
 
 	$b2plot->SetColor("white");
-	$b2plot->SetFillColor("#11cccc");
+	$b2plot->SetFillColor("#AE0000");
 	$b2plot->SetLegend('KURANG PATUH');
 
 	$b3plot->SetColor("white");
-	$b3plot->SetFillColor("#1111cc");
+	$b3plot->SetFillColor("#8AE952");
 	$b3plot->SetLegend('TIDAK PATUH');
 
 	$graph->title->Set("INDEX KEPATUHAN WP");
