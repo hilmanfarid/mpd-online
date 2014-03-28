@@ -380,7 +380,7 @@ function createPie($waktu, $data_pie) {
 	$p1->SetCenter(0.5,0.45);
 	$p1->ShowBorder();
 	$p1->SetColor('black');
-	
+	$p1->SetTheme("pastel");
 	$graph->Add($p1);
 	
 	//unlink('../graphfiles/pie_kepatuhan.png');
