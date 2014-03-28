@@ -126,19 +126,19 @@ function print_excel_umum($param_arr) {
 				<th width="150">PERSENTASE (%)</th>
 			</tr>
 			<tr>
-				<td>1</td>
+				<td align="center">1</td>
 				<td>WP PATUH</td>
 				<td align="right">'.$total_patuh.'</td>
 				<td align="right">'.round($prosentase_patuh,2).'</td>
 			</tr>
 			<tr>
-				<td>2</td>
+				<td align="center">2</td>
 				<td>WP KURANG PATUH</td>
 				<td align="right">'.$total_kurang_patuh.' </td>
 				<td align="right">'.round($prosentase_kurang_patuh,2).'</td>
 			</tr>
 			<tr>
-				<td>3</td>
+				<td align="center">3</td>
 				<td>WP TIDAK PATUH</td>
 				<td align="right">'.$total_tidak_patuh.' </td>
 				<td align="right">'.round($prosentase_tidak_patuh,2).'</td>
@@ -246,7 +246,7 @@ function print_excel_detil($param_arr) {
 				<th>%</th>
 			</tr>
 			<tr>
-				<td>1</td>
+				<td align="center">1</td>
 				<td>WP PATUH</td>
 				<td>'.$hotel_patuh.'</td>
 				<td>'.round($hotel_persen_patuh,2).'</td>
@@ -258,7 +258,7 @@ function print_excel_detil($param_arr) {
 				<td>'.round($parkir_persen_patuh,2).'</td>
 			</tr>
 			<tr>
-				<td>2</td>
+				<td align="center">2</td>
 				<td>WP KURANG PATUH</td>
 				<td>'.$hotel_kurang_patuh.'</td>
 				<td>'.round($hotel_persen_kurang_patuh,2).'</td>
@@ -270,7 +270,7 @@ function print_excel_detil($param_arr) {
 				<td>'.round($parkir_persen_kurang_patuh,2).'</td>
 			</tr>
 			<tr>
-				<td>3</td>
+				<td align="center">3</td>
 				<td>WP TIDAK PATUH</td>
 				<td>'.$hotel_tidak_patuh.'</td>
 				<td>'.round($hotel_persen_tidak_patuh,2).'</td>
