@@ -126,18 +126,18 @@ function print_excel_umum($param_arr) {
 			</tr>
 			<tr>
 				<td>WP PATUH</td>
-				<td>'.$total_patuh.'</td>
-				<td>'.round($prosentase_patuh,2).'</td>
+				<td align="right">'.$total_patuh.'</td>
+				<td align="right">'.round($prosentase_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>WP KURANG PATUH</td>
-				<td>'.$total_kurang_patuh.' </td>
-				<td>'.round($prosentase_kurang_patuh,2).'</td>
+				<td align="right">'.$total_kurang_patuh.' </td>
+				<td align="right">'.round($prosentase_kurang_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>WP TIDAK PATUH</td>
-				<td>'.$total_tidak_patuh.' </td>
-				<td>'.round($prosentase_tidak_patuh,2).'</td>
+				<td align="right">'.$total_tidak_patuh.' </td>
+				<td align="right">'.round($prosentase_tidak_patuh,2).'</td>
 			</tr>
 			<tr>
 				<td>JUMLAH </td>
