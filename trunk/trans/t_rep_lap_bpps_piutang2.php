@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-780448AB
+//Class_Initialize Event @3-E3B3DE5E
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -90,6 +90,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->jenis_laporan->DSType = dsListOfValues;
             $this->jenis_laporan->Values = array(array("all", "SEMUA"), array("piutang", "NON MURNI"), array("murni", "MURNI"));
             $this->jenis_laporan->Required = true;
+            $this->Button_DoPrint = & new clsButton("Button_DoPrint", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -155,7 +156,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-4306E027
+//Operation Method @3-481C279C
     function Operation()
     {
         if(!$this->Visible)
@@ -172,12 +173,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoPrint->Pressed) {
+                $this->PressedButton = "Button_DoPrint";
             }
         }
         $Redirect = "t_rep_lap_bpps_piutang2.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoPrint") {
+                if(!CCGetEvent($this->Button_DoPrint->CCSEvents, "OnClick", $this->Button_DoPrint)) {
                     $Redirect = "";
                 }
             }
@@ -187,7 +194,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-CDBF55E3
+//Show Method @3-EAC4A097
     function Show()
     {
         global $CCSUseAmp;
@@ -251,6 +258,7 @@ function GetPrimaryKey($keyName)
         $this->tgl_penerimaan_last->Show();
         $this->DatePicker_tgl_penerimaan_last1->Show();
         $this->jenis_laporan->Show();
+        $this->Button_DoPrint->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -290,7 +298,7 @@ include_once("./t_rep_lap_bpps_piutang2_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-9736B044
+//Initialize Objects @1-944D12DC
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -298,7 +306,10 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_rep_bppsSearch = & new clsRecordt_rep_bppsSearch("", $MainPage);
+$Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", ccsGet, NULL), $MainPage);
+$Label1->HTML = true;
 $MainPage->t_rep_bppsSearch = & $t_rep_bppsSearch;
+$MainPage->Label1 = & $Label1;
 
 BindEvents();
 
@@ -337,8 +348,9 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-9F33A748
+//Show Page @1-9A57D572
 $t_rep_bppsSearch->Show();
+$Label1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
