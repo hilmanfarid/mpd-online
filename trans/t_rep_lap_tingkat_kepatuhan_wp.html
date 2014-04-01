@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN STATUS&nbsp;SURAT TEGURAN&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_rep_sisa_piutangSearch -->
+        <form id="t_rep_sisa_piutangSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Periode Tahun</td> 
+                    <td class="search-field"><input id="t_rep_sisa_piutangSearchyear_code" class="ControlsRQ" value="{year_code}" maxlength="32" size="32" name="{year_code_Name}"></td> 
+                    <td><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"><input id="t_rep_sisa_piutangSearchp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
+                    <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Periode Pajak</td> 
+                    <td class="search-field"><input id="t_rep_sisa_piutangSearchcode" class="ControlsRQ" value="{code}" maxlength="32" size="32" name="{code_Name}"></td> 
+                    <td><img onclick="javascript:periodepajak()" border="0" src="../images/view.gif"><input id="t_rep_sisa_piutangSearchp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td> 
+                    <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Jenis Pajak</td> 
+                    <td class="search-field"><input id="t_rep_sisa_piutangSearchvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}">&nbsp;</td> 
+                    <td><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_sisa_piutangSearchp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                    <td class="search-field">&nbsp; </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Status</td> 
+                    <td class="search-field">
+                      <select id="t_rep_sisa_piutangSearchListBox1" name="{ListBox1_Name}">
+                        <option selected value=""></option>
+                        {ListBox1_Options}
+                      </select>
+ </td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
+                  <tr>
+                    <td class="search-field">&nbsp;</td> 
+                    <td align="center">&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch1 --><input style="WIDTH: 118px; HEIGHT: 26px" id="t_rep_sisa_piutangSearchButton_DoSearchUmum" class="btn_tambah" onclick="cetakUmum(); return false;" value="CETAK PDF UMUM" alt="Search" size="13" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 -->&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_sisa_piutangSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="CETAK PDF GROUP" alt="Search" size="13" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                    <td>&nbsp; </td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_rep_sisa_piutangSearch -->
+        <div align="left">
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp; {Label1}
+<script language="javascript">
+    function periodepajak() {
+                var idelement;
+
+        if (idelement = document.getElementById("t_rep_sisa_piutangSearchp_year_period_id"))
+        {
+                var pid = idelement.value;
+
+                if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+                {                
+                        getFrom_LOV("t_rep_sisa_piutangSearch", "p_finance_period_id,code", "lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode Pajak&LABEL2=Deskripsi&HEADER_PAGE=PERIODE PAJAK&HEADER_LOV=DAFTAR PERIODE PAJAK&FIELD_3=AND p_year_period_id=" + pid + "ORDER BY start_date");
+                }
+                else
+                {
+                        alert("Pilih salah satu PERIODE TAHUN!");
+                }
+        } 
+        else 
+        {
+                alert("Pilih salah satu PERIODE TAHUN!");
+        }
+    }
+
+    function periodetahun() {
+        getFrom_LOV('t_rep_sisa_piutangSearch','p_year_period_id,year_code','lov_year_period.php');
+    }
+
+
+	function cetak(){
+        var i_p_year_period_id = document.getElementById("t_rep_sisa_piutangSearchp_year_period_id").value;
+		var i_p_finance_period_id = document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
+	    var i_p_vat_type_id = document.getElementById("t_rep_sisa_piutangSearchp_vat_type_id").value;
+		var i_ListBox1 = document.getElementById("t_rep_sisa_piutangSearchListBox1").value;
+		
+        if(i_p_year_period_id == "" || i_p_finance_period_id == "" || i_p_vat_type_id == "" || i_ListBox1 =="" ) {
+        	alert("Semua Filter Harus Diisi");
+        }else {
+        	window.open("../report/cetak_rep_lap_kepatuhan_wp.php?p_vat_type_id='" + i_p_vat_type_id +
+			 "'&p_finance_period_id=" + i_p_finance_period_id + 
+			 "&p_year_period_id =" + i_p_year_period_id +
+			 "&ListBox1=" + i_ListBox1 +
+			 "&cetak=group" 
+			 , '_blank', 'location=yes,scrollbars=yes,status=yes');
+        }
+    }
+
+	function cetakUmum(){
+        var i_p_year_period_id = document.getElementById("t_rep_sisa_piutangSearchp_year_period_id").value;
+		var i_p_finance_period_id = document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
+	    var i_p_vat_type_id = document.getElementById("t_rep_sisa_piutangSearchp_vat_type_id").value;
+		var i_ListBox1 = document.getElementById("t_rep_sisa_piutangSearchListBox1").value;
+		
+        if(i_p_year_period_id == "" || i_p_finance_period_id == "" || i_p_vat_type_id == "" || i_ListBox1 =="" ) {
+        	alert("Semua Filter Harus Diisi");
+        }else {
+        	window.open("../report/cetak_rep_lap_kepatuhan_wp.php?p_vat_type_id='" + i_p_vat_type_id +
+			 "'&p_finance_period_id=" + i_p_finance_period_id + 
+			 "&p_year_period_id =" + i_p_year_period_id +
+			 "&ListBox1=" + i_ListBox1+
+			 "&cetak=umum" 
+			 , '_blank', 'location=yes,scrollbars=yes,status=yes');
+        }
+    }
+	        
+        function jenispajak() {
+        getFrom_LOV('t_rep_sisa_piutangSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+    }
+        
+        function jenispajak() {
+        getFrom_LOV('t_rep_sisa_piutangSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+    }
+</script>
+</p>
+<p>&nbsp;</p>
+</body>
+</html>
