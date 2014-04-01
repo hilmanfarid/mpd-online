@@ -12,6 +12,21 @@ function sendSms(){
     }
     $file_name = createExcel($no_telp,$npwd);
     $ch = curl_init();
+    $items = array(  'loginUsername'  => 'radnettrial',
+                            'loginPass'    => 'trial',
+                            'attached_type' => 'action_1',
+                            'senderID'      => 'JMP000003',
+                            'sender'	    => 'INFO',
+                            'tanggal'	    => '2014-03-11',
+                            'jam1'	        => '16',
+                            'mnt1'	        => '19',
+                            'pesan'	        => $message,
+                            'tb_simpan'	    => 'Submit',
+                            'login_btn'     => 'Login',
+                            'nmbatch'       => '@' . realpath($file_name.'.xls') . ';filename=send_sms.xls'
+                          );
+    print_r($items);
+    exit;
     curl_setopt($ch, CURLOPT_URL,"http://smsblast.radbdg.net/_libz/usersignin.php");
     curl_setopt($ch, CURLOPT_POST, 1);
     // in real life you should use something like:
