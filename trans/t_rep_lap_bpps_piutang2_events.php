@@ -61,9 +61,12 @@ function Page_BeforeShow(& $sender)
 			//exit;
 		}else if($jenis_laporan == 'murni'){
 			$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			from f_rep_bpps_piutang($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
-			EXTRACT (YEAR FROM rep.settlement_date) = $year_date
+			SUBSTRING(rep.masa_pajak,22,4) = $year_date
+			OR 
+				((SUBSTRING(rep.masa_pajak,22,4) = $border
+				AND SUBSTRING(rep.masa_pajak,19,2) = 12))
 			order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 		}
 		//die($query);
