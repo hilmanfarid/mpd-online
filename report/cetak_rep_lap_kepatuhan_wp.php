@@ -60,7 +60,8 @@ while ($dbConn->next_record()) {
 	"masa_pajak"		=> $dbConn->f("masa_pajak"),
 	"kd_tap"			=> $dbConn->f("kd_tap"),
 	"keterangan"		=> $dbConn->f("keterangan"),
-	"payment_date"		=> date("d-M-Y", strtotime($dbConn->f("payment_date"))),
+	"payment_date"		=> date("d-m-Y", strtotime($dbConn->f("payment_date"))),
+	"settlement_date"	=> date("d-m-Y", strtotime($dbConn->f("settlement_date"))),
 	"jam"		=> $dbConn->f("jam"));
 }
 $dbConn->close();
@@ -191,7 +192,7 @@ class FormCetak extends FPDF {
 													  $item["npwpd"],
 													  number_format($item["jumlah_terima"], 0, ',', '.'),
 													  $item["masa_pajak"],
-													  $item["kd_tap"],
+													  $item["settlement_date"],
 													  $item["payment_date"]
 													  ),
 												array('TBLR',
