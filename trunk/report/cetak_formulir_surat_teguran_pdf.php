@@ -83,7 +83,7 @@ class FormCetak extends FPDF {
 	
 	function PageCetak($data,$no_urut) {
 		$this->AliasNbPages();
-		$this->SetLeftMargin(1);
+		$this->SetLeftMargin(10);
 		$this->AddPage("P");
 		$this->AddFont('BKANT');
 		
