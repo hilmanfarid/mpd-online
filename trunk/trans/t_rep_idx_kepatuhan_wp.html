@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -50,32 +50,24 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Periode Tahun</td> 
-                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="32"><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"></td> 
+                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"></td> 
                     <td><input id="t_rep_idx_kepatuhan_wpSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
                     <td class="search-field"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">Periode Pajak</td> 
-                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchcode" class="ControlsRQ" name="{code_Name}" maxlength="32" value="{code}" size="32"><img onclick="javascript:periodepajak()" border="0" src="../images/view.gif"></td> 
+                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchcode" class="ControlsRQ" name="{code_Name}" maxlength="32" value="{code}" size="32">&nbsp;<img onclick="javascript:periodepajak()" border="0" src="../images/view.gif"></td> 
                     <td><input id="t_rep_idx_kepatuhan_wpSearchp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td> 
                     <td class="search-field"></td>
                   </tr>
  
                   <tr>
                     <td class="search-field">&nbsp;</td> 
-                    <td align="right">
-                      <!-- BEGIN Button Button_DoSearch1 --><input style="WIDTH: 159px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch1" class="btn_tambah" onclick="tampilkanLaporanDetil(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD DETAIL" size="17" type="submit"><!-- END Button Button_DoSearch1 --></td> 
                     <td align="right">&nbsp; 
-                      <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 148px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD GENERAL" size="13" type="submit"><!-- END Button Button_DoSearch -->&nbsp;</td> 
-                    <td>&nbsp; </td> 
-                    <td class="search-field">&nbsp;</td>
-                  </tr>
- 
-                  <tr>
-                    <td class="search-field">&nbsp;</td> 
-                    <td align="right">&nbsp;</td> 
-                    <td align="right">&nbsp;</td> 
+                      <!-- BEGIN Button Button_DoSearch2 --><input style="WIDTH: 159px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch2" class="btn_tambah" onclick="viewDetil();" name="{Button_Name}" alt="Search" value="TAMPILKAN DETAIL" size="17" type="button"><!-- END Button Button_DoSearch2 --></td> 
+                    <td align="right">&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch3 --><input style="WIDTH: 148px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch3" class="btn_tambah" onclick="viewGeneral();" name="{Button_Name}" alt="Search" value="TAMPILKAN GENERAL" size="13" type="button"><!-- END Button Button_DoSearch3 -->&nbsp;</td> 
                     <td>&nbsp;</td> 
                     <td class="search-field">&nbsp;</td>
                   </tr>
@@ -169,8 +161,105 @@ $(document).ready(function()
                 location.href="t_rep_idx_kepatuhan_wp.php"+params;
         }
 
+                function downloadGeneral() {
+                        p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
+                p_finance_period_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_finance_period_id").value;
+                                
+                if(p_year_period_id == "" || p_finance_period_id == "") {
+                            alert("Semua Filter Harus Diisi");
+                            return;
+                        }
+        
+                tahun_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchyear_code").value;
+                pajak_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchcode").value;
+
+                var params = "?doAction=view_umum";
+                params += "&p_year_period_id="+p_year_period_id;
+                params += "&p_finance_period_id="+p_finance_period_id;
+                params += "&tahun_periode="+tahun_periode;
+                params += "&pajak_periode="+pajak_periode;
+
+                window.open("../trans/t_rep_idx_kepatuhan_wp.php" + params, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                }               
+                
+                function downloadDetil() {
+                        p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
+                p_finance_period_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_finance_period_id").value;
+                                
+                if(p_year_period_id == "" || p_finance_period_id == "") {
+                            alert("Semua Filter Harus Diisi");
+                            return;
+                        }
+        
+                tahun_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchyear_code").value;
+                pajak_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchcode").value;
+
+                var params = "?doAction=view_detil";
+                params += "&p_year_period_id="+p_year_period_id;
+                params += "&p_finance_period_id="+p_finance_period_id;
+                params += "&tahun_periode="+tahun_periode;
+                params += "&pajak_periode="+pajak_periode;
+
+                window.open("../trans/t_rep_idx_kepatuhan_wp.php" + params, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                }
+
+                function viewGeneral() {
+                                
+                        p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
+                p_finance_period_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_finance_period_id").value;
+                                
+                if(p_year_period_id == "" || p_finance_period_id == "") {
+                alert("Semua Filter Harus Diisi");
+                return;
+                        }
+        
+            tahun_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchyear_code").value;
+            pajak_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchcode").value;
+
+            var params = "?doAction=html_general";
+            params += "&p_year_period_id="+p_year_period_id;
+            params += "&p_finance_period_id="+p_finance_period_id;
+            params += "&tahun_periode="+tahun_periode;
+            params += "&pajak_periode="+pajak_periode;
+
+            location.href="t_rep_idx_kepatuhan_wp.php"+params;
+                }
+
+                function viewDetil() {
+                                
+                        p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
+                p_finance_period_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_finance_period_id").value;
+                                
+                if(p_year_period_id == "" || p_finance_period_id == "") {
+                alert("Semua Filter Harus Diisi");
+                return;
+                        }
+        
+            tahun_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchyear_code").value;
+            pajak_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchcode").value;
+
+            var params = "?doAction=html_detil";
+            params += "&p_year_period_id="+p_year_period_id;
+            params += "&p_finance_period_id="+p_finance_period_id;
+            params += "&tahun_periode="+tahun_periode;
+            params += "&pajak_periode="+pajak_periode;
+
+            location.href="t_rep_idx_kepatuhan_wp.php"+params;
+                }
+                
+
+                function OpenPdf(finance_period_id, year_period_id, vat_type_id, flag) {
+                        
+                        var params = "?cetak=umum";
+                        params += "&p_finance_period_id="+finance_period_id;
+                        params += "&p_year_period_id="+year_period_id;
+                        params += "&p_vat_type_id="+vat_type_id;
+                        params += "&ListBox1="+flag;
+
+                        window.open("../report/cetak_rep_lap_kepatuhan_wp.php" + params, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                }
 </script>
-</p>
+{Label1}</p>
 <p>&nbsp;</p>
 </body>
 </html>
