@@ -38,19 +38,19 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Button id="51" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_per_npwpdButton2">
+				<Button id="51" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_per_npwpdButton2">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-<Hidden id="9" fieldSourceType="DBColumn" dataType="Text" name="cetak_laporan" PathID="t_laporan_per_npwpdcetak_laporan">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+				<Hidden id="9" fieldSourceType="DBColumn" dataType="Text" name="cetak_laporan" PathID="t_laporan_per_npwpdcetak_laporan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -176,7 +176,13 @@ order by c.npwd , b.start_date desc
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Label id="54" fieldSourceType="DBColumn" dataType="Text" html="False" name="type_code" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtype_code" fieldSource="type_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -202,14 +208,14 @@ order by c.npwd , b.start_date desc
 			<SQLParameters>
 				<SQLParameter id="48" variable="t_cust_acc_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="t_cust_acc_id"/>
 				<SQLParameter id="50" variable="npwd" parameterType="URL" dataType="Text" parameterSource="npwpd"/>
-<SQLParameter id="52" variable="p_finance_period_id" parameterType="URL" dataType="Text" parameterSource="p_finance_period_id" defaultValue="0"/>
-<SQLParameter id="53" variable="p_finance_period_id1" parameterType="URL" dataType="Text" parameterSource="p_finance_period_id1" defaultValue="0"/>
-</SQLParameters>
+				<SQLParameter id="52" variable="p_finance_period_id" parameterType="URL" dataType="Text" parameterSource="p_finance_period_id" defaultValue="0"/>
+				<SQLParameter id="53" variable="p_finance_period_id1" parameterType="URL" dataType="Text" parameterSource="p_finance_period_id1" defaultValue="0"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
 		</Grid>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_per_npwpd_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_laporan_per_npwpd.php" forShow="True" url="t_laporan_per_npwpd.php" comment="//" codePage="windows-1252"/>
