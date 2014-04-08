@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN INDEX KEPATUHAN WAJIB PAJAK 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_rep_idx_kepatuhan_wpSearch -->
+        <form id="t_rep_idx_kepatuhan_wpSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table style="WIDTH: 100%; HEIGHT: 115px" class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Periode Tahun</td> 
+                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="32"><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"></td> 
+                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td class="search-field">Jenis Pajak</td> 
+                    <td class="search-field" colspan="2">&nbsp;<input id="t_rep_idx_kepatuhan_wpSearchvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="32"><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"></td> 
+                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td class="search-field">Status</td> 
+                    <td colspan="2" align="left">
+                       &nbsp;<select id="t_rep_idx_kepatuhan_wpSearchListBox1" name="{ListBox1_Name}">
+                        {ListBox1_Options}
+                      </select>
+ </td> 
+                    <td align="right">&nbsp;</td>
+                  </tr>
+ 
+                  <tr>
+                    <td class="search-field">&nbsp;</td> 
+                    <td align="right"></td> 
+                    <td align="right">&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 148px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" size="13" type="submit"><!-- END Button Button_DoSearch -->&nbsp;</td> 
+                    <td>&nbsp; </td>
+                  </tr>
+ 
+                  <tr>
+                    <td class="search-field">&nbsp;</td> 
+                    <td align="right">&nbsp;</td> 
+                    <td align="right">&nbsp;</td> 
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_rep_idx_kepatuhan_wpSearch -->
+        <div align="left">
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;&nbsp;
+<script language="javascript">
+    function periodepajak() {
+                var idelement;
+
+        if (idelement = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id"))
+        {
+                var pid = idelement.value;
+
+                if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+                {                
+                        getFrom_LOV("t_rep_idx_kepatuhan_wpSearch", "p_finance_period_id,code", "lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode Pajak&LABEL2=Deskripsi&HEADER_PAGE=PERIODE PAJAK&HEADER_LOV=DAFTAR PERIODE PAJAK&FIELD_3=AND p_year_period_id=" + pid + "ORDER BY start_date");
+                }
+                else
+                {
+                        alert("Pilih salah satu PERIODE TAHUN!");
+                }
+        } 
+        else 
+        {
+                alert("Pilih salah satu PERIODE TAHUN!");
+        }
+    }
+
+    function periodetahun() {
+        getFrom_LOV('t_rep_idx_kepatuhan_wpSearch','p_year_period_id,year_code','lov_year_period.php');
+    }
+
+    function cetak()
+    {
+        p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
+        p_finance_period_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_finance_period_id").value;
+
+        window.open("../report/cetak_rep_lap_spjp.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+    }
+
+    function tampilkanLaporan(){
+        p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
+        p_vat_type_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_vat_type_id").value;
+        status = document.getElementById("t_rep_idx_kepatuhan_wpSearchListBox1").value;
+		
+		var cbStatus = document.getElementById("t_rep_idx_kepatuhan_wpSearchListBox1");
+		var status_text = cbStatus.options[cbStatus.selectedIndex].text;
+
+     
+        if(p_year_period_id == "" || p_vat_type_id == "" || status == "") {
+                    alert("Semua Filter Harus Diisi");
+                    return;
+                }
+        
+                tahun_periode = document.getElementById("t_rep_idx_kepatuhan_wpSearchyear_code").value;
+                jenis_pajak = document.getElementById("t_rep_idx_kepatuhan_wpSearchvat_code").value;
+
+                var params = "?doAction=download_excel";
+                params += "&p_year_period_id="+p_year_period_id;
+                params += "&p_vat_type_id="+p_vat_type_id;
+                params += "&status="+status;
+                params += "&tahun_periode="+tahun_periode;
+				params += "&jenis_pajak="+jenis_pajak;
+				params += "&status_text="+status_text;
+
+                location.href="t_idx_kepatuhan_wp.php"+params;
+        }
+
+                
+                function jenispajak() {
+                getFrom_LOV('t_rep_idx_kepatuhan_wpSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+        }
+</script>
+</p>
+<p>&nbsp;</p>
+</body>
+</html>
