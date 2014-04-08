@@ -269,7 +269,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @29-61F5CCAA
+//Class_Initialize Event @29-3A4F3BE0
     function clsGridHistoryGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -304,6 +304,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
         $this->total_pajak = & new clsControl(ccsLabel, "total_pajak", "total_pajak", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_pajak", ccsGet, NULL), $this);
         $this->kuitansi_pembayaran = & new clsControl(ccsLabel, "kuitansi_pembayaran", "kuitansi_pembayaran", ccsText, "", CCGetRequestParam("kuitansi_pembayaran", ccsGet, NULL), $this);
         $this->periode_akhir_laporan = & new clsControl(ccsLabel, "periode_akhir_laporan", "periode_akhir_laporan", ccsText, "", CCGetRequestParam("periode_akhir_laporan", ccsGet, NULL), $this);
+        $this->type_code = & new clsControl(ccsLabel, "type_code", "type_code", ccsText, "", CCGetRequestParam("type_code", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->t_customer_id = & new clsControl(ccsHidden, "t_customer_id", "t_customer_id", ccsFloat, "", CCGetRequestParam("t_customer_id", ccsGet, NULL), $this);
@@ -323,7 +324,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
     }
 //End Initialize Method
 
-//Show Method @29-84ED270D
+//Show Method @29-BA2A65B1
     function Show()
     {
         global $Tpl;
@@ -363,6 +364,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
             $this->ControlsVisible["total_pajak"] = $this->total_pajak->Visible;
             $this->ControlsVisible["kuitansi_pembayaran"] = $this->kuitansi_pembayaran->Visible;
             $this->ControlsVisible["periode_akhir_laporan"] = $this->periode_akhir_laporan->Visible;
+            $this->ControlsVisible["type_code"] = $this->type_code->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -378,6 +380,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
                 $this->total_pajak->SetValue($this->DataSource->total_pajak->GetValue());
                 $this->kuitansi_pembayaran->SetValue($this->DataSource->kuitansi_pembayaran->GetValue());
                 $this->periode_akhir_laporan->SetValue($this->DataSource->periode_akhir_laporan->GetValue());
+                $this->type_code->SetValue($this->DataSource->type_code->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -389,6 +392,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
                 $this->total_pajak->Show();
                 $this->kuitansi_pembayaran->Show();
                 $this->periode_akhir_laporan->Show();
+                $this->type_code->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -424,7 +428,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
     }
 //End Show Method
 
-//GetErrors Method @29-5076EB0B
+//GetErrors Method @29-D8EB7754
     function GetErrors()
     {
         $errors = "";
@@ -436,6 +440,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
         $errors = ComposeStrings($errors, $this->total_pajak->Errors->ToString());
         $errors = ComposeStrings($errors, $this->kuitansi_pembayaran->Errors->ToString());
         $errors = ComposeStrings($errors, $this->periode_akhir_laporan->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->type_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -446,7 +451,7 @@ class clsGridHistoryGrid { //HistoryGrid class @29-8E77C6FA
 
 class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource Class @29-7CE034AB
 
-//DataSource Variables @29-435882C6
+//DataSource Variables @29-1188165A
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -466,9 +471,10 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     var $total_pajak;
     var $kuitansi_pembayaran;
     var $periode_akhir_laporan;
+    var $type_code;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @29-31A86774
+//DataSourceClass_Initialize Event @29-3B8560AE
     function clsHistoryGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -489,6 +495,8 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         $this->kuitansi_pembayaran = new clsField("kuitansi_pembayaran", ccsText, "");
         
         $this->periode_akhir_laporan = new clsField("periode_akhir_laporan", ccsText, "");
+        
+        $this->type_code = new clsField("type_code", ccsText, "");
         
 
     }
@@ -588,7 +596,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Open Method
 
-//SetValues Method @29-528DA0E8
+//SetValues Method @29-3FE72D40
     function SetValues()
     {
         $this->company_name->SetDBValue($this->f("company_name"));
@@ -599,6 +607,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         $this->total_pajak->SetDBValue(trim($this->f("total_pajak")));
         $this->kuitansi_pembayaran->SetDBValue($this->f("kuitansi_pembayaran"));
         $this->periode_akhir_laporan->SetDBValue($this->f("periode_akhir_laporan"));
+        $this->type_code->SetDBValue($this->f("type_code"));
     }
 //End SetValues Method
 
