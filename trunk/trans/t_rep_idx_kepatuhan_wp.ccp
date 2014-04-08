@@ -26,14 +26,14 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Button id="567" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_idx_kepatuhan_wpSearchButton_DoSearch1">
+				<Button id="568" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch2" PathID="t_rep_idx_kepatuhan_wpSearchButton_DoSearch2">
 					<Components/>
 					<Events>
 					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_idx_kepatuhan_wpSearchButton_DoSearch">
+<Button id="569" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch3" PathID="t_rep_idx_kepatuhan_wpSearchButton_DoSearch3">
 					<Components/>
 					<Events>
 					</Events>
@@ -62,7 +62,13 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+		<Label id="570" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="Label1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_idx_kepatuhan_wp_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_rep_idx_kepatuhan_wp.php" forShow="True" url="t_rep_idx_kepatuhan_wp.php" comment="//" codePage="windows-1252"/>
