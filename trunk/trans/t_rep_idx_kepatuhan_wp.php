@@ -45,7 +45,7 @@ class clsRecordt_rep_idx_kepatuhan_wpSearch { //t_rep_idx_kepatuhan_wpSearch Cla
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-55642144
+//Class_Initialize Event @3-81D1A998
     function clsRecordt_rep_idx_kepatuhan_wpSearch($RelativePath, & $Parent)
     {
 
@@ -73,8 +73,8 @@ class clsRecordt_rep_idx_kepatuhan_wpSearch { //t_rep_idx_kepatuhan_wpSearch Cla
             $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
-            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
+            $this->Button_DoSearch3 = & new clsButton("Button_DoSearch3", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -126,7 +126,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-9924E626
+//Operation Method @3-14997985
     function Operation()
     {
         if(!$this->Visible)
@@ -140,21 +140,21 @@ function GetPrimaryKey($keyName)
         }
 
         if($this->FormSubmitted) {
-            $this->PressedButton = "Button_DoSearch1";
-            if($this->Button_DoSearch1->Pressed) {
-                $this->PressedButton = "Button_DoSearch1";
-            } else if($this->Button_DoSearch->Pressed) {
-                $this->PressedButton = "Button_DoSearch";
+            $this->PressedButton = "Button_DoSearch2";
+            if($this->Button_DoSearch2->Pressed) {
+                $this->PressedButton = "Button_DoSearch2";
+            } else if($this->Button_DoSearch3->Pressed) {
+                $this->PressedButton = "Button_DoSearch3";
             }
         }
         $Redirect = "t_rep_idx_kepatuhan_wp.php";
         if($this->Validate()) {
-            if($this->PressedButton == "Button_DoSearch1") {
-                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
+            if($this->PressedButton == "Button_DoSearch2") {
+                if(!CCGetEvent($this->Button_DoSearch2->CCSEvents, "OnClick", $this->Button_DoSearch2)) {
                     $Redirect = "";
                 }
-            } else if($this->PressedButton == "Button_DoSearch") {
-                if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+            } else if($this->PressedButton == "Button_DoSearch3") {
+                if(!CCGetEvent($this->Button_DoSearch3->CCSEvents, "OnClick", $this->Button_DoSearch3)) {
                     $Redirect = "";
                 }
             }
@@ -164,7 +164,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-460264DE
+//Show Method @3-6EC74128
     function Show()
     {
         global $CCSUseAmp;
@@ -213,8 +213,8 @@ function GetPrimaryKey($keyName)
         $this->p_finance_period_id->Show();
         $this->p_year_period_id->Show();
         $this->year_code->Show();
-        $this->Button_DoSearch1->Show();
-        $this->Button_DoSearch->Show();
+        $this->Button_DoSearch2->Show();
+        $this->Button_DoSearch3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -254,7 +254,7 @@ include_once("./t_rep_idx_kepatuhan_wp_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-41082C16
+//Initialize Objects @1-48C0CA9B
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -262,7 +262,10 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_rep_idx_kepatuhan_wpSearch = & new clsRecordt_rep_idx_kepatuhan_wpSearch("", $MainPage);
+$Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", ccsGet, NULL), $MainPage);
+$Label1->HTML = true;
 $MainPage->t_rep_idx_kepatuhan_wpSearch = & $t_rep_idx_kepatuhan_wpSearch;
+$MainPage->Label1 = & $Label1;
 
 BindEvents();
 
@@ -301,8 +304,9 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-F72A9C09
+//Show Page @1-94067F29
 $t_rep_idx_kepatuhan_wpSearch->Show();
+$Label1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
