@@ -76,7 +76,26 @@ function Page_BeforeShow(& $sender)
 			/* Tampilkan Alert */
 			echo '<script> alert("Semua Filter Harus Diisi"); </script>';
 		}
-	} else {
+	
+	}else if($doAction == 'html_general') {
+			
+		if(!empty($param_arr['p_finance_period_id'])) {
+			$Label1->SetText(GetCetakGeneralHTML($param_arr));
+		}else {
+			/* Tampilkan Alert */
+			echo '<script> alert("Semua Filter Harus Diisi"); </script>';
+		}		
+
+	}else if($doAction == 'html_detil') {
+			
+		if(!empty($param_arr['p_finance_period_id'])) {
+			$Label1->SetText(GetCetakDetilHTML($param_arr));
+		}else {
+			/* Tampilkan Alert */
+			echo '<script> alert("Semua Filter Harus Diisi"); </script>';
+		}		
+
+	}else {
 		
 		//do nothing 
 	}
@@ -96,10 +115,90 @@ function startExcel($filename = "laporan.xls") {
 }
 
 
+function GetCetakGeneralHTML($param_arr) {
+	
+	$jumlah_total = getGrandTotal($param_arr['p_finance_period_id']);
+	
+	$total_patuh = getTotalPerJenis('NULL',$param_arr['p_finance_period_id'],1);
+	$total_kurang_patuh = getTotalPerJenis('NULL',$param_arr['p_finance_period_id'],2);
+	$total_tidak_patuh = getTotalPerJenis('NULL',$param_arr['p_finance_period_id'],3);
+	
+	$prosentase_patuh = $total_patuh / $jumlah_total * 100;
+	$prosentase_kurang_patuh = $total_kurang_patuh / $jumlah_total * 100;
+	$prosentase_tidak_patuh = $total_tidak_patuh / $jumlah_total * 100;
+	
+	$waktu = time();
+	$data = array($total_patuh, $total_kurang_patuh, $total_tidak_patuh);
+	createPie($waktu, $data);
+
+
+	$output = '';
+	
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="60%" style="margin-left:10px;padding:5px 5px 5px 5px;">
+          		<tr>
+            		<td valign="top">';
+
+	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                	<tr>
+                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  		<td class="th"><strong>LAPORAN KEPATUHAN WAJIB PAJAK</strong></td> 
+                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                	</tr>
+              	</table>';
+	$output .= '<div align="right"><a href="#" onClick="downloadGeneral();"> Download Excel </a></div>';
+	$output .= '<h3>TAHUN PAJAK : '.$param_arr['tahun_periode'].'</h3>';
+	$output .= '<h3>PERIODE PAJAK : '.$param_arr['pajak_periode'].'</h3> <br/>';
+	
+	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
+                <tr class="Caption">';
+
+	$output .= '<th width="15">NO</th>';
+	$output .= '<th width="150">KRITERIA</th>';
+	$output .= '<th width="150">JUMLAH WP</th>';
+	$output .= '<th width="150">PRESENTASE (%)</th>';
+	$output .= '</tr>';
+	
+	$output .= '<tr>
+				<td align="center"><b>1</b></td>
+				<td><b>WP PATUH</b></td>
+				<td align="right">'.$total_patuh.'</td>
+				<td align="right">'.round($prosentase_patuh,2).'</td>
+			</tr>
+			<tr>
+				<td align="center"><b>2</b></td>
+				<td><b>WP KURANG PATUH</b></td>
+				<td align="right">'.$total_kurang_patuh.' </td>
+				<td align="right">'.round($prosentase_kurang_patuh,2).'</td>
+			</tr>
+			<tr>
+				<td align="center"><b>3</b></td>
+				<td><b>WP TIDAK PATUH</b></td>
+				<td align="right">'.$total_tidak_patuh.' </td>
+				<td align="right">'.round($prosentase_tidak_patuh,2).'</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><b>JUMLAH</b></td>
+				<td align="right">'.$jumlah_total.'</td>
+				<td>&nbsp; </td>
+			</tr>';
+	$output .= '</table>';
+	$output .= '<br/> <table>
+					<tr>
+						<td><img width="400" height="300" src = "'.ServerURL.'/graphfiles/pie_kepatuhan_'.$waktu.'.png"/></td>
+					</tr>
+				</table>';	
+
+	$output .= '</td></tr>';
+	$output .= '</table>';
+
+	return $output;
+} 
+
 function print_excel_umum($param_arr) {
 	
 	startExcel("index_kepatuhan_all_".$param_arr['tahun_periode']."_".$param_arr['pajak_periode']);
-	echo "<div><h3> INDEX KEPATUHAN WAJIB PAJAK </h3></div>";	
+	echo "<div><h3> LAPORAN KEPATUHAN WAJIB PAJAK </h3></div>";	
 	echo "<div><b>TAHUN PAJAK : ".$param_arr['tahun_periode']."</b></div>";	
 	echo "<div><b>PERIODE PAJAK : ".$param_arr['pajak_periode']."</b></div><br/>";	
 
@@ -161,10 +260,170 @@ function print_excel_umum($param_arr) {
 }
 
 
+
+function GetCetakDetilHTML($param_arr) {
+	
+	
+	$grand_total_hotel = getGrandTotalPerJenisPajak(1, $param_arr['p_finance_period_id']);
+	$grand_total_restoran = getGrandTotalPerJenisPajak(2, $param_arr['p_finance_period_id']);
+	$grand_total_hiburan = getGrandTotalPerJenisPajak(3, $param_arr['p_finance_period_id']);
+	$grand_total_parkir = getGrandTotalPerJenisPajak(4, $param_arr['p_finance_period_id']);
+	
+	// ---- start hotel ---
+	$hotel_patuh = getTotalPerJenis(1,$param_arr['p_finance_period_id'],1);
+	$hotel_kurang_patuh = getTotalPerJenis(1,$param_arr['p_finance_period_id'],2);
+	$hotel_tidak_patuh = getTotalPerJenis(1,$param_arr['p_finance_period_id'],3);
+	
+	$hotel_persen_patuh = $hotel_patuh / $grand_total_hotel * 100;
+	$hotel_persen_kurang_patuh = $hotel_kurang_patuh / $grand_total_hotel * 100;
+	$hotel_persen_tidak_patuh = $hotel_tidak_patuh / $grand_total_hotel * 100;
+	// ---- end hotel ---
+	
+
+	// -- start restoran --
+	$restoran_patuh = getTotalPerJenis(2,$param_arr['p_finance_period_id'],1);
+	$restoran_kurang_patuh = getTotalPerJenis(2,$param_arr['p_finance_period_id'],2);
+	$restoran_tidak_patuh = getTotalPerJenis(2,$param_arr['p_finance_period_id'],3);
+	
+	$restoran_persen_patuh = $restoran_patuh / $grand_total_restoran * 100;
+	$restoran_persen_kurang_patuh = $restoran_kurang_patuh / $grand_total_restoran * 100;
+	$restoran_persen_tidak_patuh = $restoran_tidak_patuh / $grand_total_restoran * 100;
+
+	// -- end restoran -- 
+	
+
+	//-- start hiburan  --
+	$hiburan_patuh = getTotalPerJenis(3,$param_arr['p_finance_period_id'],1);
+	$hiburan_kurang_patuh = getTotalPerJenis(3,$param_arr['p_finance_period_id'],2);
+	$hiburan_tidak_patuh = getTotalPerJenis(3,$param_arr['p_finance_period_id'],3);
+	
+	$hiburan_persen_patuh = $hiburan_patuh / $grand_total_hiburan * 100;
+	$hiburan_persen_kurang_patuh = $hiburan_kurang_patuh / $grand_total_hiburan * 100;
+	$hiburan_persen_tidak_patuh = $hiburan_tidak_patuh / $grand_total_hiburan * 100;
+
+	// -- end hiburan -- 
+	
+	//-- start parkir --
+	$parkir_patuh = getTotalPerJenis(4,$param_arr['p_finance_period_id'],1);
+	$parkir_kurang_patuh = getTotalPerJenis(4,$param_arr['p_finance_period_id'],2);
+	$parkir_tidak_patuh = getTotalPerJenis(4,$param_arr['p_finance_period_id'],3);
+	
+	$parkir_persen_patuh = $parkir_patuh / $grand_total_parkir * 100;
+	$parkir_persen_kurang_patuh = $parkir_kurang_patuh / $grand_total_parkir * 100;
+	$parkir_persen_tidak_patuh = $parkir_tidak_patuh / $grand_total_parkir * 100;
+	
+	//-- end parkir --
+	$waktu = time();
+	$data = array('patuh' => array($hotel_patuh, $restoran_patuh, $hiburan_patuh, $parkir_patuh),
+				  'kurang_patuh' => array($hotel_kurang_patuh, $restoran_kurang_patuh, $hiburan_kurang_patuh, $parkir_kurang_patuh),
+				  'tidak_patuh' => array($hotel_tidak_patuh, $restoran_tidak_patuh, $hiburan_tidak_patuh, $parkir_tidak_patuh) 
+				  );
+	createGroupBar($waktu, $data);
+
+
+	$output = '';
+	
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="80%" style="margin-left:10px;padding:5px 5px 5px 5px;">
+          		<tr>
+            		<td valign="top">';
+
+	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                	<tr>
+                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  		<td class="th"><strong>LAPORAN KEPATUHAN WAJIB PAJAK</strong></td> 
+                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                	</tr>
+              	</table>';
+	$output .= '<div align="right"><a href="#" onClick="downloadDetil();"> Download Excel </a></div>';
+	$output .= '<h3>TAHUN PAJAK : '.$param_arr['tahun_periode'].'</h3>';
+	$output .= '<h3>PERIODE PAJAK : '.$param_arr['pajak_periode'].'</h3> <br/>';
+	
+	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
+                <tr class="Caption">';
+	
+	$output .= '			
+				<th width="15" rowspan="2">NO</th>
+				<th width="150" rowspan="2">KRITERIA </th>
+				<th width="150" colspan="2">HOTEL</th>
+				<th width="150" colspan="2">RESTORAN</th>
+				<th width="150" colspan="2">HIBURAN</th>
+				<th width="150" colspan="2">PARKIR</th>
+			</tr>
+			<tr class="Caption">
+				<th>JUMLAH</th>
+				<th>%</th>
+				<th>JUMLAH</th>
+				<th>%</th>
+				<th>JUMLAH</th>
+				<th>%</th>
+				<th>JUMLAH</th>
+				<th>%</th>
+			</tr>
+			<tr>
+				<td align="center"><b>1</b></td>
+				<td><b>WP PATUH</b></td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',1,1)">'.$hotel_patuh.'</a></td>
+				<td align="right">'.round($hotel_persen_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',2,1)">'.$restoran_patuh.'</a></td>
+				<td align="right">'.round($restoran_persen_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',3,1)">'.$hiburan_patuh.'</a></td>
+				<td align="right">'.round($hiburan_persen_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',4,1)">'.$parkir_patuh.'</a></td>
+				<td align="right">'.round($parkir_persen_patuh,2).'</td>
+			</tr>
+			<tr>
+				<td align="center"><b>2</b></td>
+				<td><b>WP KURANG PATUH</b></td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',1,2)">'.$hotel_kurang_patuh.'</a></td>
+				<td align="right">'.round($hotel_persen_kurang_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',2,2)">'.$restoran_kurang_patuh.'</a></td>
+				<td align="right">'.round($restoran_persen_kurang_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',3,2)">'.$hiburan_kurang_patuh.'</a></td>
+				<td align="right">'.round($hiburan_persen_kurang_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',4,2)">'.$parkir_kurang_patuh.'</a></td>
+				<td align="right">'.round($parkir_persen_kurang_patuh,2).'</td>
+			</tr>
+			<tr>
+				<td align="center"><b>3</b></td>
+				<td><b>WP TIDAK PATUH</b></td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',1,3)">'.$hotel_tidak_patuh.'</a></td>
+				<td align="right">'.round($hotel_persen_tidak_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',2,3)">'.$restoran_tidak_patuh.'</a></td>
+				<td align="right">'.round($restoran_persen_tidak_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',3,3)">'.$hiburan_tidak_patuh.'</a></td>
+				<td align="right">'.round($hiburan_persen_tidak_patuh,2).'</td>
+				<td align="right"><a href="#" onclick="OpenPdf('.$param_arr['p_finance_period_id'].','.$param_arr['p_year_period_id'].',4,3)">'.$parkir_tidak_patuh.'</a></td>
+				<td align="right">'.round($parkir_persen_tidak_patuh,2).'</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><b>JUMLAH</b></td>
+				<td align="right"><b>'.$grand_total_hotel.'</b></td>
+				<td>&nbsp;</td>
+				<td align="right"><b>'.$grand_total_restoran.'</b></td>
+				<td>&nbsp;</td>
+				<td align="right"><b>'.$grand_total_hiburan.'</b></td>
+				<td>&nbsp;</td>
+				<td align="right"><b>'.$grand_total_parkir.'</b></td>
+				<td>&nbsp;</td>
+			</tr>';	
+	$output .= '</table>';
+	$output .= '<br/><br/>
+		<table>
+		<tr>
+			<td><img width="400" height="300" src = "'.ServerURL.'/graphfiles/bar_kepatuhan_'.$waktu.'.png"/></td>
+		</tr>
+		</table>';
+	$output .= '</td></tr>';
+	$output .= '</table>';
+
+	return $output;
+}
+
 function print_excel_detil($param_arr) {
 
 	startExcel("index_kepatuhan_detil_".$param_arr['tahun_periode']."_".$param_arr['pajak_periode']);
-	echo "<div><h3> INDEX KEPATUHAN WAJIB PAJAK </h3></div>";	
+	echo "<div><h3> LAPORAN KEPATUHAN WAJIB PAJAK </h3></div>";	
 	echo "<div><b>TAHUN PAJAK : ".$param_arr['tahun_periode']."</b></div>";	
 	echo "<div><b>PERIODE PAJAK : ".$param_arr['pajak_periode']."</b></div> <br/>";
 	
@@ -350,7 +609,7 @@ function createGroupBar($waktu, $data_bar) {
 	$b3plot->SetFillColor("#AE0000");
 	$b3plot->SetLegend('TIDAK PATUH');
 
-	$graph->title->Set("INDEX KEPATUHAN WP");
+	$graph->title->Set("GRAFIK KEPATUHAN WP");
 	$graph->title->SetFont(FF_ARIAL,FS_BOLD,12);
 
 	// Display the graph
@@ -373,7 +632,7 @@ function createPie($waktu, $data_pie) {
 	$graph->SetTheme($theme_class);
 
 	// Set A title for the plot
-	$graph->title->Set("INDEX KEPATUHAN WP");
+	$graph->title->Set("GRAFIK KEPATUHAN WP");
 	$graph->title->SetFont(FF_ARIAL,FS_BOLD,12);
 	
 	// Create
