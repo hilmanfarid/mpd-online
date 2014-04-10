@@ -23,7 +23,7 @@ function p_room_typeGrid_BeforeSelect(& $sender)
     global $p_room_typeGrid; //Compatibility
 //End p_room_typeGrid_BeforeSelect
 
-//Custom Code @164-2A29BDB7
+//Custom Code @150-2A29BDB7
 // -------------------------
     // Write your own code here.
 // -------------------------
@@ -76,7 +76,7 @@ function p_room_typeGrid_BeforeShowRow(& $sender)
 //DEL          $Component->Attributes->SetValue("rowStyle", $Style);
 //DEL      }
 
-//Set Row Style @165-982C9472
+//Set Row Style @151-982C9472
     $styles = array("Row", "AltRow");
     if (count($styles)) {
         $Style = $styles[($Component->RowNumber - 1) % count($styles)];
@@ -84,8 +84,7 @@ function p_room_typeGrid_BeforeShowRow(& $sender)
             $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
         $Component->Attributes->SetValue("rowStyle", $Style);
     }
-//End Set Row Style
-	 $Component->DLink->SetValue($img_radio); // Bdr
+//End Set Row Style	 $Component->DLink->SetValue($img_radio); // Bdr
 
 //Close p_room_typeGrid_BeforeShowRow @2-723FEB28
     return $p_room_typeGrid_BeforeShowRow;
