@@ -95,7 +95,7 @@ function startExcel($filename = "laporan.xls") {
 
 function print_excel($param_arr) {
 	
-	startExcel("index_kepatuhan_wp_".$param_arr['tahun_periode']."_".str_replace(' ','',$param_arr['jenis_pajak']));
+	//startExcel("index_kepatuhan_wp_".$param_arr['tahun_periode']."_".str_replace(' ','',$param_arr['jenis_pajak']));
 	echo "<div><h3> INDEX KEPATUHAN WAJIB PAJAK </h3></div>";	
 	echo "<div><b>TAHUN PAJAK : ".$param_arr['tahun_periode']."</b></div>";	
 	echo "<div><b>JENIS PAJAK : ".$param_arr['jenis_pajak']."</b></div>";
@@ -136,7 +136,7 @@ function print_excel($param_arr) {
 	$dbConn->close();
 
 	//MENENGAH
-	$dbConn = new clsDBConnSIKP();
+	$dbConn2 = new clsDBConnSIKP();
 	echo '
 		<br/><br/> <h4><u>II. RANKING MENENGAH </u></h4> 
 		<table border="1">
@@ -148,25 +148,25 @@ function print_excel($param_arr) {
 				<th width="150">RATA-RATA <br/> TGL BAYAR</th>
 				<th width="150">RATA-RATA <br/> PEMBAYARAN</th>
 			</tr>';
-	$query = "select * from f_rep_index_kepatuhan(".$param_arr['p_year_period_id'].", ".$param_arr['p_vat_type_id'].", ".$param_arr['status'].") where rata_rata_pembayaran <= ".$arrBatas['batas_atas']." and rata_rata_pembayaran >= ".$arrBatas['batas_tengah']." order by rata_rata_pembayaran desc, rata_rata_tgl_byr asc";
-	$dbConn->query($query);
+	$query2 = "select * from f_rep_index_kepatuhan(".$param_arr['p_year_period_id'].", ".$param_arr['p_vat_type_id'].", ".$param_arr['status'].") where rata_rata_pembayaran <= ".$arrBatas['batas_atas']." and rata_rata_pembayaran >= ".$arrBatas['batas_tengah']." order by rata_rata_pembayaran desc, rata_rata_tgl_byr asc";
+	$dbConn2->query($query2);
 	$no = 1;
-	while ($dbConn->next_record()) {
+	while ($dbConn2->next_record()) {
 		//$result['batas_tengah'] = $dbConn->f('batas_tengah');
 		echo '<tr>';
 		echo '<td>'.$no++.'</td>';
-		echo '<td>'.$dbConn->f('nama').'</td>';
-		echo '<td>'.$dbConn->f('alamat').'</td>';
-		echo '<td>'.$dbConn->f('npwpd').'</td>';
-		echo '<td align="right">'.$dbConn->f('rata_rata_tgl_byr').'</td>';
-		echo '<td align="right">'.$dbConn->f('rata_rata_pembayaran').'</td>';
+		echo '<td>'.$dbConn2->f('nama').'</td>';
+		echo '<td>'.$dbConn2->f('alamat').'</td>';
+		echo '<td>'.$dbConn2->f('npwpd').'</td>';
+		echo '<td align="right">'.$dbConn2->f('rata_rata_tgl_byr').'</td>';
+		echo '<td align="right">'.$dbConn2->f('rata_rata_pembayaran').'</td>';
 		echo '</tr>';
 	}
 	echo '</table>';
-	$dbConn->close();
+	$dbConn2->close();
 
 	//KECIL
-	$dbConn = new clsDBConnSIKP();
+	$dbConn3 = new clsDBConnSIKP();
 	echo '
 		<br/><br/> <h4> <u>III. RANKING KECIL </u></h4> 
 		<table border="1">
@@ -178,22 +178,22 @@ function print_excel($param_arr) {
 				<th width="150">RATA-RATA <br/> TGL BAYAR</th>
 				<th width="150">RATA-RATA <br/> PEMBAYARAN</th>
 			</tr>';
-	$query = "select * from f_rep_index_kepatuhan(".$param_arr['p_year_period_id'].", ".$param_arr['p_vat_type_id'].", ".$param_arr['status'].") where rata_rata_pembayaran < ".$arrBatas['batas_tengah']." order by rata_rata_pembayaran desc, rata_rata_tgl_byr asc";
-	$dbConn->query($query);
+	$query3 = "select * from f_rep_index_kepatuhan(".$param_arr['p_year_period_id'].", ".$param_arr['p_vat_type_id'].", ".$param_arr['status'].") where rata_rata_pembayaran < ".$arrBatas['batas_tengah']." order by rata_rata_pembayaran desc, rata_rata_tgl_byr asc";
+	$dbConn3->query($query3);
 	$no = 1;
-	while ($dbConn->next_record()) {
+	while ($dbConn3->next_record()) {
 		//$result['batas_tengah'] = $dbConn->f('batas_tengah');
 		echo '<tr>';
 		echo '<td>'.$no++.'</td>';
-		echo '<td>'.$dbConn->f('nama').'</td>';
-		echo '<td>'.$dbConn->f('alamat').'</td>';
-		echo '<td>'.$dbConn->f('npwpd').'</td>';
-		echo '<td align="right">'.$dbConn->f('rata_rata_tgl_byr').'</td>';
-		echo '<td align="right">'.$dbConn->f('rata_rata_pembayaran').'</td>';
+		echo '<td>'.$dbConn3->f('nama').'</td>';
+		echo '<td>'.$dbConn3->f('alamat').'</td>';
+		echo '<td>'.$dbConn3->f('npwpd').'</td>';
+		echo '<td align="right">'.$dbConn3->f('rata_rata_tgl_byr').'</td>';
+		echo '<td align="right">'.$dbConn3->f('rata_rata_pembayaran').'</td>';
 		echo '</tr>';
 	}
 	echo '</table>';
-	$dbConn->close();
+	$dbConn3->close();
 	
 	exit;
 }
