@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta http-equiv="refresh" content="30" />
 <title>t_customer_order</title>
+<meta http-equiv="refresh" content="30">
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
@@ -132,6 +132,13 @@ $(function () {
       </label>
     </div>
     <div class="th tab-button">
+      <label onclick="javascript:toBidang()">
+      <div class="tab-title">
+        PER BIDANG PAJAK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
       <div class="tab-title-selected">
         PER JENIS PAJAK 
       </div>
@@ -192,10 +199,26 @@ $(function () {
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
-                <tr class="NoRecords">
-                  <td colspan="5">-</td>
-                </tr>
+                <!--<tr class="NoRecords">
+                                  <td >&nbsp</td>
+                  <td >Jumlah </td> 
+                  <td>{target_amount_sum}</td> 
+                  <td>{realisasi_amt_sum}</td> 
+                  <td>{percentage_sum}</td>
+                </tr>-->
                 <!-- END NoRecords -->
+                <tr class="Caption">
+                  <th>&nbsp;</th>
+ 
+                  <th>Jumlah </th>
+ 
+                  <th style="TEXT-ALIGN: right">{target_amount_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{realisasi_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{percentage_sum} %</th>
+                </tr>
+ 
                 <tr class="Footer">
                   <td colspan="5">
                     <!-- BEGIN Navigator Navigator -->
@@ -215,7 +238,7 @@ $(function () {
             </td>
           </tr>
         </table>
-        <input id="t_target_realisasi_jenisGridt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"><input id="t_target_realisasi_jenisGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden">&nbsp;<input id="t_target_realisasi_jenisGridp_vat_type_id2" name="{p_vat_type_id2_Name}" value="{p_vat_type_id2}" type="hidden"><!-- END Grid t_target_realisasi_jenisGrid -->
+        <input id="t_target_realisasi_jenisGridt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"><input id="t_target_realisasi_jenisGridp_year_period_id2" name="{p_year_period_id2_Name}" value="{p_year_period_id2}" type="hidden">&nbsp;<input id="t_target_realisasi_jenisGridp_vat_type_id2" name="{p_vat_type_id2_Name}" value="{p_vat_type_id2}" type="hidden">&nbsp;<input id="t_target_realisasi_jenisGridp_vat_group_id" name="{p_vat_group_id_Name}" value="{p_vat_group_id}" type="hidden"><!-- END Grid t_target_realisasi_jenisGrid -->
         <div style="WIDTH: 45%; DISPLAY: inline-block" id="container">
         </div>
  
@@ -255,12 +278,20 @@ function toBulanan()
     var pid=idelement.value;
     if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
     {
-     location.href="t_target_realisasi_jenis_bulan.php?t_revenue_target_id="+pid+"&p_vat_type_id="+id_vat+"&p_year_period_id="+id_tahun;
+     location.href="t_target_realisasi_jenis_bulan.php?t_revenue_target_id="+pid+"&p_vat_type_id="+id_vat+"&p_year_period_id="+id_tahun+"&p_vat_group_id="+document.getElementById("t_target_realisasi_jenisGridp_vat_group_id").value;
     } else {
      alert("Pilih salah satu TAHUN!");
     }
   } else {
      alert("Pilih salah satu TAHUN!");
+  }
+}
+function toBidang()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasi_jenisGridp_year_period_id2")){
+    var pid=idelement.value;
+    location.href="t_target_realisasi_bidang.php?p_year_period_id="+pid+"&p_vat_group_id="+document.getElementById("t_target_realisasi_jenisGridp_vat_group_id").value;
   }
 }
 </script>
