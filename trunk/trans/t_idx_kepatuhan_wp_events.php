@@ -133,9 +133,10 @@ function print_excel($param_arr) {
 		echo '</tr>';
 	}
 	echo '</table>';
-	
+	$dbConn->close();
 
 	//MENENGAH
+	$dbConn = new clsDBConnSIKP();
 	echo '
 		<br/><br/> <h4><u>II. RANKING MENENGAH </u></h4> 
 		<table border="1">
@@ -162,9 +163,10 @@ function print_excel($param_arr) {
 		echo '</tr>';
 	}
 	echo '</table>';
-
+	$dbConn->close();
 
 	//KECIL
+	$dbConn = new clsDBConnSIKP();
 	echo '
 		<br/><br/> <h4> <u>III. RANKING KECIL </u></h4> 
 		<table border="1">
@@ -191,8 +193,8 @@ function print_excel($param_arr) {
 		echo '</tr>';
 	}
 	echo '</table>';
-
 	$dbConn->close();
+	
 	exit;
 }
 
