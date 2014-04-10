@@ -66,8 +66,10 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 			$Component->t_revenue_target_id->SetValue($tid);
 			$pid = $Component->DataSource->p_year_period_id->GetValue();
 			$vat_id = $Component->DataSource->p_vat_type_id->GetValue();
+			$p_vat_group_id = $Component->p_vat_group_id->GetValue();
 			$Component->p_year_period_id2->SetValue($pid);
 			$Component->p_vat_type_id2->SetValue($vat_id);
+			$Component->p_vat_group_id->SetValue($p_vat_group_id);
         }	
     // End Bdr
 	  $pid_t = $Component->DataSource->t_revenue_target_id->GetValue();  
@@ -86,6 +88,12 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 	 	$percent =0;
 	 }
 	 $Component->percentage->SetValue("$percent %");
+	 $sum_realisasi = $t_target_realisasi_jenisGrid->realisasi_amt_sum->GetValue();
+	 $t_target_realisasi_jenisGrid->realisasi_amt_sum->SetValue($sum_realisasi+$realisasi);
+	 $sum_target = $t_target_realisasi_jenisGrid->target_amount_sum->GetValue();
+	 $t_target_realisasi_jenisGrid->target_amount_sum->SetValue($sum_target+$target);
+	 $sum_percentage = $t_target_realisasi_jenisGrid->percentage_sum->GetValue();
+	 $t_target_realisasi_jenisGrid->percentage_sum->SetValue($sum_percentage+$percent);
 //Close t_target_realisasi_jenisGrid_BeforeShowRow @2-1478D09A
     return $t_target_realisasi_jenisGrid_BeforeShowRow;
 }
