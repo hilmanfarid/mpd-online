@@ -131,6 +131,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+		$this->Cell($lheader4, $this->height, "", "L", 0, 'L');
 		//if($tgl_penerimaan == $tgl_penerimaan_last)
 		//	$this->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
 		//else 
