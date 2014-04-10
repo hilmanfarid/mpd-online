@@ -45,7 +45,7 @@ class clsRecordt_rep_idx_kepatuhan_wpSearch { //t_rep_idx_kepatuhan_wpSearch Cla
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-8C3771A4
+//Class_Initialize Event @3-747A554D
     function clsRecordt_rep_idx_kepatuhan_wpSearch($RelativePath, & $Parent)
     {
 
@@ -78,6 +78,7 @@ class clsRecordt_rep_idx_kepatuhan_wpSearch { //t_rep_idx_kepatuhan_wpSearch Cla
             $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
             $this->ListBox1->DSType = dsListOfValues;
             $this->ListBox1->Values = array(array("1", "PATUH"), array("2", "KURANG PATUH"), array("3", "TIDAK PATUH"));
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->ListBox1->Value) && !strlen($this->ListBox1->Value) && $this->ListBox1->Value !== false)
                     $this->ListBox1->SetText(1);
@@ -136,7 +137,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-C8BE8A79
+//Operation Method @3-4F39704B
     function Operation()
     {
         if(!$this->Visible)
@@ -153,12 +154,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoSearch1->Pressed) {
+                $this->PressedButton = "Button_DoSearch1";
             }
         }
         $Redirect = "t_idx_kepatuhan_wp.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch1") {
+                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
             }
@@ -168,7 +175,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-236B8E49
+//Show Method @3-66EC9B5D
     function Show()
     {
         global $CCSUseAmp;
@@ -221,6 +228,7 @@ function GetPrimaryKey($keyName)
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
         $this->ListBox1->Show();
+        $this->Button_DoSearch1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
