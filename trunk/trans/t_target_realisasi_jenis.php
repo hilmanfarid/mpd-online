@@ -42,7 +42,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-9618C8A3
+//Class_Initialize Event @2-50EBE410
     function clsGridt_target_realisasi_jenisGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -84,6 +84,10 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->t_revenue_target_id = & new clsControl(ccsHidden, "t_revenue_target_id", "t_revenue_target_id", ccsText, "", CCGetRequestParam("t_revenue_target_id", ccsGet, NULL), $this);
         $this->p_year_period_id2 = & new clsControl(ccsHidden, "p_year_period_id2", "p_year_period_id2", ccsText, "", CCGetRequestParam("p_year_period_id2", ccsGet, NULL), $this);
         $this->p_vat_type_id2 = & new clsControl(ccsHidden, "p_vat_type_id2", "p_vat_type_id2", ccsFloat, "", CCGetRequestParam("p_vat_type_id2", ccsGet, NULL), $this);
+        $this->target_amount_sum = & new clsControl(ccsLabel, "target_amount_sum", "target_amount_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount_sum", ccsGet, NULL), $this);
+        $this->realisasi_amt_sum = & new clsControl(ccsLabel, "realisasi_amt_sum", "realisasi_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt_sum", ccsGet, NULL), $this);
+        $this->percentage_sum = & new clsControl(ccsLabel, "percentage_sum", "percentage_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("percentage_sum", ccsGet, NULL), $this);
+        $this->p_vat_group_id = & new clsControl(ccsHidden, "p_vat_group_id", "p_vat_group_id", ccsFloat, "", CCGetRequestParam("p_vat_group_id", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -98,7 +102,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     }
 //End Initialize Method
 
-//Show Method @2-1EAFBB84
+//Show Method @2-F7E2C257
     function Show()
     {
         global $Tpl;
@@ -108,6 +112,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->RowNumber = 0;
 
         $this->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
+        $this->DataSource->Parameters["urlp_vat_group_id"] = CCGetFromGet("p_vat_group_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -191,6 +196,10 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->t_revenue_target_id->Show();
         $this->p_year_period_id2->Show();
         $this->p_vat_type_id2->Show();
+        $this->target_amount_sum->Show();
+        $this->realisasi_amt_sum->Show();
+        $this->percentage_sum->Show();
+        $this->p_vat_group_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -273,23 +282,25 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     }
 //End SetOrder Method
 
-//Prepare Method @2-B5759643
+//Prepare Method @2-0D480E52
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $this->Parameters["urlp_year_period_id"], "", false);
+        $this->wp->AddParameter("2", "urlp_vat_group_id", ccsInteger, "", "", $this->Parameters["urlp_vat_group_id"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-F6815882
+//Open Method @2-AFCA4583
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM ((SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
         "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "and p_vat_group_id=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "ORDER BY p_vat_type_id)\n" .
         "UNION\n" .
         "(SELECT\n" .
@@ -303,10 +314,12 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         "	SUM (round(jml_sd_hari_ini))\n" .
         "FROM\n" .
         "	sikp.f_rep_lap_harian_bdhr_baru (" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")\n" .
-        "where nomor_ayat IN('140701','140702','140703','140707'))) cnt";
+        "where nomor_ayat IN('140701','140702','140703','140707')\n" .
+        "and p_vat_group_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ")) cnt";
         $this->SQL = "(SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
         "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "and p_vat_group_id=" . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
         "ORDER BY p_vat_type_id)\n" .
         "UNION\n" .
         "(SELECT\n" .
@@ -320,7 +333,8 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         "	SUM (round(jml_sd_hari_ini))\n" .
         "FROM\n" .
         "	sikp.f_rep_lap_harian_bdhr_baru (" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")\n" .
-        "where nomor_ayat IN('140701','140702','140703','140707'))";
+        "where nomor_ayat IN('140701','140702','140703','140707')\n" .
+        "and p_vat_group_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
