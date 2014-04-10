@@ -1,8 +1,9 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions" connection="ConnSIKP">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="7" connection="ConnSIKP" name="t_target_realisasi_jenisGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="(SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="7" connection="ConnSIKP" name="t_target_realisasi_jenisGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="(SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt
 FROM v_revenue_target_vs_realisasi
 WHERE p_year_period_id = {p_year_period_id}
+and p_vat_group_id={p_vat_group_id}
 ORDER BY p_vat_type_id)
 UNION
 (SELECT
@@ -16,7 +17,8 @@ UNION
 	SUM (round(jml_sd_hari_ini))
 FROM
 	sikp.f_rep_lap_harian_bdhr_baru ({p_year_period_id})
-where nomor_ayat IN('140701','140702','140703','140707'))" orderBy="p_vat_type_id">
+where nomor_ayat IN('140701','140702','140703','140707')
+and p_vat_group_id = {p_vat_group_id})" orderBy="p_vat_type_id">
 			<Components>
 				<Navigator id="22" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
 					<Components/>
@@ -95,7 +97,31 @@ where nomor_ayat IN('140701','140702','140703','140707'))" orderBy="p_vat_type_i
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Label id="876" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_sum" PathID="t_target_realisasi_jenisGridtarget_amount_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="877" fieldSourceType="CodeExpression" dataType="Float" html="False" name="realisasi_amt_sum" PathID="t_target_realisasi_jenisGridrealisasi_amt_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="878" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_sum" PathID="t_target_realisasi_jenisGridpercentage_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Hidden id="879" fieldSourceType="DBColumn" dataType="Float" name="p_vat_group_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridp_vat_group_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -120,6 +146,7 @@ where nomor_ayat IN('140701','140702','140703','140707'))" orderBy="p_vat_type_i
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="677" parameterType="URL" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id" DBFormat="0"/>
+				<SQLParameter id="875" variable="p_vat_group_id" parameterType="URL" defaultValue="0" dataType="Integer" parameterSource="p_vat_group_id"/>
 			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
