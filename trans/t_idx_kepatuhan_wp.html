@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -50,20 +50,20 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Periode Tahun</td> 
-                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="32"><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"></td> 
-                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td>
+                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchyear_code" class="ControlsRQ" value="{year_code}" maxlength="32" size="32" name="{year_code_Name}"><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"></td> 
+                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td>
                   </tr>
  
                   <tr>
                     <td class="search-field">Jenis Pajak</td> 
-                    <td class="search-field" colspan="2">&nbsp;<input id="t_rep_idx_kepatuhan_wpSearchvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="32"><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"></td> 
-                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td>
+                    <td class="search-field" colspan="2">&nbsp;<input id="t_rep_idx_kepatuhan_wpSearchvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}"><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"></td> 
+                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td>
                   </tr>
  
                   <tr>
                     <td class="search-field">Status</td> 
-                    <td colspan="2" align="left">
-                       &nbsp;<select id="t_rep_idx_kepatuhan_wpSearchListBox1" name="{ListBox1_Name}">
+                    <td colspan="2" align="left">&nbsp; 
+                      <select id="t_rep_idx_kepatuhan_wpSearchListBox1" name="{ListBox1_Name}">
                         {ListBox1_Options}
                       </select>
  </td> 
@@ -74,7 +74,8 @@ $(document).ready(function()
                     <td class="search-field">&nbsp;</td> 
                     <td align="right"></td> 
                     <td align="right">&nbsp; 
-                      <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 148px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" size="13" type="submit"><!-- END Button Button_DoSearch -->&nbsp;</td> 
+                      <!-- BEGIN Button Button_DoSearch1 --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch1" class="btn_tambah" onclick="cetak(); return false;" value="CETAK PDF " alt="Search" size="13" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 -->&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 148px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" value="DOWNLOAD EXCEL" alt="Search" size="13" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp;</td> 
                     <td>&nbsp; </td>
                   </tr>
  
@@ -127,18 +128,23 @@ $(document).ready(function()
     function cetak()
     {
         p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
-        p_finance_period_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_finance_period_id").value;
+		p_vat_type_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_vat_type_id").value;
+		status = document.getElementById("t_rep_idx_kepatuhan_wpSearchListBox1").value;
 
-        window.open("../report/cetak_rep_lap_spjp.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        window.open("../report/cetak_idx_kepatuhan_wp.php?p_year_period_id=" + p_year_period_id + 
+		"&status=" + status + "&p_vat_type_id=" + p_vat_type_id +
+		"&tahun=" + document.getElementById("t_rep_idx_kepatuhan_wpSearchyear_code").value + 
+		"&pajak=" + document.getElementById("t_rep_idx_kepatuhan_wpSearchvat_code").value,
+		'_blank', 'location=yes,scrollbars=yes,status=yes');
     }
 
     function tampilkanLaporan(){
         p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
         p_vat_type_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_vat_type_id").value;
         status = document.getElementById("t_rep_idx_kepatuhan_wpSearchListBox1").value;
-		
-		var cbStatus = document.getElementById("t_rep_idx_kepatuhan_wpSearchListBox1");
-		var status_text = cbStatus.options[cbStatus.selectedIndex].text;
+                
+                var cbStatus = document.getElementById("t_rep_idx_kepatuhan_wpSearchListBox1");
+                var status_text = cbStatus.options[cbStatus.selectedIndex].text;
 
      
         if(p_year_period_id == "" || p_vat_type_id == "" || status == "") {
@@ -154,8 +160,8 @@ $(document).ready(function()
                 params += "&p_vat_type_id="+p_vat_type_id;
                 params += "&status="+status;
                 params += "&tahun_periode="+tahun_periode;
-				params += "&jenis_pajak="+jenis_pajak;
-				params += "&status_text="+status_text;
+                                params += "&jenis_pajak="+jenis_pajak;
+                                params += "&status_text="+status_text;
 
                 location.href="t_idx_kepatuhan_wp.php"+params;
         }
