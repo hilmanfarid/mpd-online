@@ -27,25 +27,25 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="565" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_idx_kepatuhan_wpSearchp_vat_type_id">
+				<Hidden id="565" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_idx_kepatuhan_wpSearchp_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<ListBox id="568" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_rep_idx_kepatuhan_wpSearchListBox1" connection="ConnSIKP" _valueOfList="3" _nameOfList="TIDAK PATUH" dataSource="1;PATUH;2;KURANG PATUH;3;TIDAK PATUH" defaultValue="1">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
-</Components>
+				<ListBox id="568" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_rep_idx_kepatuhan_wpSearchListBox1" connection="ConnSIKP" _valueOfList="3" _nameOfList="TIDAK PATUH" dataSource="1;PATUH;2;KURANG PATUH;3;TIDAK PATUH" defaultValue="1">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
