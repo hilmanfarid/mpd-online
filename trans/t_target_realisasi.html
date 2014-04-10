@@ -115,6 +115,13 @@ $(function () {
         TARGET VS REALISASI 
       </div>
     </div>
+	<div class="th tab-button">
+      <label onclick="javascript:toBidang()">
+      <div class="tab-title">
+        PER BIDANG PAJAK 
+      </div>
+      </label>
+    </div>
     <div class="th tab-button">
       <label onclick="javascript:toJenis()">
       <div class="tab-title">
@@ -224,6 +231,14 @@ function toJenis()
     }
   } else {
      alert("Pilih salah satu TAHUN!");
+  }
+}
+function toBidang()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasiGridp_year_period_id2")){
+    var pid=idelement.value;
+    location.href="t_target_realisasi_bidang.php?p_year_period_id="+pid;
   }
 }
 </script>
