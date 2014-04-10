@@ -45,7 +45,7 @@ class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_b
     // Class variables
 //End Variables
 
-//Class_Initialize Event @726-A399AF55
+//Class_Initialize Event @726-FB3410B9
     function clsRecordt_target_realisasi_jenis_bulanForm($RelativePath, & $Parent)
     {
 
@@ -74,6 +74,7 @@ class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_b
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->t_revenue_target_id = & new clsControl(ccsHidden, "t_revenue_target_id", "t_revenue_target_id", ccsText, "", CCGetRequestParam("t_revenue_target_id", $Method, NULL), $this);
+            $this->p_vat_group_id = & new clsControl(ccsHidden, "p_vat_group_id", "p_vat_group_id", ccsText, "", CCGetRequestParam("p_vat_group_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -89,7 +90,7 @@ class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_b
     }
 //End Initialize Method
 
-//Validate Method @726-36522410
+//Validate Method @726-717347DD
     function Validate()
     {
         global $CCSLocales;
@@ -97,19 +98,22 @@ class clsRecordt_target_realisasi_jenis_bulanForm { //t_target_realisasi_jenis_b
         $Where = "";
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->t_revenue_target_id->Validate() && $Validation);
+        $Validation = ($this->p_vat_group_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_revenue_target_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_group_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @726-FE7DA4E6
+//CheckErrors Method @726-CA86D48B
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->t_revenue_target_id->Errors->Count());
+        $errors = ($errors || $this->p_vat_group_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -152,7 +156,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @726-B7633DE2
+//Show Method @726-46610EA9
     function Show()
     {
         global $CCSUseAmp;
@@ -182,6 +186,7 @@ function GetPrimaryKey($keyName)
                 if(!$this->FormSubmitted){
                     $this->p_year_period_id->SetValue($this->DataSource->p_year_period_id->GetValue());
                     $this->t_revenue_target_id->SetValue($this->DataSource->t_revenue_target_id->GetValue());
+                    $this->p_vat_group_id->SetValue($this->DataSource->p_vat_group_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -192,6 +197,7 @@ function GetPrimaryKey($keyName)
             $Error = "";
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_revenue_target_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_group_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -212,6 +218,7 @@ function GetPrimaryKey($keyName)
 
         $this->p_year_period_id->Show();
         $this->t_revenue_target_id->Show();
+        $this->p_vat_group_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -222,7 +229,7 @@ function GetPrimaryKey($keyName)
 
 class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  //t_target_realisasi_jenis_bulanFormDataSource Class @726-820383E0
 
-//DataSource Variables @726-481B584C
+//DataSource Variables @726-208AA6FC
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -236,9 +243,10 @@ class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  /
     // Datasource fields
     var $p_year_period_id;
     var $t_revenue_target_id;
+    var $p_vat_group_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @726-11BC8790
+//DataSourceClass_Initialize Event @726-4C2095B6
     function clst_target_realisasi_jenis_bulanFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -247,6 +255,8 @@ class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  /
         $this->p_year_period_id = new clsField("p_year_period_id", ccsText, "");
         
         $this->t_revenue_target_id = new clsField("t_revenue_target_id", ccsText, "");
+        
+        $this->p_vat_group_id = new clsField("p_vat_group_id", ccsText, "");
         
 
     }
@@ -278,11 +288,12 @@ class clst_target_realisasi_jenis_bulanFormDataSource extends clsDBConnSIKP {  /
     }
 //End Open Method
 
-//SetValues Method @726-FC6620A9
+//SetValues Method @726-1D5C6C81
     function SetValues()
     {
         $this->p_year_period_id->SetDBValue($this->f("p_year_period_id"));
         $this->t_revenue_target_id->SetDBValue($this->f("t_revenue_target_id"));
+        $this->p_vat_group_id->SetDBValue($this->f("p_vat_group_id"));
     }
 //End SetValues Method
 
@@ -321,7 +332,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-D48139D9
+//Class_Initialize Event @2-6B25FDB2
     function clsGridt_target_realisasiGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -364,6 +375,12 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $this->DLink->Page = "t_target_realisasi_jenis_bulan.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->target_amount_sum = & new clsControl(ccsLabel, "target_amount_sum", "target_amount_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount_sum", ccsGet, NULL), $this);
+        $this->realisasi_amt_sum = & new clsControl(ccsLabel, "realisasi_amt_sum", "realisasi_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt_sum", ccsGet, NULL), $this);
+        $this->percentage_sum = & new clsControl(ccsLabel, "percentage_sum", "percentage_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("percentage_sum", ccsGet, NULL), $this);
+        $this->penalty_amt_sum = & new clsControl(ccsLabel, "penalty_amt_sum", "penalty_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("penalty_amt_sum", ccsGet, NULL), $this);
+        $this->debt_amt_sum = & new clsControl(ccsLabel, "debt_amt_sum", "debt_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_amt_sum", ccsGet, NULL), $this);
+        $this->total_amt_sum = & new clsControl(ccsLabel, "total_amt_sum", "total_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_amt_sum", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -378,7 +395,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     }
 //End Initialize Method
 
-//Show Method @2-9C212773
+//Show Method @2-5FDDD5ED
     function Show()
     {
         global $Tpl;
@@ -480,6 +497,12 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
             $this->Navigator->Visible = false;
         }
         $this->Navigator->Show();
+        $this->target_amount_sum->Show();
+        $this->realisasi_amt_sum->Show();
+        $this->percentage_sum->Show();
+        $this->penalty_amt_sum->Show();
+        $this->debt_amt_sum->Show();
+        $this->total_amt_sum->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
