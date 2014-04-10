@@ -115,7 +115,8 @@ function print_excel($param_arr) {
 				<th width="150">NAMA WP </th>
 				<th width="300">ALAMAT</th>
 				<th width="150">NPWPD</th>
-				<th width="150">JUMLAH PATUH</th>
+				<th width="150">RATA-RATA <br/> TGL BAYAR</th>
+				<th width="150">RATA-RATA <br/> PEMBAYARAN</th>
 			</tr>';
 	$query = "select * from f_rep_index_kepatuhan(".$param_arr['p_year_period_id'].", ".$param_arr['p_vat_type_id'].", ".$param_arr['status'].") where rata_rata_pembayaran > ".$arrBatas['batas_atas']." order by rata_rata_pembayaran desc, rata_rata_tgl_byr asc";
 	$dbConn->query($query);
@@ -128,6 +129,7 @@ function print_excel($param_arr) {
 		echo '<td>'.$dbConn->f('alamat').'</td>';
 		echo '<td>'.$dbConn->f('npwpd').'</td>';
 		echo '<td align="right">'.$dbConn->f('rata_rata_tgl_byr').'</td>';
+		echo '<td align="right">'.$dbConn->f('rata_rata_pembayaran').'</td>';
 		echo '</tr>';
 	}
 	echo '</table>';
@@ -142,7 +144,8 @@ function print_excel($param_arr) {
 				<th width="150">NAMA WP </th>
 				<th width="300">ALAMAT</th>
 				<th width="150">NPWPD</th>
-				<th width="150">JUMLAH PATUH</th>
+				<th width="150">RATA-RATA <br/> TGL BAYAR</th>
+				<th width="150">RATA-RATA <br/> PEMBAYARAN</th>
 			</tr>';
 	$query = "select * from f_rep_index_kepatuhan(".$param_arr['p_year_period_id'].", ".$param_arr['p_vat_type_id'].", ".$param_arr['status'].") where rata_rata_pembayaran <= ".$arrBatas['batas_atas']." and rata_rata_pembayaran >= ".$arrBatas['batas_tengah']." order by rata_rata_pembayaran desc, rata_rata_tgl_byr asc";
 	$dbConn->query($query);
@@ -155,6 +158,7 @@ function print_excel($param_arr) {
 		echo '<td>'.$dbConn->f('alamat').'</td>';
 		echo '<td>'.$dbConn->f('npwpd').'</td>';
 		echo '<td align="right">'.$dbConn->f('rata_rata_tgl_byr').'</td>';
+		echo '<td align="right">'.$dbConn->f('rata_rata_pembayaran').'</td>';
 		echo '</tr>';
 	}
 	echo '</table>';
@@ -169,7 +173,8 @@ function print_excel($param_arr) {
 				<th width="150">NAMA WP </th>
 				<th width="300">ALAMAT</th>
 				<th width="150">NPWPD</th>
-				<th width="150">JUMLAH PATUH</th>
+				<th width="150">RATA-RATA <br/> TGL BAYAR</th>
+				<th width="150">RATA-RATA <br/> PEMBAYARAN</th>
 			</tr>';
 	$query = "select * from f_rep_index_kepatuhan(".$param_arr['p_year_period_id'].", ".$param_arr['p_vat_type_id'].", ".$param_arr['status'].") where rata_rata_pembayaran < ".$arrBatas['batas_tengah']." order by rata_rata_pembayaran desc, rata_rata_tgl_byr asc";
 	$dbConn->query($query);
@@ -182,6 +187,7 @@ function print_excel($param_arr) {
 		echo '<td>'.$dbConn->f('alamat').'</td>';
 		echo '<td>'.$dbConn->f('npwpd').'</td>';
 		echo '<td align="right">'.$dbConn->f('rata_rata_tgl_byr').'</td>';
+		echo '<td align="right">'.$dbConn->f('rata_rata_pembayaran').'</td>';
 		echo '</tr>';
 	}
 	echo '</table>';
