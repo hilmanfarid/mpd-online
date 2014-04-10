@@ -45,7 +45,14 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<Button id="569" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_idx_kepatuhan_wpSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
