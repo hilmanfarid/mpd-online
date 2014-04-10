@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>t_customer_order</title>
-<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <meta http-equiv="refresh" content="30">
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 <script src="../js/highcharts.js"></script>
@@ -161,13 +161,20 @@ $(function () {
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toTarget()">
       <div class="tab-title">
         TARGET VS REALISASI 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toBidang()">
+      <div class="tab-title">
+        PER BIDANG PAJAK 
       </div>
       </label>
     </div>
@@ -234,9 +241,37 @@ $(function () {
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="8">-</td>
+                  <td colspan="8">- 
+                    <th></th>
+ 
+                    <th style="TEXT-ALIGN: right"></th>
+ 
+                    <th style="TEXT-ALIGN: right"></th>
+ 
+                    <th style="TEXT-ALIGN: right"></th>
+                  </td>
                 </tr>
                 <!-- END NoRecords -->
+                <tr class="Caption">
+                  <th>&nbsp;</th>
+ 
+                  <th>Jumlah 
+                  <!--{penalty_amt_sum}{debt_amt_sum}0-->
+                  </th>
+ 
+                  <th style="TEXT-ALIGN: right">{target_amount_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{realisasi_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{penalty_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{debt_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{total_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{percentage_sum} %</th>
+                </tr>
+ 
                 <tr class="Footer">
                   <td colspan="8">
                     <!-- BEGIN Navigator Navigator -->
@@ -289,7 +324,7 @@ $(function () {
                 <tr {t_target_realisasiGrid1:rowStyle}>
                   <td>
                     <div style="WIDTH: 240px">
-                      {ayat}
+                      {ayat} 
                     </div>
                     <input id="t_target_realisasiGrid1p_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_target_realisasiGrid1p_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_target_realisasiGrid1start_date" name="{start_date_Name}" value="{start_date}" type="hidden"><input id="t_target_realisasiGrid1end_date" name="{end_date_Name}" value="{end_date}" type="hidden"></td> 
                   <td style="TEXT-ALIGN: right">{target_amount}</td> 
@@ -340,7 +375,7 @@ $(function () {
         <p></p>
         <!-- BEGIN Record t_target_realisasi_jenis_bulanForm -->
         <form id="t_target_realisasi_jenis_bulanForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"></h2>
+          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormp_vat_group_id" name="{p_vat_group_id_Name}" value="{p_vat_group_id}" type="hidden"></h2>
         </form>
         <!-- END Record t_target_realisasi_jenis_bulanForm --></td>
     </tr>
@@ -372,12 +407,20 @@ function toJenis()
     var pid=idelement.value;
     if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
     {
-     location.href="t_target_realisasi_jenis.php?p_year_period_id="+pid;
+     location.href="t_target_realisasi_jenis.php?p_year_period_id="+pid+"&p_vat_group_id="+document.getElementById("t_target_realisasi_jenis_bulanFormp_vat_group_id").value;
     } else {
      alert("Pilih salah satu TAHUN!");
     }
   } else {
      alert("Pilih salah satu TAHUN!");
+  }
+}
+function toBidang()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasi_jenis_bulanFormp_year_period_id")){
+    var pid=idelement.value;
+    location.href="t_target_realisasi_bidang.php?p_year_period_id="+pid+"&p_vat_group_id="+document.getElementById("t_target_realisasi_jenis_bulanFormp_vat_group_id").value;
   }
 }
 </script>
