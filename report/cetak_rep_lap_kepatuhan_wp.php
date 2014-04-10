@@ -12,6 +12,7 @@ $p_finance_period_id	= CCGetFromGet("p_finance_period_id", "");
 $ListBox1				= CCGetFromGet("ListBox1", "");
 $cetak					= CCGetFromGet("cetak", "");
 
+
 // $p_vat_type_id		= 1;
 // $p_year_period_id	= 4;
 // $tgl_penerimaan		= '15-12-2013';
@@ -31,6 +32,7 @@ if ($cetak == 'group'){
 	order by payment_date";	
 }
 
+//echo $pajak;
 //echo $query;
 //exit;
 
@@ -41,7 +43,7 @@ $dbConn->query($query);
 
 $tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
 $tgl_penerimaan_last = str_replace("'", "", $tgl_penerimaan_last);
-$tahun = date("Y", strtotime($tgl_penerimaan));
+//$tahun = date("Y", strtotime($tgl_penerimaan));
 while ($dbConn->next_record()) {
 	$data[]= array(
 	"kode_jns_trans"	=> $dbConn->f("kode_jns_trans"),
@@ -101,6 +103,9 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', '', 10);
 		
 		$this->Image('../images/logo_pemda.png',15,13,25,25);
+
+		$period 				= CCGetFromGet("period", "");
+		$pajak 					= strtoupper(CCGetFromGet("pajak", ""));
 		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
@@ -118,18 +123,18 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "PER JENIS PAJAK", "R", 0, 'C');
+		$this->Cell($lheader4, $this->height, $pajak, "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "Tahun " . $tahun, "R", 0, 'C');		
+		$this->Cell($lheader4, $this->height, "PERIODE " . $period, "R", 0, 'C');		
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
-		if($tgl_penerimaan == $tgl_penerimaan_last)
-			$this->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
-		else 
-			$this->Cell($lheader4, $this->height, "Tanggal Penerimaan : " . $tgl_penerimaan. " s/d ".$tgl_penerimaan_last, "R", 0, 'C');
+		//if($tgl_penerimaan == $tgl_penerimaan_last)
+		//	$this->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
+		//else 
+		//	$this->Cell($lheader4, $this->height, "Tanggal Penerimaan : " . $tgl_penerimaan. " s/d ".$tgl_penerimaan_last, "R", 0, 'C');
 			
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
@@ -184,6 +189,24 @@ class FormCetak extends FPDF {
 			$this->SetAligns(array("C", "L", "L", "L", "L", "L", "R", "L", "L", "L"));
 			foreach($data as $item) {
 				//print data
+				
+				$s_date="";
+				if ($item["settlement_date"] == date("d-m-Y", strtotime()) ){
+					$s_date="-";
+				}else{	
+					$s_date=$item["settlement_date"];
+				}
+
+				$p_date="";
+				if ($item["payment_date"] == date("d-m-Y", strtotime()) ){
+					$p_date="-";
+				}else{	
+					$p_date=$item["payment_date"];
+				}
+
+				//echo $s_date;
+				//echo exit;
+
 				$this->RowMultiBorderWithHeight(array($no,
 													  $item["kode_jns_pajak"]." ".$item["kode_ayat"],
 													  $item["nama_ayat"],
@@ -192,8 +215,8 @@ class FormCetak extends FPDF {
 													  $item["npwpd"],
 													  number_format($item["jumlah_terima"], 0, ',', '.'),
 													  $item["masa_pajak"],
-													  $item["settlement_date"],
-													  $item["payment_date"]
+													  $s_date,
+													  $p_date
 													  ),
 												array('TBLR',
 													  'TBLR',
@@ -282,6 +305,14 @@ class FormCetak extends FPDF {
 				"R"));			
 			foreach($data as $item) {
 				//print data
+
+				$p_date="";
+				if ($item["payment_date"] == date("d-m-Y", strtotime()) ){
+					$p_date="-";
+				}else{	
+					$p_date=$item["payment_date"];
+				}
+
 				$this->RowMultiBorderWithHeight(array($no,
 													  //$item["kode_jns_pajak"]." ".$item["kode_ayat"],
 													  //$item["nama_ayat"],
@@ -291,7 +322,7 @@ class FormCetak extends FPDF {
 													  $item["npwpd"],
 													  //$item["masa_pajak"],
 													  //$item["kd_tap"],
-													  $item["payment_date"],
+													  $p_date,
 													  number_format($item["jumlah_terima"], 0, ',', '.')
 													  ),
 												array('TBLR',
@@ -533,6 +564,6 @@ class FormCetak extends FPDF {
 }
 
 $formulir = new FormCetak();
-$formulir->PageCetak($data, $user, $tahun, $tgl_penerimaan, $tgl_penerimaan_last, $cetak);
+$formulir->PageCetak($data, $user, $tahun, $tgl_penerimaan, $tgl_penerimaan_last, $cetak );
 $formulir->Output();
 ?>
