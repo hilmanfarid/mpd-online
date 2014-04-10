@@ -232,7 +232,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-A60F71EE
+//Class_Initialize Event @2-85A635EC
     function clsGridp_room_typeGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -264,10 +264,8 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
         $this->DLink->Page = "t_history.php";
         $this->code = & new clsControl(ccsLabel, "code", "code", ccsText, "", CCGetRequestParam("code", ccsGet, NULL), $this);
         $this->periode_code = & new clsControl(ccsLabel, "periode_code", "periode_code", ccsText, "", CCGetRequestParam("periode_code", ccsGet, NULL), $this);
-        $this->updated_date = & new clsControl(ccsLabel, "updated_date", "updated_date", ccsText, "", CCGetRequestParam("updated_date", ccsGet, NULL), $this);
         $this->settlement_date = & new clsControl(ccsLabel, "settlement_date", "settlement_date", ccsText, "", CCGetRequestParam("settlement_date", ccsGet, NULL), $this);
         $this->settlement_type = & new clsControl(ccsLabel, "settlement_type", "settlement_type", ccsText, "", CCGetRequestParam("settlement_type", ccsGet, NULL), $this);
-        $this->updated_by = & new clsControl(ccsLabel, "updated_by", "updated_by", ccsText, "", CCGetRequestParam("updated_by", ccsGet, NULL), $this);
         $this->modification_type = & new clsControl(ccsLabel, "modification_type", "modification_type", ccsText, "", CCGetRequestParam("modification_type", ccsGet, NULL), $this);
         $this->alasan = & new clsControl(ccsLabel, "alasan", "alasan", ccsText, "", CCGetRequestParam("alasan", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
@@ -286,7 +284,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
     }
 //End Initialize Method
 
-//Show Method @2-3A3FF443
+//Show Method @2-8D8D9C07
     function Show()
     {
         global $Tpl;
@@ -318,10 +316,8 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
             $this->ControlsVisible["DLink"] = $this->DLink->Visible;
             $this->ControlsVisible["code"] = $this->code->Visible;
             $this->ControlsVisible["periode_code"] = $this->periode_code->Visible;
-            $this->ControlsVisible["updated_date"] = $this->updated_date->Visible;
             $this->ControlsVisible["settlement_date"] = $this->settlement_date->Visible;
             $this->ControlsVisible["settlement_type"] = $this->settlement_type->Visible;
-            $this->ControlsVisible["updated_by"] = $this->updated_by->Visible;
             $this->ControlsVisible["modification_type"] = $this->modification_type->Visible;
             $this->ControlsVisible["alasan"] = $this->alasan->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
@@ -335,10 +331,8 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
                 $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "p_room_type_id", $this->DataSource->f("p_room_type_id"));
                 $this->code->SetValue($this->DataSource->code->GetValue());
                 $this->periode_code->SetValue($this->DataSource->periode_code->GetValue());
-                $this->updated_date->SetValue($this->DataSource->updated_date->GetValue());
                 $this->settlement_date->SetValue($this->DataSource->settlement_date->GetValue());
                 $this->settlement_type->SetValue($this->DataSource->settlement_type->GetValue());
-                $this->updated_by->SetValue($this->DataSource->updated_by->GetValue());
                 $this->modification_type->SetValue($this->DataSource->modification_type->GetValue());
                 $this->alasan->SetValue($this->DataSource->alasan->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
@@ -347,10 +341,8 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
                 $this->DLink->Show();
                 $this->code->Show();
                 $this->periode_code->Show();
-                $this->updated_date->Show();
                 $this->settlement_date->Show();
                 $this->settlement_type->Show();
-                $this->updated_by->Show();
                 $this->modification_type->Show();
                 $this->alasan->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
@@ -386,17 +378,15 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
 //End Show Method
 
 
-//GetErrors Method @2-A97FE712
+//GetErrors Method @2-11F14CA7
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
         $errors = ComposeStrings($errors, $this->code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->periode_code->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->updated_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->settlement_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->settlement_type->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->updated_by->Errors->ToString());
         $errors = ComposeStrings($errors, $this->modification_type->Errors->ToString());
         $errors = ComposeStrings($errors, $this->alasan->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
@@ -409,7 +399,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
 
 class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDataSource Class @2-5ECC680F
 
-//DataSource Variables @2-9632C68A
+//DataSource Variables @2-137D7749
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -423,15 +413,13 @@ class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDat
     // Datasource fields
     var $code;
     var $periode_code;
-    var $updated_date;
     var $settlement_date;
     var $settlement_type;
-    var $updated_by;
     var $modification_type;
     var $alasan;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-27D4BDCF
+//DataSourceClass_Initialize Event @2-D15E7E2B
     function clsp_room_typeGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -441,13 +429,9 @@ class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDat
         
         $this->periode_code = new clsField("periode_code", ccsText, "");
         
-        $this->updated_date = new clsField("updated_date", ccsText, "");
-        
         $this->settlement_date = new clsField("settlement_date", ccsText, "");
         
         $this->settlement_type = new clsField("settlement_type", ccsText, "");
-        
-        $this->updated_by = new clsField("updated_by", ccsText, "");
         
         $this->modification_type = new clsField("modification_type", ccsText, "");
         
@@ -457,10 +441,10 @@ class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDat
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-F2525352
+//SetOrder Method @2-D707C36E
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "h.t_vat_setllement_id";
+        $this->Order = "h.updated_date";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -504,15 +488,13 @@ class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDat
     }
 //End Open Method
 
-//SetValues Method @2-0EB87579
+//SetValues Method @2-E79DC139
     function SetValues()
     {
         $this->code->SetDBValue($this->f("npwd"));
         $this->periode_code->SetDBValue($this->f("code"));
-        $this->updated_date->SetDBValue($this->f("updated_date"));
         $this->settlement_date->SetDBValue($this->f("settlement_date"));
         $this->settlement_type->SetDBValue($this->f("type_code"));
-        $this->updated_by->SetDBValue($this->f("updated_by"));
         $this->modification_type->SetDBValue($this->f("modification_type"));
         $this->alasan->SetDBValue($this->f("alasan"));
     }
