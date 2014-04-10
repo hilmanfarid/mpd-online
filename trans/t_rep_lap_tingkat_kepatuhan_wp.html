@@ -143,7 +143,9 @@ $(document).ready(function()
 			 "'&p_finance_period_id=" + i_p_finance_period_id + 
 			 "&p_year_period_id =" + i_p_year_period_id +
 			 "&ListBox1=" + i_ListBox1 +
-			 "&cetak=group" 
+			 "&cetak=group" +
+			 "&period=" + document.getElementById("t_rep_sisa_piutangSearchcode").value + 
+			 "&pajak=" + document.getElementById("t_rep_sisa_piutangSearchvat_code").value
 			 , '_blank', 'location=yes,scrollbars=yes,status=yes');
         }
     }
@@ -161,7 +163,9 @@ $(document).ready(function()
 			 "'&p_finance_period_id=" + i_p_finance_period_id + 
 			 "&p_year_period_id =" + i_p_year_period_id +
 			 "&ListBox1=" + i_ListBox1+
-			 "&cetak=umum" 
+			 "&cetak=umum" +
+			 "&period=" + document.getElementById("t_rep_sisa_piutangSearchcode").value + 
+			 "&pajak=" + document.getElementById("t_rep_sisa_piutangSearchvat_code").value
 			 , '_blank', 'location=yes,scrollbars=yes,status=yes');
         }
     }
