@@ -93,7 +93,8 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 	 $sum_target = $t_target_realisasi_jenisGrid->target_amount_sum->GetValue();
 	 $t_target_realisasi_jenisGrid->target_amount_sum->SetValue($sum_target+$target);
 	 $sum_percentage = $t_target_realisasi_jenisGrid->percentage_sum->GetValue();
-	 $t_target_realisasi_jenisGrid->percentage_sum->SetValue($sum_percentage+$percent);
+	 if($sum_target > 0)
+	 $t_target_realisasi_jenisGrid->percentage_sum->SetValue(number_format($sum_realisasi / $sum_target  * 100, 2, ".", ","));
 //Close t_target_realisasi_jenisGrid_BeforeShowRow @2-1478D09A
     return $t_target_realisasi_jenisGrid_BeforeShowRow;
 }
