@@ -95,7 +95,7 @@ function startExcel($filename = "laporan.xls") {
 
 function print_excel($param_arr) {
 	
-	//startExcel("index_kepatuhan_wp_".$param_arr['tahun_periode']."_".str_replace(' ','',$param_arr['jenis_pajak']));
+	startExcel("index_kepatuhan_wp_".$param_arr['tahun_periode']."_".str_replace(' ','',$param_arr['jenis_pajak']));
 	echo "<div><h3> INDEX KEPATUHAN WAJIB PAJAK </h3></div>";	
 	echo "<div><b>TAHUN PAJAK : ".$param_arr['tahun_periode']."</b></div>";	
 	echo "<div><b>JENIS PAJAK : ".$param_arr['jenis_pajak']."</b></div>";
@@ -104,9 +104,9 @@ function print_excel($param_arr) {
 	$arrBatas = array();
 	$arrBatas = getBatasPembayaran($param_arr['p_year_period_id'], $param_arr['p_vat_type_id'], $param_arr['status']);
 	
-	$dbConn = new clsDBConnSIKP();
 		
 	//BESAR
+	$dbConn = new clsDBConnSIKP();
 	echo '
 		<br/> <h4> <u>I. RANKING BESAR </u></h4> 
 		<table border="1">
