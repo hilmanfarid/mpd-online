@@ -16,6 +16,12 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Hidden id="928" fieldSourceType="DBColumn" dataType="Text" name="p_vat_group_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenis_bulanFormp_vat_group_id" fieldSource="p_vat_group_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -149,6 +155,42 @@ ORDER BY MAX(start_date) ASC">
 					<Attributes/>
 					<Features/>
 				</Link>
+				<Label id="876" fieldSourceType="CodeExpression" dataType="Float" html="False" name="target_amount_sum" PathID="t_target_realisasiGridtarget_amount_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="877" fieldSourceType="CodeExpression" dataType="Float" html="False" name="realisasi_amt_sum" PathID="t_target_realisasiGridrealisasi_amt_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="878" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage_sum" PathID="t_target_realisasiGridpercentage_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="921" fieldSourceType="CodeExpression" dataType="Float" html="False" name="penalty_amt_sum" PathID="t_target_realisasiGridpenalty_amt_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="922" fieldSourceType="CodeExpression" dataType="Float" html="False" name="debt_amt_sum" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddebt_amt_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="927" fieldSourceType="CodeExpression" dataType="Float" html="False" name="total_amt_sum" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridtotal_amt_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
