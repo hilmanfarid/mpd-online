@@ -85,6 +85,23 @@ function t_target_realisasiGrid_BeforeShowRow(& $sender)
 	 }
 	 $Component->percentage->SetValue("$percent %");
 	 $Component->total_amt->SetValue($realisasi+$penalty+$debt);
+	 $sum_realisasi = $t_target_realisasiGrid->realisasi_amt_sum->GetValue();
+	 $t_target_realisasiGrid->realisasi_amt_sum->SetValue($sum_realisasi+$realisasi);
+	 $sum_target = $t_target_realisasiGrid->target_amount_sum->GetValue();
+	 $t_target_realisasiGrid->target_amount_sum->SetValue($sum_target+$target);
+
+	 $sum_penalty_amt = $t_target_realisasiGrid->penalty_amt_sum->GetValue();
+	 $t_target_realisasiGrid->penalty_amt_sum->SetValue($sum_penalty_amt+$penalty);
+
+	 $sum_debt = $t_target_realisasiGrid->debt_amt_sum->GetValue();
+	 $t_target_realisasiGrid->debt_amt_sum->SetValue($sum_debt+$debt);
+	 
+	 $sum_total = $t_target_realisasiGrid->total_amt_sum->GetValue();
+	 $t_target_realisasiGrid->total_amt_sum->SetValue($sum_total+$realisasi+$penalty+$debt);
+
+
+	 $sum_percentage = $t_target_realisasiGrid->percentage_sum->GetValue();
+	 $t_target_realisasiGrid->percentage_sum->SetValue($sum_percentage+$percent);
 // -------------------------
 //End Custom Code
 
