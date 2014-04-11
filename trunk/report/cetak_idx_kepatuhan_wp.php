@@ -100,7 +100,8 @@ class FormCetak extends FPDF {
 				$code = " TIDAK PATUH";
 			}
 		}
-		$this->Cell($lheader4, $this->height, "STATUS ".$code, "R", 0, 'C');
+		$this->Cell($lheader4, $this->height, "", "R", 0, 'C');
+		//$this->Cell($lheader4, $this->height, "STATUS ".$code, "R", 0, 'C');
 		
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
