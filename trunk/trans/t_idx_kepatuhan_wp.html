@@ -50,17 +50,17 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Periode Tahun</td> 
-                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchyear_code" class="ControlsRQ" value="{year_code}" maxlength="32" size="32" name="{year_code_Name}"><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"></td> 
-                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td>
+                    <td class="search-field" colspan="2"><input id="t_rep_idx_kepatuhan_wpSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"></td> 
+                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td>
                   </tr>
  
                   <tr>
                     <td class="search-field">Jenis Pajak</td> 
-                    <td class="search-field" colspan="2">&nbsp;<input id="t_rep_idx_kepatuhan_wpSearchvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}"><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"></td> 
-                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td>
+                    <td class="search-field" colspan="2">&nbsp;<input id="t_rep_idx_kepatuhan_wpSearchvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="32">&nbsp;<img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"></td> 
+                    <td><input id="t_rep_idx_kepatuhan_wpSearchp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td>
                   </tr>
  
-                  <tr style="display:none;">
+                  <tr style="DISPLAY: none">
                     <td class="search-field">Status</td> 
                     <td colspan="2" align="left">&nbsp; 
                       <select id="t_rep_idx_kepatuhan_wpSearchListBox1" name="{ListBox1_Name}">
@@ -73,9 +73,9 @@ $(document).ready(function()
                   <tr>
                     <td class="search-field">&nbsp;</td> 
                     <td align="right"></td> 
-                    <td align="right">&nbsp; 
-                      <!-- BEGIN Button Button_DoSearch1 --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch1" class="btn_tambah" onclick="cetak(); return false;" value="CETAK PDF " alt="Search" size="13" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 -->&nbsp; 
-                      <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 148px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" value="DOWNLOAD EXCEL" alt="Search" size="13" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp;</td> 
+                    <td align="right">
+                      <!-- BEGIN Button Button_DoSearch1 --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch1" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="CETAK PDF " size="13" type="submit"><!-- END Button Button_DoSearch1 -->&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 148px; HEIGHT: 26px" id="t_rep_idx_kepatuhan_wpSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" size="13" type="submit"><!-- END Button Button_DoSearch -->&nbsp;</td> 
                     <td>&nbsp; </td>
                   </tr>
  
@@ -128,14 +128,14 @@ $(document).ready(function()
     function cetak()
     {
         p_year_period_id = document.getElementById("t_rep_idx_kepatuhan_wpSearchp_year_period_id").value;
-		p_vat_type_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_vat_type_id").value;
-		status = document.getElementById("t_rep_idx_kepatuhan_wpSearchListBox1").value;
+                p_vat_type_id= document.getElementById("t_rep_idx_kepatuhan_wpSearchp_vat_type_id").value;
+                status = document.getElementById("t_rep_idx_kepatuhan_wpSearchListBox1").value;
 
         window.open("../report/cetak_idx_kepatuhan_wp.php?p_year_period_id=" + p_year_period_id + 
-		"&status=" + status + "&p_vat_type_id=" + p_vat_type_id +
-		"&tahun=" + document.getElementById("t_rep_idx_kepatuhan_wpSearchyear_code").value + 
-		"&pajak=" + document.getElementById("t_rep_idx_kepatuhan_wpSearchvat_code").value,
-		'_blank', 'location=yes,scrollbars=yes,status=yes');
+                "&status=" + status + "&p_vat_type_id=" + p_vat_type_id +
+                "&tahun=" + document.getElementById("t_rep_idx_kepatuhan_wpSearchyear_code").value + 
+                "&pajak=" + document.getElementById("t_rep_idx_kepatuhan_wpSearchvat_code").value,
+                '_blank', 'location=yes,scrollbars=yes,status=yes');
     }
 
     function tampilkanLaporan(){
