@@ -120,7 +120,9 @@ class FormCetak extends FPDF {
 		
 		//besar
 		$this->newLine();
+		$this->SetFont('Arial', 'B', 10);
 		$this->Cell($lheader1, $this->height, "I. RANKING BESAR", "", 0, 'L');
+		$this->SetFont('Arial', '', 10);
 		$this->newLine();
 		$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
 		$this->Cell($ltable5+$ltable2, $this->height + 2, "NAMA WP", "TBLR", 0, 'C');
@@ -163,7 +165,9 @@ class FormCetak extends FPDF {
 		//menengah
 		$this->Ln();
 		$this->newLine();
+		$this->SetFont('Arial', 'B', 10);
 		$this->Cell($lheader1, $this->height, "II. RANKING MENENGAH", "", 0, 'L');
+		$this->SetFont('Arial', '', 10);
 		$this->newLine();
 		$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
 		$this->Cell($ltable5+$ltable2, $this->height + 2, "NAMA WP", "TBLR", 0, 'C');
@@ -206,7 +210,9 @@ class FormCetak extends FPDF {
 		//kecil
 		$this->Ln();
 		$this->newLine();
+		$this->SetFont('Arial', 'B', 10);
 		$this->Cell($lheader1, $this->height, "III. RANKING KECIL", "", 0, 'L');
+		$this->SetFont('Arial', '', 10);
 		$this->newLine();
 		$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
 		$this->Cell($ltable5+$ltable2, $this->height + 2, "NAMA WP", "TBLR", 0, 'C');
