@@ -99,7 +99,7 @@ function print_excel($param_arr) {
 	echo "<div><h3> INDEX KEPATUHAN WAJIB PAJAK </h3></div>";	
 	echo "<div><b>TAHUN PAJAK : ".$param_arr['tahun_periode']."</b></div>";	
 	echo "<div><b>JENIS PAJAK : ".$param_arr['jenis_pajak']."</b></div>";
-	echo "<div><b>STATUS : ".$param_arr['status_text']."</b></div><br/>";
+	//echo "<div><b>STATUS : ".$param_arr['status_text']."</b></div><br/>";
 
 	$arrBatas = array();
 	$arrBatas = getBatasPembayaran($param_arr['p_year_period_id'], $param_arr['p_vat_type_id'], $param_arr['status']);
