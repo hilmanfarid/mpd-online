@@ -104,8 +104,26 @@ class FormCetak extends FPDF {
 		
 		$this->Image('../images/logo_pemda.png',15,13,25,25);
 
-		$period 				= CCGetFromGet("period", "");
-		$pajak 					= strtoupper(CCGetFromGet("pajak", ""));
+		$p_vat_type_id			= CCGetFromGet("p_vat_type_id", "");
+		$p_finance_period_id	= CCGetFromGet("p_finance_period_id", "");
+
+		$dbConn = new clsDBConnSIKP();
+		$query = "select vat_code from p_vat_type where p_vat_type_id=$p_vat_type_id";
+		$dbConn->query($query);
+
+		if ($dbConn->next_record()) {
+			$pajak = strtoupper($dbConn->f('vat_code'));
+		}
+
+		$query = "select code from p_finance_period where p_finance_period_id=$p_finance_period_id";
+		$dbConn->query($query);
+
+		if ($dbConn->next_record()) {
+			$period = strtoupper($dbConn->f('code'));
+		}
+
+		//$period 				= CCGetFromGet("period", "");
+		//$pajak 					= strtoupper(CCGetFromGet("pajak", ""));
 		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
@@ -131,7 +149,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "", "L", 0, 'L');
+		$this->Cell($lheader4, $this->height, "", "R", 0, 'L');
 		//if($tgl_penerimaan == $tgl_penerimaan_last)
 		//	$this->Cell($lheader4, $this->height, "Tanggal Penerimaan " . $tgl_penerimaan, "R", 0, 'C');
 		//else 
