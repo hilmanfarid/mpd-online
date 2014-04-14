@@ -2,13 +2,6 @@
 	<Components>
 		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_rep_penerimaan_pertahunSearch" returnPage="t_rep_penerimaan_pertahun.ccp" PathID="t_rep_penerimaan_pertahunSearch" pasteActions="pasteActions" pasteAsReplace="pasteAsReplace">
 			<Components>
-				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch">
-					<Components/>
-					<Events>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<TextBox id="560" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" PathID="t_rep_penerimaan_pertahunSearchyear_code">
 					<Components/>
 					<Events/>
@@ -69,7 +62,21 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="567" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
