@@ -238,7 +238,7 @@ WHERE p_vat_group_id = {p_vat_group_id} ">
 				<SQLParameter id="235" variable="p_vat_group_id" parameterType="Control" dataType="Text" parameterSource="p_vat_group_id"/>
 				<SQLParameter id="245" variable="group_code" parameterType="Control" dataType="Text" parameterSource="group_code"/>
 				<SQLParameter id="247" variable="description" parameterType="Control" dataType="Text" parameterSource="description"/>
-</ISQLParameters>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="228" field="p_vat_type_id" dataType="Float" parameterType="Control" parameterSource="p_vat_type_id"/>
 				<CustomParameter id="229" field="vat_code" dataType="Text" parameterType="Control" parameterSource="code"/>
