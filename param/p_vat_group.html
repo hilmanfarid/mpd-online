@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_entertaintment_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//p_vat_groupFormButton_Delete_OnClick @26-1A95A206
+function p_vat_groupFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_vat_groupFormButton_Delete_OnClick
+
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+    return confirm('Delete record?');
+
+//Close p_vat_groupFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close p_vat_groupFormButton_Delete_OnClick
+
+//p_vat_groupFormButton_Cancel_OnClick @28-7CD75C52
+function p_vat_groupFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_vat_groupFormButton_Cancel_OnClick
+
+//bind_events @1-C713F872
+function bind_events() {
+    addEventHandler("p_vat_groupFormButton_Delete", "click", p_vat_groupFormButton_Delete_OnClick);
+    addEventHandler("p_vat_groupFormButton_Cancel", "click", p_vat_groupFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        GROUP PAJAK 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toDetail()">
+      <div class="tab-title">
+        DETAIL GROUP PAJAK 
+      </div>
+      </label>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record p_vat_groupSearch -->
+        <form id="p_vat_groupSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="p_vat_groupSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_vat_groupSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_vat_groupSearch --><br>
+        <!-- BEGIN Grid p_vat_groupGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;GROUP PAJAK</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">Group Pajak</th>
+ 
+                  <th scope="col">Deskripsi</th>
+ 
+                  <th scope="col">Pengubah</th>
+ 
+                  <th colspan="2" scope="col">Tanggal Ubah</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_vat_groupGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_vat_groupGridDLink_{p_vat_groupGrid:rowNumber}">{DLink}</a></td> 
+                  <td>{group_code}&nbsp;&nbsp;<input id="p_vat_groupGridp_vat_group_id_{p_vat_groupGrid:rowNumber}" name="{p_vat_group_id_Name}" value="{p_vat_group_id}" type="hidden"></td> 
+                  <td>{description}&nbsp;</td> 
+                  <td>{updated_by}&nbsp;</td> 
+                  <td colspan="2">{updated_date}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="6">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="p_vat_groupGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="5">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_vat_groupGrid --><br>
+        <!-- BEGIN Record p_vat_groupForm -->
+        <form id="p_vat_groupForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI JENIS PAJAK</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">Group Pajak</td> 
+                    <td><input style="WIDTH: 238px; HEIGHT: 20px" id="p_vat_groupFormgroup_code" class="ControlsRQ" name="{group_code_Name}" maxlength="32" value="{group_code}" size="27">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_vat_groupFormdescription">Deskripsi</label></td> 
+                    <td><input id="p_vat_groupFormdescription" class="ControlsIN" name="{description_Name}" maxlength="64" value="{description}" size="50"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_vat_groupFormcreated_by">Dibuat Oleh</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="12" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_vat_groupFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="15" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button_Insert --><input id="p_vat_groupFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="p_vat_groupFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_vat_groupFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_vat_groupFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input id="p_vat_groupFormp_vat_group_id" name="{p_vat_group_id_Name}" value="{p_vat_group_id}" type="hidden"><input id="p_vat_groupFormp_vat_typeGridPage" name="{p_vat_typeGridPage_Name}" value="{p_vat_typeGridPage}" type="hidden"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_vat_groupForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+        function toDetail()
+        {
+                var idelement;
+
+                if (idelement = document.getElementById("p_vat_groupFormp_vat_type_id"))
+                {
+                        var pid = idelement.value;
+
+                        if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+                        {                
+                                location.href="p_vat_type_dtl.php?p_vat_type_id="+pid;
+                        }
+                        else
+                        {
+                                alert("Pilih salah satu JENIS PAJAK!");
+                        }
+                } 
+                else 
+                {
+                        alert("Pilih salah satu JENIS PAJAK!");
+                }
+        }
+        </script>
+</body>
+</html>
