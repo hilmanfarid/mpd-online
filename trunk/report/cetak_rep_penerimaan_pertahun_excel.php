@@ -131,22 +131,22 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 	$grand_total += $jumlah_kanan[$i]; //total bottom
 
 	echo '<tr>
-		<td align="center">'.($i+1).'</td>
-		<td>'.$data["nama"][$i].'</td>
-		<td>'.$data["alamat"][$i].' <br/> '.$data["npwpd"][$i].'</td>
-		<td align="right">'.$data2[12].'<br/> '.$arrpaydate[12].'</td>
-		<td align="right">'.$data2[1].'<br/> '.$arrpaydate[1].'</td>
-		<td align="right">'.$data2[2].'<br/> '.$arrpaydate[2].'</td>
-		<td align="right">'.$data2[3].'<br/> '.$arrpaydate[3].'</td>
-		<td align="right">'.$data2[4].'<br/> '.$arrpaydate[4].'</td>
-		<td align="right">'.$data2[5].'<br/> '.$arrpaydate[5].'</td>
-		<td align="right">'.$data2[6].'<br/> '.$arrpaydate[6].'</td>
-		<td align="right">'.$data2[7].'<br/> '.$arrpaydate[7].'</td>
-		<td align="right">'.$data2[8].'<br/> '.$arrpaydate[8].'</td>
-		<td align="right">'.$data2[9].'<br/> '.$arrpaydate[9].'</td>
-		<td align="right">'.$data2[10].'<br/> '.$arrpaydate[10].'</td>
-		<td align="right">'.$data2[11].'<br/> '.$arrpaydate[11].'</td>
-		<td align="right">'.number_format($jumlah_kanan[$i], 0, ',', '.').'</td>
+		<td align="center" valign="top">'.($i+1).'</td>
+		<td valign="top">'.$data["nama"][$i].'</td>
+		<td valign="top">'.$data["alamat"][$i].' <br/> '.$data["npwpd"][$i].'</td>
+		<td align="right" valign="top">'.$data2[12].'<br/> '.$arrpaydate[12].'</td>
+		<td align="right" valign="top">'.$data2[1].'<br/> '.$arrpaydate[1].'</td>
+		<td align="right" valign="top">'.$data2[2].'<br/> '.$arrpaydate[2].'</td>
+		<td align="right" valign="top">'.$data2[3].'<br/> '.$arrpaydate[3].'</td>
+		<td align="right" valign="top">'.$data2[4].'<br/> '.$arrpaydate[4].'</td>
+		<td align="right" valign="top">'.$data2[5].'<br/> '.$arrpaydate[5].'</td>
+		<td align="right" valign="top">'.$data2[6].'<br/> '.$arrpaydate[6].'</td>
+		<td align="right" valign="top">'.$data2[7].'<br/> '.$arrpaydate[7].'</td>
+		<td align="right" valign="top">'.$data2[8].'<br/> '.$arrpaydate[8].'</td>
+		<td align="right" valign="top">'.$data2[9].'<br/> '.$arrpaydate[9].'</td>
+		<td align="right" valign="top">'.$data2[10].'<br/> '.$arrpaydate[10].'</td>
+		<td align="right" valign="top">'.$data2[11].'<br/> '.$arrpaydate[11].'</td>
+		<td align="right" valign="top">'.number_format($jumlah_kanan[$i], 0, ',', '.').'</td>
 	</tr>';
 	
 }
