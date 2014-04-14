@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
-<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css" />
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function getFrom_LOV(formName,fieldList,LOV_NM)
@@ -51,16 +51,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
         LAPORAN PENERIMAAN PER TAHUN&nbsp; 
       </div>
- 
     </div>
- 
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -75,21 +73,21 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 <table class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
-                    <td colspan="4">{Error}</td> 
+                    <td colspan="4">{Error}</td>
                   </tr>
- <!-- END Error -->
+                  <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Jenis Pajak</td> 
                     <td class="search-field"><input id="t_rep_penerimaan_pertahunSearchvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="32"></td> 
                     <td><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_penerimaan_pertahunSearchp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td> 
-                    <td class="search-field"></td> 
+                    <td class="search-field"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">Periode Tahun</td> 
                     <td class="search-field"><input id="t_rep_penerimaan_pertahunSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}" size="32"></td> 
                     <td><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"><input id="t_rep_penerimaan_pertahunSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
-                    <td class="search-field"></td> 
+                    <td class="search-field"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -97,15 +95,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td class="search-field"><input id="t_rep_penerimaan_pertahunSearchtgl_penerimaan" class="ControlsRQ" name="{tgl_penerimaan_Name}" maxlength="32" value="{tgl_penerimaan}" size="32"></td> 
                     <td>
                       <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan"><img id="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan --></td> 
-                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">Status WP</td> 
                     <td class="search-field"><input id="t_rep_penerimaan_pertahunSearchcode" class="ControlsIN" name="{code_Name}" maxlength="32" value="{code}" size="32">
                       <td><img onclick="javascript:statuswp()" border="0" src="../images/view.gif"><input id="t_rep_penerimaan_pertahunSearchp_account_status_id" name="{p_account_status_id_Name}" value="{p_account_status_id}" type="hidden"></td> 
-                      <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_penerimaan_pertahunSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch --></td> 
+                      <td class="search-field"></td>
                     </tr>
  
                     <tr class="Controls">
@@ -113,30 +110,33 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                       <td class="search-field">
                         <select id="t_rep_penerimaan_pertahunSearchstatus_bayar" class="ControlsIN" name="{status_bayar_Name}">
                           <option selected value="">-- Semua --</option>
- {status_bayar_Options} 
+                          {status_bayar_Options}
                         </select>
  </td> 
                       <td>&nbsp;</td> 
-                      <td class="search-field">&nbsp;</td> 
+                      <td class="search-field"></td>
                     </tr>
  
+                    <tr class="Controls">
+                      <td class="search-field">&nbsp;</td> 
+                      <td class="search-field">
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_penerimaan_pertahunSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch -->&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_penerimaan_pertahunSearchButton_DoSearch1" class="btn_tambah" onclick="cetakexcel(); return false;" name="{Button_Name}" alt="Search" value="EXCEL" type="submit"><!-- END Button Button_DoSearch1 --></td> 
+                      <td>&nbsp;</td> 
+                      <td class="search-field">&nbsp;</td>
+                    </tr>
                   </table>
- </td> 
+                </td>
               </tr>
- 
             </table>
- 
           </form>
- <!-- END Record t_rep_penerimaan_pertahunSearch -->
+          <!-- END Record t_rep_penerimaan_pertahunSearch -->
           <div align="left">
           </div>
- </td> 
+        </td>
       </tr>
- 
     </table>
- 
   </div>
- 
   <script language="javascript">
                 function jenispajak() {
                 getFrom_LOV('t_rep_penerimaan_pertahunSearch','p_vat_type_id,vat_code','lov_vat_type.php');
@@ -155,11 +155,21 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 tgl_penerimaan = document.getElementById("t_rep_penerimaan_pertahunSearchtgl_penerimaan").value;
                 p_year_period_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_year_period_id").value;
                 p_vat_type_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_vat_type_id").value;
-				p_account_status_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_account_status_id").value;
+                                p_account_status_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_account_status_id").value;
                 status_bayar = document.getElementById("t_rep_penerimaan_pertahunSearchstatus_bayar").value;
-				window.open("../report/cetak_rep_penerimaan_pertahun.php?tgl_status='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id + "&p_account_status_id=" + p_account_status_id + "&status_bayar=" + status_bayar, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                                window.open("../report/cetak_rep_penerimaan_pertahun.php?tgl_status='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id + "&p_account_status_id=" + p_account_status_id + "&status_bayar=" + status_bayar, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        }
+
+
+		function cetakexcel()
+        {
+                tgl_penerimaan = document.getElementById("t_rep_penerimaan_pertahunSearchtgl_penerimaan").value;
+                p_year_period_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_year_period_id").value;
+                p_vat_type_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_vat_type_id").value;
+                                p_account_status_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_account_status_id").value;
+                status_bayar = document.getElementById("t_rep_penerimaan_pertahunSearchstatus_bayar").value;
+                                window.open("../report/cetak_rep_penerimaan_pertahun_excel.php?tgl_status='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id + "&p_account_status_id=" + p_account_status_id + "&status_bayar=" + status_bayar, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
         </script>
   </body>
- 
   </html>
