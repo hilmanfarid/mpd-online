@@ -61,7 +61,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -94,9 +94,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="p_vat_groupSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"></td> 
+                    <td class="search-field"><input id="p_vat_groupSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="p_vat_groupSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_vat_groupSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
@@ -131,8 +131,8 @@ $(document).ready(function()
  
                 <!-- BEGIN Row -->
                 <tr {p_vat_groupGrid:rowStyle}>
-                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_vat_groupGridDLink_{p_vat_groupGrid:rowNumber}">{DLink}</a></td> 
-                  <td>{group_code}&nbsp;&nbsp;<input id="p_vat_groupGridp_vat_group_id_{p_vat_groupGrid:rowNumber}" name="{p_vat_group_id_Name}" value="{p_vat_group_id}" type="hidden"></td> 
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_vat_type_groupGridDLink_{p_vat_groupGrid:rowNumber}">{DLink}</a></td> 
+                  <td>{group_code}&nbsp;&nbsp;<input id="p_vat_groupGridp_vat_group_id_{p_vat_groupGrid:rowNumber}" value="{p_vat_group_id}" type="hidden" name="{p_vat_group_id_Name}"></td> 
                   <td>{description}&nbsp;</td> 
                   <td>{updated_by}&nbsp;</td> 
                   <td colspan="2">{updated_date}&nbsp;</td>
@@ -185,30 +185,30 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th">Group Pajak</td> 
-                    <td><input style="WIDTH: 238px; HEIGHT: 20px" id="p_vat_groupFormgroup_code" class="ControlsRQ" name="{group_code_Name}" maxlength="32" value="{group_code}" size="27">&nbsp;</td>
+                    <td><input style="WIDTH: 238px; HEIGHT: 20px" id="p_vat_groupFormgroup_code" class="ControlsRQ" value="{group_code}" maxlength="32" size="27" name="{group_code_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_vat_groupFormdescription">Deskripsi</label></td> 
-                    <td><input id="p_vat_groupFormdescription" class="ControlsIN" name="{description_Name}" maxlength="64" value="{description}" size="50"></td>
+                    <td><input id="p_vat_groupFormdescription" class="ControlsIN" value="{description}" maxlength="64" size="50" name="{description_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_vat_groupFormcreated_by">Dibuat Oleh</label></td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="12" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="12" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="15" name="{creation_date_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_vat_groupFormupdated_by">Diubah Oleh</label></td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="15" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="15" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_vat_groupFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">
-                      <!-- BEGIN Button Button_Insert --><input id="p_vat_groupFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="p_vat_groupFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input id="p_vat_groupFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input id="p_vat_groupFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input id="p_vat_groupFormp_vat_group_id" name="{p_vat_group_id_Name}" value="{p_vat_group_id}" type="hidden"><input id="p_vat_groupFormp_vat_typeGridPage" name="{p_vat_typeGridPage_Name}" value="{p_vat_typeGridPage}" type="hidden"></td>
+                      <!-- BEGIN Button Button_Insert --><input id="p_vat_groupFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="p_vat_groupFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_vat_groupFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_vat_groupFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_vat_groupFormp_vat_group_id" value="{p_vat_group_id}" type="hidden" name="{p_vat_group_id_Name}"><input id="p_vat_groupFormp_vat_typeGridPage" value="{p_vat_typeGridPage}" type="hidden" name="{p_vat_typeGridPage_Name}"></td>
                   </tr>
                 </table>
               </td>
@@ -225,22 +225,22 @@ $(document).ready(function()
         {
                 var idelement;
 
-                if (idelement = document.getElementById("p_vat_groupFormp_vat_type_id"))
+                if (idelement = document.getElementById("p_vat_groupFormp_vat_group_id"))
                 {
                         var pid = idelement.value;
 
                         if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
-                        {                
-                                location.href="p_vat_group_dtl.php?p_vat_group_id="+pid;
+                        {            
+                                location.href="p_vat_group_dtl2.php?p_vat_group_id="+pid;
                         }
                         else
                         {
-                                alert("Pilih salah satu JENIS PAJAK!");
+                                alert("Pilih salah satu GROUP PAJAK!");
                         }
                 } 
                 else 
                 {
-                        alert("Pilih salah satu JENIS PAJAK!");
+                        alert("Pilih salah satu GROUP PAJAK!");
                 }
         }
         </script>
