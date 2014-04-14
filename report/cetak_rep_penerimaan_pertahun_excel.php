@@ -146,7 +146,7 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 		<td align="right">'.$data2[9].'<br/> '.$arrpaydate[9].'</td>
 		<td align="right">'.$data2[10].'<br/> '.$arrpaydate[10].'</td>
 		<td align="right">'.$data2[11].'<br/> '.$arrpaydate[11].'</td>
-		<td align="right"><b>'.number_format($jumlah_kanan[$i], 0, ',', '.').'</b></td>
+		<td align="right">'.number_format($jumlah_kanan[$i], 0, ',', '.').'</td>
 	</tr>';
 	
 }
