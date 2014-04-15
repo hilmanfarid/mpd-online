@@ -39,53 +39,59 @@
 					<Features/>
 				</Hidden>
 				<TextBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="receipt_no" PathID="t_laporan_penerimaan_bphtbreceipt_no" fieldSource="receipt_no">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="19" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_pbb" PathID="t_laporan_penerimaan_bphtbnjop_pbb" fieldSource="njop_pbb">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="20" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_name" PathID="t_laporan_penerimaan_bphtbwp_name" fieldSource="wp_name">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<Hidden id="21" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kecamatan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_laporan_penerimaan_bphtbp_region_id_kecamatan" fieldSource="p_region_id_kecamatan">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<TextBox id="23" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kecamatan" fieldSource="nama_kecamatan" required="True" caption="Kecamatan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_laporan_penerimaan_bphtbnama_kecamatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="24" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kelurahan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_laporan_penerimaan_bphtbp_region_id_kelurahan" fieldSource="p_region_id_kelurahan">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<TextBox id="26" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kelurahan" fieldSource="nama_kelurahan" required="True" caption="Kelurahan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_laporan_penerimaan_bphtbnama_kelurahan">
+				<TextBox id="19" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_pbb" PathID="t_laporan_penerimaan_bphtbnjop_pbb" fieldSource="njop_pbb">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Button id="27" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_penerimaan_bphtbButton2">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
+				<TextBox id="20" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_name" PathID="t_laporan_penerimaan_bphtbwp_name" fieldSource="wp_name">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Hidden id="21" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kecamatan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_laporan_penerimaan_bphtbp_region_id_kecamatan" fieldSource="p_region_id_kecamatan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<TextBox id="23" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kecamatan" fieldSource="nama_kecamatan" required="True" caption="Kecamatan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_laporan_penerimaan_bphtbnama_kecamatan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Hidden id="24" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kelurahan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_laporan_penerimaan_bphtbp_region_id_kelurahan" fieldSource="p_region_id_kelurahan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<TextBox id="26" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kelurahan" fieldSource="nama_kelurahan" required="True" caption="Kelurahan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_laporan_penerimaan_bphtbnama_kelurahan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Button id="27" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_penerimaan_bphtbButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="28" urlType="Relative" enableValidation="True" isDefault="False" name="Button3" PathID="t_laporan_penerimaan_bphtbButton3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
