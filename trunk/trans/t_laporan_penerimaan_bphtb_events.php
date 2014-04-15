@@ -162,8 +162,8 @@ function print_excel($param_arr) {
 		echo '<td align="left">'.$item['wp_address_name'].'</td>';
 		echo '<td align="left">'.$item['kelurahan_name'].'</td>';
 		echo '<td align="left">'.$item['kecamatan_name'].'</td>';
-		echo '<td align="right">'.number_format($item['land_area'],0).'</td>';
-		echo '<td align="right">'.number_format($item['building_area'],0).'</td>';
+		echo '<td align="right">'.number_format($item['land_area'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['building_area'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['land_total_price'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['payment_amount'],0,",",".").'</td>';
 		echo '</tr>';
