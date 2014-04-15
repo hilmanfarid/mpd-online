@@ -26,6 +26,21 @@
                                 window.open("t_laporan_penerimaan_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
 
+        function printLaporanExcel(){
+                var params = "?cetak_laporan=excel";
+                params += "&date_start="+document.getElementById("t_laporan_penerimaan_bphtbdate_start_laporan").value;
+                params += "&date_end="+document.getElementById("t_laporan_penerimaan_bphtbdate_end_laporan").value;
+                params += "&receipt_no="+document.getElementById("t_laporan_penerimaan_bphtbreceipt_no").value;
+                params += "&njop_pbb="+document.getElementById("t_laporan_penerimaan_bphtbnjop_pbb").value;
+                params += "&wp_name="+document.getElementById("t_laporan_penerimaan_bphtbwp_name").value;
+                params += "&p_region_id_kecamatan="+document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kecamatan").value;
+                params += "&p_region_id_kelurahan="+document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kelurahan").value;
+                
+                                
+				window.open("t_laporan_penerimaan_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+        }
+
+
                 function doReset(){
                         location.href = 't_laporan_penerimaan_bphtb.php';
                 }
@@ -65,7 +80,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -124,7 +139,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <tr>
                     <td colspan="2" align="right"><input id="t_laporan_penerimaan_bphtbcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden">
-                      <!-- BEGIN Button Button1 --><input id="t_laporan_penerimaan_bphtbButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 -->&nbsp; &nbsp;
+                      <!-- BEGIN Button Button1 --><input id="t_laporan_penerimaan_bphtbButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 -->&nbsp; 
+                      <!-- BEGIN Button Button3 --><input id="t_laporan_penerimaan_bphtbButton3" class="btn_tambah" onclick="printLaporanExcel()" name="{Button_Name}" alt="Button1" value="Excel" type="button"><!-- END Button Button3 -->&nbsp;&nbsp; 
                       <!-- BEGIN Button Button2 --><input id="t_laporan_penerimaan_bphtbButton2" class="btn_tambah" onclick="doReset()" name="{Button_Name}" alt="Button2" value="Reset" type="button"><!-- END Button Button2 --></td>
                   </tr>
                 </table>
