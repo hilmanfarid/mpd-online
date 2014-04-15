@@ -45,7 +45,7 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-24FBABED
+//Class_Initialize Event @2-4198806C
     function clsRecordt_laporan_penerimaan_bphtb($RelativePath, & $Parent)
     {
 
@@ -87,6 +87,7 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
             $this->nama_kelurahan = & new clsControl(ccsTextBox, "nama_kelurahan", "Kelurahan", ccsText, "", CCGetRequestParam("nama_kelurahan", $Method, NULL), $this);
             $this->nama_kelurahan->Required = true;
             $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->Button3 = & new clsButton("Button3", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -158,7 +159,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-963408FB
+//Operation Method @2-4E5FB586
     function Operation()
     {
         if(!$this->Visible)
@@ -177,6 +178,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button1";
             } else if($this->Button2->Pressed) {
                 $this->PressedButton = "Button2";
+            } else if($this->Button3->Pressed) {
+                $this->PressedButton = "Button3";
             }
         }
         $Redirect = "t_laporan_penerimaan_bphtb.php";
@@ -189,6 +192,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button3") {
+                if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -196,7 +203,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-3EB77176
+//Show Method @2-01FB3416
     function Show()
     {
         global $CCSUseAmp;
@@ -263,6 +270,7 @@ function GetPrimaryKey($keyName)
         $this->p_region_id_kelurahan->Show();
         $this->nama_kelurahan->Show();
         $this->Button2->Show();
+        $this->Button3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
