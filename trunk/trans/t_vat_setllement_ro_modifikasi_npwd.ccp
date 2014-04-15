@@ -121,7 +121,13 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Button id="320" urlType="Relative" enableValidation="True" isDefault="False" name="BtnUbahMasaPajak" PathID="t_vat_setllementGridBtnUbahMasaPajak">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
