@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-ED3872BA
+//Class_Initialize Event @2-B8C819A7
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -86,6 +86,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->total_penalty_amount = & new clsControl(ccsLabel, "total_penalty_amount", "total_penalty_amount", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("total_penalty_amount", ccsGet, NULL), $this);
         $this->sett_code = & new clsControl(ccsLabel, "sett_code", "sett_code", ccsText, "", CCGetRequestParam("sett_code", ccsGet, NULL), $this);
         $this->BtnUbahNPWD = & new clsButton("BtnUbahNPWD", ccsGet, $this);
+        $this->BtnUbahMasaPajak = & new clsButton("BtnUbahMasaPajak", ccsGet, $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -103,7 +104,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-C3AE3135
+//Show Method @2-11EE9567
     function Show()
     {
         global $Tpl;
@@ -147,6 +148,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["total_penalty_amount"] = $this->total_penalty_amount->Visible;
             $this->ControlsVisible["sett_code"] = $this->sett_code->Visible;
             $this->ControlsVisible["BtnUbahNPWD"] = $this->BtnUbahNPWD->Visible;
+            $this->ControlsVisible["BtnUbahMasaPajak"] = $this->BtnUbahMasaPajak->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -187,6 +189,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->total_penalty_amount->Show();
                 $this->sett_code->Show();
                 $this->BtnUbahNPWD->Show();
+                $this->BtnUbahMasaPajak->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
