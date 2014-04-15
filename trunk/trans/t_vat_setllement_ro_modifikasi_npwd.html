@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -64,7 +64,7 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"><label style="display: none;" for="searchFormOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
+                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="Cari" type="submit"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -108,9 +108,11 @@ $(document).ready(function()
  
                   <th scope="col">No Kohir&nbsp;</th>
  
+                  <th scope="col">UBAH MASA PAJAK&nbsp;</th>
+ 
                   <th style="TEXT-ALIGN: center" scope="col">UBAH&nbsp;NPWPD</th>
  
-                  <th style="TEXT-ALIGN: center" colspan="5" scope="col"></th>
+                  <th colspan="5" scope="col"></th>
                 </tr>
  
                 <!-- BEGIN Row -->
@@ -124,18 +126,20 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_vat_amount}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}</td> 
                   <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: center" colspan="6">
+                  <td style="TEXT-ALIGN: left; COLOR: #008000">
+                    <!-- BEGIN Button BtnUbahMasaPajak --><input style="WIDTH: 107px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahMasaPajak" class="Button" onclick="viewFormUbahMasaPajak({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Masa Pajak" size="22" type="button"><!-- END Button BtnUbahMasaPajak --></td> 
+                  <td colspan="6">
                     <!-- BEGIN Button BtnUbahNPWD --><input style="WIDTH: 94px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahNPWD" class="Button" onclick="viewFormUbahNPWD({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah NPWPD" type="button"><!-- END Button BtnUbahNPWD --></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="15">-</td>
+                  <td colspan="16">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b>&nbsp;</b></td> 
-                  <td style="TEXT-ALIGN: center" colspan="14">&nbsp; 
+                  <td colspan="15">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -174,6 +178,18 @@ function viewFormUbahNPWD(t_vat_setllement_id) {
                 return false;
 }
 
+function viewFormUbahMasaPajak(t_vat_setllement_id) {
+        
+        url = "../trans/t_vat_setllement_ubah_masa_pajak.php?t_vat_setllement_id="+t_vat_setllement_id;
+                
+                params  = 'width=650';
+        params += ', height=300';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
 </script>
 </body>
 </html>
