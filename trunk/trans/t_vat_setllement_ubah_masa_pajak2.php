@@ -310,7 +310,7 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
     var $code;
     var $p_finance_period_id;
 //End DataSource Variables
-
+	var $itemResult;
 //DataSourceClass_Initialize Event @3-F82B4286
     function clsformPerubahanMasaPajakDataSource(& $Parent)
     {
@@ -346,24 +346,16 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
     }
 //End Prepare Method
 
-//Open Method @3-364DB03C
+//Open Method @3-FF0BA839
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "SELECT t_vat_setllement_id, t_customer_order_id,\n" .
-        "to_char(settlement_date,'YYYY-MM-DD') AS settlement_date, p_finance_period_id, t_cust_account_id,\n" .
-        "npwd, total_trans_amount, total_vat_amount, creation_date,\n" .
-        "created_by, updated_date, updated_by, is_anomali,\n" .
-        "is_authorized, no_kohir, p_settlement_type_id,\n" .
-        "debt_vat_amt, cr_adjustment, cr_payment, cr_others,\n" .
-        "cr_stp, db_interest_charge, db_increasing_charge,\n" .
-        "db_admin_penalty, due_date, is_settled, start_period,\n" .
-        "end_period, qty_room_sold, total_penalty_amount, doc_no,\n" .
-        "p_vat_type_dtl_id, old_id,\n" .
+        $this->SQL = "SELECT a.t_vat_setllement_id,  a.p_finance_period_id, a.start_period,\n" .
+        "a.end_period, \n" .
         "b.code as masa_pajak\n" .
-        "FROM t_vat_setllement\n" .
-        "LEFT JOIN p_finance_period AS b ON t_vat_setllement.p_finance_period_id = b.p_finance_period_id\n" .
-        "WHERE t_vat_setllement_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "";
+        "FROM t_vat_setllement AS a\n" .
+        "LEFT JOIN p_finance_period AS b ON a.p_finance_period_id = b.p_finance_period_id\n" .
+        "WHERE a.t_vat_setllement_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         $this->PageSize = 1;
@@ -407,7 +399,7 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
         $this->SQL = "SELECT f_update_masa_pajak(" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . ",'" . $this->SQLValue($this->cp["p_finance_period_id"]->GetDBValue(), ccsInteger) . "', '" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "') AS msg";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->query($this->SQL);
+            $this->itemResult = $this->query($this->SQL);
             $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
         }
     }
