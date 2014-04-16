@@ -94,6 +94,13 @@
 					<Attributes/>
 					<Features/>
 				</Button>
+				<Button id="570" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_bppsSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 			</Components>
 			<Events/>
 			<TableParameters/>
