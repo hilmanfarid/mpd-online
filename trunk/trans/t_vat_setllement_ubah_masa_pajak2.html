@@ -112,6 +112,32 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
 function lov_tipeayat() {
         getFrom_LOV('formPerubahanAyat','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=v_p_vat_type_dtl_rep&FIELD_0=p_vat_type_dtl_id&FIELD_1=nama_ayat&FIELD_2=nomor_ayat&FIELD_3= and p_vat_type_id != 7&LABEL1=Nama Ayat&LABEL2=Nomor Ayat&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
 }
+
+function periodepajak() {
+                var idelement;
+
+        if (idelement = document.getElementById("formPerubahanMasaPajakp_finance_period_id"))
+        {
+                var pid = idelement.value;
+
+                if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+                {                
+                        getFrom_LOV("formPerubahanMasaPajak", "p_finance_period_id,code", "lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode Pajak&LABEL2=Deskripsi&HEADER_PAGE=PERIODE PAJAK&HEADER_LOV=DAFTAR PERIODE PAJAK&FIELD_3=AND p_year_period_id=" + pid + "ORDER BY start_date");
+                }
+                else
+                {
+                        alert("Pilih salah satu PERIODE TAHUN!");
+                }
+        } 
+        else 
+        {
+                alert("Pilih salah satu PERIODE TAHUN!");
+        }
+    }
+
+    function periodetahun() {
+        getFrom_LOV('formPerubahanMasaPajak','p_year_period_id,year_code','lov_year_period.php');
+    }
 </script>
 </body>
 </html>
