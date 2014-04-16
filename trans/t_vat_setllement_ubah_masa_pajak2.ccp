@@ -1,19 +1,11 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="formPerubahanMasaPajak" returnPage="t_vat_setllement_ubah_masa_pajak2.ccp" PathID="formPerubahanMasaPajak" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="USQLParameters" dataSource="SELECT t_vat_setllement_id, t_customer_order_id,
-to_char(settlement_date,'YYYY-MM-DD') AS settlement_date, p_finance_period_id, t_cust_account_id,
-npwd, total_trans_amount, total_vat_amount, creation_date,
-created_by, updated_date, updated_by, is_anomali,
-is_authorized, no_kohir, p_settlement_type_id,
-debt_vat_amt, cr_adjustment, cr_payment, cr_others,
-cr_stp, db_interest_charge, db_increasing_charge,
-db_admin_penalty, due_date, is_settled, start_period,
-end_period, qty_room_sold, total_penalty_amount, doc_no,
-p_vat_type_dtl_id, old_id,
+		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="formPerubahanMasaPajak" returnPage="t_vat_setllement_ubah_masa_pajak2.ccp" PathID="formPerubahanMasaPajak" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="USQLParameters" dataSource="SELECT a.t_vat_setllement_id,  a.p_finance_period_id, a.start_period,
+a.end_period, 
 b.code as masa_pajak
-FROM t_vat_setllement
-LEFT JOIN p_finance_period AS b ON t_vat_setllement.p_finance_period_id = b.p_finance_period_id
-WHERE t_vat_setllement_id = {t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT f_update_masa_pajak({t_vat_setllement_id},'{p_finance_period_id}', '{alasan}', '{user_name}') AS msg">
+FROM t_vat_setllement AS a
+LEFT JOIN p_finance_period AS b ON a.p_finance_period_id = b.p_finance_period_id
+WHERE a.t_vat_setllement_id = {t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT f_update_masa_pajak({t_vat_setllement_id},'{p_finance_period_id}', '{alasan}', '{user_name}') AS msg">
 			<Components>
 				<Button id="16" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="formPerubahanMasaPajakButton1" operation="Update">
 					<Components/>
