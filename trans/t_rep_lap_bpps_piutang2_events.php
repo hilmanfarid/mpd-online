@@ -52,10 +52,20 @@ function Page_BeforeShow(& $sender)
 			$query	= "select *,trunc(payment_date) 
 			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
-			SUBSTRING(rep.masa_pajak,22,4) < $year_date
-			AND 
+			(	SUBSTRING(rep.masa_pajak,22,4) < $year_date
+				AND 
 				(NOT (SUBSTRING(rep.masa_pajak,22,4) = $border
 				AND SUBSTRING(rep.masa_pajak,19,2) = 12))
+			)
+			OR
+			(
+				(SUBSTRING(rep.masa_pajak,22,4) = $year_date
+				AND SUBSTRING(rep.masa_pajak,19,2) = 12)
+			)
+			OR
+			(
+				SUBSTRING(rep.masa_pajak,22,4) > $year_date
+			)
 			order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
 			//echo $query;
 			//exit;
@@ -101,8 +111,84 @@ function Page_BeforeShow(& $sender)
 		$Label1->SetText(GetCetakHTML($data));
 	}
 	else {
+			if($doAction == 'view_html2') {
 		
-		//do nothing 
+			$p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
+			$p_year_period_id	= CCGetFromGet("p_year_period_id", "");
+			$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
+			$i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
+			$tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
+
+			$tgl_penerimaan = "'".$tgl_penerimaan."'";
+			$tgl_penerimaan_last = "'".$tgl_penerimaan_last."'";
+		
+
+			// $p_vat_type_id		= 1;
+			// $p_year_period_id	= 4;
+			// $tgl_penerimaan		= '15-12-2013';
+			$date_start=str_replace("'", "",$tgl_penerimaan);
+			$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+
+			$user				= CCGetUserLogin();
+			$data				= array();
+			$dbConn				= new clsDBConnSIKP();
+			$jenis_laporan		= CCGetFromGet("jenis_laporan", "all"); 
+			if($jenis_laporan == 'all'){
+				$query	= "select wp_name, nama_ayat, npwpd
+				from f_rep_bpps_list_distinct2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) order by kode_ayat";	
+				//echo $query;
+				//exit;
+			}else if($jenis_laporan == 'piutang'){
+				$border= $year_date-1;
+				$query	= "select wp_name, nama_ayat, npwpd
+				from f_rep_bpps_list_distinct2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			WHERE
+				(	SUBSTRING(rep.masa_pajak,22,4) < $year_date
+					AND 
+					(NOT (SUBSTRING(rep.masa_pajak,22,4) = $border
+					AND SUBSTRING(rep.masa_pajak,19,2) = 12))
+				)
+				OR
+				(
+					(SUBSTRING(rep.masa_pajak,22,4) = $year_date
+					AND SUBSTRING(rep.masa_pajak,19,2) = 12)
+				)
+				OR
+				(
+					SUBSTRING(rep.masa_pajak,22,4) > $year_date
+				)
+				order by kode_ayat";	
+				//echo $query;
+				//exit;
+			}else if($jenis_laporan == 'murni'){
+				$query	= "select wp_name, nama_ayat, npwpd
+				from f_rep_bpps_list_distinct($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			WHERE
+				EXTRACT (YEAR FROM rep.settlement_date) = $year_date
+				order by kode_ayat";
+			}
+			//die($query);
+			//echo $query;
+			//exit;
+			$dbConn->query($query);
+
+
+			$tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
+			$tgl_penerimaan_last = str_replace("'", "", $tgl_penerimaan_last);
+			$tahun = date("Y", strtotime($tgl_penerimaan));
+			while ($dbConn->next_record()) {
+				$data[]= array(
+				"nama_ayat"			=> $dbConn->f("nama_ayat"),
+				"npwpd"			=> $dbConn->f("npwpd"),
+				"wp_name"			=> $dbConn->f("wp_name"));
+			}
+			$dbConn->close();
+				
+			$Label1->SetText(GetCetakHTML2($data));
+		}
+		else {		
+			//do nothing 
+		}
 	}
 	
 // -------------------------
@@ -135,20 +221,20 @@ function GetCetakHTML($data) {
                 <tr class="Caption">';
 
 
-		$output.='<th>NO</th>';
-		$output.='<th>NO AYAT</th>';
-		$output.='<th>NAMA AYAT</th>';
-		//$output.='<th>NO KOHIR</th>';
-		$output.='<th>NAMA WP</th>';
-		$output.='<th>NPWPD</th>';
-		$output.='<th>JUMLAH</th>';
-		$output.='<th>MASA PAJAK</th>';
-		$output.='<th>TGL TAP</th>';
-		$output.='<th>TGL BAYAR</th>';
-		$output.='</tr>';
-    
-	$jumlahtemp = 0;
-	$jumlahperayat = 0;
+	$output.='<th>NO</th>';
+	$output.='<th>NO AYAT</th>';
+	$output.='<th>NAMA AYAT</th>';
+	//$output.='<th>NO KOHIR</th>';
+	$output.='<th>NAMA WP</th>';
+	$output.='<th>NPWPD</th>';
+	$output.='<th>JUMLAH</th>';
+	$output.='<th>MASA PAJAK</th>';
+	$output.='<th>TGL TAP</th>';
+	$output.='<th>TGL BAYAR</th>';
+	$output.='</tr>';
+	
+	$jumlahtemp=0;
+	$jumlahperayat=0;
 	$i=0;
 	foreach($data as $item) {
 		$output .= '<tr>';
@@ -188,6 +274,179 @@ function GetCetakHTML($data) {
 		$output .= '<td align="CENTER" colspan=5>TOTAL PAJAK</td>';
 		$output .= '<td align="right">Rp. '.number_format($jumlahperayat, 2, ',', '.').'</td>';
 	$output .= '</tr>';
+	
+	$output.='</td></tr></table>';
+	$output.='</table>';
+	
+	return $output;
+}
+
+function GetCetakHTML2($data) {
+	$output = '';
+	
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          		<tr>
+            		<td valign="top">';
+
+	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                	<tr>
+                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  		<td class="th"><strong>LAPORAN REALISASI HARIAN MURNI DAN NON MURNI</strong></td> 
+                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                	</tr>
+              		</table>';
+	
+	$output .= '<h2>LAPORAN REALISASI HARIAN PER JENIS PAJAK </h2>';
+	//$output .= '<h2>TANGGAL : '.dateToString($date_start, "-")." s/d ".dateToString($date_end, "-").'</h2> <br/>';
+
+	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
+                <tr class="Caption">';
+
+
+		$output.='<th rowspan = 2 align="center">NO</th>';
+		//$output.='<th>NO AYAT</th>';
+		$output.='<th rowspan = 2 align="center">NAMA AYAT</th>';
+		//$output.='<th>NO KOHIR</th>';
+		$output.='<th rowspan = 2 align="center">NAMA PERUSAHAAN</th>';
+		$output.='<th rowspan = 2 align="center">NPWPD</th>';
+		//$output.='<th>JUMLAH</th>';
+		//$output.='<th>MASA PAJAK</th>';
+		//$output.='<th>TGL TAP</th>';
+		//$output.='<th>TGL BAYAR</th>';
+		$output.='<th colspan = 12 align=center>REALISASI DAN TANGGAL BAYAR</th>';
+		$output.='</tr>';
+		$output.='<tr class="Caption">';
+			$output.='<th align="center">DESEMBER</th>';
+			$output.='<th align="center">JANUARI</th>';
+			$output.='<th align="center">FEBRUARI</th>';
+			$output.='<th align="center">MARET</th>';
+			$output.='<th align="center">APRIL</th>';
+			$output.='<th align="center">MEI</th>';
+			$output.='<th align="center">JUNI</th>';
+			$output.='<th align="center">JULI</th>';
+			$output.='<th align="center">AGUSTUS</th>';
+			$output.='<th align="center">SEPTEMBER</th>';
+			$output.='<th align="center">OKTOBER</th>';
+			$output.='<th align="center">NOVEMBER</th>';
+		$output.='</tr>';
+		
+	$i=0;
+	foreach($data as $item) {
+		$output .= '<tr>';
+		$output .= '<td align="center">'.($i+1).'</td>';
+		//$output .= '<td align="center">'.$item["kode_jns_pajak"]." ".$item["kode_ayat"].'</td>';
+		$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
+		//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
+		$output .= '<td align="left">'.$item['wp_name'].'</td>';
+		$output .= '<td align="left">'.$item['npwpd'].'</td>';
+		//$output .= '<td align="right">Rp. '.number_format($item["jumlah_terima"], 2, ',', '.').'</td>';
+		//$output .= '<td align="left">'.$item['masa_pajak'].'</td>';
+		//$output .= '<td align="left">'.$item['kd_tap'].'</td>';
+		//$output .= '<td align="left">'.$item['payment_date'].'</td>';
+		
+		$p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
+		$p_year_period_id	= CCGetFromGet("p_year_period_id", "");
+		$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
+		$i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
+		$tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
+
+		$tgl_penerimaan = "'".$tgl_penerimaan."'";
+		$tgl_penerimaan_last = "'".$tgl_penerimaan_last."'";
+
+
+		// $p_vat_type_id		= 1;
+		// $p_year_period_id	= 4;
+		// $tgl_penerimaan		= '15-12-2013';
+		$date_start=str_replace("'", "",$tgl_penerimaan);
+		$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+
+		$user				= CCGetUserLogin();
+		$data2				= array();
+		$dbConn2				= new clsDBConnSIKP();
+		$jenis_laporan		= CCGetFromGet("jenis_laporan", "all");
+    
+	
+		if($jenis_laporan == 'all'){
+			$query2	= "select *,trunc(payment_date) 
+			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
+			where npwpd = '".$item['npwpd']."'
+			order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
+			//echo $query;
+			//exit;
+		}else if($jenis_laporan == 'piutang'){
+			$border= $year_date-1;
+			$query2	= "select jumlah_terima 
+			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			where (npwpd ='".$item['npwpd']."')
+			AND
+			(
+				(	SUBSTRING(rep.masa_pajak,22,4) < $year_date
+					AND 
+					(NOT (SUBSTRING(rep.masa_pajak,22,4) = $border
+					AND SUBSTRING(rep.masa_pajak,19,2) = 12))
+				)
+				OR
+				(
+					(SUBSTRING(rep.masa_pajak,22,4) = $year_date
+					AND SUBSTRING(rep.masa_pajak,19,2) = 12)
+				)
+				OR
+				(
+					SUBSTRING(rep.masa_pajak,22,4) > $year_date
+				)
+			)
+			order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
+			//echo $query;
+			//exit;
+		}else if($jenis_laporan == 'murni'){
+			$query2	= "select *,trunc(payment_date) 
+			from f_rep_bpps_piutang($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			where npwpd ='".$item['npwpd']."'
+			AND
+			EXTRACT (YEAR FROM rep.settlement_date) = $year_date
+			order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+		}
+		//echo $query;
+		//exit;
+
+		
+		//$dbConn2->query($query2);
+
+		$tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
+		$tgl_penerimaan_last = str_replace("'", "", $tgl_penerimaan_last);
+		$tahun = date("Y", strtotime($tgl_penerimaan));
+		while ($dbConn2->next_record()) {
+			$data2[]= array(
+			//"kode_jns_trans"	=> $dbConn2->f("kode_jns_trans"),
+			//"jns_trans"		=> $dbConn2->f("jns_trans"),
+			//"kode_jns_pajak"	=> $dbConn2->f("kode_jns_pajak"),
+			//"kode_ayat"		=> $dbConn2->f("kode_ayat"),
+			//"jns_pajak"		=> $dbConn2->f("jns_pajak"),
+			//"jns_ayat"			=> $dbConn2->f("jns_ayat"),
+			//"nama_ayat"		=> $dbConn2->f("nama_ayat"),
+			//"no_kohir"		=> $dbConn2->f("no_kohir"),
+			//"wp_name"			=> $dbConn2->f("wp_name"),
+			//"wp_address_name"	=> $dbConn2->f("wp_address_name"),
+			//"wp_address_no"		=> $dbConn2->f("wp_address_no"),
+			//"npwpd"			=> $dbConn2->f("npwpd"),
+			"jumlah_terima"	=> $dbConn2->f("jumlah_terima")
+			//"masa_pajak"		=> $dbConn2->f("masa_pajak"),
+			//"kd_tap"			=> $dbConn2->f("kd_tap"),
+			//"keterangan"		=> $dbConn2->f("keterangan"),
+			//"payment_date"		=> $dbConn2->f("payment_date"),
+			//"jam"		=> $dbConn2->f("jam")
+			);
+		}
+
+		$dbConn2->close();		
+		foreach($data2 as $item2) {
+			$output .= '<td align="right">Rp. '.number_format($item2["jumlah_terima"], 2, ',', '.').'</td>';
+			//$output .= '<td align="right"></td>';
+		}
+		
+		$output .= '</tr>';
+		$i++;
+	}
 	
 	$output.='</td></tr></table>';
 	$output.='</table>';
