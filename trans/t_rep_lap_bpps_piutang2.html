@@ -80,7 +80,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -133,9 +133,10 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                           {ListBox1_Options}
                         </select>
  </td> 
-                      <td>&nbsp;</td> 
+                      <td>&nbsp; </td> 
                       <td class="search-field">&nbsp; 
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" value="TAMPILKAN" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(1); return false;" value="TAMPILKAN" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_bppsSearchButton_DoSearch1" class="btn_tambah" onclick="tampilkanLaporan(2); return false;" value="TAMPILKAN 2" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch1 --></td>
                     </tr>
  
                     <tr class="Controls">
@@ -187,23 +188,28 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                         }
                 }
 
-                function tampilkanLaporan(){
-            var params = "?doAction=view_html";
-                        var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
+		function tampilkanLaporan(gaya_tampilan){
+			if (gaya_tampilan == 1){
+				var params = "?doAction=view_html";
+			}else{
+				var params = "?doAction=view_html2";
+			}
+			var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
             var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
             var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
             var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
             var i_flag_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
                         
-                        var jenis_pajak = document.getElementById("t_rep_bppsSearchvat_code").value;
-                        var periode_tahun = document.getElementById("t_rep_bppsSearchyear_code").value;
-                        var jenis_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
+            var jenis_pajak = document.getElementById("t_rep_bppsSearchvat_code").value;
+            var periode_tahun = document.getElementById("t_rep_bppsSearchyear_code").value;
+            var jenis_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
 
 
             if(tgl_penerimaan == "" || tgl_penerimaan_last == "" || p_year_period_id == "" || p_vat_type_id == "" || i_flag_setoran == "") {
                 alert("Semua Filter Harus Diisi");
             }else {
-                                location.href="t_rep_lap_bpps_piutang2.php?doAction=view_html&tgl_penerimaan=" + tgl_penerimaan + 
+                                location.href="t_rep_lap_bpps_piutang2.php"+params+
+								"&tgl_penerimaan=" + tgl_penerimaan + 
                                 "&p_year_period_id=" + p_year_period_id + 
                                 "&p_vat_type_id=" + p_vat_type_id+
                                 "&i_flag_setoran="+i_flag_setoran+
@@ -212,8 +218,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 "&vat_code="+jenis_pajak+
                                 "&year_code="+periode_tahun+
                                 "&ListBox1="+jenis_setoran;
-                        }               
-                }
+            }               
+    }
         </script>
   </body>
   </html>
