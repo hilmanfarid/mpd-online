@@ -8,7 +8,7 @@ WHERE a.p_vat_group_id = {p_vat_group_id}
 AND upper(b.vat_code) LIKE '%{s_keyword}%' 
 ORDER BY a.p_vat_type_group_id" orderBy="p_vat_type_id" parameterTypeListName="ParameterTypeList">
 			<Components>
-				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="p_vat_group_dtl2.ccp" removeParameters="p_vat_type_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="p_vat_groupGridInsert_Link">
+				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="p_vat_group_dtl2.ccp" removeParameters="p_vat_type_group_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="p_vat_groupGridInsert_Link">
 					<Components/>
 					<Events/>
 					<LinkParameters>
@@ -22,7 +22,7 @@ ORDER BY a.p_vat_type_group_id" orderBy="p_vat_type_id" parameterTypeListName="P
 					<Events/>
 					<LinkParameters>
 						<LinkParameter id="250" sourceType="DataField" name="p_vat_type_group_id" source="p_vat_type_group_id"/>
-</LinkParameters>
+					</LinkParameters>
 					<Attributes/>
 					<Features/>
 				</Link>
@@ -89,7 +89,7 @@ ORDER BY a.p_vat_type_group_id" orderBy="p_vat_type_id" parameterTypeListName="P
 			<SQLParameters>
 				<SQLParameter id="149" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
 				<SQLParameter id="249" variable="p_vat_group_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_vat_group_id"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -114,7 +114,7 @@ ORDER BY a.p_vat_type_group_id" orderBy="p_vat_type_id" parameterTypeListName="P
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -136,14 +136,14 @@ ORDER BY a.p_vat_type_group_id" orderBy="p_vat_type_id" parameterTypeListName="P
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_vat_groupForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_vat_groupForm" customDeleteType="SQL" activeCollection="SQLParameters" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="INSERT INTO p_vat_group(p_vat_group_id, group_code, description, creation_date, created_by, updated_date, updated_by) 
-VALUES(generate_id('sikp','p_vat_group','p_vat_group_id'), '{group_code}', '{description}', sysdate, '{created_by}', sysdate, '{updated_by}')" customInsertType="SQL" customUpdate="UPDATE p_vat_group
-SET group_code= '{group_code}', 
-description= '{description}', 
+		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_vat_groupForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_vat_groupForm" customDeleteType="SQL" activeCollection="DSQLParameters" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="INSERT INTO p_vat_type_group(p_vat_type_group_id, p_vat_type_id, p_vat_group_id, description, creation_date, created_by, updated_date, updated_by) 
+VALUES(generate_id('sikp','p_vat_type_group','p_vat_type_group_id'), {p_vat_type_id}, {p_vat_group_id}, '{description}', sysdate, '{created_by}', sysdate, '{updated_by}')" customInsertType="SQL" customUpdate="UPDATE p_vat_type_group
+SET p_vat_type_id = {p_vat_type_id}, 
+description = '{description}', 
 updated_date = sysdate, 
 updated_by = '{updated_by}'
-WHERE p_vat_group_id = {p_vat_group_id}" customDelete="DELETE FROM p_vat_group
-WHERE  p_vat_group_id = {p_vat_group_id}" dataSource="SELECT a.*, b.vat_code
+WHERE p_vat_type_group_id = {p_vat_type_group_id}" customDelete="DELETE FROM p_vat_type_group
+WHERE  p_vat_type_group_id = {p_vat_type_group_id}" dataSource="SELECT a.*, b.vat_code
 FROM sikp.p_vat_type_group a
 LEFT JOIN sikp.p_vat_type b 
 ON a.p_vat_type_id = b.p_vat_type_id
@@ -228,7 +228,19 @@ ORDER BY a.p_vat_type_group_id">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<Hidden id="251" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="p_vat_groupFormp_vat_type_id" fieldSource="p_vat_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="252" fieldSourceType="DBColumn" dataType="Text" name="p_vat_group_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="p_vat_groupFormp_vat_group_id" fieldSource="p_vat_group_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events>
 			</Events>
 			<TableParameters>
@@ -248,9 +260,9 @@ ORDER BY a.p_vat_type_group_id">
 				<SQLParameter id="197" variable="created_by" dataType="Text" parameterType="Expression" parameterSource="CCGetUserLogin()"/>
 				<SQLParameter id="199" variable="updated_by" dataType="Text" parameterType="Expression" parameterSource="CCGetUserLogin()"/>
 				<SQLParameter id="235" variable="p_vat_group_id" parameterType="Control" dataType="Text" parameterSource="p_vat_group_id"/>
-				<SQLParameter id="245" variable="group_code" parameterType="Control" dataType="Text" parameterSource="group_code"/>
 				<SQLParameter id="247" variable="description" parameterType="Control" dataType="Text" parameterSource="description"/>
-			</ISQLParameters>
+				<SQLParameter id="253" variable="p_vat_type_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_vat_type_id"/>
+</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="228" field="p_vat_type_id" dataType="Float" parameterType="Control" parameterSource="p_vat_type_id"/>
 				<CustomParameter id="229" field="vat_code" dataType="Text" parameterType="Control" parameterSource="code"/>
@@ -262,11 +274,11 @@ ORDER BY a.p_vat_type_group_id">
 			</IFormElements>
 			<USPParameters/>
 			<USQLParameters>
-				<SQLParameter id="209" variable="p_vat_group_id" dataType="Float" parameterType="Control" parameterSource="p_vat_group_id" defaultValue="0"/>
-				<SQLParameter id="210" variable="group_code" dataType="Text" parameterType="Control" parameterSource="group_code"/>
+				<SQLParameter id="209" variable="p_vat_type_group_id" dataType="Float" parameterType="Control" parameterSource="p_vat_type_group_id" defaultValue="0"/>
 				<SQLParameter id="211" variable="description" dataType="Text" parameterType="Control" parameterSource="description"/>
 				<SQLParameter id="215" variable="updated_by" dataType="Text" parameterType="Expression" parameterSource="CCGetUserLogin()"/>
-			</USQLParameters>
+				<SQLParameter id="254" variable="p_vat_type_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_vat_type_id"/>
+</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>
@@ -280,7 +292,7 @@ ORDER BY a.p_vat_type_group_id">
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="218" variable="p_vat_group_id" parameterType="Control" dataType="Float" parameterSource="p_vat_group_id" defaultValue="0"/>
+				<SQLParameter id="218" variable="p_vat_type_group_id" parameterType="Control" dataType="Float" parameterSource="p_vat_type_group_id" defaultValue="0"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>
