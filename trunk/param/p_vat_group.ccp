@@ -6,7 +6,7 @@ WHERE upper(group_code) LIKE '%{s_keyword}%'
 OR upper(description) LIKE '%{s_keyword}%' 
 ORDER BY p_vat_group_id" orderBy="p_vat_type_id">
 			<Components>
-				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="p_vat_group.ccp" removeParameters="p_vat_type_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="p_vat_groupGridInsert_Link">
+				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="p_vat_group.ccp" removeParameters="p_vat_group_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="p_vat_groupGridInsert_Link">
 					<Components/>
 					<Events/>
 					<LinkParameters>
