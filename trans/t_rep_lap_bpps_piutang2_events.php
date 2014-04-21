@@ -67,7 +67,7 @@ function Page_BeforeShow(& $sender)
 			(
 				SUBSTRING(rep.masa_pajak,22,4) > $year_date
 			)
-			order by order by kode_ayat, wp_name, masa_pajak";	
+			order by kode_ayat, wp_name, masa_pajak";	
 			//echo $query;
 			//exit;
 		}else if($jenis_laporan == 'murni'){
@@ -75,7 +75,7 @@ function Page_BeforeShow(& $sender)
 			from f_rep_bpps_piutang($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
 			EXTRACT (YEAR FROM rep.settlement_date) = $year_date
-			order by order by kode_ayat, wp_name, masa_pajak";
+			order by kode_ayat, wp_name, masa_pajak";
 		}
 		//die($query);
 		//echo $query;
@@ -175,7 +175,7 @@ function Page_BeforeShow(& $sender)
 				(
 					SUBSTRING(rep.masa_pajak,22,4) > $year_date
 				)
-				order by order by kode_ayat, wp_name, masa_pajak";	
+				order by kode_ayat, wp_name, masa_pajak";	
 				//echo $query;
 				//exit;
 			}else if($jenis_laporan == 'murni'){
@@ -183,7 +183,7 @@ function Page_BeforeShow(& $sender)
 				from f_rep_bpps_piutang($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 			WHERE
 				EXTRACT (YEAR FROM rep.settlement_date) = $year_date
-				order by order by kode_ayat, wp_name, masa_pajak";
+				order by kode_ayat, wp_name, masa_pajak";
 			}
 			//die($query);
 			//echo $query;
