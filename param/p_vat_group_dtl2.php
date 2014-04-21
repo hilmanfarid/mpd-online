@@ -95,7 +95,7 @@ class clsGridp_vat_groupGrid { //p_vat_groupGrid class @2-E07DB011
     }
 //End Initialize Method
 
-//Show Method @2-D39F7DC5
+//Show Method @2-C9506276
     function Show()
     {
         global $Tpl;
@@ -170,7 +170,7 @@ class clsGridp_vat_groupGrid { //p_vat_groupGrid class @2-E07DB011
             $Tpl->block_path = $ParentPath;
             return;
         }
-        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("p_vat_type_id", "s_keyword", "ccsForm"));
+        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("p_vat_type_group_id", "s_keyword", "ccsForm"));
         $this->Insert_Link->Parameters = CCAddParam($this->Insert_Link->Parameters, "FLAG", "ADD");
         $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
         $this->Navigator->PageSize = $this->PageSize;
@@ -537,7 +537,7 @@ class clsRecordp_vat_groupForm { //p_vat_groupForm Class @23-19B40E46
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-C255BC3D
+//Class_Initialize Event @23-72C2397D
     function clsRecordp_vat_groupForm($RelativePath, & $Parent)
     {
 
@@ -580,6 +580,8 @@ class clsRecordp_vat_groupForm { //p_vat_groupForm Class @23-19B40E46
             $this->p_vat_typeGridPage = & new clsControl(ccsHidden, "p_vat_typeGridPage", "p_vat_typeGridPage", ccsText, "", CCGetRequestParam("p_vat_typeGridPage", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Kode", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->vat_code->Required = true;
+            $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->p_vat_group_id = & new clsControl(ccsHidden, "p_vat_group_id", "p_vat_group_id", ccsText, "", CCGetRequestParam("p_vat_group_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->creation_date->Value) && !strlen($this->creation_date->Value) && $this->creation_date->Value !== false)
                     $this->creation_date->SetText(date("d-M-Y"));
@@ -605,7 +607,7 @@ class clsRecordp_vat_groupForm { //p_vat_groupForm Class @23-19B40E46
     }
 //End Initialize Method
 
-//Validate Method @23-FA7A40B3
+//Validate Method @23-5215EEBB
     function Validate()
     {
         global $CCSLocales;
@@ -619,6 +621,8 @@ class clsRecordp_vat_groupForm { //p_vat_groupForm Class @23-19B40E46
         $Validation = ($this->updated_by->Validate() && $Validation);
         $Validation = ($this->p_vat_typeGridPage->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->p_vat_group_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->p_vat_type_group_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->description->Errors->Count() == 0);
@@ -628,11 +632,13 @@ class clsRecordp_vat_groupForm { //p_vat_groupForm Class @23-19B40E46
         $Validation =  $Validation && ($this->updated_by->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_typeGridPage->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_group_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-51433713
+//CheckErrors Method @23-31169625
     function CheckErrors()
     {
         $errors = false;
@@ -644,6 +650,8 @@ class clsRecordp_vat_groupForm { //p_vat_groupForm Class @23-19B40E46
         $errors = ($errors || $this->updated_by->Errors->Count());
         $errors = ($errors || $this->p_vat_typeGridPage->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->p_vat_group_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -723,47 +731,47 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @23-287400B4
+//InsertRow Method @23-CA82978C
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
         if(!$this->InsertAllowed) return false;
         $this->DataSource->p_vat_group_id->SetValue($this->p_vat_group_id->GetValue(true));
-        $this->DataSource->group_code->SetValue($this->group_code->GetValue(true));
         $this->DataSource->description->SetValue($this->description->GetValue(true));
+        $this->DataSource->p_vat_type_id->SetValue($this->p_vat_type_id->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @23-44B2486C
+//UpdateRow Method @23-1AA3F5E1
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
-        $this->DataSource->p_vat_group_id->SetValue($this->p_vat_group_id->GetValue(true));
-        $this->DataSource->group_code->SetValue($this->group_code->GetValue(true));
+        $this->DataSource->p_vat_type_group_id->SetValue($this->p_vat_type_group_id->GetValue(true));
         $this->DataSource->description->SetValue($this->description->GetValue(true));
+        $this->DataSource->p_vat_type_id->SetValue($this->p_vat_type_id->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//DeleteRow Method @23-658D6928
+//DeleteRow Method @23-D059AAE7
     function DeleteRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
         if(!$this->DeleteAllowed) return false;
-        $this->DataSource->p_vat_group_id->SetValue($this->p_vat_group_id->GetValue(true));
+        $this->DataSource->p_vat_type_group_id->SetValue($this->p_vat_type_group_id->GetValue(true));
         $this->DataSource->Delete();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
         return (!$this->CheckErrors());
     }
 //End DeleteRow Method
 
-//Show Method @23-4425A5C2
+//Show Method @23-7CAA4F99
     function Show()
     {
         global $CCSUseAmp;
@@ -798,6 +806,8 @@ function GetPrimaryKey($keyName)
                     $this->updated_date->SetValue($this->DataSource->updated_date->GetValue());
                     $this->updated_by->SetValue($this->DataSource->updated_by->GetValue());
                     $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
+                    $this->p_vat_type_id->SetValue($this->DataSource->p_vat_type_id->GetValue());
+                    $this->p_vat_group_id->SetValue($this->DataSource->p_vat_group_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -816,6 +826,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->updated_by->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_typeGridPage->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_group_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -849,6 +861,8 @@ function GetPrimaryKey($keyName)
         $this->updated_by->Show();
         $this->p_vat_typeGridPage->Show();
         $this->vat_code->Show();
+        $this->p_vat_type_id->Show();
+        $this->p_vat_group_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -859,7 +873,7 @@ function GetPrimaryKey($keyName)
 
 class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDataSource Class @23-3F59CBE4
 
-//DataSource Variables @23-9EDC4CB2
+//DataSource Variables @23-9AFC80B5
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -882,9 +896,11 @@ class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDat
     var $updated_by;
     var $p_vat_typeGridPage;
     var $vat_code;
+    var $p_vat_type_id;
+    var $p_vat_group_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-8DE8A967
+//DataSourceClass_Initialize Event @23-57DEC383
     function clsp_vat_groupFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -905,6 +921,10 @@ class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDat
         $this->p_vat_typeGridPage = new clsField("p_vat_typeGridPage", ccsText, "");
         
         $this->vat_code = new clsField("vat_code", ccsText, "");
+        
+        $this->p_vat_type_id = new clsField("p_vat_type_id", ccsText, "");
+        
+        $this->p_vat_group_id = new clsField("p_vat_group_id", ccsText, "");
         
 
     }
@@ -938,7 +958,7 @@ class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDat
     }
 //End Open Method
 
-//SetValues Method @23-A91ACEEE
+//SetValues Method @23-AA80AFAF
     function SetValues()
     {
         $this->p_vat_type_group_id->SetDBValue(trim($this->f("p_vat_type_group_id")));
@@ -948,10 +968,12 @@ class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDat
         $this->updated_date->SetDBValue($this->f("updated_date"));
         $this->updated_by->SetDBValue($this->f("updated_by"));
         $this->vat_code->SetDBValue($this->f("vat_code"));
+        $this->p_vat_type_id->SetDBValue($this->f("p_vat_type_id"));
+        $this->p_vat_group_id->SetDBValue($this->f("p_vat_group_id"));
     }
 //End SetValues Method
 
-//Insert Method @23-218947D7
+//Insert Method @23-4A0F26D6
     function Insert()
     {
         global $CCSLocales;
@@ -960,8 +982,8 @@ class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDat
         $this->cp["created_by"] = new clsSQLParameter("expr197", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
         $this->cp["updated_by"] = new clsSQLParameter("expr199", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
         $this->cp["p_vat_group_id"] = new clsSQLParameter("ctrlp_vat_group_id", ccsText, "", "", $this->p_vat_group_id->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["group_code"] = new clsSQLParameter("ctrlgroup_code", ccsText, "", "", $this->group_code->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["p_vat_type_id"] = new clsSQLParameter("ctrlp_vat_type_id", ccsInteger, "", "", $this->p_vat_type_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["created_by"]->GetValue()) and !strlen($this->cp["created_by"]->GetText()) and !is_bool($this->cp["created_by"]->GetValue())) 
             $this->cp["created_by"]->SetValue(CCGetUserLogin());
@@ -969,12 +991,14 @@ class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDat
             $this->cp["updated_by"]->SetValue(CCGetUserLogin());
         if (!is_null($this->cp["p_vat_group_id"]->GetValue()) and !strlen($this->cp["p_vat_group_id"]->GetText()) and !is_bool($this->cp["p_vat_group_id"]->GetValue())) 
             $this->cp["p_vat_group_id"]->SetValue($this->p_vat_group_id->GetValue(true));
-        if (!is_null($this->cp["group_code"]->GetValue()) and !strlen($this->cp["group_code"]->GetText()) and !is_bool($this->cp["group_code"]->GetValue())) 
-            $this->cp["group_code"]->SetValue($this->group_code->GetValue(true));
         if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
             $this->cp["description"]->SetValue($this->description->GetValue(true));
-        $this->SQL = "INSERT INTO p_vat_group(p_vat_group_id, group_code, description, creation_date, created_by, updated_date, updated_by) \n" .
-        "VALUES(generate_id('sikp','p_vat_group','p_vat_group_id'), '" . $this->SQLValue($this->cp["group_code"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "')";
+        if (!is_null($this->cp["p_vat_type_id"]->GetValue()) and !strlen($this->cp["p_vat_type_id"]->GetText()) and !is_bool($this->cp["p_vat_type_id"]->GetValue())) 
+            $this->cp["p_vat_type_id"]->SetValue($this->p_vat_type_id->GetValue(true));
+        if (!strlen($this->cp["p_vat_type_id"]->GetText()) and !is_bool($this->cp["p_vat_type_id"]->GetValue(true))) 
+            $this->cp["p_vat_type_id"]->SetText(0);
+        $this->SQL = "INSERT INTO p_vat_type_group(p_vat_type_group_id, p_vat_type_id, p_vat_group_id, description, creation_date, created_by, updated_date, updated_by) \n" .
+        "VALUES(generate_id('sikp','p_vat_type_group','p_vat_type_group_id'), " . $this->SQLValue($this->cp["p_vat_type_id"]->GetDBValue(), ccsInteger) . ", " . $this->SQLValue($this->cp["p_vat_group_id"]->GetDBValue(), ccsText) . ", '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -983,33 +1007,35 @@ class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDat
     }
 //End Insert Method
 
-//Update Method @23-A4AD3542
+//Update Method @23-273039E3
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["p_vat_group_id"] = new clsSQLParameter("ctrlp_vat_group_id", ccsFloat, "", "", $this->p_vat_group_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["group_code"] = new clsSQLParameter("ctrlgroup_code", ccsText, "", "", $this->group_code->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["p_vat_type_group_id"] = new clsSQLParameter("ctrlp_vat_type_group_id", ccsFloat, "", "", $this->p_vat_type_group_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["updated_by"] = new clsSQLParameter("expr215", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
+        $this->cp["p_vat_type_id"] = new clsSQLParameter("ctrlp_vat_type_id", ccsInteger, "", "", $this->p_vat_type_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
-        if (!is_null($this->cp["p_vat_group_id"]->GetValue()) and !strlen($this->cp["p_vat_group_id"]->GetText()) and !is_bool($this->cp["p_vat_group_id"]->GetValue())) 
-            $this->cp["p_vat_group_id"]->SetValue($this->p_vat_group_id->GetValue(true));
-        if (!strlen($this->cp["p_vat_group_id"]->GetText()) and !is_bool($this->cp["p_vat_group_id"]->GetValue(true))) 
-            $this->cp["p_vat_group_id"]->SetText(0);
-        if (!is_null($this->cp["group_code"]->GetValue()) and !strlen($this->cp["group_code"]->GetText()) and !is_bool($this->cp["group_code"]->GetValue())) 
-            $this->cp["group_code"]->SetValue($this->group_code->GetValue(true));
+        if (!is_null($this->cp["p_vat_type_group_id"]->GetValue()) and !strlen($this->cp["p_vat_type_group_id"]->GetText()) and !is_bool($this->cp["p_vat_type_group_id"]->GetValue())) 
+            $this->cp["p_vat_type_group_id"]->SetValue($this->p_vat_type_group_id->GetValue(true));
+        if (!strlen($this->cp["p_vat_type_group_id"]->GetText()) and !is_bool($this->cp["p_vat_type_group_id"]->GetValue(true))) 
+            $this->cp["p_vat_type_group_id"]->SetText(0);
         if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
             $this->cp["description"]->SetValue($this->description->GetValue(true));
         if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
             $this->cp["updated_by"]->SetValue(CCGetUserLogin());
-        $this->SQL = "UPDATE p_vat_group\n" .
-        "SET group_code= '" . $this->SQLValue($this->cp["group_code"]->GetDBValue(), ccsText) . "', \n" .
-        "description= '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
+        if (!is_null($this->cp["p_vat_type_id"]->GetValue()) and !strlen($this->cp["p_vat_type_id"]->GetText()) and !is_bool($this->cp["p_vat_type_id"]->GetValue())) 
+            $this->cp["p_vat_type_id"]->SetValue($this->p_vat_type_id->GetValue(true));
+        if (!strlen($this->cp["p_vat_type_id"]->GetText()) and !is_bool($this->cp["p_vat_type_id"]->GetValue(true))) 
+            $this->cp["p_vat_type_id"]->SetText(0);
+        $this->SQL = "UPDATE p_vat_type_group\n" .
+        "SET p_vat_type_id = " . $this->SQLValue($this->cp["p_vat_type_id"]->GetDBValue(), ccsInteger) . ", \n" .
+        "description = '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
         "updated_date = sysdate, \n" .
         "updated_by = '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "'\n" .
-        "WHERE p_vat_group_id = " . $this->SQLValue($this->cp["p_vat_group_id"]->GetDBValue(), ccsFloat) . "";
+        "WHERE p_vat_type_group_id = " . $this->SQLValue($this->cp["p_vat_type_group_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -1018,20 +1044,20 @@ class clsp_vat_groupFormDataSource extends clsDBConnSIKP {  //p_vat_groupFormDat
     }
 //End Update Method
 
-//Delete Method @23-2AA04F97
+//Delete Method @23-764FF4FD
     function Delete()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["p_vat_group_id"] = new clsSQLParameter("ctrlp_vat_group_id", ccsFloat, "", "", $this->p_vat_group_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["p_vat_type_group_id"] = new clsSQLParameter("ctrlp_vat_type_group_id", ccsFloat, "", "", $this->p_vat_type_group_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
-        if (!is_null($this->cp["p_vat_group_id"]->GetValue()) and !strlen($this->cp["p_vat_group_id"]->GetText()) and !is_bool($this->cp["p_vat_group_id"]->GetValue())) 
-            $this->cp["p_vat_group_id"]->SetValue($this->p_vat_group_id->GetValue(true));
-        if (!strlen($this->cp["p_vat_group_id"]->GetText()) and !is_bool($this->cp["p_vat_group_id"]->GetValue(true))) 
-            $this->cp["p_vat_group_id"]->SetText(0);
-        $this->SQL = "DELETE FROM p_vat_group\n" .
-        "WHERE  p_vat_group_id = " . $this->SQLValue($this->cp["p_vat_group_id"]->GetDBValue(), ccsFloat) . "";
+        if (!is_null($this->cp["p_vat_type_group_id"]->GetValue()) and !strlen($this->cp["p_vat_type_group_id"]->GetText()) and !is_bool($this->cp["p_vat_type_group_id"]->GetValue())) 
+            $this->cp["p_vat_type_group_id"]->SetValue($this->p_vat_type_group_id->GetValue(true));
+        if (!strlen($this->cp["p_vat_type_group_id"]->GetText()) and !is_bool($this->cp["p_vat_type_group_id"]->GetValue(true))) 
+            $this->cp["p_vat_type_group_id"]->SetText(0);
+        $this->SQL = "DELETE FROM p_vat_type_group\n" .
+        "WHERE  p_vat_type_group_id = " . $this->SQLValue($this->cp["p_vat_type_group_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
