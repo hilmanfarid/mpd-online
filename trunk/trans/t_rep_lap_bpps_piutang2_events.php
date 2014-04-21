@@ -598,6 +598,7 @@ function GetCetakHTML3($data) {
 			$output.='<th align="center">SEPTEMBER '.$year_date.'</th>';
 			$output.='<th align="center">OKTOBER '.$year_date.'</th>';
 			$output.='<th align="center">NOVEMBER '.$year_date.'</th>';
+			$output.='<th align="center">SETELAH NOVEMBER '.$year_date.'</th>';
 			$output.='<th align="center">JUMLAH</th>';
 		$output.='</tr>';
 	$output.='</tr>';
@@ -621,6 +622,7 @@ function GetCetakHTML3($data) {
 	$nov=0;
 	$des=0;
 	$xdes=0;
+	$xnov=0;
 	foreach($data as $item) {
 		$bln = substr($item["masa_pajak"],-7,2);
 		$thn = substr($item["masa_pajak"],-4,4);
@@ -676,7 +678,12 @@ function GetCetakHTML3($data) {
 				else{
 					if ($thn < $year_date){
 						$xdes=$xdes+$item["jumlah_terima"];
-					}	
+					}
+					else{
+						if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
+								$xnov=$xnov+$item["jumlah_terima"];
+						}
+					}
 				}
 			}
 			//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
@@ -731,16 +738,15 @@ function GetCetakHTML3($data) {
 					else{
 						if ($thn < $year_date){
 							$xdes=$xdes+$item["jumlah_terima"];
+						}
+						else{
+							if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
+									$xnov=$xnov+$item["jumlah_terima"];
+							}
 						}	
 					}
 				}
-				//$output .= '</tr>';
-				//$output .= '<td align="CENTER" colspan=5></td>';
-				//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
-				//$output .= '<td align="left">'.$item['masa_pajak'].'</td>';
-				//$output .= '<td align="left">'.$item['kd_tap'].'</td>';
-				//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
-				//$output .= '</tr>';
+
 				$jumlahtemp += $item["jumlah_terima"];
 				$ayat = $item["kode_ayat"];
 			}else{
@@ -757,9 +763,12 @@ function GetCetakHTML3($data) {
 				$output .= '<td align="right">'.number_format($sep, 2, ',', '.').'</td>';
 				$output .= '<td align="right">'.number_format($okt, 2, ',', '.').'</td>';
 				$output .= '<td align="right">'.number_format($nov, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($xnov, 2, ',', '.').'</td>';
+				
 				//$new=0;
 				//$output .= '<tr>';
 				$jumlahperayat += $jumlahtemp;
+				
 				//$output .= '<tr>';
 					//$output .= '<td align="CENTER" colspan=5>JUMLAH PAJAK '.$before["wp_name"].'</td>';
 					$output .= '<td align="right">'.number_format($jumlahtemp, 2, ',', '.').'</td>';
@@ -778,6 +787,7 @@ function GetCetakHTML3($data) {
 				$nov=0;
 				$des=0;
 				$xdes=0;
+				$xnov=0;
 				$output .= '<td align="center">'.($i+1).'</td>';
 				$output .= '<td align="center">'.$item["kode_jns_pajak"]." ".$item["kode_ayat"].'</td>';
 				$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
@@ -829,13 +839,14 @@ function GetCetakHTML3($data) {
 					else{
 						if ($thn < $year_date){
 							$xdes=$xdes+$item["jumlah_terima"];
+						}
+						else{
+							if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
+									$xnov=$xnov+$item["jumlah_terima"];
+							}
 						}	
 					}
 				}
-				//$output .= '<td align="left">'.$item['masa_pajak'].'</td>';
-				//$output .= '<td align="left">'.$item['kd_tap'].'</td>';
-				//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
-				//$output .= '</tr>';
 				$jumlahtemp += $item["jumlah_terima"];
 				$i=$i+1;
 				
@@ -846,6 +857,7 @@ function GetCetakHTML3($data) {
 		$i2=$i2+1;
 		if(empty($data[$i2]))
 		{
+			$jumlahperayat += $jumlahtemp;
 			$output .= '<td align="right">'.number_format($xdes, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.number_format($des, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.number_format($jan, 2, ',', '.').'</td>';
@@ -859,12 +871,13 @@ function GetCetakHTML3($data) {
 			$output .= '<td align="right">'.number_format($sep, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.number_format($okt, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.number_format($nov, 2, ',', '.').'</td>';
+			$output .= '<td align="right">'.number_format($xnov, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.number_format($jumlahtemp, 2, ',', '.').'</td>';
 			$output .= '</tr>';
 		}
 	}
 	$output .= '<tr>';
-		$output .= '<td align="CENTER" colspan=18>TOTAL PAJAK</td>';
+		$output .= '<td align="CENTER" colspan=19>TOTAL PAJAK</td>';
 		$output .= '<td align="right">'.number_format($jumlahperayat, 2, ',', '.').'</td>';
 	$output .= '</tr>';
 	
