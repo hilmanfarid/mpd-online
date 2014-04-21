@@ -61,7 +61,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -185,12 +185,12 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th">Jenis&nbsp;Pajak</td> 
-                    <td><input style="WIDTH: 238px; HEIGHT: 20px" id="p_vat_groupFormvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="27">&nbsp;</td>
+                    <td><input style="WIDTH: 238px; HEIGHT: 20px" id="p_vat_groupFormvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="32" value="{vat_code}" size="27">&nbsp;<img onclick="javascript:jenispajak()" border="0" src="../images/view.gif">&nbsp;<input id="p_vat_groupFormp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_vat_groupFormdescription">Deskripsi</label></td> 
-                    <td><input id="p_vat_groupFormdescription" class="ControlsIN" name="{description_Name}" maxlength="64" value="{description}" size="50"></td>
+                    <td><input id="p_vat_groupFormdescription" class="ControlsIN" name="{description_Name}" maxlength="64" value="{description}" size="50"><input id="p_vat_groupFormp_vat_group_id" name="{p_vat_group_id_Name}" value="{p_vat_group_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
