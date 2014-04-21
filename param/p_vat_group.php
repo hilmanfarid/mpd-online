@@ -95,7 +95,7 @@ class clsGridp_vat_groupGrid { //p_vat_groupGrid class @2-E07DB011
     }
 //End Initialize Method
 
-//Show Method @2-A787CA77
+//Show Method @2-03DF03B8
     function Show()
     {
         global $Tpl;
@@ -169,7 +169,7 @@ class clsGridp_vat_groupGrid { //p_vat_groupGrid class @2-E07DB011
             $Tpl->block_path = $ParentPath;
             return;
         }
-        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("p_vat_type_id", "s_keyword", "ccsForm"));
+        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("p_vat_group_id", "s_keyword", "ccsForm"));
         $this->Insert_Link->Parameters = CCAddParam($this->Insert_Link->Parameters, "FLAG", "ADD");
         $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
         $this->Navigator->PageSize = $this->PageSize;
