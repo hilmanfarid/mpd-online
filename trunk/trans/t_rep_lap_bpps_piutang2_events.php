@@ -45,7 +45,7 @@ function Page_BeforeShow(& $sender)
 		if($jenis_laporan == 'all'){
 			$query	= "select *,trunc(payment_date) 
 			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
-			order by kode_ayat, wp_name, masa_pajak";	
+			order by kode_ayat, npwpd, masa_pajak";	
 			//echo $query;
 			//exit;
 		}else if($jenis_laporan == 'piutang'){
@@ -67,7 +67,7 @@ function Page_BeforeShow(& $sender)
 			(
 				SUBSTRING(rep.masa_pajak,22,4) > $year_date
 			)
-			order by kode_ayat, wp_name, masa_pajak";	
+			order by kode_ayat, npwpd, masa_pajak";	
 			//echo $query;
 			//exit;
 		}else if($jenis_laporan == 'murni'){
@@ -75,7 +75,7 @@ function Page_BeforeShow(& $sender)
 			from f_rep_bpps_piutang3($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
 			EXTRACT (YEAR FROM rep.settlement_date) = $year_date
-			order by kode_ayat, wp_name, masa_pajak";
+			order by kode_ayat, npwpd, masa_pajak";
 		}
 		//die($query);
 		//echo $query;
@@ -153,7 +153,7 @@ function Page_BeforeShow(& $sender)
 			if($jenis_laporan == 'all'){
 				$query	= "select *,trunc(payment_date) 
 				from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
-				order by kode_ayat, wp_name, masa_pajak";	
+				order by kode_ayat, npwpd, masa_pajak";	
 				//echo $query;
 				//exit;
 			}else if($jenis_laporan == 'piutang'){
@@ -175,7 +175,7 @@ function Page_BeforeShow(& $sender)
 				(
 					SUBSTRING(rep.masa_pajak,22,4) > $year_date
 				)
-				order by kode_ayat, wp_name, masa_pajak";	
+				order by kode_ayat, npwpd, masa_pajak";	
 				//echo $query;
 				//exit;
 			}else if($jenis_laporan == 'murni'){
@@ -183,7 +183,7 @@ function Page_BeforeShow(& $sender)
 				from f_rep_bpps_piutang3($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 			WHERE
 				EXTRACT (YEAR FROM rep.settlement_date) = $year_date
-				order by kode_ayat, wp_name, masa_pajak";
+				order by kode_ayat, npwpd, masa_pajak";
 			}
 			//die($query);
 			//echo $query;
@@ -286,7 +286,7 @@ function GetCetakHTML($data) {
 		$output .= '<td align="right">Rp. '.number_format($item["jumlah_terima"], 2, ',', '.').'</td>';
 		$output .= '<td align="left">'.$item['masa_pajak'].'</td>';
 		$output .= '<td align="left">'.$item['kd_tap'].'</td>';
-		$output .= '<td align="left">'.$item['no_kohir'].'</td>';
+		$output .= '<td align="left">'.$item['payment_date'].'</td>';
 		$output .= '</tr>';
 		
 
@@ -551,6 +551,10 @@ function GetCetakHTML2($data) {
 }
 
 function GetCetakHTML3($data) {
+	$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
+	$date_start=str_replace("'", "",$tgl_penerimaan);
+	$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+	
 	$output = '';
 	
 	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -581,18 +585,19 @@ function GetCetakHTML3($data) {
 	$output.='<th colspan = 13 align=center>REALISASI DAN TANGGAL BAYAR</th>';
 	$output.='</tr>';
 		$output.='<tr class="Caption">';
-			$output.='<th align="center">DESEMBER</th>';
-			$output.='<th align="center">JANUARI</th>';
-			$output.='<th align="center">FEBRUARI</th>';
-			$output.='<th align="center">MARET</th>';
-			$output.='<th align="center">APRIL</th>';
-			$output.='<th align="center">MEI</th>';
-			$output.='<th align="center">JUNI</th>';
-			$output.='<th align="center">JULI</th>';
-			$output.='<th align="center">AGUSTUS</th>';
-			$output.='<th align="center">SEPTEMBER</th>';
-			$output.='<th align="center">OKTOBER</th>';
-			$output.='<th align="center">NOVEMBER</th>';
+			$output.='<th align="center">SEBELUM DESEMBER '.($year_date-1).'</th>';
+			$output.='<th align="center">DESEMBER '.($year_date-1).'</th>';
+			$output.='<th align="center">JANUARI '.$year_date.'</th>';
+			$output.='<th align="center">FEBRUARI '.$year_date.'</th>';
+			$output.='<th align="center">MARET '.$year_date.'</th>';
+			$output.='<th align="center">APRIL '.$year_date.'</th>';
+			$output.='<th align="center">MEI '.$year_date.'</th>';
+			$output.='<th align="center">JUNI '.$year_date.'</th>';
+			$output.='<th align="center">JULI '.$year_date.'</th>';
+			$output.='<th align="center">AGUSTUS '.$year_date.'</th>';
+			$output.='<th align="center">SEPTEMBER '.$year_date.'</th>';
+			$output.='<th align="center">OKTOBER '.$year_date.'</th>';
+			$output.='<th align="center">NOVEMBER '.$year_date.'</th>';
 			$output.='<th align="center">JUMLAH</th>';
 		$output.='</tr>';
 	$output.='</tr>';
@@ -615,8 +620,10 @@ function GetCetakHTML3($data) {
 	$okt=0;
 	$nov=0;
 	$des=0;
+	$xdes=0;
 	foreach($data as $item) {
 		$bln = substr($item["masa_pajak"],-7,2);
+		$thn = substr($item["masa_pajak"],-4,4);
 		if ($new == 0){
 			$output .= '<tr>';
 			$output .= '<td align="center">'.($i+1).'</td>';
@@ -626,57 +633,8 @@ function GetCetakHTML3($data) {
 			$output .= '<td align="left">'.$item['wp_name'].'</td>';
 			$output .= '<td align="left">'.$item['npwpd'].'</td>';
 			//$before = $item;
-			switch ($bln) {
-			    case "12":
-			        $des=$des+$item["jumlah_terima"];
-			        break;
-			    case "01":
-					$jan=$jan+$item["jumlah_terima"];
-			        break;
-			    case "02":
-			        $feb=$feb+$item["jumlah_terima"];
-			        break;
-			    case "03":
-			        $mar=$mar+$item["jumlah_terima"];
-			        break;
-			    case "04":
-			        $apr=$apr+$item["jumlah_terima"];
-			        break;
-			    case "05":
-			        $mei=$mei+$item["jumlah_terima"];
-			        break;
-			    case "06":
-			        $jun=$jun+$item["jumlah_terima"];
-			        break;
-			    case "07":
-			        $jul=$jul+$item["jumlah_terima"];
-			        break;
-			    case "08":
-			        $agu=$agu+$item["jumlah_terima"];
-			        break;
-			    case "09":
-			        $sep=$sep+$item["jumlah_terima"];
-			        break;
-			    case "10":
-			        $okt=$okt+$item["jumlah_terima"];
-			        break;
-			    case "11":
-			        $nov=$nov+$item["jumlah_terima"];
-			        break;
-			}
-			//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
-			//$output .= '<td align="left">'.$item['masa_pajak'].'</td>';
-			//$output .= '<td align="left">'.$item['kd_tap'].'</td>';
-			//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
-			//$output .= '</tr>';
-			$jumlahtemp += $item["jumlah_terima"];
-			$new =1;
-		}else{
-			if ($before['npwpd']==$item['npwpd']){				
+			if ($thn == $year_date && $bln != 12){
 				switch ($bln) {
-				    case "12":
-				        $des=$des+$item["jumlah_terima"];
-				        break;
 				    case "01":
 						$jan=$jan+$item["jumlah_terima"];
 				        break;
@@ -711,6 +669,71 @@ function GetCetakHTML3($data) {
 				        $nov=$nov+$item["jumlah_terima"];
 				        break;
 				}
+			}else{
+				if ($thn == ($year_date - 1) && $bln == 12){
+					$des=$des+$item["jumlah_terima"];
+				}
+				else{
+					if ($thn < $year_date){
+						$xdes=$xdes+$item["jumlah_terima"];
+					}	
+				}
+			}
+			//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
+			//$output .= '<td align="left">'.$item['masa_pajak'].'</td>';
+			//$output .= '<td align="left">'.$item['kd_tap'].'</td>';
+			//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
+			//$output .= '</tr>';
+			$jumlahtemp += $item["jumlah_terima"];
+			$new =1;
+		}else{
+			if ($before['npwpd']==$item['npwpd']){				
+				if ($thn == $year_date && $bln != 12){
+					switch ($bln) {
+					    case "01":
+							$jan=$jan+$item["jumlah_terima"];
+					        break;
+					    case "02":
+					        $feb=$feb+$item["jumlah_terima"];
+					        break;
+					    case "03":
+					        $mar=$mar+$item["jumlah_terima"];
+					        break;
+					    case "04":
+					        $apr=$apr+$item["jumlah_terima"];
+					        break;
+					    case "05":
+					        $mei=$mei+$item["jumlah_terima"];
+					        break;
+					    case "06":
+					        $jun=$jun+$item["jumlah_terima"];
+					        break;
+					    case "07":
+					        $jul=$jul+$item["jumlah_terima"];
+					        break;
+					    case "08":
+					        $agu=$agu+$item["jumlah_terima"];
+					        break;
+					    case "09":
+					        $sep=$sep+$item["jumlah_terima"];
+					        break;
+					    case "10":
+					        $okt=$okt+$item["jumlah_terima"];
+					        break;
+					    case "11":
+					        $nov=$nov+$item["jumlah_terima"];
+					        break;
+					}
+				}else{
+					if ($thn == ($year_date - 1) && $bln == 12){
+						$des=$des+$item["jumlah_terima"];
+					}
+					else{
+						if ($thn < $year_date){
+							$xdes=$xdes+$item["jumlah_terima"];
+						}	
+					}
+				}
 				//$output .= '</tr>';
 				//$output .= '<td align="CENTER" colspan=5></td>';
 				//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
@@ -721,6 +744,7 @@ function GetCetakHTML3($data) {
 				$jumlahtemp += $item["jumlah_terima"];
 				$ayat = $item["kode_ayat"];
 			}else{
+				$output .= '<td align="right">'.number_format($xdes, 2, ',', '.').'</td>';
 				$output .= '<td align="right">'.number_format($des, 2, ',', '.').'</td>';
 				$output .= '<td align="right">'.number_format($jan, 2, ',', '.').'</td>';
 				$output .= '<td align="right">'.number_format($feb, 2, ',', '.').'</td>';
@@ -753,6 +777,7 @@ function GetCetakHTML3($data) {
 				$okt=0;
 				$nov=0;
 				$des=0;
+				$xdes=0;
 				$output .= '<td align="center">'.($i+1).'</td>';
 				$output .= '<td align="center">'.$item["kode_jns_pajak"]." ".$item["kode_ayat"].'</td>';
 				$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
@@ -761,43 +786,51 @@ function GetCetakHTML3($data) {
 				$output .= '<td align="left">'.$item['npwpd'].'</td>';
 				//$before = $item;
 				//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
-				switch ($bln) {
-				    case "12":
-				        $des=$des+$item["jumlah_terima"];
-				        break;
-				    case "01":
-						$jan=$jan+$item["jumlah_terima"];
-				        break;
-				    case "02":
-				        $feb=$feb+$item["jumlah_terima"];
-				        break;
-				    case "03":
-				        $mar=$mar+$item["jumlah_terima"];
-				        break;
-				    case "04":
-				        $apr=$apr+$item["jumlah_terima"];
-				        break;
-				    case "05":
-				        $mei=$mei+$item["jumlah_terima"];
-				        break;
-				    case "06":
-				        $jun=$jun+$item["jumlah_terima"];
-				        break;
-				    case "07":
-				        $jul=$jul+$item["jumlah_terima"];
-				        break;
-				    case "08":
-				        $agu=$agu+$item["jumlah_terima"];
-				        break;
-				    case "09":
-				        $sep=$sep+$item["jumlah_terima"];
-				        break;
-				    case "10":
-				        $okt=$okt+$item["jumlah_terima"];
-				        break;
-				    case "11":
-				        $nov=$nov+$item["jumlah_terima"];
-				        break;
+				if ($thn == $year_date && $bln != 12){
+					switch ($bln) {
+					    case "01":
+							$jan=$jan+$item["jumlah_terima"];
+					        break;
+					    case "02":
+					        $feb=$feb+$item["jumlah_terima"];
+					        break;
+					    case "03":
+					        $mar=$mar+$item["jumlah_terima"];
+					        break;
+					    case "04":
+					        $apr=$apr+$item["jumlah_terima"];
+					        break;
+					    case "05":
+					        $mei=$mei+$item["jumlah_terima"];
+					        break;
+					    case "06":
+					        $jun=$jun+$item["jumlah_terima"];
+					        break;
+					    case "07":
+					        $jul=$jul+$item["jumlah_terima"];
+					        break;
+					    case "08":
+					        $agu=$agu+$item["jumlah_terima"];
+					        break;
+					    case "09":
+					        $sep=$sep+$item["jumlah_terima"];
+					        break;
+					    case "10":
+					        $okt=$okt+$item["jumlah_terima"];
+					        break;
+					    case "11":
+					        $nov=$nov+$item["jumlah_terima"];
+					        break;
+					}
+				}else{
+					if ($thn == ($year_date - 1) && $bln == 12){
+						$des=$des+$item["jumlah_terima"];
+					}
+					else{
+						if ($thn < $year_date){
+							$xdes=$xdes+$item["jumlah_terima"];
+						}	
+					}
 				}
 				//$output .= '<td align="left">'.$item['masa_pajak'].'</td>';
 				//$output .= '<td align="left">'.$item['kd_tap'].'</td>';
@@ -813,6 +846,7 @@ function GetCetakHTML3($data) {
 		$i2=$i2+1;
 		if(empty($data[$i2]))
 		{
+			$output .= '<td align="right">'.number_format($xdes, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.number_format($des, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.number_format($jan, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.number_format($feb, 2, ',', '.').'</td>';
@@ -830,7 +864,7 @@ function GetCetakHTML3($data) {
 		}
 	}
 	$output .= '<tr>';
-		$output .= '<td align="CENTER" colspan=17>TOTAL PAJAK</td>';
+		$output .= '<td align="CENTER" colspan=18>TOTAL PAJAK</td>';
 		$output .= '<td align="right">'.number_format($jumlahperayat, 2, ',', '.').'</td>';
 	$output .= '</tr>';
 	
