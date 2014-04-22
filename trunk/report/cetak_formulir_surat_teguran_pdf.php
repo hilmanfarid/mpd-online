@@ -17,6 +17,22 @@ if(empty($t_customer_order_id)){
 }else{
 $dbConn = new clsDBConnSIKP();
 
+//nip & nama
+	$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin "
+		  ."FROM p_global_param "
+		  ."WHERE code = 'TTD KADIN'";
+		  
+	$dbConn->query($ttd);
+	
+	$nama_kadin = "";
+	$nip_kadin = "";
+
+	while($dbConn->next_record()){
+		$nama_kadin = $dbConn->f("nama_kadin");
+		$nip_kadin = $dbConn->f("nip_kadin");
+	}
+
+
 $query="select * from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)";
@@ -37,19 +53,12 @@ while ($dbConn->next_record()) {
 			'debt_amount' => $dbConn->f("debt_amount"),
 			'terbilang' =>  $dbConn->f("terbilang"),
 			'debt_period_code' =>  $dbConn->f("debt_period_code"),
-			'letter_date_txt' => $dbConn->f("letter_date_txt")
+			'letter_date_txt' => $dbConn->f("letter_date_txt"),
+			'nama_kadin' => $nama_kadin,
+			'nip_kadin' => $nip_kadin
 		);
 }
-	//nip & nama
-	$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin "
-		  ."FROM p_global_param "
-		  ."WHERE code = 'TTD KADIN'";
-		  
-	$dbConn->query($ttd);
-	while($dbConn->next_record()){
-		$data["nama_kadin"] = $dbConn->f("nama_kadin");
-		$data["nip_kadin"] = $dbConn->f("nip_kadin");
-	}
+
 	
 $dbConn->close();
 }
