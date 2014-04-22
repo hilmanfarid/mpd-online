@@ -17,7 +17,9 @@ if(empty($t_customer_order_id)){
 }else{
 $dbConn = new clsDBConnSIKP();
 
-$query="select * from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)";
+$query="select * from f_debt_letter_print(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
+		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
+		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)";
 
 $dbConn->query($query);
 $data=array();
