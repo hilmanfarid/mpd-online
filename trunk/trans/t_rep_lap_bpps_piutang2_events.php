@@ -263,7 +263,7 @@ function GetCetakHTML($data) {
 	$output.='<th>NO</th>';
 	$output.='<th>NO AYAT</th>';
 	$output.='<th>NAMA AYAT</th>';
-	//$output.='<th>NO KOHIR</th>';
+	$output.='<th>NO KOHIR</th>';
 	$output.='<th>NAMA WP</th>';
 	$output.='<th>NPWPD</th>';
 	$output.='<th>JUMLAH</th>';
@@ -280,13 +280,13 @@ function GetCetakHTML($data) {
 		$output .= '<td align="center">'.($i+1).'</td>';
 		$output .= '<td align="center">'.$item["kode_jns_pajak"]." ".$item["kode_ayat"].'</td>';
 		$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
-		//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
+		$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 		$output .= '<td align="left">'.$item['wp_name'].'</td>';
 		$output .= '<td align="left">'.$item['npwpd'].'</td>';
 		$output .= '<td align="right">Rp. '.number_format($item["jumlah_terima"], 2, ',', '.').'</td>';
 		$output .= '<td align="left">'.$item['masa_pajak'].'</td>';
 		$output .= '<td align="left">'.$item['kd_tap'].'</td>';
-		$output .= '<td align="left">'.$item['payment_date'].'</td>';
+		$output .= '<td align="left">'.date("d-m-Y", strtotime($item['payment_date'])).'</td>';
 		$output .= '</tr>';
 		
 
