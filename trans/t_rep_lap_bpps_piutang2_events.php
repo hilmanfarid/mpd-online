@@ -301,7 +301,7 @@ function GetCetakHTML($data) {
 		if(($ayat != $ayatsesudah&&count($data)>1)||empty($data[$i+1])){
 			$jumlahperayat += $jumlahtemp;
 			$output .= '<tr>';
-				$output .= '<td align="CENTER" colspan=5>JUMLAH PAJAK '.$item["nama_ayat"].'</td>';
+				$output .= '<td align="CENTER" colspan=6>JUMLAH PAJAK '.$item["nama_ayat"].'</td>';
 				$output .= '<td align="right">Rp. '.number_format($jumlahtemp, 2, ',', '.').'</td>';
 			$output .= '</tr>';
 			$jumlahtemp = 0;
@@ -310,7 +310,7 @@ function GetCetakHTML($data) {
 		$i=$i+1;
 	}
 	$output .= '<tr>';
-		$output .= '<td align="CENTER" colspan=5>TOTAL PAJAK</td>';
+		$output .= '<td align="CENTER" colspan=6>TOTAL PAJAK</td>';
 		$output .= '<td align="right">Rp. '.number_format($jumlahperayat, 2, ',', '.').'</td>';
 	$output .= '</tr>';
 	
