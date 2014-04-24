@@ -148,7 +148,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  </td> 
                       <td>&nbsp;</td> 
                       <td class="search-field" align="center">&nbsp; 
-                        <!-- BEGIN Button Button_DoPrint --><input id="t_rep_bppsSearchButton_DoPrint" class="btn_tambah" onclick="cetak(); return false;" value="CETAK PDF" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoPrint --></td>
+                        <!-- BEGIN Button Button_DoPrint --><input id="t_rep_bppsSearchButton_DoPrint" class="btn_tambah" onclick="cetak(); return false;" value="CETAK PDF" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoPrint -->&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch2 --><input id="t_rep_bppsSearchButton_DoSearch2" class="btn_tambah" onclick="tampilkanLaporan(3); return false;" value="TAMPILKAN 3" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch2 --></td>
                     </tr>
                   </table>
                 </td>
@@ -188,13 +189,18 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                         }
                 }
 
-		function tampilkanLaporan(gaya_tampilan){
-			if (gaya_tampilan == 1){
-				var params = "?doAction=view_html";
-			}else{
-				var params = "?doAction=view_html2";
-			}
-			var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
+                function tampilkanLaporan(gaya_tampilan){
+                        if (gaya_tampilan == 1){
+                                var params = "?doAction=view_html";
+                        }else{
+                                                        if (gaya_tampilan == 2){
+                                                                var params = "?doAction=view_html2";
+                                                        }
+                                                        else{
+                                                                var params = "?doAction=view_html3";
+                                                        }
+                        }
+                        var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
             var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
             var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
             var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
@@ -209,7 +215,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 alert("Semua Filter Harus Diisi");
             }else {
                                 location.href="t_rep_lap_bpps_piutang2.php"+params+
-								"&tgl_penerimaan=" + tgl_penerimaan + 
+                                                                "&tgl_penerimaan=" + tgl_penerimaan + 
                                 "&p_year_period_id=" + p_year_period_id + 
                                 "&p_vat_type_id=" + p_vat_type_id+
                                 "&i_flag_setoran="+i_flag_setoran+
