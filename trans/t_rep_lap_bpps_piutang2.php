@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-28494EED
+//Class_Initialize Event @3-DB6DC658
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -92,6 +92,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->jenis_laporan->Required = true;
             $this->Button_DoPrint = & new clsButton("Button_DoPrint", $Method, $this);
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -157,7 +158,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-60BB1658
+//Operation Method @3-91E17AB1
     function Operation()
     {
         if(!$this->Visible)
@@ -178,6 +179,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_DoPrint";
             } else if($this->Button_DoSearch1->Pressed) {
                 $this->PressedButton = "Button_DoSearch1";
+            } else if($this->Button_DoSearch2->Pressed) {
+                $this->PressedButton = "Button_DoSearch2";
             }
         }
         $Redirect = "t_rep_lap_bpps_piutang2.php";
@@ -194,6 +197,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button_DoSearch2") {
+                if(!CCGetEvent($this->Button_DoSearch2->CCSEvents, "OnClick", $this->Button_DoSearch2)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -201,7 +208,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-13A44E6C
+//Show Method @3-3BF6D63F
     function Show()
     {
         global $CCSUseAmp;
@@ -267,6 +274,7 @@ function GetPrimaryKey($keyName)
         $this->jenis_laporan->Show();
         $this->Button_DoPrint->Show();
         $this->Button_DoSearch1->Show();
+        $this->Button_DoSearch2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
