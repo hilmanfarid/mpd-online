@@ -1581,7 +1581,7 @@ function GetCetakHTML3($data) {
 	else{
 		if(($jenis_laporan == 'all')){
 			$bulan2				= array();
-			$bulan2[12]['nama']='SEBELUM DESEMBER'.' '.$year_date;
+			$bulan2[12]['nama']='SEBELUM DESEMBER'.' '.($year_date-1);
 			$bulan2[12]['jumlah']=0;
 			$bulan2[0]['nama']='DESEMBER'.' '.($year_date-1);
 			$bulan2[0]['jumlah']=0;
@@ -1862,6 +1862,304 @@ function GetCetakHTML3($data) {
 	
 			$output.='</td></tr></table>';
 			$output.='</table>';
+		}else{
+			if($jenis_laporan == 'piutang'){
+				$bulan2				= array();
+				$bulan2[12]['nama']='SEBELUM DESEMBER'.' '.($year_date-2);
+				$bulan2[12]['jumlah']=0;
+				$bulan2[0]['nama']='DESEMBER'.' '.($year_date-2);
+				$bulan2[0]['jumlah']=0;
+				$bulan2[1]['nama']='JANUARI'.' '.($year_date-1);
+				$bulan2[1]['jumlah']=0;
+				$bulan2[2]['nama']='FEBRUARI'.' '.($year_date-1);
+				$bulan2[2]['jumlah']=0;
+				$bulan2[3]['nama']='MARET'.' '.($year_date-1);
+				$bulan2[3]['jumlah']=0;
+				$bulan2[4]['nama']='APRIL'.' '.($year_date-1);
+				$bulan2[4]['jumlah']=0;
+				$bulan2[5]['nama']='MEI'.' '.($year_date-1);
+				$bulan2[5]['jumlah']=0;
+				$bulan2[6]['nama']='JUNI'.' '.($year_date-1);
+				$bulan2[6]['jumlah']=0;
+				$bulan2[7]['nama']='JULI'.' '.($year_date-1);
+				$bulan2[7]['jumlah']=0;
+				$bulan2[8]['nama']='AGUSTUS'.' '.($year_date-1);
+				$bulan2[8]['jumlah']=0;
+				$bulan2[9]['nama']='SEPTEMBER'.' '.($year_date-1);
+				$bulan2[9]['jumlah']=0;
+				$bulan2[10]['nama']='OKTOBER'.' '.($year_date-1);
+				$bulan2[10]['jumlah']=0;
+				$bulan2[11]['nama']='NOVEMBER'.' '.($year_date-1);
+				$bulan2[11]['jumlah']=0;
+				$bulan2[13]['nama']='DESEMBER'.' '.$year_date;
+				$bulan2[13]['jumlah']=0;
+				
+				$jumlahtemp=0;
+				$jumlahperayat=0;
+				$i=0;
+				$i2=0;
+				$before=0;
+				$new=0;
+				
+				foreach($data as $item) {
+					$bln = substr($item["masa_pajak"],-7,2);
+					$thn = substr($item["masa_pajak"],-4,4);
+					if ($new == 0){
+						$kode=$item["kode_jns_pajak"]." ".$item["kode_ayat"];
+						$nama=$item["nama_ayat"];
+						$wp=$item["wp_name"];
+						$npwpd=$item["npwpd"];
+						if ($thn == ($year_date-1) && $bln != 12){
+							switch ($bln) {
+								case "01":
+									$bulan2[1]['jumlah']=$bulan2[1]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "02":
+									$bulan2[2]['jumlah']=$bulan2[2]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "03":
+									$bulan2[3]['jumlah']=$bulan2[3]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "04":
+									$bulan2[4]['jumlah']=$bulan2[4]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "05":
+									$bulan2[5]['jumlah']=$bulan2[5]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "06":
+									$bulan2[6]['jumlah']=$bulan2[6]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "07":
+									$bulan2[7]['jumlah']=$bulan2[7]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "08":
+									$bulan2[8]['jumlah']=$bulan2[8]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "09":
+									$bulan2[9]['jumlah']=$bulan2[9]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "10":
+									$bulan2[10]['jumlah']=$bulan2[10]['jumlah']+$item["jumlah_terima"];
+									break;
+								case "11":
+									$bulan2[11]['jumlah']=$bulan2[11]['jumlah']+$item["jumlah_terima"];
+									break;
+							}
+						}else{
+							if ($thn == ($year_date - 2) && $bln == 12){
+								$bulan2[0]['jumlah']=$bulan2[0]['jumlah']+$item["jumlah_terima"];
+							}
+							else{
+								if ($thn < $year_date){
+									$bulan2[12]['jumlah']=$bulan2[12]['jumlah']+$item["jumlah_terima"];
+								}
+								else{
+									if (($thn == $year_date && $bln == 12)){
+											$bulan2[13]['jumlah']=$bulan2[13]['jumlah']+$item["jumlah_terima"];
+									}
+									/*else{
+										if ($thn > $year_date){
+											$ydes=$ydes+$item["jumlah_terima"];
+										}
+									}*/
+								}
+							}
+						}
+						
+						$jumlahtemp += $item["jumlah_terima"];
+						$new =1;
+					}else{
+						if ($before['npwpd']==$item['npwpd']){				
+							if ($thn == ($year_date-1) && $bln != 12){
+								switch ($bln) {
+									case "01":
+										$bulan2[1]['jumlah']=$bulan2[1]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "02":
+										$bulan2[2]['jumlah']=$bulan2[2]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "03":
+										$bulan2[3]['jumlah']=$bulan2[3]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "04":
+										$bulan2[4]['jumlah']=$bulan2[4]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "05":
+										$bulan2[5]['jumlah']=$bulan2[5]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "06":
+										$bulan2[6]['jumlah']=$bulan2[6]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "07":
+										$bulan2[7]['jumlah']=$bulan2[7]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "08":
+										$bulan2[8]['jumlah']=$bulan2[8]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "09":
+										$bulan2[9]['jumlah']=$bulan2[9]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "10":
+										$bulan2[10]['jumlah']=$bulan2[10]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "11":
+										$bulan2[11]['jumlah']=$bulan2[11]['jumlah']+$item["jumlah_terima"];
+										break;
+								}
+							}else{
+								if ($thn == ($year_date - 2) && $bln == 12){
+									$bulan2[0]['jumlah']=$bulan2[0]['jumlah']+$item["jumlah_terima"];
+								}
+								else{
+									if ($thn < $year_date){
+										$bulan2[12]['jumlah']=$bulan2[12]['jumlah']+$item["jumlah_terima"];
+									}
+									else{
+										if (($thn == $year_date && $bln == 12)){
+												$bulan2[13]['jumlah']=$bulan2[13]['jumlah']+$item["jumlah_terima"];
+										}
+										/*else{
+											if ($thn > $year_date){
+												$ydes=$ydes+$item["jumlah_terima"];
+											}
+										}*/
+									}
+								}
+							}
+
+							$jumlahtemp += $item["jumlah_terima"];
+							$ayat = $item["kode_ayat"];
+						}else{
+							foreach($bulan2 as $bulan) {
+								$output .= '<tr>';
+								$output .= '<td align="center">'.($i+1).'</td>';
+								$output .= '<td align="center">'.$kode.'</td>';
+								$output .= '<td align="center">'.$nama.'</td>';
+								//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
+								$output .= '<td align="left">'.$wp.'</td>';
+								$output .= '<td align="left">'.$npwpd.'</td>';
+								$output .= '<td align="left">'.$bulan['nama'].'</td>';
+								$output .= '<td align="right">'.number_format($bulan['jumlah'], 2, ',', '.').'</td>';
+								$output .= '</tr>';
+							}
+							$output .= '<tr>';
+								$output .= '<td align="CENTER" colspan=6>JUMLAH PAJAK '.$before["wp_name"].'</td>';
+								$output .= '<td align="right">'.number_format($jumlahtemp, 2, ',', '.').'</td>';
+							$output .= '</tr>';
+							$jumlahperayat += $jumlahtemp;
+							$jumlahtemp=0;
+							$kode=$item["kode_jns_pajak"]." ".$item["kode_ayat"];
+							$nama=$item["nama_ayat"];
+							$wp=$item["wp_name"];
+							$npwpd=$item["npwpd"];
+							$bulan2[1]['jumlah']=0;
+							$bulan2[2]['jumlah']=0;
+							$bulan2[3]['jumlah']=0;
+							$bulan2[4]['jumlah']=0;
+							$bulan2[5]['jumlah']=0;
+							$bulan2[6]['jumlah']=0;
+							$bulan2[7]['jumlah']=0;
+							$bulan2[8]['jumlah']=0;
+							$bulan2[9]['jumlah']=0;
+							$bulan2[10]['jumlah']=0;
+							$bulan2[11]['jumlah']=0;
+							$bulan2[0]['jumlah']=0;
+							$bulan2[12]['jumlah']=0;
+							$bulan2[13]['jumlah']=0;
+							
+							if ($thn == ($year_date-1) && $bln != 12){
+								switch ($bln) {
+									case "01":
+										$bulan2[1]['jumlah']=$bulan2[1]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "02":
+										$bulan2[2]['jumlah']=$bulan2[2]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "03":
+										$bulan2[3]['jumlah']=$bulan2[3]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "04":
+										$bulan2[4]['jumlah']=$bulan2[4]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "05":
+										$bulan2[5]['jumlah']=$bulan2[5]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "06":
+										$bulan2[6]['jumlah']=$bulan2[6]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "07":
+										$bulan2[7]['jumlah']=$bulan2[7]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "08":
+										$bulan2[8]['jumlah']=$bulan2[8]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "09":
+										$bulan2[9]['jumlah']=$bulan2[9]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "10":
+										$bulan2[10]['jumlah']=$bulan2[10]['jumlah']+$item["jumlah_terima"];
+										break;
+									case "11":
+										$bulan2[11]['jumlah']=$bulan2[11]['jumlah']+$item["jumlah_terima"];
+										break;
+								}
+							}else{
+								if ($thn == ($year_date - 2) && $bln == 12){
+									$bulan2[0]['jumlah']=$bulan2[0]['jumlah']+$item["jumlah_terima"];
+								}
+								else{
+									if ($thn < $year_date){
+										$bulan2[12]['jumlah']=$bulan2[12]['jumlah']+$item["jumlah_terima"];
+									}
+									else{
+										if (($thn == $year_date && $bln == 12)){
+												$bulan2[13]['jumlah']=$bulan2[13]['jumlah']+$item["jumlah_terima"];
+										}
+										/*else{
+											if ($thn > $year_date){
+												$ydes=$ydes+$item["jumlah_terima"];
+											}
+										}*/
+									}
+								}
+							}
+							$jumlahtemp += $item["jumlah_terima"];
+							$i=$i+1;
+		
+						}
+					}
+		
+					$before = $item;
+					$i2=$i2+1;
+					if(empty($data[$i2]))
+					{
+						$jumlahperayat += $jumlahtemp;
+						foreach($bulan2 as $bulan) {
+							$output .= '<tr>';
+							$output .= '<td align="center">'.($i+1).'</td>';
+							$output .= '<td align="center">'.$kode.'</td>';
+							$output .= '<td align="center">'.$nama.'</td>';
+							//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
+							$output .= '<td align="left">'.$wp.'</td>';
+							$output .= '<td align="left">'.$npwpd.'</td>';
+							$output .= '<td align="left">'.$bulan['nama'].'</td>';
+							$output .= '<td align="right">'.number_format($bulan['jumlah'], 2, ',', '.').'</td>';
+							$output .= '</tr>';
+						}
+						$output .= '<tr>';
+							$output .= '<td align="CENTER" colspan=6>JUMLAH PAJAK '.$before["wp_name"].'</td>';
+							$output .= '<td align="right">'.number_format($jumlahtemp, 2, ',', '.').'</td>';
+						$output .= '</tr>';
+					}
+				}
+				$output .= '<tr>';
+					$output .= '<td align="CENTER" colspan=6>TOTAL PAJAK</td>';
+					$output .= '<td align="right">'.number_format($jumlahperayat, 2, ',', '.').'</td>';
+				$output .= '</tr>';
+
+				$output.='</td></tr></table>';
+				$output.='</table>';
+			}
 		}
 		
 	}
