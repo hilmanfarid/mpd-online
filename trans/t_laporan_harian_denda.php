@@ -45,7 +45,7 @@ class clsRecordt_laporan_harian_denda { //t_laporan_harian_denda Class @2-0082D9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-B9F431D6
+//Class_Initialize Event @2-91E4FB0A
     function clsRecordt_laporan_harian_denda($RelativePath, & $Parent)
     {
 
@@ -83,6 +83,7 @@ class clsRecordt_laporan_harian_denda { //t_laporan_harian_denda Class @2-0082D9
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->vat_code->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -145,7 +146,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-5697889A
+//Operation Method @2-8BDE2073
     function Operation()
     {
         if(!$this->Visible)
@@ -162,12 +163,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button1";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = "t_laporan_harian_denda.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -177,7 +184,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-DA136871
+//Show Method @2-CCE1EA27
     function Show()
     {
         global $CCSUseAmp;
@@ -237,6 +244,7 @@ function GetPrimaryKey($keyName)
         $this->cetak_laporan->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
