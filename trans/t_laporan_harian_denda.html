@@ -17,7 +17,19 @@
                 params += "&date_start_laporan="+document.getElementById("t_laporan_harian_dendadate_start_laporan").value;
                 params += "&date_end_laporan="+document.getElementById("t_laporan_harian_dendadate_end_laporan").value;
                 params += "&p_year_period_id="+document.getElementById("t_laporan_harian_dendap_year_period_id").value;
-				params += "&p_vat_type_id="+document.getElementById("t_laporan_harian_dendap_vat_type_id").value; 
+                                params += "&p_vat_type_id="+document.getElementById("t_laporan_harian_dendap_vat_type_id").value; 
+                window.open("t_laporan_harian_denda.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+        }
+
+
+		function printLaporanExcel(){
+                var params = "?cetak_laporan="+document.getElementById("t_laporan_harian_dendacetak_laporan").value;
+				params += "&cetak_excel=T";
+                params += "&year_code="+document.getElementById("t_laporan_harian_dendayear_code").value;
+                params += "&date_start_laporan="+document.getElementById("t_laporan_harian_dendadate_start_laporan").value;
+                params += "&date_end_laporan="+document.getElementById("t_laporan_harian_dendadate_end_laporan").value;
+                params += "&p_year_period_id="+document.getElementById("t_laporan_harian_dendap_year_period_id").value;
+                params += "&p_vat_type_id="+document.getElementById("t_laporan_harian_dendap_vat_type_id").value; 
                 window.open("t_laporan_harian_denda.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
 </script>
@@ -56,12 +68,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN PENCETAKAN HARIAN PENERIMAAN SPTPD&nbsp; 
+        LAPORAN PENERIMAAN TUNGGAKAN&nbsp; 
       </div>
     </div>
   </div>
@@ -88,8 +100,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                     <tr class="Controls">
                       <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Tanggal&nbsp;</label></td> 
-                      <td class="search-field"><label for="t_laporan_harian_dendadate_start_laporan">&nbsp;</label><input id="t_laporan_harian_dendadate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
-                        <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_dendaDatePicker_date_start_laporan1"><img id="t_laporan_harian_dendaDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 --><input id="t_laporan_harian_dendadate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
+                      <td class="search-field"><label for="t_laporan_harian_dendadate_start_laporan">&nbsp;</label><input id="t_laporan_harian_dendadate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">
+                        <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_dendaDatePicker_date_start_laporan1"><img id="t_laporan_harian_dendaDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s.d &nbsp;<input id="t_laporan_harian_dendadate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">
                         <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_dendaDatePicker_end_start_laporan1"><img id="t_laporan_harian_dendaDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
                     </tr>
  
@@ -99,8 +111,9 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     </tr>
  
                     <tr>
-                      <td colspan="2" align="right">
-                        <!-- BEGIN Button Button1 --><input id="t_laporan_harian_dendaButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
+                      <td colspan="2" align="right">&nbsp; 
+                        <!-- BEGIN Button Button2 --><input id="t_laporan_harian_dendaButton2" class="btn_tambah" onclick="printLaporanExcel()" name="{Button_Name}" alt="Button1" value="Download Excel" type="button"><!-- END Button Button2 -->&nbsp;&nbsp; &nbsp;
+                        <!-- BEGIN Button Button1 --><input id="t_laporan_harian_dendaButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download PDF" type="button"><!-- END Button Button1 --></td>
                     </tr>
                   </table>
                 </td>
@@ -123,7 +136,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 function lov_vat_type() {
                         getFrom_LOV('t_laporan_harian_denda','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
-		 function lov_ayatpajak() {
+                 function lov_ayatpajak() {
                         getFrom_LOV('t_laporan_harian_denda','p_vat_type_id,vat_code','lov_vat_type.php');
                 }
   </script>
