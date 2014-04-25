@@ -286,7 +286,7 @@ ORDER BY
 	$total_sptpd = 0;
 	$total_denda = 0;
 
-	$filename = "laporan_harian_denda.xls";
+	$filename = "laporan_harian_penerimaan_tunggakan.xls";
 	header("Content-type: application/vnd.ms-excel");
 	header("Content-Disposition: attachment; filename=$filename");
 	header("Expires: 0");
