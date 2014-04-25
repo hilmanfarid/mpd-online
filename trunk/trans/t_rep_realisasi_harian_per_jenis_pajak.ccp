@@ -57,18 +57,25 @@
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<TextBox id="565" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan_last" PathID="t_rep_bppsSearchtgl_penerimaan_last" format="dd-mm-yyyy" required="True">
+				<TextBox id="565" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan_last" PathID="t_rep_bppsSearchtgl_penerimaan_last" format="dd-mm-yyyy" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="566" name="DatePicker_tgl_penerimaan_last1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_bppsSearchDatePicker_tgl_penerimaan_last1" control="tgl_penerimaan_last" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</DatePicker>
+				<DatePicker id="566" name="DatePicker_tgl_penerimaan_last1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_bppsSearchDatePicker_tgl_penerimaan_last1" control="tgl_penerimaan_last" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+				<Button id="567" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_bppsSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
@@ -106,5 +113,10 @@
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="568"/>
+</Actions>
+</Event>
+</Events>
 </Page>
