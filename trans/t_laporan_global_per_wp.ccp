@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="None" wizardThemeVersion="3.0" pasteActions="pasteActions" needGeneration="0">
 	<Components>
-		<Record id="2" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_laporan_global_per_wp" returnPage="t_laporan_global_per_wp.ccp" PathID="t_laporan_global_per_wp">
+		<Record id="2" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_laporan_global_per_wp" returnPage="t_laporan_global_per_wp.ccp" PathID="t_laporan_global_per_wp" pasteActions="pasteActions">
 			<Components>
 				<TextBox id="4" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="rqst_type_code" PathID="t_laporan_global_per_wprqst_type_code">
 					<Components/>
@@ -8,12 +8,6 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Button id="7" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_laporan_global_per_wpButton1">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<Hidden id="9" fieldSourceType="DBColumn" dataType="Text" name="cetak_laporan" PathID="t_laporan_global_per_wpcetak_laporan">
 					<Components/>
 					<Events/>
@@ -50,7 +44,19 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Button id="19" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_global_per_wpButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="7" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_laporan_global_per_wpButton1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
