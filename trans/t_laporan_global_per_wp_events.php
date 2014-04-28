@@ -209,7 +209,7 @@ function print_excel($param_arr) {
 	}
 	
 	echo '<tr>
-		<td colspan="4"> <b> JUMLAH </b> </td>
+		<td colspan="4" align="center"> <b> JUMLAH </b> </td>
 		<td align="right"><b>'.number_format($jumlah, 2, ",", ".").'</b></td>
 		<td align="right"><b>'.$jumlah_wp.'</b></td>
 	</tr>';
