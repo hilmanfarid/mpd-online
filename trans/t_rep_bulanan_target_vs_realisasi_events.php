@@ -98,7 +98,6 @@ function GetCetakGeneralHTML($param_arr) {
 	
 	
 	$output = '';
-	
 	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="70%" style="margin-left:10px;padding:5px 5px 5px 5px;">
           		<tr>
             		<td valign="top">';
@@ -110,7 +109,7 @@ function GetCetakGeneralHTML($param_arr) {
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               	</table>';
-	$output .= '<div align="right"><a href="#" onClick="downloadGeneral();"> Download Excel </a></div>';
+	//$output .= '<div align="right"><a href="#" onClick="downloadGeneral();"> Download Excel </a></div>';
 	$output .= '<h3>BIDANG PAJAK PENDAFTARAN & PAJAK PENETAPAN</h3>';
 	$output .= '<h3>PERIODE : '.$param_arr["pajak_periode"].' s.d '.$param_arr["pajak_periode1"].'</h3> <br/>';
 	
