@@ -19,7 +19,24 @@ function Page_BeforeShow(& $sender)
 //Custom Code @10-2A29BDB7
 // -------------------------
     // Write your own code here.
-    if($t_laporan_global_per_wp->cetak_laporan->GetValue()=='T'){
+    $cetak_laporan = CCGetFromGet("cetak_laporan", "");
+
+	if($cetak_laporan == 'excel') {
+		
+		$param_arr=array();
+		$param_arr['date_start']=$t_laporan_global_per_wp->date_start_laporan->GetValue();
+		$param_arr['date_end']=$t_laporan_global_per_wp->date_end_laporan->GetValue();
+		if(empty($param_arr['date_start'])){
+			$param_arr['date_start']=$param_arr['year_code'].'-01-01';
+		}
+		if(empty($param_arr['date_end'])){
+			$param_arr['date_end']=$param_arr['year_code'].'-12-31';
+		}
+		$param_arr['p_rqst_type_id']=$t_laporan_global_per_wp->p_rqst_type_id->GetValue();
+		$param_arr['rqst_type_code']=$t_laporan_global_per_wp->rqst_type_code->GetValue();
+		print_excel($param_arr);
+
+	}elseif($t_laporan_global_per_wp->cetak_laporan->GetValue()=='T'){
 		$param_arr=array();
 		//$param_arr['year_code']=$t_laporan_global_per_wp->year_code->GetValue();
 		//$param_arr['year_period_id']=$t_laporan_global_per_wp->p_year_period_id->GetValue();
@@ -126,6 +143,79 @@ function dateToString($date){
 	$pieces = explode('-', $date);
 	
 	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
+}
+
+
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
+
+
+function print_excel($param_arr) {
+	
+	startExcel("lapora_global_per_wp");
+	echo "<div><h3> Penerimaan Global Per WP</h3></div>";	
+	echo "<div><b>Jenis Pajak : ".$param_arr['rqst_type_code']."</b></div>";	
+	echo "<div><b>Tanggal : ".dateToString($param_arr['date_start'])." s.d ".dateToString($param_arr['date_end'])."</b></div><br/>";	
+
+	$dbConn = new clsDBConnSIKP();
+	$query="select * from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
+	$dbConn->query($query);
+
+	$no =1;
+	$jumlah = 0;
+
+	echo '<table border="1">';
+	echo '<tr>
+			<th>NO</th>
+			<th>NAMA WP</th>
+			<th>ALAMAT</th>
+			<th>NPWPD</th>
+			<th>BESARNYA (Rp)</th>
+			<th>JML SSPD</th>
+			<th>NAMA AYAT</th>
+			<th>KETERANGAN</th>
+		</tr>';
+	
+	
+	while($dbConn->next_record()){
+		$items[] = array('nama_wp' => $dbConn->f("nama_wp"),
+					   'alamat_wp' => $dbConn->f("alamat_wp"),
+					   'npwpd' => $dbConn->f("npwpd"),
+					   'amount' => $dbConn->f("amount"),
+					   'tot_sspd' => $dbConn->f("tot_sspd"),
+					   'jenis_pajak' => $dbConn->f("jenis_pajak")
+						);
+		
+		echo '<tr>';
+		echo '<td>'.$no.'</td>';
+		echo '<td>'.$dbConn->f("nama_wp").'</td>';
+		echo '<td>'.$dbConn->f("alamat_wp").'</td>';
+		echo '<td>'.$dbConn->f("npwpd").'</td>';
+		echo '<td align="right">'.number_format($dbConn->f("amount"), 2, ",", ".").'</td>';
+		echo '<td align="right">'.$dbConn->f("tot_sspd").'</td>';
+		echo '<td>'.$dbConn->f('jenis_pajak').'</td>';
+		echo '<td>&nbsp;</td>';
+		echo '</tr>';
+		
+		$jumlah += $dbConn->f("amount");
+		$jumlah_wp += $dbConn->f("tot_sspd");
+		$no++;
+	}
+	
+	echo '<tr>
+		<td colspan="4"> <b> JUMLAH </b> </td>
+		<td align="right"><b>'.number_format($jumlah, 2, ",", ".").'</b></td>
+		<td align="right"><b>'.$jumlah_wp.'</b></td>
+	</tr>';
+	echo '</table>';
+
+	exit;
 }
 
 ?>
