@@ -193,7 +193,7 @@ function print_excel($param_arr) {
 						);
 		
 		echo '<tr>';
-		echo '<td>'.$no.'</td>';
+		echo '<td align="center">'.$no.'</td>';
 		echo '<td>'.$dbConn->f("nama_wp").'</td>';
 		echo '<td>'.$dbConn->f("alamat_wp").'</td>';
 		echo '<td>'.$dbConn->f("npwpd").'</td>';
