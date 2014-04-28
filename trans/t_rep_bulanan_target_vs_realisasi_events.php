@@ -113,9 +113,8 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .= '<h3>BIDANG PAJAK PENDAFTARAN & PAJAK PENETAPAN</h3>';
 	$output .= '<h3>PERIODE : '.$param_arr["pajak_periode"].' s.d '.$param_arr["pajak_periode1"].'</h3> <br/>';
 	
-	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="4px">
-                <tr class="Caption">';
-
+	$output .='<table class="report" cellspacing="0" cellpadding="4px" width="100%">
+                <tr style="background:#498CD6;color:#FFFFFF;">';
 	$output .= '<th width="150">JENIS PAJAK</th>';
 	$output .= '<th width="150">TARGET</th>';
 	$output .= '<th width="150">REALISASI</th>';
@@ -178,7 +177,7 @@ function GetCetakGeneralHTML($param_arr) {
 			$total_selisih_ += $item['selisih'];	
 		} else {
 			
-			$output .= '<tr style="background:#004080;font-weight:bold;color:#FFFFFF;">';
+			$output .= '<tr style="background:#498CD6;font-weight:bold;color:#FFFFFF;">';
 			$output .= '<td style="padding-left:20px;"> JUMLAH '.$pajak_text.'</td>';
 			$output .= '<td align="right"> '.number_format($total_target_, 0, ',', '.').' </td>';
 			$output .= '<td align="right"> '.number_format($total_realisasi_, 0, ',', '.').'</td>';
@@ -213,7 +212,7 @@ function GetCetakGeneralHTML($param_arr) {
 		}			
 
 	}
-			$output .= '<tr style="background:#004080;font-weight:bold;color:#FFFFFF;">';
+			$output .= '<tr style="background:#498CD6;font-weight:bold;color:#FFFFFF;">';
 			$output .= '<td style="padding-left:20px;"> JUMLAH '.$pajak_text.'</td>';
 			$output .= '<td align="right"> '.number_format($total_target_, 0, ',', '.').' </td>';
 			$output .= '<td align="right"> '.number_format($total_realisasi_, 0, ',', '.').'</td>';
@@ -222,7 +221,7 @@ function GetCetakGeneralHTML($param_arr) {
 			
 
 			$itemReklame = getDataRowReklame($param_arr['p_year_period_id'], $date_awal, $date_akhir);
-			$output .= '<tr style="background:#004080;font-weight:bold;color:#FFFFFF;">';
+			$output .= '<tr style="background:#498CD6;font-weight:bold;color:#FFFFFF;">';
 			$output .= '<td style="padding-left:20px;"> JUMLAH REKLAME </td>';
 			$output .= '<td align="right"> '.number_format($itemReklame['target'], 0, ',', '.').' </td>';
 			$output .= '<td align="right"> '.number_format($itemReklame['realisasi'], 0, ',', '.').'</td>';
