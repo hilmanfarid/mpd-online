@@ -45,7 +45,7 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-FB4CC830
+//Class_Initialize Event @2-606D1CB6
     function clsRecordt_laporan_global_per_wp($RelativePath, & $Parent)
     {
 
@@ -70,7 +70,6 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->rqst_type_code = & new clsControl(ccsTextBox, "rqst_type_code", "rqst_type_code", ccsText, "", CCGetRequestParam("rqst_type_code", $Method, NULL), $this);
-            $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
             $this->date_start_laporan = & new clsControl(ccsTextBox, "date_start_laporan", "date_start_laporan", ccsText, "", CCGetRequestParam("date_start_laporan", $Method, NULL), $this);
             $this->date_start_laporan->Required = true;
@@ -79,6 +78,8 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
             $this->date_end_laporan->Required = true;
             $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_laporan_global_per_wp", "date_end_laporan", $this);
             $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsText, "", CCGetRequestParam("p_rqst_type_id", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->Button1 = & new clsButton("Button1", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -135,7 +136,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-F617DD16
+//Operation Method @2-2D8FAEC4
     function Operation()
     {
         if(!$this->Visible)
@@ -149,14 +150,20 @@ function GetPrimaryKey($keyName)
         }
 
         if($this->FormSubmitted) {
-            $this->PressedButton = "Button1";
-            if($this->Button1->Pressed) {
+            $this->PressedButton = "Button2";
+            if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
+            } else if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
             }
         }
         $Redirect = "t_laporan_global_per_wp.php";
         if($this->Validate()) {
-            if($this->PressedButton == "Button1") {
+            if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
                     $Redirect = "";
                 }
@@ -167,7 +174,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-BF3833F9
+//Show Method @2-7158F43A
     function Show()
     {
         global $CCSUseAmp;
@@ -216,13 +223,14 @@ function GetPrimaryKey($keyName)
         }
 
         $this->rqst_type_code->Show();
-        $this->Button1->Show();
         $this->cetak_laporan->Show();
         $this->date_start_laporan->Show();
         $this->DatePicker_date_start_laporan1->Show();
         $this->date_end_laporan->Show();
         $this->DatePicker_end_start_laporan1->Show();
         $this->p_rqst_type_id->Show();
+        $this->Button2->Show();
+        $this->Button1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
