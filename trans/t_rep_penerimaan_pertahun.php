@@ -45,7 +45,7 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-04F73C84
+//Class_Initialize Event @3-65CF7DAD
     function clsRecordt_rep_penerimaan_pertahunSearch($RelativePath, & $Parent)
     {
 
@@ -82,6 +82,7 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
             $this->status_bayar->Values = array(array("1", "Tidak Bayar"), array("2", "Bayar"));
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -146,7 +147,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-5094987B
+//Operation Method @3-A402D1C0
     function Operation()
     {
         if(!$this->Visible)
@@ -165,6 +166,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_DoSearch";
             } else if($this->Button_DoSearch1->Pressed) {
                 $this->PressedButton = "Button_DoSearch1";
+            } else if($this->Button_DoSearch2->Pressed) {
+                $this->PressedButton = "Button_DoSearch2";
             }
         }
         $Redirect = "t_rep_penerimaan_pertahun.php";
@@ -177,6 +180,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button_DoSearch2") {
+                if(!CCGetEvent($this->Button_DoSearch2->CCSEvents, "OnClick", $this->Button_DoSearch2)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -184,7 +191,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-77309CF2
+//Show Method @3-C375E5FC
     function Show()
     {
         global $CCSUseAmp;
@@ -246,6 +253,7 @@ function GetPrimaryKey($keyName)
         $this->status_bayar->Show();
         $this->Button_DoSearch->Show();
         $this->Button_DoSearch1->Show();
+        $this->Button_DoSearch2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -285,7 +293,7 @@ include_once("./t_rep_penerimaan_pertahun_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-A6954445
+//Initialize Objects @1-213BCF56
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -293,7 +301,10 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_rep_penerimaan_pertahunSearch = & new clsRecordt_rep_penerimaan_pertahunSearch("", $MainPage);
+$Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", ccsGet, NULL), $MainPage);
+$Label1->HTML = true;
 $MainPage->t_rep_penerimaan_pertahunSearch = & $t_rep_penerimaan_pertahunSearch;
+$MainPage->Label1 = & $Label1;
 
 BindEvents();
 
@@ -332,8 +343,9 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-D45EB650
+//Show Page @1-9399E17E
 $t_rep_penerimaan_pertahunSearch->Show();
+$Label1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
