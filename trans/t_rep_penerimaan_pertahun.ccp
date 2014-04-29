@@ -69,14 +69,21 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="567" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch1">
+				<Button id="567" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch1">
 					<Components/>
 					<Events>
 					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+				<Button id="568" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch2" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch2">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -98,6 +105,12 @@
 			<Attributes/>
 			<Features/>
 		</Record>
+		<Label id="21" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_penerimaan_pertahun_events.php" forShow="False" comment="//" codePage="windows-1252"/>
@@ -113,5 +126,10 @@
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="569"/>
+</Actions>
+</Event>
+</Events>
 </Page>
