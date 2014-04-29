@@ -162,9 +162,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_1_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_01_paydate"][$i])).'</td>';
 			$output.='<td>JANUARI '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_1_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_01_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
@@ -172,9 +172,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_2_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_02_paydate"][$i])).'</td>';
 			$output.='<td>FEBRUARI '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_2_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_02_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
@@ -182,9 +182,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_3_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_03_paydate"][$i])).'</td>';
 			$output.='<td>MARET '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_3_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_03_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
@@ -192,9 +192,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_4_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_04_paydate"][$i])).'</td>';
 			$output.='<td>APRIL '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_4_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_04_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
@@ -202,9 +202,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_5_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_05_paydate"][$i])).'</td>';
 			$output.='<td>MEI '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_5_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_05_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
@@ -212,9 +212,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_6_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_06_paydate"][$i])).'</td>';
 			$output.='<td>JUNI '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_6_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_06_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
@@ -222,9 +222,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_7_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_07_paydate"][$i])).'</td>';
 			$output.='<td>JULI '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_7_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_07_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
@@ -232,9 +232,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_8_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_08_paydate"][$i])).'</td>';
 			$output.='<td>AGUSTUS '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_8_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_08_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
@@ -242,9 +242,9 @@ function GetCetakHTML($data) {
 			$output.='<td>'.($i2+1).'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
-			$output.='<td>'.date("d-m-Y", strtotime($data["f_9_paydate"][$i])).'</td>';
+			$output.='<td>'.date("d-m-Y", strtotime($data["f_09_paydate"][$i])).'</td>';
 			$output.='<td>SEPTEMBER '.$data["tahun"][0].'</td>';
-			$output.='<td align="right">'.number_format($data["f_9_amt"][$i], 2, ',', '.').'</td>';
+			$output.='<td align="right">'.number_format($data["f_09_amt"][$i], 2, ',', '.').'</td>';
 		$output .= '</tr>';
 		$i2=$i2+1;
 
