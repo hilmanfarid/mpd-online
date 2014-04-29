@@ -321,7 +321,7 @@ class FormCetak extends FPDF {
 		$this->newLine();				
 		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR, SE.)", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
 		$this->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
 		$this->newLine();
 		$this->Cell($lbody1 + 10, $this->height - 4, "NIP : 19630817.1989.01.1.006 ", "", 0, 'C');
