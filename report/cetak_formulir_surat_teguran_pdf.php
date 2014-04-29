@@ -180,7 +180,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array("Perihal",
 				":",
-				"SURAT TEGURAN ".$data["sequence_no"]
+				"SURAT TEGURAN"
 			),
 			array("L",
 				"",
@@ -265,7 +265,7 @@ class FormCetak extends FPDF {
 		$this->SetFont('BKANT', '', 12);
 		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
 		// $this->newLine();
-		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN", "LR", 0, 'C');
+		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN ".numberToRoman($data["sequence_no"]), "LR", 0, 'C');
 		$this->newLine();
 		
 		$this->SetFont('BKANT', '', 12);
@@ -724,6 +724,36 @@ function dateToString($date){
 	
 	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
 }
+
+
+// A function to return the Roman Numeral, given an integer
+ function numberToRoman($num)
+ {
+     // Make sure that we only use the integer portion of the value
+     $n = intval($num);
+     $result = '';
+ 
+     // Declare a lookup array that we will use to traverse the number:
+     $lookup = array('M' => 1000, 'CM' => 900, 'D' => 500, 'CD' => 400,
+     'C' => 100, 'XC' => 90, 'L' => 50, 'XL' => 40,
+     'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1);
+ 
+     foreach ($lookup as $roman => $value)
+     {
+         // Determine the number of matches
+         $matches = intval($n / $value);
+ 
+         // Store that many characters
+         $result .= str_repeat($roman, $matches);
+ 
+         // Substract that from the number
+         $n = $n % $value;
+     }
+ 
+     // The Roman numeral should be built, return it
+     return $result;
+ }
+
 
 $formulir = new FormCetak();
 $no_urut=0;
