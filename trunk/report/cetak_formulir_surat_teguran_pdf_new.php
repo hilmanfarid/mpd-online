@@ -321,7 +321,7 @@ class FormCetak extends FPDF {
 		
 		$new=0;
 
-		foreach($i=0;i<(count$data['masa_pajak']); $i++){
+		foreach($i=0; $i<(count$data['masa_pajak']); $i++){
 			$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, $ltable3, 5));
 			$this->SetAligns(array("L", "C", "C", "L"));
 			$this->RowMultiBorderWithHeight(
