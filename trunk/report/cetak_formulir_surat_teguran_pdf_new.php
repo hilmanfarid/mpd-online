@@ -291,16 +291,20 @@ class FormCetak extends FPDF {
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
-		$this->SetWidths(array(10+$ltable3, $ltable4, $ltable4, 5+$ltable4));
+		$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, ltable4, 5));
 		$this->SetAligns(array("L", "C", "C", "L"));
 		
 		$this->RowMultiBorderWithHeight(
 			array("",
-				"NAMA AYAT",
+				"PAJAK",
 				"MASA PAJAK",
+				"SPTPD",
+				"TGL. SETOR",
 				""
 			),
 			array("LR",
+				"TBLR",
+				"TBLR",
 				"TBLR",
 				"TBLR",
 				"LR"
@@ -317,16 +321,20 @@ class FormCetak extends FPDF {
 		
 		$new=0;
 
-		foreach($data['masa_pajak'] as $item){
-			$this->SetWidths(array(10+$ltable3, $ltable4, $ltable4, 5+$ltable3));
+		foreach($i=0;i<(count$data['masa_pajak']); $i++){
+			$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, $ltable3, 5));
 			$this->SetAligns(array("L", "C", "C", "L"));
 			$this->RowMultiBorderWithHeight(
 			array("",
 					$data["nama_ayat"],
-					$item["masa_pajak"],
+					$data["masa_pajak"][$i],
+					"-",
+					"-",
 					""
 				),
 				array("LR",
+					"TBLR",
+					"TBLR",
 					"TBLR",
 					"TBLR",
 					"LR"
