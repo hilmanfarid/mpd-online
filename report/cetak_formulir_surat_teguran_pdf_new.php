@@ -61,9 +61,9 @@ while ($dbConn->next_record()) {
 		}
 	}	
 }
-//echo '<pre>';
-//print_r($data_new);
-//echo '</pre>';
+echo '<pre>';
+print_r($data_new);
+echo '</pre>';
 	
 $dbConn->close();
 
@@ -295,7 +295,7 @@ class FormCetak extends FPDF {
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
-		$this->SetWidths(array(10, $ltable4, $ltable4, 5));
+		$this->SetWidths(array(10+$ltable3, $ltable4, $ltable4, 5+$ltable4));
 		$this->SetAligns(array("L", "C", "C", "L"));
 		
 		$this->RowMultiBorderWithHeight(
@@ -321,7 +321,7 @@ class FormCetak extends FPDF {
 		
 		$new=0;
 		foreach($data['masa_pajak'] as $item){
-			$this->SetWidths(array(10, $ltable4, $ltable4, 5));
+			$this->SetWidths(array(10+$ltable3, $ltable4, $ltable4, 5+$ltable3));
 			$this->SetAligns(array("L", "C", "C", "L"));
 			$this->RowMultiBorderWithHeight(
 			array("",
