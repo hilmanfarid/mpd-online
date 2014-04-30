@@ -33,8 +33,8 @@ while ($dbConn->next_record()) {
 		$data_new[$i]['npwpd'] = $dbConn->f("npwpd");
 		$data_new[$i]['nama_ayat'] = $dbConn->f("nama_ayat");
 		$data_new[$i]['wp_name'] = $dbConn->f("wp_name");
-		$data_new[$i]['company_name'] = $dbConn->f("company_name");
-		$data_new[$i]['address'] = $dbConn->f("address");
+		//$data_new[$i]['company_name'] = $dbConn->f("company_name");
+		$data_new[$i]['address'] = $dbConn->f("alamat");
 		$data_new[$i]['masa_pajak'][] = $dbConn->f("masa_pajak");
 
 		$npwd = $dbConn->f("npwpd");
@@ -49,8 +49,8 @@ while ($dbConn->next_record()) {
 			$data_new[$i]['npwpd'] = $dbConn->f("npwpd");
 			$data_new[$i]['nama_ayat'] = $dbConn->f("nama_ayat");
 			$data_new[$i]['wp_name'] = $dbConn->f("wp_name");
-			$data_new[$i]['company_name'] = $dbConn->f("company_name");
-			$data_new[$i]['address'] = $dbConn->f("address");
+			//$data_new[$i]['company_name'] = $dbConn->f("company_name");
+			$data_new[$i]['address'] = $dbConn->f("alamat");
 			$data_new[$i]['masa_pajak'][] = $dbConn->f("masa_pajak");
 
 			$npwpd = $dbConn->f("npwpd");
@@ -204,12 +204,12 @@ class FormCetak extends FPDF {
 		$this->Ln();
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array($lkepada3,22,2,63.7));
+		$this->SetWidths(array($lkepada3,22,2,100));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				"Pimpinans",
+				"Pimpinan",
 				":",
-				$data['company_name']
+				$data['wp_name']
 			),
 			array("L",
 				"",
@@ -291,7 +291,7 @@ class FormCetak extends FPDF {
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
-		$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, ltable3, 5));
+		$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, $ltable3, 5));
 		$this->SetAligns(array("L", "C", "C", "L"));
 		
 		$this->RowMultiBorderWithHeight(
