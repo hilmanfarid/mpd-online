@@ -45,7 +45,7 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-1316D029
+//Class_Initialize Event @3-790A6959
     function clsRecordt_rep_penerimaan_pertahunSearch($RelativePath, & $Parent)
     {
 
@@ -69,7 +69,6 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
@@ -82,6 +81,8 @@ class clsRecordt_rep_penerimaan_pertahunSearch { //t_rep_penerimaan_pertahunSear
             $this->DatePicker_tgl_penerimaan1 = & new clsDatePicker("DatePicker_tgl_penerimaan1", "t_rep_penerimaan_pertahunSearch", "periode_piutang_start", $this);
             $this->periode_piutang_end = & new clsControl(ccsTextBox, "periode_piutang_end", "periode_piutang_end", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("periode_piutang_end", $Method, NULL), $this);
             $this->DatePicker_tgl_penerimaan2 = & new clsDatePicker("DatePicker_tgl_penerimaan2", "t_rep_penerimaan_pertahunSearch", "periode_piutang_end", $this);
+            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -151,7 +152,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-BE1B6798
+//Operation Method @3-2B2F5199
     function Operation()
     {
         if(!$this->Visible)
@@ -168,12 +169,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoSearch1->Pressed) {
+                $this->PressedButton = "Button_DoSearch1";
             }
         }
         $Redirect = "t_rep_penerimaan_pertahun_sts.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch1") {
+                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
             }
@@ -183,7 +190,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-40856D49
+//Show Method @3-8DFFCBDE
     function Show()
     {
         global $CCSUseAmp;
@@ -236,7 +243,6 @@ function GetPrimaryKey($keyName)
             return;
         }
 
-        $this->Button_DoSearch->Show();
         $this->year_code->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
@@ -249,6 +255,8 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_tgl_penerimaan1->Show();
         $this->periode_piutang_end->Show();
         $this->DatePicker_tgl_penerimaan2->Show();
+        $this->Button_DoSearch->Show();
+        $this->Button_DoSearch1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
