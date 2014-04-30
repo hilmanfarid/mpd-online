@@ -9,7 +9,7 @@ include_once("../include/fpdf.php");
 //$dataArr = array();
 // $dataBaru = array();
 
-$jenis_pajak		= CCGetFromGet("jenis_pajak", "all");
+$jenis_pajak		= CCGetFromGet("jenis_pajak", "1");
 $nama_jenis_pajak = '';
 $dbConn = new clsDBConnSIKP();
 if ($jenis_pajak==1){
