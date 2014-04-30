@@ -207,7 +207,7 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array($lkepada3,22,2,63.7));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				"Pimpinan",
+				"Pimpinans",
 				":",
 				$data['company_name']
 			),
@@ -291,7 +291,7 @@ class FormCetak extends FPDF {
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
-		$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, ltable4, 5));
+		$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, ltable3, 5));
 		$this->SetAligns(array("L", "C", "C", "L"));
 		
 		$this->RowMultiBorderWithHeight(
