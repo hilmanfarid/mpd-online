@@ -27,6 +27,7 @@ function Page_BeforeShow(& $sender)
 		$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
 		$i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 		$tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
+		$year_code = CCGetFromGet("year_code", "");
 
 		$tgl_penerimaan = "'".$tgl_penerimaan."'";
 		$tgl_penerimaan_last = "'".$tgl_penerimaan_last."'";
@@ -35,8 +36,9 @@ function Page_BeforeShow(& $sender)
 		// $p_vat_type_id		= 1;
 		// $p_year_period_id	= 4;
 		// $tgl_penerimaan		= '15-12-2013';
-		$date_start=str_replace("'", "",$tgl_penerimaan);
-		$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+		$date_start=str_replace("'", "",$year_code);
+		//$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+		$year_date = $year_code; 		
 
 		$user				= CCGetUserLogin();
 		$data				= array();
@@ -44,14 +46,14 @@ function Page_BeforeShow(& $sender)
 		$jenis_laporan		= CCGetFromGet("jenis_laporan", "all"); 
 		if($jenis_laporan == 'all'){
 			$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
+			from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
 			order by kode_ayat, npwpd, masa_pajak";	
 			//echo $query;
 			//exit;
 		}else if($jenis_laporan == 'piutang'){
 			$border= $year_date-1;
 			$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
 			(	SUBSTRING(rep.masa_pajak,22,4) < $year_date
 				AND 
@@ -72,7 +74,7 @@ function Page_BeforeShow(& $sender)
 			//exit;
 		}else if($jenis_laporan == 'murni'){
 			$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang3($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			from f_rep_bpps_piutang3new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
 			EXTRACT (YEAR FROM rep.settlement_date) = $year_date
 			order by kode_ayat, npwpd, masa_pajak";
@@ -88,6 +90,8 @@ function Page_BeforeShow(& $sender)
 		$tahun = date("Y", strtotime($tgl_penerimaan));
 		while ($dbConn->next_record()) {
 			$data[]= array(
+			"address"	=> $dbConn->f("address"),
+			"company_name"	=> $dbConn->f("company_name"),
 			"kode_jns_trans"	=> $dbConn->f("kode_jns_trans"),
 			"jns_trans"		=> $dbConn->f("jns_trans"),
 			"kode_jns_pajak"	=> $dbConn->f("kode_jns_pajak"),
@@ -119,6 +123,7 @@ function Page_BeforeShow(& $sender)
 			$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
 			$i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 			$tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
+			$year_code = CCGetFromGet("year_code", "");
 
 			$tgl_penerimaan = "'".$tgl_penerimaan."'";
 			$tgl_penerimaan_last = "'".$tgl_penerimaan_last."'";
@@ -127,8 +132,9 @@ function Page_BeforeShow(& $sender)
 			// $p_vat_type_id		= 1;
 			// $p_year_period_id	= 4;
 			// $tgl_penerimaan		= '15-12-2013';
-			$date_start=str_replace("'", "",$tgl_penerimaan);
-			$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+			$date_start=str_replace("'", "",$year_code);
+			//$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+			$year_date = $year_code;
 
 			$user				= CCGetUserLogin();
 			$data				= array();
@@ -152,14 +158,14 @@ function Page_BeforeShow(& $sender)
 			}*/
 			if($jenis_laporan == 'all'){
 				$query	= "select *,trunc(payment_date) 
-				from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
+				from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
 				order by kode_ayat, npwpd, masa_pajak";	
 				//echo $query;
 				//exit;
 			}else if($jenis_laporan == 'piutang'){
 				$border= $year_date-1;
 				$query	= "select *,trunc(payment_date) 
-				from f_rep_bpps_piutang2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+				from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 			WHERE
 				(	SUBSTRING(rep.masa_pajak,22,4) < $year_date
 					AND 
@@ -180,7 +186,7 @@ function Page_BeforeShow(& $sender)
 				//exit;
 			}else if($jenis_laporan == 'murni'){
 				$query	= "select *,trunc(payment_date) 
-				from f_rep_bpps_piutang3($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+				from f_rep_bpps_piutang3new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 			WHERE
 				EXTRACT (YEAR FROM rep.settlement_date) = $year_date
 				order by kode_ayat, npwpd, masa_pajak";
@@ -196,6 +202,8 @@ function Page_BeforeShow(& $sender)
 			$tahun = date("Y", strtotime($tgl_penerimaan));
 			while ($dbConn->next_record()) {
 				$data[]= array(
+				"address"	=> $dbConn->f("address"),
+				"company_name"	=> $dbConn->f("company_name"),
 				"kode_jns_trans"	=> $dbConn->f("kode_jns_trans"),
 				"jns_trans"		=> $dbConn->f("jns_trans"),
 				"kode_jns_pajak"	=> $dbConn->f("kode_jns_pajak"),
@@ -325,8 +333,10 @@ function GetCetakHTML($data) {
 
 function GetCetakHTML2($data) {
 	$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
-	$date_start=str_replace("'", "",$tgl_penerimaan);
-	$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+	$year_code = CCGetFromGet("year_code", "");
+	$date_start=str_replace("'", "",$year_code);
+	//$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+	$year_date = $year_code;
 	
 	$output = '';
 	
@@ -1298,8 +1308,10 @@ function GetCetakHTML2($data) {
 
 function GetCetakHTML3($data) {
 	$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
-	$date_start=str_replace("'", "",$tgl_penerimaan);
-	$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+	$year_code = CCGetFromGet("year_code", "");
+	$date_start=str_replace("'", "",$year_code);
+	//$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+	$year_date = $year_code;
 	
 	$output = '';
 	
@@ -1324,10 +1336,12 @@ function GetCetakHTML3($data) {
 
 	$output.='<th rowspan = 1>NO</th>';
 	$output.='<th rowspan = 1>NO AYAT</th>';
+	$output.='<th rowspan = 1>JENIS PAJAK</th>';
 	$output.='<th rowspan = 1>NAMA AYAT</th>';
 	//$output.='<th>NO KOHIR</th>';
 	$output.='<th rowspan = 1>NAMA WP</th>';
 	$output.='<th rowspan = 1>NPWPD</th>';
+	$output .= '<td align="left">ALAMAT</td>';
 	$output.='<th rowspan = 1>MASA PAJAK</th>';
 	$output.='<th rowspan = 1>JUMLAH</th>';
 	$output.='</tr>';
@@ -1376,9 +1390,11 @@ function GetCetakHTML3($data) {
 			$thn = substr($item["masa_pajak"],-4,4);
 			if ($new == 0){
 				$kode=$item["kode_jns_pajak"]." ".$item["kode_ayat"];
+				$jenis=$item["jns_pajak"];
 				$nama=$item["nama_ayat"];
 				$wp=$item["wp_name"];
 				$npwpd=$item["npwpd"];
+				$address=$item["address"];
 				
 				switch ($bln) {
 					case "01":
@@ -1471,10 +1487,12 @@ function GetCetakHTML3($data) {
 						$output .= '<tr>';
 						$output .= '<td align="center">'.($i+1).'</td>';
 						$output .= '<td align="center">'.$kode.'</td>';
+						$output .= '<td align="center">'.$jenis.'</td>';
 						$output .= '<td align="center">'.$nama.'</td>';
 						//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 						$output .= '<td align="left">'.$wp.'</td>';
 						$output .= '<td align="left">'.$npwpd.'</td>';
+						$output .= '<td align="left">'.$address.'</td>';
 						$output .= '<td align="left">'.$bulan['nama'].'</td>';
 						$output .= '<td align="right">'.number_format($bulan['jumlah'], 2, ',', '.').'</td>';
 						$output .= '</tr>';
@@ -1486,8 +1504,10 @@ function GetCetakHTML3($data) {
 					
 					$kode=$item["kode_jns_pajak"]." ".$item["kode_ayat"];
 					$nama=$item["nama_ayat"];
+					$jenis=$item["jns_pajak"];
 					$wp=$item["wp_name"];
 					$npwpd=$item["npwpd"];
+					$address=$item["address"];
 					$jumlahtemp=0;
 					$bulan2[1]['jumlah']=0;
 					$bulan2[2]['jumlah']=0;
@@ -1556,10 +1576,12 @@ function GetCetakHTML3($data) {
 					$output .= '<tr>';
 					$output .= '<td align="center">'.($i+1).'</td>';
 					$output .= '<td align="center">'.$kode.'</td>';
+					$output .= '<td align="center">'.$jenis.'</td>';
 					$output .= '<td align="center">'.$nama.'</td>';
 					//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 					$output .= '<td align="left">'.$wp.'</td>';
 					$output .= '<td align="left">'.$npwpd.'</td>';
+					$output .= '<td align="left">'.$address.'</td>';
 					$output .= '<td align="left">'.$bulan['nama'].'</td>';
 					$output .= '<td align="right">'.number_format($bulan['jumlah'], 2, ',', '.').'</td>';
 					$output .= '</tr>';
@@ -1621,8 +1643,10 @@ function GetCetakHTML3($data) {
 				if ($new == 0){
 					$kode=$item["kode_jns_pajak"]." ".$item["kode_ayat"];
 					$nama=$item["nama_ayat"];
+					$jenis=$item["jns_pajak"];
 					$wp=$item["wp_name"];
 					$npwpd=$item["npwpd"];
+					$address=$item["address"];
 					if ($thn == $year_date && $bln != 12){
 						switch ($bln) {
 							case "01":
@@ -1738,10 +1762,12 @@ function GetCetakHTML3($data) {
 							$output .= '<tr>';
 							$output .= '<td align="center">'.($i+1).'</td>';
 							$output .= '<td align="center">'.$kode.'</td>';
+							$output .= '<td align="center">'.$jenis.'</td>';
 							$output .= '<td align="center">'.$nama.'</td>';
 							//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 							$output .= '<td align="left">'.$wp.'</td>';
 							$output .= '<td align="left">'.$npwpd.'</td>';
+							$output .= '<td align="left">'.$address.'</td>';
 							$output .= '<td align="left">'.$bulan['nama'].'</td>';
 							$output .= '<td align="right">'.number_format($bulan['jumlah'], 2, ',', '.').'</td>';
 							$output .= '</tr>';
@@ -1757,8 +1783,10 @@ function GetCetakHTML3($data) {
 						$jumlahtemp=0;
 						$kode=$item["kode_jns_pajak"]." ".$item["kode_ayat"];
 						$nama=$item["nama_ayat"];
+						$jenis=$item["jns_pajak"];
 						$wp=$item["wp_name"];
 						$npwpd=$item["npwpd"];
+						$address=$item["address"];
 						$bulan2[1]['jumlah']=0;
 						$bulan2[2]['jumlah']=0;
 						$bulan2[3]['jumlah']=0;
@@ -1841,10 +1869,12 @@ function GetCetakHTML3($data) {
 						$output .= '<tr>';
 						$output .= '<td align="center">'.($i+1).'</td>';
 						$output .= '<td align="center">'.$kode.'</td>';
+						$output .= '<td align="center">'.$jenis.'</td>';
 						$output .= '<td align="center">'.$nama.'</td>';
 						//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 						$output .= '<td align="left">'.$wp.'</td>';
 						$output .= '<td align="left">'.$npwpd.'</td>';
+						$output .= '<td align="left">'.$address.'</td>';
 						$output .= '<td align="left">'.$bulan['nama'].'</td>';
 						$output .= '<td align="right">'.number_format($bulan['jumlah'], 2, ',', '.').'</td>';
 						$output .= '</tr>';
@@ -1907,8 +1937,10 @@ function GetCetakHTML3($data) {
 					if ($new == 0){
 						$kode=$item["kode_jns_pajak"]." ".$item["kode_ayat"];
 						$nama=$item["nama_ayat"];
+						$jenis=$item["jns_pajak"];
 						$wp=$item["wp_name"];
 						$npwpd=$item["npwpd"];
+						$address=$item["address"];
 						if ($thn == ($year_date-1) && $bln != 12){
 							switch ($bln) {
 								case "01":
@@ -2034,10 +2066,12 @@ function GetCetakHTML3($data) {
 								$output .= '<tr>';
 								$output .= '<td align="center">'.($i+1).'</td>';
 								$output .= '<td align="center">'.$kode.'</td>';
+								$output .= '<td align="center">'.$jenis.'</td>';
 								$output .= '<td align="center">'.$nama.'</td>';
 								//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 								$output .= '<td align="left">'.$wp.'</td>';
 								$output .= '<td align="left">'.$npwpd.'</td>';
+								$output .= '<td align="left">'.$address.'</td>';
 								$output .= '<td align="left">'.$bulan['nama'].'</td>';
 								$output .= '<td align="right">'.number_format($bulan['jumlah'], 2, ',', '.').'</td>';
 								$output .= '</tr>';
@@ -2050,8 +2084,10 @@ function GetCetakHTML3($data) {
 							$jumlahtemp=0;
 							$kode=$item["kode_jns_pajak"]." ".$item["kode_ayat"];
 							$nama=$item["nama_ayat"];
+							$jenis=$item["jns_pajak"];
 							$wp=$item["wp_name"];
 							$npwpd=$item["npwpd"];
+							$address=$item["address"];
 							$bulan2[1]['jumlah']=0;
 							$bulan2[2]['jumlah']=0;
 							$bulan2[3]['jumlah']=0;
@@ -2138,10 +2174,12 @@ function GetCetakHTML3($data) {
 							$output .= '<tr>';
 							$output .= '<td align="center">'.($i+1).'</td>';
 							$output .= '<td align="center">'.$kode.'</td>';
+							$output .= '<td align="center">'.$jenis.'</td>';
 							$output .= '<td align="center">'.$nama.'</td>';
 							//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 							$output .= '<td align="left">'.$wp.'</td>';
 							$output .= '<td align="left">'.$npwpd.'</td>';
+							$output .= '<td align="left">'.$address.'</td>';
 							$output .= '<td align="left">'.$bulan['nama'].'</td>';
 							$output .= '<td align="right">'.number_format($bulan['jumlah'], 2, ',', '.').'</td>';
 							$output .= '</tr>';
