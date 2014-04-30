@@ -73,7 +73,9 @@ while ($dbConn->next_record()) {
 		}
 	}	
 }
-
+echo '<pre>';
+print_r($data_new);
+echo '</pre>';
 	
 $dbConn->close();
 
