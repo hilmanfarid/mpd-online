@@ -53,7 +53,9 @@ while ($dbConn->next_record()) {
 	}else{
 		if($before["npwpd"]==$dbConn->f("npwd")){
 			$data_new[$i]['masa_pajak'][] = $dbConn->f("masa_pajak");
+			echo 'true';
 		}else{
+			echo 'false';
 			$i=$i + 1;
 			$data_new[$i]['npwd'] = $dbConn->f("npwd");
 			$data_new[$i]['nama_ayat'] = $dbConn->f("nama_ayat");
