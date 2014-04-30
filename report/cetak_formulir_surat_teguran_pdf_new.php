@@ -216,7 +216,7 @@ class FormCetak extends FPDF {
 				"",
 				"R"
 			),
-			$this->height
+			$this->height/2
 		);
 		
 		$this->SetAligns(array("L","L","L","L"));
