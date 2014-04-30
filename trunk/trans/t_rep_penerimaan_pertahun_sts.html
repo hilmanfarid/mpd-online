@@ -63,12 +63,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN PENERIMAAN PER TAHUN&nbsp; 
+        LAPORAN POSISI WP BELUM BAYAR&nbsp; 
       </div>
     </div>
   </div>
@@ -102,7 +102,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <tr class="Controls">
                     <td class="search-field">Periode Piutang</td> 
-                    <td class="search-field" colspan="3"><input style="WIDTH: 177px; HEIGHT: 20px" id="t_rep_penerimaan_pertahunSearchperiode_piutang_start" class="ControlsRQ" name="{periode_piutang_start_Name}" maxlength="32" value="{periode_piutang_start}" size="22">&nbsp;
+                    <td class="search-field" colspan="3"><input style="WIDTH: 177px; HEIGHT: 20px" id="t_rep_penerimaan_pertahunSearchperiode_piutang_start" class="ControlsRQ" name="{periode_piutang_start_Name}" maxlength="32" value="{periode_piutang_start}" size="22">&nbsp; 
                       <!-- BEGIN DatePicker DatePicker_tgl_penerimaan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan1"><img id="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan1_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_tgl_penerimaan1 -->s/d <input style="WIDTH: 160px; HEIGHT: 20px" id="t_rep_penerimaan_pertahunSearchperiode_piutang_end" class="ControlsRQ" name="{periode_piutang_end_Name}" maxlength="32" value="{periode_piutang_end}">&nbsp; 
                       <!-- BEGIN DatePicker DatePicker_tgl_penerimaan2 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan2"><img id="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan2_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_tgl_penerimaan2 -->&nbsp;</td>
                   </tr>
@@ -117,8 +117,15 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <tr class="Controls">
                     <td class="search-field">Status WP</td> 
                     <td class="search-field" colspan="2"><input id="t_rep_penerimaan_pertahunSearchcode" class="ControlsIN" name="{code_Name}" maxlength="32" value="{code}" size="32">&nbsp;<img onclick="javascript:statuswp()" border="0" src="../images/view.gif"><input id="t_rep_penerimaan_pertahunSearchp_account_status_id" name="{p_account_status_id_Name}" value="{p_account_status_id}" type="hidden">
-                      <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_penerimaan_pertahunSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch --></td>
+                      <td class="search-field"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="search-field">&nbsp;</td> 
+                      <td class="search-field" colspan="2">
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_penerimaan_pertahunSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="Download Pdf" type="submit"><!-- END Button Button_DoSearch -->&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_penerimaan_pertahunSearchButton_DoSearch1" class="btn_tambah" onclick="cetakExcel(); return false;" name="{Button_Name}" alt="Search" value="Download Excel" type="submit"><!-- END Button Button_DoSearch1 --></td> 
+                      <td class="search-field">&nbsp;</td>
                     </tr>
                   </table>
                 </td>
@@ -154,6 +161,19 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 var period_awal = document.getElementById("t_rep_penerimaan_pertahunSearchperiode_piutang_start").value;
                                 var period_akhir = document.getElementById("t_rep_penerimaan_pertahunSearchperiode_piutang_end").value;
                 window.open("../report/cetak_rep_penerimaan_pertahun_sts.php?tgl_status='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id + "&p_account_status_id=" + p_account_status_id + "&start_piutang='" + period_awal+ "'&end_piutang='" + period_akhir+"'", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        }
+
+
+		function cetakExcel()
+        {
+                tgl_penerimaan = document.getElementById("t_rep_penerimaan_pertahunSearchtgl_penerimaan").value;
+                p_year_period_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_year_period_id").value;
+                p_vat_type_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_vat_type_id").value;
+                p_account_status_id = document.getElementById("t_rep_penerimaan_pertahunSearchp_account_status_id").value;
+                var period_awal = document.getElementById("t_rep_penerimaan_pertahunSearchperiode_piutang_start").value;
+				var period_akhir = document.getElementById("t_rep_penerimaan_pertahunSearchperiode_piutang_end").value;
+                
+				location.href = "../report/cetak_rep_penerimaan_pertahun_sts_excel.php?tgl_status='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id + "&p_account_status_id=" + p_account_status_id + "&start_piutang='" + period_awal+ "'&end_piutang='" + period_akhir+"'";
         }
         </script>
   </body>
