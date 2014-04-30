@@ -34,50 +34,36 @@ $new = 0;
 $i=0;
 while ($dbConn->next_record()) {
 	if ($new==0){
-		$data_new[$i]['npwd'] = $dbConn->f("npwd");
+		$data_new[$i]['npwpd'] = $dbConn->f("npwpd");
 		$data_new[$i]['nama_ayat'] = $dbConn->f("nama_ayat");
 		$data_new[$i]['wp_name'] = $dbConn->f("wp_name");
 		$data_new[$i]['company_name'] = $dbConn->f("company_name");
 		$data_new[$i]['address'] = $dbConn->f("address");
 		$data_new[$i]['masa_pajak'][] = $dbConn->f("masa_pajak");
 
-		$before= array(
-			'npwd' => $dbConn->f("npwd"),
-			'company_name' => $dbConn->f("company_name"),
-			'address' => $dbConn->f("address"),
-			'nama_ayat' => $dbConn->f("nama_ayat"),	
-			'masa_pajak' => $dbConn->f("masa_pajak"),
-			'wp_name' => $dbConn->f("wp_name")
-		);
+		$npwd = $dbConn->f("npwpd");
 		$new =1;
 	}else{
-		if($before["npwpd"]==$dbConn->f("npwd")){
+		if($npwpd == ($dbConn->f("npwpd"))){
 			$data_new[$i]['masa_pajak'][] = $dbConn->f("masa_pajak");
-			echo 'true';
+			//echo 'true';
 		}else{
-			echo 'false';
+			//echo 'false';
 			$i=$i + 1;
-			$data_new[$i]['npwd'] = $dbConn->f("npwd");
+			$data_new[$i]['npwpd'] = $dbConn->f("npwpd");
 			$data_new[$i]['nama_ayat'] = $dbConn->f("nama_ayat");
 			$data_new[$i]['wp_name'] = $dbConn->f("wp_name");
 			$data_new[$i]['company_name'] = $dbConn->f("company_name");
 			$data_new[$i]['address'] = $dbConn->f("address");
 			$data_new[$i]['masa_pajak'][] = $dbConn->f("masa_pajak");
 
-			$before= array(
-				'npwd' => $dbConn->f("npwd"),
-				'company_name' => $dbConn->f("company_name"),
-				'address' => $dbConn->f("address"),
-				'nama_ayat' => $dbConn->f("nama_ayat"),	
-				'masa_pajak' => $dbConn->f("masa_pajak"),
-				'wp_name' => $dbConn->f("wp_name")
-			);
+			$npwpd = $dbConn->f("npwpd");
 		}
 	}	
 }
-echo '<pre>';
-print_r($data_new);
-echo '</pre>';
+//echo '<pre>';
+//print_r($data_new);
+//echo '</pre>';
 	
 $dbConn->close();
 
