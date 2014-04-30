@@ -290,11 +290,6 @@ function GetCetakHTML($data) {
 		*/
 		
 	}
-	$output .= '<tr>';
-		$output .= '<td align="CENTER" colspan=6>TOTAL PAJAK</td>';
-		$output .= '<td align="right">Rp. '.number_format($jumlahperayat, 2, ',', '.').'</td>';
-	$output .= '</tr>';
-	
 	
 	$output.='</td></tr></table>';
 	$output.='</table>';
