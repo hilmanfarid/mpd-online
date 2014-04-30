@@ -2,13 +2,6 @@
 	<Components>
 		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_rep_penerimaan_pertahunSearch" returnPage="t_rep_penerimaan_pertahun_sts.ccp" PathID="t_rep_penerimaan_pertahunSearch" pasteActions="pasteActions" pasteAsReplace="pasteAsReplace">
 			<Components>
-				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch">
-					<Components/>
-					<Events>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<TextBox id="560" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" PathID="t_rep_penerimaan_pertahunSearchyear_code">
 					<Components/>
 					<Events/>
@@ -63,24 +56,38 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="567" name="DatePicker_tgl_penerimaan1" control="periode_piutang_start" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan1">
+				<DatePicker id="567" name="DatePicker_tgl_penerimaan1" control="periode_piutang_start" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan1">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<TextBox id="568" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="periode_piutang_end" PathID="t_rep_penerimaan_pertahunSearchperiode_piutang_end" format="dd-mm-yyyy" fieldSource="periode_piutang_end">
+				<TextBox id="568" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="periode_piutang_end" PathID="t_rep_penerimaan_pertahunSearchperiode_piutang_end" format="dd-mm-yyyy" fieldSource="periode_piutang_end">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="569" name="DatePicker_tgl_penerimaan2" control="periode_piutang_end" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan2">
+				<DatePicker id="569" name="DatePicker_tgl_penerimaan2" control="periode_piutang_end" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_penerimaan_pertahunSearchDatePicker_tgl_penerimaan2">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
+				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="570" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_penerimaan_pertahunSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
