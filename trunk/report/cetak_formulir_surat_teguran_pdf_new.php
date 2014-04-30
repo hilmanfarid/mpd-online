@@ -5,10 +5,6 @@ define("FileName", "cetak_formulir_surat_teguran_pdf_new.php");
 include_once(RelativePath . "/Common.php");
 include_once("../include/fpdf.php");
 
-//$t_customer_order_id = 67;
-//$dataArr = array();
-// $dataBaru = array();
-
 $jenis_pajak		= CCGetFromGet("jenis_pajak", "1");
 $nama_jenis_pajak = '';
 $dbConn = new clsDBConnSIKP();
@@ -61,9 +57,9 @@ while ($dbConn->next_record()) {
 		}
 	}	
 }
-echo '<pre>';
-print_r($data_new);
-echo '</pre>';
+//echo '<pre>';
+//print_r($data_new);
+//echo '</pre>';
 	
 $dbConn->close();
 
@@ -320,6 +316,7 @@ class FormCetak extends FPDF {
 		$i=0;
 		
 		$new=0;
+
 		foreach($data['masa_pajak'] as $item){
 			$this->SetWidths(array(10+$ltable3, $ltable4, $ltable4, 5+$ltable3));
 			$this->SetAligns(array("L", "C", "C", "L"));
