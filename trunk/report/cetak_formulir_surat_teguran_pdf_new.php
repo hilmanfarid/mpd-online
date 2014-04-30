@@ -230,7 +230,7 @@ class FormCetak extends FPDF {
 			array("L",
 				"",
 				"",
-				"BTR"
+				"R"
 			),
 			$this->height/2
 		);
@@ -242,7 +242,7 @@ class FormCetak extends FPDF {
 				$data["address"]
 			),
 			array("L",
-				"BTR"
+				"R"
 			),
 			$this->height
 		);
