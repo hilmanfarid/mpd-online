@@ -204,7 +204,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 
 		$this->SetAligns(array("L","L","L","L"));
-		$this->SetWidths(array($lkepada3,22,2,100));
+		$this->SetWidths(array($lkepada3,22,2,63.7));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"Pimpinan",
@@ -292,7 +292,7 @@ class FormCetak extends FPDF {
 		$ltable4 = $ltable * 4;
 		
 		$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, $ltable3, 5));
-		$this->SetAligns(array("L", "C", "C", "L"));
+		$this->SetAligns(array("L", "C", "C", "C", "C", "L"));
 		
 		$this->RowMultiBorderWithHeight(
 			array("",
@@ -323,7 +323,7 @@ class FormCetak extends FPDF {
 
 		for($i=0; $i < count($data['masa_pajak']); $i++){
 			$this->SetWidths(array(10, $ltable3, $ltable4, $ltable4, $ltable3, 5));
-			$this->SetAligns(array("L", "C", "C", "L"));
+			$this->SetAligns(array("L", "C", "C", "C", "C", "L"));
 			$this->RowMultiBorderWithHeight(
 			array("",
 					$data["nama_ayat"],
