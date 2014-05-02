@@ -12,19 +12,23 @@ if (empty($jenis_pajak)){
 	exit;
 }
 $dbConn = new clsDBConnSIKP();
-if ($jenis_pajak==1){
-	$nama_jenis_pajak = 'Pajak Hotel';
+if ($jenis_pajak>=1) && ($jenis_pajak<=4){
+	if ($jenis_pajak==1){
+		$nama_jenis_pajak = 'Pajak Hotel';
+	}
+	if ($jenis_pajak==2){
+		$nama_jenis_pajak = 'Pajak Restoran';
+	}
+	if ($jenis_pajak==3){
+		$nama_jenis_pajak = 'Pajak Hiburan';
+	}
+	if ($jenis_pajak==4){
+		$nama_jenis_pajak = 'Pajak Parkir';
+	}
+}else{
+	echo "Jenis Pajak salah";
+	exit;
 }
-if ($jenis_pajak==2){
-	$nama_jenis_pajak = 'Pajak Restoran';
-}
-if ($jenis_pajak==3){
-	$nama_jenis_pajak = 'Pajak Hiburan';
-}
-if ($jenis_pajak==4){
-	$nama_jenis_pajak = 'Pajak Parkir';
-}
-
 $query="select * from temp_surat_teguran where jenis_pajak ='$nama_jenis_pajak'";
 
 $dbConn->query($query);
