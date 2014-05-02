@@ -263,7 +263,7 @@ class FormCetak extends FPDF {
 		$this->SetFont('BKANT', '', 12);
 		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
 		// $this->newLine();
-		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN "), "LR", 0, 'C');
+		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN ", "LR", 0, 'C');
 		$this->newLine();
 		
 		$this->SetFont('BKANT', '', 12);
