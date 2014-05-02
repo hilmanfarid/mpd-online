@@ -417,7 +417,16 @@ class FormCetak extends FPDF {
 		
 		$this->SetWidths(array(25,170));
 		$this->RowMultiBorderWithHeight(
-			array("","Belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Nilai sebesar Rp. ".number_format($data['bphtb_amt_final'],2,",",".")." sesuai dengan : "
+			array("","Belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Pajak Terutang sebesar"
+			),
+			array("",""
+			),
+			5
+		);
+
+		$this->SetWidths(array(25,170));
+		$this->RowMultiBorderWithHeight(
+			array("","Rp. ".number_format($data['bphtb_amt_final'],2,",",".")." sesuai dengan : "
 			),
 			array("",""
 			),
