@@ -194,7 +194,7 @@ class FormCetak extends FPDF {
 		$lkepada3 = $lkepada * 3;
 		
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "Bandung, ".dateToString(date("Y-m-d")), "R", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Bandung,     ".dateToString(date("Y-m-d")), "R", 0, 'L');
 		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
@@ -333,7 +333,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4, $this->height, "Bandung, ".dateToString(date("Y-m-d")) /*. $data["tanggal"]*/, "", 0, 'C');
+		$this->Cell($lbody4, $this->height, "Bandung,     ".dateToString(date("Y-m-d")) /*. $data["tanggal"]*/, "", 0, 'C');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
