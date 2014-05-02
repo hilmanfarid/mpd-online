@@ -271,7 +271,7 @@ class FormCetak extends FPDF {
 		$this->newLine();*/
 		$this->SetWidths(array(10,204.3, 5));
 		$this->RowMultiBorderWithHeight(array("",
-				"Menurut pembukuan kami hingga saat ini Saudara masih mempunyai tunggakan Pajak (rincian terlampir)",
+				"Menurut pembukuan kami hingga saat ini Saudara masih mempunyai tunggakan Pajak (rincian terlampir), yang sampai saat ini belum dilunasi.",
 				""
 			),
 			array("L",
@@ -304,7 +304,6 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		
-		$this->tulis("Sampai saat ini belum melunasi pembayaran pajak.", "L");
 		$this->tulis("", "L");
 		$this->tulis("Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang-undang Nomor 28 Tahun", "FJ");
 		$this->tulis("2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi", "FJ");
