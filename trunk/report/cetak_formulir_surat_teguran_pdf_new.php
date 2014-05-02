@@ -12,7 +12,7 @@ if (empty($jenis_pajak)){
 	exit;
 }
 $dbConn = new clsDBConnSIKP();
-if ($jenis_pajak>=1) && ($jenis_pajak<=4){
+if (($jenis_pajak>=1) && ($jenis_pajak<=4)){
 	if ($jenis_pajak==1){
 		$nama_jenis_pajak = 'Pajak Hotel';
 	}
