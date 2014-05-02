@@ -417,7 +417,7 @@ class FormCetak extends FPDF {
 		
 		$this->SetWidths(array(25,170));
 		$this->RowMultiBorderWithHeight(
-			array("","Belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Pajak Terutang sebesar"
+			array("","Belum melakukan pembayaran pajak BPHTB Tahun ".date("Y")." dengan Nilai sebesar"
 			),
 			array("",""
 			),
