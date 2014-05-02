@@ -5,8 +5,12 @@ define("FileName", "cetak_formulir_surat_teguran_pdf_new.php");
 include_once(RelativePath . "/Common.php");
 include_once("../include/fpdf.php");
 
-$jenis_pajak		= CCGetFromGet("jenis_pajak", "1");
+$jenis_pajak		= CCGetFromGet("jenis_pajak", "");
 $nama_jenis_pajak = '';
+if (empty($jenis_pajak)){
+	echo "Jenis Pajak tidak boleh kosong";
+	exit;
+}
 $dbConn = new clsDBConnSIKP();
 if ($jenis_pajak==1){
 	$nama_jenis_pajak = 'Pajak Hotel';
