@@ -29,7 +29,7 @@ if (($jenis_pajak>=1) && ($jenis_pajak<=4)){
 	echo "Jenis Pajak salah";
 	exit;
 }
-$query="select * from temp_surat_teguran where jenis_pajak ='$nama_jenis_pajak'";
+$query="select * from temp_surat_teguran where jenis_pajak ='$nama_jenis_pajak' and status_bayar is null";
 
 $dbConn->query($query);
 $data=array();
