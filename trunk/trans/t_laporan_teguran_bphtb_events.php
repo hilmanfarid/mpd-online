@@ -147,6 +147,8 @@ function GetCetakHTML($data, $date_start, $date_end) {
 		$output.='<th>HARGA PASAR/<br/>TRANSAKSI/<br/>LELANG (Rp)</th>';
 		$output.='<th>NILAI PAJAK YANG <br/>HARUS DIBAYAR(Rp)</th>';
 		$output.='</tr>';
+	
+	$jumlah = 0;
     
 	for ($i = 0; $i < count($data['registration_no']); $i++) {
 
@@ -165,7 +167,12 @@ function GetCetakHTML($data, $date_start, $date_end) {
 		$output .= '<td align="right">'.number_format($data['market_price'][$i],2,",",".").'</td>';
 		$output .= '<td align="right">'.number_format($data['bphtb_amt_final'][$i],2,",",".").'</td>';
 		$output .= '</tr>';
+		$jumlah= $jumlah + $data['bphtb_amt_final'][$i];
 	}
+	$output .= '<tr>';
+		$output .= '<td align="center" colspan = 12>JUMLAH NILAI PAJAK YANG HARUS DIBAYAR</td>';
+		$output .= '<td align="right" >'.number_format($jumlah,2,",",".").'</td>';
+	$output .= '</tr>';
 	
 	$output.='</td></tr></table>';
 	$output.='</table>';
