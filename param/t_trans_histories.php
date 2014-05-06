@@ -320,10 +320,10 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-FE07BE04
+//SetOrder Method @2-82817A39
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "c.npwd , b.start_date desc";
+        $this->Order = "c.npwd , b.start_date desc,  a.t_vat_setllement_id";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
