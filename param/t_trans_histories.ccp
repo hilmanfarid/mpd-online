@@ -27,7 +27,8 @@ where a.p_finance_period_id = b.p_finance_period_id
 	  and a.t_cust_account_id = {t_cust_acc_id}
       and a.t_vat_setllement_id = d.t_vat_setllement_id (+) 
 	  and a.p_settlement_type_id = e.p_settlement_type_id
-order by c.npwd , b.start_date desc
+order by c.npwd , b.start_date desc,
+  a.t_vat_setllement_id
 ">
 			<Components>
 				<Label id="15" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwd" fieldSource="npwd" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridnpwd">
@@ -144,7 +145,7 @@ order by c.npwd , b.start_date desc
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
