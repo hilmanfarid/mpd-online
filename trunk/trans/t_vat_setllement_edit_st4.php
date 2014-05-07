@@ -282,41 +282,48 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-3D689C8A
+//SetOrder Method @2-3A0017BA
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = " settlement_type ASC";
+        $this->Order = "settlement_date desc";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
 //End SetOrder Method
 
-//Prepare Method @2-25AA94A2
+//Prepare Method @2-CC4B495C
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("2", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("3", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("4", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "upper(npwd)", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
+        $this->wp->Criterion[2] = $this->wp->Operation(opContains, "upper(wp_name)", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
+        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(settlement_type)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
+        $this->wp->Criterion[4] = $this->wp->Operation(opContains, "upper(finance_period_code)", $this->wp->GetDBValue("4"), $this->ToSQL($this->wp->GetDBValue("4"), ccsText),false);
+        $this->Where = $this->wp->opOR(
+             true, $this->wp->opOR(
+             false, $this->wp->opOR(
+             false, 
+             $this->wp->Criterion[1], 
+             $this->wp->Criterion[2]), 
+             $this->wp->Criterion[3]), 
+             $this->wp->Criterion[4]);
     }
 //End Prepare Method
 
-//Open Method @2-E0240B36
+//Open Method @2-9ED92B2B
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
-        "FROM v_vat_setllement_skpd_kb_jabatan\n" .
-        "WHERE ( upper(npwd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(wp_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(settlement_type) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(finance_period_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )) cnt";
-        $this->SQL = "SELECT * \n" .
-        "FROM v_vat_setllement_skpd_kb_jabatan\n" .
-        "WHERE ( upper(npwd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(wp_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(settlement_type) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(finance_period_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )  {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*)\n\n" .
+        "FROM v_vat_setllement_skpd_kb_jabatan";
+        $this->SQL = "SELECT * \n\n" .
+        "FROM v_vat_setllement_skpd_kb_jabatan {SQL_Where} {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
