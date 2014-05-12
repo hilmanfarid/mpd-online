@@ -22,6 +22,19 @@
                                 params += "&vat_code_dtl="+document.getElementById("t_laporan_harian_sptpdvat_code_dtl").value;  
                 window.open("t_laporan_harian_sptpd.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
+
+
+		function printLaporanExcel(){
+                var params = "?cetak_laporan=excel";
+                params += "&year_code="+document.getElementById("t_laporan_harian_sptpdyear_code").value;
+                params += "&date_start_laporan="+document.getElementById("t_laporan_harian_sptpddate_start_laporan").value;
+                params += "&date_end_laporan="+document.getElementById("t_laporan_harian_sptpddate_end_laporan").value;
+                params += "&p_year_period_id="+document.getElementById("t_laporan_harian_sptpdp_year_period_id").value;
+                params += "&p_vat_type_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_id").value;
+                params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_dtl_id").value;
+                params += "&vat_code_dtl="+document.getElementById("t_laporan_harian_sptpdvat_code_dtl").value;  
+                location.href = "t_laporan_harian_sptpd.php"+params;
+        }
 </script>
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
@@ -58,7 +71,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -83,7 +96,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td colspan="2">{Error}</td>
                   </tr>
                   <!-- END Error -->
-                  <tr class="Controls" style="DISPLAY: none;">
+                  <tr style="DISPLAY: none" class="Controls">
                     <td class="search-field">&nbsp;Tahun 
                       <td class="search-field"><input id="t_laporan_harian_sptpdyear_code" class="ControlsRQ" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_laporan_harian_sptpdcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden"></td>
                     </tr>
@@ -108,8 +121,9 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     </tr>
  
                     <tr>
-                      <td colspan="2" align="right">
-                        <!-- BEGIN Button Button1 --><input id="t_laporan_harian_sptpdButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
+                      <td colspan="2" align="right">&nbsp; 
+                        <!-- BEGIN Button Button2 --><input id="t_laporan_harian_sptpdButton2" class="btn_tambah" onclick="printLaporanExcel()" name="{Button_Name}" alt="Button1" value="Download Excel" type="button"><!-- END Button Button2 -->
+                        <!-- BEGIN Button Button1 --><input id="t_laporan_harian_sptpdButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download Pdf" type="button"><!-- END Button Button1 --></td>
                     </tr>
                   </table>
                 </td>
