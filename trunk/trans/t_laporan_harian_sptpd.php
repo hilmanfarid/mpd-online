@@ -45,7 +45,7 @@ class clsRecordt_laporan_harian_sptpd { //t_laporan_harian_sptpd Class @2-EFADBB
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-6D3787DB
+//Class_Initialize Event @2-2C2289E3
     function clsRecordt_laporan_harian_sptpd($RelativePath, & $Parent)
     {
 
@@ -86,6 +86,7 @@ class clsRecordt_laporan_harian_sptpd { //t_laporan_harian_sptpd Class @2-EFADBB
             $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
             $this->vat_code_dtl->Required = true;
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -154,7 +155,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-D2394C74
+//Operation Method @2-D5BF2071
     function Operation()
     {
         if(!$this->Visible)
@@ -171,12 +172,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button1";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = "t_laporan_harian_sptpd.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -186,7 +193,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-E8843D78
+//Show Method @2-5F5F5926
     function Show()
     {
         global $CCSUseAmp;
@@ -250,6 +257,7 @@ function GetPrimaryKey($keyName)
         $this->p_vat_type_id->Show();
         $this->vat_code_dtl->Show();
         $this->p_vat_type_dtl_id->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
