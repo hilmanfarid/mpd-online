@@ -21,10 +21,28 @@ function Page_BeforeShow(& $sender)
     // Write your own code here.
 // -------------------------
 //End Custom Code
-
+	$cetak_laporan = CCGetFromGet("cetak_laporan", "");
 // -------------------------
     // Write your own code here.
-    if($t_laporan_harian_sptpd->cetak_laporan->GetValue()=='T'){
+    if($cetak_laporan == 'excel') {
+		
+		$param_arr=array();
+		$param_arr['year_code']=$t_laporan_harian_sptpd->year_code->GetValue();
+		$param_arr['year_period_id']=$t_laporan_harian_sptpd->p_year_period_id->GetValue();
+		$param_arr['date_start']=$t_laporan_harian_sptpd->date_start_laporan->GetValue();
+		$param_arr['date_end']=$t_laporan_harian_sptpd->date_end_laporan->GetValue();
+		$param_arr['p_vat_type_id']=$t_laporan_harian_sptpd->p_vat_type_id->GetValue();
+		$param_arr['p_vat_type_dtl_id']=$t_laporan_harian_sptpd->p_vat_type_dtl_id->GetValue();
+		$param_arr['vat_code_dtl']=$t_laporan_harian_sptpd->vat_code_dtl->GetValue();
+		if(empty($param_arr['date_start'])){
+			$param_arr['date_start']=$param_arr['year_code'].'-01-01';
+		}
+		if(empty($param_arr['date_end'])){
+			$param_arr['date_end']=$param_arr['year_code'].'-12-31';
+		}
+		print_excel($param_arr);
+
+	}else if($t_laporan_harian_sptpd->cetak_laporan->GetValue()=='T'){
 		$param_arr=array();
 		$param_arr['year_code']=$t_laporan_harian_sptpd->year_code->GetValue();
 		$param_arr['year_period_id']=$t_laporan_harian_sptpd->p_year_period_id->GetValue();
@@ -49,6 +67,129 @@ function Page_BeforeShow(& $sender)
     return $Page_BeforeShow;
 }
 //End Close Page_BeforeShow
+
+
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
+
+
+function print_excel($param_arr) {
+	
+	startExcel("laporan_harian_sptpd");
+	echo "<div><h3> LAPORAN PENCETAKAN HARIAN PENERIMAAN SPTPD </h3></div>";	
+	echo "<div><b>Tanggal : ".dateToString($param_arr['date_start'])." s.d ".dateToString($param_arr['date_end'])."</b></div><br/>";	
+	
+	$dbConn = new clsDBConnSIKP();
+	if(empty($param_arr['p_vat_type_id'])){
+		$param_arr['p_vat_type_id']='null';
+	}
+	if(!empty($param_arr['p_vat_type_dtl_id'])){
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."',".$param_arr['p_vat_type_dtl_id'].") ORDER BY tanggal, jenis ASC";
+	}else{
+		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd(".$param_arr['p_vat_type_id'].",2001,'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY trunc(tanggal),ayat_code_dtl, jenis ASC";
+	}
+
+	$dbConn->query($query);
+		
+	$no =1;
+	$jumlah_omzet = 0;
+	$jumlah_ketetapan = 0;
+	
+
+	echo "<table border='1'>";
+	echo "<tr>
+		<th>NO</th>
+		<th>TANGGAL</th>	
+		<th>AYAT PAJAK</th>
+		<th>NAMA</th>
+		<th>ALAMAT</th>
+		<th>NPWPD</th>
+		<th>KOHIR</th>
+		<th>MASA PAJAK</th>
+		<th>JENIS</th>
+		<th>OMZET</th>
+		<th>KETETAPAN</th>
+	</tr>";
+
+	while($dbConn->next_record()){
+		$start_period = $dbConn->f("start_period_formated");
+		$end_period = $dbConn->f("end_period_formated");
+		$date_settle = $dbConn->f("date_settle_formated");
+		
+		$items[]= $item = array('tanggal' => $date_settle,
+					   'no_order' => $dbConn->f("no_order"),
+					   'nama' => $dbConn->f("nama"),
+					   'alamat' => $dbConn->f("alamat"),
+					   'npwpd' => $dbConn->f("npwpd"),
+					   'omzet' => $dbConn->f("omzet"),
+					   'ketetapan' => $dbConn->f("ketetapan"),
+					   'kohir' => $dbConn->f("kohir"),
+					   'start_period' => $start_period,
+					   'end_period' => $end_period,
+					   'jenis_pajak' => $dbConn->f("jenis"),
+					   'jenis_pajak_dtl' => $dbConn->f("jenis_dtl"),
+					   'ayat_code' => $dbConn->f("ayat_code"),
+					   'ayat_code_dtl' => $dbConn->f("ayat_code_dtl")
+						);
+
+		if(!empty($param_arr['p_vat_type_dtl_id'])){
+			//$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak'],'Rp '.number_format($item['omzet'], 2, ',', '.'),'Rp '.number_format($item['ketetapan']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
+			
+			echo "<tr>
+				<td>".$no."</td>
+				<td>".$item['tanggal']."</td>
+				<td>".$item['no_order']."</td>
+				<td>".$item['nama']."</td>
+				<td>".$item['alamat']."</td>
+				<td>".$item['npwpd']."</td>
+				<td>".$item['kohir']."</td>
+				<td>".$item['start_period']." s.d ".$item['end_period']."</td>
+				<td>".$item['jenis_pajak']."</td>
+				<td align='right'>".number_format($item['omzet'], 2, ',', '.')."</td>
+				<td align='right'>".number_format($item['ketetapan'],0,',', '.')."</td>
+			</tr>";
+		
+		}else{
+			//$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['ayat_code'].'.'.$item['ayat_code_dtl'],$item['nama'],$item['alamat'],$item['npwpd'],$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak'],'Rp '.number_format($item['omzet'], 2, ',', '.'),'Rp '.number_format($item['ketetapan'], 2, ',', '.')),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
+			
+			echo "<tr>
+				<td>".$no."</td>
+				<td>".$item['tanggal']."</td>
+				<td>".$item['ayat_code'].".".$item['ayat_code_dtl']."</td>
+				<td>".$item['nama']."</td>
+				<td>".$item['alamat']."</td>
+				<td>".$item['npwpd']."</td>
+				<td>".$item['kohir']."</td>
+				<td>".$item['start_period']." s.d ".$item['end_period']."</td>
+				<td>".$item['jenis_pajak']."</td>
+				<td align='right'>".number_format($item['omzet'], 2, ',', '.')."</td>
+				<td align='right'>".number_format($item['ketetapan'],0,',', '.')."</td>
+			</tr>";
+		}
+		
+		
+
+		$jumlah_omzet += $dbConn->f("omzet");
+		$jumlah_ketetapan += $dbConn->f("ketetapan");
+		$no++;
+	}
+	
+	
+
+	echo '<tr>
+		<td colspan="9" align="center"> <b>JUMLAH </b></td>
+		<td align="right"> <b>'.number_format($jumlah_omzet, 2, ",", ".").' </b></td>
+		<td align="right"> <b>'.number_format($jumlah_ketetapan, 2, ",", ".").' </b></td>
+	</tr>';
+	echo "</table>";
+	exit;
+}
 
 function print_laporan($param_arr){
 	include "../include/fpdf17/mc_table.php";
