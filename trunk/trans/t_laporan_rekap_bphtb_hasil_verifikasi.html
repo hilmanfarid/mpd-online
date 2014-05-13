@@ -20,8 +20,8 @@
         }
 
 		function printLaporanPDF(){
-                var params = "&date_start_laporan="+document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value;
-                params += "&date_end_laporan="+document.getElementById("t_laporan_rekap_bphtbdate_end_laporan").value;
+                var params = "&start_date="+document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value;
+                params += "&end_date="+document.getElementById("t_laporan_rekap_bphtbdate_end_laporan").value;
                 window.open("../report/cetak_surat_validasi_bphtb.php"+params);
         }
 </script>
