@@ -53,6 +53,31 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 
 //End CCS script
 </script>
+
+<style>
+
+table.report { 
+border-right:1px solid #000; 
+border-spacing: 0px; 
+} 
+
+table.report th{ 
+border-top:1px solid #000; 
+border-bottom:1px solid #000; 
+border-left:1px solid #000; 
+padding:4px; 
+text-transform: uppercase; 
+text-align: center; 
+}
+
+table.report td{ 
+border-left:1px solid #000; 
+border-bottom:1px solid #000; 
+padding-left:4px; 
+padding-right:4px; 
+}
+
+</style>
 </head>
 <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
@@ -112,13 +137,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 function lov_vat_type() {
                         getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
-		function updateStatusVerifikasi(t_bphtp_registration_id) {
+		function cetak_surat_validasi_bphtb(registration_no) {
 			var r = confirm("Anda yakin untuk memverifikasi BPHPB ini?");
 			if (r == true) {
 			
-			    var params = "?mode=update";
-                params += "&t_bphtp_registration_id="+t_bphtp_registration_id;
-                window.open("t_laporan_rekap_bphtb_verifikasi.php"+params,"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+			    var params = "?registration_no="+registration_no;
+                window.open("cetak_surat_validasi_bphtb.php"+params,"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
 			} else {
 			    txt = "Dibatalkan";
 				alert (txt);
