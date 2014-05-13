@@ -69,8 +69,8 @@
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_rekap_bphtb_hasil_verifikasi_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="t_laporan_rekap_bphtb_hasil_verifikasi.php" forShow="True" url="t_laporan_rekap_bphtb_hasil_verifikasi.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="t_laporan_rekap_bphtb_hasil_verifikasi.php" forShow="True" url="t_laporan_rekap_bphtb_hasil_verifikasi.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
