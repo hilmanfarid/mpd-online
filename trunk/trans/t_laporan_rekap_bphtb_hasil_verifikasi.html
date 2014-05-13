@@ -138,15 +138,8 @@ padding-right:4px;
                         getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
 		function cetak_surat_validasi_bphtb(registration_no) {
-			var r = confirm("Anda yakin untuk memverifikasi BPHPB ini?");
-			if (r == true) {
-			
-			    var params = "?registration_no="+registration_no;
-                window.open("cetak_surat_validasi_bphtb.php"+params,"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
-			} else {
-			    txt = "Dibatalkan";
-				alert (txt);
-			}
+			var params = "?registration_no="+registration_no;
+            window.open("cetak_surat_validasi_bphtb.php"+params,"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
 		}
   </script>
 </p>
