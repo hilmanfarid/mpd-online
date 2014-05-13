@@ -10,7 +10,7 @@ class FormCetak extends FPDF {
 	var $height = 5;
 	
 	function FormCetak() {
-		$this->FPDF("L", "mm", array(241.3, 139.7));
+		$this->FPDF("L", "mm", array(241.3, 150));
 		$this->lMargin = 30;
 	}
 	
@@ -77,7 +77,32 @@ class FormCetak extends FPDF {
 			$this->Ln();
 		}
 
-		$this->Cell(180, $this->height, "", "B", 0, "C");
+		//$this->Cell(180, $this->height, "", "B", 0, "C");
+
+		$this->SetFont('Arial', 'B', 10);
+		$this->Cell(141, $this->height, "", "", 0, 'C');
+		$this->Cell(40, $this->height, "Koordinator BPHTB", "", 0, 'C');
+		$this->Ln();
+
+		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
+		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
+		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
+		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
+		
+		$this->SetFont('Arial', 'B', 10);
+		$this->Cell(141, $this->height, "", "", 0, 'C');
+		$this->Cell(40,  $this->height, "ZAENAL MANSUR", "", 0, 'C');
+		$this->Ln();
+
+
+		$this->SetFont('Arial', 'B', 10);
+		$this->Cell(141, $this->height, "", "", 0, 'C');
+		$this->Cell(40, $this->height, "NIP. 19630817.1989.01.1.006", "T", 0, 'C'); //isi nip
+		$this->Ln();
 	}
 	
 	function Footer() {
