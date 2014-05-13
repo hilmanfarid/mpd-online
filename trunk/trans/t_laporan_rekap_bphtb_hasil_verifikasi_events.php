@@ -147,16 +147,16 @@ function tampilkan_html($param_arr){
 	//$output .= '<h2>LAPORAN REALISASI HARIAN PER JENIS PAJAK </h2>';
 	//$output .= '<h2>TANGGAL : '.dateToString($date_start, "-")." s/d ".dateToString($date_end, "-").'</h2> <br/>';
 
-	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
-                <tr class="Caption">';
+	$output .='<table class="report" cellspacing="0" cellpadding="3px" width="100%">
+                <tr>';
 
 	$output.='<th>NO</th>';
 	$output.='<th>TANGGAL</th>';
 	$output.='<th>NO.REGISTRASI</th>';
-	$output.='<th width = 500>NAMA WP</th>';
+	$output.='<th>NAMA WP</th>';
 	$output.='<th>JENIS TRANSAKSI</th>';
 	$output.='<th>NOP</th>';
-	$output.='<th width = 200>LT / LB</th>';
+	$output.='<th>LT / LB</th>';
 	$output.='<th>HARGA TANAH</br>(Rp)</th>';
 	$output.='<th>HARGA BANGUNAN</br>(Rp)</th>';
 	$output.='<th>TOTAL NJOP </br>(Rp)</th>';
@@ -180,7 +180,7 @@ function tampilkan_html($param_arr){
 			$output .= '<td align="right">'.number_format($nilai_njop,2,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($item['market_price'],2,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($item['bphtb_amt_final'],2,",",".").'</td>';
-			$output .= '<td><button class="btn_tambah" onclick="updateStatusVerifikasi('.$item['t_bphtb_registration_id'].')">Cetak</button></td>';
+			$output .= '<td><button class="btn_tambah" onclick="cetak_surat_validasi_bphtb('.$item['registration_no'].')">Cetak</button></td>';
 		$output .= '</tr>';
 		
 		$no=$no+1;
