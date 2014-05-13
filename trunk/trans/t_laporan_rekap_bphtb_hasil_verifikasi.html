@@ -18,6 +18,12 @@
                 params += "&filter_lap=1";
                 location.href=("t_laporan_rekap_bphtb_hasil_verifikasi.php"+params);
         }
+
+		function printLaporanPDF(){
+                var params = "&date_start_laporan="+document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value;
+                params += "&date_end_laporan="+document.getElementById("t_laporan_rekap_bphtbdate_end_laporan").value;
+                window.open("../report/cetak_surat_validasi_bphtb.php"+params);
+        }
 </script>
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
@@ -53,7 +59,6 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 
 //End CCS script
 </script>
-
 <style>
 
 table.report { 
@@ -79,7 +84,7 @@ padding-right:4px;
 
 </style>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -113,6 +118,7 @@ padding-right:4px;
  
                   <tr>
                     <td colspan="2" align="right"><input id="t_laporan_rekap_bphtbcetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}">
+                      <!-- BEGIN Button Button2 --><input id="t_laporan_rekap_bphtbButton2" class="btn_tambah" onclick="printLaporanPDF()" value="Cetak PDF" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->
                       <!-- BEGIN Button Button1 --><input id="t_laporan_rekap_bphtbButton1" class="btn_tambah" onclick="printLaporan()" value="Tampilkan" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 --></td>
                   </tr>
                 </table>
@@ -134,13 +140,13 @@ padding-right:4px;
         function lov_rqst() {
                 getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_rqst_type&FIELD_0=p_rqst_type_id&FIELD_1=code&FIELD_2=description&FIELD_3=And p_rqst_type_id in (1,2,3,4,5)&LABEL1=Jenis Permohonan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PERMOHONAN&HEADER_LOV=DAFTAR JENIS PERMOHONAN&ORDER=p_rqst_type_id');
         }
-                function lov_vat_type() {
-                        getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
-                }
-		function cetak_surat_validasi_bphtb(registration_no) {
-			var params = "?registration_no="+registration_no;
-            window.open("../report/cetak_surat_validasi_bphtb.php"+params,"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
-		}
+        function lov_vat_type() {
+                getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
+        }
+        function cetak_surat_validasi_bphtb(registration_no) {
+                var params = "?registration_no="+registration_no;
+    			window.open("../report/cetak_surat_validasi_bphtb.php"+params,"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+        }
   </script>
 </p>
 <p>{Label1}</p>
