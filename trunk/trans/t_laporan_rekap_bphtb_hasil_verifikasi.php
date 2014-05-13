@@ -45,7 +45,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-B7A43674
+//Class_Initialize Event @2-62725395
     function clsRecordt_laporan_rekap_bphtb($RelativePath, & $Parent)
     {
 
@@ -77,6 +77,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
             $this->date_end_laporan->Required = true;
             $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_laporan_rekap_bphtb", "date_end_laporan", $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -127,7 +128,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-6DB6F2E2
+//Operation Method @2-A0E81C21
     function Operation()
     {
         if(!$this->Visible)
@@ -144,12 +145,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button1";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = "t_laporan_rekap_bphtb_hasil_verifikasi.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -159,7 +166,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-1420977C
+//Show Method @2-CFE55E06
     function Show()
     {
         global $CCSUseAmp;
@@ -211,6 +218,7 @@ function GetPrimaryKey($keyName)
         $this->date_end_laporan->Show();
         $this->DatePicker_end_start_laporan1->Show();
         $this->cetak_laporan->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
