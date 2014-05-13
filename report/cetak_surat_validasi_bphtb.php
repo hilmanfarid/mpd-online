@@ -5,48 +5,6 @@ define("FileName", "cetak_surat_validasi_bphtb.php");
 include_once(RelativePath . "/Common.php");
 require("../include/qrcode/fpdf17/fpdf.php");
 
-$registration_no = CCGetFromGet("registration_no", "");//'15-12-2013';
-
-$start_date = CCGetFromGet("start_date", "");//'15-12-2013';
-$end_date = CCGetFromGet("end_date", "");//'15-12-2013';
-
-$dbConn = new clsDBConnSIKP();
-$dbConn2 = new clsDBConnSIKP();
-$data = array();
-
-if(!empty($registration_no)) {
-	$query = "select f_bphtb_receipt_duplicate('$registration_no')";
-	$dbConn->query($query);
-	while ($dbConn->next_record()) {
-		$data["f_bphtb_receipt_duplicate"] = $dbConn->f("f_bphtb_receipt_duplicate");
-	}
-
-	$formulir = new FormCetak();
-	$formulir->PageCetak($data);
-	$formulir->Output();
-}else {
-	$query = "SELECT registration_no FROM
-				t_bphtb_registration
-				WHERE trunc(creation_date) BETWEEN '".$start_date."' AND '".$end_date."'
-				AND status_verifikasi = 'Y'";
-	
-	$formulir = new FormCetak();
-	$dbConn->query($query);
-	while ($dbConn->next_record()) {
-		$query2 = "select f_bphtb_receipt_duplicate('".$dbConn->f('registration_no')."')";
-		$dbConn2->query($query2);
-		
-		while ($dbConn2->next_record()) {
-			$data["f_bphtb_receipt_duplicate"] = $dbConn2->f("f_bphtb_receipt_duplicate");
-			$formulir->PageCetak($data);
-		}
-	}
-	$dbConn2->close();
-	$formulir->Output();
-}
-
-
-$dbConn->close();
 
 class FormCetak extends FPDF {
 	var $height = 5;
@@ -131,5 +89,48 @@ class FormCetak extends FPDF {
 	}
 }
 
+
+$registration_no = CCGetFromGet("registration_no", "");//'15-12-2013';
+
+$start_date = CCGetFromGet("start_date", "");//'15-12-2013';
+$end_date = CCGetFromGet("end_date", "");//'15-12-2013';
+
+$dbConn = new clsDBConnSIKP();
+$dbConn2 = new clsDBConnSIKP();
+$data = array();
+
+if(!empty($registration_no)) {
+	$query = "select f_bphtb_receipt_duplicate('$registration_no')";
+	$dbConn->query($query);
+	while ($dbConn->next_record()) {
+		$data["f_bphtb_receipt_duplicate"] = $dbConn->f("f_bphtb_receipt_duplicate");
+	}
+
+	$formulir = new FormCetak();
+	$formulir->PageCetak($data);
+	$formulir->Output();
+}else {
+	$query = "SELECT registration_no FROM
+				t_bphtb_registration
+				WHERE trunc(creation_date) BETWEEN '".$start_date."' AND '".$end_date."'
+				AND status_verifikasi = 'Y'";
+	
+	$formulir = new FormCetak();
+	$dbConn->query($query);
+	while ($dbConn->next_record()) {
+		$query2 = "select f_bphtb_receipt_duplicate('".$dbConn->f('registration_no')."')";
+		$dbConn2->query($query2);
+		
+		while ($dbConn2->next_record()) {
+			$data["f_bphtb_receipt_duplicate"] = $dbConn2->f("f_bphtb_receipt_duplicate");
+			$formulir->PageCetak($data);
+		}
+	}
+	$dbConn2->close();
+	$formulir->Output();
+}
+
+
+$dbConn->close();
 
 ?>
