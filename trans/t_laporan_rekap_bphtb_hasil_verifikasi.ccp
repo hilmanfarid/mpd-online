@@ -38,7 +38,13 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Button id="19" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_rekap_bphtbButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
