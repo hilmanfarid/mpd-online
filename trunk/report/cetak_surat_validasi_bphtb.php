@@ -41,8 +41,8 @@ class FormCetak extends FPDF {
 		}
 
 		$this->Image('../images/logo_pemda.png',37,13,25,25);
-		//$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,179,13,25,25,'PNG');
-		$this->Image('http://172.16.20.2:81/mpd/include/qrcode/generate-qr.php?param='.encImageData,179,13,25,25,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,179,13,25,25,'PNG');
+		//$this->Image('http://172.16.20.2:81/mpd/include/qrcode/generate-qr.php?param='.encImageData,179,13,25,25,'PNG');
 		
 		$this->SetFont('Arial', '', 11);
 
@@ -64,7 +64,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->SetFont('Arial', 'B', 14);
 		$this->Cell(40, $this->height + 7, "", "B", 0, 'L');
-		$this->Cell(101, $this->height + 7, "Surat Validasi BPHTB", "B", 0, 'C');
+		$this->Cell(101, $this->height + 7, "Bukti SSPD Telah Divalidasi", "B", 0, 'C');
 		$this->Cell(40, $this->height + 7, "", "B", 0, 'L');
 
 		$this->Ln(5);
