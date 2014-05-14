@@ -30,10 +30,19 @@ function Page_BeforeShow(& $sender)
 		if(empty($param_arr['date_end_laporan'])){
 			$param_arr['date_end']=CCGetFromGet('date_end_laporan');
 		}
+		if(empty($param_arr['s_keyword'])){
+			$param_arr['s_keyword']=CCGetFromGet('s_keyword');
+		}
+		$param_arr['filter_lap'] = 1;
 
-		$param_arr['filter_lap'] = CCGetFromGet('filter_lap');
+		if(empty($param_arr['date_start']) and 
+			empty($param_arr['date_end']) and
+			empty($param_arr['s_keyword'])){
+				//do nothing
+		}else {
 		//print_laporan($param_arr);
-		$Label1->SetText(tampilkan_html($param_arr));
+			$Label1->SetText(tampilkan_html($param_arr));
+		}
 	}
 	
 // -------------------------
@@ -78,12 +87,15 @@ function tampilkan_html($param_arr){
 		$whereClause.=" AND trunc(reg_bphtb.creation_date) <= '".$param_arr['date_end']."'";
 	}
 
-	if(!empty($param_arr['filter_lap'])) {
-		
+	if(!empty($param_arr['filter_lap'])) {		
 		if($param_arr['filter_lap'] == 1) //sudah bayar
 			$whereClause.= " AND (payment.receipt_no is not null or payment.receipt_no <> '') ";
 		if($param_arr['filter_lap'] == 2) //belum bayar
 			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+	}
+	
+	if(!empty($param_arr['s_keyword'])) {		
+		$whereClause.= " AND (reg_bphtb.wp_name LIKE '%".$param_arr['s_keyword']."%') ";
 	}
 
 	$query="SELECT
