@@ -95,7 +95,7 @@ function tampilkan_html($param_arr){
 	}
 	
 	if(!empty($param_arr['s_keyword'])) {		
-		$whereClause.= " AND (reg_bphtb.wp_name LIKE '%".$param_arr['s_keyword']."%') ";
+		$whereClause.= " AND (reg_bphtb.wp_name ILIKE '%".$param_arr['s_keyword']."%') ";
 	}
 
 	$query="SELECT
