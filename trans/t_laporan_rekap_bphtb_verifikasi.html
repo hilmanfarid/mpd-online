@@ -137,7 +137,7 @@ padding-right:4px;
                         getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
 		function updateStatusVerifikasi(t_bphtp_registration_id) {
-			var r = confirm("Anda yakin untuk memverifikasi BPHPB ini?");
+			var r = confirm("Anda yakin untuk memvalidasi BPHPB ini?");
 			if (r == true) {
 			
 			    var params = "?mode=update";
