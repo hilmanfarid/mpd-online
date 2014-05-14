@@ -45,7 +45,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-B7A43674
+//Class_Initialize Event @2-FB8B523B
     function clsRecordt_laporan_rekap_bphtb($RelativePath, & $Parent)
     {
 
@@ -77,11 +77,12 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
             $this->date_end_laporan->Required = true;
             $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_laporan_rekap_bphtb", "date_end_laporan", $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
+            $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-5EA3805B
+//Validate Method @2-CDF61672
     function Validate()
     {
         global $CCSLocales;
@@ -90,15 +91,17 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
         $Validation = ($this->date_start_laporan->Validate() && $Validation);
         $Validation = ($this->date_end_laporan->Validate() && $Validation);
         $Validation = ($this->cetak_laporan->Validate() && $Validation);
+        $Validation = ($this->s_keyword->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->date_start_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-A5435318
+//CheckErrors Method @2-85388CBD
     function CheckErrors()
     {
         $errors = false;
@@ -107,6 +110,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
         $errors = ($errors || $this->date_end_laporan->Errors->Count());
         $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->cetak_laporan->Errors->Count());
+        $errors = ($errors || $this->s_keyword->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -159,7 +163,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-1420977C
+//Show Method @2-DE940979
     function Show()
     {
         global $CCSUseAmp;
@@ -188,6 +192,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -211,6 +216,7 @@ function GetPrimaryKey($keyName)
         $this->date_end_laporan->Show();
         $this->DatePicker_end_start_laporan1->Show();
         $this->cetak_laporan->Show();
+        $this->s_keyword->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
