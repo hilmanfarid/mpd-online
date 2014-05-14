@@ -162,7 +162,7 @@ function tampilkan_html($param_arr){
 	$output.='<th>TOTAL NJOP </br>(Rp)</th>';
 	$output.='<th>HARGA PASAR / </br>TRANSAKSI / LELANG (Rp)</th>';
 	$output.='<th>NILAI PAJAK </br>YANG HARUS DIBAYAR(Rp)</th>';
-	$output.='<th>VERIFIKASI</th>';
+	$output.='<th>VALIDASI</th>';
 	$output.='</tr>';
 	
 	$no=1;
@@ -180,7 +180,7 @@ function tampilkan_html($param_arr){
 			$output .= '<td align="right">'.number_format($nilai_njop,2,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($item['market_price'],2,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($item['bphtb_amt_final'],2,",",".").'</td>';
-			$output .= '<td><button class="btn_tambah" onclick="updateStatusVerifikasi('.$item['t_bphtb_registration_id'].')">Verifikasi</button></td>';
+			$output .= '<td><button class="btn_tambah" onclick="updateStatusVerifikasi('.$item['t_bphtb_registration_id'].')">Validasi</button></td>';
 		$output .= '</tr>';
 		
 		$no=$no+1;
