@@ -31,9 +31,14 @@ function Page_BeforeShow(& $sender)
 			$param_arr['date_end']=CCGetFromGet('date_end_laporan');
 		}
 
-		$param_arr['filter_lap'] = CCGetFromGet('filter_lap');
-		//print_laporan($param_arr);
-		$Label1->SetText(tampilkan_html($param_arr));
+		if(empty($param_arr['date_start']) and 
+			empty($param_arr['date_end']) ){
+				//do nothing
+		}else{
+			$param_arr['filter_lap'] = CCGetFromGet('filter_lap');
+			//print_laporan($param_arr);
+			$Label1->SetText(tampilkan_html($param_arr));
+		}
 	}
 	
 // -------------------------
