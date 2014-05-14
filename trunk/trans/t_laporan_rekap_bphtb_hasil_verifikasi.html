@@ -22,7 +22,10 @@
 		function printLaporanPDF(){
                 var params = "?start_date="+document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value;
                 params += "&end_date="+document.getElementById("t_laporan_rekap_bphtbdate_end_laporan").value;
-                window.open("../report/cetak_surat_validasi_bphtb.php"+params,"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+				if ((document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value=="") &&
+					(document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value=="")){
+					window.open("../report/cetak_surat_validasi_bphtb.php"+params,"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+				}
         }
 </script>
 <script language="JavaScript" type="text/javascript">
