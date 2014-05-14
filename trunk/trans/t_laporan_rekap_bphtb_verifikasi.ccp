@@ -38,7 +38,13 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<TextBox id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_keyword" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_laporan_rekap_bphtbs_keyword">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
