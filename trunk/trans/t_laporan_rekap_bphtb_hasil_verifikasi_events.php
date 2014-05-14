@@ -162,7 +162,7 @@ function tampilkan_html($param_arr){
 	$output.='<th>TOTAL NJOP </br>(Rp)</th>';
 	$output.='<th>HARGA PASAR / </br>TRANSAKSI / LELANG (Rp)</th>';
 	$output.='<th>NILAI PAJAK </br>YANG HARUS DIBAYAR(Rp)</th>';
-	$output.='<th>VERIFIKASI</th>';
+	$output.='<th>CETAK</th>';
 	$output.='</tr>';
 	
 	$no=1;
