@@ -196,11 +196,11 @@ function print_excel($param_arr) {
 				<td>'.$item['description'].'</td>	
 				<td>&nbsp;'.$item['njop_pbb'].'</td>	
 				<td align="right">'.number_format($item['land_area'],0,",",".")." / ".number_format($item['building_area'],0,",",".").'</td>
-				<td align="right">'.number_format($item['land_total_price'],2,",",".").'</td>
-				<td align="right">'.number_format($item['building_total_price'],2,",",".").'</td>
-				<td align="right">'.number_format($nilai_njop,2,",",".").'</td>
-				<td align="right">'.number_format($item['market_price'],2,",",".").'</td>
-				<td align="right">'.number_format($item['bphtb_amt_final'],2,",",".").'</td>
+				<td align="right">'.number_format($item['land_total_price'],0,",",".").'</td>
+				<td align="right">'.number_format($item['building_total_price'],0,",",".").'</td>
+				<td align="right">'.number_format($nilai_njop,0,",",".").'</td>
+				<td align="right">'.number_format($item['market_price'],0,",",".").'</td>
+				<td align="right">'.number_format($item['bphtb_amt_final'],0,",",".").'</td>
 			</tr>';
 		
 		$jumlah+=$dbConn->f("amount");
