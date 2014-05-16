@@ -18,6 +18,29 @@
                 params += "&filter_lap=" + document.getElementById("t_laporan_rekap_bphtbListBox1").value;
                                 window.open("t_laporan_rekap_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
+
+                function printLaporanHTML(){
+                
+                var params = "?doAction=view_html";
+                params += "&date_start="+document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value;
+                params += "&date_end="+document.getElementById("t_laporan_rekap_bphtbdate_end_laporan").value;
+                params += "&filter_lap=" + document.getElementById("t_laporan_rekap_bphtbListBox1").value;
+                                location.href = "t_laporan_rekap_bphtb.php"+params;
+        }
+
+		function printLaporanExcel(){
+                
+                var params = "?doAction=print_excel";
+                params += "&date_start="+document.getElementById("t_laporan_rekap_bphtbdate_start_laporan").value;
+                params += "&date_end="+document.getElementById("t_laporan_rekap_bphtbdate_end_laporan").value;
+                params += "&filter_lap=" + document.getElementById("t_laporan_rekap_bphtbListBox1").value;
+                                location.href = "t_laporan_rekap_bphtb.php"+params;
+        }
+
+                function showFormValidasi(registration_no){
+                        window.open("../report/cetak_surat_validasi_bphtb.php?registration_no="+registration_no, "_blank", "toolbar=0,location=0,menubar=0");
+                }
+
 </script>
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
@@ -53,6 +76,30 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 
 //End CCS script
 </script>
+<style>
+
+table.report{    
+        border-right:1px solid #000;
+        border-spacing: 0px;
+}
+
+table.report th{
+        border-top:1px solid #000;
+        border-bottom:1px solid #000;
+        border-left:1px solid #000;
+        padding:4px;
+        text-transform: uppercase;
+        text-align: center;
+}
+                
+table.report td{
+        border-left:1px solid #000;
+        border-bottom:1px solid #000;
+        padding-left:4px;
+        padding-right:4px;
+}
+
+</style>
 </head>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
@@ -98,7 +145,9 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <tr>
                     <td colspan="2" align="right"><input id="t_laporan_rekap_bphtbcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden">
-                      <!-- BEGIN Button Button1 --><input id="t_laporan_rekap_bphtbButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
+                      <!-- BEGIN Button Button3 --><input id="t_laporan_rekap_bphtbButton3" class="btn_tambah" onclick="printLaporanExcel()" name="{Button_Name}" alt="Button1" value="Download Excel" type="button"><!-- END Button Button3 -->&nbsp; 
+                      <!-- BEGIN Button Button2 --><input style="DISPLAY: none" id="t_laporan_rekap_bphtbButton2" class="btn_tambah" onclick="printLaporanHTML()" name="{Button_Name}" alt="Button1" value="Tampilkan" type="button"><!-- END Button Button2 -->
+                      <!-- BEGIN Button Button1 --><input id="t_laporan_rekap_bphtbButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download Pdf" type="button"><!-- END Button Button1 --></td>
                   </tr>
                 </table>
               </td>
@@ -122,5 +171,6 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                         getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
   </script>
+<p>{Label1}</p>
 </body>
 </html>
