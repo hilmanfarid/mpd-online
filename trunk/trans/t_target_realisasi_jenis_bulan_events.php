@@ -102,7 +102,7 @@ function t_target_realisasiGrid_BeforeShowRow(& $sender)
 
 	 $sum_percentage = $t_target_realisasiGrid->percentage_sum->GetValue();
 	 if($sum_total > 0)
-	 $t_target_realisasiGrid->percentage_sum->SetValue(number_format(($sum_realisasi+$realisasi+$sum_debt+$debt), 2, ".", ","));
+	 $t_target_realisasiGrid->percentage_sum->SetValue(($sum_realisasi+$realisasi+$sum_debt+$debt) / ($sum_target+$target)  * 100);
 // -------------------------
 //End Custom Code
 
