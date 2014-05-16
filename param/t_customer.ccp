@@ -6,11 +6,12 @@ LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
 LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
 
 WHERE upper(a.company_owner) like upper('%{s_keyword}%') 
-       and upper(a.address_name_owner) like upper('%{s_keyword}%')
+       and upper(a.company_owner) like upper('%{s_keyword}%')
        and upper(b.npwd) like upper('%{s_npwd}%')
        and upper(b.wp_name) like upper('%{s_wp_name}%')
        and upper(b.company_name) like upper('%{s_company_name}%')
-       and upper(b.company_brand) like upper('%{s_company_brand}%')">
+       and upper(b.company_brand) like upper('%{s_company_brand}%')
+	   and upper(a.address_name_owner) like upper('%{s_address_name}%')">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_customer.ccp" wizardThemeItem="GridA" PathID="t_customerGridDLink" removeParameters="FLAG">
 					<Components/>
@@ -91,7 +92,7 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -119,7 +120,8 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 				<SQLParameter id="484" variable="s_wp_name" parameterType="URL" dataType="Text" parameterSource="s_wp_name"/>
 				<SQLParameter id="485" variable="s_company_name" parameterType="URL" dataType="Text" parameterSource="s_company_name"/>
 				<SQLParameter id="486" variable="s_company_brand" parameterType="URL" dataType="Text" parameterSource="s_company_brand"/>
-			</SQLParameters>
+				<SQLParameter id="525" variable="s_address_name" parameterType="URL" dataType="Text" parameterSource="s_address_name"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -162,7 +164,13 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<TextBox id="524" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_address_name" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_customerSearchs_address_name">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
