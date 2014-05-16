@@ -45,7 +45,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-FACA89A4
+//Class_Initialize Event @2-C14A9F50
     function clsRecordt_laporan_rekap_bphtb($RelativePath, & $Parent)
     {
 
@@ -80,6 +80,8 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
             $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
             $this->ListBox1->DSType = dsListOfValues;
             $this->ListBox1->Values = array(array("1", "Sudah Bayar"), array("2", "Belum Bayar"));
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->Button3 = & new clsButton("Button3", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -133,7 +135,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-A56810A6
+//Operation Method @2-B84792BF
     function Operation()
     {
         if(!$this->Visible)
@@ -150,12 +152,24 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button1";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
+            } else if($this->Button3->Pressed) {
+                $this->PressedButton = "Button3";
             }
         }
         $Redirect = "t_laporan_rekap_bphtb.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button3") {
+                if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
                     $Redirect = "";
                 }
             }
@@ -165,7 +179,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-B81C7A98
+//Show Method @2-55BC018E
     function Show()
     {
         global $CCSUseAmp;
@@ -220,6 +234,8 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_end_start_laporan1->Show();
         $this->cetak_laporan->Show();
         $this->ListBox1->Show();
+        $this->Button2->Show();
+        $this->Button3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -261,13 +277,16 @@ include_once("./t_laporan_rekap_bphtb_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-2129DC06
+//Initialize Objects @1-819AEF3E
 $Attributes = new clsAttributes("page:");
 $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_laporan_rekap_bphtb = & new clsRecordt_laporan_rekap_bphtb("", $MainPage);
+$Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", ccsGet, NULL), $MainPage);
+$Label1->HTML = true;
 $MainPage->t_laporan_rekap_bphtb = & $t_laporan_rekap_bphtb;
+$MainPage->Label1 = & $Label1;
 
 BindEvents();
 
@@ -305,8 +324,9 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-7A1F29A7
+//Show Page @1-86D29F5A
 $t_laporan_rekap_bphtb->Show();
+$Label1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
