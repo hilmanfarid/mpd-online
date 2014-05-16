@@ -99,7 +99,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     }
 //End Initialize Method
 
-//Show Method @2-5652C8BF
+//Show Method @2-25DA0577
     function Show()
     {
         global $Tpl;
@@ -113,6 +113,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
         $this->DataSource->Parameters["urls_wp_name"] = CCGetFromGet("s_wp_name", NULL);
         $this->DataSource->Parameters["urls_company_name"] = CCGetFromGet("s_company_name", NULL);
         $this->DataSource->Parameters["urls_company_brand"] = CCGetFromGet("s_company_brand", NULL);
+        $this->DataSource->Parameters["urls_address_name"] = CCGetFromGet("s_address_name", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -295,7 +296,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End SetOrder Method
 
-//Prepare Method @2-695E0B8E
+//Prepare Method @2-D6C327A0
     function Prepare()
     {
         global $CCSLocales;
@@ -306,10 +307,11 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         $this->wp->AddParameter("3", "urls_wp_name", ccsText, "", "", $this->Parameters["urls_wp_name"], "", false);
         $this->wp->AddParameter("4", "urls_company_name", ccsText, "", "", $this->Parameters["urls_company_name"], "", false);
         $this->wp->AddParameter("5", "urls_company_brand", ccsText, "", "", $this->Parameters["urls_company_brand"], "", false);
+        $this->wp->AddParameter("6", "urls_address_name", ccsText, "", "", $this->Parameters["urls_address_name"], "", false);
     }
 //End Prepare Method
 
-//Open Method @2-D35A7F53
+//Open Method @2-B339F53A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -319,22 +321,24 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
         "\n" .
         "WHERE upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
-        "       and upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        "       and upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         "       and upper(b.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
         "       and upper(b.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
         "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
-        "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')) cnt";
+        "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
+        "	   and upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%')) cnt";
         $this->SQL = "select a.*, c.vat_code\n" .
         "FROM t_customer a\n" .
         "LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id\n" .
         "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
         "\n" .
         "WHERE upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
-        "       and upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        "       and upper(a.company_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         "       and upper(b.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
         "       and upper(b.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
         "       and upper(b.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
-        "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')";
+        "       and upper(b.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
+        "	   and upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -398,7 +402,7 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-A0ADF5C0
+//Class_Initialize Event @3-CC5D8CD6
     function clsRecordt_customerSearch($RelativePath, & $Parent)
     {
 
@@ -428,11 +432,12 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
             $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
             $this->s_company_brand = & new clsControl(ccsTextBox, "s_company_brand", "s_company_brand", ccsText, "", CCGetRequestParam("s_company_brand", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->s_address_name = & new clsControl(ccsTextBox, "s_address_name", "s_address_name", ccsText, "", CCGetRequestParam("s_address_name", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-2AC60F7D
+//Validate Method @3-99469E52
     function Validate()
     {
         global $CCSLocales;
@@ -443,17 +448,19 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
         $Validation = ($this->s_company_name->Validate() && $Validation);
         $Validation = ($this->s_keyword->Validate() && $Validation);
         $Validation = ($this->s_company_brand->Validate() && $Validation);
+        $Validation = ($this->s_address_name->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_npwd->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_wp_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_company_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_company_brand->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->s_address_name->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-51FEC2D3
+//CheckErrors Method @3-E141EBBD
     function CheckErrors()
     {
         $errors = false;
@@ -462,6 +469,7 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
         $errors = ($errors || $this->s_company_name->Errors->Count());
         $errors = ($errors || $this->s_keyword->Errors->Count());
         $errors = ($errors || $this->s_company_brand->Errors->Count());
+        $errors = ($errors || $this->s_address_name->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -515,7 +523,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-4BDB3D42
+//Show Method @3-6B358FD9
     function Show()
     {
         global $CCSUseAmp;
@@ -544,6 +552,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->s_company_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_company_brand->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->s_address_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -567,6 +576,7 @@ function GetPrimaryKey($keyName)
         $this->s_keyword->Show();
         $this->s_company_brand->Show();
         $this->Button_DoSearch->Show();
+        $this->s_address_name->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
