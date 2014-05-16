@@ -191,10 +191,10 @@ function print_excel($param_arr) {
 		echo '<tr>
 				<td>'.$no.'</td>
 				<td>'.dateToString($item['creation_date']).'</td>	
-				<td>'.$item['registration_no'].' </a></td>
+				<td>&nbsp;'.$item['registration_no'].' </a></td>
 				<td>'.$item['wp_name'].'</td>	
 				<td>'.$item['description'].'</td>	
-				<td>'.$item['njop_pbb'].'</td>	
+				<td>&nbsp;'.$item['njop_pbb'].'</td>	
 				<td align="right">'.number_format($item['land_area'],0,",",".")." / ".number_format($item['building_area'],0,",",".").'</td>
 				<td align="right">'.number_format($item['land_total_price'],2,",",".").'</td>
 				<td align="right">'.number_format($item['building_total_price'],2,",",".").'</td>
