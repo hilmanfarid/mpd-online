@@ -39,17 +39,29 @@
 					<Features/>
 				</Hidden>
 				<ListBox id="18" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_laporan_rekap_bphtbListBox1" dataSource="1;Sudah Bayar;2;Belum Bayar">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<Button id="20" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_rekap_bphtbButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="21" urlType="Relative" enableValidation="True" isDefault="False" name="Button3" PathID="t_laporan_rekap_bphtbButton3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
@@ -72,6 +84,12 @@
 			<Attributes/>
 			<Features/>
 		</Record>
+		<Label id="19" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_rekap_bphtb_events.php" forShow="False" comment="//" codePage="windows-1252"/>
