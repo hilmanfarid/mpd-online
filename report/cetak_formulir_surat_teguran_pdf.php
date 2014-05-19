@@ -294,13 +294,21 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array(10, $ltable4, $ltable2, $ltable2, $ltable3, $ltable3, 5));
 		$this->SetAligns(array("L", "C", "C", "C", "C", "C", "L"));
 		
+		$title_kolom4 = 'SPTPD';
+		$title_kolom5 = 'TGL. SETOR';
+
+		if( $data["sequence_no"] == 3) {
+			$title_kolom4 = 'SKPDKB JABATAN';
+			$title_kolom5 = 'NILAI SKPDKB';
+		}
+
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"JENIS PAJAK",
 				"TAHUN",
 				"BULAN",
-				"SPTPD",
-				"TGL. SETOR",
+				$title_kolom4,
+				$title_kolom5,
 				""
 			),
 			array("LR",
@@ -330,25 +338,50 @@ class FormCetak extends FPDF {
 				$bulan_string.="\n";
 			}
 		}
-		$this->RowMultiBorderWithHeight(
-			array("",
-				$data["vat_code"],
-				$tahun[1],
-				$bulan_string,
-				$data["tap_no"],
-				"-",
-				""
-			),
-			array("LR",
-				"TBLR",
-				"TBLR",
-				"TBLR",
-				"TBLR",
-				"TBLR",
-				"LR"
-			),
-			$this->height
-		);
+
+		if( $data["sequence_no"] == 3) {
+
+			$this->RowMultiBorderWithHeight(
+				array("",
+					$data["vat_code"],
+					$tahun[1],
+					$bulan_string,
+					$data["tap_no"],
+					number_format($data["debt_amount"],0,",","."),
+					""
+				),
+				array("LR",
+					"TBLR",
+					"TBLR",
+					"TBLR",
+					"TBLR",
+					"TBLR",
+					"LR"
+				),
+				$this->height
+			);
+
+		} else {
+			$this->RowMultiBorderWithHeight(
+				array("",
+					$data["vat_code"],
+					$tahun[1],
+					$bulan_string,
+					$data["tap_no"],
+					"-",
+					""
+				),
+				array("LR",
+					"TBLR",
+					"TBLR",
+					"TBLR",
+					"TBLR",
+					"TBLR",
+					"LR"
+				),
+				$this->height
+			);
+		}
 		
 		$lbody = $this->lengthCell / 4;
 		$lbody1 = $lbody * 1;
