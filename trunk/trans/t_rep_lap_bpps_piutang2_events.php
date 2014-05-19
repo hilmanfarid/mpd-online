@@ -223,6 +223,7 @@ function Page_BeforeShow(& $sender)
 				"payment_date"		=> $dbConn->f("payment_date"),
 				"jam"		=> $dbConn->f("jam"));
 			}
+			
 			/*
 			while ($dbConn->next_record()) {
 				$data[]= array(
@@ -337,7 +338,7 @@ function GetCetakHTML2($data) {
 	$date_start=str_replace("'", "",$year_code);
 	//$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
 	$year_date = $year_code;
-	
+
 	$output = '';
 	
 	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -365,8 +366,10 @@ function GetCetakHTML2($data) {
 	//$output.='<th>NO KOHIR</th>';
 	$output.='<th rowspan = 2>NAMA WP</th>';
 	$output.='<th rowspan = 2>NPWPD</th>';
+	$output.='<th rowspan = 2>ALAMAT</th>';
 	$jenis_laporan		= CCGetFromGet("jenis_laporan", "all");
 	if($jenis_laporan == 'murni'){ 
+
 		$output.='<th colspan = 13 align=center>REALISASI DAN TANGGAL BAYAR</th>';
 		$output.='</tr>';
 			$output.='<tr class="Caption">';
@@ -405,6 +408,7 @@ function GetCetakHTML2($data) {
 		$nov=0;
 		$des=0;
 		foreach($data as $item) {
+		
 			$bln = substr($item["masa_pajak"],-7,2);
 			$thn = substr($item["masa_pajak"],-4,4);
 			if ($new == 0){
@@ -415,6 +419,7 @@ function GetCetakHTML2($data) {
 				//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 				$output .= '<td align="left">'.$item['wp_name'].'</td>';
 				$output .= '<td align="left">'.$item['npwpd'].'</td>';
+				$output .= '<td align="left">'.$item['address'].'</td>';
 				//$before = $item;
 				//if ($thn == $year_date && $bln != 12){
 					switch ($bln) {
@@ -579,6 +584,7 @@ function GetCetakHTML2($data) {
 					//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 					$output .= '<td align="left">'.$item['wp_name'].'</td>';
 					$output .= '<td align="left">'.$item['npwpd'].'</td>';
+					$output .= '<td align="left">'.$item['address'].'</td>';
 					//$before = $item;
 					//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
 										//if ($thn == $year_date && $bln != 12){
@@ -664,7 +670,7 @@ function GetCetakHTML2($data) {
 			}
 		}
 		$output .= '<tr>';
-			$output .= '<td align="CENTER" colspan=17>TOTAL PAJAK</td>';
+			$output .= '<td align="CENTER" colspan=18>TOTAL PAJAK</td>';
 			$output .= '<td align="right">'.number_format($jumlahperayat, 2, ',', '.').'</td>';
 		$output .= '</tr>';
 
@@ -672,6 +678,7 @@ function GetCetakHTML2($data) {
 		$output.='</table>';
 	}
 	else{
+		
 		if(($jenis_laporan == 'all')){
 			$output.='<th colspan = 15 align=center>REALISASI DAN TANGGAL BAYAR</th>';
 			$output.='</tr>';
@@ -715,6 +722,7 @@ function GetCetakHTML2($data) {
 			$xdes=0;
 			$xnov=0;
 			foreach($data as $item) {
+
 				$bln = substr($item["masa_pajak"],-7,2);
 				$thn = substr($item["masa_pajak"],-4,4);
 				if ($new == 0){
@@ -725,6 +733,7 @@ function GetCetakHTML2($data) {
 					//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 					$output .= '<td align="left">'.$item['wp_name'].'</td>';
 					$output .= '<td align="left">'.$item['npwpd'].'</td>';
+					$output .= '<td align="left">'.$item['address'].'</td>';
 					//$before = $item;
 					if ($thn == $year_date && $bln != 12){
 						switch ($bln) {
@@ -885,6 +894,7 @@ function GetCetakHTML2($data) {
 						//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 						$output .= '<td align="left">'.$item['wp_name'].'</td>';
 						$output .= '<td align="left">'.$item['npwpd'].'</td>';
+						$output .= '<td align="left">'.$item['address'].'</td>';
 						//$before = $item;
 						//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
 						if ($thn == $year_date && $bln != 12){
@@ -1030,6 +1040,7 @@ function GetCetakHTML2($data) {
 						//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 						$output .= '<td align="left">'.$item['wp_name'].'</td>';
 						$output .= '<td align="left">'.$item['npwpd'].'</td>';
+						$output .= '<td align="left">'.$item['address'].'</td>';
 						//$before = $item;
 
 						if ($thn == ($year_date-1) && $bln != 12){
@@ -1203,6 +1214,7 @@ function GetCetakHTML2($data) {
 							//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 							$output .= '<td align="left">'.$item['wp_name'].'</td>';
 							$output .= '<td align="left">'.$item['npwpd'].'</td>';
+							$output .= '<td align="left">'.$item['address'].'</td>';
 							//$before = $item;
 							//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
 							if ($thn == ($year_date-1) && $bln != 12){
