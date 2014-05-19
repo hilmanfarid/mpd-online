@@ -298,8 +298,8 @@ class FormCetak extends FPDF {
 		$title_kolom5 = 'TGL. SETOR';
 
 		if( $data["sequence_no"] == 3) {
-			$title_kolom4 = 'SKPDKB JABATAN';
-			$title_kolom5 = 'NILAI SKPDKB';
+			$title_kolom4 = 'NO SKPDKB';
+			$title_kolom5 = 'SKPDKB JABATAN';
 		}
 
 		$this->RowMultiBorderWithHeight(
