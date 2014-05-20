@@ -14,7 +14,7 @@ $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 // $p_vat_type_id		= 1;
 // $p_year_period_id	= 4;
 // $tgl_penerimaan		= '15-12-2013';
-
+    
 
 $user				= CCGetUserLogin();
 $data				= array();
