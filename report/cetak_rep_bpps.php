@@ -14,7 +14,7 @@ $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 // $p_vat_type_id		= 1;
 // $p_year_period_id	= 4;
 // $tgl_penerimaan		= '15-12-2013';
-    
+
 
 $user				= CCGetUserLogin();
 $data				= array();
@@ -133,6 +133,7 @@ class FormCetak extends FPDF {
 			$npwpd_text = 'NJOP';
 		}
 		
+
 		$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
 		$this->Cell($ltable2, $this->height + 2, "NO. AYAT", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "NAMA AYAT", "TBLR", 0, 'C');
