@@ -122,12 +122,23 @@ class FormCetak extends FPDF {
 		$ltable5 = $ltable * 5;
 		$ltable22 = $ltable * 22;
 		
+		
+		
+		$p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
+		$no_kohir_text = 'NO. KOHIR';
+		$npwpd_text = 'NPWPD';
+
+		if($p_vat_type_id == 6) { //BPHTB
+			$no_kohir_text = 'NO. REG';
+			$npwpd_text = 'NJOP';
+		}
+		
 		$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
 		$this->Cell($ltable2, $this->height + 2, "NO. AYAT", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "NAMA AYAT", "TBLR", 0, 'C');
-		$this->Cell($ltable2, $this->height + 2, "NO. KOHIR", "TBLR", 0, 'C');
+		$this->Cell($ltable2, $this->height + 2, $no_kohir_text, "TBLR", 0, 'C');
 		$this->Cell($ltable5, $this->height + 2, "NAMA WP", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height + 2, "NPWPD", "TBLR", 0, 'C');
+		$this->Cell($ltable3, $this->height + 2, $npwpd_text, "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "JUMLAH", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "MASA PAJAK", "TBLR", 0, 'C');
 		$this->Cell($ltable2, $this->height + 2, "TGL TAP", "TBLR", 0, 'C');
