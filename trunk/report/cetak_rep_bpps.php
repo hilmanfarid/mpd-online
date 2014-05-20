@@ -130,7 +130,7 @@ class FormCetak extends FPDF {
 
 		if($p_vat_type_id == 6) { //BPHTB
 			$no_kohir_text = 'NO. REG';
-			$npwpd_text = 'NJOP';
+			$npwpd_text = 'NOP';
 		}
 		
 
