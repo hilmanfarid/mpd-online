@@ -129,7 +129,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$query = "SELECT a.p_vat_type_id, upper(a.vat_code) AS jenis_pajak, upper(substring(a.vat_code from 7)) as pajak_text, b.vat_code, b.p_vat_type_dtl_id
 				FROM p_vat_type AS a 
 				LEFT JOIN p_vat_type_dtl as b ON a.p_vat_type_id = b.p_vat_type_id
-				WHERE a.p_vat_type_id NOT IN (7,9) AND b.p_vat_type_dtl_id NOT IN (12, 23, 30, 31, 42, 43, 44)
+				WHERE a.p_vat_type_id NOT IN (7,9) AND b.p_vat_type_dtl_id NOT IN (12, 23, 30, 31, 42, 43)
 				ORDER BY a.p_vat_type_id ASC, b.vat_code ASC";
 
 	$dbConn->query($query);
