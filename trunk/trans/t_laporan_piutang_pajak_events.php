@@ -96,9 +96,10 @@ function view_html($param_arr) {
 
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name
+	$query="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.code as periode_bayar
 			from t_piutang_pajak_penetapan_final as a
 			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
+			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
 			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']." and a.p_year_period_id = ".$param_arr['year_period_id'];
 	$dbConn->query($query);
 
@@ -108,6 +109,7 @@ function view_html($param_arr) {
 						"npwd" => $dbConn->f("npwd"),
 						"wp_name" => $dbConn->f("wp_name"),
 						"masa_pajak" => $dbConn->f("masa_pajak"),
+						"periode_bayar" => $dbConn->f("periode_bayar"),
 						"tgl_tap" => $dbConn->f("tgl_tap_formated"),
 						"no_kohir" => $dbConn->f("no_kohir"),
 						"realisasi_piutang" => $dbConn->f("realisasi_piutang"),
@@ -123,7 +125,7 @@ function view_html($param_arr) {
 			$output .= '<td align="center">'.$no++.'</td>';
 			$output .= '<td align="left">'.$item['npwd'].'</td>';
 			$output .= '<td align="left">'.$item['wp_name'].'</td>';
-			$output .= '<td align="center">'.$item['masa_pajak'].'</td>';
+			$output .= '<td align="center">'.$item['periode_bayar'].'</td>';
 			$output .= '<td align="left">'.$item['tgl_tap'].'</td>';
 			$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 			$output .= '<td align="right">'.number_format($item['nilai_piutang'],0,",",".").'</td>';
