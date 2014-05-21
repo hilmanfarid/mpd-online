@@ -19,7 +19,7 @@ AND t_cust_account_id = {t_cust_account_id} ">
 					<Events/>
 					<LinkParameters>
 						<LinkParameter id="696" sourceType="DataField" name="t_cacc_legal_doc_id" source="t_cacc_legal_doc_id"/>
-</LinkParameters>
+					</LinkParameters>
 					<Attributes/>
 					<Features/>
 				</Link>
@@ -82,8 +82,8 @@ AND t_cust_account_id = {t_cust_account_id} ">
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="694" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
-<SQLParameter id="695" parameterType="URL" variable="t_cust_account_id" dataType="Float" parameterSource="t_cust_account_id" defaultValue="0"/>
-</SQLParameters>
+				<SQLParameter id="695" parameterType="URL" variable="t_cust_account_id" dataType="Float" parameterSource="t_cust_account_id" defaultValue="0"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -108,19 +108,19 @@ AND t_cust_account_id = {t_cust_account_id} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="697" fieldSourceType="DBColumn" dataType="Text" name="t_customer_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cacc_legal_docSearcht_customer_id">
+				<Hidden id="697" fieldSourceType="DBColumn" dataType="Text" name="t_customer_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cacc_legal_docSearcht_customer_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="698" fieldSourceType="DBColumn" dataType="Text" name="customer_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cacc_legal_docSearchcustomer_name">
+				<Hidden id="698" fieldSourceType="DBColumn" dataType="Text" name="customer_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cacc_legal_docSearchcustomer_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -152,7 +152,7 @@ p_legal_doc_type_id={p_legal_doc_type_id},
 origin_file_name=substr('{file_name}',17), 
 file_folder='{file_folder}', 
 file_name='{file_name}'
-WHERE t_cacc_legal_doc_id={t_cacc_legal_doc_id}" customDelete="DELETE FROM t_cacc_legal_doc_doc
+WHERE t_cacc_legal_doc_id={t_cacc_legal_doc_id}" customDelete="DELETE FROM t_cacc_legal_doc
 WHERE t_cacc_legal_doc_id = {t_cacc_legal_doc_id}" dataSource="SELECT t_cacc_legal_doc_id, t_cust_account_id, p_legal_doc_type_id, 
 legal_doc_desc, origin_file_name, 
 file_folder, description,
