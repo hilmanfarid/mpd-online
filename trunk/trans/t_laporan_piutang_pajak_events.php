@@ -87,7 +87,7 @@ function print_laporan($param_arr){
 									"TGL BAYAR",									
 									"SISA PIUTANG",
 									"KETERANGAN",
-									"TAHUN"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+									"TAHUN"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
 	$pdf->SetFont('helvetica', '',9);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','C','L','R','R','C','R','R','L','L'));
