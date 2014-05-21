@@ -78,7 +78,7 @@ function view_html($param_arr) {
 
 	$output.='<th>NO</th>';
 	$output.='<th>NPWPD</th>';
-	//$output.='<th>NAMA WP</th>';
+	$output.='<th>NAMA WP</th>';
 	$output.='<th>MASA PAJAK</th>';
 	$output.='<th>TGL TAP</th>';
 	$output.='<th>NO KOHIR</th>';
@@ -87,8 +87,8 @@ function view_html($param_arr) {
 	$output.='<th>TGL BAYAR</th>';
 	$output.='<th>SISA <br/>PIUTANG (Rp)</th>';
 	$output.='<th>KETERANGAN</th>';
-	$output.='<th>TAHUN</th>';
-	$output.='<th>CETAK</th>';
+	//$output.='<th>TAHUN</th>';
+	$output.='<th>MODIF</th>';
 	$output.='</tr>';
 	
 	$no=1;
@@ -122,7 +122,7 @@ function view_html($param_arr) {
 		$output .= '<tr>';
 			$output .= '<td align="center">'.$no++.'</td>';
 			$output .= '<td align="left">'.$item['npwd'].'</td>';
-			//$output .= '<td align="left">'.$item['wp_name'].'</td>';
+			$output .= '<td align="left">'.$item['wp_name'].'</td>';
 			$output .= '<td align="center">'.$item['masa_pajak'].'</td>';
 			$output .= '<td align="left">'.$item['tgl_tap'].'</td>';
 			$output .= '<td align="left">'.$item['no_kohir'].'</td>';
@@ -131,7 +131,7 @@ function view_html($param_arr) {
 			$output .= '<td align="center">'.$item['tgl_bayar'].'</td>';
 			$output .= '<td align="right">'.number_format($item['sisa_piutang'],0,",",".").'</td>';
 			$output .= '<td align="left">'.$item['keterangan'].'</td>';
-			$output .= '<td align="center">'.$item['year_code'].'</td>';
+			//$output .= '<td align="center">'.$item['year_code'].'</td>';
 			$output .= '<td align="center"><button class="btn_tambah" onclick="viewFormModifikasi('.$item['t_piutang_pajak_penetapan_final_id'].')">Ubah Data</button></td>';
 		$output .= '</tr>';
 	}
