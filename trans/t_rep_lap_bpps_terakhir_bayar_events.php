@@ -122,7 +122,7 @@ function GetCetakHTML($data) {
 	$output.='<th>NPWPD</th>';
 	$output.='<th>PEMBAYARAN </br>TERAKHIR</th>';
 	$output.='<th>TGL BAYAR </br>TERAKHIR</th>';
-	$output.='<th>MASA PAJAK</th>';
+	$output.='<th width=140>MASA PAJAK</th>';
 	$output.='</tr>';
 	
 	$jumlahtemp=0;
