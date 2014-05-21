@@ -38,7 +38,13 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Button id="21" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_piutang_pajakButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -60,7 +66,13 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+		<Label id="22" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_piutang_pajak_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_laporan_piutang_pajak.php" forShow="True" url="t_laporan_piutang_pajak.php" comment="//" codePage="windows-1252"/>
