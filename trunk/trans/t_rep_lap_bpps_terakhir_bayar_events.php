@@ -101,16 +101,16 @@ function GetCetakHTML($data) {
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>LAPORAN REALISASI TERAKHIR BAYAR</strong></td> 
+                  		<td class="th"><strong>LAPORAN TERAKHIR BAYAR PER JENIS PAJAK</strong></td> 
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               		</table>';
 	
-	$output .= '<h2>LAPORAN TERAKHIR BAYAR PER JENIS PAJAK </h2>';
+	//$output .= '<h2>LAPORAN TERAKHIR BAYAR PER JENIS PAJAK </h2>';
 	//$output .= '<h2>TANGGAL : '.dateToString($date_start, "-")." s/d ".dateToString($date_end, "-").'</h2> <br/>';
 
-	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
-                <tr class="Caption">';
+	$output .='<table class="report" cellspacing="0" cellpadding="3px" width="100%">
+                <tr>';
 
 
 	$output.='<th>NO</th>';
