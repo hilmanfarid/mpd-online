@@ -19,9 +19,56 @@
                 params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
                 window.open("t_laporan_piutang_pajak.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
+
+                function printLaporanHTML(){
+                	var params = "?cetak_laporan=view_html";
+	                params += "&year_code="+document.getElementById("t_laporan_piutang_pajakyear_code").value;
+	               	params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
+	                params += "&p_year_period_id="+document.getElementById("t_laporan_piutang_pajakp_year_period_id").value;
+	                params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
+	                location.href = "t_laporan_piutang_pajak.php"+params;
+        		}
+		
+		function viewFormModifikasi(t_piutang_pajak_penetapan_final_id) {
+			
+			url = "../trans/t_laporan_piutang_pajak_modif.php?t_piutang_pajak_penetapan_final_id="+t_piutang_pajak_penetapan_final_id;
+                
+                params  = 'width=650';
+		        params += ', height=320';
+		        params += ', top=0, left=0';
+
+		        newwin=window.open(url,'windowname4', params);
+		        if (window.focus) {newwin.focus()}
+		                return false;
+
+		}
 </script>
+<style>
+
+table.report { 
+border-right:1px solid #000; 
+border-spacing: 0px; 
+} 
+
+table.report th{ 
+border-top:1px solid #000; 
+border-bottom:1px solid #000; 
+border-left:1px solid #000; 
+padding:4px; 
+text-transform: uppercase; 
+text-align: center; 
+}
+
+table.report td{ 
+border-left:1px solid #000; 
+border-bottom:1px solid #000; 
+padding-left:4px; 
+padding-right:4px; 
+}
+
+</style>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -59,7 +106,8 @@
                     </tr>
  
                     <tr>
-                      <td colspan="2" align="right">
+                      <td colspan="2" align="right">&nbsp; 
+                        <!-- BEGIN Button Button2 --><input id="t_laporan_piutang_pajakButton2" class="btn_tambah" onclick="printLaporanHTML()" name="{Button_Name}" alt="Button1" value="Tampilkan" type="button"><!-- END Button Button2 -->
                         <!-- BEGIN Button Button1 --><input id="t_laporan_piutang_pajakButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download" type="button"><!-- END Button Button1 --></td>
                     </tr>
                   </table>
@@ -96,5 +144,6 @@ function lov_tipeayat() {
 }
 
   </script>
+ <p> {Label1} </p>
   </body>
   </html>
