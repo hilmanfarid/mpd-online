@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN TERAKHIR BAYAR PER JENIS PAJAK 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_rep_bppsSearch -->
+        <form id="t_rep_bppsSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Jenis Pajak</td> 
+                    <td class="search-field" colspan="2"><input id="t_rep_bppsSearchvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}">&nbsp;<img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_bppsSearchp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                    <td class="search-field">&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" value="TAMPILKAN" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_rep_bppsSearch -->
+        <div align="left">
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>{Label1}</p>
+<script language="javascript">
+                function jenispajak() {
+                getFrom_LOV('t_rep_bppsSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+        }
+
+        function periodetahun() {
+                getFrom_LOV('t_rep_bppsSearch','p_year_period_id,year_code','lov_year_period.php');
+        }
+
+        function cetak()
+        {
+                var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
+                var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
+                
+                                var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
+                var i_flag_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
+                
+                                if(tgl_penerimaan == "" || tgl_penerimaan_last == "" || p_year_period_id == "" || p_vat_type_id == "" || i_flag_setoran == "") {
+                                        alert("Semua Filter Harus Diisi");
+                                }else {
+                                        window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak2.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'&jenis_laporan="+document.getElementById('t_rep_bppsSearchjenis_laporan').value, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                        }
+                }
+
+        function tampilkanLaporan(){
+                        var params = "?doAction=view_html";
+            
+            var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
+                        
+            var jenis_pajak = document.getElementById("t_rep_bppsSearchvat_code").value;
+
+
+            if(p_vat_type_id == "") {
+                alert("Semua Filter Harus Diisi");
+            }else {
+                                location.href="t_rep_lap_bpps_terakhir_bayar.php"+params+
+                "&p_vat_type_id=" + p_vat_type_id+
+                "&vat_code="+jenis_pajak;
+            }               
+    }
+        </script>
+</body>
+</html>
