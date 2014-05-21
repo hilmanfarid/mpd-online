@@ -1115,7 +1115,7 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
     }
 //End Update Method
 
-//Delete Method @94-490BC86F
+//Delete Method @94-3FFC7973
     function Delete()
     {
         global $CCSLocales;
@@ -1127,7 +1127,7 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
             $this->cp["t_cacc_legal_doc_id"]->SetValue($this->t_cacc_legal_doc_id->GetValue(true));
         if (!strlen($this->cp["t_cacc_legal_doc_id"]->GetText()) and !is_bool($this->cp["t_cacc_legal_doc_id"]->GetValue(true))) 
             $this->cp["t_cacc_legal_doc_id"]->SetText(0);
-        $this->SQL = "DELETE FROM t_cacc_legal_doc_doc\n" .
+        $this->SQL = "DELETE FROM t_cacc_legal_doc\n" .
         "WHERE t_cacc_legal_doc_id = " . $this->SQLValue($this->cp["t_cacc_legal_doc_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
