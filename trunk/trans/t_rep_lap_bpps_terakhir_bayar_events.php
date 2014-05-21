@@ -115,13 +115,13 @@ function GetCetakHTML($data) {
 
 	$output.='<th>NO</th>';
 	$output.='<th>NO AYAT</th>';
-	$output.='<th>NAMA AYAT</th>';
+	//$output.='<th>NAMA AYAT</th>';
 	$output.='<th>NO KOHIR</th>';
 	$output.='<th>NAMA WP</th>';
 	$output.='<th>ALAMAT</th>';
 	$output.='<th>NPWPD</th>';
-	$output.='<th>PEMBAYARAN TERAKHIR</th>';
-	$output.='<th>TGL BAYAR TERAKHIR</th>';
+	$output.='<th>PEMBAYARAN </br>TERAKHIR</th>';
+	$output.='<th>TGL BAYAR </br>TERAKHIR</th>';
 	$output.='<th>MASA PAJAK</th>';
 	$output.='</tr>';
 	
@@ -141,7 +141,7 @@ function GetCetakHTML($data) {
 				$output .= '<tr>';
 					$output .= '<td align="center">'.($i+1).'</td>';
 					$output .= '<td align="center">'.$item["kode_jns_pajak"]." ".$item["kode_ayat"].'</td>';
-					$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
+					//$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
 					$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 					$output .= '<td align="left">'.$item['wp_name'].'</td>';
 					$output .= '<td align="left">'.$item['address'].'</td>';
