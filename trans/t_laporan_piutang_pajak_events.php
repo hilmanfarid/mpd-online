@@ -21,10 +21,26 @@ function Page_BeforeShow(& $sender)
     // Write your own code here.
 // -------------------------
 //End Custom Code
-
+	$cetak_laporan = CCGetFromGet('cetak_laporan');
+	global $Label1;
 // -------------------------
     // Write your own code here.
-    if($t_laporan_piutang_pajak->cetak_laporan->GetValue()=='T'){
+
+	if($cetak_laporan == 'view_html') {
+		$param_arr = array();
+		$param_arr['year_period_id'] = $t_laporan_piutang_pajak->p_year_period_id->GetValue();
+		$param_arr['p_vat_type_id'] = $t_laporan_piutang_pajak->p_vat_type_id->GetValue();
+		$param_arr['year_code'] = $t_laporan_piutang_pajak->year_code->GetValue();
+		$param_arr['vat_code'] = $t_laporan_piutang_pajak->vat_code->GetValue();
+		
+		$t_laporan_piutang_pajak->p_year_period_id->SetValue($param_arr['year_period_id']);
+		$t_laporan_piutang_pajak->year_code->SetValue($param_arr['year_code']);
+		$t_laporan_piutang_pajak->p_vat_type_id->SetValue($param_arr['p_vat_type_id']);
+		$t_laporan_piutang_pajak->vat_code->SetValue($param_arr['vat_code']);
+		
+		$Label1->SetText(view_html($param_arr));
+		
+	}else if($t_laporan_piutang_pajak->cetak_laporan->GetValue()=='T'){
 		$param_arr=array();
 		$param_arr['year_period_id']=$t_laporan_piutang_pajak->p_year_period_id->GetValue();
 		$param_arr['p_vat_type_id']=$t_laporan_piutang_pajak->p_vat_type_id->GetValue();
@@ -40,6 +56,91 @@ function Page_BeforeShow(& $sender)
     return $Page_BeforeShow;
 }
 //End Close Page_BeforeShow
+
+function view_html($param_arr) {
+	
+	
+	$output = '';	
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          		<tr>
+            		<td valign="top">';
+
+	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                	<tr>
+                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  		<td class="th"><strong>DAFTAR PIUTANG (2002-2012)</strong></td> 
+                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                	</tr>
+               </table>';
+	
+	$output .='<table class="report" cellspacing="0" cellpadding="3px" width="100%">
+                <tr>';
+
+	$output.='<th>NO</th>';
+	$output.='<th>NPWPD</th>';
+	//$output.='<th>NAMA WP</th>';
+	$output.='<th>MASA PAJAK</th>';
+	$output.='<th>TGL TAP</th>';
+	$output.='<th>NO KOHIR</th>';
+	$output.='<th>BESARNYA (Rp)</th>';
+	$output.='<th>REALISASI <br/>PIUTANG (Rp)</th>';
+	$output.='<th>TGL BAYAR</th>';
+	$output.='<th>SISA <br/>PIUTANG (Rp)</th>';
+	$output.='<th>KETERANGAN</th>';
+	$output.='<th>TAHUN</th>';
+	$output.='<th>CETAK</th>';
+	$output.='</tr>';
+	
+	$no=1;
+
+
+	$dbConn = new clsDBConnSIKP();
+	
+	$query="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name
+			from t_piutang_pajak_penetapan_final as a
+			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
+			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']." and a.p_year_period_id = ".$param_arr['year_period_id'];
+	$dbConn->query($query);
+
+	while($dbConn->next_record()){
+		$item = array(
+						"t_piutang_pajak_penetapan_final_id" => $dbConn->f("t_piutang_pajak_penetapan_final_id"),
+						"npwd" => $dbConn->f("npwd"),
+						"wp_name" => $dbConn->f("wp_name"),
+						"masa_pajak" => $dbConn->f("masa_pajak"),
+						"tgl_tap" => $dbConn->f("tgl_tap_formated"),
+						"no_kohir" => $dbConn->f("no_kohir"),
+						"realisasi_piutang" => $dbConn->f("realisasi_piutang"),
+						"tgl_bayar" => $dbConn->f("tgl_bayar_formated"),
+						"nilai_piutang" => $dbConn->f("nilai_piutang"),
+						"sisa_piutang" => $dbConn->f("sisa_piutang"),
+						"keterangan" => $dbConn->f("keterangan"),
+						"p_year_period_id" => $dbConn->f("p_year_period_id"),
+						"year_code" => $dbConn->f("year_code")
+						);
+		
+		$output .= '<tr>';
+			$output .= '<td align="center">'.$no++.'</td>';
+			$output .= '<td align="left">'.$item['npwd'].'</td>';
+			//$output .= '<td align="left">'.$item['wp_name'].'</td>';
+			$output .= '<td align="center">'.$item['masa_pajak'].'</td>';
+			$output .= '<td align="left">'.$item['tgl_tap'].'</td>';
+			$output .= '<td align="left">'.$item['no_kohir'].'</td>';
+			$output .= '<td align="right">'.number_format($item['nilai_piutang'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($item['realisasi_piutang'],0,",",".").'</td>';
+			$output .= '<td align="center">'.$item['tgl_bayar'].'</td>';
+			$output .= '<td align="right">'.number_format($item['sisa_piutang'],0,",",".").'</td>';
+			$output .= '<td align="left">'.$item['keterangan'].'</td>';
+			$output .= '<td align="center">'.$item['year_code'].'</td>';
+			$output .= '<td align="center"><button class="btn_tambah" onclick="viewFormModifikasi('.$item['t_piutang_pajak_penetapan_final_id'].')">Ubah Data</button></td>';
+		$output .= '</tr>';
+	}
+	
+	$output.='</td></tr></table>';
+	$output.='</table>';
+	
+	return $output;
+}
 
 function print_laporan($param_arr){
 	include "../include/fpdf17/mc_table.php";
