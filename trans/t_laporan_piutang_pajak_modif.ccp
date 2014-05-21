@@ -1,14 +1,16 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="formPerubahanMasaPajak" connection="ConnSIKP" dataSource="select *,to_char(tgl_tap,'dd-mm-yyyy') as tgl_tap_formated,to_char(tgl_bayar,'yyyy-mm-dd') as tgl_bayar_formated 
-from t_piutang_pajak_penetapan_final 
-where t_piutang_pajak_penetapan_final_id = {t_piutang_pajak_penetapan_final_id}
+		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="formPerubahanMasaPajak" connection="ConnSIKP" dataSource="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.code as periode_bayar
+from t_piutang_pajak_penetapan_final as a
+LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
+LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
+where a.t_piutang_pajak_penetapan_final_id = {t_piutang_pajak_penetapan_final_id}
 " returnPage="t_laporan_piutang_pajak_modif.ccp" customUpdateType="SQL" customUpdate="UPDATE t_piutang_pajak_penetapan_final
 SET realisasi_piutang = {realisasi_piutang},
 sisa_piutang = {sisa_piutang},
 tgl_bayar = '{tgl_bayar}',
 keterangan = '{keterangan}'
-WHERE t_piutang_pajak_penetapan_final_id = {t_piutang_pajak_penetapan_final_id}" PathID="formPerubahanMasaPajak" parameterTypeListName="ParameterTypeList" activeCollection="SQLParameters">
+WHERE t_piutang_pajak_penetapan_final_id = {t_piutang_pajak_penetapan_final_id}" PathID="formPerubahanMasaPajak" parameterTypeListName="ParameterTypeList" activeCollection="SQLParameters" pasteActions="pasteActions">
 <Components>
 <Button id="16" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" operation="Update" PathID="formPerubahanMasaPajakButton1">
 <Components/>
@@ -58,7 +60,7 @@ WHERE t_piutang_pajak_penetapan_final_id = {t_piutang_pajak_penetapan_final_id}"
 <Attributes/>
 <Features/>
 </TextBox>
-<Label id="61" fieldSourceType="DBColumn" dataType="Text" html="False" name="masa_pajak" fieldSource="masa_pajak" PathID="formPerubahanMasaPajakmasa_pajak">
+<Label id="61" fieldSourceType="DBColumn" dataType="Text" html="False" name="masa_pajak" fieldSource="periode_bayar" PathID="formPerubahanMasaPajakmasa_pajak">
 <Components/>
 <Events/>
 <Attributes/>
@@ -76,6 +78,12 @@ WHERE t_piutang_pajak_penetapan_final_id = {t_piutang_pajak_penetapan_final_id}"
 <Attributes/>
 <Features/>
 </TextBox>
+<Label id="64" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_name" fieldSource="wp_name" PathID="formPerubahanMasaPajakwp_name">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
 </Components>
 <Events>
 <Event name="AfterInsert" type="Server">
