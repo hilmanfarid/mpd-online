@@ -92,7 +92,7 @@ $(document).ready(function()
                         }
                 }
 
-        function tampilkanLaporan(){
+    	function tampilkanLaporan(){
                         var params = "?doAction=view_html";
             
             var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
@@ -107,7 +107,32 @@ $(document).ready(function()
                 "&p_vat_type_id=" + p_vat_type_id+
                 "&vat_code="+jenis_pajak;
             }               
-    }
-        </script>
+    	}
+</script>
+
+<style>
+
+table.report { 
+border-right:1px solid #000; 
+border-spacing: 0px; 
+} 
+
+table.report th{ 
+border-top:1px solid #000; 
+border-bottom:1px solid #000; 
+border-left:1px solid #000; 
+padding:4px; 
+text-transform: uppercase; 
+text-align: center; 
+}
+
+table.report td{ 
+border-left:1px solid #000; 
+border-bottom:1px solid #000; 
+padding-left:4px; 
+padding-right:4px; 
+}
+
+</style>
 </body>
 </html>
