@@ -45,7 +45,7 @@ class clsRecordformPerubahanMasaPajak { //formPerubahanMasaPajak Class @3-41295F
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-5BE299ED
+//Class_Initialize Event @3-375F9865
     function clsRecordformPerubahanMasaPajak($RelativePath, & $Parent)
     {
 
@@ -86,6 +86,7 @@ class clsRecordformPerubahanMasaPajak { //formPerubahanMasaPajak Class @3-41295F
             $this->masa_pajak = & new clsControl(ccsLabel, "masa_pajak", "masa_pajak", ccsText, "", CCGetRequestParam("masa_pajak", $Method, NULL), $this);
             $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", $Method, NULL), $this);
             $this->realisasi_piutang = & new clsControl(ccsTextBox, "realisasi_piutang", "realisasi_piutang", ccsText, "", CCGetRequestParam("realisasi_piutang", $Method, NULL), $this);
+            $this->wp_name = & new clsControl(ccsLabel, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -126,7 +127,7 @@ class clsRecordformPerubahanMasaPajak { //formPerubahanMasaPajak Class @3-41295F
     }
 //End Validate Method
 
-//CheckErrors Method @3-C4DD4148
+//CheckErrors Method @3-18DA4BB8
     function CheckErrors()
     {
         $errors = false;
@@ -140,6 +141,7 @@ class clsRecordformPerubahanMasaPajak { //formPerubahanMasaPajak Class @3-41295F
         $errors = ($errors || $this->masa_pajak->Errors->Count());
         $errors = ($errors || $this->npwd->Errors->Count());
         $errors = ($errors || $this->realisasi_piutang->Errors->Count());
+        $errors = ($errors || $this->wp_name->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -213,7 +215,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @3-C3555087
+//Show Method @3-879B87AF
     function Show()
     {
         global $CCSUseAmp;
@@ -242,6 +244,7 @@ function GetPrimaryKey($keyName)
                 $this->DataSource->SetValues();
                 $this->masa_pajak->SetValue($this->DataSource->masa_pajak->GetValue());
                 $this->npwd->SetValue($this->DataSource->npwd->GetValue());
+                $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
                 if(!$this->FormSubmitted){
                     $this->t_piutang_pajak_penetapan_final_id->SetValue($this->DataSource->t_piutang_pajak_penetapan_final_id->GetValue());
                     $this->keterangan->SetValue($this->DataSource->keterangan->GetValue());
@@ -268,6 +271,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->masa_pajak->Errors->ToString());
             $Error = ComposeStrings($Error, $this->npwd->Errors->ToString());
             $Error = ComposeStrings($Error, $this->realisasi_piutang->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->wp_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -298,6 +302,7 @@ function GetPrimaryKey($keyName)
         $this->masa_pajak->Show();
         $this->npwd->Show();
         $this->realisasi_piutang->Show();
+        $this->wp_name->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -308,7 +313,7 @@ function GetPrimaryKey($keyName)
 
 class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubahanMasaPajakDataSource Class @3-5BBED413
 
-//DataSource Variables @3-593F9B43
+//DataSource Variables @3-0DA8957E
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -330,9 +335,10 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
     var $masa_pajak;
     var $npwd;
     var $realisasi_piutang;
+    var $wp_name;
 //End DataSource Variables
-	var $itemResult;
-//DataSourceClass_Initialize Event @3-4A005DC2
+
+//DataSourceClass_Initialize Event @3-0072E3A7
     function clsformPerubahanMasaPajakDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -356,6 +362,8 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
         
         $this->realisasi_piutang = new clsField("realisasi_piutang", ccsText, "");
         
+        $this->wp_name = new clsField("wp_name", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -371,13 +379,15 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
     }
 //End Prepare Method
 
-//Open Method @3-BA983C74
+//Open Method @3-15BD9CD2
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "select *,to_char(tgl_tap,'dd-mm-yyyy') as tgl_tap_formated,to_char(tgl_bayar,'yyyy-mm-dd') as tgl_bayar_formated \n" .
-        "from t_piutang_pajak_penetapan_final \n" .
-        "where t_piutang_pajak_penetapan_final_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "\n" .
+        $this->SQL = "select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.code as periode_bayar\n" .
+        "from t_piutang_pajak_penetapan_final as a\n" .
+        "LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id\n" .
+        "LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id\n" .
+        "where a.t_piutang_pajak_penetapan_final_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "\n" .
         "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -387,7 +397,7 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
     }
 //End Open Method
 
-//SetValues Method @3-AC4BF894
+//SetValues Method @3-379D2050
     function SetValues()
     {
         $this->t_piutang_pajak_penetapan_final_id->SetDBValue($this->f("t_piutang_pajak_penetapan_final_id"));
@@ -396,9 +406,10 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
         $this->nilai_piutang->SetDBValue($this->f("nilai_piutang"));
         $this->sisa_piutang->SetDBValue($this->f("sisa_piutang"));
         $this->temp_realisasi_piutang->SetDBValue($this->f("realisasi_piutang"));
-        $this->masa_pajak->SetDBValue($this->f("masa_pajak"));
+        $this->masa_pajak->SetDBValue($this->f("periode_bayar"));
         $this->npwd->SetDBValue($this->f("npwd"));
         $this->realisasi_piutang->SetDBValue($this->f("realisasi_piutang"));
+        $this->wp_name->SetDBValue($this->f("wp_name"));
     }
 //End SetValues Method
 
@@ -440,7 +451,7 @@ class clsformPerubahanMasaPajakDataSource extends clsDBConnSIKP {  //formPerubah
         "WHERE t_piutang_pajak_penetapan_final_id = " . $this->SQLValue($this->cp["t_piutang_pajak_penetapan_final_id"]->GetDBValue(), ccsInteger) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->itemResult = $this->query($this->SQL);
+            $this->query($this->SQL);
             $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
         }
     }
