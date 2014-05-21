@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-5FA990D3
+//Class_Initialize Event @2-86A9EA52
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -77,6 +77,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->vat_code->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -131,7 +132,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-616A4249
+//Operation Method @2-B8E7B53E
     function Operation()
     {
         if(!$this->Visible)
@@ -148,12 +149,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button1";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = "t_laporan_piutang_pajak.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -163,7 +170,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-A9EED8E7
+//Show Method @2-978CCAFB
     function Show()
     {
         global $CCSUseAmp;
@@ -215,6 +222,7 @@ function GetPrimaryKey($keyName)
         $this->cetak_laporan->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -256,13 +264,16 @@ include_once("./t_laporan_piutang_pajak_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-09E0A718
+//Initialize Objects @1-E44352ED
 $Attributes = new clsAttributes("page:");
 $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_laporan_piutang_pajak = & new clsRecordt_laporan_piutang_pajak("", $MainPage);
+$Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", ccsGet, NULL), $MainPage);
+$Label1->HTML = true;
 $MainPage->t_laporan_piutang_pajak = & $t_laporan_piutang_pajak;
+$MainPage->Label1 = & $Label1;
 
 BindEvents();
 
@@ -300,8 +311,9 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-433A8E1F
+//Show Page @1-CC4C984F
 $t_laporan_piutang_pajak->Show();
+$Label1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
