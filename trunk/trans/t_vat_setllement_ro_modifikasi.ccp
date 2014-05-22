@@ -38,12 +38,12 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Features/>
 				</Label>
 				<Hidden id="19" fieldSourceType="DBColumn" dataType="Text" html="False" name="order_no" fieldSource="order_no" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridorder_no">
-<Components/>
+					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="13" fieldSourceType="DBColumn" dataType="Float" html="False" name="t_vat_setllement_id" fieldSource="t_vat_setllement_id" wizardCaption="Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="t_vat_setllementGridt_vat_setllement_id">
+				<Hidden id="13" fieldSourceType="DBColumn" dataType="Float" html="False" name="t_vat_setllement_id" fieldSource="t_vat_setllement_id" wizardCaption="Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="t_vat_setllementGridt_vat_setllement_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -109,12 +109,6 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="BtnUbahDenda" PathID="t_vat_setllementGridBtnUbahDenda">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<Button id="314" urlType="Relative" enableValidation="True" isDefault="False" name="BtnUbahNilaiTransaksi" PathID="t_vat_setllementGridBtnUbahNilaiTransaksi">
 					<Components/>
 					<Events/>
@@ -140,6 +134,18 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Features/>
 				</Button>
 				<Label id="319" fieldSourceType="DBColumn" dataType="Text" html="False" name="sett_code" fieldSource="sett_code" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridsett_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="BtnUbahDenda" PathID="t_vat_setllementGridBtnUbahDenda">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Label id="320" fieldSourceType="DBColumn" dataType="Text" html="False" name="order_no2" fieldSource="order_no" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridorder_no2">
 					<Components/>
 					<Events/>
 					<Attributes/>
