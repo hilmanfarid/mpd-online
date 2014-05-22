@@ -56,11 +56,11 @@ function t_rep_bppsSearchListBox1_OnChange()
 //Custom Code @568-2A29BDB7
     // -------------------------
     // Write your own code here.
-	if(this.value==1){
-		
-	}else{
-		
-	}
+        if(this.value==1){
+                
+        }else{
+                
+        }
     // -------------------------
 //End Custom Code
 
@@ -135,7 +135,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  </td> 
                       <td>&nbsp;</td> 
                       <td class="search-field">&nbsp; 
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="button"><!-- END Button Button_DoSearch --></td>
+                        <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 115px; HEIGHT: 26px" id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="Download Pdf" size="17" type="button"><!-- END Button Button_DoSearch --></td>
                     </tr>
  
                     <tr class="Controls">
@@ -146,7 +146,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                         </select>
  </td> 
                       <td>&nbsp;</td> 
-                      <td class="search-field">&nbsp;</td>
+                      <td class="search-field">&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch1 --><input style="WIDTH: 116px; HEIGHT: 26px" id="t_rep_bppsSearchButton_DoSearch1" class="btn_tambah" onclick="downloadExcel(); return false;" name="{Button_Name}" alt="Search" value="Download Excel" size="15" type="button"><!-- END Button Button_DoSearch1 --></td>
                     </tr>
                   </table>
                 </td>
@@ -183,6 +184,23 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 }else {
                                         window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'&jenis_laporan="+document.getElementById('t_rep_bppsSearchjenis_laporan').value, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
                         }
+                }
+                
+                function downloadExcel() {
+
+                                var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
+                var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
+                
+                var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
+                var i_flag_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
+                
+                if(tgl_penerimaan == "" || tgl_penerimaan_last == "" || p_year_period_id == "" || p_vat_type_id == "" || i_flag_setoran == "") {
+                        alert("Semua Filter Harus Diisi");
+                                }else {
+                        location.href = "t_rep_lap_bpps_piutang.php?cetak_laporan=download_excel&tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'&jenis_laporan="+document.getElementById('t_rep_bppsSearchjenis_laporan').value;
+                 }
+
                 }
         </script>
   </body>
