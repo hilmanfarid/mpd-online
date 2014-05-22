@@ -87,6 +87,13 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
+				<Button id="569" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_bppsSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 			</Components>
 			<Events/>
 			<TableParameters/>
@@ -122,6 +129,11 @@
 		<Event name="OnInitializeView" type="Server">
 			<Actions>
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
+			</Actions>
+		</Event>
+		<Event name="BeforeShow" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="570"/>
 			</Actions>
 		</Event>
 	</Events>
