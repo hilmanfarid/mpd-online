@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-D244FE79
+//Class_Initialize Event @3-70ADE500
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -90,6 +90,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->jenis_laporan->DSType = dsListOfValues;
             $this->jenis_laporan->Values = array(array("all", "SEMUA"), array("piutang", "PIUTANG"), array("murni", "MURNI"));
             $this->jenis_laporan->Required = true;
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -155,7 +156,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-092A1A21
+//Operation Method @3-3AD95B31
     function Operation()
     {
         if(!$this->Visible)
@@ -172,12 +173,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoSearch1->Pressed) {
+                $this->PressedButton = "Button_DoSearch1";
             }
         }
         $Redirect = "t_rep_lap_bpps_piutang.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch1") {
+                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
             }
@@ -187,7 +194,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-CDBF55E3
+//Show Method @3-2CA653DB
     function Show()
     {
         global $CCSUseAmp;
@@ -251,6 +258,7 @@ function GetPrimaryKey($keyName)
         $this->tgl_penerimaan_last->Show();
         $this->DatePicker_tgl_penerimaan_last1->Show();
         $this->jenis_laporan->Show();
+        $this->Button_DoSearch1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
