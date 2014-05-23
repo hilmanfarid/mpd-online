@@ -409,6 +409,10 @@ class FormCetak extends FPDF {
 		$this->tulis("2. Apabila SKPDKB ini tidak atau kurang dibayar setelah lewat waktu paling lama 15 hari kalender sejak SKPDKB ini diterbitkan dikenakan", "L");
 		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
 		
+		$encImageData = $data["no_urut"]."-".$data["finance_period_code"];
+
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.encImageData,179,13,25,25,'PNG');
+
 		$this->Cell($lbody3 - 10, $this->height, "Bandung, " . $data["tgl_setllement"], "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
