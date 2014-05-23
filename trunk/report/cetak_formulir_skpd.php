@@ -409,16 +409,20 @@ class FormCetak extends FPDF {
 		$this->tulis("2. Apabila SKPDKB ini tidak atau kurang dibayar setelah lewat waktu paling lama 15 hari kalender sejak SKPDKB ini diterbitkan dikenakan", "L");
 		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
 		
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody3 - 10, $this->height, "Bandung, " . $data["tgl_setllement"], "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "Mengetahui,", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "a.n KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
+		$this->Ln();
+
+		$this->Cell($lbody3 - 10, $this->height, "Salinan sesuai SKPD aslinya", "L", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 
 		$this->Cell($lbody3 - 10, $this->height, "KEPALA SEKSI PENYELESAIAN PIUTANG", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "KEPALA BIDANG PAJAK PENDAFTARAN", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "a.n KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -435,8 +439,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 
-		$this->Cell($lbody3 - 10, $this->height, "NIP. 19691104 199803 1 007", "BL", 0, 'C');
-		$this->Cell($lbody1 + 8, $this->height, "", "BT", 0, 'C'); //isi nip
+		$this->Cell($lbody3 - 10, $this->height, "NIP. 19691104 199803 1 007", "BTL", 0, 'C');
+		$this->Cell($lbody1 + 8, $this->height, "", "B", 0, 'C'); //isi nip
 		$this->Cell(2, $this->height, "", "BR", 0, 'L');
 		$this->Ln($this->height + 4);
 		
