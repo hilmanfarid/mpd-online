@@ -342,7 +342,7 @@ class FormCetak extends FPDF {
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "    4. Jumlah kekurangan pembayaran Pokok Pajak (2-3d)", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["debt_vat_amt"] - $jumno3,2,",","."), "", 0, 'R');
+		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["total_vat_amount"] - $jumno3,2,",","."), "", 0, 'R');
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
@@ -373,7 +373,7 @@ class FormCetak extends FPDF {
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
-		$jumno4 = $data["debt_vat_amt"] - $jumno3;
+		$jumno4 = $data["total_vat_amount"] - $jumno3;
 		$total = $jumno4 + $jumno5;
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "    6. Jumlah yang masih harus dibayar (4 + 5c)", "", 0, 'L');
