@@ -413,48 +413,48 @@ class FormCetak extends FPDF {
 		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
 		
 		$encImageData = $data["no_urut"]."-".$data["finance_period_code"];
-
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.encImageData,15,210,25,25,'PNG');
+		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
-		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
-		$this->Ln();
-
-		$this->Cell($lbody3 - 10, $this->height, "Bandung, " . Date("d M Y"), "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . trim($data["tgl_setllement"]) /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
+
 		
-		$this->Cell($lbody3 - 10, $this->height, "Mengetahui,", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
-		$this->Ln();
-
-		$this->Cell($lbody3 - 10, $this->height, "Salinan sesuai SKPD aslinya", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
-		$this->Ln();
-
-		$this->Cell($lbody3 - 10, $this->height, "KEPALA SEKSI PENYELESAIAN PIUTANG", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "a.n KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "a.n KEPALA BIDANG PAJAK PENDAFTARAN", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
-		$this->newLine();
-		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
+		$this->Ln();
+		
+		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "TTD", "R", 0, 'C');
 		$this->Ln();
-		
-		$this->Cell($lbody3 - 10, $this->height, "RACHMAT SATIADI, S.Ip, M.Si.", "L", 0, 'C');
+
+		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
+		$this->Ln();
+		
+
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.encImageData,15,235,25,25,'PNG');
+
+		$this->Cell($lbody3 - 10, $this->height, "Bandung, " . Date("d M Y"), "L", 0, 'C');
+		$this->Ln();
+		$this->Cell($lbody3 - 10, $this->height, "Mengetahui,", "L", 0, 'C');
+		$this->Ln();
+		$this->Cell($lbody3 - 10, $this->height, "Salinan sesuai SKPD aslinya", "L", 0, 'C');
+		$this->Ln();
+		$this->Cell($lbody3 - 10, $this->height, "KEPALA SEKSI PENYELESAIAN PIUTANG", "L", 0, 'C');
+		$this->Ln();
+
+		$this->Cell($lbody3 - 10, $this->height, "RACHMAT SATIADI, S.Ip, M.Si.", "L", 0, 'C');
 		$this->Ln();
 
 		$this->Cell($lbody3 - 10, $this->height, "NIP. 19691104 199803 1 007", "BL", 0, 'C');
-		$this->Cell($lbody1 + 8, $this->height, "", "B", 0, 'C'); //isi nip
-		$this->Cell(2, $this->height, "", "BR", 0, 'L');
 		$this->Ln($this->height + 4);
 		
 		
