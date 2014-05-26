@@ -419,12 +419,12 @@ class FormCetak extends FPDF {
 		$this->Ln();
 
 		
-		$this->Cell($lbody3 - 20, $this->height, "", "L", 0, 'C');
-		$this->Cell($lbody1, $this->height, "a.n KEPALA BIDANG PAJAK PENDAFTARAN", "R", 0, 'C');
+		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "a.n KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "KEPALA BIDANG PAJAK PENDAFTARAN", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
