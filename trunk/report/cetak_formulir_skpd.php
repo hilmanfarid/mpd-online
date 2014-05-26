@@ -439,8 +439,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
-
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.encImageData,15,235,25,25,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.encImageData,15,225,25,25,'PNG');
 
 		$this->Cell($lbody3 - 10, $this->height, "Bandung, " . Date("d M Y"), "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
