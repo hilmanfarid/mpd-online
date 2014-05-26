@@ -18,7 +18,7 @@
 
 	
 	if($t_vat_setllement_id > 0){
-		$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
+		$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan2 WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 		//$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 	}
 	else{
