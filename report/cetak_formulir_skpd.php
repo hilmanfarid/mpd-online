@@ -44,6 +44,7 @@
 		$data["cr_others"] = $dbConn->f("cr_others");
 		$data["db_interest_charge"] = $dbConn->f("db_interest_charge");
 		$data["total_penalty_amount"] = $dbConn->f("total_penalty_amount");
+		$data["total_vat_amount"] = $dbConn->f("total_vat_amount");
 		$data["db_increasing_charge"] = $dbConn->f("db_increasing_charge");
 		$data["settlement_date"] = $dbConn->f("settlement_date");
 		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
@@ -295,7 +296,8 @@ class FormCetak extends FPDF {
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "    2. Pajak yang Terutang", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["debt_vat_amt"],2,",","."), "", 0, 'R');
+		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["total_vat_amount"],2,",","."), "", 0, 'R');
+		//$this->Cell($lbodyx1 - 10, $this->height, number_format($data["debt_vat_amt"],2,",","."), "", 0, 'R');
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
