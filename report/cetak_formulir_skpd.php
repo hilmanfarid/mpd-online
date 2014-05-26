@@ -445,6 +445,7 @@ class FormCetak extends FPDF {
 
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "NIP. 19750625 199403 1 001", "R", 0, 'C');
+		$this->Ln();
 		
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.encImageData,15,230,25,25,'PNG');
 
