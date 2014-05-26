@@ -451,9 +451,6 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3 - 10, $this->height, "Bandung, " . Date("d M Y"), "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "Mengetahui,", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
-		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "Salinan sesuai SKPD aslinya", "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
