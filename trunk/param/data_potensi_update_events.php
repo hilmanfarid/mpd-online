@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-452BD914
+//BindEvents Method @1-B48F0D21
 function BindEvents()
 {
     global $t_vat_reg_dtl_restaurantGrid;
@@ -10,6 +10,7 @@ function BindEvents()
     global $t_vat_reg_dtl_ppj_nplGrid;
     global $t_vat_reg_dtl_hotel_srvcGrid;
     global $t_vat_reg_employeeGrid;
+    global $t_vat_reg_dtlGrid;
     global $CCSEvents;
     $t_vat_reg_dtl_restaurantGrid->btn_update->CCSEvents["BeforeShow"] = "t_vat_reg_dtl_restaurantGrid_btn_update_BeforeShow";
     $t_vat_reg_dtl_restaurantGrid->CCSEvents["BeforeShowRow"] = "t_vat_reg_dtl_restaurantGrid_BeforeShowRow";
@@ -28,6 +29,10 @@ function BindEvents()
     $t_vat_reg_employeeGrid->btn_update->CCSEvents["BeforeShow"] = "t_vat_reg_employeeGrid_btn_update_BeforeShow";
     $t_vat_reg_employeeGrid->CCSEvents["BeforeShowRow"] = "t_vat_reg_employeeGrid_BeforeShowRow";
     $t_vat_reg_employeeGrid->CCSEvents["BeforeSelect"] = "t_vat_reg_employeeGrid_BeforeSelect";
+    $t_vat_reg_dtlGrid->btn_update->CCSEvents["BeforeShow"] = "t_vat_reg_dtlGrid_btn_update_BeforeShow";
+    $t_vat_reg_dtlGrid->CCSEvents["BeforeShowRow"] = "t_vat_reg_dtlGrid_BeforeShowRow";
+    $t_vat_reg_dtlGrid->CCSEvents["BeforeSelect"] = "t_vat_reg_dtlGrid_BeforeSelect";
+    $t_vat_reg_dtlGrid->CCSEvents["BeforeShow"] = "t_vat_reg_dtlGrid_BeforeShow";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
@@ -721,6 +726,126 @@ function t_vat_reg_employeeGrid_BeforeSelect(& $sender)
     return $t_vat_reg_employeeGrid_BeforeSelect;
 }
 //End Close t_vat_reg_employeeGrid_BeforeSelect
+
+//t_vat_reg_dtlGrid_btn_update_BeforeShow @624-78D5B09A
+function t_vat_reg_dtlGrid_btn_update_BeforeShow(& $sender)
+{
+    $t_vat_reg_dtlGrid_btn_update_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_reg_dtlGrid; //Compatibility
+//End t_vat_reg_dtlGrid_btn_update_BeforeShow
+
+//Custom Code @625-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$nilai = $t_vat_reg_dtlGrid->t_cacc_license_letter_id->GetValue();
+	$t_vat_reg_dtlGrid->btn_update->SetValue("<input type='button' value='EDIT' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
+  									 "izin2(".$nilai.")\">");
+// -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtlGrid_btn_update_BeforeShow @624-BFF23C9B
+    return $t_vat_reg_dtlGrid_btn_update_BeforeShow;
+}
+//End Close t_vat_reg_dtlGrid_btn_update_BeforeShow
+
+//t_vat_reg_dtlGrid_BeforeShowRow @2-B08B1D7D
+function t_vat_reg_dtlGrid_BeforeShowRow(& $sender)
+{
+    $t_vat_reg_dtlGrid_BeforeShowRow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_reg_dtlGrid; //Compatibility
+//End t_vat_reg_dtlGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
+
+//Custom Code @763-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$keyId = CCGetFromGet("t_cacc_license_letter_id", "");
+	$sCode = CCGetFromGet("s_keyword", "");
+	global $id;
+	if (empty($keyId)) {
+		if (empty($id)) {
+			$id = $t_vat_reg_dtlGrid->t_cacc_license_letter_id->GetValue();
+		}
+		global $FileName;
+		global $PathToCurrentPage;
+		$param = CCGetQueryString("QueryString", "");
+		$param = CCAddParam($param, "t_cacc_license_letter_id", $id);
+		
+		$Redirect = $FileName."?".$param;
+		//die($Redirect);
+		header("Location: ".$Redirect);
+		return;
+	}
+
+	if ($t_vat_reg_dtlGrid->t_cacc_license_letter_id->GetValue() == $keyId) {
+		$t_vat_reg_dtlGrid->ADLink->Visible = true;
+		$t_vat_reg_dtlGrid->DLink->Visible = false;
+		$Component->Attributes->SetValue("rowStyle", "class=AltRow");
+	} else {
+		$t_vat_reg_dtlGrid->ADLink->Visible = false;
+		$t_vat_reg_dtlGrid->DLink->Visible = true;
+		$Component->Attributes->SetValue("rowStyle", "class=Row");
+	}
+// -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtlGrid_BeforeShowRow @2-65AB372D
+    return $t_vat_reg_dtlGrid_BeforeShowRow;
+}
+//End Close t_vat_reg_dtlGrid_BeforeShowRow
+
+//t_vat_reg_dtlGrid_BeforeSelect @2-1D89733F
+function t_vat_reg_dtlGrid_BeforeSelect(& $sender)
+{
+    $t_vat_reg_dtlGrid_BeforeSelect = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_reg_dtlGrid; //Compatibility
+//End t_vat_reg_dtlGrid_BeforeSelect
+
+//Custom Code @129-2A29BDB7
+// -------------------------
+    	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
+// -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtlGrid_BeforeSelect @2-72707B76
+    return $t_vat_reg_dtlGrid_BeforeSelect;
+}
+//End Close t_vat_reg_dtlGrid_BeforeSelect
+
+//t_vat_reg_dtlGrid_BeforeShow @2-71BD6E2E
+function t_vat_reg_dtlGrid_BeforeShow(& $sender)
+{
+    $t_vat_reg_dtlGrid_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_reg_dtlGrid; //Compatibility
+//End t_vat_reg_dtlGrid_BeforeShow
+
+//Custom Code @1066-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtlGrid_BeforeShow @2-80193CEC
+    return $t_vat_reg_dtlGrid_BeforeShow;
+}
+//End Close t_vat_reg_dtlGrid_BeforeShow
 
 //Page_BeforeShow @1-17111D96
 function Page_BeforeShow(& $sender)
