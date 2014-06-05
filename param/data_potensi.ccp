@@ -900,7 +900,114 @@ AND is_pln = 'N' ">
 			<Attributes/>
 			<Features/>
 		</Grid>
-	</Components>
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_reg_dtlGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT * 
+FROM v_cacc_license_letter
+WHERE t_cust_account_id = {t_cust_account_id} ">
+			<Components>
+				<Label id="15" fieldSourceType="DBColumn" dataType="Text" html="False" name="license_type_code" fieldSource="license_type_code" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtlGridlicense_type_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Navigator id="22" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+				<Hidden id="13" fieldSourceType="DBColumn" dataType="Float" html="False" name="t_cacc_license_letter_id" fieldSource="t_cacc_license_letter_id" wizardCaption="Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="t_vat_reg_dtlGridt_cacc_license_letter_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Label id="509" fieldSourceType="DBColumn" dataType="Text" html="False" name="license_no" fieldSource="license_no" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtlGridlicense_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="510" fieldSourceType="DBColumn" dataType="Text" html="False" name="valid_from" fieldSource="valid_from" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtlGridvalid_from">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="542" fieldSourceType="DBColumn" dataType="Text" html="False" name="valid_to" fieldSource="valid_to" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtlGridvalid_to">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Link id="52" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" PathID="t_vat_reg_dtlGridDLink" hrefSource="data_potensi.ccp" wizardUseTemplateBlock="True" removeParameters="FLAG" fieldSource="t_license_letter_id">
+					<Components/>
+					<Events/>
+					<LinkParameters>
+						<LinkParameter id="1041" sourceType="DataField" name="t_cacc_license_letter_id" source="t_cacc_license_letter_id"/>
+					</LinkParameters>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Link id="54" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="ADLink" PathID="t_vat_reg_dtlGridADLink" hrefSource="data_potensi.ccp" wizardUseTemplateBlock="True" removeParameters="FLAG" fieldSource="t_license_letter_id">
+					<Components/>
+					<Events/>
+					<LinkParameters>
+						<LinkParameter id="1042" sourceType="DataField" format="yyyy-mm-dd" name="t_cacc_license_letter_id" source="t_cacc_license_letter_id"/>
+</LinkParameters>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Label id="332" fieldSourceType="DBColumn" dataType="Text" html="False" name="description" fieldSource="description" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtlGriddescription">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Hidden id="781" fieldSourceType="DBColumn" dataType="Float" html="False" name="t_cust_account_id" fieldSource="t_cust_account_id" wizardCaption="Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAlign="right" wizardAddNbsp="True" PathID="t_vat_reg_dtlGridt_cust_account_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
+			<Events>
+				<Event name="BeforeShowRow" type="Server">
+					<Actions>
+						<Action actionName="Set Row Style" actionCategory="General" id="10" styles="Row;AltRow" name="rowStyle" eventType="Server"/>
+						<Action actionName="Custom Code" actionCategory="General" id="763" eventType="Server"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="129" eventType="Server"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="1043" eventType="Server"/>
+					</Actions>
+				</Event>
+			</Events>
+			<TableParameters>
+				<TableParameter id="786" conditionType="Parameter" useIsNull="False" field="t_cust_account_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cust_account_id"/>
+			</TableParameters>
+			<JoinTables>
+				<JoinTable id="1044" tableName="v_cacc_license_letter" posWidth="20" posHeight="40" posLeft="10" posTop="10"/>
+			</JoinTables>
+			<JoinLinks/>
+			<Fields>
+				<Field id="457" fieldName="*"/>
+			</Fields>
+			<SPParameters/>
+			<SQLParameters>
+				<SQLParameter id="1045" parameterType="URL" variable="t_cust_account_id" dataType="Float" parameterSource="t_cust_account_id"/>
+			</SQLParameters>
+			<SecurityGroups/>
+			<Attributes/>
+			<Features/>
+		</Grid>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="data_potensi_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="data_potensi.php" forShow="True" url="data_potensi.php" comment="//" codePage="windows-1252"/>
