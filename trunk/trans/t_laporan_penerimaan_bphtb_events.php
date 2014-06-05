@@ -248,7 +248,7 @@ function print_laporan($param_arr){
 			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id";
 	if(!empty($whereClause))
 		$query.= " WHERE ".$whereClause;
-	$query.= " ORDER BY a.receipt_no ASC";
+	$query.= " order by trunc(b.creation_date) ASC, upper(b.wp_name) ASC";
 
 	//print_r($query);
 	//exit;
