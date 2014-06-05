@@ -2901,6 +2901,327 @@ class clst_vat_reg_employeeGridDataSource extends clsDBConnSIKP {  //t_vat_reg_e
 
 } //End t_vat_reg_employeeGridDataSource Class @1005-FCB6E20C
 
+class clsGridt_vat_reg_dtlGrid { //t_vat_reg_dtlGrid class @2-4F76BDAF
+
+//Variables @2-AC1EDBB9
+
+    // Public variables
+    var $ComponentType = "Grid";
+    var $ComponentName;
+    var $Visible;
+    var $Errors;
+    var $ErrorBlock;
+    var $ds;
+    var $DataSource;
+    var $PageSize;
+    var $IsEmpty;
+    var $ForceIteration = false;
+    var $HasRecord = false;
+    var $SorterName = "";
+    var $SorterDirection = "";
+    var $PageNumber;
+    var $RowNumber;
+    var $ControlsVisible = array();
+
+    var $CCSEvents = "";
+    var $CCSEventResult;
+
+    var $RelativePath = "";
+    var $Attributes;
+
+    // Grid Controls
+    var $StaticControls;
+    var $RowControls;
+//End Variables
+
+//Class_Initialize Event @2-02A942B6
+    function clsGridt_vat_reg_dtlGrid($RelativePath, & $Parent)
+    {
+        global $FileName;
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->ComponentName = "t_vat_reg_dtlGrid";
+        $this->Visible = True;
+        $this->Parent = & $Parent;
+        $this->RelativePath = $RelativePath;
+        $this->Errors = new clsErrors();
+        $this->ErrorBlock = "Grid t_vat_reg_dtlGrid";
+        $this->Attributes = new clsAttributes($this->ComponentName . ":");
+        $this->DataSource = new clst_vat_reg_dtlGridDataSource($this);
+        $this->ds = & $this->DataSource;
+        $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
+        if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
+            $this->PageSize = 5;
+        else
+            $this->PageSize = intval($this->PageSize);
+        if ($this->PageSize > 100)
+            $this->PageSize = 100;
+        if($this->PageSize == 0)
+            $this->Errors->addError("<p>Form: Grid " . $this->ComponentName . "<br>Error: (CCS06) Invalid page size.</p>");
+        $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
+        if ($this->PageNumber <= 0) $this->PageNumber = 1;
+
+        $this->license_type_code = & new clsControl(ccsLabel, "license_type_code", "license_type_code", ccsText, "", CCGetRequestParam("license_type_code", ccsGet, NULL), $this);
+        $this->t_cacc_license_letter_id = & new clsControl(ccsHidden, "t_cacc_license_letter_id", "t_cacc_license_letter_id", ccsFloat, "", CCGetRequestParam("t_cacc_license_letter_id", ccsGet, NULL), $this);
+        $this->license_no = & new clsControl(ccsLabel, "license_no", "license_no", ccsText, "", CCGetRequestParam("license_no", ccsGet, NULL), $this);
+        $this->valid_from = & new clsControl(ccsLabel, "valid_from", "valid_from", ccsText, "", CCGetRequestParam("valid_from", ccsGet, NULL), $this);
+        $this->valid_to = & new clsControl(ccsLabel, "valid_to", "valid_to", ccsText, "", CCGetRequestParam("valid_to", ccsGet, NULL), $this);
+        $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
+        $this->DLink->HTML = true;
+        $this->DLink->Page = "data_potensi.php";
+        $this->ADLink = & new clsControl(ccsLink, "ADLink", "ADLink", ccsText, "", CCGetRequestParam("ADLink", ccsGet, NULL), $this);
+        $this->ADLink->HTML = true;
+        $this->ADLink->Page = "data_potensi.php";
+        $this->description = & new clsControl(ccsLabel, "description", "description", ccsText, "", CCGetRequestParam("description", ccsGet, NULL), $this);
+        $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsFloat, "", CCGetRequestParam("t_cust_account_id", ccsGet, NULL), $this);
+        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+    }
+//End Class_Initialize Event
+
+//Initialize Method @2-90E704C5
+    function Initialize()
+    {
+        if(!$this->Visible) return;
+
+        $this->DataSource->PageSize = & $this->PageSize;
+        $this->DataSource->AbsolutePage = & $this->PageNumber;
+        $this->DataSource->SetOrder($this->SorterName, $this->SorterDirection);
+    }
+//End Initialize Method
+
+//Show Method @2-00526329
+    function Show()
+    {
+        global $Tpl;
+        global $CCSLocales;
+        if(!$this->Visible) return;
+
+        $this->RowNumber = 0;
+
+        $this->DataSource->Parameters["urlt_cust_account_id"] = CCGetFromGet("t_cust_account_id", NULL);
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
+
+
+        $this->DataSource->Prepare();
+        $this->DataSource->Open();
+        $this->HasRecord = $this->DataSource->has_next_record();
+        $this->IsEmpty = ! $this->HasRecord;
+        $this->Attributes->Show();
+
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
+        if(!$this->Visible) return;
+
+        $GridBlock = "Grid " . $this->ComponentName;
+        $ParentPath = $Tpl->block_path;
+        $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+
+
+        if (!$this->IsEmpty) {
+            $this->ControlsVisible["license_type_code"] = $this->license_type_code->Visible;
+            $this->ControlsVisible["t_cacc_license_letter_id"] = $this->t_cacc_license_letter_id->Visible;
+            $this->ControlsVisible["license_no"] = $this->license_no->Visible;
+            $this->ControlsVisible["valid_from"] = $this->valid_from->Visible;
+            $this->ControlsVisible["valid_to"] = $this->valid_to->Visible;
+            $this->ControlsVisible["DLink"] = $this->DLink->Visible;
+            $this->ControlsVisible["ADLink"] = $this->ADLink->Visible;
+            $this->ControlsVisible["description"] = $this->description->Visible;
+            $this->ControlsVisible["t_cust_account_id"] = $this->t_cust_account_id->Visible;
+            while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
+                $this->RowNumber++;
+                if ($this->HasRecord) {
+                    $this->DataSource->next_record();
+                    $this->DataSource->SetValues();
+                }
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
+                $this->license_type_code->SetValue($this->DataSource->license_type_code->GetValue());
+                $this->t_cacc_license_letter_id->SetValue($this->DataSource->t_cacc_license_letter_id->GetValue());
+                $this->license_no->SetValue($this->DataSource->license_no->GetValue());
+                $this->valid_from->SetValue($this->DataSource->valid_from->GetValue());
+                $this->valid_to->SetValue($this->DataSource->valid_to->GetValue());
+                $this->DLink->SetValue($this->DataSource->DLink->GetValue());
+                $this->DLink->Parameters = CCGetQueryString("QueryString", array("FLAG", "ccsForm"));
+                $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_cacc_license_letter_id", $this->DataSource->f("t_cacc_license_letter_id"));
+                $this->ADLink->SetValue($this->DataSource->ADLink->GetValue());
+                $this->ADLink->Parameters = CCGetQueryString("QueryString", array("FLAG", "ccsForm"));
+                $this->ADLink->Parameters = CCAddParam($this->ADLink->Parameters, "t_cacc_license_letter_id", $this->DataSource->f("t_cacc_license_letter_id"));
+                $this->description->SetValue($this->DataSource->description->GetValue());
+                $this->t_cust_account_id->SetValue($this->DataSource->t_cust_account_id->GetValue());
+                $this->Attributes->SetValue("rowNumber", $this->RowNumber);
+                $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
+                $this->Attributes->Show();
+                $this->license_type_code->Show();
+                $this->t_cacc_license_letter_id->Show();
+                $this->license_no->Show();
+                $this->valid_from->Show();
+                $this->valid_to->Show();
+                $this->DLink->Show();
+                $this->ADLink->Show();
+                $this->description->Show();
+                $this->t_cust_account_id->Show();
+                $Tpl->block_path = $ParentPath . "/" . $GridBlock;
+                $Tpl->parse("Row", true);
+            }
+        }
+        else { // Show NoRecords block if no records are found
+            $this->Attributes->Show();
+            $Tpl->parse("NoRecords", false);
+        }
+
+        $errors = $this->GetErrors();
+        if(strlen($errors))
+        {
+            $Tpl->replaceblock("", $errors);
+            $Tpl->block_path = $ParentPath;
+            return;
+        }
+        $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
+        $this->Navigator->PageSize = $this->PageSize;
+        if ($this->DataSource->RecordsCount == "CCS not counted")
+            $this->Navigator->TotalPages = $this->DataSource->AbsolutePage + ($this->DataSource->next_record() ? 1 : 0);
+        else
+            $this->Navigator->TotalPages = $this->DataSource->PageCount();
+        if ($this->Navigator->TotalPages <= 1) {
+            $this->Navigator->Visible = false;
+        }
+        $this->Navigator->Show();
+        $Tpl->parse();
+        $Tpl->block_path = $ParentPath;
+        $this->DataSource->close();
+    }
+//End Show Method
+
+//GetErrors Method @2-D6F9D676
+    function GetErrors()
+    {
+        $errors = "";
+        $errors = ComposeStrings($errors, $this->license_type_code->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->t_cacc_license_letter_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->license_no->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->valid_from->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->valid_to->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->ADLink->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->description->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->t_cust_account_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
+        return $errors;
+    }
+//End GetErrors Method
+
+} //End t_vat_reg_dtlGrid Class @2-FCB6E20C
+
+class clst_vat_reg_dtlGridDataSource extends clsDBConnSIKP {  //t_vat_reg_dtlGridDataSource Class @2-CD77B636
+
+//DataSource Variables @2-194218B2
+    var $Parent = "";
+    var $CCSEvents = "";
+    var $CCSEventResult;
+    var $ErrorBlock;
+    var $CmdExecution;
+
+    var $CountSQL;
+    var $wp;
+
+
+    // Datasource fields
+    var $license_type_code;
+    var $t_cacc_license_letter_id;
+    var $license_no;
+    var $valid_from;
+    var $valid_to;
+    var $DLink;
+    var $ADLink;
+    var $description;
+    var $t_cust_account_id;
+//End DataSource Variables
+
+//DataSourceClass_Initialize Event @2-2CE4BB12
+    function clst_vat_reg_dtlGridDataSource(& $Parent)
+    {
+        $this->Parent = & $Parent;
+        $this->ErrorBlock = "Grid t_vat_reg_dtlGrid";
+        $this->Initialize();
+        $this->license_type_code = new clsField("license_type_code", ccsText, "");
+        
+        $this->t_cacc_license_letter_id = new clsField("t_cacc_license_letter_id", ccsFloat, "");
+        
+        $this->license_no = new clsField("license_no", ccsText, "");
+        
+        $this->valid_from = new clsField("valid_from", ccsText, "");
+        
+        $this->valid_to = new clsField("valid_to", ccsText, "");
+        
+        $this->DLink = new clsField("DLink", ccsText, "");
+        
+        $this->ADLink = new clsField("ADLink", ccsText, "");
+        
+        $this->description = new clsField("description", ccsText, "");
+        
+        $this->t_cust_account_id = new clsField("t_cust_account_id", ccsFloat, "");
+        
+
+    }
+//End DataSourceClass_Initialize Event
+
+//SetOrder Method @2-9E1383D1
+    function SetOrder($SorterName, $SorterDirection)
+    {
+        $this->Order = "";
+        $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
+            "");
+    }
+//End SetOrder Method
+
+//Prepare Method @2-75050C29
+    function Prepare()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urlt_cust_account_id", ccsFloat, "", "", $this->Parameters["urlt_cust_account_id"], "", false);
+    }
+//End Prepare Method
+
+//Open Method @2-2418AE0D
+    function Open()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
+        "FROM v_cacc_license_letter\n" .
+        "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ) cnt";
+        $this->SQL = "SELECT * \n" .
+        "FROM v_cacc_license_letter\n" .
+        "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        if ($this->CountSQL) 
+            $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
+        else
+            $this->RecordsCount = "CCS not counted";
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
+    }
+//End Open Method
+
+//SetValues Method @2-81F872E5
+    function SetValues()
+    {
+        $this->license_type_code->SetDBValue($this->f("license_type_code"));
+        $this->t_cacc_license_letter_id->SetDBValue(trim($this->f("t_cacc_license_letter_id")));
+        $this->license_no->SetDBValue($this->f("license_no"));
+        $this->valid_from->SetDBValue($this->f("valid_from"));
+        $this->valid_to->SetDBValue($this->f("valid_to"));
+        $this->DLink->SetDBValue($this->f("t_license_letter_id"));
+        $this->ADLink->SetDBValue($this->f("t_license_letter_id"));
+        $this->description->SetDBValue($this->f("description"));
+        $this->t_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
+    }
+//End SetValues Method
+
+} //End t_vat_reg_dtlGridDataSource Class @2-FCB6E20C
+
 //Initialize Page @1-2836266F
 // Variables
 $FileName = "";
@@ -2933,7 +3254,7 @@ include_once("./data_potensi_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-F58B6A48
+//Initialize Objects @1-CF17F1C7
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -2949,6 +3270,7 @@ $t_vat_reg_dtl_ppj_nplGrid = & new clsGridt_vat_reg_dtl_ppj_nplGrid("", $MainPag
 $t_vat_reg_dtl_hotel_srvcGrid = & new clsGridt_vat_reg_dtl_hotel_srvcGrid("", $MainPage);
 $t_vat_setllementSearch = & new clsRecordt_vat_setllementSearch("", $MainPage);
 $t_vat_reg_employeeGrid = & new clsGridt_vat_reg_employeeGrid("", $MainPage);
+$t_vat_reg_dtlGrid = & new clsGridt_vat_reg_dtlGrid("", $MainPage);
 $MainPage->t_vat_reg_dtl_restaurantGrid = & $t_vat_reg_dtl_restaurantGrid;
 $MainPage->t_vat_reg_dtl_hotelGrid1 = & $t_vat_reg_dtl_hotelGrid1;
 $MainPage->v_vat_reg_dtl_entertaintmentGrid = & $v_vat_reg_dtl_entertaintmentGrid;
@@ -2958,6 +3280,7 @@ $MainPage->t_vat_reg_dtl_ppj_nplGrid = & $t_vat_reg_dtl_ppj_nplGrid;
 $MainPage->t_vat_reg_dtl_hotel_srvcGrid = & $t_vat_reg_dtl_hotel_srvcGrid;
 $MainPage->t_vat_setllementSearch = & $t_vat_setllementSearch;
 $MainPage->t_vat_reg_employeeGrid = & $t_vat_reg_employeeGrid;
+$MainPage->t_vat_reg_dtlGrid = & $t_vat_reg_dtlGrid;
 $t_vat_reg_dtl_restaurantGrid->Initialize();
 $t_vat_reg_dtl_hotelGrid1->Initialize();
 $v_vat_reg_dtl_entertaintmentGrid->Initialize();
@@ -2966,6 +3289,7 @@ $t_vat_reg_dtl_ppjGrid->Initialize();
 $t_vat_reg_dtl_ppj_nplGrid->Initialize();
 $t_vat_reg_dtl_hotel_srvcGrid->Initialize();
 $t_vat_reg_employeeGrid->Initialize();
+$t_vat_reg_dtlGrid->Initialize();
 
 BindEvents();
 
@@ -2992,7 +3316,7 @@ $Attributes->Show();
 $t_vat_setllementSearch->Operation();
 //End Execute Components
 
-//Go to destination page @1-D1EF48AF
+//Go to destination page @1-F1B57476
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
@@ -3007,12 +3331,13 @@ if($Redirect)
     unset($t_vat_reg_dtl_hotel_srvcGrid);
     unset($t_vat_setllementSearch);
     unset($t_vat_reg_employeeGrid);
+    unset($t_vat_reg_dtlGrid);
     unset($Tpl);
     exit;
 }
 //End Go to destination page
 
-//Show Page @1-100DA1B3
+//Show Page @1-6E077991
 $t_vat_reg_dtl_restaurantGrid->Show();
 $t_vat_reg_dtl_hotelGrid1->Show();
 $v_vat_reg_dtl_entertaintmentGrid->Show();
@@ -3022,6 +3347,7 @@ $t_vat_reg_dtl_ppj_nplGrid->Show();
 $t_vat_reg_dtl_hotel_srvcGrid->Show();
 $t_vat_setllementSearch->Show();
 $t_vat_reg_employeeGrid->Show();
+$t_vat_reg_dtlGrid->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
@@ -3029,7 +3355,7 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-D5C067B4
+//Unload Page @1-914F5C5B
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
 $DBConnSIKP->close();
 unset($t_vat_reg_dtl_restaurantGrid);
@@ -3041,6 +3367,7 @@ unset($t_vat_reg_dtl_ppj_nplGrid);
 unset($t_vat_reg_dtl_hotel_srvcGrid);
 unset($t_vat_setllementSearch);
 unset($t_vat_reg_employeeGrid);
+unset($t_vat_reg_dtlGrid);
 unset($Tpl);
 //End Unload Page
 
