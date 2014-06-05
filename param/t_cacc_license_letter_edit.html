@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>SURAT IZIN YANG DIMILIKI</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-0FCEA0AF
+
+var t_license_letterForm_DatePicker_valid_from = new Object(); 
+t_license_letterForm_DatePicker_valid_from.format           = "dd-mmm-yyyy";
+t_license_letterForm_DatePicker_valid_from.style            = "Styles/sikp/Style.css";
+t_license_letterForm_DatePicker_valid_from.relativePathPart = "../";
+t_license_letterForm_DatePicker_valid_from.themeVersion = "3.0";
+
+var t_license_letterForm_DatePicker_valid_to = new Object(); 
+t_license_letterForm_DatePicker_valid_to.format           = "dd-mmm-yyyy";
+t_license_letterForm_DatePicker_valid_to.style            = "Styles/sikp/Style.css";
+t_license_letterForm_DatePicker_valid_to.relativePathPart = "../";
+t_license_letterForm_DatePicker_valid_to.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//t_license_letterFormButton_Delete_OnClick @97-D4978988
+function t_license_letterFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_license_letterFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+        window.close();
+//End Confirmation Message
+
+//Close t_license_letterFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_license_letterFormButton_Delete_OnClick
+
+//t_license_letterFormButton_Cancel_OnClick @99-08D9CFD6
+function t_license_letterFormButton_Cancel_OnClick()
+{
+    var result = true;
+//End t_license_letterFormButton_Cancel_OnClick
+
+//Custom Code @673-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+                window.close();
+    // -------------------------
+//End Custom Code
+
+//Close t_license_letterFormButton_Cancel_OnClick @99-AEF500E0
+    disableValidation = true;
+    return result;
+}
+//End Close t_license_letterFormButton_Cancel_OnClick
+
+//bind_events @1-9BAAAF03
+function bind_events() {
+    addEventHandler("t_license_letterFormButton_Delete", "click", t_license_letterFormButton_Delete_OnClick);
+    addEventHandler("t_license_letterFormButton_Cancel", "click", t_license_letterFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        SURAT IZIN YANG DIMILIKI 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_license_letterForm -->
+        <form id="t_license_letterForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI SURAT IZIN YANG DIMILIKI</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">No. Surat</label></label></label></label></label></label></label></label></label></td> 
+                    <td colspan="3"><input id="t_license_letterFormlicense_no" class="ControlsRQ" tabindex="2" name="{license_no_Name}" maxlength="42" value="{license_no}" size="42">&nbsp;<input id="t_license_letterFormt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Surat Izin</label></label></td> 
+                    <td colspan="3">
+                      <select id="t_license_letterFormp_license_type_id" class="ControlsRQ" name="{p_license_type_id_Name}">
+                        {p_license_type_id_Options}
+                      </select>
+ <input style="WIDTH: 83px; HEIGHT: 22px" id="t_license_letterFormrqst_type_code" name="{rqst_type_code_Name}" value="{rqst_type_code}" size="11" type="hidden"><input id="t_license_letterFormp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"><input style="WIDTH: 106px; HEIGHT: 22px" id="t_license_letterFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" size="14" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Masa&nbsp;Berlaku&nbsp;</td> 
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormvalid_from" class="ControlsRQ" name="{valid_from_Name}" maxlength="100" value="{valid_from}" size="12">
+                      <!-- BEGIN DatePicker DatePicker_valid_from --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_license_letterFormDatePicker_valid_from"><img id="t_license_letterFormDatePicker_valid_from_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_from -->s/d&nbsp;<input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormvalid_to" class="ControlsIN" name="{valid_to_Name}" maxlength="100" value="{valid_to}" size="15">
+                      <!-- BEGIN DatePicker DatePicker_valid_to --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_license_letterFormDatePicker_valid_to"><img id="t_license_letterFormDatePicker_valid_to_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_to --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_license_letterFormdescription">Deskripsi</label></td> 
+                    <td colspan="3"><input id="t_license_letterFormdescription" class="ControlsIN" name="{description_Name}" maxlength="250" value="{description}" size="60"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_license_letterFormcreated_by">Dibuat Oleh</label></td> 
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="16" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_license_letterFormupdated_by">Diubah Oleh</label></td> 
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="16" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="4" align="right">
+                      <!-- BEGIN Button Button_Insert --><input id="t_license_letterFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_license_letterFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_license_letterFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="t_license_letterFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input id="t_license_letterFormt_cacc_license_letter_id" name="{t_cacc_license_letter_id_Name}" value="{t_cacc_license_letter_id}" type="hidden"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_license_letterForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+function lov_letter() {
+        getFrom_LOV('t_license_letterForm','p_license_type_id,license_type_code','lov_2_field.php?TABLE=p_license_type&FIELD_0=p_license_type_id&FIELD_1=code&FIELD_2=description&LABEL1=Jenis Perizinan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PERIZINAN&HEADER_LOV=DAFTAR JENIS PERIZINAN&ORDER=p_license_type_id');
+}
+
+function toReg()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_customer_orderFormt_customer_order_id'))
+  {
+    var pid=idelement.value;
+    var order_no=document.getElementById("t_customer_orderFormorder_no").value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_vat_registration.php?t_customer_order_id="+pid+"&order_no="+order_no;
+    } else {
+     alert("Pilih salah satu ORDER!");
+    }
+  } else {
+     alert("Pilih salah satu ORDER!");
+  }
+}
+
+function toReg2()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_customer_orderFormt_vat_registration_id'))
+  {
+    var pid=idelement.value;
+    var req_code=document.getElementById("t_customer_orderFormrqst_type_code").value;
+        if (pid != 0)
+    {
+     location.href="t_vat_reg_dtl.php?t_vat_registration_id="+pid+"&rqst_type_code="+req_code;
+    } else {
+     alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+    }
+  } else {
+     alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+  }
+}
+
+
+</script>
+</body>
+</html>
