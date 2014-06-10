@@ -118,6 +118,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .= '<th width="150">JENIS PAJAK</th>';
 	$output .= '<th width="150">TARGET</th>';
 	$output .= '<th width="150">REALISASI</th>';
+	//$output .= '<th width="150">PIUTANG</th>';
 	$output .= '<th width="150">KETERANGAN SELISIH</th>';
 	$output .= '</tr>';
 	
@@ -151,12 +152,14 @@ function GetCetakGeneralHTML($param_arr) {
 	
 	$total_target_ = 0;
 	$total_realisasi_ = 0;
+	$total_piutang_ = 0;
 	$total_selisih_ = 0;
 
 
 	$grand_total_target_ = 0;
 	$grand_total_realisasi_ = 0;
 	$grand_total_selisih_ = 0;
+	$grand_total_piutang_ = 0;
 
 	for($i = 0; $i < count($data['vat_code']); $i++) {
 
@@ -168,12 +171,16 @@ function GetCetakGeneralHTML($param_arr) {
 				$output .= '<tr>';
 				$output .= '<td>'.$data['vat_code'][$i].'</td>';
 				$output .= '<td align="right">'.number_format($item['target'], 0, ',', '.').' </td>';
-				$output .= '<td align="right">'.number_format($item['realisasi'], 0, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($item['realisasiDanPiutang'], 0, ',', '.').'</td>';
+				//$output .= '<td align="right">'.number_format($item['realisasi'], 0, ',', '.').'</td>';
+				//$output .= '<td align="right">'.number_format($item['piutang'], 0, ',', '.').'</td>';
 				$output .= '<td align="right">'.number_format($item['selisih'], 0, ',', '.').'</td>';
 				$output .= '</tr>';	
 			}
 			$total_target_ += $item['target'];
-			$total_realisasi_ += $item['realisasi'];
+			$total_realisasi_ += $item['realisasiDanPiutang'];
+			//$total_realisasi_ += $item['realisasi'];
+			//$total_piutang_ += $item['piutang'];
 			$total_selisih_ += $item['selisih'];	
 		} else {
 			
@@ -181,6 +188,7 @@ function GetCetakGeneralHTML($param_arr) {
 			$output .= '<td style="padding-left:20px;"> JUMLAH '.$pajak_text.'</td>';
 			$output .= '<td align="right"> '.number_format($total_target_, 0, ',', '.').' </td>';
 			$output .= '<td align="right"> '.number_format($total_realisasi_, 0, ',', '.').'</td>';
+			//$output .= '<td align="right"> '.number_format($total_piutang_, 0, ',', '.').'</td>';
 			$output .= '<td align="right"> '.number_format($total_selisih_, 0, ',', '.').' </td>';
 			$output .= '</tr>';	
 			
@@ -188,6 +196,7 @@ function GetCetakGeneralHTML($param_arr) {
 
 			$grand_total_target_ += $total_target_;
 			$grand_total_realisasi_ += $total_realisasi_;
+			$grand_total_piutang_ += $total_piutang_;
 			$grand_total_selisih_ += $total_selisih_;
 				
 			/*END GRAND TOTAL */
@@ -195,19 +204,24 @@ function GetCetakGeneralHTML($param_arr) {
 			$pajak_text = $data['pajak_text'][$i];
 			$total_target_ = 0;
 			$total_realisasi_ = 0;
+			$total_piutang_ = 0;
 			$total_selisih_ = 0;
 			
 			if($data['p_vat_type_id'][$i] == 1 or $data['p_vat_type_id'][$i] == 2 or $data['p_vat_type_id'][$i] == 3) {
 				$output .= '<tr>';
 				$output .= '<td>'.$data['vat_code'][$i].'</td>';
 				$output .= '<td align="right">'.number_format($item['target'], 0, ',', '.').' </td>';
-				$output .= '<td align="right">'.number_format($item['realisasi'], 0, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($item['realisasiDanPiutang'], 0, ',', '.').'</td>';
+				//$output .= '<td align="right">'.number_format($item['realisasi'], 0, ',', '.').'</td>';
+				//$output .= '<td align="right">'.number_format($item['piutang'], 0, ',', '.').'</td>';
 				$output .= '<td align="right">'.number_format($item['selisih'], 0, ',', '.').'</td>';
 				$output .= '</tr>';	
 			}
 
 			$total_target_ += $item['target'];
-			$total_realisasi_ += $item['realisasi'];
+			$total_realisasi_ += $item['realisasiDanPiutang'];
+			//$total_realisasi_ += $item['realisasi'];
+			//$total_piutang_ += $item['piutang'];
 			$total_selisih_ += $item['selisih'];
 		}			
 
@@ -216,6 +230,7 @@ function GetCetakGeneralHTML($param_arr) {
 			$output .= '<td style="padding-left:20px;"> JUMLAH '.$pajak_text.'</td>';
 			$output .= '<td align="right"> '.number_format($total_target_, 0, ',', '.').' </td>';
 			$output .= '<td align="right"> '.number_format($total_realisasi_, 0, ',', '.').'</td>';
+			//$output .= '<td align="right"> '.number_format($total_piutang_, 0, ',', '.').'</td>';
 			$output .= '<td align="right"> '.number_format($total_selisih_, 0, ',', '.').' </td>';
 			$output .= '</tr>';	
 			
@@ -224,14 +239,18 @@ function GetCetakGeneralHTML($param_arr) {
 			$output .= '<tr style="background:#498CD6;font-weight:bold;color:#FFFFFF;">';
 			$output .= '<td style="padding-left:20px;"> JUMLAH REKLAME </td>';
 			$output .= '<td align="right"> '.number_format($itemReklame['target'], 0, ',', '.').' </td>';
-			$output .= '<td align="right"> '.number_format($itemReklame['realisasi'], 0, ',', '.').'</td>';
+			$output .= '<td align="right"> '.number_format($itemReklame['realisasiDanPiutang'], 0, ',', '.').'</td>';
+			//$output .= '<td align="right"> '.number_format($itemReklame['realisasi'], 0, ',', '.').'</td>';
+			//$output .= '<td align="right"> '.number_format($itemReklame['piutang'], 0, ',', '.').'</td>';
 			$output .= '<td align="right"> '.number_format($itemReklame['selisih'], 0, ',', '.').' </td>';
 			$output .= '</tr>';	
 
 	/*GRAND TOTATL */
 
 		$grand_total_target_ += $total_target_ + $itemReklame['target'];
-		$grand_total_realisasi_ += $total_realisasi_ + $itemReklame['realisasi'];
+		$grand_total_realisasi_ += $total_realisasi_ + $itemReklame['realisasiDanPiutang'];
+		//$grand_total_realisasi_ += $total_realisasi_ + $itemReklame['realisasi'];
+		//$grand_total_piutang_ += $total_piutang_ + $itemReklame['piutang'];
 		$grand_total_selisih_ += $total_selisih_ + $itemReklame['selisih'];
 				
 	/*END GRAND TOTAL */	
@@ -240,6 +259,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .= '<td style="padding-left:20px;"> JUMLAH TOTAL </td>';
 	$output .= '<td align="right"> '.number_format($grand_total_target_, 0, ',', '.').' </td>';
 	$output .= '<td align="right"> '.number_format($grand_total_realisasi_, 0, ',', '.').'</td>';
+	//$output .= '<td align="right"> '.number_format($grand_total_piutang_, 0, ',', '.').'</td>';
 	$output .= '<td align="right"> '.number_format($grand_total_selisih_, 0, ',', '.').' </td>';
 	$output .= '</tr>';	
 
@@ -288,7 +308,8 @@ function getDataRow($year_period_id, $p_vat_type_id, $date_awal, $date_akhir, $p
 	
 	$dbConn = new clsDBConnSIKP();
 		
-	$query = "SELECT SUM(target_amount) AS target, SUM(realisasi_amt) AS realisasi
+	$query = "SELECT SUM(target_amount) AS target, SUM(realisasi_amt) AS realisasi,
+				SUM(debt_amt) AS piutang
 				FROM f_target_vs_real_monthly_new(".$year_period_id.",".$p_vat_type_id.")
 				WHERE trunc(start_date) >= '".$date_awal."'
 				AND trunc(end_date) <= '".$date_akhir."'
@@ -298,8 +319,10 @@ function getDataRow($year_period_id, $p_vat_type_id, $date_awal, $date_akhir, $p
 	$result = array();
 	while ($dbConn->next_record()) {
 		$result['target'] = $dbConn->f("target");
+		$result['piutang'] = $dbConn->f("piutang");
 		$result['realisasi'] = $dbConn->f("realisasi");
 		$result['selisih'] = $dbConn->f("realisasi") - $dbConn->f("target");
+		$result['realisasiDanPiutang'] = $dbConn->f("realisasi") + $dbConn->f("piutang");
 	}
 	$dbConn->close();
 	return $result;
@@ -311,7 +334,8 @@ function getDataRowReklame($year_period_id, $date_awal, $date_akhir) {
 	
 	$dbConn = new clsDBConnSIKP();
 		
-	$query = "SELECT SUM(target_amount) AS target, SUM(realisasi_amt) AS realisasi
+	$query = "SELECT SUM(target_amount) AS target, SUM(realisasi_amt) AS realisasi,
+				SUM(debt_amt) AS piutang
 				FROM f_target_vs_real_monthly_new(".$year_period_id.",9)
 				WHERE trunc(start_date) >= '".$date_awal."'
 				AND trunc(end_date) <= '".$date_akhir."'";
@@ -320,8 +344,10 @@ function getDataRowReklame($year_period_id, $date_awal, $date_akhir) {
 	$result = array();
 	while ($dbConn->next_record()) {
 		$result['target'] = $dbConn->f("target");
+		$result['piutang'] = $dbConn->f("piutang");
 		$result['realisasi'] = $dbConn->f("realisasi");
 		$result['selisih'] = $dbConn->f("realisasi") - $dbConn->f("target");
+		$result['realisasiDanPiutang'] = $dbConn->f("realisasi") + $dbConn->f("piutang");
 	}
 	$dbConn->close();
 	return $result;
