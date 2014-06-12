@@ -45,7 +45,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-2A494EE8
+//Class_Initialize Event @3-8088C5C7
     function clsRecordLOV($RelativePath, & $Parent)
     {
 
@@ -75,7 +75,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->npwd = & new clsControl(ccsTextBox, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", $Method, NULL), $this);
             $this->npwd->Required = true;
-            $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "t_vat_setllement_id", ccsText, "", CCGetRequestParam("t_vat_setllement_id", $Method, NULL), $this);
+            $this->t_vat_setllement_id = & new clsControl(ccsHidden, "t_vat_setllement_id", "t_vat_setllement_id", ccsInteger, "", CCGetRequestParam("t_vat_setllement_id", $Method, NULL), $this);
             $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->total_trans_amount = & new clsControl(ccsTextBox, "total_trans_amount", "total_trans_amount", ccsText, "", CCGetRequestParam("total_trans_amount", $Method, NULL), $this);
             $this->total_trans_amount->Required = true;
@@ -341,8 +341,8 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     var $receipt_no;
     var $no_kohir;
 //End DataSource Variables
-
-//DataSourceClass_Initialize Event @3-40F61ECC
+	var $itemResult;
+//DataSourceClass_Initialize Event @3-29FDF48E
     function clsLOVDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -350,7 +350,7 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         $this->Initialize();
         $this->npwd = new clsField("npwd", ccsText, "");
         
-        $this->t_vat_setllement_id = new clsField("t_vat_setllement_id", ccsText, "");
+        $this->t_vat_setllement_id = new clsField("t_vat_setllement_id", ccsInteger, "");
         
         $this->total_trans_amount = new clsField("total_trans_amount", ccsText, "");
         
@@ -381,11 +381,11 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End Prepare Method
 
-//Open Method @3-385CF0B2
+//Open Method @3-4433E409
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "select a.npwd,a.no_kohir, a.is_settled,a.total_trans_amount,a.total_vat_amount,\n" .
+        $this->SQL = "select a.t_vat_setllement_id, a.npwd,a.no_kohir, a.is_settled,a.total_trans_amount,a.total_vat_amount,\n" .
         "b.receipt_no,b.payment_amount,b.payment_vat_amount\n" .
         "from t_vat_setllement a\n" .
         "LEFT JOIN t_payment_receipt b on a.t_vat_setllement_id = b.t_vat_setllement_id\n" .
@@ -398,11 +398,11 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End Open Method
 
-//SetValues Method @3-AEBEEBF6
+//SetValues Method @3-5F71A492
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
-        $this->t_vat_setllement_id->SetDBValue($this->f("t_vat_setllement_id"));
+        $this->t_vat_setllement_id->SetDBValue(trim($this->f("t_vat_setllement_id")));
         $this->total_trans_amount->SetDBValue($this->f("total_trans_amount"));
         $this->total_vat_amount->SetDBValue($this->f("total_vat_amount"));
         $this->is_settled->SetDBValue($this->f("is_settled"));
@@ -413,13 +413,13 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End SetValues Method
 
-//Update Method @3-4186609B
+//Update Method @3-1F7C9C7B
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["t_vat_setllement_id"] = new clsSQLParameter("ctrlt_vat_setllement_id", ccsText, "", "", $this->t_vat_setllement_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["t_vat_setllement_id"] = new clsSQLParameter("ctrlt_vat_setllement_id", ccsInteger, "", "", $this->t_vat_setllement_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["total_trans_amount"] = new clsSQLParameter("ctrltotal_trans_amount", ccsFloat, "", "", $this->total_trans_amount->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["total_vat_amount"] = new clsSQLParameter("ctrltotal_vat_amount", ccsFloat, "", "", $this->total_vat_amount->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["is_settled"] = new clsSQLParameter("ctrlis_settled", ccsText, "", "", $this->is_settled->GetValue(true), "", false, $this->ErrorBlock);
@@ -451,8 +451,8 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
             $this->cp["payment_vat_amount"]->SetValue($this->payment_vat_amount->GetValue(true));
         if (!strlen($this->cp["payment_vat_amount"]->GetText()) and !is_bool($this->cp["payment_vat_amount"]->GetValue(true))) 
             $this->cp["payment_vat_amount"]->SetText(0);
-        $this->SQL = "SELECT f_ubah_data_register(\n" .
-        "" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsText) . ", \n" .
+        $this->SQL = "SELECT * from f_ubah_data_register(\n" .
+        "" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . ", \n" .
         "" . $this->SQLValue($this->cp["total_trans_amount"]->GetDBValue(), ccsFloat) . ", \n" .
         "" . $this->SQLValue($this->cp["total_vat_amount"]->GetDBValue(), ccsFloat) . ", \n" .
         "'" . $this->SQLValue($this->cp["is_settled"]->GetDBValue(), ccsText) . "', \n" .
@@ -462,7 +462,7 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         ") AS msg";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->query($this->SQL);
+            $this->itemResult = $this->query($this->SQL);
             $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
         }
     }
