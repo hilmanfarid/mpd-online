@@ -125,7 +125,7 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}</td> 
                   <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}</td> 
                   <td colspan="6">
-                    <!-- BEGIN Button BtnUbahRegister --><input style="WIDTH: 112px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahRegister" class="Button" onclick="viewFormUbahNPWD({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Data Register" size="23" type="button"><!-- END Button BtnUbahRegister --></td>
+                    <!-- BEGIN Button BtnUbahRegister --><input style="WIDTH: 112px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahRegister" class="Button" onclick="viewFormUbahRegister({t_vat_setllement_id});" name="{Button_Name}" alt="Button2" value="Ubah Data Register" size="23" type="button"><!-- END Button BtnUbahRegister --></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -180,6 +180,19 @@ function viewFormUbahMasaPajak(t_vat_setllement_id) {
                 
                 params  = 'width=650';
         params += ', height=300';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function viewFormUbahRegister(t_vat_setllement_id) {
+        
+        url = "../trans/t_vat_setllement_ubah_register.php?t_vat_setllement_id="+t_vat_setllement_id;
+                
+		params  = 'width=650';
+        params += ', height=400';
         params += ', top=0, left=0';
 
         newwin=window.open(url,'windowname4', params);
