@@ -1,19 +1,23 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="15" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, 
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="15" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, 
+a.t_customer_order_id, a.total_penalty_amount, 
 a.settlement_date, a.p_finance_period_id, 
 a.t_cust_account_id, a.npwd, a.total_trans_amount,
-a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id
-FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e,p_settlement_type sett_type
+a.total_vat_amount, b.code as finance_period_code, 
+c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id
+FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, 
+p_rqst_type e,p_settlement_type sett_type, t_payment_receipt f
 WHERE a.p_finance_period_id = b.p_finance_period_id AND
 a.t_customer_order_id = c.t_customer_order_id AND
 a.t_cust_account_id = d.t_cust_account_id AND
 c.p_rqst_type_id = e.p_rqst_type_id AND
+a.t_vat_setllement_id = f.t_vat_setllement_id AND
 sett_type.p_settlement_type_id = a.p_settlement_type_id(+) AND
 ( upper(d.wp_name) LIKE upper('%{s_keyword}%') OR 
   upper(a.npwd) LIKE upper('%{s_keyword}%') OR
   upper(a.no_kohir) LIKE upper('%{s_keyword}%')
-)
+) 
 ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeList">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_vat_setllement_ro_modifikasi_ubah_register.ccp" wizardThemeItem="GridA" PathID="t_vat_setllementGridDLink" removeParameters="FLAG">
