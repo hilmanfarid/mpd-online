@@ -330,38 +330,46 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @2-ADBEC6D5
+//Open Method @2-6E165CD3
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, \n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, \n" .
+        "a.t_customer_order_id, a.total_penalty_amount, \n" .
         "a.settlement_date, a.p_finance_period_id, \n" .
         "a.t_cust_account_id, a.npwd, a.total_trans_amount,\n" .
-        "a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id\n" .
-        "FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e,p_settlement_type sett_type\n" .
+        "a.total_vat_amount, b.code as finance_period_code, \n" .
+        "c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id\n" .
+        "FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, \n" .
+        "p_rqst_type e,p_settlement_type sett_type, t_payment_receipt f\n" .
         "WHERE a.p_finance_period_id = b.p_finance_period_id AND\n" .
         "a.t_customer_order_id = c.t_customer_order_id AND\n" .
         "a.t_cust_account_id = d.t_cust_account_id AND\n" .
         "c.p_rqst_type_id = e.p_rqst_type_id AND\n" .
+        "a.t_vat_setllement_id = f.t_vat_setllement_id AND\n" .
         "sett_type.p_settlement_type_id = a.p_settlement_type_id(+) AND\n" .
         "( upper(d.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
         "  upper(a.npwd) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
         "  upper(a.no_kohir) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         ")) cnt";
-        $this->SQL = "SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, \n" .
+        $this->SQL = "SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, \n" .
+        "a.t_customer_order_id, a.total_penalty_amount, \n" .
         "a.settlement_date, a.p_finance_period_id, \n" .
         "a.t_cust_account_id, a.npwd, a.total_trans_amount,\n" .
-        "a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id\n" .
-        "FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e,p_settlement_type sett_type\n" .
+        "a.total_vat_amount, b.code as finance_period_code, \n" .
+        "c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id\n" .
+        "FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, \n" .
+        "p_rqst_type e,p_settlement_type sett_type, t_payment_receipt f\n" .
         "WHERE a.p_finance_period_id = b.p_finance_period_id AND\n" .
         "a.t_customer_order_id = c.t_customer_order_id AND\n" .
         "a.t_cust_account_id = d.t_cust_account_id AND\n" .
         "c.p_rqst_type_id = e.p_rqst_type_id AND\n" .
+        "a.t_vat_setllement_id = f.t_vat_setllement_id AND\n" .
         "sett_type.p_settlement_type_id = a.p_settlement_type_id(+) AND\n" .
         "( upper(d.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
         "  upper(a.npwd) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
         "  upper(a.no_kohir) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
-        ") {SQL_OrderBy}";
+        ")  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
