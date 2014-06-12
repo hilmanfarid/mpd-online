@@ -1,18 +1,10 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="LOV" returnPage="t_vat_setllement_ubah_register.ccp" PathID="LOV" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="USQLParameters" customInsert="SELECT f_ubah_data_register(
-{t_vat_setllement_id}, 
-{total_trans_amount}, 
-{total_vat_amount}, 
-'{is_settled}', 
-'{receipt_no}', 
-{payment_amount}, 
-{payment_vat_amount}
-) AS msg" dataSource="select a.npwd,a.no_kohir, a.is_settled,a.total_trans_amount,a.total_vat_amount,
+		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="LOV" returnPage="t_vat_setllement_ubah_register.ccp" PathID="LOV" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="USQLParameters" dataSource="select a.t_vat_setllement_id, a.npwd,a.no_kohir, a.is_settled,a.total_trans_amount,a.total_vat_amount,
 b.receipt_no,b.payment_amount,b.payment_vat_amount
 from t_vat_setllement a
 LEFT JOIN t_payment_receipt b on a.t_vat_setllement_id = b.t_vat_setllement_id
-where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT f_ubah_data_register(
+where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT * from f_ubah_data_register(
 {t_vat_setllement_id}, 
 {total_trans_amount}, 
 {total_vat_amount}, 
@@ -28,7 +20,7 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="7" fieldSourceType="DBColumn" dataType="Text" name="t_vat_setllement_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVt_vat_setllement_id" fieldSource="t_vat_setllement_id">
+				<Hidden id="7" fieldSourceType="DBColumn" dataType="Integer" name="t_vat_setllement_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVt_vat_setllement_id" fieldSource="t_vat_setllement_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -100,7 +92,12 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 						<Action actionName="Custom Code" actionCategory="General" id="22"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="AfterUpdate" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="59"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters>
@@ -132,7 +129,7 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 </IFormElements>
 			<USPParameters/>
 			<USQLParameters>
-				<SQLParameter id="12" variable="t_vat_setllement_id" parameterType="Control" dataType="Text" parameterSource="t_vat_setllement_id" defaultValue="0"/>
+				<SQLParameter id="12" variable="t_vat_setllement_id" parameterType="Control" dataType="Integer" parameterSource="t_vat_setllement_id" defaultValue="0"/>
 				<SQLParameter id="53" variable="total_trans_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="total_trans_amount"/>
 <SQLParameter id="54" variable="total_vat_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="total_vat_amount"/>
 <SQLParameter id="55" variable="is_settled" parameterType="Control" dataType="Text" parameterSource="is_settled"/>
