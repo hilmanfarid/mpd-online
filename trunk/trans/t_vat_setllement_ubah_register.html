@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LOV</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<!--start user-->
+<script language="javascript">
+function clickReturn(retVal) {
+                strObj = document.getElementById('LOVOBJ').value;
+                strForm = document.getElementById('LOVFORM').value;
+        arrVal = retVal.split('#~#');
+                arrForm = strObj.split(',');
+                for (x=0;x<arrForm.length;x++) {
+                window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
+                }
+                window.close();
+}
+</script>
+<!--end user-->
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        UBAH NILAI NPWPD 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table style="WIDTH: 100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Record LOV -->
+        <form id="LOV" method="post" name="{HTMLFormName}" action="{Action}">
+          <table style="WIDTH: 459px; HEIGHT: 162px" class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table style="WIDTH: 84.5%; HEIGHT: 145px" class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="3">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">NPWPD</td> 
+                    <td class="search-field">:</td> 
+                    <td class="search-field"><input id="LOVt_vat_setllement_id" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}"><input style="WIDTH: 145px; HEIGHT: 22px" id="LOVnpwd" class="ControlsRQ" value="{npwd}" readonly size="14" name="{npwd_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">No Kohir</td> 
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field"><input style="WIDTH: 145px; HEIGHT: 22px" id="LOVno_kohir" class="ControlsRQ" value="{no_kohir}" readonly size="14" name="{no_kohir_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field" colspan="3"><u><strong><font color="#000000">Data t_vat_settlement&nbsp;&nbsp;:</font></strong></u></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field"><span class="_5yl5" data-reactid=".1f.$mid=11402550233139=2e93c6097e50f99c227.2:0.0.0.0.0"><span class="null">total_trans_amount (omset)</span></span></td> 
+                    <td class="search-field">:&nbsp;</td> 
+                    <td class="search-field"><input style="WIDTH: 145px; HEIGHT: 22px" id="LOVtotal_trans_amount" class="ControlsRQ" value="{total_trans_amount}" size="14" name="{total_trans_amount_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field"><span class="_5yl5" data-reactid=".1f.$mid=11402550233139=2e93c6097e50f99c227.2:0.0.0.0.0"><span class="null">total_vat_amount (nilai pajak)</span></span> </td> 
+                    <td class="search-field">:</td> 
+                    <td class="search-field"><input style="WIDTH: 145px; HEIGHT: 22px" id="LOVtotal_vat_amount" class="ControlsRQ" value="{total_vat_amount}" size="14" name="{total_vat_amount_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field"><span class="_5yl5" data-reactid=".1f.$mid=11402550233139=2e93c6097e50f99c227.2:0.0.0.0.0"><span class="null">ubah flag register ??</span></span></td> 
+                    <td class="search-field">:</td> 
+                    <td class="search-field">
+                      <select id="LOVis_settled" name="{is_settled_Name}">
+                        <option selected value="">Select Value</option>
+                        {is_settled_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>&nbsp;</td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td colspan="3"><u><strong><font color="#000000">Data t_payment_receipt :</font></strong></u></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>payment_amount</td> 
+                    <td>:</td> 
+                    <td class="search-field"><input style="WIDTH: 145px; HEIGHT: 22px" id="LOVpayment_amount" class="ControlsRQ" value="{payment_amount}" size="14" name="{payment_amount_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>payment_vat_amount</td> 
+                    <td>:</td> 
+                    <td class="search-field"><input style="WIDTH: 145px; HEIGHT: 22px" id="LOVpayment_vat_amount" class="ControlsRQ" value="{payment_vat_amount}" size="14" name="{payment_vat_amount_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>nomor_register</td> 
+                    <td>:</td> 
+                    <td class="search-field"><input style="WIDTH: 292px; HEIGHT: 22px" id="LOVreceipt_no" class="ControlsRQ" value="{receipt_no}" size="28" name="{receipt_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>&nbsp;</td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button1 --><input id="LOVButton1" class="btn_tambah" value="Simpan" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record LOV --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<br>
+</body>
+</html>
