@@ -45,7 +45,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-8DDD6899
+//Class_Initialize Event @3-2A494EE8
     function clsRecordLOV($RelativePath, & $Parent)
     {
 
@@ -59,7 +59,8 @@ class clsRecordLOV { //LOV Class @3-40E97705
         $this->ErrorBlock = "Record LOV/Error";
         $this->DataSource = new clsLOVDataSource($this);
         $this->ds = & $this->DataSource;
-        $this->InsertAllowed = true;
+        $this->UpdateAllowed = true;
+        $this->ReadAllowed = true;
         if($this->Visible)
         {
             $this->ComponentName = "LOV";
@@ -169,7 +170,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-F7AA0D2F
+//Operation Method @3-E1AEF71B
     function Operation()
     {
         if(!$this->Visible)
@@ -185,7 +186,7 @@ function GetPrimaryKey($keyName)
         }
 
         if($this->FormSubmitted) {
-            $this->PressedButton = "Button1";
+            $this->PressedButton = $this->EditMode ? "Button1" : "";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
             }
@@ -193,7 +194,7 @@ function GetPrimaryKey($keyName)
         $Redirect = "t_vat_setllement_ubah_register.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
-                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1) || !$this->InsertRow()) {
+                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }
             }
@@ -205,11 +206,11 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @3-9401A497
-    function InsertRow()
+//UpdateRow Method @3-D449117C
+    function UpdateRow()
     {
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
-        if(!$this->InsertAllowed) return false;
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
+        if(!$this->UpdateAllowed) return false;
         $this->DataSource->t_vat_setllement_id->SetValue($this->t_vat_setllement_id->GetValue(true));
         $this->DataSource->total_trans_amount->SetValue($this->total_trans_amount->GetValue(true));
         $this->DataSource->total_vat_amount->SetValue($this->total_vat_amount->GetValue(true));
@@ -217,13 +218,13 @@ function GetPrimaryKey($keyName)
         $this->DataSource->receipt_no->SetValue($this->receipt_no->GetValue(true));
         $this->DataSource->payment_amount->SetValue($this->payment_amount->GetValue(true));
         $this->DataSource->payment_vat_amount->SetValue($this->payment_vat_amount->GetValue(true));
-        $this->DataSource->Insert();
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
+        $this->DataSource->Update();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
-//End InsertRow Method
+//End UpdateRow Method
 
-//Show Method @3-62BB16B1
+//Show Method @3-E1BF66FA
     function Show()
     {
         global $CCSUseAmp;
@@ -288,7 +289,7 @@ function GetPrimaryKey($keyName)
         $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
         $Tpl->SetVar("HTMLFormName", $this->ComponentName);
         $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
-        $this->Button1->Visible = !$this->EditMode && $this->InsertAllowed;
+        $this->Button1->Visible = $this->EditMode && $this->UpdateAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -317,14 +318,14 @@ function GetPrimaryKey($keyName)
 
 class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026EF
 
-//DataSource Variables @3-2DDD0B0F
+//DataSource Variables @3-84C45522
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
     var $ErrorBlock;
     var $CmdExecution;
 
-    var $InsertParameters;
+    var $UpdateParameters;
     var $wp;
     var $AllParametersSet;
 
@@ -412,32 +413,32 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End SetValues Method
 
-//Insert Method @3-3EF49CF9
-    function Insert()
+//Update Method @3-4186609B
+    function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["t_vat_setllement_id"] = new clsSQLParameter("ctrlt_vat_setllement_id", ccsInteger, "", "", $this->t_vat_setllement_id->GetValue(true), null, false, $this->ErrorBlock);
-        $this->cp["total_trans_amount"] = new clsSQLParameter("ctrltotal_trans_amount", ccsFloat, "", "", $this->total_trans_amount->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["total_vat_amount"] = new clsSQLParameter("ctrltotal_vat_amount", ccsFloat, "", "", $this->total_vat_amount->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["t_vat_setllement_id"] = new clsSQLParameter("ctrlt_vat_setllement_id", ccsText, "", "", $this->t_vat_setllement_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["total_trans_amount"] = new clsSQLParameter("ctrltotal_trans_amount", ccsFloat, "", "", $this->total_trans_amount->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["total_vat_amount"] = new clsSQLParameter("ctrltotal_vat_amount", ccsFloat, "", "", $this->total_vat_amount->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["is_settled"] = new clsSQLParameter("ctrlis_settled", ccsText, "", "", $this->is_settled->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["receipt_no"] = new clsSQLParameter("ctrlreceipt_no", ccsText, "", "", $this->receipt_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["payment_amount"] = new clsSQLParameter("ctrlpayment_amount", ccsFloat, "", "", $this->payment_amount->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["payment_vat_amount"] = new clsSQLParameter("ctrlpayment_vat_amount", ccsFloat, "", "", $this->payment_vat_amount->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
+        $this->cp["payment_amount"] = new clsSQLParameter("ctrlpayment_amount", ccsFloat, "", "", $this->payment_amount->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["payment_vat_amount"] = new clsSQLParameter("ctrlpayment_vat_amount", ccsFloat, "", "", $this->payment_vat_amount->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["t_vat_setllement_id"]->GetValue()) and !strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue())) 
             $this->cp["t_vat_setllement_id"]->SetValue($this->t_vat_setllement_id->GetValue(true));
         if (!strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue(true))) 
-            $this->cp["t_vat_setllement_id"]->SetText(null);
+            $this->cp["t_vat_setllement_id"]->SetText(0);
         if (!is_null($this->cp["total_trans_amount"]->GetValue()) and !strlen($this->cp["total_trans_amount"]->GetText()) and !is_bool($this->cp["total_trans_amount"]->GetValue())) 
             $this->cp["total_trans_amount"]->SetValue($this->total_trans_amount->GetValue(true));
         if (!strlen($this->cp["total_trans_amount"]->GetText()) and !is_bool($this->cp["total_trans_amount"]->GetValue(true))) 
-            $this->cp["total_trans_amount"]->SetText(NULL);
+            $this->cp["total_trans_amount"]->SetText(0);
         if (!is_null($this->cp["total_vat_amount"]->GetValue()) and !strlen($this->cp["total_vat_amount"]->GetText()) and !is_bool($this->cp["total_vat_amount"]->GetValue())) 
             $this->cp["total_vat_amount"]->SetValue($this->total_vat_amount->GetValue(true));
         if (!strlen($this->cp["total_vat_amount"]->GetText()) and !is_bool($this->cp["total_vat_amount"]->GetValue(true))) 
-            $this->cp["total_vat_amount"]->SetText(NULL);
+            $this->cp["total_vat_amount"]->SetText(0);
         if (!is_null($this->cp["is_settled"]->GetValue()) and !strlen($this->cp["is_settled"]->GetText()) and !is_bool($this->cp["is_settled"]->GetValue())) 
             $this->cp["is_settled"]->SetValue($this->is_settled->GetValue(true));
         if (!is_null($this->cp["receipt_no"]->GetValue()) and !strlen($this->cp["receipt_no"]->GetText()) and !is_bool($this->cp["receipt_no"]->GetValue())) 
@@ -445,51 +446,27 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         if (!is_null($this->cp["payment_amount"]->GetValue()) and !strlen($this->cp["payment_amount"]->GetText()) and !is_bool($this->cp["payment_amount"]->GetValue())) 
             $this->cp["payment_amount"]->SetValue($this->payment_amount->GetValue(true));
         if (!strlen($this->cp["payment_amount"]->GetText()) and !is_bool($this->cp["payment_amount"]->GetValue(true))) 
-            $this->cp["payment_amount"]->SetText(NULL);
+            $this->cp["payment_amount"]->SetText(0);
         if (!is_null($this->cp["payment_vat_amount"]->GetValue()) and !strlen($this->cp["payment_vat_amount"]->GetText()) and !is_bool($this->cp["payment_vat_amount"]->GetValue())) 
             $this->cp["payment_vat_amount"]->SetValue($this->payment_vat_amount->GetValue(true));
         if (!strlen($this->cp["payment_vat_amount"]->GetText()) and !is_bool($this->cp["payment_vat_amount"]->GetValue(true))) 
-            $this->cp["payment_vat_amount"]->SetText(NULL);
-        $this->SQL = "SELECT f_ubah_data_register(" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . ", " . $this->SQLValue($this->cp["total_trans_amount"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["total_vat_amount"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["is_settled"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["receipt_no"]->GetDBValue(), ccsText) . "', " . $this->SQLValue($this->cp["payment_amount"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["payment_vat_amount"]->GetDBValue(), ccsFloat) . ")";
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
+            $this->cp["payment_vat_amount"]->SetText(0);
+        $this->SQL = "SELECT f_ubah_data_register(\n" .
+        "" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsText) . ", \n" .
+        "" . $this->SQLValue($this->cp["total_trans_amount"]->GetDBValue(), ccsFloat) . ", \n" .
+        "" . $this->SQLValue($this->cp["total_vat_amount"]->GetDBValue(), ccsFloat) . ", \n" .
+        "'" . $this->SQLValue($this->cp["is_settled"]->GetDBValue(), ccsText) . "', \n" .
+        "'" . $this->SQLValue($this->cp["receipt_no"]->GetDBValue(), ccsText) . "', \n" .
+        "" . $this->SQLValue($this->cp["payment_amount"]->GetDBValue(), ccsFloat) . ", \n" .
+        "" . $this->SQLValue($this->cp["payment_vat_amount"]->GetDBValue(), ccsFloat) . "\n" .
+        ") AS msg";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
-            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteUpdate", $this->Parent);
         }
     }
-//End Insert Method
-
-//DEL      function Insert()
-//DEL      {
-//DEL          global $CCSLocales;
-//DEL          global $DefaultDateFormat;
-//DEL          $this->CmdExecution = true;
-//DEL          $this->cp["t_vat_setllement_id"] = new clsSQLParameter("ctrlt_vat_setllement_id", ccsInteger, "", "", $this->t_vat_setllement_id->GetValue(true), 0, false, $this->ErrorBlock);
-//DEL          $this->cp["npwpd"] = new clsSQLParameter("ctrlnpwpd", ccsText, "", "", $this->npwpd->GetValue(true), 0, false, $this->ErrorBlock);
-//DEL          $this->cp["deskripsi"] = new clsSQLParameter("ctrldeskripsi", ccsText, "", "", $this->deskripsi->GetValue(true), "", false, $this->ErrorBlock);
-//DEL          $this->cp["user_name"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
-//DEL          $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
-//DEL          if (!is_null($this->cp["t_vat_setllement_id"]->GetValue()) and !strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue())) 
-//DEL              $this->cp["t_vat_setllement_id"]->SetValue($this->t_vat_setllement_id->GetValue(true));
-//DEL          if (!strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue(true))) 
-//DEL              $this->cp["t_vat_setllement_id"]->SetText(0);
-//DEL          if (!is_null($this->cp["npwpd"]->GetValue()) and !strlen($this->cp["npwpd"]->GetText()) and !is_bool($this->cp["npwpd"]->GetValue())) 
-//DEL              $this->cp["npwpd"]->SetValue($this->npwpd->GetValue(true));
-//DEL          if (!strlen($this->cp["npwpd"]->GetText()) and !is_bool($this->cp["npwpd"]->GetValue(true))) 
-//DEL              $this->cp["npwpd"]->SetText(0);
-//DEL          if (!is_null($this->cp["deskripsi"]->GetValue()) and !strlen($this->cp["deskripsi"]->GetText()) and !is_bool($this->cp["deskripsi"]->GetValue())) 
-//DEL              $this->cp["deskripsi"]->SetValue($this->deskripsi->GetValue(true));
-//DEL          if (!is_null($this->cp["user_name"]->GetValue()) and !strlen($this->cp["user_name"]->GetText()) and !is_bool($this->cp["user_name"]->GetValue())) 
-//DEL              $this->cp["user_name"]->SetValue(CCGetSession("UserLogin", NULL));
-//DEL          $this->SQL = "SELECT f_update_npwpd(" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . ",'" . $this->SQLValue($this->cp["npwpd"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["deskripsi"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "') AS msg";
-//DEL          $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
-//DEL          if($this->Errors->Count() == 0 && $this->CmdExecution) {
-//DEL              //$this->query($this->SQL);
-//DEL  			$this->itemResult = $this->query($this->SQL);
-//DEL              $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
-//DEL          }
-//DEL      }
-
+//End Update Method
 
 } //End LOVDataSource Class @3-FCB6E20C
 
