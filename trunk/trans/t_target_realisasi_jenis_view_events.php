@@ -56,7 +56,7 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 		if ($selected_id<0) {
     		$selected_id = $Component->DataSource->t_revenue_target_id->GetValue();
    		}
-
+		/*
 		$styles = array("Row", "AltRow");
   	// Start Bdr    
         $img_radio= "<img border=\"0\" src=\"../images/radio.gif\">";
@@ -78,6 +78,7 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 			$Component->p_vat_group_id->SetValue($p_vat_group_id);
         }	
     // End Bdr
+	*/
 	  $pid_t = $Component->DataSource->t_revenue_target_id->GetValue();  
       if (count($styles) && $pid!=999) {
           //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
