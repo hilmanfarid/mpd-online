@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-9BA18295
+//BindEvents Method @1-79F38E79
 function BindEvents()
 {
     global $t_target_realisasi_jenisGrid;
@@ -7,6 +7,8 @@ function BindEvents()
     global $CCSEvents;
     $t_target_realisasi_jenisGrid->CCSEvents["BeforeSelect"] = "t_target_realisasi_jenisGrid_BeforeSelect";
     $t_target_realisasi_jenisGrid->CCSEvents["BeforeShowRow"] = "t_target_realisasi_jenisGrid_BeforeShowRow";
+    $t_target_realisasi_jenisGrid->ds->CCSEvents["BeforeExecuteSelect"] = "t_target_realisasi_jenisGrid_ds_BeforeExecuteSelect";
+    $t_target_realisasi_jenisGrid->ds->CCSEvents["BeforeBuildSelect"] = "t_target_realisasi_jenisGrid_ds_BeforeBuildSelect";
     $t_target_realisasi_jenisGrid1->CCSEvents["BeforeSelect"] = "t_target_realisasi_jenisGrid1_BeforeSelect";
     $t_target_realisasi_jenisGrid1->CCSEvents["BeforeShowRow"] = "t_target_realisasi_jenisGrid1_BeforeShowRow";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
@@ -104,6 +106,46 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 }
 //End Close t_target_realisasi_jenisGrid_BeforeShowRow
 
+//t_target_realisasi_jenisGrid_ds_BeforeExecuteSelect @2-7E782143
+function t_target_realisasi_jenisGrid_ds_BeforeExecuteSelect(& $sender)
+{
+    $t_target_realisasi_jenisGrid_ds_BeforeExecuteSelect = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasi_jenisGrid; //Compatibility
+//End t_target_realisasi_jenisGrid_ds_BeforeExecuteSelect
+
+//Custom Code @906-2A29BDB7
+// -------------------------
+    
+// -------------------------
+//End Custom Code
+   
+//Close t_target_realisasi_jenisGrid_ds_BeforeExecuteSelect @2-9262F2FE
+    return $t_target_realisasi_jenisGrid_ds_BeforeExecuteSelect;
+}
+//End Close t_target_realisasi_jenisGrid_ds_BeforeExecuteSelect
+
+//t_target_realisasi_jenisGrid_ds_BeforeBuildSelect @2-F9C26FF5
+function t_target_realisasi_jenisGrid_ds_BeforeBuildSelect(& $sender)
+{
+    $t_target_realisasi_jenisGrid_ds_BeforeBuildSelect = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasi_jenisGrid; //Compatibility
+//End t_target_realisasi_jenisGrid_ds_BeforeBuildSelect
+
+//Custom Code @907-2A29BDB7
+// -------------------------
+    
+// -------------------------
+//End Custom Code
+
+//Close t_target_realisasi_jenisGrid_ds_BeforeBuildSelect @2-22CE013E
+    return $t_target_realisasi_jenisGrid_ds_BeforeBuildSelect;
+}
+//End Close t_target_realisasi_jenisGrid_ds_BeforeBuildSelect
+
 //t_target_realisasi_jenisGrid1_BeforeSelect @880-8252B760
 function t_target_realisasi_jenisGrid1_BeforeSelect(& $sender)
 {
@@ -118,7 +160,7 @@ function t_target_realisasi_jenisGrid1_BeforeSelect(& $sender)
     // Write your own code here.
 // -------------------------
 //End Custom Code
-
+	
 //Close t_target_realisasi_jenisGrid1_BeforeSelect @880-8E71EFFD
     return $t_target_realisasi_jenisGrid1_BeforeSelect;
 }
@@ -138,6 +180,21 @@ function t_target_realisasi_jenisGrid1_BeforeShowRow(& $sender)
     // Write your own code here.
 // -------------------------
 //End Custom Code
+	$target = $t_target_realisasi_jenisGrid1->DataSource->target_amount->GetValue();
+	 $realisasi = $t_target_realisasi_jenisGrid1->DataSource->realisasi_amt->GetValue();
+	 if(!empty($target)){
+	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
+	 }else{
+	 	$percent =0;
+	 }
+	 $Component->percentage->SetValue("$percent %");
+	 $sum_realisasi = $t_target_realisasi_jenisGrid1->realisasi_amt_sum->GetValue();
+	 $t_target_realisasi_jenisGrid1->realisasi_amt_sum->SetValue($sum_realisasi+$realisasi);
+	 $sum_target = $t_target_realisasi_jenisGrid1->target_amount_sum->GetValue();
+	 $t_target_realisasi_jenisGrid1->target_amount_sum->SetValue($sum_target+$target);
+	 $sum_percentage = $t_target_realisasi_jenisGrid1->percentage_sum->GetValue();
+	 if($sum_target > 0)
+	 $t_target_realisasi_jenisGrid1->percentage_sum->SetValue(number_format($sum_realisasi / $sum_target  * 100, 2, ".", ","));
 
 //Close t_target_realisasi_jenisGrid1_BeforeShowRow @880-1F3D6C11
     return $t_target_realisasi_jenisGrid1_BeforeShowRow;
@@ -161,8 +218,20 @@ function Page_OnInitializeView(& $sender)
 // -------------------------
       // Write your own code here.
   	  global $selected_id;
+	  global $t_target_realisasi_jenisGrid;
+	  global $t_target_realisasi_jenisGrid1;
         $selected_id = -1;
         $selected_id = CCGetFromGet("t_revenue_target_id", $selected_id);
+		$dbConn = new clsDBConnSIKP();
+	$sql = "select p_year_period_id from p_year_period 
+	where year_code = (select extract(year from sysdate))";
+	$dbConn->query($sql);
+	$item = 0;
+	while($dbConn->next_record()){
+		$item = $dbConn->f("p_year_period_id");
+	}
+	$t_target_realisasi_jenisGrid->p_year_period_id2->SetValue($item);
+	$t_target_realisasi_jenisGrid1->p_year_period_id2->SetValue($item);
   // -------------------------
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
