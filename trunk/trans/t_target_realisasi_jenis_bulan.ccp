@@ -69,7 +69,7 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 	MAX (penalty_amt) as penalty_amt,
 	ROUND(SUM (debt_amt)) as debt_amt
 FROM
-	f_target_vs_real_monthly_new2({p_year_period_id},{p_vat_type_id})
+	f_target_vs_real_monthly_new({p_year_period_id},{p_vat_type_id})
 GROUP BY p_finance_period_id
 
 ORDER BY MAX(start_date) ASC">
