@@ -42,7 +42,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-E9B139B0
+//Class_Initialize Event @2-C1AFFE2F
     function clsGridt_target_realisasi_jenisGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -87,7 +87,6 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->realisasi_amt_sum = & new clsControl(ccsLabel, "realisasi_amt_sum", "realisasi_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt_sum", ccsGet, NULL), $this);
         $this->percentage_sum = & new clsControl(ccsLabel, "percentage_sum", "percentage_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("percentage_sum", ccsGet, NULL), $this);
         $this->p_vat_group_id = & new clsControl(ccsHidden, "p_vat_group_id", "p_vat_group_id", ccsFloat, "", CCGetRequestParam("p_vat_group_id", ccsGet, NULL), $this);
-        $this->year_code = & new clsControl(ccsLabel, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -102,7 +101,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     }
 //End Initialize Method
 
-//Show Method @2-7D559AB9
+//Show Method @2-E9EE1EA4
     function Show()
     {
         global $Tpl;
@@ -190,7 +189,6 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         if ($this->Navigator->TotalPages <= 1) {
             $this->Navigator->Visible = false;
         }
-        $this->year_code->SetValue($this->DataSource->year_code->GetValue());
         $this->Navigator->Show();
         $this->t_revenue_target_id->Show();
         $this->p_year_period_id2->Show();
@@ -199,7 +197,6 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
         $this->realisasi_amt_sum->Show();
         $this->percentage_sum->Show();
         $this->p_vat_group_id->Show();
-        $this->year_code->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -421,7 +418,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @880-6A18131C
+//Class_Initialize Event @880-CAA0BE28
     function clsGridt_target_realisasi_jenisGrid1($RelativePath, & $Parent)
     {
         global $FileName;
@@ -456,7 +453,6 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
         $this->percentage = & new clsControl(ccsLabel, "percentage", "percentage", ccsFloat, "", CCGetRequestParam("percentage", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
-        $this->year_code = & new clsControl(ccsLabel, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", ccsGet, NULL), $this);
         $this->target_amount_sum = & new clsControl(ccsLabel, "target_amount_sum", "target_amount_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount_sum", ccsGet, NULL), $this);
         $this->realisasi_amt_sum = & new clsControl(ccsLabel, "realisasi_amt_sum", "realisasi_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt_sum", ccsGet, NULL), $this);
         $this->percentage_sum = & new clsControl(ccsLabel, "percentage_sum", "percentage_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("percentage_sum", ccsGet, NULL), $this);
@@ -475,7 +471,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
     }
 //End Initialize Method
 
-//Show Method @880-CAE8330D
+//Show Method @880-AC5C9646
     function Show()
     {
         global $Tpl;
@@ -557,9 +553,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
         if ($this->Navigator->TotalPages <= 1) {
             $this->Navigator->Visible = false;
         }
-        $this->year_code->SetValue($this->DataSource->year_code->GetValue());
         $this->Navigator->Show();
-        $this->year_code->Show();
         $this->target_amount_sum->Show();
         $this->realisasi_amt_sum->Show();
         $this->percentage_sum->Show();
@@ -590,7 +584,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
 
 class clst_target_realisasi_jenisGrid1DataSource extends clsDBConnSIKP {  //t_target_realisasi_jenisGrid1DataSource Class @880-633752AB
 
-//DataSource Variables @880-11D562BD
+//DataSource Variables @880-B23F6986
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -604,13 +598,12 @@ class clst_target_realisasi_jenisGrid1DataSource extends clsDBConnSIKP {  //t_ta
     // Datasource fields
     var $target_amount;
     var $p_year_period_id;
-    var $year_code;
     var $vat_code;
     var $p_vat_type_id;
     var $realisasi_amt;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @880-089E667F
+//DataSourceClass_Initialize Event @880-C1EDA330
     function clst_target_realisasi_jenisGrid1DataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -619,8 +612,6 @@ class clst_target_realisasi_jenisGrid1DataSource extends clsDBConnSIKP {  //t_ta
         $this->target_amount = new clsField("target_amount", ccsFloat, "");
         
         $this->p_year_period_id = new clsField("p_year_period_id", ccsFloat, "");
-        
-        $this->year_code = new clsField("year_code", ccsText, "");
         
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
@@ -712,12 +703,11 @@ class clst_target_realisasi_jenisGrid1DataSource extends clsDBConnSIKP {  //t_ta
     }
 //End Open Method
 
-//SetValues Method @880-D9C8079E
+//SetValues Method @880-0C9D82C2
     function SetValues()
     {
         $this->target_amount->SetDBValue(trim($this->f("target_amount")));
         $this->p_year_period_id->SetDBValue(trim($this->f("p_year_period_id")));
-        $this->year_code->SetDBValue($this->f("year_code"));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->p_vat_type_id->SetDBValue(trim($this->f("p_vat_type_id")));
         $this->realisasi_amt->SetDBValue(trim($this->f("realisasi_amt")));
