@@ -1,10 +1,11 @@
 <?php
-//BindEvents Method @1-944FCDA3
+//BindEvents Method @1-00E5DF06
 function BindEvents()
 {
     global $LOV;
     $LOV->CCSEvents["BeforeShow"] = "LOV_BeforeShow";
     $LOV->CCSEvents["AfterInsert"] = "LOV_AfterInsert";
+    $LOV->CCSEvents["AfterUpdate"] = "LOV_AfterUpdate";
 }
 //End BindEvents Method
 
@@ -39,6 +40,26 @@ function LOV_AfterInsert(& $sender)
 
 //Custom Code @22-2A29BDB7
 // -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close LOV_AfterInsert @3-FB340CAF
+    return $LOV_AfterInsert;
+}
+//End Close LOV_AfterInsert
+
+//LOV_AfterUpdate @3-A657E919
+function LOV_AfterUpdate(& $sender)
+{
+    $LOV_AfterUpdate = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $LOV; //Compatibility
+//End LOV_AfterUpdate
+
+//Custom Code @59-2A29BDB7
+// -------------------------
     if($row = pg_fetch_array($LOV->DataSource->itemResult)) {
 	
 	}
@@ -52,10 +73,10 @@ function LOV_AfterInsert(& $sender)
 // -------------------------
 //End Custom Code
 
-//Close LOV_AfterInsert @3-FB340CAF
-    return $LOV_AfterInsert;
+//Close LOV_AfterUpdate @3-341DCD20
+    return $LOV_AfterUpdate;
 }
-//End Close LOV_AfterInsert
+//End Close LOV_AfterUpdate
 
 
 ?>
