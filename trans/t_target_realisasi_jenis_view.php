@@ -102,7 +102,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     }
 //End Initialize Method
 
-//Show Method @2-365FC102
+//Show Method @2-7D559AB9
     function Show()
     {
         global $Tpl;
@@ -111,7 +111,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
+        $this->DataSource->Parameters["urlp_year_period_id2"] = CCGetFromGet("p_year_period_id2", NULL);
         $this->DataSource->Parameters["urlp_vat_group_id"] = CCGetFromGet("p_vat_group_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
@@ -282,22 +282,29 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     }
 //End SetOrder Method
 
-//Prepare Method @2-0D480E52
+//Prepare Method @2-295D4ADB
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $this->Parameters["urlp_year_period_id"], "", false);
+        $this->wp->AddParameter("1", "urlp_year_period_id2", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $this->Parameters["urlp_year_period_id2"], 0, false);
         $this->wp->AddParameter("2", "urlp_vat_group_id", ccsInteger, "", "", $this->Parameters["urlp_vat_group_id"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-84608307
+//Open Method @2-758E33AF
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM ((SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM ((SELECT \n" .
+        "	t_revenue_target_id, \n" .
+        "	p_year_period_id, \n" .
+        "	p_vat_type_id, \n" .
+        "	vat_code, \n" .
+        "	year_code, \n" .
+        "	target_amount, \n" .
+        "	realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
         "WHERE p_year_period_id = \n" .
         "	(\n" .
@@ -305,12 +312,13 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         "	where year_code = (select extract(year from sysdate))\n" .
         "	)\n" .
         "and p_vat_group_id=1\n" .
-        "ORDER BY p_vat_type_id)\n" .
+        "ORDER BY p_vat_type_id\n" .
+        ")\n" .
+        "\n" .
         "UNION\n" .
         "(SELECT\n" .
         "	'999',\n" .
-        "	" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "	,\n" .
+        "	" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ",\n" .
         "	MAX (p_vat_type_id),\n" .
         "	'DENDA',\n" .
         "	'',\n" .
@@ -319,8 +327,16 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         "FROM\n" .
         "	sikp.f_rep_lap_harian_bdhr_baru (" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")\n" .
         "where nomor_ayat IN('140701','140702','140703','140707')\n" .
-        "and p_vat_group_id = 1)) cnt";
-        $this->SQL = "(SELECT t_revenue_target_id, p_year_period_id, p_vat_type_id, vat_code, year_code, target_amount, realisasi_amt\n" .
+        "and p_vat_group_id = 1\n" .
+        ")) cnt";
+        $this->SQL = "(SELECT \n" .
+        "	t_revenue_target_id, \n" .
+        "	p_year_period_id, \n" .
+        "	p_vat_type_id, \n" .
+        "	vat_code, \n" .
+        "	year_code, \n" .
+        "	target_amount, \n" .
+        "	realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
         "WHERE p_year_period_id = \n" .
         "	(\n" .
@@ -328,12 +344,13 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         "	where year_code = (select extract(year from sysdate))\n" .
         "	)\n" .
         "and p_vat_group_id=1\n" .
-        "ORDER BY p_vat_type_id)\n" .
+        "ORDER BY p_vat_type_id\n" .
+        ")\n" .
+        "\n" .
         "UNION\n" .
         "(SELECT\n" .
         "	'999',\n" .
-        "	" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "	,\n" .
+        "	" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ",\n" .
         "	MAX (p_vat_type_id),\n" .
         "	'DENDA',\n" .
         "	'',\n" .
@@ -342,7 +359,8 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
         "FROM\n" .
         "	sikp.f_rep_lap_harian_bdhr_baru (" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ")\n" .
         "where nomor_ayat IN('140701','140702','140703','140707')\n" .
-        "and p_vat_group_id = 1)";
+        "and p_vat_group_id = 1\n" .
+        ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -403,7 +421,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @880-243168C1
+//Class_Initialize Event @880-6A18131C
     function clsGridt_target_realisasi_jenisGrid1($RelativePath, & $Parent)
     {
         global $FileName;
@@ -442,6 +460,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
         $this->target_amount_sum = & new clsControl(ccsLabel, "target_amount_sum", "target_amount_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount_sum", ccsGet, NULL), $this);
         $this->realisasi_amt_sum = & new clsControl(ccsLabel, "realisasi_amt_sum", "realisasi_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt_sum", ccsGet, NULL), $this);
         $this->percentage_sum = & new clsControl(ccsLabel, "percentage_sum", "percentage_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("percentage_sum", ccsGet, NULL), $this);
+        $this->p_year_period_id2 = & new clsControl(ccsHidden, "p_year_period_id2", "p_year_period_id2", ccsText, "", CCGetRequestParam("p_year_period_id2", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -456,7 +475,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
     }
 //End Initialize Method
 
-//Show Method @880-8571027A
+//Show Method @880-CAE8330D
     function Show()
     {
         global $Tpl;
@@ -465,7 +484,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
+        $this->DataSource->Parameters["urlp_year_period_id2"] = CCGetFromGet("p_year_period_id2", NULL);
         $this->DataSource->Parameters["urlp_vat_group_id"] = CCGetFromGet("p_vat_group_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
@@ -544,6 +563,7 @@ class clsGridt_target_realisasi_jenisGrid1 { //t_target_realisasi_jenisGrid1 cla
         $this->target_amount_sum->Show();
         $this->realisasi_amt_sum->Show();
         $this->percentage_sum->Show();
+        $this->p_year_period_id2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -621,13 +641,13 @@ class clst_target_realisasi_jenisGrid1DataSource extends clsDBConnSIKP {  //t_ta
     }
 //End SetOrder Method
 
-//Prepare Method @880-0D480E52
+//Prepare Method @880-295D4ADB
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $this->Parameters["urlp_year_period_id"], "", false);
+        $this->wp->AddParameter("1", "urlp_year_period_id2", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $this->Parameters["urlp_year_period_id2"], 0, false);
         $this->wp->AddParameter("2", "urlp_vat_group_id", ccsInteger, "", "", $this->Parameters["urlp_vat_group_id"], 0, false);
     }
 //End Prepare Method
