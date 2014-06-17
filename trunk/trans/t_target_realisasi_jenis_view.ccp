@@ -128,13 +128,7 @@ and p_vat_group_id = 1
 					<Attributes/>
 					<Features/>
 				</Link>
-				<Label id="719" fieldSourceType="DBColumn" dataType="Text" html="False" name="year_code" fieldSource="year_code" PathID="t_target_realisasi_jenisGridyear_code">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -217,12 +211,6 @@ and p_vat_group_id = 2)" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Label id="888" fieldSourceType="DBColumn" dataType="Text" html="False" name="year_code" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1year_code" fieldSource="year_code">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Label id="889" fieldSourceType="DBColumn" dataType="Text" html="False" name="vat_code" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1vat_code" fieldSource="vat_code">
 					<Components/>
 					<Events/>
