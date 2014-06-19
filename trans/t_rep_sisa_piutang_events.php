@@ -77,7 +77,7 @@ function Page_BeforeShow(& $sender)
 				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)";
 			}
 			else if($param_arr['status'] == '1') { /* BELUM BAYAR */
-				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+				$query="SELECT * FROM f_rep_status_piutang2 (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
 						WHERE ((f_teg1_amount is null) OR (f_teg1_amount < 1)) AND
 							  ((f_teg2_amount is null) OR (f_teg2_amount < 1)) AND
 							  ((f_teg3_amount is null) OR (f_teg3_amount < 1))
