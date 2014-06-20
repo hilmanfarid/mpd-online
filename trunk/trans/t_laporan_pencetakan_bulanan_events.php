@@ -70,8 +70,8 @@ function print_laporan($param_arr){
 	$dbConn = new clsDBConnSIKP();
 	
 	$query="select * from sikp.f_laporan_pencetakan_bulanan(1,".$param_arr['year_code'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
-	print_r($query);
-	exit;
+	//print_r($query);
+	//exit;
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
