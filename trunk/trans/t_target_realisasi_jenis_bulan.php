@@ -332,7 +332,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-7B70C9C8
+//Class_Initialize Event @2-B5FF1B9A
     function clsGridt_target_realisasiGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -363,7 +363,6 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $this->target_amount = & new clsControl(ccsLabel, "target_amount", "target_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount", ccsGet, NULL), $this);
         $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", ccsGet, NULL), $this);
         $this->percentage = & new clsControl(ccsLabel, "percentage", "percentage", ccsFloat, "", CCGetRequestParam("percentage", ccsGet, NULL), $this);
-        $this->penalty_amt = & new clsControl(ccsLabel, "penalty_amt", "penalty_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("penalty_amt", ccsGet, NULL), $this);
         $this->debt_amt = & new clsControl(ccsLabel, "debt_amt", "debt_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_amt", ccsGet, NULL), $this);
         $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
         $this->total_amt = & new clsControl(ccsLabel, "total_amt", "total_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_amt", ccsGet, NULL), $this);
@@ -375,14 +374,18 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $this->DLink->Page = "t_target_realisasi_jenis_bulan.php";
         $this->denda_pokok = & new clsControl(ccsLabel, "denda_pokok", "denda_pokok", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("denda_pokok", ccsGet, NULL), $this);
         $this->denda_piutang = & new clsControl(ccsLabel, "denda_piutang", "denda_piutang", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("denda_piutang", ccsGet, NULL), $this);
+        $this->penalty_amt = & new clsControl(ccsLabel, "penalty_amt", "penalty_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("penalty_amt", ccsGet, NULL), $this);
+        $this->denda_pokok2 = & new clsControl(ccsLabel, "denda_pokok2", "denda_pokok2", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("denda_pokok2", ccsGet, NULL), $this);
+        $this->denda_piutang1 = & new clsControl(ccsLabel, "denda_piutang1", "denda_piutang1", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("denda_piutang1", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->target_amount_sum = & new clsControl(ccsLabel, "target_amount_sum", "target_amount_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount_sum", ccsGet, NULL), $this);
         $this->realisasi_amt_sum = & new clsControl(ccsLabel, "realisasi_amt_sum", "realisasi_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt_sum", ccsGet, NULL), $this);
-        $this->percentage_sum = & new clsControl(ccsLabel, "percentage_sum", "percentage_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("percentage_sum", ccsGet, NULL), $this);
         $this->penalty_amt_sum = & new clsControl(ccsLabel, "penalty_amt_sum", "penalty_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("penalty_amt_sum", ccsGet, NULL), $this);
+        $this->penalty_amt_sum1 = & new clsControl(ccsLabel, "penalty_amt_sum1", "penalty_amt_sum1", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("penalty_amt_sum1", ccsGet, NULL), $this);
         $this->debt_amt_sum = & new clsControl(ccsLabel, "debt_amt_sum", "debt_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_amt_sum", ccsGet, NULL), $this);
         $this->total_amt_sum = & new clsControl(ccsLabel, "total_amt_sum", "total_amt_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_amt_sum", ccsGet, NULL), $this);
+        $this->percentage_sum = & new clsControl(ccsLabel, "percentage_sum", "percentage_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("percentage_sum", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -397,7 +400,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     }
 //End Initialize Method
 
-//Show Method @2-C9AC34D4
+//Show Method @2-75A898D2
     function Show()
     {
         global $Tpl;
@@ -431,7 +434,6 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
             $this->ControlsVisible["target_amount"] = $this->target_amount->Visible;
             $this->ControlsVisible["p_finance_period_id"] = $this->p_finance_period_id->Visible;
             $this->ControlsVisible["percentage"] = $this->percentage->Visible;
-            $this->ControlsVisible["penalty_amt"] = $this->penalty_amt->Visible;
             $this->ControlsVisible["debt_amt"] = $this->debt_amt->Visible;
             $this->ControlsVisible["realisasi_amt"] = $this->realisasi_amt->Visible;
             $this->ControlsVisible["total_amt"] = $this->total_amt->Visible;
@@ -441,6 +443,9 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
             $this->ControlsVisible["DLink"] = $this->DLink->Visible;
             $this->ControlsVisible["denda_pokok"] = $this->denda_pokok->Visible;
             $this->ControlsVisible["denda_piutang"] = $this->denda_piutang->Visible;
+            $this->ControlsVisible["penalty_amt"] = $this->penalty_amt->Visible;
+            $this->ControlsVisible["denda_pokok2"] = $this->denda_pokok2->Visible;
+            $this->ControlsVisible["denda_piutang1"] = $this->denda_piutang1->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -451,7 +456,6 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
                 $this->bulan->SetValue($this->DataSource->bulan->GetValue());
                 $this->target_amount->SetValue($this->DataSource->target_amount->GetValue());
                 $this->p_finance_period_id->SetValue($this->DataSource->p_finance_period_id->GetValue());
-                $this->penalty_amt->SetValue($this->DataSource->penalty_amt->GetValue());
                 $this->debt_amt->SetValue($this->DataSource->debt_amt->GetValue());
                 $this->realisasi_amt->SetValue($this->DataSource->realisasi_amt->GetValue());
                 $this->total_amt->SetValue($this->DataSource->total_amt->GetValue());
@@ -462,6 +466,9 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
                 $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "p_finance_period_id", $this->DataSource->f("p_finance_period_id"));
                 $this->denda_pokok->SetValue($this->DataSource->denda_pokok->GetValue());
                 $this->denda_piutang->SetValue($this->DataSource->denda_piutang->GetValue());
+                $this->penalty_amt->SetValue($this->DataSource->penalty_amt->GetValue());
+                $this->denda_pokok2->SetValue($this->DataSource->denda_pokok2->GetValue());
+                $this->denda_piutang1->SetValue($this->DataSource->denda_piutang1->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -469,7 +476,6 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
                 $this->target_amount->Show();
                 $this->p_finance_period_id->Show();
                 $this->percentage->Show();
-                $this->penalty_amt->Show();
                 $this->debt_amt->Show();
                 $this->realisasi_amt->Show();
                 $this->total_amt->Show();
@@ -479,6 +485,9 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
                 $this->DLink->Show();
                 $this->denda_pokok->Show();
                 $this->denda_piutang->Show();
+                $this->penalty_amt->Show();
+                $this->denda_pokok2->Show();
+                $this->denda_piutang1->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -507,17 +516,18 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $this->Navigator->Show();
         $this->target_amount_sum->Show();
         $this->realisasi_amt_sum->Show();
-        $this->percentage_sum->Show();
         $this->penalty_amt_sum->Show();
+        $this->penalty_amt_sum1->Show();
         $this->debt_amt_sum->Show();
         $this->total_amt_sum->Show();
+        $this->percentage_sum->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
     }
 //End Show Method
 
-//GetErrors Method @2-A1C31A30
+//GetErrors Method @2-250CA6DC
     function GetErrors()
     {
         $errors = "";
@@ -525,7 +535,6 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $errors = ComposeStrings($errors, $this->target_amount->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_finance_period_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->percentage->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->penalty_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->debt_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->realisasi_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->total_amt->Errors->ToString());
@@ -535,6 +544,9 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
         $errors = ComposeStrings($errors, $this->denda_pokok->Errors->ToString());
         $errors = ComposeStrings($errors, $this->denda_piutang->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->penalty_amt->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->denda_pokok2->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->denda_piutang1->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -545,7 +557,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
 
 class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_realisasiGridDataSource Class @2-9A91A27E
 
-//DataSource Variables @2-38519CCE
+//DataSource Variables @2-DE05F76B
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -560,7 +572,6 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     var $bulan;
     var $target_amount;
     var $p_finance_period_id;
-    var $penalty_amt;
     var $debt_amt;
     var $realisasi_amt;
     var $total_amt;
@@ -569,9 +580,12 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     var $end_date;
     var $denda_pokok;
     var $denda_piutang;
+    var $penalty_amt;
+    var $denda_pokok2;
+    var $denda_piutang1;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-886376C3
+//DataSourceClass_Initialize Event @2-F67B7B44
     function clst_target_realisasiGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -582,8 +596,6 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         $this->target_amount = new clsField("target_amount", ccsFloat, "");
         
         $this->p_finance_period_id = new clsField("p_finance_period_id", ccsText, "");
-        
-        $this->penalty_amt = new clsField("penalty_amt", ccsFloat, "");
         
         $this->debt_amt = new clsField("debt_amt", ccsFloat, "");
         
@@ -600,6 +612,12 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         $this->denda_pokok = new clsField("denda_pokok", ccsFloat, "");
         
         $this->denda_piutang = new clsField("denda_piutang", ccsFloat, "");
+        
+        $this->penalty_amt = new clsField("penalty_amt", ccsFloat, "");
+        
+        $this->denda_pokok2 = new clsField("denda_pokok2", ccsFloat, "");
+        
+        $this->denda_piutang1 = new clsField("denda_piutang1", ccsFloat, "");
         
 
     }
@@ -671,13 +689,12 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Open Method
 
-//SetValues Method @2-F85E65F6
+//SetValues Method @2-C6C052CD
     function SetValues()
     {
         $this->bulan->SetDBValue($this->f("bulan"));
         $this->target_amount->SetDBValue(trim($this->f("target_amount")));
         $this->p_finance_period_id->SetDBValue($this->f("p_finance_period_id"));
-        $this->penalty_amt->SetDBValue(trim($this->f("penalty_amt")));
         $this->debt_amt->SetDBValue(trim($this->f("debt_amt")));
         $this->realisasi_amt->SetDBValue(trim($this->f("realisasi_amt")));
         $this->total_amt->SetDBValue(trim($this->f("target_amount")));
@@ -686,6 +703,9 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         $this->end_date->SetDBValue($this->f("end_date"));
         $this->denda_pokok->SetDBValue(trim($this->f("denda_pokok")));
         $this->denda_piutang->SetDBValue(trim($this->f("denda_piutang")));
+        $this->penalty_amt->SetDBValue(trim($this->f("penalty_amt")));
+        $this->denda_pokok2->SetDBValue(trim($this->f("denda_pokok")));
+        $this->denda_piutang1->SetDBValue(trim($this->f("denda_piutang")));
     }
 //End SetValues Method
 
