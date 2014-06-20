@@ -106,12 +106,6 @@ ORDER BY MAX(start_date) ASC">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="892" fieldSourceType="DBColumn" dataType="Float" html="False" name="penalty_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridpenalty_amt" fieldSource="penalty_amt" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Label id="893" fieldSourceType="DBColumn" dataType="Float" html="False" name="debt_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddebt_amt" fieldSource="debt_amt" format="#,##0.00">
 					<Components/>
 					<Events/>
@@ -169,25 +163,7 @@ ORDER BY MAX(start_date) ASC">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="878" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage_sum" PathID="t_target_realisasiGridpercentage_sum" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Label id="921" fieldSourceType="CodeExpression" dataType="Float" html="False" name="penalty_amt_sum" PathID="t_target_realisasiGridpenalty_amt_sum" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-				<Label id="922" fieldSourceType="CodeExpression" dataType="Float" html="False" name="debt_amt_sum" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddebt_amt_sum" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-				<Label id="927" fieldSourceType="CodeExpression" dataType="Float" html="False" name="total_amt_sum" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridtotal_amt_sum" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -200,6 +176,48 @@ ORDER BY MAX(start_date) ASC">
 					<Features/>
 				</Label>
 <Label id="930" fieldSourceType="DBColumn" dataType="Float" html="False" name="denda_piutang" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddenda_piutang" fieldSource="denda_piutang" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="931" fieldSourceType="DBColumn" dataType="Float" html="False" name="penalty_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridpenalty_amt" fieldSource="penalty_amt" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="932" fieldSourceType="DBColumn" dataType="Float" html="False" name="denda_pokok2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddenda_pokok2" fieldSource="denda_pokok" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="933" fieldSourceType="DBColumn" dataType="Float" html="False" name="denda_piutang1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddenda_piutang1" fieldSource="denda_piutang" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="934" fieldSourceType="CodeExpression" dataType="Float" html="False" name="penalty_amt_sum1" PathID="t_target_realisasiGridpenalty_amt_sum1" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="922" fieldSourceType="CodeExpression" dataType="Float" html="False" name="debt_amt_sum" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddebt_amt_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="927" fieldSourceType="CodeExpression" dataType="Float" html="False" name="total_amt_sum" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridtotal_amt_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="878" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage_sum" PathID="t_target_realisasiGridpercentage_sum" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -340,7 +358,6 @@ UNION
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
 						<Action actionName="Custom Code" actionCategory="General" id="915" eventType="Server"/>
-
 					</Actions>
 				</Event>
 				<Event name="BeforeSelect" type="Server">
