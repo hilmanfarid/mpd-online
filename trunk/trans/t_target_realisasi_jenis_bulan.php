@@ -332,7 +332,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-6B25FDB2
+//Class_Initialize Event @2-7B70C9C8
     function clsGridt_target_realisasiGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -373,6 +373,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
         $this->DLink->HTML = true;
         $this->DLink->Page = "t_target_realisasi_jenis_bulan.php";
+        $this->denda_pokok = & new clsControl(ccsLabel, "denda_pokok", "denda_pokok", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("denda_pokok", ccsGet, NULL), $this);
+        $this->denda_piutang = & new clsControl(ccsLabel, "denda_piutang", "denda_piutang", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("denda_piutang", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->target_amount_sum = & new clsControl(ccsLabel, "target_amount_sum", "target_amount_sum", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("target_amount_sum", ccsGet, NULL), $this);
@@ -395,7 +397,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     }
 //End Initialize Method
 
-//Show Method @2-5FDDD5ED
+//Show Method @2-C9AC34D4
     function Show()
     {
         global $Tpl;
@@ -437,6 +439,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
             $this->ControlsVisible["start_date"] = $this->start_date->Visible;
             $this->ControlsVisible["end_date"] = $this->end_date->Visible;
             $this->ControlsVisible["DLink"] = $this->DLink->Visible;
+            $this->ControlsVisible["denda_pokok"] = $this->denda_pokok->Visible;
+            $this->ControlsVisible["denda_piutang"] = $this->denda_piutang->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -456,6 +460,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
                 $this->end_date->SetValue($this->DataSource->end_date->GetValue());
                 $this->DLink->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
                 $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "p_finance_period_id", $this->DataSource->f("p_finance_period_id"));
+                $this->denda_pokok->SetValue($this->DataSource->denda_pokok->GetValue());
+                $this->denda_piutang->SetValue($this->DataSource->denda_piutang->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -471,6 +477,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
                 $this->start_date->Show();
                 $this->end_date->Show();
                 $this->DLink->Show();
+                $this->denda_pokok->Show();
+                $this->denda_piutang->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -509,7 +517,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     }
 //End Show Method
 
-//GetErrors Method @2-248DAAEB
+//GetErrors Method @2-A1C31A30
     function GetErrors()
     {
         $errors = "";
@@ -525,6 +533,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $errors = ComposeStrings($errors, $this->start_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->end_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->denda_pokok->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->denda_piutang->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -535,7 +545,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
 
 class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_realisasiGridDataSource Class @2-9A91A27E
 
-//DataSource Variables @2-3D3DBFEE
+//DataSource Variables @2-38519CCE
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -557,9 +567,11 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     var $p_vat_type_id;
     var $start_date;
     var $end_date;
+    var $denda_pokok;
+    var $denda_piutang;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-83C02FBB
+//DataSourceClass_Initialize Event @2-886376C3
     function clst_target_realisasiGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -585,6 +597,10 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         
         $this->end_date = new clsField("end_date", ccsText, "");
         
+        $this->denda_pokok = new clsField("denda_pokok", ccsFloat, "");
+        
+        $this->denda_piutang = new clsField("denda_piutang", ccsFloat, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -609,7 +625,7 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Prepare Method
 
-//Open Method @2-219CD32B
+//Open Method @2-96B869A6
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -623,9 +639,11 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         "	ROUND(SUM (target_amount)) as target_amount,\n" .
         "	ROUND(SUM (realisasi_amt)) as realisasi_amt,\n" .
         "	MAX (penalty_amt) as penalty_amt,\n" .
-        "	ROUND(SUM (debt_amt)) as debt_amt\n" .
+        "	ROUND(SUM (debt_amt)) as debt_amt,\n" .
+        "	ROUND(SUM (denda_pokok)) as denda_pokok,\n" .
+        "	ROUND(SUM (denda_piutang)) as denda_piutang\n" .
         "FROM\n" .
-        "	f_target_vs_real_monthly_new2(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
+        "	f_target_vs_real_monthly_new3(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
         "GROUP BY p_finance_period_id) cnt";
         $this->SQL = "SELECT\n" .
         "	MAX(p_finance_period_id) as p_finance_period_id,\n" .
@@ -637,9 +655,11 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         "	ROUND(SUM (target_amount)) as target_amount,\n" .
         "	ROUND(SUM (realisasi_amt)) as realisasi_amt,\n" .
         "	MAX (penalty_amt) as penalty_amt,\n" .
-        "	ROUND(SUM (debt_amt)) as debt_amt\n" .
+        "	ROUND(SUM (debt_amt)) as debt_amt,\n" .
+        "	ROUND(SUM (denda_pokok)) as denda_pokok,\n" .
+        "	ROUND(SUM (denda_piutang)) as denda_piutang\n" .
         "FROM\n" .
-        "	f_target_vs_real_monthly_new2(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
+        "	f_target_vs_real_monthly_new3(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
         "GROUP BY p_finance_period_id {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -651,7 +671,7 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Open Method
 
-//SetValues Method @2-55B2C339
+//SetValues Method @2-F85E65F6
     function SetValues()
     {
         $this->bulan->SetDBValue($this->f("bulan"));
@@ -664,6 +684,8 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         $this->p_vat_type_id->SetDBValue($this->f("p_vat_type_id"));
         $this->start_date->SetDBValue($this->f("start_date"));
         $this->end_date->SetDBValue($this->f("end_date"));
+        $this->denda_pokok->SetDBValue(trim($this->f("denda_pokok")));
+        $this->denda_piutang->SetDBValue(trim($this->f("denda_piutang")));
     }
 //End SetValues Method
 
