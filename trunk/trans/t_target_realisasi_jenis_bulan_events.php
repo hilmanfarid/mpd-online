@@ -76,29 +76,37 @@ function t_target_realisasiGrid_BeforeShowRow(& $sender)
 
 	 $target = $Component->DataSource->target_amount->GetValue();
 	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
-	 $penalty = $Component->DataSource->penalty_amt->GetValue();
+	 //$penalty = $Component->DataSource->penalty_amt->GetValue();
+	 $penalty1 = $Component->DataSource->denda_pokok->GetValue();
+	 $penalty = $Component->DataSource->denda_piutang->GetValue();
+
+
 	 $debt = $Component->DataSource->debt_amt->GetValue();
 	 if(!empty($target)) {
-	 	$percent = number_format(($realisasi+$penalty+$debt) / $target * 100, 2, ".", ",");
+	 	$percent = number_format(($realisasi+$penalty+$penalty1+$debt) / $target * 100, 2, ".", ",");
 	 }else {
 		$percent = 0;
 	 }
 	 $Component->percentage->SetValue("$percent %");
-	 $Component->total_amt->SetValue($realisasi+$penalty+$debt);
+	 $Component->total_amt->SetValue($realisasi+$penalty+$penalty1+$debt);
 	 $sum_realisasi = $t_target_realisasiGrid->realisasi_amt_sum->GetValue();
 	 $t_target_realisasiGrid->realisasi_amt_sum->SetValue($sum_realisasi+$realisasi);
 	 $sum_target = $t_target_realisasiGrid->target_amount_sum->GetValue();
 	 $t_target_realisasiGrid->target_amount_sum->SetValue($sum_target+$target);
 
+	 //$sum_penalty_amt = $t_target_realisasiGrid->penalty_amt_sum->GetValue();
 	 $sum_penalty_amt = $t_target_realisasiGrid->penalty_amt_sum->GetValue();
+	 $sum_penalty_amt1 = $t_target_realisasiGrid->penalty_amt_sum1->GetValue();
+	 //$t_target_realisasiGrid->penalty_amt_sum->SetValue($sum_penalty_amt+$penalty);
 	 $t_target_realisasiGrid->penalty_amt_sum->SetValue($sum_penalty_amt+$penalty);
+	 $t_target_realisasiGrid->penalty_amt_sum1->SetValue($sum_penalty_amt1+$penalty1);
+
 
 	 $sum_debt = $t_target_realisasiGrid->debt_amt_sum->GetValue();
 	 $t_target_realisasiGrid->debt_amt_sum->SetValue($sum_debt+$debt);
 	 
 	 $sum_total = $t_target_realisasiGrid->total_amt_sum->GetValue();
-	 $t_target_realisasiGrid->total_amt_sum->SetValue($sum_total+$realisasi+$penalty+$debt);
-
+	 $t_target_realisasiGrid->total_amt_sum->SetValue($sum_total+$realisasi+$penalty+$penalty+$debt);
 
 	 $sum_percentage = $t_target_realisasiGrid->percentage_sum->GetValue();
 	 if($sum_total > 0)
