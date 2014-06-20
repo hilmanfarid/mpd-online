@@ -67,9 +67,11 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 	ROUND(SUM (target_amount)) as target_amount,
 	ROUND(SUM (realisasi_amt)) as realisasi_amt,
 	MAX (penalty_amt) as penalty_amt,
-	ROUND(SUM (debt_amt)) as debt_amt
+	ROUND(SUM (debt_amt)) as debt_amt,
+	ROUND(SUM (denda_pokok)) as denda_pokok,
+	ROUND(SUM (denda_piutang)) as denda_piutang
 FROM
-	f_target_vs_real_monthly_new2({p_year_period_id},{p_vat_type_id})
+	f_target_vs_real_monthly_new3({p_year_period_id},{p_vat_type_id})
 GROUP BY p_finance_period_id
 
 ORDER BY MAX(start_date) ASC">
@@ -191,7 +193,19 @@ ORDER BY MAX(start_date) ASC">
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="929" fieldSourceType="DBColumn" dataType="Float" html="False" name="denda_pokok" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddenda_pokok" fieldSource="denda_pokok" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="930" fieldSourceType="DBColumn" dataType="Float" html="False" name="denda_piutang" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGriddenda_piutang" fieldSource="denda_piutang" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
