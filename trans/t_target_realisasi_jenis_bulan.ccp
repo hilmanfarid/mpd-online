@@ -68,8 +68,8 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 	ROUND(SUM (realisasi_amt)) as realisasi_amt,
 	MAX (penalty_amt) as penalty_amt,
 	ROUND(SUM (debt_amt)) as debt_amt,
-	ROUND(SUM (denda_pokok)) as denda_pokok,
-	ROUND(SUM (denda_piutang)) as denda_piutang
+	MAX (denda_pokok) as denda_pokok,
+	MAX (denda_piutang) as denda_piutang
 FROM
 	f_target_vs_real_monthly_new3({p_year_period_id},{p_vat_type_id})
 GROUP BY p_finance_period_id
@@ -340,6 +340,7 @@ UNION
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
 						<Action actionName="Custom Code" actionCategory="General" id="915" eventType="Server"/>
+
 					</Actions>
 				</Event>
 				<Event name="BeforeSelect" type="Server">
