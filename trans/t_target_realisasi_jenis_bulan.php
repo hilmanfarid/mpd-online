@@ -625,7 +625,7 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End Prepare Method
 
-//Open Method @2-96B869A6
+//Open Method @2-303F9F16
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -640,8 +640,8 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         "	ROUND(SUM (realisasi_amt)) as realisasi_amt,\n" .
         "	MAX (penalty_amt) as penalty_amt,\n" .
         "	ROUND(SUM (debt_amt)) as debt_amt,\n" .
-        "	ROUND(SUM (denda_pokok)) as denda_pokok,\n" .
-        "	ROUND(SUM (denda_piutang)) as denda_piutang\n" .
+        "	MAX (denda_pokok) as denda_pokok,\n" .
+        "	MAX (denda_piutang) as denda_piutang\n" .
         "FROM\n" .
         "	f_target_vs_real_monthly_new3(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
         "GROUP BY p_finance_period_id) cnt";
@@ -656,8 +656,8 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
         "	ROUND(SUM (realisasi_amt)) as realisasi_amt,\n" .
         "	MAX (penalty_amt) as penalty_amt,\n" .
         "	ROUND(SUM (debt_amt)) as debt_amt,\n" .
-        "	ROUND(SUM (denda_pokok)) as denda_pokok,\n" .
-        "	ROUND(SUM (denda_piutang)) as denda_piutang\n" .
+        "	MAX (denda_pokok) as denda_pokok,\n" .
+        "	MAX (denda_piutang) as denda_piutang\n" .
         "FROM\n" .
         "	f_target_vs_real_monthly_new3(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ")\n" .
         "GROUP BY p_finance_period_id {SQL_OrderBy}";
