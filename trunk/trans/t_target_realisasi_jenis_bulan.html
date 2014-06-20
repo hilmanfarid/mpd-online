@@ -161,7 +161,7 @@ $(function () {
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -218,7 +218,7 @@ $(function () {
  
                   <th style="TEXT-ALIGN: center" scope="col">Pokok&nbsp;</th>
  
-                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Denda</th>
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Denda (Pokok,Piutang)</th>
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;Piutang</th>
  
@@ -230,10 +230,10 @@ $(function () {
                 <!-- BEGIN Row -->
                 <tr {t_target_realisasiGrid:rowStyle}>
                   <td>&nbsp;<a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a></td> 
-                  <td>{bulan}<input id="t_target_realisasiGridp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_target_realisasiGridp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_target_realisasiGridstart_date" name="{start_date_Name}" value="{start_date}" type="hidden"><input id="t_target_realisasiGridend_date" name="{end_date_Name}" value="{end_date}" type="hidden"></td> 
+                  <td>{bulan}<input id="t_target_realisasiGridp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"><input id="t_target_realisasiGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"><input id="t_target_realisasiGridstart_date" value="{start_date}" type="hidden" name="{start_date_Name}"><input id="t_target_realisasiGridend_date" value="{end_date}" type="hidden" name="{end_date_Name}"></td> 
                   <td style="TEXT-ALIGN: right">{target_amount}</td> 
                   <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','murni')">{realisasi_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},2,'{end_date}','all')">{penalty_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},2,'{end_date}','all')">{penalty_amt}&nbsp;({denda_pokok}, {denda_piutang})&nbsp;</td> 
                   <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','piutang')">{debt_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{total_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{percentage}</td>
@@ -326,7 +326,7 @@ $(function () {
                     <div style="WIDTH: 240px">
                       {ayat} 
                     </div>
-                    <input id="t_target_realisasiGrid1p_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"><input id="t_target_realisasiGrid1p_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_target_realisasiGrid1start_date" name="{start_date_Name}" value="{start_date}" type="hidden"><input id="t_target_realisasiGrid1end_date" name="{end_date_Name}" value="{end_date}" type="hidden"></td> 
+                    <input id="t_target_realisasiGrid1p_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"><input id="t_target_realisasiGrid1p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"><input id="t_target_realisasiGrid1start_date" value="{start_date}" type="hidden" name="{start_date_Name}"><input id="t_target_realisasiGrid1end_date" value="{end_date}" type="hidden" name="{end_date_Name}"></td> 
                   <td style="TEXT-ALIGN: right">{target_amount}</td> 
                   <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{debt_amt}&nbsp;</td> 
@@ -375,7 +375,7 @@ $(function () {
         <p></p>
         <!-- BEGIN Record t_target_realisasi_jenis_bulanForm -->
         <form id="t_target_realisasi_jenis_bulanForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" name="{t_revenue_target_id_Name}" value="{t_revenue_target_id}" type="hidden"><input id="t_target_realisasi_jenis_bulanFormp_vat_group_id" name="{p_vat_group_id_Name}" value="{p_vat_group_id}" type="hidden"></h2>
+          <h2><input id="t_target_realisasi_jenis_bulanFormp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenis_bulanFormt_revenue_target_id" value="{t_revenue_target_id}" type="hidden" name="{t_revenue_target_id_Name}"><input id="t_target_realisasi_jenis_bulanFormp_vat_group_id" value="{p_vat_group_id}" type="hidden" name="{p_vat_group_id_Name}"></h2>
         </form>
         <!-- END Record t_target_realisasi_jenis_bulanForm --></td>
     </tr>
