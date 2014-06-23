@@ -25,7 +25,7 @@ function cetak_denda(tgl_penerimaan,p_vat_type_id,i_flag_setoran,tgl_penerimaan_
 			"&i_flag_setoran="+i_flag_setoran+
 			"&tgl_penerimaan_last='"+tgl_penerimaan_last+
 			"'&jenis_laporan="+jenis_laporan+
-			"'&jenis_denda="+jenis_denda, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+			"&jenis_denda="+jenis_denda +"'", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 }
 
 $(function() {
@@ -251,7 +251,7 @@ $(function () {
                   <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','murni')">{realisasi_amt}</td> 
                   <!-- <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline">{penalty_amt}&nbsp;({denda_pokok2},{denda_piutang1})</td> -->
                   <td style="TEXT-ALIGN: right; COLOR: green; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak_denda('{start_date}',{p_vat_type_id},2,'{end_date}','all','denda_pokok')">{denda_pokok}</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: blue; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak_denda('{start_date}',{p_vat_type_id},2,'{end_date}','all','denda_pitang')">{denda_piutang}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: blue; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak_denda('{start_date}',{p_vat_type_id},2,'{end_date}','all','denda_piutang')">{denda_piutang}</td> 
                   <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','piutang')">{debt_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{total_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">{percentage}</td>
