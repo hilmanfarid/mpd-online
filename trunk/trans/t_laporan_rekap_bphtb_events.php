@@ -98,6 +98,8 @@ function print_excel($param_arr) {
 			$textFilter = '(Sudah Bayar)';
 		if($param_arr['filter_lap'] == 2) //belum bayar
 			$textFilter = '(Belum Bayar)';
+		if($param_arr['filter_lap'] == 3) //belum bayar
+			$textFilter = '(Nihil)';
 	}
 
 
@@ -138,6 +140,8 @@ function print_excel($param_arr) {
 			$whereClause.= " AND (payment.receipt_no is not null or payment.receipt_no <> '') ";
 		if($param_arr['filter_lap'] == 2) //belum bayar
 			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+		if($param_arr['filter_lap'] == 3) //nihil
+			$whereClause.= " AND ( bphtb_amt_final < 1 ) ";
 	}
 
 	$query="SELECT
@@ -267,6 +271,8 @@ function GetCetakHTML($param_arr) {
 			$whereClause.= " AND (payment.receipt_no is not null or payment.receipt_no <> '') ";
 		if($param_arr['filter_lap'] == 2) //belum bayar
 			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+		if($param_arr['filter_lap'] == 3) //nihil
+			$whereClause.= " AND ( bphtb_amt_final < 1 ) ";
 	}
 
 	$query="SELECT
@@ -384,6 +390,8 @@ function print_laporan($param_arr){
 			$textFilter = '(Sudah Bayar)';
 		if($param_arr['filter_lap'] == 2) //belum bayar
 			$textFilter = '(Belum Bayar)';
+		if($param_arr['filter_lap'] == 3) //belum bayar
+			$textFilter = '(Nihil)';
 	}
 
 
@@ -412,6 +420,8 @@ function print_laporan($param_arr){
 			$whereClause.= " AND (payment.receipt_no is not null or payment.receipt_no <> '') ";
 		if($param_arr['filter_lap'] == 2) //belum bayar
 			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+		if($param_arr['filter_lap'] == 3) //nihil
+			$whereClause.= " AND ( bphtb_amt_final < 1 ) ";
 	}
 
 	$query="SELECT
