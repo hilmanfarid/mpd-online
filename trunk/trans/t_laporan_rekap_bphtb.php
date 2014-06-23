@@ -45,7 +45,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-C14A9F50
+//Class_Initialize Event @2-9F1E5738
     function clsRecordt_laporan_rekap_bphtb($RelativePath, & $Parent)
     {
 
@@ -79,7 +79,7 @@ class clsRecordt_laporan_rekap_bphtb { //t_laporan_rekap_bphtb Class @2-6044E99D
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
             $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
             $this->ListBox1->DSType = dsListOfValues;
-            $this->ListBox1->Values = array(array("1", "Sudah Bayar"), array("2", "Belum Bayar"));
+            $this->ListBox1->Values = array(array("1", "Sudah Bayar"), array("2", "Belum Bayar"), array("3", "Nihil"));
             $this->Button2 = & new clsButton("Button2", $Method, $this);
             $this->Button3 = & new clsButton("Button3", $Method, $this);
         }
@@ -277,7 +277,9 @@ include_once("./t_laporan_rekap_bphtb_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-819AEF3E
+//Initialize Objects @1-EB57E9AB
+$DBConnSIKP = new clsDBConnSIKP();
+$MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
 $MainPage->Attributes = & $Attributes;
 
@@ -313,10 +315,11 @@ $Attributes->Show();
 $t_laporan_rekap_bphtb->Operation();
 //End Execute Components
 
-//Go to destination page @1-6AA9D9D0
+//Go to destination page @1-EDA03166
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
+    $DBConnSIKP->close();
     header("Location: " . $Redirect);
     unset($t_laporan_rekap_bphtb);
     unset($Tpl);
@@ -334,8 +337,9 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-B0E52B39
+//Unload Page @1-E7B7F474
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
+$DBConnSIKP->close();
 unset($t_laporan_rekap_bphtb);
 unset($Tpl);
 //End Unload Page
