@@ -38,7 +38,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<ListBox id="18" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_laporan_rekap_bphtbListBox1" dataSource="1;Sudah Bayar;2;Belum Bayar">
+				<ListBox id="18" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_laporan_rekap_bphtbListBox1" dataSource="1;Sudah Bayar;2;Belum Bayar;3;Nihil" connection="ConnSIKP" _valueOfList="3" _nameOfList="Nihil">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -62,7 +62,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
