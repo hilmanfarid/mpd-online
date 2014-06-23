@@ -136,10 +136,14 @@ function print_excel($param_arr) {
 
 	if(!empty($param_arr['filter_lap'])) {
 		
-		if($param_arr['filter_lap'] == 1) //sudah bayar
+		if($param_arr['filter_lap'] == 1) { //sudah bayar 
 			$whereClause.= " AND (payment.receipt_no is not null or payment.receipt_no <> '') ";
-		if($param_arr['filter_lap'] == 2) //belum bayar
+			$whereClause.= " AND ( bphtb_amt_final > 0 ) ";
+		}
+		if($param_arr['filter_lap'] == 2) { //belum bayar
 			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+			$whereClause.= " AND ( bphtb_amt_final > 0 ) ";
+		}
 		if($param_arr['filter_lap'] == 3) //nihil
 			$whereClause.= " AND ( bphtb_amt_final < 1 ) ";
 	}
@@ -267,10 +271,14 @@ function GetCetakHTML($param_arr) {
 
 	if(!empty($param_arr['filter_lap'])) {
 		
-		if($param_arr['filter_lap'] == 1) //sudah bayar
+		if($param_arr['filter_lap'] == 1) { //sudah bayar 
 			$whereClause.= " AND (payment.receipt_no is not null or payment.receipt_no <> '') ";
-		if($param_arr['filter_lap'] == 2) //belum bayar
+			$whereClause.= " AND ( bphtb_amt_final > 0 ) ";
+		}
+		if($param_arr['filter_lap'] == 2) { //belum bayar
 			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+			$whereClause.= " AND ( bphtb_amt_final > 0 ) ";
+		}
 		if($param_arr['filter_lap'] == 3) //nihil
 			$whereClause.= " AND ( bphtb_amt_final < 1 ) ";
 	}
@@ -416,10 +424,14 @@ function print_laporan($param_arr){
 
 	if(!empty($param_arr['filter_lap'])) {
 		
-		if($param_arr['filter_lap'] == 1) //sudah bayar
+		if($param_arr['filter_lap'] == 1) { //sudah bayar 
 			$whereClause.= " AND (payment.receipt_no is not null or payment.receipt_no <> '') ";
-		if($param_arr['filter_lap'] == 2) //belum bayar
+			$whereClause.= " AND ( bphtb_amt_final > 0 ) ";
+		}
+		if($param_arr['filter_lap'] == 2) { //belum bayar
 			$whereClause.= " AND ( payment.receipt_no is null or payment.receipt_no = '') ";
+			$whereClause.= " AND ( bphtb_amt_final > 0 ) ";
+		}
 		if($param_arr['filter_lap'] == 3) //nihil
 			$whereClause.= " AND ( bphtb_amt_final < 1 ) ";
 	}
