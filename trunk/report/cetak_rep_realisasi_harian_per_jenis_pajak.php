@@ -56,7 +56,7 @@ if($jenis_laporan == 'all'){
 		order by kode_ayat, npwpd, masa_pajak";
 	}
 	
-	//print_r($query);
+	//echo $query;
 	//exit;
 }else if($jenis_laporan == 'piutang'){
 	$query	= "select *,trunc(payment_date) 
