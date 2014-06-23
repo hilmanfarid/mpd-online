@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<meta http-equiv="refresh" content="30">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+
+$(function() {
+    $.getJSON("../services/target_realisasi_per_tahun.php?t_revenue_target_id=" + document.getElementById("t_target_realisasi_jenisGridt_revenue_target_id").value, function(items) {
+        var target_amount, realisasi_amt, vat_code, year_code;
+
+        target_amount = items[0][0];
+        realisasi_amt = items[0][1];
+        vat_code = items[0][2];
+        year_code = items[0][3];
+        $("#container").highcharts({
+            chart: {
+                type: "column"
+            },
+            title: {
+                text: "Target vs Realisasi " + vat_code + " " + year_code
+            },
+            tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+            xAxis: {
+                categories: [year_code]
+            },
+            yAxis: {
+                title: {
+                    text: ""
+                }
+            },
+            plotOptions: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            series: [
+                {showInLegend: true, name: "Target " + year_code, data: [target_amount]},
+                {showInLegend: true, name: "Realisasi " + year_code, data: [realisasi_amt]}
+            ]
+        });
+    });
+});
+
+$(function () {
+        $.getJSON( "../services/target_realisasi_tahun_per_jenis.php?p_year_period_id="+document.getElementById("t_target_realisasi_jenisGridp_year_period_id2").value, function( items ) {
+                var target_amount = [];
+                var realisasi_amt = [];
+                var vat_code = [];
+                
+                var jumlah = items.length;
+                
+                for(i = 0; i < jumlah; i++){
+                        target_amount[i] = items[i][0];
+                        realisasi_amt[i] = items[i][1];
+                        vat_code[i] = items[i][2];
+                }
+                
+                $("#container2").highcharts({
+                        chart: {
+                                type: "column"
+                        },
+                        title: {
+                                text: "Target vs Realisasi Tahun ".concat(new Date().getFullYear())
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        xAxis: {
+                                categories: vat_code
+                        },
+                        yAxis: {
+                                min: 0,
+                                title: {
+                                        text: ""
+                                }
+                        },
+                        tooltip: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        plotOptions: {
+                                column: {
+                                        pointPadding: 0.2,
+                                        borderWidth: 0
+                                }
+                        },
+                        series: [
+                        {showInLegend: true, name: "Target", data: target_amount},
+                        {showInLegend: true, name: "Realisasi", data: realisasi_amt}
+                        ]
+                });
+        });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="CLEAR: both; PADDING-TOP: 0px">
+  <div style="WIDTH: 50%; DISPLAY: inline-block; HEIGHT: 450px; BRODER: 1PX SOLID #000" id="container2">
+  </div>
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Grid t_target_realisasi_jenisGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;TARGET VS REALISASI PER JENIS PAJAK BIDANG PENDAFTARAN&nbsp;</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center; DISPLAY: none" scope="col">&nbsp;</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Jenis Pajak</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Target</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;<label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Realisasi</label></label></th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Persentase</label></label></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_target_realisasi_jenisGrid:rowStyle}>
+                  <td style="DISPLAY: none"><a href="{DLink_Src}" id="t_target_realisasi_jenisGridDLink_{t_target_realisasi_jenisGrid:rowNumber}"><u>{DLink}</u></a>&nbsp;</td> 
+                  <td>&nbsp;{vat_code}<input id="t_target_realisasi_jenisGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenisGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: right">&nbsp;{target_amount}</td> 
+                  <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{percentage}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <!--<tr class="NoRecords">
+                                  <td >&nbsp</td>
+                  <td >Jumlah </td> 
+                  <td>{target_amount_sum}</td> 
+                  <td>{realisasi_amt_sum}</td> 
+                  <td>{percentage_sum}</td>
+                </tr>-->
+                <!-- END NoRecords -->
+                <tr class="Caption">
+                  <th style="DISPLAY: none">&nbsp;</th>
+ 
+                  <th>Jumlah </th>
+ 
+                  <th style="TEXT-ALIGN: right">{target_amount_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{realisasi_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{percentage_sum} %</th>
+                </tr>
+ 
+                <tr class="Footer">
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <input id="t_target_realisasi_jenisGridt_revenue_target_id" value="{t_revenue_target_id}" type="hidden" name="{t_revenue_target_id_Name}"><input id="t_target_realisasi_jenisGridp_year_period_id2" value="{p_year_period_id2}" type="hidden" name="{p_year_period_id2_Name}">&nbsp;<input id="t_target_realisasi_jenisGridp_vat_type_id2" value="{p_vat_type_id2}" type="hidden" name="{p_vat_type_id2_Name}">&nbsp;<input id="t_target_realisasi_jenisGridp_vat_group_id" value="{p_vat_group_id}" type="hidden" name="{p_vat_group_id_Name}"><!-- END Grid t_target_realisasi_jenisGrid -->
+        <!-- <div style="WIDTH: 45%; DISPLAY: inline-block" id="container">
+        </div>
+                -->
+        <p>
+        <!-- BEGIN Grid t_target_realisasi_jenisGrid1 -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;TARGET VS REALISASI PER JENIS PAJAK BIDANG PENETAPAN&nbsp;</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Jenis Pajak</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Target</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;<label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Realisasi</label></label></th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Persentase</label></label></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_target_realisasi_jenisGrid1:rowStyle}>
+                  <td>&nbsp;{vat_code}<input id="t_target_realisasi_jenisGrid1p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenisGrid1p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: right">&nbsp;{target_amount}</td> 
+                  <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{percentage}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <!--<tr class="NoRecords">
+                                  <td >&nbsp</td>
+                  <td >Jumlah </td> 
+                  <td>{target_amount_sum}</td> 
+                  <td>{realisasi_amt_sum}</td> 
+                  <td>{percentage_sum}</td>
+                </tr>-->
+                <!-- END NoRecords -->
+                <tr class="Caption">
+                  <th>Jumlah </th>
+ 
+                  <th style="TEXT-ALIGN: right">{target_amount_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{realisasi_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{percentage_sum} %</th>
+                </tr>
+ 
+                <tr class="Footer">
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}"><u>{Page_Number}</u></a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        &nbsp;&nbsp;<input id="t_target_realisasi_jenisGrid1p_year_period_id2" value="{p_year_period_id2}" type="hidden" name="{p_year_period_id2_Name}"><!-- END Grid t_target_realisasi_jenisGrid1 --></p>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function toTarget()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasi_jenisGridp_year_period_id2"))
+  {
+    var pid=idelement.value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_target_realisasi.php?p_year_period_id="+pid;
+    } else {
+     alert("Pilih salah satu TAHUN!");
+    }
+  } else {
+     alert("Pilih salah satu TAHUN!");
+  }
+}
+
+function toBulanan()
+{
+  var idelement;
+  var id_tahun = document.getElementById("t_target_realisasi_jenisGridp_year_period_id2").value;
+  var id_vat = document.getElementById("t_target_realisasi_jenisGridp_vat_type_id2").value;
+  if (idelement = document.getElementById("t_target_realisasi_jenisGridt_revenue_target_id"))
+  {
+    var pid=idelement.value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_target_realisasi_jenis_bulan.php?t_revenue_target_id="+pid+"&p_vat_type_id="+id_vat+"&p_year_period_id="+id_tahun+"&p_vat_group_id="+document.getElementById("t_target_realisasi_jenisGridp_vat_group_id").value;
+    } else {
+     alert("Pilih salah satu TAHUN!");
+    }
+  } else {
+     alert("Pilih salah satu TAHUN!");
+  }
+}
+function toBidang()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasi_jenisGridp_year_period_id2")){
+    var pid=idelement.value;
+    location.href="t_target_realisasi_bidang.php?p_year_period_id="+pid+"&p_vat_group_id="+document.getElementById("t_target_realisasi_jenisGridp_vat_group_id").value;
+  }
+}
+</script>
+</body>
+</html>
