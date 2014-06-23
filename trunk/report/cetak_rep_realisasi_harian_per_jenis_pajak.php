@@ -54,8 +54,8 @@ if($jenis_laporan == 'all'){
 		)
 		order by kode_ayat, npwpd, masa_pajak";
 	}
-	//echo $query;
-	//exit;
+	echo $query;
+	exit;
 }else if($jenis_laporan == 'piutang'){
 	$query	= "select *,trunc(payment_date) 
 	from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
