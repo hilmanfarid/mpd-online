@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>t_customer_order</title>
-<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <meta http-equiv="refresh" content="30">
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 <script src="../js/highcharts.js"></script>
@@ -85,11 +85,11 @@ $(function () {
                         },
                         title: {
                                 text: "Target vs Realisasi Tahun ".concat(new Date().getFullYear()),
-								style: {"fontSize": "35px"}
+                                                                style: {"fontSize": "35px"}
                         },
                         subtitle: {
                                 text: "Disyanjak Kota Bandung",
-								style: {"fontSize": "25px", "color": "#274B6D"}
+                                                                style: {"fontSize": "25px", "color": "#274B6D"}
                         },
                         xAxis: {
                                 categories: vat_code
@@ -123,12 +123,81 @@ $(function () {
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div style="CLEAR: both; PADDING-TOP: 0px; border:10px solid #2A2B69;">
-  <br/><br/><br/>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="BORDER-BOTTOM: #2a2b69 10px solid; BORDER-LEFT: #2a2b69 10px solid; CLEAR: both; BORDER-TOP: #2a2b69 10px solid; BORDER-RIGHT: #2a2b69 10px solid; PADDING-TOP: 0px">
+  <br>
+  <br>
+  <br>
   <div style="WIDTH: 100%; DISPLAY: inline-block; HEIGHT: 600px; BRODER: 1PX SOLID #000" id="container2">
   </div>
-  <br/><br/><br/><br/>
+  <br>
+  <!-- BEGIN Grid t_target_realisasiGrid -->
+  <table style="FONT-SIZE: 15px" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td valign="top">
+        <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+            <td class="th"><strong style="FONT-SIZE: 15px">DAFTAR TARGET VS REALISASI</strong></td> 
+            <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid" cellspacing="0" cellpadding="0">
+          <tr class="Caption">
+            <th style="DISPLAY: none" scope="col">
+            <div align="center">
+              # 
+            </div>
+            </th>
+ 
+            <th style="TEXT-ALIGN: center" scope="col">Tahun</th>
+ 
+            <th style="TEXT-ALIGN: center" scope="col">Target</th>
+ 
+            <th style="TEXT-ALIGN: center" scope="col">Realisasi</th>
+ 
+            <th style="TEXT-ALIGN: center" scope="col">Persentase</th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <tr {t_target_realisasiGrid:rowStyle}>
+            <td style="DISPLAY: none">
+              <div align="center">
+<a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a> 
+              </div>
+            </td> 
+            <td style="TEXT-ALIGN: center">{year_code}<input id="t_target_realisasiGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
+            <td style="TEXT-ALIGN: right">{target_amt}</td> 
+            <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
+            <td style="TEXT-ALIGN: right">{percentage}</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords">
+            <td colspan="5">-</td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer">
+            <td colspan="5">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+              <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+              <!-- BEGIN Pages -->
+              <!-- BEGIN Page_On --><a href="{Page_URL}"><u>{Page_Number}</u></a>&nbsp;<!-- END Page_On -->
+              <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+              <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  &nbsp;<input id="t_target_realisasiGridp_year_period_id2" value="{p_year_period_id2}" type="hidden" name="{p_year_period_id2_Name}"><!-- END Grid t_target_realisasiGrid --><br>
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
@@ -136,16 +205,16 @@ $(function () {
         <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
             <td valign="top">
-                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td class="th"><strong style="font-size:15px;">DAFTAR&nbsp;TARGET VS REALISASI PER JENIS PAJAK BIDANG PENDAFTARAN&nbsp;</strong></td> 
+                  <td class="th"><strong style="FONT-SIZE: 15px">DAFTAR&nbsp;TARGET VS REALISASI PER JENIS PAJAK BIDANG PENDAFTARAN&nbsp;</strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
-                
-              <table class="Grid" cellspacing="0" cellpadding="0" style="font-size:15px;">
-                <tr class="Caption" height="25px">
+ 
+              <table style="FONT-SIZE: 15px" class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption" height="25">
                   <th style="TEXT-ALIGN: center; DISPLAY: none" scope="col">&nbsp;</th>
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;Jenis Pajak</th>
@@ -158,7 +227,7 @@ $(function () {
                 </tr>
  
                 <!-- BEGIN Row -->
-                <tr {t_target_realisasi_jenisGrid:rowStyle} height="25px">
+                <tr height="25" {t_target_realisasi_jenisGrid:rowStyle}>
                   <td style="DISPLAY: none"><a href="{DLink_Src}" id="t_target_realisasi_jenisGridDLink_{t_target_realisasi_jenisGrid:rowNumber}"><u>{DLink}</u></a>&nbsp;</td> 
                   <td>&nbsp;{vat_code}<input id="t_target_realisasi_jenisGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenisGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
                   <td style="TEXT-ALIGN: right">&nbsp;{target_amount}</td> 
@@ -218,13 +287,13 @@ $(function () {
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td class="th"><strong style="font-size:15px;">DAFTAR&nbsp;TARGET VS REALISASI PER JENIS PAJAK BIDANG PENETAPAN&nbsp;</strong></td> 
+                  <td class="th"><strong style="FONT-SIZE: 15px">DAFTAR&nbsp;TARGET VS REALISASI PER JENIS PAJAK BIDANG PENETAPAN&nbsp;</strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
-              <table class="Grid" cellspacing="0" cellpadding="0" style="font-size:15px;">
-                <tr class="Caption" height="25px">
+              <table style="FONT-SIZE: 15px" class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption" height="25">
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;Jenis Pajak</th>
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;Target</th>
@@ -235,7 +304,7 @@ $(function () {
                 </tr>
  
                 <!-- BEGIN Row -->
-                <tr {t_target_realisasi_jenisGrid1:rowStyle} height="25px">
+                <tr height="25" {t_target_realisasi_jenisGrid1:rowStyle}>
                   <td>&nbsp;{vat_code}<input id="t_target_realisasi_jenisGrid1p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenisGrid1p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
                   <td style="TEXT-ALIGN: right">&nbsp;{target_amount}</td> 
                   <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
