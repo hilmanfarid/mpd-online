@@ -358,11 +358,11 @@ where target_amt &gt; 0 AND realisasi_amt &gt; 0
 					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="915"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="915"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 			</TableParameters>
 			<JoinTables>
@@ -394,9 +394,9 @@ where target_amt &gt; 0 AND realisasi_amt &gt; 0
 			</Actions>
 		</Event>
 		<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="914"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="914"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
