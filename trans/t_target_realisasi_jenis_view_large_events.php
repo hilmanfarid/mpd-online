@@ -219,6 +219,42 @@ function t_target_realisasiGrid_BeforeShowRow(& $sender)
 //Custom Code @725-2A29BDB7
 // -------------------------
     // Write your own code here.
+	global $selected_id;
+
+		if ($selected_id<0) {
+    		$selected_id = $Component->DataSource->p_year_period_id->GetValue();
+   		}
+
+		$styles = array("Row", "AltRow");
+  	// Start Bdr    
+        $img_radio= "<img border=\"0\" src=\"../images/radio.gif\">";
+        $Style = $styles[0];
+        
+        if ($Component->DataSource->p_year_period_id->GetValue() == $selected_id) {
+        	$img_radio= "<img border=\"0\" src=\"../images/radio_s.gif\">";
+            $Style = $styles[1];
+            $is_show_form=1;
+
+			$pid = $Component->DataSource->p_year_period_id->GetValue();
+			$Component->p_year_period_id2->SetValue($pid);
+        }	
+    // End Bdr  
+      if (count($styles)) {
+          //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
+          if (strlen($Style) && !strpos($Style, "="))
+              $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+          $Component->Attributes->SetValue("rowStyle", $Style);
+      }
+
+	 $Component->DLink->SetValue($img_radio); // Bdr
+	 $target = $Component->DataSource->target_amt->GetValue();
+	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
+	 if(!empty($target)) {
+	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
+	 }else {
+		$percent = 0;
+	 }
+	 $Component->percentage->SetValue("$percent %");
 // -------------------------
 //End Custom Code
 
@@ -259,42 +295,6 @@ function t_target_realisasiGrid_BeforeShow(& $sender)
 //Custom Code @915-2A29BDB7
 // -------------------------
     // Write your own code here.
-	global $selected_id;
-
-		if ($selected_id<0) {
-    		$selected_id = $Component->DataSource->p_year_period_id->GetValue();
-   		}
-
-		$styles = array("Row", "AltRow");
-  	// Start Bdr    
-        $img_radio= "<img border=\"0\" src=\"../images/radio.gif\">";
-        $Style = $styles[0];
-        
-        if ($Component->DataSource->p_year_period_id->GetValue() == $selected_id) {
-        	$img_radio= "<img border=\"0\" src=\"../images/radio_s.gif\">";
-            $Style = $styles[1];
-            $is_show_form=1;
-
-			$pid = $Component->DataSource->p_year_period_id->GetValue();
-			$Component->p_year_period_id2->SetValue($pid);
-        }	
-    // End Bdr  
-      if (count($styles)) {
-          //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
-          if (strlen($Style) && !strpos($Style, "="))
-              $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
-          $Component->Attributes->SetValue("rowStyle", $Style);
-      }
-
-	 $Component->DLink->SetValue($img_radio); // Bdr
-	 $target = $Component->DataSource->target_amt->GetValue();
-	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
-	 if(!empty($target)) {
-	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
-	 }else {
-		$percent = 0;
-	 }
-	 $Component->percentage->SetValue("$percent %");
 // -------------------------
 //End Custom Code
 
