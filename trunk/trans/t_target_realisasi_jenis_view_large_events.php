@@ -1,9 +1,10 @@
 <?php
-//BindEvents Method @1-79F38E79
+//BindEvents Method @1-66AF69B1
 function BindEvents()
 {
     global $t_target_realisasi_jenisGrid;
     global $t_target_realisasi_jenisGrid1;
+    global $t_target_realisasiGrid;
     global $CCSEvents;
     $t_target_realisasi_jenisGrid->CCSEvents["BeforeSelect"] = "t_target_realisasi_jenisGrid_BeforeSelect";
     $t_target_realisasi_jenisGrid->CCSEvents["BeforeShowRow"] = "t_target_realisasi_jenisGrid_BeforeShowRow";
@@ -11,7 +12,11 @@ function BindEvents()
     $t_target_realisasi_jenisGrid->ds->CCSEvents["BeforeBuildSelect"] = "t_target_realisasi_jenisGrid_ds_BeforeBuildSelect";
     $t_target_realisasi_jenisGrid1->CCSEvents["BeforeSelect"] = "t_target_realisasi_jenisGrid1_BeforeSelect";
     $t_target_realisasi_jenisGrid1->CCSEvents["BeforeShowRow"] = "t_target_realisasi_jenisGrid1_BeforeShowRow";
+    $t_target_realisasiGrid->CCSEvents["BeforeShowRow"] = "t_target_realisasiGrid_BeforeShowRow";
+    $t_target_realisasiGrid->CCSEvents["BeforeSelect"] = "t_target_realisasiGrid_BeforeSelect";
+    $t_target_realisasiGrid->CCSEvents["BeforeShow"] = "t_target_realisasiGrid_BeforeShow";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
 
@@ -202,6 +207,102 @@ function t_target_realisasi_jenisGrid1_BeforeShowRow(& $sender)
 }
 //End Close t_target_realisasi_jenisGrid1_BeforeShowRow
 
+//t_target_realisasiGrid_BeforeShowRow @909-52730172
+function t_target_realisasiGrid_BeforeShowRow(& $sender)
+{
+    $t_target_realisasiGrid_BeforeShowRow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasiGrid; //Compatibility
+//End t_target_realisasiGrid_BeforeShowRow
+
+//Custom Code @725-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close t_target_realisasiGrid_BeforeShowRow @909-DFE61ABB
+    return $t_target_realisasiGrid_BeforeShowRow;
+}
+//End Close t_target_realisasiGrid_BeforeShowRow
+
+//t_target_realisasiGrid_BeforeSelect @909-EC247A5A
+function t_target_realisasiGrid_BeforeSelect(& $sender)
+{
+    $t_target_realisasiGrid_BeforeSelect = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasiGrid; //Compatibility
+//End t_target_realisasiGrid_BeforeSelect
+
+//Custom Code @735-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close t_target_realisasiGrid_BeforeSelect @909-EF6BE882
+    return $t_target_realisasiGrid_BeforeSelect;
+}
+//End Close t_target_realisasiGrid_BeforeSelect
+
+//t_target_realisasiGrid_BeforeShow @909-AEC772FC
+function t_target_realisasiGrid_BeforeShow(& $sender)
+{
+    $t_target_realisasiGrid_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasiGrid; //Compatibility
+//End t_target_realisasiGrid_BeforeShow
+
+//Custom Code @915-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	global $selected_id;
+
+		if ($selected_id<0) {
+    		$selected_id = $Component->DataSource->p_year_period_id->GetValue();
+   		}
+
+		$styles = array("Row", "AltRow");
+  	// Start Bdr    
+        $img_radio= "<img border=\"0\" src=\"../images/radio.gif\">";
+        $Style = $styles[0];
+        
+        if ($Component->DataSource->p_year_period_id->GetValue() == $selected_id) {
+        	$img_radio= "<img border=\"0\" src=\"../images/radio_s.gif\">";
+            $Style = $styles[1];
+            $is_show_form=1;
+
+			$pid = $Component->DataSource->p_year_period_id->GetValue();
+			$Component->p_year_period_id2->SetValue($pid);
+        }	
+    // End Bdr  
+      if (count($styles)) {
+          //$Style = $styles[($Component->RowNumber - 1) % count($styles)];
+          if (strlen($Style) && !strpos($Style, "="))
+              $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+          $Component->Attributes->SetValue("rowStyle", $Style);
+      }
+
+	 $Component->DLink->SetValue($img_radio); // Bdr
+	 $target = $Component->DataSource->target_amt->GetValue();
+	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
+	 if(!empty($target)) {
+	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
+	 }else {
+		$percent = 0;
+	 }
+	 $Component->percentage->SetValue("$percent %");
+// -------------------------
+//End Custom Code
+
+//Close t_target_realisasiGrid_BeforeShow @909-68623F9F
+    return $t_target_realisasiGrid_BeforeShow;
+}
+//End Close t_target_realisasiGrid_BeforeShow
+
 //Page_OnInitializeView @1-56D03452
 function Page_OnInitializeView(& $sender)
 {
@@ -238,6 +339,26 @@ function Page_OnInitializeView(& $sender)
     return $Page_OnInitializeView;
 }
 //End Close Page_OnInitializeView
+
+//Page_BeforeShow @1-13231E57
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasi_jenis_view_large; //Compatibility
+//End Page_BeforeShow
+
+//Custom Code @914-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
 
 
 ?>
