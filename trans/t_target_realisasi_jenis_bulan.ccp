@@ -71,7 +71,9 @@ WHERE t_revenue_target_id = {t_revenue_target_id}" parameterTypeListName="Parame
 	MAX (denda_pokok) as denda_pokok,
 	MAX (denda_piutang) as denda_piutang
 FROM
-	f_target_vs_real_monthly_new3_mark_ii({p_year_period_id},{p_vat_type_id})
+	f_target_vs_real_monthly_new3_mark_ii(
+	{p_year_period_id},{p_vat_type_id}
+	)
 GROUP BY p_finance_period_id
 
 ORDER BY MAX(start_date) ASC">
