@@ -316,7 +316,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//UpdateRow Method @94-D9CBB4DC
+//UpdateRow Method @94-6482962E
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -340,7 +340,6 @@ function GetPrimaryKey($keyName)
         $this->DataSource->object_p_region_id_kec->SetValue($this->object_p_region_id_kec->GetValue(true));
         $this->DataSource->object_p_region_id_kel->SetValue($this->object_p_region_id_kel->GetValue(true));
         $this->DataSource->alasan->SetValue($this->alasan->GetValue(true));
-        $this->DataSource->user_name->SetValue($this->user_name->GetValue(true));
         $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
@@ -674,13 +673,13 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End SetValues Method
 
-//Update Method @94-87361ED8
+//Update Method @94-1B691635
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_id", ccsInteger, "", "", $this->t_bphtb_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["wp_name"] = new clsSQLParameter("ctrlwp_name", ccsText, "", "", $this->wp_name->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["npwp"] = new clsSQLParameter("ctrlnpwp", ccsText, "", "", $this->npwp->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["wp_address_name"] = new clsSQLParameter("ctrlwp_address_name", ccsText, "", "", $this->wp_address_name->GetValue(true), "", false, $this->ErrorBlock);
@@ -699,7 +698,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["object_p_region_id_kec"] = new clsSQLParameter("ctrlobject_p_region_id_kec", ccsFloat, "", "", $this->object_p_region_id_kec->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["user_name"] = new clsSQLParameter("ctrluser_name", ccsText, "", "", $this->user_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["user_name"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue())) 
             $this->cp["t_bphtb_registration_id"]->SetValue($this->t_bphtb_registration_id->GetValue(true));
@@ -754,28 +753,28 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         if (!is_null($this->cp["alasan"]->GetValue()) and !strlen($this->cp["alasan"]->GetText()) and !is_bool($this->cp["alasan"]->GetValue())) 
             $this->cp["alasan"]->SetValue($this->alasan->GetValue(true));
         if (!is_null($this->cp["user_name"]->GetValue()) and !strlen($this->cp["user_name"]->GetText()) and !is_bool($this->cp["user_name"]->GetValue())) 
-            $this->cp["user_name"]->SetValue($this->user_name->GetValue(true));
+            $this->cp["user_name"]->SetValue(CCGetSession("UserLogin", NULL));
         $this->SQL = "select * from f_update_master_bphtb (\n" .
-        "t_bphtb_registration_id NUMERIC,\n" .
-        "wp_name VARCHAR,\n" .
-        "npwp VARCHAR,\n" .
-        "wp_address_name VARCHAR,\n" .
-        "phone_no VARCHAR,\n" .
-        "mobile_phone_no VARCHAR,\n" .
-        "wp_rt VARCHAR,\n" .
-        "wp_rw VARCHAR,\n" .
-        "wp_p_region_id NUMERIC,\n" .
-        "wp_p_region_id_kec NUMERIC,\n" .
-        "wp_p_region_id_kel NUMERIC,\n" .
-        "njop_pbb VARCHAR,\n" .
-        "object_address_name VARCHAR,\n" .
-        "object_rt VARCHAR,\n" .
-        "object_rw VARCHAR,\n" .
-        "object_p_region_id NUMERIC,\n" .
-        "object_p_region_id_kec NUMERIC,\n" .
-        "object_p_region_id_kel NUMERIC,\n" .
-        "alasan VARCHAR,\n" .
-        "user_name VARCHAR\n" .
+        "" . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsFloat) . ",\n" .
+        "'" . $this->SQLValue($this->cp["wp_name"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["npwp"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_address_name"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["phone_no"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["mobile_phone_no"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["wp_rt"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["wp_rw"]->GetDBValue(), ccsText) . "' ,\n" .
+        "" . $this->SQLValue($this->cp["wp_p_region_id"]->GetDBValue(), ccsFloat) . " ,\n" .
+        "" . $this->SQLValue($this->cp["wp_p_region_id_kec"]->GetDBValue(), ccsFloat) . " ,\n" .
+        "" . $this->SQLValue($this->cp["wp_p_region_id_kel"]->GetDBValue(), ccsFloat) . " ,\n" .
+        "'" . $this->SQLValue($this->cp["njop_pbb"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["object_address_name"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["object_rt"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["object_rw"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["object_p_region_id"]->GetDBValue(), ccsFloat) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["object_p_region_id_kec"]->GetDBValue(), ccsFloat) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["object_p_region_id_kel"]->GetDBValue(), ccsFloat) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "' ,\n" .
+        "'" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "' \n" .
         ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
