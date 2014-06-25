@@ -6,6 +6,7 @@ where
 (cust_order.order_no ILIKE '%{s_keyword}%' OR
 regis.wp_name ILIKE '%{s_keyword}%') 
 AND (cust_order.p_order_status_id = 2 OR cust_order.p_order_status_id = 3)
+AND NOT EXISTS (SELECT 1 FROM t_payment_receipt_bphtb as x WHERE x.t_bphtb_registration_id = regis.t_bphtb_registration_id)
 order by regis.t_bphtb_registration_id DESC">
 			<Components>
 				<Navigator id="22" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
