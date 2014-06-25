@@ -45,7 +45,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-ED54403D
+//Class_Initialize Event @94-18387498
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -116,6 +116,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->mobile_phone_no = & new clsControl(ccsTextBox, "mobile_phone_no", "mobile_phone_no", ccsText, "", CCGetRequestParam("mobile_phone_no", $Method, NULL), $this);
             $this->t_bphtb_registration_id = & new clsControl(ccsHidden, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsInteger, "", CCGetRequestParam("t_bphtb_registration_id", $Method, NULL), $this);
             $this->Button3 = & new clsButton("Button3", $Method, $this);
+            $this->alasan = & new clsControl(ccsTextArea, "alasan", "alasan", ccsText, "", CCGetRequestParam("alasan", $Method, NULL), $this);
+            $this->alasan->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -141,7 +143,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-1DDCADC6
+//Validate Method @94-59032D05
     function Validate()
     {
         global $CCSLocales;
@@ -171,6 +173,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->phone_no->Validate() && $Validation);
         $Validation = ($this->mobile_phone_no->Validate() && $Validation);
         $Validation = ($this->t_bphtb_registration_id->Validate() && $Validation);
+        $Validation = ($this->alasan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -196,11 +199,12 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->phone_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->mobile_phone_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_bphtb_registration_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->alasan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-CC3656D9
+//CheckErrors Method @94-523712CD
     function CheckErrors()
     {
         $errors = false;
@@ -228,6 +232,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->phone_no->Errors->Count());
         $errors = ($errors || $this->mobile_phone_no->Errors->Count());
         $errors = ($errors || $this->t_bphtb_registration_id->Errors->Count());
+        $errors = ($errors || $this->alasan->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -416,7 +421,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-6F288330
+//Show Method @94-54399D51
     function Show()
     {
         global $CCSUseAmp;
@@ -473,6 +478,8 @@ function GetPrimaryKey($keyName)
                 $this->EditMode = false;
             }
         }
+        if (!$this->FormSubmitted) {
+        }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
@@ -500,6 +507,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->phone_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->mobile_phone_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_bphtb_registration_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->alasan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -550,6 +558,7 @@ function GetPrimaryKey($keyName)
         $this->mobile_phone_no->Show();
         $this->t_bphtb_registration_id->Show();
         $this->Button3->Show();
+        $this->alasan->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -560,7 +569,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-17635A84
+//DataSource Variables @94-168DC3C7
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -600,9 +609,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $phone_no;
     var $mobile_phone_no;
     var $t_bphtb_registration_id;
+    var $alasan;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-05BC5CEC
+//DataSourceClass_Initialize Event @94-69A7D14E
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -655,6 +665,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->mobile_phone_no = new clsField("mobile_phone_no", ccsText, "");
         
         $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsInteger, "");
+        
+        $this->alasan = new clsField("alasan", ccsText, "");
         
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
