@@ -25,26 +25,26 @@ left join p_region as g
 left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
 where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="select * from f_update_master_bphtb (
-t_bphtb_registration_id NUMERIC,
-wp_name VARCHAR,
-npwp VARCHAR,
-wp_address_name VARCHAR,
-phone_no VARCHAR,
-mobile_phone_no VARCHAR,
-wp_rt VARCHAR,
-wp_rw VARCHAR,
-wp_p_region_id NUMERIC,
-wp_p_region_id_kec NUMERIC,
-wp_p_region_id_kel NUMERIC,
-njop_pbb VARCHAR,
-object_address_name VARCHAR,
-object_rt VARCHAR,
-object_rw VARCHAR,
-object_p_region_id NUMERIC,
-object_p_region_id_kec NUMERIC,
-object_p_region_id_kel NUMERIC,
-alasan VARCHAR,
-user_name VARCHAR
+{t_bphtb_registration_id},
+'{wp_name}',
+'{npwp}',
+'{wp_address_name}' ,
+'{phone_no}' ,
+'{mobile_phone_no}' ,
+'{wp_rt}' ,
+'{wp_rw}' ,
+{wp_p_region_id} ,
+{wp_p_region_id_kec} ,
+{wp_p_region_id_kel} ,
+'{njop_pbb}' ,
+'{object_address_name}' ,
+'{object_rt}' ,
+'{object_rw}' ,
+'{object_p_region_id}' ,
+'{object_p_region_id_kec}' ,
+'{object_p_region_id_kel}' ,
+'{alasan}' ,
+'{user_name}' 
 )" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp">
 			<Components>
 				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
@@ -339,7 +339,7 @@ user_name VARCHAR
 				<SPParameter id="Key1016" parameterName="i_user" parameterSource="i_user" dataType="Char" parameterType="URL" dataSize="255" direction="Input" scale="0" precision="0"/>
 </USPParameters>
 			<USQLParameters>
-				<SQLParameter id="1023" variable="t_bphtb_registration_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_bphtb_registration_id"/>
+				<SQLParameter id="1023" variable="t_bphtb_registration_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_bphtb_registration_id"/>
 <SQLParameter id="1024" variable="wp_name" parameterType="Control" dataType="Text" parameterSource="wp_name"/>
 <SQLParameter id="1025" variable="npwp" parameterType="Control" dataType="Text" parameterSource="npwp"/>
 <SQLParameter id="1026" variable="wp_address_name" parameterType="Control" dataType="Text" parameterSource="wp_address_name"/>
@@ -358,7 +358,7 @@ user_name VARCHAR
 <SQLParameter id="1039" variable="object_p_region_id_kec" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="object_p_region_id_kec"/>
 <SQLParameter id="1040" variable="object_p_region_id_kel" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="object_p_region_id_kel"/>
 <SQLParameter id="1041" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
-<SQLParameter id="1042" variable="user_name" parameterType="Control" dataType="Text" parameterSource="user_name"/>
+<SQLParameter id="1042" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
 </USQLParameters>
 			<UConditions>
 				<TableParameter id="778" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
