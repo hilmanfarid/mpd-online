@@ -252,7 +252,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-63666852
+//Operation Method @94-8C34A409
     function Operation()
     {
         if(!$this->Visible)
@@ -299,7 +299,7 @@ function GetPrimaryKey($keyName)
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_Update") {
-                $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
+                $Redirect = "t_bphtb_registration_list_update_master.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }
@@ -316,11 +316,31 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//UpdateRow Method @94-62309483
+//UpdateRow Method @94-D9CBB4DC
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
+        $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
+        $this->DataSource->wp_name->SetValue($this->wp_name->GetValue(true));
+        $this->DataSource->npwp->SetValue($this->npwp->GetValue(true));
+        $this->DataSource->wp_address_name->SetValue($this->wp_address_name->GetValue(true));
+        $this->DataSource->phone_no->SetValue($this->phone_no->GetValue(true));
+        $this->DataSource->mobile_phone_no->SetValue($this->mobile_phone_no->GetValue(true));
+        $this->DataSource->wp_rt->SetValue($this->wp_rt->GetValue(true));
+        $this->DataSource->wp_rw->SetValue($this->wp_rw->GetValue(true));
+        $this->DataSource->wp_p_region_id->SetValue($this->wp_p_region_id->GetValue(true));
+        $this->DataSource->wp_p_region_id_kec->SetValue($this->wp_p_region_id_kec->GetValue(true));
+        $this->DataSource->wp_p_region_id_kel->SetValue($this->wp_p_region_id_kel->GetValue(true));
+        $this->DataSource->njop_pbb->SetValue($this->njop_pbb->GetValue(true));
+        $this->DataSource->object_address_name->SetValue($this->object_address_name->GetValue(true));
+        $this->DataSource->object_rt->SetValue($this->object_rt->GetValue(true));
+        $this->DataSource->object_rw->SetValue($this->object_rw->GetValue(true));
+        $this->DataSource->object_p_region_id->SetValue($this->object_p_region_id->GetValue(true));
+        $this->DataSource->object_p_region_id_kec->SetValue($this->object_p_region_id_kec->GetValue(true));
+        $this->DataSource->object_p_region_id_kel->SetValue($this->object_p_region_id_kel->GetValue(true));
+        $this->DataSource->alasan->SetValue($this->alasan->GetValue(true));
+        $this->DataSource->user_name->SetValue($this->user_name->GetValue(true));
         $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
@@ -654,14 +674,109 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End SetValues Method
 
-//Update Method @94-E7C0A197
+//Update Method @94-87361ED8
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
+        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_id", ccsInteger, "", "", $this->t_bphtb_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["wp_name"] = new clsSQLParameter("ctrlwp_name", ccsText, "", "", $this->wp_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["npwp"] = new clsSQLParameter("ctrlnpwp", ccsText, "", "", $this->npwp->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_address_name"] = new clsSQLParameter("ctrlwp_address_name", ccsText, "", "", $this->wp_address_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["phone_no"] = new clsSQLParameter("ctrlphone_no", ccsText, "", "", $this->phone_no->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["mobile_phone_no"] = new clsSQLParameter("ctrlmobile_phone_no", ccsText, "", "", $this->mobile_phone_no->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_rt"] = new clsSQLParameter("ctrlwp_rt", ccsText, "", "", $this->wp_rt->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_rw"] = new clsSQLParameter("ctrlwp_rw", ccsText, "", "", $this->wp_rw->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id"] = new clsSQLParameter("ctrlwp_p_region_id", ccsFloat, "", "", $this->wp_p_region_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id_kec"] = new clsSQLParameter("ctrlwp_p_region_id_kec", ccsFloat, "", "", $this->wp_p_region_id_kec->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id_kel"] = new clsSQLParameter("ctrlwp_p_region_id_kel", ccsFloat, "", "", $this->wp_p_region_id_kel->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["njop_pbb"] = new clsSQLParameter("ctrlnjop_pbb", ccsText, "", "", $this->njop_pbb->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_address_name"] = new clsSQLParameter("ctrlobject_address_name", ccsText, "", "", $this->object_address_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_rt"] = new clsSQLParameter("ctrlobject_rt", ccsText, "", "", $this->object_rt->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_rw"] = new clsSQLParameter("ctrlobject_rw", ccsText, "", "", $this->object_rw->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_p_region_id"] = new clsSQLParameter("ctrlobject_p_region_id", ccsFloat, "", "", $this->object_p_region_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["object_p_region_id_kec"] = new clsSQLParameter("ctrlobject_p_region_id_kec", ccsFloat, "", "", $this->object_p_region_id_kec->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["user_name"] = new clsSQLParameter("ctrluser_name", ccsText, "", "", $this->user_name->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
-        $this->SQL = "t_bphtb_registration";
+        if (!is_null($this->cp["t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue())) 
+            $this->cp["t_bphtb_registration_id"]->SetValue($this->t_bphtb_registration_id->GetValue(true));
+        if (!strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue(true))) 
+            $this->cp["t_bphtb_registration_id"]->SetText(0);
+        if (!is_null($this->cp["wp_name"]->GetValue()) and !strlen($this->cp["wp_name"]->GetText()) and !is_bool($this->cp["wp_name"]->GetValue())) 
+            $this->cp["wp_name"]->SetValue($this->wp_name->GetValue(true));
+        if (!is_null($this->cp["npwp"]->GetValue()) and !strlen($this->cp["npwp"]->GetText()) and !is_bool($this->cp["npwp"]->GetValue())) 
+            $this->cp["npwp"]->SetValue($this->npwp->GetValue(true));
+        if (!is_null($this->cp["wp_address_name"]->GetValue()) and !strlen($this->cp["wp_address_name"]->GetText()) and !is_bool($this->cp["wp_address_name"]->GetValue())) 
+            $this->cp["wp_address_name"]->SetValue($this->wp_address_name->GetValue(true));
+        if (!is_null($this->cp["phone_no"]->GetValue()) and !strlen($this->cp["phone_no"]->GetText()) and !is_bool($this->cp["phone_no"]->GetValue())) 
+            $this->cp["phone_no"]->SetValue($this->phone_no->GetValue(true));
+        if (!is_null($this->cp["mobile_phone_no"]->GetValue()) and !strlen($this->cp["mobile_phone_no"]->GetText()) and !is_bool($this->cp["mobile_phone_no"]->GetValue())) 
+            $this->cp["mobile_phone_no"]->SetValue($this->mobile_phone_no->GetValue(true));
+        if (!is_null($this->cp["wp_rt"]->GetValue()) and !strlen($this->cp["wp_rt"]->GetText()) and !is_bool($this->cp["wp_rt"]->GetValue())) 
+            $this->cp["wp_rt"]->SetValue($this->wp_rt->GetValue(true));
+        if (!is_null($this->cp["wp_rw"]->GetValue()) and !strlen($this->cp["wp_rw"]->GetText()) and !is_bool($this->cp["wp_rw"]->GetValue())) 
+            $this->cp["wp_rw"]->SetValue($this->wp_rw->GetValue(true));
+        if (!is_null($this->cp["wp_p_region_id"]->GetValue()) and !strlen($this->cp["wp_p_region_id"]->GetText()) and !is_bool($this->cp["wp_p_region_id"]->GetValue())) 
+            $this->cp["wp_p_region_id"]->SetValue($this->wp_p_region_id->GetValue(true));
+        if (!strlen($this->cp["wp_p_region_id"]->GetText()) and !is_bool($this->cp["wp_p_region_id"]->GetValue(true))) 
+            $this->cp["wp_p_region_id"]->SetText(0);
+        if (!is_null($this->cp["wp_p_region_id_kec"]->GetValue()) and !strlen($this->cp["wp_p_region_id_kec"]->GetText()) and !is_bool($this->cp["wp_p_region_id_kec"]->GetValue())) 
+            $this->cp["wp_p_region_id_kec"]->SetValue($this->wp_p_region_id_kec->GetValue(true));
+        if (!strlen($this->cp["wp_p_region_id_kec"]->GetText()) and !is_bool($this->cp["wp_p_region_id_kec"]->GetValue(true))) 
+            $this->cp["wp_p_region_id_kec"]->SetText(0);
+        if (!is_null($this->cp["wp_p_region_id_kel"]->GetValue()) and !strlen($this->cp["wp_p_region_id_kel"]->GetText()) and !is_bool($this->cp["wp_p_region_id_kel"]->GetValue())) 
+            $this->cp["wp_p_region_id_kel"]->SetValue($this->wp_p_region_id_kel->GetValue(true));
+        if (!strlen($this->cp["wp_p_region_id_kel"]->GetText()) and !is_bool($this->cp["wp_p_region_id_kel"]->GetValue(true))) 
+            $this->cp["wp_p_region_id_kel"]->SetText(0);
+        if (!is_null($this->cp["njop_pbb"]->GetValue()) and !strlen($this->cp["njop_pbb"]->GetText()) and !is_bool($this->cp["njop_pbb"]->GetValue())) 
+            $this->cp["njop_pbb"]->SetValue($this->njop_pbb->GetValue(true));
+        if (!is_null($this->cp["object_address_name"]->GetValue()) and !strlen($this->cp["object_address_name"]->GetText()) and !is_bool($this->cp["object_address_name"]->GetValue())) 
+            $this->cp["object_address_name"]->SetValue($this->object_address_name->GetValue(true));
+        if (!is_null($this->cp["object_rt"]->GetValue()) and !strlen($this->cp["object_rt"]->GetText()) and !is_bool($this->cp["object_rt"]->GetValue())) 
+            $this->cp["object_rt"]->SetValue($this->object_rt->GetValue(true));
+        if (!is_null($this->cp["object_rw"]->GetValue()) and !strlen($this->cp["object_rw"]->GetText()) and !is_bool($this->cp["object_rw"]->GetValue())) 
+            $this->cp["object_rw"]->SetValue($this->object_rw->GetValue(true));
+        if (!is_null($this->cp["object_p_region_id"]->GetValue()) and !strlen($this->cp["object_p_region_id"]->GetText()) and !is_bool($this->cp["object_p_region_id"]->GetValue())) 
+            $this->cp["object_p_region_id"]->SetValue($this->object_p_region_id->GetValue(true));
+        if (!strlen($this->cp["object_p_region_id"]->GetText()) and !is_bool($this->cp["object_p_region_id"]->GetValue(true))) 
+            $this->cp["object_p_region_id"]->SetText(0);
+        if (!is_null($this->cp["object_p_region_id_kec"]->GetValue()) and !strlen($this->cp["object_p_region_id_kec"]->GetText()) and !is_bool($this->cp["object_p_region_id_kec"]->GetValue())) 
+            $this->cp["object_p_region_id_kec"]->SetValue($this->object_p_region_id_kec->GetValue(true));
+        if (!strlen($this->cp["object_p_region_id_kec"]->GetText()) and !is_bool($this->cp["object_p_region_id_kec"]->GetValue(true))) 
+            $this->cp["object_p_region_id_kec"]->SetText(0);
+        if (!is_null($this->cp["object_p_region_id_kel"]->GetValue()) and !strlen($this->cp["object_p_region_id_kel"]->GetText()) and !is_bool($this->cp["object_p_region_id_kel"]->GetValue())) 
+            $this->cp["object_p_region_id_kel"]->SetValue($this->object_p_region_id_kel->GetValue(true));
+        if (!strlen($this->cp["object_p_region_id_kel"]->GetText()) and !is_bool($this->cp["object_p_region_id_kel"]->GetValue(true))) 
+            $this->cp["object_p_region_id_kel"]->SetText(0);
+        if (!is_null($this->cp["alasan"]->GetValue()) and !strlen($this->cp["alasan"]->GetText()) and !is_bool($this->cp["alasan"]->GetValue())) 
+            $this->cp["alasan"]->SetValue($this->alasan->GetValue(true));
+        if (!is_null($this->cp["user_name"]->GetValue()) and !strlen($this->cp["user_name"]->GetText()) and !is_bool($this->cp["user_name"]->GetValue())) 
+            $this->cp["user_name"]->SetValue($this->user_name->GetValue(true));
+        $this->SQL = "select * from f_update_master_bphtb (\n" .
+        "t_bphtb_registration_id NUMERIC,\n" .
+        "wp_name VARCHAR,\n" .
+        "npwp VARCHAR,\n" .
+        "wp_address_name VARCHAR,\n" .
+        "phone_no VARCHAR,\n" .
+        "mobile_phone_no VARCHAR,\n" .
+        "wp_rt VARCHAR,\n" .
+        "wp_rw VARCHAR,\n" .
+        "wp_p_region_id NUMERIC,\n" .
+        "wp_p_region_id_kec NUMERIC,\n" .
+        "wp_p_region_id_kel NUMERIC,\n" .
+        "njop_pbb VARCHAR,\n" .
+        "object_address_name VARCHAR,\n" .
+        "object_rt VARCHAR,\n" .
+        "object_rw VARCHAR,\n" .
+        "object_p_region_id NUMERIC,\n" .
+        "object_p_region_id_kec NUMERIC,\n" .
+        "object_p_region_id_kel NUMERIC,\n" .
+        "alasan VARCHAR,\n" .
+        "user_name VARCHAR\n" .
+        ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
