@@ -212,7 +212,13 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<TextArea id="1014" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="alasan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormalasan" required="True">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</TextArea>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
