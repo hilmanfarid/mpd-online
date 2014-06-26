@@ -39,7 +39,7 @@ function showTime(){
     var tahun  = tanggalSekarang.getYear();
     if (tahun < 1000) tahun +=1900;
     
-    document.getElementById("timer").innerHTML = tanggalSekarang.getDay() + "/" + namaBulan[tanggalSekarang.getMonth()] + "/" + tahun + "  " + tHour + ":" + tMin + ":" + tSec + " " + ap;
+    document.getElementById("timer").innerHTML = tanggalSekarang.getDay() + " " + namaBulan[tanggalSekarang.getMonth()] + " " + tahun + "  " + tHour + ":" + tMin + ":" + tSec + " " + ap;
     
     timerID = setTimeout("showTime()", 100);
 }
