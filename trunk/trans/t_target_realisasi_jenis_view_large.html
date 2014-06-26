@@ -209,10 +209,10 @@ $(function () {
 <a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a> 
                     </div>
                   </td> 
-                  <td style="TEXT-ALIGN: center; font-weight:bold;">{year_code}<input id="t_target_realisasiGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
-                  <td style="TEXT-ALIGN: right; font-weight:bold;">{target_amt}</td> 
-                  <td style="TEXT-ALIGN: right; font-weight:bold;">{realisasi_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; font-weight:bold;">{percentage}</td>
+                  <td style="TEXT-ALIGN: center; font-weight:bold; color:#000040;">{year_code}<input id="t_target_realisasiGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;color:#000040;">{target_amt}</td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;color:#000040;">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;color:#000040;">{percentage}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -394,6 +394,7 @@ $(function () {
       </td>
     </tr>
   </table>
+  <br/>
   <div id="timer" align="right" style="color:#808080; padding-right:10px; padding-bottom:5px; font-size:20px; font-weight:bold;"></div>
 </div>
 <script language="javascript">
