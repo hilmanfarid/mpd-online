@@ -9,6 +9,43 @@
 <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 <script src="../js/highcharts.js"></script>
 <script src="../js/exporting.js"></script>
+<script type="text/javascript">
+var timerID = null;
+
+function showTime(){
+    var objTimer = new Date();
+    var tHour = objTimer.getHours();
+    var tMin = objTimer.getMinutes().toString();
+    var tSec = objTimer.getSeconds().toString();
+    var ap = "AM";
+    
+    if(tHour > 11)
+        ap = "PM";
+    
+    if(tHour > 12)
+        tHour = tHour - 12;
+    
+    if(tHour == 0)
+        tHour = 12;
+        
+    if(tMin.length == 1)
+        tMin = "0" + tMin;
+
+    if(tSec.length == 1)
+        tSec = "0" + tSec;
+    
+    var namaBulan = new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+    var tanggalSekarang = new Date();
+    var tahun  = tanggalSekarang.getYear();
+    if (tahun < 1000) tahun +=1900;
+    
+    document.getElementById("timer").innerHTML = tanggalSekarang.getDay() + "/" + namaBulan[tanggalSekarang.getMonth()] + "/" + tahun + "  " + tHour + ":" + tMin + ":" + tSec + " " + ap;
+    
+    timerID = setTimeout("showTime()", 100);
+}
+
+window.onload = showTime;
+</script>
 <script language="javascript" type="text/javascript">
 $(document).ready(function()
 {
@@ -171,10 +208,10 @@ $(function () {
 <a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a> 
                     </div>
                   </td> 
-                  <td style="TEXT-ALIGN: center">{year_code}<input id="t_target_realisasiGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
-                  <td style="TEXT-ALIGN: right">{target_amt}</td> 
-                  <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right">{percentage}</td>
+                  <td style="TEXT-ALIGN: center; font-weight:bold;">{year_code}<input id="t_target_realisasiGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">{target_amt}</td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">{percentage}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -232,10 +269,10 @@ $(function () {
                 <!-- BEGIN Row -->
                 <tr height="25" {t_target_realisasi_jenisGrid:rowStyle}>
                   <td style="DISPLAY: none"><a href="{DLink_Src}" id="t_target_realisasi_jenisGridDLink_{t_target_realisasi_jenisGrid:rowNumber}"><u>{DLink}</u></a>&nbsp;</td> 
-                  <td>&nbsp;{vat_code}<input id="t_target_realisasi_jenisGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenisGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
-                  <td style="TEXT-ALIGN: right">&nbsp;{target_amount}</td> 
-                  <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right">{percentage}</td>
+                  <td style="font-weight:bold;">&nbsp;{vat_code}<input id="t_target_realisasi_jenisGridp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenisGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">&nbsp;{target_amount}</td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">{percentage}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -308,10 +345,10 @@ $(function () {
  
                 <!-- BEGIN Row -->
                 <tr height="25" {t_target_realisasi_jenisGrid1:rowStyle}>
-                  <td>&nbsp;{vat_code}<input id="t_target_realisasi_jenisGrid1p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenisGrid1p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
-                  <td style="TEXT-ALIGN: right">&nbsp;{target_amount}</td> 
-                  <td style="TEXT-ALIGN: right">{realisasi_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right">{percentage}</td>
+                  <td style="font-weight:bold;">&nbsp;{vat_code}<input id="t_target_realisasi_jenisGrid1p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_target_realisasi_jenisGrid1p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">&nbsp;{target_amount}</td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">{realisasi_amt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; font-weight:bold;">{percentage}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -356,7 +393,8 @@ $(function () {
       </td>
     </tr>
   </table>
-  <br/><br/><br/>
+  <br/><br/>
+  <div id="timer" align="right" style="color:#808080; padding-right:10px; padding-bottom:5px; font-size:20px; font-weight:bold;"></div>
 </div>
 <script language="javascript">
 function toTarget()
