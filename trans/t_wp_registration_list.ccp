@@ -26,19 +26,31 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="565" name="DatePicker_tgl_penerimaan1" control="tgl_penerimaan_last" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan1">
+				<DatePicker id="565" name="DatePicker_tgl_penerimaan1" control="tgl_penerimaan_last" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan1">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<Button id="563" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_lap_harian_bdhrSearchButton_DoSearch1">
+				<Button id="563" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_lap_harian_bdhrSearchButton_DoSearch1">
 					<Components/>
 					<Events>
 					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
+				<TextBox id="566" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" PathID="t_rep_lap_harian_bdhrSearchvat_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Hidden id="567" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_harian_bdhrSearchp_vat_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 </Components>
 			<Events/>
 			<TableParameters/>
