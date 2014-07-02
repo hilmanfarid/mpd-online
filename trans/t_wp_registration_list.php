@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-5FC6C17D
+//Class_Initialize Event @3-27BA816D
     function clsRecordt_rep_lap_harian_bdhrSearch($RelativePath, & $Parent)
     {
 
@@ -75,11 +75,13 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
             $this->tgl_penerimaan_last = & new clsControl(ccsTextBox, "tgl_penerimaan_last", "tgl_penerimaan_last", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("tgl_penerimaan_last", $Method, NULL), $this);
             $this->DatePicker_tgl_penerimaan1 = & new clsDatePicker("DatePicker_tgl_penerimaan1", "t_rep_lap_harian_bdhrSearch", "tgl_penerimaan_last", $this);
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-F6DEBEC5
+//Validate Method @3-AEF48E67
     function Validate()
     {
         global $CCSLocales;
@@ -88,15 +90,19 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
         $Validation = ($this->tgl_penerimaan->Validate() && $Validation);
         $Validation = ($this->kabid->Validate() && $Validation);
         $Validation = ($this->tgl_penerimaan_last->Validate() && $Validation);
+        $Validation = ($this->vat_code->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kabid->Errors->Count() == 0);
         $Validation =  $Validation && ($this->tgl_penerimaan_last->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-37E855ED
+//CheckErrors Method @3-F62E89C1
     function CheckErrors()
     {
         $errors = false;
@@ -105,6 +111,8 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
         $errors = ($errors || $this->kabid->Errors->Count());
         $errors = ($errors || $this->tgl_penerimaan_last->Errors->Count());
         $errors = ($errors || $this->DatePicker_tgl_penerimaan1->Errors->Count());
+        $errors = ($errors || $this->vat_code->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -157,7 +165,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-E864B98E
+//Show Method @3-63B421B9
     function Show()
     {
         global $CCSUseAmp;
@@ -186,6 +194,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->kabid->Errors->ToString());
             $Error = ComposeStrings($Error, $this->tgl_penerimaan_last->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -209,6 +219,8 @@ function GetPrimaryKey($keyName)
         $this->tgl_penerimaan_last->Show();
         $this->DatePicker_tgl_penerimaan1->Show();
         $this->Button_DoSearch1->Show();
+        $this->vat_code->Show();
+        $this->p_vat_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
