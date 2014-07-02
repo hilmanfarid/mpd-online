@@ -1,6 +1,13 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customer_orderGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="v_customer_order" orderBy="t_customer_order_id">
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customer_orderGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT * 
+FROM v_customer_order
+WHERE ( upper(order_no) LIKE '%{s_keyword}%'
+OR upper(rqst_type_code) LIKE '%{s_keyword}%'
+OR upper(order_status_code) LIKE '%{s_keyword}%' )
+AND ( p_rqst_type_id IN (1,2,3,4,5) )
+AND p_order_status_id = 1
+ORDER BY t_customer_order_id" orderBy="t_customer_order_id">
 			<Components>
 				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_customer_order.ccp" removeParameters="t_customer_order_id;order_no;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_customer_orderGridInsert_Link">
 					<Components/>
@@ -104,7 +111,6 @@
 				<TableParameter id="631" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="GreaterThanOrEqual" parameterType="Expression" logicOperator="And" parameterSource="1"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="557" tableName="v_customer_order" posLeft="10" posTop="10" posWidth="154" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
@@ -113,7 +119,6 @@
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="627" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
-				<SQLParameter id="628" parameterType="Expression" variable="Expr0" dataType="Float" parameterSource="1,2,3,4,5"/>
 			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
