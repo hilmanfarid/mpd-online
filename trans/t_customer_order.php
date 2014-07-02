@@ -101,7 +101,7 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
     }
 //End Initialize Method
 
-//Show Method @2-ADAE5575
+//Show Method @2-8E850810
     function Show()
     {
         global $Tpl;
@@ -111,7 +111,6 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
         $this->RowNumber = 0;
 
         $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
-        $this->DataSource->Parameters["expr631"] = 1;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -280,42 +279,34 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
     }
 //End SetOrder Method
 
-//Prepare Method @2-5CA777B2
+//Prepare Method @2-25AA94A2
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->AddParameter("2", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->AddParameter("3", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->AddParameter("5", "expr631", ccsFloat, "", "", $this->Parameters["expr631"], "", false);
-        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "upper(order_no)", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
-        $this->wp->Criterion[2] = $this->wp->Operation(opContains, "upper(rqst_type_code)", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
-        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(order_status_code)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
-        $this->wp->Criterion[4] = "( p_rqst_type_id IN (1,2,3,4,5) )";
-        $this->wp->Criterion[5] = $this->wp->Operation(opGreaterThanOrEqual, "p_order_status_id", $this->wp->GetDBValue("5"), $this->ToSQL($this->wp->GetDBValue("5"), ccsFloat),false);
-        $this->Where = $this->wp->opAND(
-             false, $this->wp->opAND(
-             false, $this->wp->opOR(
-             true, $this->wp->opOR(
-             false, 
-             $this->wp->Criterion[1], 
-             $this->wp->Criterion[2]), 
-             $this->wp->Criterion[3]), 
-             $this->wp->Criterion[4]), 
-             $this->wp->Criterion[5]);
     }
 //End Prepare Method
 
-//Open Method @2-55C37E46
+//Open Method @2-AEA7D8E6
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*)\n\n" .
-        "FROM v_customer_order";
-        $this->SQL = "SELECT * \n\n" .
-        "FROM v_customer_order {SQL_Where} {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
+        "FROM v_customer_order\n" .
+        "WHERE ( upper(order_no) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(rqst_type_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(order_status_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
+        "AND ( p_rqst_type_id IN (1,2,3,4,5) )\n" .
+        "AND p_order_status_id = 1) cnt";
+        $this->SQL = "SELECT * \n" .
+        "FROM v_customer_order\n" .
+        "WHERE ( upper(order_no) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(rqst_type_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(order_status_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
+        "AND ( p_rqst_type_id IN (1,2,3,4,5) )\n" .
+        "AND p_order_status_id = 1{SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
