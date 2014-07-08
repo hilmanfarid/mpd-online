@@ -19,7 +19,7 @@ $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_bpps($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+$query				= "select * from f_rep_bpps_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
 $tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
 $tahun = date("Y", strtotime($tgl_penerimaan));
