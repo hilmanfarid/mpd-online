@@ -106,7 +106,7 @@ function t_target_realisasiGrid_BeforeShowRow(& $sender)
 	 $t_target_realisasiGrid->debt_amt_sum->SetValue($sum_debt+$debt);
 	 
 	 $sum_total = $t_target_realisasiGrid->total_amt_sum->GetValue();
-	 $t_target_realisasiGrid->total_amt_sum->SetValue($sum_total+$realisasi+$penalty+$penalty+$debt);
+	 $t_target_realisasiGrid->total_amt_sum->SetValue($sum_total+$realisasi+$penalty+$penalty1+$debt);
 
 	 $sum_percentage = $t_target_realisasiGrid->percentage_sum->GetValue();
 	 if($sum_total > 0)
