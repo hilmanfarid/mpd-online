@@ -999,7 +999,7 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
     }
 //End Prepare Method
 
-//Open Method @900-832603B5
+//Open Method @900-17718064
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1016,7 +1016,7 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
         "	ROUND(SUM (target.debt_amt)) as debt_amt,\n" .
         "	MAX(dtl.vat_code) as ayat\n" .
         "FROM\n" .
-        "	f_target_vs_real_monthly_new(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") target,\n" .
+        "	f_target_vs_real_monthly_new3_mark_ii(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") target,\n" .
         "	p_vat_type_dtl dtl\n" .
         "WHERE\n" .
         "	dtl.p_vat_type_dtl_id = target.p_vat_type_dtl_id\n" .
@@ -1049,7 +1049,7 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
         "	ROUND(SUM (target.debt_amt)) as debt_amt,\n" .
         "	MAX(dtl.vat_code) as ayat\n" .
         "FROM\n" .
-        "	f_target_vs_real_monthly_new(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") target,\n" .
+        "	f_target_vs_real_monthly_new3_mark_ii(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") target,\n" .
         "	p_vat_type_dtl dtl\n" .
         "WHERE\n" .
         "	dtl.p_vat_type_dtl_id = target.p_vat_type_dtl_id\n" .
