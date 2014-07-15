@@ -268,7 +268,7 @@ ORDER BY MAX(start_date) ASC">
 	ROUND(SUM (target.debt_amt)) as debt_amt,
 	MAX(dtl.vat_code) as ayat
 FROM
-	f_target_vs_real_monthly_new({p_year_period_id},{p_vat_type_id}) target,
+	f_target_vs_real_monthly_new3_mark_ii({p_year_period_id},{p_vat_type_id}) target,
 	p_vat_type_dtl dtl
 WHERE
 	dtl.p_vat_type_dtl_id = target.p_vat_type_dtl_id
