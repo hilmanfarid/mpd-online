@@ -1,7 +1,7 @@
 <?php
 	define("RelativePath", "..");
 	define("PathToCurrentPage", "/report/");
-	define("FileName", "cetak_formulir_skpd.php");
+	define("FileName", "cetak_formulir_sspd_bphtb.php");
 	include_once(RelativePath . "/Common.php");
 	include_once("../include/fpdf.php");
 
@@ -184,7 +184,7 @@ class FormCetak extends FPDF {
 
 		$this->Cell($lheader1, $this->height, "", "LR", 0, 'C');
 		$this->SetFont('Arial', '', 12);
-		$this->Cell($lheader3+$lheader2+$lheader1, $this->height, "SKPD - BPHTB", "BR", 0, 'C');
+		$this->Cell($lheader3+$lheader2+$lheader1, $this->height, "SSPD - BPHTB", "BR", 0, 'C');
 		$this->Cell($lheader1, $this->height, "", "R", 0, 'C');
 		$this->Ln($this->height-5);
 		
