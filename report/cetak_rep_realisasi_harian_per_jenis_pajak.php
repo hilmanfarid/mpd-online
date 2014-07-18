@@ -130,6 +130,103 @@ while ($dbConn->next_record()) {
 	"payment_date"		=> $dbConn->f("payment_date"),
 	"jam"		=> $dbConn->f("jam"));
 }
+
+if($jenis_denda == 'denda_piutang'){
+	$query	= "select to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy') as masa_pajak,
+		c.wp_name, c.wp_address_name, c.wp_address_no,
+		substr(d.penalty_code,1,4) as kode_jns_pajak,
+		substr(d.penalty_code,5,2) as kode_ayat,
+		e.no_kohir,
+		a.payment_vat_amount as jumlah_terima,
+		to_char(e.settlement_date,'dd-mm-yyyy') as kd_tap,
+		d.nama_ayat,
+		a.npwd as npwpd,
+		a.*
+			from t_payment_receipt a
+			left join p_finance_period b on a.p_finance_period_id = b.p_finance_period_id
+			left join t_cust_account c on a.t_cust_account_id = c.t_cust_account_id
+			left join v_p_vat_type_dtl_rep d on d.p_vat_type_dtl_id = a.p_vat_type_dtl_id
+			left join t_vat_setllement e on e.t_vat_setllement_id = a.t_vat_setllement_id 
+			where trunc(a.payment_date) <= trunc(to_date('$tgl_penerimaan_last'))
+				 and trunc(a.payment_date) >= trunc(to_date('$tgl_penerimaan'))
+				 and a.p_vat_type_dtl_id = 
+						(select DECODE(
+									$p_vat_type_id,  1, 36,
+											2, 37,
+											3, 38,
+											4, 39)
+						)
+				and ((
+							(SUBSTRING(to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy'),22,4) = ($border)
+							AND SUBSTRING(to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy'),19,2) != 12)
+						)
+						OR
+						(	
+							SUBSTRING(to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy'),22,4) < ($border)
+						))"
+		;
+
+}else{
+	$query = "select to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy') as masa_pajak,
+		c.wp_name, c.wp_address_name, c.wp_address_no,
+		substr(d.penalty_code,1,4) as kode_jns_pajak,
+		substr(d.penalty_code,5,2) as kode_ayat,
+		e.no_kohir,
+		a.payment_vat_amount as jumlah_terima,
+		to_char(e.settlement_date,'dd-mm-yyyy') as kd_tap,
+		d.nama_ayat,
+		a.npwd as npwpd,
+		a.*
+			from t_payment_receipt a
+			left join p_finance_period b on a.p_finance_period_id = b.p_finance_period_id
+			left join t_cust_account c on a.t_cust_account_id = c.t_cust_account_id
+			left join v_p_vat_type_dtl_rep d on d.p_vat_type_dtl_id = a.p_vat_type_dtl_id
+			left join t_vat_setllement e on e.t_vat_setllement_id = a.t_vat_setllement_id 
+			where trunc(a.payment_date) <= trunc(to_date('$tgl_penerimaan_last'))
+				 and trunc(a.payment_date) >= trunc(to_date('$tgl_penerimaan'))
+				 and a.p_vat_type_dtl_id = 
+						(select DECODE(
+									$p_vat_type_id,  1, 36,
+											2, 37,
+											3, 38,
+											4, 39)
+						)
+				and ((
+										(SUBSTRING(to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy'),22,4) = ($border)
+										AND SUBSTRING(to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy'),19,2) = 12)
+									)
+									OR
+									(
+										(SUBSTRING(to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy'),22,4) = ($year_date))
+										AND (SUBSTRING(to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy'),19,2) < SUBSTRING(to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy'),19,2))
+									)				
+				)
+		";
+}
+
+$dbConn->query($query);
+while ($dbConn->next_record()) {
+	$data[]= array(
+	"kode_jns_trans"	=> $dbConn->f("kode_jns_trans"),
+	"jns_trans"		=> $dbConn->f("jns_trans"),
+	"kode_jns_pajak"	=> $dbConn->f("kode_jns_pajak"),
+	"kode_ayat"		=> $dbConn->f("kode_ayat"),
+	"jns_pajak"		=> $dbConn->f("jns_pajak"),
+	"jns_ayat"			=> $dbConn->f("jns_ayat"),
+	"nama_ayat"		=> $dbConn->f("nama_ayat"),
+	"no_kohir"		=> $dbConn->f("no_kohir"),
+	"wp_name"			=> $dbConn->f("wp_name"),
+	"wp_address_name"	=> $dbConn->f("wp_address_name"),
+	"wp_address_no"		=> $dbConn->f("wp_address_no"),
+	"npwpd"			=> $dbConn->f("npwpd"),
+	"jumlah_terima"	=> $dbConn->f("jumlah_terima"),
+	"masa_pajak"		=> $dbConn->f("masa_pajak"),
+	"kd_tap"			=> $dbConn->f("kd_tap"),
+	"keterangan"		=> $dbConn->f("keterangan"),
+	"payment_date"		=> $dbConn->f("payment_date"),
+	"jam"		=> $dbConn->f("jam"));
+}
+
 $dbConn->close();
 
 class FormCetak extends FPDF {
