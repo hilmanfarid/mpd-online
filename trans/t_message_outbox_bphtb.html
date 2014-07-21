@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_entertaintment_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+function replyMessage()
+{
+        window.open("t_send_message.php?t_message_inbox_id="+document.getElementById("t_message_inboxFormt_message_inbox_id").value,"Reply Message","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_message_outboxFormButton_Delete_OnClick @26-82AC9431
+function t_message_outboxFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_message_outboxFormButton_Delete_OnClick
+
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+    return confirm('Delete record?');
+
+//Close t_message_outboxFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close t_message_outboxFormButton_Delete_OnClick
+
+//bind_events @1-BAC5557C
+function bind_events() {
+    addEventHandler("t_message_outboxFormButton_Delete", "click", t_message_outboxFormButton_Delete_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        Message Outbox
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td><br>
+        <!-- BEGIN Grid t_message_outboxGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR OUTBOX</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">Diterima</th>
+ 
+                  <th scope="col">Jenis Pesan</th>
+ 
+                  <th colspan="2" scope="col">status</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_message_outboxGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_message_outboxGridDLink_{t_message_outboxGrid:rowNumber}">{DLink}</a></td> 
+                  <td style="WIDTH: 200px">&nbsp;{creation_date}<input id="t_message_outboxGridt_message_outbox_id" name="{t_message_outbox_id_Name}" value="{t_message_outbox_id}" type="hidden"></td> 
+                  <td>&nbsp;{message_type}</td> 
+                  <td colspan="2">{message_status}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="5">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b></b></td> 
+                  <td colspan="4">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_message_outboxGrid --><br>
+        <!-- BEGIN Record t_message_outboxForm -->
+        <form id="t_message_outboxForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI JENIS PAJAK</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="t_message_outboxFormmessage_body">Jenis Pesan</label></td> 
+                    <td><input id="t_message_outboxFormmessage_type" class="ControlsRO" name="{message_type_Name}" readonly maxlength="12" value="{message_type}" size="32">&nbsp;<input id="t_message_outboxFormt_message_outbox_id" name="{t_message_outbox_id_Name}" value="{t_message_outbox_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_message_outboxFormmessage_body">Isi</label></td> 
+                    <td>
+                      <div style="BORDER-BOTTOM: #6f6f6f 1px solid; BORDER-LEFT: #6f6f6f 1px solid; BACKGROUND-COLOR: #dbdbdb; FONT-FAMILY: Verdana; COLOR: #000040; FONT-SIZE: 13px; BORDER-TOP: #6f6f6f 1px solid; FONT-WEIGHT: normal; BORDER-RIGHT: #6f6f6f 1px solid">
+                        {message_body}&nbsp;&nbsp; 
+                      </div>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="2" align="right">&nbsp; 
+                      <!-- BEGIN Button Button_Insert1 --><input id="t_message_outboxFormButton_Insert1" class="btn_tambah" onclick="replyMessage();" name="{Button_Name}" alt="Add" value="Reply" type="button"><!-- END Button Button_Insert1 -->&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button_Insert --><input id="t_message_outboxFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_message_outboxFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SUBMIT" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_message_outboxFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_message_outboxForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+
+function lov_npwd() {
+        getFrom_LOV('t_vat_setllementSearch','t_cust_account_id,npwd,p_vat_type_id','lov_npwd.php');
+}
+
+
+function lov_year_period() {
+        getFrom_LOV('t_vat_setllementSearch','p_year_period_id,year_code','lov_year_period.php');
+}
+
+function lov_period() {
+                 var yearId = document.getElementById("t_vat_setllementSearchp_year_period_id").value;
+                if (yearId != "" && yearId != 0 && yearId != false && yearId != undefined &&  yearId != null){
+           getFrom_LOV('t_vat_setllementSearch','p_finance_period_id,finance_period_code','lov_finance_period_new.php?p_year_period_id='+yearId);
+        }else{
+            alert("Periode Tahun Year belum Diisi");
+        }       
+
+}
+
+
+function cetak(){
+                var req=document.getElementById("t_vat_setllementFormp_vat_type_id").value;
+                                var idVat=document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
+
+               if (req == 1){
+                                         var urlLink = "?t_vat_setllement_id="+idVat;
+                                     return popup("../report/cetak_sptpd_hotel_pdf.php"+urlLink);
+                }else if(req == 2){
+                                                var urlLink = "?t_vat_setllement_id="+idVat;
+                                     return popup("../report/cetak_sptpd_restoran_pdf.php"+urlLink);
+                }else if(req == 3){
+                                                var urlLink = "?t_vat_setllement_id="+idVat;
+                                     return popup("../report/cetak_sptpd_hiburan_pdf.php"+urlLink);     
+                }else if(req == 4){
+                                                        var urlLink = "?t_vat_setllement_id="+idVat;
+                                     return popup("../report/cetak_sptpd_parkir_pdf.php"+urlLink);
+                }else if(req == 5){
+                                        var urlLink = "?t_vat_setllement_id="+idVat;
+                                     return popup("../report/cetak_sptpd_ppj_pdf.php"+urlLink); 
+                }else{
+                        alert("Jenis Permohonan Tidak Diketahui");      
+                }
+}
+
+function cetakstpd(){
+                 var idVat=document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
+                                 var urlLink = "?t_vat_setllement_id="+idVat;
+                return popup("../report/cetak_formulir_stpd_pdf.php"+urlLink);
+              
+}
+</script>
+</body>
+</html>
