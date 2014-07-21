@@ -98,7 +98,7 @@ class clsGridt_ppatGrid { //t_ppatGrid class @2-4B4EC346
     }
 //End Initialize Method
 
-//Show Method @2-9CDF9B19
+//Show Method @2-01FA46AC
     function Show()
     {
         global $Tpl;
@@ -152,6 +152,8 @@ class clsGridt_ppatGrid { //t_ppatGrid class @2-4B4EC346
                 $this->updated_date->SetValue($this->DataSource->updated_date->GetValue());
                 $this->ImageLink1->Parameters = CCGetQueryString("QueryString", array("s_keyword", "ccsForm"));
                 $this->ImageLink1->Parameters = CCAddParam($this->ImageLink1->Parameters, "t_ppat_id", $this->DataSource->f("t_ppat_id"));
+                $this->ImageLink1->Parameters = CCAddParam($this->ImageLink1->Parameters, "ppat_name", $this->DataSource->f("ppat_name"));
+                $this->ImageLink1->Parameters = CCAddParam($this->ImageLink1->Parameters, "email_address", $this->DataSource->f("email_address"));
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -281,17 +283,17 @@ class clst_ppatGridDataSource extends clsDBConnSIKP {  //t_ppatGridDataSource Cl
     }
 //End Prepare Method
 
-//Open Method @2-4BFB62EC
+//Open Method @2-76FCCA98
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (SELECT t_ppat_id, ppat_name, identification_no, address_name,updated_by, \n" .
-        "to_char(updated_date,'DD-MON-YYYY') AS updated_date\n" .
+        "to_char(updated_date,'DD-MON-YYYY') AS updated_date, email_address\n" .
         "FROM t_ppat\n" .
         "WHERE upper(identification_no) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(ppat_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') cnt";
         $this->SQL = "SELECT t_ppat_id, ppat_name, identification_no, address_name,updated_by, \n" .
-        "to_char(updated_date,'DD-MON-YYYY') AS updated_date\n" .
+        "to_char(updated_date,'DD-MON-YYYY') AS updated_date, email_address\n" .
         "FROM t_ppat\n" .
         "WHERE upper(identification_no) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(ppat_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'  {SQL_OrderBy}";
@@ -1154,7 +1156,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
     }
 //End Open Method
 
-//SetValues Method @23-732D9973
+//SetValues Method @23-03CD617F
     function SetValues()
     {
         $this->t_ppat_id->SetDBValue(trim($this->f("p_simple_parameter_type_id")));
@@ -1173,7 +1175,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
         $this->kecamatan->SetDBValue($this->f("kecamatan"));
         $this->p_region_id_kec->SetDBValue(trim($this->f("p_region_id_kec")));
         $this->kelurahan->SetDBValue($this->f("kelurahan"));
-        $this->p_region_id_kel->SetDBValue(trim($this->f("wp_p_region_id_kel")));
+        $this->p_region_id_kel->SetDBValue(trim($this->f("p_region_id_kel")));
         $this->identification_no->SetDBValue($this->f("identification_no"));
         $this->personal_identification_id->SetDBValue($this->f("personal_identification_id"));
         $this->mobile_no->SetDBValue($this->f("mobile_no"));
