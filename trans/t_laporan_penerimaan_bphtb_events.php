@@ -82,6 +82,7 @@ function print_excel($param_arr) {
 			<th>LUAS BGN</th>
 			<th>NJOP (Rp)</th>
 			<th>TOTAL BAYAR (Rp)</th>
+			<th>VERIFIKATOR</th>
 	  </tr>
 	 ';
 
@@ -122,7 +123,7 @@ function print_excel($param_arr) {
 	
 	$whereClause = join(" AND ", $criteria);
 	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date,
-					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount    
+					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount, b.verificated_by    
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
@@ -150,7 +151,8 @@ function print_excel($param_arr) {
 					   'land_area' => $dbConn->f("land_area"),
 					   'building_area' => $dbConn->f("building_area"),
 					   'land_total_price' => $dbConn->f("land_total_price"),
-					   'payment_amount' => $dbConn->f("payment_amount")
+					   'payment_amount' => $dbConn->f("payment_amount"),
+					   'verificated_by' => $dbConn->f("verificated_by")
 						);
 		
 		echo '<tr>';
@@ -166,6 +168,7 @@ function print_excel($param_arr) {
 		echo '<td align="right">'.number_format($item['building_area'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['land_total_price'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['payment_amount'],0,",",".").'</td>';
+		echo '<td align="left">'.$item['verificated_by'].'</td>';
 		echo '</tr>';
 		
 		$total_nilai_penerimaan += $item['payment_amount'];
