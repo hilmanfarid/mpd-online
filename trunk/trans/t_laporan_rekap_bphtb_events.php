@@ -115,8 +115,8 @@ function print_excel($param_arr) {
 		<th>JENIS TRANSAKSI</th>
 		<th>NOP</th>
 		<th>LT/LB</th>
-		<th>HARGA TANAH (Rp)</th>
-		<th>HARGA BANGUNAN (Rp)</th>
+		<th>HARGA TANAH / m2 (Rp)</th>
+		<th>HARGA BANGUNAN / m2 (Rp)</th>
 		<th>TOTAL NJOP (Rp)</th>
 		<th>HARGA PASAR / <br/> TRANSAKSI / <br/> LELANG </th>
 		<th>NILAI PAJAK <br/> YANG HARUS DIBAYAR (Rp)</th>
@@ -472,7 +472,7 @@ function print_laporan($param_arr){
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C','C'));
 	$pdf->SetWidths(array(10,24,23,37,30,35,18,28,24,28,25,40,18,18,18,18,18));
 	$pdf->SetFont('arial', '',7);
-	$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","NO.REGISTRASI","NAMA WP","JENIS TRANSAKSI","NOP","LT / LB","HARGA TANAH(Rp)","HARGA BANGUNAN(Rp)","TOTAL NJOP (Rp)","HARGA PASAR / TRANSAKSI / LELANG (Rp)","NILAI PAJAK YANG HARUS DIBAYAR(Rp)"),array('LTB','LTB','LBT','LTB','TLB','TLB','TLB','TLB','TLB','TLBR'),5);
+	$pdf->RowMultiBorderWithHeight(array("NO","TANGGAL","NO.REGISTRASI","NAMA WP","JENIS TRANSAKSI","NOP","LT / LB","HARGA TANAH/m2(Rp)","HARGA BANGUNAN/m2(Rp)","TOTAL NJOP (Rp)","HARGA PASAR / TRANSAKSI / LELANG (Rp)","NILAI PAJAK YANG HARUS DIBAYAR(Rp)"),array('LTB','LTB','LBT','LTB','TLB','TLB','TLB','TLB','TLB','TLBR'),5);
 	$pdf->SetFont('arial', '',8);
 	$no =1;
 	$pdf->SetAligns(Array('C','L','L','L','L','L','R','R','R','R','R','R','R','R','R','R','R','R'));
