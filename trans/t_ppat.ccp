@@ -1,7 +1,7 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_ppatGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" dataSource="SELECT t_ppat_id, ppat_name, identification_no, address_name,updated_by, 
-to_char(updated_date,'DD-MON-YYYY') AS updated_date
+to_char(updated_date,'DD-MON-YYYY') AS updated_date, email_address
 FROM t_ppat
 WHERE upper(identification_no) LIKE '%{s_keyword}%'
 OR upper(ppat_name) LIKE '%{s_keyword}%' 
@@ -72,7 +72,9 @@ ORDER BY t_ppat_id" orderBy="p_vat_type_id">
 					<Events/>
 					<LinkParameters>
 						<LinkParameter id="365" sourceType="DataField" name="t_ppat_id" source="t_ppat_id"/>
-					</LinkParameters>
+						<LinkParameter id="366" sourceType="DataField" name="ppat_name" source="ppat_name"/>
+<LinkParameter id="367" sourceType="DataField" name="email_address" source="email_address"/>
+</LinkParameters>
 					<Attributes/>
 					<Features/>
 				</ImageLink>
@@ -319,7 +321,7 @@ WHERE t_ppat_id = {t_ppat_id} " activeTableType="customDelete">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="263" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_ppatFormp_region_id_kel" fieldSource="wp_p_region_id_kel" caption="Kelurahan - WP" required="True">
+				<Hidden id="263" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_ppatFormp_region_id_kel" fieldSource="p_region_id_kel" caption="Kelurahan - WP" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
