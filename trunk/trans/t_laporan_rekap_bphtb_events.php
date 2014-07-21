@@ -160,7 +160,9 @@ function print_excel($param_arr) {
 				building_area,
 				building_total_price,
 				market_price,
-				bphtb_amt_final
+				bphtb_amt_final,
+				land_price_per_m,
+				building_price_per_m
 			FROM
 				sikp.t_bphtb_registration reg_bphtb
 			LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
@@ -191,7 +193,9 @@ function print_excel($param_arr) {
 					   'building_area' => $dbConn->f("building_area"),
 					   'building_total_price' => $dbConn->f("building_total_price"),
 					   'market_price' => $dbConn->f("market_price"),
-					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final")
+					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
+					   'land_price_per_m' => $dbConn->f("land_price_per_m"),
+					   'building_price_per_m' => $dbConn->f("building_price_per_m")
 						);
 		
 		$nilai_njop = $dbConn->f("building_total_price") + $dbConn->f("land_total_price");
@@ -204,8 +208,8 @@ function print_excel($param_arr) {
 				<td>'.$item['description'].'</td>	
 				<td>&nbsp;'.$item['njop_pbb'].'</td>	
 				<td align="right">'.number_format($item['land_area'],0,",",".")." / ".number_format($item['building_area'],0,",",".").'</td>
-				<td align="right">'.number_format($item['land_total_price'],0,",",".").'</td>
-				<td align="right">'.number_format($item['building_total_price'],0,",",".").'</td>
+				<td align="right">'.number_format($item['land_price_per_m'],0,",",".").'</td>
+				<td align="right">'.number_format($item['building_price_per_m'],0,",",".").'</td>
 				<td align="right">'.number_format($nilai_njop,0,",",".").'</td>
 				<td align="right">'.number_format($item['market_price'],0,",",".").'</td>
 				<td align="right">'.number_format($item['bphtb_amt_final'],0,",",".").'</td>
@@ -448,7 +452,9 @@ function print_laporan($param_arr){
 				building_area,
 				building_total_price,
 				market_price,
-				bphtb_amt_final
+				bphtb_amt_final,
+				land_price_per_m,
+				building_price_per_m
 			FROM
 				sikp.t_bphtb_registration reg_bphtb
 			LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
@@ -487,7 +493,9 @@ function print_laporan($param_arr){
 					   'building_area' => $dbConn->f("building_area"),
 					   'building_total_price' => $dbConn->f("building_total_price"),
 					   'market_price' => $dbConn->f("market_price"),
-					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final")
+					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
+					   'land_price_per_m' => $dbConn->f("land_price_per_m"),
+					   'building_price_per_m' => $dbConn->f("building_price_per_m")
 						);
 		
 		$nilai_njop = $dbConn->f("building_total_price") + $dbConn->f("land_total_price");
@@ -499,8 +507,8 @@ function print_laporan($param_arr){
 											$item['description'],
 											$item['njop_pbb'],
 											number_format($item['land_area'],0,",",".")." / ".number_format($item['building_area'],0,",","."),
-											number_format($item['land_total_price'],2,",","."),
-											number_format($item['building_total_price'],2,",","."),
+											number_format($item['land_price_per_m'],2,",","."),
+											number_format($item['building_price_per_m'],2,",","."),
 											number_format($nilai_njop,2,",","."),
 											number_format($item['market_price'],2,",","."),
 											number_format($item['bphtb_amt_final'],2,",",".")
