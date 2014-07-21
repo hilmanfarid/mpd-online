@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LOV</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<!--start user-->
+<script language="javascript">
+function clickReturn(retVal) {
+                strObj = document.getElementById('LOVOBJ').value;
+                strForm = document.getElementById('LOVFORM').value;
+        arrVal = retVal.split('#~#');
+                arrForm = strObj.split(',');
+                for (x=0;x<arrForm.length;x++) {
+                window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
+                }
+                window.close();
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        Reply Message&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table style="WIDTH: 100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Record t_cust_acc_status_editForm -->
+        <form id="t_cust_acc_status_editForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table style="WIDTH: 565px; HEIGHT: 229px" class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table style="WIDTH: 100.02%; HEIGHT: 212px" class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr>
+                    <td valign="top">Jenis Pesan</td> 
+                    <td>
+                      <select id="t_cust_acc_status_editFormmessage_type" name="{message_type_Name}">
+                        <option selected value="">Select Value</option>
+                        {message_type_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr>
+                    <td valign="top">Pesan :</td> 
+                    <td><textarea style="WIDTH: 403px; HEIGHT: 135px" id="t_cust_acc_status_editFormmessage_body" class="ControlsRQ" cols="37" rows="7" name="{message_body_Name}">{message_body}</textarea></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>&nbsp;</td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button1 --><input id="t_cust_acc_status_editFormButton1" class="btn_tambah" name="{Button_Name}" alt="Button1" value="Kirim" type="submit"><!-- END Button Button1 --><input id="t_cust_acc_status_editFormt_ppat_id" name="{t_ppat_id_Name}" value="{t_ppat_id}" type="hidden"><input id="t_cust_acc_status_editFormt_message_inbox_bphtb_id" name="{t_message_inbox_bphtb_id_Name}" value="{t_message_inbox_bphtb_id}" type="hidden"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_cust_acc_status_editForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<br>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+
+function lov_tipeayat() {
+        getFrom_LOV('formPerubahanAyat','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=v_p_vat_type_dtl_rep&FIELD_0=p_vat_type_dtl_id&FIELD_1=nama_ayat&FIELD_2=nomor_ayat&FIELD_3= and p_vat_type_id != 7&LABEL1=Nama Ayat&LABEL2=Nomor Ayat&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+}
+</script>
+</body>
+</html>
