@@ -555,7 +555,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-56ACB8AF
+//Class_Initialize Event @23-D9253E12
     function clsRecordt_ppatForm($RelativePath, & $Parent)
     {
 
@@ -606,8 +606,8 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
             $this->valid_to = & new clsControl(ccsTextBox, "valid_to", "Valid To", ccsText, "", CCGetRequestParam("valid_to", $Method, NULL), $this);
             $this->DatePicker_valid_to = & new clsDatePicker("DatePicker_valid_to", "t_ppatForm", "valid_to", $this);
             $this->t_ppat_id = & new clsControl(ccsHidden, "t_ppat_id", "Id", ccsFloat, "", CCGetRequestParam("t_ppat_id", $Method, NULL), $this);
-            $this->ppat_name = & new clsControl(ccsHidden, "ppat_name", "Id", ccsFloat, "", CCGetRequestParam("ppat_name", $Method, NULL), $this);
-            $this->email_address = & new clsControl(ccsHidden, "email_address", "Id", ccsFloat, "", CCGetRequestParam("email_address", $Method, NULL), $this);
+            $this->ppat_name = & new clsControl(ccsHidden, "ppat_name", "ppat name", ccsText, "", CCGetRequestParam("ppat_name", $Method, NULL), $this);
+            $this->email_address = & new clsControl(ccsHidden, "email_address", "email_address", ccsText, "", CCGetRequestParam("email_address", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->creation_date->Value) && !strlen($this->creation_date->Value) && $this->creation_date->Value !== false)
                     $this->creation_date->SetText(date("d-M-Y"));
@@ -978,7 +978,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
     var $email_address;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-413DF7DF
+//DataSourceClass_Initialize Event @23-69F00046
     function clst_ppatFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1008,9 +1008,9 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
         
         $this->t_ppat_id = new clsField("t_ppat_id", ccsFloat, "");
         
-        $this->ppat_name = new clsField("ppat_name", ccsFloat, "");
+        $this->ppat_name = new clsField("ppat_name", ccsText, "");
         
-        $this->email_address = new clsField("email_address", ccsFloat, "");
+        $this->email_address = new clsField("email_address", ccsText, "");
         
 
     }
