@@ -171,8 +171,8 @@ updated_date='{updated_date}',
 updated_by='{updated_by}', 
 mobile_phone_no='{mobile_phone_no}', 
 description='{description}', 
-valid_from='{valid_from}', 
-valid_to='{valid_to}' 
+valid_from=to_date('{valid_from}'), 
+valid_to=case when '{valid_to}'= '' then null else to_date('{valid_to}') end
 WHERE  
 t_ppat_user_id = {t_ppat_user_id}" activeTableType="customUpdate">
 			<Components>
