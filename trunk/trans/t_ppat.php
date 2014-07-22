@@ -545,7 +545,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-1AA4783F
+//Class_Initialize Event @23-0CA71185
     function clsRecordt_ppatForm($RelativePath, & $Parent)
     {
 
@@ -612,7 +612,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
             $this->personal_identification_id->DataSource = new clsDBConnSIKP();
             $this->personal_identification_id->ds = & $this->personal_identification_id->DataSource;
             list($this->personal_identification_id->BoundColumn, $this->personal_identification_id->TextColumn, $this->personal_identification_id->DBFormat) = array("", "", "");
-            $this->personal_identification_id->DataSource->SQL = "select p_simple_parameter_list_id,code from p_simple_parameter_list";
+            $this->personal_identification_id->DataSource->SQL = "select p_simple_parameter_list_id,code from p_simple_parameter_list where p_simple_parameter_type_id = 1";
             $this->personal_identification_id->DataSource->Order = "";
             $this->mobile_no = & new clsControl(ccsTextBox, "mobile_no", "Description", ccsText, "", CCGetRequestParam("mobile_no", $Method, NULL), $this);
             $this->fax_no = & new clsControl(ccsTextBox, "fax_no", "Description", ccsText, "", CCGetRequestParam("fax_no", $Method, NULL), $this);
