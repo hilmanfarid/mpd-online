@@ -73,8 +73,8 @@ ORDER BY t_ppat_id" orderBy="p_vat_type_id">
 					<LinkParameters>
 						<LinkParameter id="365" sourceType="DataField" name="t_ppat_id" source="t_ppat_id"/>
 						<LinkParameter id="366" sourceType="DataField" name="ppat_name" source="ppat_name"/>
-<LinkParameter id="367" sourceType="DataField" name="email_address" source="email_address"/>
-</LinkParameters>
+						<LinkParameter id="367" sourceType="DataField" name="email_address" source="email_address"/>
+					</LinkParameters>
 					<Attributes/>
 					<Features/>
 				</ImageLink>
@@ -333,7 +333,7 @@ WHERE t_ppat_id = {t_ppat_id} " activeTableType="customDelete">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="268" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="personal_identification_id" wizardEmptyCaption="Select Value" PathID="t_ppatFormpersonal_identification_id" fieldSource="personal_identification_id" connection="ConnSIKP" dataSource="select p_simple_parameter_list_id,code from p_simple_parameter_list">
+				<ListBox id="268" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="personal_identification_id" wizardEmptyCaption="Select Value" PathID="t_ppatFormpersonal_identification_id" fieldSource="personal_identification_id" connection="ConnSIKP" dataSource="select p_simple_parameter_list_id,code from p_simple_parameter_list where p_simple_parameter_type_id = 1">
 					<Components/>
 					<Events/>
 					<TableParameters/>
