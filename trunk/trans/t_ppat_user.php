@@ -1130,7 +1130,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
     }
 //End Insert Method
 
-//Update Method @23-CE168A9D
+//Update Method @23-9842B4C2
     function Update()
     {
         global $CCSLocales;
@@ -1180,8 +1180,8 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
         "updated_by='" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', \n" .
         "mobile_phone_no='" . $this->SQLValue($this->cp["mobile_phone_no"]->GetDBValue(), ccsText) . "', \n" .
         "description='" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
-        "valid_from='" . $this->SQLValue($this->cp["valid_from"]->GetDBValue(), ccsText) . "', \n" .
-        "valid_to='" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "' \n" .
+        "valid_from=to_date('" . $this->SQLValue($this->cp["valid_from"]->GetDBValue(), ccsText) . "'), \n" .
+        "valid_to=case when '" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "'= '' then null else to_date('" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "') end\n" .
         "WHERE  \n" .
         "t_ppat_user_id = " . $this->SQLValue($this->cp["t_ppat_user_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
