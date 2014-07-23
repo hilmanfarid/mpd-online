@@ -239,7 +239,7 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Prepare Method
 
-//Open Method @2-CF6E9F8F
+//Open Method @2-FDA88677
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -247,11 +247,13 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         "sum(jml_hari_ini) as payment_vat_amount \n" .
         "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
         "left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id \n" .
+        "WHERE a.p_vat_type_id != 7\n" .
         "GROUP BY a.p_vat_type_id, b.vat_code) cnt";
         $this->SQL = "select a.p_vat_type_id as no_urut , b.vat_code, \n" .
         "sum(jml_hari_ini) as payment_vat_amount \n" .
         "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
         "left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id \n" .
+        "WHERE a.p_vat_type_id != 7\n" .
         "GROUP BY a.p_vat_type_id, b.vat_code  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
