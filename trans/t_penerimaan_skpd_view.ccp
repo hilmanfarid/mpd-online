@@ -4,6 +4,7 @@
 sum(jml_hari_ini) as payment_vat_amount 
 from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a 
 left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id 
+WHERE a.p_vat_type_id != 7
 GROUP BY a.p_vat_type_id, b.vat_code 
 ORDER BY a.p_vat_type_id" orderBy="p_region_id">
 			<Components>
