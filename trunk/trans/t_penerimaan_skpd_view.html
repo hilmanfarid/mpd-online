@@ -38,35 +38,34 @@ $(document).ready(function()
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td class="th" style="font-size:20px;"><strong>DATA PENERIMAAN PBB/PAT/Reklame</strong></td> 
+                  <td style="FONT-SIZE: 20px" class="th"><strong>DATA PENERIMAAN PBB/PAT/Reklame</strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
-              <table class="Grid" cellspacing="2" cellpadding="0" style="font-size:17px; font-weight:bold;">
+              <table style="FONT-SIZE: 17px; FONT-WEIGHT: bold" class="Grid" cellspacing="2" cellpadding="0">
                 <tr class="Caption">
-                  <th scope="col">&nbsp;Jenis Pajak</th>
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;No</th>
  
-                  <th scope="col">Penerimaan</th>
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Jenis Pajak</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Penerimaan (Rp)</th>
                 </tr>
  
                 <!-- BEGIN Row -->
                 <tr {t_penerimaan_skpd_viewGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center">{no_urut}</td> 
                   <td>{vat_code}&nbsp;</td> 
-                  <td>
-                    <div align="left">
-                      {payment_vat_amount}&nbsp;&nbsp;&nbsp;&nbsp; 
-                    </div>
-                  </td>
+                  <td style="TEXT-ALIGN: right">{payment_vat_amount}&nbsp;&nbsp;&nbsp;&nbsp; </td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="2">data tidak ditemukan</td>
+                  <td colspan="3">data tidak ditemukan</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td colspan="2">&nbsp; 
+                  <td colspan="3">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
