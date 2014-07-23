@@ -219,10 +219,10 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-92BEE70E
+//SetOrder Method @2-6AF13F25
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "a.p_vat_type_id";
+        $this->Order = "b.p_vat_type_id";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -239,22 +239,22 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Prepare Method
 
-//Open Method @2-FDA88677
+//Open Method @2-7706BB56
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select a.p_vat_type_id as no_urut , b.vat_code, \n" .
-        "sum(jml_hari_ini) as payment_vat_amount \n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select  row_number() over(order by b.p_vat_type_id) AS no_urut, b.vat_code, \n" .
+        "sum(jml_hari_ini) as kemarin \n" .
         "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
         "left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id \n" .
-        "WHERE a.p_vat_type_id != 7\n" .
-        "GROUP BY a.p_vat_type_id, b.vat_code) cnt";
-        $this->SQL = "select a.p_vat_type_id as no_urut , b.vat_code, \n" .
-        "sum(jml_hari_ini) as payment_vat_amount \n" .
+        "where b.p_vat_type_id != 7\n" .
+        "GROUP BY b.p_vat_type_id, b.vat_code) cnt";
+        $this->SQL = "select  row_number() over(order by b.p_vat_type_id) AS no_urut, b.vat_code, \n" .
+        "sum(jml_hari_ini) as kemarin \n" .
         "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
         "left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id \n" .
-        "WHERE a.p_vat_type_id != 7\n" .
-        "GROUP BY a.p_vat_type_id, b.vat_code  {SQL_OrderBy}";
+        "where b.p_vat_type_id != 7\n" .
+        "GROUP BY b.p_vat_type_id, b.vat_code  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
