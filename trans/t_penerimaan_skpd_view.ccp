@@ -1,7 +1,7 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="Spring" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" connection="ConnSIKP" name="t_penerimaan_skpd_viewGrid" pageSizeLimit="100" wizardCaption="List of P App Module Role " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="True" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="data tidak ditemukan" activeCollection="TableParameters" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="select  row_number() over(order by b.p_vat_type_id) AS no_urut, b.vat_code, 
-sum(jml_hari_ini) as kemarin 
+sum(jml_hari_ini) as payment_vat_amount 
 from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a 
 left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id 
 where b.p_vat_type_id != 7
