@@ -42,7 +42,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-323779BA
+//Class_Initialize Event @2-18540194
     function clsGridt_penerimaan_skpd_viewGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -69,8 +69,9 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
         $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
         if ($this->PageNumber <= 0) $this->PageNumber = 1;
 
-        $this->payment_vat_amount = & new clsControl(ccsLabel, "payment_vat_amount", "payment_vat_amount", ccsText, "", CCGetRequestParam("payment_vat_amount", ccsGet, NULL), $this);
+        $this->payment_vat_amount = & new clsControl(ccsLabel, "payment_vat_amount", "payment_vat_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("payment_vat_amount", ccsGet, NULL), $this);
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
+        $this->no_urut = & new clsControl(ccsLabel, "no_urut", "no_urut", ccsText, "", CCGetRequestParam("no_urut", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -87,7 +88,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     }
 //End Initialize Method
 
-//Show Method @2-316ABE97
+//Show Method @2-F4ACAE7F
     function Show()
     {
         global $Tpl;
@@ -96,6 +97,8 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
 
         $this->RowNumber = 0;
 
+        $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
+        $this->DataSource->Parameters["urlparent_id"] = CCGetFromGet("parent_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -117,6 +120,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
         if (!$this->IsEmpty) {
             $this->ControlsVisible["payment_vat_amount"] = $this->payment_vat_amount->Visible;
             $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
+            $this->ControlsVisible["no_urut"] = $this->no_urut->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -126,11 +130,13 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
                 $this->payment_vat_amount->SetValue($this->DataSource->payment_vat_amount->GetValue());
                 $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
+                $this->no_urut->SetValue($this->DataSource->no_urut->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
                 $this->payment_vat_amount->Show();
                 $this->vat_code->Show();
+                $this->no_urut->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -163,12 +169,13 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     }
 //End Show Method
 
-//GetErrors Method @2-4FDE5628
+//GetErrors Method @2-CA5368AE
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->payment_vat_amount->Errors->ToString());
         $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->no_urut->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -179,7 +186,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
 
 class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_penerimaan_skpd_viewGridDataSource Class @2-14CAF917
 
-//DataSource Variables @2-3F14C9D2
+//DataSource Variables @2-A4D676FC
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -193,55 +200,61 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     // Datasource fields
     var $payment_vat_amount;
     var $vat_code;
+    var $no_urut;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-6A99F8BD
+//DataSourceClass_Initialize Event @2-3D2C511D
     function clst_penerimaan_skpd_viewGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
         $this->ErrorBlock = "Grid t_penerimaan_skpd_viewGrid";
         $this->Initialize();
-        $this->payment_vat_amount = new clsField("payment_vat_amount", ccsText, "");
+        $this->payment_vat_amount = new clsField("payment_vat_amount", ccsFloat, "");
         
         $this->vat_code = new clsField("vat_code", ccsText, "");
+        
+        $this->no_urut = new clsField("no_urut", ccsText, "");
         
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-9E1383D1
+//SetOrder Method @2-9FC2FB28
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "";
+        $this->Order = "a.p_vat_type_dtl_id ASC";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
 //End SetOrder Method
 
-//Prepare Method @2-14D6CD9D
+//Prepare Method @2-EDFED027
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
+        $this->wp = new clsSQLParameters($this->ErrorBlock);
+        $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("2", "urlparent_id", ccsFloat, "", "", $this->Parameters["urlparent_id"], "", false);
     }
 //End Prepare Method
 
-//Open Method @2-FDF0C21A
+//Open Method @2-0F21D936
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT a.vat_code, sum(b.payment_vat_amount)\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT (a.p_vat_type_dtl_id-44) AS no_urut, a.vat_code, nvl(sum(b.payment_vat_amount),0) AS payment_vat_amount\n" .
         "FROM p_vat_type_dtl AS a\n" .
         "LEFT JOIN t_payment_receipt_skpd AS b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id\n" .
         "AND trunc(b.payment_date) = trunc(sysdate-1)\n" .
         "WHERE  a.p_vat_type_id IN (8,9,10)\n" .
-        "GROUP BY a.vat_code) cnt";
-        $this->SQL = "SELECT a.vat_code, sum(b.payment_vat_amount)\n" .
+        "GROUP BY a.p_vat_type_dtl_id, a.vat_code) cnt";
+        $this->SQL = "SELECT (a.p_vat_type_dtl_id-44) AS no_urut, a.vat_code, nvl(sum(b.payment_vat_amount),0) AS payment_vat_amount\n" .
         "FROM p_vat_type_dtl AS a\n" .
         "LEFT JOIN t_payment_receipt_skpd AS b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id\n" .
         "AND trunc(b.payment_date) = trunc(sysdate-1)\n" .
         "WHERE  a.p_vat_type_id IN (8,9,10)\n" .
-        "GROUP BY a.vat_code";
+        "GROUP BY a.p_vat_type_dtl_id, a.vat_code {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -252,11 +265,12 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Open Method
 
-//SetValues Method @2-654D3147
+//SetValues Method @2-8CBB3591
     function SetValues()
     {
-        $this->payment_vat_amount->SetDBValue($this->f("payment_vat_amount"));
+        $this->payment_vat_amount->SetDBValue(trim($this->f("payment_vat_amount")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
+        $this->no_urut->SetDBValue($this->f("no_urut"));
     }
 //End SetValues Method
 
