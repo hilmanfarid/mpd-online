@@ -1,12 +1,11 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="Spring" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" connection="ConnSIKP" name="t_penerimaan_skpd_viewGrid" pageSizeLimit="100" wizardCaption="List of P App Module Role " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="True" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="data tidak ditemukan" activeCollection="TableParameters" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="SELECT (a.p_vat_type_dtl_id-44) AS no_urut, a.vat_code, nvl(sum(b.payment_vat_amount),0) AS payment_vat_amount
-FROM p_vat_type_dtl AS a
-LEFT JOIN t_payment_receipt_skpd AS b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
-AND trunc(b.payment_date) = trunc(sysdate-1)
-WHERE  a.p_vat_type_id IN (8,9,10)
-GROUP BY a.p_vat_type_dtl_id, a.vat_code
-ORDER BY a.p_vat_type_dtl_id ASC" orderBy="p_region_id">
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" connection="ConnSIKP" name="t_penerimaan_skpd_viewGrid" pageSizeLimit="100" wizardCaption="List of P App Module Role " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="True" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="data tidak ditemukan" activeCollection="TableParameters" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="select a.p_vat_type_id as no_urut , b.vat_code, 
+sum(jml_hari_ini) as payment_vat_amount 
+from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a 
+left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id 
+GROUP BY a.p_vat_type_id, b.vat_code 
+ORDER BY a.p_vat_type_id" orderBy="p_region_id">
 			<Components>
 				<Label id="32" fieldSourceType="DBColumn" dataType="Float" html="False" name="payment_vat_amount" fieldSource="payment_vat_amount" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_penerimaan_skpd_viewGridpayment_vat_amount" format="#,##0.00">
 					<Components/>
