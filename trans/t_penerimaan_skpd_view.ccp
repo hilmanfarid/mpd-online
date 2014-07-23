@@ -1,13 +1,14 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="Spring" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" connection="ConnSIKP" name="t_penerimaan_skpd_viewGrid" pageSizeLimit="100" wizardCaption="List of P App Module Role " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="True" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="data tidak ditemukan" activeCollection="TableParameters" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="SELECT a.vat_code, sum(b.payment_vat_amount)
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" connection="ConnSIKP" name="t_penerimaan_skpd_viewGrid" pageSizeLimit="100" wizardCaption="List of P App Module Role " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="True" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="data tidak ditemukan" activeCollection="TableParameters" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="SELECT (a.p_vat_type_dtl_id-44) AS no_urut, a.vat_code, nvl(sum(b.payment_vat_amount),0) AS payment_vat_amount
 FROM p_vat_type_dtl AS a
 LEFT JOIN t_payment_receipt_skpd AS b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
 AND trunc(b.payment_date) = trunc(sysdate-1)
 WHERE  a.p_vat_type_id IN (8,9,10)
-GROUP BY a.vat_code" orderBy="p_region_id">
+GROUP BY a.p_vat_type_dtl_id, a.vat_code
+ORDER BY a.p_vat_type_dtl_id ASC" orderBy="p_region_id">
 			<Components>
-				<Label id="32" fieldSourceType="DBColumn" dataType="Text" html="False" name="payment_vat_amount" fieldSource="payment_vat_amount" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_penerimaan_skpd_viewGridpayment_vat_amount">
+				<Label id="32" fieldSourceType="DBColumn" dataType="Float" html="False" name="payment_vat_amount" fieldSource="payment_vat_amount" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_penerimaan_skpd_viewGridpayment_vat_amount" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -25,7 +26,13 @@ GROUP BY a.vat_code" orderBy="p_region_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="249" fieldSourceType="DBColumn" dataType="Text" html="False" name="no_urut" fieldSource="no_urut" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_penerimaan_skpd_viewGridno_urut">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -54,7 +61,9 @@ GROUP BY a.vat_code" orderBy="p_region_id">
 			<Fields/>
 			<SPParameters/>
 			<SQLParameters>
-			</SQLParameters>
+				<SQLParameter id="247" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
+<SQLParameter id="248" parameterType="URL" variable="parent_id" dataType="Float" parameterSource="parent_id"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
