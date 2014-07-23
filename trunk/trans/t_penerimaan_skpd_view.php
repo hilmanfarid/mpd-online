@@ -219,10 +219,10 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-9FC2FB28
+//SetOrder Method @2-92BEE70E
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "a.p_vat_type_dtl_id ASC";
+        $this->Order = "a.p_vat_type_id";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -239,22 +239,20 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Prepare Method
 
-//Open Method @2-0F21D936
+//Open Method @2-CF6E9F8F
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT (a.p_vat_type_dtl_id-44) AS no_urut, a.vat_code, nvl(sum(b.payment_vat_amount),0) AS payment_vat_amount\n" .
-        "FROM p_vat_type_dtl AS a\n" .
-        "LEFT JOIN t_payment_receipt_skpd AS b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id\n" .
-        "AND trunc(b.payment_date) = trunc(sysdate-1)\n" .
-        "WHERE  a.p_vat_type_id IN (8,9,10)\n" .
-        "GROUP BY a.p_vat_type_dtl_id, a.vat_code) cnt";
-        $this->SQL = "SELECT (a.p_vat_type_dtl_id-44) AS no_urut, a.vat_code, nvl(sum(b.payment_vat_amount),0) AS payment_vat_amount\n" .
-        "FROM p_vat_type_dtl AS a\n" .
-        "LEFT JOIN t_payment_receipt_skpd AS b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id\n" .
-        "AND trunc(b.payment_date) = trunc(sysdate-1)\n" .
-        "WHERE  a.p_vat_type_id IN (8,9,10)\n" .
-        "GROUP BY a.p_vat_type_dtl_id, a.vat_code {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*) FROM (select a.p_vat_type_id as no_urut , b.vat_code, \n" .
+        "sum(jml_hari_ini) as payment_vat_amount \n" .
+        "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
+        "left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id \n" .
+        "GROUP BY a.p_vat_type_id, b.vat_code) cnt";
+        $this->SQL = "select a.p_vat_type_id as no_urut , b.vat_code, \n" .
+        "sum(jml_hari_ini) as payment_vat_amount \n" .
+        "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
+        "left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id \n" .
+        "GROUP BY a.p_vat_type_id, b.vat_code  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
