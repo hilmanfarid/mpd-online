@@ -26,28 +26,27 @@ $(document).ready(function()
     });
 });
 </script>
-
 <script type="text/javascript">
 var timerID = null;
 
 function showTime(){
     var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-	var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
-	var date = new Date();
-	var day = date.getDate();
-	var month = date.getMonth();
-	var thisDay = date.getDay(),
-	    thisDay = myDays[thisDay-1];
-	var yy = date.getYear();
-	var year = (yy < 1000) ? yy + 1900 : yy;
-	
+        var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth();
+        var thisDay = date.getDay(),
+            thisDay = myDays[thisDay-1];
+        var yy = date.getYear();
+        var year = (yy < 1000) ? yy + 1900 : yy;
+        
     document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day-1) + ' ' + months[month] + ' ' + year + ')';
 }
 
 window.onload = showTime;
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="CLEAR: both; PADDING-TOP: 5px">
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
@@ -59,7 +58,7 @@ window.onload = showTime;
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td style="FONT-SIZE: 20px" class="th"><strong>Data Penerimaan Harian Pajak Daerah <span id="tanggal_kemaren" /></strong></td> 
+                  <td style="FONT-SIZE: 20px" class="th"><strong>Data Penerimaan Harian Pajak Daerah <span id="tanggal_kemaren">&nbsp;</span></strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -81,8 +80,10 @@ window.onload = showTime;
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
-                <tr class="NoRecords">
-                  <td colspan="3">data tidak ditemukan</td>
+                <tr class="Caption">
+                  <th colspan="2">Jumlah </th>
+ 
+                  <th style="TEXT-ALIGN: right">Rp. {total_penerimaan}&nbsp;</th>
                 </tr>
                 <!-- END NoRecords -->
                 <tr style="DISPLAY: none" class="Footer">
