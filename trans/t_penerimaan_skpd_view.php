@@ -42,7 +42,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-18540194
+//Class_Initialize Event @2-3F2CDBBE
     function clsGridt_penerimaan_skpd_viewGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -74,6 +74,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
         $this->no_urut = & new clsControl(ccsLabel, "no_urut", "no_urut", ccsText, "", CCGetRequestParam("no_urut", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->total_penerimaan = & new clsControl(ccsLabel, "total_penerimaan", "total_penerimaan", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_penerimaan", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -88,7 +89,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     }
 //End Initialize Method
 
-//Show Method @2-F4ACAE7F
+//Show Method @2-38E30B58
     function Show()
     {
         global $Tpl;
@@ -162,7 +163,9 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
         if ($this->Navigator->TotalPages <= 1) {
             $this->Navigator->Visible = false;
         }
+        $this->total_penerimaan->SetValue($this->DataSource->total_penerimaan->GetValue());
         $this->Navigator->Show();
+        $this->total_penerimaan->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -186,7 +189,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
 
 class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_penerimaan_skpd_viewGridDataSource Class @2-14CAF917
 
-//DataSource Variables @2-A4D676FC
+//DataSource Variables @2-DFC4B7C5
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -201,9 +204,10 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     var $payment_vat_amount;
     var $vat_code;
     var $no_urut;
+    var $total_penerimaan;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-3D2C511D
+//DataSourceClass_Initialize Event @2-B95B26CA
     function clst_penerimaan_skpd_viewGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -214,6 +218,8 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
         $this->no_urut = new clsField("no_urut", ccsText, "");
+        
+        $this->total_penerimaan = new clsField("total_penerimaan", ccsFloat, "");
         
 
     }
@@ -291,12 +297,13 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Open Method
 
-//SetValues Method @2-8CBB3591
+//SetValues Method @2-453E8640
     function SetValues()
     {
         $this->payment_vat_amount->SetDBValue(trim($this->f("payment_vat_amount")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->no_urut->SetDBValue($this->f("no_urut"));
+        $this->total_penerimaan->SetDBValue(trim($this->f("total_penerimaan")));
     }
 //End SetValues Method
 
