@@ -63,7 +63,7 @@ function showTime(){
 
 	
     
-	    document.getElementById("timer").innerHTML = myDays[date.getDay()-1] + ", " + date.getDate() + " " + months[date.getMonth()] + " " + year + "  " + tHour + ":" + tMin + ":" + tSec + " " + ap;
+	    document.getElementById("timer").innerHTML = myDays[date.getDay()] + ", " + date.getDate() + " " + months[date.getMonth()] + " " + year + "  " + tHour + ":" + tMin + ":" + tSec + " " + ap;
     
 	    timerID = setTimeout("showTime()", 100);
 }
