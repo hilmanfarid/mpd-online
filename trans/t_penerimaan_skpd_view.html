@@ -41,7 +41,7 @@ function showTime(){
 	var yy = date.getYear();
 	var year = (yy < 1000) ? yy + 1900 : yy;
 	
-    document.getElementById("tanggal_kemaren").innerHTML = '(' + (day-1) + ' ' + months[month] + ' ' + year + ')';
+    document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day-1) + ' ' + months[month] + ' ' + year + ')';
 }
 
 window.onload = showTime;
