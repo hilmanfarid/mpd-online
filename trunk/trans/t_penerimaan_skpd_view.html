@@ -29,7 +29,7 @@ $(document).ready(function()
 var timerID = null;
 
 function showTime(){
-    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    	var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
         var date = new Date();
         var day = date.getDate();
@@ -39,17 +39,47 @@ function showTime(){
         var yy = date.getYear();
         var year = (yy < 1000) ? yy + 1900 : yy;
         
-    document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day-1) + ' ' + months[month] + ' ' + year + ')';
+	    document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day-1) + ' ' + months[month] + ' ' + year + ')';
+	
+		var tHour = date.getHours();
+	    var tMin = date.getMinutes().toString();
+	    var tSec = date.getSeconds().toString();
+	    var ap = "AM";
+    
+	    if(tHour > 11)
+	        ap = "PM";
+    
+	    if(tHour > 12)
+	        tHour = tHour - 12;
+    
+	    if(tHour == 0)
+	        tHour = 12;
+        
+	    if(tMin.length == 1)
+	        tMin = "0" + tMin;
+
+	    if(tSec.length == 1)
+	        tSec = "0" + tSec;
+
+	
+    
+	    document.getElementById("timer").innerHTML = myDays[date.getDay()-1] + ", " + date.getDate() + " " + months[date.getMonth()] + " " + year + "  " + tHour + ":" + tMin + ":" + tSec + " " + ap;
+    
+	    timerID = setTimeout("showTime()", 100);
 }
 
 window.onload = showTime;
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="background:#E1FFC4;">
+
 <div style="CLEAR: both; PADDING-TOP: 5px">
+
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td><br>
+	  <img src="../images/header_digs.gif" align="center" width="100%">
+	  <br/><br/>
         <!-- BEGIN Grid t_penerimaan_skpd_viewGrid -->
         <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
@@ -107,6 +137,8 @@ window.onload = showTime;
         &nbsp;</td>
     </tr>
   </table>
+  <br/>
+  <div id="timer" align="right" style="color:#000040; padding-right:10px; padding-bottom:5px; font-weight:bold; font-size:15px;"></div>
 </div>
 <script language="javascript">
         function statuswp() {
