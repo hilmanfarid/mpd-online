@@ -51,7 +51,7 @@ ORDER BY united.p_vat_type_id ASC" orderBy="p_region_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
