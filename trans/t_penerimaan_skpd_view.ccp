@@ -45,7 +45,13 @@ ORDER BY united.p_vat_type_id ASC" orderBy="p_region_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="250" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_penerimaan" PathID="t_penerimaan_skpd_viewGridtotal_penerimaan" format="#,##0.00" fieldSource="total_penerimaan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
