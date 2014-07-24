@@ -89,7 +89,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     }
 //End Initialize Method
 
-//Show Method @2-38E30B58
+//Show Method @2-9CCC3C62
     function Show()
     {
         global $Tpl;
@@ -163,7 +163,6 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
         if ($this->Navigator->TotalPages <= 1) {
             $this->Navigator->Visible = false;
         }
-        $this->total_penerimaan->SetValue($this->DataSource->total_penerimaan->GetValue());
         $this->Navigator->Show();
         $this->total_penerimaan->Show();
         $Tpl->parse();
@@ -189,7 +188,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
 
 class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_penerimaan_skpd_viewGridDataSource Class @2-14CAF917
 
-//DataSource Variables @2-DFC4B7C5
+//DataSource Variables @2-A4D676FC
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -204,10 +203,9 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     var $payment_vat_amount;
     var $vat_code;
     var $no_urut;
-    var $total_penerimaan;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-B95B26CA
+//DataSourceClass_Initialize Event @2-3D2C511D
     function clst_penerimaan_skpd_viewGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -218,8 +216,6 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
         $this->no_urut = new clsField("no_urut", ccsText, "");
-        
-        $this->total_penerimaan = new clsField("total_penerimaan", ccsFloat, "");
         
 
     }
@@ -297,13 +293,12 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Open Method
 
-//SetValues Method @2-453E8640
+//SetValues Method @2-8CBB3591
     function SetValues()
     {
         $this->payment_vat_amount->SetDBValue(trim($this->f("payment_vat_amount")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->no_urut->SetDBValue($this->f("no_urut"));
-        $this->total_penerimaan->SetDBValue(trim($this->f("total_penerimaan")));
     }
 //End SetValues Method
 
