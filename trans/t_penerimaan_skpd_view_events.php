@@ -29,7 +29,10 @@ function t_penerimaan_skpd_viewGrid_BeforeShowRow(& $sender)
         $Component->Attributes->SetValue("rowStyle", $Style);
     }
 //End Set Row Style
+	$nilai_penerimaan = $Component->DataSource->payment_vat_amount->GetValue();
 
+	$sum_penerimaan = $t_penerimaan_skpd_viewGrid->total_penerimaan->GetValue();
+	$t_penerimaan_skpd_viewGrid->total_penerimaan->SetValue($sum_penerimaan + $nilai_penerimaan);
 //Close t_penerimaan_skpd_viewGrid_BeforeShowRow @2-2BD69E2A
     return $t_penerimaan_skpd_viewGrid_BeforeShowRow;
 }
