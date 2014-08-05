@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta http-equiv="refresh" content="3600">
 <title>Data Penerimaan PBB/PAT/Reklame</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<meta http-equiv="refresh" content="3600">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
@@ -36,11 +36,11 @@ function showTime(){
         var day = date.getDate();
         var month = date.getMonth();
         var thisDay = date.getDay(),
-            thisDay = myDays[thisDay-2];
+            thisDay = myDays[thisDay];
         var yy = date.getYear();
         var year = (yy < 1000) ? yy + 1900 : yy;
         
-            document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day-2) + ' ' + months[month] + ' ' + year + ')';
+            document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day) + ' ' + months[month] + ' ' + year + ')';
         
                 var tHour = date.getHours();
             var tMin = date.getMinutes().toString();
@@ -72,49 +72,53 @@ function showTime(){
 window.onload = showTime;
 </script>
 </head>
-<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="CLEAR: both; PADDING-TOP: 5px">
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <p><br>
-        <img align="center" src="../images/header_digs.gif" width="100%" height="120px"><br>
+        &nbsp;</p>
+ 
+        <p><img align="center" src="../images/header_digs.gif" width="100%" height="120"><br>
         <br>
         </p>
  
         <p>&nbsp;</p>
         <!-- BEGIN Grid t_penerimaan_skpd_viewGrid -->
-        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%" >
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
             <td valign="top">
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0" height="20">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td style="FONT-SIZE: 30px" class="th"><strong>DATA PENERIMAAN HARIAN PAJAK DAERAH &nbsp;<span id="tanggal_kemaren"></span></strong></td> 
+                  <td style="FONT-SIZE: 30px" class="th"><strong>DATA PENERIMAAN HARIAN PAJAK DAERAH &nbsp;<span id="tanggal_kemaren">&nbsp;</span></strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
  
+              <p>&nbsp;</p>
+ 
               <table style="FONT-SIZE: 17px; FONT-WEIGHT: bold" class="Grid" cellspacing="2" cellpadding="0" height="20">
                 <tr class="Caption">
-                  <th height="50" valign="bottom" style="TEXT-ALIGN: center; vertical-align:middle" scope="col">&nbsp;No</th>
+                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" height="50" valign="bottom" scope="col">&nbsp;No</th>
  
-                  <th height="50" valign="baseline" style="TEXT-ALIGN: center; vertical-align:middle" scope="col">&nbsp;Jenis Pajak</th>
+                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" height="50" valign="baseline" scope="col">&nbsp;Jenis Pajak</th>
  
-                  <th height="50" valign="middle" style="TEXT-ALIGN: center; vertical-align:middle" scope="col">Jumlah Penerimaan</th>
+                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" height="50" valign="center" scope="col">Jumlah Penerimaan</th>
                 </tr>
  
                 <!-- BEGIN Row -->
                 <tr {t_penerimaan_skpd_viewGrid:rowStyle}>
-                  <td height="30" style="TEXT-ALIGN: center; vertical-align:middle">{no_urut}</td> 
-                  <td height="30" style="vertical-align:middle">{vat_code}&nbsp;</td> 
-                  <td height="30" style="TEXT-ALIGN: right; vertical-align:middle">Rp. {payment_vat_amount}&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" height="30">{no_urut}</td> 
+                  <td style="VERTICAL-ALIGN: middle" height="30">{vat_code}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; VERTICAL-ALIGN: middle" height="30">Rp. {payment_vat_amount}&nbsp;&nbsp;&nbsp;&nbsp; </td>
                 </tr>
  <!-- END Row -->
                 <tr class="Caption">
-                  <th style="TEXT-ALIGN: center; vertical-align:middle" colspan="2">Total Penerimaan</th>
+                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" colspan="2">Total Penerimaan</th>
  
-                  <th style="TEXT-ALIGN: right; PADDING-RIGHT: 18px; vertical-align:middle">Rp. {total_penerimaan}&nbsp;</th>
+                  <th style="TEXT-ALIGN: right; PADDING-RIGHT: 18px; VERTICAL-ALIGN: middle">Rp. {total_penerimaan}&nbsp;</th>
                 </tr>
                 <!-- BEGIN NoRecords --><!-- END NoRecords -->
                 <tr style="DISPLAY: none" class="Footer">
@@ -139,10 +143,15 @@ window.onload = showTime;
         <!-- END Grid t_penerimaan_skpd_viewGrid --><br>
         &nbsp;</td>
     </tr>
+	<tr>
+		<td><div class="grid-table-container" style="PADDING-BOTTOM: 5px; 
+		PADDING-RIGHT: 10px; COLOR: #000000; FONT-SIZE: 20px; 
+		background-color:#59B704;
+		FONT-WEIGHT: bold" id="timer" align="right">
+		</div></td>
+	</tr>
   </table>
   <br>
-  <div style="PADDING-BOTTOM: 5px; PADDING-RIGHT: 10px; COLOR: #000040; FONT-SIZE: 15px; FONT-WEIGHT: bold" id="timer" align="right">
-  </div>
 </div>
 <script language="javascript">
         function statuswp() {
