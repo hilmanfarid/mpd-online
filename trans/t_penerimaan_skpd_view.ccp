@@ -14,7 +14,7 @@ UNION
 FROM p_vat_type_dtl AS a 
 LEFT JOIN p_vat_type AS c ON a.p_vat_type_id = c.p_vat_type_id
 LEFT JOIN t_payment_receipt_skpd b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
-AND trunc(b.payment_date) = trunc(sysdate-1)
+AND trunc(b.payment_date) = trunc(sysdate-2)
 WHERE a.p_vat_type_id IN (8,9,10)
 GROUP BY a.p_vat_type_id, c.vat_code
 ORDER BY a.p_vat_type_id
