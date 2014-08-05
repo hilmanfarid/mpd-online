@@ -36,11 +36,11 @@ function showTime(){
         var day = date.getDate();
         var month = date.getMonth();
         var thisDay = date.getDay(),
-            thisDay = myDays[thisDay-1];
+            thisDay = myDays[thisDay-2];
         var yy = date.getYear();
         var year = (yy < 1000) ? yy + 1900 : yy;
         
-            document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day-1) + ' ' + months[month] + ' ' + year + ')';
+            document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day-2) + ' ' + months[month] + ' ' + year + ')';
         
                 var tHour = date.getHours();
             var tMin = date.getMinutes().toString();
