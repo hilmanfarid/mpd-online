@@ -241,7 +241,7 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Prepare Method
 
-//Open Method @2-68ACA4D1
+//Open Method @2-3C3DBBB5
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -259,7 +259,7 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         "FROM p_vat_type_dtl AS a \n" .
         "LEFT JOIN p_vat_type AS c ON a.p_vat_type_id = c.p_vat_type_id\n" .
         "LEFT JOIN t_payment_receipt_skpd b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id\n" .
-        "AND trunc(b.payment_date) = trunc(sysdate-1)\n" .
+        "AND trunc(b.payment_date) = trunc(sysdate-2)\n" .
         "WHERE a.p_vat_type_id IN (8,9,10)\n" .
         "GROUP BY a.p_vat_type_id, c.vat_code\n" .
         "ORDER BY a.p_vat_type_id\n" .
@@ -278,7 +278,7 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         "FROM p_vat_type_dtl AS a \n" .
         "LEFT JOIN p_vat_type AS c ON a.p_vat_type_id = c.p_vat_type_id\n" .
         "LEFT JOIN t_payment_receipt_skpd b ON a.p_vat_type_dtl_id = b.p_vat_type_dtl_id\n" .
-        "AND trunc(b.payment_date) = trunc(sysdate-1)\n" .
+        "AND trunc(b.payment_date) = trunc(sysdate-2)\n" .
         "WHERE a.p_vat_type_id IN (8,9,10)\n" .
         "GROUP BY a.p_vat_type_id, c.vat_code\n" .
         "ORDER BY a.p_vat_type_id\n" .
