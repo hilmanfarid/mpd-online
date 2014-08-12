@@ -444,10 +444,13 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
+
+		$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,168,$lbody4+48,20);
+
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4-5, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4+10, $this->height, "TTD", "", 0, 'C');
+		$this->Cell($lbody4+10, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
