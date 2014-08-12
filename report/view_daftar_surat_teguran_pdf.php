@@ -75,6 +75,9 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', 'B', 10);
 		$this->Cell($lengthCell, $this->height, "DAFTAR SURAT TEGURAN " . strtoupper($data["vat_code"][0]), 0, 0, 'C');
 		$this->Ln(10);
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lengthCell, $this->height, "Tanggal Cetak : " . date("d-M-Y"), 0, 0, 'R');
+		$this->Ln(10);
 		$this->SetFont('Arial', '', 10);
 		$this->Cell($kol1, $this->height, "NO", 1, 0, 'C');
 		$this->Cell($kol2, $this->height, "NPWPD", 1, 0, 'C');
@@ -115,11 +118,15 @@ class FormCetak extends FPDF {
 		}
 		$this->ln(8);
 		$this->SetAligns(array("C","C"));
-		$this->SetWidths(array($kol1+$kol2+$kol3+$kol3+$kol2+$kol2, $kol2+$kol3));
-		$this->RowMultiBorderWithHeight(array('',"Kepala Seksi Piutang\n\n\n\n\n\nRACHMAT SATIADI, S.Ip., M.Si\nNIP.19691104 199803 1 007"),array('',''),$this->height);
+		$this->SetWidths(array(($kol1+$kol2+$kol3+$kol3+$kol2+$kol2+$kol2+$kol3)/2,($kol1+$kol2+$kol3+$kol3+$kol2+$kol2+$kol2+$kol3)/2));
+		 $this->RowMultiBorderWithHeight(array("\n\n\n\n\n\n\nMengetahui,\nan. KEPALA DINAS PELAYANAN PAJAK\nKepala Bidang Pajak Pendaftaran\n\n\n\n\n\nH. SONI BAKHTIYAR, S.Sos, M.Si\nNIP. 19750625 199403 1 001","Kepala Seksi Piutang\n\n\n\n\n\nRACHMAT SATIADI, S.Ip., M.Si\nNIP.19691104 199803 1 007"),array('',''),$this->height);
 		/*$this->ln(16);
 		$this->RowMultiBorderWithHeight(array('','RACHMAT SATIADI, S.Ip., M.Si'),array('',''),$this->height);
 		$this->RowMultiBorderWithHeight(array('','NIP.19691104 199803 1 007'),array('',''),$this->height);	*/	
+
+		$this->Ln(10);
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lengthCell, $this->height, "Pencetak : " . CCGetUserLogin(), 0, 0, 'L');
 		
 	}
 
