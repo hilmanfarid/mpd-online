@@ -359,7 +359,7 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-06DB5F99
+//Class_Initialize Event @94-B0AE9A44
     function clsRecordt_cust_account_updateForm($RelativePath, & $Parent)
     {
 
@@ -483,6 +483,34 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
             $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->p_account_status_id = & new clsControl(ccsHidden, "p_account_status_id", "p_account_status_id", ccsText, "", CCGetRequestParam("p_account_status_id", $Method, NULL), $this);
+            $this->t_customer_id = & new clsControl(ccsHidden, "t_customer_id", "t_customer_id", ccsText, "", CCGetRequestParam("t_customer_id", $Method, NULL), $this);
+            $this->nama_jabatan = & new clsControl(ccsTextBox, "nama_jabatan", "Jabatan", ccsText, "", CCGetRequestParam("nama_jabatan", $Method, NULL), $this);
+            $this->nama_jabatan->Required = true;
+            $this->nama_kota_owner = & new clsControl(ccsTextBox, "nama_kota_owner", "Kota", ccsText, "", CCGetRequestParam("nama_kota_owner", $Method, NULL), $this);
+            $this->nama_kota_owner->Required = true;
+            $this->nama_kecamatan_owner = & new clsControl(ccsTextBox, "nama_kecamatan_owner", "Description", ccsText, "", CCGetRequestParam("nama_kecamatan_owner", $Method, NULL), $this);
+            $this->nama_kecamatan_owner->Required = true;
+            $this->nama_kelurahan_owner = & new clsControl(ccsTextBox, "nama_kelurahan_owner", "Description", ccsText, "", CCGetRequestParam("nama_kelurahan_owner", $Method, NULL), $this);
+            $this->nama_kelurahan_owner->Required = true;
+            $this->address_rt_owner = & new clsControl(ccsTextBox, "address_rt_owner", "Description", ccsText, "", CCGetRequestParam("address_rt_owner", $Method, NULL), $this);
+            $this->address_rw_owner = & new clsControl(ccsTextBox, "address_rw_owner", "Description", ccsText, "", CCGetRequestParam("address_rw_owner", $Method, NULL), $this);
+            $this->zip_code_owner = & new clsControl(ccsTextBox, "zip_code_owner", "Description", ccsText, "", CCGetRequestParam("zip_code_owner", $Method, NULL), $this);
+            $this->phone_no_owner = & new clsControl(ccsTextBox, "phone_no_owner", "Description", ccsText, "", CCGetRequestParam("phone_no_owner", $Method, NULL), $this);
+            $this->mobile_no_owner = & new clsControl(ccsTextBox, "mobile_no_owner", "Description", ccsText, "", CCGetRequestParam("mobile_no_owner", $Method, NULL), $this);
+            $this->mobile_no_owner->Required = true;
+            $this->email_address = & new clsControl(ccsTextBox, "email_address", "Description", ccsText, "", CCGetRequestParam("email_address", $Method, NULL), $this);
+            $this->address_name_owner = & new clsControl(ccsTextArea, "address_name_owner", "Alamat", ccsText, "", CCGetRequestParam("address_name_owner", $Method, NULL), $this);
+            $this->address_name_owner->Required = true;
+            $this->company_owner = & new clsControl(ccsTextBox, "company_owner", "Nama Perusahaan", ccsText, "", CCGetRequestParam("company_owner", $Method, NULL), $this);
+            $this->company_owner->Required = true;
+            $this->updated_by1 = & new clsControl(ccsHidden, "updated_by1", "updated_by1", ccsText, "", CCGetRequestParam("updated_by1", $Method, NULL), $this);
+            $this->p_job_position_id = & new clsControl(ccsHidden, "p_job_position_id", "p_job_position_id", ccsText, "", CCGetRequestParam("p_job_position_id", $Method, NULL), $this);
+            $this->p_region_id_kel_owner = & new clsControl(ccsHidden, "p_region_id_kel_owner", "p_region_id_kel_owner", ccsText, "", CCGetRequestParam("p_region_id_kel_owner", $Method, NULL), $this);
+            $this->p_region_id_kec_owner = & new clsControl(ccsHidden, "p_region_id_kec_owner", "p_region_id_kec_owner", ccsText, "", CCGetRequestParam("p_region_id_kec_owner", $Method, NULL), $this);
+            $this->p_region_id_owner = & new clsControl(ccsHidden, "p_region_id_owner", "p_region_id_owner", ccsText, "", CCGetRequestParam("p_region_id_owner", $Method, NULL), $this);
+            $this->fax_no_owner = & new clsControl(ccsTextBox, "fax_no_owner", "Description", ccsText, "", CCGetRequestParam("fax_no_owner", $Method, NULL), $this);
+            $this->address_no_owner = & new clsControl(ccsTextBox, "address_no_owner", "No", ccsText, "", CCGetRequestParam("address_no_owner", $Method, NULL), $this);
+            $this->address_no_owner->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->p_region_id->Value) && !strlen($this->p_region_id->Value) && $this->p_region_id->Value !== false)
                     $this->p_region_id->SetText(749);
@@ -498,6 +526,8 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
                     $this->wp_kota->SetText('KOTA BANDUNG');
                 if(!is_array($this->wp_p_region_id->Value) && !strlen($this->wp_p_region_id->Value) && $this->wp_p_region_id->Value !== false)
                     $this->wp_p_region_id->SetText(749);
+                if(!is_array($this->updated_by1->Value) && !strlen($this->updated_by1->Value) && $this->updated_by1->Value !== false)
+                    $this->updated_by1->SetText(CCGetUserLogin());
             }
         }
     }
@@ -515,7 +545,7 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
     }
 //End Initialize Method
 
-//Validate Method @94-AF055738
+//Validate Method @94-7402B078
     function Validate()
     {
         global $CCSLocales;
@@ -523,6 +553,9 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
         $Where = "";
         if(strlen($this->wp_email->GetText()) && !preg_match ("/^[\w\.-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]+$/", $this->wp_email->GetText())) {
             $this->wp_email->Errors->addError($CCSLocales->GetText("CCS_MaskValidation", "Email - WP"));
+        }
+        if(strlen($this->email_address->GetText()) && !preg_match ("/^[\w\.-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]+$/", $this->email_address->GetText())) {
+            $this->email_address->Errors->addError($CCSLocales->GetText("CCS_MaskValidation", "Description"));
         }
         $Validation = ($this->t_cust_account_id->Validate() && $Validation);
         $Validation = ($this->p_cust_account_id->Validate() && $Validation);
@@ -585,6 +618,26 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
         $Validation = ($this->nama_ayat->Validate() && $Validation);
         $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
         $Validation = ($this->p_account_status_id->Validate() && $Validation);
+        $Validation = ($this->t_customer_id->Validate() && $Validation);
+        $Validation = ($this->nama_jabatan->Validate() && $Validation);
+        $Validation = ($this->nama_kota_owner->Validate() && $Validation);
+        $Validation = ($this->nama_kecamatan_owner->Validate() && $Validation);
+        $Validation = ($this->nama_kelurahan_owner->Validate() && $Validation);
+        $Validation = ($this->address_rt_owner->Validate() && $Validation);
+        $Validation = ($this->address_rw_owner->Validate() && $Validation);
+        $Validation = ($this->zip_code_owner->Validate() && $Validation);
+        $Validation = ($this->phone_no_owner->Validate() && $Validation);
+        $Validation = ($this->mobile_no_owner->Validate() && $Validation);
+        $Validation = ($this->email_address->Validate() && $Validation);
+        $Validation = ($this->address_name_owner->Validate() && $Validation);
+        $Validation = ($this->company_owner->Validate() && $Validation);
+        $Validation = ($this->updated_by1->Validate() && $Validation);
+        $Validation = ($this->p_job_position_id->Validate() && $Validation);
+        $Validation = ($this->p_region_id_kel_owner->Validate() && $Validation);
+        $Validation = ($this->p_region_id_kec_owner->Validate() && $Validation);
+        $Validation = ($this->p_region_id_owner->Validate() && $Validation);
+        $Validation = ($this->fax_no_owner->Validate() && $Validation);
+        $Validation = ($this->address_no_owner->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_cust_account_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_cust_account_id->Errors->Count() == 0);
@@ -647,11 +700,31 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
         $Validation =  $Validation && ($this->nama_ayat->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_account_status_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_customer_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_jabatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kota_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kecamatan_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kelurahan_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->address_rt_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->address_rw_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->zip_code_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->phone_no_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->mobile_no_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->email_address->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->address_name_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->company_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->updated_by1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_job_position_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_region_id_kel_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_region_id_kec_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_region_id_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->fax_no_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->address_no_owner->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-40378EED
+//CheckErrors Method @94-B8BAD606
     function CheckErrors()
     {
         $errors = false;
@@ -716,6 +789,26 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
         $errors = ($errors || $this->nama_ayat->Errors->Count());
         $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
         $errors = ($errors || $this->p_account_status_id->Errors->Count());
+        $errors = ($errors || $this->t_customer_id->Errors->Count());
+        $errors = ($errors || $this->nama_jabatan->Errors->Count());
+        $errors = ($errors || $this->nama_kota_owner->Errors->Count());
+        $errors = ($errors || $this->nama_kecamatan_owner->Errors->Count());
+        $errors = ($errors || $this->nama_kelurahan_owner->Errors->Count());
+        $errors = ($errors || $this->address_rt_owner->Errors->Count());
+        $errors = ($errors || $this->address_rw_owner->Errors->Count());
+        $errors = ($errors || $this->zip_code_owner->Errors->Count());
+        $errors = ($errors || $this->phone_no_owner->Errors->Count());
+        $errors = ($errors || $this->mobile_no_owner->Errors->Count());
+        $errors = ($errors || $this->email_address->Errors->Count());
+        $errors = ($errors || $this->address_name_owner->Errors->Count());
+        $errors = ($errors || $this->company_owner->Errors->Count());
+        $errors = ($errors || $this->updated_by1->Errors->Count());
+        $errors = ($errors || $this->p_job_position_id->Errors->Count());
+        $errors = ($errors || $this->p_region_id_kel_owner->Errors->Count());
+        $errors = ($errors || $this->p_region_id_kec_owner->Errors->Count());
+        $errors = ($errors || $this->p_region_id_owner->Errors->Count());
+        $errors = ($errors || $this->fax_no_owner->Errors->Count());
+        $errors = ($errors || $this->address_no_owner->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -787,7 +880,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//UpdateRow Method @94-493985F9
+//UpdateRow Method @94-778EB276
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -837,13 +930,28 @@ function GetPrimaryKey($keyName)
         $this->DataSource->p_account_status_id->SetValue($this->p_account_status_id->GetValue(true));
         $this->DataSource->activation_no->SetValue($this->activation_no->GetValue(true));
         $this->DataSource->p_vat_type_dtl_id->SetValue($this->p_vat_type_dtl_id->GetValue(true));
+        $this->DataSource->company_owner->SetValue($this->company_owner->GetValue(true));
+        $this->DataSource->p_job_position_id->SetValue($this->p_job_position_id->GetValue(true));
+        $this->DataSource->address_name_owner->SetValue($this->address_name_owner->GetValue(true));
+        $this->DataSource->address_no_owner->SetValue($this->address_no_owner->GetValue(true));
+        $this->DataSource->address_rt_owner->SetValue($this->address_rt_owner->GetValue(true));
+        $this->DataSource->address_rw_owner->SetValue($this->address_rw_owner->GetValue(true));
+        $this->DataSource->p_region_id_owner->SetValue($this->p_region_id_owner->GetValue(true));
+        $this->DataSource->p_region_id_kec_owner->SetValue($this->p_region_id_kec_owner->GetValue(true));
+        $this->DataSource->p_region_id_kel_owner->SetValue($this->p_region_id_kel_owner->GetValue(true));
+        $this->DataSource->phone_no_owner->SetValue($this->phone_no_owner->GetValue(true));
+        $this->DataSource->fax_no_owner->SetValue($this->fax_no_owner->GetValue(true));
+        $this->DataSource->mobile_no_owner->SetValue($this->mobile_no_owner->GetValue(true));
+        $this->DataSource->email_address->SetValue($this->email_address->GetValue(true));
+        $this->DataSource->zip_code_owner->SetValue($this->zip_code_owner->GetValue(true));
+        $this->DataSource->t_customer_id->SetValue($this->t_customer_id->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @94-C7E0D307
+//Show Method @94-C0140AC0
     function Show()
     {
         global $CCSUseAmp;
@@ -931,6 +1039,26 @@ function GetPrimaryKey($keyName)
                     $this->nama_ayat->SetValue($this->DataSource->nama_ayat->GetValue());
                     $this->p_vat_type_dtl_id->SetValue($this->DataSource->p_vat_type_dtl_id->GetValue());
                     $this->p_account_status_id->SetValue($this->DataSource->p_account_status_id->GetValue());
+                    $this->t_customer_id->SetValue($this->DataSource->t_customer_id->GetValue());
+                    $this->nama_jabatan->SetValue($this->DataSource->nama_jabatan->GetValue());
+                    $this->nama_kota_owner->SetValue($this->DataSource->nama_kota_owner->GetValue());
+                    $this->nama_kecamatan_owner->SetValue($this->DataSource->nama_kecamatan_owner->GetValue());
+                    $this->nama_kelurahan_owner->SetValue($this->DataSource->nama_kelurahan_owner->GetValue());
+                    $this->address_rt_owner->SetValue($this->DataSource->address_rt_owner->GetValue());
+                    $this->address_rw_owner->SetValue($this->DataSource->address_rw_owner->GetValue());
+                    $this->zip_code_owner->SetValue($this->DataSource->zip_code_owner->GetValue());
+                    $this->phone_no_owner->SetValue($this->DataSource->phone_no_owner->GetValue());
+                    $this->mobile_no_owner->SetValue($this->DataSource->mobile_no_owner->GetValue());
+                    $this->email_address->SetValue($this->DataSource->email_address->GetValue());
+                    $this->address_name_owner->SetValue($this->DataSource->address_name_owner->GetValue());
+                    $this->company_owner->SetValue($this->DataSource->company_owner->GetValue());
+                    $this->updated_by1->SetValue($this->DataSource->updated_by1->GetValue());
+                    $this->p_job_position_id->SetValue($this->DataSource->p_job_position_id->GetValue());
+                    $this->p_region_id_kel_owner->SetValue($this->DataSource->p_region_id_kel_owner->GetValue());
+                    $this->p_region_id_kec_owner->SetValue($this->DataSource->p_region_id_kec_owner->GetValue());
+                    $this->p_region_id_owner->SetValue($this->DataSource->p_region_id_owner->GetValue());
+                    $this->fax_no_owner->SetValue($this->DataSource->fax_no_owner->GetValue());
+                    $this->address_no_owner->SetValue($this->DataSource->address_no_owner->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -1002,6 +1130,26 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->nama_ayat->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_account_status_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_customer_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_jabatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kota_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kecamatan_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kelurahan_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->address_rt_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->address_rw_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->zip_code_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->phone_no_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->mobile_no_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->email_address->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->address_name_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->company_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->updated_by1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_job_position_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_region_id_kel_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_region_id_kec_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_region_id_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->fax_no_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->address_no_owner->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1085,6 +1233,26 @@ function GetPrimaryKey($keyName)
         $this->p_vat_type_dtl_id->Show();
         $this->Button1->Show();
         $this->p_account_status_id->Show();
+        $this->t_customer_id->Show();
+        $this->nama_jabatan->Show();
+        $this->nama_kota_owner->Show();
+        $this->nama_kecamatan_owner->Show();
+        $this->nama_kelurahan_owner->Show();
+        $this->address_rt_owner->Show();
+        $this->address_rw_owner->Show();
+        $this->zip_code_owner->Show();
+        $this->phone_no_owner->Show();
+        $this->mobile_no_owner->Show();
+        $this->email_address->Show();
+        $this->address_name_owner->Show();
+        $this->company_owner->Show();
+        $this->updated_by1->Show();
+        $this->p_job_position_id->Show();
+        $this->p_region_id_kel_owner->Show();
+        $this->p_region_id_kec_owner->Show();
+        $this->p_region_id_owner->Show();
+        $this->fax_no_owner->Show();
+        $this->address_no_owner->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1095,7 +1263,7 @@ function GetPrimaryKey($keyName)
 
 class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_account_updateFormDataSource Class @94-3D3B7BED
 
-//DataSource Variables @94-44EA0EAF
+//DataSource Variables @94-CD47D958
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1169,9 +1337,29 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
     var $nama_ayat;
     var $p_vat_type_dtl_id;
     var $p_account_status_id;
+    var $t_customer_id;
+    var $nama_jabatan;
+    var $nama_kota_owner;
+    var $nama_kecamatan_owner;
+    var $nama_kelurahan_owner;
+    var $address_rt_owner;
+    var $address_rw_owner;
+    var $zip_code_owner;
+    var $phone_no_owner;
+    var $mobile_no_owner;
+    var $email_address;
+    var $address_name_owner;
+    var $company_owner;
+    var $updated_by1;
+    var $p_job_position_id;
+    var $p_region_id_kel_owner;
+    var $p_region_id_kec_owner;
+    var $p_region_id_owner;
+    var $fax_no_owner;
+    var $address_no_owner;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-694813EB
+//DataSourceClass_Initialize Event @94-6EBAFCAD
     function clst_cust_account_updateFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1299,6 +1487,46 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
         
         $this->p_account_status_id = new clsField("p_account_status_id", ccsText, "");
         
+        $this->t_customer_id = new clsField("t_customer_id", ccsText, "");
+        
+        $this->nama_jabatan = new clsField("nama_jabatan", ccsText, "");
+        
+        $this->nama_kota_owner = new clsField("nama_kota_owner", ccsText, "");
+        
+        $this->nama_kecamatan_owner = new clsField("nama_kecamatan_owner", ccsText, "");
+        
+        $this->nama_kelurahan_owner = new clsField("nama_kelurahan_owner", ccsText, "");
+        
+        $this->address_rt_owner = new clsField("address_rt_owner", ccsText, "");
+        
+        $this->address_rw_owner = new clsField("address_rw_owner", ccsText, "");
+        
+        $this->zip_code_owner = new clsField("zip_code_owner", ccsText, "");
+        
+        $this->phone_no_owner = new clsField("phone_no_owner", ccsText, "");
+        
+        $this->mobile_no_owner = new clsField("mobile_no_owner", ccsText, "");
+        
+        $this->email_address = new clsField("email_address", ccsText, "");
+        
+        $this->address_name_owner = new clsField("address_name_owner", ccsText, "");
+        
+        $this->company_owner = new clsField("company_owner", ccsText, "");
+        
+        $this->updated_by1 = new clsField("updated_by1", ccsText, "");
+        
+        $this->p_job_position_id = new clsField("p_job_position_id", ccsText, "");
+        
+        $this->p_region_id_kel_owner = new clsField("p_region_id_kel_owner", ccsText, "");
+        
+        $this->p_region_id_kec_owner = new clsField("p_region_id_kec_owner", ccsText, "");
+        
+        $this->p_region_id_owner = new clsField("p_region_id_owner", ccsText, "");
+        
+        $this->fax_no_owner = new clsField("fax_no_owner", ccsText, "");
+        
+        $this->address_no_owner = new clsField("address_no_owner", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1315,13 +1543,22 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
     }
 //End Prepare Method
 
-//Open Method @94-B5849D68
+//Open Method @94-F3531A52
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "SELECT * FROM v_cust_account_update\n" .
-        "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
-        "AND t_customer_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
+        $this->SQL = "SELECT *,b.code AS nama_jabatan,\n" .
+        "p.region_name as nama_kota_owner,\n" .
+        "q.region_name as nama_kecamatan_owner,\n" .
+        "r.region_name as nama_kelurahan_owner\n" .
+        "FROM v_cust_account_update v\n" .
+        "LEFT JOIN t_customer x ON x.t_customer_id=v.t_customer_id\n" .
+        "LEFT JOIN p_job_position b ON x.p_job_position_id = b.p_job_position_id\n" .
+        "left join p_region p on p.p_region_id = x.p_region_id_owner\n" .
+        "left join p_region q on q.p_region_id = x.p_region_id_kec_owner\n" .
+        "left join p_region r on r.p_region_id = x.p_region_id_kel_owner\n" .
+        "WHERE v.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
+        "AND v.t_customer_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsInteger) . "\n" .
         "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -1331,7 +1568,7 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
     }
 //End Open Method
 
-//SetValues Method @94-4F460F0F
+//SetValues Method @94-AF63B1BC
     function SetValues()
     {
         $this->t_cust_account_id->SetDBValue($this->f("t_cust_account_id"));
@@ -1394,10 +1631,30 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
         $this->nama_ayat->SetDBValue($this->f("nama_ayat"));
         $this->p_vat_type_dtl_id->SetDBValue($this->f("p_vat_type_dtl_id"));
         $this->p_account_status_id->SetDBValue($this->f("p_account_status_id"));
+        $this->t_customer_id->SetDBValue($this->f("t_customer_id"));
+        $this->nama_jabatan->SetDBValue($this->f("nama_jabatan"));
+        $this->nama_kota_owner->SetDBValue($this->f("nama_kota_owner"));
+        $this->nama_kecamatan_owner->SetDBValue($this->f("nama_kecamatan_owner"));
+        $this->nama_kelurahan_owner->SetDBValue($this->f("nama_kelurahan_owner"));
+        $this->address_rt_owner->SetDBValue($this->f("address_rt_owner"));
+        $this->address_rw_owner->SetDBValue($this->f("address_rw_owner"));
+        $this->zip_code_owner->SetDBValue($this->f("zip_code_owner"));
+        $this->phone_no_owner->SetDBValue($this->f("phone_no_owner"));
+        $this->mobile_no_owner->SetDBValue($this->f("mobile_no_owner"));
+        $this->email_address->SetDBValue($this->f("email_address"));
+        $this->address_name_owner->SetDBValue($this->f("address_name_owner"));
+        $this->company_owner->SetDBValue($this->f("company_owner"));
+        $this->updated_by1->SetDBValue($this->f("updated_by"));
+        $this->p_job_position_id->SetDBValue($this->f("p_job_position_id"));
+        $this->p_region_id_kel_owner->SetDBValue($this->f("p_region_id_kel_owner"));
+        $this->p_region_id_kec_owner->SetDBValue($this->f("p_region_id_kec_owner"));
+        $this->p_region_id_owner->SetDBValue($this->f("p_region_id_owner"));
+        $this->fax_no_owner->SetDBValue($this->f("fax_no_owner"));
+        $this->address_no_owner->SetDBValue($this->f("address_no_owner"));
     }
 //End SetValues Method
 
-//Update Method @94-D42090B0
+//Update Method @94-57D90503
     function Update()
     {
         global $CCSLocales;
@@ -1448,6 +1705,22 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
         $this->cp["p_account_status_id"] = new clsSQLParameter("ctrlp_account_status_id", ccsFloat, "", "", $this->p_account_status_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["activation_no"] = new clsSQLParameter("ctrlactivation_no", ccsText, "", "", $this->activation_no->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["p_vat_type_dtl_id"] = new clsSQLParameter("ctrlp_vat_type_dtl_id", ccsFloat, "", "", $this->p_vat_type_dtl_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["modification_by"] = new clsSQLParameter("expr651", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
+        $this->cp["company_owner"] = new clsSQLParameter("ctrlcompany_owner", ccsText, "", "", $this->company_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["p_job_position_id"] = new clsSQLParameter("ctrlp_job_position_id", ccsInteger, "", "", $this->p_job_position_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["address_name_owner"] = new clsSQLParameter("ctrladdress_name_owner", ccsText, "", "", $this->address_name_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["address_no_owner"] = new clsSQLParameter("ctrladdress_no_owner", ccsText, "", "", $this->address_no_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["address_rt_owner"] = new clsSQLParameter("ctrladdress_rt_owner", ccsText, "", "", $this->address_rt_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["address_rw_owner"] = new clsSQLParameter("ctrladdress_rw_owner", ccsText, "", "", $this->address_rw_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["p_region_id_owner"] = new clsSQLParameter("ctrlp_region_id_owner", ccsInteger, "", "", $this->p_region_id_owner->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["p_region_id_kec_owner"] = new clsSQLParameter("ctrlp_region_id_kec_owner", ccsInteger, "", "", $this->p_region_id_kec_owner->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["p_region_id_kel_owner"] = new clsSQLParameter("ctrlp_region_id_kel_owner", ccsInteger, "", "", $this->p_region_id_kel_owner->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["phone_no_owner"] = new clsSQLParameter("ctrlphone_no_owner", ccsText, "", "", $this->phone_no_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["fax_no_owner"] = new clsSQLParameter("ctrlfax_no_owner", ccsText, "", "", $this->fax_no_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["mobile_no_owner"] = new clsSQLParameter("ctrlmobile_no_owner", ccsText, "", "", $this->mobile_no_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["email_address"] = new clsSQLParameter("ctrlemail_address", ccsText, "", "", $this->email_address->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["zip_code_owner"] = new clsSQLParameter("ctrlzip_code_owner", ccsText, "", "", $this->zip_code_owner->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["t_customer_id"] = new clsSQLParameter("ctrlt_customer_id", ccsInteger, "", "", $this->t_customer_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["p_vat_type_id"]->GetValue()) and !strlen($this->cp["p_vat_type_id"]->GetText()) and !is_bool($this->cp["p_vat_type_id"]->GetValue())) 
             $this->cp["p_vat_type_id"]->SetValue($this->p_vat_type_id->GetValue(true));
@@ -1557,54 +1830,108 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
             $this->cp["p_vat_type_dtl_id"]->SetValue($this->p_vat_type_dtl_id->GetValue(true));
         if (!strlen($this->cp["p_vat_type_dtl_id"]->GetText()) and !is_bool($this->cp["p_vat_type_dtl_id"]->GetValue(true))) 
             $this->cp["p_vat_type_dtl_id"]->SetText(0);
-        $this->SQL = "UPDATE t_cust_account\n" .
-        "   SET \n" .
-        "       npwd='" . $this->SQLValue($this->cp["npwd"]->GetDBValue(), ccsText) . "', \n" .
-        "       p_account_status_id=" . $this->SQLValue($this->cp["p_account_status_id"]->GetDBValue(), ccsFloat) . ",\n" .
-        "       activation_no='" . $this->SQLValue($this->cp["activation_no"]->GetDBValue(), ccsText) . "',\n" .
-        "       p_vat_type_id=" . $this->SQLValue($this->cp["p_vat_type_id"]->GetDBValue(), ccsFloat) . ", \n" .
-        "       registration_date='" . $this->SQLValue($this->cp["registration_date"]->GetDBValue(), ccsText) . "', \n" .
-        "       company_name='" . $this->SQLValue($this->cp["company_name"]->GetDBValue(), ccsText) . "', \n" .
-        "       company_brand='" . $this->SQLValue($this->cp["company_brand"]->GetDBValue(), ccsText) . "', \n" .
-        "       address_name='" . $this->SQLValue($this->cp["address_name"]->GetDBValue(), ccsText) . "', \n" .
-        "       address_no='" . $this->SQLValue($this->cp["address_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       address_rt='" . $this->SQLValue($this->cp["address_rt"]->GetDBValue(), ccsText) . "', \n" .
-        "       address_rw='" . $this->SQLValue($this->cp["address_rw"]->GetDBValue(), ccsText) . "', \n" .
-        "       p_region_id_kelurahan=" . $this->SQLValue($this->cp["p_region_id_kelurahan"]->GetDBValue(), ccsText) . ", \n" .
-        "       p_region_id_kecamatan=" . $this->SQLValue($this->cp["p_region_id_kecamatan"]->GetDBValue(), ccsText) . ", \n" .
-        "       p_region_id=" . $this->SQLValue($this->cp["p_region_id"]->GetDBValue(), ccsText) . ", \n" .
-        "       phone_no='" . $this->SQLValue($this->cp["phone_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       mobile_no='" . $this->SQLValue($this->cp["mobile_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       fax_no='" . $this->SQLValue($this->cp["fax_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       zip_code='" . $this->SQLValue($this->cp["zip_code"]->GetDBValue(), ccsText) . "', \n" .
-        "       updated_date=sysdate, \n" .
-        "       updated_by='" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "',\n" .
-        "       wp_name='" . $this->SQLValue($this->cp["wp_name"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_address_name='" . $this->SQLValue($this->cp["wp_address_name"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_address_no='" . $this->SQLValue($this->cp["wp_address_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_address_rt='" . $this->SQLValue($this->cp["wp_address_rt"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_address_rw='" . $this->SQLValue($this->cp["wp_address_rw"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_p_region_id_kelurahan=" . $this->SQLValue($this->cp["wp_p_region_id_kelurahan"]->GetDBValue(), ccsFloat) . ", \n" .
-        "       wp_p_region_id_kecamatan=" . $this->SQLValue($this->cp["wp_p_region_id_kecamatan"]->GetDBValue(), ccsFloat) . ", \n" .
-        "       wp_p_region_id=" . $this->SQLValue($this->cp["wp_p_region_id"]->GetDBValue(), ccsFloat) . ", \n" .
-        "       wp_phone_no='" . $this->SQLValue($this->cp["wp_phone_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_mobile_no='" . $this->SQLValue($this->cp["wp_mobile_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_fax_no='" . $this->SQLValue($this->cp["wp_fax_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_zip_code='" . $this->SQLValue($this->cp["wp_zip_code"]->GetDBValue(), ccsText) . "', \n" .
-        "       wp_email='" . $this->SQLValue($this->cp["wp_email"]->GetDBValue(), ccsText) . "', \n" .
-        "       brand_address_name='" . $this->SQLValue($this->cp["brand_address_name"]->GetDBValue(), ccsText) . "', \n" .
-        "       brand_address_no='" . $this->SQLValue($this->cp["brand_address_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       brand_address_rt='" . $this->SQLValue($this->cp["brand_address_rt"]->GetDBValue(), ccsText) . "', \n" .
-        "       brand_address_rw='" . $this->SQLValue($this->cp["brand_address_rw"]->GetDBValue(), ccsText) . "', \n" .
-        "       brand_p_region_id_kel=" . $this->SQLValue($this->cp["brand_p_region_id_kel"]->GetDBValue(), ccsFloat) . ", \n" .
-        "       brand_p_region_id_kec=" . $this->SQLValue($this->cp["brand_p_region_id_kec"]->GetDBValue(), ccsFloat) . ", \n" .
-        "       brand_p_region_id=" . $this->SQLValue($this->cp["brand_p_region_id"]->GetDBValue(), ccsFloat) . ", \n" .
-        "       brand_phone_no='" . $this->SQLValue($this->cp["brand_phone_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       brand_mobile_no='" . $this->SQLValue($this->cp["brand_mobile_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       brand_fax_no='" . $this->SQLValue($this->cp["brand_fax_no"]->GetDBValue(), ccsText) . "', \n" .
-        "       brand_zip_code='" . $this->SQLValue($this->cp["brand_zip_code"]->GetDBValue(), ccsText) . "',\n" .
-        "       p_vat_type_dtl_id=" . $this->SQLValue($this->cp["p_vat_type_dtl_id"]->GetDBValue(), ccsFloat) . " \n" .
-        "WHERE t_cust_account_id=" . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsText) . "";
+        if (!is_null($this->cp["modification_by"]->GetValue()) and !strlen($this->cp["modification_by"]->GetText()) and !is_bool($this->cp["modification_by"]->GetValue())) 
+            $this->cp["modification_by"]->SetValue(CCGetUserLogin());
+        if (!is_null($this->cp["company_owner"]->GetValue()) and !strlen($this->cp["company_owner"]->GetText()) and !is_bool($this->cp["company_owner"]->GetValue())) 
+            $this->cp["company_owner"]->SetValue($this->company_owner->GetValue(true));
+        if (!is_null($this->cp["p_job_position_id"]->GetValue()) and !strlen($this->cp["p_job_position_id"]->GetText()) and !is_bool($this->cp["p_job_position_id"]->GetValue())) 
+            $this->cp["p_job_position_id"]->SetValue($this->p_job_position_id->GetValue(true));
+        if (!strlen($this->cp["p_job_position_id"]->GetText()) and !is_bool($this->cp["p_job_position_id"]->GetValue(true))) 
+            $this->cp["p_job_position_id"]->SetText(0);
+        if (!is_null($this->cp["address_name_owner"]->GetValue()) and !strlen($this->cp["address_name_owner"]->GetText()) and !is_bool($this->cp["address_name_owner"]->GetValue())) 
+            $this->cp["address_name_owner"]->SetValue($this->address_name_owner->GetValue(true));
+        if (!is_null($this->cp["address_no_owner"]->GetValue()) and !strlen($this->cp["address_no_owner"]->GetText()) and !is_bool($this->cp["address_no_owner"]->GetValue())) 
+            $this->cp["address_no_owner"]->SetValue($this->address_no_owner->GetValue(true));
+        if (!is_null($this->cp["address_rt_owner"]->GetValue()) and !strlen($this->cp["address_rt_owner"]->GetText()) and !is_bool($this->cp["address_rt_owner"]->GetValue())) 
+            $this->cp["address_rt_owner"]->SetValue($this->address_rt_owner->GetValue(true));
+        if (!is_null($this->cp["address_rw_owner"]->GetValue()) and !strlen($this->cp["address_rw_owner"]->GetText()) and !is_bool($this->cp["address_rw_owner"]->GetValue())) 
+            $this->cp["address_rw_owner"]->SetValue($this->address_rw_owner->GetValue(true));
+        if (!is_null($this->cp["p_region_id_owner"]->GetValue()) and !strlen($this->cp["p_region_id_owner"]->GetText()) and !is_bool($this->cp["p_region_id_owner"]->GetValue())) 
+            $this->cp["p_region_id_owner"]->SetValue($this->p_region_id_owner->GetValue(true));
+        if (!strlen($this->cp["p_region_id_owner"]->GetText()) and !is_bool($this->cp["p_region_id_owner"]->GetValue(true))) 
+            $this->cp["p_region_id_owner"]->SetText(0);
+        if (!is_null($this->cp["p_region_id_kec_owner"]->GetValue()) and !strlen($this->cp["p_region_id_kec_owner"]->GetText()) and !is_bool($this->cp["p_region_id_kec_owner"]->GetValue())) 
+            $this->cp["p_region_id_kec_owner"]->SetValue($this->p_region_id_kec_owner->GetValue(true));
+        if (!strlen($this->cp["p_region_id_kec_owner"]->GetText()) and !is_bool($this->cp["p_region_id_kec_owner"]->GetValue(true))) 
+            $this->cp["p_region_id_kec_owner"]->SetText(0);
+        if (!is_null($this->cp["p_region_id_kel_owner"]->GetValue()) and !strlen($this->cp["p_region_id_kel_owner"]->GetText()) and !is_bool($this->cp["p_region_id_kel_owner"]->GetValue())) 
+            $this->cp["p_region_id_kel_owner"]->SetValue($this->p_region_id_kel_owner->GetValue(true));
+        if (!strlen($this->cp["p_region_id_kel_owner"]->GetText()) and !is_bool($this->cp["p_region_id_kel_owner"]->GetValue(true))) 
+            $this->cp["p_region_id_kel_owner"]->SetText(0);
+        if (!is_null($this->cp["phone_no_owner"]->GetValue()) and !strlen($this->cp["phone_no_owner"]->GetText()) and !is_bool($this->cp["phone_no_owner"]->GetValue())) 
+            $this->cp["phone_no_owner"]->SetValue($this->phone_no_owner->GetValue(true));
+        if (!is_null($this->cp["fax_no_owner"]->GetValue()) and !strlen($this->cp["fax_no_owner"]->GetText()) and !is_bool($this->cp["fax_no_owner"]->GetValue())) 
+            $this->cp["fax_no_owner"]->SetValue($this->fax_no_owner->GetValue(true));
+        if (!is_null($this->cp["mobile_no_owner"]->GetValue()) and !strlen($this->cp["mobile_no_owner"]->GetText()) and !is_bool($this->cp["mobile_no_owner"]->GetValue())) 
+            $this->cp["mobile_no_owner"]->SetValue($this->mobile_no_owner->GetValue(true));
+        if (!is_null($this->cp["email_address"]->GetValue()) and !strlen($this->cp["email_address"]->GetText()) and !is_bool($this->cp["email_address"]->GetValue())) 
+            $this->cp["email_address"]->SetValue($this->email_address->GetValue(true));
+        if (!is_null($this->cp["zip_code_owner"]->GetValue()) and !strlen($this->cp["zip_code_owner"]->GetText()) and !is_bool($this->cp["zip_code_owner"]->GetValue())) 
+            $this->cp["zip_code_owner"]->SetValue($this->zip_code_owner->GetValue(true));
+        if (!is_null($this->cp["t_customer_id"]->GetValue()) and !strlen($this->cp["t_customer_id"]->GetText()) and !is_bool($this->cp["t_customer_id"]->GetValue())) 
+            $this->cp["t_customer_id"]->SetValue($this->t_customer_id->GetValue(true));
+        if (!strlen($this->cp["t_customer_id"]->GetText()) and !is_bool($this->cp["t_customer_id"]->GetValue(true))) 
+            $this->cp["t_customer_id"]->SetText(0);
+        $this->SQL = "select * from f_update_cust_account (\n" .
+        "" . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsText) . ",\n" .
+        "" . $this->SQLValue($this->cp["t_customer_id"]->GetDBValue(), ccsInteger) . ",\n" .
+        "'" . $this->SQLValue($this->cp["npwd"]->GetDBValue(), ccsText) . "',\n" .
+        "" . $this->SQLValue($this->cp["p_vat_type_id"]->GetDBValue(), ccsFloat) . ",\n" .
+        "" . $this->SQLValue($this->cp["p_vat_type_dtl_id"]->GetDBValue(), ccsFloat) . ",\n" .
+        "'" . $this->SQLValue($this->cp["activation_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["company_name"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["address_name"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["address_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["address_rt"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["address_rw"]->GetDBValue(), ccsText) . "',\n" .
+        "" . $this->SQLValue($this->cp["p_region_id"]->GetDBValue(), ccsText) . ",\n" .
+        "" . $this->SQLValue($this->cp["p_region_id_kecamatan"]->GetDBValue(), ccsText) . ",\n" .
+        "" . $this->SQLValue($this->cp["p_region_id_kelurahan"]->GetDBValue(), ccsText) . ",\n" .
+        "'" . $this->SQLValue($this->cp["phone_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["mobile_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["fax_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["zip_code"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["company_brand"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["brand_address_name"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["brand_address_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["brand_address_rt"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["brand_address_rw"]->GetDBValue(), ccsText) . "',\n" .
+        "" . $this->SQLValue($this->cp["brand_p_region_id"]->GetDBValue(), ccsFloat) . ",\n" .
+        "" . $this->SQLValue($this->cp["brand_p_region_id_kec"]->GetDBValue(), ccsFloat) . ",\n" .
+        "" . $this->SQLValue($this->cp["brand_p_region_id_kel"]->GetDBValue(), ccsFloat) . ",\n" .
+        "'" . $this->SQLValue($this->cp["brand_phone_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["brand_mobile_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["brand_fax_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["brand_zip_code"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_name"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_address_name"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_address_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_address_rt"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_address_rw"]->GetDBValue(), ccsText) . "',\n" .
+        "" . $this->SQLValue($this->cp["wp_p_region_id"]->GetDBValue(), ccsFloat) . ",\n" .
+        "" . $this->SQLValue($this->cp["wp_p_region_id_kecamatan"]->GetDBValue(), ccsFloat) . ",\n" .
+        "" . $this->SQLValue($this->cp["wp_p_region_id_kelurahan"]->GetDBValue(), ccsFloat) . ",\n" .
+        "'" . $this->SQLValue($this->cp["wp_phone_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_mobile_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_email"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_fax_no"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["wp_zip_code"]->GetDBValue(), ccsText) . "', -- batas t_cust_account\n" .
+        "'" . $this->SQLValue($this->cp["company_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "" . $this->SQLValue($this->cp["p_job_position_id"]->GetDBValue(), ccsInteger) . ",\n" .
+        "'" . $this->SQLValue($this->cp["address_name_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["address_no_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["address_rt_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["address_rw_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "" . $this->SQLValue($this->cp["p_region_id_owner"]->GetDBValue(), ccsInteger) . ",\n" .
+        "" . $this->SQLValue($this->cp["p_region_id_kec_owner"]->GetDBValue(), ccsInteger) . ",\n" .
+        "" . $this->SQLValue($this->cp["p_region_id_kel_owner"]->GetDBValue(), ccsInteger) . ",\n" .
+        "'" . $this->SQLValue($this->cp["phone_no_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["fax_no_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["mobile_no_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["email_address"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["zip_code_owner"]->GetDBValue(), ccsText) . "',\n" .
+        "'" . $this->SQLValue($this->cp["modification_by"]->GetDBValue(), ccsText) . "'\n" .
+        ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
