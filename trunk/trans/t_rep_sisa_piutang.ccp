@@ -57,7 +57,14 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Button id="568" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_sisa_piutangSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
