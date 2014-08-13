@@ -45,7 +45,7 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-D0DBA8C0
+//Class_Initialize Event @3-B40A10BC
     function clsRecordt_rep_sisa_piutangSearch($RelativePath, & $Parent)
     {
 
@@ -80,6 +80,7 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
             $this->ListBox1->DSType = dsListOfValues;
             $this->ListBox1->Values = array(array("1", "BELUM BAYAR"), array("2", "SUDAH BAYAR"));
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -140,7 +141,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-F2E5E827
+//Operation Method @3-FFD5FB7D
     function Operation()
     {
         if(!$this->Visible)
@@ -157,12 +158,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoSearch1->Pressed) {
+                $this->PressedButton = "Button_DoSearch1";
             }
         }
         $Redirect = "t_rep_sisa_piutang.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch1") {
+                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
             }
@@ -172,7 +179,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-92E68817
+//Show Method @3-9880B7E2
     function Show()
     {
         global $CCSUseAmp;
@@ -229,6 +236,7 @@ function GetPrimaryKey($keyName)
         $this->p_vat_type_id->Show();
         $this->ListBox1->Show();
         $this->Button_DoSearch->Show();
+        $this->Button_DoSearch1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
