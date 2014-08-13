@@ -98,57 +98,78 @@ ORDER BY a.t_cust_account_id">
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_cust_account_updateForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_cust_account_updateForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="SELECT * FROM v_cust_account_update
-WHERE t_cust_account_id = {t_cust_account_id}
-AND t_customer_id = {t_customer_id}
-" activeTableType="customUpdate" customUpdateType="SQL" customUpdate="UPDATE t_cust_account
-   SET 
-       npwd='{npwd}', 
-       p_account_status_id={p_account_status_id},
-       activation_no='{activation_no}',
-       p_vat_type_id={p_vat_type_id}, 
-       registration_date='{registration_date}', 
-       company_name='{company_name}', 
-       company_brand='{company_brand}', 
-       address_name='{address_name}', 
-       address_no='{address_no}', 
-       address_rt='{address_rt}', 
-       address_rw='{address_rw}', 
-       p_region_id_kelurahan={p_region_id_kelurahan}, 
-       p_region_id_kecamatan={p_region_id_kecamatan}, 
-       p_region_id={p_region_id}, 
-       phone_no='{phone_no}', 
-       mobile_no='{mobile_no}', 
-       fax_no='{fax_no}', 
-       zip_code='{zip_code}', 
-       updated_date=sysdate, 
-       updated_by='{updated_by}',
-       wp_name='{wp_name}', 
-       wp_address_name='{wp_address_name}', 
-       wp_address_no='{wp_address_no}', 
-       wp_address_rt='{wp_address_rt}', 
-       wp_address_rw='{wp_address_rw}', 
-       wp_p_region_id_kelurahan={wp_p_region_id_kelurahan}, 
-       wp_p_region_id_kecamatan={wp_p_region_id_kecamatan}, 
-       wp_p_region_id={wp_p_region_id}, 
-       wp_phone_no='{wp_phone_no}', 
-       wp_mobile_no='{wp_mobile_no}', 
-       wp_fax_no='{wp_fax_no}', 
-       wp_zip_code='{wp_zip_code}', 
-       wp_email='{wp_email}', 
-       brand_address_name='{brand_address_name}', 
-       brand_address_no='{brand_address_no}', 
-       brand_address_rt='{brand_address_rt}', 
-       brand_address_rw='{brand_address_rw}', 
-       brand_p_region_id_kel={brand_p_region_id_kel}, 
-       brand_p_region_id_kec={brand_p_region_id_kec}, 
-       brand_p_region_id={brand_p_region_id}, 
-       brand_phone_no='{brand_phone_no}', 
-       brand_mobile_no='{brand_mobile_no}', 
-       brand_fax_no='{brand_fax_no}', 
-       brand_zip_code='{brand_zip_code}',
-       p_vat_type_dtl_id={p_vat_type_dtl_id} 
-WHERE t_cust_account_id={t_cust_account_id}">
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_cust_account_updateForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_cust_account_updateForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="SELECT *,b.code AS nama_jabatan,
+p.region_name as nama_kota_owner,
+q.region_name as nama_kecamatan_owner,
+r.region_name as nama_kelurahan_owner
+FROM v_cust_account_update v
+LEFT JOIN t_customer x ON x.t_customer_id=v.t_customer_id
+LEFT JOIN p_job_position b ON x.p_job_position_id = b.p_job_position_id
+left join p_region p on p.p_region_id = x.p_region_id_owner
+left join p_region q on q.p_region_id = x.p_region_id_kec_owner
+left join p_region r on r.p_region_id = x.p_region_id_kel_owner
+WHERE v.t_cust_account_id = {t_cust_account_id}
+AND v.t_customer_id = {t_customer_id}
+" activeTableType="customUpdate" customUpdateType="SQL" customUpdate="select * from f_update_cust_account (
+{t_cust_account_id},
+{t_customer_id},
+'{npwd}',
+{p_vat_type_id},
+{p_vat_type_dtl_id},
+'{activation_no}',
+'{company_name}',
+'{address_name}',
+'{address_no}',
+'{address_rt}',
+'{address_rw}',
+{p_region_id},
+{p_region_id_kecamatan},
+{p_region_id_kelurahan},
+'{phone_no}',
+'{mobile_no}',
+'{fax_no}',
+'{zip_code}',
+'{company_brand}',
+'{brand_address_name}',
+'{brand_address_no}',
+'{brand_address_rt}',
+'{brand_address_rw}',
+{brand_p_region_id},
+{brand_p_region_id_kec},
+{brand_p_region_id_kel},
+'{brand_phone_no}',
+'{brand_mobile_no}',
+'{brand_fax_no}',
+'{brand_zip_code}',
+'{wp_name}',
+'{wp_address_name}',
+'{wp_address_no}',
+'{wp_address_rt}',
+'{wp_address_rw}',
+{wp_p_region_id},
+{wp_p_region_id_kecamatan},
+{wp_p_region_id_kelurahan},
+'{wp_phone_no}',
+'{wp_mobile_no}',
+'{wp_email}',
+'{wp_fax_no}',
+'{wp_zip_code}', -- batas t_cust_account
+'{company_owner}',
+{p_job_position_id},
+'{address_name_owner}',
+'{address_no_owner}',
+'{address_rt_owner}',
+'{address_rw_owner}',
+{p_region_id_owner},
+{p_region_id_kec_owner},
+{p_region_id_kel_owner},
+'{phone_no_owner}',
+'{fax_no_owner}',
+'{mobile_no_owner}',
+'{email_address}',
+'{zip_code_owner}',
+'{modification_by}'
+)">
 			<Components>
 				<Hidden id="474" fieldSourceType="DBColumn" dataType="Text" name="t_cust_account_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormt_cust_account_id" fieldSource="t_cust_account_id">
 					<Components/>
@@ -537,11 +558,131 @@ WHERE t_cust_account_id={t_cust_account_id}">
 					<Features/>
 				</Button>
 				<Hidden id="624" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_id" PathID="t_cust_account_updateFormp_account_status_id" fieldSource="p_account_status_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="625" fieldSourceType="DBColumn" dataType="Text" name="t_customer_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormt_customer_id" fieldSource="t_customer_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<TextBox id="627" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_jabatan" fieldSource="nama_jabatan" required="True" caption="Jabatan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_jabatan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="629" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kota_owner" fieldSource="nama_kota_owner" required="True" caption="Kota" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kota_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="631" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kecamatan_owner" fieldSource="nama_kecamatan_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kecamatan_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="633" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kelurahan_owner" fieldSource="nama_kelurahan_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kelurahan_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="635" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_rt_owner" fieldSource="address_rt_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_rt_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="480" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_rw_owner" fieldSource="address_rw_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_rw_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="481" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="zip_code_owner" fieldSource="zip_code_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormzip_code_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="482" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="phone_no_owner" fieldSource="phone_no_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormphone_no_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="484" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_no_owner" fieldSource="mobile_no_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormmobile_no_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="485" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="email_address" fieldSource="email_address" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormemail_address" inputMask="^[\w\.-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]+$">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextArea id="486" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name_owner" fieldSource="address_name_owner" required="True" caption="Alamat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_name_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextArea>
+<TextBox id="488" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_owner" fieldSource="company_owner" required="True" caption="Nama Perusahaan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormcompany_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Hidden id="489" fieldSourceType="DBColumn" dataType="Text" name="updated_by1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormupdated_by1" fieldSource="updated_by" defaultValue="CCGetUserLogin()">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="490" fieldSourceType="DBColumn" dataType="Text" name="p_job_position_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_job_position_id" fieldSource="p_job_position_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="491" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kel_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_kel_owner" fieldSource="p_region_id_kel_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="492" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kec_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_kec_owner" fieldSource="p_region_id_kec_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="493" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_owner" fieldSource="p_region_id_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<TextBox id="504" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="fax_no_owner" fieldSource="fax_no_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormfax_no_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="650" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no_owner" fieldSource="address_no_owner" required="True" caption="No" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_no_owner">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -630,7 +771,6 @@ WHERE t_cust_account_id={t_cust_account_id}">
 				<SQLParameter id="518" variable="fax_no" parameterType="Control" dataType="Text" parameterSource="fax_no"/>
 				<SQLParameter id="519" variable="zip_code" parameterType="Control" dataType="Text" parameterSource="zip_code"/>
 				<SQLParameter id="520" variable="updated_by" parameterType="Control" dataType="Text" parameterSource="updated_by"/>
-
 				<SQLParameter id="521" variable="t_cust_account_id" parameterType="Control" dataType="Text" parameterSource="t_cust_account_id"/>
 				<SQLParameter id="524" variable="npwd" parameterType="Control" dataType="Text" parameterSource="npwd"/>
 				<SQLParameter id="575" variable="wp_name" parameterType="Control" dataType="Text" parameterSource="wp_name"/>
@@ -660,7 +800,23 @@ WHERE t_cust_account_id={t_cust_account_id}">
 				<SQLParameter id="607" variable="p_account_status_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_account_status_id"/>
 				<SQLParameter id="608" variable="activation_no" parameterType="Control" dataType="Text" parameterSource="activation_no"/>
 				<SQLParameter id="620" variable="p_vat_type_dtl_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_vat_type_dtl_id"/>
-			</USQLParameters>
+				<SQLParameter id="651" variable="modification_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+<SQLParameter id="652" variable="company_owner" parameterType="Control" dataType="Text" parameterSource="company_owner"/>
+<SQLParameter id="653" variable="p_job_position_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_job_position_id"/>
+<SQLParameter id="654" variable="address_name_owner" parameterType="Control" dataType="Text" parameterSource="address_name_owner"/>
+<SQLParameter id="655" variable="address_no_owner" parameterType="Control" dataType="Text" parameterSource="address_no_owner"/>
+<SQLParameter id="656" variable="address_rt_owner" parameterType="Control" dataType="Text" parameterSource="address_rt_owner"/>
+<SQLParameter id="657" variable="address_rw_owner" parameterType="Control" dataType="Text" parameterSource="address_rw_owner"/>
+<SQLParameter id="658" variable="p_region_id_owner" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_region_id_owner"/>
+<SQLParameter id="659" variable="p_region_id_kec_owner" parameterType="Control" dataType="Integer" parameterSource="p_region_id_kec_owner" defaultValue="0"/>
+<SQLParameter id="660" variable="p_region_id_kel_owner" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_region_id_kel_owner"/>
+<SQLParameter id="661" variable="phone_no_owner" parameterType="Control" dataType="Text" parameterSource="phone_no_owner"/>
+<SQLParameter id="662" variable="fax_no_owner" parameterType="Control" dataType="Text" parameterSource="fax_no_owner"/>
+<SQLParameter id="663" variable="mobile_no_owner" parameterType="Control" dataType="Text" parameterSource="mobile_no_owner"/>
+<SQLParameter id="664" variable="email_address" parameterType="Control" dataType="Text" parameterSource="email_address"/>
+<SQLParameter id="665" variable="zip_code_owner" parameterType="Control" dataType="Text" parameterSource="zip_code_owner"/>
+<SQLParameter id="666" variable="t_customer_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_customer_id"/>
+</USQLParameters>
 			<UConditions>
 				<TableParameter id="446" conditionType="Parameter" useIsNull="False" field="p_job_position_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_job_position_id"/>
 			</UConditions>
