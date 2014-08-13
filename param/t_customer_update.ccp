@@ -76,7 +76,19 @@ where (upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="510" fieldSourceType="DBColumn" dataType="Text" html="False" name="updated_by" fieldSource="updated_by" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customer_updateGridupdated_by">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="511" fieldSourceType="DBColumn" dataType="Text" html="False" name="updated_date" fieldSource="updated_date" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customer_updateGridupdated_date">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -284,18 +296,6 @@ WHERE t_customer_id = {t_customer_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Button id="28" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancel" PathID="t_customer_updateFormButton_Cancel" removeParameters="FLAG;p_customer_id;p_customerGridPage;s_keyword">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="25" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Submit" PathID="t_customer_updateFormButton_Update" removeParameters="FLAG">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<Hidden id="489" fieldSourceType="DBColumn" dataType="Text" name="updated_by" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_customer_updateFormupdated_by" fieldSource="updated_by" defaultValue="CCGetUserLogin()">
 					<Components/>
 					<Events/>
