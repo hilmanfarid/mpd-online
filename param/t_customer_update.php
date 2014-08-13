@@ -42,7 +42,7 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-B22B8D70
+//Class_Initialize Event @2-CC6B45FC
     function clsGridt_customer_updateGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -80,6 +80,8 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
         $this->address_rt_owner = & new clsControl(ccsLabel, "address_rt_owner", "address_rt_owner", ccsText, "", CCGetRequestParam("address_rt_owner", ccsGet, NULL), $this);
         $this->address_rw_owner = & new clsControl(ccsLabel, "address_rw_owner", "address_rw_owner", ccsText, "", CCGetRequestParam("address_rw_owner", ccsGet, NULL), $this);
         $this->mobile_no_owner = & new clsControl(ccsLabel, "mobile_no_owner", "mobile_no_owner", ccsText, "", CCGetRequestParam("mobile_no_owner", ccsGet, NULL), $this);
+        $this->updated_by = & new clsControl(ccsLabel, "updated_by", "updated_by", ccsText, "", CCGetRequestParam("updated_by", ccsGet, NULL), $this);
+        $this->updated_date = & new clsControl(ccsLabel, "updated_date", "updated_date", ccsText, "", CCGetRequestParam("updated_date", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -96,7 +98,7 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
     }
 //End Initialize Method
 
-//Show Method @2-BBE037E4
+//Show Method @2-DD8EC3FC
     function Show()
     {
         global $Tpl;
@@ -138,6 +140,8 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
             $this->ControlsVisible["address_rt_owner"] = $this->address_rt_owner->Visible;
             $this->ControlsVisible["address_rw_owner"] = $this->address_rw_owner->Visible;
             $this->ControlsVisible["mobile_no_owner"] = $this->mobile_no_owner->Visible;
+            $this->ControlsVisible["updated_by"] = $this->updated_by->Visible;
+            $this->ControlsVisible["updated_date"] = $this->updated_date->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -155,6 +159,8 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
                 $this->address_rt_owner->SetValue($this->DataSource->address_rt_owner->GetValue());
                 $this->address_rw_owner->SetValue($this->DataSource->address_rw_owner->GetValue());
                 $this->mobile_no_owner->SetValue($this->DataSource->mobile_no_owner->GetValue());
+                $this->updated_by->SetValue($this->DataSource->updated_by->GetValue());
+                $this->updated_date->SetValue($this->DataSource->updated_date->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -167,6 +173,8 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
                 $this->address_rt_owner->Show();
                 $this->address_rw_owner->Show();
                 $this->mobile_no_owner->Show();
+                $this->updated_by->Show();
+                $this->updated_date->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -199,7 +207,7 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
     }
 //End Show Method
 
-//GetErrors Method @2-EE458DA6
+//GetErrors Method @2-87C28989
     function GetErrors()
     {
         $errors = "";
@@ -212,6 +220,8 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
         $errors = ComposeStrings($errors, $this->address_rt_owner->Errors->ToString());
         $errors = ComposeStrings($errors, $this->address_rw_owner->Errors->ToString());
         $errors = ComposeStrings($errors, $this->mobile_no_owner->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->updated_by->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->updated_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -222,7 +232,7 @@ class clsGridt_customer_updateGrid { //t_customer_updateGrid class @2-216846CC
 
 class clst_customer_updateGridDataSource extends clsDBConnSIKP {  //t_customer_updateGridDataSource Class @2-4BF6A775
 
-//DataSource Variables @2-6D774154
+//DataSource Variables @2-01ECFA98
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -242,9 +252,11 @@ class clst_customer_updateGridDataSource extends clsDBConnSIKP {  //t_customer_u
     var $address_rt_owner;
     var $address_rw_owner;
     var $mobile_no_owner;
+    var $updated_by;
+    var $updated_date;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-60560AE9
+//DataSourceClass_Initialize Event @2-A38EC205
     function clst_customer_updateGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -265,6 +277,10 @@ class clst_customer_updateGridDataSource extends clsDBConnSIKP {  //t_customer_u
         $this->address_rw_owner = new clsField("address_rw_owner", ccsText, "");
         
         $this->mobile_no_owner = new clsField("mobile_no_owner", ccsText, "");
+        
+        $this->updated_by = new clsField("updated_by", ccsText, "");
+        
+        $this->updated_date = new clsField("updated_date", ccsText, "");
         
 
     }
@@ -331,7 +347,7 @@ class clst_customer_updateGridDataSource extends clsDBConnSIKP {  //t_customer_u
     }
 //End Open Method
 
-//SetValues Method @2-E6C0FB2C
+//SetValues Method @2-8A0D9E7D
     function SetValues()
     {
         $this->company_owner->SetDBValue($this->f("company_owner"));
@@ -342,6 +358,8 @@ class clst_customer_updateGridDataSource extends clsDBConnSIKP {  //t_customer_u
         $this->address_rt_owner->SetDBValue($this->f("address_rt_owner"));
         $this->address_rw_owner->SetDBValue($this->f("address_rw_owner"));
         $this->mobile_no_owner->SetDBValue($this->f("mobile_no_owner"));
+        $this->updated_by->SetDBValue($this->f("updated_by"));
+        $this->updated_date->SetDBValue($this->f("updated_date"));
     }
 //End SetValues Method
 
