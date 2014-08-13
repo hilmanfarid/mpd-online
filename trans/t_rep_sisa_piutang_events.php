@@ -123,9 +123,84 @@ function Page_BeforeShow(& $sender)
 			echo '<script> alert("Semua Filter Harus Diisi"); </script>';
 		}
 	}
-	else {
+	elseif($doAction == 'download_excel') {
 		
-		//do nothing 
+		$data = array();
+		
+		$param_arr = array();
+				
+		$param_arr['p_year_period_id'] = CCGetFromGet('p_year_period_id');
+		$param_arr['p_finance_period_id'] = CCGetFromGet('p_finance_period_id');
+		$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
+
+		$param_arr['tahun_periode'] = CCGetFromGet('tahun_periode');
+		$param_arr['pajak_periode'] = CCGetFromGet('pajak_periode');
+		$param_arr['jenis_pajak'] = CCGetFromGet('jenis_pajak');
+		$param_arr['status'] = CCGetFromGet('status');
+
+		$t_rep_sisa_piutangSearch->p_year_period_id->SetValue($param_arr['p_year_period_id']);
+		$t_rep_sisa_piutangSearch->p_finance_period_id->SetValue($param_arr['p_finance_period_id']);
+		$t_rep_sisa_piutangSearch->p_vat_type_id->SetValue($param_arr['p_vat_type_id']);
+			
+		$t_rep_sisa_piutangSearch->year_code->SetValue($param_arr['tahun_periode']);
+		$t_rep_sisa_piutangSearch->code->SetValue($param_arr['pajak_periode']);
+		$t_rep_sisa_piutangSearch->vat_code->SetValue($param_arr['jenis_pajak']);
+		
+		$t_rep_sisa_piutangSearch->ListBox1->SetValue($param_arr['status']);
+
+		if(!empty($param_arr['p_finance_period_id']) and !empty($param_arr['p_vat_type_id'])) {
+			
+			$dbConn	= new clsDBConnSIKP();
+			
+			if(empty($param_arr['status'])) { /* GLOBAL */
+				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)";
+			}
+			else if($param_arr['status'] == '1') { /* BELUM BAYAR */
+				$query="SELECT * FROM f_rep_status_piutang2 (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+						WHERE ((f_teg1_amount is null) OR (f_teg1_amount < 1)) AND
+							  ((f_teg2_amount is null) OR (f_teg2_amount < 1)) AND
+							  ((f_teg3_amount is null) OR (f_teg3_amount < 1))
+							  AND NOT textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
+							  ";
+			
+			}else if($param_arr['status'] == '2') { /* SUDAH BAYAR */
+				$query="SELECT *, (f_amount IS NULL AND f_teg1_amount IS NULL AND f_teg2_amount IS NULL AND f_teg3_amount IS NULL AND f_action_sts > 0) AS bayar_setelah
+						FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+						WHERE (f_teg1_amount > 0) OR 
+							  (f_teg2_amount > 0) OR 
+							  (f_teg3_amount > 0) 
+							  OR textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
+							  ";
+			}
+			
+			$data = array();
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$data[] = $dbConn->Record;
+			}
+			$dbConn->close();
+			
+			// ----- AMBIL JATUH TEMPO ------
+			$dbConn2	= new clsDBConnSIKP();
+			$tgl_jatuh_tempo = '';
+			$qJatuhTempo = "SELECT to_char((trunc(start_date) + due_in_day-1),'yyyy-mm-dd') AS jatuh_tempo
+							FROM p_finance_period WHERE to_char(trunc(start_date),'yyyy-mm-dd') IN 
+							( 	SELECT to_char((trunc(end_date) + 1), 'yyyy-mm-dd') 
+								FROM p_finance_period 
+								WHERE p_finance_period_id = ".$param_arr['p_finance_period_id'].")";
+			$dbConn2->query($qJatuhTempo);
+			while ($dbConn2->next_record()) {
+				$tgl_jatuh_tempo = $dbConn2->f('jatuh_tempo');
+			}
+
+			$dbConn2->close();
+
+			CetakExcel($data, $param_arr['pajak_periode'], $param_arr['jenis_pajak'], $tgl_jatuh_tempo, $param_arr['status']);
+
+		 }else {
+			/* Tampilkan Alert */
+			echo '<script> alert("Semua Filter Harus Diisi"); </script>';
+		}
 	}
 	
 //Close Page_BeforeShow @1-4BC230CD
@@ -219,6 +294,83 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 	return $output;
 }
 
+function CetakExcel($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $status) {
+	
+	startExcel("laporan_status_teguran");
+	
+	$output = '';
+
+	$output .= '<h2>LAPORAN SURAT TEGURAN<h2/>';
+
+	$output .= '<h3>JENIS PAJAK : '.$jenis_pajak.'<br/>';
+	$output .= 'PERIODE PAJAK : '.$pajak_periode.'<br/>';
+	$output .= 'JATUH TEMPO : '.strtoupper(dateToString($tgl_jatuh_tempo)).'</h3>';
+
+	$output .='<table border="1" widht="100%">
+                <tr>';
+
+
+		$output.='<th align="center" rowspan="2">NO</th>';
+		$output.='<th align="center" rowspan="2">WAJIB PAJAK</th>';
+		$output.='<th align="center" rowspan="2">NPWPD</th>';
+		$output.='<th align="center" rowspan="2">SPTPD</th>';
+		$output.='<th align="center" rowspan="2">STPD</th>';
+		$output.='<th align="center" colspan="2">TEGURAN I <br/> '.$data[0]['f_teg1_sts'].'</th>';
+		$output.='<th align="center" colspan="2">TEGURAN II <br/> '.$data[0]['f_teg2_sts'].'</th>';
+		$output.='<th align="center" colspan="2">TEGURAN III <br/> '.$data[0]['f_teg3_sts'].'</th>';
+		$output.='<th align="center" rowspan="2">AKSI <br/>'.$data[0]['f_action_date'].'</th>';
+		if($status == '2') /* SUDAH BAYAR */ {
+			$output.='<th align="center" rowspan="2">PEMBAYARAN <br/> SETELAH <br/>'.$data[0]['f_action_date'].'</th>';
+		}
+		$output.='</tr>';
+    	
+		$output.='<tr >';
+		$output.='<th align="center">SPTPD</th>';
+		$output.='<th align="center">STPD</th>';
+		$output.='<th align="center">SPTPD</th>';
+		$output.='<th align="center">STPD</th>';
+		$output.='<th align="center">SPTPD</th>';
+		$output.='<th align="center">STPD</th>';
+		$output.='</tr>';
+    	
+		for ($i = 0; $i < count($data); $i++) {
+
+			$output .= '<tr>';
+			$output .= '<td align="center">'.($i+1).'</td>';
+			$output .= '<td align="left">'.$data[$i]['nama'].'</td>';
+			$output .= '<td align="center">'.$data[$i]['npwpd'].'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_amount'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_penalty'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_teg1_amount'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_teg1_penalty'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_teg2_amount'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_teg2_penalty'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_amount'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_penalty'],0,",",".").'</td>';
+			
+			if($status == '') {
+				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? number_format($data[$i]['f_action_sts'],0,",",".") : $data[$i]['f_action_sts'];
+				$output .= '<td align="right">'.$kolom_aksi.'</td>';
+			}else if($status == '1') /* BELUM BAYAR */ {
+				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
+			}else if($status == '2') /* SUDAH BAYAR */ {
+				if($data[$i]['bayar_setelah'] == 't') {
+					$output .= '<td align="right"> </td>';
+					$output .= '<td align="right">'. number_format($data[$i]['f_action_sts'],0,",",".").'</td>';
+				}else {
+					$output .= '<td align="right"></td>';
+					$output .= '<td align="right"></td>';
+				}				
+			}
+ 
+			$output .= '</tr>';
+		}
+	
+	$output.='</table>';
+	echo $output;
+	exit;
+}
+
 function dateToString($date){
 	if(empty($date)) return "";
 	
@@ -239,6 +391,16 @@ function dateToString($date){
 	$pieces = explode('-', $date);
 	
 	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
+}
+
+
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
 }
 
 ?>
