@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -63,9 +63,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="p_cust_account_updateSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"><input id="p_cust_account_updateSearcht_customer_id" name="{t_customer_id_Name}" value="{t_customer_id}" type="hidden"><input id="p_cust_account_updateSearchcustomer_name" name="{customer_name_Name}" value="{customer_name}" type="hidden"></td> 
+                    <td class="search-field"><input id="p_cust_account_updateSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><input id="p_cust_account_updateSearcht_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"><input id="p_cust_account_updateSearchcustomer_name" value="{customer_name}" type="hidden" name="{customer_name_Name}"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="p_cust_account_updateSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_cust_account_updateSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
@@ -99,7 +99,7 @@ $(document).ready(function()
                 <!-- BEGIN Row -->
                 <tr {t_custAccountGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_custAccountGridDLink_{t_custAccountGrid:rowNumber}">{DLink}</a></td> 
-                  <td>{npwd}&nbsp;<input id="t_custAccountGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{npwd}&nbsp;<input id="t_custAccountGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{registration_date}&nbsp;</td> 
                   <td>{vat_code}</td>
                 </tr>
@@ -151,33 +151,33 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th">NPWPD</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormnpwd" class="ControlsRQ" name="{npwd_Name}" maxlength="250" value="{npwd}" size="50"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormnpwd" class="ControlsRO" value="{npwd}" readonly maxlength="250" size="50" name="{npwd_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="t_customerFormis_head">Jenis Pajak</label></label></label></td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormvat_code" class="ControlsRQ" name="{vat_code_Name}" maxlength="250" value="{vat_code}">&nbsp;<img onclick="javascript:lov_vat_type()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormvat_code" class="ControlsRQ" value="{vat_code}" maxlength="250" name="{vat_code_Name}">&nbsp;<img onclick="javascript:lov_vat_type()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama Ayat&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormnama_ayat" class="ControlsRQ" name="{nama_ayat_Name}" readonly maxlength="32" value="{nama_ayat}" size="32">&nbsp;<img onclick="javascript:lov_namaAyat()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_vat_type_dtl_id" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormnama_ayat" class="ControlsRQ" value="{nama_ayat}" readonly maxlength="32" size="32" name="{nama_ayat_Name}">&nbsp;<img onclick="javascript:lov_namaAyat()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_vat_type_dtl_id" value="{p_vat_type_dtl_id}" type="hidden" name="{p_vat_type_dtl_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Tgl Registrasi</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormregistration_date" class="ControlsRQ" name="{registration_date_Name}" maxlength="250" value="{registration_date}"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormregistration_date" class="ControlsRQ" value="{registration_date}" maxlength="250" name="{registration_date_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No Pengukuhan&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormactivation_no" class="ControlsRQ" name="{activation_no_Name}" maxlength="32" value="{activation_no}" size="32">&nbsp;Tgl&nbsp;<input id="t_cust_account_updateFormactive_date" class="ControlsRO" name="{active_date_Name}" readonly maxlength="250" value="{active_date}"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormactivation_no" class="ControlsRQ" value="{activation_no}" maxlength="32" size="32" name="{activation_no_Name}">&nbsp;Tgl&nbsp;<input id="t_cust_account_updateFormactive_date" class="ControlsRO" value="{active_date}" readonly maxlength="250" name="{active_date_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Status&nbsp;</td> 
-                    <td colspan="3"><label for="t_cust_account_updateFormstatus_code" style="display: none;">&nbsp;</label><input id="t_cust_account_updateFormstatus_code" class="ControlsRO" name="{status_code_Name}" readonly value="{status_code}">Tgl&nbsp;<input id="t_cust_account_updateFormlast_satatus_date" class="ControlsRO" name="{last_satatus_date_Name}" readonly maxlength="250" value="{last_satatus_date}">&nbsp; 
-                      <!-- BEGIN Button Button1 --><input id="t_cust_account_updateFormButton1" class="btn_tambah" onclick="openUpdateSatusForm({t_cust_account_id})" name="{Button_Name}" alt="Button1" value="Ubah Status" type="button"><!-- END Button Button1 --><input id="t_cust_account_updateFormp_account_status_id" name="{p_account_status_id_Name}" value="{p_account_status_id}" type="hidden"></td>
+                    <td colspan="3"><label for="t_cust_account_updateFormstatus_code" style="display: none;">&nbsp;</label><input id="t_cust_account_updateFormstatus_code" class="ControlsRO" value="{status_code}" readonly name="{status_code_Name}">Tgl&nbsp;<input id="t_cust_account_updateFormlast_satatus_date" class="ControlsRO" value="{last_satatus_date}" readonly maxlength="250" name="{last_satatus_date_Name}">&nbsp; 
+                      <!-- BEGIN Button Button1 --><input id="t_cust_account_updateFormButton1" class="btn_tambah" onclick="openUpdateSatusForm({t_cust_account_id})" value="Ubah Status" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 --><input id="t_cust_account_updateFormp_account_status_id" value="{p_account_status_id}" type="hidden" name="{p_account_status_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -188,47 +188,47 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th" width="200"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Badan/Perusahaan</label></label></td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormcompany_name" class="ControlsRQ" name="{company_name_Name}" maxlength="250" value="{company_name}" size="50">&nbsp;<input id="t_cust_account_updateFormt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormcompany_name" class="ControlsRQ" value="{company_name}" maxlength="250" size="50" name="{company_name_Name}">&nbsp;<input id="t_cust_account_updateFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat Badan</td> 
-                    <td colspan="3"><textarea id="t_cust_account_updateFormaddress_name" class="ControlsRQ" cols="64" rows="3" name="{address_name_Name}">{address_name}</textarea>&nbsp;&nbsp;</td>
+                    <td colspan="3"><textarea id="t_cust_account_updateFormaddress_name" class="ControlsRQ" rows="3" cols="64" name="{address_name_Name}">{address_name}</textarea>&nbsp;&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormaddress_no" class="ControlsRQ" name="{address_no_Name}" maxlength="250" value="{address_no}" size="5">&nbsp;Rt/Rw <input id="t_cust_account_updateFormaddress_rt" class="ControlsIN" name="{address_rt_Name}" maxlength="250" value="{address_rt}" size="5">&nbsp;/ <input id="t_cust_account_updateFormaddress_rw" class="ControlsIN" name="{address_rw_Name}" maxlength="250" value="{address_rw}" size="5"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormaddress_no" class="ControlsRQ" value="{address_no}" maxlength="250" size="5" name="{address_no_Name}">&nbsp;Rt/Rw <input id="t_cust_account_updateFormaddress_rt" class="ControlsIN" value="{address_rt}" maxlength="250" size="5" name="{address_rt_Name}">&nbsp;/ <input id="t_cust_account_updateFormaddress_rw" class="ControlsIN" value="{address_rw}" maxlength="250" size="5" name="{address_rw_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kota</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormnama_kota" class="ControlsRQ" name="{nama_kota_Name}" maxlength="32" value="{nama_kota}" size="32">&nbsp;<img onclick="javascript:lov_region1()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_region_id" name="{p_region_id_Name}" value="{p_region_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormnama_kota" class="ControlsRQ" value="{nama_kota}" maxlength="32" size="32" name="{nama_kota_Name}">&nbsp;<img onclick="javascript:lov_region1()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_region_id" value="{p_region_id}" type="hidden" name="{p_region_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kecamatan</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormnama_kecamatan" class="ControlsRQ" name="{nama_kecamatan_Name}" maxlength="32" value="{nama_kecamatan}" size="32">&nbsp;<img onclick="javascript:lov_region2()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_region_id_kecamatan" name="{p_region_id_kecamatan_Name}" value="{p_region_id_kecamatan}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormnama_kecamatan" class="ControlsRQ" value="{nama_kecamatan}" maxlength="32" size="32" name="{nama_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region2()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_region_id_kecamatan" value="{p_region_id_kecamatan}" type="hidden" name="{p_region_id_kecamatan_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelurahan</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormnama_kelurahan" class="ControlsRQ" name="{nama_kelurahan_Name}" readonly maxlength="32" value="{nama_kelurahan}" size="32">&nbsp;<img onclick="javascript:lov_region3()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_region_id_kelurahan" name="{p_region_id_kelurahan_Name}" value="{p_region_id_kelurahan}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormnama_kelurahan" class="ControlsRQ" value="{nama_kelurahan}" readonly maxlength="32" size="32" name="{nama_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region3()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormp_region_id_kelurahan" value="{p_region_id_kelurahan}" type="hidden" name="{p_region_id_kelurahan_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_customerFormdescription">No. Telephon</label></td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormphone_no" class="ControlsIN" name="{phone_no_Name}" maxlength="250" value="{phone_no}">&nbsp;No. Selular <input id="t_cust_account_updateFormmobile_no" class="ControlsIN" name="{mobile_no_Name}" maxlength="250" value="{mobile_no}"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormphone_no" class="ControlsIN" value="{phone_no}" maxlength="250" name="{phone_no_Name}">&nbsp;No. Selular <input id="t_cust_account_updateFormmobile_no" class="ControlsIN" value="{mobile_no}" maxlength="250" name="{mobile_no_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No.&nbsp;Fax </td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormfax_no" class="ControlsIN" name="{fax_no_Name}" maxlength="250" value="{fax_no}"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormfax_no" class="ControlsIN" value="{fax_no}" maxlength="250" name="{fax_no_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Pos</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormzip_code" class="ControlsIN" name="{zip_code_Name}" maxlength="250" value="{zip_code}"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormzip_code" class="ControlsIN" value="{zip_code}" maxlength="250" name="{zip_code_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -239,47 +239,47 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Nama Merk&nbsp;Dagang</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormcompany_brand" class="ControlsRQ" name="{company_brand_Name}" maxlength="250" value="{company_brand}" size="50"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormcompany_brand" class="ControlsRQ" value="{company_brand}" maxlength="250" size="50" name="{company_brand_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat&nbsp;&nbsp;</td> 
-                    <td colspan="3"><textarea id="t_cust_account_updateFormbrand_address_name" class="ControlsRQ" cols="64" rows="3" name="{brand_address_name_Name}">{brand_address_name}</textarea>&nbsp;</td>
+                    <td colspan="3"><textarea id="t_cust_account_updateFormbrand_address_name" class="ControlsRQ" rows="3" cols="64" name="{brand_address_name_Name}">{brand_address_name}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormbrand_address_no" class="ControlsRQ" tabindex="2" name="{brand_address_no_Name}" maxlength="20" value="{brand_address_no}" size="10">&nbsp;Rt/Rw&nbsp;<input id="t_cust_account_updateFormbrand_address_rt" class="ControlsIN" tabindex="2" name="{brand_address_rt_Name}" maxlength="5" value="{brand_address_rt}" size="5">&nbsp;/ <input id="t_cust_account_updateFormbrand_address_rw" class="ControlsIN" tabindex="2" name="{brand_address_rw_Name}" maxlength="5" value="{brand_address_rw}" size="5"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormbrand_address_no" class="ControlsRQ" tabindex="2" value="{brand_address_no}" maxlength="20" size="10" name="{brand_address_no_Name}">&nbsp;Rt/Rw&nbsp;<input id="t_cust_account_updateFormbrand_address_rt" class="ControlsIN" tabindex="2" value="{brand_address_rt}" maxlength="5" size="5" name="{brand_address_rt_Name}">&nbsp;/ <input id="t_cust_account_updateFormbrand_address_rw" class="ControlsIN" tabindex="2" value="{brand_address_rw}" maxlength="5" size="5" name="{brand_address_rw_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kota/Kabupaten&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormbrand_kota" class="ControlsRQ" tabindex="2" name="{brand_kota_Name}" readonly maxlength="32" value="{brand_kota}" size="32">&nbsp;<img onclick="javascript:lov_region_brand1()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormbrand_p_region_id" name="{brand_p_region_id_Name}" value="{brand_p_region_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormbrand_kota" class="ControlsRQ" tabindex="2" value="{brand_kota}" readonly maxlength="32" size="32" name="{brand_kota_Name}">&nbsp;<img onclick="javascript:lov_region_brand1()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormbrand_p_region_id" value="{brand_p_region_id}" type="hidden" name="{brand_p_region_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kecamatan&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormbrand_kecamatan" class="ControlsRQ" tabindex="2" name="{brand_kecamatan_Name}" readonly maxlength="32" value="{brand_kecamatan}" size="32">&nbsp;<img onclick="javascript:lov_region_brand2()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormbrand_p_region_id_kec" name="{brand_p_region_id_kec_Name}" value="{brand_p_region_id_kec}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormbrand_kecamatan" class="ControlsRQ" tabindex="2" value="{brand_kecamatan}" readonly maxlength="32" size="32" name="{brand_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_brand2()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormbrand_p_region_id_kec" value="{brand_p_region_id_kec}" type="hidden" name="{brand_p_region_id_kec_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelurahan&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormbrand_kelurahan" class="ControlsRQ" tabindex="2" name="{brand_kelurahan_Name}" readonly maxlength="32" value="{brand_kelurahan}" size="32">&nbsp;<img onclick="javascript:lov_region_brand3()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormbrand_p_region_id_kel" name="{brand_p_region_id_kel_Name}" value="{brand_p_region_id_kel}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormbrand_kelurahan" class="ControlsRQ" tabindex="2" value="{brand_kelurahan}" readonly maxlength="32" size="32" name="{brand_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_brand3()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormbrand_p_region_id_kel" value="{brand_p_region_id_kel}" type="hidden" name="{brand_p_region_id_kel_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Telephon&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormbrand_phone_no" class="ControlsIN" tabindex="2" name="{brand_phone_no_Name}" maxlength="20" value="{brand_phone_no}">&nbsp;No. Selular <input id="t_cust_account_updateFormbrand_mobile_no" class="ControlsIN" tabindex="2" name="{brand_mobile_no_Name}" maxlength="20" value="{brand_mobile_no}"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormbrand_phone_no" class="ControlsIN" tabindex="2" value="{brand_phone_no}" maxlength="20" name="{brand_phone_no_Name}">&nbsp;No. Selular <input id="t_cust_account_updateFormbrand_mobile_no" class="ControlsIN" tabindex="2" value="{brand_mobile_no}" maxlength="20" name="{brand_mobile_no_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Fax&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormbrand_fax_no" class="ControlsIN" tabindex="2" name="{brand_fax_no_Name}" maxlength="20" value="{brand_fax_no}">&nbsp;</td>
+                    <td colspan="3"><input id="t_cust_account_updateFormbrand_fax_no" class="ControlsIN" tabindex="2" value="{brand_fax_no}" maxlength="20" name="{brand_fax_no_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Pos&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormbrand_zip_code" class="ControlsIN" tabindex="2" name="{brand_zip_code_Name}" maxlength="5" value="{brand_zip_code}" size="6">&nbsp;</td>
+                    <td colspan="3"><input id="t_cust_account_updateFormbrand_zip_code" class="ControlsIN" tabindex="2" value="{brand_zip_code}" maxlength="5" size="6" name="{brand_zip_code_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -290,58 +290,124 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Nama Wajib Pajak&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_name" class="ControlsRQ" tabindex="2" name="{wp_name_Name}" maxlength="64" value="{wp_name}" size="50">&nbsp;</td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_name" class="ControlsRQ" tabindex="2" value="{wp_name}" maxlength="64" size="50" name="{wp_name_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat Wajib Pajak&nbsp;</td> 
-                    <td colspan="3"><textarea id="t_cust_account_updateFormwp_address_name" class="ControlsRQ" cols="64" rows="3" name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
+                    <td colspan="3"><textarea id="t_cust_account_updateFormwp_address_name" class="ControlsRQ" rows="3" cols="64" name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_address_no" class="ControlsRQ" tabindex="2" name="{wp_address_no_Name}" maxlength="20" value="{wp_address_no}" size="10">&nbsp;Rt/Rw&nbsp;<input id="t_cust_account_updateFormwp_address_rt" class="ControlsIN" tabindex="2" name="{wp_address_rt_Name}" maxlength="5" value="{wp_address_rt}" size="5">&nbsp;/ <input id="t_cust_account_updateFormwp_address_rw" class="ControlsIN" tabindex="2" name="{wp_address_rw_Name}" maxlength="5" value="{wp_address_rw}" size="5"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_address_no" class="ControlsRQ" tabindex="2" value="{wp_address_no}" maxlength="20" size="10" name="{wp_address_no_Name}">&nbsp;Rt/Rw&nbsp;<input id="t_cust_account_updateFormwp_address_rt" class="ControlsIN" tabindex="2" value="{wp_address_rt}" maxlength="5" size="5" name="{wp_address_rt_Name}">&nbsp;/ <input id="t_cust_account_updateFormwp_address_rw" class="ControlsIN" tabindex="2" value="{wp_address_rw}" maxlength="5" size="5" name="{wp_address_rw_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kota/Kabupaten&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_kota" class="ControlsRQ" tabindex="2" name="{wp_kota_Name}" readonly maxlength="32" value="{wp_kota}" size="32">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormwp_p_region_id" name="{wp_p_region_id_Name}" value="{wp_p_region_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_kota" class="ControlsRQ" tabindex="2" value="{wp_kota}" readonly maxlength="32" size="32" name="{wp_kota_Name}">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormwp_p_region_id" value="{wp_p_region_id}" type="hidden" name="{wp_p_region_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kecamatan&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_kecamatan" class="ControlsRQ" tabindex="2" name="{wp_kecamatan_Name}" readonly maxlength="32" value="{wp_kecamatan}" size="32">&nbsp;<img onclick="javascript:lov_region_wp2()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormwp_p_region_id_kecamatan" name="{wp_p_region_id_kecamatan_Name}" value="{wp_p_region_id_kecamatan}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_kecamatan" class="ControlsRQ" tabindex="2" value="{wp_kecamatan}" readonly maxlength="32" size="32" name="{wp_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_wp2()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormwp_p_region_id_kecamatan" value="{wp_p_region_id_kecamatan}" type="hidden" name="{wp_p_region_id_kecamatan_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelurahan&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_kelurahan" class="ControlsRQ" tabindex="2" name="{wp_kelurahan_Name}" readonly maxlength="32" value="{wp_kelurahan}" size="32">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormwp_p_region_id_kelurahan" name="{wp_p_region_id_kelurahan_Name}" value="{wp_p_region_id_kelurahan}" type="hidden"></td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_kelurahan" class="ControlsRQ" tabindex="2" value="{wp_kelurahan}" readonly maxlength="32" size="32" name="{wp_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif">&nbsp;<input id="t_cust_account_updateFormwp_p_region_id_kelurahan" value="{wp_p_region_id_kelurahan}" type="hidden" name="{wp_p_region_id_kelurahan_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Telephon&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_phone_no" class="ControlsIN" tabindex="2" name="{wp_phone_no_Name}" maxlength="20" value="{wp_phone_no}">&nbsp;No. Selular <input id="t_cust_account_updateFormwp_mobile_no" class="ControlsIN" tabindex="2" name="{wp_mobile_no_Name}" maxlength="20" value="{wp_mobile_no}">&nbsp;&nbsp;</td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_phone_no" class="ControlsIN" tabindex="2" value="{wp_phone_no}" maxlength="20" name="{wp_phone_no_Name}">&nbsp;No. Selular <input id="t_cust_account_updateFormwp_mobile_no" class="ControlsIN" tabindex="2" value="{wp_mobile_no}" maxlength="20" name="{wp_mobile_no_Name}">&nbsp;&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Email&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_email" class="ControlsIN" tabindex="2" name="{wp_email_Name}" maxlength="64" value="{wp_email}" size="50">&nbsp;</td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_email" class="ControlsIN" tabindex="2" value="{wp_email}" maxlength="64" size="50" name="{wp_email_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No. Fax&nbsp;&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_fax_no" class="ControlsIN" tabindex="2" name="{wp_fax_no_Name}" maxlength="20" value="{wp_fax_no}">&nbsp;</td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_fax_no" class="ControlsIN" tabindex="2" value="{wp_fax_no}" maxlength="20" name="{wp_fax_no_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Pos&nbsp;</td> 
-                    <td colspan="3"><input id="t_cust_account_updateFormwp_zip_code" class="ControlsIN" tabindex="2" name="{wp_zip_code_Name}" maxlength="5" value="{wp_zip_code}" size="6">&nbsp;</td>
+                    <td colspan="3"><input id="t_cust_account_updateFormwp_zip_code" class="ControlsIN" tabindex="2" value="{wp_zip_code}" maxlength="5" size="6" name="{wp_zip_code_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="4" align="center">
+                      <p align="center">KETERANGAN PEMILIK ATAU PENGELOLA</p>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" width="200"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Pemilik/Pengelola</label></label></td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormcompany_owner" class="ControlsRQ" value="{company_owner}" maxlength="250" size="50" name="{company_owner_Name}"><input id="t_cust_account_updateFormt_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jabatan</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormnama_jabatan" class="ControlsRQ" value="{nama_jabatan}" maxlength="250" size="50" name="{nama_jabatan_Name}">&nbsp;<img onclick="javascript:lov_jabatan()" border="0" src="../images/view.gif"><input id="t_cust_account_updateFormp_job_position_id" value="{p_job_position_id}" type="hidden" name="{p_job_position_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="t_customerFormis_head">Alamat</label></label></label></td> 
+                    <td colspan="3"><textarea id="t_cust_account_updateFormaddress_name_owner" class="ControlsRQ" rows="3" cols="64" name="{address_name_owner_Name}">{address_name_owner}</textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormaddress_no_owner" class="ControlsRQ" value="{address_no_owner}" maxlength="20" size="10" name="{address_no_owner_Name}">&nbsp;Rt/Rw <input id="t_cust_account_updateFormaddress_rt_owner" class="ControlsIN" value="{address_rt_owner}" maxlength="5" size="5" name="{address_rt_owner_Name}">&nbsp;/ <input id="t_cust_account_updateFormaddress_rw_owner" class="ControlsIN" value="{address_rw_owner}" maxlength="5" size="5" name="{address_rw_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kota</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormnama_kota_owner" class="ControlsRQ" value="{nama_kota_owner}" maxlength="32" size="32" name="{nama_kota_owner_Name}">&nbsp;<img onclick="javascript:lov_kota()" border="0" src="../images/view.gif"><input id="t_cust_account_updateFormp_region_id_owner" value="{p_region_id_owner}" type="hidden" name="{p_region_id_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kecamatan</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormnama_kecamatan_owner" class="ControlsRQ" value="{nama_kecamatan_owner}" maxlength="32" size="32" name="{nama_kecamatan_owner_Name}">&nbsp;<img onclick="javascript:lov_kec()" border="0" src="../images/view.gif"><input id="t_cust_account_updateFormp_region_id_kec_owner" value="{p_region_id_kec_owner}" type="hidden" name="{p_region_id_kec_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kelurahan</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormnama_kelurahan_owner" class="ControlsRQ" value="{nama_kelurahan_owner}" maxlength="32" size="32" name="{nama_kelurahan_owner_Name}">&nbsp;<img onclick="javascript:lov_kel()" border="0" src="../images/view.gif"><input id="t_cust_account_updateFormp_region_id_kel_owner" value="{p_region_id_kel_owner}" type="hidden" name="{p_region_id_kel_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_cust_account_updateFormnama_jabatan">No Telephon</label></td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormphone_no_owner" class="ControlsIN" value="{phone_no_owner}" maxlength="20" name="{phone_no_owner_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No Fax</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormfax_no_owner" class="ControlsIN" value="{fax_no_owner}" maxlength="20" name="{fax_no_owner_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No Selular</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormmobile_no_owner" class="ControlsRQ" value="{mobile_no_owner}" maxlength="20" name="{mobile_no_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Email</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormemail_address" class="ControlsIN" value="{email_address}" maxlength="64" size="50" name="{email_address_Name}"><input id="t_cust_account_updateFormupdated_by1" value="{updated_by1}" type="hidden" name="{updated_by1_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kode Pos</td> 
+                    <td colspan="3"><input id="t_cust_account_updateFormzip_code_owner" class="ControlsIN" value="{zip_code_owner}" maxlength="5" size="6" name="{zip_code_owner_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="4" align="right">&nbsp; 
-                      <!-- BEGIN Button Button_Update --><input id="t_cust_account_updateFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->&nbsp; 
-                      <!-- BEGIN Button Button_Cancel --><input id="t_cust_account_updateFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input id="t_cust_account_updateFormp_cust_account_id" name="{p_cust_account_id_Name}" value="{p_cust_account_id}" type="hidden"><input id="t_cust_account_updateFormp_custGridPage" name="{p_custGridPage_Name}" value="{p_custGridPage}" type="hidden"><input id="t_cust_account_updateFormupdated_by" name="{updated_by_Name}" value="{updated_by}" type="hidden"></td>
+                      <!-- BEGIN Button Button_Update --><input id="t_cust_account_updateFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; 
+                      <!-- BEGIN Button Button_Cancel --><input id="t_cust_account_updateFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_cust_account_updateFormp_cust_account_id" value="{p_cust_account_id}" type="hidden" name="{p_cust_account_id_Name}"><input id="t_cust_account_updateFormp_custGridPage" value="{p_custGridPage}" type="hidden" name="{p_custGridPage_Name}"><input id="t_cust_account_updateFormupdated_by" value="{updated_by}" type="hidden" name="{updated_by_Name}"></td>
                   </tr>
                 </table>
               </td>
@@ -506,6 +572,11 @@ function openUpdateSatusForm(t_cust_account_id) {
         newwin=window.open(url,'windowname4', params);
         if (window.focus) {newwin.focus()}
                 return false;
+}
+
+function lov_jabatan() {
+        getFrom_LOV('t_cust_account_updateForm','p_job_position_id,nama_jabatan',
+                'lov_2_field.php?TABLE=p_job_position&FIELD_0=p_job_position_id&FIELD_1=code&FIELD_2=description&LABEL1=Jabatan&LABEL2=Deskripsi&HEADER_PAGE=JABATAN&HEADER_LOV=DAFTAR JABATAN&ORDER=p_job_position_id');
 }
 </script>
 </body>
