@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -85,7 +85,8 @@ $(document).ready(function()
                     <td class="search-field">&nbsp;</td> 
                     <td align="right">
                       <!-- BEGIN Button Button_DoSearch --><input id="t_rep_sisa_piutangSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch --></td> 
-                    <td></td> 
+                    <td>&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_sisa_piutangSearchButton_DoSearch1" class="btn_tambah" onclick="tampilkanLaporanExcel(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" type="submit"><!-- END Button Button_DoSearch1 --></td> 
                     <td class="search-field">&nbsp;</td>
                   </tr>
                 </table>
@@ -164,7 +165,36 @@ $(document).ready(function()
         
                 location.href="t_rep_sisa_piutang.php"+params;
         }
+		
 
+		function tampilkanLaporanExcel(){
+        		p_year_period_id = document.getElementById("t_rep_sisa_piutangSearchp_year_period_id").value;
+        		p_finance_period_id= document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
+                p_vat_type_id= document.getElementById("t_rep_sisa_piutangSearchp_vat_type_id").value;
+                                
+                if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "") {
+                        alert("Semua Filter Harus Diisi");
+                                                return;
+                }
+                
+                tahun_periode = document.getElementById("t_rep_sisa_piutangSearchyear_code").value;
+                pajak_periode = document.getElementById("t_rep_sisa_piutangSearchcode").value;
+                jenis_pajak = document.getElementById("t_rep_sisa_piutangSearchvat_code").value;
+                
+                                status = document.getElementById("t_rep_sisa_piutangSearchListBox1").value;
+                
+
+                var params = "?doAction=download_excel";
+                params += "&p_year_period_id="+p_year_period_id;
+                        params += "&p_finance_period_id="+p_finance_period_id;
+                        params += "&p_vat_type_id="+p_vat_type_id;
+                                params += "&tahun_periode="+tahun_periode;
+                        params += "&pajak_periode="+pajak_periode;
+                        params += "&jenis_pajak="+jenis_pajak;
+                                                params += "&status="+status;
+        
+                location.href="t_rep_sisa_piutang.php"+params;
+        }
         
         function jenispajak() {
         getFrom_LOV('t_rep_sisa_piutangSearch','p_vat_type_id,vat_code','lov_vat_type.php');
