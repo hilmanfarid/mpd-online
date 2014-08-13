@@ -83,10 +83,10 @@ $(document).ready(function()
  
                   <tr>
                     <td class="search-field">&nbsp;</td> 
-                    <td align="right">
-                      <!-- BEGIN Button Button_DoSearch --><input id="t_rep_sisa_piutangSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch --></td> 
-                    <td>&nbsp; 
+                    <td align="left">
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_rep_sisa_piutangSearchButton_DoSearch" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch -->
                       <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_sisa_piutangSearchButton_DoSearch1" class="btn_tambah" onclick="tampilkanLaporanExcel(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" type="submit"><!-- END Button Button_DoSearch1 --></td> 
+                    <td>&nbsp; </td> 
                     <td class="search-field">&nbsp;</td>
                   </tr>
                 </table>
@@ -165,11 +165,11 @@ $(document).ready(function()
         
                 location.href="t_rep_sisa_piutang.php"+params;
         }
-		
+                
 
-		function tampilkanLaporanExcel(){
-        		p_year_period_id = document.getElementById("t_rep_sisa_piutangSearchp_year_period_id").value;
-        		p_finance_period_id= document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
+                function tampilkanLaporanExcel(){
+                        p_year_period_id = document.getElementById("t_rep_sisa_piutangSearchp_year_period_id").value;
+                        p_finance_period_id= document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
                 p_vat_type_id= document.getElementById("t_rep_sisa_piutangSearchp_vat_type_id").value;
                                 
                 if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "") {
