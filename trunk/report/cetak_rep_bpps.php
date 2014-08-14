@@ -21,6 +21,8 @@ $data				= array();
 $dbConn				= new clsDBConnSIKP();
 $query				= "select * from f_rep_bpps_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
+
+$tgl_penerimaan2 = $tgl_penerimaan;
 $tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);
 $tahun = date("Y", strtotime($tgl_penerimaan));
 while ($dbConn->next_record()) {
@@ -43,6 +45,33 @@ while ($dbConn->next_record()) {
 	"keterangan"		=> $dbConn->f("keterangan"),
 	"payment_date"		=> $dbConn->f("payment_date"),
 	"jam"		=> $dbConn->f("jam"));
+}
+
+
+if ($p_vat_type_id != 7){
+	$query				= "select * from f_rep_bpps_mod_1(7, $p_year_period_id, $tgl_penerimaan2,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+	$dbConn->query($query);
+	while ($dbConn->next_record()) {
+		$data[]= array(
+		"kode_jns_trans"	=> $dbConn->f("kode_jns_trans"),
+		"jns_trans"		=> $dbConn->f("jns_trans"),
+		"kode_jns_pajak"	=> $dbConn->f("kode_jns_pajak"),
+		"kode_ayat"		=> $dbConn->f("kode_ayat"),
+		"jns_pajak"		=> $dbConn->f("jns_pajak"),
+		"jns_ayat"			=> $dbConn->f("jns_ayat"),
+		"nama_ayat"		=> $dbConn->f("nama_ayat"),
+		"no_kohir"		=> $dbConn->f("no_kohir"),
+		"wp_name"			=> $dbConn->f("wp_name"),
+		"wp_address_name"	=> $dbConn->f("wp_address_name"),
+		"wp_address_no"		=> $dbConn->f("wp_address_no"),
+		"npwpd"			=> $dbConn->f("npwpd"),
+		"jumlah_terima"	=> $dbConn->f("jumlah_terima"),
+		"masa_pajak"		=> $dbConn->f("masa_pajak"),
+		"kd_tap"			=> $dbConn->f("kd_tap"),
+		"keterangan"		=> $dbConn->f("keterangan"),
+		"payment_date"		=> $dbConn->f("payment_date"),
+		"jam"		=> $dbConn->f("jam"));
+	}
 }
 $dbConn->close();
 
