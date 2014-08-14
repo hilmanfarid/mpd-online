@@ -81,6 +81,7 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 		}
 	}
 	else{
+	    $mess = str_replace('"','',$mess);
 		echo '<script language="javascript">';
 		echo 'alert("'.$mess.'");';
 		echo '</script>';	
