@@ -272,9 +272,9 @@ function lov_tipeayat() {
         }
 }
 function showPiutang(){
-        /*$('#table-piutang').show(1000,function(){
+        $('#table-piutang').show(1000,function(){
                 $('#table-piutang .Grid').css('display','table')      
-        });*/
+        });
                 var no_block = [15,17,21,27,30,41,42,43];
                 var type_id= parseFloat(document.getElementById("t_vat_setllementFormp_vat_type_dtl_id").value);
 				if(type_id == null || type_id==0 || type_id =='')return;
@@ -285,7 +285,23 @@ function showPiutang(){
 				}
         $.getJSON( "../services/getPembayaranBolong.php?t_cust_account_id="+document.getElementById("t_vat_setllementFormt_cust_account_id").value+"&p_finance_period_id="+document.getElementById("t_vat_setllementFormp_finance_period_id").value, function( items ) {
                 jumlah = items.length;
-                if(jumlah < 1)return;
+                if(jumlah < 1) {
+					$('#table-piutang-detil').empty();
+					$('#table-piutang-detil').append(
+                                                        '<tr>'+
+                                                                '<th>'+
+                                                                        'PERIODE'+
+                                                                '</th>'+
+                                                                '<th>'+
+                                                                        'STATUS'+
+                                                                '</th>'+
+                                                        '</tr>'
+                                                );
+				
+					return;
+				
+				
+				}
 				$('#table-piutang-detil').empty();
 				$('#table-piutang-detil').append(
                                                         '<tr>'+
