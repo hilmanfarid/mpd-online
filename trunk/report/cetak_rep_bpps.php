@@ -19,7 +19,7 @@ $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_bpps_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+$query				= "select * from f_rep_bpps_mod_2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 $dbConn->query($query);
 
 $tgl_penerimaan2 = $tgl_penerimaan;
@@ -47,7 +47,7 @@ while ($dbConn->next_record()) {
 	"jam"		=> $dbConn->f("jam"));
 }
 
-
+/*
 if ($p_vat_type_id != 7){
 	$query				= "select * from f_rep_bpps_mod_1(7, $p_year_period_id, $tgl_penerimaan2,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
 	$dbConn->query($query);
@@ -73,6 +73,7 @@ if ($p_vat_type_id != 7){
 		"jam"		=> $dbConn->f("jam"));
 	}
 }
+*/
 $dbConn->close();
 
 class FormCetak extends FPDF {
