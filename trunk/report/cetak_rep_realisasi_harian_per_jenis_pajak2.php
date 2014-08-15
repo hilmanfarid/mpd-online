@@ -16,7 +16,8 @@ $tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
 // $p_year_period_id	= 4;
 // $tgl_penerimaan		= '15-12-2013';
 $date_start=str_replace("'", "",$tgl_penerimaan);
-$year_date = DateTime::createFromFormat('d-m-Y', $date_start)->format('Y');
+$date_start=str_replace("'", "",$tgl_penerimaan_last);
+$year_date = CCGetFromGet("year_code", "");
 
 $user				= CCGetUserLogin();
 $data				= array();
