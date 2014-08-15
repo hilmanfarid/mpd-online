@@ -312,6 +312,7 @@ function CetakExcel($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $stat
 
 		$output.='<th align="center" rowspan="2">NO</th>';
 		$output.='<th align="center" rowspan="2">WAJIB PAJAK</th>';
+		$output.='<th align="center" rowspan="2">ALAMAT</th>';
 		$output.='<th align="center" rowspan="2">NPWPD</th>';
 		$output.='<th align="center" rowspan="2">SPTPD</th>';
 		$output.='<th align="center" rowspan="2">STPD</th>';
@@ -338,6 +339,7 @@ function CetakExcel($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $stat
 			$output .= '<tr>';
 			$output .= '<td align="center">'.($i+1).'</td>';
 			$output .= '<td align="left">'.$data[$i]['nama'].'</td>';
+			$output .= '<td align="left">'.$data[$i]['alamat'].'</td>';
 			$output .= '<td align="center">'.$data[$i]['npwpd'].'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_amount'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_penalty'],0,",",".").'</td>';
