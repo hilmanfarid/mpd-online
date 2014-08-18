@@ -706,6 +706,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
+		$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,200,$lbody4+48,20);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
@@ -727,6 +728,12 @@ class FormCetak extends FPDF {
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();
+
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-online/include/qrcode/generate-qr.php?param='.
+		$data['njop_pbb']."_".
+		$data['registration_no']."_".
+		str_replace(" ","-",dateToString($data['creation_date']))
+		,15,200,25,25,'PNG');
 		
 
 		$this->SetFont('Times', 'BU', 12);
