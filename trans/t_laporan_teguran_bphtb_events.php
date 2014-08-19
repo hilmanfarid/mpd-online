@@ -65,7 +65,7 @@ function Page_BeforeShow(& $sender)
 				sikp.t_bphtb_registration reg_bphtb
 			LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
 			LEFT JOIN t_customer_order cust_order ON cust_order.t_customer_order_id = reg_bphtb.t_customer_order_id 
-			WHERE cust_order.p_order_status_id <> 1";
+			WHERE cust_order.p_order_status_id <> 1 and bphtb_amt_final >0";
 			
 			$query.= $whereClause;
 			$query.= " order by trunc(reg_bphtb.creation_date) ASC,upper(wp_name) ASC";
