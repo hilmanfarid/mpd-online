@@ -181,7 +181,7 @@ class FormCetak extends FPDF {
 		$lbody2 = $lbody * 2;
 		$lbody3 = $lbody * 3;
 
-		$this->SetWidths(array(21,2,50,49));
+		$this->SetWidths(array(21,2,38,49));
 		$this->SetAligns(array("L","L","L","L"));
 		$posy = $this->getY();
 		$data["letter_no"] = trim($data["letter_no"]);
@@ -203,7 +203,7 @@ class FormCetak extends FPDF {
 			$this->RowMultiBorderWithHeight(
 				array("Nomor",
 					":",
-					"  ".$data["nomor_surat"],
+					"",
 					"-Disyanjak"
 				),
 				array("",
@@ -729,7 +729,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();
 
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-online/include/qrcode/generate-qr.php?param='.
 		$data['njop_pbb']."_".
 		$data['registration_no']."_".
 		str_replace(" ","-",dateToString($data['creation_date']))
