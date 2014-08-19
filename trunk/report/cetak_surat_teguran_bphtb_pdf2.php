@@ -729,7 +729,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();
 
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-online/include/qrcode/generate-qr.php?param='.
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
 		$data['njop_pbb']."_".
 		$data['registration_no']."_".
 		str_replace(" ","-",dateToString($data['creation_date']))
