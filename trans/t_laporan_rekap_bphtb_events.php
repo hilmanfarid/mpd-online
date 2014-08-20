@@ -120,6 +120,7 @@ function print_excel($param_arr) {
 		<th>TOTAL NJOP (Rp)</th>
 		<th>HARGA PASAR / <br/> TRANSAKSI / <br/> LELANG </th>
 		<th>NILAI PAJAK <br/> YANG HARUS DIBAYAR (Rp)</th>
+		<th>PEMERIKSA</th>
 	</tr>';
 	
 	
@@ -162,6 +163,7 @@ function print_excel($param_arr) {
 				market_price,
 				bphtb_amt_final,
 				land_price_per_m,
+				reg_bphtb.verificated_by,
 				building_price_per_m
 			FROM
 				sikp.t_bphtb_registration reg_bphtb
@@ -195,6 +197,7 @@ function print_excel($param_arr) {
 					   'market_price' => $dbConn->f("market_price"),
 					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
 					   'land_price_per_m' => $dbConn->f("land_price_per_m"),
+					   'verificated_by' => $dbConn->f("verificated_by"),
 					   'building_price_per_m' => $dbConn->f("building_price_per_m")
 						);
 		
@@ -213,6 +216,7 @@ function print_excel($param_arr) {
 				<td align="right">'.number_format($nilai_njop,0,",",".").'</td>
 				<td align="right">'.number_format($item['market_price'],0,",",".").'</td>
 				<td align="right">'.number_format($item['bphtb_amt_final'],0,",",".").'</td>
+				<td>'.$item['verificated_by'].'</td>
 			</tr>';
 		
 		$jumlah+=$dbConn->f("amount");
