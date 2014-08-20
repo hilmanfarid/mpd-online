@@ -63,12 +63,14 @@ $query = "SELECT
 	building_total_price,
 	market_price,
 	bphtb_amt_final,
-	object_address_name
+	object_address_name,
+	region_name
 FROM
 	sikp.t_bphtb_registration reg_bphtb
 LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
 LEFT JOIN t_customer_order cust_order ON cust_order.t_customer_order_id = reg_bphtb.t_customer_order_id 
 LEFT JOIN t_payment_receipt_bphtb payment ON reg_bphtb.t_bphtb_registration_id = payment.t_bphtb_registration_id 
+LEFT JOIN p_region region ON region.p_region_id = reg_bphtb.wp_p_region_id 
 WHERE cust_order.p_order_status_id <> 1";
 $query.= $whereClause;
 
@@ -97,6 +99,7 @@ while ($dbConn->next_record()) {
 		'market_price' => $dbConn->f("market_price"),
 		'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
 		'object_address_name' => $dbConn->f("object_address_name"),
+		'region_name' => $dbConn->f("region_name"),
 		'nomor_surat' => $nomor_surat 
 	);
 }
@@ -299,7 +302,12 @@ class FormCetak extends FPDF {
 		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "          Bandung", "", 0, 'L');
+		$pieces = explode("KOTA", $data['region_name']);
+		$result = join("",$pieces);
+		$pieces = explode("KABUPATEN", $result);
+		$result = join("",$pieces);
+				
+		$this->Cell($lkepada2, $this->height, "          ".$result, "", 0, 'L');
 		$this->Ln();
 		
 		// $this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
