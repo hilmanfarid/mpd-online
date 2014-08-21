@@ -741,7 +741,7 @@ class FormCetak extends FPDF {
 		$data['njop_pbb']."_".
 		$data['registration_no']."_".
 		str_replace(" ","-",dateToString($data['creation_date']))
-		,15,200,25,25,'PNG');
+		,15,200,50,50,'PNG');
 		
 
 		$this->SetFont('Times', 'BU', 12);
