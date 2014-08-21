@@ -302,10 +302,13 @@ class FormCetak extends FPDF {
 		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
-		$pieces = explode("KOTA", $data['region_name']);
+		$pieces = explode("KABUPATEN ", $data['region_name']);
 		$result = join("",$pieces);
-		$pieces = explode("KABUPATEN", $result);
+		$pieces = explode("KOTA ", $result);
 		$result = join("",$pieces);
+		$pieces = explode(" KOTA", $result);
+		$result = join("",$pieces);
+		
 				
 		$this->Cell($lkepada2, $this->height, "          ".$result, "", 0, 'L');
 		$this->Ln();
