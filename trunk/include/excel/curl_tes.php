@@ -27,7 +27,7 @@ function sendSms(){
                             'pesan'	        => $message,
                             'tb_simpan'	    => 'Submit',
                             'login_btn'     => 'Login',
-                            'nmbatch'       => '@' . realpath($file_name.'.xls') . ';filename='.$file_name.'.xls'
+                            'nmbatch'       => '@' . realpath($file_name.'.xls') . ';filename='.$file_name.'_'.date('d-m-Y-H-i-s').'.xls'
                           )
                     );
     
