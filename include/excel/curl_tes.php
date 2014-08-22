@@ -19,7 +19,7 @@ function sendSms(){
                     array(  'loginUsername'  => 'disyanjak',//'radnettrial',
                             'loginPass'    => 'disyanjakbdg12345678',//'trial',
                             'attached_type' => 'action_1',
-                            'senderID'      => 'JMP000003',
+                            'senderID'      => 'JMP000007',
                             'sender'	    => 'INFO',
                             'tanggal'	    => '2014-03-11',
                             'jam1'	        => '16',
