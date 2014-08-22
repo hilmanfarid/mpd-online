@@ -16,8 +16,8 @@ function sendSms(){
     curl_setopt($ch, CURLOPT_POST, 1);
     // in real life you should use something like:
         curl_setopt($ch, CURLOPT_POSTFIELDS, 
-                    array(  'loginUsername'  => 'radnettrial',
-                            'loginPass'    => 'trial',
+                    array(  'loginUsername'  => 'disyanjak'//'radnettrial',
+                            'loginPass'    => 'disyanjakbdg12345678'//'trial',
                             'attached_type' => 'action_1',
                             'senderID'      => 'JMP000003',
                             'sender'	    => 'INFO',
