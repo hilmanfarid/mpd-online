@@ -11,6 +11,8 @@ function sendSms(){
         $message = $_POST['message'];
     }
     $file_name = createExcel($no_telp,$npwd);
+	date_default_timezone_set('Asia/Jakarta');
+	$send_date = date('Y-m-d-H-i-s');
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,"http://smsblast.radbdg.net/_libz/usersignin.php");
     curl_setopt($ch, CURLOPT_POST, 1);
@@ -20,14 +22,14 @@ function sendSms(){
                             'loginPass'    => 'disyanjakbdg12345678',//'trial',
                             'attached_type' => 'action_1',
                             'senderID'      => 'JMP000007',
-                            'sender'	    => 'INFO',
-                            'tanggal'	    => '2014-03-11',
-                            'jam1'	        => '16',
-                            'mnt1'	        => '19',
+                            'sender'	    => 'DISYANJAK',
+                            'tanggal'	    => substr($send_date,0,10),//'2014-03-11',
+                            'jam1'	        => substr($send_date,11,2),//'16',
+                            'mnt1'	        => substr($send_date,14,2),//'19',
                             'pesan'	        => $message,
                             'tb_simpan'	    => 'Submit',
                             'login_btn'     => 'Login',
-                            'nmbatch'       => '@' . realpath($file_name.'.xls') . ';filename='.$file_name.'_'.date('d-m-Y-H-i-s').'.xls'
+                            'nmbatch'       => '@' . realpath($file_name.'.xls') . ';filename='.$file_name.'_'.$send_date.'.xls'
                           )
                     );
     
