@@ -25,7 +25,7 @@ function sendSms(){
                             'sender'	    => 'DISYANJAK',
                             'tanggal'	    => substr($send_date,0,10),//'2014-03-11',
                             'jam1'	        => substr($send_date,11,2),//'16',
-                            'mnt1'	        => substr($send_date,14,2),//'19',
+                            'mnt1'	        => ''.(substr($send_date,14,2)+5).'',//'19',
                             'pesan'	        => $message,
                             'tb_simpan'	    => 'Submit',
                             'login_btn'     => 'Login',
