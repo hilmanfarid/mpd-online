@@ -85,7 +85,7 @@ function createExcel($data){
     
     // Save Excel 2007 file
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-    $fileName = 'send_sms_'.date('Y-m-d-H-i-s');
+    $fileName = 'send_sms_';
     $objWriter->save($fileName.'.xlsx');
     
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
