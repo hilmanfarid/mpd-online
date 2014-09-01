@@ -15,18 +15,19 @@
 		die("Jenis Pajak Harus Diisi");
 	}
 
-	$sql = "SELECT a.t_cust_account_id, b.wp_name, b.wp_address_name, d.code AS finance_period_code, a.year_code AS tahun, b.npwd,
+	$sql = "SELECT a.t_cust_account_id, b.wp_name, b.wp_address_name, d.code AS finance_period_code, a.year_code AS tahun, b.npwd AS wp_npwd,
                 '' AS due_date, '--------' AS order_no, c.vat_code AS jenis_pajak,
                 0 AS debt_vat_amt, 0 AS terutang, 0 AS cr_adjustment, 0 AS cr_payment, 0 AS cr_others, 0 AS db_interest_charge,
                 0 AS total_penalty_amount, 0 AS total_vat_amount, 0 AS db_increasing_charge, '' AS settlement_date,
                 to_char(sysdate,'DD Month YYYY') AS tgl_setllement,
                 0 AS total_trans_amount,
-                upper(substring(c.vat_code from 7)) AS vat_code,
+                upper(e.vat_code) AS vat_code,
                 round(a.sisa_piutang) AS jumlah_piutang_harus_dibayar
                 FROM t_piutang_pajak_penetapan_final AS a
                 LEFT JOIN t_cust_account AS b ON a.t_cust_account_id = b.t_cust_account_id
                 LEFT JOIN p_vat_type AS c ON a.p_vat_type_id = c.p_vat_type_id
                 LEFT JOIN p_finance_period AS d ON a.p_finance_period_id = d.p_finance_period_id
+                LEFT JOIN p_vat_type_dtl AS e ON b.p_vat_type_dtl_id = e.p_vat_type_dtl_id
                 WHERE (a.tgl_bayar IS NULL AND a.sisa_piutang > 0)
                 AND a.p_vat_type_id = ".$p_vat_type_id."
                 ORDER BY a.year_code ASC";
