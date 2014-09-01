@@ -30,7 +30,7 @@
                 LEFT JOIN p_vat_type_dtl AS e ON b.p_vat_type_dtl_id = e.p_vat_type_dtl_id
                 WHERE (a.tgl_bayar IS NULL AND a.sisa_piutang > 0)
                 AND a.p_vat_type_id = ".$p_vat_type_id."
-                ORDER BY a.year_code ASC";
+                ORDER BY a.t_piutang_pajak_penetapan_final_id ASC";
 
 	$dbConn->query($sql);
 	$items = array();
