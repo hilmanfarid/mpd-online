@@ -189,7 +189,7 @@ class FormCetak extends FPDF {
 		// $this->Cell($lheader2, $this->height + 2, "", "BR", 0, 'C');
 		// $this->Ln();
 		
-		$this->Cell($lheader1, $this->height+1, "", "BL", 0, 'C');	
+		$this->Cell($lheader1, $this->height+1, "DUPLIKAT", "BL", 0, 'C');	
 		$this->SetFont('Arial', '', 8);
 		$this->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - Bandung", "BR", 0, 'C');
 		$this->SetFont('Arial', '', 10);
