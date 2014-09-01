@@ -22,7 +22,7 @@
                 to_char(sysdate,'DD Month YYYY') AS tgl_setllement,
                 0 AS total_trans_amount,
                 upper(substring(c.vat_code from 7)) AS vat_code,
-                a.sisa_piutang AS jumlah_piutang_harus_dibayar
+                round(a.sisa_piutang) AS jumlah_piutang_harus_dibayar
                 FROM t_piutang_pajak_penetapan_final AS a
                 LEFT JOIN t_cust_account AS b ON a.t_cust_account_id = b.t_cust_account_id
                 LEFT JOIN p_vat_type AS c ON a.p_vat_type_id = c.p_vat_type_id
