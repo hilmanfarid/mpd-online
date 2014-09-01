@@ -36,13 +36,17 @@ if (empty($tahun)){
 	$query="select distinct (a.npwd), b.address_name,b.company_name   
 		from t_piutang_pajak_penetapan_final a
 		left join t_cust_account b on a.t_cust_account_id = b.t_cust_account_id
-		where  a.p_vat_type_id = '$jenis_pajak'";
+		where  a.p_vat_type_id = '$jenis_pajak'
+		and tgl_bayar is NULL
+    	and sisa_piutang >0";
 }else{
 	$query="select distinct (a.npwd), b.address_name,b.company_name   
 		from t_piutang_pajak_penetapan_final a
 		left join t_cust_account b on a.t_cust_account_id = b.t_cust_account_id
 		where  a.p_vat_type_id = '$jenis_pajak'
-		and year_code ='$tahun'";
+		and year_code ='$tahun'
+		and tgl_bayar is NULL
+    	and sisa_piutang >0";
 }
 
 
@@ -194,7 +198,7 @@ class FormCetak extends FPDF {
 		$lkepada3 = $lkepada * 3;
 		
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "Bandung,     ".dateToString(date("Y-m-d")), "R", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Bandung, ".dateToString(date("Y-m-d")), "R", 0, 'L');
 		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
@@ -324,6 +328,8 @@ class FormCetak extends FPDF {
 		$lbody = $this->lengthCell / 16;
 		$lbody2 = $lbody * 2;
 		$lbody4 = $lbody * 4;
+
+		$this->Image('../images/ttd_pa_soni.jpg',$lbody4+$lbody4+$lbody2-15,150,$lbody4+48,20);
 
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
@@ -664,7 +670,7 @@ function dateToString($date){
 	
 	$pieces = explode('-', $date);
 	
-	return $monthname[(int)$pieces[1]].' '.$pieces[0];
+	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
 }
 
 
