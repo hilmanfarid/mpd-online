@@ -28,7 +28,8 @@
                 LEFT JOIN p_vat_type AS c ON a.p_vat_type_id = c.p_vat_type_id
                 LEFT JOIN p_finance_period AS d ON a.p_finance_period_id = d.p_finance_period_id
                 WHERE (a.tgl_bayar IS NULL AND a.sisa_piutang > 0)
-                AND a.p_vat_type_id = ".$p_vat_type_id;
+                AND a.p_vat_type_id = ".$p_vat_type_id."
+                ORDER BY a.year_code ASC";
 
 	$dbConn->query($sql);
 	$items = array();
