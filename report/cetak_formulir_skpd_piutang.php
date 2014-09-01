@@ -15,7 +15,7 @@
 		die("Jenis Pajak Harus Diisi");
 	}
 
-	$sql = "SELECT a.t_cust_account_id, b.wp_name, b.wp_address_name, d.code AS finance_period_code, a.year_code AS tahun, b.npwd AS wp_npwd,
+	$sql = "SELECT a.t_cust_account_id, b.wp_name, b.wp_address_name, d.code AS finance_period_code, a.year_code AS tahun, b.npwd,
                 '' AS due_date, '--------' AS order_no, c.vat_code AS jenis_pajak,
                 0 AS debt_vat_amt, 0 AS terutang, 0 AS cr_adjustment, 0 AS cr_payment, 0 AS cr_others, 0 AS db_interest_charge,
                 0 AS total_penalty_amount, 0 AS total_vat_amount, 0 AS db_increasing_charge, '' AS settlement_date,
