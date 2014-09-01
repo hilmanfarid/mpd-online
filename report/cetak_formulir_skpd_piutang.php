@@ -438,11 +438,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 
-		/*$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "TTD", "R", 0, 'C');
-		$this->Ln();*/
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "TTD", "R", 0, 'C');
 		$this->Ln();
 
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
@@ -458,8 +455,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$data["npwd"]."-".str_replace(" ","-",$data["finance_period_code"]),15,190,25,25,'PNG');
-        
-        /*
+
 		$this->Cell($lbody3 - 10, $this->height, "Bandung, " . Date("d M Y"), "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
@@ -481,8 +477,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3 - 10, $this->height, "NIP. 19691104 199803 1 007", "BL", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "BR", 0, 'C');
 		$this->Ln($this->height + 4);
-		*/
-		$this->Cell($this->lengthCell, $this->height, "", "BLR", 0, 'C');
+		
+		
 	}
 
 	function tulis($text, $align){
