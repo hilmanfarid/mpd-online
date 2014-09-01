@@ -21,7 +21,7 @@
                 0 AS total_penalty_amount, 0 AS total_vat_amount, 0 AS db_increasing_charge, '' AS settlement_date,
                 to_char(sysdate,'DD Month YYYY') AS tgl_setllement,
                 0 AS total_trans_amount,
-                upper(e.vat_code) AS vat_code,
+                nvl(e.vat_code, upper(substring(c.vat_code from 7))) AS vat_code,
                 round(a.sisa_piutang) AS jumlah_piutang_harus_dibayar
                 FROM t_piutang_pajak_penetapan_final AS a
                 LEFT JOIN t_cust_account AS b ON a.t_cust_account_id = b.t_cust_account_id
