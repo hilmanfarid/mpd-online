@@ -274,8 +274,9 @@ class FormCetak extends FPDF {
 		/*$this->Cell($this->lengthCell, $this->height, "Nomor: ".$data["letter_no"], "LR", 0, 'C');
 		$this->newLine();*/
 		$this->SetWidths(array(10,204.3, 5));
+		$this->SetAligns(array("L", "J", "C"));
 		$this->RowMultiBorderWithHeight(array("",
-				"Menurut pembukuan kami hingga saat ini Saudara masih mempunyai tunggakan Pajak (rincian terlampir), yang sampai saat ini belum dilunasi.",
+				"Menindaklanjutihasil laporan pemeriksaan BPK-RI Provinsi Jawa Barat atas laporan Keuangan Pemerintah Kota Bandung Tahun 2012 No.2.B/LHP/XVIII.BDG/05/2013 tanggal 24 Mei 2013 tentang Laporan Keuangan Pemerintah Tahun Anggaran 2013 pada Pemerintah Kota Bandung serta data pembukuan pada Dinas Pelayanan Pajak Kota Bandung, bahwa perusahaan Saudara/i masih mempunyai tunggakan Pajak Daerah sebagaimana tercantum dalam lampiran surat ini.",
 				""
 			),
 			array("L",
@@ -284,6 +285,51 @@ class FormCetak extends FPDF {
 			),
 			$this->height
 		);
+
+		$this->RowMultiBorderWithHeight(array("",
+				"",
+				""
+			),
+			array("L",
+				"",
+				"R"
+			),
+			$this->height
+		);
+
+		$this->RowMultiBorderWithHeight(array("",
+				"Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang - undang Nomor 28 Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011,  maka diminta kepada Saudara  agar melunasi jumlah Tunggakan dalam waktu 7 (tujuh)  hari setelah Surat Teguran/Konfirmasi ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti dengan penyerahan Surat Paksa.",
+				""
+			),
+			array("L",
+				"",
+				"R"
+			),
+			$this->height
+		);
+
+		$this->RowMultiBorderWithHeight(array("",
+				"",
+				""
+			),
+			array("L",
+				"",
+				"R"
+			),
+			$this->height
+		);
+
+		$this->RowMultiBorderWithHeight(array("",
+				"Dalam hal Saudara telah melunasi tunggakan di atas, diminta agar Saudara segera menginformasikan kepada Seksi Penyelesaian Piutang Dinas Pelayanan Kota Bandung pada waktu hari dan jam kerja.",
+				""
+			),
+			array("L",
+				"",
+				"R"
+			),
+			$this->height
+		);
+
 		//$this->newLine();
 		// Tabel
 		$ltable = ($this->lengthCell - 15) / 14;
@@ -307,7 +353,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 - 20,"", "", 0, 'L');	
 		$this->Cell($lbody3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
-		
+		/*
 		$this->tulis("Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang-undang Nomor 28 Tahun", "FJ");
 		$this->tulis("2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi", "FJ");
 		$this->tulis("jumlah tunggakan dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut", "FJ");
@@ -316,7 +362,8 @@ class FormCetak extends FPDF {
 		$this->tulis("Apabila saudara telah melaksanakan pembayaran pajak tersebut, kami mohon untuk dapat memperlihatkan", "FJ");
 		$this->tulis("SSPD yang telah divalidasi dengan melampirkan photo copy dokumen yang dimaksud.", "L");
 		$this->tulis("", "L");
-		$this->tulis("Demikian agar menjadi maklum, atas perhatian dan kerjasamanya kami ucapkan terima kasih.", "L");
+		*/
+		$this->tulis("Demikian agar menjadi maklum, atas perhatian dan kerjasamanya diucapkan terimakasih.", "L");
 		
 		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		// $this->Ln();
@@ -329,7 +376,7 @@ class FormCetak extends FPDF {
 		$lbody2 = $lbody * 2;
 		$lbody4 = $lbody * 4;
 
-		$this->Image('../images/ttd_pa_soni.jpg',$lbody4+$lbody4+$lbody2-15,150,$lbody4+48,20);
+		$this->Image('../images/ttd_pa_soni.jpg',$lbody4+$lbody4+$lbody2-15,165,$lbody4+48,20);
 
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
