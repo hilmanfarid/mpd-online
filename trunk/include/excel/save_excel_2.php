@@ -62,7 +62,7 @@ function createExcel($data){
 	for($counter = 0;$counter < sizeof($data);$counter++){
 		$no_hp = $data[$counter]['mobile_no'];
 		if (substr($no_hp,0,1)=='0'){
-			$no_hp = '62'.substr($no_hp,1,-1);
+			$no_hp = '62'.substr($no_hp,1);
 		}
 		$objPHPExcel->setActiveSheetIndex(0)
 					->setCellValue('A'.(2+$counter), $counter+1)
