@@ -379,6 +379,11 @@ class FormCetak extends FPDF {
 
 		$this->Image('../images/ttd_pa_soni.jpg',$lbody4+$lbody4+$lbody2-15,165,$lbody4+48,20);
 
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-online/include/qrcode/generate-qr.php?param='.
+		$data["npwd"]."_".
+		str_replace(" ","-",dateToString(date("Y-m-d")))
+		,15,165,25,25,'PNG');
+
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
 		
@@ -718,7 +723,7 @@ function dateToString($date){
 	
 	$pieces = explode('-', $date);
 	
-	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
+	return ($pieces[2]-1).' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
 }
 
 
