@@ -93,7 +93,7 @@ function view_html($param_arr) {
 	$output.='<th>SISA <br/>PIUTANG (Rp)</th>';
 	$output.='<th>KETERANGAN</th>';
 	//$output.='<th>TAHUN</th>';
-	$output.='<th>MODIF</th>';
+	//$output.='<th>MODIF</th>';
 	$output.='</tr>';
 	
 	$no=1;
@@ -120,7 +120,9 @@ function view_html($param_arr) {
 	//echo $query;
 	//exit;
 	$dbConn->query($query);
-
+	$total_nilai = 0;
+	$total_realisasi = 0;
+	$total_sisa = 0;
 	while($dbConn->next_record()){
 		$item = array(
 						"t_piutang_pajak_penetapan_final_id" => $dbConn->f("t_piutang_pajak_penetapan_final_id"),
@@ -152,9 +154,20 @@ function view_html($param_arr) {
 			$output .= '<td align="right">'.number_format($item['sisa_piutang'],0,",",".").'</td>';
 			$output .= '<td align="left">'.$item['keterangan'].'</td>';
 			//$output .= '<td align="center">'.$item['year_code'].'</td>';
-			$output .= '<td align="center"><button class="btn_tambah" onclick="viewFormModifikasi('.$item['t_piutang_pajak_penetapan_final_id'].')">Ubah Data</button></td>';
+			//$output .= '<td align="center"><button class="btn_tambah" onclick="viewFormModifikasi('.$item['t_piutang_pajak_penetapan_final_id'].')">Ubah Data</button></td>';
 		$output .= '</tr>';
+		$total_nilai = $total_nilai + $item['nilai_piutang'];
+		$total_realisasi = $total_realisasi + $item['realisasi_piutang'];
+		$total_sisa = $total_sisa + $item['sisa_piutang'];	
 	}
+	$output .= '<tr>';
+			$output .= '<td colspan=6 align="center">Total</td>';
+			$output .= '<td align="right">'.number_format($total_nilai,0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($total_realisasi,0,",",".").'</td>';
+			$output .= '<td align="center"></td>';
+			$output .= '<td align="right">'.number_format($total_sisa,0,",",".").'</td>';
+			$output .= '<td align="center"></td>';
+		$output .= '</tr>';
 	
 	$output.='</td></tr></table>';
 	$output.='</table>';
