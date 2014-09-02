@@ -60,9 +60,13 @@ function createExcel($data){
     $counter = 0;
 	
 	for($counter = 0;$counter < sizeof($data);$counter++){
+		$no_hp = $data[$counter]['mobile_no'];
+		if (substr($no_hp,0,1)=='0'){
+			$no_hp = '62'.substr($no_hp,1,-1);
+		}
 		$objPHPExcel->setActiveSheetIndex(0)
 					->setCellValue('A'.(2+$counter), $counter+1)
-	                ->setCellValue('B'.(2+$counter), $data[$counter]['mobile_no'])
+	                ->setCellValue('B'.(2+$counter), $no_hp)
 					->setCellValue('C'.(2+$counter), $data[$counter]['message']);
 		//echo $data[$counter]['mobile_no'].'  '.$data[$counter]['message'];
 	}
