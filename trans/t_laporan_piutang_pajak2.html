@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_laporan_penerimaan_pajak</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css" />
+<script>
+                function getFrom_LOV(formName,fieldList,LOV_NM)
+                {
+                        arrLOV = LOV_NM.split("?");
+                        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+                }
+        function printLaporan(){
+                var params = "?cetak_laporan="+document.getElementById("t_laporan_piutang_pajak2cetak_laporan").value;
+                params += "&year_code="+document.getElementById("t_laporan_piutang_pajak2year_code").value;
+               
+                params += "&p_year_period_id="+document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value;
+                params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value;
+                window.open("t_laporan_piutang_pajak2.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+        }
+
+                function printLaporanHTML(){
+                        if( document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value == "" || 
+                                document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
+                                document.getElementById("t_laporan_piutang_pajak2status_bayar").value == "") {
+                                alert("Ada Filter yang Harus Diisi");
+                     }else {
+                        var params = "?cetak_laporan=view_html";
+                        params += "&year_code="+document.getElementById("t_laporan_piutang_pajak2year_code").value;
+                        params += "&vat_code="+document.getElementById("t_laporan_piutang_pajak2vat_code").value;
+                        params += "&p_year_period_id="+document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value;
+                        params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value;
+                        params += "&status_bayar="+document.getElementById("t_laporan_piutang_pajak2status_bayar").value;
+                        params += "&tgl_penerimaan="+document.getElementById("t_laporan_piutang_pajak2tgl_penerimaan").value;
+						location.href = "t_laporan_piutang_pajak2.php"+params;
+                                        }
+                }
+                
+                function viewFormModifikasi(t_piutang_pajak_penetapan_final_id) {
+                        
+                        url = "../trans/t_laporan_piutang_pajak2_modif.php?t_piutang_pajak_penetapan_final_id="+t_piutang_pajak_penetapan_final_id;
+                
+                params  = 'width=650';
+                        params += ', height=320';
+                        params += ', top=0, left=0';
+
+                        newwin=window.open(url,'windowname4', params);
+                        if (window.focus) {newwin.focus()}
+                                return false;
+
+                }
+</script>
+<style>
+
+table.report { 
+border-right:1px solid #000; 
+border-spacing: 0px; 
+} 
+
+table.report th{ 
+border-top:1px solid #000; 
+border-bottom:1px solid #000; 
+border-left:1px solid #000; 
+padding:4px; 
+text-transform: uppercase; 
+text-align: center; 
+}
+
+table.report td{ 
+border-left:1px solid #000; 
+border-bottom:1px solid #000; 
+padding-left:4px; 
+padding-right:4px; 
+}
+
+</style>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL          if(this.value==1){
+//DEL                  
+//DEL          }else{
+//DEL                  
+//DEL          }
+//DEL      // -------------------------
+
+//Date Picker Object Definitions @1-C14072CD
+
+var t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan = new Object(); 
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.format           = "dd-mmm-yy";
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.relativePathPart = "../";
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//bind_events @1-BF0EB765
+function bind_events() {
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN PENCETAKAN HARIAN PENERIMAAN SPTPD&nbsp; 
+      </div>
+ 
+    </div>
+ 
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_laporan_piutang_pajak2 -->
+        <form id="t_laporan_piutang_pajak2" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field">
+            <tr>
+              <td valign="top">
+                <table class="Record">
+                  <!-- BEGIN Error -->
+                  <tr>
+                    <td colspan="2">{Error}</td> 
+                  </tr>
+ <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;Tahun 
+                      <td class="search-field">&nbsp; <input id="t_laporan_piutang_pajak2year_code" class="ControlsRQ" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajak2p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_laporan_piutang_pajak2cetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></td> 
+                    </tr>
+ 
+                    <tr>
+                      <td align="left">Jenis&nbsp;Pajak&nbsp;</td> 
+                      <td>
+                        <p>&nbsp; <input id="t_laporan_piutang_pajak2vat_code" class="ControlsRQ" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}">&nbsp;<img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajak2p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></p>
+ </td> 
+                    </tr>
+ 
+                    <tr>
+                      <td align="left">Status Bayar</td> 
+                      <td>&nbsp; 
+                        <select id="t_laporan_piutang_pajak2status_bayar" class="ControlsRQ" name="{status_bayar_Name}">
+                          {status_bayar_Options} 
+                        </select>
+ &nbsp; </td> 
+                    </tr>
+ 
+                    <tr>
+                      <td align="left">Tanggal Penerimaan</td> 
+                      <td>&nbsp; <input style="WIDTH: 95px; HEIGHT: 20px" id="t_laporan_piutang_pajak2tgl_penerimaan" value="{tgl_penerimaan}" maxlength="32" size="11" name="{tgl_penerimaan_Name}">
+                        <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan"><img id="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan --></td> 
+                    </tr>
+ 
+                    <tr>
+                      <td colspan="2" align="right">&nbsp; 
+                        <!-- BEGIN Button Button2 --><input id="t_laporan_piutang_pajak2Button2" class="btn_tambah" onclick="printLaporanHTML()" value="Tampilkan" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->
+                        <!-- BEGIN Button Button1 --><input id="t_laporan_piutang_pajak2Button1" class="btn_tambah" onclick="printLaporan()" value="Download" alt="Button1" type="hidden" name="{Button_Name}"><!-- END Button Button1 --></td> 
+                    </tr>
+ 
+                  </table>
+ </td> 
+              </tr>
+ 
+            </table>
+ 
+          </form>
+ <!-- END Record t_laporan_piutang_pajak2 --><br>
+        </td> 
+      </tr>
+ 
+    </table>
+ 
+  </div>
+ 
+  <script type="text/javascript" src="../js/lov.js"></script>
+  <script language="javascript">
+        function lov_year_period() {
+                getFrom_LOV('t_laporan_piutang_pajak2','p_year_period_id,year_code','lov_year_period.php');
+        }
+        function lov_rqst() {
+                getFrom_LOV('t_laporan_piutang_pajak2','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_rqst_type&FIELD_0=p_rqst_type_id&FIELD_1=code&FIELD_2=description&FIELD_3=And p_rqst_type_id in (1,2,3,4,5)&LABEL1=Jenis Permohonan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PERMOHONAN&HEADER_LOV=DAFTAR JENIS PERMOHONAN&ORDER=p_rqst_type_id');
+        }
+                function lov_vat_type() {
+                        getFrom_LOV('t_laporan_piutang_pajak2','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
+                }
+        function lov_ayatpajak() {
+                        getFrom_LOV('t_laporan_piutang_pajak2','p_vat_type_id,vat_code','lov_vat_type.php');
+                }
+function lov_tipeayat() {
+        var p_vat_type_id = document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value;
+        if (p_vat_type_id != "" && p_vat_type_id != 0 && p_vat_type_id != false && p_vat_type_id != undefined &&  p_vat_type_id != null){
+           getFrom_LOV('t_laporan_piutang_pajak2','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=p_vat_type_dtl&FIELD_0=p_vat_type_dtl_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Tipe Ayat&LABEL2=Deskripsi&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+        }else{
+            alert("Ayat Pajak belum Diisi");
+        }
+}
+
+  </script>
+  <p>{Label1} </p>
+ 
+  </body>
+ 
+  </html>
