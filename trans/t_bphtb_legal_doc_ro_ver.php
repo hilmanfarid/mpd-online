@@ -690,7 +690,7 @@ class clsRecordt_cust_order_legal_docForm { //t_cust_order_legal_docForm Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-8898930B
+//Class_Initialize Event @94-1A428D17
     function clsRecordt_cust_order_legal_docForm($RelativePath, & $Parent)
     {
 
@@ -770,6 +770,7 @@ class clsRecordt_cust_order_legal_docForm { //t_cust_order_legal_docForm Class @
             $this->p_legal_doc_type_id->DataSource->Order = "";
             $this->legal_doc_desc = & new clsControl(ccsHidden, "legal_doc_desc", "Jenis Dokumen", ccsText, "", CCGetRequestParam("legal_doc_desc", $Method, NULL), $this);
             $this->legal_doc_desc->Required = true;
+            $this->origin_file_name1 = & new clsControl(ccsHidden, "origin_file_name1", "origin_file_name1", ccsText, "", CCGetRequestParam("origin_file_name1", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -795,7 +796,7 @@ class clsRecordt_cust_order_legal_docForm { //t_cust_order_legal_docForm Class @
     }
 //End Initialize Method
 
-//Validate Method @94-0674D40F
+//Validate Method @94-DE88B817
     function Validate()
     {
         global $CCSLocales;
@@ -814,6 +815,7 @@ class clsRecordt_cust_order_legal_docForm { //t_cust_order_legal_docForm Class @
         $Validation = ($this->file_name->Validate() && $Validation);
         $Validation = ($this->p_legal_doc_type_id->Validate() && $Validation);
         $Validation = ($this->legal_doc_desc->Validate() && $Validation);
+        $Validation = ($this->origin_file_name1->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_cust_order_legal_doc_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->description->Errors->Count() == 0);
@@ -828,11 +830,12 @@ class clsRecordt_cust_order_legal_docForm { //t_cust_order_legal_docForm Class @
         $Validation =  $Validation && ($this->file_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_legal_doc_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->legal_doc_desc->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->origin_file_name1->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-9A7BAA74
+//CheckErrors Method @94-E1191BF2
     function CheckErrors()
     {
         $errors = false;
@@ -849,6 +852,7 @@ class clsRecordt_cust_order_legal_docForm { //t_cust_order_legal_docForm Class @
         $errors = ($errors || $this->file_name->Errors->Count());
         $errors = ($errors || $this->p_legal_doc_type_id->Errors->Count());
         $errors = ($errors || $this->legal_doc_desc->Errors->Count());
+        $errors = ($errors || $this->origin_file_name1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -990,7 +994,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-D148E599
+//Show Method @94-3E33234E
     function Show()
     {
         global $CCSUseAmp;
@@ -1031,6 +1035,7 @@ function GetPrimaryKey($keyName)
                     $this->file_name->SetValue($this->DataSource->file_name->GetValue());
                     $this->p_legal_doc_type_id->SetValue($this->DataSource->p_legal_doc_type_id->GetValue());
                     $this->legal_doc_desc->SetValue($this->DataSource->legal_doc_desc->GetValue());
+                    $this->origin_file_name1->SetValue($this->DataSource->origin_file_name1->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -1054,6 +1059,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->file_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_legal_doc_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->legal_doc_desc->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->origin_file_name1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1093,6 +1099,7 @@ function GetPrimaryKey($keyName)
         $this->Button1->Show();
         $this->p_legal_doc_type_id->Show();
         $this->legal_doc_desc->Show();
+        $this->origin_file_name1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1103,7 +1110,7 @@ function GetPrimaryKey($keyName)
 
 class clst_cust_order_legal_docFormDataSource extends clsDBConnSIKP {  //t_cust_order_legal_docFormDataSource Class @94-2B38954F
 
-//DataSource Variables @94-04CD2B63
+//DataSource Variables @94-B4E0A2DE
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1131,9 +1138,10 @@ class clst_cust_order_legal_docFormDataSource extends clsDBConnSIKP {  //t_cust_
     var $file_name;
     var $p_legal_doc_type_id;
     var $legal_doc_desc;
+    var $origin_file_name1;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-38538299
+//DataSourceClass_Initialize Event @94-9D5D44EC
     function clst_cust_order_legal_docFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1164,6 +1172,8 @@ class clst_cust_order_legal_docFormDataSource extends clsDBConnSIKP {  //t_cust_
         $this->p_legal_doc_type_id = new clsField("p_legal_doc_type_id", ccsText, "");
         
         $this->legal_doc_desc = new clsField("legal_doc_desc", ccsText, "");
+        
+        $this->origin_file_name1 = new clsField("origin_file_name1", ccsText, "");
         
 
     }
@@ -1199,7 +1209,7 @@ class clst_cust_order_legal_docFormDataSource extends clsDBConnSIKP {  //t_cust_
     }
 //End Open Method
 
-//SetValues Method @94-DD3B04CB
+//SetValues Method @94-70E972D8
     function SetValues()
     {
         $this->t_cust_order_legal_doc_id->SetDBValue(trim($this->f("t_cust_order_legal_doc_id")));
@@ -1214,6 +1224,7 @@ class clst_cust_order_legal_docFormDataSource extends clsDBConnSIKP {  //t_cust_
         $this->file_name->SetDBValue($this->f("file_name"));
         $this->p_legal_doc_type_id->SetDBValue($this->f("p_legal_doc_type_id"));
         $this->legal_doc_desc->SetDBValue($this->f("legal_doc_desc"));
+        $this->origin_file_name1->SetDBValue($this->f("file_name"));
     }
 //End SetValues Method
 
@@ -1252,7 +1263,9 @@ class clst_cust_order_legal_docFormDataSource extends clsDBConnSIKP {  //t_cust_
         "VALUES(generate_id('sikp','t_cust_order_legal_doc','t_cust_order_legal_doc_id'), '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', sysdate, sysdate, " . $this->SQLValue($this->cp["p_legal_doc_type_id"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["t_customer_order_id"]->GetDBValue(), ccsFloat) . ", substr('" . $this->SQLValue($this->cp["file_name"]->GetDBValue(), ccsText) . "',17),'" . $this->SQLValue($this->cp["file_folder"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["file_name"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["legal_doc_desc"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->query($this->SQL);
+            print_r(($this->SQL));
+			exit;
+			$this->query($this->SQL);
             $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
         }
     }
