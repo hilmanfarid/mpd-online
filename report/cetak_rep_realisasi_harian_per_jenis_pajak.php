@@ -131,6 +131,7 @@ while ($dbConn->next_record()) {
 	"jam"		=> $dbConn->f("jam"));
 }
 
+/*
 if($jenis_denda == 'denda_piutang'){
 	$query	= "select to_char(b.start_date,'dd-mm-yyyy') ||' s/d '|| to_char(b.end_date,'dd-mm-yyyy') as masa_pajak,
 		c.wp_name, c.wp_address_name, c.wp_address_no,
@@ -204,6 +205,9 @@ if($jenis_denda == 'denda_piutang'){
 		";
 }
 
+//echo $query;
+//exit;
+
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 	$data[]= array(
@@ -226,6 +230,7 @@ while ($dbConn->next_record()) {
 	"payment_date"		=> $dbConn->f("payment_date"),
 	"jam"		=> $dbConn->f("jam"));
 }
+*/
 
 $dbConn->close();
 
