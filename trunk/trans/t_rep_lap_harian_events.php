@@ -50,7 +50,7 @@ function Page_BeforeShow(& $sender)
 		$user				= CCGetUserLogin();
 		$data				= array();
 		$dbConn				= new clsDBConnSIKP();
-		$query				= "select * from f_rep_lap_harian_bdhr('$tgl_penerimaan') order by nomor_ayat";
+		$query				= "select * from f_rep_lap_harian_bdhr_mod_1('$tgl_penerimaan') order by nomor_ayat";
 		$tgl_penerimaan		= str_replace("'", "", $tgl_penerimaan);
 		$dbConn->query($query);
 		while ($dbConn->next_record()) {
