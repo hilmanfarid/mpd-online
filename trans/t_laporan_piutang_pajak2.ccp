@@ -56,19 +56,19 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<TextBox id="24" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan" PathID="t_laporan_piutang_pajak2tgl_penerimaan" format="dd-mmm-yy" fieldSource="tgl_penerimaan">
+				<TextBox id="24" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan" PathID="t_laporan_piutang_pajak2tgl_penerimaan" format="dd-mmm-yy" fieldSource="tgl_penerimaan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="26" name="DatePicker_tgl_penerimaan" control="tgl_penerimaan" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan">
+				<DatePicker id="26" name="DatePicker_tgl_penerimaan" control="tgl_penerimaan" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
