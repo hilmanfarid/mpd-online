@@ -284,7 +284,7 @@ UNION
 	0,
 	'',
 	0,
-	f_get_total_denda_ayat({p_year_period_id},{p_finance_period_id},{p_vat_type_id}) as jumlah,
+	f_get_total_denda_ayat_mod_1({p_year_period_id},{p_finance_period_id},{p_vat_type_id}) as jumlah,
 	0,
 	0,
 	'DENDA')">
