@@ -408,7 +408,7 @@ class FormCetak extends FPDF {
 		
 		// Dengan huruf
 		$this->Cell($lbody1 - 5, $this->height, "", "", 0, 'L');
-		$this->kotak(25, 34, 1, $huruf." rupiah ");
+		$this->kotak(25, 34, 1, $huruf."rupiah");
 		$this->Ln();
 		// ============
 		
