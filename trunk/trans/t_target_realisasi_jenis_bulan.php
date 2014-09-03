@@ -999,7 +999,7 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
     }
 //End Prepare Method
 
-//Open Method @900-17718064
+//Open Method @900-76927D0C
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1032,7 +1032,7 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
         "	0,\n" .
         "	'',\n" .
         "	0,\n" .
-        "	f_get_total_denda_ayat(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") as jumlah,\n" .
+        "	f_get_total_denda_ayat_mod_1(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") as jumlah,\n" .
         "	0,\n" .
         "	0,\n" .
         "	'DENDA')) cnt";
@@ -1065,7 +1065,7 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
         "	0,\n" .
         "	'',\n" .
         "	0,\n" .
-        "	f_get_total_denda_ayat(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") as jumlah,\n" .
+        "	f_get_total_denda_ayat_mod_1(" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "," . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "," . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . ") as jumlah,\n" .
         "	0,\n" .
         "	0,\n" .
         "	'DENDA')";
