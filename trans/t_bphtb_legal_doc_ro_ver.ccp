@@ -448,7 +448,13 @@ where t_cust_order_legal_doc.t_cust_order_legal_doc_id={t_cust_order_legal_doc_i
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Hidden id="727" fieldSourceType="DBColumn" dataType="Text" name="origin_file_name1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_order_legal_docFormorigin_file_name1" fieldSource="file_name">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events/>
 			<TableParameters>
 				<TableParameter id="626" conditionType="Parameter" useIsNull="False" field="t_cust_order_legal_doc_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cust_order_legal_doc_id"/>
@@ -459,22 +465,22 @@ where t_cust_order_legal_doc.t_cust_order_legal_doc_id={t_cust_order_legal_doc_i
 			</SQLParameters>
 			<JoinTables>
 				<JoinTable id="625" tableName="t_cust_order_legal_doc" posWidth="160" posHeight="180" posLeft="10" posTop="10"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="680" tableName="t_cust_order_legal_doc" fieldName="t_cust_order_legal_doc_id"/>
-<Field id="681" tableName="t_cust_order_legal_doc" fieldName="t_customer_order_id"/>
-<Field id="682" tableName="t_cust_order_legal_doc" fieldName="p_legal_doc_type_id"/>
-<Field id="683" tableName="t_cust_order_legal_doc" fieldName="legal_doc_desc"/>
-<Field id="684" tableName="t_cust_order_legal_doc" fieldName="origin_file_name"/>
-<Field id="685" tableName="t_cust_order_legal_doc" fieldName="file_folder"/>
-<Field id="686" tableName="t_cust_order_legal_doc" fieldName="description"/>
-<Field id="687" tableName="t_cust_order_legal_doc" fieldName="file_name"/>
-<Field id="688" tableName="t_cust_order_legal_doc" fieldName="creation_date"/>
-<Field id="689" tableName="t_cust_order_legal_doc" fieldName="created_by"/>
-<Field id="690" tableName="t_cust_order_legal_doc" fieldName="updated_date"/>
-<Field id="691" tableName="t_cust_order_legal_doc" fieldName="updated_by"/>
-</Fields>
+				<Field id="681" tableName="t_cust_order_legal_doc" fieldName="t_customer_order_id"/>
+				<Field id="682" tableName="t_cust_order_legal_doc" fieldName="p_legal_doc_type_id"/>
+				<Field id="683" tableName="t_cust_order_legal_doc" fieldName="legal_doc_desc"/>
+				<Field id="684" tableName="t_cust_order_legal_doc" fieldName="origin_file_name"/>
+				<Field id="685" tableName="t_cust_order_legal_doc" fieldName="file_folder"/>
+				<Field id="686" tableName="t_cust_order_legal_doc" fieldName="description"/>
+				<Field id="687" tableName="t_cust_order_legal_doc" fieldName="file_name"/>
+				<Field id="688" tableName="t_cust_order_legal_doc" fieldName="creation_date"/>
+				<Field id="689" tableName="t_cust_order_legal_doc" fieldName="created_by"/>
+				<Field id="690" tableName="t_cust_order_legal_doc" fieldName="updated_date"/>
+				<Field id="691" tableName="t_cust_order_legal_doc" fieldName="updated_by"/>
+			</Fields>
 			<ISPParameters>
 				<SPParameter id="Key176" parameterName="i_p_app_user_id" parameterSource="0" dataType="Numeric" parameterType="Expression" dataSize="0" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key178" parameterName="i_full_name" parameterSource="full_name" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
