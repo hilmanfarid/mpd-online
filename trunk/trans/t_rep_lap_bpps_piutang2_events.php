@@ -46,14 +46,14 @@ function Page_BeforeShow(& $sender)
 		$jenis_laporan		= CCGetFromGet("jenis_laporan", "all"); 
 		if($jenis_laporan == 'all'){
 			$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
+			from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
 			order by kode_ayat, npwpd, masa_pajak";	
 			//echo $query;
 			//exit;
 		}else if($jenis_laporan == 'piutang'){
 			$border= $year_date-1;
 			$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
 			(	SUBSTRING(rep.masa_pajak,22,4) < $year_date
 				AND 
@@ -74,7 +74,7 @@ function Page_BeforeShow(& $sender)
 			//exit;
 		}else if($jenis_laporan == 'murni'){
 			$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang3new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+			from f_rep_bpps_piutang3new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 		WHERE
 			EXTRACT (YEAR FROM rep.settlement_date) = $year_date
 			order by kode_ayat, npwpd, masa_pajak";
@@ -158,14 +158,14 @@ function Page_BeforeShow(& $sender)
 			}*/
 			if($jenis_laporan == 'all'){
 				$query	= "select *,trunc(payment_date) 
-				from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
+				from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
 				order by kode_ayat, npwpd, masa_pajak";	
 				//echo $query;
 				//exit;
 			}else if($jenis_laporan == 'piutang'){
 				$border= $year_date-1;
 				$query	= "select *,trunc(payment_date) 
-				from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+				from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 			WHERE
 				(	SUBSTRING(rep.masa_pajak,22,4) < $year_date
 					AND 
@@ -186,7 +186,7 @@ function Page_BeforeShow(& $sender)
 				//exit;
 			}else if($jenis_laporan == 'murni'){
 				$query	= "select *,trunc(payment_date) 
-				from f_rep_bpps_piutang3new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+				from f_rep_bpps_piutang3new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
 			WHERE
 				EXTRACT (YEAR FROM rep.settlement_date) = $year_date
 				order by kode_ayat, npwpd, masa_pajak";
