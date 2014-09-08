@@ -5,16 +5,7 @@ define("FileName", "cetak_surat_teguran_bphtb_pdf_request.php");
 include_once(RelativePath . "/Common.php");
 include_once("../include/fpdf.php");
 
-
-$param_arr = array();
-$param_arr['date_start'] = $date_start;
-$param_arr['date_end'] = $date_end;
-
 $dbConn	= new clsDBConnSIKP();
-
-$dbConn2	= new clsDBConnSIKP();
-$nomor_surat = "";
-						
 
 $query = "SELECT wp_name_old, wp_address_old, wp_name, wp_address, nop, dasar_penagihan, nomor,
                 tgl_terbit, tunggakan 
