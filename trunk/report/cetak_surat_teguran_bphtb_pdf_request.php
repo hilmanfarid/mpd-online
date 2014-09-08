@@ -255,7 +255,7 @@ class FormCetak extends FPDF {
 				"",
 				""
 			),
-			5
+			3
 		);
 		
 		$this->SetAligns(array("L","L","L","L"));
@@ -271,7 +271,7 @@ class FormCetak extends FPDF {
 				"",
 				""
 			),
-			5
+			3
 		);
 
 		$this->SetAligns(array("L","L","L","L"));
