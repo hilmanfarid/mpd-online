@@ -477,16 +477,15 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();
 
-		/*$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
-		$data['njop_pbb']."_".
-		$data['registration_no']."_".
-		str_replace(" ","-",dateToString($data['creation_date']))
-		,15,200,30,30,'PNG');*/
-		
 		$this->Image('http://172.16.20.2:81/mpd/include/qrcode/generate-qr.php?param='.
 		$data['nop']."_".
 		$data['nomor']
 		,15,200,30,30,'PNG');
+		
+		/*$this->Image('http://172.16.20.2:81/mpd/include/qrcode/generate-qr.php?param='.
+		$data['nop']."_".
+		$data['nomor']
+		,15,200,30,30,'PNG');*/
 
 		$this->SetFont('Times', 'BU', 12);
 		$this->Ln();
