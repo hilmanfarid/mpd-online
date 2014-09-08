@@ -17,7 +17,8 @@ $nomor_surat = "";
 						
 
 $query = "SELECT wp_name_old, wp_address_old, wp_name, wp_address, nop, dasar_penagihan, nomor,
-                tgl_terbit, tunggakan";
+                tgl_terbit, tunggakan 
+                FROM t_bphtb_piutang";
 
 $dbConn->query($query);
 
