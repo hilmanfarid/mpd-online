@@ -232,7 +232,7 @@ class FormCetak extends FPDF {
 		
 		$this->SetWidths(array("25",200));
 		$this->RowMultiBorderWithHeight(
-			array("","Disampaikan dengan hormat, berdasarkan data pelimpahan dari Kanwil DJP Jabar I Dinas Pelayanan Pajak Kota Bandung hingga saat ini tercatat, bahwa subjek dan objek pajak :"
+			array("","Disampaikan dengan hormat, berdasarkan data pelimpahan dari Kanwil DJP Jabar I kepada Dinas Pelayanan Pajak Kota Bandung hingga saat ini tercatat, bahwa subjek dan objek pajak :"
 			),
 			array("",""
 			),
