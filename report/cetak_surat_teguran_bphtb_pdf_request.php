@@ -344,7 +344,7 @@ class FormCetak extends FPDF {
 			array("",
 				"Tanggal",
 				":",
-				"  ".dateToString($data['tgl_terbit'])
+				"  ".$data['tgl_terbit']
 			),
 			array("",
 				"",
