@@ -432,7 +432,7 @@ class FormCetak extends FPDF {
 
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
-		$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,200,$lbody4+48,20);
+		$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,205,$lbody4+48,20);
 		
 		
 		$this->SetFont('Times', 'B', 12);
