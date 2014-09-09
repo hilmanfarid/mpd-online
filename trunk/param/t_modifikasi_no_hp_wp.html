@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_job_position</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        MODIFIKASI NO HP WP&nbsp; 
+      </div>
+    </div>
+    <!--<div class="th tab-button">
+      <label onclick="javascript:toCustomerAccount()">
+      <div class="tab-title">
+        CUSTOMER ACCOUNT 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title">
+        HISTORI LOG &amp; TRANSAKSI 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title">
+        DATA POTENSI 
+      </div>
+    </div>-->
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_customerSearch -->
+        <form id="t_customerSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;NPWPD&nbsp;</td> 
+                    <td class="search-field" colspan="3"><input id="t_customerSearchs_npwd" class="ControlsIN" value="{s_npwd}" maxlength="32" size="32" name="{s_npwd_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;Nama Wajib Pajak&nbsp;</td> 
+                    <td class="search-field" colspan="3"><input id="t_customerSearchs_wp_name" class="ControlsIN" value="{s_wp_name}" maxlength="32" size="32" name="{s_wp_name_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;Nama Badan/Perusahaan&nbsp;&nbsp; </td> 
+                    <td class="search-field" colspan="3"><input id="t_customerSearchs_company_name" class="ControlsIN" value="{s_company_name}" maxlength="32" size="32" name="{s_company_name_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;Nama Merk&nbsp;Dagang</td> 
+                    <td class="search-field" colspan="3"><input id="t_customerSearchs_company_brand" class="ControlsIN" value="{s_company_brand}" maxlength="32" size="32" name="{s_company_brand_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;Nama Pemilik/Alamat</td> 
+                    <td class="search-field" colspan="3"><input id="t_customerSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;</td> 
+                    <td style="TEXT-ALIGN: right" class="search-field" colspan="3">&nbsp; 
+                      <!-- BEGIN Button Button_DoPrint --><input id="t_customerSearchButton_DoPrint" class="btn_tambah" onclick="printLaporan()" value="PRINT" alt="Search" type="hidden" name="{Button_Name}"><!-- END Button Button_DoPrint -->
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_customerSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_customerSearch --><br>
+        <!-- BEGIN Grid t_customerGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR CUSTOMER</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th style="TEXT-ALIGN: center; DISPLAY: none" scope="col">&nbsp;Customer Account</th>
+ 
+                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Pemilik/Pengelola</label></label></label></label></label></label></th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;NPWD</th>
+ 
+                  <th scope="col"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME">Alamat</label></label></th>
+ 
+                  <th scope="col">Jenis Pajak&nbsp;</th>
+ 
+                  <th scope="col">No Selular&nbsp;</th>
+ 
+                  <th scope="col">Email</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_customerGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_customerGridDLink_{t_customerGrid:rowNumber}">{DLink}</a></td> 
+                  <td style="TEXT-ALIGN: center; DISPLAY: none"><a href="{ImageLink1}" id="t_customerGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
+                  <td>{company_owner}&nbsp;<input id="t_customerGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: left">{npwd}&nbsp;</td> 
+                  <td>{address_name_owner}&nbsp;No. {address_no_owner}&nbsp;Rt/Rw. {address_rt_owner}&nbsp;/ {address_rw_owner}</td> 
+                  <td>&nbsp;{nama_ayat}</td> 
+                  <td>{mobile_no_owner}&nbsp;</td> 
+                  <td>{email_address}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="8">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><label for="t_customerGridTextBox1" style="display: none;">&nbsp;</label></b></td> 
+                  <td colspan="7">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_customerGrid --><br>
+        <!-- BEGIN Record t_customer_updateForm -->
+        <form id="t_customer_updateForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI CUSTOMER</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th" width="200"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Pemilik/Pengelola</label></label></td> 
+                    <td colspan="3"><input id="t_customer_updateFormcompany_owner" class="ControlsRO" value="{company_owner}" readonly maxlength="250" size="50" name="{company_owner_Name}"><input id="t_customer_updateFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="t_customerFormis_head">Alamat</label></label></label></td> 
+                    <td colspan="3"><textarea id="t_customer_updateFormaddress_name_owner" class="ControlsRO" rows="3" cols="64" readonly name="{address_name_owner_Name}">{address_name_owner}</textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No</td> 
+                    <td colspan="3"><input id="t_customer_updateFormaddress_no_owner" class="ControlsRO" value="{address_no_owner}" readonly maxlength="20" size="10" name="{address_no_owner_Name}">&nbsp;Rt/Rw <input id="t_customer_updateFormaddress_rt_owner" class="ControlsRO" value="{address_rt_owner}" readonly maxlength="5" size="5" name="{address_rt_owner_Name}">&nbsp;/ <input id="t_customer_updateFormaddress_rw_owner" class="ControlsRO" value="{address_rw_owner}" readonly maxlength="5" size="5" name="{address_rw_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kota</td> 
+                    <td colspan="3"><input id="t_customer_updateFormnama_kota" class="ControlsRO" value="{nama_kota}" readonly maxlength="32" size="32" name="{nama_kota_Name}">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kota()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_owner" value="{p_region_id_owner}" type="hidden" name="{p_region_id_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kecamatan</td> 
+                    <td colspan="3"><input id="t_customer_updateFormnama_kecamatan" class="ControlsRO" value="{nama_kecamatan}" maxlength="32" size="32" name="{nama_kecamatan_Name}">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kec()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_kec_owner" value="{p_region_id_kec_owner}" type="hidden" name="{p_region_id_kec_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kelurahan</td> 
+                    <td colspan="3"><input id="t_customer_updateFormnama_kelurahan" class="ControlsRO" value="{nama_kelurahan}" maxlength="32" size="32" name="{nama_kelurahan_Name}">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kel()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_kel_owner" value="{p_region_id_kel_owner}" type="hidden" name="{p_region_id_kel_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_customer_updateFormnama_jabatan">No Telephon</label></td> 
+                    <td colspan="3"><input id="t_customer_updateFormphone_no_owner" class="ControlsRO" value="{phone_no_owner}" readonly maxlength="20" name="{phone_no_owner_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No Fax</td> 
+                    <td colspan="3"><input id="t_customer_updateFormfax_no_owner" class="ControlsRO" value="{fax_no_owner}" readonly maxlength="20" name="{fax_no_owner_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No Selular</td> 
+                    <td colspan="3"><input id="t_customer_updateFormmobile_no" class="ControlsRQ" value="{mobile_no}" maxlength="20" name="{mobile_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Email</td> 
+                    <td colspan="3"><input id="t_customer_updateFormemail_address" class="ControlsRO" value="{email_address}" maxlength="64" size="50" name="{email_address_Name}"><input id="t_customer_updateFormupdated_by" value="{updated_by}" type="hidden" name="{updated_by_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kode Pos</td> 
+                    <td colspan="3"><input id="t_customer_updateFormzip_code_owner" class="ControlsRO" value="{zip_code_owner}" maxlength="5" size="6" name="{zip_code_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="4" align="right">&nbsp; 
+                      <!-- BEGIN Button Button_Update --><input id="t_customer_updateFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_customer_updateFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_customer_updateForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+function lov_district(){
+        getFrom_LOV('p_organizationForm','p_district_id,district_name','lov_2_field.php?TABLE=p_district&FIELD_0=p_district_id&FIELD_1=code&FIELD_2=district_name&LABEL1=Kode&LABEL2=Kota/Kabupaten&HEADER_PAGE=KOTA/KABUPATEN&HEADER_LOV=DAFTAR KOTA/KABUPATEN&ORDER=listing_no');
+}
+
+function toCustomerAccount()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_customerFormt_customer_id'))
+  {
+    var pid = idelement.value;
+    var customerName = document.getElementById('t_customerFormcompany_owner').value;
+
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_cust_account.php?t_customer_id="+pid+"&customer_name="+customerName;
+    } else {
+     alert("Pilih salah satu Customer!");
+    }
+  } else {
+     alert("Pilih salah satu Customer!");
+  }
+}
+
+
+function lov_vat_type() {
+        getFrom_LOV('t_customerSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+}
+
+function printLaporan(){
+
+    params = "?s_npwd="+document.getElementById("t_customerSearchs_npwd").value;
+    params += "&p_vat_type_id="+document.getElementById("t_customerSearchp_vat_type_id").value;
+    params += "&p_vat_type_dtl_id="+document.getElementById("t_customerSearchp_vat_type_dtl_id").value;
+        params += "&s_wp_name=" + document.getElementById("t_customerSearchs_wp_name").value;
+    params += "&s_company_name=" + document.getElementById("t_customerSearchs_company_name").value;
+    params += "&s_company_brand=" + document.getElementById("t_customerSearchs_company_brand").value;
+    params += "&s_keyword=" + document.getElementById("t_customerSearchs_keyword").value;
+    
+        
+        window.open("../report/t_customer_report.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+}
+
+function lov_namaAyat() {
+                var vatId = document.getElementById("t_customerSearchp_vat_type_id").value;          
+                if (vatId!= "" && vatId != 0 && vatId != false && vatId != undefined &&  vatId != null){
+                        getFrom_LOV('t_customerSearch','p_vat_type_dtl_id,nama_ayat','lov_vat_type_dtl.php?p_vat_type_id='+vatId);
+                }else{
+                        alert("JENIS PAJAK Belum Diisi");
+                }
+}
+</script>
+</body>
+</html>
