@@ -110,7 +110,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     }
 //End Initialize Method
 
-//Show Method @2-75A898D2
+//Show Method @2-677F86AD
     function Show()
     {
         global $Tpl;
@@ -119,7 +119,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
+        $this->DataSource->Parameters["sesp_year_period_id"] = CCGetSession("p_year_period_id", NULL);
         $this->DataSource->Parameters["urlp_vat_type_id"] = CCGetFromGet("p_vat_type_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
@@ -342,13 +342,13 @@ class clst_target_realisasiGridDataSource extends clsDBConnSIKP {  //t_target_re
     }
 //End SetOrder Method
 
-//Prepare Method @2-CFF5271D
+//Prepare Method @2-0BE38D2A
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", "", $this->Parameters["urlp_year_period_id"], 0, false);
+        $this->wp->AddParameter("1", "sesp_year_period_id", ccsFloat, "", "", $this->Parameters["sesp_year_period_id"], 0, false);
         $this->wp->AddParameter("2", "urlp_vat_type_id", ccsText, "", "", $this->Parameters["urlp_vat_type_id"], "", false);
     }
 //End Prepare Method
@@ -511,7 +511,7 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @119-103E
     }
 //End Initialize Method
 
-//Show Method @119-E8350955
+//Show Method @119-059F9F1B
     function Show()
     {
         global $Tpl;
@@ -520,7 +520,7 @@ class clsGridt_target_realisasiGrid1 { //t_target_realisasiGrid1 class @119-103E
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
+        $this->DataSource->Parameters["sesp_year_period_id"] = CCGetSession("p_year_period_id", NULL);
         $this->DataSource->Parameters["urlp_vat_type_id"] = CCGetFromGet("p_vat_type_id", NULL);
         $this->DataSource->Parameters["urlp_finance_period_id"] = CCGetFromGet("p_finance_period_id", NULL);
 
@@ -697,13 +697,13 @@ class clst_target_realisasiGrid1DataSource extends clsDBConnSIKP {  //t_target_r
     }
 //End SetOrder Method
 
-//Prepare Method @119-9F3576D7
+//Prepare Method @119-9F94EEDB
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", "", $this->Parameters["urlp_year_period_id"], 0, false);
+        $this->wp->AddParameter("1", "sesp_year_period_id", ccsFloat, "", "", $this->Parameters["sesp_year_period_id"], 0, false);
         $this->wp->AddParameter("2", "urlp_vat_type_id", ccsText, "", "", $this->Parameters["urlp_vat_type_id"], null, false);
         $this->wp->AddParameter("3", "urlp_finance_period_id", ccsText, "", "", $this->Parameters["urlp_finance_period_id"], 'null', false);
     }
@@ -834,11 +834,15 @@ $Charset = $Charset ? $Charset : "windows-1252";
 include_once("./t_target_realisasi_jenis_bulan_view_events.php");
 //End Include events file
 
+//BeforeInitialize Binding @1-17AC9191
+$CCSEvents["BeforeInitialize"] = "Page_BeforeInitialize";
+//End BeforeInitialize Binding
+
 //Before Initialize @1-E870CEBC
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-3283F5AD
+//Initialize Objects @1-023ECB5D
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -849,9 +853,12 @@ $t_target_realisasiGrid = & new clsGridt_target_realisasiGrid("", $MainPage);
 $t_target_realisasiGrid1 = & new clsGridt_target_realisasiGrid1("", $MainPage);
 $ayat = & new clsControl(ccsLabel, "ayat", "ayat", ccsText, "", CCGetRequestParam("ayat", ccsGet, NULL), $MainPage);
 $ayat->HTML = true;
+$p_year_period_id = & new clsControl(ccsLabel, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", ccsGet, NULL), $MainPage);
+$p_year_period_id->HTML = true;
 $MainPage->t_target_realisasiGrid = & $t_target_realisasiGrid;
 $MainPage->t_target_realisasiGrid1 = & $t_target_realisasiGrid1;
 $MainPage->ayat = & $ayat;
+$MainPage->p_year_period_id = & $p_year_period_id;
 $t_target_realisasiGrid->Initialize();
 $t_target_realisasiGrid1->Initialize();
 
@@ -889,10 +896,11 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-AB75991B
+//Show Page @1-674666C4
 $t_target_realisasiGrid->Show();
 $t_target_realisasiGrid1->Show();
 $ayat->Show();
+$p_year_period_id->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
