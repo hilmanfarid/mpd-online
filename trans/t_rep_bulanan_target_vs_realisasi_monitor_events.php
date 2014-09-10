@@ -65,27 +65,27 @@ function Page_BeforeShow(& $sender)
 		$start_date = date("Y")."-01-01";
 		$end_date = date("Y")."-03-31";
 
-		$periode1 = "JANUARI".date("Y");
-		$periode2 = "MARET".date("Y");
+		$periode1 = "JANUARI ".date("Y");
+		$periode2 = "MARET ".date("Y");
 
 	}else if($bulan_now >=4 and bulan_now <= 6) {
 		$start_date = date("Y")."-04-01";
 		$end_date = date("Y")."-06-30";
 
-		$periode1 = "APRIL".date("Y");
-		$periode2 = "JUNI".date("Y");
+		$periode1 = "APRIL ".date("Y");
+		$periode2 = "JUNI ".date("Y");
 	}else if($bulan_now >=7 and bulan_now <= 9) {
 		$start_date = date("Y")."-07-01";
 		$end_date = date("Y")."-09-30";
 
-		$periode1 = "JULI".date("Y");
-		$periode2 = "SEPTEMBER".date("Y");
+		$periode1 = "JULI ".date("Y");
+		$periode2 = "SEPTEMBER ".date("Y");
 	}else if($bulan_now >=10 and bulan_now <= 12) {
 		$start_date = date("Y")."-10-01";
 		$end_date = date("Y")."-12-31";
 
-		$periode1 = "OKTOBER".date("Y");
-		$periode2 = "DESEMBER".date("Y");
+		$periode1 = "OKTOBER ".date("Y");
+		$periode2 = "DESEMBER ".date("Y");
 	}
 
 	
