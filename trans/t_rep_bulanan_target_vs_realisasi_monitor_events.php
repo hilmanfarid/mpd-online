@@ -142,7 +142,7 @@ function GetCetakGeneralHTML($param_arr) {
 	
 	
 	$output = '';
-	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-left:10px;margin-right:10px;padding:5px 5px 5px 5px;">
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="95%" style="margin-left:10px;margin-right:10px;padding:5px 5px 5px 5px;">
           		<tr>
             		<td valign="top">';
 
