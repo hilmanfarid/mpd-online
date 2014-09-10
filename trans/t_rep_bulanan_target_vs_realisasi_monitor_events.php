@@ -158,7 +158,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .= '<h3>PERIODE : '.$param_arr["pajak_periode"].' s.d '.$param_arr["pajak_periode1"].'</h3> <br/>';
 	
 	$output .='<table class="report" cellspacing="0" cellpadding="4px" width="100%">
-                <tr style="background:#498CD6;color:#FFFFFF;">';
+                <tr style="background:#498CD6;color:#FFFFFF; font-size:15px;">';
 	$output .= '<th width="150">JENIS PAJAK</th>';
 	$output .= '<th width="150">TARGET</th>';
 	$output .= '<th width="150">REALISASI</th>';
