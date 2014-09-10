@@ -191,7 +191,7 @@ ORDER BY MAX(start_date) ASC">
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="117" parameterType="URL" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id" defaultValue="0"/>
+				<SQLParameter id="117" parameterType="Session" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id" defaultValue="0"/>
 				<SQLParameter id="118" variable="p_vat_type_id" parameterType="URL" dataType="Text" parameterSource="p_vat_type_id"/>
 			</SQLParameters>
 			<SecurityGroups/>
@@ -321,7 +321,7 @@ UNION
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="134" parameterType="URL" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id" defaultValue="0"/>
+				<SQLParameter id="134" parameterType="Session" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id" defaultValue="0"/>
 				<SQLParameter id="135" variable="p_vat_type_id" parameterType="URL" dataType="Text" parameterSource="p_vat_type_id" defaultValue="null"/>
 				<SQLParameter id="136" variable="p_finance_period_id" parameterType="URL" defaultValue="'null'" dataType="Text" parameterSource="p_finance_period_id" designDefaultValue="null"/>
 			</SQLParameters>
@@ -330,6 +330,12 @@ UNION
 			<Features/>
 		</Grid>
 		<Label id="21" fieldSourceType="DBColumn" dataType="Text" html="True" name="ayat" PathID="ayat">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+<Label id="138" fieldSourceType="DBColumn" dataType="Text" html="True" name="p_year_period_id" PathID="p_year_period_id">
 <Components/>
 <Events/>
 <Attributes/>
@@ -350,5 +356,21 @@ UNION
 				<Action actionName="Custom Code" actionCategory="General" id="89"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeInitialize" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="139"/>
+</Actions>
+</Event>
+<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="140"/>
+<Action actionName="Custom Code" actionCategory="General" id="141"/>
+</Actions>
+</Event>
+<Event name="AfterInitialize" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="142"/>
+</Actions>
+</Event>
+</Events>
 </Page>
