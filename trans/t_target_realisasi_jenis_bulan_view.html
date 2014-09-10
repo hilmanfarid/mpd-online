@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Data Penerimaan PBB/PAT/Reklame</title>
+<meta http-equiv="refresh" content="3600">
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+
+</script>
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script type="text/javascript">
+var timerID = null;
+
+function showTime(){
+        var months = ['JANUARI', 'FEBRUARI', 'MARET', 'APRIL', 'MEI', 'JUNI', 'JULI', 'AGUSTUS', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DESEMBER'];
+        var myDays = ['MINGGU', 'SENIN', 'SELASA', 'RABU', 'KAMIS', 'JUM&#39;AT', 'SABTU'];
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth();
+        var thisDay = date.getDay(),
+            thisDay = myDays[thisDay];
+        var yy = date.getYear();
+        var year = (yy < 1000) ? yy + 1900 : yy;
+        
+            document.getElementById("tanggal_kemaren").innerHTML = '(' + thisDay + ', ' + (day) + ' ' + months[month] + ' ' + year + ')';
+        
+                var tHour = date.getHours();
+            var tMin = date.getMinutes().toString();
+            var tSec = date.getSeconds().toString();
+            var ap = "AM";
+    
+            if(tHour > 11)
+                ap = "PM";
+    
+            if(tHour > 12)
+                tHour = tHour - 12;
+    
+            if(tHour == 0)
+                tHour = 12;
+        
+            if(tMin.length == 1)
+                tMin = "0" + tMin;
+
+            if(tSec.length == 1)
+                tSec = "0" + tSec;
+
+        
+    
+            document.getElementById("timer").innerHTML = myDays[date.getDay()] + ", " + date.getDate() + " " + months[date.getMonth()] + " " + year + "  " + tHour + ":" + tMin + ":" + tSec + " " + ap;
+    
+            timerID = setTimeout("showTime()", 100);
+}
+
+window.onload = showTime;
+</script>
+</head>
+<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="CLEAR: both; PADDING-TOP: 5px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <img align="center" src="../images/header_digs.gif" width="100%" height="80">
+        <TABLE WIDTH= 100%>
+		<TD >{ayat}</TD>
+		<TD STYLE = "FONT-SIZE: 15px; COLOR: #008041; FONT-WEIGHT: bold"id="timer" align="right"></TD>
+		</TABLE>
+        <!-- BEGIN Grid t_target_realisasiGrid -->
+        <table style="WIDTH: 100%" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR TARGET VS REALISASI</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center; DISPLAY: none" width="100" scope="col">&nbsp;</th>
+ 
+                  <th style="TEXT-ALIGN: center" width="100" scope="col">Bulan</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Target</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Pokok</th>
+                  <!-- <th style="TEXT-ALIGN: center;" scope="col">Denda (Pokok,Piutang);</th> -->
+                  <th style="TEXT-ALIGN: center" scope="col">Denda Pokok</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Denda Piutang</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Piutang</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Total</th>
+ 
+                  <th style="TEXT-ALIGN: right" scope="col">Persentase</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_target_realisasiGrid:rowStyle}>
+                  <td style="DISPLAY: none">&nbsp;<a href="{DLink_Src}" id="t_target_realisasiGridDLink_{t_target_realisasiGrid:rowNumber}"><u>{DLink}</u></a></td> 
+                  <td>{bulan}<input id="t_target_realisasiGridp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"><input id="t_target_realisasiGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"><input id="t_target_realisasiGridstart_date" value="{start_date}" type="hidden" name="{start_date_Name}"><input id="t_target_realisasiGridend_date" value="{end_date}" type="hidden" name="{end_date_Name}"></td> 
+                  <td style="TEXT-ALIGN: right">{target_amount}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','murni')">{realisasi_amt}</td>
+                  <!-- <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline">{penalty_amt}&nbsp;({denda_pokok2},{denda_piutang1})</td> -->
+                  <td style="TEXT-ALIGN: right; COLOR: green; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak_denda('{start_date}',{p_vat_type_id},2,'{end_date}','all','denda_pokok')">{denda_pokok}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: blue; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak_denda('{start_date}',{p_vat_type_id},2,'{end_date}','all','denda_piutang')">{denda_piutang}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: red; CURSOR: hand; TEXT-DECORATION: underline" onclick="cetak('{start_date}',{p_vat_type_id},1,'{end_date}','piutang')">{debt_amt}</td> 
+                  <td style="TEXT-ALIGN: right">{total_amt}</td> 
+                  <td style="TEXT-ALIGN: right">{percentage}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="9">- 
+                    <th></th>
+ 
+                    <th></th>
+ 
+                    <th></th>
+ 
+                    <th></th>
+                  </td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Caption">
+                  <th style="DISPLAY: none">&nbsp;</th>
+ 
+                  <th>Jumlah 
+                  <!--{penalty_amt_sum}{debt_amt_sum}0-->
+                  </th>
+ 
+                  <th style="TEXT-ALIGN: right">{target_amount_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{realisasi_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{penalty_amt_sum1}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{penalty_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{debt_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{total_amt_sum}</th>
+ 
+                  <th style="TEXT-ALIGN: right">{percentage_sum}%</th>
+ 
+                  <th colspan="3"></th>
+                </tr>
+ 
+                <tr class="Footer">
+                  <td colspan="13">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}"><u>{Page_Number}</u></a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_target_realisasiGrid -->
+        <!-- BEGIN Grid t_target_realisasiGrid1 -->
+        <table style="WIDTH: 100%" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR AYAT</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="100" scope="col">AYAT</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Target</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Pokok&nbsp;</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Piutang</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Total</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Persentase</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_target_realisasiGrid1:rowStyle}>
+                  <td>
+                    <div style="WIDTH: 240px">
+                      {ayat} 
+                    </div>
+                    <input id="t_target_realisasiGrid1p_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"><input id="t_target_realisasiGrid1p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"><input id="t_target_realisasiGrid1start_date" value="{start_date}" type="hidden" name="{start_date_Name}"><input id="t_target_realisasiGrid1end_date" value="{end_date}" type="hidden" name="{end_date_Name}"></td> 
+                  <td style="TEXT-ALIGN: right">{target_amount}</td> 
+                  <td style="TEXT-ALIGN: right">{realisasi_amt}</td> 
+                  <td style="TEXT-ALIGN: right">{debt_amt}</td> 
+                  <td style="TEXT-ALIGN: right">{total_amt}</td> 
+                  <td style="TEXT-ALIGN: right">{percentage}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="6">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="6">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}"><u>{Page_Number}</u></a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_target_realisasiGrid1 --></td>
+    </tr>
+ 
+    <tr>
+      <td>
+        <div style="PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #59b704; PADDING-RIGHT: 10px; COLOR: #000000; FONT-SIZE: 20px; FONT-WEIGHT: bold" id="timer" class="grid-table-container" align="right">
+        </div>
+ 
+        <div style="PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #59b704; PADDING-RIGHT: 10px; COLOR: #000000; FONT-SIZE: 20px; FONT-WEIGHT: bold" class="grid-table-container" align="right">
+        </div>
+      </td>
+    </tr>
+	<TR>
+		<TD style="FONT-SIZE: 14px;"align="right">Tim IT Disyanjak @2014 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; www.disyanjak.bandung.go.id
+		</TD>
+	</TR>
+  </table>
+  <br>
+</div>
+<script language="javascript">
+        function statuswp() {
+                getFrom_LOV("p_regionForm", "p_business_area_id,area_name", "lov_2_field.php?TABLE=p_business_area&FIELD_0=p_business_area_id&FIELD_1=area_name&FIELD_2=description&LABEL1=Kode Wilayah&LABEL2=Deskripsi&HEADER_PAGE=KODE WILAYAH&HEADER_LOV=DAFTAR KODE WILAYAH");
+        }
+function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
+        </script>
+</body>
+</html>
