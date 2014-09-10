@@ -1,5 +1,5 @@
 <?php
-//BindEvents Method @1-54E8F3AB
+//BindEvents Method @1-6E47A865
 function BindEvents()
 {
     global $t_target_realisasiGrid;
@@ -10,6 +10,8 @@ function BindEvents()
     $t_target_realisasiGrid1->CCSEvents["BeforeShowRow"] = "t_target_realisasiGrid1_BeforeShowRow";
     $t_target_realisasiGrid1->CCSEvents["BeforeSelect"] = "t_target_realisasiGrid1_BeforeSelect";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
+    $CCSEvents["AfterInitialize"] = "Page_AfterInitialize";
 }
 //End BindEvents Method
 
@@ -31,41 +33,7 @@ function t_target_realisasiGrid_BeforeShowRow(& $sender)
 //Custom Code @114-2A29BDB7
 // -------------------------
 	global $selected_id;
-	global $ayat;
-	$temp="<h1>TARGET DAN REALISASI BULANAN PAJAK ";
-	//$ayat->
 	
-	$p_vat_type_id		= CCGetFromGet("p_vat_type_id",6);
-	$p_year_period_id		= CCGetFromGet("p_year_period_id",16);
-	switch ($p_vat_type_id) {
-	  case 1:
-	  	$temp.="HOTEL<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></H1>";
-	    $ayat->SetText($temp);
-	    break;
-	  case 2:
-	    $temp.="RESTORAN<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
-	    $ayat->SetText($temp);
-	    break;
-	  case 3:
-	    $temp.="HIBURAN<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
-	    $ayat->SetText($temp);
-	    break;
-	  case 4:
-	    $temp.="PARKIR<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
-	    $ayat->SetText($temp);
-	    break;
-	  case 5:
-	    $temp.="PPJ<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
-	    $ayat->SetText($temp);
-	    break;
-	  case 6:
-	  	$temp.="BPHTB <span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></H1>";
-	    $ayat->SetText($temp);
-	    break;
-	  default:
-	    $temp.="BPHTB <span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
-	    $ayat->SetText($temp);
-	}
 
     // Write your own code here.
 	/*if ($selected_id<0) {
@@ -229,6 +197,120 @@ function Page_OnInitializeView(& $sender)
     return $Page_OnInitializeView;
 }
 //End Close Page_OnInitializeView
+
+//Page_BeforeInitialize @1-0C85B648
+function Page_BeforeInitialize(& $sender)
+{
+    $Page_BeforeInitialize = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasi_jenis_bulan_view; //Compatibility
+//End Page_BeforeInitialize
+
+//Custom Code @139-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeInitialize @1-23E6A029
+    return $Page_BeforeInitialize;
+}
+//End Close Page_BeforeInitialize
+
+//Page_BeforeShow @1-4C284640
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasi_jenis_bulan_view; //Compatibility
+//End Page_BeforeShow
+
+//Custom Code @140-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	
+
+	global $ayat;
+	$temp="<h1>TARGET DAN REALISASI BULANAN PAJAK ";	
+	
+	$p_vat_type_id		= CCGetFromGet("p_vat_type_id",6);
+	//$p_year_period_id		= CCGetFromGet("p_year_period_id",16);
+	switch ($p_vat_type_id) {
+	  case 1:
+	  	$temp.="HOTEL<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></H1>";
+	    $ayat->SetText($temp);
+	    break;
+	  case 2:
+	    $temp.="RESTORAN<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $ayat->SetText($temp);
+	    break;
+	  case 3:
+	    $temp.="HIBURAN<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $ayat->SetText($temp);
+	    break;
+	  case 4:
+	    $temp.="PARKIR<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $ayat->SetText($temp);
+	    break;
+	  case 5:
+	    $temp.="PPJ<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $ayat->SetText($temp);
+	    break;
+	  case 6:
+	  	$temp.="BPHTB <span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></H1>";
+	    $ayat->SetText($temp);
+	    break;
+	  default:
+	    $temp.="BPHTB <span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $ayat->SetText($temp);
+	}
+// -------------------------
+//End Custom Code
+
+//Custom Code @141-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
+
+//Page_AfterInitialize @1-131FE743
+function Page_AfterInitialize(& $sender)
+{
+    $Page_AfterInitialize = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_target_realisasi_jenis_bulan_view; //Compatibility
+//End Page_AfterInitialize
+
+//Custom Code @142-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	global $p_year_period_id;
+	$data;
+	$dbConn				= new clsDBConnSIKP();
+	$query	= "select p_year_period_id from p_year_period where year_code =".date("Y");
+	$dbConn->query($query);
+	while ($dbConn->next_record()) {
+		$data = $dbConn->f("p_year_period_id");
+	}
+	$dbConn->close();
+	$p_year_period_id->SetText($data);
+
+	$_SESSION['p_year_period_id']=$data;
+// -------------------------
+//End Custom Code
+
+//Close Page_AfterInitialize @1-379D319D
+    return $Page_AfterInitialize;
+}
+//End Close Page_AfterInitialize
 
 
 ?>
