@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<style>
+
+table.report{    
+	border-right:1px solid #000;
+   	border-spacing: 0px;
+}
+
+table.report th{
+	border-top:1px solid #000;
+	border-bottom:1px solid #000;
+	border-left:1px solid #000;
+	padding:4px;
+	text-transform: uppercase;
+	text-align: center;
+}
+		
+table.report td{
+	border-left:1px solid #000;
+	border-bottom:1px solid #000;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+</style>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN BULANAN TARGET VS REALISASI 
+      </div>
+ 
+    </div>
+ 
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_rep_bulanan_target_vs_realisasiSearch -->
+        <form id="t_rep_bulanan_target_vs_realisasiSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table style="WIDTH: 655px; HEIGHT: 176px" class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table style="WIDTH: 80%; HEIGHT: 80px" class="Record" cellspacing="2" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td> 
+                  </tr>
+ <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Periode Tahun</td> 
+                    <td class="search-field" colspan="2"><input style="WIDTH: 156px; HEIGHT: 20px" id="t_rep_bulanan_target_vs_realisasiSearchyear_code" class="ControlsRQ" name="{year_code_Name}" maxlength="32" value="{year_code}">&nbsp;<img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"></td> 
+                    <td><input id="t_rep_bulanan_target_vs_realisasiSearchp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Bulan</td> 
+                    <td class="search-field" colspan="2"><input style="WIDTH: 157px; HEIGHT: 20px" id="t_rep_bulanan_target_vs_realisasiSearchcode" class="ControlsRQ" name="{code_Name}" maxlength="32" value="{code}">&nbsp;<img onclick="javascript:periodepajak()" border="0" src="../images/view.gif">&nbsp; s.d <input style="WIDTH: 157px; HEIGHT: 20px" id="t_rep_bulanan_target_vs_realisasiSearchcode1" class="ControlsRQ" name="{code1_Name}" maxlength="32" value="{code1}">&nbsp;<img onclick="javascript:periodepajak1()" border="0" src="../images/view.gif"></td> 
+                    <td><input id="t_rep_bulanan_target_vs_realisasiSearchp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden">&nbsp;<input id="t_rep_bulanan_target_vs_realisasiSearchp_finance_period_id1" name="{p_finance_period_id1_Name}" value="{p_finance_period_id1}" type="hidden"></td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field" colspan="2" align="left">
+                      <!-- BEGIN Button Button_DoSearch2 --><input style="WIDTH: 116px; HEIGHT: 26px" id="t_rep_bulanan_target_vs_realisasiSearchButton_DoSearch2" class="btn_tambah" onclick="tampilkan();" name="{Button_Name}" alt="Search" value="TAMPILKAN" size="12" type="button"><!-- END Button Button_DoSearch2 -->&nbsp;&nbsp;&nbsp;</td> 
+                    <td>&nbsp;</td> 
+                  </tr>
+ 
+                </table>
+ </td> 
+            </tr>
+ 
+          </table>
+ 
+        </form>
+ <!-- END Record t_rep_bulanan_target_vs_realisasiSearch -->
+        <div align="left">
+        </div>
+ </td> 
+    </tr>
+ 
+  </table>
+</div>
+<p>&nbsp;&nbsp;
+<script language="javascript">
+    function periodepajak() {
+                var idelement;
+
+        if (idelement = document.getElementById("t_rep_bulanan_target_vs_realisasiSearchp_year_period_id"))
+        {
+                var pid = idelement.value;
+
+                if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+                {                
+                        getFrom_LOV("t_rep_bulanan_target_vs_realisasiSearch", "p_finance_period_id,code", "lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode Pajak&LABEL2=Deskripsi&HEADER_PAGE=PERIODE PAJAK&HEADER_LOV=DAFTAR PERIODE PAJAK&FIELD_3=AND p_year_period_id=" + pid + "ORDER BY start_date");
+                }
+                else
+                {
+                        alert("Pilih salah satu PERIODE TAHUN!");
+                }
+        } 
+        else 
+        {
+                alert("Pilih salah satu PERIODE TAHUN!");
+        }
+    }
+        
+        function periodepajak1() {
+                var idelement;
+
+        if (idelement = document.getElementById("t_rep_bulanan_target_vs_realisasiSearchp_year_period_id"))
+        {
+                var pid = idelement.value;
+
+                if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+                {                
+                        getFrom_LOV("t_rep_bulanan_target_vs_realisasiSearch", "p_finance_period_id1,code1", "lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode Pajak&LABEL2=Deskripsi&HEADER_PAGE=PERIODE PAJAK&HEADER_LOV=DAFTAR PERIODE PAJAK&FIELD_3=AND p_year_period_id=" + pid + "ORDER BY start_date");
+                }
+                else
+                {
+                        alert("Pilih salah satu PERIODE TAHUN!");
+                }
+        } 
+        else 
+        {
+                alert("Pilih salah satu PERIODE TAHUN!");
+        }
+    }
+
+    function periodetahun() {
+        getFrom_LOV('t_rep_bulanan_target_vs_realisasiSearch','p_year_period_id,year_code','lov_year_period.php');
+    }
+
+    function cetak()
+    {
+        p_year_period_id = document.getElementById("t_rep_bulanan_target_vs_realisasiSearchp_year_period_id").value;
+        p_finance_period_id= document.getElementById("t_rep_bulanan_target_vs_realisasiSearchp_finance_period_id").value;
+
+        window.open("../report/cetak_rep_lap_spjp.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+    }
+
+    
+    function tampilkan() {
+                                
+        p_year_period_id = document.getElementById("t_rep_bulanan_target_vs_realisasiSearchp_year_period_id").value;
+        p_finance_period_id= document.getElementById("t_rep_bulanan_target_vs_realisasiSearchp_finance_period_id").value;
+        p_finance_period_id1 = document.getElementById("t_rep_bulanan_target_vs_realisasiSearchp_finance_period_id1").value;
+        
+                                        
+        if(p_year_period_id == "" || p_finance_period_id == "" ) {
+                alert("Semua Filter Harus Diisi");
+            return;
+         }
+        
+         tahun_periode = document.getElementById("t_rep_bulanan_target_vs_realisasiSearchyear_code").value;
+         pajak_periode = document.getElementById("t_rep_bulanan_target_vs_realisasiSearchcode").value;
+                 pajak_periode1 = document.getElementById("t_rep_bulanan_target_vs_realisasiSearchcode1").value;
+
+         var params = "?doAction=view_html";
+         params += "&p_year_period_id="+p_year_period_id;
+         params += "&p_finance_period_id="+p_finance_period_id;
+                 params += "&p_finance_period_id1="+p_finance_period_id1;
+         params += "&tahun_periode="+tahun_periode;
+         params += "&pajak_periode="+pajak_periode;
+                 params += "&pajak_periode1="+pajak_periode1;
+
+         location.href="t_rep_bulanan_target_vs_realisasi.php"+params;
+        }
+                
+
+     
+</script>
+{Label1}</p>
+</body>
+</html>
