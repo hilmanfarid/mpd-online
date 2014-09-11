@@ -285,7 +285,7 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array(10,204.3, 5));
 		$this->SetAligns(array("L", "J", "C"));
 		$this->RowMultiBorderWithHeight(array("",
-				"Menindaklanjutihasil laporan pemeriksaan BPK-RI Provinsi Jawa Barat atas laporan Keuangan Pemerintah Kota Bandung Tahun 2012 No.2.B/LHP/XVIII.BDG/05/2013 tanggal 24 Mei 2013 tentang Laporan Keuangan Pemerintah Tahun Anggaran 2013 pada Pemerintah Kota Bandung serta data pembukuan pada Dinas Pelayanan Pajak Kota Bandung, bahwa perusahaan Saudara/i masih mempunyai tunggakan Pajak Daerah sebagaimana tercantum dalam lampiran surat ini.",
+				"Menindaklanjuti hasil laporan pemeriksaan BPK-RI Provinsi Jawa Barat atas laporan Keuangan Pemerintah Kota Bandung Tahun 2012 No.2.B/LHP/XVIII.BDG/05/2013 tanggal 24 Mei 2013 tentang Laporan Keuangan Pemerintah Tahun Anggaran 2013 pada Pemerintah Kota Bandung serta data pembukuan pada Dinas Pelayanan Pajak Kota Bandung, bahwa perusahaan Saudara/i masih mempunyai tunggakan Pajak Daerah sebagaimana tercantum dalam lampiran surat ini.",
 				""
 			),
 			array("L",
