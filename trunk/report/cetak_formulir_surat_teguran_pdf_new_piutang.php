@@ -7,48 +7,56 @@ include_once("../include/fpdf.php");
 
 $jenis_pajak		= CCGetFromGet("jenis_pajak", "");
 $tahun 				= CCGetFromGet("tahun", "");
-$nama_jenis_pajak = '';
-if (empty($jenis_pajak)){
-	echo "Jenis Pajak tidak boleh kosong";
-	exit;
-}
-
+$npwd 				= CCGetFromGet("npwd", "");
 $dbConn = new clsDBConnSIKP();
-if (($jenis_pajak>=1) && ($jenis_pajak<=4)){
-	if ($jenis_pajak==1){
-		$nama_jenis_pajak = 'Pajak Hotel';
+$nama_jenis_pajak = '';
+if (empty($npwd)){
+	if (empty($jenis_pajak)){
+		echo "Jenis Pajak tidak boleh kosong";
+		exit;
 	}
-	if ($jenis_pajak==2){
-		$nama_jenis_pajak = 'Pajak Restoran';
+	if (($jenis_pajak>=1) && ($jenis_pajak<=4)){
+		if ($jenis_pajak==1){
+			$nama_jenis_pajak = 'Pajak Hotel';
+		}
+		if ($jenis_pajak==2){
+			$nama_jenis_pajak = 'Pajak Restoran';
+		}
+		if ($jenis_pajak==3){
+			$nama_jenis_pajak = 'Pajak Hiburan';
+		}
+		if ($jenis_pajak==4){
+			$nama_jenis_pajak = 'Pajak Parkir';
+		}
+	}else{
+		echo "Jenis Pajak salah";
+		exit;
 	}
-	if ($jenis_pajak==3){
-		$nama_jenis_pajak = 'Pajak Hiburan';
-	}
-	if ($jenis_pajak==4){
-		$nama_jenis_pajak = 'Pajak Parkir';
+
+	if (empty($tahun)){
+		$query="select distinct (a.npwd), b.address_name,b.company_name   
+			from t_piutang_pajak_penetapan_final a
+			left join t_cust_account b on a.t_cust_account_id = b.t_cust_account_id
+			where  a.p_vat_type_id = '$jenis_pajak'
+			and tgl_bayar is NULL
+	    	and sisa_piutang >0";
+	}else{
+		$query="select distinct (a.npwd), b.address_name,b.company_name   
+			from t_piutang_pajak_penetapan_final a
+			left join t_cust_account b on a.t_cust_account_id = b.t_cust_account_id
+			where  a.p_vat_type_id = '$jenis_pajak'
+			and year_code ='$tahun'
+			and tgl_bayar is NULL
+	    	and sisa_piutang >0";
 	}
 }else{
-	echo "Jenis Pajak salah";
-	exit;
-}
-
-if (empty($tahun)){
 	$query="select distinct (a.npwd), b.address_name,b.company_name   
-		from t_piutang_pajak_penetapan_final a
-		left join t_cust_account b on a.t_cust_account_id = b.t_cust_account_id
-		where  a.p_vat_type_id = '$jenis_pajak'
-		and tgl_bayar is NULL
-    	and sisa_piutang >0";
-}else{
-	$query="select distinct (a.npwd), b.address_name,b.company_name   
-		from t_piutang_pajak_penetapan_final a
-		left join t_cust_account b on a.t_cust_account_id = b.t_cust_account_id
-		where  a.p_vat_type_id = '$jenis_pajak'
-		and year_code ='$tahun'
-		and tgl_bayar is NULL
-    	and sisa_piutang >0";
+			from t_piutang_pajak_penetapan_final a
+			left join t_cust_account b on a.t_cust_account_id = b.t_cust_account_id
+			where  a.npwd = '".$npwd."'";
 }
-
+//echo $query;
+//exit;
 
 $dbConn->query($query);
 $data=array();
@@ -379,7 +387,7 @@ class FormCetak extends FPDF {
 
 		$this->Image('../images/ttd_pa_soni.jpg',$lbody4+$lbody4+$lbody2-15,165,$lbody4+48,20);
 
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-online/include/qrcode/generate-qr.php?param='.
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
 		$data["npwd"]."_".
 		str_replace(" ","-",dateToString(date("Y-m-d")))
 		,15,165,25,25,'PNG');
