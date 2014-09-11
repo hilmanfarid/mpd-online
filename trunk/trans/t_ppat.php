@@ -98,7 +98,7 @@ class clsGridt_ppatGrid { //t_ppatGrid class @2-4B4EC346
     }
 //End Initialize Method
 
-//Show Method @2-01FA46AC
+//Show Method @2-DB414DF0
     function Show()
     {
         global $Tpl;
@@ -150,7 +150,7 @@ class clsGridt_ppatGrid { //t_ppatGrid class @2-4B4EC346
                 $this->updated_by->SetValue($this->DataSource->updated_by->GetValue());
                 $this->address_name->SetValue($this->DataSource->address_name->GetValue());
                 $this->updated_date->SetValue($this->DataSource->updated_date->GetValue());
-                $this->ImageLink1->Parameters = CCGetQueryString("QueryString", array("s_keyword", "ccsForm"));
+                $this->ImageLink1->Parameters = CCGetQueryString("QueryString", array("s_keyword", "t_ppatGridPage", "ccsForm"));
                 $this->ImageLink1->Parameters = CCAddParam($this->ImageLink1->Parameters, "t_ppat_id", $this->DataSource->f("t_ppat_id"));
                 $this->ImageLink1->Parameters = CCAddParam($this->ImageLink1->Parameters, "ppat_name", $this->DataSource->f("ppat_name"));
                 $this->ImageLink1->Parameters = CCAddParam($this->ImageLink1->Parameters, "email_address", $this->DataSource->f("email_address"));
