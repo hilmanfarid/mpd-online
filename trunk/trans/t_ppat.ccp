@@ -67,7 +67,7 @@ ORDER BY t_ppat_id" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<ImageLink id="364" visible="Yes" fieldSourceType="DBColumn" dataType="Text" hrefType="Page" urlType="Relative" preserveParameters="GET" name="ImageLink1" PathID="t_ppatGridImageLink1" hrefSource="t_ppat_user.ccp" removeParameters="s_keyword">
+				<ImageLink id="364" visible="Yes" fieldSourceType="DBColumn" dataType="Text" hrefType="Page" urlType="Relative" preserveParameters="GET" name="ImageLink1" PathID="t_ppatGridImageLink1" hrefSource="t_ppat_user.ccp" removeParameters="s_keyword;t_ppatGridPage">
 					<Components/>
 					<Events/>
 					<LinkParameters>
