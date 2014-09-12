@@ -45,7 +45,7 @@ class clsRecordV_SUBMITTER { //V_SUBMITTER Class @82-5FB2DDB2
     // Class variables
 //End Variables
 
-//Class_Initialize Event @82-B53B64D2
+//Class_Initialize Event @82-FBC4A705
     function clsRecordV_SUBMITTER($RelativePath, & $Parent)
     {
 
@@ -116,6 +116,8 @@ class clsRecordV_SUBMITTER { //V_SUBMITTER Class @82-5FB2DDB2
             $this->STS->DataSource->SQL = "select p_status_list_id, code \n" .
             "from v_document_workflow_status";
             $this->STS->DataSource->Order = "";
+            $this->Button_Reject = & new clsButton("Button_Reject", $Method, $this);
+            $this->Button_Back = & new clsButton("Button_Back", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->SUBMIT_DATE->Value) && !strlen($this->SUBMIT_DATE->Value) && $this->SUBMIT_DATE->Value !== false)
                     $this->SUBMIT_DATE->SetText(date("d-M-Y"));
@@ -321,7 +323,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @82-309EC410
+//Operation Method @82-D3FC08BE
     function Operation()
     {
         if(!$this->Visible)
@@ -342,6 +344,10 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Update";
             } else if($this->Button_Delete->Pressed) {
                 $this->PressedButton = "Button_Delete";
+            } else if($this->Button_Reject->Pressed) {
+                $this->PressedButton = "Button_Reject";
+            } else if($this->Button_Back->Pressed) {
+                $this->PressedButton = "Button_Back";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -354,6 +360,14 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button_Reject") {
+                if(!CCGetEvent($this->Button_Reject->CCSEvents, "OnClick", $this->Button_Reject)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_Back") {
+                if(!CCGetEvent($this->Button_Back->CCSEvents, "OnClick", $this->Button_Back)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -363,7 +377,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @82-E6051682
+//Show Method @82-90D74B61
     function Show()
     {
         global $CCSUseAmp;
@@ -496,6 +510,8 @@ function GetPrimaryKey($keyName)
         $this->SUBMITTER_ID->Show();
         $this->NTASK->Show();
         $this->STS->Show();
+        $this->Button_Reject->Show();
+        $this->Button_Back->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
