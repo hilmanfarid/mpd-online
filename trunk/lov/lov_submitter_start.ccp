@@ -1,4 +1,4 @@
-<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\lov" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0" accessDeniedPage="lov_submitter_start.ccp" pasteActions="pasteActions">
+<Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\lov" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0" accessDeniedPage="lov_submitter_start.ccp" pasteActions="pasteActions" isInDroping="true">
 	<Components>
 		<Record id="82" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="V_SUBMITTER" actionPage="lov_submitter_start" errorSummator="Error" wizardFormMethod="post" PathID="V_SUBMITTER" pasteActions="pasteActions" connection="ConnSIKP" activeCollection="TableParameters" pasteAsReplace="pasteAsReplace" dataSource="submitter">
 			<Components>
@@ -7,12 +7,12 @@
 					<Events>
 						<Event name="OnClick" type="Server">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="101"/>
+								<Action actionName="Custom Code" actionCategory="General" id="101" eventType="Server" id_oncopy="101"/>
 							</Actions>
 						</Event>
 						<Event name="OnClick" type="Client">
 							<Actions>
-								<Action actionName="Confirmation Message" actionCategory="General" id="103" message="Anda yakin akan menutup pekerjaan ini ?"/>
+								<Action actionName="Confirmation Message" actionCategory="General" id="103" message="Anda yakin akan menutup pekerjaan ini ?" eventType="Client" id_oncopy="103"/>
 							</Actions>
 						</Event>
 					</Events>
@@ -239,21 +239,55 @@ from v_document_workflow_status" activeCollection="TableParameters" boundColumn=
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<Button id="144" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Reject" PathID="V_SUBMITTERButton_Reject" wizardCaption="SIMPAN">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="145" eventType="Server" id_oncopy="145"/>
+							</Actions>
+						</Event>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Confirmation Message" actionCategory="General" id="146" message="Anda yakin akan menutup pekerjaan ini ?" eventType="Client" id_oncopy="146"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="147" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Back" PathID="V_SUBMITTERButton_Back" wizardCaption="SIMPAN">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="148" id_oncopy="148"/>
+							</Actions>
+						</Event>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Confirmation Message" actionCategory="General" id="149" message="Anda yakin akan menutup pekerjaan ini ?" id_oncopy="149"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="111"/>
+						<Action actionName="Custom Code" actionCategory="General" id="111" id_oncopy="111"/>
 					</Actions>
 				</Event>
 			</Events>
 			<TableParameters>
-				<TableParameter id="141" conditionType="Parameter" useIsNull="False" field="submitter_id" dataType="Float" searchConditionType="Equal" parameterType="Form" logicOperator="And" defaultValue="-99999" parameterSource="V_SUBMITTERSUBMITTER_ID"/>
+				<TableParameter id="48" conditionType="Parameter" useIsNull="False" field="submitter_id" dataType="Float" searchConditionType="Equal" parameterType="Form" logicOperator="And" defaultValue="-99999" parameterSource="V_SUBMITTERSUBMITTER_ID"/>
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters/>
 			<JoinTables>
-				<JoinTable id="140" tableName="submitter" posLeft="10" posTop="10" posWidth="156" posHeight="180"/>
+				<JoinTable id="49" tableName="submitter" posLeft="10" posTop="10" posWidth="156" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields/>
@@ -271,7 +305,7 @@ from v_document_workflow_status" activeCollection="TableParameters" boundColumn=
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="lov_submitter_start_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="lov_submitter_start.php" forShow="True" url="lov_submitter_start.php" comment="//" codePage="windows-1252"/>
