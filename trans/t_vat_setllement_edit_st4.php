@@ -98,7 +98,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-20DA1592
+//Show Method @2-90E53400
     function Show()
     {
         global $Tpl;
@@ -108,6 +108,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->RowNumber = 0;
 
         $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
+        $this->DataSource->Parameters["urls_periode"] = CCGetFromGet("s_periode", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -291,39 +292,39 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End SetOrder Method
 
-//Prepare Method @2-CC4B495C
+//Prepare Method @2-B7E071CE
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->AddParameter("2", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->AddParameter("3", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->AddParameter("4", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "upper(npwd)", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
-        $this->wp->Criterion[2] = $this->wp->Operation(opContains, "upper(wp_name)", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
-        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(settlement_type)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
-        $this->wp->Criterion[4] = $this->wp->Operation(opContains, "upper(finance_period_code)", $this->wp->GetDBValue("4"), $this->ToSQL($this->wp->GetDBValue("4"), ccsText),false);
-        $this->Where = $this->wp->opOR(
-             true, $this->wp->opOR(
-             false, $this->wp->opOR(
-             false, 
-             $this->wp->Criterion[1], 
-             $this->wp->Criterion[2]), 
-             $this->wp->Criterion[3]), 
-             $this->wp->Criterion[4]);
+        $this->wp->AddParameter("2", "urls_periode", ccsText, "", "", $this->Parameters["urls_periode"], "", false);
     }
 //End Prepare Method
 
-//Open Method @2-9ED92B2B
+//Open Method @2-AB90C971
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*)\n\n" .
-        "FROM v_vat_setllement_skpd_kb_jabatan";
-        $this->SQL = "SELECT * \n\n" .
-        "FROM v_vat_setllement_skpd_kb_jabatan {SQL_Where} {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
+        "FROM v_vat_setllement_skpd_kb_jabatan\n" .
+        "WHERE ( upper(npwd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(wp_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(settlement_type) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(finance_period_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
+        "and (\n" .
+        " f_search_finance_period(finance_period_code) ilike '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'\n" .
+        ")) cnt";
+        $this->SQL = "SELECT * \n" .
+        "FROM v_vat_setllement_skpd_kb_jabatan\n" .
+        "WHERE ( upper(npwd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(wp_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(settlement_type) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "OR upper(finance_period_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
+        "and (\n" .
+        " f_search_finance_period(finance_period_code) ilike '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'\n" .
+        ")  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -1270,7 +1271,7 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-D84A44C2
+//Class_Initialize Event @3-43446063
     function clsRecordt_vat_setllementSearch($RelativePath, & $Parent)
     {
 
@@ -1296,28 +1297,32 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->s_periode = & new clsControl(ccsTextBox, "s_periode", "s_periode", ccsText, "", CCGetRequestParam("s_periode", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-A144A629
+//Validate Method @3-401C9046
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
         $Validation = ($this->s_keyword->Validate() && $Validation);
+        $Validation = ($this->s_periode->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->s_periode->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-D6729123
+//CheckErrors Method @3-7D72EA35
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->s_keyword->Errors->Count());
+        $errors = ($errors || $this->s_periode->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -1371,7 +1376,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-7913FA87
+//Show Method @3-A9E32A63
     function Show()
     {
         global $CCSUseAmp;
@@ -1396,6 +1401,7 @@ function GetPrimaryKey($keyName)
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
             $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->s_periode->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -1415,6 +1421,7 @@ function GetPrimaryKey($keyName)
 
         $this->s_keyword->Show();
         $this->Button_DoSearch->Show();
+        $this->s_periode->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
