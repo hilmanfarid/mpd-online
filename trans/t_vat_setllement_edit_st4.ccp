@@ -1,6 +1,15 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" dataSource="v_vat_setllement_skpd_kb_jabatan" orderBy="settlement_date desc">
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT * 
+FROM v_vat_setllement_skpd_kb_jabatan
+WHERE ( upper(npwd) LIKE '%{s_keyword}%'
+OR upper(wp_name) LIKE '%{s_keyword}%'
+OR upper(settlement_type) LIKE '%{s_keyword}%'
+OR upper(finance_period_code) LIKE '%{s_keyword}%' )
+and (
+ f_search_finance_period(finance_period_code) ilike '%{s_periode}%'
+) 
+ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListName="ParameterTypeList">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_vat_setllement_edit_st4.ccp" wizardThemeItem="GridA" PathID="t_vat_setllementGridDLink" removeParameters="FLAG,flag_delete">
 					<Components/>
@@ -97,7 +106,6 @@
 				<TableParameter id="313" conditionType="Parameter" useIsNull="False" field="upper(finance_period_code)" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="And" parameterSource="s_keyword" rightBrackets="1"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="376" tableName="v_vat_setllement_skpd_kb_jabatan" schemaName="sikp" posLeft="10" posTop="10" posWidth="160" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
@@ -105,7 +113,9 @@
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-			</SQLParameters>
+				<SQLParameter id="393" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
+<SQLParameter id="394" variable="s_periode" parameterType="URL" dataType="Text" parameterSource="s_periode"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -494,7 +504,13 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<TextBox id="392" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_periode" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementSearchs_periode">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
