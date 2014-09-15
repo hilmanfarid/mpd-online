@@ -138,7 +138,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "JENIS TRANSAKSI: ".strtoupper($data['doc_name']), "", 0, "C");
 		$this->Ln();
 		
-		if(!empty($data['is_ok'])) {
+		if(!empty($data['is_ok']) and $data['is_ok'] == 'Y') {
 		    $this->Cell($this->lengthCell, $this->height, "NO REGISTRASI: ".strtoupper($data['registration_no']), "", 0, "C");
 	    }else {
 	        $this->Cell($this->lengthCell, $this->height, "NO REGISTRASI: -", "", 0, "C");
