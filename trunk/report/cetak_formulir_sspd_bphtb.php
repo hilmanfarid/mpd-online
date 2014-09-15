@@ -225,7 +225,7 @@ class FormCetak extends FPDF {
 		$lbodyS = $lbody / 2;
 
 		//$this->Cell(5, $this->height, "", "TL", 0, 'L');
-		$this->Cell($lbody1 + $lbody3 , $this->height, "DINAS PENDAPATAN KOTA BANDUNG", "LR", 0, 'L');
+		$this->Cell($lbody1 + $lbody3 , $this->height, "DINAS PELAYANAN PAJAK KOTA BANDUNG", "LR", 0, 'L');
 		$this->Ln();
 
 		//$this->Cell(5, $this->height, "", "BL", 0, 'L');
