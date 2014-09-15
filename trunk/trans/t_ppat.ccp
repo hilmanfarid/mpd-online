@@ -267,13 +267,13 @@ WHERE t_ppat_id = {t_ppat_id} " activeTableType="customDelete">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="248" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name" fieldSource="address_name" required="True" caption="Kode" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormaddress_name">
+				<TextBox id="248" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name" fieldSource="address_name" required="True" caption="alamat lokasi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormaddress_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="249" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no" fieldSource="address_no" required="True" caption="Kode" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormaddress_no">
+				<TextBox id="249" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no" fieldSource="address_no" required="True" caption="no lokasi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormaddress_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -327,13 +327,13 @@ WHERE t_ppat_id = {t_ppat_id} " activeTableType="customDelete">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="264" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="identification_no" fieldSource="identification_no" required="True" caption="Kode" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormidentification_no">
+				<TextBox id="264" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="identification_no" fieldSource="identification_no" required="True" caption="no identifikasi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormidentification_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="268" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="personal_identification_id" wizardEmptyCaption="Select Value" PathID="t_ppatFormpersonal_identification_id" fieldSource="personal_identification_id" connection="ConnSIKP" dataSource="select p_simple_parameter_list_id,code from p_simple_parameter_list where p_simple_parameter_type_id = 1">
+				<ListBox id="268" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="personal_identification_id" wizardEmptyCaption="Select Value" PathID="t_ppatFormpersonal_identification_id" fieldSource="personal_identification_id" connection="ConnSIKP" dataSource="select p_simple_parameter_list_id,code from p_simple_parameter_list where p_simple_parameter_type_id = 1" caption="no identifikasi">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -345,7 +345,7 @@ WHERE t_ppat_id = {t_ppat_id} " activeTableType="customDelete">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<TextBox id="269" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_no" fieldSource="mobile_no" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormmobile_no">
+				<TextBox id="269" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_no" fieldSource="mobile_no" required="True" caption="No Handphone" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormmobile_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
