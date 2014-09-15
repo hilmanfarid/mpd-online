@@ -131,8 +131,8 @@ class FormCetak extends FPDF {
 		$encImageDataKiri = '';
 		$encImageDataKanan = '';
 		$dbConn2 = new clsDBConnSIKP();
-		$query1 = "select f_encrypt_str('ZAENAL MANSUR - 19630817.1989.01.1.006') AS enc_data";
-        $query2 = "select f_encrypt_str('".$data['verificated_by']." - ".$data['verificated_nip']."') AS enc_data";
+		$query1 = "select f_encrypt_str('ZAENAL MANSUR - 19630817.1989.01.1.006 - ".$data['registration_no']."') AS enc_data";
+        $query2 = "select f_encrypt_str('".$data['verificated_by']." - ".$data['verificated_nip']." - ".$data['registration_no']."') AS enc_data";
         
 		$dbConn2->query($query1);
 		while ($dbConn2->next_record()) {
