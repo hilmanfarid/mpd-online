@@ -545,7 +545,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-0CA71185
+//Class_Initialize Event @23-B81AAF23
     function clsRecordt_ppatForm($RelativePath, & $Parent)
     {
 
@@ -587,9 +587,9 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
             $this->updated_by = & new clsControl(ccsTextBox, "updated_by", "Updated By", ccsText, "", CCGetRequestParam("updated_by", $Method, NULL), $this);
             $this->ppat_name = & new clsControl(ccsTextBox, "ppat_name", "Kode", ccsText, "", CCGetRequestParam("ppat_name", $Method, NULL), $this);
             $this->ppat_name->Required = true;
-            $this->address_name = & new clsControl(ccsTextBox, "address_name", "Kode", ccsText, "", CCGetRequestParam("address_name", $Method, NULL), $this);
+            $this->address_name = & new clsControl(ccsTextBox, "address_name", "alamat lokasi", ccsText, "", CCGetRequestParam("address_name", $Method, NULL), $this);
             $this->address_name->Required = true;
-            $this->address_no = & new clsControl(ccsTextBox, "address_no", "Kode", ccsText, "", CCGetRequestParam("address_no", $Method, NULL), $this);
+            $this->address_no = & new clsControl(ccsTextBox, "address_no", "no lokasi", ccsText, "", CCGetRequestParam("address_no", $Method, NULL), $this);
             $this->address_no->Required = true;
             $this->address_rt = & new clsControl(ccsTextBox, "address_rt", "Description", ccsText, "", CCGetRequestParam("address_rt", $Method, NULL), $this);
             $this->address_rw = & new clsControl(ccsTextBox, "address_rw", "Description", ccsText, "", CCGetRequestParam("address_rw", $Method, NULL), $this);
@@ -605,16 +605,17 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
             $this->kelurahan->Required = true;
             $this->p_region_id_kel = & new clsControl(ccsHidden, "p_region_id_kel", "Kelurahan - WP", ccsFloat, "", CCGetRequestParam("p_region_id_kel", $Method, NULL), $this);
             $this->p_region_id_kel->Required = true;
-            $this->identification_no = & new clsControl(ccsTextBox, "identification_no", "Kode", ccsText, "", CCGetRequestParam("identification_no", $Method, NULL), $this);
+            $this->identification_no = & new clsControl(ccsTextBox, "identification_no", "no identifikasi", ccsText, "", CCGetRequestParam("identification_no", $Method, NULL), $this);
             $this->identification_no->Required = true;
-            $this->personal_identification_id = & new clsControl(ccsListBox, "personal_identification_id", "personal_identification_id", ccsText, "", CCGetRequestParam("personal_identification_id", $Method, NULL), $this);
+            $this->personal_identification_id = & new clsControl(ccsListBox, "personal_identification_id", "no identifikasi", ccsText, "", CCGetRequestParam("personal_identification_id", $Method, NULL), $this);
             $this->personal_identification_id->DSType = dsSQL;
             $this->personal_identification_id->DataSource = new clsDBConnSIKP();
             $this->personal_identification_id->ds = & $this->personal_identification_id->DataSource;
             list($this->personal_identification_id->BoundColumn, $this->personal_identification_id->TextColumn, $this->personal_identification_id->DBFormat) = array("", "", "");
             $this->personal_identification_id->DataSource->SQL = "select p_simple_parameter_list_id,code from p_simple_parameter_list where p_simple_parameter_type_id = 1";
             $this->personal_identification_id->DataSource->Order = "";
-            $this->mobile_no = & new clsControl(ccsTextBox, "mobile_no", "Description", ccsText, "", CCGetRequestParam("mobile_no", $Method, NULL), $this);
+            $this->mobile_no = & new clsControl(ccsTextBox, "mobile_no", "No Handphone", ccsText, "", CCGetRequestParam("mobile_no", $Method, NULL), $this);
+            $this->mobile_no->Required = true;
             $this->fax_no = & new clsControl(ccsTextBox, "fax_no", "Description", ccsText, "", CCGetRequestParam("fax_no", $Method, NULL), $this);
             $this->zip_code = & new clsControl(ccsTextBox, "zip_code", "Description", ccsText, "", CCGetRequestParam("zip_code", $Method, NULL), $this);
             $this->email_address = & new clsControl(ccsTextBox, "email_address", "Description", ccsText, "", CCGetRequestParam("email_address", $Method, NULL), $this);
