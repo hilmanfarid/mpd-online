@@ -570,7 +570,7 @@ class FormCetak extends FPDF {
 		$this->Cell(1, $this->height, "", "", 0, 'R');
 		$this->Cell(($lbody3 + $lbody1 - 10)/4+10, $this->height,"TEMPAT PEMBAYARAN PBHTB", "", 0, 'C');
 		$this->Cell(1, $this->height, "", "", 0, 'R');
-		$this->Cell(($lbody3 + $lbody1 - 10)/4+10, $this->height,"DINAS PENDAPATAN KOTA BANDUNG", "", 0, 'C');
+		$this->Cell(($lbody3 + $lbody1 - 10)/4+10, $this->height,"DINAS PELAYANAN PAJAK KOTA BANDUNG", "", 0, 'C');
 		$this->Cell(5, $this->height,"", "R", 0, 'L');
 		$this->Ln(3);
 
