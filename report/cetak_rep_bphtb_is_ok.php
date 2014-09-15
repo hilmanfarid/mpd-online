@@ -126,11 +126,29 @@ class FormCetak extends FPDF {
 		}
 		$this->Image('../images/logo_pemda.png',20,10,25,25);
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
+		
+		
+		$encImageDataKiri = '';
+		$encImageDataKanan = '';
+		$dbConn2 = new clsDBConnSIKP();
+		$query1 = "select f_encrypt_str('ZAENAL MANSUR - 19630817.1989.01.1.006') AS enc_data";
+        $query2 = "select f_encrypt_str('".$data['verificated_by']."' - '".$data['verificated_nip']."') AS enc_data";
+        
+		$dbConn2->query($query1);
+		while ($dbConn2->next_record()) {
+			$encImageDataKiri = $dbConn2->f("enc_data");
+		}
+		
+		$dbConn2->query($query2);
+		while ($dbConn2->next_record()) {
+			$encImageDataKanan = $dbConn2->f("enc_data");
+		}
+		
 		//bawah kiri
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,30,250,15,15,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageDataKiri,30,250,15,15,'PNG');
 		
 		//bawah kanan
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,160,250,15,15,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageDataKanan,160,250,15,15,'PNG');
 		
 		$this->SetFont("Arial", "B", 12);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
