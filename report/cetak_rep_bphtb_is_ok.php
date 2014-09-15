@@ -130,7 +130,7 @@ class FormCetak extends FPDF {
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,30,250,15,15,'PNG');
 		
 		//bawah kanan
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,155,250,15,15,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,160,250,15,15,'PNG');
 		
 		$this->SetFont("Arial", "B", 12);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
