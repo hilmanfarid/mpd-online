@@ -132,7 +132,7 @@ class FormCetak extends FPDF {
 		$encImageDataKanan = '';
 		$dbConn2 = new clsDBConnSIKP();
 		$query1 = "select f_encrypt_str('ZAENAL MANSUR - 19630817.1989.01.1.006') AS enc_data";
-        $query2 = "select f_encrypt_str('".$data['verificated_by']."' - '".$data['verificated_nip']."') AS enc_data";
+        $query2 = "select f_encrypt_str('".$data['verificated_by']." - ".$data['verificated_nip']."') AS enc_data";
         
 		$dbConn2->query($query1);
 		while ($dbConn2->next_record()) {
@@ -148,7 +148,7 @@ class FormCetak extends FPDF {
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageDataKiri,30,250,15,15,'PNG');
 		
 		//bawah kanan
-		//$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageDataKanan,160,250,15,15,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageDataKanan,160,250,15,15,'PNG');
 		
 		$this->SetFont("Arial", "B", 12);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
