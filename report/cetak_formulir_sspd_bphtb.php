@@ -157,7 +157,7 @@ class FormCetak extends FPDF {
 		while ($dbConn->next_record()) {
 			$encImageData = $dbConn->f("enc_data");
 		}
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,180,15,20,20,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,174,15,20,20,'PNG');
 		
 		
 		$lheader = $this->lengthCell / 8;
