@@ -149,6 +149,16 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', '', 10);
 		
 		// $this->Image('../images/logo_pemda.png',12,12,25,25);
+		$encImageData = '';
+		$dbConn = new clsDBConnSIKP();
+		$query = "select f_encrypt_str('".$data['npwp']."-".$data['njop_pbb']."-".$data["bphtb_amt_final"]."') AS enc_data";
+
+		$dbConn->query($query);
+		while ($dbConn->next_record()) {
+			$encImageData = $dbConn->f("enc_data");
+		}
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,140,10,15,15,'PNG');
+		
 		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
