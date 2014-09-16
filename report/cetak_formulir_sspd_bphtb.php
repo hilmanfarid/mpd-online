@@ -187,9 +187,9 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', '', 9);
 		$this->Cell($lheader3+$lheader2+$lheader1, $this->height, "BEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN", "R", 0, 'C');
 		$this->SetFont('Arial', '', 7);
-		$this->Cell($lheader1/2 + 3, $this->height, "Lembar", "", 0, 'R');
+		$this->Cell($lheader1/2 + 3, $this->height, "", "", 0, 'R');
 		$this->SetFont('Arial', '', 12);
-		$this->Cell($lheader1/2 - 3, $this->height, "1", "R", 0, 'L');
+		$this->Cell($lheader1/2 - 3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 
 		$this->Cell($lheader1, $this->height, "", "LR", 0, 'C');
@@ -202,7 +202,7 @@ class FormCetak extends FPDF {
 		// No Urut
 		$this->Cell($lheader2 + $lheader4 + $lheader1, $this->height, "", "R", 0, 'C');
 		$this->SetFont('Arial', '', 7);
-		$this->Cell($lheader1, $this->height, "Untuk Wajib Pajak", "", 0, 'C');
+		$this->Cell($lheader1, $this->height, "", "", 0, 'C');
 		$this->Ln();
 		// =======
 		
