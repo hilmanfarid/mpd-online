@@ -44,7 +44,6 @@ $query="select a.*, (a.address_name || a.address_no) AS address, b.vat_code from
 'P200343201003',
 'P200328200102',
 'P200351300601'
-
 )";
 
 $dbConn->query($query);
