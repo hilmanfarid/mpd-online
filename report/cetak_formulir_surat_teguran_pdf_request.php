@@ -27,7 +27,7 @@ while($dbConn->next_record()){
 $query="select a.*, (a.address_name || a.address_no) AS address, b.vat_code from t_cust_account AS a
         LEFT JOIN p_vat_type AS b ON a.p_vat_type_id = b.p_vat_type_id
 		WHERE npwd IN ('P200342820103', 'P200279820302', 'P200318820502',
-                        'P200278470101', 'P200275280802', 'P200275280802',
+                        'P200278470101', 'P200278570301', 
                         'P200351080203', 'P200274540802', 'P200324162501',
                         'P200326301901', 'P200275360902', 'P200279830204',
                         'P200276540701', 'P200276772604', 'P200279460201',
