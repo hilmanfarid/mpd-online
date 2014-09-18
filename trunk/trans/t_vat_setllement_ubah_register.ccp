@@ -4,14 +4,15 @@
 b.receipt_no,b.payment_amount,b.payment_vat_amount
 from t_vat_setllement a
 LEFT JOIN t_payment_receipt b on a.t_vat_setllement_id = b.t_vat_setllement_id
-where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT * from f_ubah_data_register(
+where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT * from f_ubah_data_register2(
 {t_vat_setllement_id}, 
 {total_trans_amount}, 
 {total_vat_amount}, 
 '{is_settled}', 
 '{receipt_no}', 
 {payment_amount}, 
-{payment_vat_amount}
+{payment_vat_amount},
+'{user_name}'
 ) AS msg">
 			<Components>
 				<TextBox id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="npwd" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVnpwd" fieldSource="npwd" required="True">
@@ -93,11 +94,11 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 					</Actions>
 				</Event>
 				<Event name="AfterUpdate" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="59"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="59"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters>
@@ -119,36 +120,37 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 			<IFormElements>
 				<CustomParameter id="17" field="t_vat_setllement_id" dataType="Text" parameterType="Control" parameterSource="t_vat_setllement_id"/>
 				<CustomParameter id="37" field="npwd" dataType="Text" parameterType="Control" parameterSource="npwd"/>
-<CustomParameter id="38" field="total_trans_amount" dataType="Text" parameterType="Control" parameterSource="total_trans_amount"/>
-<CustomParameter id="39" field="total_vat_amount" dataType="Text" parameterType="Control" parameterSource="total_vat_amount"/>
-<CustomParameter id="40" field="is_settled" dataType="Text" parameterType="Control" parameterSource="is_settled"/>
-<CustomParameter id="41" field="payment_amount" dataType="Text" parameterType="Control" parameterSource="payment_amount"/>
-<CustomParameter id="42" field="payment_vat_amount" dataType="Text" parameterType="Control" parameterSource="payment_vat_amount"/>
-<CustomParameter id="43" field="receipt_no" dataType="Text" parameterType="Control" parameterSource="receipt_no"/>
-<CustomParameter id="44" field="no_kohir" dataType="Text" parameterType="Control" parameterSource="no_kohir"/>
-</IFormElements>
+				<CustomParameter id="38" field="total_trans_amount" dataType="Text" parameterType="Control" parameterSource="total_trans_amount"/>
+				<CustomParameter id="39" field="total_vat_amount" dataType="Text" parameterType="Control" parameterSource="total_vat_amount"/>
+				<CustomParameter id="40" field="is_settled" dataType="Text" parameterType="Control" parameterSource="is_settled"/>
+				<CustomParameter id="41" field="payment_amount" dataType="Text" parameterType="Control" parameterSource="payment_amount"/>
+				<CustomParameter id="42" field="payment_vat_amount" dataType="Text" parameterType="Control" parameterSource="payment_vat_amount"/>
+				<CustomParameter id="43" field="receipt_no" dataType="Text" parameterType="Control" parameterSource="receipt_no"/>
+				<CustomParameter id="44" field="no_kohir" dataType="Text" parameterType="Control" parameterSource="no_kohir"/>
+			</IFormElements>
 			<USPParameters/>
 			<USQLParameters>
 				<SQLParameter id="12" variable="t_vat_setllement_id" parameterType="Control" dataType="Integer" parameterSource="t_vat_setllement_id" defaultValue="0"/>
 				<SQLParameter id="53" variable="total_trans_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="total_trans_amount"/>
-<SQLParameter id="54" variable="total_vat_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="total_vat_amount"/>
-<SQLParameter id="55" variable="is_settled" parameterType="Control" dataType="Text" parameterSource="is_settled"/>
-<SQLParameter id="56" variable="receipt_no" parameterType="Control" dataType="Text" parameterSource="receipt_no"/>
-<SQLParameter id="57" variable="payment_amount" parameterType="Control" dataType="Float" parameterSource="payment_amount" defaultValue="0"/>
-<SQLParameter id="58" variable="payment_vat_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="payment_vat_amount"/>
+				<SQLParameter id="54" variable="total_vat_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="total_vat_amount"/>
+				<SQLParameter id="55" variable="is_settled" parameterType="Control" dataType="Text" parameterSource="is_settled"/>
+				<SQLParameter id="56" variable="receipt_no" parameterType="Control" dataType="Text" parameterSource="receipt_no"/>
+				<SQLParameter id="57" variable="payment_amount" parameterType="Control" dataType="Float" parameterSource="payment_amount" defaultValue="0"/>
+				<SQLParameter id="58" variable="payment_vat_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="payment_vat_amount"/>
+				<SQLParameter id="60" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
 </USQLParameters>
 			<UConditions/>
 			<UFormElements>
 				<CustomParameter id="11" field="t_vat_setllement_id" dataType="Text" parameterType="Control" parameterSource="t_vat_setllement_id"/>
 				<CustomParameter id="45" field="npwd" dataType="Text" parameterType="Control" parameterSource="npwd"/>
-<CustomParameter id="46" field="total_trans_amount" dataType="Text" parameterType="Control" parameterSource="total_trans_amount"/>
-<CustomParameter id="47" field="total_vat_amount" dataType="Text" parameterType="Control" parameterSource="total_vat_amount"/>
-<CustomParameter id="48" field="is_settled" dataType="Text" parameterType="Control" parameterSource="is_settled"/>
-<CustomParameter id="49" field="payment_amount" dataType="Text" parameterType="Control" parameterSource="payment_amount"/>
-<CustomParameter id="50" field="payment_vat_amount" dataType="Text" parameterType="Control" parameterSource="payment_vat_amount"/>
-<CustomParameter id="51" field="receipt_no" dataType="Text" parameterType="Control" parameterSource="receipt_no"/>
-<CustomParameter id="52" field="no_kohir" dataType="Text" parameterType="Control" parameterSource="no_kohir"/>
-</UFormElements>
+				<CustomParameter id="46" field="total_trans_amount" dataType="Text" parameterType="Control" parameterSource="total_trans_amount"/>
+				<CustomParameter id="47" field="total_vat_amount" dataType="Text" parameterType="Control" parameterSource="total_vat_amount"/>
+				<CustomParameter id="48" field="is_settled" dataType="Text" parameterType="Control" parameterSource="is_settled"/>
+				<CustomParameter id="49" field="payment_amount" dataType="Text" parameterType="Control" parameterSource="payment_amount"/>
+				<CustomParameter id="50" field="payment_vat_amount" dataType="Text" parameterType="Control" parameterSource="payment_vat_amount"/>
+				<CustomParameter id="51" field="receipt_no" dataType="Text" parameterType="Control" parameterSource="receipt_no"/>
+				<CustomParameter id="52" field="no_kohir" dataType="Text" parameterType="Control" parameterSource="no_kohir"/>
+			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters/>
 			<DConditions/>
