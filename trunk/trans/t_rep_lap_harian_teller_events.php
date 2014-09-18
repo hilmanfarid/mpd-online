@@ -144,7 +144,7 @@ function GetCetakGeneralHTML($param_arr) {
 	}	
 		$output .= '<tr>
 			<td colspan="8" align="center" style="font-size:15px;"> <b>TOTAL </b></td>
-			<td align="right" style="font-size:15px;color:#FF0000;">Rp.'.number_format($total_payment, 0, ',', '.').'</td>
+			<td align="right" style="font-size:15px;color:#FF0000;">Rp '.number_format($total_payment, 0, ',', '.').'</td>
 		</tr>';
 
 	$output .= '</table>';
