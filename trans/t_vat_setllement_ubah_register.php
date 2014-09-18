@@ -413,7 +413,7 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End SetValues Method
 
-//Update Method @3-1F7C9C7B
+//Update Method @3-511B4E93
     function Update()
     {
         global $CCSLocales;
@@ -426,6 +426,7 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         $this->cp["receipt_no"] = new clsSQLParameter("ctrlreceipt_no", ccsText, "", "", $this->receipt_no->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["payment_amount"] = new clsSQLParameter("ctrlpayment_amount", ccsFloat, "", "", $this->payment_amount->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["payment_vat_amount"] = new clsSQLParameter("ctrlpayment_vat_amount", ccsFloat, "", "", $this->payment_vat_amount->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["user_name"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["t_vat_setllement_id"]->GetValue()) and !strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue())) 
             $this->cp["t_vat_setllement_id"]->SetValue($this->t_vat_setllement_id->GetValue(true));
@@ -451,14 +452,17 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
             $this->cp["payment_vat_amount"]->SetValue($this->payment_vat_amount->GetValue(true));
         if (!strlen($this->cp["payment_vat_amount"]->GetText()) and !is_bool($this->cp["payment_vat_amount"]->GetValue(true))) 
             $this->cp["payment_vat_amount"]->SetText(0);
-        $this->SQL = "SELECT * from f_ubah_data_register(\n" .
+        if (!is_null($this->cp["user_name"]->GetValue()) and !strlen($this->cp["user_name"]->GetText()) and !is_bool($this->cp["user_name"]->GetValue())) 
+            $this->cp["user_name"]->SetValue(CCGetSession("UserLogin", NULL));
+        $this->SQL = "SELECT * from f_ubah_data_register2(\n" .
         "" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . ", \n" .
         "" . $this->SQLValue($this->cp["total_trans_amount"]->GetDBValue(), ccsFloat) . ", \n" .
         "" . $this->SQLValue($this->cp["total_vat_amount"]->GetDBValue(), ccsFloat) . ", \n" .
         "'" . $this->SQLValue($this->cp["is_settled"]->GetDBValue(), ccsText) . "', \n" .
         "'" . $this->SQLValue($this->cp["receipt_no"]->GetDBValue(), ccsText) . "', \n" .
         "" . $this->SQLValue($this->cp["payment_amount"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["payment_vat_amount"]->GetDBValue(), ccsFloat) . "\n" .
+        "" . $this->SQLValue($this->cp["payment_vat_amount"]->GetDBValue(), ccsFloat) . ",\n" .
+        "'" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "'\n" .
         ") AS msg";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
