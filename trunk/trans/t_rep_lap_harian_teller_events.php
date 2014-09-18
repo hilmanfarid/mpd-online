@@ -105,7 +105,7 @@ function GetCetakGeneralHTML($param_arr) {
 						( upper(f.p_cg_terminal_id) LIKE upper('%".$param_arr['nama_teller']."%')
 						) 
 						AND trunc(f.payment_date) = '".$param_arr['tgl_penerimaan']."'
-						ORDER BY f.p_finance_period_id DESC";
+						ORDER BY c.vat_code ASC, f.payment_date DESC";
 
 	$dbConn->query($query);
 	$data = array();
@@ -125,23 +125,61 @@ function GetCetakGeneralHTML($param_arr) {
 	
 	$no = 1;
 	$total_payment = 0;
+	$ayat_pajak = $data['ayat_pajak'][0];
+	
+	$total_per_ayat = 0;
 
 	for($i = 0; $i < count($data['t_payment_receipt_id']); $i++) {
 
 		$total_payment += $data['payment_vat_amount'][$i];
+		if($ayat_pajak != $data['ayat_pajak'][$i]) {
+			
+			
 
-		$output .= '<tr>';
-		$output .= '<td align="center">'.$no++.'</td>';
-		$output .= '<td align="left">'.$data['p_cg_terminal_id'][$i].'</td>';
-		$output .= '<td align="left">'.$data['wp_name'][$i].'</td>';
-		$output .= '<td align="left">'.$data['npwd'][$i].'</td>';
-		$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
-		$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
-		$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
-		$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
-		$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
-		$output .= '</tr>';
+			$output .= '<tr>';
+			$output .= '<td colspan="8" align="center"> <b>TOTAL '.$ayat_pajak.'</b></td>';
+			$output .= '<td align="right" style="color:#FF0000;">Rp '.number_format($total_per_ayat, 0, ',', '.').'</td>';
+			$output .= '<tr>';
+			
+			$output .= '<tr>';
+			$output .= '<td align="center">'.$no++.'</td>';
+			$output .= '<td align="left">'.$data['p_cg_terminal_id'][$i].'</td>';
+			$output .= '<td align="left">'.$data['wp_name'][$i].'</td>';
+			$output .= '<td align="left">'.$data['npwd'][$i].'</td>';
+			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
+			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
+			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
+			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
+			$output .= '</tr>';
+			
+			$ayat_pajak = $data['ayat_pajak'][$i];
+			$total_per_ayat = 0;
+
+			$total_per_ayat += $data['payment_vat_amount'][$i];
+		}else {
+
+			$total_per_ayat += $data['payment_vat_amount'][$i];
+
+			$output .= '<tr>';
+			$output .= '<td align="center">'.$no++.'</td>';
+			$output .= '<td align="left">'.$data['p_cg_terminal_id'][$i].'</td>';
+			$output .= '<td align="left">'.$data['wp_name'][$i].'</td>';
+			$output .= '<td align="left">'.$data['npwd'][$i].'</td>';
+			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
+			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
+			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
+			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
+			$output .= '</tr>';
+		}
 	}	
+			
+			$output .= '<tr>';
+			$output .= '<td colspan="8" align="center"> <b>TOTAL '.$ayat_pajak.'</b></td>';
+			$output .= '<td align="right" style="color:#FF0000;">Rp '.number_format($total_per_ayat, 0, ',', '.').'</td>';
+			$output .= '<tr>';
+
 		$output .= '<tr>
 			<td colspan="8" align="center" style="font-size:15px;"> <b>TOTAL </b></td>
 			<td align="right" style="font-size:15px;color:#FF0000;">Rp '.number_format($total_payment, 0, ',', '.').'</td>
