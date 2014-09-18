@@ -95,7 +95,7 @@ function GetCetakGeneralHTML($param_arr) {
 	
 	$dbConn = new clsDBConnSIKP();
 	$query = "SELECT f.t_payment_receipt_id, f.p_cg_terminal_id, f.npwd, d.wp_name, f.receipt_no, f.payment_date, 
-					a.no_kohir, f.finance_period_code, f.payment_vat_amount,
+					a.no_kohir, f.finance_period_code, f.payment_amount,
 						c.vat_code as ayat_pajak
 						FROM t_payment_receipt f, t_vat_setllement a, p_vat_type_dtl c, t_cust_account d
 						WHERE 
@@ -118,7 +118,7 @@ function GetCetakGeneralHTML($param_arr) {
 		$data["payment_date"][] = $dbConn->f("payment_date");
 		$data["no_kohir"][] = $dbConn->f("no_kohir");
 		$data["finance_period_code"][] = $dbConn->f("finance_period_code");
-		$data["payment_vat_amount"][] = $dbConn->f("payment_vat_amount");
+		$data["payment_vat_amount"][] = $dbConn->f("payment_amount");
 		$data["ayat_pajak"][] = $dbConn->f("ayat_pajak");
 	}
 	$dbConn->close();
