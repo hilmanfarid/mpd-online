@@ -90,6 +90,7 @@ function GetCetakHTML($param_arr) {
 				x.receipt_no,
 				to_char(payment_date, 'YYYY-MM-DD') as payment_date,
 				a.wp_name,
+				a. registration_no,
 				a.bphtb_amt_final,
 				a.building_area,
 				a.land_area,
