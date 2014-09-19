@@ -68,7 +68,7 @@ function GetCetakHTML($param_arr) {
 		<th>NO.REGISTRASI</th>
 		<th>NAMA WP</th>
 		<th>NOP</th>
-		<th>LT/LB</th>
+		<th width="70px">LT/LB</th>
 		<th>NILAI PAJAK YANG HARUS DIBAYAR (Rp)</th>
 		<th>NO TRANSAKSSI</th>
 		<th>TGL BAYAR</th>
