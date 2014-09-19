@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -126,6 +126,8 @@ $(document).ready(function()
  
                   <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Pemilik/Pengelola</label></label></label></label></label></label></th>
  
+                  <th scope="col">&nbsp;Merek Dagang</th>
+ 
                   <th scope="col"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME">Alamat</label></label></th>
  
                   <th scope="col">Jenis Pajak&nbsp;</th>
@@ -140,6 +142,7 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_customerGridDLink_{t_customerGrid:rowNumber}">{DLink}</a></td> 
                   <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="t_customerGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
                   <td>{company_owner}&nbsp;<input id="t_customerGridt_customer_id" name="{t_customer_id_Name}" value="{t_customer_id}" type="hidden"></td> 
+                  <td>{company_brand}</td> 
                   <td>{address_name_owner}&nbsp;No. {address_no_owner}&nbsp;Rt/Rw. {address_rt_owner}&nbsp;/ {address_rw_owner}</td> 
                   <td>&nbsp;{vat_code}</td> 
                   <td>{mobile_no_owner}&nbsp;</td> 
@@ -148,12 +151,12 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="7">-</td>
+                  <td colspan="8">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b><label for="t_customerGridTextBox1" style="display: none;">&nbsp;</label></b></td> 
-                  <td colspan="6">
+                  <td colspan="7">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
