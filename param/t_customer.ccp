@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, c.vat_code
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, c.vat_code, b.company_brand
 FROM t_customer a
 LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
 LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
@@ -92,7 +92,13 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="526" fieldSourceType="DBColumn" dataType="Text" html="False" name="company_brand" fieldSource="company_brand" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridcompany_brand">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -121,7 +127,7 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 				<SQLParameter id="485" variable="s_company_name" parameterType="URL" dataType="Text" parameterSource="s_company_name"/>
 				<SQLParameter id="486" variable="s_company_brand" parameterType="URL" dataType="Text" parameterSource="s_company_brand"/>
 				<SQLParameter id="525" variable="s_address_name" parameterType="URL" dataType="Text" parameterSource="s_address_name"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -170,7 +176,7 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
