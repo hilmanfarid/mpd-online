@@ -16,12 +16,12 @@ function ReplaceNumberWithCommas(yourNumber) {
 }
 function printLaporan(){
         var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
-		var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
-		if(p_bphtb_type_id == 3) {
-			window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
-		}else {
-        	window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
-		}
+                var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
+                if(p_bphtb_type_id == 3) {
+                        window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+                }else {
+                window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+                }
 }
 function setNormalValue(){
     jQuery(".numeric-field").each(function() {
@@ -284,7 +284,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Alamat</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormwp_address_name" name="{wp_address_name_Name}" value="{wp_address_name}" size="100"></td>
+                    <td colspan="6"><input style="WIDTH: 491px; HEIGHT: 22px" id="t_bphtb_registrationFormwp_address_name" name="{wp_address_name_Name}" value="{wp_address_name}" size="77"></td>
                   </tr>
  
                   <tr class="Controls">
