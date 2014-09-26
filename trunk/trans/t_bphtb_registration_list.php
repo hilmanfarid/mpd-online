@@ -263,7 +263,7 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Prepare Method
 
-//Open Method @2-E7FA0E2C
+//Open Method @2-E289FD52
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -272,13 +272,15 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
         "where\n" .
         "(cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
         "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
-        "AND cust_order.p_order_status_id = 1) cnt";
+        "AND cust_order.p_order_status_id = 1\n" .
+        "AND regis.p_bphtb_type_id = 1) cnt";
         $this->SQL = "select cust_order.*,regis.* from t_bphtb_registration regis\n" .
         "LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id\n" .
         "where\n" .
         "(cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
         "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') \n" .
-        "AND cust_order.p_order_status_id = 1{SQL_OrderBy}";
+        "AND cust_order.p_order_status_id = 1\n" .
+        "AND regis.p_bphtb_type_id = 1{SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
