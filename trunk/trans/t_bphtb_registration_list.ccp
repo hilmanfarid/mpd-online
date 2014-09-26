@@ -6,7 +6,7 @@ where
 (cust_order.order_no ILIKE '%{s_keyword}%' OR
 regis.wp_name ILIKE '%{s_keyword}%') 
 AND cust_order.p_order_status_id = 1
-AND regis.p_bphtb_type_id = 1
+AND regis.p_bphtb_type_id is null
 order by regis.t_bphtb_registration_id DESC">
 			<Components>
 				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_bphtb_registration.ccp" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_bphtb_registration_listInsert_Link">
