@@ -15,8 +15,13 @@ function ReplaceNumberWithCommas(yourNumber) {
     return n.join(".");
 }
 function printLaporan(){
-                var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
-        window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+        var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
+		var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
+		if(p_bphtb_type_id == 3) {
+        	window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+		}else {
+        	window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+		}
 }
 function setNormalValue(){
         jQuery(".numeric-field").each(function() {
@@ -210,7 +215,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -251,6 +256,11 @@ jQuery(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
+                    <td class="th" colspan="3"><span id="keterangan-kurang-bayar">&nbsp;</span></td> 
+                    <td colspan="6">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
                     <td class="th" colspan="3">&nbsp;A. Subjek Pajak</td> 
                     <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormt_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormTAKEN_CTL" name="{TAKEN_CTL_Name}" value="{TAKEN_CTL}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_TAKEN" name="{IS_TAKEN_Name}" value="{IS_TAKEN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_ID" name="{CURR_DOC_ID_Name}" value="{CURR_DOC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_TYPE_ID" name="{CURR_DOC_TYPE_ID_Name}" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_PROC_ID" name="{CURR_PROC_ID_Name}" value="{CURR_PROC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_CTL_ID" name="{CURR_CTL_ID_Name}" value="{CURR_CTL_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_DOC" name="{USER_ID_DOC_Name}" value="{USER_ID_DOC}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_DONOR" name="{USER_ID_DONOR_Name}" value="{USER_ID_DONOR}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_LOGIN" name="{USER_ID_LOGIN_Name}" value="{USER_ID_LOGIN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationFormUSER_ID_TAKEN" name="{USER_ID_TAKEN_Name}" value="{USER_ID_TAKEN}" size="5" type="hidden">
 <input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_CREATE_DOC" name="{IS_CREATE_DOC_Name}" value="{IS_CREATE_DOC}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormIS_MANUAL" name="{IS_MANUAL_Name}" value="{IS_MANUAL}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_PROC_STATUS" name="{CURR_PROC_STATUS_Name}" value="{CURR_PROC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormCURR_DOC_STATUS" name="{CURR_DOC_STATUS_Name}" value="{CURR_DOC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_DOC_ID" name="{PREV_DOC_ID_Name}" value="{PREV_DOC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_DOC_TYPE_ID" name="{PREV_DOC_TYPE_ID_Name}" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_PROC_ID" name="{PREV_PROC_ID_Name}" value="{PREV_PROC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormPREV_CTL_ID" name="{PREV_CTL_ID_Name}" value="{PREV_CTL_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_1" name="{SLOT_1_Name}" value="{SLOT_1}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_2" name="{SLOT_2_Name}" value="{SLOT_2}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationFormSLOT_3" name="{SLOT_3_Name}" value="{SLOT_3}" size="4" type="hidden">
@@ -260,13 +270,13 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">No Registrasi&nbsp;</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormregistration_no">&nbsp;</label><input style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" id="t_bphtb_registrationFormregistration_no" name="{registration_no_Name}" readonly value="{registration_no}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormregistration_no" style="display: none;">&nbsp;</label><input style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" id="t_bphtb_registrationFormregistration_no" name="{registration_no_Name}" readonly value="{registration_no}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama</label></label></label></label></label></label></label></td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormwp_name">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" name="{wp_name_Name}" value="{wp_name}">&nbsp;</td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormwp_name" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" name="{wp_name_Name}" value="{wp_name}">&nbsp;<input id="t_bphtb_registrationFormp_bphtb_type_id" name="{p_bphtb_type_id_Name}" value="{p_bphtb_type_id}" type="hidden"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -325,7 +335,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Nomor Objek Pajak</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormnjop_pbb">&nbsp;</label><input style="WIDTH: 244px; HEIGHT: 22px" id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" value="{njop_pbb}" size="33"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input style="WIDTH: 244px; HEIGHT: 22px" id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" value="{njop_pbb}" size="33"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -452,7 +462,7 @@ jQuery(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
-                    <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</td> 
+                    <td class="th" colspan="2"><span id="total-bayar-text">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</span></td> 
                     <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt_final" class="numeric-field" name="{bphtb_amt_final_Name}" readonly value="{bphtb_amt_final}"></td>
                   </tr>
  
@@ -465,13 +475,13 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Pemeriksa</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormverificated_by">&nbsp;</label><input id="t_bphtb_registrationFormverificated_by" name="{verificated_by_Name}" value="{verificated_by}" size="26"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormverificated_by" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormverificated_by" name="{verificated_by_Name}" value="{verificated_by}" size="26"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">NIP</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormverificated_nip">&nbsp;</label><input id="t_bphtb_registrationFormverificated_nip" name="{verificated_nip_Name}" value="{verificated_nip}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormverificated_nip" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormverificated_nip" name="{verificated_nip_Name}" value="{verificated_nip}"></td>
                   </tr>
  
                   <tr class="Bottom">
@@ -497,7 +507,7 @@ jQuery(document).ready(function()
 </div>
 <script language="javascript">
 if(document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value!=''){
-	var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
+        var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
     document.getElementById('t_bphtb_registrationFormadd_discount').value = ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormadd_disc_percent').value*npop);
 }
 // === FUNGSI ANGKA ===
@@ -1061,6 +1071,38 @@ function cetak_tri(){
                 }else{
                         return popup("../report/cetak_formulir_skpdn_pdf.php"+urlLink);
                 }
+}
+
+var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
+if(p_bphtb_type_id == 3) {
+        document.getElementById('keterangan-kurang-bayar').setAttribute('style','color:#008000;font-weight:bold;font-size:15px;');
+        document.getElementById('keterangan-kurang-bayar').innerHTML ="DATA DIBAWAH INI MERUPAKAN DATA BPHTB KURANG BAYAR:";
+
+        document.getElementById('total-bayar-text').setAttribute('style','color:#FF0000;font-weight:bold;');
+        document.getElementById('total-bayar-text').innerHTML ="Total Kekurangan Pembayaran";
+                
+                document.getElementById('t_bphtb_registrationFormnjop_pbb').disabled = true;
+                document.getElementById('t_bphtb_registrationFormp_bphtb_legal_doc_type_id').disabled = true;
+                document.getElementById('t_bphtb_registrationFormjenis_harga_bphtb').disabled = true;
+                document.getElementById('t_bphtb_registrationFormadd_disc_percent').disabled = true;
+
+                document.getElementById('t_bphtb_registrationFormland_area').disabled = true;
+                document.getElementById('t_bphtb_registrationFormland_price_per_m').disabled = true;
+                document.getElementById('t_bphtb_registrationFormland_total_price').disabled = true;
+
+                document.getElementById('t_bphtb_registrationFormbuilding_area').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbuilding_price_per_m').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbuilding_total_price').disabled = true;
+                
+
+                document.getElementById('t_bphtb_registrationFormmarket_price').disabled = true;
+
+                document.getElementById('t_bphtb_registrationFormnpop').disabled = true;
+                document.getElementById('t_bphtb_registrationFormadd_discount').disabled = true;
+                document.getElementById('t_bphtb_registrationFormnpop_tkp').disabled = true;
+                document.getElementById('t_bphtb_registrationFormnpop_kp').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbphtb_amt').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbphtb_discount').disabled = true;
 }
 
 </script>
