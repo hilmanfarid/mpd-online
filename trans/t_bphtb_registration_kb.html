@@ -327,7 +327,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Nomor Objek Pajak</td> 
-                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input style="WIDTH: 246px; HEIGHT: 22px" id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" readonly value="{njop_pbb}" size="33"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input style="WIDTH: 246px; HEIGHT: 22px" id="t_bphtb_registrationFormnjop_pbb" disabled name="{njop_pbb_Name}" readonly value="{njop_pbb}" size="33"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -385,24 +385,24 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Tanah</td> 
-                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" class="numeric-field" onkeyup="hitungTotalTanah();return 1;" name="{land_area_Name}" readonly value="{land_area}">&nbsp;m2</td> 
-                    <td class="th">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_price_per_m" class="numeric-field" onkeyup="hitungTotalTanah();" name="{land_price_per_m_Name}" readonly value="{land_price_per_m}"></td> 
-                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" class="numeric-field" name="{land_total_price_Name}" readonly value="{land_total_price}"></td>
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" class="numeric-field" disabled onkeyup="hitungTotalTanah();return 1;" name="{land_area_Name}" readonly value="{land_area}">&nbsp;m2</td> 
+                    <td class="th">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_price_per_m" class="numeric-field" disabled onkeyup="hitungTotalTanah();" name="{land_price_per_m_Name}" readonly value="{land_price_per_m}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" class="numeric-field" disabled name="{land_total_price_Name}" readonly value="{land_total_price}"></td>
                   </tr>
  
                   <tr class="Controls" onkeyup="document.getElementById(&amp;quot;t_bphtb_registrationFormland_total_price&amp;quot;).value=hitungTotalTanah();">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Bangunan</td> 
-                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" class="numeric-field" onkeyup="hitungTotalBangunan();" name="{building_area_Name}" readonly value="{building_area}">&nbsp;m2</td> 
-                    <td>&nbsp;Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_price_per_m" class="numeric-field" onkeyup="hitungTotalBangunan();" name="{building_price_per_m_Name}" readonly value="{building_price_per_m}"></td> 
-                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" class="numeric-field" name="{building_total_price_Name}" readonly value="{building_total_price}"></td>
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" class="numeric-field" disabled onkeyup="hitungTotalBangunan();" name="{building_area_Name}" readonly value="{building_area}">&nbsp;m2</td> 
+                    <td>&nbsp;Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_price_per_m" class="numeric-field" disabled onkeyup="hitungTotalBangunan();" name="{building_price_per_m_Name}" readonly value="{building_price_per_m}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" class="numeric-field" disabled name="{building_total_price_Name}" readonly value="{building_total_price}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;</td> 
                     <td colspan="5">&nbsp;Total</td> 
-                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormtotal_price" class="numeric-field" name="{total_price_Name}" readonly value="{total_price}"></td>
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormtotal_price" class="numeric-field" disabled name="{total_price_Name}" readonly value="{total_price}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -413,43 +413,43 @@ jQuery(document).ready(function()
                         {jenis_harga_bphtb_Options}
                       </select>
  : </td> 
-                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" class="numeric-field" onkeyup="getNPOP();" name="{market_price_Name}" readonly value="{market_price}"></td>
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" class="numeric-field" disabled onkeyup="getNPOP();" name="{market_price_Name}" readonly value="{market_price}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak (NPOP)</td> 
-                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop" onchange="hitungNPOPKP();" class="numeric-field" name="{npop_Name}" readonly value="{npop}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop" onchange="hitungNPOPKP();" class="numeric-field" disabled name="{npop_Name}" readonly value="{npop}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Potongan Tambahan</td> 
-                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormadd_discount" name="{add_discount_Name}" readonly value="{add_discount}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormadd_discount" disabled name="{add_discount_Name}" readonly value="{add_discount}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak Tidak Kena Pajak(NPOPTKP)</td> 
-                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_tkp" class="numeric-field" name="{npop_tkp_Name}" readonly value="{npop_tkp}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_tkp" class="numeric-field" disabled name="{npop_tkp_Name}" readonly value="{npop_tkp}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak Kena Pajak(NPOPKP)</td> 
-                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_kp" class="numeric-field" name="{npop_kp_Name}" readonly value="{npop_kp}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_kp" class="numeric-field" disabled name="{npop_kp_Name}" readonly value="{npop_kp}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang terutang</td> 
-                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt" class="numeric-field" name="{bphtb_amt_Name}" readonly value="{bphtb_amt}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt" class="numeric-field" disabled name="{bphtb_amt_Name}" readonly value="{bphtb_amt}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Potongan</td> 
-                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_discount" class="numeric-field" onkeyup="hitungPembayaran();" name="{bphtb_discount_Name}" readonly value="{bphtb_discount}">&nbsp; <input id="t_bphtb_registrationFormdescription" name="{description_Name}" readonly value="{description}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_discount" class="numeric-field" disabled onkeyup="hitungPembayaran();" name="{bphtb_discount_Name}" readonly value="{bphtb_discount}">&nbsp; <input id="t_bphtb_registrationFormdescription" name="{description_Name}" readonly value="{description}"></td>
                   </tr>
  
                   <tr class="Controls">
