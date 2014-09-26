@@ -557,6 +557,12 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<TextBox id="150" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_bphtb_type_id" PathID="t_bphtb_registrationFormp_bphtb_type_id" fieldSource="p_bphtb_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
