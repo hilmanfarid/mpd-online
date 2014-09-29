@@ -143,7 +143,7 @@ table.report td{
                         var tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
                         var                        nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
                         
-                                                if(tgl_penerimaan == "" && nama_teller == "") {
+                                                if(tgl_penerimaan == "" || nama_teller == "") {
                                                         alert('Tanggal Penerimaan dan Nama Teller harus diisi');
                                                         return false;
                                                 }                                               
@@ -156,7 +156,7 @@ table.report td{
                         var tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
                         var                        nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
                         
-                                                if(tgl_penerimaan == "" && nama_teller == "") {
+                                                if(tgl_penerimaan == "" || nama_teller == "") {
                                                         alert('Tanggal Penerimaan dan Nama Teller harus diisi');
                                                         return false;
                                                 }                                               
