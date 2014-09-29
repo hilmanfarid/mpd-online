@@ -64,13 +64,19 @@ $query = "SELECT
 	market_price,
 	bphtb_amt_final,
 	object_address_name,
-	region_name
+	region.region_name,
+	kec.region_name as kec,
+	kel.region_name as kel,
+	reg_bphtb.wp_rt,
+	reg_bphtb.wp_rw
 FROM
 	sikp.t_bphtb_registration reg_bphtb
 LEFT JOIN p_bphtb_legal_doc_type bphtb_doc on bphtb_doc.p_bphtb_legal_doc_type_id = reg_bphtb.p_bphtb_legal_doc_type_id
 LEFT JOIN t_customer_order cust_order ON cust_order.t_customer_order_id = reg_bphtb.t_customer_order_id 
 LEFT JOIN t_payment_receipt_bphtb payment ON reg_bphtb.t_bphtb_registration_id = payment.t_bphtb_registration_id 
 LEFT JOIN p_region region ON region.p_region_id = reg_bphtb.wp_p_region_id 
+LEFT JOIN p_region kec ON kec.p_region_id = reg_bphtb.wp_p_region_id_kec
+LEFT JOIN p_region kel ON kec.p_region_id = reg_bphtb.wp_p_region_id_kel
 WHERE cust_order.p_order_status_id <> 1";
 $query.= $whereClause;
 
@@ -79,6 +85,7 @@ if(!empty($t_bphtb_registration_id)) {
 }
 
 $query.= " order by trunc(reg_bphtb.creation_date) ASC,upper(wp_name) ASC";
+
 $dbConn->query($query);
 
 $data = array();
@@ -100,6 +107,10 @@ while ($dbConn->next_record()) {
 		'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
 		'object_address_name' => $dbConn->f("object_address_name"),
 		'region_name' => $dbConn->f("region_name"),
+		'kec' => $dbConn->f("kec"),
+		'kel' => $dbConn->f("kel"),
+		'wp_rt' => $dbConn->f("wp_rt"),
+		'wp_rw' => $dbConn->f("wp_rw"),
 		'nomor_surat' => $nomor_surat 
 	);
 }
@@ -264,17 +275,17 @@ class FormCetak extends FPDF {
 		$lkepada2 = $lkepada * 2;
 		$lkepada3 = $lkepada * 3+20;
 		
-		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
+		$this->Cell($lkepada3-20, $this->height, "", "", 0, 'L');
 		$this->Cell($lkepada2-60, $this->height, "Bandung,", "", 0, 'L');
 		$this->Cell(30, $this->height, dateToday(), "", 0, 'R');
 		$this->Ln();
 
-		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
+		$this->Cell($lkepada3-20, $this->height, "", "", 0, 'L');
 		$this->Cell($lkepada2, $this->height, "Kepada Yth.", "", 0, 'L');
 		$this->Ln();
 
 		$this->SetAligns(array("L","L"));
-		$this->SetWidths(array($lkepada3,""));
+		$this->SetWidths(array($lkepada3 - 20,"85"));
 		$this->RowMultiBorderWithHeight(
 			array("",
 				substr($data['wp_name'],0, 23)
@@ -284,24 +295,36 @@ class FormCetak extends FPDF {
 			),
 			$this->height
 		);
+		
+		$this->Cell($lkepada3-20, $this->height, "", "", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "Di ", "", 0, 'L');
+		$this->Ln();
 
 		$this->SetAligns(array("L","L"));
-		$this->SetWidths(array($lkepada3,"65"));
+		$this->SetWidths(array($lkepada3 - 20,"85"));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				$data['wp_address_name']
+				$data['wp_address_name'].", RT ".$data['wp_rt']."/ RW ".$data['wp_rw']
 			),
 			array("",
 				""
 			),
 			$this->height
 		);
-		
-		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "Di ", "", 0, 'L');
-		$this->Ln();
 
-		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
+		$this->SetAligns(array("L","L"));
+		$this->SetWidths(array($lkepada3 - 20,"85"));
+		$this->RowMultiBorderWithHeight(
+			array("",
+				"KEC. ".$data['kec']
+			),
+			array("",
+				""
+			),
+			$this->height
+		);
+
+		$this->Cell($lkepada3-20, $this->height, "", "", 0, 'L');
 		$pieces = explode("KABUPATEN ", $data['region_name']);
 		$result = join("",$pieces);
 		$pieces = explode("KOTA ", $result);
@@ -310,15 +333,12 @@ class FormCetak extends FPDF {
 		$result = join("",$pieces);
 		
 				
-		$this->Cell($lkepada2, $this->height, "          ".$result, "", 0, 'L');
+		$this->Cell(85, $this->height, $result, "", 0, 'L');
 		$this->Ln();
 		
 		// $this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
 		// $this->Cell($lkepada2, $this->height, "", "R", 0, 'C');
 		// $this->Ln();
-		$this->Cell($lkepada3, $this->height, "", "", 0, 'L');
-		$this->Cell($lkepada2, $this->height, "", "", 0, 'C');
-		$this->Ln();
 		
 		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
 		// $this->newLine();
@@ -690,7 +710,7 @@ class FormCetak extends FPDF {
 
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
-		$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,200,$lbody4+48,20);
+		$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,203,$lbody4+48,20);
 		
 		//$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		//$this->Cell($lbody4, $this->height, "", "", 0, 'C');
@@ -744,7 +764,7 @@ class FormCetak extends FPDF {
 		$data['njop_pbb']."_".
 		$data['registration_no']."_".
 		str_replace(" ","-",dateToString($data['creation_date']))
-		,15,200,30,30,'PNG');
+		,15,203,30,30,'PNG');
 		
 
 		$this->SetFont('Times', 'BU', 12);
