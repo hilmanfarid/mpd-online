@@ -39,6 +39,13 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
+				<Button id="565" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch2" PathID="t_rep_lap_harian_bdhrSearchButton_DoSearch2">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
