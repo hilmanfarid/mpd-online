@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-55E89135
+//Class_Initialize Event @3-C04C0F73
     function clsRecordt_rep_lap_harian_bdhrSearch($RelativePath, & $Parent)
     {
 
@@ -76,6 +76,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
             $this->nama_teller = & new clsControl(ccsListBox, "nama_teller", "nama_teller", ccsText, "", CCGetRequestParam("nama_teller", $Method, NULL), $this);
             $this->nama_teller->DSType = dsListOfValues;
             $this->nama_teller->Values = array(array("ESSYBKP", "ESSYBKP"), array("HERIBKP", "HERIBKP"), array("PAINCEBKP", "PAINCEBKP"));
+            $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -125,7 +126,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-5638FB33
+//Operation Method @3-23190CCC
     function Operation()
     {
         if(!$this->Visible)
@@ -142,12 +143,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch1";
             if($this->Button_DoSearch1->Pressed) {
                 $this->PressedButton = "Button_DoSearch1";
+            } else if($this->Button_DoSearch2->Pressed) {
+                $this->PressedButton = "Button_DoSearch2";
             }
         }
         $Redirect = "t_rep_lap_harian_teller.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch1") {
                 if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch2") {
+                if(!CCGetEvent($this->Button_DoSearch2->CCSEvents, "OnClick", $this->Button_DoSearch2)) {
                     $Redirect = "";
                 }
             }
@@ -157,7 +164,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-C076FE3E
+//Show Method @3-05B1AB4B
     function Show()
     {
         global $CCSUseAmp;
@@ -208,6 +215,7 @@ function GetPrimaryKey($keyName)
         $this->kabid->Show();
         $this->Button_DoSearch1->Show();
         $this->nama_teller->Show();
+        $this->Button_DoSearch2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
