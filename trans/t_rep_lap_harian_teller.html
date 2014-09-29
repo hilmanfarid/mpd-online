@@ -76,7 +76,7 @@ table.report td{
 
 </style>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -107,7 +107,8 @@ table.report td{
                       <td>
                         <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan"><img id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;</td> 
                       <td class="search-field">&nbsp; 
-                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch1" class="btn_tambah" onclick="tampil(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchkabid" name="{kabid_Name}" value="T" type="hidden"></td>
+                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch1" class="btn_tambah" onclick="tampil(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch1 -->
+                        <!-- BEGIN Button Button_DoSearch2 --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_lap_harian_bdhrSearchButton_DoSearch2" class="btn_tambah" onclick="tampilExcel(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" size="13" type="submit"><!-- END Button Button_DoSearch2 --><input id="t_rep_lap_harian_bdhrSearchkabid" name="{kabid_Name}" value="T" type="hidden"></td>
                     </tr>
  
                     <tr class="Controls">
@@ -148,6 +149,19 @@ table.report td{
                                                 }                                               
 
                                                 location.href="t_rep_lap_harian_teller.php?tgl_penerimaan=" + tgl_penerimaan + "&nama_teller="+ nama_teller +"&kabid=T&tampil=T";
+                }
+
+				function tampilExcel()
+                {
+                        var tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
+                        var                        nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
+                        
+                                                if(tgl_penerimaan == "" && nama_teller == "") {
+                                                        alert('Tanggal Penerimaan dan Nama Teller harus diisi');
+                                                        return false;
+                                                }                                               
+
+                                                location.href="t_rep_lap_harian_teller.php?tgl_penerimaan=" + tgl_penerimaan + "&nama_teller="+ nama_teller +"&kabid=T&tampil=download_excel";
                 }
         </script>
   <br>
