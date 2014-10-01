@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>t_customer_order</title>
-<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <meta http-equiv="refresh" content="30">
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
@@ -76,7 +76,7 @@ table.report td{
 
 </style>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -108,7 +108,8 @@ table.report td{
                         <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan"><img id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;</td> 
                       <td class="search-field">&nbsp; 
                         <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch1" class="btn_tambah" onclick="tampil(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch1 -->
-                        <!-- BEGIN Button Button_DoSearch2 --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_lap_harian_bdhrSearchButton_DoSearch2" class="btn_tambah" onclick="tampilExcel(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" size="13" type="submit"><!-- END Button Button_DoSearch2 --><input id="t_rep_lap_harian_bdhrSearchkabid" name="{kabid_Name}" value="T" type="hidden"></td>
+                        <!-- BEGIN Button Button_DoSearch2 --><input style="WIDTH: 119px; DISPLAY: none; HEIGHT: 26px" id="t_rep_lap_harian_bdhrSearchButton_DoSearch2" class="btn_tambah" onclick="tampilExcel(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" size="13" type="submit"><!-- END Button Button_DoSearch2 -->
+                        <!-- BEGIN Button Button_DoSearch3 --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_lap_harian_bdhrSearchButton_DoSearch3" class="btn_tambah" onclick="tampilPdf(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD PDF" size="13" type="submit"><!-- END Button Button_DoSearch3 --><input style="WIDTH: 76px; HEIGHT: 22px" id="t_rep_lap_harian_bdhrSearchkabid" name="{kabid_Name}" value="T" size="10" type="hidden"></td>
                     </tr>
  
                     <tr class="Controls">
@@ -151,7 +152,7 @@ table.report td{
                                                 location.href="t_rep_lap_harian_teller.php?tgl_penerimaan=" + tgl_penerimaan + "&nama_teller="+ nama_teller +"&kabid=T&tampil=T";
                 }
 
-				function tampilExcel()
+                function tampilExcel()
                 {
                         var tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
                         var                        nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
@@ -162,6 +163,22 @@ table.report td{
                                                 }                                               
 
                                                 location.href="t_rep_lap_harian_teller.php?tgl_penerimaan=" + tgl_penerimaan + "&nama_teller="+ nama_teller +"&kabid=T&tampil=download_excel";
+                }
+
+                                function tampilPdf()
+                {
+                        var tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
+                        var                        nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
+                        
+                                                if(tgl_penerimaan == "" || nama_teller == "") {
+                                                        alert('Tanggal Penerimaan dan Nama Teller harus diisi');
+                                                        return false;
+                                                }                                               
+                                                
+                                                var params = "?tgl_penerimaan="+tgl_penerimaan;
+                        params += "&nama_teller="+nama_teller;
+
+                        window.open("../report/cetak_lap_harian_teller.php" + params, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
                 }
         </script>
   <br>
