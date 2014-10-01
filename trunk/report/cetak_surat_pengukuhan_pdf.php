@@ -394,16 +394,16 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$this->Cell($sigLen1, $this->height, "Dr. H. DANDAN RIZA WARDANA, M.Si", 0, 0, 'C');
+		$this->Cell($sigLen1, $this->height, "Drs. Priana Wirasaputra, MM", 0, 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
 		$this->SetFont('Times', '', 11);
-		$this->Cell($sigLen1, $this->height, "Pembina Utama Muda", 0, 0, 'C');
+		$this->Cell($sigLen1, $this->height, "Pembina Utama Muda IV/C", 0, 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$this->Cell($sigLen1, $this->height, "NIP. 19680702 198803 1 003", 0, 0, 'C');
+		$this->Cell($sigLen1, $this->height, "NIP. 19600308 198503 1 007", 0, 0, 'C');
 		
 		// Tembusan
 		$this->Ln();
