@@ -265,7 +265,7 @@ function GetCetakGeneralHTML($param_arr) {
 						( upper(f.p_cg_terminal_id) LIKE upper('%".$param_arr['nama_teller']."%')
 						) 
 						AND trunc(f.payment_date) = '".$param_arr['tgl_penerimaan']."'
-						ORDER BY c.vat_code ASC, f.payment_date DESC";
+						ORDER BY c.vat_code ASC";
 
 	$dbConn->query($query);
 	$data = array();
