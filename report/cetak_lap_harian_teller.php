@@ -266,10 +266,8 @@ class FormCetak extends FPDF {
 										  
 		$this->SetFont('Arial', '', 10);
 		$this->Ln();
-		$this->newLine();
-		$this->newLine();
-		$this->newLine();
-		
+        $this->Ln();
+        
 		$this->SetAligns(array("C", "C"));
 		$this->SetWidths(array(180, 120));
 		$this->RowMultiBorderWithHeight( array("","Bandung, " . date("d F Y")."\n\n\n\n\n\n\n\n(....................................)"), array("",""), 5 );
