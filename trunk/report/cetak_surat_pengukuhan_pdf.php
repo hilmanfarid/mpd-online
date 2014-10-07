@@ -378,8 +378,8 @@ class FormCetak extends FPDF {
 		$sigLen2 = $sigLen * 2;
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$this->Cell($sigLen1, $this->height, "Bandung, 26 September 2014" , 0, 0, 'C');
-		//$this->Cell($sigLen1, $this->height, "Bandung, " . date("j F Y"), 0, 0, 'C');
+		//$this->Cell($sigLen1, $this->height, "Bandung, 26 September 2014" , 0, 0, 'C');
+		$this->Cell($sigLen1, $this->height, "Bandung, " . date("j F Y"), 0, 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
