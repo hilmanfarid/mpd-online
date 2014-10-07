@@ -53,19 +53,24 @@ function Page_BeforeShow(& $sender)
 		$data				= array();
 		$dbConn				= new clsDBConnSIKP();
 		if ($jenis_pajak == 0 || $jenis_pajak == "" ){
-			$query				= "select a.*, b.vat_code, c.code as account_status from t_cust_account a
-			left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id
-			left join p_account_status c on c.p_account_status_id = a.p_account_status_id
+			$query				= "select a.*, b.vat_code, c.code as account_status from t_vat_registration a
+			left join p_vat_type_dtl z on z.p_vat_type_dtl_id = a.p_vat_type_dtl_id
+			left join p_vat_type b on b.p_vat_type_id = z.p_vat_type_id
+			left join t_customer_order y on y.t_customer_order_id = a.t_customer_order_id
+			LEFT JOIN p_order_status C ON C .p_order_status_id = y .p_order_status_id
 			where trunc(registration_date) >= to_date('$tgl_penerimaan')
 			AND trunc(registration_date) <= to_date('$tgl_penerimaan_last')
 			ORDER BY registration_date ASC";
 		}else{
-			$query				= "select a.*, b.vat_code, c.code as account_status from t_cust_account a
-			left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id
-			left join p_account_status c on c.p_account_status_id = a.p_account_status_id
+			$query				= "select a.*, b.vat_code, c.code as account_status from t_vat_registration a
+			left join p_vat_type_dtl z on z.p_vat_type_dtl_id = a.p_vat_type_dtl_id
+			left join p_vat_type b on b.p_vat_type_id = z.p_vat_type_id
+			left join t_customer_order y on y.t_customer_order_id = a.t_customer_order_id
+			LEFT JOIN p_order_status C ON C .p_order_status_id = y .p_order_status_id
 			where trunc(registration_date) >= to_date('$tgl_penerimaan')
 			AND trunc(registration_date) <= to_date('$tgl_penerimaan_last')
-			AND a.p_vat_type_id = $jenis_pajak
+			AND a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl
+				where p_vat_type_id = $jenis_pajak)
 			ORDER BY registration_date ASC";
 		}
 		//echo $query;
@@ -76,7 +81,7 @@ function Page_BeforeShow(& $sender)
 		while ($dbConn->next_record()) {
 			$data["t_cust_account_id"][]= $dbConn->f("t_cust_account_id");
 			$data["t_customer_id"][]	= $dbConn->f("t_customer_id");
-			$data["npwd"][]				= $dbConn->f("npwd");
+			$data["npwd"][]				= $dbConn->f("npwpd");
 			$data["vat_code"][]			= $dbConn->f("vat_code");
 			$data["registration_date"][]= $dbConn->f("registration_date");
 			$data["wp_name"][]		= $dbConn->f("wp_name");
@@ -123,7 +128,7 @@ function PageCetak($data, $user, $tgl_penerimaan, $tgl_penerimaan_last) {
 		$output.='<th>NAMA WP</th>';
 		$output.='<th>ALAMAT</th>';
 		$output.='<th>TANGGAL REGISTRASI</th>';
-		$output.='<th>STATUS WP</th>';
+		$output.='<th>STATUS REGISTRASI</th>';
 		$output.='</tr>';
 				
 		$no = 1;
