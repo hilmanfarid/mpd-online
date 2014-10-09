@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_entertaintment_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_vat_setllementFormButton_Delete_OnClick @26-7B6BDCA8
+function t_vat_setllementFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_vat_setllementFormButton_Delete_OnClick
+
+//Confirmation Message @27-B1A89A24
+    
+//End Confirmation Message
+
+//Custom Code @383-2A29BDB7
+    // -------------------------
+    /*var no_kohir = document.getElementById("t_vat_setllementFormno_kohir").value;
+        if(no_kohir == "") {
+                alert('No Kohir Belum Diisi');
+                return false;
+        }*/
+
+    // -------------------------
+//End Custom Code
+
+    return confirm('Submit record?');
+
+//Close t_vat_setllementFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close t_vat_setllementFormButton_Delete_OnClick
+
+//t_vat_setllementFormButton_Hapus_OnClick @379-9E646587
+function t_vat_setllementFormButton_Hapus_OnClick()
+{
+    var result = true;
+//End t_vat_setllementFormButton_Hapus_OnClick
+
+//Custom Code @410-2A29BDB7
+    // -------------------------
+    var r = confirm('Anda Yakin untuk menghapus data ini?');
+	if (r == true) {
+	        //txt = 'You pressed OK!';
+	} else {
+	        return false;
+	}
+    // -------------------------
+//End Custom Code
+
+//Close t_vat_setllementFormButton_Hapus_OnClick @379-BC33A33A
+    return result;
+}
+//End Close t_vat_setllementFormButton_Hapus_OnClick
+
+//bind_events @1-A3DD79EC
+function bind_events() {
+    addEventHandler("t_vat_setllementFormButton_Delete", "click", t_vat_setllementFormButton_Delete_OnClick);
+    addEventHandler("t_vat_setllementFormButton_Hapus", "click", t_vat_setllementFormButton_Hapus_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        Penutupan WP&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_setllementSearch -->
+        <form id="t_vat_setllementSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="t_vat_setllementSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_vat_setllementSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_setllementSearch --><br>
+        <!-- BEGIN Grid t_vat_setllementGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR PENUTUPAN WP</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">No Order</th>
+ 
+                  <th scope="col">Nama WP</th>
+ 
+                  <th scope="col">NPWPD</th>
+ 
+                  <th scope="col">Alasan Penutupan</th>
+ 
+                  <th scope="col">Tanggal Permintaan</th>
+ 
+                  <th colspan="2" scope="col">Status yang Diinginkan</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_setllementGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_vat_setllementGridDLink_{t_vat_setllementGrid:rowNumber}">{DLink}</a></td> 
+                  <td>&nbsp;{order_no}</td> 
+                  <td>{wp_name}&nbsp;</td> 
+                  <td>&nbsp;{npwd}</td> 
+                  <td>{reason_code}&nbsp;&nbsp;<input id="t_vat_setllementGridt_cust_acc_status_modif_id_{t_vat_setllementGrid:rowNumber}" value="{t_cust_acc_status_modif_id}" type="hidden" name="{t_cust_acc_status_modif_id_Name}"></td> 
+                  <td>{status_request_date}&nbsp;</td> 
+                  <td colspan="2">{p_account_status_mut}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="8">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b></b></td> 
+                  <td colspan="7">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_setllementGrid --><br>
+        <!-- BEGIN Record t_vat_setllementForm -->
+        <form id="t_vat_setllementForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI PENUTUPAN</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="3">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_setllementFormorder_no">No. Order</label></td> 
+                    <td colspan="2"><input style="WIDTH: 154px; HEIGHT: 20px" id="t_vat_setllementFormorder_no" class="ControlsRO" value="{order_no}" readonly maxlength="32" size="19" name="{order_no_Name}">&nbsp;&nbsp; 
+                      <!-- No Kohir : -->
+                      <input id="t_vat_setllementFormt_cust_acc_status_modif_id" value="{t_cust_acc_status_modif_id}" type="hidden" name="{t_cust_acc_status_modif_id_Name}"><input id="t_vat_setllementFormt_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Nama WP&nbsp;</td> 
+                    <td colspan="2"><input id="t_vat_setllementFormwp_name" class="ControlsRO" tabindex="2" value="{wp_name}" readonly maxlength="64" size="50" name="{wp_name_Name}">&nbsp; 
+                      <!-- BEGIN Button Button2 --><input style="DISPLAY: none" id="t_vat_setllementFormButton2" class="Button" onclick="cek()" value="View Detail WP" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button2 -->&nbsp;<input id="t_vat_setllementFormt_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_setllementFormfinance_period_code">NPWPD</label></td> 
+                    <td colspan="2"><input id="t_vat_setllementFormnpwd" class="ControlsRO" value="{npwd}" readonly maxlength="12" size="32" name="{npwd_Name}">&nbsp; Jenis Pajak :<input id="t_vat_setllementFormp_vat_type_code" class="ControlsRO" value="{p_vat_type_code}" readonly maxlength="12" size="32" name="{p_vat_type_code_Name}">&nbsp;&nbsp;<input id="t_vat_setllementFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"><input id="t_vat_setllementFormp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Alamat WP</td> 
+                    <td colspan="2"><textarea id="t_vat_setllementFormwp_address_name" class="ControlsRO" rows="3" cols="64" readonly name="{wp_address_name_Name}">{wp_address_name}</textarea></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Merek Dagang</td> 
+                    <td colspan="2"><input id="t_vat_setllementFormcompany_brand" class="ControlsRO" value="{company_brand}" readonly maxlength="12" size="32" name="{company_brand_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Status WP</td> 
+                    <td colspan="2"><input id="t_vat_setllementFormp_account_status_mut" class="ControlsRQ" value="{p_account_status_mut}" readonly maxlength="25" size="25" name="{p_account_status_mut_Name}">&nbsp;<img onclick="javascript:lov_status()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_account_status_id" value="{p_account_status_id}" type="hidden" name="{p_account_status_id_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Alasan Penutupan</td> 
+                    <td colspan="2"><input id="t_vat_setllementFormreason_code" class="ControlsRQ" value="{reason_code}" readonly maxlength="25" size="25" name="{reason_code_Name}">&nbsp;<img onclick="javascript:lov_alasan()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormreason_status_id" value="{reason_status_id}" type="hidden" name="{reason_status_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_setllementFormreason_description">Keterangan</label></td> 
+                    <td colspan="2"><input style="TEXT-ALIGN: left; WIDTH: 499px; HEIGHT: 20px" id="t_vat_setllementFormreason_description" class="ControlsRQ" value="{reason_description}" maxlength="20" size="61" name="{reason_description_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Dibuat Oleh</td> 
+                    <td colspan="2"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="12" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="25" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Diubah Oleh</td> 
+                    <td colspan="2"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="15" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="25" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td style="TEXT-ALIGN: left">
+                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" onclick="viewEntry();" value="Tambah" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 -->&nbsp; </td> 
+                    <td colspan="2" align="right">&nbsp;&nbsp;&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button_Hapus --><input id="t_vat_setllementFormButton_Hapus" class="btn_tambah" value="HAPUS" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Hapus -->
+                      <!-- BEGIN Button Button_Insert --><input id="t_vat_setllementFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_vat_setllementFormButton_Delete" class="btn_tambah" value="SUBMIT" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_setllementForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+
+function lov_year_period() {
+        getFrom_LOV('t_vat_setllementForm','p_year_period_id,year_code','lov_year_period.php');
+}
+
+function lov_period() {
+                 var yearId = document.getElementById("t_vat_setllementFormp_year_period_id").value;
+                if (yearId != "" && yearId != 0 && yearId != false && yearId != undefined &&  yearId != null){
+           getFrom_LOV('t_vat_setllementForm','p_finance_period_id,finance_period_code','lov_finance_period_new.php?p_year_period_id='+yearId);
+        }else{
+            alert("Periode Tahun Year belum Diisi");
+        }       
+
+}
+
+function lov_status() {
+        getFrom_LOV('t_vat_setllementForm','p_account_status_id,p_account_status_mut','lov_p_account_status.php');     
+}
+
+function lov_alasan() {
+        getFrom_LOV('t_vat_setllementForm','reason_status_id,reason_code','lov_reason_status.php');
+}
+
+function viewEntry() {
+        url = "../trans/t_entry_penutupan.php";
+
+                params  = 'width=650';
+            params += ', height=470';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function cetak_selected(){
+        var tid = document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
+    window.open("../report/cetak_formulir_sptpd.php?t_vat_setllement_id=" + tid, "_blank", "width=650,height=500,top=0,left=0");
+}
+
+</script>
+</body>
+</html>
