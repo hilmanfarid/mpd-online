@@ -345,11 +345,6 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 				<Button id="381" urlType="Relative" enableValidation="True" isDefault="False" name="Button6" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormButton6">
 					<Components/>
 					<Events>
-						<Event name="OnClick" type="Server">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="382" eventType="Server"/>
-							</Actions>
-						</Event>
 					</Events>
 					<Attributes/>
 					<Features/>
@@ -486,7 +481,7 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -627,15 +622,15 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 			</USPParameters>
 			<USQLParameters>
 				<SQLParameter id="951" variable="doc_no" parameterType="Control" dataType="Text" parameterSource="doc_no"/>
-<SQLParameter id="952" variable="t_cust_acc_status_modif_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_cust_acc_status_modif_id"/>
-<SQLParameter id="953" variable="bap_employee_no_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_no_1"/>
-<SQLParameter id="954" variable="bap_employee_no_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_no_2"/>
-<SQLParameter id="955" variable="bap_employee_job_pos_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_job_pos_1"/>
-<SQLParameter id="956" variable="bap_employee_job_pos_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_job_pos_2"/>
-<SQLParameter id="957" variable="bap_employee_name_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_name_1"/>
-<SQLParameter id="958" variable="bap_employee_name_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_name_2"/>
-<SQLParameter id="959" variable="user" parameterType="Expression" dataType="Text" parameterSource="CCGEtUserLogin()"/>
-</USQLParameters>
+				<SQLParameter id="952" variable="t_cust_acc_status_modif_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_cust_acc_status_modif_id"/>
+				<SQLParameter id="953" variable="bap_employee_no_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_no_1"/>
+				<SQLParameter id="954" variable="bap_employee_no_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_no_2"/>
+				<SQLParameter id="955" variable="bap_employee_job_pos_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_job_pos_1"/>
+				<SQLParameter id="956" variable="bap_employee_job_pos_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_job_pos_2"/>
+				<SQLParameter id="957" variable="bap_employee_name_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_name_1"/>
+				<SQLParameter id="958" variable="bap_employee_name_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_name_2"/>
+				<SQLParameter id="959" variable="user" parameterType="Expression" dataType="Text" parameterSource="CCGEtUserLogin()"/>
+			</USQLParameters>
 			<UConditions>
 				<TableParameter id="827" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_customer_order_id"/>
 				<TableParameter id="828" conditionType="Parameter" useIsNull="False" field="t_vat_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_vat_registration_id"/>
