@@ -352,7 +352,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-DB731334
+//Class_Initialize Event @23-43ED9377
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -397,7 +397,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->reason_code = & new clsControl(ccsTextBox, "reason_code", "reason_code", ccsText, "", CCGetRequestParam("reason_code", $Method, NULL), $this);
             $this->reason_code->Required = true;
             $this->reason_status_id = & new clsControl(ccsHidden, "reason_status_id", "reason_status_id", ccsFloat, "", CCGetRequestParam("reason_status_id", $Method, NULL), $this);
-            $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->view = & new clsButton("view", $Method, $this);
             $this->t_cust_acc_status_modif_id = & new clsControl(ccsHidden, "t_cust_acc_status_modif_id", "Id", ccsFloat, "", CCGetRequestParam("t_cust_acc_status_modif_id", $Method, NULL), $this);
             $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsFloat, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
             $this->p_account_status_id = & new clsControl(ccsHidden, "p_account_status_id", "p_account_status_id", ccsFloat, "", CCGetRequestParam("p_account_status_id", $Method, NULL), $this);
@@ -534,7 +534,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-4A01D2B0
+//Operation Method @23-013EB510
     function Operation()
     {
         if(!$this->Visible)
@@ -561,8 +561,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button1";
             } else if($this->Button_Hapus->Pressed) {
                 $this->PressedButton = "Button_Hapus";
-            } else if($this->Button2->Pressed) {
-                $this->PressedButton = "Button2";
+            } else if($this->view->Pressed) {
+                $this->PressedButton = "view";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -591,8 +591,8 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button_Hapus->CCSEvents, "OnClick", $this->Button_Hapus)) {
                     $Redirect = "";
                 }
-            } else if($this->PressedButton == "Button2") {
-                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
+            } else if($this->PressedButton == "view") {
+                if(!CCGetEvent($this->view->CCSEvents, "OnClick", $this->view)) {
                     $Redirect = "";
                 }
             }
@@ -631,7 +631,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-04985171
+//Show Method @23-18837A1A
     function Show()
     {
         global $CCSUseAmp;
@@ -741,7 +741,7 @@ function GetPrimaryKey($keyName)
         $this->Button_Hapus->Show();
         $this->reason_code->Show();
         $this->reason_status_id->Show();
-        $this->Button2->Show();
+        $this->view->Show();
         $this->t_cust_acc_status_modif_id->Show();
         $this->t_customer_order_id->Show();
         $this->p_account_status_id->Show();
