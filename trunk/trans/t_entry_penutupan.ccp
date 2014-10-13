@@ -38,7 +38,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="159" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_mut" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormp_account_status_mut" required="True" caption="Periode">
+				<TextBox id="159" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_mut" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormp_account_status_mut" required="True" caption="Status">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -68,7 +68,7 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="167" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="reason_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormreason_code" required="True" caption="Ayat Pajak">
+				<TextBox id="167" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="reason_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_setllementFormreason_code" required="True" caption="Alasan">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -86,7 +86,7 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 			</Events>
 			<TableParameters>
