@@ -167,7 +167,7 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="th">Nama WP&nbsp;</td> 
                     <td colspan="3"><input id="t_vat_registrationFormwp_name" class="ControlsRO" tabindex="2" value="{wp_name}" readonly maxlength="64" size="50" name="{wp_name_Name}">
-                      <!-- BEGIN Button Button6 --><input id="t_vat_registrationFormButton6" class="Button" onclick="viewWP()" value="View Detail WP" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button6 --><input id="t_vat_registrationFormt_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
+                      <!-- BEGIN Button Button6 --><input id="t_vat_registrationFormButton6" class="Button" onclick="cek()" value="View Detail WP" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button6 --><input id="t_vat_registrationFormt_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -540,9 +540,9 @@ function cetak_tri(){
 }
 
 
-function viewWP(){
-	var id = document.getElementById('t_vat_registrationFormt_customer_id').value;
-    location.href="t_order_log_kronologis_ver_penutupan.php?t_customer_id="+id;
+function cek(){
+        var tid = document.getElementById("t_vat_registrationFormt_customer_id").value;
+        window.open("../param/t_cust_account.php?t_customer_id=" + tid, "_blank");
 }
 </script>
 </body>
