@@ -22,6 +22,52 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
 <script language="JavaScript" type="text/javascript">
 //End Include Common JSFunctions
 
+//t_vat_setllementFormButton_Insert_OnClick @24-B4C4BDE6
+function t_vat_setllementFormButton_Insert_OnClick()
+{
+    var result = true;
+//End t_vat_setllementFormButton_Insert_OnClick
+
+//Custom Code @411-2A29BDB7
+    // -------------------------
+    var id = document.getElementById("t_vat_setllementFormreason_status_id").value;
+        var ket = document.getElementById("t_vat_setllementFormreason_description").value;
+    if (id == 4 && ket == ""){
+                alert('Keterangan harus diisi jika memilih alasan Lainnya');
+                return false;
+        }
+        return true;
+    // -------------------------
+//End Custom Code
+
+//Close t_vat_setllementFormButton_Insert_OnClick @24-BC33A33A
+    return result;
+}
+//End Close t_vat_setllementFormButton_Insert_OnClick
+
+//t_vat_setllementFormButton_Update_OnClick @25-23F60DBE
+function t_vat_setllementFormButton_Update_OnClick()
+{
+    var result = true;
+//End t_vat_setllementFormButton_Update_OnClick
+
+//Custom Code @412-2A29BDB7
+    // -------------------------
+    var id = document.getElementById("t_vat_setllementFormreason_status_id").value;
+        var ket = document.getElementById("t_vat_setllementFormreason_description").value;
+    if (id == 4 && ket == ""){
+                alert('Keterangan harus diisi jika memilih alasan Lainnya');
+                return false;
+        }
+        return true;
+    // -------------------------
+//End Custom Code
+
+//Close t_vat_setllementFormButton_Update_OnClick @25-BC33A33A
+    return result;
+}
+//End Close t_vat_setllementFormButton_Update_OnClick
+
 //t_vat_setllementFormButton_Delete_OnClick @26-7B6BDCA8
 function t_vat_setllementFormButton_Delete_OnClick()
 {
@@ -59,11 +105,11 @@ function t_vat_setllementFormButton_Hapus_OnClick()
 //Custom Code @410-2A29BDB7
     // -------------------------
     var r = confirm('Anda Yakin untuk menghapus data ini?');
-	if (r == true) {
-	        //txt = 'You pressed OK!';
-	} else {
-	        return false;
-	}
+        if (r == true) {
+                //txt = 'You pressed OK!';
+        } else {
+                return false;
+        }
     // -------------------------
 //End Custom Code
 
@@ -72,8 +118,10 @@ function t_vat_setllementFormButton_Hapus_OnClick()
 }
 //End Close t_vat_setllementFormButton_Hapus_OnClick
 
-//bind_events @1-A3DD79EC
+//bind_events @1-0B38650C
 function bind_events() {
+    addEventHandler("t_vat_setllementFormButton_Insert", "click", t_vat_setllementFormButton_Insert_OnClick);
+    addEventHandler("t_vat_setllementFormButton_Update", "click", t_vat_setllementFormButton_Update_OnClick);
     addEventHandler("t_vat_setllementFormButton_Delete", "click", t_vat_setllementFormButton_Delete_OnClick);
     addEventHandler("t_vat_setllementFormButton_Hapus", "click", t_vat_setllementFormButton_Hapus_OnClick);
 }
@@ -94,7 +142,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -225,7 +273,7 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="th">Nama WP&nbsp;</td> 
                     <td colspan="2"><input id="t_vat_setllementFormwp_name" class="ControlsRO" tabindex="2" value="{wp_name}" readonly maxlength="64" size="50" name="{wp_name_Name}">&nbsp; 
-                      <!-- BEGIN Button Button2 --><input style="DISPLAY: none" id="t_vat_setllementFormButton2" class="Button" onclick="cek()" value="View Detail WP" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button2 -->&nbsp;<input id="t_vat_setllementFormt_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
+                      <!-- BEGIN Button view --><input id="t_vat_setllementFormview" class="Button" onclick="cek()" value="View Detail WP" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button view -->&nbsp;<input id="t_vat_setllementFormt_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -336,8 +384,13 @@ function viewEntry() {
 }
 
 function cetak_selected(){
-        var tid = document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
+    var tid = document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
     window.open("../report/cetak_formulir_sptpd.php?t_vat_setllement_id=" + tid, "_blank", "width=650,height=500,top=0,left=0");
+}
+
+function cek(){
+        var tid = document.getElementById("t_vat_setllementFormt_cust_account_id").value;
+        window.open("../param/t_cust_account.php?t_customer_id=" + tid, "_blank");
 }
 
 </script>
