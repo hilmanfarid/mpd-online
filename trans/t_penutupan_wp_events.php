@@ -3,7 +3,7 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-BC32BDF1
+//BindEvents Method @1-B844DB11
 function BindEvents()
 {
     global $t_vat_setllementGrid;
@@ -12,7 +12,6 @@ function BindEvents()
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
     $t_vat_setllementForm->Button_Hapus->CCSEvents["OnClick"] = "t_vat_setllementForm_Button_Hapus_OnClick";
-    $t_vat_setllementForm->Button2->CCSEvents["OnClick"] = "t_vat_setllementForm_Button2_OnClick";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
@@ -131,44 +130,28 @@ function t_vat_setllementForm_Button_Hapus_OnClick(& $sender)
 }
 //End Close t_vat_setllementForm_Button_Hapus_OnClick
 
-//t_vat_setllementForm_Button2_OnClick @381-08A3AA5F
-function t_vat_setllementForm_Button2_OnClick(& $sender)
-{
-    $t_vat_setllementForm_Button2_OnClick = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $t_vat_setllementForm; //Compatibility
-//End t_vat_setllementForm_Button2_OnClick
-
-//Custom Code @382-2A29BDB7
-// -------------------------
-    // Write your own code here.
-	$dbConn1 = new clsDBConnSIKP();
-	$Idorder = $t_vat_setllementForm->t_customer_order_id->GetValue();
-	$cari = "select f_generate_kohir(".$Idorder.") from dual";
-	$dbConn1->query($cari);
-	while($dbConn1->next_record()){
-		$kode = $dbConn1->f("f_generate_kohir");
-	}
-
-	$t_vat_setllementForm->no_kohir->SetValue($kode);
-
-
-	$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
-	$i_no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
-	
-	
-	$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."') from dual";
-	$dbConn1->query($sql_update_kohir);
-		
-	return;
-// -------------------------
-//End Custom Code
-
-//Close t_vat_setllementForm_Button2_OnClick @381-F4594333
-    return $t_vat_setllementForm_Button2_OnClick;
-}
-//End Close t_vat_setllementForm_Button2_OnClick
+//DEL  // -------------------------
+//DEL      // Write your own code here.
+//DEL  	$dbConn1 = new clsDBConnSIKP();
+//DEL  	$Idorder = $t_vat_setllementForm->t_customer_order_id->GetValue();
+//DEL  	$cari = "select f_generate_kohir(".$Idorder.") from dual";
+//DEL  	$dbConn1->query($cari);
+//DEL  	while($dbConn1->next_record()){
+//DEL  		$kode = $dbConn1->f("f_generate_kohir");
+//DEL  	}
+//DEL  
+//DEL  	$t_vat_setllementForm->no_kohir->SetValue($kode);
+//DEL  
+//DEL  
+//DEL  	$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
+//DEL  	$i_no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
+//DEL  	
+//DEL  	
+//DEL  	$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."') from dual";
+//DEL  	$dbConn1->query($sql_update_kohir);
+//DEL  		
+//DEL  	return;
+//DEL  // -------------------------
 
 //Page_OnInitializeView @1-8570DC4B
 function Page_OnInitializeView(& $sender)
