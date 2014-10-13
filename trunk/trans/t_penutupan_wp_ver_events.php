@@ -2,13 +2,12 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-64C37988
+//BindEvents Method @1-51BB903E
 function BindEvents()
 {
     global $t_vat_registrationForm;
     global $CCSEvents;
     $t_vat_registrationForm->Button2->CCSEvents["OnClick"] = "t_vat_registrationForm_Button2_OnClick";
-    $t_vat_registrationForm->Button6->CCSEvents["OnClick"] = "t_vat_registrationForm_Button6_OnClick";
     $t_vat_registrationForm->CCSEvents["BeforeSelect"] = "t_vat_registrationForm_BeforeSelect";
     $t_vat_registrationForm->CCSEvents["BeforeInsert"] = "t_vat_registrationForm_BeforeInsert";
     $t_vat_registrationForm->CCSEvents["BeforeShow"] = "t_vat_registrationForm_BeforeShow";
@@ -35,26 +34,6 @@ function t_vat_registrationForm_Button2_OnClick(& $sender)
     return $t_vat_registrationForm_Button2_OnClick;
 }
 //End Close t_vat_registrationForm_Button2_OnClick
-
-//t_vat_registrationForm_Button6_OnClick @381-213FF359
-function t_vat_registrationForm_Button6_OnClick(& $sender)
-{
-    $t_vat_registrationForm_Button6_OnClick = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $t_vat_registrationForm; //Compatibility
-//End t_vat_registrationForm_Button6_OnClick
-
-//Custom Code @382-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
-//Close t_vat_registrationForm_Button6_OnClick @381-806D9D85
-    return $t_vat_registrationForm_Button6_OnClick;
-}
-//End Close t_vat_registrationForm_Button6_OnClick
 
 //t_vat_registrationForm_BeforeSelect @629-ECCFF8E4
 function t_vat_registrationForm_BeforeSelect(& $sender)
@@ -108,7 +87,6 @@ function t_vat_registrationForm_BeforeShow(& $sender)
 //Custom Code @874-2A29BDB7
 // -------------------------
     // Write your own code here.
-	
 // -------------------------
 //End Custom Code
 
