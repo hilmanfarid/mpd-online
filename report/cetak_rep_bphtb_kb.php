@@ -20,7 +20,10 @@ d.region_name as wp_region_kel,
 e.region_name as object_region,
 f.region_name as object_region_kec,
 g.region_name as object_region_kel,
-h.description as doc_name
+h.description as doc_name,
+(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,
+j.payment_vat_amount AS prev_payment_amount
+
 
 from t_bphtb_registration as a 
 left join p_region as b
@@ -37,6 +40,10 @@ left join p_region as g
 	on a.object_p_region_id_kel = g.p_region_id
 left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
+left join t_bphtb_registration as i
+	on a.registration_no_ref = i.registration_no
+left join t_payment_receipt_bphtb as j
+	on i.t_bphtb_registration_id = j.t_bphtb_registration_id
 where a.t_bphtb_registration_id = $t_bphtb_registration_id";
 
 $dbConn->query($query);
@@ -75,6 +82,8 @@ while ($dbConn->next_record()) {
 	$data["verificated_nip"]		= $dbConn->f("verificated_nip");
 	$data["jenis_harga_bphtb"]		= $dbConn->f("jenis_harga_bphtb");
 	$data["description"]			= $dbConn->f("description");
+	$data["bphtb_amt_final_old"]	= $dbConn->f("bphtb_amt_final_old");
+	$data["prev_payment_amount"]	= $dbConn->f("prev_payment_amount");
 }
 
 $dbConn->close();
@@ -269,9 +278,11 @@ class FormCetak extends FPDF {
 		if($data["npop_kp"]==0){
 			$this->barisBaruStr($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", "NIHIL");
 		}else{
-			$this->barisBaru2($lbody1, "Total Kekurangan Pembayaran", "", "Rp", $data["bphtb_amt_final"]);
+			$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
 		}
 		
+		$this->barisBaru2($lbody1, "Nilai Pajak Yang Sudah Dibayar", "5%", "Rp", $data["bphtb_amt_final_old"]);
+		$this->barisBaru2($lbody1, "Total Kekurangan Pembayaran", "5%", "Rp", $data["prev_payment_amount"]);
 		
 		$this->newLine();
 				
