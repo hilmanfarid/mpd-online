@@ -86,7 +86,7 @@ class clsGridSELECT_t_revenue_target_i { //SELECT_t_revenue_target_i class @2-3F
     }
 //End Initialize Method
 
-//Show Method @2-7618D684
+//Show Method @2-C1485214
     function Show()
     {
         global $Tpl;
@@ -96,6 +96,7 @@ class clsGridSELECT_t_revenue_target_i { //SELECT_t_revenue_target_i class @2-3F
         $this->RowNumber = 0;
 
         $this->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
+        $this->DataSource->Parameters["urlp_vat_group_id"] = CCGetFromGet("p_vat_group_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -216,17 +217,18 @@ class clsSELECT_t_revenue_target_iDataSource extends clsDBConnSIKP {  //SELECT_t
     }
 //End SetOrder Method
 
-//Prepare Method @2-4352EB1D
+//Prepare Method @2-29D27FD7
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", "", $this->Parameters["urlp_year_period_id"], 0, false);
+        $this->wp->AddParameter("2", "urlp_vat_group_id", ccsFloat, "", "", $this->Parameters["urlp_vat_group_id"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-7AC13CAD
+//Open Method @2-E7C99130
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -238,7 +240,8 @@ class clsSELECT_t_revenue_target_iDataSource extends clsDBConnSIKP {  //SELECT_t
         "target_amount,\n" .
         "realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
-        "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . ") cnt";
+        "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " \n" .
+        "and p_vat_group_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . ") cnt";
         $this->SQL = "SELECT t_revenue_target_id,\n" .
         "p_year_period_id,\n" .
         "p_vat_type_id,\n" .
@@ -247,7 +250,8 @@ class clsSELECT_t_revenue_target_iDataSource extends clsDBConnSIKP {  //SELECT_t
         "target_amount,\n" .
         "realisasi_amt\n" .
         "FROM v_revenue_target_vs_realisasi\n" .
-        "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "  {SQL_OrderBy}";
+        "WHERE p_year_period_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " \n" .
+        "and p_vat_group_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsFloat) . " {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

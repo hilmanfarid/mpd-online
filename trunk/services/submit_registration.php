@@ -1,6 +1,7 @@
 <?php
 define("RelativePath", "..");
 include_once(RelativePath . "/Common.php");
+ob_start();
 if (isset($_SERVER['HTTP_ORIGIN'])) {
 	header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
 	header('Access-Control-Allow-Credentials: true');
@@ -27,7 +28,11 @@ function insertHotel($t_vat_registration_id,$item_potensi){
             " generate_id('sikp','t_vat_reg_dtl_hotel','t_vat_reg_dtl_hotel_id'),".$t_vat_registration_id.",".$item_potensi['p_room_type_id'].",".$item_potensi['room_qty'].",".
             $item_potensi['service_qty'].",".$item_potensi['service_charge_wd'].",".$item_potensi['service_charge_we'].",'".$item_potensi['room_description']."',".
             " sysdate(),'ADMIN',sysdate(),'ADMIN' )";
-	$dbConn->query($sql);
+	if($dbConn->query($sql)){
+	}else{
+		deleteAll($t_vat_registration_id);
+		throw new Exception($dbConn->Errors->Errors[0]);
+	}
 }
 function insertParkir($t_vat_registration_id,$item_potensi){
 	$dbConn = new clsDBConnSIKP();
@@ -36,7 +41,11 @@ function insertParkir($t_vat_registration_id,$item_potensi){
 		    " description,creation_date,created_by,updated_date,updated_by)" .
             " values (generate_id('sikp','t_vat_reg_dtl_parking','t_vat_reg_dtl_parking_id'),".$t_vat_registration_id.",'classification_desc',".$item_potensi['parking_size']."," .
 		    $item_potensi['max_load_qty'].",".$item_potensi['avg_subscription_qty'].",".$item_potensi['first_service_charge'].",".$item_potensi['next_service_charge'].",'".$item_potensi['var_description']."',sysdate(),'ADMIN',sysdate(),'ADMIN')";
-	$dbConn->query($sql);
+	if($dbConn->query($sql)){
+	}else{
+		deleteAll($t_vat_registration_id);
+		throw new Exception($dbConn->Errors->Errors[0]);
+	}
 }
 function insertResto($t_vat_registration_id,$item_potensi){
 	$dbConn = new clsDBConnSIKP();
@@ -47,7 +56,11 @@ function insertResto($t_vat_registration_id,$item_potensi){
               " generate_id('sikp','t_vat_reg_dtl_restaurant','t_vat_reg_dtl_restaurant_id'),".$t_vat_registration_id.",'".$item_potensi['service_type_desc']."',".$item_potensi['seat_qty']."," .
               $item_potensi['table_qty'].",".$item_potensi['max_service_qty'].",".$item_potensi['avg_subscription'].",'".$item_potensi['restaurant_description']."'," .
               " sysdate(),'ADMIN',sysdate(),'ADMIN' )";
-	$dbConn->query($sql);
+	if($dbConn->query($sql)){
+	}else{
+		deleteAll($t_vat_registration_id);
+		throw new Exception($dbConn->Errors->Errors[0]);
+	}
 }
 function insertEnt($t_vat_registration_id,$item_potensi){
 	$dbConn = new clsDBConnSIKP();
@@ -59,7 +72,25 @@ function insertEnt($t_vat_registration_id,$item_potensi){
             $item_potensi['service_charge_we'].",".$item_potensi['seat_qty'].",".$item_potensi['room_qty'].",".$item_potensi['clerk_qty'].",".$item_potensi['booking_hour'].",".$item_potensi['f_and_b'].",".$item_potensi['portion_person'].",sysdate()," .
             "'ADMIN',sysdate(),'ADMIN'".
             ")";
-	$dbConn->query($sql);
+	if($dbConn->query($sql)){
+	}else{
+		deleteAll($t_vat_registration_id);
+		throw new Exception($dbConn->Errors->Errors[0]);
+	}
+}
+function deleteAll($t_vat_registration){
+	$dbConn = new clsDBConnSIKP();
+	$sql = "delete from t_license_letter where t_vat_registration_id=".$t_vat_registration.";".
+		   "delete from t_vat_reg_employee where t_vat_registration_id=".$t_vat_registration.";".
+		   "delete from t_vat_reg_dtl_restaurant where t_vat_registration_id=".$t_vat_registration.";".
+		   "delete from t_vat_reg_dtl_entertaintment where t_vat_registration_id=".$t_vat_registration.";".
+		   "delete from t_vat_reg_dtl_parking where t_vat_registration_id=".$t_vat_registration.";".
+		   "delete from t_vat_reg_dtl_hotel where t_vat_registration_id=".$t_vat_registration.";".
+		   "delete from t_vat_registration where t_vat_registration_id=".$t_vat_registration.";";
+	if($dbConn->query($sql)){
+	}else{
+		//do something here
+	}
 }
 $dbConn = new clsDBConnSIKP();
 
@@ -156,132 +187,142 @@ $sql = "select * from f_ins_order_registration_new (  " . $items_registration['j
 $dbConn->query( $sql );
 $dbConn->next_record(); 
 $record = $dbConn->Record;
-if(!empty($items_potensi['p_license_type_id'])){
-	$sql = "insert into t_license_letter (t_license_letter_id,t_vat_registration_id,p_license_type_id,license_no,valid_from,description,creation_date,created_by,updated_date,updated_by)".
-           "values (generate_id('sikp','t_license_letter','t_license_letter_id'),".$record['o_vat_reg_id'].",".$items_potensi['p_license_type_id'].",'".$items_potensi['license_no']."',sysdate(),'".$items_potensi['description']."',sysdate(),'ADMIN',sysdate(),'ADMIN')";
-	$dbConn->query( $sql );
-}
-if(!empty($items_potensi['p_license_type_id2'])){
-	$sql = "insert into t_license_letter (t_license_letter_id,t_vat_registration_id,p_license_type_id,license_no,valid_from,description,creation_date,created_by,updated_date,updated_by)".
-           "values (generate_id('sikp','t_license_letter','t_license_letter_id'),".$record['o_vat_reg_id'].",".$items_potensi['p_license_type_id2'].",'".$items_potensi['license_no2']."',sysdate(),'".$items_potensi['description2']."',sysdate(),'ADMIN',sysdate(),'ADMIN')";
-	$dbConn->query( $sql );
-}
-if(!empty($items_potensi['p_job_position_id'])){ 
-$sql = " insert into t_vat_reg_employee ( ".
-            " t_vat_reg_employee_id,t_vat_registration_id,p_job_position_id,employee_qty," .
-            " employee_salery,description,creation_date,created_by,updated_date,updated_by )" .
-            " values ( ".
-            " generate_id('sikp','t_vat_reg_employee','t_vat_reg_employee_id'),".
-            $record['o_vat_reg_id'] .",".
-            $items_potensi['p_license_type_id'] .",".
-            $items_potensi['num_worker'] .",".
-            $items_potensi['salary'] .",".
-            "'".$items_potensi['job_description']."',".
-            "sysdate,".
-            "'ADMIN',".
-            "sysdate,".
-            "'ADMIN')";
-	$dbConn->query( $sql );
-}
-if(!empty($items_potensi['p_job_position_id2'])){ 
-$sql = " insert into t_vat_reg_employee ( ".
-            " t_vat_reg_employee_id,t_vat_registration_id,p_job_position_id,employee_qty," .
-            " employee_salery,description,creation_date,created_by,updated_date,updated_by )" .
-            " values ( ".
-            " generate_id('sikp','t_vat_reg_employee','t_vat_reg_employee_id'),".
-            $record['o_vat_reg_id'] .",".
-            $items_potensi['p_license_type_id2'] .",".
-            $items_potensi['num_worker2'] .",".
-            $items_potensi['salary2'] .",".
-            "'".$items_potensi['job_description2']."',".
-            "sysdate,".
-            "'ADMIN',".
-            "sysdate,".
-            "'ADMIN')";
-	$dbConn->query( $sql );
-}
-$idx_hotel=1;
-while ($idx_hotel <= 5){
-	if($idx_hotel == 1){
-		$idx =''; 
-	}else{
-		$idx = $idx_hotel;
+$return = array('items' => '','success' => true,'message'=>'');
+try{
+	if(!empty($items_potensi['p_license_type_id'])){
+		$sql = "insert into t_license_letter (t_license_letter_id,t_vat_registration_id,p_license_type_id,license_no,valid_from,description,creation_date,created_by,updated_date,updated_by)".
+			   "values (generate_id('sikp','t_license_letter','t_license_letter_id'),".$record['o_vat_reg_id'].",".$items_potensi['p_license_type_id'].",'".$items_potensi['license_no']."',sysdate(),'".$items_potensi['description']."',sysdate(),'ADMIN',sysdate(),'ADMIN')";
+		$dbConn->query( $sql );
 	}
-	if(!empty($items_potensi['p_room_type_id'.$idx])){
-		$array_insert_potensi = array(
-										"p_room_type_id" => $items_potensi['p_room_type_id'.$idx],
-										"room_qty" => $items_potensi['room_qty'.$idx],
-										"service_qty" => $items_potensi['frk_pengguna_layanan'.$idx],
-										"service_charge_wd" => $items_potensi['service_charge_wd'.$idx],
-										"service_charge_we" => $items_potensi['service_charge_we'.$idx],
-										"room_description" => $items_potensi['room_description'.$idx]
-									);
-		insertHotel($record['o_vat_reg_id'],$array_insert_potensi);
+	if(!empty($items_potensi['p_license_type_id2'])){
+		$sql = "insert into t_license_letter (t_license_letter_id,t_vat_registration_id,p_license_type_id,license_no,valid_from,description,creation_date,created_by,updated_date,updated_by)".
+			   "values (generate_id('sikp','t_license_letter','t_license_letter_id'),".$record['o_vat_reg_id'].",".$items_potensi['p_license_type_id2'].",'".$items_potensi['license_no2']."',sysdate(),'".$items_potensi['description2']."',sysdate(),'ADMIN',sysdate(),'ADMIN')";
+		$dbConn->query( $sql );
 	}
-	$idx_hotel++;
-}
+	if(!empty($items_potensi['p_job_position_id'])){ 
+	$sql = " insert into t_vat_reg_employee ( ".
+				" t_vat_reg_employee_id,t_vat_registration_id,p_job_position_id,employee_qty," .
+				" employee_salery,description,creation_date,created_by,updated_date,updated_by )" .
+				" values ( ".
+				" generate_id('sikp','t_vat_reg_employee','t_vat_reg_employee_id'),".
+				$record['o_vat_reg_id'] .",".
+				$items_potensi['p_license_type_id'] .",".
+				$items_potensi['num_worker'] .",".
+				$items_potensi['salary'] .",".
+				"'".$items_potensi['job_description']."',".
+				"sysdate,".
+				"'ADMIN',".
+				"sysdate,".
+				"'ADMIN')";
+		$dbConn->query( $sql );
+	}
+	if(!empty($items_potensi['p_job_position_id2'])){ 
+	$sql = " insert into t_vat_reg_employee ( ".
+				" t_vat_reg_employee_id,t_vat_registration_id,p_job_position_id,employee_qty," .
+				" employee_salery,description,creation_date,created_by,updated_date,updated_by )" .
+				" values ( ".
+				" generate_id('sikp','t_vat_reg_employee','t_vat_reg_employee_id'),".
+				$record['o_vat_reg_id'] .",".
+				$items_potensi['p_license_type_id2'] .",".
+				$items_potensi['num_worker2'] .",".
+				$items_potensi['salary2'] .",".
+				"'".$items_potensi['job_description2']."',".
+				"sysdate,".
+				"'ADMIN',".
+				"sysdate,".
+				"'ADMIN')";
+		$dbConn->query( $sql );
+	}
+	$idx_hotel=1;
+	while ($idx_hotel <= 5){
+		if($idx_hotel == 1){
+			$idx =''; 
+		}else{
+			$idx = $idx_hotel;
+		}
+		if(!empty($items_potensi['p_room_type_id'.$idx])){
+			$array_insert_potensi = array(
+											"p_room_type_id" => $items_potensi['p_room_type_id'.$idx],
+											"room_qty" => $items_potensi['room_qty'.$idx],
+											"service_qty" => $items_potensi['frk_pengguna_layanan'.$idx],
+											"service_charge_wd" => $items_potensi['service_charge_wd'.$idx],
+											"service_charge_we" => $items_potensi['service_charge_we'.$idx],
+											"room_description" => $items_potensi['room_description'.$idx]
+										);
+			insertHotel($record['o_vat_reg_id'],$array_insert_potensi);
+		}
+		$idx_hotel++;
+	}
 
-$idx_parkir=1;
-while ($idx_parkir <= 3){
-	if($idx_parkir == 1){
-		$idx =''; 
-	}else{
-		$idx = $idx_parkir;
+	$idx_parkir=1;
+	while ($idx_parkir <= 3){
+		if($idx_parkir == 1){
+			$idx =''; 
+		}else{
+			$idx = $idx_parkir;
+		}
+		if(!empty($items_potensi['parking_size'.$idx])&&$items_potensi['parking_size'.$idx]!=''){
+			$array_insert_potensi = array(
+											"parking_size" => $items_potensi['parking_size'.$idx],
+											"max_load_qty" => $items_potensi['max_load_qty'.$idx],
+											"avg_subscription_qty" => $items_potensi['avg_subscription_qty'.$idx],
+											"first_service_charge" => $items_potensi['first_service_charge'.$idx],
+											"next_service_charge" => $items_potensi['next_service_charge'.$idx],
+											"var_description" => $items_potensi['parking_description'.$idx]
+										);
+			insertParkir($record['o_vat_reg_id'],$array_insert_potensi);
+		}
+		$idx_parkir++;
 	}
-	if(!empty($items_potensi['parking_size'.$idx])&&$items_potensi['parking_size'.$idx]!=''){
-		$array_insert_potensi = array(
-										"parking_size" => $items_potensi['parking_size'.$idx],
-										"max_load_qty" => $items_potensi['max_load_qty'.$idx],
-										"avg_subscription_qty" => $items_potensi['avg_subscription_qty'.$idx],
-										"first_service_charge" => $items_potensi['first_service_charge'.$idx],
-										"next_service_charge" => $items_potensi['next_service_charge'.$idx],
-										"var_description" => $items_potensi['parking_description'.$idx]
-									);
-		insertParkir($record['o_vat_reg_id'],$array_insert_potensi);
+	$idx_resto=1;
+	while ($idx_resto <= 3){
+		if($idx_resto == 1){
+			$idx =''; 
+		}else{
+			$idx = $idx_resto;
+		}
+		if(!empty($items_potensi['service_type_desc'.$idx])&&$items_potensi['service_type_desc'.$idx]!=''){
+			$array_insert_potensi = array(
+											"service_type_desc" => $items_potensi['parking_size'.$idx],
+											"seat_qty" => $items_potensi['seat_qty'.$idx],
+											"table_qty" => $items_potensi['table_qty'.$idx],
+											"max_service_qty" => $items_potensi['max_service_qty'.$idx],
+											"avg_subscription" => $items_potensi['avg_subscription'.$idx],
+											"restaurant_description" => $items_potensi['restaurant_description'.$idx]
+										);
+			insertResto($record['o_vat_reg_id'],$array_insert_potensi);
+		}
+		$idx_resto++;
 	}
-	$idx_parkir++;
+	$idx_ent=1;
+	while ($idx_ent <= 3){
+		if($idx_ent == 1){
+			$idx =''; 
+		}else{
+			$idx = $idx_ent;
+		}
+		if(!empty($items_potensi['entertainment_desc'.$idx])&&$items_potensi['entertainment_desc'.$idx]!=''){
+			$array_insert_potensi = array(
+											"entertainment_desc" => $items_potensi['entertainment_desc'.$idx],
+											"service_charge_wd" => $items_potensi['entertainment_service_charge_md'.$idx],
+											"service_charge_we" => $items_potensi['entertainment_service_charge_we'.$idx],
+											"seat_qty" => $items_potensi['ent_seat_qty'.$idx],
+											"room_qty" => $items_potensi['ent_room_qty'.$idx],
+											"clerk_qty" => $items_potensi['clerk_qty'.$idx],
+											"booking_hour" => $items_potensi['booking_hour'.$idx],
+											"f_and_b" => $items_potensi['f_and_b'.$idx],
+											"portion_person" => $items_potensi['portion_person'.$idx]
+										);
+			insertEnt($record['o_vat_reg_id'],$array_insert_potensi);
+		}
+		$idx_ent++;
+	}
+}catch(Exception $e){
+	ob_clean();
+	$return['message']= $e->getMessage();
+	$return['success']= false;
+	echo json_encode($return);
+	exit;
 }
-$idx_resto=1;
-while ($idx_resto <= 3){
-	if($idx_resto == 1){
-		$idx =''; 
-	}else{
-		$idx = $idx_resto;
-	}
-	if(!empty($items_potensi['service_type_desc'.$idx])&&$items_potensi['service_type_desc'.$idx]!=''){
-		$array_insert_potensi = array(
-										"service_type_desc" => $items_potensi['parking_size'.$idx],
-										"seat_qty" => $items_potensi['seat_qty'.$idx],
-										"table_qty" => $items_potensi['table_qty'.$idx],
-										"max_service_qty" => $items_potensi['max_service_qty'.$idx],
-										"avg_subscription" => $items_potensi['avg_subscription'.$idx],
-										"restaurant_description" => $items_potensi['restaurant_description'.$idx]
-									);
-		insertResto($record['o_vat_reg_id'],$array_insert_potensi);
-	}
-	$idx_resto++;
-}
-$idx_ent=1;
-while ($idx_ent <= 3){
-	if($idx_ent == 1){
-		$idx =''; 
-	}else{
-		$idx = $idx_ent;
-	}
-	if(!empty($items_potensi['entertainment_desc'.$idx])&&$items_potensi['entertainment_desc'.$idx]!=''){
-		$array_insert_potensi = array(
-										"entertainment_desc" => $items_potensi['entertainment_desc'.$idx],
-										"service_charge_wd" => $items_potensi['entertainment_service_charge_md'.$idx],
-										"service_charge_we" => $items_potensi['entertainment_service_charge_we'.$idx],
-										"seat_qty" => $items_potensi['ent_seat_qty'.$idx],
-										"room_qty" => $items_potensi['ent_room_qty'.$idx],
-										"clerk_qty" => $items_potensi['clerk_qty'.$idx],
-										"booking_hour" => $items_potensi['booking_hour'.$idx],
-										"f_and_b" => $items_potensi['f_and_b'.$idx],
-										"portion_person" => $items_potensi['portion_person'.$idx]
-									);
-		insertEnt($record['o_vat_reg_id'],$array_insert_potensi);
-	}
-	$idx_ent++;
-}
-echo json_encode($record);
+$return['items']=$record;
+echo json_encode($return);

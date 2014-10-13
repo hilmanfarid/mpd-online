@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\services" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="True" cachingEnabled="False" cachingDuration="1 minutes" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" dataSource="select * from p_app_user where app_user_name = '{user_name}'" name="p_check_user_grid" pageSizeLimit="100" wizardCaption="List of SELECT P Rqst Type Id,code
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" dataSource="select * from t_vat_registration where wp_user_name = '{user_name}'" name="p_check_user_grid" pageSizeLimit="100" wizardCaption="List of SELECT P Rqst Type Id,code
  FROM P Rqst Type
 where P Rqst Type Id IN (1,2,3,4,5) " wizardAllowInsert="False" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList">
 			<Components>
@@ -21,8 +21,8 @@ where P Rqst Type Id IN (1,2,3,4,5) " wizardAllowInsert="False" activeCollection
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-<SQLParameter id="97" variable="user_name" parameterType="Form" dataType="Text" parameterSource="user_name" defaultValue="0"/>
-</SQLParameters>
+				<SQLParameter id="97" variable="user_name" parameterType="Form" dataType="Text" parameterSource="user_name" defaultValue="0"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

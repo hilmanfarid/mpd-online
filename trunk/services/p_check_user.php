@@ -210,12 +210,12 @@ class clsp_check_user_gridDataSource extends clsDBConnSIKP {  //p_check_user_gri
     }
 //End Prepare Method
 
-//Open Method @2-EEC70F17
+//Open Method @2-1A85A955
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select * from p_app_user where app_user_name = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') cnt";
-        $this->SQL = "select * from p_app_user where app_user_name = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'";
+        $this->CountSQL = "SELECT COUNT(*) FROM (select * from t_vat_registration where wp_user_name = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') cnt";
+        $this->SQL = "select * from t_vat_registration where wp_user_name = '" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "'";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);

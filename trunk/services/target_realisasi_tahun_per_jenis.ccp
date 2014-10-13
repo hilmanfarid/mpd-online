@@ -9,6 +9,7 @@ target_amount,
 realisasi_amt
 FROM v_revenue_target_vs_realisasi
 WHERE p_year_period_id = {p_year_period_id} 
+and p_vat_group_id = {p_vat_group_id}
 ORDER BY p_vat_type_id" name="SELECT_t_revenue_target_i" pageSizeLimit="100" wizardCaption="List of SELECT T Revenue Target Id, P Year Period Id, P Vat Type Id, Vat Code, Year Code, Target Amount, Realisasi Amt
  FROM V Revenue Target Vs Realisasi
  WHERE P Year Period Id = {p Year Period Id} 
@@ -41,7 +42,8 @@ ORDER BY p_vat_type_id" name="SELECT_t_revenue_target_i" pageSizeLimit="100" wiz
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="767" variable="p_year_period_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_year_period_id"/>
-			</SQLParameters>
+				<SQLParameter id="771" variable="p_vat_group_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_vat_group_id"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

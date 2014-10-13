@@ -26,4 +26,6 @@ $sql = " select f_send_verification_code('" . $nmrHP . "','" . $eMail . "','" . 
 $dbConn->query($sql);
 $dbConn->next_record();
 $_SESSION['verification_code']=$dbConn->Record['hasil'];
-print_r(json_encode(array('hasil' => $dbConn->Record['hasil'])));
+//$output=file_get_contents('http://localhost/mpd-online/include/excel/curl_tes.php?npwd=registration&no_telp='.$nmrHP.'&message=Kode+anda+'.$dbConn->Record['hasil']);
+//echo $output;
+print_r(json_encode($dbConn->Record));
