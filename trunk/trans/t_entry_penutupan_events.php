@@ -41,30 +41,40 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 
 	//new fix
 	if(!isset($p_vat_type_dtl_cls_id) || $p_vat_type_dtl_cls_id == '') $p_vat_type_dtl_cls_id = 'NULL';
-	if(empty($kamar)) $kamar = 0;	
+	if(empty($kamar)) $kamar = 0;
 
-	$sql = "select * from f_entry_mutasi_status_wp(".$cusAccId.",15,".$p_account_status_id.",".$reason_status_id.",'".$reason_description."','".$User."')";
-	//echo $sql;
-	//die($sql);
-	$dbConn->query($sql);
-	$dbConn->next_record();
-	$cust_id = $dbConn->f("o_cust_order_id");
-	$mess = $dbConn->f("o_mess");
+	//cek alasan lainnya
+	if(($reason_status_id == 4)
+		and
+		(!isset($reason_description) || $reason_description == '')){
+		echo "<script> 
+			alert('Keterangan harus diisi jika memilih alasan Lainnya');
+		</script>";
+	}else{
 
-	//modified by wiliam
-	echo "<script> 
-		alert('".$mess."');
-		window.opener.location.reload();
-		window.close();
-	</script>";
+		$sql = "select * from f_entry_mutasi_status_wp(".$cusAccId.",15,".$p_account_status_id.",".$reason_status_id.",'".$reason_description."','".$User."')";
+		//echo $sql;
+		//die($sql);
+		$dbConn->query($sql);
+		$dbConn->next_record();
+		$cust_id = $dbConn->f("o_cust_order_id");
+		$mess = $dbConn->f("o_mess");
+
+		//modified by wiliam
+		echo "<script> 
+			alert('".$mess."');
+			window.opener.location.reload();
+			window.close();
+		</script>";
 	
-	exit;
+		exit;
+	}
 	
 // -------------------------
 
 
 //Close t_vat_setllementForm_Button1_OnClick @164-6DBB2532
-    return $t_vat_setllementForm_Button1_OnClick;
+    //return $t_vat_setllementForm_Button1_OnClick;
 }
 //End Close t_vat_setllementForm_Button1_OnClick
 
