@@ -45,7 +45,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-F55CB155
+//Class_Initialize Event @23-3310C6F2
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -76,12 +76,12 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->npwd = & new clsControl(ccsTextBox, "npwd", "NPWD", ccsText, "", CCGetRequestParam("npwd", $Method, NULL), $this);
             $this->npwd->Required = true;
             $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsFloat, "", CCGetRequestParam("t_cust_account_id", $Method, NULL), $this);
-            $this->p_account_status_mut = & new clsControl(ccsTextBox, "p_account_status_mut", "Periode", ccsText, "", CCGetRequestParam("p_account_status_mut", $Method, NULL), $this);
+            $this->p_account_status_mut = & new clsControl(ccsTextBox, "p_account_status_mut", "Status", ccsText, "", CCGetRequestParam("p_account_status_mut", $Method, NULL), $this);
             $this->p_account_status_mut->Required = true;
             $this->p_account_status_id = & new clsControl(ccsHidden, "p_account_status_id", "p_account_status_id", ccsFloat, "", CCGetRequestParam("p_account_status_id", $Method, NULL), $this);
             $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->company_name = & new clsControl(ccsTextBox, "company_name", "Nama Perusahaan", ccsText, "", CCGetRequestParam("company_name", $Method, NULL), $this);
-            $this->reason_code = & new clsControl(ccsTextBox, "reason_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("reason_code", $Method, NULL), $this);
+            $this->reason_code = & new clsControl(ccsTextBox, "reason_code", "Alasan", ccsText, "", CCGetRequestParam("reason_code", $Method, NULL), $this);
             $this->reason_code->Required = true;
             $this->reason_status_id = & new clsControl(ccsHidden, "reason_status_id", "reason_status_id", ccsText, "", CCGetRequestParam("reason_status_id", $Method, NULL), $this);
             $this->reason_description = & new clsControl(ccsTextBox, "reason_description", "keterangan alasan penutupan", ccsText, "", CCGetRequestParam("reason_description", $Method, NULL), $this);
