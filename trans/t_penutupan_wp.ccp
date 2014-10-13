@@ -56,13 +56,13 @@ order by x.updated_date desc">
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="400" fieldSourceType="DBColumn" dataType="Text" html="False" name="order_no" fieldSource="order_no" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridorder_no">
+				<Label id="400" fieldSourceType="DBColumn" dataType="Text" html="False" name="order_no" fieldSource="order_no" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridorder_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -90,9 +90,9 @@ order by x.updated_date desc">
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="384" parameterType="Expression" variable="Expr0" dataType="Float" parameterSource="1"/>
-<SQLParameter id="385" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
-<SQLParameter id="386" parameterType="Expression" variable="Expr1" dataType="Float" parameterSource="2"/>
-</SQLParameters>
+				<SQLParameter id="385" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
+				<SQLParameter id="386" parameterType="Expression" variable="Expr1" dataType="Float" parameterSource="2"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -114,13 +114,25 @@ from dual">
 			<Components>
 				<Button id="24" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" wizardCaption="Add" PathID="t_vat_setllementFormButton_Insert" removeParameters="FLAG" operation="Insert">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnClick" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="411"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
 				<Button id="25" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Submit" PathID="t_vat_setllementFormButton_Update" removeParameters="FLAG">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnClick" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="412"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
@@ -182,17 +194,17 @@ from dual">
 				<Button id="379" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Hapus" wizardCaption="Submit" PathID="t_vat_setllementFormButton_Hapus" removeParameters="t_cust_acc_status_modif_id">
 					<Components/>
 					<Events>
-<Event name="OnClick" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="409"/>
-</Actions>
-</Event>
-<Event name="OnClick" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="410"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="409"/>
+							</Actions>
+						</Event>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="410"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
@@ -202,97 +214,92 @@ from dual">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="390" fieldSourceType="DBColumn" dataType="Float" name="reason_status_id" PathID="t_vat_setllementFormreason_status_id" fieldSource="reason_status_id">
+				<Hidden id="390" fieldSourceType="DBColumn" dataType="Float" name="reason_status_id" PathID="t_vat_setllementFormreason_status_id" fieldSource="reason_status_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Button id="381" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_setllementFormButton2">
+				<Button id="381" urlType="Relative" enableValidation="True" isDefault="False" name="view" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_setllementFormview">
 					<Components/>
 					<Events>
-						<Event name="OnClick" type="Server">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="382" eventType="Server"/>
-							</Actions>
-						</Event>
 					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
-<Hidden id="30" fieldSourceType="DBColumn" dataType="Float" name="t_cust_acc_status_modif_id" fieldSource="t_cust_acc_status_modif_id" required="False" caption="Id" wizardCaption="Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormt_cust_acc_status_modif_id">
+				<Hidden id="30" fieldSourceType="DBColumn" dataType="Float" name="t_cust_acc_status_modif_id" fieldSource="t_cust_acc_status_modif_id" required="False" caption="Id" wizardCaption="Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormt_cust_acc_status_modif_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="391" fieldSourceType="DBColumn" dataType="Float" name="t_customer_order_id" PathID="t_vat_setllementFormt_customer_order_id" fieldSource="t_customer_order_id">
+				<Hidden id="391" fieldSourceType="DBColumn" dataType="Float" name="t_customer_order_id" PathID="t_vat_setllementFormt_customer_order_id" fieldSource="t_customer_order_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="394" fieldSourceType="DBColumn" dataType="Float" name="p_account_status_id" fieldSource="p_account_status_id" PathID="t_vat_setllementFormp_account_status_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-<TextArea id="284" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_address_name" fieldSource="wp_address_name" caption="Alamat Wajib Pajak" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormwp_address_name">
+				<Hidden id="394" fieldSourceType="DBColumn" dataType="Float" name="p_account_status_id" fieldSource="p_account_status_id" PathID="t_vat_setllementFormp_account_status_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<TextArea id="284" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_address_name" fieldSource="wp_address_name" caption="Alamat Wajib Pajak" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormwp_address_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-<TextBox id="395" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_brand" fieldSource="company_brand" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormcompany_brand" required="True">
+				<TextBox id="395" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_brand" fieldSource="company_brand" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormcompany_brand" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="396" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_code" fieldSource="p_vat_type_code" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormp_vat_type_code" required="True">
+				<TextBox id="396" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_code" fieldSource="p_vat_type_code" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormp_vat_type_code" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="397" fieldSourceType="DBColumn" dataType="Float" name="t_customer_id" PathID="t_vat_setllementFormt_customer_id" fieldSource="t_customer_id">
+				<Hidden id="397" fieldSourceType="DBColumn" dataType="Float" name="t_customer_id" PathID="t_vat_setllementFormt_customer_id" fieldSource="t_customer_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="398" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_mut" fieldSource="p_account_status_mut" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormp_account_status_mut" required="True">
+				<TextBox id="398" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_account_status_mut" fieldSource="p_account_status_mut" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormp_account_status_mut" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="406" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="created_by" fieldSource="created_by" required="False" caption="Created By" wizardCaption="Created By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormcreated_by" defaultValue="CCGetUserLogin()">
+				<TextBox id="406" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="created_by" fieldSource="created_by" required="False" caption="Created By" wizardCaption="Created By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormcreated_by" defaultValue="CCGetUserLogin()">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="38" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="creation_date" fieldSource="creation_date" required="False" caption="Creation Date" wizardCaption="Creation Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormcreation_date" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
+				<TextBox id="38" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="creation_date" fieldSource="creation_date" required="False" caption="Creation Date" wizardCaption="Creation Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormcreation_date" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="43" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="updated_by" fieldSource="updated_by" required="False" caption="Updated By" wizardCaption="Updated By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormupdated_by" defaultValue="CCGetUserLogin()">
+				<TextBox id="43" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="updated_by" fieldSource="updated_by" required="False" caption="Updated By" wizardCaption="Updated By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormupdated_by" defaultValue="CCGetUserLogin()">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="41" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="updated_date" fieldSource="updated_date" required="False" caption="Updated Date" wizardCaption="Updated Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormupdated_date" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
+				<TextBox id="41" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="updated_date" fieldSource="updated_date" required="False" caption="Updated Date" wizardCaption="Updated Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormupdated_date" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 			</Events>
 			<TableParameters>
@@ -301,7 +308,7 @@ from dual">
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="387" parameterType="URL" variable="t_cust_acc_status_modif_id" dataType="Float" parameterSource="t_cust_acc_status_modif_id" defaultValue="0"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables>
 			</JoinTables>
 			<JoinLinks/>
@@ -310,8 +317,8 @@ from dual">
 			<ISPParameters/>
 			<ISQLParameters>
 				<SQLParameter id="407" variable="t_cust_acc_sts_modif_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_cust_acc_sts_modif_id"/>
-<SQLParameter id="408" variable="user" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
-</ISQLParameters>
+				<SQLParameter id="408" variable="user" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="316" field="finance_period_code" dataType="Text" parameterType="Control" parameterSource="finance_period_code"/>
 				<CustomParameter id="317" field="order_no" dataType="Text" parameterType="Control" parameterSource="order_no"/>
@@ -362,11 +369,11 @@ from dual">
 			</USPParameters>
 			<USQLParameters>
 				<SQLParameter id="401" variable="p_account_status_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_account_status_id"/>
-<SQLParameter id="402" variable="reason_status_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="reason_status_id"/>
-<SQLParameter id="403" variable="user" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
-<SQLParameter id="404" variable="reason_description" parameterType="Control" dataType="Text" parameterSource="reason_description"/>
-<SQLParameter id="405" variable="t_cust_acc_status_modif_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_cust_acc_status_modif_id"/>
-</USQLParameters>
+				<SQLParameter id="402" variable="reason_status_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="reason_status_id"/>
+				<SQLParameter id="403" variable="user" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+				<SQLParameter id="404" variable="reason_description" parameterType="Control" dataType="Text" parameterSource="reason_description"/>
+				<SQLParameter id="405" variable="t_cust_acc_status_modif_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_cust_acc_status_modif_id"/>
+			</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>
