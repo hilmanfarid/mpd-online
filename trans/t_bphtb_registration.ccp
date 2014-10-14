@@ -7,7 +7,9 @@ d.region_name as wp_kelurahan,
 e.region_name as object_region,
 f.region_name as object_kecamatan,
 g.region_name as object_kelurahan,
-h.description as doc_name
+h.description as doc_name,
+(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,
+j.payment_vat_amount AS prev_payment_amount
 
 from t_bphtb_registration as a 
 left join p_region as b
@@ -24,6 +26,10 @@ left join p_region as g
 	on a.object_p_region_id_kel = g.p_region_id
 left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
+left join t_bphtb_registration as i
+	on a.registration_no_ref = i.registration_no
+left join t_payment_receipt_bphtb as j
+	on i.t_bphtb_registration_id = j.t_bphtb_registration_id
 where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bphtb_registration" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp">
 			<Components>
 				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
@@ -77,6 +83,7 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 				<Hidden id="887" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id_kec" fieldSource="wp_p_region_id_kec" caption="Kecamatan - WP" required="True">
 					<Components/>
 					<Events/>
+
 					<Attributes/>
 					<Features/>
 				</Hidden>
@@ -393,6 +400,18 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<TextBox id="1014" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="prev_payment_amount" PathID="t_bphtb_registrationFormprev_payment_amount" fieldSource="prev_payment_amount" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="1015" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final_old" PathID="t_bphtb_registrationFormbphtb_amt_final_old" fieldSource="bphtb_amt_final_old" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -586,6 +605,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<CustomParameter id="986" field="npop" dataType="Float" parameterType="Control" parameterSource="npop" omitIfEmpty="True"/>
 				<CustomParameter id="987" field="npop_tkp" dataType="Float" parameterType="Control" parameterSource="npop_tkp" omitIfEmpty="True"/>
 				<CustomParameter id="988" field="npop_kp" dataType="Float" parameterType="Control" parameterSource="npop_kp" omitIfEmpty="True"/>
+
 				<CustomParameter id="989" field="bphtb_amt" dataType="Float" parameterType="Control" parameterSource="bphtb_amt" omitIfEmpty="True"/>
 				<CustomParameter id="990" field="bphtb_amt_final" dataType="Float" parameterType="Control" parameterSource="bphtb_amt_final" omitIfEmpty="True"/>
 				<CustomParameter id="991" field="bphtb_discount" dataType="Float" parameterType="Control" parameterSource="bphtb_discount" omitIfEmpty="True"/>
