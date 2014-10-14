@@ -996,7 +996,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Prepare Method
 
-//Open Method @94-E66D8D3A
+//Open Method @94-5B7E6525
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1008,7 +1008,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         "f.region_name as object_kecamatan,\n" .
         "g.region_name as object_kelurahan,\n" .
         "h.description as doc_name,\n" .
-        "i.bphtb_amt_final AS bphtb_amt_final_old\n" .
+        "(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old\n" .
         "\n" .
         "from t_bphtb_registration as a \n" .
         "left join p_region as b\n" .
