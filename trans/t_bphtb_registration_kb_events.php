@@ -158,7 +158,9 @@ function Page_BeforeShow(& $sender)
 	}
 
 	$filltheform = CCGetFromGet('filltheform');
-	if($filltheform == 'Y') {
+	$submitInsert = CCGetFromPost('Button_Insert');
+	
+	if($filltheform == 'Y' and empty($submitInsert)) {
 
 		$registration_no_ref = CCGetFromGet('registration_no_ref');
 		$t_bphtb_registration_id_old = CCGetFromGet('t_bphtb_registration_id_old');
@@ -251,7 +253,7 @@ function Page_BeforeShow(& $sender)
 			
 			$t_bphtb_registrationForm->total_price->SetValue( $dbConn->f("land_total_price") +  $dbConn->f("building_total_price"));
 			$t_bphtb_registrationForm->market_price->SetValue( $dbConn->f("market_price") );
-			$t_bphtb_registrationForm->total_price->SetText( $dbConn->f("land_total_price") +  $dbConn->f("building_total_price"));
+			$t_bphtb_registrationForm->total_price->SetValue( $dbConn->f("land_total_price") +  $dbConn->f("building_total_price"));
 			/*NPOP*/
 			$t_bphtb_registrationForm->npop->SetValue( $dbConn->f("npop") );
 			$t_bphtb_registrationForm->add_discount->SetValue( $dbConn->f("add_discount") );
