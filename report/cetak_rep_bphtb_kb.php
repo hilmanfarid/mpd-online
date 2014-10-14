@@ -313,7 +313,7 @@ class FormCetak extends FPDF {
 			$this->height-2);		
 
 		$this->SetFont("Arial", "B", 10);
-		$this->Ln();
+		//$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
 		$this->Ln();
