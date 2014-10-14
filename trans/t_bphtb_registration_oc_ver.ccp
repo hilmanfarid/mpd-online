@@ -8,7 +8,9 @@ d.region_name as wp_kelurahan,
 e.region_name as object_region,
 f.region_name as object_kecamatan,
 g.region_name as object_kelurahan,
-h.description as doc_name
+h.description as doc_name,
+(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,
+j.payment_vat_amount AS prev_payment_amount
 
 from t_bphtb_registration as a 
 left join p_region as b
@@ -27,6 +29,10 @@ left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
 left join t_customer_order as cust_order
 	on cust_order.t_customer_order_id = a.t_customer_order_id
+left join t_bphtb_registration as i
+	on a.registration_no_ref = i.registration_no
+left join t_payment_receipt_bphtb as j
+	on i.t_bphtb_registration_id = j.t_bphtb_registration_id
 where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration" activeTableType="t_bphtb_registration">
 			<Components>
 				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
@@ -343,7 +349,6 @@ where a.t_customer_order_id = {CURR_DOC_ID}" customUpdate="t_bphtb_registration"
 				</Hidden>
 				<Hidden id="1009" fieldSourceType="DBColumn" dataType="Text" name="USER_ID_LOGIN" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormUSER_ID_LOGIN">
 					<Components/>
-
 					<Events/>
 					<Attributes/>
 					<Features/>
@@ -563,7 +568,19 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<TextBox id="1048" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="prev_payment_amount" PathID="t_bphtb_registrationFormprev_payment_amount" fieldSource="prev_payment_amount" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="1049" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final_old" PathID="t_bphtb_registrationFormbphtb_amt_final_old" fieldSource="bphtb_amt_final_old" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
