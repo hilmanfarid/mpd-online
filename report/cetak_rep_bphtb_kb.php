@@ -328,7 +328,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		
 		$this->Ln();
-					
+		$this->newLine();
 		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
