@@ -317,6 +317,11 @@ try{
 		}
 		$idx_ent++;
 	}
+	$sql_submit = "select o_result_code  as CODE, o_result_msg as MSG ".
+                                       "from f_first_submit_engine ( 500 , ".
+                                       $record['o_order_no'].",".
+                                       " 'ADMIN' ); ";
+	$dbConn->query( $sql_submit );
 }catch(Exception $e){
 	ob_clean();
 	$return['message']= $e->getMessage();
