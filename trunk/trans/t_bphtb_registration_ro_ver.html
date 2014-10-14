@@ -16,12 +16,12 @@ function ReplaceNumberWithCommas(yourNumber) {
 }
 function printLaporan(){
         var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
-		var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
-		if(p_bphtb_type_id == 3) {
-        	window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
-		}else {
-        	window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
-		}
+                var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
+                if(p_bphtb_type_id == 3) {
+                window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+                }else {
+                window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+                }
 }
 function setNormalValue(){
         jQuery(".numeric-field").each(function() {
@@ -460,6 +460,18 @@ jQuery(document).ready(function()
                     <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_discount" class="numeric-field" onkeyup="hitungPembayaran();" name="{bphtb_discount_Name}" value="{bphtb_discount}">&nbsp; <input id="t_bphtb_registrationFormdescription" name="{description_Name}" value="{description}"></td>
                   </tr>
  
+                  <tr style="DISPLAY: none" id="tr-harus-bayar" class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</td> 
+                    <td colspan="6"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt_final_old" class="numeric-field" name="{bphtb_amt_final_old_Name}" readonly value="{bphtb_amt_final_old}"></td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" id="tr-pembayaran-sebelumnya" class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Nilai Pajak yang sudah dibayar</td> 
+                    <td colspan="6"><input style="TEXT-ALIGN: right; BACKGROUND: #84ffa3" id="t_bphtb_registrationFormprev_payment_amount" class="numeric-field" name="{prev_payment_amount_Name}" readonly value="{prev_payment_amount}"></td>
+                  </tr>
+ 
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2"><span id="total-bayar-text">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</span></td> 
@@ -737,11 +749,27 @@ function hitungPembayaran(){
         if(diskon=='' || diskon=='undefined'){
                 diskon=0;
         }
+var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
+                if(p_bphtb_type_id != 3) {
                 if(document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value < 0){
                         document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=0;
                 }else{
-                document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
+                        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
                 }
+                }else { //kurang bayar
+                        if(document.getElementById('t_bphtb_registrationFormbphtb_amt_final_old').value < 0){
+                document.getElementById('t_bphtb_registrationFormbphtb_amt_final_old').value=0;
+            }else{
+                document.getElementById('t_bphtb_registrationFormbphtb_amt_final_old').value=ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
+            }
+
+                        var payment_amount = document.getElementById('t_bphtb_registrationFormprev_payment_amount').value.replace(/,/g ,'');
+                        var nilai_pajak_harus_bayar = document.getElementById('t_bphtb_registrationFormbphtb_amt_final_old').value.replace(/,/g ,'');
+        
+                        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value = ReplaceNumberWithCommas(parseInt(nilai_pajak_harus_bayar)-parseInt(payment_amount));
+
+                }
+
 }
 
 
@@ -1080,29 +1108,34 @@ if(p_bphtb_type_id == 3) {
 
         document.getElementById('total-bayar-text').setAttribute('style','color:#FF0000;font-weight:bold;');
         document.getElementById('total-bayar-text').innerHTML ="Total Kekurangan Pembayaran";
+                document.getElementById('t_bphtb_registrationFormbphtb_amt_final').setAttribute('style','text-align:right;background:#FFD345;');
                 
+                document.getElementById('tr-harus-bayar').style.display="";
+                document.getElementById('tr-pembayaran-sebelumnya').style.display="";
+
+
                 document.getElementById('t_bphtb_registrationFormnjop_pbb').disabled = true;
-                document.getElementById('t_bphtb_registrationFormp_bphtb_legal_doc_type_id').disabled = true;
+                /*document.getElementById('t_bphtb_registrationFormp_bphtb_legal_doc_type_id').disabled = true;*/
                 document.getElementById('t_bphtb_registrationFormjenis_harga_bphtb').disabled = true;
                 document.getElementById('t_bphtb_registrationFormadd_disc_percent').disabled = true;
 
-                document.getElementById('t_bphtb_registrationFormland_area').disabled = true;
+                /*document.getElementById('t_bphtb_registrationFormland_area').disabled = true;
                 document.getElementById('t_bphtb_registrationFormland_price_per_m').disabled = true;
-                document.getElementById('t_bphtb_registrationFormland_total_price').disabled = true;
+                document.getElementById('t_bphtb_registrationFormland_total_price').disabled = true;*/
 
-                document.getElementById('t_bphtb_registrationFormbuilding_area').disabled = true;
+                /*document.getElementById('t_bphtb_registrationFormbuilding_area').disabled = true;
                 document.getElementById('t_bphtb_registrationFormbuilding_price_per_m').disabled = true;
-                document.getElementById('t_bphtb_registrationFormbuilding_total_price').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbuilding_total_price').disabled = true;*/
                 
 
-                document.getElementById('t_bphtb_registrationFormmarket_price').disabled = true;
+                /*document.getElementById('t_bphtb_registrationFormmarket_price').disabled = true;*/
 
-                document.getElementById('t_bphtb_registrationFormnpop').disabled = true;
+                /*document.getElementById('t_bphtb_registrationFormnpop').disabled = true;
                 document.getElementById('t_bphtb_registrationFormadd_discount').disabled = true;
                 document.getElementById('t_bphtb_registrationFormnpop_tkp').disabled = true;
                 document.getElementById('t_bphtb_registrationFormnpop_kp').disabled = true;
                 document.getElementById('t_bphtb_registrationFormbphtb_amt').disabled = true;
-                document.getElementById('t_bphtb_registrationFormbphtb_discount').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbphtb_discount').disabled = true;*/
 }
 
 </script>
