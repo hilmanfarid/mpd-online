@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-96B172F0
+//Class_Initialize Event @94-A0271E74
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -178,6 +178,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->add_disc_percent->Values = array(array("0", "0%"), array("0.25", "25%"), array("0.5", "50%"), array("0.75", "75%"), array("1", "100%"));
             $this->add_discount = & new clsControl(ccsTextBox, "add_discount", "add_discount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("add_discount", $Method, NULL), $this);
             $this->p_bphtb_type_id = & new clsControl(ccsTextBox, "p_bphtb_type_id", "p_bphtb_type_id", ccsText, "", CCGetRequestParam("p_bphtb_type_id", $Method, NULL), $this);
+            $this->prev_payment_amount = & new clsControl(ccsTextBox, "prev_payment_amount", "prev_payment_amount", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("prev_payment_amount", $Method, NULL), $this);
+            $this->bphtb_amt_final_old = & new clsControl(ccsTextBox, "bphtb_amt_final_old", "bphtb_amt_final_old", ccsFloat, array(True, 0, Null, Null, False, array("#", "#", "#"), "", 1, True, ""), CCGetRequestParam("bphtb_amt_final_old", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -217,7 +219,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-62F85025
+//Validate Method @94-B99E889C
     function Validate()
     {
         global $CCSLocales;
@@ -295,6 +297,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->add_disc_percent->Validate() && $Validation);
         $Validation = ($this->add_discount->Validate() && $Validation);
         $Validation = ($this->p_bphtb_type_id->Validate() && $Validation);
+        $Validation = ($this->prev_payment_amount->Validate() && $Validation);
+        $Validation = ($this->bphtb_amt_final_old->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -368,11 +372,13 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->add_disc_percent->Errors->Count() == 0);
         $Validation =  $Validation && ($this->add_discount->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_bphtb_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->prev_payment_amount->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->bphtb_amt_final_old->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-B87F92C8
+//CheckErrors Method @94-DD4AF29A
     function CheckErrors()
     {
         $errors = false;
@@ -448,6 +454,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->add_disc_percent->Errors->Count());
         $errors = ($errors || $this->add_discount->Errors->Count());
         $errors = ($errors || $this->p_bphtb_type_id->Errors->Count());
+        $errors = ($errors || $this->prev_payment_amount->Errors->Count());
+        $errors = ($errors || $this->bphtb_amt_final_old->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -597,7 +605,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-0660F994
+//Show Method @94-D94663E0
     function Show()
     {
         global $CCSUseAmp;
@@ -673,6 +681,8 @@ function GetPrimaryKey($keyName)
                     $this->bphtb_legal_doc_description->SetValue($this->DataSource->bphtb_legal_doc_description->GetValue());
                     $this->add_disc_percent->SetValue($this->DataSource->add_disc_percent->GetValue());
                     $this->p_bphtb_type_id->SetValue($this->DataSource->p_bphtb_type_id->GetValue());
+                    $this->prev_payment_amount->SetValue($this->DataSource->prev_payment_amount->GetValue());
+                    $this->bphtb_amt_final_old->SetValue($this->DataSource->bphtb_amt_final_old->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -756,6 +766,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->add_disc_percent->Errors->ToString());
             $Error = ComposeStrings($Error, $this->add_discount->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_bphtb_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->prev_payment_amount->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->bphtb_amt_final_old->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -855,6 +867,8 @@ function GetPrimaryKey($keyName)
         $this->add_disc_percent->Show();
         $this->add_discount->Show();
         $this->p_bphtb_type_id->Show();
+        $this->prev_payment_amount->Show();
+        $this->bphtb_amt_final_old->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -865,7 +879,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-0A45876A
+//DataSource Variables @94-123FDE2F
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -952,9 +966,11 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $add_disc_percent;
     var $add_discount;
     var $p_bphtb_type_id;
+    var $prev_payment_amount;
+    var $bphtb_amt_final_old;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-03B30522
+//DataSourceClass_Initialize Event @94-3666ADED
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1104,6 +1120,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->p_bphtb_type_id = new clsField("p_bphtb_type_id", ccsText, "");
         
+        $this->prev_payment_amount = new clsField("prev_payment_amount", ccsFloat, "");
+        
+        $this->bphtb_amt_final_old = new clsField("bphtb_amt_final_old", ccsFloat, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1156,7 +1176,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Prepare Method
 
-//Open Method @94-9E5514CA
+//Open Method @94-CADDED4E
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -1168,7 +1188,9 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         "e.region_name as object_region,\n" .
         "f.region_name as object_kecamatan,\n" .
         "g.region_name as object_kelurahan,\n" .
-        "h.description as doc_name\n" .
+        "h.description as doc_name,\n" .
+        "(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,\n" .
+        "j.payment_vat_amount AS prev_payment_amount\n" .
         "\n" .
         "from t_bphtb_registration as a \n" .
         "left join p_region as b\n" .
@@ -1187,6 +1209,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         "	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id\n" .
         "left join t_customer_order as cust_order\n" .
         "	on cust_order.t_customer_order_id = a.t_customer_order_id\n" .
+        "left join t_bphtb_registration as i\n" .
+        "	on a.registration_no_ref = i.registration_no\n" .
+        "left join t_payment_receipt_bphtb as j\n" .
+        "	on i.t_bphtb_registration_id = j.t_bphtb_registration_id\n" .
         "where a.t_customer_order_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -1196,7 +1222,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-C7F1E509
+//SetValues Method @94-17C91EC4
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1244,6 +1270,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->bphtb_legal_doc_description->SetDBValue($this->f("bphtb_legal_doc_description"));
         $this->add_disc_percent->SetDBValue($this->f("add_disc_percent"));
         $this->p_bphtb_type_id->SetDBValue($this->f("p_bphtb_type_id"));
+        $this->prev_payment_amount->SetDBValue(trim($this->f("prev_payment_amount")));
+        $this->bphtb_amt_final_old->SetDBValue(trim($this->f("bphtb_amt_final_old")));
     }
 //End SetValues Method
 
