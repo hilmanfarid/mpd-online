@@ -8,7 +8,7 @@ e.region_name as object_region,
 f.region_name as object_kecamatan,
 g.region_name as object_kelurahan,
 h.description as doc_name,
-i.bphtb_amt_final AS bphtb_amt_final_old
+(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old
 
 from t_bphtb_registration as a 
 left join p_region as b
@@ -29,7 +29,7 @@ left join t_bphtb_registration as i
 	on a.registration_no_ref = i.registration_no
 where a.t_bphtb_registration_id = {t_bphtb_registration_id}">
 			<Components>
-				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG;t_bphtb_registration_id">
+				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG;t_bphtb_registration_id;">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -442,11 +442,11 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="1070"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="1070"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="896" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
 			</TableParameters>
@@ -497,8 +497,8 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key1010" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="bphtb_legal_doc_description" scale="0" precision="0" parameterSource="bphtb_legal_doc_description"/>
 				<SPParameter id="Key1013" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="add_disc_percent" scale="0" precision="0" parameterSource="add_disc_percent"/>
 				<SPParameter id="Key1070" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="registration_no_ref" scale="0" precision="0" parameterSource="registration_no_ref"/>
-<SPParameter id="Key1071" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="prev_payment_amount" scale="10" precision="6" parameterSource="prev_payment_amount"/>
-<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
+				<SPParameter id="Key1071" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="prev_payment_amount" scale="10" precision="6" parameterSource="prev_payment_amount"/>
+				<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
 				<SPParameter id="Key978" parameterName="o_mess" parameterSource="o_mess" dataType="Char" parameterType="URL" dataSize="255" direction="InputOutput" scale="10" precision="6"/>
 			</ISPParameters>
 			<ISQLParameters>
@@ -764,9 +764,9 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			</Actions>
 		</Event>
 		<Event name="BeforeOutput" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="1069"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="1069"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
