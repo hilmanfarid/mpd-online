@@ -192,12 +192,18 @@ try{
 	if(!empty($items_potensi['p_license_type_id'])){
 		$sql = "insert into t_license_letter (t_license_letter_id,t_vat_registration_id,p_license_type_id,license_no,valid_from,description,creation_date,created_by,updated_date,updated_by)".
 			   "values (generate_id('sikp','t_license_letter','t_license_letter_id'),".$record['o_vat_reg_id'].",".$items_potensi['p_license_type_id'].",'".$items_potensi['license_no']."',sysdate(),'".$items_potensi['description']."',sysdate(),'ADMIN',sysdate(),'ADMIN')";
-		$dbConn->query( $sql );
+		if($dbConn->query($sql)){
+		}else{
+			throw new Exception($dbConn->Errors->Errors[0]);
+		}
 	}
 	if(!empty($items_potensi['p_license_type_id2'])){
 		$sql = "insert into t_license_letter (t_license_letter_id,t_vat_registration_id,p_license_type_id,license_no,valid_from,description,creation_date,created_by,updated_date,updated_by)".
 			   "values (generate_id('sikp','t_license_letter','t_license_letter_id'),".$record['o_vat_reg_id'].",".$items_potensi['p_license_type_id2'].",'".$items_potensi['license_no2']."',sysdate(),'".$items_potensi['description2']."',sysdate(),'ADMIN',sysdate(),'ADMIN')";
-		$dbConn->query( $sql );
+		if($dbConn->query($sql)){
+		}else{
+			throw new Exception($dbConn->Errors->Errors[0]);
+		}
 	}
 	if(!empty($items_potensi['p_job_position_id'])){ 
 	$sql = " insert into t_vat_reg_employee ( ".
@@ -206,7 +212,7 @@ try{
 				" values ( ".
 				" generate_id('sikp','t_vat_reg_employee','t_vat_reg_employee_id'),".
 				$record['o_vat_reg_id'] .",".
-				$items_potensi['p_license_type_id'] .",".
+				$items_potensi['p_job_position_id'] .",".
 				$items_potensi['num_worker'] .",".
 				$items_potensi['salary'] .",".
 				"'".$items_potensi['job_description']."',".
@@ -214,8 +220,6 @@ try{
 				"'ADMIN',".
 				"sysdate,".
 				"'ADMIN')";
-		print_r($sql);
-		exit;
 		if($dbConn->query($sql)){
 		}else{
 			throw new Exception($dbConn->Errors->Errors[0]);
@@ -228,7 +232,7 @@ try{
 				" values ( ".
 				" generate_id('sikp','t_vat_reg_employee','t_vat_reg_employee_id'),".
 				$record['o_vat_reg_id'] .",".
-				$items_potensi['p_license_type_id2'] .",".
+				$items_potensi['p_job_position_id2'] .",".
 				$items_potensi['num_worker2'] .",".
 				$items_potensi['salary2'] .",".
 				"'".$items_potensi['job_description2']."',".
