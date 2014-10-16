@@ -319,7 +319,7 @@ try{
 	}
 	$sql_submit = "select o_result_code  as CODE, o_result_msg as MSG ".
                                        "from f_first_submit_engine ( 500 , ".
-                                       $record['o_order_no'].",".
+                                       $record['o_cust_order_id'].",".
                                        " 'ADMIN' ); ";
 	$dbConn->query( $sql_submit );
 }catch(Exception $e){
