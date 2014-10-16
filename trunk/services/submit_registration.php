@@ -321,7 +321,8 @@ try{
                                        "from f_first_submit_engine ( 500 , ".
                                        $record['o_cust_order_id'].",".
                                        " 'ADMIN' ); ";
-	$dbConn->query( $sql_submit );
+	print_r($dbConn->query( $sql_submit ));
+	exit;
 }catch(Exception $e){
 	ob_clean();
 	$return['message']= $e->getMessage();
