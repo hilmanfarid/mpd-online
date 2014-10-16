@@ -214,7 +214,12 @@ try{
 				"'ADMIN',".
 				"sysdate,".
 				"'ADMIN')";
-		$dbConn->query( $sql );
+		print_r($sql);
+		exit;
+		if($dbConn->query($sql)){
+		}else{
+			throw new Exception($dbConn->Errors->Errors[0]);
+		}
 	}
 	if(!empty($items_potensi['p_job_position_id2'])){ 
 	$sql = " insert into t_vat_reg_employee ( ".
@@ -231,7 +236,10 @@ try{
 				"'ADMIN',".
 				"sysdate,".
 				"'ADMIN')";
-		$dbConn->query( $sql );
+		if($dbConn->query($sql)){
+		}else{
+			throw new Exception($dbConn->Errors->Errors[0]);
+		}
 	}
 	$idx_hotel=1;
 	while ($idx_hotel <= 5){
