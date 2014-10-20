@@ -901,7 +901,8 @@ function hotel_srvc2() {
 
 
 function izin() {
-     var id_vat = document.getElementById("t_vat_reg_dtlGridt_cust_account_id").value;
+     //var id_vat = document.getElementById("t_vat_reg_dtlGridt_cust_account_id").value;
+	 var id_vat = document.getElementById("t_vat_setllementSearcht_cust_account_id").value;
      var urlLink = "?FLAG=ADD&t_cust_account_id="+id_vat;
      return popup("t_cacc_license_letter_edit.php"+urlLink);
 }
