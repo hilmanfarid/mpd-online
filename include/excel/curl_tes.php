@@ -13,6 +13,9 @@ function sendSms(){
         $no_telp = $_POST['no_telp'];
         $message = $_POST['message'];
     }
+	$ptn = "/^0/";  // Regex
+	$rpltxt = "62";  // Replacement string
+	$no_telp = preg_replace($ptn, $rpltxt, $no_telp);
     $file_name = createExcel($no_telp,$npwd.'_'.time());
 	date_default_timezone_set('Asia/Jakarta');
 	$send_date = date('Y-m-d-H-i-s');
