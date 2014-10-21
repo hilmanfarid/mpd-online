@@ -114,8 +114,8 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="393" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
-<SQLParameter id="394" variable="s_periode" parameterType="URL" dataType="Text" parameterSource="s_periode"/>
-</SQLParameters>
+				<SQLParameter id="394" variable="s_periode" parameterType="URL" dataType="Text" parameterSource="s_periode"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -510,6 +510,12 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<Button id="395" urlType="Relative" enableValidation="True" isDefault="False" name="Button_PrintExcel" operation="Search" wizardCaption="Search" PathID="t_vat_setllementSearchButton_PrintExcel">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
