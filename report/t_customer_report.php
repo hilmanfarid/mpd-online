@@ -23,6 +23,11 @@ if(empty($p_vat_type_id)){
 
 $dbConn = new clsDBConnSIKP();
 
+$p_vat_type_dtl_id_condition = '';
+if(!empty($p_vat_type_dtl_id)) {
+	$p_vat_type_dtl_id_condition = 'and b.p_vat_type_dtl_id = '.$p_vat_type_dtl_id.' ';
+}
+
 $query="select a.*, b.npwd, c.vat_code, d.vat_code as detail_pajak_code
 FROM t_customer a
 LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
@@ -36,7 +41,7 @@ WHERE upper(a.company_owner) like upper('%$s_keyword%')
        and upper(b.company_name) like upper('%$s_company_name%')
        and upper(b.company_brand) like upper('%$s_company_brand%')
 	   and b.p_vat_type_id like '%$p_vat_type_id%'
-	   and b.p_vat_type_dtl_id like '%$p_vat_type_dtl_id%'
+	   $p_vat_type_dtl_id_condition
 	   and b.p_account_status_id = 1
 	   ";
 
