@@ -210,7 +210,13 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Button id="537" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoPrint1" wizardCaption="Search" PathID="t_customerSearchButton_DoPrint1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -528,5 +534,10 @@ WHERE t_customer_id = {t_customer_id}">
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="538"/>
+</Actions>
+</Event>
+</Events>
 </Page>
