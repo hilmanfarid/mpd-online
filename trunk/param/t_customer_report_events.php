@@ -211,7 +211,11 @@ function print_excel($param_arr) {
 	
 	
 	$dbConn = new clsDBConnSIKP();
-	
+	$p_vat_type_dtl_id_condition = '';
+	if(!empty($param_arr['p_vat_type_dtl_id'])) {
+		$p_vat_type_dtl_id_condition = 'and b.p_vat_type_dtl_id = '.$param_arr['p_vat_type_dtl_id'].' ';
+	}
+
 	$query="select a.*, b.npwd, c.vat_code, d.vat_code as detail_pajak_code
 			FROM t_customer a
 			LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
@@ -225,7 +229,7 @@ function print_excel($param_arr) {
 			       and upper(b.company_name) like upper('%".$param_arr['s_company_name']."%')
 			       and upper(b.company_brand) like upper('%".$param_arr['s_company_brand']."%')
 				   and b.p_vat_type_id like '%".$param_arr['p_vat_type_id']."%'
-				   and b.p_vat_type_dtl_id like '%".$param_arr['p_vat_type_dtl_id']."%'
+				   $p_vat_type_dtl_id_condition
 				   and b.p_account_status_id = 1
 				   ";
 	$dbConn->query($query);
@@ -239,8 +243,8 @@ function print_excel($param_arr) {
 		echo '<td valign="top" >'.$dbConn->f("address_name_owner")." No ".$dbConn->f("address_no_owner")." RT/RW : ".$dbConn->f("address_rt_owner")."/".$dbConn->f("address_rw_owner").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("vat_code").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("detail_pajak_code").'</td>';
-		echo '<td valign="top" >'.$dbConn->f("mobile_no_owner").'</td>';
-		echo '<td valign="top" >'.$dbConn->f("email_address").'</td>';
+		echo '<td valign="top">&nbsp;'.$dbConn->f("mobile_no_owner").'</td>';
+		echo '<td valign="top">'.$dbConn->f("email_address").'</td>';
 		echo '</tr>';
 	}
 
