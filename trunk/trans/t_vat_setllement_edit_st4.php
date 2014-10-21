@@ -1271,7 +1271,7 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-43446063
+//Class_Initialize Event @3-E159688B
     function clsRecordt_vat_setllementSearch($RelativePath, & $Parent)
     {
 
@@ -1298,6 +1298,7 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
             $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->s_periode = & new clsControl(ccsTextBox, "s_periode", "s_periode", ccsText, "", CCGetRequestParam("s_periode", $Method, NULL), $this);
+            $this->Button_PrintExcel = & new clsButton("Button_PrintExcel", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -1343,7 +1344,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-526EE986
+//Operation Method @3-880339A1
     function Operation()
     {
         if(!$this->Visible)
@@ -1360,13 +1361,20 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_PrintExcel->Pressed) {
+                $this->PressedButton = "Button_PrintExcel";
             }
         }
         $Redirect = "t_vat_setllement_edit_st4.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
-                $Redirect = "t_vat_setllement_edit_st4.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
+                $Redirect = "t_vat_setllement_edit_st4.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y", "Button_PrintExcel", "Button_PrintExcel_x", "Button_PrintExcel_y")));
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_PrintExcel") {
+                $Redirect = "t_vat_setllement_edit_st4.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y", "Button_PrintExcel", "Button_PrintExcel_x", "Button_PrintExcel_y")));
+                if(!CCGetEvent($this->Button_PrintExcel->CCSEvents, "OnClick", $this->Button_PrintExcel)) {
                     $Redirect = "";
                 }
             }
@@ -1376,7 +1384,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-A9E32A63
+//Show Method @3-4CAEF67D
     function Show()
     {
         global $CCSUseAmp;
@@ -1422,6 +1430,7 @@ function GetPrimaryKey($keyName)
         $this->s_keyword->Show();
         $this->Button_DoSearch->Show();
         $this->s_periode->Show();
+        $this->Button_PrintExcel->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
