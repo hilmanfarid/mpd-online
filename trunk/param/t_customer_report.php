@@ -368,7 +368,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
         else
             $this->RecordsCount = "CCS not counted";
-		$this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
+        $this->query($this->OptimizeSQL(CCBuildSQL($this->SQL, $this->Where, $this->Order)));
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteSelect", $this->Parent);
     }
 //End Open Method
@@ -428,7 +428,7 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-7D38D254
+//Class_Initialize Event @3-F1D9B0A2
     function clsRecordt_customerSearch($RelativePath, & $Parent)
     {
 
@@ -463,6 +463,7 @@ class clsRecordt_customerSearch { //t_customerSearch Class @3-BDF1E587
             $this->Button_DoPrint = & new clsButton("Button_DoPrint", $Method, $this);
             $this->nama_ayat = & new clsControl(ccsTextBox, "nama_ayat", "Nama Ayat", ccsText, "", CCGetRequestParam("nama_ayat", $Method, NULL), $this);
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
+            $this->Button_DoPrint1 = & new clsButton("Button_DoPrint1", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -529,7 +530,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-C9F51F91
+//Operation Method @3-372A3AFC
     function Operation()
     {
         if(!$this->Visible)
@@ -548,17 +549,23 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_DoSearch";
             } else if($this->Button_DoPrint->Pressed) {
                 $this->PressedButton = "Button_DoPrint";
+            } else if($this->Button_DoPrint1->Pressed) {
+                $this->PressedButton = "Button_DoPrint1";
             }
         }
         $Redirect = "t_customer_report.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
-                $Redirect = "t_customer_report.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y", "Button_DoPrint", "Button_DoPrint_x", "Button_DoPrint_y")));
+                $Redirect = "t_customer_report.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y", "Button_DoPrint", "Button_DoPrint_x", "Button_DoPrint_y", "Button_DoPrint1", "Button_DoPrint1_x", "Button_DoPrint1_y")));
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
                     $Redirect = "";
                 }
             } else if($this->PressedButton == "Button_DoPrint") {
                 if(!CCGetEvent($this->Button_DoPrint->CCSEvents, "OnClick", $this->Button_DoPrint)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoPrint1") {
+                if(!CCGetEvent($this->Button_DoPrint1->CCSEvents, "OnClick", $this->Button_DoPrint1)) {
                     $Redirect = "";
                 }
             }
@@ -568,7 +575,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-39CE5AB0
+//Show Method @3-B0BF7FAA
     function Show()
     {
         global $CCSUseAmp;
@@ -629,6 +636,7 @@ function GetPrimaryKey($keyName)
         $this->Button_DoPrint->Show();
         $this->nama_ayat->Show();
         $this->p_vat_type_dtl_id->Show();
+        $this->Button_DoPrint1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
