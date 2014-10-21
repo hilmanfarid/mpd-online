@@ -99,6 +99,10 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
 }
 //End Close t_vat_setllementGrid_BeforeShowRow
 
+//DEL  // -------------------------
+//DEL      
+//DEL  // -------------------------
+
 //Page_OnInitializeView @1-EC33A83E
 function Page_OnInitializeView(& $sender)
 {
@@ -150,10 +154,99 @@ function Page_BeforeShow(& $sender)
 			$dbConn->close();
 			header("Location: t_vat_setllement_edit_st4.php");
 		}
+		$doAction = CCGetFromGet('doAction');
+		if($doAction == 'cetak_excel') {
+			print_excel();
+		}
 		
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
 }
 //End Close Page_BeforeShow
+
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
+
+function print_excel() {
+	
+	startExcel("laporan_SKPD-SKPDKB_JABATAN");
+	echo "<div><h3> LAPORAN PENCETAKAN SKPD - SKPDKB JABATAN</h3></div>";
+		
+	$no =1;
+
+	echo "<table border='1'>";
+	echo "<tr>
+		<th>NO</th>
+		<th>NPWPD</th>	
+		<th>NAMA WP</th>
+		<th>JENIS PAJAK</th>
+		<th>PERIODE</th>
+		<th>TOTAL PAJAK</th>
+		<th>DENDA</th>
+	</tr>";
+
+	$user				= CCGetUserLogin();
+	$data				= array();
+	$dbConn				= new clsDBConnSIKP();
+	$keyword = CCGetFromGet('s_keyword');
+	$periode = CCGetFromGet('s_periode');
+
+	$query = "SELECT * 
+		FROM v_vat_setllement_skpd_kb_jabatan a
+		left join p_finance_period x on x.p_finance_period_id=a.p_finance_period_id
+		WHERE ( upper(a.npwd) LIKE '%".$keyword."%'
+		OR upper(a.wp_name) LIKE '%".$keyword."%'
+		OR upper(a.settlement_type) LIKE '%".$keyword."%'
+		OR upper(a.finance_period_code) LIKE '%".$keyword."%' )
+		and (
+		 f_search_finance_period(a.finance_period_code) ilike '%".$periode."%'
+		) 
+		ORDER BY x.start_date";
+	$dbConn->query($query);
+
+	$jumlah_pajak = 0;
+	$jumlah_denda = 0;
+
+	while ($dbConn->next_record()) {
+		$data[]=$item =  array(
+		"npwd"	=> $dbConn->f("npwd"),
+		"wp_name"	=> $dbConn->f("wp_name"),
+		"jenis_pajak"	=> $dbConn->f("jenis_pajak"),
+		"finance_period_code"		=> $dbConn->f("finance_period_code"),
+		"total_vat_amount"	=> $dbConn->f("total_vat_amount"),
+		"total_penalty_amount"		=> $dbConn->f("total_penalty_amount"));
+		
+		echo "<tr>
+			<td>".$no."</td>
+			<td>".$item['npwd']."</td>
+			<td>".$item['wp_name']."</td>
+			<td>".$item['jenis_pajak']."</td>
+			<td>".$item['finance_period_code']."&nbsp;</td>
+			<td align='right'>".number_format($item['total_vat_amount'], 2, ',', '.')."</td>
+			<td align='right'>".number_format($item['total_penalty_amount'],2,',', '.')."</td>
+		</tr>";
+
+
+		$jumlah_pajak += $dbConn->f("total_vat_amount");
+		$jumlah_denda += $dbConn->f("total_penalty_amount");
+		$no++;
+	}
+	
+	
+
+	echo '<tr>
+		<td colspan="5" align="center"> <b>JUMLAH </b></td>
+		<td align="right"> <b>'.number_format($jumlah_pajak, 2, ",", ".").' </b></td>
+		<td align="right"> <b>'.number_format($jumlah_denda, 2, ",", ".").' </b></td>
+	</tr>';
+	echo "</table>";
+	exit;
+}
 
 ?>
