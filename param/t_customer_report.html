@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -103,6 +103,7 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="search-field">&nbsp;</td> 
                     <td style="TEXT-ALIGN: right" class="search-field" colspan="3">&nbsp; 
+                      <!-- BEGIN Button Button_DoPrint1 --><input style="WIDTH: 120px; HEIGHT: 26px" id="t_customerSearchButton_DoPrint1" class="btn_tambah" onclick="printLaporanExcel()" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" size="12" type="button"><!-- END Button Button_DoPrint1 -->&nbsp; 
                       <!-- BEGIN Button Button_DoPrint --><input id="t_customerSearchButton_DoPrint" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Search" value="PRINT" type="button"><!-- END Button Button_DoPrint -->
                       <!-- BEGIN Button Button_DoSearch --><input id="t_customerSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -331,6 +332,21 @@ function printLaporan(){
         
         window.open("../report/t_customer_report.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
 }
+
+function printLaporanExcel(){
+
+    params = "?s_npwd="+document.getElementById("t_customerSearchs_npwd").value;
+    params += "&p_vat_type_id="+document.getElementById("t_customerSearchp_vat_type_id").value;
+    params += "&p_vat_type_dtl_id="+document.getElementById("t_customerSearchp_vat_type_dtl_id").value;
+        params += "&s_wp_name=" + document.getElementById("t_customerSearchs_wp_name").value;
+    params += "&s_company_name=" + document.getElementById("t_customerSearchs_company_name").value;
+    params += "&s_company_brand=" + document.getElementById("t_customerSearchs_company_brand").value;
+    params += "&s_keyword=" + document.getElementById("t_customerSearchs_keyword").value;
+	params += "&view_report=cetak_excel";
+        
+	window.open("../param/t_customer_report.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+}
+
 
 function lov_namaAyat() {
                 var vatId = document.getElementById("t_customerSearchp_vat_type_id").value;          
