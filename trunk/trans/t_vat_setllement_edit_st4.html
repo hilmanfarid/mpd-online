@@ -86,7 +86,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -121,7 +121,8 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="search-field">Periode</td> 
                     <td class="search-field"><input id="t_vat_setllementSearchs_periode" class="ControlsIN" value="{s_periode}" maxlength="32" size="32" name="{s_periode_Name}"></td> 
-                    <td class="search-field">&nbsp;</td>
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_PrintExcel --><input id="t_vat_setllementSearchButton_PrintExcel" class="btn_tambah" value="Cetak Excel" alt="Search" type="button" onclick="printLaporanExcel()" name="{Button_Name}"><!-- END Button Button_PrintExcel --></td>
                   </tr>
                 </table>
               </td>
@@ -390,6 +391,13 @@ function cetak_skpdkb(){
 function hapus(){
         var tid = document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
         document.location.href = "t_vat_setllement_edit_st4.php?flag_delete=true&t_vat_setllement_id=" + tid;
+}
+
+function printLaporanExcel(){
+        var params = "?doAction=cetak_excel";
+        params += "&s_keyword="+document.getElementById("t_vat_setllementSearchs_keyword").value;
+        params += "&s_periode="+document.getElementById("t_vat_setllementSearchs_periode").value;
+        location.href = "t_vat_setllement_edit_st4.php"+params;
 }
 </script>
 </body>
