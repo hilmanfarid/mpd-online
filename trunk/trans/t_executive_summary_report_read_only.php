@@ -45,7 +45,7 @@ class clsRecordt_executive_sumary_filter { //t_executive_sumary_filter Class @2-
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-62596D0C
+//Class_Initialize Event @2-3CF36A4C
     function clsRecordt_executive_sumary_filter($RelativePath, & $Parent)
     {
 
@@ -91,6 +91,18 @@ class clsRecordt_executive_sumary_filter { //t_executive_sumary_filter Class @2-
             $this->ListBox3 = & new clsControl(ccsListBox, "ListBox3", "ListBox3", ccsText, "", CCGetRequestParam("ListBox3", $Method, NULL), $this);
             $this->ListBox3->DSType = dsListOfValues;
             $this->ListBox3->Values = array(array("1", "I"), array("2", "II"));
+            if(!$this->FormSubmitted) {
+                if(!is_array($this->p_vat_type_dtl_id->Value) && !strlen($this->p_vat_type_dtl_id->Value) && $this->p_vat_type_dtl_id->Value !== false)
+                    $this->p_vat_type_dtl_id->SetText(null);
+                if(!is_array($this->p_finance_period_id->Value) && !strlen($this->p_finance_period_id->Value) && $this->p_finance_period_id->Value !== false)
+                    $this->p_finance_period_id->SetText(null);
+                if(!is_array($this->ListBox1->Value) && !strlen($this->ListBox1->Value) && $this->ListBox1->Value !== false)
+                    $this->ListBox1->SetText(null);
+                if(!is_array($this->ListBox2->Value) && !strlen($this->ListBox2->Value) && $this->ListBox2->Value !== false)
+                    $this->ListBox2->SetText(null);
+                if(!is_array($this->ListBox3->Value) && !strlen($this->ListBox3->Value) && $this->ListBox3->Value !== false)
+                    $this->ListBox3->SetText(null);
+            }
         }
     }
 //End Class_Initialize Event
@@ -661,16 +673,12 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
     }
 //End Prepare Method
 
-//Open Method @25-D0C757A4
+//Open Method @25-FCB55779
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "SELECT t_cust_acc_dtl_trans_id, t_cust_account_id, to_char(trans_date,'YYYY-MM-DD')as trans_date, bill_no, p_entertaintment_type_id, p_hotel_grade_id, p_room_type_id,\n" .
-        "p_parking_classification_id, updated_by, to_char(updated_date,'DD-MON-YYYY')as updated_date, created_by, to_char(creation_date,'DD-MON-YYYY')as creation_date, description, portion_person, f_and_b,\n" .
-        "booking_hour, clerk_qty, room_qty, seat_qty, vat_charge, service_charge, service_desc, p_rest_service_type_id, power_capacity,\n" .
-        "p_pwr_classification_id \n" .
-        "FROM t_cust_acc_dtl_trans\n" .
-        "WHERE t_cust_acc_dtl_trans_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ";
+        $this->SQL = "select * from t_executive_summary\n" .
+        "limit 1";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         $this->PageSize = 1;
