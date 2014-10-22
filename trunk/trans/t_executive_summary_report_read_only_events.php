@@ -41,6 +41,62 @@ function Page_BeforeShow(& $sender)
 //Custom Code @10-2A29BDB7
 // -------------------------
     // Write your own code here.
+	global $t_executive_sumary_filter;
+	global $t_executive_summary_form;
+	$periode = $t_executive_sumary_filter->p_finance_period_id->GetValue();
+	$pajak = $t_executive_sumary_filter->p_vat_type_id->GetValue();
+	$period_type = $t_executive_sumary_filter->ListBox1->GetValue();
+
+	if (
+		empty($pajak)
+		&&
+		empty($periode)
+		&&
+		empty($period_type)
+	){
+		
+	}else{
+		if ($t_executive_sumary_filter->ListBox1->GetValue()==1)
+		{
+			$dbConn = new clsDBConnSIKP();
+			$query = "select * from t_executive_summary where period_type=1";
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$t_executive_summary_form->penjelasan->SetValue( $dbConn->f("penjelasan") );
+				$t_executive_summary_form->permasalahan->SetValue( $dbConn->f("permasalahan") );
+				$t_executive_summary_form->saran->SetValue( $dbConn->f("saran") );
+				$t_executive_summary_form->kesimpulan->SetValue( $dbConn->f("kesimpulan") );
+			}
+			$dbConn->close();
+		}
+		if ($t_executive_sumary_filter->ListBox1->GetValue()==2)
+		{
+			$dbConn = new clsDBConnSIKP();
+			$query = "select * from t_executive_summary where period_type=1";
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$t_executive_summary_form->penjelasan->SetValue( $dbConn->f("penjelasan") );
+				$t_executive_summary_form->permasalahan->SetValue( $dbConn->f("permasalahan") );
+				$t_executive_summary_form->saran->SetValue( $dbConn->f("saran") );
+				$t_executive_summary_form->kesimpulan->SetValue( $dbConn->f("kesimpulan") );
+			}
+			$dbConn->close();
+		}
+		if ($t_executive_sumary_filter->ListBox1->GetValue()==3)
+		{
+			$dbConn = new clsDBConnSIKP();
+			$query = "select * from t_executive_summary where period_type=1";
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$t_executive_summary_form->penjelasan->SetValue( $dbConn->f("penjelasan") );
+				$t_executive_summary_form->permasalahan->SetValue( $dbConn->f("permasalahan") );
+				$t_executive_summary_form->saran->SetValue( $dbConn->f("saran") );
+				$t_executive_summary_form->kesimpulan->SetValue( $dbConn->f("kesimpulan") );
+			}
+			$dbConn->close();
+		}
+	}
+
 // -------------------------
 //End Custom Code
 
