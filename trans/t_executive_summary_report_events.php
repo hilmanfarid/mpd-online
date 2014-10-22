@@ -45,7 +45,7 @@ function t_executive_summary_form_AfterInsert(& $sender)
     // Write your own code here.
 	$t_executive_summary_form->DataSource->next_record();
 	$records = $t_executive_summary_form->DataSource->Record;
-	if($t_executive_summary_form->DataSource->Errors['ErrorsCount']==0){
+	if($t_executive_summary_form->DataSource->Errors->ErrorsCount ==0){
 		$dbConn = new clsDBConnSIKP();
 		$sql="select sikp.f_first_submit_engine(508,".$records['o_t_customer_order_id'].",'".CCGetSession('UserLogin')."')";
 		$dbConn->query($sql);
