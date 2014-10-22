@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_laporan_penerimaan_pajak</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script>
+                function getFrom_LOV(formName,fieldList,LOV_NM)
+                {
+                        arrLOV = LOV_NM.split("?");
+                        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+                }
+
+
+        function createLaporan(){
+                document.getElementById("t_executive_summary_form").reset();
+                document.getElementById("t_executive_summary_form").style.display="";
+                document.getElementById("t_executive_summary_formp_year_period_id").value=document.getElementById("t_executive_sumary_filterp_year_period_id").value;
+                document.getElementById("t_executive_summary_formp_vat_type_id").value=document.getElementById("t_executive_sumary_filterp_vat_type_id").value;
+                document.getElementById("t_executive_summary_formperiod_type").value=document.getElementById("t_executive_sumary_filterListBox1").value;
+                document.getElementById("t_executive_summary_formp_finance_period_id").value=document.getElementById("t_executive_sumary_filterp_finance_period_id").value;
+                document.getElementById("t_executive_summary_formtriwulan").value=document.getElementById("t_executive_sumary_filterListBox2").value;
+                document.getElementById("t_executive_summary_formsemester").value=document.getElementById("t_executive_sumary_filterListBox3").value;
+                /*var params = "?create_laporan=T";
+                                params += "&year_code="+document.getElementById("t_laporan_harian_sptpdyear_code").value;
+                params += "&date_start_laporan="+document.getElementById("t_laporan_harian_sptpddate_start_laporan").value;
+                params += "&date_end_laporan="+document.getElementById("t_laporan_harian_sptpddate_end_laporan").value;
+                params += "&p_year_period_id="+document.getElementById("t_laporan_harian_sptpdp_year_period_id").value;
+                params += "&p_vat_type_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_id").value;
+                params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_harian_sptpdp_vat_type_dtl_id").value;
+                params += "&vat_code_dtl="+document.getElementById("t_laporan_harian_sptpdvat_code_dtl").value;  
+                location.href = "t_executive_summary_report.php"+params;*/
+        }
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_executive_sumary_filterButton2_OnClick @24-6D488622
+function t_executive_sumary_filterButton2_OnClick()
+{
+    var result = true;
+//End t_executive_sumary_filterButton2_OnClick
+
+//Custom Code @109-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_executive_sumary_filterButton2_OnClick @24-BC33A33A
+    return result;
+}
+//End Close t_executive_sumary_filterButton2_OnClick
+
+//bind_events @1-6397334F
+function bind_events() {
+    addEventHandler("t_executive_sumary_filterButton2", "click", t_executive_sumary_filterButton2_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN PENCETAKAN HARIAN PENERIMAAN SPTPD&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_executive_sumary_filter -->
+        <form id="t_executive_sumary_filter" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field">
+            <tr>
+              <td valign="top">
+                <table class="Record">
+                  <!-- BEGIN Error -->
+                  <tr>
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;Tahun 
+                      <td class="search-field"><input id="t_executive_sumary_filteryear_code" class="ControlsRQ" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td>
+                    </tr>
+ 
+                    <tr>
+                      <td align="left">Jenis&nbsp;Pajak&nbsp;</td> 
+                      <td>
+                        <p>&nbsp;<input id="t_executive_sumary_filtervat_code" class="ControlsRQ" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}"><img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></p>
+                      </td>
+                    </tr>
+ 
+                    <tr>
+                      <td align="left">&nbsp;Periode</td> 
+                      <td>&nbsp; 
+                        <select id="t_executive_sumary_filterListBox1" onchange="openPeriod(this)" name="{ListBox1_Name}">
+                          <option selected value="">Select Value</option>
+                          {ListBox1_Options}
+                        </select>
+ </td>
+                    </tr>
+ 
+                    <tr style="DISPLAY: none" id="period-1">
+                      <td align="left">&nbsp;Bulan</td> 
+                      <td>&nbsp;<input id="t_executive_sumary_filterperiode_code" class="ControlsRQ" value="{periode_code}" readonly maxlength="32" size="32" name="{periode_code_Name}"><img onclick="javascript:lov_finance_period()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td>
+                    </tr>
+ 
+                    <tr style="DISPLAY: none" id="period-2">
+                      <td align="left">&nbsp;Triwulan</td> 
+                      <td>&nbsp; 
+                        <select id="t_executive_sumary_filterListBox2" name="{ListBox2_Name}">
+                          <option selected value="">Select Value</option>
+                          {ListBox2_Options}
+                        </select>
+ </td>
+                    </tr>
+ 
+                    <tr style="DISPLAY: none" id="period-3">
+                      <td align="left">&nbsp;Semester</td> 
+                      <td>&nbsp; 
+                        <select id="t_executive_sumary_filterListBox3" name="{ListBox3_Name}">
+                          <option selected value="">Select Value</option>
+                          {ListBox3_Options}
+                        </select>
+ </td>
+                    </tr>
+ 
+                    <tr style="DISPLAY: none">
+                      <td align="left">&nbsp;Ayat Pajak</td> 
+                      <td>&nbsp; <input id="t_executive_sumary_filtervat_code_dtl" class="ControlsRQ" onchange="alert('changed')" value="{vat_code_dtl}" readonly maxlength="32" size="32" name="{vat_code_dtl_Name}"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_vat_type_dtl_id" onchange="alert('tes');" value="{p_vat_type_dtl_id}" type="hidden" name="{p_vat_type_dtl_id_Name}"></td>
+                    </tr>
+ 
+                    <tr>
+                      <td colspan="2" align="right">&nbsp; 
+                        <!-- BEGIN Button Button2 --><input style="DISPLAY: none" id="t_executive_sumary_filterButton2" class="btn_tambah" onclick="createLaporan()" value="Buat Laporan" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 --></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_executive_sumary_filter --><br>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script type="text/javascript" src="../js/lov.js"></script>
+  <script language="javascript">
+        function lov_year_period() {
+                getFrom_LOV('t_executive_sumary_filter','p_year_period_id,year_code','lov_year_period.php');
+        }
+                function lov_finance_period() {
+                                var year = document.getElementById("t_executive_sumary_filterp_year_period_id").value;
+                                if(year){
+                        getFrom_LOV('t_executive_sumary_filter','p_finance_period_id,periode_code','lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&FIELD_3=and p_year_period_id='+year+' order by start_date ASC&LABEL1=Bulan&LABEL2=Deskripsi&HEADER_PAGE=DAFTAR BULAN&HEADER_LOV=DAFTAR BULAN&ORDER=start_date');
+                        }else{
+                                        alert("Harap pilih tahun terlebih dahulu");
+                                }
+                }
+        function lov_rqst() {
+                getFrom_LOV('t_executive_sumary_filter','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_rqst_type&FIELD_0=p_rqst_type_id&FIELD_1=code&FIELD_2=description&FIELD_3=And p_rqst_type_id in (1,2,3,4,5)&LABEL1=Jenis Permohonan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PERMOHONAN&HEADER_LOV=DAFTAR JENIS PERMOHONAN&ORDER=p_rqst_type_id');
+        }
+                function lov_vat_type() {
+                        getFrom_LOV('t_executive_sumary_filter','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
+                }
+        function lov_ayatpajak() {
+                        getFrom_LOV('t_executive_sumary_filter','p_vat_type_id,vat_code','lov_vat_type.php');
+                }
+function lov_tipeayat() {
+        var p_vat_type_id = document.getElementById("t_laporan_harian_sptpdp_vat_type_id").value;
+        if (p_vat_type_id != "" && p_vat_type_id != 0 && p_vat_type_id != false && p_vat_type_id != undefined &&  p_vat_type_id != null){
+           getFrom_LOV('t_executive_sumary_filter','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=p_vat_type_dtl&FIELD_0=p_vat_type_dtl_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Tipe Ayat&LABEL2=Deskripsi&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+        }else{
+            alert("Ayat Pajak belum Diisi");
+        }
+}
+
+  </script>
+  <!-- BEGIN Record t_executive_summary_form -->
+  <div style="CLEAR: both">
+    <form id="t_executive_summary_form" method="post" name="{HTMLFormName}" action="{Action}">
+      <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tr>
+          <td valign="top">
+            <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                <td class="th"><strong>INFORMASI TRANSAKSI HARIAN WP (MANUAL INPUT)</strong></td> 
+                <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+              </tr>
+            </table>
+ 
+            <table class="Record" cellspacing="0" cellpadding="0">
+              <!-- BEGIN Error -->
+              <tr class="Error">
+                <td colspan="2">{Error}</td>
+              </tr>
+              <!-- END Error -->
+              <tr class="Controls">
+                <td class="th"><label for="t_executive_summary_formpenjelasan">Penjelasan</label></td> 
+                <td><textarea id="t_executive_summary_formpenjelasan" rows="3" cols="32" readonly name="{penjelasan_Name}">{penjelasan}</textarea><input id="t_executive_summary_formp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"><input id="t_executive_summary_formp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_executive_summary_formp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td>
+              </tr>
+ 
+              <tr class="Controls">
+                <td class="th">Permasalahan</td> 
+                <td><textarea id="t_executive_summary_formpermasalahan" rows="3" cols="32" readonly name="{permasalahan_Name}">{permasalahan}</textarea><input id="t_executive_summary_formperiod_type" value="{period_type}" type="hidden" name="{period_type_Name}"><input id="t_executive_summary_formtriwulan" value="{triwulan}" type="hidden" name="{triwulan_Name}"><input id="t_executive_summary_formsemester" value="{semester}" type="hidden" name="{semester_Name}"></td>
+              </tr>
+ 
+              <tr class="Controls">
+                <td class="th">Kesimpulan</td> 
+                <td><textarea id="t_executive_summary_formkesimpulan" rows="3" cols="32" readonly name="{kesimpulan_Name}">{kesimpulan}</textarea></td>
+              </tr>
+ 
+              <tr class="Controls">
+                <td class="th"><label for="t_executive_summary_formcreated_by">Saran</label></td> 
+                <td><textarea id="t_executive_summary_formsaran" rows="3" cols="32" readonly name="{saran_Name}">{saran}</textarea></td>
+              </tr>
+ 
+              <tr class="Controls">
+                <td class="th"><label for="t_executive_summary_formupdated_by">&nbsp;</label></td> 
+                <td></td>
+              </tr>
+ 
+              <tr class="Bottom">
+                <td colspan="2" align="right">&nbsp; 
+                  <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_executive_summary_formButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert --></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <!-- END Record t_executive_summary_form -->
+  <script>
+        function openPeriod(cb){
+                                document.getElementById("t_executive_summary_formp_finance_period_id").value='';
+                                document.getElementById("t_executive_sumary_filterp_finance_period_id").value='';
+                                document.getElementById("t_executive_summary_formtriwulan").value='';
+                                document.getElementById("t_executive_sumary_filterListBox2").value='';
+                                document.getElementById("t_executive_summary_formsemester").value='';
+                                document.getElementById("t_executive_sumary_filterListBox3").value='';
+                document.getElementById("period-1").style.display="none";
+                document.getElementById("period-2").style.display="none";
+                document.getElementById("period-3").style.display="none";
+                if(cb.value){
+                        document.getElementById("period-"+cb.value).style.display="";
+                }
+        }
+        document.getElementById("period-1").style.display="none";
+        document.getElementById("period-2").style.display="none";
+        document.getElementById("period-3").style.display="none";
+        if(document.getElementById("t_executive_sumary_filterListBox1").value)document.getElementById("period-"+document.getElementById("t_executive_sumary_filterListBox1").value).style.display="";
+            $('#t_executive_sumary_filter').on('change',function(evt){
+                if(evt.target.id!='t_executive_sumary_filterButton2'){
+                    //document.getElementById("t_executive_summary_form").style.display="none";
+					var params = "?";
+					params += "year_code="+document.getElementById("t_executive_sumary_filteryear_code").value;
+		            params += "&p_year_period_id="+document.getElementById("t_executive_sumary_filterp_year_period_id").value;
+		            params += "&vat_code="+document.getElementById("t_executive_sumary_filtervat_code").value;
+		            params += "&p_vat_type_id="+document.getElementById("t_executive_sumary_filterp_vat_type_id").value;
+		            params += "&p_vat_type_dtl_id="+document.getElementById("t_executive_sumary_filterp_vat_type_dtl_id").value;
+		            params += "&vat_code_dtl="+document.getElementById("t_executive_sumary_filtervat_code_dtl").value;  
+					params += "&ListBox1="+document.getElementById("t_executive_sumary_filterListBox1").value;  
+					params += "&ListBox2="+document.getElementById("t_executive_sumary_filterListBox2").value;  
+					params += "&ListBox3="+document.getElementById("t_executive_sumary_filterListBox3").value;  
+					params += "&ListBox1="+document.getElementById("t_executive_sumary_filterListBox1").value;  
+					params += "&p_finance_period_id="+document.getElementById("t_executive_sumary_filterp_finance_period_id").value;  
+					params += "&periode_code="+document.getElementById("t_executive_sumary_filterperiode_code").value;  
+		            location.href = "t_executive_summary_report_read_only.php"+params;
+                }
+                });
+ </script>
+  </body>
+  </html>
