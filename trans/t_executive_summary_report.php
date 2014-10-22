@@ -682,7 +682,7 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
     }
 //End SetValues Method
 
-//Insert Method @25-EFF99D50
+//Insert Method @25-AD41EF6A
     function Insert()
     {
         global $CCSLocales;
@@ -732,7 +732,7 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
         "	*\n" .
         "FROM\n" .
         "	f_insert_executive_summary (\n" .
-        "		508,\n" .
+        "		16,\n" .
         "		'" . $this->SQLValue($this->cp["user_id"]->GetDBValue(), ccsText) . "' ," . $this->SQLValue($this->cp["p_year_period_id"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["p_vat_type_id"]->GetDBValue(), ccsText) . ", " . $this->SQLValue($this->cp["period_type"]->GetDBValue(), ccsText) . ", " . $this->SQLValue($this->cp["p_finance_period_id"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["triwulan"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["semester"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["penjelasan"]->GetDBValue(), ccsText) . "',\n" .
         "		'" . $this->SQLValue($this->cp["permasalahan"]->GetDBValue(), ccsText) . "',\n" .
         "		'" . $this->SQLValue($this->cp["kesimpulan"]->GetDBValue(), ccsText) . "',\n" .
