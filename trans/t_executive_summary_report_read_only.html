@@ -119,7 +119,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                     <tr style="DISPLAY: none" id="period-1">
                       <td align="left">&nbsp;Bulan</td> 
-                      <td>&nbsp;<input id="t_executive_sumary_filterperiode_code" class="ControlsRQ" value="{periode_code}" readonly maxlength="32" size="32" name="{periode_code_Name}"><img onclick="javascript:lov_finance_period()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td>
+                      <td>&nbsp;<input id="t_executive_sumary_filterperiode_code" class="ControlsRQ" value="{periode_code}" readonly maxlength="32" size="32" name="{periode_code_Name}"><img onclick="javascript:lov_finance_period()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_finance_period_id" value="{p_finance_period_id}" name="{p_finance_period_id_Name}"></td>
                     </tr>
  
                     <tr style="DISPLAY: none" id="period-2">
@@ -271,20 +271,20 @@ function lov_tipeayat() {
             $('#t_executive_sumary_filter').on('change',function(evt){
                 if(evt.target.id!='t_executive_sumary_filterButton2'){
                     //document.getElementById("t_executive_summary_form").style.display="none";
-					var params = "?";
-					params += "year_code="+document.getElementById("t_executive_sumary_filteryear_code").value;
-		            params += "&p_year_period_id="+document.getElementById("t_executive_sumary_filterp_year_period_id").value;
-		            params += "&vat_code="+document.getElementById("t_executive_sumary_filtervat_code").value;
-		            params += "&p_vat_type_id="+document.getElementById("t_executive_sumary_filterp_vat_type_id").value;
-		            params += "&p_vat_type_dtl_id="+document.getElementById("t_executive_sumary_filterp_vat_type_dtl_id").value;
-		            params += "&vat_code_dtl="+document.getElementById("t_executive_sumary_filtervat_code_dtl").value;  
-					params += "&ListBox1="+document.getElementById("t_executive_sumary_filterListBox1").value;  
-					params += "&ListBox2="+document.getElementById("t_executive_sumary_filterListBox2").value;  
-					params += "&ListBox3="+document.getElementById("t_executive_sumary_filterListBox3").value;  
-					params += "&ListBox1="+document.getElementById("t_executive_sumary_filterListBox1").value;  
-					params += "&p_finance_period_id="+document.getElementById("t_executive_sumary_filterp_finance_period_id").value;  
-					params += "&periode_code="+document.getElementById("t_executive_sumary_filterperiode_code").value;  
-		            location.href = "t_executive_summary_report_read_only.php"+params;
+                                        var params = "?";
+                                        params += "year_code="+document.getElementById("t_executive_sumary_filteryear_code").value;
+                            params += "&p_year_period_id="+document.getElementById("t_executive_sumary_filterp_year_period_id").value;
+                            params += "&vat_code="+document.getElementById("t_executive_sumary_filtervat_code").value;
+                            params += "&p_vat_type_id="+document.getElementById("t_executive_sumary_filterp_vat_type_id").value;
+                            params += "&p_vat_type_dtl_id="+document.getElementById("t_executive_sumary_filterp_vat_type_dtl_id").value;
+                            params += "&vat_code_dtl="+document.getElementById("t_executive_sumary_filtervat_code_dtl").value;  
+                                        params += "&ListBox1="+document.getElementById("t_executive_sumary_filterListBox1").value;  
+                                        params += "&ListBox2="+document.getElementById("t_executive_sumary_filterListBox2").value;  
+                                        params += "&ListBox3="+document.getElementById("t_executive_sumary_filterListBox3").value;  
+                                        params += "&ListBox1="+document.getElementById("t_executive_sumary_filterListBox1").value;  
+                                        params += "&p_finance_period_id="+document.getElementById("t_executive_sumary_filterp_finance_period_id").value;  
+                                        params += "&periode_code="+document.getElementById("t_executive_sumary_filterperiode_code").value;  
+                            location.href = "t_executive_summary_report_read_only.php"+params;
                 }
                 });
  </script>
