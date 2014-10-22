@@ -120,7 +120,7 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="25" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_executive_summary_form" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_executive_summary_form" customDeleteType="SQL" activeCollection="IFormElements" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsertType="Table" customUpdate="UPDATE t_cust_acc_dtl_trans SET
+		<Record id="25" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_executive_summary_form" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_executive_summary_form" customDeleteType="SQL" activeCollection="ISQLParameters" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsertType="SQL" customUpdate="UPDATE t_cust_acc_dtl_trans SET
 service_desc = '{service_desc}',
 description = '{description}',
 bill_no = '{bill_no}',
@@ -134,7 +134,16 @@ p_parking_classification_id, updated_by, to_char(updated_date,'DD-MON-YYYY')as u
 booking_hour, clerk_qty, room_qty, seat_qty, vat_charge, service_charge, service_desc, p_rest_service_type_id, power_capacity,
 p_pwr_classification_id 
 FROM t_cust_acc_dtl_trans
-WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id} " customInsert="t_executive_summary" activeTableType="t_executive_summary">
+WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id} " customInsert="SELECT
+	*
+FROM
+	f_insert_executive_summary (
+		508,
+		'{user_id}' ,{p_year_period_id},{p_vat_type_id}, {period_type}, {p_finance_period_id},{triwulan},{semester}, '{penjelasan}',
+		'{permasalahan}',
+		'{kesimpulan}',
+		'{saran}'
+	)" activeTableType="t_executive_summary">
 			<Components>
 				<Button id="26" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_executive_summary_formButton_Insert" removeParameters="FLAG">
 					<Components/>
@@ -209,7 +218,17 @@ WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id} " customInsert="t_exec
 						<Action actionName="Custom Code" actionCategory="General" id="45"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="AfterInsert" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="132"/>
+</Actions>
+</Event>
+<Event name="BeforeInsert" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="133"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 				<TableParameter id="46" conditionType="Parameter" useIsNull="False" field="t_cust_acc_dtl_trans_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cust_acc_dtl_trans_id"/>
 			</TableParameters>
@@ -248,17 +267,24 @@ WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id} " customInsert="t_exec
 				<Field id="72" tableName="t_cust_acc_dtl_trans" fieldName="power_capacity"/>
 				<Field id="73" tableName="t_cust_acc_dtl_trans" fieldName="p_pwr_classification_id"/>
 			</Fields>
-			<ISPParameters/>
+			<ISPParameters>
+<SPParameter id="Key135" parameterName="i_status_date" parameterSource="i_status_date" dataType="DateTime" parameterType="URL" dataSize="26" direction="Input" scale="0" precision="6"/>
+<SPParameter id="Key136" parameterName="o_result_code" parameterSource="o_result_code" dataType="Numeric" parameterType="URL" dataSize="0" direction="Output" scale="10" precision="6"/>
+<SPParameter id="Key137" parameterName="o_result_msg" parameterSource="o_result_msg" dataType="Char" parameterType="URL" dataSize="255" direction="Output" scale="10" precision="6"/>
+</ISPParameters>
 			<ISQLParameters>
-				<SQLParameter id="74" variable="service_desc" parameterType="Control" dataType="Text" parameterSource="service_desc"/>
-				<SQLParameter id="75" variable="description" parameterType="Control" dataType="Text" parameterSource="description"/>
-				<SQLParameter id="76" variable="t_cust_account_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_cust_account_id"/>
-				<SQLParameter id="77" variable="bill_no" parameterType="Control" dataType="Text" parameterSource="bill_no"/>
-				<SQLParameter id="78" variable="service_charge" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="service_charge"/>
-				<SQLParameter id="79" variable="vat_charge" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="vat_charge"/>
-				<SQLParameter id="80" variable="UserName" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
-				<SQLParameter id="81" variable="trans_date" parameterType="Control" dataType="Text" parameterSource="trans_date"/>
-			</ISQLParameters>
+				<SQLParameter id="134" variable="penjelasan" dataType="Text" parameterType="Control" parameterSource="penjelasan"/>
+<SQLParameter id="135" variable="permasalahan" dataType="Text" parameterType="Control" parameterSource="permasalahan" format="0"/>
+<SQLParameter id="136" variable="kesimpulan" dataType="Text" parameterType="Control" parameterSource="kesimpulan" format="0"/>
+<SQLParameter id="137" variable="saran" dataType="Text" parameterType="Control" parameterSource="saran" format="0"/>
+<SQLParameter id="138" variable="p_vat_type_id" dataType="Text" parameterType="Control" parameterSource="p_vat_type_id"/>
+<SQLParameter id="139" variable="p_finance_period_id" dataType="Float" parameterType="Control" parameterSource="p_finance_period_id" defaultValue="0"/>
+<SQLParameter id="140" variable="period_type" dataType="Text" parameterType="Control" parameterSource="period_type"/>
+<SQLParameter id="141" variable="triwulan" dataType="Float" parameterType="Control" parameterSource="triwulan" defaultValue="0"/>
+<SQLParameter id="142" variable="semester" dataType="Float" parameterType="Control" parameterSource="semester" defaultValue="0"/>
+<SQLParameter id="145" variable="p_year_period_id" dataType="Float" parameterType="Control" parameterSource="p_year_period_id"/>
+<SQLParameter id="146" variable="user_id" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
+</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="118" field="penjelasan" dataType="Text" parameterType="Control" parameterSource="penjelasan" omitIfEmpty="True"/>
 				<CustomParameter id="119" field="permasalahan" dataType="Text" parameterType="Control" parameterSource="permasalahan" format="0" omitIfEmpty="True"/>

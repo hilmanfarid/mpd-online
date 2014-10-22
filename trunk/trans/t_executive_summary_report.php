@@ -305,7 +305,7 @@ class clsRecordt_executive_summary_form { //t_executive_summary_form Class @25-E
     // Class variables
 //End Variables
 
-//Class_Initialize Event @25-8E7D11B4
+//Class_Initialize Event @25-37D027A5
     function clsRecordt_executive_summary_form($RelativePath, & $Parent)
     {
 
@@ -337,7 +337,6 @@ class clsRecordt_executive_summary_form { //t_executive_summary_form Class @25-E
             $this->penjelasan->Required = true;
             $this->permasalahan = & new clsControl(ccsTextArea, "permasalahan", "Nilai Transaksi", ccsText, "", CCGetRequestParam("permasalahan", $Method, NULL), $this);
             $this->permasalahan->Required = true;
-            $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->kesimpulan = & new clsControl(ccsTextArea, "kesimpulan", "Nilai Transaksi", ccsText, "", CCGetRequestParam("kesimpulan", $Method, NULL), $this);
             $this->kesimpulan->Required = true;
             $this->saran = & new clsControl(ccsTextArea, "saran", "Nilai Transaksi", ccsText, "", CCGetRequestParam("saran", $Method, NULL), $this);
@@ -429,7 +428,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @25-286B3128
+//Operation Method @25-EDDE14EE
     function Operation()
     {
         if(!$this->Visible)
@@ -448,8 +447,6 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_Insert";
             if($this->Button_Insert->Pressed) {
                 $this->PressedButton = "Button_Insert";
-            } else if($this->Button1->Pressed) {
-                $this->PressedButton = "Button1";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -457,10 +454,6 @@ function GetPrimaryKey($keyName)
             if($this->PressedButton == "Button_Insert") {
                 $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert) || !$this->InsertRow()) {
-                    $Redirect = "";
-                }
-            } else if($this->PressedButton == "Button1") {
-                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
                     $Redirect = "";
                 }
             }
@@ -493,7 +486,7 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//Show Method @25-B4538399
+//Show Method @25-202DDCB7
     function Show()
     {
         global $CCSUseAmp;
@@ -571,7 +564,6 @@ function GetPrimaryKey($keyName)
         $this->Button_Insert->Show();
         $this->penjelasan->Show();
         $this->permasalahan->Show();
-        $this->Button1->Show();
         $this->kesimpulan->Show();
         $this->saran->Show();
         $this->p_vat_type_id->Show();
@@ -590,7 +582,7 @@ function GetPrimaryKey($keyName)
 
 class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executive_summary_formDataSource Class @25-9A7F4B9F
 
-//DataSource Variables @25-F37E3712
+//DataSource Variables @25-639395F1
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -601,7 +593,6 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
     var $wp;
     var $AllParametersSet;
 
-    var $InsertFields = array();
 
     // Datasource fields
     var $penjelasan;
@@ -616,7 +607,7 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
     var $semester;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @25-D41EF887
+//DataSourceClass_Initialize Event @25-0DAFA240
     function clst_executive_summary_formDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -643,18 +634,6 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
         $this->semester = new clsField("semester", ccsText, "");
         
 
-        $this->InsertFields["penjelasan"] = array("Name" => "penjelasan", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["permasalahan"] = array("Name" => "permasalahan", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["kesimpulan"] = array("Name" => "kesimpulan", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["saran"] = array("Name" => "saran", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["p_vat_type_id"] = array("Name" => "p_vat_type_id", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["p_finance_period_id"] = array("Name" => "p_finance_period_id", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["period_type"] = array("Name" => "period_type", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["triwulan"] = array("Name" => "triwulan", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["semester"] = array("Name" => "semester", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["created_by"] = array("Name" => "created_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->InsertFields["p_year_period_id"] = array("Name" => "p_year_period_id", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -703,24 +682,23 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
     }
 //End SetValues Method
 
-//Insert Method @25-2C6E74CA
+//Insert Method @25-EFF99D50
     function Insert()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["penjelasan"] = new clsSQLParameter("ctrlpenjelasan", ccsText, "", "", $this->penjelasan->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["permasalahan"] = new clsSQLParameter("ctrlpermasalahan", ccsText, "", "", $this->permasalahan->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["kesimpulan"] = new clsSQLParameter("ctrlkesimpulan", ccsText, "", "", $this->kesimpulan->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["saran"] = new clsSQLParameter("ctrlsaran", ccsText, "", "", $this->saran->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["p_vat_type_id"] = new clsSQLParameter("ctrlp_vat_type_id", ccsText, "", "", $this->p_vat_type_id->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["p_finance_period_id"] = new clsSQLParameter("ctrlp_finance_period_id", ccsText, "", "", $this->p_finance_period_id->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["period_type"] = new clsSQLParameter("ctrlperiod_type", ccsText, "", "", $this->period_type->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["triwulan"] = new clsSQLParameter("ctrltriwulan", ccsText, "", "", $this->triwulan->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["semester"] = new clsSQLParameter("ctrlsemester", ccsText, "", "", $this->semester->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["created_by"] = new clsSQLParameter("sescreated_by", ccsText, "", "", CCGetSession("created_by", NULL), NULL, false, $this->ErrorBlock);
-        $this->cp["updated_by"] = new clsSQLParameter("sesupdated_by", ccsText, "", "", CCGetSession("updated_by", NULL), NULL, false, $this->ErrorBlock);
-        $this->cp["p_year_period_id"] = new clsSQLParameter("ctrlp_year_period_id", ccsFloat, "", "", $this->p_year_period_id->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["penjelasan"] = new clsSQLParameter("ctrlpenjelasan", ccsText, "", "", $this->penjelasan->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["permasalahan"] = new clsSQLParameter("ctrlpermasalahan", ccsText, "", "", $this->permasalahan->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["kesimpulan"] = new clsSQLParameter("ctrlkesimpulan", ccsText, "", "", $this->kesimpulan->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["saran"] = new clsSQLParameter("ctrlsaran", ccsText, "", "", $this->saran->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["p_vat_type_id"] = new clsSQLParameter("ctrlp_vat_type_id", ccsText, "", "", $this->p_vat_type_id->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["p_finance_period_id"] = new clsSQLParameter("ctrlp_finance_period_id", ccsFloat, "", "", $this->p_finance_period_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["period_type"] = new clsSQLParameter("ctrlperiod_type", ccsText, "", "", $this->period_type->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["triwulan"] = new clsSQLParameter("ctrltriwulan", ccsFloat, "", "", $this->triwulan->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["semester"] = new clsSQLParameter("ctrlsemester", ccsFloat, "", "", $this->semester->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["p_year_period_id"] = new clsSQLParameter("ctrlp_year_period_id", ccsFloat, "", "", $this->p_year_period_id->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["user_id"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["penjelasan"]->GetValue()) and !strlen($this->cp["penjelasan"]->GetText()) and !is_bool($this->cp["penjelasan"]->GetValue())) 
             $this->cp["penjelasan"]->SetValue($this->penjelasan->GetValue(true));
@@ -734,31 +712,32 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
             $this->cp["p_vat_type_id"]->SetValue($this->p_vat_type_id->GetValue(true));
         if (!is_null($this->cp["p_finance_period_id"]->GetValue()) and !strlen($this->cp["p_finance_period_id"]->GetText()) and !is_bool($this->cp["p_finance_period_id"]->GetValue())) 
             $this->cp["p_finance_period_id"]->SetValue($this->p_finance_period_id->GetValue(true));
+        if (!strlen($this->cp["p_finance_period_id"]->GetText()) and !is_bool($this->cp["p_finance_period_id"]->GetValue(true))) 
+            $this->cp["p_finance_period_id"]->SetText(0);
         if (!is_null($this->cp["period_type"]->GetValue()) and !strlen($this->cp["period_type"]->GetText()) and !is_bool($this->cp["period_type"]->GetValue())) 
             $this->cp["period_type"]->SetValue($this->period_type->GetValue(true));
         if (!is_null($this->cp["triwulan"]->GetValue()) and !strlen($this->cp["triwulan"]->GetText()) and !is_bool($this->cp["triwulan"]->GetValue())) 
             $this->cp["triwulan"]->SetValue($this->triwulan->GetValue(true));
+        if (!strlen($this->cp["triwulan"]->GetText()) and !is_bool($this->cp["triwulan"]->GetValue(true))) 
+            $this->cp["triwulan"]->SetText(0);
         if (!is_null($this->cp["semester"]->GetValue()) and !strlen($this->cp["semester"]->GetText()) and !is_bool($this->cp["semester"]->GetValue())) 
             $this->cp["semester"]->SetValue($this->semester->GetValue(true));
-        if (!is_null($this->cp["created_by"]->GetValue()) and !strlen($this->cp["created_by"]->GetText()) and !is_bool($this->cp["created_by"]->GetValue())) 
-            $this->cp["created_by"]->SetValue(CCGetSession("created_by", NULL));
-        if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
-            $this->cp["updated_by"]->SetValue(CCGetSession("updated_by", NULL));
+        if (!strlen($this->cp["semester"]->GetText()) and !is_bool($this->cp["semester"]->GetValue(true))) 
+            $this->cp["semester"]->SetText(0);
         if (!is_null($this->cp["p_year_period_id"]->GetValue()) and !strlen($this->cp["p_year_period_id"]->GetText()) and !is_bool($this->cp["p_year_period_id"]->GetValue())) 
             $this->cp["p_year_period_id"]->SetValue($this->p_year_period_id->GetValue(true));
-        $this->InsertFields["penjelasan"]["Value"] = $this->cp["penjelasan"]->GetDBValue(true);
-        $this->InsertFields["permasalahan"]["Value"] = $this->cp["permasalahan"]->GetDBValue(true);
-        $this->InsertFields["kesimpulan"]["Value"] = $this->cp["kesimpulan"]->GetDBValue(true);
-        $this->InsertFields["saran"]["Value"] = $this->cp["saran"]->GetDBValue(true);
-        $this->InsertFields["p_vat_type_id"]["Value"] = $this->cp["p_vat_type_id"]->GetDBValue(true);
-        $this->InsertFields["p_finance_period_id"]["Value"] = $this->cp["p_finance_period_id"]->GetDBValue(true);
-        $this->InsertFields["period_type"]["Value"] = $this->cp["period_type"]->GetDBValue(true);
-        $this->InsertFields["triwulan"]["Value"] = $this->cp["triwulan"]->GetDBValue(true);
-        $this->InsertFields["semester"]["Value"] = $this->cp["semester"]->GetDBValue(true);
-        $this->InsertFields["created_by"]["Value"] = $this->cp["created_by"]->GetDBValue(true);
-        $this->InsertFields["updated_by"]["Value"] = $this->cp["updated_by"]->GetDBValue(true);
-        $this->InsertFields["p_year_period_id"]["Value"] = $this->cp["p_year_period_id"]->GetDBValue(true);
-        $this->SQL = CCBuildInsert("t_executive_summary", $this->InsertFields, $this);
+        if (!is_null($this->cp["user_id"]->GetValue()) and !strlen($this->cp["user_id"]->GetText()) and !is_bool($this->cp["user_id"]->GetValue())) 
+            $this->cp["user_id"]->SetValue(CCGetSession("UserLogin", NULL));
+        $this->SQL = "SELECT\n" .
+        "	*\n" .
+        "FROM\n" .
+        "	f_insert_executive_summary (\n" .
+        "		508,\n" .
+        "		'" . $this->SQLValue($this->cp["user_id"]->GetDBValue(), ccsText) . "' ," . $this->SQLValue($this->cp["p_year_period_id"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["p_vat_type_id"]->GetDBValue(), ccsText) . ", " . $this->SQLValue($this->cp["period_type"]->GetDBValue(), ccsText) . ", " . $this->SQLValue($this->cp["p_finance_period_id"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["triwulan"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["semester"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["penjelasan"]->GetDBValue(), ccsText) . "',\n" .
+        "		'" . $this->SQLValue($this->cp["permasalahan"]->GetDBValue(), ccsText) . "',\n" .
+        "		'" . $this->SQLValue($this->cp["kesimpulan"]->GetDBValue(), ccsText) . "',\n" .
+        "		'" . $this->SQLValue($this->cp["saran"]->GetDBValue(), ccsText) . "'\n" .
+        "	)";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
