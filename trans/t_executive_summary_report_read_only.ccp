@@ -32,7 +32,7 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="23" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" PathID="t_executive_sumary_filterp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+				<Hidden id="23" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" PathID="t_executive_sumary_filterp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id" defaultValue="null">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -56,13 +56,13 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="105" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" PathID="t_executive_sumary_filterp_finance_period_id" fieldSource="p_finance_period_id">
+				<Hidden id="105" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" PathID="t_executive_sumary_filterp_finance_period_id" fieldSource="p_finance_period_id" defaultValue="null">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<ListBox id="106" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_executive_sumary_filterListBox1" connection="ConnSIKP" _valueOfList="3" _nameOfList="Per Semester" dataSource="1;Per Bulan;2;Per Triwulan;3;Per Semester" fieldSource="period_type">
+				<ListBox id="106" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_executive_sumary_filterListBox1" connection="ConnSIKP" _valueOfList="3" _nameOfList="Per Semester" dataSource="1;Per Bulan;2;Per Triwulan;3;Per Semester" fieldSource="period_type" defaultValue="null">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -74,7 +74,7 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="107" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_executive_sumary_filterListBox2" connection="ConnSIKP" dataSource="1;I;2;II;3;III;4;IV" _valueOfList="4" _nameOfList="IV">
+				<ListBox id="107" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_executive_sumary_filterListBox2" connection="ConnSIKP" dataSource="1;I;2;II;3;III;4;IV" _valueOfList="4" _nameOfList="IV" defaultValue="null">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -86,7 +86,7 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="108" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox3" wizardEmptyCaption="Select Value" PathID="t_executive_sumary_filterListBox3" connection="ConnSIKP" dataSource="1;I;2;II" _valueOfList="4" _nameOfList="IV">
+				<ListBox id="108" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox3" wizardEmptyCaption="Select Value" PathID="t_executive_sumary_filterListBox3" connection="ConnSIKP" dataSource="1;I;2;II" _valueOfList="4" _nameOfList="IV" defaultValue="null">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -129,12 +129,8 @@ vat_charge = {vat_charge},
 updated_date = sysdate,
 updated_by = '{UserName}'
 WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id}" customDelete="DELETE FROM t_cust_acc_dtl_trans
-WHERE  t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id}" dataSource="SELECT t_cust_acc_dtl_trans_id, t_cust_account_id, to_char(trans_date,'YYYY-MM-DD')as trans_date, bill_no, p_entertaintment_type_id, p_hotel_grade_id, p_room_type_id,
-p_parking_classification_id, updated_by, to_char(updated_date,'DD-MON-YYYY')as updated_date, created_by, to_char(creation_date,'DD-MON-YYYY')as creation_date, description, portion_person, f_and_b,
-booking_hour, clerk_qty, room_qty, seat_qty, vat_charge, service_charge, service_desc, p_rest_service_type_id, power_capacity,
-p_pwr_classification_id 
-FROM t_cust_acc_dtl_trans
-WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id} " customInsert="t_executive_summary" activeTableType="t_executive_summary">
+WHERE  t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id}" dataSource="select * from t_executive_summary
+limit 1" customInsert="t_executive_summary" activeTableType="t_executive_summary">
 			<Components>
 				<Button id="26" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_executive_summary_formButton_Insert" removeParameters="FLAG">
 					<Components/>
@@ -218,36 +214,10 @@ WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id} " customInsert="t_exec
 				<SQLParameter id="47" parameterType="URL" variable="t_cust_acc_dtl_trans_id" dataType="Float" parameterSource="t_cust_acc_dtl_trans_id"/>
 			</SQLParameters>
 			<JoinTables>
-				<JoinTable id="48" tableName="t_cust_acc_dtl_trans" posWidth="160" posHeight="180" posLeft="10" posTop="10"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
-				<Field id="49" tableName="t_cust_acc_dtl_trans" fieldName="t_cust_acc_dtl_trans_id"/>
-<Field id="50" tableName="t_cust_acc_dtl_trans" fieldName="t_cust_account_id"/>
-<Field id="51" tableName="t_cust_acc_dtl_trans" fieldName="trans_date"/>
-<Field id="52" tableName="t_cust_acc_dtl_trans" fieldName="bill_no"/>
-<Field id="53" tableName="t_cust_acc_dtl_trans" fieldName="p_entertaintment_type_id"/>
-<Field id="54" tableName="t_cust_acc_dtl_trans" fieldName="p_hotel_grade_id"/>
-<Field id="55" tableName="t_cust_acc_dtl_trans" fieldName="p_room_type_id"/>
-<Field id="56" tableName="t_cust_acc_dtl_trans" fieldName="p_parking_classification_id"/>
-<Field id="57" tableName="t_cust_acc_dtl_trans" fieldName="updated_by"/>
-<Field id="58" tableName="t_cust_acc_dtl_trans" fieldName="updated_date"/>
-<Field id="59" tableName="t_cust_acc_dtl_trans" fieldName="created_by"/>
-<Field id="60" tableName="t_cust_acc_dtl_trans" fieldName="creation_date"/>
-<Field id="61" tableName="t_cust_acc_dtl_trans" fieldName="description"/>
-<Field id="62" tableName="t_cust_acc_dtl_trans" fieldName="portion_person"/>
-<Field id="63" tableName="t_cust_acc_dtl_trans" fieldName="f_and_b"/>
-<Field id="64" tableName="t_cust_acc_dtl_trans" fieldName="booking_hour"/>
-<Field id="65" tableName="t_cust_acc_dtl_trans" fieldName="clerk_qty"/>
-<Field id="66" tableName="t_cust_acc_dtl_trans" fieldName="room_qty"/>
-<Field id="67" tableName="t_cust_acc_dtl_trans" fieldName="seat_qty"/>
-<Field id="68" tableName="t_cust_acc_dtl_trans" fieldName="vat_charge"/>
-<Field id="69" tableName="t_cust_acc_dtl_trans" fieldName="service_charge"/>
-<Field id="70" tableName="t_cust_acc_dtl_trans" fieldName="service_desc"/>
-<Field id="71" tableName="t_cust_acc_dtl_trans" fieldName="p_rest_service_type_id"/>
-<Field id="72" tableName="t_cust_acc_dtl_trans" fieldName="power_capacity"/>
-<Field id="73" tableName="t_cust_acc_dtl_trans" fieldName="p_pwr_classification_id"/>
-</Fields>
+			</Fields>
 			<ISPParameters/>
 			<ISQLParameters>
 				<SQLParameter id="74" variable="service_desc" parameterType="Control" dataType="Text" parameterSource="service_desc"/>
@@ -304,13 +274,7 @@ WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id} " customInsert="t_exec
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Hidden id="132" fieldSourceType="DBColumn" dataType="Float" name="p_year_period_id" PathID="p_year_period_id">
-			<Components/>
-			<Events/>
-			<Attributes/>
-			<Features/>
-		</Hidden>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_executive_summary_report_read_only_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_executive_summary_report_read_only.php" forShow="True" url="t_executive_summary_report_read_only.php" comment="//" codePage="windows-1252"/>
