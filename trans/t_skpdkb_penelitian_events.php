@@ -75,6 +75,7 @@ function view_html() {
 		WHERE
 		p_settlement_type_id = 2 
 		and a.p_vat_type_dtl_id != 14
+		ORDER BY wp_name, z.start_date
 		;";
 	$dbConn->query($query);
 
