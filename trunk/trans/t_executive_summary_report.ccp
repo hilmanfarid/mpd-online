@@ -138,7 +138,7 @@ WHERE t_cust_acc_dtl_trans_id = {t_cust_acc_dtl_trans_id} " customInsert="SELECT
 	*
 FROM
 	f_insert_executive_summary (
-		508,
+		16,
 		'{user_id}' ,{p_year_period_id},{p_vat_type_id}, {period_type}, {p_finance_period_id},{triwulan},{semester}, '{penjelasan}',
 		'{permasalahan}',
 		'{kesimpulan}',
