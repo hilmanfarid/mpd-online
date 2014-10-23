@@ -84,12 +84,12 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        EXECUTIVE SUMMARY&nbsp;
+        EXECUTIVE SUMMARY&nbsp; 
       </div>
     </div>
     <div class="th tab-button">
@@ -141,9 +141,7 @@ $(document).ready(function()
  
                           <tr>
                             <td align="left">Jenis&nbsp;Pajak&nbsp;</td> 
-                            <td>
-                              <p><input id="t_vat_registrationFormvat_code" class="ControlsRO" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}"><input id="t_vat_registrationFormp_vat_type_id1" value="{p_vat_type_id1}" type="hidden" name="{p_vat_type_id1_Name}"></p>
-                            </td>
+                            <td><input id="t_vat_registrationFormvat_code" class="ControlsRO" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}"><input id="t_vat_registrationFormp_vat_type_id1" value="{p_vat_type_id1}" type="hidden" name="{p_vat_type_id1_Name}"></td>
                           </tr>
  
                           <tr>
@@ -195,33 +193,41 @@ $(document).ready(function()
                     </tr>
                   </table>
  
-                  <table class="Record" cellspacing="0" cellpadding="0">
+                  <table class="Record" border="1" cellspacing="0" cellpadding="0">
                     <!-- BEGIN Error -->
                     <tr class="Error">
                       <td colspan="4">{Error}</td>
                     </tr>
                     <!-- END Error -->
                     <tr class="Controls">
-                      <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Penjelasan</label></label></label></label></label></label></label></td> 
-                      <td colspan="3"><textarea id="t_vat_registrationFormpenjelasan" rows="3" cols="32" readonly name="{penjelasan_Name}">{penjelasan}</textarea>&nbsp;<input id="t_vat_registrationFormt_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"><input id="t_vat_registrationFormp_rqst_type_id" value="{p_rqst_type_id}" type="hidden" name="{p_rqst_type_id_Name}"><input id="t_vat_registrationFormt_execution_summary_id" value="{t_execution_summary_id}" type="hidden" name="{t_execution_summary_id_Name}"><input id="t_vat_registrationFormp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td>
+                      <td class="th">
+                        <p align="center"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Penjelasan</label></label></label></label></label></label></label></p>
+                      </td> 
+                      <td colspan="3"><textarea id="t_vat_registrationFormpenjelasan" class="ControlsRQ" rows="3" cols="100" name="{penjelasan_Name}">{penjelasan}</textarea>&nbsp;<input id="t_vat_registrationFormt_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"><input id="t_vat_registrationFormp_rqst_type_id" value="{p_rqst_type_id}" type="hidden" name="{p_rqst_type_id_Name}"><input id="t_vat_registrationFormt_executive_summary_id" value="{t_executive_summary_id}" type="hidden" name="{t_executive_summary_id_Name}"><input id="t_vat_registrationFormp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"><input id="t_vat_registrationFormt_vat_registration_id" value="{t_vat_registration_id}" type="hidden" name="{t_vat_registration_id_Name}"></td>
                     </tr>
  
                     <tr class="Controls">
-                      <td class="th">Permasalahan</td> 
-                      <td colspan="3"><textarea id="t_vat_registrationFormpermasalahan" rows="3" cols="32" readonly name="{permasalahan_Name}">{permasalahan}</textarea>&nbsp;</td>
+                      <td class="th">
+                        <p align="center">Permasalahan</p>
+                      </td> 
+                      <td colspan="3"><textarea id="t_vat_registrationFormpermasalahan" class="ControlsRQ" rows="3" cols="100" name="{permasalahan_Name}">{permasalahan}</textarea>&nbsp;</td>
                     </tr>
  
                     <tr class="Controls">
-                      <td class="th">Kesimpulan</td> 
-                      <td colspan="3"><textarea id="t_vat_registrationFormkesimpulan" rows="3" cols="32" readonly name="{kesimpulan_Name}">{kesimpulan}</textarea>&nbsp;<input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormTAKEN_CTL" value="{TAKEN_CTL}" size="5" type="hidden" name="{TAKEN_CTL_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormIS_TAKEN" value="{IS_TAKEN}" size="5" type="hidden" name="{IS_TAKEN_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormCURR_DOC_ID" value="{CURR_DOC_ID}" size="5" type="hidden" name="{CURR_DOC_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormCURR_DOC_TYPE_ID" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden" name="{CURR_DOC_TYPE_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormCURR_PROC_ID" value="{CURR_PROC_ID}" size="5" type="hidden" name="{CURR_PROC_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormCURR_CTL_ID" value="{CURR_CTL_ID}" size="5" type="hidden" name="{CURR_CTL_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormUSER_ID_DOC" value="{USER_ID_DOC}" size="5" type="hidden" name="{USER_ID_DOC_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormUSER_ID_DONOR" value="{USER_ID_DONOR}" size="5" type="hidden" name="{USER_ID_DONOR_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormUSER_ID_LOGIN" value="{USER_ID_LOGIN}" size="5" type="hidden" name="{USER_ID_LOGIN_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormUSER_ID_TAKEN" value="{USER_ID_TAKEN}" size="5" type="hidden" name="{USER_ID_TAKEN_Name}">
+                      <td class="th">
+                        <p align="center">Kesimpulan</p>
+                      </td> 
+                      <td colspan="3"><textarea id="t_vat_registrationFormkesimpulan" class="ControlsRQ" rows="3" cols="100" name="{kesimpulan_Name}">{kesimpulan}</textarea>&nbsp;<input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormTAKEN_CTL" value="{TAKEN_CTL}" size="5" type="hidden" name="{TAKEN_CTL_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormIS_TAKEN" value="{IS_TAKEN}" size="5" type="hidden" name="{IS_TAKEN_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormCURR_DOC_ID" value="{CURR_DOC_ID}" size="5" type="hidden" name="{CURR_DOC_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormCURR_DOC_TYPE_ID" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden" name="{CURR_DOC_TYPE_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormCURR_PROC_ID" value="{CURR_PROC_ID}" size="5" type="hidden" name="{CURR_PROC_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormCURR_CTL_ID" value="{CURR_CTL_ID}" size="5" type="hidden" name="{CURR_CTL_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormUSER_ID_DOC" value="{USER_ID_DOC}" size="5" type="hidden" name="{USER_ID_DOC_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormUSER_ID_DONOR" value="{USER_ID_DONOR}" size="5" type="hidden" name="{USER_ID_DONOR_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormUSER_ID_LOGIN" value="{USER_ID_LOGIN}" size="5" type="hidden" name="{USER_ID_LOGIN_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_registrationFormUSER_ID_TAKEN" value="{USER_ID_TAKEN}" size="5" type="hidden" name="{USER_ID_TAKEN_Name}">
 <input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormIS_CREATE_DOC" value="{IS_CREATE_DOC}" size="4" type="hidden" name="{IS_CREATE_DOC_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormIS_MANUAL" value="{IS_MANUAL}" size="4" type="hidden" name="{IS_MANUAL_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormCURR_PROC_STATUS" value="{CURR_PROC_STATUS}" size="4" type="hidden" name="{CURR_PROC_STATUS_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormCURR_DOC_STATUS" value="{CURR_DOC_STATUS}" size="4" type="hidden" name="{CURR_DOC_STATUS_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormPREV_DOC_ID" value="{PREV_DOC_ID}" size="4" type="hidden" name="{PREV_DOC_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormPREV_DOC_TYPE_ID" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden" name="{PREV_DOC_TYPE_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormPREV_PROC_ID" value="{PREV_PROC_ID}" size="4" type="hidden" name="{PREV_PROC_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormPREV_CTL_ID" value="{PREV_CTL_ID}" size="4" type="hidden" name="{PREV_CTL_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormSLOT_1" value="{SLOT_1}" size="4" type="hidden" name="{SLOT_1_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormSLOT_2" value="{SLOT_2}" size="4" type="hidden" name="{SLOT_2_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormSLOT_3" value="{SLOT_3}" size="4" type="hidden" name="{SLOT_3_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormSLOT_4" value="{SLOT_4}" size="4" type="hidden" name="{SLOT_4_Name}">
 <input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormSLOT_5" value="{SLOT_5}" size="4" type="hidden" name="{SLOT_5_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_registrationFormMESSAGE" value="{MESSAGE}" size="4" type="hidden" name="{MESSAGE_Name}"></td>
                     </tr>
  
                     <tr class="Controls">
                       &nbsp; 
-                      <td class="th"><label for="t_vat_registrationFormorder_no1">Saran</label></td> 
-                      <td colspan="3"><textarea id="t_vat_registrationFormsaran" rows="3" cols="32" readonly name="{saran_Name}">{saran}</textarea>
+                      <td class="th">
+                        <p align="center"><label for="t_vat_registrationFormorder_no1">Saran</label></p>
+                      </td> 
+                      <td colspan="3"><textarea id="t_vat_registrationFormsaran" class="ControlsRQ" rows="3" cols="100" name="{saran_Name}">{saran}</textarea>
                         <!-- No Kohir : -->
                       </td>
                     </tr>
@@ -233,7 +239,7 @@ $(document).ready(function()
                     <!-- BEGIN Button Button3 --><input style="DISPLAY: none" id="t_vat_registrationFormButton3" class="btn_tambah" onclick="cetak_sp()" value="CETAK SURAT PENOLAKAN" alt="Button3" type="submit" name="{Button_Name}"><!-- END Button Button3 -->
                     <!-- BEGIN Button Button2 --><input id="t_vat_registrationFormButton2" class="btn_tambah" onclick="submitter()" value="SUBMIT" alt="Button2" type="submit" name="{Button_Name}"><!-- END Button Button2 -->
                     <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_registrationFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
-                    <!-- BEGIN Button Button_Update --><input style="DISPLAY: none" id="t_vat_registrationFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Update --><input id="t_vat_registrationFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
                     <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="t_vat_registrationFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
                     <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_vat_registrationFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
                 </tr>
