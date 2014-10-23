@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     // Class variables
 //End Variables
 
-//Class_Initialize Event @629-FFEF7858
+//Class_Initialize Event @629-3840F5FF
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -107,7 +107,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->Button3 = & new clsButton("Button3", $Method, $this);
             $this->Button4 = & new clsButton("Button4", $Method, $this);
             $this->Button5 = & new clsButton("Button5", $Method, $this);
-            $this->t_execution_summary_id = & new clsControl(ccsHidden, "t_execution_summary_id", "vat", ccsFloat, "", CCGetRequestParam("t_execution_summary_id", $Method, NULL), $this);
+            $this->t_executive_summary_id = & new clsControl(ccsHidden, "t_executive_summary_id", "vat", ccsFloat, "", CCGetRequestParam("t_executive_summary_id", $Method, NULL), $this);
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "Periode Tahun", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
             $this->year_code->Required = true;
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsFloat, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
@@ -127,7 +127,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->ListBox3->DSType = dsListOfValues;
             $this->ListBox3->Values = array(array("1", "I"), array("2", "II"));
             $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
-            $this->vat_code_dtl->Required = true;
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
             $this->Button7 = & new clsButton("Button7", $Method, $this);
             $this->saran = & new clsControl(ccsTextArea, "saran", "Nilai Transaksi", ccsText, "", CCGetRequestParam("saran", $Method, NULL), $this);
@@ -139,6 +138,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->permasalahan->Required = true;
             $this->kesimpulan = & new clsControl(ccsTextArea, "kesimpulan", "Nilai Transaksi", ccsText, "", CCGetRequestParam("kesimpulan", $Method, NULL), $this);
             $this->kesimpulan->Required = true;
+            $this->t_vat_registration_id = & new clsControl(ccsHidden, "t_vat_registration_id", "t_vat_registration_id", ccsText, "", CCGetRequestParam("t_vat_registration_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -154,7 +154,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     }
 //End Initialize Method
 
-//Validate Method @629-2C6A9F0A
+//Validate Method @629-63593A21
     function Validate()
     {
         global $CCSLocales;
@@ -186,7 +186,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->SLOT_4->Validate() && $Validation);
         $Validation = ($this->SLOT_5->Validate() && $Validation);
         $Validation = ($this->MESSAGE->Validate() && $Validation);
-        $Validation = ($this->t_execution_summary_id->Validate() && $Validation);
+        $Validation = ($this->t_executive_summary_id->Validate() && $Validation);
         $Validation = ($this->year_code->Validate() && $Validation);
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
@@ -203,6 +203,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->penjelasan->Validate() && $Validation);
         $Validation = ($this->permasalahan->Validate() && $Validation);
         $Validation = ($this->kesimpulan->Validate() && $Validation);
+        $Validation = ($this->t_vat_registration_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
@@ -230,7 +231,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->SLOT_4->Errors->Count() == 0);
         $Validation =  $Validation && ($this->SLOT_5->Errors->Count() == 0);
         $Validation =  $Validation && ($this->MESSAGE->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->t_execution_summary_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_executive_summary_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
@@ -247,11 +248,12 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->penjelasan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->permasalahan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kesimpulan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_vat_registration_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @629-22F896AF
+//CheckErrors Method @629-EEAFAC86
     function CheckErrors()
     {
         $errors = false;
@@ -281,7 +283,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->SLOT_4->Errors->Count());
         $errors = ($errors || $this->SLOT_5->Errors->Count());
         $errors = ($errors || $this->MESSAGE->Errors->Count());
-        $errors = ($errors || $this->t_execution_summary_id->Errors->Count());
+        $errors = ($errors || $this->t_executive_summary_id->Errors->Count());
         $errors = ($errors || $this->year_code->Errors->Count());
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
@@ -298,6 +300,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->penjelasan->Errors->Count());
         $errors = ($errors || $this->permasalahan->Errors->Count());
         $errors = ($errors || $this->kesimpulan->Errors->Count());
+        $errors = ($errors || $this->t_vat_registration_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -407,19 +410,16 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//UpdateRow Method @629-60A5F8C5
+//UpdateRow Method @629-7140B56E
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
-        $this->DataSource->doc_no->SetValue($this->doc_no->GetValue(true));
-        $this->DataSource->t_cust_acc_status_modif_id->SetValue($this->t_cust_acc_status_modif_id->GetValue(true));
-        $this->DataSource->bap_employee_no_1->SetValue($this->bap_employee_no_1->GetValue(true));
-        $this->DataSource->bap_employee_no_2->SetValue($this->bap_employee_no_2->GetValue(true));
-        $this->DataSource->bap_employee_job_pos_1->SetValue($this->bap_employee_job_pos_1->GetValue(true));
-        $this->DataSource->bap_employee_job_pos_2->SetValue($this->bap_employee_job_pos_2->GetValue(true));
-        $this->DataSource->bap_employee_name_1->SetValue($this->bap_employee_name_1->GetValue(true));
-        $this->DataSource->bap_employee_name_2->SetValue($this->bap_employee_name_2->GetValue(true));
+        $this->DataSource->penjelasan->SetValue($this->penjelasan->GetValue(true));
+        $this->DataSource->permasalahan->SetValue($this->permasalahan->GetValue(true));
+        $this->DataSource->kesimpulan->SetValue($this->kesimpulan->GetValue(true));
+        $this->DataSource->saran->SetValue($this->saran->GetValue(true));
+        $this->DataSource->t_executive_summary_id->SetValue($this->t_executive_summary_id->GetValue(true));
         $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
         $this->DataSource->t_vat_registration_id->SetValue($this->t_vat_registration_id->GetValue(true));
         $this->DataSource->Update();
@@ -428,7 +428,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @629-D80E0CCE
+//Show Method @629-F13CCEBA
     function Show()
     {
         global $CCSUseAmp;
@@ -461,7 +461,7 @@ function GetPrimaryKey($keyName)
                 if(!$this->FormSubmitted){
                     $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
                     $this->p_rqst_type_id->SetValue($this->DataSource->p_rqst_type_id->GetValue());
-                    $this->t_execution_summary_id->SetValue($this->DataSource->t_execution_summary_id->GetValue());
+                    $this->t_executive_summary_id->SetValue($this->DataSource->t_executive_summary_id->GetValue());
                     $this->year_code->SetValue($this->DataSource->year_code->GetValue());
                     $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
                     $this->p_vat_type_id1->SetValue($this->DataSource->p_vat_type_id1->GetValue());
@@ -513,7 +513,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->SLOT_4->Errors->ToString());
             $Error = ComposeStrings($Error, $this->SLOT_5->Errors->ToString());
             $Error = ComposeStrings($Error, $this->MESSAGE->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->t_execution_summary_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_executive_summary_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
@@ -530,6 +530,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->penjelasan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->permasalahan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->kesimpulan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_vat_registration_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -585,7 +586,7 @@ function GetPrimaryKey($keyName)
         $this->Button3->Show();
         $this->Button4->Show();
         $this->Button5->Show();
-        $this->t_execution_summary_id->Show();
+        $this->t_executive_summary_id->Show();
         $this->year_code->Show();
         $this->p_year_period_id->Show();
         $this->vat_code->Show();
@@ -603,6 +604,7 @@ function GetPrimaryKey($keyName)
         $this->penjelasan->Show();
         $this->permasalahan->Show();
         $this->kesimpulan->Show();
+        $this->t_vat_registration_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -613,7 +615,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_registrationFormDataSource Class @629-5993B12E
 
-//DataSource Variables @629-66A0E639
+//DataSource Variables @629-CA053A2B
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -652,7 +654,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $SLOT_4;
     var $SLOT_5;
     var $MESSAGE;
-    var $t_execution_summary_id;
+    var $t_executive_summary_id;
     var $year_code;
     var $p_year_period_id;
     var $vat_code;
@@ -669,9 +671,10 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $penjelasan;
     var $permasalahan;
     var $kesimpulan;
+    var $t_vat_registration_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @629-47370F6E
+//DataSourceClass_Initialize Event @629-2FA2AC39
     function clst_vat_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -729,7 +732,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->MESSAGE = new clsField("MESSAGE", ccsText, "");
         
-        $this->t_execution_summary_id = new clsField("t_execution_summary_id", ccsFloat, "");
+        $this->t_executive_summary_id = new clsField("t_executive_summary_id", ccsFloat, "");
         
         $this->year_code = new clsField("year_code", ccsText, "");
         
@@ -763,6 +766,8 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->kesimpulan = new clsField("kesimpulan", ccsText, "");
         
+        $this->t_vat_registration_id = new clsField("t_vat_registration_id", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -795,12 +800,12 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End Open Method
 
-//SetValues Method @629-61CAB8CF
+//SetValues Method @629-679C5F74
     function SetValues()
     {
         $this->t_customer_order_id->SetDBValue(trim($this->f("t_customer_order_id")));
         $this->p_rqst_type_id->SetDBValue(trim($this->f("p_rqst_type_id")));
-        $this->t_execution_summary_id->SetDBValue(trim($this->f("t_execution_summary_id")));
+        $this->t_executive_summary_id->SetDBValue(trim($this->f("t_executive_summary_id")));
         $this->year_code->SetDBValue($this->f("year_code"));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->p_vat_type_id1->SetDBValue($this->f("p_vat_type_id"));
@@ -819,55 +824,43 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End SetValues Method
 
-//Update Method @629-33DCFE01
+//Update Method @629-B7AAA585
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["doc_no"] = new clsSQLParameter("ctrldoc_no", ccsText, "", "", $this->doc_no->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["t_cust_acc_status_modif_id"] = new clsSQLParameter("ctrlt_cust_acc_status_modif_id", ccsInteger, "", "", $this->t_cust_acc_status_modif_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["bap_employee_no_1"] = new clsSQLParameter("ctrlbap_employee_no_1", ccsText, "", "", $this->bap_employee_no_1->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["bap_employee_no_2"] = new clsSQLParameter("ctrlbap_employee_no_2", ccsText, "", "", $this->bap_employee_no_2->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["bap_employee_job_pos_1"] = new clsSQLParameter("ctrlbap_employee_job_pos_1", ccsText, "", "", $this->bap_employee_job_pos_1->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["bap_employee_job_pos_2"] = new clsSQLParameter("ctrlbap_employee_job_pos_2", ccsText, "", "", $this->bap_employee_job_pos_2->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["bap_employee_name_1"] = new clsSQLParameter("ctrlbap_employee_name_1", ccsText, "", "", $this->bap_employee_name_1->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["bap_employee_name_2"] = new clsSQLParameter("ctrlbap_employee_name_2", ccsText, "", "", $this->bap_employee_name_2->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["user"] = new clsSQLParameter("expr959", ccsText, "", "", CCGEtUserLogin(), "", false, $this->ErrorBlock);
+        $this->cp["penjelasan"] = new clsSQLParameter("ctrlpenjelasan", ccsText, "", "", $this->penjelasan->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["permasalahan"] = new clsSQLParameter("ctrlpermasalahan", ccsText, "", "", $this->permasalahan->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["kesimpulan"] = new clsSQLParameter("ctrlkesimpulan", ccsText, "", "", $this->kesimpulan->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["saran"] = new clsSQLParameter("ctrlsaran", ccsText, "", "", $this->saran->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["t_executive_summary_id"] = new clsSQLParameter("ctrlt_executive_summary_id", ccsInteger, "", "", $this->t_executive_summary_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
-        if (!is_null($this->cp["doc_no"]->GetValue()) and !strlen($this->cp["doc_no"]->GetText()) and !is_bool($this->cp["doc_no"]->GetValue())) 
-            $this->cp["doc_no"]->SetValue($this->doc_no->GetValue(true));
-        if (!is_null($this->cp["t_cust_acc_status_modif_id"]->GetValue()) and !strlen($this->cp["t_cust_acc_status_modif_id"]->GetText()) and !is_bool($this->cp["t_cust_acc_status_modif_id"]->GetValue())) 
-            $this->cp["t_cust_acc_status_modif_id"]->SetValue($this->t_cust_acc_status_modif_id->GetValue(true));
-        if (!strlen($this->cp["t_cust_acc_status_modif_id"]->GetText()) and !is_bool($this->cp["t_cust_acc_status_modif_id"]->GetValue(true))) 
-            $this->cp["t_cust_acc_status_modif_id"]->SetText(0);
-        if (!is_null($this->cp["bap_employee_no_1"]->GetValue()) and !strlen($this->cp["bap_employee_no_1"]->GetText()) and !is_bool($this->cp["bap_employee_no_1"]->GetValue())) 
-            $this->cp["bap_employee_no_1"]->SetValue($this->bap_employee_no_1->GetValue(true));
-        if (!is_null($this->cp["bap_employee_no_2"]->GetValue()) and !strlen($this->cp["bap_employee_no_2"]->GetText()) and !is_bool($this->cp["bap_employee_no_2"]->GetValue())) 
-            $this->cp["bap_employee_no_2"]->SetValue($this->bap_employee_no_2->GetValue(true));
-        if (!is_null($this->cp["bap_employee_job_pos_1"]->GetValue()) and !strlen($this->cp["bap_employee_job_pos_1"]->GetText()) and !is_bool($this->cp["bap_employee_job_pos_1"]->GetValue())) 
-            $this->cp["bap_employee_job_pos_1"]->SetValue($this->bap_employee_job_pos_1->GetValue(true));
-        if (!is_null($this->cp["bap_employee_job_pos_2"]->GetValue()) and !strlen($this->cp["bap_employee_job_pos_2"]->GetText()) and !is_bool($this->cp["bap_employee_job_pos_2"]->GetValue())) 
-            $this->cp["bap_employee_job_pos_2"]->SetValue($this->bap_employee_job_pos_2->GetValue(true));
-        if (!is_null($this->cp["bap_employee_name_1"]->GetValue()) and !strlen($this->cp["bap_employee_name_1"]->GetText()) and !is_bool($this->cp["bap_employee_name_1"]->GetValue())) 
-            $this->cp["bap_employee_name_1"]->SetValue($this->bap_employee_name_1->GetValue(true));
-        if (!is_null($this->cp["bap_employee_name_2"]->GetValue()) and !strlen($this->cp["bap_employee_name_2"]->GetText()) and !is_bool($this->cp["bap_employee_name_2"]->GetValue())) 
-            $this->cp["bap_employee_name_2"]->SetValue($this->bap_employee_name_2->GetValue(true));
         if (!is_null($this->cp["user"]->GetValue()) and !strlen($this->cp["user"]->GetText()) and !is_bool($this->cp["user"]->GetValue())) 
             $this->cp["user"]->SetValue(CCGEtUserLogin());
-        $this->SQL = "UPDATE t_cust_acc_status_modif SET \n" .
-        "doc_no='" . $this->SQLValue($this->cp["doc_no"]->GetDBValue(), ccsText) . "', \n" .
-        "bap_employee_no_1='" . $this->SQLValue($this->cp["bap_employee_no_1"]->GetDBValue(), ccsText) . "', \n" .
-        "bap_employee_no_2='" . $this->SQLValue($this->cp["bap_employee_no_2"]->GetDBValue(), ccsText) . "', \n" .
-        "bap_employee_job_pos_1='" . $this->SQLValue($this->cp["bap_employee_job_pos_1"]->GetDBValue(), ccsText) . "', \n" .
-        "bap_employee_job_pos_2='" . $this->SQLValue($this->cp["bap_employee_job_pos_2"]->GetDBValue(), ccsText) . "', \n" .
-        "bap_employee_name_1='" . $this->SQLValue($this->cp["bap_employee_name_1"]->GetDBValue(), ccsText) . "', \n" .
-        "bap_employee_name_2='" . $this->SQLValue($this->cp["bap_employee_name_2"]->GetDBValue(), ccsText) . "', \n" .
+        if (!is_null($this->cp["penjelasan"]->GetValue()) and !strlen($this->cp["penjelasan"]->GetText()) and !is_bool($this->cp["penjelasan"]->GetValue())) 
+            $this->cp["penjelasan"]->SetValue($this->penjelasan->GetValue(true));
+        if (!is_null($this->cp["permasalahan"]->GetValue()) and !strlen($this->cp["permasalahan"]->GetText()) and !is_bool($this->cp["permasalahan"]->GetValue())) 
+            $this->cp["permasalahan"]->SetValue($this->permasalahan->GetValue(true));
+        if (!is_null($this->cp["kesimpulan"]->GetValue()) and !strlen($this->cp["kesimpulan"]->GetText()) and !is_bool($this->cp["kesimpulan"]->GetValue())) 
+            $this->cp["kesimpulan"]->SetValue($this->kesimpulan->GetValue(true));
+        if (!is_null($this->cp["saran"]->GetValue()) and !strlen($this->cp["saran"]->GetText()) and !is_bool($this->cp["saran"]->GetValue())) 
+            $this->cp["saran"]->SetValue($this->saran->GetValue(true));
+        if (!is_null($this->cp["t_executive_summary_id"]->GetValue()) and !strlen($this->cp["t_executive_summary_id"]->GetText()) and !is_bool($this->cp["t_executive_summary_id"]->GetValue())) 
+            $this->cp["t_executive_summary_id"]->SetValue($this->t_executive_summary_id->GetValue(true));
+        if (!strlen($this->cp["t_executive_summary_id"]->GetText()) and !is_bool($this->cp["t_executive_summary_id"]->GetValue(true))) 
+            $this->cp["t_executive_summary_id"]->SetText(0);
+        $this->SQL = "UPDATE t_executive_summary SET \n" .
+        "permasalahan='" . $this->SQLValue($this->cp["permasalahan"]->GetDBValue(), ccsText) . "', \n" .
+        "penjelasan='" . $this->SQLValue($this->cp["penjelasan"]->GetDBValue(), ccsText) . "', \n" .
+        "kesimpulan='" . $this->SQLValue($this->cp["kesimpulan"]->GetDBValue(), ccsText) . "', \n" .
+        "saran='" . $this->SQLValue($this->cp["saran"]->GetDBValue(), ccsText) . "', \n" .
         "updated_date=sysdate,\n" .
         "updated_by='" . $this->SQLValue($this->cp["user"]->GetDBValue(), ccsText) . "' \n" .
         "WHERE  \n" .
-        "t_cust_acc_status_modif_id = \n" .
-        "" . $this->SQLValue($this->cp["t_cust_acc_status_modif_id"]->GetDBValue(), ccsInteger) . "";
+        "t_executive_summary_id = \n" .
+        "" . $this->SQLValue($this->cp["t_executive_summary_id"]->GetDBValue(), ccsInteger) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -877,8 +870,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
 //End Update Method
 
 } //End t_vat_registrationFormDataSource Class @629-FCB6E20C
-
-
 
 //Initialize Page @1-887D5AB4
 // Variables
