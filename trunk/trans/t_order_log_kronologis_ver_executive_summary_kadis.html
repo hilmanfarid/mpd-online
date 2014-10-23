@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_vat_setllement</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toOrder()">
+      <div class="tab-title">
+        EXECUTIVE SUMMARY&nbsp;
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toReg3()">
+      <div class="tab-title">
+        DOKUMEN PENDUKUNG 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DATA LOG AKTIFITAS 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_order_log_kronologisSearch -->
+        <form id="t_order_log_kronologisSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchTAKEN_CTL" value="{TAKEN_CTL}" size="5" type="hidden" name="{TAKEN_CTL_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchIS_TAKEN" value="{IS_TAKEN}" size="5" type="hidden" name="{IS_TAKEN_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchCURR_DOC_ID" value="{CURR_DOC_ID}" size="5" type="hidden" name="{CURR_DOC_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchCURR_DOC_TYPE_ID" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden" name="{CURR_DOC_TYPE_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchCURR_PROC_ID" value="{CURR_PROC_ID}" size="5" type="hidden" name="{CURR_PROC_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchCURR_CTL_ID" value="{CURR_CTL_ID}" size="5" type="hidden" name="{CURR_CTL_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchUSER_ID_DOC" value="{USER_ID_DOC}" size="5" type="hidden" name="{USER_ID_DOC_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchUSER_ID_DONOR" value="{USER_ID_DONOR}" size="5" type="hidden" name="{USER_ID_DONOR_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchUSER_ID_LOGIN" value="{USER_ID_LOGIN}" size="5" type="hidden" name="{USER_ID_LOGIN_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_order_log_kronologisSearchUSER_ID_TAKEN" value="{USER_ID_TAKEN}" size="5" type="hidden" name="{USER_ID_TAKEN_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchIS_CREATE_DOC" value="{IS_CREATE_DOC}" size="4" type="hidden" name="{IS_CREATE_DOC_Name}">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchIS_MANUAL" value="{IS_MANUAL}" size="4" type="hidden" name="{IS_MANUAL_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchCURR_PROC_STATUS" value="{CURR_PROC_STATUS}" size="4" type="hidden" name="{CURR_PROC_STATUS_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchCURR_DOC_STATUS" value="{CURR_DOC_STATUS}" size="4" type="hidden" name="{CURR_DOC_STATUS_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchPREV_DOC_ID" value="{PREV_DOC_ID}" size="4" type="hidden" name="{PREV_DOC_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchPREV_DOC_TYPE_ID" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden" name="{PREV_DOC_TYPE_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchPREV_PROC_ID" value="{PREV_PROC_ID}" size="4" type="hidden" name="{PREV_PROC_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchPREV_CTL_ID" value="{PREV_CTL_ID}" size="4" type="hidden" name="{PREV_CTL_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchSLOT_1" value="{SLOT_1}" size="4" type="hidden" name="{SLOT_1_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchSLOT_2" value="{SLOT_2}" size="4" type="hidden" name="{SLOT_2_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchSLOT_3" value="{SLOT_3}" size="4" type="hidden" name="{SLOT_3_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchSLOT_4" value="{SLOT_4}" size="4" type="hidden" name="{SLOT_4_Name}">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchSLOT_5" value="{SLOT_5}" size="4" type="hidden" name="{SLOT_5_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_order_log_kronologisSearchMESSAGE" value="{MESSAGE}" size="4" type="hidden" name="{MESSAGE_Name}"><input id="t_order_log_kronologisSearcht_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"><input id="t_order_log_kronologisSearchp_rqst_type_id" value="{p_rqst_type_id}" type="hidden" name="{p_rqst_type_id_Name}"><input id="t_order_log_kronologisSearcht_vat_registration_id" value="{t_vat_registration_id}" type="hidden" name="{t_vat_registration_id_Name}">
+        </form>
+        <!-- END Record t_order_log_kronologisSearch --><br>
+        <!-- BEGIN Grid t_order_log_kronologisGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DATA LOG AKTIFITAS</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" scope="col">Tanggal</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Jam</th>
+ 
+                  <th scope="col">Aktivitas</th>
+ 
+                  <th style="TEXT-ALIGN: center" colspan="4" scope="col">Oleh</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_order_log_kronologisGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center">{log_date_txt}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: center">{log_hour}&nbsp;</td> 
+                  <td>Aktifitas : {lbl_edit}&nbsp;{activity}<input id="t_order_log_kronologisGridcounter_no_{t_order_log_kronologisGrid:rowNumber}" value="{counter_no}" type="hidden" name="{counter_no_Name}"><input id="t_order_log_kronologisGridt_customer_order_id_{t_order_log_kronologisGrid:rowNumber}" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"><br>
+                    {description}</td> 
+                  <td style="TEXT-ALIGN: center" colspan="4">{app_user_name}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="7">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td>&nbsp;<a href="{Insert_Link_Src}" id="t_order_log_kronologisGridInsert_Link" onclick="return tambah()"><img border="0" src="../images/insert_link.gif"></a></td> 
+                  <td style="TEXT-ALIGN: right" colspan="7"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_order_log_kronologisGrid --></td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function tambah() {
+     var pid=document.getElementById("t_order_log_kronologisSearcht_customer_order_id").value;
+        var id_req=document.getElementById("t_order_log_kronologisSearchp_rqst_type_id").value;
+        var id_vat = document.getElementById("t_order_log_kronologisSearcht_vat_registration_id").value;  
+        var takenCtl = document.getElementById('t_order_log_kronologisSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_order_log_kronologisSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_order_log_kronologisSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_order_log_kronologisSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_order_log_kronologisSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_order_log_kronologisSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_order_log_kronologisSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_order_log_kronologisSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_order_log_kronologisSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_order_log_kronologisSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_order_log_kronologisSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_order_log_kronologisSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_order_log_kronologisSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_order_log_kronologisSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_order_log_kronologisSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_order_log_kronologisSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_order_log_kronologisSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_order_log_kronologisSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_order_log_kronologisSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_order_log_kronologisSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_order_log_kronologisSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_order_log_kronologisSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_order_log_kronologisSearchSLOT_5').value;
+        var msg = document.getElementById('t_order_log_kronologisSearchMESSAGE').value;
+                     
+         var urlLink = "?FLAG=ADD&t_customer_order_id="+pid
+                                +"&p_rqst_type_id="+id_req
+                                //+"&t_vat_registration_id="+id_vat
+                                +"&TAKEN_CTL="+takenCtl
+                                +"&IS_TAKEN="+isTaken
+                                +"&CURR_DOC_ID="+currDocId
+                                +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                +"&CURR_PROC_ID="+currProcId
+                                +"&CURR_CTL_ID="+currCtlId
+                                +"&USER_ID_DOC="+userIdDoc
+                                +"&USER_ID_DONOR="+userIdDonor
+                                +"&USER_ID_LOGIN="+userIdLogin
+                                +"&USER_ID_TAKEN="+userIdTaken
+                                +"&IS_CREATE_DOC="+isCreateDoc
+                                +"&IS_MANUAL="+isManual
+                                +"&CURR_PROC_STATUS="+currProcStatus
+                                +"&CURR_DOC_STATUS="+currDocStatus
+                                +"&PREV_DOC_ID="+PrevDocId
+                                +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                +"&PREV_PROC_ID="+PrevProcId
+                                +"&PREV_CTL_ID="+PrevCtlId
+                                +"&SLOT_1="+slot1
+                                +"&SLOT_2="+slot2
+                                +"&SLOT_3="+slot3
+                                +"&SLOT_4="+slot4
+                                +"&SLOT_5="+slot5
+                                +"&MESSAGE="+msg;
+     return popup("t_order_log_kronologis_form_ver_kadis.php"+urlLink);
+}
+
+function toReg2()
+{
+        var pid=document.getElementById("t_order_log_kronologisSearcht_customer_order_id").value;
+        var id_req=document.getElementById("t_order_log_kronologisSearchp_rqst_type_id").value;
+        var id_vat = document.getElementById("t_order_log_kronologisSearcht_vat_registration_id").value;  
+        var takenCtl = document.getElementById('t_order_log_kronologisSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_order_log_kronologisSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_order_log_kronologisSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_order_log_kronologisSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_order_log_kronologisSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_order_log_kronologisSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_order_log_kronologisSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_order_log_kronologisSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_order_log_kronologisSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_order_log_kronologisSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_order_log_kronologisSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_order_log_kronologisSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_order_log_kronologisSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_order_log_kronologisSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_order_log_kronologisSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_order_log_kronologisSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_order_log_kronologisSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_order_log_kronologisSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_order_log_kronologisSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_order_log_kronologisSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_order_log_kronologisSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_order_log_kronologisSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_order_log_kronologisSearchSLOT_5').value;
+        var msg = document.getElementById('t_order_log_kronologisSearchMESSAGE').value;
+                 
+  location.href="t_vat_reg_dtl_ro_ver.php?t_customer_order_id="+pid
+                                                                                +"&p_rqst_type_id="+id_req
+                                                                                +"&t_vat_registration_id="+id_vat
+                                                                                +"&TAKEN_CTL="+takenCtl
+                                                                                +"&IS_TAKEN="+isTaken
+                                                                                +"&CURR_DOC_ID="+currDocId
+                                                                                +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                +"&CURR_PROC_ID="+currProcId
+                                                                                +"&CURR_CTL_ID="+currCtlId
+                                                                                +"&USER_ID_DOC="+userIdDoc
+                                                                                +"&USER_ID_DONOR="+userIdDonor
+                                                                                +"&USER_ID_LOGIN="+userIdLogin
+                                                                                +"&USER_ID_TAKEN="+userIdTaken
+                                                                                +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                +"&IS_MANUAL="+isManual
+                                                                                +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                +"&PREV_DOC_ID="+PrevDocId
+                                                                                +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                +"&PREV_PROC_ID="+PrevProcId
+                                                                                +"&PREV_CTL_ID="+PrevCtlId
+                                                                                +"&SLOT_1="+slot1
+                                                                                +"&SLOT_2="+slot2
+                                                                                +"&SLOT_3="+slot3
+                                                                                +"&SLOT_4="+slot4
+                                                                                +"&SLOT_5="+slot5
+                                                                                +"&MESSAGE="+msg;
+     
+}
+
+function toOrder()
+{
+        var pid=document.getElementById("t_order_log_kronologisSearcht_customer_order_id").value;
+        var id_req=document.getElementById("t_order_log_kronologisSearchp_rqst_type_id").value;
+        //var id_vat = document.getElementById("t_order_log_kronologisSearcht_vat_registration_id").value;  
+        var takenCtl = document.getElementById('t_order_log_kronologisSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_order_log_kronologisSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_order_log_kronologisSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_order_log_kronologisSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_order_log_kronologisSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_order_log_kronologisSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_order_log_kronologisSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_order_log_kronologisSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_order_log_kronologisSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_order_log_kronologisSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_order_log_kronologisSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_order_log_kronologisSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_order_log_kronologisSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_order_log_kronologisSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_order_log_kronologisSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_order_log_kronologisSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_order_log_kronologisSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_order_log_kronologisSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_order_log_kronologisSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_order_log_kronologisSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_order_log_kronologisSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_order_log_kronologisSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_order_log_kronologisSearchSLOT_5').value;
+        var msg = document.getElementById('t_order_log_kronologisSearchMESSAGE').value;
+                 
+  location.href="t_executive_summary_report_ver_kadis.php?t_customer_order_id="+pid
+                                                                                +"&p_rqst_type_id="+id_req
+                                                                                +"&TAKEN_CTL="+takenCtl
+                                                                                +"&IS_TAKEN="+isTaken
+                                                                                +"&CURR_DOC_ID="+currDocId
+                                                                                +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                +"&CURR_PROC_ID="+currProcId
+                                                                                +"&CURR_CTL_ID="+currCtlId
+                                                                                +"&USER_ID_DOC="+userIdDoc
+                                                                                +"&USER_ID_DONOR="+userIdDonor
+                                                                                +"&USER_ID_LOGIN="+userIdLogin
+                                                                                +"&USER_ID_TAKEN="+userIdTaken
+                                                                                +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                +"&IS_MANUAL="+isManual
+                                                                                +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                +"&PREV_DOC_ID="+PrevDocId
+                                                                                +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                +"&PREV_PROC_ID="+PrevProcId
+                                                                                +"&PREV_CTL_ID="+PrevCtlId
+                                                                                +"&SLOT_1="+slot1
+                                                                                +"&SLOT_2="+slot2
+                                                                                +"&SLOT_3="+slot3
+                                                                                +"&SLOT_4="+slot4
+                                                                                +"&SLOT_5="+slot5
+                                                                                +"&MESSAGE="+msg;
+     
+}
+
+function toReg3()
+{
+        var pid=document.getElementById("t_order_log_kronologisSearcht_customer_order_id").value;
+        var id_req=document.getElementById("t_order_log_kronologisSearchp_rqst_type_id").value;
+        //var id_vat = document.getElementById("t_order_log_kronologisSearcht_vat_registration_id").value;  
+        var takenCtl = document.getElementById('t_order_log_kronologisSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_order_log_kronologisSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_order_log_kronologisSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_order_log_kronologisSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_order_log_kronologisSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_order_log_kronologisSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_order_log_kronologisSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_order_log_kronologisSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_order_log_kronologisSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_order_log_kronologisSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_order_log_kronologisSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_order_log_kronologisSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_order_log_kronologisSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_order_log_kronologisSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_order_log_kronologisSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_order_log_kronologisSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_order_log_kronologisSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_order_log_kronologisSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_order_log_kronologisSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_order_log_kronologisSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_order_log_kronologisSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_order_log_kronologisSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_order_log_kronologisSearchSLOT_5').value;
+        var msg = document.getElementById('t_order_log_kronologisSearchMESSAGE').value;
+                 
+  location.href="t_cust_order_legal_doc_ro_ver_executive_summary_kadis.php?t_customer_order_id="+pid
+                                                                                +"&p_rqst_type_id="+id_req
+                                                                                +"&TAKEN_CTL="+takenCtl
+                                                                                +"&IS_TAKEN="+isTaken
+                                                                                +"&CURR_DOC_ID="+currDocId
+                                                                                +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                +"&CURR_PROC_ID="+currProcId
+                                                                                +"&CURR_CTL_ID="+currCtlId
+                                                                                +"&USER_ID_DOC="+userIdDoc
+                                                                                +"&USER_ID_DONOR="+userIdDonor
+                                                                                +"&USER_ID_LOGIN="+userIdLogin
+                                                                                +"&USER_ID_TAKEN="+userIdTaken
+                                                                                +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                +"&IS_MANUAL="+isManual
+                                                                                +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                +"&PREV_DOC_ID="+PrevDocId
+                                                                                +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                +"&PREV_PROC_ID="+PrevProcId
+                                                                                +"&PREV_CTL_ID="+PrevCtlId
+                                                                                +"&SLOT_1="+slot1
+                                                                                +"&SLOT_2="+slot2
+                                                                                +"&SLOT_3="+slot3
+                                                                                +"&SLOT_4="+slot4
+                                                                                +"&SLOT_5="+slot5
+                                                                                +"&MESSAGE="+msg;
+     
+}
+</script>
+</body>
+</html>
