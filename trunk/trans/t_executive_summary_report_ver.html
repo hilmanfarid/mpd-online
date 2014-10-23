@@ -84,12 +84,12 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        PENDAFTARAN WAJIB PAJAK 
+        EXECUTIVE SUMMARY&nbsp;
       </div>
     </div>
     <div class="th tab-button">
@@ -120,7 +120,7 @@ $(document).ready(function()
                 <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                    <td class="th"><strong>DETAIL&nbsp;FORMULIR PENDAFTARAN</strong></td> 
+                    <td class="th"><strong>DETAIL&nbsp;EXECUTIVE SUMMARY</strong></td> 
                     <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
                 </table>
@@ -301,7 +301,7 @@ function toReg3()
         var msg = document.getElementById('t_vat_registrationFormMESSAGE').value;
         if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
     {
-     location.href="t_cust_order_legal_doc_ro_ver_penutupan.php?t_customer_order_id="+pid
+     location.href="t_cust_order_legal_doc_ro_ver_executive_summary.php?t_customer_order_id="+pid
                                         +"&p_rqst_type_id="+id_req
                                         +"&TAKEN_CTL="+takenCtl
                                         +"&IS_TAKEN="+isTaken
@@ -371,7 +371,7 @@ function toActive()
 
         if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
     {
-     location.href="t_order_log_kronologis_ver_penutupan.php?t_customer_order_id="+pid
+     location.href="t_order_log_kronologis_ver_executive_summary.php?t_customer_order_id="+pid
                                                                                                   +"&p_rqst_type_id="+id_req
                                                                                                   +"&TAKEN_CTL="+takenCtl
                                                                                                         +"&IS_TAKEN="+isTaken
