@@ -100,7 +100,7 @@ class FormCetak extends FPDF {
 		$lengthCell = $startX + 20;
 		
 		// Set margins
-		$this->SetLeftMargin(15);
+		$this->SetLeftMargin(17);
 		$this->SetRightMargin(15);
 		
 		// Judul
@@ -108,6 +108,7 @@ class FormCetak extends FPDF {
 			$this->Cell($lengthCell, $this->height, "", 0, 0, "C");
 			$this->Ln();
 		}
+		$this->Ln();
 		$this->Ln();
 		$this->Ln();
 		$this->SetFont('Times', 'B', 12);
@@ -227,7 +228,7 @@ class FormCetak extends FPDF {
 			$this->Cell($formLen1, $this->height, "6. Alamat Wajib Pajak", 0, 0, 'L');
 			$this->SetFont('Times', '', 11);
 			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], 0, 0, 'L');
+			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], '', 0, 'L');
 		
 			// Form 7. Alamat Badan/Perusahaan
 			$this->Ln();
@@ -407,7 +408,7 @@ class FormCetak extends FPDF {
 		$this->Cell($sigLen1, $this->height, "NIP. 19600308 198503 1 007", 0, 0, 'C');
 		
 		// Tembusan
-		$this->Ln();
+		
 		$this->Ln();
 		$this->Ln();
 		$this->Ln();
