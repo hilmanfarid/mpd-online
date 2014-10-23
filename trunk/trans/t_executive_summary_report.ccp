@@ -43,7 +43,7 @@
 					<Events>
 						<Event name="OnClick" type="Client">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="109"/>
+								<Action actionName="Custom Code" actionCategory="General" id="109" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
@@ -219,16 +219,16 @@ FROM
 					</Actions>
 				</Event>
 				<Event name="AfterInsert" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="132"/>
-</Actions>
-</Event>
-<Event name="BeforeInsert" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="133"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="132"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="133"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="46" conditionType="Parameter" useIsNull="False" field="t_cust_acc_dtl_trans_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cust_acc_dtl_trans_id"/>
 			</TableParameters>
@@ -268,23 +268,23 @@ FROM
 				<Field id="73" tableName="t_cust_acc_dtl_trans" fieldName="p_pwr_classification_id"/>
 			</Fields>
 			<ISPParameters>
-<SPParameter id="Key135" parameterName="i_status_date" parameterSource="i_status_date" dataType="DateTime" parameterType="URL" dataSize="26" direction="Input" scale="0" precision="6"/>
-<SPParameter id="Key136" parameterName="o_result_code" parameterSource="o_result_code" dataType="Numeric" parameterType="URL" dataSize="0" direction="Output" scale="10" precision="6"/>
-<SPParameter id="Key137" parameterName="o_result_msg" parameterSource="o_result_msg" dataType="Char" parameterType="URL" dataSize="255" direction="Output" scale="10" precision="6"/>
-</ISPParameters>
+				<SPParameter id="Key135" parameterName="i_status_date" parameterSource="i_status_date" dataType="DateTime" parameterType="URL" dataSize="26" direction="Input" scale="0" precision="6"/>
+				<SPParameter id="Key136" parameterName="o_result_code" parameterSource="o_result_code" dataType="Numeric" parameterType="URL" dataSize="0" direction="Output" scale="10" precision="6"/>
+				<SPParameter id="Key137" parameterName="o_result_msg" parameterSource="o_result_msg" dataType="Char" parameterType="URL" dataSize="255" direction="Output" scale="10" precision="6"/>
+			</ISPParameters>
 			<ISQLParameters>
 				<SQLParameter id="134" variable="penjelasan" dataType="Text" parameterType="Control" parameterSource="penjelasan"/>
-<SQLParameter id="135" variable="permasalahan" dataType="Text" parameterType="Control" parameterSource="permasalahan" format="0"/>
-<SQLParameter id="136" variable="kesimpulan" dataType="Text" parameterType="Control" parameterSource="kesimpulan" format="0"/>
-<SQLParameter id="137" variable="saran" dataType="Text" parameterType="Control" parameterSource="saran" format="0"/>
-<SQLParameter id="138" variable="p_vat_type_id" dataType="Text" parameterType="Control" parameterSource="p_vat_type_id"/>
-<SQLParameter id="139" variable="p_finance_period_id" dataType="Float" parameterType="Control" parameterSource="p_finance_period_id" defaultValue="0"/>
-<SQLParameter id="140" variable="period_type" dataType="Text" parameterType="Control" parameterSource="period_type"/>
-<SQLParameter id="141" variable="triwulan" dataType="Float" parameterType="Control" parameterSource="triwulan" defaultValue="0"/>
-<SQLParameter id="142" variable="semester" dataType="Float" parameterType="Control" parameterSource="semester" defaultValue="0"/>
-<SQLParameter id="145" variable="p_year_period_id" dataType="Float" parameterType="Control" parameterSource="p_year_period_id"/>
-<SQLParameter id="146" variable="user_id" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
-</ISQLParameters>
+				<SQLParameter id="135" variable="permasalahan" dataType="Text" parameterType="Control" parameterSource="permasalahan" format="0"/>
+				<SQLParameter id="136" variable="kesimpulan" dataType="Text" parameterType="Control" parameterSource="kesimpulan" format="0"/>
+				<SQLParameter id="137" variable="saran" dataType="Text" parameterType="Control" parameterSource="saran" format="0"/>
+				<SQLParameter id="138" variable="p_vat_type_id" dataType="Text" parameterType="Control" parameterSource="p_vat_type_id"/>
+				<SQLParameter id="139" variable="p_finance_period_id" dataType="Float" parameterType="Control" parameterSource="p_finance_period_id" defaultValue="0"/>
+				<SQLParameter id="140" variable="period_type" dataType="Text" parameterType="Control" parameterSource="period_type"/>
+				<SQLParameter id="141" variable="triwulan" dataType="Float" parameterType="Control" parameterSource="triwulan" defaultValue="0"/>
+				<SQLParameter id="142" variable="semester" dataType="Float" parameterType="Control" parameterSource="semester" defaultValue="0"/>
+				<SQLParameter id="145" variable="p_year_period_id" dataType="Float" parameterType="Control" parameterSource="p_year_period_id"/>
+				<SQLParameter id="146" variable="user_id" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="118" field="penjelasan" dataType="Text" parameterType="Control" parameterSource="penjelasan" omitIfEmpty="True"/>
 				<CustomParameter id="119" field="permasalahan" dataType="Text" parameterType="Control" parameterSource="permasalahan" format="0" omitIfEmpty="True"/>
@@ -298,7 +298,7 @@ FROM
 				<CustomParameter id="128" field="created_by" dataType="Text" parameterType="Session" format="UserLogin" omitIfEmpty="True" parameterSource="created_by"/>
 				<CustomParameter id="130" field="updated_by" parameterType="Session" omitIfEmpty="True" parameterSource="updated_by" dataType="Text"/>
 				<CustomParameter id="131" field="p_year_period_id" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="p_year_period_id"/>
-</IFormElements>
+			</IFormElements>
 			<USPParameters/>
 			<USQLParameters>
 				<SQLParameter id="89" variable="service_desc" parameterType="Control" dataType="Text" parameterSource="service_desc"/>
