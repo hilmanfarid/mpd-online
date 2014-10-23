@@ -1,18 +1,15 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="629" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_registrationForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customUpdate="UPDATE t_cust_acc_status_modif SET 
-doc_no='{doc_no}', 
-bap_employee_no_1='{bap_employee_no_1}', 
-bap_employee_no_2='{bap_employee_no_2}', 
-bap_employee_job_pos_1='{bap_employee_job_pos_1}', 
-bap_employee_job_pos_2='{bap_employee_job_pos_2}', 
-bap_employee_name_1='{bap_employee_name_1}', 
-bap_employee_name_2='{bap_employee_name_2}', 
+		<Record id="629" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_registrationForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customUpdate="UPDATE t_executive_summary SET 
+permasalahan='{permasalahan}', 
+penjelasan='{penjelasan}', 
+kesimpulan='{kesimpulan}', 
+saran='{saran}', 
 updated_date=sysdate,
 updated_by='{user}' 
 WHERE  
-t_cust_acc_status_modif_id = 
-{t_cust_acc_status_modif_id}" activeTableType="customDelete" dataSource="select x.vat_code,y.year_code,z.code as period_code, a.* from t_executive_summary a
+t_executive_summary_id = 
+{t_executive_summary_id}" activeTableType="customDelete" dataSource="select x.vat_code,y.year_code,z.code as period_code, a.* from t_executive_summary a
 left join p_vat_type x on x.p_vat_type_id= a.p_vat_type_id
 left join p_year_period y on y.p_year_period_id= a.p_year_period_id
 left join p_finance_period z on z.p_finance_period_id = a.p_finance_period_id
@@ -234,7 +231,7 @@ where t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Hidden id="960" fieldSourceType="DBColumn" dataType="Float" name="t_execution_summary_id" caption="vat" wizardCaption="P App User Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormt_execution_summary_id" fieldSource="t_execution_summary_id">
+				<Hidden id="960" fieldSourceType="DBColumn" dataType="Float" name="t_executive_summary_id" caption="vat" wizardCaption="P App User Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormt_executive_summary_id" fieldSource="t_executive_summary_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -246,25 +243,25 @@ where t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="13" fieldSourceType="DBColumn" dataType="Float" name="p_year_period_id" PathID="t_vat_registrationFormp_year_period_id">
+				<Hidden id="13" fieldSourceType="DBColumn" dataType="Float" name="p_year_period_id" PathID="t_vat_registrationFormp_year_period_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_registrationFormvat_code" required="True" caption="Ayat Pajak" fieldSource="vat_code">
+				<TextBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_registrationFormvat_code" required="True" caption="Ayat Pajak" fieldSource="vat_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="20" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id1" PathID="t_vat_registrationFormp_vat_type_id1" fieldSource="p_vat_type_id">
+				<Hidden id="20" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id1" PathID="t_vat_registrationFormp_vat_type_id1" fieldSource="p_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<ListBox id="106" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormListBox1" connection="ConnSIKP" _valueOfList="3" _nameOfList="Per Semester" dataSource="1;Per Bulan;2;Per Triwulan;3;Per Semester" fieldSource="period_type">
+				<ListBox id="106" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormListBox1" connection="ConnSIKP" _valueOfList="3" _nameOfList="Per Semester" dataSource="1;Per Bulan;2;Per Triwulan;3;Per Semester" fieldSource="period_type">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -276,19 +273,19 @@ where t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<TextBox id="104" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="period_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_registrationFormperiod_code" required="True" caption="Bulan" fieldSource="period_code">
+				<TextBox id="104" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="period_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_registrationFormperiod_code" required="True" caption="Bulan" fieldSource="period_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="105" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" PathID="t_vat_registrationFormp_finance_period_id" fieldSource="p_finance_period_id">
+				<Hidden id="105" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" PathID="t_vat_registrationFormp_finance_period_id" fieldSource="p_finance_period_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<ListBox id="107" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormListBox2" connection="ConnSIKP" dataSource="1;I;2;II;3;III;4;IV" _valueOfList="4" _nameOfList="IV" fieldSource="triwulan">
+				<ListBox id="107" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormListBox2" connection="ConnSIKP" dataSource="1;I;2;II;3;III;4;IV" _valueOfList="4" _nameOfList="IV" fieldSource="triwulan">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -300,7 +297,7 @@ where t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<ListBox id="108" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox3" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormListBox3" connection="ConnSIKP" dataSource="1;I;2;II" _valueOfList="4" _nameOfList="IV" fieldSource="semester">
+				<ListBox id="108" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox3" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormListBox3" connection="ConnSIKP" dataSource="1;I;2;II" _valueOfList="4" _nameOfList="IV" fieldSource="semester">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -312,19 +309,19 @@ where t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_registrationFormvat_code_dtl" required="True" caption="Ayat Pajak" fieldSource="vat_code_dtl">
+				<TextBox id="21" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_vat_registrationFormvat_code_dtl" required="False" caption="Ayat Pajak" fieldSource="vat_code_dtl">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="23" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" PathID="t_vat_registrationFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+				<Hidden id="23" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" PathID="t_vat_registrationFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Button id="24" urlType="Relative" enableValidation="True" isDefault="False" name="Button7" PathID="t_vat_registrationFormButton7">
+				<Button id="24" urlType="Relative" enableValidation="True" isDefault="False" name="Button7" PathID="t_vat_registrationFormButton7">
 					<Components/>
 					<Events>
 						<Event name="OnClick" type="Client">
@@ -336,36 +333,42 @@ where t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</Button>
-<TextArea id="111" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="saran" fieldSource="saran" required="True" caption="Nilai Transaksi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormsaran" format="0">
+				<TextArea id="111" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="saran" fieldSource="saran" required="True" caption="Nilai Transaksi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormsaran" format="0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-<Hidden id="263" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_vat_registrationFormp_vat_type_id" fieldSource="p_vat_type_id">
+				<Hidden id="263" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_vat_registrationFormp_vat_type_id" fieldSource="p_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextArea id="961" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="penjelasan" fieldSource="penjelasan" required="True" caption="Nilai Transaksi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormpenjelasan" format="0">
+				<TextArea id="961" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="penjelasan" fieldSource="penjelasan" required="True" caption="Nilai Transaksi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormpenjelasan" format="0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-<TextArea id="962" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="permasalahan" fieldSource="permasalahan" required="True" caption="Nilai Transaksi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormpermasalahan" format="0">
+				<TextArea id="962" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="permasalahan" fieldSource="permasalahan" required="True" caption="Nilai Transaksi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormpermasalahan" format="0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-<TextArea id="963" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kesimpulan" fieldSource="kesimpulan" required="True" caption="Nilai Transaksi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkesimpulan" format="0">
+				<TextArea id="963" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kesimpulan" fieldSource="kesimpulan" required="True" caption="Nilai Transaksi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkesimpulan" format="0">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
+				<Hidden id="968" fieldSourceType="DBColumn" dataType="Text" name="t_vat_registration_id" PathID="t_vat_registrationFormt_vat_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -506,16 +509,13 @@ where t_customer_order_id = {CURR_DOC_ID} ">
 				<SPParameter id="790" parameterName="i_user_by" parameterSource="UserName" dataType="Char" parameterType="Session" dataSize="255" direction="Input" scale="10" precision="6"/>
 			</USPParameters>
 			<USQLParameters>
-				<SQLParameter id="951" variable="doc_no" parameterType="Control" dataType="Text" parameterSource="doc_no"/>
-				<SQLParameter id="952" variable="t_cust_acc_status_modif_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_cust_acc_status_modif_id"/>
-				<SQLParameter id="953" variable="bap_employee_no_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_no_1"/>
-				<SQLParameter id="954" variable="bap_employee_no_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_no_2"/>
-				<SQLParameter id="955" variable="bap_employee_job_pos_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_job_pos_1"/>
-				<SQLParameter id="956" variable="bap_employee_job_pos_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_job_pos_2"/>
-				<SQLParameter id="957" variable="bap_employee_name_1" parameterType="Control" dataType="Text" parameterSource="bap_employee_name_1"/>
-				<SQLParameter id="958" variable="bap_employee_name_2" parameterType="Control" dataType="Text" parameterSource="bap_employee_name_2"/>
 				<SQLParameter id="959" variable="user" parameterType="Expression" dataType="Text" parameterSource="CCGEtUserLogin()"/>
-			</USQLParameters>
+				<SQLParameter id="964" variable="penjelasan" parameterType="Control" dataType="Text" parameterSource="penjelasan"/>
+<SQLParameter id="965" variable="permasalahan" parameterType="Control" dataType="Text" parameterSource="permasalahan"/>
+<SQLParameter id="966" variable="kesimpulan" parameterType="Control" dataType="Text" parameterSource="kesimpulan"/>
+<SQLParameter id="967" variable="saran" parameterType="Control" dataType="Text" parameterSource="saran"/>
+<SQLParameter id="969" variable="t_executive_summary_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_executive_summary_id"/>
+</USQLParameters>
 			<UConditions>
 				<TableParameter id="827" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_customer_order_id"/>
 				<TableParameter id="828" conditionType="Parameter" useIsNull="False" field="t_vat_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_vat_registration_id"/>
