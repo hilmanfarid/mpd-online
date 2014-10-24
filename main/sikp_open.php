@@ -51,7 +51,12 @@ include(RelativePath . "/Common.php");
 		
 	}
   	*/
-    $file_name = "../".$nama_php . "?" . $param_string;
+    if ($menu_id == 168 || $menu_id == 169||$menu_id == 170)
+	{
+		$file_name = "../".$nama_php;
+	}else{ 
+		$file_name = "../".$nama_php . "?" . $param_string;
+	}
 	
   }
 
