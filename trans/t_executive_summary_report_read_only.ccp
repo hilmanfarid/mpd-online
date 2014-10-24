@@ -4,7 +4,13 @@
 			<Components>
 				<TextBox id="11" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_executive_sumary_filteryear_code" required="True" caption="Periode Tahun">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="132"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
