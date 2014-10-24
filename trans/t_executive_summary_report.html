@@ -70,12 +70,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN PENCETAKAN HARIAN PENERIMAAN SPTPD&nbsp; 
+        EXECUTIVE SUMMARY&nbsp; 
       </div>
     </div>
   </div>
@@ -97,13 +97,13 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Tahun 
-                      <td class="search-field"><input id="t_executive_sumary_filteryear_code" class="ControlsRQ" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td>
+                      <td class="search-field"><input id="t_executive_sumary_filteryear_code" class="ControlsRQ" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td>
                     </tr>
  
                     <tr>
                       <td align="left">Jenis&nbsp;Pajak&nbsp;</td> 
                       <td>
-                        <p>&nbsp;<input id="t_executive_sumary_filtervat_code" class="ControlsRQ" name="{vat_code_Name}" readonly maxlength="32" value="{vat_code}" size="32"><img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></p>
+                        <p>&nbsp;<input id="t_executive_sumary_filtervat_code" class="ControlsRQ" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}"><img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></p>
                       </td>
                     </tr>
  
@@ -119,7 +119,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                     <tr style="DISPLAY: none" id="period-1">
                       <td align="left">&nbsp;Bulan</td> 
-                      <td>&nbsp;<input id="t_executive_sumary_filterperiode_code" class="ControlsRQ" name="{periode_code_Name}" readonly maxlength="32" value="{periode_code}" size="32"><img onclick="javascript:lov_finance_period()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td>
+                      <td>&nbsp;<input id="t_executive_sumary_filterperiode_code" class="ControlsRQ" value="{periode_code}" readonly maxlength="32" size="32" name="{periode_code_Name}"><img onclick="javascript:lov_finance_period()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td>
                     </tr>
  
                     <tr style="DISPLAY: none" id="period-2">
@@ -144,12 +144,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                     <tr style="DISPLAY: none">
                       <td align="left">&nbsp;Ayat Pajak</td> 
-                      <td>&nbsp; <input id="t_executive_sumary_filtervat_code_dtl" onchange="alert('changed')" class="ControlsRQ" name="{vat_code_dtl_Name}" readonly maxlength="32" value="{vat_code_dtl}" size="32"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_vat_type_dtl_id" onchange="alert('tes');" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden"></td>
+                      <td>&nbsp; <input id="t_executive_sumary_filtervat_code_dtl" class="ControlsRQ" onchange="alert('changed')" value="{vat_code_dtl}" readonly maxlength="32" size="32" name="{vat_code_dtl_Name}"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_executive_sumary_filterp_vat_type_dtl_id" onchange="alert('tes');" value="{p_vat_type_dtl_id}" type="hidden" name="{p_vat_type_dtl_id_Name}"></td>
                     </tr>
  
                     <tr>
                       <td colspan="2" align="right">&nbsp; 
-                        <!-- BEGIN Button Button2 --><input id="t_executive_sumary_filterButton2" class="btn_tambah" onclick="createLaporan()" name="{Button_Name}" alt="Button1" value="Buat Laporan" type="button"><!-- END Button Button2 --></td>
+                        <!-- BEGIN Button Button2 --><input id="t_executive_sumary_filterButton2" class="btn_tambah" onclick="createLaporan()" value="Buat Laporan" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 --></td>
                     </tr>
                   </table>
                 </td>
@@ -215,22 +215,22 @@ function lov_tipeayat() {
               <!-- END Error -->
               <tr class="Controls">
                 <td class="th"><label for="t_executive_summary_formpenjelasan">Penjelasan</label></td> 
-                <td><textarea id="t_executive_summary_formpenjelasan" cols="32" rows="3" name="{penjelasan_Name}">{penjelasan}</textarea><input id="t_executive_summary_formp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"><input id="t_executive_summary_formp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_executive_summary_formp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td>
+                <td><textarea id="t_executive_summary_formpenjelasan" rows="3" cols="32" name="{penjelasan_Name}">{penjelasan}</textarea><input id="t_executive_summary_formp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"><input id="t_executive_summary_formp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_executive_summary_formp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td>
               </tr>
  
               <tr class="Controls">
                 <td class="th">Permasalahan</td> 
-                <td><textarea id="t_executive_summary_formpermasalahan" cols="32" rows="3" name="{permasalahan_Name}">{permasalahan}</textarea><input id="t_executive_summary_formperiod_type" name="{period_type_Name}" value="{period_type}" type="hidden"><input id="t_executive_summary_formtriwulan" name="{triwulan_Name}" value="{triwulan}" type="hidden"><input id="t_executive_summary_formsemester" name="{semester_Name}" value="{semester}" type="hidden"></td>
+                <td><textarea id="t_executive_summary_formpermasalahan" rows="3" cols="32" name="{permasalahan_Name}">{permasalahan}</textarea><input id="t_executive_summary_formperiod_type" value="{period_type}" type="hidden" name="{period_type_Name}"><input id="t_executive_summary_formtriwulan" value="{triwulan}" type="hidden" name="{triwulan_Name}"><input id="t_executive_summary_formsemester" value="{semester}" type="hidden" name="{semester_Name}"></td>
               </tr>
  
               <tr class="Controls">
                 <td class="th">Kesimpulan</td> 
-                <td><textarea id="t_executive_summary_formkesimpulan" cols="32" rows="3" name="{kesimpulan_Name}">{kesimpulan}</textarea></td>
+                <td><textarea id="t_executive_summary_formkesimpulan" rows="3" cols="32" name="{kesimpulan_Name}">{kesimpulan}</textarea></td>
               </tr>
  
               <tr class="Controls">
                 <td class="th"><label for="t_executive_summary_formcreated_by">Saran</label></td> 
-                <td><textarea id="t_executive_summary_formsaran" cols="32" rows="3" name="{saran_Name}">{saran}</textarea></td>
+                <td><textarea id="t_executive_summary_formsaran" rows="3" cols="32" name="{saran_Name}">{saran}</textarea></td>
               </tr>
  
               <tr class="Controls">
@@ -239,8 +239,8 @@ function lov_tipeayat() {
               </tr>
  
               <tr class="Bottom">
-                <td colspan="2" align="right">&nbsp;
-                  <!-- BEGIN Button Button_Insert --><input id="t_executive_summary_formButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert --></td>
+                <td colspan="2" align="right">&nbsp; 
+                  <!-- BEGIN Button Button_Insert --><input id="t_executive_summary_formButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert --></td>
               </tr>
             </table>
           </td>
