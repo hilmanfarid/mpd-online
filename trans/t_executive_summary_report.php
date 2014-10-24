@@ -740,7 +740,7 @@ class clst_executive_summary_formDataSource extends clsDBConnSIKP {  //t_executi
         "	)";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->query($this->SQL);
+			$this->query($this->SQL);			
             $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
         }
     }
