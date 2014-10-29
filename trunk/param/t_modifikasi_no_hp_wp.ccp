@@ -2,18 +2,13 @@
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.mobile_no as hp,a.*, a.npwd, d.vat_code as nama_ayat
 FROM t_cust_account a
---LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
---LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
 LEFT JOIN p_vat_type_dtl d ON a.p_vat_type_dtl_id = d.p_vat_type_dtl_id
 
 WHERE upper(a.wp_address_name) like upper('%{s_keyword}%')
        and upper(a.npwd) like upper('%{s_npwd}%')
        and upper(a.wp_name) like upper('%{s_wp_name}%')
        and upper(a.company_name) like upper('%{s_company_name}%')
-       and upper(a.company_brand) like upper('%{s_company_brand}%')
-	   --and b.p_vat_type_id like '%{p_vat_type_id}%'
-	   --{p_vat_type_dtl_id}
-	   and a.p_account_status_id = 1">
+       and upper(a.company_brand) like upper('%{s_company_brand}%')">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_modifikasi_no_hp_wp.ccp" wizardThemeItem="GridA" PathID="t_customerGridDLink" removeParameters="FLAG">
 					<Components/>
@@ -100,7 +95,7 @@ WHERE upper(a.wp_address_name) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
