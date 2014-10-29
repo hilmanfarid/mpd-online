@@ -85,6 +85,13 @@ function t_vat_reg_dtl_entertaintmentForm_ds_AfterExecuteDelete(& $sender)
 //Custom Code @825-2A29BDB7
 // -------------------------
     // Write your own code here.
+	$id_vat = $t_vat_reg_dtl_entertaintmentForm->t_cust_account_id->GetValue();
+	$redirectloader = "data_potensi_update.php?t_cust_account_id=".$id_vat;
+	echo ("<script language='javascript'>");
+    echo (" parent.window.opener.location.href = '" . $redirectloader . "';");
+	echo (" window.close(); ");
+	echo ("</script>");
+	exit;
 // -------------------------
 //End Custom Code
 
