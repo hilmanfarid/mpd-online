@@ -45,7 +45,7 @@ class clsRecordt_vat_reg_dtl_ppjForm { //t_vat_reg_dtl_ppjForm Class @875-AC9089
     // Class variables
 //End Variables
 
-//Class_Initialize Event @875-9D548DCB
+//Class_Initialize Event @875-EED2CBDA
     function clsRecordt_vat_reg_dtl_ppjForm($RelativePath, & $Parent)
     {
 
@@ -61,6 +61,7 @@ class clsRecordt_vat_reg_dtl_ppjForm { //t_vat_reg_dtl_ppjForm Class @875-AC9089
         $this->ds = & $this->DataSource;
         $this->InsertAllowed = true;
         $this->UpdateAllowed = true;
+        $this->DeleteAllowed = true;
         $this->ReadAllowed = true;
         if($this->Visible)
         {
@@ -200,7 +201,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @875-EFE2A130
+//Operation Method @875-992174C5
     function Operation()
     {
         if(!$this->Visible)
@@ -230,7 +231,7 @@ function GetPrimaryKey($keyName)
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
         if($this->PressedButton == "Button_Delete") {
             $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "t_vat_reg_dtl_ppj_id"));
-            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete)) {
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
                 $Redirect = "";
             }
         } else if($this->PressedButton == "Button_Cancel") {
@@ -292,6 +293,18 @@ function GetPrimaryKey($keyName)
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
+
+//DeleteRow Method @875-75CD2CEF
+    function DeleteRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
+        if(!$this->DeleteAllowed) return false;
+        $this->DataSource->t_cacc_dtl_ppj_pln_id->SetValue($this->t_cacc_dtl_ppj_pln_id->GetValue(true));
+        $this->DataSource->Delete();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
+        return (!$this->CheckErrors());
+    }
+//End DeleteRow Method
 
 //Show Method @875-B0072423
     function Show()
@@ -407,7 +420,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_reg_dtl_ppjFormDataSource extends clsDBConnSIKP {  //t_vat_reg_dtl_ppjFormDataSource Class @875-799BE064
 
-//DataSource Variables @875-5607F54D
+//DataSource Variables @875-25783E04
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -416,6 +429,7 @@ class clst_vat_reg_dtl_ppjFormDataSource extends clsDBConnSIKP {  //t_vat_reg_dt
 
     var $InsertParameters;
     var $UpdateParameters;
+    var $DeleteParameters;
     var $wp;
     var $AllParametersSet;
 
@@ -619,6 +633,28 @@ class clst_vat_reg_dtl_ppjFormDataSource extends clsDBConnSIKP {  //t_vat_reg_dt
         }
     }
 //End Update Method
+
+//Delete Method @875-65053FF5
+    function Delete()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->cp["t_cacc_dtl_ppj_pln_id"] = new clsSQLParameter("ctrlt_cacc_dtl_ppj_pln_id", ccsFloat, "", "", $this->t_cacc_dtl_ppj_pln_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
+        if (!is_null($this->cp["t_cacc_dtl_ppj_pln_id"]->GetValue()) and !strlen($this->cp["t_cacc_dtl_ppj_pln_id"]->GetText()) and !is_bool($this->cp["t_cacc_dtl_ppj_pln_id"]->GetValue())) 
+            $this->cp["t_cacc_dtl_ppj_pln_id"]->SetValue($this->t_cacc_dtl_ppj_pln_id->GetValue(true));
+        if (!strlen($this->cp["t_cacc_dtl_ppj_pln_id"]->GetText()) and !is_bool($this->cp["t_cacc_dtl_ppj_pln_id"]->GetValue(true))) 
+            $this->cp["t_cacc_dtl_ppj_pln_id"]->SetText(0);
+        $this->SQL = "DELETE FROM t_cacc_dtl_ppj\n" .
+        "WHERE t_cacc_dtl_ppj_id = " . $this->SQLValue($this->cp["t_cacc_dtl_ppj_pln_id"]->GetDBValue(), ccsFloat) . "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
+        }
+    }
+//End Delete Method
 
 } //End t_vat_reg_dtl_ppjFormDataSource Class @875-FCB6E20C
 
