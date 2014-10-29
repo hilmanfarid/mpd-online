@@ -84,6 +84,15 @@ function t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete(& $sender)
 //Custom Code @899-2A29BDB7
 // -------------------------
     // Write your own code here.
+	$CustAccId = $t_vat_reg_dtl_ppjForm->t_cust_account_id->GetValue();
+	$cusName = $t_vat_reg_dtl_ppjForm->customer_name->GetValue();
+	$CustId = $t_vat_reg_dtl_ppjForm->t_customer_id->GetValue();
+	$redirectloader = "data_potensi_update.php?t_cust_account_id=".$CustAccId."&customer_name=".$cusName."&t_customer_id=".$CustId."";
+	echo ("<script language='javascript'>");
+    echo (" parent.window.opener.location.href = '" . $redirectloader . "';");
+	echo (" window.close(); ");
+	echo ("</script>");
+	exit;
 // -------------------------
 //End Custom Code
 
