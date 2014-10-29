@@ -954,7 +954,7 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 					<Events/>
 					<LinkParameters>
 						<LinkParameter id="1042" sourceType="DataField" format="yyyy-mm-dd" name="t_cacc_license_letter_id" source="t_cacc_license_letter_id"/>
-</LinkParameters>
+					</LinkParameters>
 					<Attributes/>
 					<Features/>
 				</Link>
@@ -969,6 +969,7 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 					<Events/>
 					<Attributes/>
 					<Features/>
+
 				</Hidden>
 			</Components>
 			<Events>
@@ -994,7 +995,7 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 			</TableParameters>
 			<JoinTables>
 				<JoinTable id="1044" tableName="v_cacc_license_letter" posWidth="20" posHeight="40" posLeft="10" posTop="10"/>
-			</JoinTables>
+</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="457" fieldName="*"/>
@@ -1007,7 +1008,7 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 			<Attributes/>
 			<Features/>
 		</Grid>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="data_potensi_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="data_potensi.php" forShow="True" url="data_potensi.php" comment="//" codePage="windows-1252"/>
