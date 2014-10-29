@@ -2,13 +2,14 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-5C675475
+//BindEvents Method @1-AED23B12
 function BindEvents()
 {
     global $t_vat_reg_dtl_hotelForm;
     global $CCSEvents;
     $t_vat_reg_dtl_hotelForm->ds->CCSEvents["AfterExecuteUpdate"] = "t_vat_reg_dtl_hotelForm_ds_AfterExecuteUpdate";
     $t_vat_reg_dtl_hotelForm->ds->CCSEvents["AfterExecuteInsert"] = "t_vat_reg_dtl_hotelForm_ds_AfterExecuteInsert";
+    $t_vat_reg_dtl_hotelForm->ds->CCSEvents["AfterExecuteDelete"] = "t_vat_reg_dtl_hotelForm_ds_AfterExecuteDelete";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
 }
 //End BindEvents Method
@@ -70,6 +71,35 @@ function t_vat_reg_dtl_hotelForm_ds_AfterExecuteInsert(& $sender)
     return $t_vat_reg_dtl_hotelForm_ds_AfterExecuteInsert;
 }
 //End Close t_vat_reg_dtl_hotelForm_ds_AfterExecuteInsert
+
+//t_vat_reg_dtl_hotelForm_ds_AfterExecuteDelete @94-7DD5AC88
+function t_vat_reg_dtl_hotelForm_ds_AfterExecuteDelete(& $sender)
+{
+    $t_vat_reg_dtl_hotelForm_ds_AfterExecuteDelete = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_reg_dtl_hotelForm; //Compatibility
+//End t_vat_reg_dtl_hotelForm_ds_AfterExecuteDelete
+
+//Custom Code @767-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$CustAccId = $t_vat_reg_dtl_hotelForm->t_cust_account_id->GetValue();
+	$cusName = $t_vat_reg_dtl_hotelForm->customer_name->GetValue();
+	$CustId = $t_vat_reg_dtl_hotelForm->t_customer_id->GetValue();
+	$redirectloader = "data_potensi_update.php?t_cust_account_id=".$CustAccId."&customer_name=".$cusName."&t_customer_id=".$CustId."";
+	echo ("<script language='javascript'>");
+    echo (" parent.window.opener.location.href = '" . $redirectloader . "';");
+	echo (" window.close(); ");
+	echo ("</script>");
+	exit;
+// -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtl_hotelForm_ds_AfterExecuteDelete @94-2DD7CCF6
+    return $t_vat_reg_dtl_hotelForm_ds_AfterExecuteDelete;
+}
+//End Close t_vat_reg_dtl_hotelForm_ds_AfterExecuteDelete
 
 //Page_OnInitializeView @1-E1BB5CBD
 function Page_OnInitializeView(& $sender)
