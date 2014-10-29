@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_hotel_srvcForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_hotel_srvcForm" activeCollection="ISQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_hotel_srvc(t_cacc_dtl_hotel_srvc_id, description, created_by, updated_by, creation_date, updated_date, services, t_cust_account_id, valid_from, valid_to) 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_hotel_srvcForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_hotel_srvcForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_hotel_srvc(t_cacc_dtl_hotel_srvc_id, description, created_by, updated_by, creation_date, updated_date, services, t_cust_account_id, valid_from, valid_to) 
 VALUES(generate_id('sikp','t_cacc_dtl_hotel_srvc','t_cacc_dtl_hotel_srvc_id'), '{description}', '{created_by}', '{updated_by}', sysdate, sysdate, '{services}', {t_cust_account_id}, to_date('{valid_from}','DD-MON-YYYY'), case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end)" customUpdate="UPDATE t_cacc_dtl_hotel_srvc SET 
 description='{description}', 
 updated_by='{updated_by}', 
@@ -9,8 +9,8 @@ t_cust_account_id={t_cust_account_id},
 services='{services}',
 valid_from = to_date('{valid_from}','DD-MON-YYYY'),
 valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end
-WHERE t_cacc_dtl_hotel_srvc_id={t_cacc_dtl_hotel_srvc_id} " customDelete="DELETE FROM t_vat_reg_dtl_hotel_srvc
-WHERE t_vat_reg_dtl_hotel_srvc_id={t_vat_reg_dtl_hotel_srvc_id}" dataSource="SELECT t_cacc_dtl_hotel_srvc_id, t_cust_account_id, services, 
+WHERE t_cacc_dtl_hotel_srvc_id={t_cacc_dtl_hotel_srvc_id} " customDelete="DELETE FROM t_cacc_dtl_hotel_srvc
+WHERE t_cacc_dtl_hotel_srvc_id = {t_cacc_dtl_hotel_srvc_id}" dataSource="SELECT t_cacc_dtl_hotel_srvc_id, t_cust_account_id, services, 
 to_char(valid_from,'DD-MON-YYYY')as valid_from, to_char(valid_to,'DD-MON-YYYY')as valid_to, description, 
 to_char(creation_date,'DD-MON-YYYY')as creation_date, created_by, to_char(updated_date,'DD-MON-YYYY')as updated_date,
 updated_by 
@@ -151,30 +151,35 @@ WHERE t_cacc_dtl_hotel_srvc_id = {t_cacc_dtl_hotel_srvc_id} ">
 						<Action actionName="Custom Code" actionCategory="General" id="869"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="AfterExecuteDelete" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="883"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 				<TableParameter id="866" conditionType="Parameter" useIsNull="False" field="t_cacc_dtl_hotel_srvc_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cacc_dtl_hotel_srvc_id"/>
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="882" parameterType="URL" variable="t_cacc_dtl_hotel_srvc_id" dataType="Float" parameterSource="t_cacc_dtl_hotel_srvc_id"/>
-</SQLParameters>
+			</SQLParameters>
 			<JoinTables>
 				<JoinTable id="865" tableName="t_cacc_dtl_hotel_srvc" posLeft="10" posTop="10" posWidth="160" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="872" tableName="t_cacc_dtl_hotel_srvc" fieldName="t_cacc_dtl_hotel_srvc_id"/>
-<Field id="873" tableName="t_cacc_dtl_hotel_srvc" fieldName="t_cust_account_id"/>
-<Field id="874" tableName="t_cacc_dtl_hotel_srvc" fieldName="services"/>
-<Field id="875" tableName="t_cacc_dtl_hotel_srvc" fieldName="valid_from"/>
-<Field id="876" tableName="t_cacc_dtl_hotel_srvc" fieldName="valid_to"/>
-<Field id="877" tableName="t_cacc_dtl_hotel_srvc" fieldName="description"/>
-<Field id="878" tableName="t_cacc_dtl_hotel_srvc" fieldName="creation_date"/>
-<Field id="879" tableName="t_cacc_dtl_hotel_srvc" fieldName="created_by"/>
-<Field id="880" tableName="t_cacc_dtl_hotel_srvc" fieldName="updated_date"/>
-<Field id="881" tableName="t_cacc_dtl_hotel_srvc" fieldName="updated_by"/>
-</Fields>
+				<Field id="873" tableName="t_cacc_dtl_hotel_srvc" fieldName="t_cust_account_id"/>
+				<Field id="874" tableName="t_cacc_dtl_hotel_srvc" fieldName="services"/>
+				<Field id="875" tableName="t_cacc_dtl_hotel_srvc" fieldName="valid_from"/>
+				<Field id="876" tableName="t_cacc_dtl_hotel_srvc" fieldName="valid_to"/>
+				<Field id="877" tableName="t_cacc_dtl_hotel_srvc" fieldName="description"/>
+				<Field id="878" tableName="t_cacc_dtl_hotel_srvc" fieldName="creation_date"/>
+				<Field id="879" tableName="t_cacc_dtl_hotel_srvc" fieldName="created_by"/>
+				<Field id="880" tableName="t_cacc_dtl_hotel_srvc" fieldName="updated_date"/>
+				<Field id="881" tableName="t_cacc_dtl_hotel_srvc" fieldName="updated_by"/>
+			</Fields>
 			<ISPParameters>
 				<SPParameter id="Key176" parameterName="i_p_app_user_id" parameterSource="0" dataType="Numeric" parameterType="Expression" dataSize="0" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key178" parameterName="i_full_name" parameterSource="full_name" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
@@ -242,7 +247,7 @@ WHERE t_cacc_dtl_hotel_srvc_id = {t_cacc_dtl_hotel_srvc_id} ">
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="864" variable="t_vat_reg_dtl_hotel_srvc_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_vat_reg_dtl_hotel_srvc_id"/>
+				<SQLParameter id="864" variable="t_cacc_dtl_hotel_srvc_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_cacc_dtl_hotel_srvc_id"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>
