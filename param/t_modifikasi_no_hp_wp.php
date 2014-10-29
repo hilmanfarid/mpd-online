@@ -321,38 +321,28 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End Prepare Method
 
-//Open Method @2-AFAB19F5
+//Open Method @2-32D16214
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select a.mobile_no as hp,a.*, a.npwd, d.vat_code as nama_ayat\n" .
         "FROM t_cust_account a\n" .
-        "--LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id\n" .
-        "--LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
         "LEFT JOIN p_vat_type_dtl d ON a.p_vat_type_dtl_id = d.p_vat_type_dtl_id\n" .
         "\n" .
         "WHERE upper(a.wp_address_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         "       and upper(a.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
         "       and upper(a.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
         "       and upper(a.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
-        "       and upper(a.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
-        "	   --and b.p_vat_type_id like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%'\n" .
-        "	   --" . $this->SQLValue($this->wp->GetDBValue("7"), ccsText) . "\n" .
-        "	   and a.p_account_status_id = 1) cnt";
+        "       and upper(a.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')) cnt";
         $this->SQL = "select a.mobile_no as hp,a.*, a.npwd, d.vat_code as nama_ayat\n" .
         "FROM t_cust_account a\n" .
-        "--LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id\n" .
-        "--LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
         "LEFT JOIN p_vat_type_dtl d ON a.p_vat_type_dtl_id = d.p_vat_type_dtl_id\n" .
         "\n" .
         "WHERE upper(a.wp_address_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         "       and upper(a.npwd) like upper('%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')\n" .
         "       and upper(a.wp_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "%')\n" .
         "       and upper(a.company_name) like upper('%" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "%')\n" .
-        "       and upper(a.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')\n" .
-        "	   --and b.p_vat_type_id like '%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%'\n" .
-        "	   --" . $this->SQLValue($this->wp->GetDBValue("7"), ccsText) . "\n" .
-        "	   and a.p_account_status_id = 1";
+        "       and upper(a.company_brand) like upper('%" . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . "%')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
