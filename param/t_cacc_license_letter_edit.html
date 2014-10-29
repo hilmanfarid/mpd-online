@@ -94,7 +94,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -129,7 +129,7 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">No. Surat</label></label></label></label></label></label></label></label></label></td> 
-                    <td colspan="3"><input id="t_license_letterFormlicense_no" class="ControlsRQ" tabindex="2" name="{license_no_Name}" maxlength="42" value="{license_no}" size="42">&nbsp;<input id="t_license_letterFormt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_license_letterFormlicense_no" class="ControlsRQ" tabindex="2" value="{license_no}" maxlength="42" size="42" name="{license_no_Name}">&nbsp;<input id="t_license_letterFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -138,37 +138,37 @@ $(document).ready(function()
                       <select id="t_license_letterFormp_license_type_id" class="ControlsRQ" name="{p_license_type_id_Name}">
                         {p_license_type_id_Options}
                       </select>
- <input style="WIDTH: 83px; HEIGHT: 22px" id="t_license_letterFormrqst_type_code" name="{rqst_type_code_Name}" value="{rqst_type_code}" size="11" type="hidden"><input id="t_license_letterFormp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"><input style="WIDTH: 106px; HEIGHT: 22px" id="t_license_letterFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" size="14" type="hidden"></td>
+ <input style="WIDTH: 83px; HEIGHT: 22px" id="t_license_letterFormrqst_type_code" value="{rqst_type_code}" size="11" type="hidden" name="{rqst_type_code_Name}"><input id="t_license_letterFormp_rqst_type_id" value="{p_rqst_type_id}" type="hidden" name="{p_rqst_type_id_Name}"><input style="WIDTH: 106px; HEIGHT: 22px" id="t_license_letterFormt_customer_order_id" value="{t_customer_order_id}" size="14" type="hidden" name="{t_customer_order_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Masa&nbsp;Berlaku&nbsp;</td> 
-                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormvalid_from" class="ControlsRQ" name="{valid_from_Name}" maxlength="100" value="{valid_from}" size="12">
-                      <!-- BEGIN DatePicker DatePicker_valid_from --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_license_letterFormDatePicker_valid_from"><img id="t_license_letterFormDatePicker_valid_from_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_from -->s/d&nbsp;<input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormvalid_to" class="ControlsIN" name="{valid_to_Name}" maxlength="100" value="{valid_to}" size="15">
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormvalid_from" class="ControlsRQ" value="{valid_from}" maxlength="100" size="12" name="{valid_from_Name}">
+                      <!-- BEGIN DatePicker DatePicker_valid_from --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_license_letterFormDatePicker_valid_from"><img id="t_license_letterFormDatePicker_valid_from_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_from -->s/d&nbsp;<input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormvalid_to" class="ControlsIN" value="{valid_to}" maxlength="100" size="15" name="{valid_to_Name}">
                       <!-- BEGIN DatePicker DatePicker_valid_to --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_license_letterFormDatePicker_valid_to"><img id="t_license_letterFormDatePicker_valid_to_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_valid_to --></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_license_letterFormdescription">Deskripsi</label></td> 
-                    <td colspan="3"><input id="t_license_letterFormdescription" class="ControlsIN" name="{description_Name}" maxlength="250" value="{description}" size="60"></td>
+                    <td colspan="3"><input id="t_license_letterFormdescription" class="ControlsIN" value="{description}" maxlength="250" size="60" name="{description_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_license_letterFormcreated_by">Dibuat Oleh</label></td> 
-                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormcreated_by" class="ControlsRO" name="{created_by_Name}" readonly maxlength="16" value="{created_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormcreation_date" class="ControlsRO" name="{creation_date_Name}" readonly maxlength="100" value="{creation_date}" size="15"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="16" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="15" name="{creation_date_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_license_letterFormupdated_by">Diubah Oleh</label></td> 
-                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormupdated_by" class="ControlsRO" name="{updated_by_Name}" readonly maxlength="16" value="{updated_by}" size="15">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormupdated_date" class="ControlsRO" name="{updated_date_Name}" readonly maxlength="100" value="{updated_date}" size="15"></td>
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="16" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_license_letterFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="4" align="right">
-                      <!-- BEGIN Button Button_Insert --><input id="t_license_letterFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="t_license_letterFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input id="t_license_letterFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input id="t_license_letterFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --><input id="t_license_letterFormt_cacc_license_letter_id" name="{t_cacc_license_letter_id_Name}" value="{t_cacc_license_letter_id}" type="hidden"></td>
+                      <!-- BEGIN Button Button_Insert --><input id="t_license_letterFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_license_letterFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_license_letterFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="t_license_letterFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_license_letterFormt_cacc_license_letter_id" value="{t_cacc_license_letter_id}" type="hidden" name="{t_cacc_license_letter_id_Name}"></td>
                   </tr>
                 </table>
               </td>
