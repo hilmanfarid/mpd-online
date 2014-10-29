@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_employeeForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_employeeForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cust_acc_employee(t_cust_acc_employee_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, p_job_position_id, employee_qty, employee_salery, valid_from, valid_to) 
+		<Record id="94" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_employeeForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_employeeForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cust_acc_employee(t_cust_acc_employee_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, p_job_position_id, employee_qty, employee_salery, valid_from, valid_to) 
 VALUES(generate_id('sikp','t_cust_acc_employee','t_cust_acc_employee_id'), '{description}', '{created_by}', '{updated_by}', sysdate, sysdate, {t_cust_account_id}, {p_job_position_id}, {employee_qty}, {employee_salery}, to_date('{valid_from}','DD-MON-YYYY'),case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end)" customUpdate="UPDATE t_cust_acc_employee SET 
 description='{description}', 
 updated_by='{updated_by}', 
@@ -10,8 +10,8 @@ employee_qty={employee_qty},
 employee_salery={employee_salery},
 valid_from = to_date('{valid_from}','DD-MON-YYYY'),
 valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end 
-WHERE t_cust_acc_employee_id={t_cust_acc_employee_id}" customDelete="DELETE FROM t_vat_reg_employee
-WHERE t_vat_reg_employee_id = {t_vat_reg_employee_id}" dataSource="v_cust_acc_employee">
+WHERE t_cust_acc_employee_id={t_cust_acc_employee_id}" customDelete="DELETE FROM t_cust_acc_employee
+WHERE t_cust_acc_employee_id = {t_cust_acc_employee_id}" dataSource="v_cust_acc_employee">
 			<Components>
 				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_vat_reg_employeeFormButton_Insert" removeParameters="FLAG">
 					<Components/>
@@ -135,25 +135,25 @@ WHERE t_vat_reg_employee_id = {t_vat_reg_employee_id}" dataSource="v_cust_acc_em
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="34" name="DatePicker_valid_from" control="valid_from" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_vat_reg_employeeFormDatePicker_valid_from">
+				<DatePicker id="34" name="DatePicker_valid_from" control="valid_from" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_vat_reg_employeeFormDatePicker_valid_from">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<TextBox id="35" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="valid_to" fieldSource="valid_to" required="False" caption="Valid To" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_reg_employeeFormvalid_to" format="dd-mmm-yyyy">
+				<TextBox id="35" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="valid_to" fieldSource="valid_to" required="False" caption="Valid To" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_reg_employeeFormvalid_to" format="dd-mmm-yyyy">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="36" name="DatePicker_valid_to" control="valid_to" wizardSatellite="True" wizardControl="valid_to" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_vat_reg_employeeFormDatePicker_valid_to">
+				<DatePicker id="36" name="DatePicker_valid_to" control="valid_to" wizardSatellite="True" wizardControl="valid_to" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_vat_reg_employeeFormDatePicker_valid_to">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-</Components>
+			</Components>
 			<Events>
 				<Event name="AfterExecuteUpdate" type="Server">
 					<Actions>
@@ -165,16 +165,21 @@ WHERE t_vat_reg_employee_id = {t_vat_reg_employee_id}" dataSource="v_cust_acc_em
 						<Action actionName="Custom Code" actionCategory="General" id="755"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="AfterExecuteDelete" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="764"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 				<TableParameter id="759" conditionType="Parameter" useIsNull="False" field="t_cust_acc_employee_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cust_acc_employee_id"/>
-</TableParameters>
+			</TableParameters>
 			<SPParameters/>
 			<SQLParameters>
 			</SQLParameters>
 			<JoinTables>
 				<JoinTable id="758" tableName="v_cust_acc_employee" posLeft="10" posTop="10" posWidth="160" posHeight="180"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>
@@ -198,8 +203,8 @@ WHERE t_vat_reg_employee_id = {t_vat_reg_employee_id}" dataSource="v_cust_acc_em
 				<SQLParameter id="720" variable="employee_qty" dataType="Float" parameterType="Control" parameterSource="employee_qty" defaultValue="0"/>
 				<SQLParameter id="721" variable="employee_salery" dataType="Float" parameterType="Control" parameterSource="employee_salery" defaultValue="0"/>
 				<SQLParameter id="760" variable="valid_from" parameterType="Control" dataType="Text" parameterSource="valid_from"/>
-<SQLParameter id="761" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
-</ISQLParameters>
+				<SQLParameter id="761" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="695" field="t_vat_reg_dtl_hotel_id" dataType="Float" parameterType="Control" parameterSource="t_vat_reg_dtl_hotel_id"/>
 				<CustomParameter id="696" field="description" dataType="Text" parameterType="Control" parameterSource="description"/>
@@ -239,8 +244,8 @@ WHERE t_vat_reg_employee_id = {t_vat_reg_employee_id}" dataSource="v_cust_acc_em
 				<SQLParameter id="748" variable="p_job_position_id" dataType="Float" parameterType="Control" parameterSource="p_job_position_id" defaultValue="0"/>
 				<SQLParameter id="749" variable="employee_salery" dataType="Float" parameterType="Control" parameterSource="employee_salery" defaultValue="0"/>
 				<SQLParameter id="762" variable="valid_from" parameterType="Control" dataType="Text" parameterSource="valid_from"/>
-<SQLParameter id="763" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
-</USQLParameters>
+				<SQLParameter id="763" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
+			</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>
@@ -260,7 +265,7 @@ WHERE t_vat_reg_employee_id = {t_vat_reg_employee_id}" dataSource="v_cust_acc_em
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="751" variable="t_vat_reg_employee_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_vat_reg_employee_id"/>
+				<SQLParameter id="751" variable="t_cust_acc_employee_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_cust_acc_employee_id"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>
