@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_entertaintmentForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_entertaintmentForm" activeCollection="ISQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_entertaintment(t_cacc_dtl_entertaintment_id, portion_person, created_by, updated_by, creation_date, updated_date, t_cust_account_id, room_qty, clerk_qty, f_and_b, booking_hour, seat_qty, service_charge_wd, service_charge_we, entertainment_desc, valid_from, valid_to) 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_entertaintmentForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_entertaintmentForm" activeCollection="ISQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_entertaintment(t_cacc_dtl_entertaintment_id, portion_person, created_by, updated_by, creation_date, updated_date, t_cust_account_id, room_qty, clerk_qty, f_and_b, booking_hour, seat_qty, service_charge_wd, service_charge_we, entertainment_desc, valid_from, valid_to) 
 VALUES(generate_id('sikp','t_cacc_dtl_entertaintment','t_cacc_dtl_entertaintment_id'), decode({portion_person},0,null,{portion_person}), '{created_by}', '{updated_by}', sysdate, sysdate, {t_cust_account_id}, '{room_qty}', {clerk_qty}, decode({f_and_b},0,null,{f_and_b}), decode({booking_hour},0,null,{booking_hour}), {seat_qty}, {service_charge_wd}, {service_charge_we}, '{entertainment_desc}', to_date('{valid_from}','DD-MON-YYYY'), case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end)" customUpdate="UPDATE t_cacc_dtl_entertaintment SET 
 portion_person=decode({portion_person},0,null,{portion_person}),
 updated_by='{updated_by}', 
@@ -15,8 +15,8 @@ service_charge_wd={service_charge_wd},
 service_charge_we={service_charge_we},
 valid_from = to_date('{valid_from}','DD-MON-YYYY'),
 valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end
-WHERE t_cacc_dtl_entertaintment_id={t_cacc_dtl_entertaintment_id}" customDelete="DELETE FROM t_vat_reg_dtl_entertaintment
-WHERE t_vat_reg_dtl_entertaintment_id = {t_vat_reg_dtl_entertaintment_id}" dataSource="SELECT a.t_cacc_dtl_entertaintment_id, a.t_cust_account_id, a.entertainment_desc, a.service_charge_wd, a.service_charge_we, 
+WHERE t_cacc_dtl_entertaintment_id={t_cacc_dtl_entertaintment_id}" customDelete="DELETE FROM t_cacc_dtl_entertaintment
+WHERE t_cacc_dtl_entertaintment_id = {t_cacc_dtl_entertaintment_id}" dataSource="SELECT a.t_cacc_dtl_entertaintment_id, a.t_cust_account_id, a.entertainment_desc, a.service_charge_wd, a.service_charge_we, 
        to_char(a.valid_from,'DD-MON-YYYY')as valid_from, to_char(a.valid_to,'DD-MON-YYYY')as valid_to,	
        a.seat_qty, a.room_qty, a.clerk_qty, a.booking_hour, a.f_and_b, a.portion_person, to_char(a.creation_date, 'DD-MON-YYYY') AS creation_date, 
        a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by
@@ -324,7 +324,7 @@ WHERE t_vat_reg_dtl_entertaintment_id = {t_vat_reg_dtl_entertaintment_id}" dataS
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="820" variable="t_vat_reg_dtl_entertaintment_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_vat_reg_dtl_entertaintment_id"/>
+				<SQLParameter id="820" variable="t_cacc_dtl_entertaintment_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_cacc_dtl_entertaintment_id"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>
