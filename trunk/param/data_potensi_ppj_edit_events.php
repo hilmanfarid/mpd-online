@@ -2,13 +2,14 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-86B0600F
+//BindEvents Method @1-C232A710
 function BindEvents()
 {
     global $t_vat_reg_dtl_ppjForm;
     global $CCSEvents;
     $t_vat_reg_dtl_ppjForm->ds->CCSEvents["AfterExecuteUpdate"] = "t_vat_reg_dtl_ppjForm_ds_AfterExecuteUpdate";
     $t_vat_reg_dtl_ppjForm->ds->CCSEvents["AfterExecuteInsert"] = "t_vat_reg_dtl_ppjForm_ds_AfterExecuteInsert";
+    $t_vat_reg_dtl_ppjForm->ds->CCSEvents["AfterExecuteDelete"] = "t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
 }
 //End BindEvents Method
@@ -70,6 +71,33 @@ function t_vat_reg_dtl_ppjForm_ds_AfterExecuteInsert(& $sender)
     return $t_vat_reg_dtl_ppjForm_ds_AfterExecuteInsert;
 }
 //End Close t_vat_reg_dtl_ppjForm_ds_AfterExecuteInsert
+
+//t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete @94-7C04795C
+function t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete(& $sender)
+{
+    $t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_reg_dtl_ppjForm; //Compatibility
+//End t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete
+
+//Custom Code @881-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$id_vat = $t_vat_reg_dtl_ppjForm->t_cust_account_id->GetValue();
+	$redirectloader = "data_potensi_update.php?t_cust_account_id=".$id_vat;
+	echo ("<script language='javascript'>");
+    echo (" parent.window.opener.location.href = '" . $redirectloader . "';");
+	echo (" window.close(); ");
+	echo ("</script>");
+	exit;
+// -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete @94-D36F75E4
+    return $t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete;
+}
+//End Close t_vat_reg_dtl_ppjForm_ds_AfterExecuteDelete
 
 //Page_OnInitializeView @1-8565B6F2
 function Page_OnInitializeView(& $sender)
