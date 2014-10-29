@@ -82,14 +82,7 @@ $(document).ready(function()
       </label>
     </div>
     <div class="th tab-button">
-      <label onclick="javascript:toHistori()">
-      <div class="tab-title">
-        HISTORI LOG &amp; TRANSAKSI 
-      </div>
-      </label>
-    </div>
-    <div class="th tab-button">
-      <label onclick="javascript:toDapot()">
+      <label onclick="javascript:toPotensi()">
       <div class="tab-title">
         DATA POTENSI 
       </div>
@@ -277,7 +270,7 @@ function toCustAcc()
   var pid=document.getElementById("t_cacc_legal_docSearcht_cust_account_id").value;
   var cusName=document.getElementById("t_cacc_legal_docSearchcustomer_name").value;
   var idCus=document.getElementById("t_cacc_legal_docSearcht_customer_id").value;    
-  location.href="t_cust_account.php?t_customer_id="+idCus+"&customer_name="+cusName+"&t_cust_account_id="+pid;
+  location.href="t_cust_account_update.php?t_customer_id="+idCus+"&customer_name="+cusName+"&t_cust_account_id="+pid;
 }
 
 function toHistori()
@@ -288,12 +281,12 @@ function toHistori()
   location.href="t_trans_histories.php?t_customer_id="+idCus+"&customer_name="+cusName+"&t_cust_acc_id="+pid;
 }
 
-function toDapot()
+function toPotensi()
 {
   var pid=document.getElementById("t_cacc_legal_docSearcht_cust_account_id").value;
   var cusName=document.getElementById("t_cacc_legal_docSearchcustomer_name").value;
-  var idCus=document.getElementById("t_cacc_legal_docSearcht_customer_id").value;                 
-  location.href="data_potensi.php?t_customer_id="+idCus+"&customer_name="+cusName+"&t_cust_acc_id="+pid;
+  var idCus=document.getElementById("t_cacc_legal_docSearcht_customer_id").value;    
+  location.href="data_potensi_update.php?t_customer_id="+idCus+"&customer_name="+cusName+"&t_cust_account_id="+pid;
 }
 </script>
   </body>
