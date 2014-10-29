@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_hotelForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_hotelForm" activeCollection="ISQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_hotel(t_cacc_dtl_hotel_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, p_room_type_id, room_qty, service_charge_wd, service_charge_we, service_qty, valid_from, valid_to) 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_hotelForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_hotelForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_hotel(t_cacc_dtl_hotel_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, p_room_type_id, room_qty, service_charge_wd, service_charge_we, service_qty, valid_from, valid_to) 
 VALUES(generate_id('sikp','t_cacc_dtl_hotel','t_cacc_dtl_hotel_id'), '{description}', '{created_by}', '{updated_by}', sysdate, sysdate, {t_cust_account_id}, {p_room_type_id}, {room_qty}, {service_charge_wd}, {service_charge_we}, {service_qty}, to_date('{valid_from}','DD-MON-YYYY'), case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end)" customUpdate="UPDATE t_cacc_dtl_hotel SET 
 description='{description}', 
 updated_by='{updated_by}', 
@@ -13,8 +13,8 @@ service_charge_we={service_charge_we},
 service_qty={service_qty},
 valid_from = to_date('{valid_from}','DD-MON-YYYY'),
 valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end
-WHERE t_cacc_dtl_hotel_id={t_cacc_dtl_hotel_id}" customDelete="DELETE FROM t_vat_reg_dtl_hotel
-WHERE t_vat_reg_dtl_hotel_id = {t_vat_reg_dtl_hotel_id}" dataSource=" SELECT a.t_cacc_dtl_hotel_id, a.t_cust_account_id, a.p_room_type_id, a.room_qty, a.service_qty, a.service_charge_wd, a.service_charge_we, 
+WHERE t_cacc_dtl_hotel_id={t_cacc_dtl_hotel_id}" customDelete="DELETE FROM t_cacc_dtl_hotel
+WHERE t_cacc_dtl_hotel_id = {t_cacc_dtl_hotel_id}" dataSource=" SELECT a.t_cacc_dtl_hotel_id, a.t_cust_account_id, a.p_room_type_id, a.room_qty, a.service_qty, a.service_charge_wd, a.service_charge_we, 
 	to_char(a.valid_from,'DD-MON-YYYY')as valid_from, to_char(a.valid_to,'DD-MON-YYYY')as valid_to,	
         a.description, to_char(a.creation_date, 'DD-MON-YYYY') AS creation_date, a.created_by, a.updated_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, 
         b.p_hotel_grade_id, c.code AS room_type_code
@@ -71,7 +71,6 @@ WHERE t_vat_reg_dtl_hotel_id = {t_vat_reg_dtl_hotel_id}" dataSource=" SELECT a.t
 					<Components/>
 					<Events/>
 					<Attributes/>
-
 					<Features/>
 				</TextBox>
 				<TextBox id="124" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="created_by" fieldSource="created_by" required="False" caption="Created By" wizardCaption="Created By" wizardSize="16" wizardMaxLength="16" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_reg_dtl_hotelFormcreated_by" defaultValue="CCGetUserLogin()">
@@ -194,7 +193,12 @@ FROM p_room_type " activeCollection="TableParameters" boundColumn="p_room_type_i
 						<Action actionName="Custom Code" actionCategory="General" id="766"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="AfterExecuteDelete" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="767"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 			</TableParameters>
 			<SPParameters/>
@@ -293,7 +297,7 @@ FROM p_room_type " activeCollection="TableParameters" boundColumn="p_room_type_i
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="751" variable="t_vat_reg_dtl_hotel_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_vat_reg_dtl_hotel_id"/>
+				<SQLParameter id="751" variable="t_cacc_dtl_hotel_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_cacc_dtl_hotel_id"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>
