@@ -2,7 +2,7 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-7908631E
+//BindEvents Method @1-065277D7
 function BindEvents()
 {
     global $t_vat_reg_dtl_parkingForm;
@@ -10,6 +10,7 @@ function BindEvents()
     $t_vat_reg_dtl_parkingForm->ds->CCSEvents["AfterExecuteUpdate"] = "t_vat_reg_dtl_parkingForm_ds_AfterExecuteUpdate";
     $t_vat_reg_dtl_parkingForm->CCSEvents["BeforeSelect"] = "t_vat_reg_dtl_parkingForm_BeforeSelect";
     $t_vat_reg_dtl_parkingForm->ds->CCSEvents["AfterExecuteInsert"] = "t_vat_reg_dtl_parkingForm_ds_AfterExecuteInsert";
+    $t_vat_reg_dtl_parkingForm->ds->CCSEvents["AfterExecuteDelete"] = "t_vat_reg_dtl_parkingForm_ds_AfterExecuteDelete";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
 }
 //End BindEvents Method
@@ -106,6 +107,33 @@ function t_vat_reg_dtl_parkingForm_ds_AfterExecuteInsert(& $sender)
     return $t_vat_reg_dtl_parkingForm_ds_AfterExecuteInsert;
 }
 //End Close t_vat_reg_dtl_parkingForm_ds_AfterExecuteInsert
+
+//t_vat_reg_dtl_parkingForm_ds_AfterExecuteDelete @94-38834D52
+function t_vat_reg_dtl_parkingForm_ds_AfterExecuteDelete(& $sender)
+{
+    $t_vat_reg_dtl_parkingForm_ds_AfterExecuteDelete = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_reg_dtl_parkingForm; //Compatibility
+//End t_vat_reg_dtl_parkingForm_ds_AfterExecuteDelete
+
+//Custom Code @833-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$id_vat = $t_vat_reg_dtl_parkingForm->t_cust_account_id->GetValue();
+	$redirectloader = "data_potensi_update.php?t_cust_account_id=".$id_vat;
+	echo ("<script language='javascript'>");
+    echo (" parent.window.opener.location.href = '" . $redirectloader . "';");
+	echo (" window.close(); ");
+	echo ("</script>");
+	exit;
+// -------------------------
+//End Custom Code
+
+//Close t_vat_reg_dtl_parkingForm_ds_AfterExecuteDelete @94-54A72980
+    return $t_vat_reg_dtl_parkingForm_ds_AfterExecuteDelete;
+}
+//End Close t_vat_reg_dtl_parkingForm_ds_AfterExecuteDelete
 
 //Page_OnInitializeView @1-8088D55F
 function Page_OnInitializeView(& $sender)
