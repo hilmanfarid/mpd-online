@@ -52,6 +52,13 @@ $(document).ready(function()
         DATA POTENSI 
       </div>
     </div>
+	<div class="th tab-button">
+      <label onclick="javascript:toDoc()">
+      <div class="tab-title">
+        DOKUMEN PENDUKUNG 
+      </div>
+      </label>
+    </div>
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -901,9 +908,8 @@ function hotel_srvc2() {
 
 
 function izin() {
-     //var id_vat = document.getElementById("t_vat_reg_dtlGridt_cust_account_id").value;
-	 var id_vat = document.getElementById("t_vat_setllementSearcht_cust_account_id").value;
-     var urlLink = "?FLAG=ADD&t_cust_account_id="+id_vat;
+     var t_cust_account_id = document.getElementById("t_vat_setllementSearcht_cust_account_id").value;
+     var urlLink = "?FLAG=ADD&t_cust_account_id="+t_cust_account_id;
      return popup("t_cacc_license_letter_edit.php"+urlLink);
 }
 
@@ -912,6 +918,13 @@ function izin2(pid) {
      return popup("t_cacc_license_letter_edit.php"+urlLink);
 }
 
+function toDoc()
+{
+       var customerName = document.getElementById('t_vat_setllementSearchcustomer_name').value;
+       var pid = document.getElementById('t_vat_setllementSearcht_customer_id').value;
+       var t_cust = document.getElementById('t_vat_setllementSearcht_cust_account_id').value;
+        location.href="t_cacc_legal_doc.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust;
+}
 </script>
 </body>
 </html>
