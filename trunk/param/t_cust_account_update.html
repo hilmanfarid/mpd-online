@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -42,6 +42,13 @@ $(document).ready(function()
       <label onclick="javascript:toPotensi()">
       <div class="tab-title">
         DATA POTENSI 
+      </div>
+      </label>
+    </div>
+	<div class="th tab-button">
+      <label onclick="javascript:toDoc()">
+      <div class="tab-title">
+        DOKUMEN PENDUKUNG 
       </div>
       </label>
     </div>
@@ -177,7 +184,7 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="th">Status&nbsp;</td> 
                     <td colspan="3"><label for="t_cust_account_updateFormstatus_code" style="display: none;">&nbsp;</label><input id="t_cust_account_updateFormstatus_code" class="ControlsRO" value="{status_code}" readonly name="{status_code_Name}">Tgl&nbsp;<input id="t_cust_account_updateFormlast_satatus_date" class="ControlsRO" value="{last_satatus_date}" readonly maxlength="250" name="{last_satatus_date_Name}">&nbsp; 
-                      <!-- BEGIN Button Button1 --><input id="t_cust_account_updateFormButton1" class="btn_tambah" onclick="openUpdateSatusForm({t_cust_account_id})" value="Ubah Status" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 --><input id="t_cust_account_updateFormp_account_status_id" value="{p_account_status_id}" type="hidden" name="{p_account_status_id_Name}"></td>
+                      <!-- BEGIN Button Button1 --><input style="DISPLAY: none" id="t_cust_account_updateFormButton1" class="btn_tambah" onclick="openUpdateSatusForm({t_cust_account_id})" value="Ubah Status" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 --><input id="t_cust_account_updateFormp_account_status_id" value="{p_account_status_id}" type="hidden" name="{p_account_status_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -577,6 +584,14 @@ function openUpdateSatusForm(t_cust_account_id) {
 function lov_jabatan() {
         getFrom_LOV('t_cust_account_updateForm','p_job_position_id,nama_jabatan',
                 'lov_2_field.php?TABLE=p_job_position&FIELD_0=p_job_position_id&FIELD_1=code&FIELD_2=description&LABEL1=Jabatan&LABEL2=Deskripsi&HEADER_PAGE=JABATAN&HEADER_LOV=DAFTAR JABATAN&ORDER=p_job_position_id');
+}
+
+function toDoc()
+{
+       var customerName = document.getElementById('p_cust_account_updateSearchcustomer_name').value;
+       var pid = document.getElementById('p_cust_account_updateSearcht_customer_id').value;
+       var t_cust = document.getElementById('t_custAccountGridt_cust_account_id').value;
+        location.href="t_cacc_legal_doc.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust;
 }
 </script>
 </body>
