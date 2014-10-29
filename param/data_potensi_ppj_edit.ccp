@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_ppjForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_ppjForm" activeCollection="ISQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_ppj(t_cacc_dtl_ppj_id, created_by, updated_by, creation_date, updated_date, t_cust_account_id, service_charge, power_factor, description, power_capacity, pwr_classification_desc, p_pwr_classification_id, is_pln, valid_from, valid_to) 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_ppjForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_ppjForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_ppj(t_cacc_dtl_ppj_id, created_by, updated_by, creation_date, updated_date, t_cust_account_id, service_charge, power_factor, description, power_capacity, pwr_classification_desc, p_pwr_classification_id, is_pln, valid_from, valid_to) 
 VALUES(generate_id('sikp','t_cacc_dtl_ppj','t_cacc_dtl_ppj_id'), '{created_by}', '{updated_by}', sysdate, sysdate, {t_cust_account_id}, '{service_charge}', {power_factor}, '{description}', {power_capacity}, '{pwr_classification_desc}', {p_pwr_classification_id}, 'Y', to_date('{valid_from}','DD-MON-YYYY'), case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end)" customUpdate="UPDATE t_cacc_dtl_ppj SET 
 updated_by='{updated_by}', 
 updated_date=sysdate, 
@@ -13,8 +13,8 @@ pwr_classification_desc='{pwr_classification_desc}',
 p_pwr_classification_id={p_pwr_classification_id},
 valid_from = to_date('{valid_from}','DD-MON-YYYY'),
 valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end 
-WHERE t_cacc_dtl_ppj_id={t_cacc_dtl_ppj_id}" customDelete="DELETE FROM t_vat_reg_dtl_ppj
-WHERE t_vat_reg_dtl_ppj_id = {t_vat_reg_dtl_ppj_id}" activeTableType="t_vat_reg_dtl_ppj" dataSource="SELECT a.t_cacc_dtl_ppj_id, a.t_cust_account_id, a.p_pwr_classification_id, a.pwr_classification_desc, a.power_capacity, a.power_factor, a.service_charge, a.description, to_char(a.creation_date, 'DD-MON-YYYY') AS creation_date, a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by, a.owner_qty, a.is_pln,
+WHERE t_cacc_dtl_ppj_id={t_cacc_dtl_ppj_id}" customDelete="DELETE FROM t_cacc_dtl_ppj
+WHERE t_cacc_dtl_ppj_id = {t_cacc_dtl_ppj_id}" activeTableType="t_vat_reg_dtl_ppj" dataSource="SELECT a.t_cacc_dtl_ppj_id, a.t_cust_account_id, a.p_pwr_classification_id, a.pwr_classification_desc, a.power_capacity, a.power_factor, a.service_charge, a.description, to_char(a.creation_date, 'DD-MON-YYYY') AS creation_date, a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by, a.owner_qty, a.is_pln,
 	   	to_char(a.valid_from,'DD-MON-YYYY')as valid_from, to_char(a.valid_to,'DD-MON-YYYY')as valid_to
    FROM t_cacc_dtl_ppj a, p_pwr_classification b, t_cust_account c
   WHERE a.p_pwr_classification_id = b.p_pwr_classification_id 
@@ -179,7 +179,12 @@ WHERE t_vat_reg_dtl_ppj_id = {t_vat_reg_dtl_ppj_id}" activeTableType="t_vat_reg_
 						<Action actionName="Custom Code" actionCategory="General" id="880"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="AfterExecuteDelete" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="881"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 			</TableParameters>
 			<SPParameters/>
@@ -262,6 +267,7 @@ WHERE t_vat_reg_dtl_ppj_id = {t_vat_reg_dtl_ppj_id}" activeTableType="t_vat_reg_
 			</UConditions>
 			<UFormElements>
 				<CustomParameter id="847" field="created_by" dataType="Text" parameterType="Control" parameterSource="created_by"/>
+
 				<CustomParameter id="848" field="updated_by" dataType="Text" parameterType="Control" parameterSource="updated_by"/>
 				<CustomParameter id="849" field="creation_date" dataType="Text" parameterType="Control" parameterSource="creation_date" format="dd-mmm-yyyy"/>
 				<CustomParameter id="850" field="updated_date" dataType="Text" parameterType="Control" parameterSource="updated_date" format="dd-mmm-yyyy"/>
@@ -276,7 +282,7 @@ WHERE t_vat_reg_dtl_ppj_id = {t_vat_reg_dtl_ppj_id}" activeTableType="t_vat_reg_
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="871" variable="t_vat_reg_dtl_ppj_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_vat_reg_dtl_ppj_id"/>
+				<SQLParameter id="871" variable="t_cacc_dtl_ppj_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_cacc_dtl_ppj_id"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>
