@@ -569,121 +569,121 @@ AND v.t_customer_id = {t_customer_id}
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="627" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_jabatan" fieldSource="nama_jabatan" required="True" caption="Jabatan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_jabatan">
+				<TextBox id="627" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_jabatan" fieldSource="nama_jabatan" required="True" caption="Jabatan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_jabatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="629" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kota_owner" fieldSource="nama_kota_owner" required="True" caption="Kota" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kota_owner">
+				<TextBox id="629" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kota_owner" fieldSource="nama_kota_owner" required="True" caption="Kota" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kota_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="631" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kecamatan_owner" fieldSource="nama_kecamatan_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kecamatan_owner">
+				<TextBox id="631" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kecamatan_owner" fieldSource="nama_kecamatan_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kecamatan_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="633" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kelurahan_owner" fieldSource="nama_kelurahan_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kelurahan_owner">
+				<TextBox id="633" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kelurahan_owner" fieldSource="nama_kelurahan_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormnama_kelurahan_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="635" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_rt_owner" fieldSource="address_rt_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_rt_owner">
+				<TextBox id="635" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_rt_owner" fieldSource="address_rt_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_rt_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="480" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_rw_owner" fieldSource="address_rw_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_rw_owner">
+				<TextBox id="480" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_rw_owner" fieldSource="address_rw_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_rw_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="481" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="zip_code_owner" fieldSource="zip_code_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormzip_code_owner">
+				<TextBox id="481" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="zip_code_owner" fieldSource="zip_code_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormzip_code_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="482" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="phone_no_owner" fieldSource="phone_no_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormphone_no_owner">
+				<TextBox id="482" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="phone_no_owner" fieldSource="phone_no_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormphone_no_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="484" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_no_owner" fieldSource="mobile_no_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormmobile_no_owner">
+				<TextBox id="484" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_no_owner" fieldSource="mobile_no_owner" required="True" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormmobile_no_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="485" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="email_address" fieldSource="email_address" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormemail_address" inputMask="^[\w\.-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]+$">
+				<TextBox id="485" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="email_address" fieldSource="email_address" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormemail_address" inputMask="^[\w\.-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]+$">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextArea id="486" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name_owner" fieldSource="address_name_owner" required="True" caption="Alamat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_name_owner">
+				<TextArea id="486" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name_owner" fieldSource="address_name_owner" required="True" caption="Alamat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_name_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-<TextBox id="488" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_owner" fieldSource="company_owner" required="True" caption="Nama Perusahaan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormcompany_owner">
+				<TextBox id="488" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_owner" fieldSource="company_owner" required="True" caption="Nama Perusahaan" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormcompany_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="489" fieldSourceType="DBColumn" dataType="Text" name="updated_by1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormupdated_by1" fieldSource="updated_by" defaultValue="CCGetUserLogin()">
+				<Hidden id="489" fieldSourceType="DBColumn" dataType="Text" name="updated_by1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormupdated_by1" fieldSource="updated_by" defaultValue="CCGetUserLogin()">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="490" fieldSourceType="DBColumn" dataType="Text" name="p_job_position_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_job_position_id" fieldSource="p_job_position_id">
+				<Hidden id="490" fieldSourceType="DBColumn" dataType="Text" name="p_job_position_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_job_position_id" fieldSource="p_job_position_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="491" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kel_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_kel_owner" fieldSource="p_region_id_kel_owner">
+				<Hidden id="491" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kel_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_kel_owner" fieldSource="p_region_id_kel_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="492" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kec_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_kec_owner" fieldSource="p_region_id_kec_owner">
+				<Hidden id="492" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_kec_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_kec_owner" fieldSource="p_region_id_kec_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="493" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_owner" fieldSource="p_region_id_owner">
+				<Hidden id="493" fieldSourceType="DBColumn" dataType="Text" name="p_region_id_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id_owner" fieldSource="p_region_id_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="504" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="fax_no_owner" fieldSource="fax_no_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormfax_no_owner">
+				<TextBox id="504" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="fax_no_owner" fieldSource="fax_no_owner" required="False" caption="Description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormfax_no_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="650" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no_owner" fieldSource="address_no_owner" required="True" caption="No" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_no_owner">
+				<TextBox id="650" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no_owner" fieldSource="address_no_owner" required="True" caption="No" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cust_account_updateFormaddress_no_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -801,22 +801,22 @@ AND v.t_customer_id = {t_customer_id}
 				<SQLParameter id="608" variable="activation_no" parameterType="Control" dataType="Text" parameterSource="activation_no"/>
 				<SQLParameter id="620" variable="p_vat_type_dtl_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_vat_type_dtl_id"/>
 				<SQLParameter id="651" variable="modification_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
-<SQLParameter id="652" variable="company_owner" parameterType="Control" dataType="Text" parameterSource="company_owner"/>
-<SQLParameter id="653" variable="p_job_position_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_job_position_id"/>
-<SQLParameter id="654" variable="address_name_owner" parameterType="Control" dataType="Text" parameterSource="address_name_owner"/>
-<SQLParameter id="655" variable="address_no_owner" parameterType="Control" dataType="Text" parameterSource="address_no_owner"/>
-<SQLParameter id="656" variable="address_rt_owner" parameterType="Control" dataType="Text" parameterSource="address_rt_owner"/>
-<SQLParameter id="657" variable="address_rw_owner" parameterType="Control" dataType="Text" parameterSource="address_rw_owner"/>
-<SQLParameter id="658" variable="p_region_id_owner" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_region_id_owner"/>
-<SQLParameter id="659" variable="p_region_id_kec_owner" parameterType="Control" dataType="Integer" parameterSource="p_region_id_kec_owner" defaultValue="0"/>
-<SQLParameter id="660" variable="p_region_id_kel_owner" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_region_id_kel_owner"/>
-<SQLParameter id="661" variable="phone_no_owner" parameterType="Control" dataType="Text" parameterSource="phone_no_owner"/>
-<SQLParameter id="662" variable="fax_no_owner" parameterType="Control" dataType="Text" parameterSource="fax_no_owner"/>
-<SQLParameter id="663" variable="mobile_no_owner" parameterType="Control" dataType="Text" parameterSource="mobile_no_owner"/>
-<SQLParameter id="664" variable="email_address" parameterType="Control" dataType="Text" parameterSource="email_address"/>
-<SQLParameter id="665" variable="zip_code_owner" parameterType="Control" dataType="Text" parameterSource="zip_code_owner"/>
-<SQLParameter id="666" variable="t_customer_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_customer_id"/>
-</USQLParameters>
+				<SQLParameter id="652" variable="company_owner" parameterType="Control" dataType="Text" parameterSource="company_owner"/>
+				<SQLParameter id="653" variable="p_job_position_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_job_position_id"/>
+				<SQLParameter id="654" variable="address_name_owner" parameterType="Control" dataType="Text" parameterSource="address_name_owner"/>
+				<SQLParameter id="655" variable="address_no_owner" parameterType="Control" dataType="Text" parameterSource="address_no_owner"/>
+				<SQLParameter id="656" variable="address_rt_owner" parameterType="Control" dataType="Text" parameterSource="address_rt_owner"/>
+				<SQLParameter id="657" variable="address_rw_owner" parameterType="Control" dataType="Text" parameterSource="address_rw_owner"/>
+				<SQLParameter id="658" variable="p_region_id_owner" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_region_id_owner"/>
+				<SQLParameter id="659" variable="p_region_id_kec_owner" parameterType="Control" dataType="Integer" parameterSource="p_region_id_kec_owner" defaultValue="0"/>
+				<SQLParameter id="660" variable="p_region_id_kel_owner" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="p_region_id_kel_owner"/>
+				<SQLParameter id="661" variable="phone_no_owner" parameterType="Control" dataType="Text" parameterSource="phone_no_owner"/>
+				<SQLParameter id="662" variable="fax_no_owner" parameterType="Control" dataType="Text" parameterSource="fax_no_owner"/>
+				<SQLParameter id="663" variable="mobile_no_owner" parameterType="Control" dataType="Text" parameterSource="mobile_no_owner"/>
+				<SQLParameter id="664" variable="email_address" parameterType="Control" dataType="Text" parameterSource="email_address"/>
+				<SQLParameter id="665" variable="zip_code_owner" parameterType="Control" dataType="Text" parameterSource="zip_code_owner"/>
+				<SQLParameter id="666" variable="t_customer_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_customer_id"/>
+			</USQLParameters>
 			<UConditions>
 				<TableParameter id="446" conditionType="Parameter" useIsNull="False" field="p_job_position_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_job_position_id"/>
 			</UConditions>
