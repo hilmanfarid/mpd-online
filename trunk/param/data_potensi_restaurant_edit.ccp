@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_restaurantForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_restaurantForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_restaurant(t_cacc_dtl_restaurant_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, table_qty, avg_subscription, seat_qty, max_service_qty, service_type_desc, valid_from, valid_to) 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_restaurantForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_restaurantForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_restaurant(t_cacc_dtl_restaurant_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, table_qty, avg_subscription, seat_qty, max_service_qty, service_type_desc, valid_from, valid_to) 
 VALUES(generate_id('sikp','t_cacc_dtl_restaurant','t_cacc_dtl_restaurant_id'), '{description}', '{created_by}', '{updated_by}', sysdate, sysdate, {t_cust_account_id}, '{table_qty}', {avg_subscription}, {seat_qty}, {max_service_qty}, '{service_type_desc}', to_date('{valid_from}','DD-MON-YYYY'), case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end)" customUpdate="UPDATE t_cacc_dtl_restaurant
 SET description='{description}', 
 updated_by='{updated_by}', 
@@ -12,8 +12,8 @@ seat_qty={seat_qty},
 max_service_qty={max_service_qty},
 valid_from = to_date('{valid_from}','DD-MON-YYYY'),
 valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end
-WHERE t_cacc_dtl_restaurant_id={t_cacc_dtl_restaurant_id}" customDelete="DELETE FROM t_vat_reg_dtl_restaurant
-WHERE t_vat_reg_dtl_restaurant_id = {t_vat_reg_dtl_restaurant_id}" dataSource="SELECT a.t_cacc_dtl_restaurant_id, a.t_cust_account_id, a.service_type_desc, 
+WHERE t_cacc_dtl_restaurant_id={t_cacc_dtl_restaurant_id}" customDelete="DELETE FROM t_cacc_dtl_restaurant
+WHERE t_cacc_dtl_restaurant_id = {t_cacc_dtl_restaurant_id}" dataSource="SELECT a.t_cacc_dtl_restaurant_id, a.t_cust_account_id, a.service_type_desc, 
 	 to_char(a.valid_from,'DD-MON-YYYY')as valid_from, to_char(a.valid_to,'DD-MON-YYYY')as valid_to,	
 	 a.seat_qty, a.table_qty, a.max_service_qty, a.avg_subscription, a.description, to_char(a.creation_date, 'DD-MON-YYYY') AS creation_date, 
 	 a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by
@@ -190,7 +190,12 @@ WHERE t_vat_reg_dtl_restaurant_id = {t_vat_reg_dtl_restaurant_id}" dataSource="S
 						<Action actionName="Custom Code" actionCategory="General" id="821"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="AfterExecuteDelete" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="826"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 			</TableParameters>
 			<SPParameters/>
@@ -288,7 +293,7 @@ WHERE t_vat_reg_dtl_restaurant_id = {t_vat_reg_dtl_restaurant_id}" dataSource="S
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="814" variable="t_vat_reg_dtl_restaurant_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_vat_reg_dtl_restaurant_id"/>
+				<SQLParameter id="814" variable="t_cacc_dtl_restaurant_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_cacc_dtl_restaurant_id"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>
