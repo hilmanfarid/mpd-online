@@ -45,7 +45,7 @@ class clsRecordt_vat_reg_dtl_hotelForm { //t_vat_reg_dtl_hotelForm Class @94-710
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-402FDC23
+//Class_Initialize Event @94-4BF38928
     function clsRecordt_vat_reg_dtl_hotelForm($RelativePath, & $Parent)
     {
 
@@ -61,6 +61,7 @@ class clsRecordt_vat_reg_dtl_hotelForm { //t_vat_reg_dtl_hotelForm Class @94-710
         $this->ds = & $this->DataSource;
         $this->InsertAllowed = true;
         $this->UpdateAllowed = true;
+        $this->DeleteAllowed = true;
         $this->ReadAllowed = true;
         if($this->Visible)
         {
@@ -222,7 +223,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-AAE4F942
+//Operation Method @94-7DE29AD7
     function Operation()
     {
         if(!$this->Visible)
@@ -252,7 +253,7 @@ function GetPrimaryKey($keyName)
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
         if($this->PressedButton == "Button_Delete") {
             $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "t_vat_reg_dtl_hotel_id"));
-            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete)) {
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
                 $Redirect = "";
             }
         } else if($this->PressedButton == "Button_Cancel") {
@@ -320,6 +321,18 @@ function GetPrimaryKey($keyName)
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
+
+//DeleteRow Method @94-B1098DE7
+    function DeleteRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
+        if(!$this->DeleteAllowed) return false;
+        $this->DataSource->t_cacc_dtl_hotel_id->SetValue($this->t_cacc_dtl_hotel_id->GetValue(true));
+        $this->DataSource->Delete();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
+        return (!$this->CheckErrors());
+    }
+//End DeleteRow Method
 
 //Show Method @94-AA4437BC
     function Show()
@@ -445,7 +458,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_reg_dtl_hotelFormDataSource extends clsDBConnSIKP {  //t_vat_reg_dtl_hotelFormDataSource Class @94-9DEB1C05
 
-//DataSource Variables @94-F294D3AE
+//DataSource Variables @94-3BDB9361
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -454,6 +467,7 @@ class clst_vat_reg_dtl_hotelFormDataSource extends clsDBConnSIKP {  //t_vat_reg_
 
     var $InsertParameters;
     var $UpdateParameters;
+    var $DeleteParameters;
     var $wp;
     var $AllParametersSet;
 
@@ -694,6 +708,28 @@ class clst_vat_reg_dtl_hotelFormDataSource extends clsDBConnSIKP {  //t_vat_reg_
         }
     }
 //End Update Method
+
+//Delete Method @94-C28616D9
+    function Delete()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->cp["t_cacc_dtl_hotel_id"] = new clsSQLParameter("ctrlt_cacc_dtl_hotel_id", ccsFloat, "", "", $this->t_cacc_dtl_hotel_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
+        if (!is_null($this->cp["t_cacc_dtl_hotel_id"]->GetValue()) and !strlen($this->cp["t_cacc_dtl_hotel_id"]->GetText()) and !is_bool($this->cp["t_cacc_dtl_hotel_id"]->GetValue())) 
+            $this->cp["t_cacc_dtl_hotel_id"]->SetValue($this->t_cacc_dtl_hotel_id->GetValue(true));
+        if (!strlen($this->cp["t_cacc_dtl_hotel_id"]->GetText()) and !is_bool($this->cp["t_cacc_dtl_hotel_id"]->GetValue(true))) 
+            $this->cp["t_cacc_dtl_hotel_id"]->SetText(0);
+        $this->SQL = "DELETE FROM t_cacc_dtl_hotel\n" .
+        "WHERE t_cacc_dtl_hotel_id = " . $this->SQLValue($this->cp["t_cacc_dtl_hotel_id"]->GetDBValue(), ccsFloat) . "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
+        }
+    }
+//End Delete Method
 
 } //End t_vat_reg_dtl_hotelFormDataSource Class @94-FCB6E20C
 
