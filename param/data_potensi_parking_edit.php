@@ -45,7 +45,7 @@ class clsRecordt_vat_reg_dtl_parkingForm { //t_vat_reg_dtl_parkingForm Class @94
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-F3EF61FE
+//Class_Initialize Event @94-0C4D739D
     function clsRecordt_vat_reg_dtl_parkingForm($RelativePath, & $Parent)
     {
 
@@ -61,6 +61,7 @@ class clsRecordt_vat_reg_dtl_parkingForm { //t_vat_reg_dtl_parkingForm Class @94
         $this->ds = & $this->DataSource;
         $this->InsertAllowed = true;
         $this->UpdateAllowed = true;
+        $this->DeleteAllowed = true;
         $this->ReadAllowed = true;
         if($this->Visible)
         {
@@ -223,7 +224,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-AAE4F942
+//Operation Method @94-7DE29AD7
     function Operation()
     {
         if(!$this->Visible)
@@ -253,7 +254,7 @@ function GetPrimaryKey($keyName)
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
         if($this->PressedButton == "Button_Delete") {
             $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "t_vat_reg_dtl_hotel_id"));
-            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete)) {
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
                 $Redirect = "";
             }
         } else if($this->PressedButton == "Button_Cancel") {
@@ -322,6 +323,18 @@ function GetPrimaryKey($keyName)
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
+
+//DeleteRow Method @94-D11E47B5
+    function DeleteRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
+        if(!$this->DeleteAllowed) return false;
+        $this->DataSource->t_acc_dtl_parking_id->SetValue($this->t_acc_dtl_parking_id->GetValue(true));
+        $this->DataSource->Delete();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
+        return (!$this->CheckErrors());
+    }
+//End DeleteRow Method
 
 //Show Method @94-48A42A34
     function Show()
@@ -452,7 +465,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_reg_dtl_parkingFormDataSource extends clsDBConnSIKP {  //t_vat_reg_dtl_parkingFormDataSource Class @94-045FA288
 
-//DataSource Variables @94-2E1D7F49
+//DataSource Variables @94-3C3BB464
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -461,6 +474,7 @@ class clst_vat_reg_dtl_parkingFormDataSource extends clsDBConnSIKP {  //t_vat_re
 
     var $InsertParameters;
     var $UpdateParameters;
+    var $DeleteParameters;
     var $wp;
     var $AllParametersSet;
 
@@ -703,6 +717,28 @@ class clst_vat_reg_dtl_parkingFormDataSource extends clsDBConnSIKP {  //t_vat_re
         }
     }
 //End Update Method
+
+//Delete Method @94-3799CE5D
+    function Delete()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->cp["t_acc_dtl_parking_id"] = new clsSQLParameter("ctrlt_acc_dtl_parking_id", ccsFloat, "", "", $this->t_acc_dtl_parking_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
+        if (!is_null($this->cp["t_acc_dtl_parking_id"]->GetValue()) and !strlen($this->cp["t_acc_dtl_parking_id"]->GetText()) and !is_bool($this->cp["t_acc_dtl_parking_id"]->GetValue())) 
+            $this->cp["t_acc_dtl_parking_id"]->SetValue($this->t_acc_dtl_parking_id->GetValue(true));
+        if (!strlen($this->cp["t_acc_dtl_parking_id"]->GetText()) and !is_bool($this->cp["t_acc_dtl_parking_id"]->GetValue(true))) 
+            $this->cp["t_acc_dtl_parking_id"]->SetText(0);
+        $this->SQL = "DELETE FROM t_acc_dtl_parking\n" .
+        "WHERE t_acc_dtl_parking_id = " . $this->SQLValue($this->cp["t_acc_dtl_parking_id"]->GetDBValue(), ccsFloat) . "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
+        }
+    }
+//End Delete Method
 
 } //End t_vat_reg_dtl_parkingFormDataSource Class @94-FCB6E20C
 
