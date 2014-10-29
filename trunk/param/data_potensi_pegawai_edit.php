@@ -45,7 +45,7 @@ class clsRecordt_vat_reg_employeeForm { //t_vat_reg_employeeForm Class @94-BDCD4
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-FCD45AF5
+//Class_Initialize Event @94-0DD759E8
     function clsRecordt_vat_reg_employeeForm($RelativePath, & $Parent)
     {
 
@@ -61,6 +61,7 @@ class clsRecordt_vat_reg_employeeForm { //t_vat_reg_employeeForm Class @94-BDCD4
         $this->ds = & $this->DataSource;
         $this->InsertAllowed = true;
         $this->UpdateAllowed = true;
+        $this->DeleteAllowed = true;
         $this->ReadAllowed = true;
         if($this->Visible)
         {
@@ -209,7 +210,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-AAE4F942
+//Operation Method @94-7DE29AD7
     function Operation()
     {
         if(!$this->Visible)
@@ -239,7 +240,7 @@ function GetPrimaryKey($keyName)
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
         if($this->PressedButton == "Button_Delete") {
             $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "t_vat_reg_dtl_hotel_id"));
-            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete)) {
+            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete) || !$this->DeleteRow()) {
                 $Redirect = "";
             }
         } else if($this->PressedButton == "Button_Cancel") {
@@ -302,6 +303,18 @@ function GetPrimaryKey($keyName)
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
+
+//DeleteRow Method @94-331AFD2D
+    function DeleteRow()
+    {
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
+        if(!$this->DeleteAllowed) return false;
+        $this->DataSource->t_cust_acc_employee_id->SetValue($this->t_cust_acc_employee_id->GetValue(true));
+        $this->DataSource->Delete();
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
+        return (!$this->CheckErrors());
+    }
+//End DeleteRow Method
 
 //Show Method @94-3D528BE2
     function Show()
@@ -423,7 +436,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_reg_employeeFormDataSource extends clsDBConnSIKP {  //t_vat_reg_employeeFormDataSource Class @94-276C0FE2
 
-//DataSource Variables @94-9EBBB224
+//DataSource Variables @94-59C7EC0D
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -432,6 +445,7 @@ class clst_vat_reg_employeeFormDataSource extends clsDBConnSIKP {  //t_vat_reg_e
 
     var $InsertParameters;
     var $UpdateParameters;
+    var $DeleteParameters;
     var $wp;
     var $AllParametersSet;
 
@@ -648,6 +662,28 @@ class clst_vat_reg_employeeFormDataSource extends clsDBConnSIKP {  //t_vat_reg_e
         }
     }
 //End Update Method
+
+//Delete Method @94-A38E3E74
+    function Delete()
+    {
+        global $CCSLocales;
+        global $DefaultDateFormat;
+        $this->CmdExecution = true;
+        $this->cp["t_cust_acc_employee_id"] = new clsSQLParameter("ctrlt_cust_acc_employee_id", ccsFloat, "", "", $this->t_cust_acc_employee_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
+        if (!is_null($this->cp["t_cust_acc_employee_id"]->GetValue()) and !strlen($this->cp["t_cust_acc_employee_id"]->GetText()) and !is_bool($this->cp["t_cust_acc_employee_id"]->GetValue())) 
+            $this->cp["t_cust_acc_employee_id"]->SetValue($this->t_cust_acc_employee_id->GetValue(true));
+        if (!strlen($this->cp["t_cust_acc_employee_id"]->GetText()) and !is_bool($this->cp["t_cust_acc_employee_id"]->GetValue(true))) 
+            $this->cp["t_cust_acc_employee_id"]->SetText(0);
+        $this->SQL = "DELETE FROM t_cust_acc_employee\n" .
+        "WHERE t_cust_acc_employee_id = " . $this->SQLValue($this->cp["t_cust_acc_employee_id"]->GetDBValue(), ccsFloat) . "";
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
+        if($this->Errors->Count() == 0 && $this->CmdExecution) {
+            $this->query($this->SQL);
+            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteDelete", $this->Parent);
+        }
+    }
+//End Delete Method
 
 } //End t_vat_reg_employeeFormDataSource Class @94-FCB6E20C
 
