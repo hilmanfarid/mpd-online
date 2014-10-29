@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_parkingForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_parkingForm" activeCollection="ISQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_acc_dtl_parking(t_acc_dtl_parking_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, max_load_qty, first_service_charge, avg_subscription_qty, classification_desc, parking_size, next_service_charge, valid_from, valid_to) 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_parkingForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_parkingForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_acc_dtl_parking(t_acc_dtl_parking_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, max_load_qty, first_service_charge, avg_subscription_qty, classification_desc, parking_size, next_service_charge, valid_from, valid_to) 
 VALUES(generate_id('sikp','t_acc_dtl_parking','t_acc_dtl_parking_id'), '{description}', '{created_by}', '{updated_by}', sysdate, sysdate, {t_cust_account_id}, {max_load_qty}, {first_service_charge}, '{avg_subscription_qty}', '{classification_desc}', {parking_size}, {next_service_charge}, to_date('{valid_from}','DD-MON-YYYY'), case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end)" customUpdate="UPDATE t_acc_dtl_parking SET 
 description='{description}', 
 updated_by='{updated_by}', 
@@ -13,8 +13,8 @@ parking_size={parking_size},
 next_service_charge={next_service_charge},
 valid_from = to_date('{valid_from}','DD-MON-YYYY'),
 valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end
-WHERE t_acc_dtl_parking_id={t_acc_dtl_parking_id}" customDelete="DELETE FROM t_vat_reg_dtl_parking
-WHERE t_vat_reg_dtl_parking_id = {t_vat_reg_dtl_parking_id}" dataSource="SELECT a.t_acc_dtl_parking_id, a.t_cust_account_id, a.classification_desc, a.parking_size, a.max_load_qty, a.avg_subscription_qty, 
+WHERE t_acc_dtl_parking_id={t_acc_dtl_parking_id}" customDelete="DELETE FROM t_acc_dtl_parking
+WHERE t_acc_dtl_parking_id = {t_acc_dtl_parking_id}" dataSource="SELECT a.t_acc_dtl_parking_id, a.t_cust_account_id, a.classification_desc, a.parking_size, a.max_load_qty, a.avg_subscription_qty, 
 to_char(a.valid_from,'DD-MON-YYYY')as valid_from, to_char(a.valid_to,'DD-MON-YYYY')as valid_to,
 a.first_service_charge, a.next_service_charge, a.description, to_char(a.creation_date, 'DD-MON-YYYY') AS creation_date, 
 a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by, c.p_parking_classification_id
@@ -180,7 +180,7 @@ AND a.t_acc_dtl_parking_id = {t_acc_dtl_parking_id} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="AfterExecuteUpdate" type="Server">
 					<Actions>
@@ -197,7 +197,12 @@ AND a.t_acc_dtl_parking_id = {t_acc_dtl_parking_id} ">
 						<Action actionName="Custom Code" actionCategory="General" id="832"/>
 					</Actions>
 				</Event>
-			</Events>
+				<Event name="AfterExecuteDelete" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="833"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 				<TableParameter id="824" conditionType="Parameter" useIsNull="False" field="t_acc_dtl_parking.t_acc_dtl_parking_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_acc_dtl_parking_id"/>
 			</TableParameters>
@@ -300,7 +305,7 @@ AND a.t_acc_dtl_parking_id = {t_acc_dtl_parking_id} ">
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="751" variable="t_vat_reg_dtl_parking_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_vat_reg_dtl_parking_id"/>
+				<SQLParameter id="751" variable="t_acc_dtl_parking_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_acc_dtl_parking_id"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>
