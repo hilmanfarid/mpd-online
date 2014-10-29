@@ -1174,7 +1174,7 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 			</TableParameters>
 			<JoinTables>
 				<JoinTable id="1062" tableName="v_cacc_license_letter" posWidth="20" posHeight="40" posLeft="10" posTop="10"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="457" fieldName="*"/>
