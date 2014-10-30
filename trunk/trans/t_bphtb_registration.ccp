@@ -406,13 +406,13 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="1015" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final_old" PathID="t_bphtb_registrationFormbphtb_amt_final_old" fieldSource="bphtb_amt_final_old" format="#,##0.00">
+				<TextBox id="1015" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final_old" PathID="t_bphtb_registrationFormbphtb_amt_final_old" fieldSource="bphtb_amt_final_old" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -605,7 +605,6 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<CustomParameter id="986" field="npop" dataType="Float" parameterType="Control" parameterSource="npop" omitIfEmpty="True"/>
 				<CustomParameter id="987" field="npop_tkp" dataType="Float" parameterType="Control" parameterSource="npop_tkp" omitIfEmpty="True"/>
 				<CustomParameter id="988" field="npop_kp" dataType="Float" parameterType="Control" parameterSource="npop_kp" omitIfEmpty="True"/>
-
 				<CustomParameter id="989" field="bphtb_amt" dataType="Float" parameterType="Control" parameterSource="bphtb_amt" omitIfEmpty="True"/>
 				<CustomParameter id="990" field="bphtb_amt_final" dataType="Float" parameterType="Control" parameterSource="bphtb_amt_final" omitIfEmpty="True"/>
 				<CustomParameter id="991" field="bphtb_discount" dataType="Float" parameterType="Control" parameterSource="bphtb_discount" omitIfEmpty="True"/>
