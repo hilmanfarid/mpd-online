@@ -1,0 +1,797 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script language="JavaScript" type="text/javascript">
+function ReplaceNumberWithCommas(yourNumber) {
+    //Seperates the components of the number
+    var n= yourNumber.toString().split(".");
+    //Comma-fies the first part
+    n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    //Combines the two sections
+    return n.join(".");
+}
+function printLaporan(){
+        var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
+                var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
+                if(p_bphtb_type_id == 3) {
+                        window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+                }else {
+                window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+                }
+}
+function setNormalValue(){
+    jQuery(".numeric-field").each(function() {
+        var thisVal=jQuery(this).val();
+                if(thisVal!=0){
+                jQuery(this).val(thisVal.replace(/,/g ,''));
+                }
+    });
+}
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Include User Scripts @1-113F5716
+</script>
+<script language="JavaScript" src="../js/pt/prototype.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include User Scripts
+
+//t_bphtb_registrationFormButton_Delete_OnClick @97-C27F3D13
+function t_bphtb_registrationFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_bphtb_registrationFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close t_bphtb_registrationFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_bphtb_registrationFormButton_Delete_OnClick
+
+//t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange @934-146D1D21
+function t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange()
+{
+    var result = true;
+//End t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange
+
+//Custom Code @956-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange @934-BC33A33A
+    return result;
+}
+//End Close t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange
+
+//t_bphtb_registrationFormadd_disc_percent_OnChange @1009-18264CC2
+function t_bphtb_registrationFormadd_disc_percent_OnChange()
+{
+    var result = true;
+//End t_bphtb_registrationFormadd_disc_percent_OnChange
+
+//Custom Code @1010-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
+    document.getElementById('t_bphtb_registrationFormadd_discount').value = ReplaceNumberWithCommas(this.value*npop);
+        hitungNPOPKP();    
+        // -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationFormadd_disc_percent_OnChange @1009-BC33A33A
+    return result;
+}
+//End Close t_bphtb_registrationFormadd_disc_percent_OnChange
+
+//t_bphtb_registrationForm_OnSubmit @94-5816823C
+function t_bphtb_registrationForm_OnSubmit()
+{
+    var result = true;
+//End t_bphtb_registrationForm_OnSubmit
+
+//Custom Code @1001-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationForm_OnSubmit @94-BC33A33A
+    return result;
+}
+//End Close t_bphtb_registrationForm_OnSubmit
+//t_bphtb_registrationFormButton_Cancel_OnClick @99-359D9A2A
+function t_bphtb_registrationFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_bphtb_registrationFormButton_Cancel_OnClick
+
+//PTAutoFill1 Loading @951-4695F141
+function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(sender) {
+    new Ajax.Request("../services/trans_t_bphtb_registration_t_bphtb_registrationForm_p_bphtb_legal_doc_type_id_PTAutoFill1.php?keyword=" + encodeURIComponent($("t_bphtb_registrationFormp_bphtb_legal_doc_type_id").value).replace(/'/g, "%27"), {
+        method: "get",
+        requestHeaders: ['If-Modified-Since', new Date(0)],
+        onSuccess: function(transport) {
+            var valuesRow = eval(transport.responseText)[0];
+            if (typeof(valuesRow) != "undefined") {
+                    if(valuesRow["doc_cons"] > 0 && valuesRow["doc_cons"] != '' ){
+
+                                                getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["doc_cons"]*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
+                                                document.getElementById('t_bphtb_registrationFormnilai_doc').value=valuesRow["doc_cons"];
+                                                if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
+                                                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,'')*valuesRow["doc_cons"]));
+                                                }else{
+                                                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormmarket_price').value).replace(/,/g ,'')*valuesRow["doc_cons"]));
+                                                }
+                                        }else{
+                                                if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
+                                                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''));
+                                                }else{
+                                                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''));
+                                                }
+                                            document.getElementById('t_bphtb_registrationFormnilai_doc').value='';
+                                        }
+                    getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = ReplaceNumberWithCommas(valuesRow["npoptkp"]);
+            } else {
+                getSameLevelCtl("t_bphtb_registrationFormnpop_tkp", sender).value = "0";
+            }
+                        hitungNPOPKP();
+        }, 
+        onFailure: function(transport) {
+            alert(transport.responseText);
+        }
+    });
+}
+//End PTAutoFill1 Loading
+
+//bind_events @1-C71F104E
+function bind_events() {
+    addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start);
+    addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange);
+    addEventHandler("t_bphtb_registrationFormButton_Delete", "click", t_bphtb_registrationFormButton_Delete_OnClick);
+    addEventHandler("t_bphtb_registrationFormadd_disc_percent", "change", t_bphtb_registrationFormadd_disc_percent_OnChange);
+    addEventHandler("t_bphtb_registrationForm", "submit", t_bphtb_registrationForm_OnSubmit);
+    addEventHandler("t_bphtb_registrationFormButton_Cancel", "click", t_bphtb_registrationFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
+<script language="javascript" type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function()
+{
+        jQuery(".numeric-field").maskMoney({thousands:',', precision: 0, defaultZero:true});
+    jQuery(window).scroll(function()
+    {
+            jQuery('#tabtop').css('top', jQuery(window).scrollTop());
+    });
+
+        jQuery(".numeric-field").keydown(function(event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+                 // Allow: Ctrl+A
+                (event.keyCode == 65 && event.ctrlKey === true) || 
+                 // Allow: home, end, left, right
+                (event.keyCode >= 35 && event.keyCode <= 39)) {
+                     // let it happen, don't do anything
+                     return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                    event.preventDefault(); 
+                }   
+            }
+        });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toOrder()">
+      <div class="tab-title">
+        DAFTAR BPHTB&nbsp; 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        FORMULIR PENDAFTARAN 
+      </div>
+    </div>
+    <!--<div class="th tab-button">
+      <label onclick="javascript:toReg3()">
+      <div class="tab-title">
+        DOKUMEN PENDUKUNG 
+      </div>
+      </label>
+    </div>-->
+  </div>
+</div>
+&nbsp;/ 
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_bphtb_registrationForm -->
+        <form id="t_bphtb_registrationForm" onsubmit="return setNormalValue();" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI FORMULIR PENDAFTARAN</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="9">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th" colspan="3"><span id="keterangan-kurang-bayar">&nbsp;</span></td> 
+                    <td colspan="6">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="3">&nbsp;A. Subjek Pajak</td> 
+                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormt_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama</label></label></label></label></label></label></label></td> 
+                    <td colspan="6"><label for="t_bphtb_registrationFormwp_name" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" name="{wp_name_Name}" value="{wp_name}">&nbsp;<input id="t_bphtb_registrationFormp_bphtb_type_id" name="{p_bphtb_type_id_Name}" value="{p_bphtb_type_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">NPWP</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormnpwp" name="{npwp_Name}" value="{npwp}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Alamat</td> 
+                    <td colspan="6"><input style="WIDTH: 491px; HEIGHT: 22px" id="t_bphtb_registrationFormwp_address_name" name="{wp_address_name_Name}" value="{wp_address_name}" size="77"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">No Telp</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormphone_no" name="{phone_no_Name}" value="{phone_no}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">No HP</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormmobile_phone_no" name="{mobile_phone_no_Name}" value="{mobile_phone_no}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;RT/ RW</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_rt" name="{wp_rt_Name}" value="{wp_rt}" size="2">&nbsp;/ <input id="t_bphtb_registrationFormwp_rw" name="{wp_rw_Name}" value="{wp_rw}" size="2"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kota/Kabupaten&nbsp;</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kota" class="ControlsRQ" tabindex="2" name="{wp_kota_Name}" readonly maxlength="32" value="{wp_kota}" size="32">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id" name="{wp_p_region_id_Name}" value="{wp_p_region_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kecamatan&nbsp;</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kecamatan" class="ControlsRQ" tabindex="2" name="{wp_kecamatan_Name}" readonly maxlength="32" value="{wp_kecamatan}" size="32">&nbsp;<img onclick="javascript:lov_region_wp2()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id_kec" name="{wp_p_region_id_kec_Name}" value="{wp_p_region_id_kec}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kelurahan&nbsp;</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kelurahan" class="ControlsRQ" tabindex="2" name="{wp_kelurahan_Name}" readonly maxlength="32" value="{wp_kelurahan}" size="32">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id_kel" name="{wp_p_region_id_kel_Name}" value="{wp_p_region_id_kel}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="3">&nbsp;B. Objek Pajak</td> 
+                    <td colspan="6">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;Nomor Objek Pajak</td> 
+                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input style="WIDTH: 246px; HEIGHT: 22px" id="t_bphtb_registrationFormnjop_pbb" name="{njop_pbb_Name}" value="{njop_pbb}" size="33"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;Letak Tanah dan atau Bangunan</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_address_name" name="{object_address_name_Name}" value="{object_address_name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;RT/ RW</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_rt" name="{object_rt_Name}" value="{object_rt}" size="2">&nbsp;/ <input id="t_bphtb_registrationFormobject_rw" name="{object_rw_Name}" value="{object_rw}" size="2"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kabupaten/ Kota</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kota" class="ControlsRQ" tabindex="2" name="{object_kota_Name}" readonly maxlength="32" value="{object_kota}" size="32"><img onclick="javascript:lov_region_object1()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id" name="{object_p_region_id_Name}" value="{object_p_region_id}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kecamatan</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kecamatan" class="ControlsRQ" tabindex="2" name="{object_kecamatan_Name}" readonly maxlength="32" value="{object_kecamatan}" size="32"><img onclick="javascript:lov_region_object2()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id_kec" name="{object_p_region_id_kec_Name}" value="{object_p_region_id_kec}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Kelurahan</td> 
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kelurahan" class="ControlsRQ" tabindex="2" name="{object_kelurahan_Name}" readonly maxlength="32" value="{object_kelurahan}" size="32"><img onclick="javascript:lov_region_object3()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id_kel" name="{object_p_region_id_kel_Name}" value="{object_p_region_id_kel}" type="hidden"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Dokumen Pendukung</td> 
+                    <td colspan="6">
+                      <!-- BEGIN ListBox p_bphtb_legal_doc_type_id -->
+                      <select id="t_bphtb_registrationFormp_bphtb_legal_doc_type_id" name="{p_bphtb_legal_doc_type_id_Name}">
+                        <option selected value="">Select Value</option>
+                        {p_bphtb_legal_doc_type_id_Options}
+                      </select>
+ <!-- END ListBox p_bphtb_legal_doc_type_id --><input id="t_bphtb_registrationFormbphtb_legal_doc_description" name="{bphtb_legal_doc_description_Name}" value="{bphtb_legal_doc_description}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;</td> 
+                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormnilai_doc" name="{nilai_doc_Name}" value="{nilai_doc}" type="hidden">Potongan 
+                      <select id="t_bphtb_registrationFormadd_disc_percent" name="{add_disc_percent_Name}">
+                        {add_disc_percent_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;Tanah</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" class="numeric-field" onkeyup="hitungTotalTanah();return 1;" name="{land_area_Name}" value="{land_area}">&nbsp;m2</td> 
+                    <td class="th">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_price_per_m" class="numeric-field" onkeyup="hitungTotalTanah();" name="{land_price_per_m_Name}" value="{land_price_per_m}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" class="numeric-field" name="{land_total_price_Name}" readonly value="{land_total_price}"></td>
+                  </tr>
+ 
+                  <tr class="Controls" onkeyup="document.getElementById(&amp;quot;t_bphtb_registrationFormland_total_price&amp;quot;).value=hitungTotalTanah();">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;Bangunan</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" class="numeric-field" onkeyup="hitungTotalBangunan();" name="{building_area_Name}" value="{building_area}">&nbsp;m2</td> 
+                    <td>&nbsp;Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_price_per_m" class="numeric-field" onkeyup="hitungTotalBangunan();" name="{building_price_per_m_Name}" value="{building_price_per_m}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" class="numeric-field" name="{building_total_price_Name}" readonly value="{building_total_price}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;</td> 
+                    <td colspan="5">&nbsp;Total</td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormtotal_price" class="numeric-field" name="{total_price_Name}" readonly value="{total_price}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">&nbsp;</td> 
+                    <td colspan="5">
+                      <select id="t_bphtb_registrationFormjenis_harga_bphtb" name="{jenis_harga_bphtb_Name}">
+                        {jenis_harga_bphtb_Options}
+                      </select>
+ : </td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" class="numeric-field" onkeyup="getNPOP();" name="{market_price_Name}" value="{market_price}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Nilai Perolehan Objek Pajak (NPOP)</td> 
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop" onchange="hitungNPOPKP();" class="numeric-field" name="{npop_Name}" readonly value="{npop}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Potongan Tambahan</td> 
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormadd_discount" name="{add_discount_Name}" value="{add_discount}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Nilai Perolehan Objek Pajak Tidak Kena Pajak(NPOPTKP)</td> 
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_tkp" class="numeric-field" name="{npop_tkp_Name}" readonly value="NaN"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Nilai Perolehan Objek Pajak Kena Pajak(NPOPKP)</td> 
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_kp" class="numeric-field" name="{npop_kp_Name}" readonly value="{npop_kp}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang terutang</td> 
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt" class="numeric-field" name="{bphtb_amt_Name}" readonly value="{bphtb_amt}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Potongan</td> 
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_discount" class="numeric-field" onkeyup="hitungPembayaran();" name="{bphtb_discount_Name}" value="{bphtb_discount}">&nbsp; <input id="t_bphtb_registrationFormdescription" name="{description_Name}" value="{description}">&nbsp;cek potongan :&nbsp;<input id="t_bphtb_registrationFormcheck_potongan" name="{check_potongan_Name}" value="1" type="checkbox" {check_potongan}></td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" id="tr-harus-bayar" class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</td> 
+                    <td colspan="6">Rp.<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt_final_old" class="numeric-field" name="{bphtb_amt_final_old_Name}" readonly value="{bphtb_amt_final_old}"></td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" id="tr-pembayaran-sebelumnya" class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Nilai Pajak yang sudah dibayar</td> 
+                    <td colspan="6">Rp.<input style="TEXT-ALIGN: right; BACKGROUND: #84ffa3" id="t_bphtb_registrationFormprev_payment_amount" class="numeric-field" name="{prev_payment_amount_Name}" readonly value="{prev_payment_amount}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2"><span id="total-bayar-text">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</span></td> 
+                    <td colspan="6">Rp.<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt_final" class="numeric-field" name="{bphtb_amt_final_Name}" readonly value="{bphtb_amt_final}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="9" align="right">&nbsp; 
+                      <!-- BEGIN Button Button3 --><input id="t_bphtb_registrationFormButton3" class="btn_tambah" onclick="printLaporan();" name="{Button_Name}" alt="Button2" value="CETAK NOTA VERIFIKASI" type="submit"><!-- END Button Button3 -->
+                      <!-- BEGIN Button Button_Insert --><input id="t_bphtb_registrationFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_bphtb_registrationFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_bphtb_registrationFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="t_bphtb_registrationFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_bphtb_registrationForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+if(document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value!=''){
+        var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
+    document.getElementById('t_bphtb_registrationFormadd_discount').value = ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormadd_disc_percent').value*npop);
+}
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+function lov_job() {
+        getFrom_LOV('t_bphtb_registrationForm','p_job_position_id,job_position_code','lov_2_field.php?TABLE=p_job_position&FIELD_0=p_job_position_id&FIELD_1=code&FIELD_2=description&LABEL1=Jabatan&LABEL2=Deskripsi&HEADER_PAGE=JABATAN&HEADER_LOV=DAFTAR JABATAN&ORDER=p_job_position_id');
+}
+
+
+function lov_region_wp1() {
+        getFrom_LOV('t_bphtb_registrationForm','wp_p_region_id,wp_kota','lov_region.php');
+}
+
+function lov_region_wp2() {
+                var kota = document.getElementById("t_bphtb_registrationFormwp_p_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_bphtb_registrationForm','wp_p_region_id_kec,wp_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_wp3() {
+                var kec = document.getElementById("t_bphtb_registrationFormwp_p_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_bphtb_registrationForm','wp_p_region_id_kel,wp_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region_object1() {
+        getFrom_LOV('t_bphtb_registrationForm','object_p_region_id,object_kota','lov_region.php');
+}
+
+function lov_region_object2() {
+                var kota = document.getElementById("t_bphtb_registrationFormobject_p_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_bphtb_registrationForm','object_p_region_id_kec,object_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_object3() {
+                var kec = document.getElementById("t_bphtb_registrationFormobject_p_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_bphtb_registrationForm','object_p_region_id_kel,object_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region1() {
+        getFrom_LOV('t_bphtb_registrationForm','p_region_id,kota_code','lov_region.php');
+}
+
+function lov_region2() {
+                var kota = document.getElementById("t_bphtb_registrationFormp_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_bphtb_registrationForm','p_region_id_kec,kecamatan_code','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region3() {
+                var kec = document.getElementById("t_bphtb_registrationFormp_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_bphtb_registrationForm','p_region_id_kel,kelurahan_code','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region_own1() {
+        getFrom_LOV('t_bphtb_registrationForm','p_region_id_owner,kota_own_code','lov_region.php');
+}
+
+function lov_region_own2() {
+                var kota2 = document.getElementById("t_bphtb_registrationFormp_region_id_owner").value;          
+                if (kota2!= "" && kota2 != 0 && kota2 != false && kota2 != undefined &&  kota2 != null){
+                        getFrom_LOV('t_bphtb_registrationForm','p_region_id_kec_owner,kecamatan_own_code','lov_region_kec.php?p_region_id='+kota2);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_own3() {
+                var kec2 = document.getElementById("t_bphtb_registrationFormp_region_id_kec_owner").value;          
+                if (kec2!= "" && kec2 != 0 && kec2 != false && kec2 != undefined &&  kec2 != null){
+                        getFrom_LOV('t_bphtb_registrationForm','p_region_id_kel_owner,kelurahan_own_code','lov_region_kel.php?p_region_id='+kec2);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function toOrder()
+{
+
+    var pid=document.getElementById('t_bphtb_registrationFormt_customer_order_id').value;
+        location.href="t_customer_order.php?t_customer_order_id="+pid;
+   
+}
+
+function toReg2()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id'))
+  {
+    var pid=idelement.value;
+    var req_code=document.getElementById("t_bphtb_registrationFormrqst_type_code").value;
+    var id_req=document.getElementById("t_bphtb_registrationFormp_rqst_type_id").value;
+        var id_cus=document.getElementById("t_bphtb_registrationFormt_customer_order_id").value;
+        if (pid != 0)
+    {
+     location.href="t_vat_reg_dtl.php?t_bphtb_registration_id="+pid+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_customer_order_id="+id_cus;
+    } else {
+     alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+    }
+  } else {
+     alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+  }
+}
+/*
+function toReg3()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_bphtb_registrationFormt_customer_order_id'))
+  {
+    var pid=idelement.value;
+    var req_code=document.getElementById("t_bphtb_registrationFormrqst_type_code").value;
+    var id_req=document.getElementById("t_bphtb_registrationFormp_rqst_type_id").value;
+        var id_vat=document.getElementById("t_bphtb_registrationFormt_bphtb_registration_id").value;
+        if (pid != 0)
+    {
+     location.href="t_cust_order_legal_doc.php?t_bphtb_registration_id="+id_vat+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_customer_order_id="+pid;
+    } else {
+     alert("Pilih salah satu ORDER!");
+    }
+  } else {
+     alert("Pilih salah satu ORDER!");
+  }
+}
+*/
+
+function hitungTotalTanah(){
+                //alert(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,./g ,''));
+        var hasil=0;
+                if(document.getElementById("t_bphtb_registrationFormland_area").value==0||document.getElementById("t_bphtb_registrationFormland_price_per_m").value==0){
+                        hasil=0
+                }else{
+                        hasil = parseFloat(document.getElementById("t_bphtb_registrationFormland_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormland_price_per_m").value.replace(/,/g ,''));
+                }
+                document.getElementById('t_bphtb_registrationFormland_total_price').value=ReplaceNumberWithCommas(hasil);
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
+                getNPOP();
+                hitungNPOPKP();
+}
+function hitungTotalBangunan(){
+                var hasil=0;
+                if(document.getElementById("t_bphtb_registrationFormbuilding_area").value==0||document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value==0){
+                        hasil=0
+                }else{
+                        hasil = parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_area").value.replace(/,/g ,''))*parseFloat(document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value.replace(/,/g ,''));
+                }
+                document.getElementById('t_bphtb_registrationFormbuilding_total_price').value=ReplaceNumberWithCommas(hasil);
+                document.getElementById('t_bphtb_registrationFormtotal_price').value=ReplaceNumberWithCommas(parseFloat(document.getElementById('t_bphtb_registrationFormland_total_price').value.replace(/,/g ,''))+parseFloat(document.getElementById('t_bphtb_registrationFormbuilding_total_price').value.replace(/,/g ,'')));
+                getNPOP();
+                
+}
+function getNPOP(){
+        if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
+                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''));
+                }else{
+                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''));
+                }    
+                var npotkp_cons = document.getElementById('t_bphtb_registrationFormnilai_doc').value;
+                                if(npotkp_cons==''){
+                                        npotkp_cons=0;
+                                }
+                if(npotkp_cons >= 0 && npotkp_cons != ''){
+                        //alert((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
+                        //document.getElementById('t_bphtb_registrationFormnpop_tkp').value = ReplaceNumberWithCommas(npotkp_cons*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
+                                document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,'')*npotkp_cons));
+                                }
+                                var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
+                var persen_kurang = document.getElementById('t_bphtb_registrationFormadd_disc_percent').value;
+                                if(persen_kurang==''){
+                                        persen_kurang=0;
+                                }
+                                document.getElementById('t_bphtb_registrationFormadd_discount').value=ReplaceNumberWithCommas(Math.ceil(npop*persen_kurang));
+                hitungNPOPKP();
+}
+function hitungNPOPKP(){        
+                                var npotkp = document.getElementById('t_bphtb_registrationFormnpop_tkp').value.replace(/,/g ,'');
+                                if(npotkp=='' || npotkp=='undefined'){
+                                        npotkp=0;
+                                }
+                                var npokp = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
+                                if(npokp=='' || npokp=='undefined'){
+                                        npokp=0;
+                                }
+                                var add_discount = document.getElementById('t_bphtb_registrationFormadd_discount').value.replace(/,/g ,'');
+                                if(add_discount=='' || add_discount=='undefined'){
+                                        add_discount=0;
+                                }
+               if((parseFloat(npokp)-parseFloat(npotkp)-parseFloat(add_discount)) < 0){
+                                        document.getElementById('t_bphtb_registrationFormnpop_kp').value=ReplaceNumberWithCommas(0);
+                           }else{
+                                        document.getElementById('t_bphtb_registrationFormnpop_kp').value=ReplaceNumberWithCommas(parseFloat(npokp)-parseFloat(npotkp)-parseFloat(add_discount));
+               }
+                           hitungTerutang(document.getElementById('t_bphtb_registrationFormnpop_kp').value.replace(/,/g ,''));
+}
+function hitungTerutang(nilai){ 
+        var terutang = Math.ceil(nilai/100*5);
+        document.getElementById('t_bphtb_registrationFormbphtb_amt').value=ReplaceNumberWithCommas(terutang);
+                hitungPembayaran();
+}
+function hitungPembayaran(){
+        var jumlah= document.getElementById('t_bphtb_registrationFormbphtb_amt').value.replace(/,/g ,'');
+        var diskon= document.getElementById('t_bphtb_registrationFormbphtb_discount').value.replace(/,/g ,'');
+                if(jumlah=='' || jumlah=='undefined'){
+                jumlah=0;
+        }
+        if(diskon=='' || diskon=='undefined'){
+                diskon=0;
+        }
+                var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
+                if(p_bphtb_type_id != 3) {
+                if(document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value < 0){
+                        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=0;
+                }else{
+                document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value=ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
+                }
+                }else {
+                        if(document.getElementById('t_bphtb_registrationFormbphtb_amt_final_old').value < 0){
+                document.getElementById('t_bphtb_registrationFormbphtb_amt_final_old').value=0;
+            }else{
+                document.getElementById('t_bphtb_registrationFormbphtb_amt_final_old').value=ReplaceNumberWithCommas(parseInt(jumlah)-parseInt(diskon));
+            }
+
+                        var payment_amount = document.getElementById('t_bphtb_registrationFormprev_payment_amount').value.replace(/,/g ,'');
+                        var nilai_pajak_harus_bayar = document.getElementById('t_bphtb_registrationFormbphtb_amt_final_old').value.replace(/,/g ,'');
+        
+                        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value = ReplaceNumberWithCommas(parseInt(nilai_pajak_harus_bayar)-parseInt(payment_amount));
+
+                }
+}
+
+var p_bphtb_type_id = document.getElementById('t_bphtb_registrationFormp_bphtb_type_id').value;
+if(p_bphtb_type_id == 3) {
+                
+                document.getElementById('keterangan-kurang-bayar').setAttribute('style','color:#008000;font-weight:bold;font-size:15px;');
+        document.getElementById('keterangan-kurang-bayar').innerHTML ="DATA DIBAWAH INI MERUPAKAN DATA BPHTB KURANG BAYAR:";
+
+        document.getElementById('total-bayar-text').setAttribute('style','color:#FF0000;font-weight:bold;');
+        document.getElementById('total-bayar-text').innerHTML ="Total Kekurangan Pembayaran";
+        document.getElementById('t_bphtb_registrationFormbphtb_amt_final').setAttribute('style','text-align:right;background:#FFD345;');
+                
+                document.getElementById('tr-harus-bayar').style.display="";
+                document.getElementById('tr-pembayaran-sebelumnya').style.display="";
+                        
+                document.getElementById('t_bphtb_registrationFormnjop_pbb').disabled = true;
+                /*document.getElementById('t_bphtb_registrationFormp_bphtb_legal_doc_type_id').disabled = true;*/
+                document.getElementById('t_bphtb_registrationFormjenis_harga_bphtb').disabled = true;
+                document.getElementById('t_bphtb_registrationFormadd_disc_percent').disabled = true;
+
+                /*document.getElementById('t_bphtb_registrationFormland_area').disabled = true;
+                document.getElementById('t_bphtb_registrationFormland_price_per_m').disabled = true;
+                document.getElementById('t_bphtb_registrationFormland_total_price').disabled = true;*/
+
+                /*document.getElementById('t_bphtb_registrationFormbuilding_area').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbuilding_price_per_m').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbuilding_total_price').disabled = true;*/
+                
+
+                /*document.getElementById('t_bphtb_registrationFormmarket_price').disabled = true;
+
+                document.getElementById('t_bphtb_registrationFormnpop').disabled = true;
+                document.getElementById('t_bphtb_registrationFormadd_discount').disabled = true;
+                document.getElementById('t_bphtb_registrationFormnpop_tkp').disabled = true;
+                document.getElementById('t_bphtb_registrationFormnpop_kp').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbphtb_amt').disabled = true;
+                document.getElementById('t_bphtb_registrationFormbphtb_discount').disabled = true;*/
+}
+
+
+</script>
+</body>
+</html>
