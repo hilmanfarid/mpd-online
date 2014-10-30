@@ -389,7 +389,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Tanah</td> 
-                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" onkeyup="hitungTotalTanah();return 1;" value="{land_area}" name="{land_area_Name}">&nbsp;m2</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" class="numeric-field" onkeyup="hitungTotalTanah();return 1;" value="{land_area}" name="{land_area_Name}">&nbsp;m2</td> 
                     <td class="th">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_price_per_m" class="numeric-field" onkeyup="hitungTotalTanah();" value="{land_price_per_m}" name="{land_price_per_m_Name}"></td> 
                     <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" class="numeric-field" value="{land_total_price}" readonly name="{land_total_price_Name}"></td>
                   </tr>
@@ -397,7 +397,7 @@ jQuery(document).ready(function()
                   <tr class="Controls" onkeyup="document.getElementById(&amp;quot;t_bphtb_registrationFormland_total_price&amp;quot;).value=hitungTotalTanah();">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Bangunan</td> 
-                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" onkeyup="hitungTotalBangunan();" value="{building_area}" name="{building_area_Name}">&nbsp;m2</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" class="numeric-field" onkeyup="hitungTotalBangunan();" value="{building_area}" name="{building_area_Name}">&nbsp;m2</td> 
                     <td>&nbsp;Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_price_per_m" class="numeric-field" onkeyup="hitungTotalBangunan();" value="{building_price_per_m}" name="{building_price_per_m_Name}"></td> 
                     <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" class="numeric-field" value="{building_total_price}" readonly name="{building_total_price_Name}"></td>
                   </tr>
