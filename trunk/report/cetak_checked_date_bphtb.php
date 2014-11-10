@@ -20,7 +20,7 @@ $query	= "SELECT *,kec.region_name as kecamatan, kel.region_name as kelurahan  F
 	left join p_region kec on kec.p_region_id = y.wp_p_region_id_kec
 	left join p_region kel on kel.p_region_id = y.wp_p_region_id_kel
 	WHERE
-		check_date IS NOT NULL
+		x.check_date IS NOT NULL
 	AND wp_name ILIKE '%$s_keyword%'";
 	
 if ($date_end_laporan != "" && $date_start_laporan !=""){
@@ -71,7 +71,7 @@ $output.='<th>NO. ORDER</th>';
 $output.='</tr>';
 */
 echo '<h1>LAPORAN PEMERIKSAAN BPHTB</h1>';
-echo '<table><tr>';
+echo '<table border=1><tr>';
 echo '<th>NO</th>';
 echo '<th>NO. TRANSAKSI</th>';
 echo '<th>NOP</th>';
@@ -93,7 +93,7 @@ foreach($data as $item) {
 	echo '<tr>';
 	echo '<td align="center">'.($i).'</td>';
 	echo '<td align="left">'.$item["receipt_no"].'</td>';
-	echo '<td align="left">'.$item["njop_pbb"].'</td>';
+	echo '<td align="left">&nbsp '.$item["njop_pbb"].'&nbsp</td>';
 	echo '<td align="left">'.$item["payment_date"].'</td>';
 	echo '<td align="left">'.$item["wp_name"].'</td>';
 	echo '<td align="left">'.$item["wp_address_name"].'</td>';
