@@ -423,9 +423,9 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height, "2. Bapak Wakil Walikota Bandung (sebagai laporan);", 0, 0, 'L');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "3. Bapak Sekretaris Daerah Kota Bandung (sebagai laporan).", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "3. Bapak Sekretaris Daerah Kota Bandung (sebagai laporan);", 0, 0, 'L');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "4. Arsip;", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "4. Arsip.", 0, 0, 'L');
 		$this->Ln();
 	}
 	
