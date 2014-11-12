@@ -56,22 +56,19 @@ while ($dbConn->next_record()) {
 }
 $dbConn->close();
 
-$output = '';
-/*
-$output.='<table><tr>';
-$output.='<th>NO</th>';
-$output.='<th>NAMA WP</th>';
-$output.='<th>ALAMAT WP</th>';
-$output.='<th>TANGGAL CEK</th>';
-$output.='<th>NO. KWITANSI</th>';
-$output.='<th>TANGGAL BAYAR</th>';
-$output.='<th>NO. REGISTRASI</th>';
-$output.='<th>NILAI PAJAK</th>';
-$output.='<th>NO. ORDER</th>';
-$output.='</tr>';
-*/
 echo '<h1>LAPORAN PEMERIKSAAN BPHTB</h1>';
 echo '<table border=1><tr>';
+if ($date_end_laporan != "" && $date_start_laporan !=""){
+	echo 'Dari Tanggal '.$date_start_laporan;
+	echo ' Sampai Tanggal '.$date_end_laporan;
+}else{
+	if ($date_end_laporan != ""){
+		echo ' Sampai Tanggal '.$date_end_laporan;
+	}
+	if ($date_start_laporan != ""){
+		echo 'Dari Tanggal '.$date_start_laporan;
+	}
+}
 echo '<th>NO</th>';
 echo '<th>NO. TRANSAKSI</th>';
 echo '<th>NOP</th>';
