@@ -94,8 +94,11 @@ function print_excel($param_arr) {
 	$dbConn = new clsDBConnSIKP();
 	$query = "SELECT f.t_payment_receipt_id, f.p_cg_terminal_id, f.npwd, d.wp_name, f.receipt_no, f.payment_date, 
 					a.no_kohir, f.finance_period_code, f.payment_amount, f.payment_vat_amount,
-						c.vat_code as ayat_pajak
-						FROM t_payment_receipt f, t_vat_setllement a, p_vat_type_dtl c, t_cust_account d
+						c.vat_code as ayat_pajak,
+						c.code as dtl_code,
+						vat.code as vat_code
+						FROM t_payment_receipt f, t_vat_setllement a, p_vat_type_dtl c, t_cust_account d,
+						p_vat_type vat
 						WHERE 
 						f.t_vat_setllement_id = a.t_vat_setllement_id AND
 						f.p_vat_type_dtl_id = c.p_vat_type_dtl_id AND
@@ -103,6 +106,7 @@ function print_excel($param_arr) {
 						( upper(f.p_cg_terminal_id) LIKE upper('%".$param_arr['nama_teller']."%')
 						) 
 						AND trunc(f.payment_date) = '".$param_arr['tgl_penerimaan']."'
+						and vat.p_vat_type_id = c.p_vat_type_id
 						ORDER BY c.vat_code ASC, f.payment_date DESC";
 
 	$dbConn->query($query);
@@ -118,6 +122,8 @@ function print_excel($param_arr) {
 		$data["finance_period_code"][] = $dbConn->f("finance_period_code");
 		$data["payment_vat_amount"][] = $dbConn->f("payment_vat_amount");
 		$data["denda"][] = ($dbConn->f("payment_amount")-$dbConn->f("payment_vat_amount"));
+		$data["vat_code"][] = $dbConn->f("vat_code");
+		$data["dtl_code"][] = $dbConn->f("dtl_code");
 		$data["ayat_pajak"][] = $dbConn->f("ayat_pajak");
 	}
 	$dbConn->close();
@@ -126,7 +132,7 @@ function print_excel($param_arr) {
 	$output .='<table border="1" width="100%">
                 <tr style="background:#498CD6;color:#FFFFFF;">';
 	$output .= '<th>NO</th>';
-	$output .= '<th>NAMA TELLER</th>';
+	$output .= '<th>KODE AYAT</th>';
 	$output .= '<th>NAMA WP</th>';
 	$output .= '<th>NPWPD</th>';
 	$output .= '<th>TGL PEMBAYARAN</th>';
@@ -186,7 +192,7 @@ function print_excel($param_arr) {
 
 			$output .= '<tr>';
 			$output .= '<td align="center">'.$no++.'</td>';
-			$output .= '<td align="left">'.$data['p_cg_terminal_id'][$i].'</td>';
+			$output .= '<td align="left">'.$data['vat_code'][$i].$data['dtl_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['wp_name'][$i].'</td>';
 			$output .= '<td align="left">'.$data['npwd'][$i].'</td>';
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
@@ -241,7 +247,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .='<table class="report" cellspacing="0" cellpadding="4px" width="100%">
                 <tr style="background:#498CD6;color:#FFFFFF;">';
 	$output .= '<th>NO</th>';
-	$output .= '<th>NAMA TELLER</th>';
+	$output .= '<th>KODE AYAT</th>';
 	$output .= '<th>NAMA WP</th>';
 	$output .= '<th>NPWPD</th>';
 	$output .= '<th>TGL PEMBAYARAN</th>';
@@ -256,8 +262,11 @@ function GetCetakGeneralHTML($param_arr) {
 	$dbConn = new clsDBConnSIKP();
 	$query = "SELECT f.t_payment_receipt_id, f.p_cg_terminal_id, f.npwd, d.wp_name, f.receipt_no, f.payment_date, 
 					a.no_kohir, f.finance_period_code, f.payment_amount, f.payment_vat_amount,
-						c.vat_code as ayat_pajak
-						FROM t_payment_receipt f, t_vat_setllement a, p_vat_type_dtl c, t_cust_account d
+						c.vat_code as ayat_pajak,
+						c.code as dtl_code,
+						vat.code as vat_code
+						FROM t_payment_receipt f, t_vat_setllement a, p_vat_type_dtl c, t_cust_account d,
+						p_vat_type vat
 						WHERE 
 						f.t_vat_setllement_id = a.t_vat_setllement_id AND
 						f.p_vat_type_dtl_id = c.p_vat_type_dtl_id AND
@@ -265,8 +274,9 @@ function GetCetakGeneralHTML($param_arr) {
 						( upper(f.p_cg_terminal_id) LIKE upper('%".$param_arr['nama_teller']."%')
 						) 
 						AND trunc(f.payment_date) = '".$param_arr['tgl_penerimaan']."'
+						and vat.p_vat_type_id = c.p_vat_type_id
 						ORDER BY c.vat_code ASC";
-
+	//ECHO $query;EXIT;
 	$dbConn->query($query);
 	$data = array();
 	while ($dbConn->next_record()) {
@@ -281,6 +291,8 @@ function GetCetakGeneralHTML($param_arr) {
 		$data["payment_vat_amount"][] = $dbConn->f("payment_vat_amount");
 		$data["denda"][] = ($dbConn->f("payment_amount")-$dbConn->f("payment_vat_amount"));
 		$data["ayat_pajak"][] = $dbConn->f("ayat_pajak");
+		$data["vat_code"][] = $dbConn->f("vat_code");
+		$data["dtl_code"][] = $dbConn->f("dtl_code");
 	}
 	$dbConn->close();
 	
@@ -308,7 +320,7 @@ function GetCetakGeneralHTML($param_arr) {
 			
 			$output .= '<tr>';
 			$output .= '<td align="center">'.$no++.'</td>';
-			$output .= '<td align="left">'.$data['p_cg_terminal_id'][$i].'</td>';
+			$output .= '<td align="left">'.$data['vat_code'][$i].$data['dtl_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['wp_name'][$i].'</td>';
 			$output .= '<td align="left">'.$data['npwd'][$i].'</td>';
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
@@ -332,7 +344,7 @@ function GetCetakGeneralHTML($param_arr) {
 
 			$output .= '<tr>';
 			$output .= '<td align="center">'.$no++.'</td>';
-			$output .= '<td align="left">'.$data['p_cg_terminal_id'][$i].'</td>';
+			$output .= '<td align="left">'.$data['vat_code'][$i].$data['dtl_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['wp_name'][$i].'</td>';
 			$output .= '<td align="left">'.$data['npwd'][$i].'</td>';
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
