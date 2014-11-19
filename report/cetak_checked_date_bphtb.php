@@ -14,7 +14,7 @@ $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
 
-$query	= "SELECT *,kec.region_name as kecamatan, kel.region_name as kelurahan  FROM t_bphtb_check a
+$query	= "SELECT to_char(payment_date, 'dd-mm-yyyy') as payment_date_char,*,kec.region_name as kecamatan, kel.region_name as kelurahan  FROM t_bphtb_check a
 	LEFT JOIN t_bphtb_registration y ON y.t_bphtb_registration_id = a.t_bphtb_registration_id
 	LEFT JOIN t_payment_receipt_bphtb x ON x.t_bphtb_registration_id = y.t_bphtb_registration_id
 	LEFT JOIN t_customer_order z ON y.t_customer_order_id = z.t_customer_order_id
@@ -53,7 +53,7 @@ while ($dbConn->next_record()) {
 	"t_bphtb_registration_id"		=> $dbConn->f("t_bphtb_registration_id"),
 	"bphtb_registration_no"			=> $dbConn->f("registration_no"),
 	"t_customer_order_id"		=> $dbConn->f("t_customer_order_id"),
-	"payment_date"		=> $dbConn->f("payment_date"),
+	"payment_date"		=> $dbConn->f("payment_date_char"),
 	"njop_pbb"		=> $dbConn->f("njop_pbb"),
 	"kecamatan"		=> $dbConn->f("kecamatan"),
 	"kelurahan"		=> $dbConn->f("kelurahan"),
