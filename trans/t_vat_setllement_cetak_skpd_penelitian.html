@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_vat_setllement</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        Cetak SKPD 
+      </div>
+    </div>
+    <!--<div class="th tab-button">
+      <label onclick="javascript:toActive()">
+      <div class="tab-title">
+        DATA LOG AKTIFITAS 
+      </div>
+      </label>
+    </div>-->
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_setllementSearch -->
+        <form id="t_vat_setllementSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchTAKEN_CTL" value="{TAKEN_CTL}" size="5" type="hidden" name="{TAKEN_CTL_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchIS_TAKEN" value="{IS_TAKEN}" size="5" type="hidden" name="{IS_TAKEN_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_DOC_ID" value="{CURR_DOC_ID}" size="5" type="hidden" name="{CURR_DOC_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_DOC_TYPE_ID" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden" name="{CURR_DOC_TYPE_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_PROC_ID" value="{CURR_PROC_ID}" size="5" type="hidden" name="{CURR_PROC_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_CTL_ID" value="{CURR_CTL_ID}" size="5" type="hidden" name="{CURR_CTL_ID_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchUSER_ID_DOC" value="{USER_ID_DOC}" size="5" type="hidden" name="{USER_ID_DOC_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchUSER_ID_DONOR" value="{USER_ID_DONOR}" size="5" type="hidden" name="{USER_ID_DONOR_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchUSER_ID_LOGIN" value="{USER_ID_LOGIN}" size="5" type="hidden" name="{USER_ID_LOGIN_Name}"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_vat_setllementSearchUSER_ID_TAKEN" value="{USER_ID_TAKEN}" size="5" type="hidden" name="{USER_ID_TAKEN_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchIS_CREATE_DOC" value="{IS_CREATE_DOC}" size="4" type="hidden" name="{IS_CREATE_DOC_Name}">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchIS_MANUAL" value="{IS_MANUAL}" size="4" type="hidden" name="{IS_MANUAL_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_PROC_STATUS" value="{CURR_PROC_STATUS}" size="4" type="hidden" name="{CURR_PROC_STATUS_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchCURR_DOC_STATUS" value="{CURR_DOC_STATUS}" size="4" type="hidden" name="{CURR_DOC_STATUS_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_DOC_ID" value="{PREV_DOC_ID}" size="4" type="hidden" name="{PREV_DOC_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_DOC_TYPE_ID" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden" name="{PREV_DOC_TYPE_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_PROC_ID" value="{PREV_PROC_ID}" size="4" type="hidden" name="{PREV_PROC_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchPREV_CTL_ID" value="{PREV_CTL_ID}" size="4" type="hidden" name="{PREV_CTL_ID_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_1" value="{SLOT_1}" size="4" type="hidden" name="{SLOT_1_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_2" value="{SLOT_2}" size="4" type="hidden" name="{SLOT_2_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_3" value="{SLOT_3}" size="4" type="hidden" name="{SLOT_3_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_4" value="{SLOT_4}" size="4" type="hidden" name="{SLOT_4_Name}"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchSLOT_5" value="{SLOT_5}" size="4" type="hidden" name="{SLOT_5_Name}">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_vat_setllementSearchMESSAGE" value="{MESSAGE}" size="4" type="hidden" name="{MESSAGE_Name}">
+        </form>
+        <!-- END Record t_vat_setllementSearch -->
+        <p>
+        <!-- BEGIN Record searchForm -->
+        <form id="searchForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" value="Cari" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record searchForm --></p>
+ 
+        <p>&nbsp;</p>
+        <!-- BEGIN Grid t_vat_setllementGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="1050">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR SKPD&nbsp;&nbsp;(Pelaporan Pajak)</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">&nbsp;#</th>
+ 
+                  <th scope="col">&nbsp;NAMA WP</th>
+ 
+                  <th scope="col">NPWPD</th>
+ 
+                  <th scope="col">Periode</th>
+ 
+                  <th scope="col">Jenis Ketetapan</th>
+ 
+                  <th scope="col">Total Transaksi&nbsp;</th>
+ 
+                  <th scope="col">&nbsp;Total Pajak</th>
+ 
+                  <th scope="col">Denda&nbsp; </th>
+ 
+                  <th scope="col">No Kohir&nbsp;</th>
+ 
+                  <th scope="col">Cetak SKPD Penelitian</th>
+ 
+                  <th colspan="5" scope="col"></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_setllementGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" nowrap>&nbsp;<a href="{DLink_Src}" id="t_vat_setllementGridDLink_{t_vat_setllementGrid:rowNumber}">{DLink}</a></td> 
+                  <td>&nbsp;{wp_name}<input id="t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"></td> 
+                  <td>{npwd}&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}"></td> 
+                  <td>{finance_period_code}&nbsp;<input id="t_vat_setllementGridp_rqst_type_id_{t_vat_setllementGrid:rowNumber}" value="{p_rqst_type_id}" type="hidden" name="{p_rqst_type_id_Name}"></td> 
+                  <td>{sett_code}<input id="t_vat_setllementGridorder_no_{t_vat_setllementGrid:rowNumber}" value="{order_no}" type="hidden" name="{order_no_Name}"><input id="t_vat_setllementGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_trans_amount}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_vat_amount}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}&nbsp;</td> 
+                  <td colspan="6">
+                    <!-- BEGIN Button BtnCetak --><input style="WIDTH: 130px; HEIGHT: 23px" id="t_vat_setllementGridBtnCetak" class="Button" onclick="cetak({t_vat_setllement_id});" value="Cetak SKPD Penelitian" alt="Button2" type="button" name="{Button_Name}"><!-- END Button BtnCetak --></td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="15">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b>&nbsp;</b></td> 
+                  <td colspan="14">&nbsp; 
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}"><u>{Page_Number}</u></a> <!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number} <!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->
+                    <!-- BEGIN Button Button1 --><input style="DISPLAY: none" id="t_vat_setllementGridButton1" class="btn_tambah" onclick="submitter()" value="SUBMIT" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_setllementGrid --></td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+
+function cetak(t_vat_setllement_id) {
+        
+        url = "../report/cetak_formulir_skpd_penelitian.php?t_vat_setllement_id="+t_vat_setllement_id;
+                
+                params  = 'width=650';
+        params += ', height=300';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+</script>
+</body>
+</html>
