@@ -27,8 +27,7 @@ $query	= "SELECT *,kec.region_name as kecamatan, kel.region_name as kelurahan  F
 			t_bphtb_check
 		GROUP BY
 			t_bphtb_registration_id
-	)
-	--AND y.wp_name ILIKE '%".$s_keyword."%'"
+	)"
 	;
 //echo $query;exit;
 
