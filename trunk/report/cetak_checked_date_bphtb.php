@@ -97,9 +97,9 @@ $i=1;
 foreach($data as $item) {
 	echo '<tr>';
 	echo '<td align="center">'.($i).'</td>';
-	echo '<td align="left">&nbsp'.$item["receipt_no"].'</td>';
+	echo '<td align="left"> '.$item["receipt_no"].'</td>';
 	echo '<td align="left">'.$item["njop_pbb"].'&nbsp</td>';
-	echo '<td align="left">&nbsp'.$item["payment_date"].'</td>';
+	echo '<td align="left"> '.$item["payment_date"].'</td>';
 	echo '<td align="left">'.$item["wp_name"].'</td>';
 	echo '<td align="left">'.$item["wp_address_name"].'</td>';
 	echo '<td align="left">'.$item["kelurahan"].'</td>';
