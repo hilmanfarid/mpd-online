@@ -14,23 +14,32 @@ $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
 
-$query	= "SELECT *,kec.region_name as kecamatan, kel.region_name as kelurahan  FROM t_payment_receipt_bphtb x
-	LEFT JOIN t_bphtb_registration y ON y.t_bphtb_registration_id = x.t_bphtb_registration_id
+$query	= "SELECT *,kec.region_name as kecamatan, kel.region_name as kelurahan  FROM t_bphtb_check a
+	LEFT JOIN t_bphtb_registration y ON y.t_bphtb_registration_id = a.t_bphtb_registration_id
+	LEFT JOIN t_payment_receipt_bphtb x ON x.t_bphtb_registration_id = y.t_bphtb_registration_id
 	LEFT JOIN t_customer_order z ON y.t_customer_order_id = z.t_customer_order_id
 	left join p_region kec on kec.p_region_id = y.wp_p_region_id_kec
 	left join p_region kel on kel.p_region_id = y.wp_p_region_id_kel
-	WHERE
-		x.check_date IS NOT NULL
-	AND wp_name ILIKE '%$s_keyword%'";
-	
+	where t_bphtb_check_id IN(
+		SELECT
+			MAX(t_bphtb_check_id)
+		FROM
+			t_bphtb_check
+		GROUP BY
+			t_bphtb_registration_id
+	)
+	--AND y.wp_name ILIKE '%".$s_keyword."%'"
+	;
+//echo $query;exit;
+
 if ($date_end_laporan != "" && $date_start_laporan !=""){
-	$query .= "AND(check_date BETWEEN to_date ('$date_start_laporan') AND ('$date_end_laporan'))";
+	$query .= "AND(trunc(t_bphtb_check_date) BETWEEN to_date ('$date_start_laporan') AND ('$date_end_laporan'))";
 }else{
 	if ($date_end_laporan != ""){
-		$query .= "AND(check_date <= to_date ('$date_end_laporan') )";
+		$query .= "AND(trunc(t_bphtb_check_date) <= to_date ('$date_end_laporan') )";
 	}
 	if ($date_start_laporan != ""){
-		$query .= "AND(check_date >= to_date ('$date_start_laporan') )";
+		$query .= "AND(trunc(t_bphtb_check_date) >= to_date ('$date_start_laporan') )";
 	}
 }
 $dbConn->query($query);
@@ -39,11 +48,11 @@ while ($dbConn->next_record()) {
 	"wp_name"	=> $dbConn->f("wp_name"),
 	"order_no"	=> $dbConn->f("order_no"),
 	"receipt_no"	=> $dbConn->f("receipt_no"),
-	"check_date"		=> $dbConn->f("check_date"),
+	"check_date"		=> $dbConn->f("t_bphtb_check_date"),
 	"wp_address_name"	=> $dbConn->f("wp_address_name"),
 	"t_payment_receipt_id"		=> $dbConn->f("t_payment_receipt_id"),
 	"t_bphtb_registration_id"		=> $dbConn->f("t_bphtb_registration_id"),
-	"bphtb_registration_no"			=> $dbConn->f("bphtb_registration_no"),
+	"bphtb_registration_no"			=> $dbConn->f("registration_no"),
 	"t_customer_order_id"		=> $dbConn->f("t_customer_order_id"),
 	"payment_date"		=> $dbConn->f("payment_date"),
 	"njop_pbb"		=> $dbConn->f("njop_pbb"),
@@ -89,9 +98,9 @@ $i=1;
 foreach($data as $item) {
 	echo '<tr>';
 	echo '<td align="center">'.($i).'</td>';
-	echo '<td align="left">'.$item["receipt_no"].'</td>';
-	echo '<td align="left">&nbsp '.$item["njop_pbb"].'&nbsp</td>';
-	echo '<td align="left">'.$item["payment_date"].'</td>';
+	echo '<td align="left">&nbsp'.$item["receipt_no"].'</td>';
+	echo '<td align="left">'.$item["njop_pbb"].'&nbsp</td>';
+	echo '<td align="left">&nbsp'.$item["payment_date"].'</td>';
 	echo '<td align="left">'.$item["wp_name"].'</td>';
 	echo '<td align="left">'.$item["wp_address_name"].'</td>';
 	echo '<td align="left">'.$item["kelurahan"].'</td>';
