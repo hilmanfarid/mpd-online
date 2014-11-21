@@ -413,11 +413,23 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Features/>
 				</TextBox>
 				<CheckBox id="1016" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="check_potongan" PathID="t_bphtb_registrationFormcheck_potongan" fieldSource="check_potongan" checkedValue="Y" uncheckedValue="N" defaultValue="N">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</CheckBox>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</CheckBox>
+				<Hidden id="1029" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_registration_id_old" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormt_bphtb_registration_id_old" fieldSource="t_bphtb_registration_id_old" caption="test">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="BtnSelect" PathID="t_bphtb_registrationFormBtnSelect">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -496,23 +508,23 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key1010" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="bphtb_legal_doc_description" scale="0" precision="0" parameterSource="bphtb_legal_doc_description"/>
 				<SPParameter id="Key1013" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="add_disc_percent" scale="0" precision="0" parameterSource="add_disc_percent"/>
 				<SPParameter id="Key1018" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="check_potongan" scale="0" precision="0" parameterSource="check_potongan"/>
-<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
+				<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
 				<SPParameter id="Key978" parameterName="o_mess" parameterSource="o_mess" dataType="Char" parameterType="URL" dataSize="255" direction="InputOutput" scale="10" precision="6"/>
 			</ISPParameters>
 			<ISQLParameters>
 				<SQLParameter id="1017" variable="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
-<SQLParameter id="1018" variable="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
-<SQLParameter id="1019" variable="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
-<SQLParameter id="1020" variable="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kecamatan"/>
-<SQLParameter id="1021" variable="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kelurahan"/>
-<SQLParameter id="1022" variable="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="wp_kecamatan"/>
-<SQLParameter id="1023" variable="object_kelurahan" dataType="Text" parameterType="Control" parameterSource="object_kelurahan"/>
-<SQLParameter id="1024" variable="object_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kelurahan"/>
-<SQLParameter id="1025" variable="object_kecamatan" dataType="Text" parameterType="Control" parameterSource="object_kecamatan"/>
-<SQLParameter id="1026" variable="object_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kecamatan"/>
-<SQLParameter id="1027" variable="object_kota" dataType="Text" parameterType="Control" parameterSource="object_kota"/>
-<SQLParameter id="1028" variable="object_p_region_id" dataType="Float" parameterType="Control" parameterSource="object_p_region_id"/>
-</ISQLParameters>
+				<SQLParameter id="1018" variable="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
+				<SQLParameter id="1019" variable="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
+				<SQLParameter id="1020" variable="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kecamatan"/>
+				<SQLParameter id="1021" variable="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kelurahan"/>
+				<SQLParameter id="1022" variable="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="wp_kecamatan"/>
+				<SQLParameter id="1023" variable="object_kelurahan" dataType="Text" parameterType="Control" parameterSource="object_kelurahan"/>
+				<SQLParameter id="1024" variable="object_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kelurahan"/>
+				<SQLParameter id="1025" variable="object_kecamatan" dataType="Text" parameterType="Control" parameterSource="object_kecamatan"/>
+				<SQLParameter id="1026" variable="object_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kecamatan"/>
+				<SQLParameter id="1027" variable="object_kota" dataType="Text" parameterType="Control" parameterSource="object_kota"/>
+				<SQLParameter id="1028" variable="object_p_region_id" dataType="Float" parameterType="Control" parameterSource="object_p_region_id"/>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="910" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
 				<CustomParameter id="911" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
@@ -712,8 +724,8 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_bphtb_registration_piutang_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_piutang.php" forShow="True" url="t_bphtb_registration_piutang.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_piutang.php" forShow="True" url="t_bphtb_registration_piutang.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
