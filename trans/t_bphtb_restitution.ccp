@@ -32,36 +32,6 @@ left join t_payment_receipt_bphtb as j
 	on i.t_bphtb_registration_id = j.t_bphtb_registration_id
 where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bphtb_registration" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp">
 			<Components>
-				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="96" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Submit" PathID="t_bphtb_registrationFormButton_Update" removeParameters="FLAG">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="97" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Delete" PathID="t_bphtb_registrationFormButton_Delete" removeParameters="FLAG;t_vat_registration_id">
-					<Components/>
-					<Events>
-						<Event name="OnClick" type="Client">
-							<Actions>
-								<Action actionName="Confirmation Message" actionCategory="General" id="98" message="Delete record?" eventType="Client"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="99" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancel" PathID="t_bphtb_registrationFormButton_Cancel" returnPage="t_bphtb_registration_list.ccp" removeParameters="FLAG">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<TextBox id="869" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_kota" fieldSource="wp_kota" required="True" caption="Kota/Kabupaten - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_bphtb_registrationFormwp_kota" defaultValue="'KOTA BANDUNG'">
 					<Components/>
 					<Events/>
@@ -224,43 +194,6 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="934" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="p_bphtb_legal_doc_type_id" PathID="t_bphtb_registrationFormp_bphtb_legal_doc_type_id" sourceType="SQL" connection="ConnSIKP" dataSource="select p_bphtb_legal_doc_type_id,code
-from p_bphtb_legal_doc_type bphtb_legal
-left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
-" boundColumn="p_bphtb_legal_doc_type_id" textColumn="code" features="(assigned)" fieldSource="p_bphtb_legal_doc_type_id">
-					<Components/>
-					<Events>
-						<Event name="OnChange" type="Client">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="956" eventType="Client"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features>
-						<PTAutoFill id="951" enabled="True" valueField="value" sourceType="Table" name="PTAutoFill1" servicePage="../services/trans_t_bphtb_registration_t_bphtb_registrationForm_p_bphtb_legal_doc_type_id_PTAutoFill1.ccp" searchField="p_bphtb_legal_doc_type_id" connection="ConnSIKP" featureNameChanged="No" dataSource="p_bphtb_legal_doc_type, p_legal_doc_type" category="Prototype">
-							<Components/>
-							<Events/>
-							<TableParameters/>
-							<SPParameters/>
-							<SQLParameters/>
-							<JoinTables/>
-							<JoinLinks/>
-							<Fields/>
-							<Controls>
-								<Control id="1002"/>
-							</Controls>
-							<ControlPoints/>
-							<Features/>
-						</PTAutoFill>
-					</Features>
-					<TableParameters/>
-					<SPParameters/>
-					<SQLParameters/>
-					<JoinTables/>
-					<JoinLinks/>
-					<Fields/>
-				</ListBox>
 				<TextBox id="935" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop" PathID="t_bphtb_registrationFormnpop" fieldSource="npop" format="#,##0.00">
 					<Components/>
 					<Events/>
@@ -345,18 +278,6 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<Button id="73" urlType="Relative" enableValidation="True" isDefault="False" name="Button3" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormButton3">
-					<Components/>
-					<Events>
-						<Event name="OnClick" type="Server">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="74" eventType="Server"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<Hidden id="1007" fieldSourceType="DBColumn" dataType="Float" name="nilai_doc" PathID="t_bphtb_registrationFormnilai_doc" defaultValue="0">
 					<Components/>
 					<Events/>
@@ -411,7 +332,28 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<ListBox id="934" visible="Dynamic" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_bphtb_legal_doc_type_id" fieldSource="p_bphtb_legal_doc_type_id" connection="ConnSIKP" dataSource="select p_bphtb_legal_doc_type_id,code
+from p_bphtb_legal_doc_type bphtb_legal
+left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
+" boundColumn="p_bphtb_legal_doc_type_id" textColumn="code" features="(assigned)" PathID="t_bphtb_registrationFormp_bphtb_legal_doc_type_id">
+<Components/>
+<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="1298"/>
+</Actions>
+</Event>
+</Events>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<Attributes/>
+<Features/>
+</ListBox>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -689,86 +631,86 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="1016" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm1" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm1" activeCollection="UFormElements" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration" dataSource="select a.*,
-b.region_name as wp_kota,
-c.region_name as wp_kecamatan,
-d.region_name as wp_kelurahan,
-e.region_name as object_region,
-f.region_name as object_kecamatan,
-g.region_name as object_kelurahan,
-h.description as doc_name,
-(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,
-j.payment_vat_amount AS prev_payment_amount
-
-from t_bphtb_registration as a 
-left join p_region as b
-	on a.wp_p_region_id = b.p_region_id
-left join p_region as c
-	on a.wp_p_region_id_kec = c.p_region_id
-left join p_region as d
-	on a.wp_p_region_id_kel = d.p_region_id
-left join p_region as e
-	on a.object_p_region_id = e.p_region_id
-left join p_region as f
-	on a.object_p_region_id_kec = f.p_region_id
-left join p_region as g
-	on a.object_p_region_id_kel = g.p_region_id
-left join p_bphtb_legal_doc_type as h
-	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
-left join t_bphtb_registration as i
-	on a.registration_no_ref = i.registration_no
-left join t_payment_receipt_bphtb as j
-	on i.t_bphtb_registration_id = j.t_bphtb_registration_id
-where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bphtb_registration" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp">
+		<Record id="1016" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm1" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm1" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customDelete="t_bphtb_registration" dataSource="select *
+from t_bphtb_registration 
+where t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="INSERT INTO sikp.t_bphtb_restitusi(
+t_bphtb_registration_id, 
+t_customer_order_id, 
+restitusi_amt, 
+alasan, 
+creation_date, 
+created_by, 
+updated_date, 
+updated_by)
+VALUES (
+{t_bphtb_registration_id}, 
+{t_customer_order_id}, 
+{restitusi_amt}, 
+'{alasan}', 
+sysdate, 
+'{created_by}', 
+sysdate, 
+'{updated_by}');" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp" customInsert="INSERT INTO sikp.t_bphtb_restitusi(
+t_bphtb_registration_id, 
+t_customer_order_id, 
+restitusi_amt, 
+alasan, 
+creation_date, 
+created_by, 
+updated_date, 
+updated_by)
+VALUES (
+{t_bphtb_registration_id}, 
+{t_customer_order_id}, 
+{restitusi_amt}, 
+'{alasan}', 
+sysdate, 
+'{created_by}', 
+sysdate, 
+'{updated_by}');">
 			<Components>
-				<Button id="1017" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationForm1Button_Insert" removeParameters="FLAG">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="1018" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Submit" PathID="t_bphtb_registrationForm1Button_Update" removeParameters="FLAG">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="1019" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Delete" PathID="t_bphtb_registrationForm1Button_Delete" removeParameters="FLAG;t_vat_registration_id">
-					<Components/>
-					<Events>
-						<Event name="OnClick" type="Client">
-							<Actions>
-								<Action actionName="Confirmation Message" actionCategory="General" id="1020" message="Delete record?" eventType="Client"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="1021" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancel" PathID="t_bphtb_registrationForm1Button_Cancel" returnPage="t_bphtb_registration_list.ccp" removeParameters="FLAG">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="1066" urlType="Relative" enableValidation="True" isDefault="False" name="Button3" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationForm1Button3">
-					<Components/>
-					<Events>
-						<Event name="OnClick" type="Server">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="1067" eventType="Server"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<TextBox id="1297" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="restitusi_amt" PathID="t_bphtb_registrationForm1restitusi_amt" fieldSource="restitusi_amt">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Hidden id="1299" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_id" PathID="t_bphtb_registrationForm1t_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="1300" fieldSourceType="DBColumn" dataType="Integer" name="registration_no" PathID="t_bphtb_registrationForm1registration_no" fieldSource="t_bphtb_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Button id="706" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Add_Resitution" operation="Update" wizardCaption="Search" PathID="t_bphtb_registrationForm1Button_Add_Resitution" returnPage="t_bphtb_restitution_list.ccp" removeParameters="t_bphtb_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<TextArea id="1301" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="alasan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationForm1alasan">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
-</TextBox>
+</TextArea>
+<Hidden id="1303" fieldSourceType="DBColumn" dataType="Integer" name="t_customer_order_id" PathID="t_bphtb_registrationForm1t_customer_order_id" fieldSource="t_customer_order_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="1315" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_listPage" PathID="t_bphtb_registrationForm1t_bphtb_registration_listPage">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -850,7 +792,13 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 				<SPParameter id="1120" parameterName="o_mess" parameterSource="o_mess" dataType="Char" parameterType="URL" dataSize="255" direction="InputOutput" scale="10" precision="6"/>
 			</ISPParameters>
 			<ISQLParameters>
-			</ISQLParameters>
+				<SQLParameter id="1302" variable="t_bphtb_registration_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_bphtb_registration_id"/>
+<SQLParameter id="1304" variable="t_customer_order_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_customer_order_id"/>
+<SQLParameter id="1305" variable="restitusi_amt" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="restitusi_amt"/>
+<SQLParameter id="1306" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
+<SQLParameter id="1307" variable="created_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+<SQLParameter id="1308" variable="updated_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="1121" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
 				<CustomParameter id="1122" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
@@ -930,7 +878,13 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 				<SPParameter id="1194" parameterName="i_mode" parameterSource="'U'" dataType="Char" parameterType="Expression" dataSize="255" direction="Input" scale="10" precision="6"/>
 			</USPParameters>
 			<USQLParameters>
-			</USQLParameters>
+				<SQLParameter id="1309" variable="t_bphtb_registration_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_bphtb_registration_id"/>
+<SQLParameter id="1310" variable="t_customer_order_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_customer_order_id"/>
+<SQLParameter id="1311" variable="restitusi_amt" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="restitusi_amt"/>
+<SQLParameter id="1312" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
+<SQLParameter id="1313" variable="created_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+<SQLParameter id="1314" variable="updated_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+</USQLParameters>
 			<UConditions>
 				<TableParameter id="1195" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
 				<TableParameter id="1196" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
@@ -1047,7 +1001,7 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 			<Attributes/>
 			<Features/>
 		</Record>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_bphtb_restitution_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_restitution.php" forShow="True" url="t_bphtb_restitution.php" comment="//" codePage="windows-1252"/>
