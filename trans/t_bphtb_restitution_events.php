@@ -1,16 +1,14 @@
 <?php
-//BindEvents Method @1-8D65A76A
+//BindEvents Method @1-5DA8036F
 function BindEvents()
 {
     global $t_bphtb_registrationForm;
     global $t_bphtb_registrationForm1;
     global $CCSEvents;
-    $t_bphtb_registrationForm->Button3->CCSEvents["OnClick"] = "t_bphtb_registrationForm_Button3_OnClick";
     $t_bphtb_registrationForm->CCSEvents["BeforeSelect"] = "t_bphtb_registrationForm_BeforeSelect";
     $t_bphtb_registrationForm->CCSEvents["BeforeInsert"] = "t_bphtb_registrationForm_BeforeInsert";
     $t_bphtb_registrationForm->ds->CCSEvents["AfterExecuteDelete"] = "t_bphtb_registrationForm_ds_AfterExecuteDelete";
     $t_bphtb_registrationForm->CCSEvents["AfterUpdate"] = "t_bphtb_registrationForm_AfterUpdate";
-    $t_bphtb_registrationForm1->Button3->CCSEvents["OnClick"] = "t_bphtb_registrationForm1_Button3_OnClick";
     $t_bphtb_registrationForm1->CCSEvents["BeforeSelect"] = "t_bphtb_registrationForm1_BeforeSelect";
     $t_bphtb_registrationForm1->CCSEvents["BeforeInsert"] = "t_bphtb_registrationForm1_BeforeInsert";
     $t_bphtb_registrationForm1->ds->CCSEvents["AfterExecuteDelete"] = "t_bphtb_registrationForm1_ds_AfterExecuteDelete";
@@ -18,26 +16,6 @@ function BindEvents()
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
-
-//t_bphtb_registrationForm_Button3_OnClick @73-6F1B2C91
-function t_bphtb_registrationForm_Button3_OnClick(& $sender)
-{
-    $t_bphtb_registrationForm_Button3_OnClick = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $t_bphtb_registrationForm; //Compatibility
-//End t_bphtb_registrationForm_Button3_OnClick
-
-//Custom Code @74-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
-//Close t_bphtb_registrationForm_Button3_OnClick @73-1FA6C5EF
-    return $t_bphtb_registrationForm_Button3_OnClick;
-}
-//End Close t_bphtb_registrationForm_Button3_OnClick
 
 //t_bphtb_registrationForm_BeforeSelect @94-50B4A263
 function t_bphtb_registrationForm_BeforeSelect(& $sender)
@@ -118,26 +96,6 @@ function t_bphtb_registrationForm_AfterUpdate(& $sender)
     return $t_bphtb_registrationForm_AfterUpdate;
 }
 //End Close t_bphtb_registrationForm_AfterUpdate
-
-//t_bphtb_registrationForm1_Button3_OnClick @1066-E0B36AB5
-function t_bphtb_registrationForm1_Button3_OnClick(& $sender)
-{
-    $t_bphtb_registrationForm1_Button3_OnClick = true;
-    $Component = & $sender;
-    $Container = & CCGetParentContainer($sender);
-    global $t_bphtb_registrationForm1; //Compatibility
-//End t_bphtb_registrationForm1_Button3_OnClick
-
-//Custom Code @1067-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
-
-//Close t_bphtb_registrationForm1_Button3_OnClick @1066-A91F2D09
-    return $t_bphtb_registrationForm1_Button3_OnClick;
-}
-//End Close t_bphtb_registrationForm1_Button3_OnClick
 
 //t_bphtb_registrationForm1_BeforeSelect @1016-43FC6256
 function t_bphtb_registrationForm1_BeforeSelect(& $sender)
@@ -237,7 +195,7 @@ function Page_BeforeShow(& $sender)
 		$t_bphtb_registrationForm->DeleteAllowed = false;
 		$t_bphtb_registrationForm->Button3->Visible =true;
 	}else{
-		$t_bphtb_registrationForm->Button3->Visible =false;
+		//$t_bphtb_registrationForm->Button3->Visible =false;
 	}
 // -------------------------
 //End Custom Code
