@@ -12,13 +12,13 @@
 	$t_bphtb_restitusi_id = CCGetFromGet("t_bphtb_restitusi_id","");
 
 	if(empty($t_bphtb_restitusi_id)){
-		die("Proses membutuhkan restitusi 0.id");
+		die("Proses membutuhkan restitusi id");
 	}
 
 	$sql = "select * 
 		from t_bphtb_restitusi a
 		left join t_bphtb_registration x on a.t_bphtb_registration_id= x.t_bphtb_registration_id
-		where t_bphtb_restitusi_id = 4";
+		where t_bphtb_restitusi_id =".$t_bphtb_restitusi_id;
 
 
 	$dbConn->query($sql);
