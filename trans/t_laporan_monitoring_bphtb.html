@@ -15,7 +15,7 @@
                 var params = "?cetak_laporan="+document.getElementById("t_laporan_daftar_bphtbcetak_laporan").value;
                 params += "&date_start="+document.getElementById("t_laporan_daftar_bphtbdate_start_laporan").value;
                 params += "&date_end="+document.getElementById("t_laporan_daftar_bphtbdate_end_laporan").value;
-                location.href = "t_laporan_monitoring_bphtb.php";
+                location.href = "t_laporan_monitoring_bphtb.php"+params;
         }
 </script>
 <script language="JavaScript" type="text/javascript">
@@ -58,7 +58,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN DAFTAR BPHTB 
+        LAPORAN&nbsp;MONITORING BPHTB 
       </div>
     </div>
   </div>
