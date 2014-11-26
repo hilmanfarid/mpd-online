@@ -87,7 +87,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <tr>
                     <td colspan="2" align="right"><input id="t_laporan_daftar_bphtbcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden">
-                      <!-- BEGIN Button Button1 --><input style="WIDTH: 143px; HEIGHT: 26px" id="t_laporan_daftar_bphtbButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Tampilkan Proses" size="17" type="submit"><!-- END Button Button1 --></td>
+                      <!-- BEGIN Button Button1 --><input style="WIDTH: 143px; HEIGHT: 26px" id="t_laporan_daftar_bphtbButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Tampilkan Proses" size="17" type="button"><!-- END Button Button1 --></td>
                   </tr>
                 </table>
               </td>
@@ -111,6 +111,6 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                         getFrom_LOV('t_laporan_pencetakan_bulanan','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_vat_type&FIELD_0=p_vat_type_id&FIELD_1=vat_code&FIELD_2=description&LABEL1=Jenis Pajak&LABEL2=Deskripsi&HEADER_PAGE=JENIS PAJAK&HEADER_LOV=DAFTAR JENIS PAJAK&ORDER=p_vat_type_id');
                 }
   </script>
-{Label1}
+{Label1} 
 </body>
 </html>
