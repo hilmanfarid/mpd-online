@@ -16,6 +16,7 @@ function Page_BeforeShow(& $sender)
     global $t_laporan_monitoring_bphtb; //Compatibility
 //End Page_BeforeShow
 	global $Label1;
+	global $t_laporan_daftar_bphtb;
 //Custom Code @10-2A29BDB7
 // -------------------------
     $param_arr=array();
@@ -42,8 +43,8 @@ function Page_BeforeShow(& $sender)
 		$Label1->SetText(GetCetakHTML($param_arr));
 	}
 	
-	$t_laporan_monitoring_bphtb->date_start_laporan->SetValue($param_arr['date_start']);
-	$t_laporan_monitoring_bphtb->date_end_laporan->SetValue($param_arr['date_end']);
+	$t_laporan_daftar_bphtb->date_start_laporan->SetValue($param_arr['date_start']);
+	$t_laporan_daftar_bphtb->date_end_laporan->SetValue($param_arr['date_end']);
 
 // -------------------------
 //End Custom Code
