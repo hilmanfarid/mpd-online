@@ -26,10 +26,24 @@ function Page_BeforeShow(& $sender)
 		$param_arr['date_end'] = CCGetFromGet('date_end');
 	}
 	
+	if(empty($param_arr['date_start']) and empty($param_arr['date_end'])) {
+		return;
+	}
+	
+	if(!empty($param_arr['date_start']) and empty($param_arr['date_end'])) {
+		$param_arr['date_end'] = $param_arr['date_start'];
+	}
+
+	if(empty($param_arr['date_start']) and !empty($param_arr['date_end'])) {
+		$param_arr['date_start'] = $param_arr['date_end'];
+	}
+
 	if(!empty($param_arr['date_start']) and !empty($param_arr['date_end'])) {
 		$Label1->SetText(GetCetakHTML($param_arr));
 	}
 	
+	$t_laporan_monitoring_bphtb->date_start_laporan->SetValue($param_arr['date_start']);
+	$t_laporan_monitoring_bphtb->date_end_laporan->SetValue($param_arr['date_end']);
 
 // -------------------------
 //End Custom Code
