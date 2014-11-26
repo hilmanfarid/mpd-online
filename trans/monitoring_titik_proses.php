@@ -14,7 +14,7 @@ $DBConn = new clsDBConnSIKP();
 	if (empty($nilai)){
 	   		
 	}else{
-		$SQL = "select replace(replace(f_monitor_tipro(".$nilai."),'(\"',''),'\")','') from dual";	
+		$SQL = "select replace(replace(f_monitor_tipro_v2(".$nilai."),'(\"',''),'\")','') from dual";	
 		//die($SQL);
 		$DBConn->query($SQL);
 			  
