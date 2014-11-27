@@ -1,7 +1,8 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_message_inboxGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT
-	inbox.*, to_char(
+	x.ppat_name,
+		inbox.*, to_char(
 		inbox.creation_date,
 		'yyyy-mm-dd HH24:MI:SS AM'
 	) AS creation_date,
@@ -17,6 +18,7 @@
 FROM
 	t_message_inbox_bphtb inbox
 LEFT JOIN sikp.p_message_type mtype ON mtype.p_message_type_id = inbox.p_message_type_id
+LEFT JOIN t_ppat x on x.t_ppat_id = inbox.t_ppat_id
 where p_app_role_id_to = 27
 order by inbox.creation_date DESC" parameterTypeListName="ParameterTypeList">
 			<Components>
@@ -25,7 +27,7 @@ order by inbox.creation_date DESC" parameterTypeListName="ParameterTypeList">
 					<Events/>
 					<LinkParameters>
 						<LinkParameter id="292" sourceType="DataField" name="t_message_inbox_id" source="t_message_inbox_bphtb_id"/>
-</LinkParameters>
+					</LinkParameters>
 					<Attributes/>
 					<Features/>
 				</Link>
@@ -65,7 +67,13 @@ order by inbox.creation_date DESC" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="294" fieldSourceType="DBColumn" dataType="Text" html="False" name="ppat_name" fieldSource="ppat_name" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_message_inboxGridppat_name">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -105,6 +113,7 @@ order by inbox.creation_date DESC" parameterTypeListName="ParameterTypeList">
 			<Features/>
 		</Grid>
 		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_message_inboxForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_message_inboxForm" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" dataSource="SELECT
+	x.ppat_name,
 	inbox.*, to_char(
 		inbox.creation_date,
 		'yyyy-mm-dd'
@@ -121,6 +130,7 @@ order by inbox.creation_date DESC" parameterTypeListName="ParameterTypeList">
 FROM
 	t_message_inbox_bphtb inbox
 LEFT JOIN sikp.p_message_type mtype ON mtype.p_message_type_id = inbox.p_message_type_id
+LEFT JOIN t_ppat x on x.t_ppat_id = inbox.t_ppat_id
 where t_message_inbox_bphtb_id = {t_message_inbox_id}" customUpdate="select o_result_code, o_result_msg from f_first_submit_engine(501,{t_customer_order_id},'{UserName}')" customUpdateType="SQL" customDeleteType="SQL" customDelete="select * from f_del_vat_setllement({t_vat_setllement_id},null,null)">
 			<Components>
 				<Button id="24" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_message_inboxFormButton_Insert" removeParameters="FLAG">
@@ -177,6 +187,12 @@ where t_message_inbox_bphtb_id = {t_message_inbox_id}" customUpdate="select o_re
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<TextBox id="295" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="ppat_name" fieldSource="ppat_name" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_message_inboxFormppat_name">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
