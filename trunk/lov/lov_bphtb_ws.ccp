@@ -23,30 +23,30 @@
 				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" operation="Search" wizardCaption="Search" PathID="LOVButton_DoSearch">
 					<Components/>
 					<Events>
-<Event name="OnClick" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="50"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="50" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
-<ListBox id="48" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TAHUN_SEARCH" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVTAHUN_SEARCH" sourceType="SQL" connection="ConnSIKP" dataSource="SELECT * 
+				<ListBox id="48" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="TAHUN_SEARCH" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVTAHUN_SEARCH" sourceType="SQL" connection="ConnSIKP" dataSource="SELECT * 
 FROM p_year_period 
 order by year_code DESC" boundColumn="year_code" textColumn="year_code" fieldSource="TAHUN_SEARCH" defaultValue="date(&quot;Y&quot;)">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-</ListBox>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+				</ListBox>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -107,83 +107,95 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 					<Features/>
 				</Button>
 				<TextBox id="59" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="NOP" PathID="bphtb_wsFormNOP" fieldSource="NOP">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="281" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kota" PathID="bphtb_wsFormkota" fieldSource="kota">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="282" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kecamatan" PathID="bphtb_wsFormkecamatan" fieldSource="kecamatan">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="283" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kelurahan" PathID="bphtb_wsFormkelurahan" fieldSource="kelurahan">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="284" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="jalan" PathID="bphtb_wsFormjalan" fieldSource="jalan">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="285" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="rt" PathID="bphtb_wsFormrt" fieldSource="rt">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="286" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="rw" PathID="bphtb_wsFormrw" fieldSource="kelurahan">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="287" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="luas_bumi" PathID="bphtb_wsFormluas_bumi" fieldSource="luas_bumi">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="288" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="luas_bangunan" PathID="bphtb_wsFormluas_bangunan" fieldSource="luas_bangunan">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="289" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_bangunan" PathID="bphtb_wsFormnjop_bangunan" fieldSource="njop_bangunan">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="290" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_bumi" PathID="bphtb_wsFormnjop_bumi" fieldSource="njop_bumi">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="291" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_pbb" PathID="bphtb_wsFormnjop_pbb" fieldSource="njop_pbb">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<TextBox id="292" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="pbb_terhutang" PathID="bphtb_wsFormpbb_terhutang" fieldSource="pbb_terhutang">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="281" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kota" PathID="bphtb_wsFormkota" fieldSource="kota">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="282" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kecamatan" PathID="bphtb_wsFormkecamatan" fieldSource="kecamatan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="283" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kelurahan" PathID="bphtb_wsFormkelurahan" fieldSource="kelurahan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="284" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="jalan" PathID="bphtb_wsFormjalan" fieldSource="jalan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="285" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="rt" PathID="bphtb_wsFormrt" fieldSource="rt">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="286" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="rw" PathID="bphtb_wsFormrw" fieldSource="kelurahan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="287" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="luas_bumi" PathID="bphtb_wsFormluas_bumi" fieldSource="luas_bumi">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="288" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="luas_bangunan" PathID="bphtb_wsFormluas_bangunan" fieldSource="luas_bangunan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="289" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_bangunan" PathID="bphtb_wsFormnjop_bangunan" fieldSource="njop_bangunan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="290" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_bumi" PathID="bphtb_wsFormnjop_bumi" fieldSource="njop_bumi">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="291" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_pbb" PathID="bphtb_wsFormnjop_pbb" fieldSource="njop_pbb">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="292" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="pbb_terhutang" PathID="bphtb_wsFormpbb_terhutang" fieldSource="pbb_terhutang">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Button id="295" urlType="Relative" enableValidation="True" isDefault="False" name="pilih" wizardCaption="Search" PathID="bphtb_wsFormpilih">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="296" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -212,11 +224,11 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="293"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="293"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="65" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
 			</TableParameters>
@@ -467,20 +479,20 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 			<Attributes/>
 			<Features/>
 		</Record>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Code" language="PHPTemplates" name="lov_bphtb_ws.php" forShow="True" url="lov_bphtb_ws.php" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Events" language="PHPTemplates" name="lov_bphtb_ws_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
 	<Features/>
 	<Events>
-<Event name="OnInitializeView" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="294"/>
-</Actions>
-</Event>
-</Events>
+		<Event name="OnInitializeView" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="294"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
