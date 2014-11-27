@@ -265,7 +265,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
     // Class variables
 //End Variables
 
-//Class_Initialize Event @51-4F065C0E
+//Class_Initialize Event @51-C4C95A2D
     function clsRecordbphtb_wsForm($RelativePath, & $Parent)
     {
 
@@ -309,6 +309,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
             $this->njop_bumi = & new clsControl(ccsTextBox, "njop_bumi", "njop_bumi", ccsText, "", CCGetRequestParam("njop_bumi", $Method, NULL), $this);
             $this->njop_pbb = & new clsControl(ccsTextBox, "njop_pbb", "njop_pbb", ccsText, "", CCGetRequestParam("njop_pbb", $Method, NULL), $this);
             $this->pbb_terhutang = & new clsControl(ccsTextBox, "pbb_terhutang", "pbb_terhutang", ccsText, "", CCGetRequestParam("pbb_terhutang", $Method, NULL), $this);
+            $this->pilih = & new clsButton("pilih", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -399,7 +400,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @51-6A904D8F
+//Operation Method @51-71CCDE0C
     function Operation()
     {
         if(!$this->Visible)
@@ -415,9 +416,11 @@ function GetPrimaryKey($keyName)
         }
 
         if($this->FormSubmitted) {
-            $this->PressedButton = $this->EditMode ? "Button_Update" : "";
+            $this->PressedButton = $this->EditMode ? "Button_Update" : "pilih";
             if($this->Button_Update->Pressed) {
                 $this->PressedButton = "Button_Update";
+            } else if($this->pilih->Pressed) {
+                $this->PressedButton = "pilih";
             }
         }
         $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -425,6 +428,10 @@ function GetPrimaryKey($keyName)
             if($this->PressedButton == "Button_Update") {
                 $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "pilih") {
+                if(!CCGetEvent($this->pilih->CCSEvents, "OnClick", $this->pilih)) {
                     $Redirect = "";
                 }
             }
@@ -539,7 +546,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @51-23135485
+//Show Method @51-75C677DB
     function Show()
     {
         global $CCSUseAmp;
@@ -634,6 +641,7 @@ function GetPrimaryKey($keyName)
         $this->njop_bumi->Show();
         $this->njop_pbb->Show();
         $this->pbb_terhutang->Show();
+        $this->pilih->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
