@@ -18,6 +18,7 @@ function clickReturn(retVal) {
                 }
                 window.close();
 }
+
 </script>
 <!--end user-->
 <script language="javascript" type="text/javascript">
@@ -65,7 +66,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body style="MARGIN: 0px" marginheight="0" marginwidth="0">
+<body style="MARGIN: 0px" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -92,7 +93,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">NOP:&nbsp;</td> 
-                    <td class="search-field"><input id="LOVNOP_SEARCH" class="ControlsIN" name="{NOP_SEARCH_Name}" maxlength="32" value="{NOP_SEARCH}" size="32"><input style="DISPLAY: none" id="LOVFORM" name="{FORM_Name}" value="{FORM}"><label for="LOVOBJ" style="display: none;">&nbsp;</label><input style="DISPLAY: none" id="LOVOBJ" name="{OBJ_Name}" value="{OBJ}"><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
+                    <td class="search-field"><input id="LOVNOP_SEARCH" class="ControlsIN" value="{NOP_SEARCH}" maxlength="32" size="32" name="{NOP_SEARCH_Name}"><input style="DISPLAY: none" id="LOVFORM" value="{FORM}" name="{FORM_Name}"><label style="display: none;" for="LOVOBJ">&nbsp;</label><input style="DISPLAY: none" id="LOVOBJ" value="{OBJ}" name="{OBJ_Name}"><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
                     <td class="search-field"></td>
                   </tr>
  
@@ -110,7 +111,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <tr class="Controls">
                     <td class="search-field">&nbsp;</td> 
                     <td class="search-field">&nbsp; 
-                      <!-- BEGIN Button Button_DoSearch --><input id="LOVButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="Cari" type="submit"><!-- END Button Button_DoSearch --></td> 
+                      <!-- BEGIN Button Button_DoSearch --><input id="LOVButton_DoSearch" class="btn_tambah" value="Cari" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
                     <td class="search-field">&nbsp;</td>
                   </tr>
                 </table>
@@ -151,72 +152,73 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
             <tr class="Controls">
               <td class="th" colspan="3"><span id="keterangan-kurang-bayar">&nbsp;NOP</span></td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormNOP" name="{NOP_Name}" readonly value="{NOP}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormNOP" value="{NOP}" readonly name="{NOP_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;KOTA</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormkota" name="{kota_Name}" readonly value="{kota}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormkota" value="{kota}" readonly name="{kota_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;KECAMATAN</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormkecamatan" name="{kecamatan_Name}" readonly value="{kecamatan}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormkecamatan" value="{kecamatan}" readonly name="{kecamatan_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;KELURAHAN</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormkelurahan" name="{kelurahan_Name}" readonly value="{kelurahan}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormkelurahan" value="{kelurahan}" readonly name="{kelurahan_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;JALAN</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormjalan" name="{jalan_Name}" readonly value="{jalan}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormjalan" value="{jalan}" readonly name="{jalan_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;RT</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormrt" name="{rt_Name}" readonly value="{rt}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormrt" value="{rt}" readonly name="{rt_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;RW</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormrw" name="{rw_Name}" readonly value="{rw}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormrw" value="{rw}" readonly name="{rw_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;LUAS BUMI</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormluas_bumi" name="{luas_bumi_Name}" readonly value="{luas_bumi}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormluas_bumi" value="{luas_bumi}" readonly name="{luas_bumi_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;LUAS BANGUNAN</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormluas_bangunan" name="{luas_bangunan_Name}" readonly value="{luas_bangunan}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormluas_bangunan" value="{luas_bangunan}" readonly name="{luas_bangunan_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;NJOP BANGUNAN</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormnjop_bangunan" name="{njop_bangunan_Name}" readonly value="{njop_bangunan}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormnjop_bangunan" value="{njop_bangunan}" readonly name="{njop_bangunan_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;NJOP BUMI</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormnjop_bumi" name="{njop_bumi_Name}" readonly value="{njop_bumi}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormnjop_bumi" value="{njop_bumi}" readonly name="{njop_bumi_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;NJOP PBB</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormnjop_pbb" name="{njop_pbb_Name}" readonly value="{njop_pbb}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormnjop_pbb" value="{njop_pbb}" readonly name="{njop_pbb_Name}"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;PBB TERHUTANG</td> 
-              <td colspan="6">&nbsp;<input id="bphtb_wsFormpbb_terhutang" name="{pbb_terhutang_Name}" readonly value="{pbb_terhutang}"></td>
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormpbb_terhutang" value="{pbb_terhutang}" readonly name="{pbb_terhutang_Name}"></td>
             </tr>
  
             <tr class="Bottom">
-              <td colspan="9" align="right">&nbsp;&nbsp;&nbsp; 
-                <!-- BEGIN Button Button_Update --><input id="bphtb_wsFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->&nbsp; </td>
+              <td colspan="9" align="right">&nbsp; 
+                <!-- BEGIN Button pilih --><input onclick="pilihData();" id="bphtb_wsFormpilih" class="btn_tambah" value="PILIH" alt="Search" type="button" name="{Button_Name}"><!-- END Button pilih -->&nbsp;&nbsp;&nbsp; 
+                <!-- BEGIN Button Button_Update --><input id="bphtb_wsFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; </td>
             </tr>
           </table>
         </td>
@@ -225,5 +227,15 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
   </form>
   <!-- END Record bphtb_wsForm -->
 </div>
+<script>
+	function pilihData() {
+        window.opener.document.getElementById("t_bphtb_registrationFormnjop_pbb").value = document.getElementById("bphtb_wsFormNOP").value;
+		window.opener.document.getElementById("t_bphtb_registrationFormobject_rt").value = document.getElementById("bphtb_wsFormrt").value;
+		window.opener.document.getElementById("t_bphtb_registrationFormobject_rw").value = document.getElementById("bphtb_wsFormrw").value;
+		window.opener.document.getElementById("t_bphtb_registrationFormland_area").value = document.getElementById("bphtb_wsFormluas_bumi").value;
+		window.opener.document.getElementById("t_bphtb_registrationFormbuilding_area").value = document.getElementById("bphtb_wsFormluas_bangunan").value;
+		window.close();
+}
+</script>
 </body>
 </html>
