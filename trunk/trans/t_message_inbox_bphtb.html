@@ -64,7 +64,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -96,6 +96,8 @@ $(document).ready(function()
  
                   <th scope="col">Diterima</th>
  
+                  <th scope="col">&nbsp;Pengirim</th>
+ 
                   <th scope="col">Jenis Pesan</th>
  
                   <th colspan="2" scope="col">status</th>
@@ -104,19 +106,20 @@ $(document).ready(function()
                 <!-- BEGIN Row -->
                 <tr {t_message_inboxGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_message_inboxGridDLink_{t_message_inboxGrid:rowNumber}">{DLink}</a></td> 
-                  <td style="WIDTH: 200px">&nbsp;{creation_date}<input id="t_message_inboxGridt_message_inbox_bphtb_id" name="{t_message_inbox_bphtb_id_Name}" value="{t_message_inbox_bphtb_id}" type="hidden"></td> 
+                  <td style="WIDTH: 200px">&nbsp;{creation_date}<input id="t_message_inboxGridt_message_inbox_bphtb_id" value="{t_message_inbox_bphtb_id}" type="hidden" name="{t_message_inbox_bphtb_id_Name}"></td> 
+                  <td>{ppat_name}</td> 
                   <td>&nbsp;{message_type}</td> 
-                  <td colspan="2"><input id="t_message_inboxGridmessage_status_{t_message_inboxGrid:rowNumber}" name="{message_status_Name}" value="{message_status}" type="hidden">&nbsp;{status_view}</td>
+                  <td colspan="2"><input id="t_message_inboxGridmessage_status_{t_message_inboxGrid:rowNumber}" value="{message_status}" type="hidden" name="{message_status_Name}">&nbsp;{status_view}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="5">-</td>
+                  <td colspan="6">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b></b></td> 
-                  <td colspan="4">
+                  <td colspan="5">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -156,7 +159,12 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="t_message_inboxFormmessage_body">Jenis Pesan</label></td> 
-                    <td><input id="t_message_inboxFormmessage_type" class="ControlsRO" name="{message_type_Name}" readonly maxlength="12" value="{message_type}" size="32">&nbsp;<input id="t_message_inboxFormt_message_inbox_bphtb_id" name="{t_message_inbox_bphtb_id_Name}" value="{t_message_inbox_bphtb_id}" type="hidden"><input id="t_message_inboxFormt_ppat_id" name="{t_ppat_id_Name}" value="{t_ppat_id}" type="hidden"></td>
+                    <td><input id="t_message_inboxFormmessage_type" class="ControlsRO" value="{message_type}" readonly maxlength="12" size="32" name="{message_type_Name}">&nbsp;<input id="t_message_inboxFormt_message_inbox_bphtb_id" value="{t_message_inbox_bphtb_id}" type="hidden" name="{t_message_inbox_bphtb_id_Name}"><input id="t_message_inboxFormt_ppat_id" value="{t_ppat_id}" type="hidden" name="{t_ppat_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Pengirim</td> 
+                    <td><input id="t_message_inboxFormppat_name" class="ControlsRO" value="{ppat_name}" readonly maxlength="12" size="32" name="{ppat_name_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -170,10 +178,10 @@ $(document).ready(function()
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">&nbsp; 
-                      <!-- BEGIN Button Button_Insert1 --><input id="t_message_inboxFormButton_Insert1" class="btn_tambah" onclick="replyMessage();" name="{Button_Name}" alt="Add" value="Reply" type="button"><!-- END Button Button_Insert1 -->&nbsp;&nbsp; 
-                      <!-- BEGIN Button Button_Insert --><input id="t_message_inboxFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="t_message_inboxFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SUBMIT" type="submit"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input id="t_message_inboxFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="HAPUS" type="submit"><!-- END Button Button_Delete --></td>
+                      <!-- BEGIN Button Button_Insert1 --><input id="t_message_inboxFormButton_Insert1" class="btn_tambah" onclick="replyMessage();" value="Reply" alt="Add" type="button" name="{Button_Name}"><!-- END Button Button_Insert1 -->&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button_Insert --><input id="t_message_inboxFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_message_inboxFormButton_Update" class="btn_tambah" value="SUBMIT" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_message_inboxFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete --></td>
                   </tr>
                 </table>
               </td>
