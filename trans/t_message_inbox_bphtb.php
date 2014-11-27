@@ -42,7 +42,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-6837E2BD
+//Class_Initialize Event @2-BABC8066
     function clsGridt_message_inboxGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -77,6 +77,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
         $this->message_type = & new clsControl(ccsLabel, "message_type", "message_type", ccsText, "", CCGetRequestParam("message_type", ccsGet, NULL), $this);
         $this->t_message_inbox_bphtb_id = & new clsControl(ccsHidden, "t_message_inbox_bphtb_id", "t_message_inbox_bphtb_id", ccsFloat, "", CCGetRequestParam("t_message_inbox_bphtb_id", ccsGet, NULL), $this);
         $this->status_view = & new clsControl(ccsLabel, "status_view", "status_view", ccsText, "", CCGetRequestParam("status_view", ccsGet, NULL), $this);
+        $this->ppat_name = & new clsControl(ccsLabel, "ppat_name", "ppat_name", ccsText, "", CCGetRequestParam("ppat_name", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -93,7 +94,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
     }
 //End Initialize Method
 
-//Show Method @2-A7B76377
+//Show Method @2-032693A4
     function Show()
     {
         global $Tpl;
@@ -128,6 +129,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
             $this->ControlsVisible["message_type"] = $this->message_type->Visible;
             $this->ControlsVisible["t_message_inbox_bphtb_id"] = $this->t_message_inbox_bphtb_id->Visible;
             $this->ControlsVisible["status_view"] = $this->status_view->Visible;
+            $this->ControlsVisible["ppat_name"] = $this->ppat_name->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -142,6 +144,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
                 $this->message_type->SetValue($this->DataSource->message_type->GetValue());
                 $this->t_message_inbox_bphtb_id->SetValue($this->DataSource->t_message_inbox_bphtb_id->GetValue());
                 $this->status_view->SetValue($this->DataSource->status_view->GetValue());
+                $this->ppat_name->SetValue($this->DataSource->ppat_name->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -151,6 +154,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
                 $this->message_type->Show();
                 $this->t_message_inbox_bphtb_id->Show();
                 $this->status_view->Show();
+                $this->ppat_name->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -183,7 +187,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
     }
 //End Show Method
 
-//GetErrors Method @2-79A45D26
+//GetErrors Method @2-26AB3B14
     function GetErrors()
     {
         $errors = "";
@@ -193,6 +197,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
         $errors = ComposeStrings($errors, $this->message_type->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_message_inbox_bphtb_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->status_view->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->ppat_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -203,7 +208,7 @@ class clsGridt_message_inboxGrid { //t_message_inboxGrid class @2-8DA38A94
 
 class clst_message_inboxGridDataSource extends clsDBConnSIKP {  //t_message_inboxGridDataSource Class @2-023EE474
 
-//DataSource Variables @2-CC92B1B2
+//DataSource Variables @2-C51C622E
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -220,9 +225,10 @@ class clst_message_inboxGridDataSource extends clsDBConnSIKP {  //t_message_inbo
     var $message_type;
     var $t_message_inbox_bphtb_id;
     var $status_view;
+    var $ppat_name;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-F8D9D7DF
+//DataSourceClass_Initialize Event @2-86EE93D7
     function clst_message_inboxGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -237,6 +243,8 @@ class clst_message_inboxGridDataSource extends clsDBConnSIKP {  //t_message_inbo
         $this->t_message_inbox_bphtb_id = new clsField("t_message_inbox_bphtb_id", ccsFloat, "");
         
         $this->status_view = new clsField("status_view", ccsText, "");
+        
+        $this->ppat_name = new clsField("ppat_name", ccsText, "");
         
 
     }
@@ -261,12 +269,13 @@ class clst_message_inboxGridDataSource extends clsDBConnSIKP {  //t_message_inbo
     }
 //End Prepare Method
 
-//Open Method @2-C21AEFDF
+//Open Method @2-1CB84317
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (SELECT\n" .
-        "	inbox.*, to_char(\n" .
+        "	x.ppat_name,\n" .
+        "		inbox.*, to_char(\n" .
         "		inbox.creation_date,\n" .
         "		'yyyy-mm-dd HH24:MI:SS AM'\n" .
         "	) AS creation_date,\n" .
@@ -282,9 +291,11 @@ class clst_message_inboxGridDataSource extends clsDBConnSIKP {  //t_message_inbo
         "FROM\n" .
         "	t_message_inbox_bphtb inbox\n" .
         "LEFT JOIN sikp.p_message_type mtype ON mtype.p_message_type_id = inbox.p_message_type_id\n" .
+        "LEFT JOIN t_ppat x on x.t_ppat_id = inbox.t_ppat_id\n" .
         "where p_app_role_id_to = 27) cnt";
         $this->SQL = "SELECT\n" .
-        "	inbox.*, to_char(\n" .
+        "	x.ppat_name,\n" .
+        "		inbox.*, to_char(\n" .
         "		inbox.creation_date,\n" .
         "		'yyyy-mm-dd HH24:MI:SS AM'\n" .
         "	) AS creation_date,\n" .
@@ -300,6 +311,7 @@ class clst_message_inboxGridDataSource extends clsDBConnSIKP {  //t_message_inbo
         "FROM\n" .
         "	t_message_inbox_bphtb inbox\n" .
         "LEFT JOIN sikp.p_message_type mtype ON mtype.p_message_type_id = inbox.p_message_type_id\n" .
+        "LEFT JOIN t_ppat x on x.t_ppat_id = inbox.t_ppat_id\n" .
         "where p_app_role_id_to = 27 {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -311,7 +323,7 @@ class clst_message_inboxGridDataSource extends clsDBConnSIKP {  //t_message_inbo
     }
 //End Open Method
 
-//SetValues Method @2-C5C0AA2A
+//SetValues Method @2-6D34E728
     function SetValues()
     {
         $this->message_status->SetDBValue($this->f("message_status"));
@@ -319,6 +331,7 @@ class clst_message_inboxGridDataSource extends clsDBConnSIKP {  //t_message_inbo
         $this->message_type->SetDBValue($this->f("message_type"));
         $this->t_message_inbox_bphtb_id->SetDBValue(trim($this->f("t_message_inbox__bphtb_id")));
         $this->status_view->SetDBValue($this->f("status_view"));
+        $this->ppat_name->SetDBValue($this->f("ppat_name"));
     }
 //End SetValues Method
 
@@ -360,7 +373,7 @@ class clsRecordt_message_inboxForm { //t_message_inboxForm Class @23-2651B045
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-19D4EA16
+//Class_Initialize Event @23-822E2CA8
     function clsRecordt_message_inboxForm($RelativePath, & $Parent)
     {
 
@@ -398,6 +411,7 @@ class clsRecordt_message_inboxForm { //t_message_inboxForm Class @23-2651B045
             $this->t_message_inbox_bphtb_id = & new clsControl(ccsHidden, "t_message_inbox_bphtb_id", "t_message_inbox_bphtb_id", ccsFloat, "", CCGetRequestParam("t_message_inbox_bphtb_id", $Method, NULL), $this);
             $this->Button_Insert1 = & new clsButton("Button_Insert1", $Method, $this);
             $this->t_ppat_id = & new clsControl(ccsHidden, "t_ppat_id", "t_ppat_id", ccsFloat, "", CCGetRequestParam("t_ppat_id", $Method, NULL), $this);
+            $this->ppat_name = & new clsControl(ccsTextBox, "ppat_name", "ppat_name", ccsText, "", CCGetRequestParam("ppat_name", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -413,7 +427,7 @@ class clsRecordt_message_inboxForm { //t_message_inboxForm Class @23-2651B045
     }
 //End Initialize Method
 
-//Validate Method @23-F174D79D
+//Validate Method @23-B702A014
     function Validate()
     {
         global $CCSLocales;
@@ -422,15 +436,17 @@ class clsRecordt_message_inboxForm { //t_message_inboxForm Class @23-2651B045
         $Validation = ($this->message_type->Validate() && $Validation);
         $Validation = ($this->t_message_inbox_bphtb_id->Validate() && $Validation);
         $Validation = ($this->t_ppat_id->Validate() && $Validation);
+        $Validation = ($this->ppat_name->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->message_type->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_message_inbox_bphtb_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_ppat_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->ppat_name->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-D0C78209
+//CheckErrors Method @23-34A73776
     function CheckErrors()
     {
         $errors = false;
@@ -438,6 +454,7 @@ class clsRecordt_message_inboxForm { //t_message_inboxForm Class @23-2651B045
         $errors = ($errors || $this->message_type->Errors->Count());
         $errors = ($errors || $this->t_message_inbox_bphtb_id->Errors->Count());
         $errors = ($errors || $this->t_ppat_id->Errors->Count());
+        $errors = ($errors || $this->ppat_name->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -541,7 +558,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-A6541715
+//Show Method @23-087518D6
     function Show()
     {
         global $CCSUseAmp;
@@ -573,6 +590,7 @@ function GetPrimaryKey($keyName)
                     $this->message_type->SetValue($this->DataSource->message_type->GetValue());
                     $this->t_message_inbox_bphtb_id->SetValue($this->DataSource->t_message_inbox_bphtb_id->GetValue());
                     $this->t_ppat_id->SetValue($this->DataSource->t_ppat_id->GetValue());
+                    $this->ppat_name->SetValue($this->DataSource->ppat_name->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -585,6 +603,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->message_type->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_message_inbox_bphtb_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_ppat_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->ppat_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -615,6 +634,7 @@ function GetPrimaryKey($keyName)
         $this->t_message_inbox_bphtb_id->Show();
         $this->Button_Insert1->Show();
         $this->t_ppat_id->Show();
+        $this->ppat_name->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -625,7 +645,7 @@ function GetPrimaryKey($keyName)
 
 class clst_message_inboxFormDataSource extends clsDBConnSIKP {  //t_message_inboxFormDataSource Class @23-5D097280
 
-//DataSource Variables @23-CC51B813
+//DataSource Variables @23-B6AB146A
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -643,9 +663,10 @@ class clst_message_inboxFormDataSource extends clsDBConnSIKP {  //t_message_inbo
     var $message_type;
     var $t_message_inbox_bphtb_id;
     var $t_ppat_id;
+    var $ppat_name;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-BEFAC5CD
+//DataSourceClass_Initialize Event @23-BADF491C
     function clst_message_inboxFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -658,6 +679,8 @@ class clst_message_inboxFormDataSource extends clsDBConnSIKP {  //t_message_inbo
         $this->t_message_inbox_bphtb_id = new clsField("t_message_inbox_bphtb_id", ccsFloat, "");
         
         $this->t_ppat_id = new clsField("t_ppat_id", ccsFloat, "");
+        
+        $this->ppat_name = new clsField("ppat_name", ccsText, "");
         
 
     }
@@ -674,11 +697,12 @@ class clst_message_inboxFormDataSource extends clsDBConnSIKP {  //t_message_inbo
     }
 //End Prepare Method
 
-//Open Method @23-92239413
+//Open Method @23-0A0CA7CB
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "SELECT\n" .
+        "	x.ppat_name,\n" .
         "	inbox.*, to_char(\n" .
         "		inbox.creation_date,\n" .
         "		'yyyy-mm-dd'\n" .
@@ -695,6 +719,7 @@ class clst_message_inboxFormDataSource extends clsDBConnSIKP {  //t_message_inbo
         "FROM\n" .
         "	t_message_inbox_bphtb inbox\n" .
         "LEFT JOIN sikp.p_message_type mtype ON mtype.p_message_type_id = inbox.p_message_type_id\n" .
+        "LEFT JOIN t_ppat x on x.t_ppat_id = inbox.t_ppat_id\n" .
         "where t_message_inbox_bphtb_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -704,13 +729,14 @@ class clst_message_inboxFormDataSource extends clsDBConnSIKP {  //t_message_inbo
     }
 //End Open Method
 
-//SetValues Method @23-F27FE5EF
+//SetValues Method @23-922E47CE
     function SetValues()
     {
         $this->message_body->SetDBValue($this->f("message_body"));
         $this->message_type->SetDBValue($this->f("message_type"));
         $this->t_message_inbox_bphtb_id->SetDBValue(trim($this->f("t_message_inbox_bphtb_id")));
         $this->t_ppat_id->SetDBValue(trim($this->f("t_ppat_id")));
+        $this->ppat_name->SetDBValue($this->f("ppat_name"));
     }
 //End SetValues Method
 
