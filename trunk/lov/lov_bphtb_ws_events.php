@@ -1,11 +1,12 @@
 <?php
-//BindEvents Method @1-AF7F43B5
+//BindEvents Method @1-923A500E
 function BindEvents()
 {
     global $LOV;
     global $bphtb_wsForm;
     global $CCSEvents;
     $LOV->Button_DoSearch->CCSEvents["OnClick"] = "LOV_Button_DoSearch_OnClick";
+    $bphtb_wsForm->pilih->CCSEvents["OnClick"] = "bphtb_wsForm_pilih_OnClick";
     $bphtb_wsForm->CCSEvents["BeforeSelect"] = "bphtb_wsForm_BeforeSelect";
     $bphtb_wsForm->CCSEvents["BeforeInsert"] = "bphtb_wsForm_BeforeInsert";
     $bphtb_wsForm->ds->CCSEvents["AfterExecuteDelete"] = "bphtb_wsForm_ds_AfterExecuteDelete";
@@ -34,6 +35,26 @@ function LOV_Button_DoSearch_OnClick(& $sender)
     return $LOV_Button_DoSearch_OnClick;
 }
 //End Close LOV_Button_DoSearch_OnClick
+
+//bphtb_wsForm_pilih_OnClick @295-04D12709
+function bphtb_wsForm_pilih_OnClick(& $sender)
+{
+    $bphtb_wsForm_pilih_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $bphtb_wsForm; //Compatibility
+//End bphtb_wsForm_pilih_OnClick
+
+//Custom Code @296-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close bphtb_wsForm_pilih_OnClick @295-B98823F8
+    return $bphtb_wsForm_pilih_OnClick;
+}
+//End Close bphtb_wsForm_pilih_OnClick
 
 //bphtb_wsForm_BeforeSelect @51-2E342CC5
 function bphtb_wsForm_BeforeSelect(& $sender)
@@ -172,7 +193,6 @@ function Page_OnInitializeView(& $sender)
 //Custom Code @294-2A29BDB7
 // -------------------------
     // Write your own code here.
-	
 // -------------------------
 //End Custom Code
 
