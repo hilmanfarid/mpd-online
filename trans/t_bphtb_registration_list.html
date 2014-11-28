@@ -27,7 +27,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -94,11 +94,11 @@ $(document).ready(function()
                   <tr {t_bphtb_registration_list:rowStyle}>
                     <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_bphtb_registration_listDLink_{t_bphtb_registration_list:rowNumber}">{DLink}</a></td> 
                     <td>&nbsp;<a href="t_bphtb_registration.php?ccsForm=:Edit&amp;t_bphtb_registration_id={t_bphtb_registration_id}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
-                    <td>&nbsp;{t_bphtb_registration_id}<input type="hidden" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" id="t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}"></td> 
+                    <td>&nbsp;{t_bphtb_registration_id}<input id="t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><input id="t_bphtb_registration_listcheck_potongan_{t_bphtb_registration_list:rowNumber}" name="{check_potongan_Name}" value="{check_potongan}" type="hidden"></td> 
                     <td>{wp_name}</td> 
                     <td><a href="../files/{origin_file_name_Src}" id="t_bphtb_registration_listorigin_file_name_{t_bphtb_registration_list:rowNumber}">{origin_file_name}</a>&nbsp;</td> 
                     <td>
-                      <!-- BEGIN Button Button1 --><input id="t_bphtb_registration_listButton1" class="btn_tambah" onclick="submitRegisBphtb({t_bphtb_registration_id},'t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}')" name="{Button_Name}" alt="Button1" value="SUBMIT" type="button"><!-- END Button Button1 --></td>
+                      <!-- BEGIN Button Button1 --><input id="t_bphtb_registration_listButton1" class="btn_tambah" onclick="submitRegisBphtb({t_bphtb_registration_id},'t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}', 't_bphtb_registration_listcheck_potongan_{t_bphtb_registration_list:rowNumber}')" name="{Button_Name}" alt="Button1" value="SUBMIT" type="button"><!-- END Button Button1 --></td>
                   </tr>
  <!-- END Row -->
                   <!-- BEGIN NoRecords -->
@@ -198,11 +198,13 @@ function toVat()
                                                                                                                                                    +"&rqst_type_code="+reqCode;
 }
 
-function submitRegisBphtb(idVal,t_customer_order_id){
-		var cust_id = document.getElementById(t_customer_order_id);
+function submitRegisBphtb(idVal,t_customer_order_id, is_potongan){
+                var cust_id = document.getElementById(t_customer_order_id);
+                                var potongan = document.getElementById(is_potongan);
                 if(confirm("Anda Yakin Untuk Submit Data BPHTB?")){
-                        location.href="t_bphtb_registration_list.php?submit_bphtb=1&t_bphtb_registration_id="+idVal+"&t_customer_order_id="+cust_id.value;
-                }
+                        location.href="t_bphtb_registration_list.php?submit_bphtb=1&t_bphtb_registration_id="+idVal+"&t_customer_order_id="+cust_id.value+"&is_potongan="+potongan.value;
+						return;
+				}
         
 }
 </script>
