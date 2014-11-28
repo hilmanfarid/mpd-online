@@ -64,6 +64,12 @@ order by regis.t_bphtb_registration_id DESC">
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Hidden id="705" fieldSourceType="DBColumn" dataType="Text" html="False" name="check_potongan" fieldSource="check_potongan" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_registration_listcheck_potongan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
