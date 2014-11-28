@@ -1,7 +1,7 @@
 <?php
 define("RelativePath", "..");
 define("PathToCurrentPage", "/report/");
-define("FileName", "cetak_rep_bpps.php");
+define("FileName", "cetak_rep_pengurangan_bphtb_surat_keputusan.php");
 include_once(RelativePath . "/Common.php");
 // include_once("../include/fpdf.php");
 require("../include/qrcode/fpdf17/fpdf.php");
@@ -13,16 +13,23 @@ $t_bphtb_registration_id		= CCGetFromGet("t_bphtb_registration_id", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select a.*,
-b.region_name as wp_region,
-c.region_name as wp_region_kec,
-d.region_name as wp_region_kel,
+$query				= "select j.t_bphtb_exemption_id, j.exemption_amount, j.dasar_pengurang, j.analisa_penguranan, j.jenis_pensiunan, j.jenis_perolehan_hak, j.sk_bpn_no, to_char(j.tanggal_sk,'DD-MM-YYYY') as tanggal_sk, 
+j.pilihan_lembar_cetak, j.opsi_a2, j.opsi_a2_keterangan, j.opsi_b7, j.opsi_b7_keterangan, j.keterangan_opsi_c, j.keterangan_opsi_c_gono_gini,
+to_char(j.tanggal_berita_acara,'DD-MM-YYYY') as tanggal_berita_acara, j.pemeriksa_id, j.administrator_id,
+k.pemeriksa_nama as nama_pemeriksa, k.pemeriksa_nip as nip_pemeriksa, k.pemeriksa_jabatan as jabatan_pemeriksa,
+l.pemeriksa_nama as nama_operator, l.pemeriksa_nip as nip_operator, l.pemeriksa_jabatan as jabatan_operator,
+a.*,
+cust_order.p_rqst_type_id,
+b.region_name as wp_kota,
+c.region_name as wp_kecamatan,
+d.region_name as wp_kelurahan,
 e.region_name as object_region,
-f.region_name as object_region_kec,
-g.region_name as object_region_kel,
+f.region_name as object_kecamatan,
+g.region_name as object_kelurahan,
 h.description as doc_name
 
-from t_bphtb_registration as a 
+from t_bphtb_exemption as j
+left join t_bphtb_registration as a  on j.t_bphtb_registration_id = a.t_bphtb_registration_id
 left join p_region as b
 	on a.wp_p_region_id = b.p_region_id
 left join p_region as c
@@ -37,7 +44,13 @@ left join p_region as g
 	on a.object_p_region_id_kel = g.p_region_id
 left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
-where a.t_bphtb_registration_id = $t_bphtb_registration_id";
+left join t_customer_order as cust_order
+	on cust_order.t_customer_order_id = a.t_customer_order_id
+left join t_bphtb_exemption_pemeriksa as k
+   on j.pemeriksa_id = k.t_bphtb_exemption_pemeriksa_id
+left join t_bphtb_exemption_pemeriksa as l
+	on j.administrator_id = l.t_bphtb_exemption_pemeriksa_id
+where j.t_bphtb_registration_id = $t_bphtb_registration_id";
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
@@ -46,16 +59,16 @@ while ($dbConn->next_record()) {
 	$data["wp_address_name"]		= $dbConn->f("wp_address_name");
 	$data["wp_rt"]					= $dbConn->f("wp_rt");
 	$data["wp_rw"]					= $dbConn->f("wp_rw");
-	$data["wp_region"]				= $dbConn->f("wp_region");
-	$data["wp_region_kec"]			= $dbConn->f("wp_region_kec");
-	$data["wp_region_kel"]			= $dbConn->f("wp_region_kel");
+	$data["wp_region"]				= $dbConn->f("wp_kota");
+	$data["wp_region_kec"]			= $dbConn->f("wp_kecamatan");
+	$data["wp_region_kel"]			= $dbConn->f("wp_kelurahan");
 	$data["njop_pbb"]				= $dbConn->f("njop_pbb");
 	$data["object_address_name"]	= $dbConn->f("object_address_name");
 	$data["object_rt"]				= $dbConn->f("object_rt");
 	$data["object_rw"]				= $dbConn->f("object_rw");
 	$data["object_region"]			= $dbConn->f("object_region");
-	$data["object_region_kec"]		= $dbConn->f("object_region_kec");
-	$data["object_region_kel"]		= $dbConn->f("object_region_kel");
+	$data["object_region_kec"]		= $dbConn->f("object_kecamatan");
+	$data["object_region_kel"]		= $dbConn->f("object_kelurahan");
 	$data["doc_name"]				= $dbConn->f("doc_name");
 	$data["land_area"]				= $dbConn->f("land_area");
 	$data["land_price_per_m"]		= $dbConn->f("land_price_per_m");
@@ -71,10 +84,29 @@ while ($dbConn->next_record()) {
 	$data["bphtb_discount"]			= $dbConn->f("bphtb_discount");
 	$data["bphtb_amt_final"]		= $dbConn->f("bphtb_amt_final");
 	$data["registration_no"]		= $dbConn->f("registration_no");
-	$data["verificated_by"]			= $dbConn->f("verificated_by");
-	$data["verificated_nip"]		= $dbConn->f("verificated_nip");
 	$data["jenis_harga_bphtb"]		= $dbConn->f("jenis_harga_bphtb");
 	$data["description"]			= $dbConn->f("description");
+	$data["exemption_amount"]		= $dbConn->f("exemption_amount");
+	$data["dasar_pengurang"]		= $dbConn->f("dasar_pengurang");
+	$data["analisa_penguranan"]		= $dbConn->f("analisa_penguranan");
+	$data["nama_pemeriksa"]		    = $dbConn->f("nama_pemeriksa");
+	$data["jabatan_pemeriksa"]		= $dbConn->f("jabatan_pemeriksa");
+	$data["nip_pemeriksa"]		    = $dbConn->f("nip_pemeriksa");
+	$data["nama_operator"]		    = $dbConn->f("nama_operator");
+	$data["jabatan_operator"]		= $dbConn->f("jabatan_operator");
+	$data["nip_operator"]		    = $dbConn->f("nip_operator");
+	$data["jenis_pensiunan"]		= $dbConn->f("jenis_pensiunan");
+	$data["sk_bpn_no"]		        = $dbConn->f("sk_bpn_no");
+	$data["tanggal_sk"]		        = $dbConn->f("tanggal_sk");
+	$data["persen_pengurangan"]     = ceil($dbConn->f("bphtb_discount")/$dbConn->f("bphtb_amt") * 100);
+	$data["jenis_perolehan_hak"]	= $dbConn->f("jenis_perolehan_hak");
+	$data["pilihan_lembar_cetak"]	= $dbConn->f("pilihan_lembar_cetak");
+	$data["opsi_a2"]	            = $dbConn->f("opsi_a2");
+	$data["opsi_a2_keterangan"]	    = $dbConn->f("opsi_a2_keterangan");
+	$data["opsi_b7"]	            = $dbConn->f("opsi_b7");
+	$data["opsi_b7_keterangan"]	    = $dbConn->f("opsi_b7_keterangan");
+	$data["keterangan_opsi_c"]	    = $dbConn->f("keterangan_opsi_c");
+	$data["keterangan_opsi_c_gono_gini"]	    = $dbConn->f("keterangan_opsi_c_gono_gini");
 }
 
 $dbConn->close();
@@ -118,11 +150,11 @@ class FormCetak extends FPDF {
 		$this->AddPage("P");
 		$encImageData = '';
 		$dbConn = new clsDBConnSIKP();
-		$query = "select f_encrypt_str('".$data['registration_no']."') AS enc_data";
-
+		$query = "SELECT * FROM f_terbilang('".ceil($data['bphtb_amt_final'])."','') as terbilang";
 		$dbConn->query($query);
-		while ($dbConn->next_record()) {
-			$encImageData = $dbConn->f("enc_data");
+		$data['terbilang'] = '';
+		if($dbConn->next_record()) {
+		    $data['terbilang'] = ucwords($dbConn->f("terbilang"))." Rupiah";
 		}
 		
 		$lbody = $this->lengthCell / 20;
@@ -141,7 +173,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "DINAS PELAYANAN PAJAK", "", 0, "C");
 		$this->Ln();
 		$this->SetFont("Arial", "B", 8);
-		$this->Cell($this->lengthCell, $this->height, "Jl. Wastukencana No. 2 Telp : (022) 4235052", "B", 0, "C");
+		$this->Cell($this->lengthCell, $this->height, "Jl. Wastukencana No. 2 Telp : (022) 4235052 Bandung", "B", 0, "C");
 		$this->Ln(); 
 		$this->Ln(); 
 		//$this->newLine();
@@ -154,8 +186,8 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("C"));
 		$this->RowMultiBorderWithHeight(
 			array
-			(	"PEMERINTAH KOTA BANDUNG \nKEPUTUSAN KEPALA DINAS PELAYANAN PAJAK \nNOMOR "."0070707".
-				"PEMBERIAN PENGURANGAN \nBEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN \nYANG TERUTANG \nKEPALA DINAS PELAYANAN PAJAK KOTA BANDUNG"
+			(	"PEMERINTAH KOTA BANDUNG \nKEPUTUSAN KEPALA DINAS PELAYANAN PAJAK \nNOMOR :"."".
+				"\nPEMBERIAN PENGURANGAN \nBEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN \nYANG TERUTANG \nKEPALA DINAS PELAYANAN PAJAK KOTA BANDUNG"
 			),
 			array
 			(
@@ -197,8 +229,8 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				"- Pensiunan PNS",
-				": Departemen Dalam Negeri"
+				"- ".$data['opsi_a2'],
+				": ".$data['opsi_a2_keterangan']
 			),
 			array
 			(
@@ -226,7 +258,7 @@ class FormCetak extends FPDF {
 			array
 			(	"",
 				"  Nomor",
-				": "
+				": ".$data['opsi_b7_keterangan']
 			),
 			array
 			(
@@ -239,7 +271,7 @@ class FormCetak extends FPDF {
 			array
 			(	"",
 				"  Tanggal",
-				": "
+				": ".$this->beautyDate($data['tanggal_sk'])
 			),
 			array
 			(
@@ -280,7 +312,7 @@ class FormCetak extends FPDF {
 			array
 			(	"",
 				" 2.",
-				"Peraturan Walikota Nomor 393 Tahun 2012 tentang Tata Cara Pemungutan dan Standar Operasional Prosedur Bea Perolehan Hak atas Tanah dan Bangunan"
+				"Peraturan Walikota Nomor 308 Tahun 2013 tentang Tata Cara Pemungutan dan Standar Operasional Prosedur Bea Perolehan Hak atas Tanah dan Bangunan"
 			),
 			array
 			(
@@ -334,22 +366,22 @@ class FormCetak extends FPDF {
 
 		$this->SetFont("Arial", "B", 12);
 		$this->barisBaru("", "Nama Wajib Pajak", ": " . $data["wp_name"]);
-		$this->barisBaru("", "Ahli Waris", ": Departemen Dalam Negeri");
+		$this->barisBaru("", "2 ".$data['opsi_a2'], ": ".$data['opsi_a2_keterangan']);
 		$this->barisBaru("", "Alamat Wajib Pajak", ": " . $data["wp_address_name"]);
 		$this->barisBaru("", "RT/RW", ": RT. " . $data["wp_rt"] . "/RW. " .  $data["wp_rw"]);
 		$this->barisBaru("", "Kelurahan/Desa", ": " . $data["wp_region_kel"]);
 		$this->barisBaru("", "Kecamatan", ": " . $data["wp_region_kec"]);
 		$this->barisBaru("", "Kabupaten/Kota", ": " . $data["wp_region"]);
-		$this->barisBaru("", "Tahun BPHTB", ": 2014");
-		$this->barisBaru_special("", "Atas perolehan hak atas tanah dan/atau bangunannya dengan", ": Rumah Dinas");
+		$this->barisBaru("", "Tahun BPHTB", ": ".date("Y"));
+		$this->barisBaru_special("", "Atas perolehan hak atas tanah dan/atau bangunannya dengan", ": ".$data['jenis_perolehan_hak']);
 		$this->barisBaru("", "Akta/Risalah Lelang/Keputusan Pemberian Hak/Putusan Hakim/Dokumen lainnya)**", "");
-		$this->barisBaru("", "SK Kepala Kantor Pertanahan Kota Bandung", "");
-		$this->barisBaru("", "Nomor", ": 291/HM/BPN/32 73/2014");
-		$this->barisBaru("", "Tanggal", ": 08 Oktober 2014");
+		$this->barisBaru("", $data['keterangan_opsi_c']."", "");
+		$this->barisBaru("", "Nomor", ": ".$data['opsi_b7_keterangan']);
+		$this->barisBaru("", "Tanggal", ": ".$this->beautyDate($data['tanggal_sk']));
 		$this->barisBaru("", "NOP PBB", ": " . $data["njop_pbb"]);
-		$this->barisBaru("", "NJOP", ": Rp. "."5.000,00");
+		$this->barisBaru("", "NJOP", ": Rp. ".number_format($data['npop'], 0, ",", "."));
 		$this->barisBaru("", "Alamat", ": " . $data["object_address_name"]);
-		$this->barisBaru("", "RT/RW", ": RT. " . $data["object_rt"] . "/RW. " . $data["object_rw"]);
+		$this->barisBaru("", "RT/RW", ": RT. " . trim($data["object_rt"]). "/RW. " . $data["object_rw"]);
 		$this->barisBaru("", "Kelurahan/Desa", ": " . $data["object_region_kel"]);
 		$this->barisBaru("", "Kecamatan", ": " . $data["object_region_kec"]);
 		$this->barisBaru("", "Kabupaten/Kota", ": " . $data["object_region"]);
@@ -360,7 +392,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"KEDUA",":",
-				"Sesuai dengan keputusan sebagaimana dimaksud pada dictum PERTAMA maka besarnya BPHTB yang seharusnya dibayar adalahsebagai berikut :"
+				"Sesuai dengan keputusan sebagaimana dimaksud pada dictum PERTAMA maka besarnya BPHTB yang seharusnya dibayar adalah sebagai berikut :"
 			),
 			array
 			(
@@ -368,35 +400,36 @@ class FormCetak extends FPDF {
 			),
 			$this->height-1);
 		
-		$this->barisBaru2($lbody1+$lbody1+3, "Nilai Perolehan Objek Pajak (NPOP)", "", "Rp", $data["npop"]);
-		$this->barisBaru2($lbody1+$lbody1+3, "Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP)", "", "Rp", $data["npop_tkp"]);
+		$this->barisBaru2($lbody1+$lbody1+3, "- Nilai Perolehan Objek Pajak (NPOP)", "", "Rp", $data["npop"]);
+		$this->barisBaru2($lbody1+$lbody1+3, "- Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP)", "", "Rp", $data["npop_tkp"]);
 		if($data["npop_kp"]==0){
-			$this->barisBaruStr($lbody1+$lbody1+3, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp","NIHIL");
+			$this->barisBaruStr($lbody1+$lbody1+3, "- Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp","NIHIL");
 		}else{
-			$this->barisBaru2($lbody1+$lbody1+3, "Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp", $data["npop_kp"]);
+			$this->barisBaru2($lbody1+$lbody1+3, "- Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP)", "", "Rp", $data["npop_kp"]);
 		}
 		
 		if($data["npop_kp"]==0){
-			$this->barisBaruStr($lbody1+$lbody1+3, "Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", "NIHIL");
+			$this->barisBaruStr($lbody1+$lbody1+3, "- Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", "NIHIL");
 		}else{
-			$this->barisBaru2($lbody1+$lbody1+3, "Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", $data["bphtb_amt"]);
+			$this->barisBaru2($lbody1+$lbody1+3, "- Bea Perolehan Hak atas Tanah dan Bangunan yang terutang", "5%", "Rp", $data["bphtb_amt"]);
 		}
 
 		$this->Cell($lbody1+$lbody1+3, $this->height, "", "", 0, "");
-		$this->Cell($this->length - $lbody1+$lbody1+3, $this->height, "Pengenaan Pengurangan Karena "."Rumah Dinas", "", 0, "");
+		$this->Cell($this->length - $lbody1+$lbody1+3, $this->height, "- Pengenaan Pengurangan Karena ".$data['jenis_perolehan_hak'], "", 0, "");
 		$this->Ln();
-		$this->barisBaru2($lbody1+$lbody1+3, "Besaran Pengenaan Pengurangan ", "50%", "Rp", $data["bphtb_discount"]);
+		$this->barisBaru2($lbody1+$lbody1+3, "- Besaran Pengenaan Pengurangan ", $data['persen_pengurangan']."%", "Rp", $data["bphtb_discount"]);
 
 		if($data["npop_kp"]==0){
-			$this->barisBaruStr($lbody1+$lbody1+3, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", "NIHIL");
+			$this->barisBaruStr($lbody1+$lbody1+3, "- Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", "NIHIL");
 		}else{
-			$this->barisBaru3($lbody1+$lbody1+3, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
+			$this->barisBaru3($lbody1+$lbody1+3, "- Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
 		}
 
 		$this->Cell($lbody1+$lbody1+3, $this->height, "", "", 0, "");
-		$this->Cell($lbody1+ $lbody1, $this->height, "Terbilang :", "", 0, "");
+		$this->Cell($lbody1+ $lbody1, $this->height, "- Terbilang :", "", 0, "");
 		$this->SetFont("Arial", "iB", 8);
-		$this->Cell($this->length - $lbody1- $lbody1- $lbody1-$lbody1-3, $this->height, "Sekian Juta Sekian ratus ribu sekian puluh ribu sekian ribu sekian ratus rupiah", "", 0, "");
+		$this->Cell($this->length - $lbody1- $lbody1- $lbody1-$lbody1-3, $this->height, $data['terbilang'], "", 0, "");
+		$this->Ln();
 		$this->Ln();
 		
 		$this->SetFont("Arial", "", 8);
@@ -405,7 +438,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"KETIGA",":",
-				"Apabila dikemudian hari ternyata terdapat kekeliruan dalam Berita Acara Pengkajian akan dibetulkan sebagaimana mestinya"
+				"Apabila dikemudian hari ternyata terdapat kekeliruan dalam surat keputusan ini maka akan dibetulkan sebagaimana mestinya"
 			),
 			array
 			(
@@ -495,6 +528,17 @@ class FormCetak extends FPDF {
 			),
 			$this->height-1);
 		$this->Ln();		
+	}
+	
+	function beautyDate($tgl) {
+	    
+	    $arrtgl = explode("-", $tgl);
+	    $dd = $arrtgl[0];
+	    $mm = $arrtgl[1];
+	    $yyyy = $arrtgl[2];
+	    
+	    $arrmonth = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+	    return $dd." ".$arrmonth[$mm-1]." ".$yyyy;
 	}
 	
 	function barisBaru3($subtractor, $field, $middle, $currency, $data){
