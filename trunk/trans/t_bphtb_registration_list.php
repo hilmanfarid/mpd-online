@@ -42,7 +42,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-479D61CC
+//Class_Initialize Event @2-8877AB21
     function clsGridt_bphtb_registration_list($RelativePath, & $Parent)
     {
         global $FileName;
@@ -78,6 +78,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         $this->t_bphtb_registration_id = & new clsControl(ccsLabel, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsText, "", CCGetRequestParam("t_bphtb_registration_id", ccsGet, NULL), $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", ccsGet, NULL), $this);
+        $this->check_potongan = & new clsControl(ccsHidden, "check_potongan", "check_potongan", ccsText, "", CCGetRequestParam("check_potongan", ccsGet, NULL), $this);
         $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
         $this->Insert_Link->Page = "t_bphtb_registration.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
@@ -96,7 +97,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Initialize Method
 
-//Show Method @2-649E9BBD
+//Show Method @2-7EEE1703
     function Show()
     {
         global $Tpl;
@@ -131,6 +132,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
             $this->ControlsVisible["t_bphtb_registration_id"] = $this->t_bphtb_registration_id->Visible;
             $this->ControlsVisible["Button1"] = $this->Button1->Visible;
             $this->ControlsVisible["t_customer_order_id"] = $this->t_customer_order_id->Visible;
+            $this->ControlsVisible["check_potongan"] = $this->check_potongan->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -145,6 +147,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
                 $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_cust_order_legal_doc_id", $this->DataSource->f("t_cust_order_legal_doc_id"));
                 $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
                 $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
+                $this->check_potongan->SetValue($this->DataSource->check_potongan->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -154,6 +157,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
                 $this->t_bphtb_registration_id->Show();
                 $this->Button1->Show();
                 $this->t_customer_order_id->Show();
+                $this->check_potongan->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -189,7 +193,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Show Method
 
-//GetErrors Method @2-3E814539
+//GetErrors Method @2-CD0836D0
     function GetErrors()
     {
         $errors = "";
@@ -198,6 +202,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_bphtb_registration_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_customer_order_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->check_potongan->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -208,7 +213,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
 
 class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_registration_listDataSource Class @2-07378C2F
 
-//DataSource Variables @2-9FAD01CC
+//DataSource Variables @2-2E659D6B
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -224,9 +229,10 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     var $origin_file_name;
     var $t_bphtb_registration_id;
     var $t_customer_order_id;
+    var $check_potongan;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-FD46AE25
+//DataSourceClass_Initialize Event @2-AE7B7846
     function clst_bphtb_registration_listDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -239,6 +245,8 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
         $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsText, "");
         
         $this->t_customer_order_id = new clsField("t_customer_order_id", ccsText, "");
+        
+        $this->check_potongan = new clsField("check_potongan", ccsText, "");
         
 
     }
@@ -291,13 +299,14 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Open Method
 
-//SetValues Method @2-D7947AAE
+//SetValues Method @2-69B0AB07
     function SetValues()
     {
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->origin_file_name->SetDBValue($this->f("order_no"));
         $this->t_bphtb_registration_id->SetDBValue($this->f("t_bphtb_registration_id"));
         $this->t_customer_order_id->SetDBValue($this->f("t_customer_order_id"));
+        $this->check_potongan->SetDBValue($this->f("check_potongan"));
     }
 //End SetValues Method
 
