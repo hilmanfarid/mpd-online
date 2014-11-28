@@ -88,27 +88,73 @@ function Page_BeforeShow(& $sender)
 // -------------------------
     // Write your own code here.
 	if(CCGetFromGet("submit_bphtb")==1){
-		$dbConn = new clsDBConnSIKP();
-		$sql="select count(*) as jml from t_product_order_control where doc_id = ".CCGetFromGet('t_customer_order_id')."and and p_w_doc_type_id = 505";
-		$dbConn->query($sql);
-		$jumlah_data;
-		if ($dbConn->next_record()){
-            $jumlah_data = $dbConn->f('jml');
-        }
-		if($jumlah_data==0){
-			$sql="select sikp.f_first_submit_engine(505,".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
-			$dbConn->query($sql);
-		}else{
-			echo "
+		
+		if(CCGetFromGet("is_potongan") == 'Y') {
+			$dbcon2 = new clsDBConnSIKP();
+			$sql = "select b.p_order_status_id
+					from t_bphtb_exemption AS a
+					left join t_customer_order AS b ON a.t_customer_order_id = b.t_customer_order_id
+					where a.t_bphtb_registration_id = ".CCGetFromGet('t_bphtb_registration_id');
+		
+			$dbcon2->query($sql);
+			$order_status = null;
+			if ($dbcon2->next_record()){
+	            $order_status = $dbcon2->f('p_order_status_id');
+	        }
+			
+			if($order_status != 3) {
+				echo "
 				<script>
-					alert('Data BPHTB Sudah Tersubmit');
+					alert('Proses Permohonan Pengurangan BPHTB Belum Selesai. Data tidak dapat disubmit');
 				</script>
-			";
+				";
+			}else {
+
+				$dbConn = new clsDBConnSIKP();
+				$sql="select count(*) as jml from t_product_order_control where doc_id = ".CCGetFromGet('t_customer_order_id')."and p_w_doc_type_id = 505";
+				$dbConn->query($sql);
+				$jumlah_data;
+				if ($dbConn->next_record()){
+		            $jumlah_data = $dbConn->f('jml');
+		        }
+				if($jumlah_data==0){
+					$sql="select sikp.f_first_submit_engine(505,".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+					$dbConn->query($sql);
+				}else{
+					echo "
+						<script>
+							alert('Data BPHTB Sudah Tersubmit');
+						</script>
+					";
+					//exit;
+				}
+				$dbConn->close();
+			}
+		}else {
+
+			$dbConn = new clsDBConnSIKP();
+			$sql="select count(*) as jml from t_product_order_control where doc_id = ".CCGetFromGet('t_customer_order_id')."and p_w_doc_type_id = 505";
+			$dbConn->query($sql);
+			$jumlah_data;
+			if ($dbConn->next_record()){
+	            $jumlah_data = $dbConn->f('jml');
+	        }
+			if($jumlah_data==0){
+				$sql="select sikp.f_first_submit_engine(505,".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+				$dbConn->query($sql);
+			}else{
+				echo "
+					<script>
+						alert('Data BPHTB Sudah Tersubmit');
+					</script>
+				";
+				//exit;
+			}
+			$dbConn->close();
+			//header('Location:t_bphtb_registration_list.php');
 			//exit;
+
 		}
-		$dbConn->close();
-		header('Location:t_bphtb_registration_list.php');
-		exit;
 	}
 // -------------------------
 //End Custom Code
