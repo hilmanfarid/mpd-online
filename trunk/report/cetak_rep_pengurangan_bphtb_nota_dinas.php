@@ -13,16 +13,23 @@ $t_bphtb_registration_id		= CCGetFromGet("t_bphtb_registration_id", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select a.*,
-b.region_name as wp_region,
-c.region_name as wp_region_kec,
-d.region_name as wp_region_kel,
+$query				= "select j.t_bphtb_exemption_id, j.exemption_amount, j.dasar_pengurang, j.analisa_penguranan, j.jenis_pensiunan, j.jenis_perolehan_hak, j.sk_bpn_no, to_char(j.tanggal_sk,'DD-MM-YYYY') as tanggal_sk, 
+j.pilihan_lembar_cetak, j.opsi_a2, j.opsi_a2_keterangan, j.opsi_b7, j.opsi_b7_keterangan, j.keterangan_opsi_c, j.keterangan_opsi_c_gono_gini,
+to_char(j.tanggal_berita_acara,'DD-MM-YYYY') as tanggal_berita_acara, j.pemeriksa_id, j.administrator_id,
+k.pemeriksa_nama as nama_pemeriksa, k.pemeriksa_nip as nip_pemeriksa, k.pemeriksa_jabatan as jabatan_pemeriksa,
+l.pemeriksa_nama as nama_operator, l.pemeriksa_nip as nip_operator, l.pemeriksa_jabatan as jabatan_operator,
+a.*,
+cust_order.p_rqst_type_id,
+b.region_name as wp_kota,
+c.region_name as wp_kecamatan,
+d.region_name as wp_kelurahan,
 e.region_name as object_region,
-f.region_name as object_region_kec,
-g.region_name as object_region_kel,
+f.region_name as object_kecamatan,
+g.region_name as object_kelurahan,
 h.description as doc_name
 
-from t_bphtb_registration as a 
+from t_bphtb_exemption as j
+left join t_bphtb_registration as a  on j.t_bphtb_registration_id = a.t_bphtb_registration_id
 left join p_region as b
 	on a.wp_p_region_id = b.p_region_id
 left join p_region as c
@@ -37,7 +44,13 @@ left join p_region as g
 	on a.object_p_region_id_kel = g.p_region_id
 left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
-where a.t_bphtb_registration_id = $t_bphtb_registration_id";
+left join t_customer_order as cust_order
+	on cust_order.t_customer_order_id = a.t_customer_order_id
+left join t_bphtb_exemption_pemeriksa as k
+   on j.pemeriksa_id = k.t_bphtb_exemption_pemeriksa_id
+left join t_bphtb_exemption_pemeriksa as l
+	on j.administrator_id = l.t_bphtb_exemption_pemeriksa_id
+where j.t_bphtb_registration_id = $t_bphtb_registration_id";
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
@@ -46,16 +59,16 @@ while ($dbConn->next_record()) {
 	$data["wp_address_name"]		= $dbConn->f("wp_address_name");
 	$data["wp_rt"]					= $dbConn->f("wp_rt");
 	$data["wp_rw"]					= $dbConn->f("wp_rw");
-	$data["wp_region"]				= $dbConn->f("wp_region");
-	$data["wp_region_kec"]			= $dbConn->f("wp_region_kec");
-	$data["wp_region_kel"]			= $dbConn->f("wp_region_kel");
+	$data["wp_region"]				= $dbConn->f("wp_kota");
+	$data["wp_region_kec"]			= $dbConn->f("wp_kecamatan");
+	$data["wp_region_kel"]			= $dbConn->f("wp_kelurahan");
 	$data["njop_pbb"]				= $dbConn->f("njop_pbb");
 	$data["object_address_name"]	= $dbConn->f("object_address_name");
 	$data["object_rt"]				= $dbConn->f("object_rt");
 	$data["object_rw"]				= $dbConn->f("object_rw");
 	$data["object_region"]			= $dbConn->f("object_region");
-	$data["object_region_kec"]		= $dbConn->f("object_region_kec");
-	$data["object_region_kel"]		= $dbConn->f("object_region_kel");
+	$data["object_region_kec"]		= $dbConn->f("object_kecamatan");
+	$data["object_region_kel"]		= $dbConn->f("object_kelurahan");
 	$data["doc_name"]				= $dbConn->f("doc_name");
 	$data["land_area"]				= $dbConn->f("land_area");
 	$data["land_price_per_m"]		= $dbConn->f("land_price_per_m");
@@ -71,10 +84,29 @@ while ($dbConn->next_record()) {
 	$data["bphtb_discount"]			= $dbConn->f("bphtb_discount");
 	$data["bphtb_amt_final"]		= $dbConn->f("bphtb_amt_final");
 	$data["registration_no"]		= $dbConn->f("registration_no");
-	$data["verificated_by"]			= $dbConn->f("verificated_by");
-	$data["verificated_nip"]		= $dbConn->f("verificated_nip");
 	$data["jenis_harga_bphtb"]		= $dbConn->f("jenis_harga_bphtb");
 	$data["description"]			= $dbConn->f("description");
+	$data["exemption_amount"]		= $dbConn->f("exemption_amount");
+	$data["dasar_pengurang"]		= $dbConn->f("dasar_pengurang");
+	$data["analisa_penguranan"]		= $dbConn->f("analisa_penguranan");
+	$data["nama_pemeriksa"]		    = $dbConn->f("nama_pemeriksa");
+	$data["jabatan_pemeriksa"]		= $dbConn->f("jabatan_pemeriksa");
+	$data["nip_pemeriksa"]		    = $dbConn->f("nip_pemeriksa");
+	$data["nama_operator"]		    = $dbConn->f("nama_operator");
+	$data["jabatan_operator"]		= $dbConn->f("jabatan_operator");
+	$data["nip_operator"]		    = $dbConn->f("nip_operator");
+	$data["jenis_pensiunan"]		= $dbConn->f("jenis_pensiunan");
+	$data["sk_bpn_no"]		        = $dbConn->f("sk_bpn_no");
+	$data["tanggal_sk"]		        = $dbConn->f("tanggal_sk");
+	$data["persen_pengurangan"]     = ceil($dbConn->f("bphtb_discount")/$dbConn->f("bphtb_amt") * 100);
+	$data["jenis_perolehan_hak"]	= $dbConn->f("jenis_perolehan_hak");
+	$data["pilihan_lembar_cetak"]	= $dbConn->f("pilihan_lembar_cetak");
+	$data["opsi_a2"]	            = $dbConn->f("opsi_a2");
+	$data["opsi_a2_keterangan"]	    = $dbConn->f("opsi_a2_keterangan");
+	$data["opsi_b7"]	            = $dbConn->f("opsi_b7");
+	$data["opsi_b7_keterangan"]	    = $dbConn->f("opsi_b7_keterangan");
+	$data["keterangan_opsi_c"]	    = $dbConn->f("keterangan_opsi_c");
+	$data["keterangan_opsi_c_gono_gini"]	    = $dbConn->f("keterangan_opsi_c_gono_gini");
 }
 
 $dbConn->close();
@@ -117,13 +149,7 @@ class FormCetak extends FPDF {
 		$this->AliasNbPages();
 		$this->AddPage("P");
 		$encImageData = '';
-		$dbConn = new clsDBConnSIKP();
-		$query = "select f_encrypt_str('".$data['registration_no']."') AS enc_data";
-
-		$dbConn->query($query);
-		while ($dbConn->next_record()) {
-			$encImageData = $dbConn->f("enc_data");
-		}
+		
 		$this->Image('../images/logo_pemda.png',10,10,20,20);
 		//$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
 		$this->SetFont("Arial", "B", 10);
@@ -135,7 +161,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "DINAS PELAYANAN PAJAK", "", 0, "C");
 		$this->Ln();
 		$this->SetFont("Arial", "B", 8);
-		$this->Cell($this->lengthCell, $this->height, "Jl. Wastukencana No. 2 Telp : (022) 4235052", "B", 0, "C");
+		$this->Cell($this->lengthCell, $this->height, "Jl. Wastukencana No. 2 Telp : (022) 4235052 Bandung", "B", 0, "C");
 		$this->Ln();
 		//$this->newLine();
 		//$this->Cell($this->lengthCell, $this->height, "JENIS TRANSAKSI: ".strtoupper($data['doc_name']), "", 0, "C");
@@ -187,7 +213,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1+$lbody1, $this->height, "Perihal ", "B", 0, "");
 		$this->Cell(2, $this->height, ":", "B", 0, "");
 		$this->SetFont("Arial", "I", 8);
-		$this->Cell($this->lengthCell-$lbody1-$lbody1-2, $this->height, "Pengurangan BPHTB Waris a.n. ".$data["wp_name"], "B", 0, "");
+		$this->Cell($this->lengthCell-$lbody1-$lbody1-2, $this->height, "Pengurangan BPHTB ".$data['jenis_perolehan_hak']." a.n. ".$data["wp_name"], "B", 0, "");
 		$this->Ln();$this->Ln();
 		
 		$this->SetFont("Arial", "", 8);
@@ -220,7 +246,7 @@ class FormCetak extends FPDF {
 			
 		$this->SetFont("Arial", "B", 12);
 		$this->barisBaru("", "1 Nama Wajib Pajak", ": " . $data["wp_name"]);
-		$this->barisBaru("", "2 Fasilitas Untuk", ": Fasos");
+		$this->barisBaru("", "2 ".$data['opsi_a2'], ": ".$data['opsi_a2_keterangan']);
 		$this->barisBaru("", "3 Alamat Wajib Pajak", ": " . $data["wp_address_name"]);
 		$this->barisBaru("", "4 RT/RW", ": RT. " . $data["wp_rt"] . "/RW. " .  $data["wp_rw"]);
 		$this->barisBaru("", "5 Kelurahan/Desa", ": " . $data["wp_region_kel"]);
@@ -256,7 +282,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				"Secara normatif, bedasarkan Pasal 17 Ayat 3 huruf a angka 4 Peraturan Walikota Nomor 393 Tahun 2012 bahwa Pemberian pengurangan dan keringanan dapat diberikan berdasarkan pertimbangan atau keadaan tertentu yaitu Tanah dan/atau Bangunan yang digunakan untuk tujuan tertentu yaitu untuk kepentingan sosial atau pendidikan yang semata-mata tidak bertujuan mencari keuntungan antara lain untuk Pemberdayaan Masyarakat Miskin dan Penyantunan Anak Terlantar, panti jompo, rumah yatim piatu, sekolah yang tidak ditujukan mencari keuntungan, rumah sakit swasta milik institusi pelayanan sosial masyarakat."
+				$data['dasar_pengurang']
 			),
 			array
 			(
