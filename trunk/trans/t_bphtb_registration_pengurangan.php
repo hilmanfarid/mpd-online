@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-92FF7F9B
+//Class_Initialize Event @2-B777789E
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -223,6 +223,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
             $this->pemeriksa_id->DataSource->Order = "";
             $this->tanggal_berita_acara = & new clsControl(ccsTextBox, "tanggal_berita_acara", "tanggal_berita_acara", ccsText, "", CCGetRequestParam("tanggal_berita_acara", $Method, NULL), $this);
             $this->DatePicker_tanggal_berita_acara1 = & new clsDatePicker("DatePicker_tanggal_berita_acara1", "t_bphtb_registrationForm", "tanggal_berita_acara", $this);
+            $this->nomor_notaris = & new clsControl(ccsTextBox, "nomor_notaris", "nomor_notaris", ccsText, "", CCGetRequestParam("nomor_notaris", $Method, NULL), $this);
+            $this->nomor_berita_acara = & new clsControl(ccsTextBox, "nomor_berita_acara", "nomor_berita_acara", ccsText, "", CCGetRequestParam("nomor_berita_acara", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -262,7 +264,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     }
 //End Initialize Method
 
-//Validate Method @2-4FB0BF00
+//Validate Method @2-86BFD5B2
     function Validate()
     {
         global $CCSLocales;
@@ -357,6 +359,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $Validation = ($this->administrator_id->Validate() && $Validation);
         $Validation = ($this->pemeriksa_id->Validate() && $Validation);
         $Validation = ($this->tanggal_berita_acara->Validate() && $Validation);
+        $Validation = ($this->nomor_notaris->Validate() && $Validation);
+        $Validation = ($this->nomor_berita_acara->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -447,11 +451,13 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $Validation =  $Validation && ($this->administrator_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->pemeriksa_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->tanggal_berita_acara->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nomor_notaris->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nomor_berita_acara->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-C13A7F62
+//CheckErrors Method @2-5B659E81
     function CheckErrors()
     {
         $errors = false;
@@ -546,6 +552,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
         $errors = ($errors || $this->pemeriksa_id->Errors->Count());
         $errors = ($errors || $this->tanggal_berita_acara->Errors->Count());
         $errors = ($errors || $this->DatePicker_tanggal_berita_acara1->Errors->Count());
+        $errors = ($errors || $this->nomor_notaris->Errors->Count());
+        $errors = ($errors || $this->nomor_berita_acara->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -717,7 +725,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @2-53F6FE97
+//Show Method @2-EB202CC4
     function Show()
     {
         global $CCSUseAmp;
@@ -815,6 +823,8 @@ function GetPrimaryKey($keyName)
                     $this->administrator_id->SetValue($this->DataSource->administrator_id->GetValue());
                     $this->pemeriksa_id->SetValue($this->DataSource->pemeriksa_id->GetValue());
                     $this->tanggal_berita_acara->SetValue($this->DataSource->tanggal_berita_acara->GetValue());
+                    $this->nomor_notaris->SetValue($this->DataSource->nomor_notaris->GetValue());
+                    $this->nomor_berita_acara->SetValue($this->DataSource->nomor_berita_acara->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -917,6 +927,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->pemeriksa_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->tanggal_berita_acara->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_tanggal_berita_acara1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nomor_notaris->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nomor_berita_acara->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1039,6 +1051,8 @@ function GetPrimaryKey($keyName)
         $this->pemeriksa_id->Show();
         $this->tanggal_berita_acara->Show();
         $this->DatePicker_tanggal_berita_acara1->Show();
+        $this->nomor_notaris->Show();
+        $this->nomor_berita_acara->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1049,7 +1063,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @2-BDFCC0BF
 
-//DataSource Variables @2-928C92DC
+//DataSource Variables @2-993C2252
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1153,9 +1167,11 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $administrator_id;
     var $pemeriksa_id;
     var $tanggal_berita_acara;
+    var $nomor_notaris;
+    var $nomor_berita_acara;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-6B0ECDF5
+//DataSourceClass_Initialize Event @2-307F75BF
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1339,6 +1355,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->tanggal_berita_acara = new clsField("tanggal_berita_acara", ccsText, "");
         
+        $this->nomor_notaris = new clsField("nomor_notaris", ccsText, "");
+        
+        $this->nomor_berita_acara = new clsField("nomor_berita_acara", ccsText, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1389,13 +1409,14 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Prepare Method
 
-//Open Method @2-BEC372AE
+//Open Method @2-CBCAF31F
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "select j.t_bphtb_exemption_id, j.exemption_amount, j.dasar_pengurang, j.analisa_penguranan, j.jenis_pensiunan, j.jenis_perolehan_hak, j.sk_bpn_no, to_char(j.tanggal_sk,'DD-MM-YYYY') as tanggal_sk, \n" .
         "j.pilihan_lembar_cetak, j.opsi_a2, j.opsi_a2_keterangan, j.opsi_b7, j.opsi_b7_keterangan, j.keterangan_opsi_c, j.keterangan_opsi_c_gono_gini,\n" .
         "to_char(j.tanggal_berita_acara,'DD-MM-YYYY') as tanggal_berita_acara, j.pemeriksa_id, j.administrator_id,\n" .
+        "j.nomor_berita_acara, j.nomor_notaris,\n" .
         "k.pemeriksa_nama as nama_pemeriksa, k.pemeriksa_nip as nip_pemeriksa, k.pemeriksa_jabatan as jabatan_pemeriksa,\n" .
         "l.pemeriksa_nama as nama_operator, l.pemeriksa_nip as nip_operator, l.pemeriksa_jabatan as jabatan_operator,\n" .
         "a.*,\n" .
@@ -1439,7 +1460,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @2-9C64DE4D
+//SetValues Method @2-024B193E
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1504,6 +1525,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->administrator_id->SetDBValue($this->f("administrator_id"));
         $this->pemeriksa_id->SetDBValue($this->f("pemeriksa_id"));
         $this->tanggal_berita_acara->SetDBValue($this->f("tanggal_berita_acara"));
+        $this->nomor_notaris->SetDBValue($this->f("nomor_notaris"));
+        $this->nomor_berita_acara->SetDBValue($this->f("nomor_berita_acara"));
     }
 //End SetValues Method
 
