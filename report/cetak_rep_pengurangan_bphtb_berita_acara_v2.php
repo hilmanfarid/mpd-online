@@ -16,6 +16,7 @@ $dbConn				= new clsDBConnSIKP();
 $query				= "select j.t_bphtb_exemption_id, j.exemption_amount, j.dasar_pengurang, j.analisa_penguranan, j.jenis_pensiunan, j.jenis_perolehan_hak, j.sk_bpn_no, to_char(j.tanggal_sk,'DD-MM-YYYY') as tanggal_sk, 
 j.pilihan_lembar_cetak, j.opsi_a2, j.opsi_a2_keterangan, j.opsi_b7, j.opsi_b7_keterangan, j.keterangan_opsi_c, j.keterangan_opsi_c_gono_gini,
 to_char(j.tanggal_berita_acara,'DD-MM-YYYY') as tanggal_berita_acara, j.pemeriksa_id, j.administrator_id,
+j.nomor_berita_acara, j.nomor_notaris,
 k.pemeriksa_nama as nama_pemeriksa, k.pemeriksa_nip as nip_pemeriksa, k.pemeriksa_jabatan as jabatan_pemeriksa,
 l.pemeriksa_nama as nama_operator, l.pemeriksa_nip as nip_operator, l.pemeriksa_jabatan as jabatan_operator,
 a.*,
@@ -108,6 +109,8 @@ while ($dbConn->next_record()) {
 	$data["keterangan_opsi_c"]	    = $dbConn->f("keterangan_opsi_c");
 	$data["keterangan_opsi_c_gono_gini"]	    = $dbConn->f("keterangan_opsi_c_gono_gini");
 	$data["tanggal_berita_acara"]		        = $dbConn->f("tanggal_berita_acara");
+	$data["nomor_berita_acara"]		        = $dbConn->f("nomor_berita_acara");
+	$data["nomor_notaris"]		        = $dbConn->f("nomor_notaris");
 }
 
 $dbConn->close();
@@ -251,7 +254,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody4+10, $this->height, "Dokumen lainnya", "", 0, "");
 		$this->Ln();
 		$this->Ln();
-		$this->barisBaru("", "- Nomor", ": " . $data['opsi_b7_keterangan']);
+		$this->barisBaru("", "- Nomor", ": " . $data['nomor_notaris']);
 		$this->barisBaru("", "- Tanggal", ": " . $this->beautyDate($data['tanggal_sk']));
 		$this->SetFont("Arial", "B", 8);
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
