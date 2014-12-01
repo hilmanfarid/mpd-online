@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -72,8 +72,8 @@ $(document).ready(function()
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>HISTORY TRANSAKSI WAJIB PAJAK <input style="WIDTH: 112px; HEIGHT: 22px" id="HistoryGridcustomer_name" name="{customer_name_Name}" value="{customer_name}" size="15" type="hidden">&nbsp;<input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_customer_id" name="{t_customer_id_Name}" value="{t_customer_id}" size="13" type="hidden"><input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_cust_acc_id" name="{t_cust_acc_id_Name}" value="{t_cust_acc_id}" size="13" type="hidden"></strong></td> 
-                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  <td class="th"><strong>HISTORY TRANSAKSI WAJIB PAJAK <input style="WIDTH: 112px; HEIGHT: 22px" id="HistoryGridcustomer_name" value="{customer_name}" size="15" type="hidden" name="{customer_name_Name}">&nbsp;<input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_customer_id" value="{t_customer_id}" size="13" type="hidden" name="{t_customer_id_Name}"><input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_cust_acc_id" value="{t_cust_acc_id}" size="13" type="hidden" name="{t_cust_acc_id_Name}"></strong></td> 
+                  <td class="HeaderRight"><font color="#ffffff"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></font></td>
                 </tr>
               </table>
  
@@ -114,7 +114,7 @@ $(document).ready(function()
  
                 <!-- BEGIN Row -->
                 <tr {HistoryGrid:rowStyle}>
-                  <td style="BORDER-LEFT: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{npwd}<input id="HistoryGridt_vat_setllement_id" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden">&nbsp;<input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" size="13" type="hidden"></td> 
+                  <td style="BORDER-LEFT: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{npwd}<input id="HistoryGridt_vat_setllement_id" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}">&nbsp;<input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_cust_account_id" value="{t_cust_account_id}" size="13" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{company_name}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;{type_code}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
@@ -135,7 +135,9 @@ $(document).ready(function()
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td colspan="13">
+                  <td>&nbsp;
+                    <!-- BEGIN Button Button_DoPrint1 --><input style="WIDTH: 120px; HEIGHT: 26px" id="HistoryGridButton_DoPrint1" class="btn_tambah" onclick="printLaporanExcel()" value="DOWNLOAD EXCEL" alt="Search" size="12" type="button" name="{Button_Name}"><!-- END Button Button_DoPrint1 --></td> 
+                  <td colspan="12">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -206,6 +208,14 @@ function toDoc()
 
 function detailTransaksi(t_cust_account_id, t_vat_setllement_id) {
         window.open('v_cust_acc_dtl_trans.php?t_cust_account_id='+t_cust_account_id+'&t_vat_setllement_id='+t_vat_setllement_id, 'View', 'width=700,height=400,left=200,top=200,toolbar=no,scrollbars=yes,resizable=yes');
+}
+
+function printLaporanExcel(){
+
+    params = "?t_cust_acc_id="+document.getElementById("HistoryGridt_cust_acc_id").value;
+	params += "&view_report=cetak_excel";
+        
+	window.open("../param/t_trans_histories.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
 }
 
 </script>
