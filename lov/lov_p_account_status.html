@@ -12,11 +12,11 @@ function clickReturn(retVal) {
                 strObj = document.getElementById('LOVOBJ').value;
                 strForm = document.getElementById('LOVFORM').value;
         arrVal = retVal.split('#~#');
-                arrForm = strObj.split(',');				
+                arrForm = strObj.split(',');                            
                 for (x=0;x<arrForm.length;x++) {
                 window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
                 }
-				window.close();
+                                window.close();
                 
 }
 </script>
@@ -31,12 +31,12 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body style="MARGIN: 0px" marginwidth="0" marginheight="0">
+<body style="MARGIN: 0px" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        JENIS PAJAK 
+        STATUS WP&nbsp;
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="LOVs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><input style="DISPLAY: none" id="LOVFORM" value="{FORM}" name="{FORM_Name}"><label style="display: none;" for="LOVOBJ">&nbsp;</label><input style="DISPLAY: none" id="LOVOBJ" value="{OBJ}" name="{OBJ_Name}"><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
+                    <td class="search-field"><input id="LOVs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><input style="DISPLAY: none" id="LOVFORM" value="{FORM}" name="{FORM_Name}"><label for="LOVOBJ" style="display: none;">&nbsp;</label><input style="DISPLAY: none" id="LOVOBJ" value="{OBJ}" name="{OBJ_Name}"><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="LOVButton_DoSearch" class="btn_tambah" value="Cari" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
