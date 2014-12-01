@@ -252,12 +252,12 @@ class FormCetak extends FPDF {
 				"","",""
 			),
 			$this->height-1);
-		$this->SetWidths(array($lbody1+$lbody1,$lbody1+$lbody1+$lbody1,$this->lengthCell-$lbody1-$lbody1-$lbody1-$lbody1-$lbody1));
+		$this->SetWidths(array($lbody1+$lbody1+6,$lbody1+$lbody1+$lbody1-6,$this->lengthCell-$lbody1-$lbody1-$lbody1-$lbody1-$lbody1));
 		$this->SetAligns(array("L","L","J"));
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				"  Nomor",
+				"Nomor",
 				": ".$data['opsi_b7_keterangan']
 			),
 			array
@@ -265,12 +265,12 @@ class FormCetak extends FPDF {
 				"","",""
 			),
 			$this->height-1);
-		$this->SetWidths(array($lbody1+$lbody1,$lbody1+$lbody1+$lbody1,$this->lengthCell-$lbody1-$lbody1-$lbody1-$lbody1-$lbody1));
+		$this->SetWidths(array($lbody1+$lbody1+6,$lbody1+$lbody1+$lbody1-6,$this->lengthCell-$lbody1-$lbody1-$lbody1-$lbody1-$lbody1));
 		$this->SetAligns(array("L","L","J"));
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				"  Tanggal",
+				"Tanggal",
 				": ".$this->beautyDate($data['tanggal_sk'])
 			),
 			array
