@@ -253,7 +253,6 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($lbody4+10, $this->height, "Dokumen lainnya", "", 0, "");
 		$this->Ln();
-		$this->Ln();
 		$this->barisBaru("", "- Nomor", ": " . $data['nomor_notaris']);
 		$this->barisBaru("", "- Tanggal", ": " . $this->beautyDate($data['tanggal_sk']));
 		$this->SetFont("Arial", "B", 8);
