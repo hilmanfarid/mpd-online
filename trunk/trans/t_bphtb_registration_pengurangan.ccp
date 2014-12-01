@@ -3,6 +3,7 @@
 		<Record id="2" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="UConditions" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" dataSource="select j.t_bphtb_exemption_id, j.exemption_amount, j.dasar_pengurang, j.analisa_penguranan, j.jenis_pensiunan, j.jenis_perolehan_hak, j.sk_bpn_no, to_char(j.tanggal_sk,'DD-MM-YYYY') as tanggal_sk, 
 j.pilihan_lembar_cetak, j.opsi_a2, j.opsi_a2_keterangan, j.opsi_b7, j.opsi_b7_keterangan, j.keterangan_opsi_c, j.keterangan_opsi_c_gono_gini,
 to_char(j.tanggal_berita_acara,'DD-MM-YYYY') as tanggal_berita_acara, j.pemeriksa_id, j.administrator_id,
+j.nomor_berita_acara, j.nomor_notaris,
 k.pemeriksa_nama as nama_pemeriksa, k.pemeriksa_nip as nip_pemeriksa, k.pemeriksa_jabatan as jabatan_pemeriksa,
 l.pemeriksa_nama as nama_operator, l.pemeriksa_nip as nip_operator, l.pemeriksa_jabatan as jabatan_operator,
 a.*,
@@ -746,7 +747,7 @@ WHERE pemeriksa_status = 'administrator'" boundColumn="t_bphtb_exemption_pemerik
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<ListBox id="223" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="pemeriksa_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormpemeriksa_id" fieldSource="pemeriksa_id" connection="ConnSIKP" dataSource="SELECT * FROM t_bphtb_exemption_pemeriksa
+				<ListBox id="223" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="pemeriksa_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormpemeriksa_id" fieldSource="pemeriksa_id" connection="ConnSIKP" dataSource="SELECT * FROM t_bphtb_exemption_pemeriksa
 WHERE pemeriksa_status = 'pemeriksa'"><Components/>
 					<Events/>
 					<TableParameters/>
@@ -758,18 +759,30 @@ WHERE pemeriksa_status = 'pemeriksa'"><Components/>
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<TextBox id="218" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="tanggal_berita_acara" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormtanggal_berita_acara" fieldSource="tanggal_berita_acara" format="dd-mm-yyyy">
+				<TextBox id="218" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="tanggal_berita_acara" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormtanggal_berita_acara" fieldSource="tanggal_berita_acara" format="dd-mm-yyyy">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="219" name="DatePicker_tanggal_berita_acara1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormDatePicker_tanggal_berita_acara1" control="tanggal_berita_acara" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+				<DatePicker id="219" name="DatePicker_tanggal_berita_acara1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormDatePicker_tanggal_berita_acara1" control="tanggal_berita_acara" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
+				<TextBox id="224" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nomor_notaris" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormnomor_notaris" fieldSource="nomor_notaris">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="225" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nomor_berita_acara" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormnomor_berita_acara" fieldSource="nomor_berita_acara">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
