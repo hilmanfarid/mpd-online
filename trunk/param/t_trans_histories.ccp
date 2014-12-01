@@ -103,18 +103,6 @@ order by c.npwd , b.start_date desc,
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Hidden id="136" fieldSourceType="DBColumn" dataType="Float" name="t_customer_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="HistoryGridt_customer_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-				<Hidden id="137" visible="Yes" fieldSourceType="CodeExpression" dataType="Text" name="customer_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="HistoryGridcustomer_name" html="False">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<Hidden id="141" fieldSourceType="DBColumn" dataType="Float" name="t_vat_setllement_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="HistoryGridt_vat_setllement_id" fieldSource="t_vat_setllement_id">
 					<Components/>
 					<Events/>
@@ -122,12 +110,6 @@ order by c.npwd , b.start_date desc,
 					<Features/>
 				</Hidden>
 				<Hidden id="139" fieldSourceType="DBColumn" dataType="Float" name="t_cust_account_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="HistoryGridt_cust_account_id" fieldSource="t_cust_account_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-				<Hidden id="142" fieldSourceType="DBColumn" dataType="Float" name="t_cust_acc_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="HistoryGridt_cust_acc_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -145,7 +127,31 @@ order by c.npwd , b.start_date desc,
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Hidden id="136" fieldSourceType="DBColumn" dataType="Float" name="t_customer_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="HistoryGridt_customer_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="137" visible="Yes" fieldSourceType="CodeExpression" dataType="Text" name="customer_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="HistoryGridcustomer_name" html="False">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="142" fieldSourceType="DBColumn" dataType="Float" name="t_cust_acc_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="HistoryGridt_cust_acc_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Button id="145" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoPrint1" wizardCaption="Search" PathID="HistoryGridButton_DoPrint1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -190,5 +196,10 @@ order by c.npwd , b.start_date desc,
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="146"/>
+</Actions>
+</Event>
+</Events>
 </Page>
