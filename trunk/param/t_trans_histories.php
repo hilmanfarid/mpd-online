@@ -42,7 +42,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-062AF256
+//Class_Initialize Event @2-D289820C
     function clsGridHistoryGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -89,6 +89,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $this->t_customer_id = & new clsControl(ccsHidden, "t_customer_id", "t_customer_id", ccsFloat, "", CCGetRequestParam("t_customer_id", ccsGet, NULL), $this);
         $this->customer_name = & new clsControl(ccsHidden, "customer_name", "customer_name", ccsText, "", CCGetRequestParam("customer_name", ccsGet, NULL), $this);
         $this->t_cust_acc_id = & new clsControl(ccsHidden, "t_cust_acc_id", "t_cust_acc_id", ccsFloat, "", CCGetRequestParam("t_cust_acc_id", ccsGet, NULL), $this);
+        $this->Button_DoPrint1 = & new clsButton("Button_DoPrint1", ccsGet, $this);
     }
 //End Class_Initialize Event
 
@@ -103,7 +104,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     }
 //End Initialize Method
 
-//Show Method @2-4AFF18AB
+//Show Method @2-716FF3EE
     function Show()
     {
         global $Tpl;
@@ -216,6 +217,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $this->t_customer_id->Show();
         $this->customer_name->Show();
         $this->t_cust_acc_id->Show();
+        $this->Button_DoPrint1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
