@@ -110,6 +110,7 @@ while ($dbConn->next_record()) {
 	$data["keterangan_opsi_c_gono_gini"]	    = $dbConn->f("keterangan_opsi_c_gono_gini");
 	$data["nomor_berita_acara"]	    = $dbConn->f("nomor_berita_acara");
 	$data["nomor_notaris"]	    = $dbConn->f("nomor_notaris");
+	$data["tanggal_berita_acara"]	    = $dbConn->f("tanggal_berita_acara");
 }
 
 $dbConn->close();
@@ -189,7 +190,7 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("C"));
 		$this->RowMultiBorderWithHeight(
 			array
-			(	"PEMERINTAH KOTA BANDUNG \nKEPUTUSAN KEPALA DINAS PELAYANAN PAJAK \nNOMOR : ".$data['nomor_berita_acara'].
+			(	"PEMERINTAH KOTA BANDUNG \nKEPUTUSAN KEPALA DINAS PELAYANAN PAJAK \nNOMOR : "."                                   ".
 				"\nPEMBERIAN PENGURANGAN \nBEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN \nYANG TERUTANG \nKEPALA DINAS PELAYANAN PAJAK KOTA BANDUNG"
 			),
 			array
@@ -261,7 +262,7 @@ class FormCetak extends FPDF {
 			array
 			(	"",
 				"Nomor",
-				": ".$data['nomor_notaris']
+				": ".$data['nomor_berita_acara']
 			),
 			array
 			(
@@ -274,7 +275,7 @@ class FormCetak extends FPDF {
 			array
 			(	"",
 				"Tanggal",
-				": ".$this->beautyDate($data['tanggal_sk'])
+				": ".$this->beautyDate($data['tanggal_berita_acara'])
 			),
 			array
 			(
