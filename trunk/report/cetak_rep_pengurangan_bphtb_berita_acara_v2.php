@@ -198,6 +198,15 @@ class FormCetak extends FPDF {
 				""
 			),
 			$this->height-1);
+		$this->RowMultiBorderWithHeight(
+			array
+			(	"NOMOR : ".$data['nomor_berita_acara']
+			),
+			array
+			(
+				""
+			),
+			$this->height-1);
 		$this->Ln();
 
 		$this->SetFont("Arial", "", 8);
