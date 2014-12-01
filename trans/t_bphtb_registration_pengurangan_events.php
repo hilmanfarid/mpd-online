@@ -271,6 +271,9 @@ function t_bphtb_registrationForm_ds_BeforeExecuteUpdate(& $sender)
 	$keterangan_opsi_c = $t_bphtb_registrationForm->keterangan_opsi_c->GetValue();
 	$keterangan_opsi_c_gono_gini = $t_bphtb_registrationForm->keterangan_opsi_c_gono_gini->GetValue();
 	
+	$nomor_berita_acara = $t_bphtb_registrationForm->nomor_berita_acara->GetValue();
+	$nomor_notaris = $t_bphtb_registrationForm->nomor_notaris->GetValue();
+
 	$tanggal_sk = $t_bphtb_registrationForm->tanggal_sk->GetText();
 	$tanggal_berita_acara = $t_bphtb_registrationForm->tanggal_berita_acara->GetText();
 	$dasar_pengurang = $t_bphtb_registrationForm->dasar_pengurang->GetText();
@@ -299,6 +302,8 @@ function t_bphtb_registrationForm_ds_BeforeExecuteUpdate(& $sender)
 				keterangan_opsi_c = '".$keterangan_opsi_c."',
 				keterangan_opsi_c_gono_gini = '".$keterangan_opsi_c_gono_gini."',
 				jenis_perolehan_hak = '".$jenis_perolehan_hak."',
+				nomor_berita_acara = '".$nomor_berita_acara."',
+				nomor_notaris = '".$nomor_notaris."',
 				tanggal_sk = '".$tanggal_sk."',
 				tanggal_berita_acara = '".$tanggal_berita_acara."',
 				dasar_pengurang = '".$dasar_pengurang."',
