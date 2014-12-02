@@ -249,8 +249,8 @@ class FormCetak extends FPDF {
 		$this->barisBaru_special("", "Akta/ Risalah Lelang/ Keputusan Pemberian Hak/ Putusan Hakim/ Dokumen", ": SK Kepala Kantor Pertanahan Kota Bandung");
 		$this->barisBaru("", "- Nomor", ": " . $data['opsi_b7_keterangan']);
 		$this->barisBaru("", "- Tanggal", ": " . $this->beautyDate($data['tanggal_sk']));
-		$this->barisBaru("", "NJOP", ": " . number_format($data['npop'], 0, ",", "."));
-		$this->barisBaru_special("", "NJOP (Harta Bersama dimana setengah bagian Alm. suami diberikan kepada istri yang", ": " . number_format($data['npop'], 0, ",", "."));
+		$this->barisBaru("", "NJOP", ": Rp." . number_format($data['npop'], 0, ",", "."));
+		$this->barisBaru_special("", "NJOP (Harta Bersama dimana setengah bagian Alm. suami diberikan kepada istri yang", ": Rp." . number_format($data['npop'], 0, ",", "."));
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($lbody1, $this->height, "1", "", 0, "");
 		$this->SetWidths(array($this->lengthCell-$lbody1-$lbody1));
