@@ -322,20 +322,7 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "iB", 8);
 		$this->Cell($this->length - $lbody1- $lbody1- $lbody1 -$lbody1, $this->height, $data['terbilang'], "", 0, "");
 		$this->Ln();
-        $this->Ln();
-		$this->SetFont("Arial", "", 8);
-		$this->SetWidths(array($this->lengthCell));
-		$this->SetAligns(array("J"));
-		$this->RowMultiBorderWithHeight(
-			array
-			(	"Demikian Berita Acara ini dibuat dengan sebenarnya. Apabila dikemudian hari ternyata terdapat kekeliruan dalam Berita Acara Pengkajian akan dibetulkan sebagaimana mestinya."
-			),
-			array
-			(
-				""
-			),
-			$this->height-1);
-		$this->Ln();			
+		
 	}
 
 	function signaturePage($data) {
@@ -350,6 +337,19 @@ class FormCetak extends FPDF {
 		$lbody4 = $lbody * 4;
 		$lbody6 = $lbody * 6;
 		
+		$this->SetFont("Arial", "", 8);
+		$this->SetWidths(array($this->lengthCell));
+		$this->SetAligns(array("J"));
+		$this->RowMultiBorderWithHeight(
+			array
+			(	"Demikian Berita Acara ini dibuat dengan sebenarnya. Apabila dikemudian hari ternyata terdapat kekeliruan dalam Berita Acara Pengkajian akan dibetulkan sebagaimana mestinya."
+			),
+			array
+			(
+				""
+			),
+			$this->height-1);
+		$this->Ln();
 		/*$this->Cell($lbody1, $this->height, "1", "BLTR", 0, "R");
 		$this->Cell($lbody4, $this->height, "KASI PENYELESAIAN PIUTANG", "BLTR", 0, "l");
 		$this->Cell($this->lengthCell-$lbody1-$lbody4, $this->height, "", "BLTR", 0, "l");*/
