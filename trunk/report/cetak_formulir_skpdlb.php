@@ -325,7 +325,7 @@ class FormCetak extends FPDF {
 		$this->Cell(10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 10, $this->height, "1. Dasar Pengenaan", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["restitusi_amt"],2,",","."), "", 0, 'R');
+		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["bphtb_amt_final"]-$data["restitusi_amt"],2,",","."), "", 0, 'R');
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
@@ -415,10 +415,10 @@ class FormCetak extends FPDF {
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
-		$jumno4 = $jumno3 - $data["restitusi_amt"];
+		$jumno4 = $data["restitusi_amt"];
 		$total = $jumno4 + $jumno5;
 		$this->Cell(10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody3 - 10, $this->height, "6. Jumlah yang masih harus dibayar (4 + 5c)", "", 0, 'L');
+		$this->Cell($lbody3 - 10, $this->height, "6. Jumlah kelebihan yang harus dibayar (4 + 5c)", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
 		$this->Cell($lbodyx1 - 10, $this->height, number_format($total,2,",","."), "", 0, 'R');
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
