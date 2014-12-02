@@ -15,7 +15,7 @@ if(empty($t_bphtb_restitusi_id)){
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$sql = "select * 
+$sql = "select *,to_char(payment_date, 'dd-mon-yyyy') as payment_date
 		from t_bphtb_restitusi a
 		left join t_bphtb_registration x on a.t_bphtb_registration_id= x.t_bphtb_registration_id
 		LEFT JOIN t_payment_receipt_bphtb y on a.t_bphtb_registration_id = y.t_bphtb_registration_id
@@ -145,10 +145,10 @@ class FormCetak extends FPDF {
 				"Menindaklanjuti permohonan Restitusi Pajak BPHTB a.n. ".$data["wp_name"].
 				", yang secara garis besarnya adanya pembayaran penuh atas Pajak BPHTB terhadap Wajib Pajak orang pribadi yang menerima waris dari orang pribadi yang mempunyai hubungan keluarga sedarah dalam garis keturunan lurus satu derajat ke atas atau ke bawah.".
 				"Dapat kami informasikan, pembayaran BPHTB berdasarkan perhitungan atas Waris adalah NIHIL sebagaimana Berita Acara Pemeriksaan terlampir.".
-				"Namun dikarenakan pemohon melakukan pembayran BPHTB penuh via BJB Kas Pelayanan BPHTB Disan Bandung pada tanggal ".
+				"Namun dikarenakan pemohon melakukan pembayran BPHTB penuh via BJB Kas Pelayanan BPHTB Dinas Bandung pada tanggal ".
 				$data["payment_date"].
 				" sebesar Rp. ".number_format($data["bphtb_amt_final"],2,",",".").
-				" maka ada kelebihan sebesar Rp. ".number_format($data["bphtb_amt_final"]-$data["restitusi_amt"],2,",",".")."."
+				" maka ada kelebihan sebesar Rp. ".number_format($data["restitusi_amt"],2,",",".")."."
 			),
 			array
 			(
@@ -164,7 +164,7 @@ class FormCetak extends FPDF {
 				"Berhubungan dengan hal tersebut, kmai meminta bantuannya pengembalian kelebihan pembayran pajak dimaksud sebagaimana tertulis pada data pendukung sebagaimana terlampir.".
 				"Adapaun pengembalian agar disampaikan melalui transfer ke ".
 				"BANK BNI CAB. PERINTIS KEMERDEKAAN JL PERINTIS KEMERDEKAAN NO. 3".
-				" a.n. pemegang rekening"."NY. DEDEN SAMBAS".
+				" a.n. pemegang rekening "."NY. KARMILAH SAMBAS".
 				" dengan nomor rekening "."002086583-5".
 				"."
 			),
