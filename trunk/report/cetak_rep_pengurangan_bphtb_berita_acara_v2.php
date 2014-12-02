@@ -342,7 +342,7 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "iB", 8);
 		$this->Cell($this->length - $lbody1- $lbody1- $lbody1 -$lbody1, $this->height, $data['terbilang'], "", 0, "");
 		$this->Ln(7);
-
+        $this->Ln();
 		$this->SetFont("Arial", "", 8);
 		$this->SetWidths(array($this->lengthCell));
 		$this->SetAligns(array("J"));
