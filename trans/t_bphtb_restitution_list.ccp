@@ -5,7 +5,7 @@ LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.
 where
 (cust_order.order_no ILIKE '%{s_keyword}%' OR
 regis.wp_name ILIKE '%{s_keyword}%') 
-/*AND cust_order.p_order_status_id = 1*/
+AND cust_order.p_order_status_id = 3
 order by regis.t_bphtb_registration_id DESC">
 			<Components>
 				<Navigator id="22" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
@@ -27,7 +27,16 @@ order by regis.t_bphtb_registration_id DESC">
 					<Attributes/>
 					<Features/>
 				</Link>
-				<Label id="701" fieldSourceType="DBColumn" dataType="Float" html="False" name="t_bphtb_registration_id" PathID="t_bphtb_registration_listt_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
+				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" dataType="Text" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" hrefSource="t_bphtb_restitution_list.ccp" removeParameters="FLAG" PathID="t_bphtb_registration_listDLink" wizardUseTemplateBlock="False">
+					<Components/>
+					<Events/>
+					<LinkParameters>
+						<LinkParameter id="624" sourceType="DataField" format="yyyy-mm-dd" name="t_bphtb_registration_id" source="t_bphtb_registration_id"/>
+					</LinkParameters>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Label id="701" fieldSourceType="DBColumn" dataType="Text" html="False" name="t_bphtb_registration_id" PathID="t_bphtb_registration_listt_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -39,32 +48,28 @@ order by regis.t_bphtb_registration_id DESC">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_bphtb_restitution_list.ccp" wizardThemeItem="GridA" PathID="t_bphtb_registration_listDLink" removeParameters="FLAG">
+				<Label id="705" fieldSourceType="DBColumn" dataType="Text" html="False" name="njop_pbb" fieldSource="njop_pbb" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_registration_listnjop_pbb">
 					<Components/>
 					<Events/>
-					<LinkParameters>
-						<LinkParameter id="194" sourceType="DataField" format="yyyy-mm-dd" name="t_bphtb_registration_id" source="t_bphtb_registration_id"/>
-</LinkParameters>
 					<Attributes/>
 					<Features/>
-				</Link>
-<Button id="706" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Add_Resitution" operation="Search" wizardCaption="Search" PathID="t_bphtb_registration_listButton_Add_Resitution">
+				</Label>
+				<Button id="708" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_bphtb_registration_listButton1">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
-						<Action actionName="Set Row Style" actionCategory="General" id="10" styles="Row;AltRow" name="rowStyle"/>
-						<Action actionName="Custom Code" actionCategory="General" id="705"/>
-</Actions>
+						<Action actionName="Set Row Style" actionCategory="General" id="10" styles="Row;AltRow" name="rowStyle" eventType="Server"/>
+					</Actions>
 				</Event>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
-						<Action actionName="Custom Code" actionCategory="General" id="129"/>
+						<Action actionName="Custom Code" actionCategory="General" id="129" eventType="Server"/>
 					</Actions>
 				</Event>
 			</Events>
@@ -106,8 +111,26 @@ order by regis.t_bphtb_registration_id DESC">
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Hidden id="706" fieldSourceType="DBColumn" dataType="Text" name="t_bphtb_registration_id" PathID="t_cust_order_legal_docSearcht_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="727" fieldSourceType="DBColumn" dataType="Text" name="t_bphtb_restitusi_id" PathID="t_cust_order_legal_docSearcht_bphtb_restitusi_id" fieldSource="t_bphtb_restitusi_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 			</Components>
-			<Events/>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="707"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters/>
 			<SPParameters/>
 			<SQLParameters/>
@@ -128,43 +151,103 @@ order by regis.t_bphtb_registration_id DESC">
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="708" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_cust_order_legal_docSearch1" wizardCaption="Search P App Role " wizardOrientation="Vertical" wizardFormMethod="post" returnPage="t_bphtb_restitution_list.ccp" PathID="t_cust_order_legal_docSearch1" pasteActions="pasteActions">
+		<Grid id="709" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_bphtb_restitusi" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select t_bphtb_restitusi.*,t_product_order_control.doc_id from t_bphtb_restitusi 
+left join t_product_order_control on t_product_order_control.doc_id = t_bphtb_restitusi.t_customer_order_id
+where t_bphtb_registration_id = {t_bphtb_registration_id}">
 			<Components>
-				<TextBox id="707" fieldSourceType="DBColumn" dataType="Float" html="False" name="t_bphtb_registration_id" PathID="t_cust_order_legal_docSearch1t_bphtb_registration_id" fieldSource="t_bphtb_registration_id" visible="Yes">
+				<Navigator id="710" size="10" type="Centered" pageSizes="1;5;10;25;50" name="Navigator" wizardPagingType="Custom" wizardFirst="True" wizardFirstText="First" wizardPrev="True" wizardPrevText="Prev" wizardNext="True" wizardNextText="Next" wizardLast="True" wizardLastText="Last" wizardImages="Images" wizardPageNumbers="Centered" wizardSize="10" wizardTotalPages="False" wizardHideDisabled="False" wizardOfText="of" wizardPageSize="False" wizardUsePageScroller="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Navigator>
+				<Label id="711" fieldSourceType="DBColumn" dataType="Text" html="False" name="alasan" fieldSource="alasan" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_restitusialasan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="715" fieldSourceType="DBColumn" dataType="Text" html="False" name="restitusi_amt" PathID="t_bphtb_restitusirestitusi_amt" fieldSource="restitusi_amt">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Hidden id="716" fieldSourceType="DBColumn" dataType="Text" html="False" name="t_bphtb_registration_id" fieldSource="t_bphtb_registration_id" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_restitusit_bphtb_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="729" fieldSourceType="DBColumn" dataType="Text" name="t_bphtb_restitusi_id" PathID="t_bphtb_restitusit_bphtb_restitusi_id" fieldSource="t_bphtb_restitusi_id" visible="Yes" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET">
 <Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
-				</TextBox>
-<TextBox id="709" fieldSourceType="DBColumn" dataType="Float" html="False" name="t_bphtb_registration_listPage" PathID="t_cust_order_legal_docSearch1t_bphtb_registration_listPage" fieldSource="t_bphtb_registration_id" visible="Yes">
+					<LinkParameters/>
+</Hidden>
+<Hidden id="730" fieldSourceType="DBColumn" dataType="Text" name="t_customer_order_id" PathID="t_bphtb_restitusit_customer_order_id" fieldSource="t_customer_order_id">
 <Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+<Button id="731" urlType="Relative" enableValidation="True" isDefault="False" name="btn_edit" PathID="t_bphtb_restitusibtn_edit">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
+<Button id="732" urlType="Relative" enableValidation="True" isDefault="False" name="btn_submit" PathID="t_bphtb_restitusibtn_submit">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
+<Hidden id="733" fieldSourceType="DBColumn" dataType="Text" name="doc_id" PathID="t_bphtb_restitusidoc_id" fieldSource="doc_id">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+<Label id="734" fieldSourceType="DBColumn" dataType="Text" html="False" name="submit_label" PathID="t_bphtb_restitusisubmit_label" defaultValue="SUBMITTED">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
 </Components>
-			<Events/>
-			<TableParameters/>
-			<SPParameters/>
-			<SQLParameters/>
-			<JoinTables/>
+			<Events>
+				<Event name="BeforeShowRow" type="Server">
+					<Actions>
+						<Action actionName="Set Row Style" actionCategory="General" id="719" styles="Row;AltRow" name="rowStyle" eventType="Server"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="720" eventType="Server"/>
+					</Actions>
+				</Event>
+			</Events>
+			<TableParameters>
+				<TableParameter id="721" conditionType="Parameter" useIsNull="False" field="legal_doc_desc" dataType="Text" searchConditionType="Contains" parameterType="URL" logicOperator="And" parameterSource="s_keyword"/>
+				<TableParameter id="722" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
+			</TableParameters>
+			<JoinTables>
+			</JoinTables>
 			<JoinLinks/>
-			<Fields/>
-			<ISPParameters/>
-			<ISQLParameters/>
-			<IFormElements/>
-			<USPParameters/>
-			<USQLParameters/>
-			<UConditions/>
-			<UFormElements/>
-			<DSPParameters/>
-			<DSQLParameters/>
-			<DConditions/>
+			<Fields>
+				<Field id="723" fieldName="*"/>
+			</Fields>
+			<SPParameters/>
+			<SQLParameters>
+				<SQLParameter id="724" parameterType="URL" variable="t_bphtb_registration_id" dataType="Float" parameterSource="t_bphtb_registration_id" defaultValue="0"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
-		</Record>
-</Components>
+		</Grid>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_bphtb_restitution_list_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_restitution_list.php" forShow="True" url="t_bphtb_restitution_list.php" comment="//" codePage="windows-1252"/>
