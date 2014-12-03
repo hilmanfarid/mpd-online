@@ -656,30 +656,30 @@ and t_bphtb_restitusi.t_bphtb_registration_id = t_bphtb_registration.t_bphtb_reg
 					<Features/>
 				</TextArea>
 				<Button id="1316" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_bphtb_registrationForm1Button1" operation="Update">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-<Hidden id="1299" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_id" PathID="t_bphtb_registrationForm1t_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Hidden id="1299" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_id" PathID="t_bphtb_registrationForm1t_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="1315" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_restitusi_id" PathID="t_bphtb_registrationForm1t_bphtb_restitusi_id" fieldSource="t_bphtb_restitusi_id">
+				<Hidden id="1315" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_restitusi_id" PathID="t_bphtb_registrationForm1t_bphtb_restitusi_id" fieldSource="t_bphtb_restitusi_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Button id="1319" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_bphtb_registrationForm1Button2" operation="Delete" returnPage="t_bphtb_restitution_list.ccp" removeParameters="t_bphtb_restitusi_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-</Components>
+				<Button id="1319" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_bphtb_registrationForm1Button2" operation="Delete" returnPage="t_bphtb_restitution_list.ccp" removeParameters="t_bphtb_restitusi_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -858,8 +858,8 @@ and t_bphtb_restitusi.t_bphtb_registration_id = t_bphtb_registration.t_bphtb_reg
 			</UConditions>
 			<UFormElements>
 				<CustomParameter id="1317" field="restitusi_amt" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="restitusi_amt"/>
-<CustomParameter id="1318" field="alasan" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="alasan"/>
-</UFormElements>
+				<CustomParameter id="1318" field="alasan" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="alasan"/>
+			</UFormElements>
 			<DSPParameters>
 				<SPParameter id="1234" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0"/>
 				<SPParameter id="1235" parameterName="icode" parameterSource="icode" dataType="Char" parameterType="URL" dataSize="255" direction="Input" scale="0" precision="0"/>
