@@ -89,35 +89,28 @@ function Page_BeforeShow(& $sender)
 	}
 
 	
-	$param_arr['date_awal'] = $start_date;
+	/*$param_arr['date_awal'] = $start_date;
 	$param_arr['date_akhir'] = $end_date;
 
 	$param_arr['p_year_period_id'] = $p_year_period_id;
 	$param_arr['tahun_periode'] = date("Y");
 
-	//$param_arr['p_finance_period_id'] = CCGetFromGet('p_finance_period_id');
-	//$param_arr['p_finance_period_id1'] = CCGetFromGet('p_finance_period_id1');
 	$param_arr['pajak_periode'] = $periode1;
 	$param_arr['pajak_periode1'] = $periode2;
+	*/
+	$param_arr['date_awal'] = date("Y")."-01-01";
+	$param_arr['date_akhir'] = date("Y")."-12-31";
 
-		
-	/*$t_rep_bulanan_target_vs_realisasiSearch->p_year_period_id->SetValue($param_arr['p_year_period_id']);
-	$t_rep_bulanan_target_vs_realisasiSearch->p_finance_period_id->SetValue($param_arr['p_finance_period_id']);
-	$t_rep_bulanan_target_vs_realisasiSearch->p_finance_period_id1->SetValue($param_arr['p_finance_period_id1']);
+	$param_arr['p_year_period_id'] = $p_year_period_id;
+	$param_arr['tahun_periode'] = date("Y");
 	
-	$t_rep_bulanan_target_vs_realisasiSearch->year_code->SetValue($param_arr['tahun_periode']);
-	$t_rep_bulanan_target_vs_realisasiSearch->code->SetValue($param_arr['pajak_periode']);
-	$t_rep_bulanan_target_vs_realisasiSearch->code1->SetValue($param_arr['pajak_periode1']);*/
+	$param_arr['pajak_periode'] = "JANUARI ".date("Y");
+	$param_arr['pajak_periode1'] = "DESEMBER ".date("Y");
 
 		
 	if($doAction == 'view_html') {
 		$Label1->SetText(GetCetakGeneralHTML($param_arr));
-		/*if(!empty($param_arr['p_finance_period_id'])) {
-			$Label1->SetText(GetCetakGeneralHTML($param_arr));
-		}else {
-			
-			echo '<script> alert("Semua Filter Harus Diisi"); </script>';
-		}*/
+		
 	} else {
 		
 		//do nothing 
