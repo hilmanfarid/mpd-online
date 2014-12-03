@@ -6,7 +6,6 @@
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function printLaporan(id_lap){
                 alert(id_lap);
@@ -16,6 +15,28 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
 {
         arrLOV = LOV_NM.split("?");
         window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+function checkId(){
+        var thisId = document.getElementById('t_cust_order_legal_docSearcht_bphtb_registration_id').value;
+        if(thisId){
+                                location.href='t_bphtb_restitution.php?t_bphtb_registration_id='+thisId;
+                return;
+        }else{
+                                alert('Pilih Salah Satu Bphtb!');
+                return false;
+        }
+}
+function toRestitusi(restitusi_id){
+        var bphtb_id = document.getElementById('t_cust_order_legal_docSearcht_bphtb_registration_id').value;
+                if(bphtb_id && restitusi_id){
+                        location.href='t_bphtb_restitution.php?t_bphtb_restitusi_id='+restitusi_id+'&t_bphtb_registration_id='+bphtb_id;
+                }else{
+                        return false;
+                }
+}
+function submitThis(restitusi_id,customer_order_id){
+        var bphtb_id = document.getElementById('t_cust_order_legal_docSearcht_bphtb_registration_id').value;
+        location.href=location.href+'&t_bphtb_restitusi_id='+restitusi_id+'&submit=1&t_customer_order_id='+customer_order_id;
 }
 </script>
 <script language="javascript" type="text/javascript">
@@ -28,7 +49,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -38,6 +59,7 @@ $(document).ready(function()
     </div>
   </div>
 </div>
+ss 
 <div style="CLEAR: both; PADDING-TOP: 50px">
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
@@ -54,14 +76,15 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field" colspan="2"><input id="t_cust_order_legal_docSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}">
+                    <td class="search-field" colspan="2"><input id="t_cust_order_legal_docSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32">
                       <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_cust_order_legal_docSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --><input style="WIDTH: 50px; HEIGHT: 22px" id="t_cust_order_legal_docSearchnpwd" value="{npwd}" size="6" type="hidden" name="{npwd_Name}"></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_cust_order_legal_docSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --><input style="WIDTH: 50px; HEIGHT: 22px" id="t_cust_order_legal_docSearchnpwd" name="{npwd_Name}" value="{npwd}" size="6" type="hidden"></td>
                     </tr>
                   </table>
                 </td>
               </tr>
             </table>
+            <input id="t_cust_order_legal_docSearcht_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" type="hidden"><input id="t_cust_order_legal_docSearcht_bphtb_restitusi_id" name="{t_bphtb_restitusi_id_Name}" value="{t_bphtb_restitusi_id}" type="hidden">
           </form>
           <!-- END Record t_cust_order_legal_docSearch --><br>
           <!-- BEGIN Grid t_bphtb_registration_list -->
@@ -85,25 +108,28 @@ $(document).ready(function()
                     <th scope="col">Nama Wajib Pajak</th>
  
                     <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">No order</label></label></th>
+ 
+                    <th scope="col">NOP</th>
                   </tr>
  
                   <!-- BEGIN Row -->
                   <tr {t_bphtb_registration_list:rowStyle}>
-                    <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_bphtb_registration_listDLink_{t_vat_setllementGrid:rowNumber}"><u>{DLink}</u></a></td> 
-                    <td>&nbsp;{t_bphtb_registration_id}<input id="t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"></td> 
+                    <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_bphtb_registration_listDLink_{t_bphtb_registration_list:rowNumber}">{DLink}</a></td> 
+                    <td>&nbsp;{t_bphtb_registration_id}<input id="t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"></td> 
                     <td>{wp_name}</td> 
-                    <td><a href="../files/{origin_file_name_Src}" id="t_bphtb_registration_listorigin_file_name_{t_bphtb_registration_list:rowNumber}">{origin_file_name}</a>&nbsp;</td>
+                    <td><a href="../files/{origin_file_name_Src}" id="t_bphtb_registration_listorigin_file_name_{t_bphtb_registration_list:rowNumber}">{origin_file_name}</a>&nbsp;</td> 
+                    <td>{njop_pbb}</td>
                   </tr>
  <!-- END Row -->
                   <!-- BEGIN NoRecords -->
                   <tr class="NoRecords">
-                    <td colspan="4">-</td>
+                    <td colspan="5">-</td>
                   </tr>
                   <!-- END NoRecords -->
                   <tr class="Footer">
-                    <td><strong>&nbsp;</strong> 
-                      <!-- BEGIN Button Button_Add_Resitution --><input id="t_bphtb_registration_listButton_Add_Resitution" class="btn_tambah" onclick="add_resitution()" value="TAMBAH RESITUSI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_Add_Resitution --></td> 
-                    <td colspan="3">
+                    <td>
+                      <!-- BEGIN Button Button1 --><input id="t_bphtb_registration_listButton1" class="btn_tambah" onclick="checkId();" name="{Button_Name}" alt="Button1" value="Masukan Restitusi" type="submit"><!-- END Button Button1 --></b></td> 
+                    <td colspan="4">
                       <!-- BEGIN Navigator Navigator -->
                       <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                       <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -122,21 +148,69 @@ $(document).ready(function()
             </tr>
           </table>
           <!-- END Grid t_bphtb_registration_list -->
-          <p>&nbsp;</p>
+          <p>
+          <!-- BEGIN Grid t_bphtb_restitusi -->
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>DAFTAR&nbsp;RESTITUSI</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
  
-          <p>&nbsp; 
-          <!-- BEGIN Record t_cust_order_legal_docSearch1 -->
-          <form id="t_cust_order_legal_docSearch1" method="post" name="{HTMLFormName}" action="{Action}">
-            <input id="t_cust_order_legal_docSearch1t_bphtb_registration_id" value="{t_bphtb_registration_id}" type="hidden" name="{t_bphtb_registration_id_Name}"><input id="t_cust_order_legal_docSearch1t_bphtb_registration_listPage" value="{t_bphtb_registration_listPage}" type="hidden" name="{t_bphtb_registration_listPage_Name}">
-          </form>
-          <!-- END Record t_cust_order_legal_docSearch1 --></p>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <form id="t_bphtb_restitution_list_bottom" method="post" name="{HTMLFormName}" action="{Action}">
-  </form>
-  <script language="javascript">
+                <table class="Grid" cellspacing="0" cellpadding="0">
+                  <tr class="Caption">
+                    <th scope="col">&nbsp;Jumlah Restitusi</th>
+ 
+                    <th scope="col">Alasan</th>
+ 
+                    <th scope="col">&nbsp;Action</th>
+                  </tr>
+ 
+                  <!-- BEGIN Row -->
+                  <tr {t_bphtb_restitusi:rowStyle}>
+                    <td>&nbsp;{restitusi_amt}<input id="t_bphtb_restitusit_bphtb_registration_id_{t_bphtb_restitusi:rowNumber}" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" type="hidden"><input id="t_bphtb_restitusit_bphtb_restitusi_id_{t_bphtb_restitusi:rowNumber}" name="{t_bphtb_restitusi_id_Name}" value="{t_bphtb_restitusi_id}" type="hidden"><input id="t_bphtb_restitusit_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><input id="t_bphtb_restitusidoc_id" name="{doc_id_Name}" value="{doc_id}" type="hidden"></td> 
+                    <td>{alasan}</td> 
+                    <td>&nbsp; 
+                      <!-- BEGIN Button btn_edit --><input id="t_bphtb_restitusibtn_edit" class="btn_tambah" onclick="toRestitusi({t_bphtb_restitusi_id})" name="{Button_Name}" alt="Button1" value="Edit" type="button"><!-- END Button btn_edit -->&nbsp;&nbsp; 
+                      <!-- BEGIN Button btn_submit --><input id="t_bphtb_restitusibtn_submit" class="btn_tambah" onclick="submitThis({t_bphtb_restitusi_id},{t_customer_order_id})" name="{Button_Name}" alt="Button2" value="Submit" type="submit"><!-- END Button btn_submit -->{submit_label}</td>
+                  </tr>
+                </tr>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="3">-</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="3">
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                  <!-- BEGIN Pages -->
+                  <!-- BEGIN Page_On --><a href="{Page_URL}"><u>{Page_Number}</u></a>&nbsp;<!-- END Page_On -->
+                  <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid t_bphtb_restitusi --></p>
+    </td>
+  </tr>
+</table>
+</div>
+<script language="javascript">
 // === FUNGSI ANGKA ===
 function checkIt(evt) {
 var charCode = (evt.which) ? evt.which : event.keyCode
@@ -206,16 +280,7 @@ function submitRegisBphtb(idVal,t_customer_order_id){
                         location.href="t_bphtb_registration_list.php?submit_bphtb=1&t_bphtb_registration_id="+idVal+"&t_customer_order_id="+cust_id.value;
                 }
         
-}function add_resitution(){
-        var id = document.getElementById("t_cust_order_legal_docSearch1t_bphtb_registration_id").value;
-		var page = document.getElementById("t_cust_order_legal_docSearch1t_bphtb_registration_listPage").value;
-        if(id==""){
-                alert("Pilih salah satu data BPHTB!");
-        }else{
-                location.href="t_bphtb_restitution.php?t_bphtb_registration_id="+id+
-				"&t_bphtb_registration_listPage="+page;;
-        }        
 }
 </script>
-  </body>
-  </html>
+</body>
+</html>
