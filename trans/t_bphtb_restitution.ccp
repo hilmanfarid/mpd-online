@@ -336,24 +336,24 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 from p_bphtb_legal_doc_type bphtb_legal
 left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id
 " boundColumn="p_bphtb_legal_doc_type_id" textColumn="code" features="(assigned)" PathID="t_bphtb_registrationFormp_bphtb_legal_doc_type_id">
-<Components/>
-<Events>
-<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="1298"/>
-</Actions>
-</Event>
-</Events>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
-</Components>
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="1298"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -484,6 +484,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key940" parameterName="vattypedtlid" parameterSource="p_vat_type_dtl_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key941" parameterName="wpusername" parameterSource="wp_user_name" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key942" parameterName="wpuserpwd" parameterSource="wp_user_pwd" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
+
 				<SPParameter id="Key943" parameterName="wpname" parameterSource="wp_name" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key944" parameterName="wpaddressname" parameterSource="wp_address_name" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key945" parameterName="wpaddressno" parameterSource="wp_address_no" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
@@ -631,43 +632,10 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="1016" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm1" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm1" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customDelete="t_bphtb_registration" dataSource="select *
-from t_bphtb_registration 
-where t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="INSERT INTO sikp.t_bphtb_restitusi(
-t_bphtb_registration_id, 
-t_customer_order_id, 
-restitusi_amt, 
-alasan, 
-creation_date, 
-created_by, 
-updated_date, 
-updated_by)
-VALUES (
-{t_bphtb_registration_id}, 
-{t_customer_order_id}, 
-{restitusi_amt}, 
-'{alasan}', 
-sysdate, 
-'{created_by}', 
-sysdate, 
-'{updated_by}');" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp" customInsert="INSERT INTO sikp.t_bphtb_restitusi(
-t_bphtb_registration_id, 
-t_customer_order_id, 
-restitusi_amt, 
-alasan, 
-creation_date, 
-created_by, 
-updated_date, 
-updated_by)
-VALUES (
-{t_bphtb_registration_id}, 
-{t_customer_order_id}, 
-{restitusi_amt}, 
-'{alasan}', 
-sysdate, 
-'{created_by}', 
-sysdate, 
-'{updated_by}');">
+		<Record id="1016" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm1" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm1" activeCollection="DConditions" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="SQL" customDelete="t_bphtb_restitusi" dataSource="select t_bphtb_restitusi.*,t_bphtb_registration.registration_no
+from t_bphtb_restitusi,t_bphtb_registration
+where t_bphtb_restitusi_id = {t_bphtb_restitusi_id}
+and t_bphtb_restitusi.t_bphtb_registration_id = t_bphtb_registration.t_bphtb_registration_id" customUpdate="t_bphtb_restitusi" activeTableType="customDelete" returnPage="t_bphtb_restitution_list.ccp" customInsert="select * from f_insert_bphtb_restitusi(18,{t_bphtb_registration_id},{restitusi_amt},'{alasan}','{created_by}')" removeParameters="t_bphtb_restitusi_id">
 			<Components>
 				<TextBox id="1297" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="restitusi_amt" PathID="t_bphtb_registrationForm1restitusi_amt" fieldSource="restitusi_amt">
 					<Components/>
@@ -675,42 +643,42 @@ sysdate,
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="1299" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_id" PathID="t_bphtb_registrationForm1t_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Hidden id="1300" fieldSourceType="DBColumn" dataType="Integer" name="registration_no" PathID="t_bphtb_registrationForm1registration_no" fieldSource="t_bphtb_registration_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-<Button id="706" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Add_Resitution" operation="Update" wizardCaption="Search" PathID="t_bphtb_registrationForm1Button_Add_Resitution" returnPage="t_bphtb_restitution_list.ccp" removeParameters="t_bphtb_registration_id">
+				<Button id="706" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Add_Resitution" operation="Insert" wizardCaption="Search" PathID="t_bphtb_registrationForm1Button_Add_Resitution" returnPage="t_bphtb_restitution_list.ccp" removeParameters="t_bphtb_registration_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-<TextArea id="1301" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="alasan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationForm1alasan">
+				<TextArea id="1301" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="alasan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationForm1alasan" fieldSource="alasan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextArea>
+				<Button id="1316" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_bphtb_registrationForm1Button1" operation="Update">
 <Components/>
 <Events/>
 <Attributes/>
 <Features/>
-</TextArea>
-<Hidden id="1303" fieldSourceType="DBColumn" dataType="Integer" name="t_customer_order_id" PathID="t_bphtb_registrationForm1t_customer_order_id" fieldSource="t_customer_order_id">
+</Button>
+<Hidden id="1299" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_id" PathID="t_bphtb_registrationForm1t_bphtb_registration_id" fieldSource="t_bphtb_registration_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<Hidden id="1315" fieldSourceType="DBColumn" dataType="Integer" name="t_bphtb_registration_listPage" PathID="t_bphtb_registrationForm1t_bphtb_registration_listPage">
+<Hidden id="1315" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_restitusi_id" PathID="t_bphtb_registrationForm1t_bphtb_restitusi_id" fieldSource="t_bphtb_restitusi_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
+<Button id="1319" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_bphtb_registrationForm1Button2" operation="Delete" returnPage="t_bphtb_restitution_list.ccp" removeParameters="t_bphtb_restitusi_id">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -744,7 +712,7 @@ sysdate,
 			</TableParameters>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="1082" variable="t_bphtb_registration_id" parameterType="URL" dataType="Text" parameterSource="t_bphtb_registration_id" designDefaultValue="25"/>
+				<SQLParameter id="1082" variable="t_bphtb_restitusi_id" parameterType="URL" dataType="Float" parameterSource="t_bphtb_restitusi_id" defaultValue="0"/>
 			</SQLParameters>
 			<JoinTables>
 			</JoinTables>
@@ -793,12 +761,10 @@ sysdate,
 			</ISPParameters>
 			<ISQLParameters>
 				<SQLParameter id="1302" variable="t_bphtb_registration_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_bphtb_registration_id"/>
-<SQLParameter id="1304" variable="t_customer_order_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_customer_order_id"/>
-<SQLParameter id="1305" variable="restitusi_amt" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="restitusi_amt"/>
-<SQLParameter id="1306" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
-<SQLParameter id="1307" variable="created_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
-<SQLParameter id="1308" variable="updated_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
-</ISQLParameters>
+				<SQLParameter id="1305" variable="restitusi_amt" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="restitusi_amt"/>
+				<SQLParameter id="1306" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
+				<SQLParameter id="1307" variable="created_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="1121" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
 				<CustomParameter id="1122" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
@@ -879,55 +845,21 @@ sysdate,
 			</USPParameters>
 			<USQLParameters>
 				<SQLParameter id="1309" variable="t_bphtb_registration_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_bphtb_registration_id"/>
-<SQLParameter id="1310" variable="t_customer_order_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_customer_order_id"/>
-<SQLParameter id="1311" variable="restitusi_amt" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="restitusi_amt"/>
-<SQLParameter id="1312" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
-<SQLParameter id="1313" variable="created_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
-<SQLParameter id="1314" variable="updated_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
-</USQLParameters>
+				<SQLParameter id="1310" variable="t_customer_order_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_customer_order_id"/>
+				<SQLParameter id="1311" variable="restitusi_amt" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="restitusi_amt"/>
+				<SQLParameter id="1312" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
+				<SQLParameter id="1313" variable="created_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+				<SQLParameter id="1314" variable="updated_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
+			</USQLParameters>
 			<UConditions>
-				<TableParameter id="1195" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
+				<TableParameter id="1195" conditionType="Parameter" useIsNull="False" field="t_bphtb_restitusi_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_restitusi_id"/>
 				<TableParameter id="1196" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
 				<TableParameter id="1197" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
 			</UConditions>
 			<UFormElements>
-				<CustomParameter id="1198" field="updated_by" dataType="Text" parameterType="Session" parameterSource="UserLogin" omitIfEmpty="True"/>
-				<CustomParameter id="1199" field="updated_date" dataType="Text" parameterType="Expression" parameterSource="date(&quot;Y-m-d H:i:s&quot;)" format="dd-mmm-yyyy" omitIfEmpty="True"/>
-				<CustomParameter id="1200" field="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id" omitIfEmpty="True"/>
-				<CustomParameter id="1201" field="wp_p_region_id_kel" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kel" omitIfEmpty="True"/>
-				<CustomParameter id="1202" field="wp_name" dataType="Text" parameterType="Control" parameterSource="wp_name" omitIfEmpty="True"/>
-				<CustomParameter id="1203" field="wp_address_name" dataType="Text" parameterType="Control" parameterSource="wp_address_name" omitIfEmpty="True"/>
-				<CustomParameter id="1204" field="npwp" dataType="Text" parameterType="Control" parameterSource="npwp" omitIfEmpty="True"/>
-				<CustomParameter id="1205" field="object_p_region_id_kec" dataType="Text" parameterType="Control" parameterSource="object_p_region_id_kec" omitIfEmpty="True"/>
-				<CustomParameter id="1206" field="object_p_region_id" dataType="Text" parameterType="Control" parameterSource="object_p_region_id" omitIfEmpty="True"/>
-				<CustomParameter id="1207" field="land_area" dataType="Float" parameterType="Control" parameterSource="land_area" omitIfEmpty="True"/>
-				<CustomParameter id="1208" field="land_price_per_m" dataType="Float" parameterType="Control" parameterSource="land_price_per_m" omitIfEmpty="True"/>
-				<CustomParameter id="1209" field="land_total_price" dataType="Float" parameterType="Control" parameterSource="land_total_price" omitIfEmpty="True"/>
-				<CustomParameter id="1210" field="building_area" dataType="Float" parameterType="Control" parameterSource="building_area" omitIfEmpty="True"/>
-				<CustomParameter id="1211" field="building_price_per_m" dataType="Float" parameterType="Control" parameterSource="building_price_per_m" omitIfEmpty="True"/>
-				<CustomParameter id="1212" field="building_total_price" dataType="Float" parameterType="Control" parameterSource="building_total_price" omitIfEmpty="True"/>
-				<CustomParameter id="1213" field="wp_rt" dataType="Text" parameterType="Control" parameterSource="wp_rt" omitIfEmpty="True"/>
-				<CustomParameter id="1214" field="wp_rw" dataType="Text" parameterType="Control" parameterSource="wp_rw" omitIfEmpty="True"/>
-				<CustomParameter id="1215" field="object_rt" dataType="Text" parameterType="Control" parameterSource="object_rt" omitIfEmpty="True"/>
-				<CustomParameter id="1216" field="object_rw" dataType="Text" parameterType="Control" parameterSource="object_rw" omitIfEmpty="True"/>
-				<CustomParameter id="1217" field="njop_pbb" dataType="Text" parameterType="Control" parameterSource="njop_pbb" omitIfEmpty="True"/>
-				<CustomParameter id="1218" field="object_address_name" dataType="Text" parameterType="Control" parameterSource="object_address_name" omitIfEmpty="True"/>
-				<CustomParameter id="1219" field="p_bphtb_legal_doc_type_id" dataType="Text" parameterType="Control" parameterSource="p_bphtb_legal_doc_type_id" omitIfEmpty="True"/>
-				<CustomParameter id="1220" field="npop" dataType="Float" parameterType="Control" parameterSource="npop" omitIfEmpty="True"/>
-				<CustomParameter id="1221" field="npop_tkp" dataType="Float" parameterType="Control" parameterSource="npop_tkp" omitIfEmpty="True"/>
-				<CustomParameter id="1222" field="npop_kp" dataType="Float" parameterType="Control" parameterSource="npop_kp" omitIfEmpty="True"/>
-				<CustomParameter id="1223" field="bphtb_amt" dataType="Float" parameterType="Control" parameterSource="bphtb_amt" omitIfEmpty="True"/>
-				<CustomParameter id="1224" field="bphtb_amt_final" dataType="Float" parameterType="Control" parameterSource="bphtb_amt_final" omitIfEmpty="True"/>
-				<CustomParameter id="1225" field="bphtb_discount" dataType="Float" parameterType="Control" parameterSource="bphtb_discount" omitIfEmpty="True"/>
-				<CustomParameter id="1226" field="description" dataType="Text" parameterType="Control" parameterSource="description" omitIfEmpty="True"/>
-				<CustomParameter id="1227" field="market_price" dataType="Float" parameterType="Control" parameterSource="market_price" omitIfEmpty="True"/>
-				<CustomParameter id="1228" field="mobile_phone_no" dataType="Text" parameterType="Control" parameterSource="mobile_phone_no" omitIfEmpty="True"/>
-				<CustomParameter id="1229" field="wp_p_region_id_kec" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="wp_p_region_id_kec"/>
-				<CustomParameter id="1230" field="object_p_region_id_kel" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="object_p_region_id_kel"/>
-				<CustomParameter id="1231" field="jenis_harga_bphtb" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="jenis_harga_bphtb"/>
-				<CustomParameter id="1232" field="bphtb_legal_doc_description" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="bphtb_legal_doc_description"/>
-				<CustomParameter id="1233" field="add_disc_percent" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="add_disc_percent"/>
-			</UFormElements>
+				<CustomParameter id="1317" field="restitusi_amt" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="restitusi_amt"/>
+<CustomParameter id="1318" field="alasan" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="alasan"/>
+</UFormElements>
 			<DSPParameters>
 				<SPParameter id="1234" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0"/>
 				<SPParameter id="1235" parameterName="icode" parameterSource="icode" dataType="Char" parameterType="URL" dataSize="255" direction="Input" scale="0" precision="0"/>
@@ -995,7 +927,7 @@ sysdate,
 			<DSQLParameters>
 			</DSQLParameters>
 			<DConditions>
-				<TableParameter id="1296" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
+				<TableParameter id="1296" conditionType="Parameter" useIsNull="False" field="t_bphtb_restitusi_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_restitusi_id"/>
 			</DConditions>
 			<SecurityGroups/>
 			<Attributes/>

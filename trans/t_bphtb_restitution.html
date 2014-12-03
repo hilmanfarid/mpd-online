@@ -205,19 +205,12 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
-      <label onclick="javascript:toDaftar()">
-      <div class="tab-title">
-        DAFTAR BPHTB&nbsp; 
-      </div>
-      </label>
-    </div>
-    <div class="th tab-button">
       <div class="tab-title-selected">
-        FORMULIR PENDAFTARAN 
+        RESTITUSI BPHTB
       </div>
     </div>
     <!--<div class="th tab-button">
@@ -252,13 +245,8 @@ jQuery(document).ready(function()
             </tr>
             <!-- END Error -->
             <tr class="Controls">
-              <td class="th" colspan="3">&nbsp;Nomor Registrasi</td> 
-              <td colspan="6">&nbsp;<input id="t_bphtb_registrationForm1registration_no" class="ControlsRO" name="{registration_no_Name}" readonly value="{registration_no}"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" size="27" type="hidden"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" size="27" type="hidden"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_bphtb_registration_listPage" name="{t_bphtb_registration_listPage_Name}" value="{t_bphtb_registration_listPage}" size="27" type="hidden"></td>
-            </tr>
- 
-            <tr class="Controls">
               <td class="th" colspan="3"><span id="keterangan-kurang-bayar">&nbsp;Jumlah Restitusi</span></td> 
-              <td colspan="6">&nbsp;<input id="t_bphtb_registrationForm1restitusi_amt" name="{restitusi_amt_Name}" value="{restitusi_amt}"></td>
+              <td colspan="6">&nbsp;<input id="t_bphtb_registrationForm1restitusi_amt" name="{restitusi_amt_Name}" value="{restitusi_amt}"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" size="27" type="hidden"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_bphtb_restitusi_id" name="{t_bphtb_restitusi_id_Name}" value="{t_bphtb_restitusi_id}" size="27" type="hidden"></td>
             </tr>
  
             <tr class="Controls">
@@ -267,8 +255,10 @@ jQuery(document).ready(function()
             </tr>
  
             <tr class="Bottom">
-              <td colspan="9" align="right">&nbsp; 
-                <!-- BEGIN Button Button_Add_Resitution --><input id="t_bphtb_registrationForm1Button_Add_Resitution" class="btn_tambah" onclick="add_resitution()" name="{Button_Name}" alt="Search" value="TAMBAH RESITUSI" type="submit"><!-- END Button Button_Add_Resitution --></td>
+              <td colspan="9" align="right">
+                <!-- BEGIN Button Button1 --><input id="t_bphtb_registrationForm1Button1" class="btn_tambah" name="{Button_Name}" alt="Button1" value="Update Restitusi" type="submit"><!-- END Button Button1 -->&nbsp; 
+                <!-- BEGIN Button Button_Add_Resitution --><input id="t_bphtb_registrationForm1Button_Add_Resitution" class="btn_tambah" onclick="add_resitution()" name="{Button_Name}" alt="Search" value="TAMBAH RESITUSI" type="submit"><!-- END Button Button_Add_Resitution -->
+                <!-- BEGIN Button Button2 --><input id="t_bphtb_registrationForm1Button2" class="btn_tambah" name="{Button_Name}" alt="Button2" value="Delete" type="submit"><!-- END Button Button2 --></td>
             </tr>
           </table>
         </td>
@@ -465,7 +455,7 @@ jQuery(document).ready(function()
             <tr class="Controls">
               <td class="th">&nbsp;</td> 
               <td class="th" colspan="2">Potongan Tambahan</td> 
-              <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormadd_discount" class="ControlsRO" name="{add_discount_Name}" readonly value="{add_discount}"></td>
+              <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormadd_discount" class="ControlsRO" name="{add_discount_Name}" readonly value="NaN"></td>
             </tr>
  
             <tr class="Controls">

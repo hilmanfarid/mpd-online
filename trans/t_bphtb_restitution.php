@@ -1533,7 +1533,7 @@ class clsRecordt_bphtb_registrationForm1 { //t_bphtb_registrationForm1 Class @10
     // Class variables
 //End Variables
 
-//Class_Initialize Event @1016-1C0377A1
+//Class_Initialize Event @1016-A59AF8BC
     function clsRecordt_bphtb_registrationForm1($RelativePath, & $Parent)
     {
 
@@ -1564,60 +1564,54 @@ class clsRecordt_bphtb_registrationForm1 { //t_bphtb_registrationForm1 Class @10
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->restitusi_amt = & new clsControl(ccsTextBox, "restitusi_amt", "restitusi_amt", ccsText, "", CCGetRequestParam("restitusi_amt", $Method, NULL), $this);
-            $this->t_bphtb_registration_id = & new clsControl(ccsHidden, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsInteger, "", CCGetRequestParam("t_bphtb_registration_id", $Method, NULL), $this);
-            $this->registration_no = & new clsControl(ccsHidden, "registration_no", "registration_no", ccsInteger, "", CCGetRequestParam("registration_no", $Method, NULL), $this);
             $this->Button_Add_Resitution = & new clsButton("Button_Add_Resitution", $Method, $this);
             $this->alasan = & new clsControl(ccsTextArea, "alasan", "alasan", ccsText, "", CCGetRequestParam("alasan", $Method, NULL), $this);
-            $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsInteger, "", CCGetRequestParam("t_customer_order_id", $Method, NULL), $this);
-            $this->t_bphtb_registration_listPage = & new clsControl(ccsHidden, "t_bphtb_registration_listPage", "t_bphtb_registration_listPage", ccsInteger, "", CCGetRequestParam("t_bphtb_registration_listPage", $Method, NULL), $this);
+            $this->Button1 = & new clsButton("Button1", $Method, $this);
+            $this->t_bphtb_registration_id = & new clsControl(ccsHidden, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsInteger, "", CCGetRequestParam("t_bphtb_registration_id", $Method, NULL), $this);
+            $this->t_bphtb_restitusi_id = & new clsControl(ccsHidden, "t_bphtb_restitusi_id", "t_bphtb_restitusi_id", ccsFloat, "", CCGetRequestParam("t_bphtb_restitusi_id", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
         }
     }
 //End Class_Initialize Event
 
-//Initialize Method @1016-ED145515
+//Initialize Method @1016-D9862056
     function Initialize()
     {
 
         if(!$this->Visible)
             return;
 
-        $this->DataSource->Parameters["urlt_bphtb_registration_id"] = CCGetFromGet("t_bphtb_registration_id", NULL);
+        $this->DataSource->Parameters["urlt_bphtb_restitusi_id"] = CCGetFromGet("t_bphtb_restitusi_id", NULL);
     }
 //End Initialize Method
 
-//Validate Method @1016-C37250BE
+//Validate Method @1016-60D96278
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
         $Validation = ($this->restitusi_amt->Validate() && $Validation);
-        $Validation = ($this->t_bphtb_registration_id->Validate() && $Validation);
-        $Validation = ($this->registration_no->Validate() && $Validation);
         $Validation = ($this->alasan->Validate() && $Validation);
-        $Validation = ($this->t_customer_order_id->Validate() && $Validation);
-        $Validation = ($this->t_bphtb_registration_listPage->Validate() && $Validation);
+        $Validation = ($this->t_bphtb_registration_id->Validate() && $Validation);
+        $Validation = ($this->t_bphtb_restitusi_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->restitusi_amt->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->t_bphtb_registration_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->registration_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->alasan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->t_customer_order_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->t_bphtb_registration_listPage->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_bphtb_registration_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_bphtb_restitusi_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @1016-FF861C18
+//CheckErrors Method @1016-69BAAF4C
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->restitusi_amt->Errors->Count());
-        $errors = ($errors || $this->t_bphtb_registration_id->Errors->Count());
-        $errors = ($errors || $this->registration_no->Errors->Count());
         $errors = ($errors || $this->alasan->Errors->Count());
-        $errors = ($errors || $this->t_customer_order_id->Errors->Count());
-        $errors = ($errors || $this->t_bphtb_registration_listPage->Errors->Count());
+        $errors = ($errors || $this->t_bphtb_registration_id->Errors->Count());
+        $errors = ($errors || $this->t_bphtb_restitusi_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -1639,7 +1633,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @1016-AF81E797
+//Operation Method @1016-AB2D9462
     function Operation()
     {
         if(!$this->Visible)
@@ -1655,16 +1649,29 @@ function GetPrimaryKey($keyName)
         }
 
         if($this->FormSubmitted) {
-            $this->PressedButton = $this->EditMode ? "Button_Add_Resitution" : "";
+            $this->PressedButton = $this->EditMode ? "Button1" : "Button_Add_Resitution";
             if($this->Button_Add_Resitution->Pressed) {
                 $this->PressedButton = "Button_Add_Resitution";
+            } else if($this->Button1->Pressed) {
+                $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
-        $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
+        $Redirect = "t_bphtb_restitution_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "t_bphtb_restitusi_id"));
         if($this->Validate()) {
             if($this->PressedButton == "Button_Add_Resitution") {
-                $Redirect = "t_bphtb_restitution_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "t_bphtb_registration_id"));
-                if(!CCGetEvent($this->Button_Add_Resitution->CCSEvents, "OnClick", $this->Button_Add_Resitution) || !$this->UpdateRow()) {
+                $Redirect = "t_bphtb_restitution_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "t_bphtb_restitusi_id", "t_bphtb_registration_id"));
+                if(!CCGetEvent($this->Button_Add_Resitution->CCSEvents, "OnClick", $this->Button_Add_Resitution) || !$this->InsertRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button1") {
+                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                $Redirect = "t_bphtb_restitution_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "t_bphtb_restitusi_id", "t_bphtb_restitusi_id"));
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2) || !$this->DeleteRow()) {
                     $Redirect = "";
                 }
             }
@@ -1676,13 +1683,12 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @1016-8B0F3E9F
+//InsertRow Method @1016-A8009B84
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
         if(!$this->InsertAllowed) return false;
         $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
-        $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
         $this->DataSource->restitusi_amt->SetValue($this->restitusi_amt->GetValue(true));
         $this->DataSource->alasan->SetValue($this->alasan->GetValue(true));
         $this->DataSource->Insert();
@@ -1691,16 +1697,14 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @1016-CD1E040C
+//UpdateRow Method @1016-263F023E
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
-        $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
-        $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
+        $this->DataSource->t_bphtb_restitusi_id->SetValue($this->t_bphtb_restitusi_id->GetValue(true));
         $this->DataSource->restitusi_amt->SetValue($this->restitusi_amt->GetValue(true));
         $this->DataSource->alasan->SetValue($this->alasan->GetValue(true));
-        $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -1718,7 +1722,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @1016-E1103587
+//Show Method @1016-4907D144
     function Show()
     {
         global $CCSUseAmp;
@@ -1747,25 +1751,21 @@ function GetPrimaryKey($keyName)
                 $this->DataSource->SetValues();
                 if(!$this->FormSubmitted){
                     $this->restitusi_amt->SetValue($this->DataSource->restitusi_amt->GetValue());
+                    $this->alasan->SetValue($this->DataSource->alasan->GetValue());
                     $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
-                    $this->registration_no->SetValue($this->DataSource->registration_no->GetValue());
-                    $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
+                    $this->t_bphtb_restitusi_id->SetValue($this->DataSource->t_bphtb_restitusi_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
             }
         }
-        if (!$this->FormSubmitted) {
-        }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
             $Error = ComposeStrings($Error, $this->restitusi_amt->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->t_bphtb_registration_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->registration_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->alasan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->t_customer_order_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->t_bphtb_registration_listPage->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_bphtb_registration_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_bphtb_restitusi_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1776,7 +1776,9 @@ function GetPrimaryKey($keyName)
         $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
         $Tpl->SetVar("HTMLFormName", $this->ComponentName);
         $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
-        $this->Button_Add_Resitution->Visible = $this->EditMode && $this->UpdateAllowed;
+        $this->Button_Add_Resitution->Visible = !$this->EditMode && $this->InsertAllowed;
+        $this->Button1->Visible = $this->EditMode && $this->UpdateAllowed;
+        $this->Button2->Visible = $this->EditMode && $this->DeleteAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -1786,12 +1788,12 @@ function GetPrimaryKey($keyName)
         }
 
         $this->restitusi_amt->Show();
-        $this->t_bphtb_registration_id->Show();
-        $this->registration_no->Show();
         $this->Button_Add_Resitution->Show();
         $this->alasan->Show();
-        $this->t_customer_order_id->Show();
-        $this->t_bphtb_registration_listPage->Show();
+        $this->Button1->Show();
+        $this->t_bphtb_registration_id->Show();
+        $this->t_bphtb_restitusi_id->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1802,7 +1804,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_registrationForm1DataSource Class @1016-C91294BC
 
-//DataSource Variables @1016-7580AC4C
+//DataSource Variables @1016-ED2B219B
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1815,17 +1817,16 @@ class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_
     var $wp;
     var $AllParametersSet;
 
+    var $UpdateFields = array();
 
     // Datasource fields
     var $restitusi_amt;
-    var $t_bphtb_registration_id;
-    var $registration_no;
     var $alasan;
-    var $t_customer_order_id;
-    var $t_bphtb_registration_listPage;
+    var $t_bphtb_registration_id;
+    var $t_bphtb_restitusi_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @1016-21EAEA7A
+//DataSourceClass_Initialize Event @1016-B0439FC9
     function clst_bphtb_registrationForm1DataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1833,38 +1834,37 @@ class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_
         $this->Initialize();
         $this->restitusi_amt = new clsField("restitusi_amt", ccsText, "");
         
-        $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsInteger, "");
-        
-        $this->registration_no = new clsField("registration_no", ccsInteger, "");
-        
         $this->alasan = new clsField("alasan", ccsText, "");
         
-        $this->t_customer_order_id = new clsField("t_customer_order_id", ccsInteger, "");
+        $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsInteger, "");
         
-        $this->t_bphtb_registration_listPage = new clsField("t_bphtb_registration_listPage", ccsInteger, "");
+        $this->t_bphtb_restitusi_id = new clsField("t_bphtb_restitusi_id", ccsFloat, "");
         
 
+        $this->UpdateFields["restitusi_amt"] = array("Name" => "restitusi_amt", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["alasan"] = array("Name" => "alasan", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
-//Prepare Method @1016-A34FC581
+//Prepare Method @1016-0B96AC0F
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlt_bphtb_registration_id", ccsText, "", "", $this->Parameters["urlt_bphtb_registration_id"], "", false);
+        $this->wp->AddParameter("1", "urlt_bphtb_restitusi_id", ccsFloat, "", "", $this->Parameters["urlt_bphtb_restitusi_id"], 0, false);
         $this->AllParametersSet = $this->wp->AllParamsSet();
     }
 //End Prepare Method
 
-//Open Method @1016-FF9832DC
+//Open Method @1016-D8DEE97C
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "select *\n" .
-        "from t_bphtb_registration \n" .
-        "where t_bphtb_registration_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "";
+        $this->SQL = "select t_bphtb_restitusi.*,t_bphtb_registration.registration_no\n" .
+        "from t_bphtb_restitusi,t_bphtb_registration\n" .
+        "where t_bphtb_restitusi_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "and t_bphtb_restitusi.t_bphtb_registration_id = t_bphtb_registration.t_bphtb_registration_id";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         $this->PageSize = 1;
@@ -1873,37 +1873,31 @@ class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Open Method
 
-//SetValues Method @1016-42F9224C
+//SetValues Method @1016-389291AA
     function SetValues()
     {
         $this->restitusi_amt->SetDBValue($this->f("restitusi_amt"));
+        $this->alasan->SetDBValue($this->f("alasan"));
         $this->t_bphtb_registration_id->SetDBValue(trim($this->f("t_bphtb_registration_id")));
-        $this->registration_no->SetDBValue(trim($this->f("t_bphtb_registration_id")));
-        $this->t_customer_order_id->SetDBValue(trim($this->f("t_customer_order_id")));
+        $this->t_bphtb_restitusi_id->SetDBValue(trim($this->f("t_bphtb_restitusi_id")));
     }
 //End SetValues Method
 
-//Insert Method @1016-46F94998
+//Insert Method @1016-38C14107
     function Insert()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
         $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_id", ccsInteger, "", "", $this->t_bphtb_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["t_customer_order_id"] = new clsSQLParameter("ctrlt_customer_order_id", ccsInteger, "", "", $this->t_customer_order_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["restitusi_amt"] = new clsSQLParameter("ctrlrestitusi_amt", ccsInteger, "", "", $this->restitusi_amt->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["created_by"] = new clsSQLParameter("expr1307", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
-        $this->cp["updated_by"] = new clsSQLParameter("expr1308", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue())) 
             $this->cp["t_bphtb_registration_id"]->SetValue($this->t_bphtb_registration_id->GetValue(true));
         if (!strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue(true))) 
             $this->cp["t_bphtb_registration_id"]->SetText(0);
-        if (!is_null($this->cp["t_customer_order_id"]->GetValue()) and !strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue())) 
-            $this->cp["t_customer_order_id"]->SetValue($this->t_customer_order_id->GetValue(true));
-        if (!strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue(true))) 
-            $this->cp["t_customer_order_id"]->SetText(0);
         if (!is_null($this->cp["restitusi_amt"]->GetValue()) and !strlen($this->cp["restitusi_amt"]->GetText()) and !is_bool($this->cp["restitusi_amt"]->GetValue())) 
             $this->cp["restitusi_amt"]->SetValue($this->restitusi_amt->GetValue(true));
         if (!strlen($this->cp["restitusi_amt"]->GetText()) and !is_bool($this->cp["restitusi_amt"]->GetValue(true))) 
@@ -1912,26 +1906,7 @@ class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_
             $this->cp["alasan"]->SetValue($this->alasan->GetValue(true));
         if (!is_null($this->cp["created_by"]->GetValue()) and !strlen($this->cp["created_by"]->GetText()) and !is_bool($this->cp["created_by"]->GetValue())) 
             $this->cp["created_by"]->SetValue(CCGetUserLogin());
-        if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
-            $this->cp["updated_by"]->SetValue(CCGetUserLogin());
-        $this->SQL = "INSERT INTO sikp.t_bphtb_restitusi(\n" .
-        "t_bphtb_registration_id, \n" .
-        "t_customer_order_id, \n" .
-        "restitusi_amt, \n" .
-        "alasan, \n" .
-        "creation_date, \n" .
-        "created_by, \n" .
-        "updated_date, \n" .
-        "updated_by)\n" .
-        "VALUES (\n" .
-        "" . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsInteger) . ", \n" .
-        "" . $this->SQLValue($this->cp["t_customer_order_id"]->GetDBValue(), ccsInteger) . ", \n" .
-        "" . $this->SQLValue($this->cp["restitusi_amt"]->GetDBValue(), ccsInteger) . ", \n" .
-        "'" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "', \n" .
-        "sysdate, \n" .
-        "'" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', \n" .
-        "sysdate, \n" .
-        "'" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "');";
+        $this->SQL = "select * from f_insert_bphtb_restitusi(18," . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsInteger) . "," . $this->SQLValue($this->cp["restitusi_amt"]->GetDBValue(), ccsInteger) . ",'" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -1940,55 +1915,45 @@ class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Insert Method
 
-//Update Method @1016-1F11342D
+//Update Method @1016-13362C1E
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_id", ccsInteger, "", "", $this->t_bphtb_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["t_customer_order_id"] = new clsSQLParameter("ctrlt_customer_order_id", ccsInteger, "", "", $this->t_customer_order_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["restitusi_amt"] = new clsSQLParameter("ctrlrestitusi_amt", ccsInteger, "", "", $this->restitusi_amt->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["created_by"] = new clsSQLParameter("expr1313", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
-        $this->cp["updated_by"] = new clsSQLParameter("expr1314", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
+        $this->cp["restitusi_amt"] = new clsSQLParameter("ctrlrestitusi_amt", ccsFloat, "", "", $this->restitusi_amt->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), NULL, false, $this->ErrorBlock);
+        $wp = new clsSQLParameters($this->ErrorBlock);
+        $wp->AddParameter("1", "ctrlt_bphtb_restitusi_id", ccsFloat, "", "", $this->t_bphtb_restitusi_id->GetValue(true), "", false);
+        if(!$wp->AllParamsSet()) {
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
+        $wp->AddParameter("2", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
+        if(!$wp->AllParamsSet()) {
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
+        $wp->AddParameter("3", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
+        if(!$wp->AllParamsSet()) {
+            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
+        }
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
-        if (!is_null($this->cp["t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue())) 
-            $this->cp["t_bphtb_registration_id"]->SetValue($this->t_bphtb_registration_id->GetValue(true));
-        if (!strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue(true))) 
-            $this->cp["t_bphtb_registration_id"]->SetText(0);
-        if (!is_null($this->cp["t_customer_order_id"]->GetValue()) and !strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue())) 
-            $this->cp["t_customer_order_id"]->SetValue($this->t_customer_order_id->GetValue(true));
-        if (!strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue(true))) 
-            $this->cp["t_customer_order_id"]->SetText(0);
         if (!is_null($this->cp["restitusi_amt"]->GetValue()) and !strlen($this->cp["restitusi_amt"]->GetText()) and !is_bool($this->cp["restitusi_amt"]->GetValue())) 
             $this->cp["restitusi_amt"]->SetValue($this->restitusi_amt->GetValue(true));
-        if (!strlen($this->cp["restitusi_amt"]->GetText()) and !is_bool($this->cp["restitusi_amt"]->GetValue(true))) 
-            $this->cp["restitusi_amt"]->SetText(0);
         if (!is_null($this->cp["alasan"]->GetValue()) and !strlen($this->cp["alasan"]->GetText()) and !is_bool($this->cp["alasan"]->GetValue())) 
             $this->cp["alasan"]->SetValue($this->alasan->GetValue(true));
-        if (!is_null($this->cp["created_by"]->GetValue()) and !strlen($this->cp["created_by"]->GetText()) and !is_bool($this->cp["created_by"]->GetValue())) 
-            $this->cp["created_by"]->SetValue(CCGetUserLogin());
-        if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
-            $this->cp["updated_by"]->SetValue(CCGetUserLogin());
-        $this->SQL = "INSERT INTO sikp.t_bphtb_restitusi(\n" .
-        "t_bphtb_registration_id, \n" .
-        "t_customer_order_id, \n" .
-        "restitusi_amt, \n" .
-        "alasan, \n" .
-        "creation_date, \n" .
-        "created_by, \n" .
-        "updated_date, \n" .
-        "updated_by)\n" .
-        "VALUES (\n" .
-        "" . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsInteger) . ", \n" .
-        "" . $this->SQLValue($this->cp["t_customer_order_id"]->GetDBValue(), ccsInteger) . ", \n" .
-        "" . $this->SQLValue($this->cp["restitusi_amt"]->GetDBValue(), ccsInteger) . ", \n" .
-        "'" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "', \n" .
-        "sysdate, \n" .
-        "'" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', \n" .
-        "sysdate, \n" .
-        "'" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "');";
+        $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_restitusi_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
+        $wp->Criterion[2] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("2"), $this->ToSQL($wp->GetDBValue("2"), ccsFloat),false);
+        $wp->Criterion[3] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("3"), $this->ToSQL($wp->GetDBValue("3"), ccsFloat),false);
+        $Where = $wp->opAND(
+             false, $wp->opAND(
+             false, 
+             $wp->Criterion[1], 
+             $wp->Criterion[2]), 
+             $wp->Criterion[3]);
+        $this->UpdateFields["restitusi_amt"]["Value"] = $this->cp["restitusi_amt"]->GetDBValue(true);
+        $this->UpdateFields["alasan"]["Value"] = $this->cp["alasan"]->GetDBValue(true);
+        $this->SQL = CCBuildUpdate("t_bphtb_restitusi", $this->UpdateFields, $this);
+        $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -1997,22 +1962,22 @@ class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Update Method
 
-//Delete Method @1016-AEEB9CE7
+//Delete Method @1016-7FDC5B05
     function Delete()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
         $wp = new clsSQLParameters($this->ErrorBlock);
-        $wp->AddParameter("1", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
+        $wp->AddParameter("1", "urlt_bphtb_restitusi_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_restitusi_id", NULL), "", false);
         if(!$wp->AllParamsSet()) {
             $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
         }
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
-        $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
+        $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_restitusi_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
         $Where = 
              $wp->Criterion[1];
-        $this->SQL = "DELETE FROM t_bphtb_registration";
+        $this->SQL = "DELETE FROM t_bphtb_restitusi";
         $this->SQL = CCBuildSQL($this->SQL, $Where, "");
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
