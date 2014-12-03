@@ -420,7 +420,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-BD51FCBD
+//Operation Method @3-DFF24F29
     function Operation()
     {
         if(!$this->Visible)
@@ -442,7 +442,7 @@ function GetPrimaryKey($keyName)
         $Redirect = "t_bphtb_restitution_list.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
-                $Redirect = "t_bphtb_restitution_list.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
+                $Redirect = "t_bphtb_restitution_list.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y", "t_bphtb_registration_id")));
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
                     $Redirect = "";
                 }
