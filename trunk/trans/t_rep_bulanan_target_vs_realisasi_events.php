@@ -321,7 +321,7 @@ function getDataRow($year_period_id, $p_vat_type_id, $date_awal, $date_akhir, $p
 		$result['target'] = $dbConn->f("target");
 		$result['piutang'] = $dbConn->f("piutang");
 		$result['realisasi'] = $dbConn->f("realisasi");
-		$result['selisih'] = $dbConn->f("realisasi") - $dbConn->f("target");
+		$result['selisih'] = ($dbConn->f("realisasi") + $dbConn->f("piutang")) - $dbConn->f("target");
 		$result['realisasiDanPiutang'] = $dbConn->f("realisasi") + $dbConn->f("piutang");
 	}
 	$dbConn->close();
@@ -346,7 +346,7 @@ function getDataRowReklame($year_period_id, $date_awal, $date_akhir) {
 		$result['target'] = $dbConn->f("target");
 		$result['piutang'] = $dbConn->f("piutang");
 		$result['realisasi'] = $dbConn->f("realisasi");
-		$result['selisih'] = $dbConn->f("realisasi") - $dbConn->f("target");
+		$result['selisih'] = ($dbConn->f("realisasi") + $dbConn->f("piutang")) - $dbConn->f("target");
 		$result['realisasiDanPiutang'] = $dbConn->f("realisasi") + $dbConn->f("piutang");
 	}
 	$dbConn->close();
