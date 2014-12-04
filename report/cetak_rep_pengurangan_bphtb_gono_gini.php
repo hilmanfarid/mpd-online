@@ -167,7 +167,7 @@ class FormCetak extends FPDF {
 		$this->AddPage("P");
 		$encImageData = '';
 		$dbConn = new clsDBConnSIKP();
-		$query = "SELECT * FROM f_terbilang('".ceil($data['bphtb_amt_final_recount'])."','') as terbilang";
+		$query = "SELECT * FROM f_terbilang('".ceil($data['bphtb_amt_final'])."','') as terbilang";
 		$dbConn->query($query);
 		$data['terbilang'] = '';
 		if($dbConn->next_record()) {
