@@ -6,7 +6,7 @@ include_once(RelativePath . "/Common.php");
 // include_once("../include/fpdf.php");
 require("../include/qrcode/fpdf17/fpdf.php");
 
-$t_bphtb_restitusi_id		= CCGetFromGet("t_bphtb_restitusi_id", "");
+$t_bphtb_registration_id		= CCGetFromGet("t_bphtb_registration_id", "");
 /*if(empty($t_bphtb_restitusi_id)){
 	die("Proses membutuhkan restitusi id");
 }*/
@@ -15,24 +15,106 @@ $t_bphtb_restitusi_id		= CCGetFromGet("t_bphtb_restitusi_id", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$sql = "select *,to_char(payment_date, 'dd-mon-yyyy') as payment_date
-		from t_bphtb_restitusi a
-		left join t_bphtb_registration x on a.t_bphtb_registration_id= x.t_bphtb_registration_id
-		LEFT JOIN t_payment_receipt_bphtb y on a.t_bphtb_registration_id = y.t_bphtb_registration_id
-		where t_bphtb_restitusi_id = 1";
+$sql				= "select j.t_bphtb_exemption_id, j.exemption_amount, j.dasar_pengurang, j.analisa_penguranan, j.jenis_pensiunan, j.jenis_perolehan_hak, j.sk_bpn_no, to_char(j.tanggal_sk,'DD-MM-YYYY') as tanggal_sk, 
+j.pilihan_lembar_cetak, j.opsi_a2, j.opsi_a2_keterangan, j.opsi_b7, j.opsi_b7_keterangan, j.keterangan_opsi_c, j.keterangan_opsi_c_gono_gini,
+to_char(j.tanggal_berita_acara,'DD-MM-YYYY') as tanggal_berita_acara, j.pemeriksa_id, j.administrator_id,
+j.nomor_berita_acara, j.nomor_notaris,
+k.pemeriksa_nama as nama_pemeriksa, k.pemeriksa_nip as nip_pemeriksa, k.pemeriksa_jabatan as jabatan_pemeriksa,
+l.pemeriksa_nama as nama_operator, l.pemeriksa_nip as nip_operator, l.pemeriksa_jabatan as jabatan_operator,
+a.*,
+cust_order.p_rqst_type_id,
+b.region_name as wp_kota,
+c.region_name as wp_kecamatan,
+d.region_name as wp_kelurahan,
+e.region_name as object_region,
+f.region_name as object_kecamatan,
+g.region_name as object_kelurahan,
+h.description as doc_name
+
+from t_bphtb_exemption as j
+left join t_bphtb_registration as a  on j.t_bphtb_registration_id = a.t_bphtb_registration_id
+left join p_region as b
+	on a.wp_p_region_id = b.p_region_id
+left join p_region as c
+	on a.wp_p_region_id_kec = c.p_region_id
+left join p_region as d
+	on a.wp_p_region_id_kel = d.p_region_id
+left join p_region as e
+	on a.object_p_region_id = e.p_region_id
+left join p_region as f
+	on a.object_p_region_id_kec = f.p_region_id
+left join p_region as g
+	on a.object_p_region_id_kel = g.p_region_id
+left join p_bphtb_legal_doc_type as h
+	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
+left join t_customer_order as cust_order
+	on cust_order.t_customer_order_id = a.t_customer_order_id
+left join t_bphtb_exemption_pemeriksa as k
+   on j.pemeriksa_id = k.t_bphtb_exemption_pemeriksa_id
+left join t_bphtb_exemption_pemeriksa as l
+	on j.administrator_id = l.t_bphtb_exemption_pemeriksa_id
+where j.t_bphtb_registration_id = $t_bphtb_registration_id";
 
 $dbConn->query($sql);
-$items = array();
+
 while($dbConn->next_record()){
-	$data["wp_name"] = $dbConn->f("wp_name");
-	$data["wp_address_name"] = $dbConn->f("wp_address_name");
-	$data["npwd"] = $dbConn->f("npwd");
-	$data["no_urut"] = $dbConn->f("registration_no");
-	$data["bphtb_amt_final"] = $dbConn->f("bphtb_amt_final");
-	$data["njop_pbb"] = $dbConn->f("njop_pbb");
-	$data["restitusi_amt"] = $dbConn->f("restitusi_amt");
-	$data["payment_date"] = $dbConn->f("payment_date");
-	$items[] = $data;
+	$data["wp_name"]				= $dbConn->f("wp_name");
+	$data["npwp"]					= $dbConn->f("npwp");
+	$data["wp_address_name"]		= $dbConn->f("wp_address_name");
+	$data["wp_rt"]					= $dbConn->f("wp_rt");
+	$data["wp_rw"]					= $dbConn->f("wp_rw");
+	$data["wp_region"]				= $dbConn->f("wp_kota");
+	$data["wp_region_kec"]			= $dbConn->f("wp_kecamatan");
+	$data["wp_region_kel"]			= $dbConn->f("wp_kelurahan");
+	$data["njop_pbb"]				= $dbConn->f("njop_pbb");
+	$data["object_address_name"]	= $dbConn->f("object_address_name");
+	$data["object_rt"]				= $dbConn->f("object_rt");
+	$data["object_rw"]				= $dbConn->f("object_rw");
+	$data["object_region"]			= $dbConn->f("object_region");
+	$data["object_region_kec"]		= $dbConn->f("object_kecamatan");
+	$data["object_region_kel"]		= $dbConn->f("object_kelurahan");
+	$data["doc_name"]				= $dbConn->f("doc_name");
+	$data["land_area"]				= $dbConn->f("land_area");
+	$data["land_price_per_m"]		= $dbConn->f("land_price_per_m");
+	$data["land_total_price"]		= $dbConn->f("land_total_price");
+	$data["building_area"]			= $dbConn->f("building_area");
+	$data["building_price_per_m"]	= $dbConn->f("building_price_per_m");
+	$data["building_total_price"]	= $dbConn->f("building_total_price");
+	$data["market_price"]			= $dbConn->f("market_price");
+	$data["npop"]					= $dbConn->f("npop");
+	$data["npop_tkp"]				= $dbConn->f("npop_tkp");
+	$data["npop_kp"]				= $dbConn->f("npop_kp");
+	$data["bphtb_amt"]				= $dbConn->f("bphtb_amt");
+	$data["bphtb_discount"]			= $dbConn->f("bphtb_discount");
+	$data["bphtb_amt_final"]		= $dbConn->f("bphtb_amt_final");
+	$data["registration_no"]		= $dbConn->f("registration_no");
+	$data["jenis_harga_bphtb"]		= $dbConn->f("jenis_harga_bphtb");
+	$data["description"]			= $dbConn->f("description");
+	$data["exemption_amount"]		= $dbConn->f("exemption_amount");
+	$data["dasar_pengurang"]		= $dbConn->f("dasar_pengurang");
+	$data["analisa_penguranan"]		= $dbConn->f("analisa_penguranan");
+	$data["nama_pemeriksa"]		    = $dbConn->f("nama_pemeriksa");
+	$data["jabatan_pemeriksa"]		= $dbConn->f("jabatan_pemeriksa");
+	$data["nip_pemeriksa"]		    = $dbConn->f("nip_pemeriksa");
+	$data["nama_operator"]		    = $dbConn->f("nama_operator");
+	$data["jabatan_operator"]		= $dbConn->f("jabatan_operator");
+	$data["nip_operator"]		    = $dbConn->f("nip_operator");
+	$data["jenis_pensiunan"]		= $dbConn->f("jenis_pensiunan");
+	$data["sk_bpn_no"]		        = $dbConn->f("sk_bpn_no");
+	$data["tanggal_sk"]		        = $dbConn->f("tanggal_sk");
+	$data["persen_pengurangan"]     = ceil($dbConn->f("bphtb_discount")/$dbConn->f("bphtb_amt") * 100);
+	$data["jenis_perolehan_hak"]	= $dbConn->f("jenis_perolehan_hak");
+	$data["pilihan_lembar_cetak"]	= $dbConn->f("pilihan_lembar_cetak");
+	$data["opsi_a2"]	            = $dbConn->f("opsi_a2");
+	$data["opsi_a2_keterangan"]	    = $dbConn->f("opsi_a2_keterangan");
+	$data["opsi_b7"]	            = $dbConn->f("opsi_b7");
+	$data["opsi_b7_keterangan"]	    = $dbConn->f("opsi_b7_keterangan");
+	$data["keterangan_opsi_c"]	    = $dbConn->f("keterangan_opsi_c");
+	$data["keterangan_opsi_c_gono_gini"]	    = $dbConn->f("keterangan_opsi_c_gono_gini");
+	$data["nomor_berita_acara"]	    = $dbConn->f("nomor_berita_acara");
+	$data["nomor_notaris"]	    = $dbConn->f("nomor_notaris");
+	$data["tanggal_berita_acara"]	    = $dbConn->f("tanggal_berita_acara");
+	
 }
 
 $dbConn->close();
@@ -96,8 +178,8 @@ class FormCetak extends FPDF {
 			(	"",
 				"No. Register\n".
 				"Tanggal Masuk",
-				": ..........................................\n".
-				": .........................................."
+				": ".$data['registration_no']."\n".
+				": ".date("d-m-Y").""
 
 			),
 			array
@@ -165,11 +247,11 @@ class FormCetak extends FPDF {
 				"Kecamatan"
 				,
 				"\n".
-				": ..........................................................\n".
-				": ..........................................................\n".
-				": ..........................................................\n".
-				": ..........................................................\n".
-				": ..........................................................\n"
+				": ".$data['wp_name']."\n".
+				": ".$data["npwp"]."\n".
+				": ".$data["wp_address_name"].". RT ".$data['wp_rt']."/RW ".$data['wp_rw']."\n".
+				": ".$data['wp_region_kel']."\n".
+				": ".$data['wp_region_kec']."\n"
 				,
 				"\n".
 				"\n".
@@ -217,14 +299,14 @@ class FormCetak extends FPDF {
 				"Jumlah yang disetor\n"
 				,
 				"\n".
-				": ..........................................................\n".
-				": ..........................................................\n".
-				": ..........................................................\n".
-				"  RT/RW .............................................\n".
-				": ..........................................................\n".
-				": Rp. ....................................................\n".
-				": Rp. ....................................................\n".
-				": Rp. ....................................................\n"
+				": ".$data["njop_pbb"]."\n".
+				": ".$data["object_address_name"]."\n".
+				": ".$data["object_region_kel"]."\n".
+				"  RT/RW ".trim($data["object_rt"])."/".trim($data["object_rw"])."\n".
+				": ".$data["object_region_kec"]."\n".
+				": Rp. ".$data["bphtb_amt_final"]."\n".
+				": Rp. ".$data["npop"]."\n".
+				": Rp. ".$data["bphtb_amt_final"]."\n"
 				,
 				"\n".
 				"\n".
@@ -342,8 +424,8 @@ class FormCetak extends FPDF {
 			(	"",
 				"No. Register\n".
 				"Tanggal Masuk",
-				": ..........................................\n".
-				": .........................................."
+				": ".$data['registration_no']."\n".
+				": ".date("d-m-Y").""
 
 			),
 			array
@@ -367,13 +449,13 @@ class FormCetak extends FPDF {
 				"6. NJOP PBB\n".
 				"7. Jumlah yang disetor\n"
 				,
-				": ..........................................\n".
-				": ..........................................\n".
-				": ..........................................\n".
-				": ..........................................\n".
-				": ..........................................\n".
-				": ..........................................\n".
-				": Rp. ..................................."
+				": ".$data['wp_name']."\n".
+				": ".$data['npwp']."\n".
+				": ".$data["wp_address_name"].". RT ".$data['wp_rt']."/RW ".$data['wp_rw']."\n".
+				": ".$data["njop_pbb"]."\n".
+				": ".$data["object_address_name"]."\n".
+				": ".$data["bphtb_amt_final"]."\n".
+				": Rp. ".$data["bphtb_amt_final"]
 
 			),
 			array
@@ -395,7 +477,7 @@ class FormCetak extends FPDF {
 				"\n".
 				"\n".
 				"\n".
-				"(....................................)"
+				"(".$data['nama_operator'].")"
 			),
 			array
 			(
