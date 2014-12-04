@@ -454,7 +454,7 @@ class FormCetak extends FPDF {
 				": ".$data["wp_address_name"].". RT ".$data['wp_rt']."/RW ".$data['wp_rw']."\n".
 				": ".$data["njop_pbb"]."\n".
 				": ".$data["object_address_name"]."\n".
-				": Rp. ".number_format($data["bphtb_amt_final"], 0, ",", ".")
+				": Rp. ".number_format($data["bphtb_amt_final"], 0, ",", ".")."\n".
 				": Rp. ".number_format($data["bphtb_amt_final"], 0, ",", ".")
 
 			),
