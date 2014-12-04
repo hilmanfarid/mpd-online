@@ -304,9 +304,9 @@ class FormCetak extends FPDF {
 				": ".$data["object_region_kel"]."\n".
 				"  RT/RW ".trim($data["object_rt"])."/".trim($data["object_rw"])."\n".
 				": ".$data["object_region_kec"]."\n".
-				": Rp. ".$data["bphtb_amt_final"]."\n".
-				": Rp. ".$data["npop"]."\n".
-				": Rp. ".$data["bphtb_amt_final"]."\n"
+				": Rp. ".number_format($data["bphtb_amt_final"], 0, ",", ".")."\n".
+				": Rp. ".number_format($data["npop"], 0, ",", ".")."\n".
+				": Rp. ".number_format($data["bphtb_amt_final"], 0, ",", ".")."\n"
 				,
 				"\n".
 				"\n".
@@ -455,7 +455,7 @@ class FormCetak extends FPDF {
 				": ".$data["njop_pbb"]."\n".
 				": ".$data["object_address_name"]."\n".
 				": ".$data["bphtb_amt_final"]."\n".
-				": Rp. ".$data["bphtb_amt_final"]
+				": Rp. ".number_format($data["bphtb_amt_final"], 0, ",", ".")
 
 			),
 			array
