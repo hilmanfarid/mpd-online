@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_rqst_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{ 
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+        $("#t_vat_setllementFormp_vat_type_dtl_id").bind("change paste keyup", function() {
+           alert('tes'); 
+        });
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        ENTRY&nbsp;KEBERATAN BPHTB 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_setllementForm -->
+        <form id="t_vat_setllementForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI ENTRY KEBERATAN BPHTB</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">NOP&nbsp;</td> 
+                    <td><input id="t_vat_setllementFormnjop_pbb" class="ControlsRQ" value="{njop_pbb}" readonly maxlength="32" size="32" name="{njop_pbb_Name}">&nbsp;<img onclick="javascript:lov_bphtb()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormt_bphtb_registration_id" value="{t_bphtb_registration_id}" type="hidden" name="{t_bphtb_registration_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Nama WP</td> 
+                    <td><input id="t_vat_setllementFormwp_name" class="ControlsRO" value="{wp_name}" readonly maxlength="14" size="32" name="{wp_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Total Pajak Sebelumnya</td> 
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormbphtb_amt_final" class="ControlsRO" value="{bphtb_amt_final}" readonly maxlength="14" size="32" name="{bphtb_amt_final_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Total Pajak&nbsp;yang Diajukan</td> 
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormbphtb_amt_final_keberatan" class="ControlsRQ" value="{bphtb_amt_final_keberatan}" maxlength="32" size="32" name="{bphtb_amt_final_keberatan_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Alasan</td> 
+                    <td><input style="TEXT-ALIGN: left; WIDTH: 499px; HEIGHT: 20px" id="t_vat_setllementFormalasan" class="ControlsRQ" value="{alasan}" maxlength="20" size="61" name="{alasan_Name}"></td> 
+                    <script type="text/javascript">$("#t_vat_setllementFormtotal_trans_amount").maskMoney({thousands:',', precision: 0, defaultZero:false});</script>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_setllementFormcreated_by">Dibuat Oleh</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="12" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="15" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_setllementFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="15" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" value="SUBMIT" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 -->&nbsp;&nbsp;&nbsp; </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_setllementForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+function lov_npwd() {
+        //getFrom_LOV('t_vat_setllementForm','t_cust_account_id,npwd,company_name,p_vat_type_id,vat_code,p_vat_type_dtl_id,vat_code_dtl','lov_npwd_manual.php');
+                getFrom_LOV('t_vat_setllementForm','t_cust_account_id,npwd,company_name','lov_npwd_manual.php');
+}
+
+function lov_year_period() {
+        getFrom_LOV('t_vat_setllementForm','p_year_period_id,year_code','lov_year_period.php');
+}
+
+function lov_period() {
+        var yearId = document.getElementById("t_vat_setllementFormp_year_period_id").value;
+        if (yearId != "" && yearId != 0 && yearId != false && yearId != undefined &&  yearId != null){
+           getFrom_LOV('t_vat_setllementForm','p_finance_period_id,finance_period_code,start_period,end_period','lov_finance_period_new.php?p_year_period_id='+yearId);
+        }else{
+            alert("Periode Tahun Year belum Diisi");
+        }
+}
+
+function lov_ayatpajak() {
+        getFrom_LOV('t_vat_setllementForm','p_vat_type_id,vat_code','lov_vat_type.php');
+}
+
+function lov_ayatclass() {
+        getFrom_LOV('t_vat_setllementForm','p_vat_type_dtl_cls_id,vat_code_dtl_cls','lov_ayat_dtl.php?p_vat_type_dtl_id='+document.getElementById("t_vat_setllementFormp_vat_type_dtl_id").value);
+}
+
+function lov_tipeayat() {
+        var p_vat_type_id = document.getElementById("t_vat_setllementFormp_vat_type_id").value;
+        if (p_vat_type_id != "" && p_vat_type_id != 0 && p_vat_type_id != false && p_vat_type_id != undefined &&  p_vat_type_id != null){
+           getFrom_LOV('t_vat_setllementForm','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=p_vat_type_dtl&FIELD_0=p_vat_type_dtl_id&FIELD_1=vat_code&FIELD_2=description&FIELD_3= and p_vat_type_id = '+document.getElementById('t_vat_setllementFormp_vat_type_id').value+'&LABEL1=Tipe Ayat&LABEL2=Deskripsi&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+        }else{
+            alert("Ayat Pajak belum Diisi");
+        }
+}
+
+function lov_status() {
+        getFrom_LOV('t_vat_setllementForm','p_account_status_id,p_account_status_mut','lov_p_account_status.php');     
+}
+
+function lov_alasan() {
+        getFrom_LOV('t_vat_setllementForm','reason_status_id,reason_code','lov_reason_status.php');
+}
+
+function lov_bphtb() {
+       getFrom_LOV('t_vat_setllementForm','t_bphtb_registration_id,njop_pbb,wp_name,bphtb_amt_final','lov_bphtb_keberatan.php');
+}
+</script>
+</body>
+</html>
