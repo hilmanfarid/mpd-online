@@ -220,7 +220,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				" - Nama",
+				"   - Nama",
 				": ".$data["wp_name"]
 			),
 			array
@@ -233,7 +233,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				" - ".$data['opsi_a2'],
+				"   - ".$data['opsi_a2'],
 				": ".$data['opsi_a2_keterangan']
 			),
 			array
