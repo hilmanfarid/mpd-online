@@ -1538,7 +1538,7 @@ class clsRecordt_bphtb_registrationForm1 { //t_bphtb_registrationForm1 Class @10
     // Class variables
 //End Variables
 
-//Class_Initialize Event @1016-FF41B2A3
+//Class_Initialize Event @1016-8E5145EB
     function clsRecordt_bphtb_registrationForm1($RelativePath, & $Parent)
     {
 
@@ -1572,6 +1572,32 @@ class clsRecordt_bphtb_registrationForm1 { //t_bphtb_registrationForm1 Class @10
             $this->t_bphtb_registration_id = & new clsControl(ccsHidden, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsInteger, "", CCGetRequestParam("t_bphtb_registration_id", $Method, NULL), $this);
             $this->t_bphtb_restitusi_id = & new clsControl(ccsHidden, "t_bphtb_restitusi_id", "t_bphtb_restitusi_id", ccsFloat, "", CCGetRequestParam("t_bphtb_restitusi_id", $Method, NULL), $this);
             $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->TAKEN_CTL = & new clsControl(ccsHidden, "TAKEN_CTL", "TAKEN_CTL", ccsText, "", CCGetRequestParam("TAKEN_CTL", $Method, NULL), $this);
+            $this->IS_TAKEN = & new clsControl(ccsHidden, "IS_TAKEN", "IS_TAKEN", ccsText, "", CCGetRequestParam("IS_TAKEN", $Method, NULL), $this);
+            $this->CURR_DOC_ID = & new clsControl(ccsHidden, "CURR_DOC_ID", "CURR_DOC_ID", ccsText, "", CCGetRequestParam("CURR_DOC_ID", $Method, NULL), $this);
+            $this->CURR_DOC_TYPE_ID = & new clsControl(ccsHidden, "CURR_DOC_TYPE_ID", "CURR_DOC_TYPE_ID", ccsText, "", CCGetRequestParam("CURR_DOC_TYPE_ID", $Method, NULL), $this);
+            $this->CURR_PROC_ID = & new clsControl(ccsHidden, "CURR_PROC_ID", "CURR_PROC_ID", ccsText, "", CCGetRequestParam("CURR_PROC_ID", $Method, NULL), $this);
+            $this->CURR_CTL_ID = & new clsControl(ccsHidden, "CURR_CTL_ID", "CURR_CTL_ID", ccsText, "", CCGetRequestParam("CURR_CTL_ID", $Method, NULL), $this);
+            $this->USER_ID_DOC = & new clsControl(ccsHidden, "USER_ID_DOC", "USER_ID_DOC", ccsText, "", CCGetRequestParam("USER_ID_DOC", $Method, NULL), $this);
+            $this->USER_ID_DONOR = & new clsControl(ccsHidden, "USER_ID_DONOR", "USER_ID_DONOR", ccsText, "", CCGetRequestParam("USER_ID_DONOR", $Method, NULL), $this);
+            $this->USER_ID_LOGIN = & new clsControl(ccsHidden, "USER_ID_LOGIN", "USER_ID_LOGIN", ccsText, "", CCGetRequestParam("USER_ID_LOGIN", $Method, NULL), $this);
+            $this->USER_ID_TAKEN = & new clsControl(ccsHidden, "USER_ID_TAKEN", "USER_ID_TAKEN", ccsText, "", CCGetRequestParam("USER_ID_TAKEN", $Method, NULL), $this);
+            $this->IS_CREATE_DOC = & new clsControl(ccsHidden, "IS_CREATE_DOC", "IS_CREATE_DOC", ccsText, "", CCGetRequestParam("IS_CREATE_DOC", $Method, NULL), $this);
+            $this->IS_MANUAL = & new clsControl(ccsHidden, "IS_MANUAL", "IS_MANUAL", ccsText, "", CCGetRequestParam("IS_MANUAL", $Method, NULL), $this);
+            $this->CURR_PROC_STATUS = & new clsControl(ccsHidden, "CURR_PROC_STATUS", "CURR_PROC_STATUS", ccsText, "", CCGetRequestParam("CURR_PROC_STATUS", $Method, NULL), $this);
+            $this->CURR_DOC_STATUS = & new clsControl(ccsHidden, "CURR_DOC_STATUS", "CURR_DOC_STATUS", ccsText, "", CCGetRequestParam("CURR_DOC_STATUS", $Method, NULL), $this);
+            $this->PREV_DOC_ID = & new clsControl(ccsHidden, "PREV_DOC_ID", "PREV_DOC_ID", ccsText, "", CCGetRequestParam("PREV_DOC_ID", $Method, NULL), $this);
+            $this->PREV_DOC_TYPE_ID = & new clsControl(ccsHidden, "PREV_DOC_TYPE_ID", "PREV_DOC_TYPE_ID", ccsText, "", CCGetRequestParam("PREV_DOC_TYPE_ID", $Method, NULL), $this);
+            $this->PREV_PROC_ID = & new clsControl(ccsHidden, "PREV_PROC_ID", "PREV_PROC_ID", ccsText, "", CCGetRequestParam("PREV_PROC_ID", $Method, NULL), $this);
+            $this->PREV_CTL_ID = & new clsControl(ccsHidden, "PREV_CTL_ID", "PREV_CTL_ID", ccsText, "", CCGetRequestParam("PREV_CTL_ID", $Method, NULL), $this);
+            $this->SLOT_1 = & new clsControl(ccsHidden, "SLOT_1", "SLOT_1", ccsText, "", CCGetRequestParam("SLOT_1", $Method, NULL), $this);
+            $this->SLOT_2 = & new clsControl(ccsHidden, "SLOT_2", "SLOT_2", ccsText, "", CCGetRequestParam("SLOT_2", $Method, NULL), $this);
+            $this->SLOT_3 = & new clsControl(ccsHidden, "SLOT_3", "SLOT_3", ccsText, "", CCGetRequestParam("SLOT_3", $Method, NULL), $this);
+            $this->SLOT_4 = & new clsControl(ccsHidden, "SLOT_4", "SLOT_4", ccsText, "", CCGetRequestParam("SLOT_4", $Method, NULL), $this);
+            $this->SLOT_5 = & new clsControl(ccsHidden, "SLOT_5", "SLOT_5", ccsText, "", CCGetRequestParam("SLOT_5", $Method, NULL), $this);
+            $this->MESSAGE = & new clsControl(ccsHidden, "MESSAGE", "MESSAGE", ccsText, "", CCGetRequestParam("MESSAGE", $Method, NULL), $this);
+            $this->Button3 = & new clsButton("Button3", $Method, $this);
+            $this->Button4 = & new clsButton("Button4", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -1587,7 +1613,7 @@ class clsRecordt_bphtb_registrationForm1 { //t_bphtb_registrationForm1 Class @10
     }
 //End Initialize Method
 
-//Validate Method @1016-60D96278
+//Validate Method @1016-6567364B
     function Validate()
     {
         global $CCSLocales;
@@ -1597,16 +1623,64 @@ class clsRecordt_bphtb_registrationForm1 { //t_bphtb_registrationForm1 Class @10
         $Validation = ($this->alasan->Validate() && $Validation);
         $Validation = ($this->t_bphtb_registration_id->Validate() && $Validation);
         $Validation = ($this->t_bphtb_restitusi_id->Validate() && $Validation);
+        $Validation = ($this->TAKEN_CTL->Validate() && $Validation);
+        $Validation = ($this->IS_TAKEN->Validate() && $Validation);
+        $Validation = ($this->CURR_DOC_ID->Validate() && $Validation);
+        $Validation = ($this->CURR_DOC_TYPE_ID->Validate() && $Validation);
+        $Validation = ($this->CURR_PROC_ID->Validate() && $Validation);
+        $Validation = ($this->CURR_CTL_ID->Validate() && $Validation);
+        $Validation = ($this->USER_ID_DOC->Validate() && $Validation);
+        $Validation = ($this->USER_ID_DONOR->Validate() && $Validation);
+        $Validation = ($this->USER_ID_LOGIN->Validate() && $Validation);
+        $Validation = ($this->USER_ID_TAKEN->Validate() && $Validation);
+        $Validation = ($this->IS_CREATE_DOC->Validate() && $Validation);
+        $Validation = ($this->IS_MANUAL->Validate() && $Validation);
+        $Validation = ($this->CURR_PROC_STATUS->Validate() && $Validation);
+        $Validation = ($this->CURR_DOC_STATUS->Validate() && $Validation);
+        $Validation = ($this->PREV_DOC_ID->Validate() && $Validation);
+        $Validation = ($this->PREV_DOC_TYPE_ID->Validate() && $Validation);
+        $Validation = ($this->PREV_PROC_ID->Validate() && $Validation);
+        $Validation = ($this->PREV_CTL_ID->Validate() && $Validation);
+        $Validation = ($this->SLOT_1->Validate() && $Validation);
+        $Validation = ($this->SLOT_2->Validate() && $Validation);
+        $Validation = ($this->SLOT_3->Validate() && $Validation);
+        $Validation = ($this->SLOT_4->Validate() && $Validation);
+        $Validation = ($this->SLOT_5->Validate() && $Validation);
+        $Validation = ($this->MESSAGE->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->restitusi_amt->Errors->Count() == 0);
         $Validation =  $Validation && ($this->alasan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_bphtb_registration_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_bphtb_restitusi_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->TAKEN_CTL->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->IS_TAKEN->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->CURR_DOC_ID->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->CURR_DOC_TYPE_ID->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->CURR_PROC_ID->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->CURR_CTL_ID->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->USER_ID_DOC->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->USER_ID_DONOR->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->USER_ID_LOGIN->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->USER_ID_TAKEN->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->IS_CREATE_DOC->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->IS_MANUAL->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->CURR_PROC_STATUS->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->CURR_DOC_STATUS->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->PREV_DOC_ID->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->PREV_DOC_TYPE_ID->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->PREV_PROC_ID->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->PREV_CTL_ID->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->SLOT_1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->SLOT_2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->SLOT_3->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->SLOT_4->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->SLOT_5->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->MESSAGE->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @1016-69BAAF4C
+//CheckErrors Method @1016-662B18CC
     function CheckErrors()
     {
         $errors = false;
@@ -1614,6 +1688,30 @@ class clsRecordt_bphtb_registrationForm1 { //t_bphtb_registrationForm1 Class @10
         $errors = ($errors || $this->alasan->Errors->Count());
         $errors = ($errors || $this->t_bphtb_registration_id->Errors->Count());
         $errors = ($errors || $this->t_bphtb_restitusi_id->Errors->Count());
+        $errors = ($errors || $this->TAKEN_CTL->Errors->Count());
+        $errors = ($errors || $this->IS_TAKEN->Errors->Count());
+        $errors = ($errors || $this->CURR_DOC_ID->Errors->Count());
+        $errors = ($errors || $this->CURR_DOC_TYPE_ID->Errors->Count());
+        $errors = ($errors || $this->CURR_PROC_ID->Errors->Count());
+        $errors = ($errors || $this->CURR_CTL_ID->Errors->Count());
+        $errors = ($errors || $this->USER_ID_DOC->Errors->Count());
+        $errors = ($errors || $this->USER_ID_DONOR->Errors->Count());
+        $errors = ($errors || $this->USER_ID_LOGIN->Errors->Count());
+        $errors = ($errors || $this->USER_ID_TAKEN->Errors->Count());
+        $errors = ($errors || $this->IS_CREATE_DOC->Errors->Count());
+        $errors = ($errors || $this->IS_MANUAL->Errors->Count());
+        $errors = ($errors || $this->CURR_PROC_STATUS->Errors->Count());
+        $errors = ($errors || $this->CURR_DOC_STATUS->Errors->Count());
+        $errors = ($errors || $this->PREV_DOC_ID->Errors->Count());
+        $errors = ($errors || $this->PREV_DOC_TYPE_ID->Errors->Count());
+        $errors = ($errors || $this->PREV_PROC_ID->Errors->Count());
+        $errors = ($errors || $this->PREV_CTL_ID->Errors->Count());
+        $errors = ($errors || $this->SLOT_1->Errors->Count());
+        $errors = ($errors || $this->SLOT_2->Errors->Count());
+        $errors = ($errors || $this->SLOT_3->Errors->Count());
+        $errors = ($errors || $this->SLOT_4->Errors->Count());
+        $errors = ($errors || $this->SLOT_5->Errors->Count());
+        $errors = ($errors || $this->MESSAGE->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -1635,7 +1733,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @1016-D25B35BF
+//Operation Method @1016-77CDD8DD
     function Operation()
     {
         if(!$this->Visible)
@@ -1651,16 +1749,27 @@ function GetPrimaryKey($keyName)
         }
 
         if($this->FormSubmitted) {
-            $this->PressedButton = $this->EditMode ? "Button2" : "";
+            $this->PressedButton = $this->EditMode ? "Button2" : "Button2";
             if($this->Button2->Pressed) {
                 $this->PressedButton = "Button2";
+            } else if($this->Button3->Pressed) {
+                $this->PressedButton = "Button3";
+            } else if($this->Button4->Pressed) {
+                $this->PressedButton = "Button4";
             }
         }
         $Redirect = "t_bphtb_restitution_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "t_bphtb_restitusi_id"));
         if($this->Validate()) {
             if($this->PressedButton == "Button2") {
-                $Redirect = "t_bphtb_restitution_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "t_bphtb_restitusi_id", "t_bphtb_restitusi_id"));
-                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2) || !$this->DeleteRow()) {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button3") {
+                if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button4") {
+                if(!CCGetEvent($this->Button4->CCSEvents, "OnClick", $this->Button4)) {
                     $Redirect = "";
                 }
             }
@@ -1697,7 +1806,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @1016-F20E7B2D
+//Show Method @1016-2038E5F7
     function Show()
     {
         global $CCSUseAmp;
@@ -1734,6 +1843,8 @@ function GetPrimaryKey($keyName)
                 $this->EditMode = false;
             }
         }
+        if (!$this->FormSubmitted) {
+        }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
@@ -1741,6 +1852,30 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->alasan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_bphtb_registration_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_bphtb_restitusi_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->TAKEN_CTL->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->IS_TAKEN->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->CURR_DOC_ID->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->CURR_DOC_TYPE_ID->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->CURR_PROC_ID->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->CURR_CTL_ID->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->USER_ID_DOC->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->USER_ID_DONOR->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->USER_ID_LOGIN->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->USER_ID_TAKEN->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->IS_CREATE_DOC->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->IS_MANUAL->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->CURR_PROC_STATUS->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->CURR_DOC_STATUS->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->PREV_DOC_ID->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->PREV_DOC_TYPE_ID->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->PREV_PROC_ID->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->PREV_CTL_ID->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->SLOT_1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->SLOT_2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->SLOT_3->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->SLOT_4->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->SLOT_5->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->MESSAGE->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1751,7 +1886,6 @@ function GetPrimaryKey($keyName)
         $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
         $Tpl->SetVar("HTMLFormName", $this->ComponentName);
         $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
-        $this->Button2->Visible = $this->EditMode && $this->DeleteAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -1765,6 +1899,32 @@ function GetPrimaryKey($keyName)
         $this->t_bphtb_registration_id->Show();
         $this->t_bphtb_restitusi_id->Show();
         $this->Button2->Show();
+        $this->TAKEN_CTL->Show();
+        $this->IS_TAKEN->Show();
+        $this->CURR_DOC_ID->Show();
+        $this->CURR_DOC_TYPE_ID->Show();
+        $this->CURR_PROC_ID->Show();
+        $this->CURR_CTL_ID->Show();
+        $this->USER_ID_DOC->Show();
+        $this->USER_ID_DONOR->Show();
+        $this->USER_ID_LOGIN->Show();
+        $this->USER_ID_TAKEN->Show();
+        $this->IS_CREATE_DOC->Show();
+        $this->IS_MANUAL->Show();
+        $this->CURR_PROC_STATUS->Show();
+        $this->CURR_DOC_STATUS->Show();
+        $this->PREV_DOC_ID->Show();
+        $this->PREV_DOC_TYPE_ID->Show();
+        $this->PREV_PROC_ID->Show();
+        $this->PREV_CTL_ID->Show();
+        $this->SLOT_1->Show();
+        $this->SLOT_2->Show();
+        $this->SLOT_3->Show();
+        $this->SLOT_4->Show();
+        $this->SLOT_5->Show();
+        $this->MESSAGE->Show();
+        $this->Button3->Show();
+        $this->Button4->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1775,7 +1935,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_registrationForm1DataSource Class @1016-C91294BC
 
-//DataSource Variables @1016-2070A021
+//DataSource Variables @1016-676764E5
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1794,9 +1954,33 @@ class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_
     var $alasan;
     var $t_bphtb_registration_id;
     var $t_bphtb_restitusi_id;
+    var $TAKEN_CTL;
+    var $IS_TAKEN;
+    var $CURR_DOC_ID;
+    var $CURR_DOC_TYPE_ID;
+    var $CURR_PROC_ID;
+    var $CURR_CTL_ID;
+    var $USER_ID_DOC;
+    var $USER_ID_DONOR;
+    var $USER_ID_LOGIN;
+    var $USER_ID_TAKEN;
+    var $IS_CREATE_DOC;
+    var $IS_MANUAL;
+    var $CURR_PROC_STATUS;
+    var $CURR_DOC_STATUS;
+    var $PREV_DOC_ID;
+    var $PREV_DOC_TYPE_ID;
+    var $PREV_PROC_ID;
+    var $PREV_CTL_ID;
+    var $SLOT_1;
+    var $SLOT_2;
+    var $SLOT_3;
+    var $SLOT_4;
+    var $SLOT_5;
+    var $MESSAGE;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @1016-B0439FC9
+//DataSourceClass_Initialize Event @1016-60A0E758
     function clst_bphtb_registrationForm1DataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1809,6 +1993,54 @@ class clst_bphtb_registrationForm1DataSource extends clsDBConnSIKP {  //t_bphtb_
         $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsInteger, "");
         
         $this->t_bphtb_restitusi_id = new clsField("t_bphtb_restitusi_id", ccsFloat, "");
+        
+        $this->TAKEN_CTL = new clsField("TAKEN_CTL", ccsText, "");
+        
+        $this->IS_TAKEN = new clsField("IS_TAKEN", ccsText, "");
+        
+        $this->CURR_DOC_ID = new clsField("CURR_DOC_ID", ccsText, "");
+        
+        $this->CURR_DOC_TYPE_ID = new clsField("CURR_DOC_TYPE_ID", ccsText, "");
+        
+        $this->CURR_PROC_ID = new clsField("CURR_PROC_ID", ccsText, "");
+        
+        $this->CURR_CTL_ID = new clsField("CURR_CTL_ID", ccsText, "");
+        
+        $this->USER_ID_DOC = new clsField("USER_ID_DOC", ccsText, "");
+        
+        $this->USER_ID_DONOR = new clsField("USER_ID_DONOR", ccsText, "");
+        
+        $this->USER_ID_LOGIN = new clsField("USER_ID_LOGIN", ccsText, "");
+        
+        $this->USER_ID_TAKEN = new clsField("USER_ID_TAKEN", ccsText, "");
+        
+        $this->IS_CREATE_DOC = new clsField("IS_CREATE_DOC", ccsText, "");
+        
+        $this->IS_MANUAL = new clsField("IS_MANUAL", ccsText, "");
+        
+        $this->CURR_PROC_STATUS = new clsField("CURR_PROC_STATUS", ccsText, "");
+        
+        $this->CURR_DOC_STATUS = new clsField("CURR_DOC_STATUS", ccsText, "");
+        
+        $this->PREV_DOC_ID = new clsField("PREV_DOC_ID", ccsText, "");
+        
+        $this->PREV_DOC_TYPE_ID = new clsField("PREV_DOC_TYPE_ID", ccsText, "");
+        
+        $this->PREV_PROC_ID = new clsField("PREV_PROC_ID", ccsText, "");
+        
+        $this->PREV_CTL_ID = new clsField("PREV_CTL_ID", ccsText, "");
+        
+        $this->SLOT_1 = new clsField("SLOT_1", ccsText, "");
+        
+        $this->SLOT_2 = new clsField("SLOT_2", ccsText, "");
+        
+        $this->SLOT_3 = new clsField("SLOT_3", ccsText, "");
+        
+        $this->SLOT_4 = new clsField("SLOT_4", ccsText, "");
+        
+        $this->SLOT_5 = new clsField("SLOT_5", ccsText, "");
+        
+        $this->MESSAGE = new clsField("MESSAGE", ccsText, "");
         
 
         $this->UpdateFields["restitusi_amt"] = array("Name" => "restitusi_amt", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
