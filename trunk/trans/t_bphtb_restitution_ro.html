@@ -205,7 +205,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -226,7 +226,7 @@ jQuery(document).ready(function()
 <div style="CLEAR: both; PADDING-TOP: 50px">
   &nbsp; 
   <!-- BEGIN Record t_bphtb_registrationForm1 -->
-  <form id="t_bphtb_registrationForm1" onsubmit="return setNormalValue();" method="post" name="{HTMLFormName}" action="{Action}">
+  <form id="t_bphtb_registrationForm1" method="post" name="{HTMLFormName}" action="{Action}">
     <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
       <tr>
         <td valign="top">
@@ -246,17 +246,26 @@ jQuery(document).ready(function()
             <!-- END Error -->
             <tr class="Controls">
               <td class="th" colspan="3"><span id="keterangan-kurang-bayar">&nbsp;Jumlah Restitusi</span></td> 
-              <td colspan="6">&nbsp;<input id="t_bphtb_registrationForm1restitusi_amt" name="{restitusi_amt_Name}" readonly value="{restitusi_amt}"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" size="27" type="hidden"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_bphtb_restitusi_id" name="{t_bphtb_restitusi_id_Name}" value="{t_bphtb_restitusi_id}" size="27" type="hidden"></td>
+              <td colspan="6"><input id="t_bphtb_registrationForm1restitusi_amt" name="{restitusi_amt_Name}" readonly value="{restitusi_amt}"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_bphtb_registration_id" name="{t_bphtb_registration_id_Name}" value="{t_bphtb_registration_id}" size="27" type="hidden"><input style="WIDTH: 201px; HEIGHT: 22px" id="t_bphtb_registrationForm1t_bphtb_restitusi_id" name="{t_bphtb_restitusi_id_Name}" value="{t_bphtb_restitusi_id}" size="27" type="hidden"></td>
             </tr>
  
             <tr class="Controls">
               <td class="th" colspan="3">&nbsp;Alasan</td> 
-              <td colspan="6">&nbsp; <textarea style="WIDTH: 423px; HEIGHT: 81px" id="t_bphtb_registrationForm1alasan" cols="39" rows="3" readonly name="{alasan_Name}">{alasan}</textarea></td>
+              <td colspan="6"><textarea style="WIDTH: 423px; HEIGHT: 81px" id="t_bphtb_registrationForm1alasan" cols="39" rows="3" readonly name="{alasan_Name}">{alasan}</textarea></td>
+            </tr>
+ 
+            <tr class="Controls">
+              <td class="th" colspan="3">&nbsp;</td> 
+              <td colspan="6"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1TAKEN_CTL" name="{TAKEN_CTL_Name}" value="{TAKEN_CTL}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1IS_TAKEN" name="{IS_TAKEN_Name}" value="{IS_TAKEN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1CURR_DOC_ID" name="{CURR_DOC_ID_Name}" value="{CURR_DOC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1CURR_DOC_TYPE_ID" name="{CURR_DOC_TYPE_ID_Name}" value="{CURR_DOC_TYPE_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1CURR_PROC_ID" name="{CURR_PROC_ID_Name}" value="{CURR_PROC_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1CURR_CTL_ID" name="{CURR_CTL_ID_Name}" value="{CURR_CTL_ID}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1USER_ID_DOC" name="{USER_ID_DOC_Name}" value="{USER_ID_DOC}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1USER_ID_DONOR" name="{USER_ID_DONOR_Name}" value="{USER_ID_DONOR}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1USER_ID_LOGIN" name="{USER_ID_LOGIN_Name}" value="{USER_ID_LOGIN}" size="5" type="hidden"><input style="WIDTH: 40px; HEIGHT: 22px" id="t_bphtb_registrationForm1USER_ID_TAKEN" name="{USER_ID_TAKEN_Name}" value="{USER_ID_TAKEN}" size="5" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1IS_CREATE_DOC" name="{IS_CREATE_DOC_Name}" value="{IS_CREATE_DOC}" size="4" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1IS_MANUAL" name="{IS_MANUAL_Name}" value="{IS_MANUAL}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1CURR_PROC_STATUS" name="{CURR_PROC_STATUS_Name}" value="{CURR_PROC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1CURR_DOC_STATUS" name="{CURR_DOC_STATUS_Name}" value="{CURR_DOC_STATUS}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1PREV_DOC_ID" name="{PREV_DOC_ID_Name}" value="{PREV_DOC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1PREV_DOC_TYPE_ID" name="{PREV_DOC_TYPE_ID_Name}" value="{PREV_DOC_TYPE_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1PREV_PROC_ID" name="{PREV_PROC_ID_Name}" value="{PREV_PROC_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1PREV_CTL_ID" name="{PREV_CTL_ID_Name}" value="{PREV_CTL_ID}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1SLOT_1" name="{SLOT_1_Name}" value="{SLOT_1}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1SLOT_2" name="{SLOT_2_Name}" value="{SLOT_2}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1SLOT_3" name="{SLOT_3_Name}" value="{SLOT_3}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1SLOT_4" name="{SLOT_4_Name}" value="{SLOT_4}" size="4" type="hidden">
+<input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1SLOT_5" name="{SLOT_5_Name}" value="{SLOT_5}" size="4" type="hidden"><input style="WIDTH: 36px; HEIGHT: 22px" id="t_bphtb_registrationForm1MESSAGE" name="{MESSAGE_Name}" value="{MESSAGE}" size="4" type="hidden"></td>
             </tr>
  
             <tr class="Bottom">
               <td colspan="9" align="right">&nbsp; 
-                <!-- BEGIN Button Button2 --><input id="t_bphtb_registrationForm1Button2" class="btn_tambah" name="{Button_Name}" alt="Button2" value="Submit" type="submit"><!-- END Button Button2 -->&nbsp;&nbsp; </td>
+                <!-- BEGIN Button Button3 --><input style="WIDTH: 211px; HEIGHT: 26px" id="t_bphtb_registrationForm1Button3" class="btn_tambah" onclick="cetak_surat_permohonan();return false;" name="{Button_Name}" alt="Button2" value="SURAT PERHOMONAN RESITUSI (1)" size="9" type="button"><!-- END Button Button3 -->
+                <!-- BEGIN Button Button4 --><input style="WIDTH: 125px; HEIGHT: 26px" id="t_bphtb_registrationForm1Button4" class="btn_tambah" onclick="cetak_skpdlb();return false;" name="{Button_Name}" alt="Button2" value="CETAK SKPDLB (2)" size="4" type="button"><!-- END Button Button4 -->&nbsp; 
+                <!-- BEGIN Button Button2 --><input id="t_bphtb_registrationForm1Button2" class="btn_tambah" onclick="submitter();return false;" name="{Button_Name}" alt="Button2" value="Submit" type="button"><!-- END Button Button2 -->&nbsp;&nbsp; </td>
             </tr>
           </table>
         </td>
@@ -618,6 +627,80 @@ function lov_region_own3() {
                 }else{
                         alert("KECAMATAN Belum Diisi");
                 }
+}
+
+function cetak_surat_permohonan(){
+        var params =document.getElementById('t_bphtb_registrationForm1t_bphtb_restitusi_id').value;
+        window.open("../report/cetak_surat_permohonan_restitusi.php?t_bphtb_restitusi_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+}
+
+function cetak_skpdlb(){
+        var params =document.getElementById('t_bphtb_registrationForm1t_bphtb_restitusi_id').value;
+        window.open("../report/cetak_formulir_skpdlb.php?t_bphtb_restitusi_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+}
+
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function submitter(){
+        var takenCtl = document.getElementById('t_bphtb_registrationForm1TAKEN_CTL').value;
+        var isTaken = document.getElementById('t_bphtb_registrationForm1IS_TAKEN').value;
+        var currDocId = document.getElementById('t_bphtb_registrationForm1CURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_bphtb_registrationForm1CURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_bphtb_registrationForm1CURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_bphtb_registrationForm1CURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_bphtb_registrationForm1USER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_bphtb_registrationForm1USER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_bphtb_registrationForm1USER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_bphtb_registrationForm1USER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_bphtb_registrationForm1IS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_bphtb_registrationForm1IS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_bphtb_registrationForm1CURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_bphtb_registrationForm1CURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_bphtb_registrationForm1PREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_bphtb_registrationForm1PREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_bphtb_registrationForm1PREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_bphtb_registrationForm1PREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_bphtb_registrationForm1SLOT_1').value;
+        var slot2 = document.getElementById('t_bphtb_registrationForm1SLOT_2').value;
+        var slot3 = document.getElementById('t_bphtb_registrationForm1SLOT_3').value;
+        var slot4 = document.getElementById('t_bphtb_registrationForm1SLOT_4').value;
+        var slot5 = document.getElementById('t_bphtb_registrationForm1SLOT_5').value;
+        var msg = document.getElementById('t_bphtb_registrationForm1MESSAGE').value;
+        
+         var urlLink = "?TAKEN_CTL="+takenCtl
+                                        +"&IS_TAKEN="+isTaken
+                                        +"&CURR_DOC_ID="+currDocId
+                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                        +"&CURR_PROC_ID="+currProcId
+                                        +"&CURR_CTL_ID="+currCtlId
+                                        +"&USER_ID_DOC="+userIdDoc
+                                        +"&USER_ID_DONOR="+userIdDonor
+                                        +"&USER_ID_LOGIN="+userIdLogin
+                                        +"&USER_ID_TAKEN="+userIdTaken
+                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                        +"&IS_MANUAL="+isManual
+                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                        +"&PREV_DOC_ID="+PrevDocId
+                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                        +"&PREV_PROC_ID="+PrevProcId
+                                        +"&PREV_CTL_ID="+PrevCtlId
+                                        +"&SLOT_1="+slot1
+                                        +"&SLOT_2="+slot2
+                                        +"&SLOT_3="+slot3
+                                        +"&SLOT_4="+slot4
+                                        +"&SLOT_5="+slot5
+                                        +"&MESSAGE="+msg;
+     return popup("../workflow/php_submitter_start.php"+urlLink);
 }
 
 function toOrder()
