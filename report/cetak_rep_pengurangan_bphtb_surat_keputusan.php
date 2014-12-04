@@ -220,7 +220,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				"- Nama",
+				" - Nama",
 				": ".$data["wp_name"]
 			),
 			array
@@ -233,7 +233,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				"- ".$data['opsi_a2'],
+				" - ".$data['opsi_a2'],
 				": ".$data['opsi_a2_keterangan']
 			),
 			array
@@ -370,7 +370,7 @@ class FormCetak extends FPDF {
 
 		$this->SetFont("Arial", "B", 12);
 		$this->barisBaru("", "Nama Wajib Pajak", ": " . $data["wp_name"]);
-		$this->barisBaru("", "2 ".$data['opsi_a2'], ": ".$data['opsi_a2_keterangan']);
+		$this->barisBaru("", $data['opsi_a2'], ": ".$data['opsi_a2_keterangan']);
 		$this->barisBaru("", "Alamat Wajib Pajak", ": " . $data["wp_address_name"]);
 		$this->barisBaru("", "RT/RW", ": RT. " . $data["wp_rt"] . "/RW. " .  $data["wp_rw"]);
 		$this->barisBaru("", "Kelurahan/Desa", ": " . $data["wp_region_kel"]);
