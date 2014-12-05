@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-B777789E
+//Class_Initialize Event @2-D9FCEA9D
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -225,6 +225,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
             $this->DatePicker_tanggal_berita_acara1 = & new clsDatePicker("DatePicker_tanggal_berita_acara1", "t_bphtb_registrationForm", "tanggal_berita_acara", $this);
             $this->nomor_notaris = & new clsControl(ccsTextBox, "nomor_notaris", "nomor_notaris", ccsText, "", CCGetRequestParam("nomor_notaris", $Method, NULL), $this);
             $this->nomor_berita_acara = & new clsControl(ccsTextBox, "nomor_berita_acara", "nomor_berita_acara", ccsText, "", CCGetRequestParam("nomor_berita_acara", $Method, NULL), $this);
+            $this->Button8 = & new clsButton("Button8", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -575,7 +576,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-F00918A3
+//Operation Method @2-EFE5C861
     function Operation()
     {
         if(!$this->Visible)
@@ -612,6 +613,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button5";
             } else if($this->Button7->Pressed) {
                 $this->PressedButton = "Button7";
+            } else if($this->Button8->Pressed) {
+                $this->PressedButton = "Button8";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -658,6 +661,10 @@ function GetPrimaryKey($keyName)
                 }
             } else if($this->PressedButton == "Button7") {
                 if(!CCGetEvent($this->Button7->CCSEvents, "OnClick", $this->Button7)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button8") {
+                if(!CCGetEvent($this->Button8->CCSEvents, "OnClick", $this->Button8)) {
                     $Redirect = "";
                 }
             }
@@ -725,7 +732,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @2-EB202CC4
+//Show Method @2-70DEB9AF
     function Show()
     {
         global $CCSUseAmp;
@@ -1053,6 +1060,7 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_tanggal_berita_acara1->Show();
         $this->nomor_notaris->Show();
         $this->nomor_berita_acara->Show();
+        $this->Button8->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
