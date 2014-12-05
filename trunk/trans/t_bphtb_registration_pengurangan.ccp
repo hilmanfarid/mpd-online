@@ -777,13 +777,25 @@ WHERE pemeriksa_status = 'pemeriksa'"><Components/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="225" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nomor_berita_acara" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormnomor_berita_acara" fieldSource="nomor_berita_acara">
+				<TextBox id="225" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nomor_berita_acara" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormnomor_berita_acara" fieldSource="nomor_berita_acara">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+				<Button id="226" urlType="Relative" enableValidation="True" isDefault="False" name="Button8" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormButton8">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="227" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
