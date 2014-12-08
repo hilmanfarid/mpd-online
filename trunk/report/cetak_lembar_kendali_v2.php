@@ -199,7 +199,7 @@ class FormCetak extends FPDF {
 				"Nama Wajib Pajak\n".
 				"NPWP\n".
 				"Alamat Wajib Pajak\n".
-				"No Telp/HP\n".
+				"No Telp / HP\n".
 				"Kelurahan\n".
 				"Kecamatan"
 				,
@@ -207,7 +207,7 @@ class FormCetak extends FPDF {
 				": ".$data['wp_name']."\n".
 				": ".$data["npwp"]."\n".
 				": ".$data["wp_address_name"].". RT ".$data['wp_rt']."/RW ".$data['wp_rw']."\n".
-				": ".$data['phone_no']."/".$data['mobile_phone_no']."\n".
+				": ".$data['phone_no']." / ".$data['mobile_phone_no']."\n".
 				": ".$data['wp_region_kel']."\n".
 				": ".$data['wp_region_kec']."\n"
 				,
@@ -402,7 +402,7 @@ class FormCetak extends FPDF {
 				"1. Nama WP\n".
 				"2. NPWP\n".
 				"3. Alamat WP\n".
-				"3. No Telp/HP\n".
+				"3. No Telp / HP\n".
 				"4. NOP PBB\n".
 				"5. Letak tanah dan bangunan\n".
 				"6. NJOP PBB\n".
@@ -411,7 +411,7 @@ class FormCetak extends FPDF {
 				": ".$data['wp_name']."\n".
 				": ".$data['npwp']."\n".
 				": ".$data["wp_address_name"].". RT ".$data['wp_rt']."/RW ".$data['wp_rw']."\n".
-				": ".$data['phone_no']."/".$data['mobile_phone_no']."\n".
+				": ".$data['phone_no']." / ".$data['mobile_phone_no']."\n".
 				": ".$data["njop_pbb"]."\n".
 				": ".$data["object_address_name"]."\n".
 				": Rp. ".number_format($data["nilai_njop"], 0, ",", ".")."\n".
