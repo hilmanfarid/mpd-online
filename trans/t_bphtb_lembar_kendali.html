@@ -1,0 +1,467 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_entertaintment_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-58E48821
+
+var t_ppatForm_DatePicker_tgl_masuk1 = new Object(); 
+t_ppatForm_DatePicker_tgl_masuk1.format           = "dd-mm-yyyy";
+t_ppatForm_DatePicker_tgl_masuk1.style            = "Styles/sikp/Style.css";
+t_ppatForm_DatePicker_tgl_masuk1.relativePathPart = "../";
+t_ppatForm_DatePicker_tgl_masuk1.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//t_ppatFormButton_Delete_OnClick @26-51500637
+function t_ppatFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_ppatFormButton_Delete_OnClick
+
+//Confirmation Message @362-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+    return confirm('Delete record?');
+
+//Close t_ppatFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close t_ppatFormButton_Delete_OnClick
+
+//t_ppatFormButton_Update1_OnClick @458-4B06458D
+function t_ppatFormButton_Update1_OnClick()
+{
+    var result = true;
+//End t_ppatFormButton_Update1_OnClick
+
+//Custom Code @459-2A29BDB7
+    // -------------------------
+		var params = document.getElementById('t_ppatFormt_bphtb_lembar_kendali_id').value;
+        window.open("../report/cetak_lembar_kendali_v2.php?t_bphtb_lembar_kendali_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+    // -------------------------
+//End Custom Code
+
+//Close t_ppatFormButton_Update1_OnClick @458-BC33A33A
+    return result;
+}
+//End Close t_ppatFormButton_Update1_OnClick
+
+//t_ppatFormButton_Cancel_OnClick @28-90202B36
+function t_ppatFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_ppatFormButton_Cancel_OnClick
+
+//bind_events @1-08A89BEB
+function bind_events() {
+    addEventHandler("t_ppatFormButton_Delete", "click", t_ppatFormButton_Delete_OnClick);
+    addEventHandler("t_ppatFormButton_Update1", "click", t_ppatFormButton_Update1_OnClick);
+    addEventHandler("t_ppatFormButton_Cancel", "click", t_ppatFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+
+//End CCS script
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
+<script language="javascript" type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function()
+{
+        jQuery(".numeric-field").maskMoney({thousands:',', precision: 0, defaultZero:true});
+    jQuery(window).scroll(function()
+    {
+            jQuery('#tabtop').css('top', jQuery(window).scrollTop());
+    });
+
+        jQuery(".numeric-field").keydown(function(event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+                 // Allow: Ctrl+A
+                (event.keyCode == 65 && event.ctrlKey === true) || 
+                 // Allow: home, end, left, right
+                (event.keyCode >= 35 && event.keyCode <= 39)) {
+                     // let it happen, don't do anything
+                     return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                    event.preventDefault(); 
+                }   
+            }
+        });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        PPAT&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_ppatSearch -->
+        <form id="t_ppatSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="t_ppatSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_ppatSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_ppatSearch --><br>
+        <!-- BEGIN Grid t_ppatGrid -->
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR LEMBAR KENDALI</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">Nama WP</th>
+ 
+                  <th scope="col">Alamat</th>
+ 
+                  <th scope="col">No Register</th>
+ 
+                  <th scope="col">Pengubah</th>
+ 
+                  <th scope="col">Tanggal Ubah</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_ppatGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_ppatGridDLink_{t_ppatGrid:rowNumber}">{DLink}</a></td> 
+                  <td>{wp_name}<input id="t_ppatGridt_bphtb_lembar_kendali_id_{t_ppatGrid:rowNumber}" type="hidden" value="{t_bphtb_lembar_kendali_id}" name="{t_bphtb_lembar_kendali_id_Name}"></td> 
+                  <td>{wp_address_name}</td> 
+                  <td>{registration_no}</td> 
+                  <td>{updated_by}</td> 
+                  <td>{updated_date}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="6">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b></a><a href="{Insert_Link_Src}" id="t_ppatGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="5">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_ppatGrid --><br>
+        <!-- BEGIN Record t_ppatForm -->
+        <form id="t_ppatForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI DETAIL LEMBAR KENDALI</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">No Register</td> 
+                    <td><input id="t_ppatFormregistration_no" class="ControlsIN" style="HEIGHT: 22px; WIDTH: 193px" size="1" value="{registration_no}" name="{registration_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Tgl Masuk</td> 
+                    <td><input id="t_ppatFormtgl_masuk" class="ControlsIN" style="HEIGHT: 22px; WIDTH: 113px" size="1" value="{tgl_masuk}" name="{tgl_masuk_Name}">
+                      <!-- BEGIN DatePicker DatePicker_tgl_masuk1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_ppatFormDatePicker_tgl_masuk1"><img id="t_ppatFormDatePicker_tgl_masuk1_Image" border="0" alt="Show Date Picker" src="../Styles/CoffeeBreak/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_masuk1 --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jenis Transaksi</td> 
+                    <td>
+                      <select id="t_ppatFormjenis_perolehan_hak" class="ControlsIN" name="{jenis_perolehan_hak_Name}">
+                        <option selected value="">-- Pilih Jenis Transaksi --</option>
+                        {jenis_perolehan_hak_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Petugas Pemeriksa</td> 
+                    <td>
+                      <select id="t_ppatFormadministrator_id" class="ControlsIN" name="{administrator_id_Name}">
+                        <option selected value="">-- Pilih Petugas Pemeriksa --</option>
+                        {administrator_id_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><b>A) SUBJEK PAJAK</b></td> 
+                    <td></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_ppatForm_code">Nama WP</label></td> 
+                    <td><input id="t_ppatFormwp_name" class="ControlsIN" style="HEIGHT: 22px; WIDTH: 264px" size="22" value="{wp_name}" name="{wp_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">NPWP</td> 
+                    <td><input id="t_ppatFormnpwp" class="ControlsIN" style="HEIGHT: 22px; WIDTH: 263px" size="24" value="{npwp}" name="{npwp_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Alamat Lokasi</td> 
+                    <td><input id="t_ppatFormwp_address_name" class="ControlsIN" style="HEIGHT: 22px; WIDTH: 442px" size="60" value="{wp_address_name}" name="{wp_address_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_ppatFormphone_no">No. Telpon</label></td> 
+                    <td><input id="t_ppatFormphone_no" class="ControlsIN" maxlength="32" size="35" value="{phone_no}" name="{phone_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No. Handphone</td> 
+                    <td><input id="t_ppatFormmobile_phone_no" class="ControlsIN" maxlength="32" size="35" value="{mobile_phone_no}" name="{mobile_phone_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">RT / RW</td> 
+                    <td><input id="t_ppatFormwp_rt" class="ControlsIN" size="2" value="{wp_rt}" name="{wp_rt_Name}">&nbsp;/ <input id="t_ppatFormwp_rw" class="ControlsIN" size="2" value="{wp_rw}" name="{wp_rw_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kota / Kabupaten</td> 
+                    <td><input tabindex="2" id="t_ppatFormwp_kota" class="ControlsRQ" readonly maxlength="32" size="32" value="{wp_kota}" name="{wp_kota_Name}">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif">&nbsp;<input id="t_ppatFormwp_p_region_id" type="hidden" value="{wp_p_region_id}" name="{wp_p_region_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kecamatan</td> 
+                    <td><input tabindex="2" id="t_ppatFormwp_kecamatan" class="ControlsRQ" readonly maxlength="32" size="32" value="{wp_kecamatan}" name="{wp_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_wp2()" border="0" src="../images/view.gif">&nbsp;<input id="t_ppatFormwp_p_region_id_kec" type="hidden" value="{wp_p_region_id_kec}" name="{wp_p_region_id_kec_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kelurahan</td> 
+                    <td><input tabindex="2" id="t_ppatFormwp_kelurahan" class="ControlsRQ" readonly maxlength="32" size="32" value="{wp_kelurahan}" name="{wp_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif">&nbsp;<input id="t_ppatFormwp_p_region_id_kel" type="hidden" value="{wp_p_region_id_kel}" name="{wp_p_region_id_kel_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><b>B) OBJEK PAJAK</b></td> 
+                    <td><label for="t_ppatFormpersonal_identification_id" style="display: none;">&nbsp;</label></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Nomor Objek Pajak</td> 
+                    <td><input id="t_ppatFormnjop_pbb" class="ControlsIN" style="HEIGHT: 22px; WIDTH: 246px" size="33" value="{njop_pbb}" name="{njop_pbb_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Letak Tanah atau Bangunan</td> 
+                    <td><input id="t_ppatFormobject_address_name" class="ControlsIN" style="HEIGHT: 22px; WIDTH: 317px" size="36" value="{object_address_name}" name="{object_address_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">RT / RW </td> 
+                    <td><input id="t_ppatFormobject_rt" class="ControlsIN" size="2" value="{object_rt}" name="{object_rt_Name}">&nbsp;/ <input id="t_ppatFormobject_rw" class="ControlsIN" size="2" value="{object_rw}" name="{object_rw_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kota / Kabupaten</td> 
+                    <td><input tabindex="2" id="t_ppatFormobject_kota" class="ControlsRQ" readonly maxlength="32" size="32" value="{object_kota}" name="{object_kota_Name}"><img onclick="javascript:lov_region_object1()" border="0" src="../images/view.gif"><input id="t_ppatFormobject_p_region_id" type="hidden" value="{object_p_region_id}" name="{object_p_region_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kecamatan</td> 
+                    <td><input tabindex="2" id="t_ppatFormobject_kecamatan" class="ControlsRQ" readonly maxlength="32" size="32" value="{object_kecamatan}" name="{object_kecamatan_Name}"><img onclick="javascript:lov_region_object2()" border="0" src="../images/view.gif"><input id="t_ppatFormobject_p_region_id_kec" type="hidden" value="{object_p_region_id_kec}" name="{object_p_region_id_kec_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kelurahan</td> 
+                    <td><input tabindex="2" id="t_ppatFormobject_kelurahan" class="ControlsRQ" readonly maxlength="32" size="32" value="{object_kelurahan}" name="{object_kelurahan_Name}"><img onclick="javascript:lov_region_object3()" border="0" src="../images/view.gif"><input id="t_ppatFormobject_p_region_id_kel" type="hidden" value="{object_p_region_id_kel}" name="{object_p_region_id_kel_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">NJOP</td> 
+                    <td>Rp. <input id="t_ppatFormnilai_njop" class="numeric-field" style="HEIGHT: 22px; WIDTH: 246px; TEXT-ALIGN: right" size="33" value="{nilai_njop}" name="{nilai_njop_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Harga Transaksi</td> 
+                    <td>Rp. <input id="t_ppatFormharga_transaksi" class="numeric-field" style="HEIGHT: 22px; WIDTH: 246px; TEXT-ALIGN: right" size="33" value="{harga_transaksi}" name="{harga_transaksi_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jumlah yang disetor</td> 
+                    <td>Rp. <input id="t_ppatFormjumlah_disetor" class="numeric-field" style="HEIGHT: 22px; WIDTH: 246px; TEXT-ALIGN: right" size="33" value="{jumlah_disetor}" name="{jumlah_disetor_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_ppatFormcreated_by">Dibuat Oleh</label></td> 
+                    <td><input id="t_ppatFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="12" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="t_ppatFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_ppatFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input id="t_ppatFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="t_ppatFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button_Update1 --><input id="t_ppatFormButton_Update1" class="btn_tambah" style="HEIGHT: 24px; WIDTH: 153px" alt="Submit" size="1" type="button" value="CETAK LEMBAR KENDALI" name="{Button_Name}"><!-- END Button Button_Update1 -->
+                      <!-- BEGIN Button Button_Insert --><input id="t_ppatFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_ppatFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_ppatFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="t_ppatFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_ppatFormt_bphtb_lembar_kendali_id" type="hidden" value="{t_bphtb_lembar_kendali_id}" name="{t_bphtb_lembar_kendali_id_Name}"><input id="p_simple_parameter_typeFormp_simple_parameter_typeGridPage" type="hidden" value="{t_ppatGridPage}" name="{p_simple_parameter_typeGridPage_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_ppatForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+        function toDetail()
+        {
+                var idelement;
+                if (idelement = document.getElementById("t_ppatFormp_simple_parameter_type_id"))
+                {
+                        var pid = idelement.value;
+
+                        if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+                        {                
+                                location.href="t_ppat_user.php?p_simple_parameter_type_id="+pid;
+                        }
+                        else
+                        {
+                                alert("Pilih salah satu PPAT!");
+                        }
+                } 
+                else 
+                {
+                        alert("Pilih salah satu PPAT!");
+                }
+        }
+
+function lov_region_wp1() {
+        getFrom_LOV('t_ppatForm','wp_p_region_id,wp_kota','lov_region.php');
+}
+
+function lov_region_wp2() {
+                var kota = document.getElementById("t_ppatFormwp_p_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_ppatForm','wp_p_region_id_kec,wp_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_wp3() {
+                var kec = document.getElementById("t_ppatFormwp_p_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_ppatForm','wp_p_region_id_kel,wp_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+
+function lov_region_object1() {
+        getFrom_LOV('t_ppatForm','object_p_region_id,object_kota','lov_region.php');
+}
+
+function lov_region_object2() {
+                var kota = document.getElementById("t_ppatFormobject_p_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_ppatForm','object_p_region_id_kec,object_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_object3() {
+                var kec = document.getElementById("t_ppatFormobject_p_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_ppatForm','object_p_region_id_kel,object_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+</script>
+</body>
+</html>
