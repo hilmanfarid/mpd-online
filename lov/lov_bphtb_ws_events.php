@@ -155,6 +155,7 @@ function bphtb_wsForm_BeforeShow(& $sender)
 		$ws_data = json_decode($ws_data);
 		if($ws_data->success){
 			$items = $ws_data->items;
+			$arr_status = array(0=>'Belum Dibayar', 1=>'Sudah Dibayar');
 			$bphtb_wsForm->NOP->SetValue($items->NOP);
 			$bphtb_wsForm->kota->SetValue($items->KOTA_OP);
 			$bphtb_wsForm->kecamatan->SetValue($items->KEC_OP);
@@ -168,6 +169,7 @@ function bphtb_wsForm_BeforeShow(& $sender)
 			$bphtb_wsForm->njop_bumi->SetValue($items->NJOP_BUMI);
 			$bphtb_wsForm->njop_pbb->SetValue($items->NJOP_PBB);
 			$bphtb_wsForm->pbb_terhutang->SetValue($items->PBB_TERHUTANG);
+			$bphtb_wsForm->status_bayar->SetValue($arr_status[$items->STATUS_BAYAR]);
 			$bphtb_wsForm->Visible=true;
 		}
 	}else{
