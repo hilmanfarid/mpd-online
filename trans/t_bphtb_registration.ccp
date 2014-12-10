@@ -418,6 +418,18 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</CheckBox>
+				<Button id="311" urlType="Relative" enableValidation="True" isDefault="False" name="BtnSelect" PathID="t_bphtb_registrationFormBtnSelect">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Hidden id="1055" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_registration_id_old" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormt_bphtb_registration_id_old" fieldSource="t_bphtb_registration_id_old" caption="test">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -496,7 +508,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key1010" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="bphtb_legal_doc_description" scale="0" precision="0" parameterSource="bphtb_legal_doc_description"/>
 				<SPParameter id="Key1013" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="add_disc_percent" scale="0" precision="0" parameterSource="add_disc_percent"/>
 				<SPParameter id="Key1018" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="check_potongan" scale="0" precision="0" parameterSource="check_potongan"/>
-<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
+				<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
 				<SPParameter id="Key978" parameterName="o_mess" parameterSource="o_mess" dataType="Char" parameterType="URL" dataSize="255" direction="InputOutput" scale="10" precision="6"/>
 			</ISPParameters>
 			<ISQLParameters>
@@ -581,43 +593,43 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			</USPParameters>
 			<USQLParameters>
 				<SQLParameter id="1017" variable="UserLogin" dataType="Text" parameterType="Session" parameterSource="UserLogin"/>
-<SQLParameter id="1018" variable="Expr0" dataType="Text" parameterType="Expression" parameterSource="date(&quot;Y-m-d H:i:s&quot;)" format="dd-mmm-yyyy"/>
-<SQLParameter id="1019" variable="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
-<SQLParameter id="1020" variable="wp_p_region_id_kel" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kel"/>
-<SQLParameter id="1021" variable="wp_name" dataType="Text" parameterType="Control" parameterSource="wp_name"/>
-<SQLParameter id="1022" variable="wp_address_name" dataType="Text" parameterType="Control" parameterSource="wp_address_name"/>
-<SQLParameter id="1023" variable="npwp" dataType="Text" parameterType="Control" parameterSource="npwp"/>
-<SQLParameter id="1024" variable="object_p_region_id_kec" dataType="Text" parameterType="Control" parameterSource="object_p_region_id_kec"/>
-<SQLParameter id="1025" variable="object_p_region_id" dataType="Text" parameterType="Control" parameterSource="object_p_region_id"/>
-<SQLParameter id="1026" variable="land_area" dataType="Float" parameterType="Control" parameterSource="land_area"/>
-<SQLParameter id="1027" variable="land_price_per_m" dataType="Float" parameterType="Control" parameterSource="land_price_per_m"/>
-<SQLParameter id="1028" variable="land_total_price" dataType="Float" parameterType="Control" parameterSource="land_total_price"/>
-<SQLParameter id="1029" variable="building_area" dataType="Float" parameterType="Control" parameterSource="building_area"/>
-<SQLParameter id="1030" variable="building_price_per_m" dataType="Float" parameterType="Control" parameterSource="building_price_per_m"/>
-<SQLParameter id="1031" variable="building_total_price" dataType="Float" parameterType="Control" parameterSource="building_total_price"/>
-<SQLParameter id="1032" variable="wp_rt" dataType="Text" parameterType="Control" parameterSource="wp_rt"/>
-<SQLParameter id="1033" variable="wp_rw" dataType="Text" parameterType="Control" parameterSource="wp_rw"/>
-<SQLParameter id="1034" variable="object_rt" dataType="Text" parameterType="Control" parameterSource="object_rt"/>
-<SQLParameter id="1035" variable="object_rw" dataType="Text" parameterType="Control" parameterSource="object_rw"/>
-<SQLParameter id="1036" variable="njop_pbb" dataType="Text" parameterType="Control" parameterSource="njop_pbb"/>
-<SQLParameter id="1037" variable="object_address_name" dataType="Text" parameterType="Control" parameterSource="object_address_name"/>
-<SQLParameter id="1038" variable="p_bphtb_legal_doc_type_id" dataType="Text" parameterType="Control" parameterSource="p_bphtb_legal_doc_type_id"/>
-<SQLParameter id="1039" variable="npop" dataType="Float" parameterType="Control" parameterSource="npop"/>
-<SQLParameter id="1040" variable="npop_tkp" dataType="Float" parameterType="Control" parameterSource="npop_tkp"/>
-<SQLParameter id="1041" variable="npop_kp" dataType="Float" parameterType="Control" parameterSource="npop_kp"/>
-<SQLParameter id="1042" variable="bphtb_amt" dataType="Float" parameterType="Control" parameterSource="bphtb_amt"/>
-<SQLParameter id="1043" variable="bphtb_amt_final" dataType="Float" parameterType="Control" parameterSource="bphtb_amt_final"/>
-<SQLParameter id="1044" variable="bphtb_discount" dataType="Float" parameterType="Control" parameterSource="bphtb_discount"/>
-<SQLParameter id="1045" variable="description" dataType="Text" parameterType="Control" parameterSource="description"/>
-<SQLParameter id="1046" variable="market_price" dataType="Float" parameterType="Control" parameterSource="market_price"/>
-<SQLParameter id="1047" variable="mobile_phone_no" dataType="Text" parameterType="Control" parameterSource="mobile_phone_no"/>
-<SQLParameter id="1048" variable="wp_p_region_id_kec" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kec"/>
-<SQLParameter id="1049" variable="object_p_region_id_kel" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kel"/>
-<SQLParameter id="1050" variable="jenis_harga_bphtb" dataType="Text" parameterType="Control" parameterSource="jenis_harga_bphtb"/>
-<SQLParameter id="1051" variable="bphtb_legal_doc_description" dataType="Text" parameterType="Control" parameterSource="bphtb_legal_doc_description"/>
-<SQLParameter id="1052" variable="add_disc_percent" dataType="Float" parameterType="Control" parameterSource="add_disc_percent"/>
-<SQLParameter id="1053" variable="t_bphtb_registration_id" parameterType="URL" dataType="Float" parameterSource="t_bphtb_registration_id" defaultValue="0"/>
-</USQLParameters>
+				<SQLParameter id="1018" variable="Expr0" dataType="Text" parameterType="Expression" parameterSource="date(&quot;Y-m-d H:i:s&quot;)" format="dd-mmm-yyyy"/>
+				<SQLParameter id="1019" variable="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
+				<SQLParameter id="1020" variable="wp_p_region_id_kel" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kel"/>
+				<SQLParameter id="1021" variable="wp_name" dataType="Text" parameterType="Control" parameterSource="wp_name"/>
+				<SQLParameter id="1022" variable="wp_address_name" dataType="Text" parameterType="Control" parameterSource="wp_address_name"/>
+				<SQLParameter id="1023" variable="npwp" dataType="Text" parameterType="Control" parameterSource="npwp"/>
+				<SQLParameter id="1024" variable="object_p_region_id_kec" dataType="Text" parameterType="Control" parameterSource="object_p_region_id_kec"/>
+				<SQLParameter id="1025" variable="object_p_region_id" dataType="Text" parameterType="Control" parameterSource="object_p_region_id"/>
+				<SQLParameter id="1026" variable="land_area" dataType="Float" parameterType="Control" parameterSource="land_area"/>
+				<SQLParameter id="1027" variable="land_price_per_m" dataType="Float" parameterType="Control" parameterSource="land_price_per_m"/>
+				<SQLParameter id="1028" variable="land_total_price" dataType="Float" parameterType="Control" parameterSource="land_total_price"/>
+				<SQLParameter id="1029" variable="building_area" dataType="Float" parameterType="Control" parameterSource="building_area"/>
+				<SQLParameter id="1030" variable="building_price_per_m" dataType="Float" parameterType="Control" parameterSource="building_price_per_m"/>
+				<SQLParameter id="1031" variable="building_total_price" dataType="Float" parameterType="Control" parameterSource="building_total_price"/>
+				<SQLParameter id="1032" variable="wp_rt" dataType="Text" parameterType="Control" parameterSource="wp_rt"/>
+				<SQLParameter id="1033" variable="wp_rw" dataType="Text" parameterType="Control" parameterSource="wp_rw"/>
+				<SQLParameter id="1034" variable="object_rt" dataType="Text" parameterType="Control" parameterSource="object_rt"/>
+				<SQLParameter id="1035" variable="object_rw" dataType="Text" parameterType="Control" parameterSource="object_rw"/>
+				<SQLParameter id="1036" variable="njop_pbb" dataType="Text" parameterType="Control" parameterSource="njop_pbb"/>
+				<SQLParameter id="1037" variable="object_address_name" dataType="Text" parameterType="Control" parameterSource="object_address_name"/>
+				<SQLParameter id="1038" variable="p_bphtb_legal_doc_type_id" dataType="Text" parameterType="Control" parameterSource="p_bphtb_legal_doc_type_id"/>
+				<SQLParameter id="1039" variable="npop" dataType="Float" parameterType="Control" parameterSource="npop"/>
+				<SQLParameter id="1040" variable="npop_tkp" dataType="Float" parameterType="Control" parameterSource="npop_tkp"/>
+				<SQLParameter id="1041" variable="npop_kp" dataType="Float" parameterType="Control" parameterSource="npop_kp"/>
+				<SQLParameter id="1042" variable="bphtb_amt" dataType="Float" parameterType="Control" parameterSource="bphtb_amt"/>
+				<SQLParameter id="1043" variable="bphtb_amt_final" dataType="Float" parameterType="Control" parameterSource="bphtb_amt_final"/>
+				<SQLParameter id="1044" variable="bphtb_discount" dataType="Float" parameterType="Control" parameterSource="bphtb_discount"/>
+				<SQLParameter id="1045" variable="description" dataType="Text" parameterType="Control" parameterSource="description"/>
+				<SQLParameter id="1046" variable="market_price" dataType="Float" parameterType="Control" parameterSource="market_price"/>
+				<SQLParameter id="1047" variable="mobile_phone_no" dataType="Text" parameterType="Control" parameterSource="mobile_phone_no"/>
+				<SQLParameter id="1048" variable="wp_p_region_id_kec" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kec"/>
+				<SQLParameter id="1049" variable="object_p_region_id_kel" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kel"/>
+				<SQLParameter id="1050" variable="jenis_harga_bphtb" dataType="Text" parameterType="Control" parameterSource="jenis_harga_bphtb"/>
+				<SQLParameter id="1051" variable="bphtb_legal_doc_description" dataType="Text" parameterType="Control" parameterSource="bphtb_legal_doc_description"/>
+				<SQLParameter id="1052" variable="add_disc_percent" dataType="Float" parameterType="Control" parameterSource="add_disc_percent"/>
+				<SQLParameter id="1053" variable="t_bphtb_registration_id" parameterType="URL" dataType="Float" parameterSource="t_bphtb_registration_id" defaultValue="0"/>
+			</USQLParameters>
 			<UConditions>
 				<TableParameter id="778" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
 				<TableParameter id="995" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
