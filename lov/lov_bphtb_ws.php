@@ -265,7 +265,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
     // Class variables
 //End Variables
 
-//Class_Initialize Event @51-C4C95A2D
+//Class_Initialize Event @51-B29C05CA
     function clsRecordbphtb_wsForm($RelativePath, & $Parent)
     {
 
@@ -310,6 +310,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
             $this->njop_pbb = & new clsControl(ccsTextBox, "njop_pbb", "njop_pbb", ccsText, "", CCGetRequestParam("njop_pbb", $Method, NULL), $this);
             $this->pbb_terhutang = & new clsControl(ccsTextBox, "pbb_terhutang", "pbb_terhutang", ccsText, "", CCGetRequestParam("pbb_terhutang", $Method, NULL), $this);
             $this->pilih = & new clsButton("pilih", $Method, $this);
+            $this->status_bayar = & new clsControl(ccsTextBox, "status_bayar", "status_bayar", ccsText, "", CCGetRequestParam("status_bayar", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -325,7 +326,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
     }
 //End Initialize Method
 
-//Validate Method @51-28400909
+//Validate Method @51-EFCCD61A
     function Validate()
     {
         global $CCSLocales;
@@ -344,6 +345,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
         $Validation = ($this->njop_bumi->Validate() && $Validation);
         $Validation = ($this->njop_pbb->Validate() && $Validation);
         $Validation = ($this->pbb_terhutang->Validate() && $Validation);
+        $Validation = ($this->status_bayar->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->NOP->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kota->Errors->Count() == 0);
@@ -358,11 +360,12 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
         $Validation =  $Validation && ($this->njop_bumi->Errors->Count() == 0);
         $Validation =  $Validation && ($this->njop_pbb->Errors->Count() == 0);
         $Validation =  $Validation && ($this->pbb_terhutang->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->status_bayar->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @51-06CB6F73
+//CheckErrors Method @51-5AC6BDE0
     function CheckErrors()
     {
         $errors = false;
@@ -379,6 +382,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
         $errors = ($errors || $this->njop_bumi->Errors->Count());
         $errors = ($errors || $this->njop_pbb->Errors->Count());
         $errors = ($errors || $this->pbb_terhutang->Errors->Count());
+        $errors = ($errors || $this->status_bayar->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -546,7 +550,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @51-75C677DB
+//Show Method @51-FD478693
     function Show()
     {
         global $CCSUseAmp;
@@ -587,6 +591,7 @@ function GetPrimaryKey($keyName)
                     $this->njop_bumi->SetValue($this->DataSource->njop_bumi->GetValue());
                     $this->njop_pbb->SetValue($this->DataSource->njop_pbb->GetValue());
                     $this->pbb_terhutang->SetValue($this->DataSource->pbb_terhutang->GetValue());
+                    $this->status_bayar->SetValue($this->DataSource->status_bayar->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -608,6 +613,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->njop_bumi->Errors->ToString());
             $Error = ComposeStrings($Error, $this->njop_pbb->Errors->ToString());
             $Error = ComposeStrings($Error, $this->pbb_terhutang->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->status_bayar->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -642,6 +648,7 @@ function GetPrimaryKey($keyName)
         $this->njop_pbb->Show();
         $this->pbb_terhutang->Show();
         $this->pilih->Show();
+        $this->status_bayar->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -652,7 +659,7 @@ function GetPrimaryKey($keyName)
 
 class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSource Class @51-712692FB
 
-//DataSource Variables @51-242DFC92
+//DataSource Variables @51-0BBDFF99
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -681,9 +688,10 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
     var $njop_bumi;
     var $njop_pbb;
     var $pbb_terhutang;
+    var $status_bayar;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @51-E15A1000
+//DataSourceClass_Initialize Event @51-D982F642
     function clsbphtb_wsFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -714,6 +722,8 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
         $this->njop_pbb = new clsField("njop_pbb", ccsText, "");
         
         $this->pbb_terhutang = new clsField("pbb_terhutang", ccsText, "");
+        
+        $this->status_bayar = new clsField("status_bayar", ccsText, "");
         
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -809,7 +819,7 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
     }
 //End Open Method
 
-//SetValues Method @51-D2926183
+//SetValues Method @51-DCE867BC
     function SetValues()
     {
         $this->NOP->SetDBValue($this->f("NOP"));
@@ -825,6 +835,7 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
         $this->njop_bumi->SetDBValue($this->f("njop_bumi"));
         $this->njop_pbb->SetDBValue($this->f("njop_pbb"));
         $this->pbb_terhutang->SetDBValue($this->f("pbb_terhutang"));
+        $this->status_bayar->SetDBValue($this->f("status_bayar"));
     }
 //End SetValues Method
 
