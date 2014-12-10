@@ -196,6 +196,12 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 					<Attributes/>
 					<Features/>
 				</Button>
+				<TextBox id="297" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="status_bayar" PathID="bphtb_wsFormstatus_bayar" fieldSource="status_bayar">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
