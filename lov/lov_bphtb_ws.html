@@ -66,7 +66,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body style="MARGIN: 0px" marginwidth="0" marginheight="0">
+<body style="MARGIN: 0px" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -93,7 +93,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">NOP:&nbsp;</td> 
-                    <td class="search-field"><input id="LOVNOP_SEARCH" class="ControlsIN" value="{NOP_SEARCH}" maxlength="32" size="32" name="{NOP_SEARCH_Name}"><input style="DISPLAY: none" id="LOVFORM" value="{FORM}" name="{FORM_Name}"><label style="display: none;" for="LOVOBJ">&nbsp;</label><input style="DISPLAY: none" id="LOVOBJ" value="{OBJ}" name="{OBJ_Name}"><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
+                    <td class="search-field"><input id="LOVNOP_SEARCH" class="ControlsIN" value="{NOP_SEARCH}" maxlength="32" size="32" name="{NOP_SEARCH_Name}"><input style="DISPLAY: none" id="LOVFORM" value="{FORM}" name="{FORM_Name}"><label for="LOVOBJ" style="display: none;">&nbsp;</label><input style="DISPLAY: none" id="LOVOBJ" value="{OBJ}" name="{OBJ_Name}"><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
                     <td class="search-field"></td>
                   </tr>
  
@@ -215,9 +215,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
               <td colspan="6">&nbsp;<input id="bphtb_wsFormpbb_terhutang" value="{pbb_terhutang}" readonly name="{pbb_terhutang_Name}"></td>
             </tr>
  
+            <tr class="Controls">
+              <td class="th" colspan="3">&nbsp;STATUS PEMBAYARAN BPHTB</td> 
+              <td colspan="6">&nbsp;<input id="bphtb_wsFormstatus_bayar" value="{status_bayar}" readonly name="{status_bayar_Name}"></td>
+            </tr>
+ 
             <tr class="Bottom">
               <td colspan="9" align="right">&nbsp; 
-                <!-- BEGIN Button pilih --><input onclick="pilihData();" id="bphtb_wsFormpilih" class="btn_tambah" value="PILIH" alt="Search" type="button" name="{Button_Name}"><!-- END Button pilih -->&nbsp;&nbsp;&nbsp; 
+                <!-- BEGIN Button pilih --><input id="bphtb_wsFormpilih" class="btn_tambah" onclick="pilihData();" value="PILIH" alt="Search" type="button" name="{Button_Name}"><!-- END Button pilih -->&nbsp;&nbsp;&nbsp; 
                 <!-- BEGIN Button Button_Update --><input id="bphtb_wsFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; </td>
             </tr>
           </table>
@@ -228,13 +233,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
   <!-- END Record bphtb_wsForm -->
 </div>
 <script>
-	function pilihData() {
+        function pilihData() {
         window.opener.document.getElementById("t_bphtb_registrationFormnjop_pbb").value = document.getElementById("bphtb_wsFormNOP").value;
-		window.opener.document.getElementById("t_bphtb_registrationFormobject_rt").value = document.getElementById("bphtb_wsFormrt").value;
-		window.opener.document.getElementById("t_bphtb_registrationFormobject_rw").value = document.getElementById("bphtb_wsFormrw").value;
-		window.opener.document.getElementById("t_bphtb_registrationFormland_area").value = document.getElementById("bphtb_wsFormluas_bumi").value;
-		window.opener.document.getElementById("t_bphtb_registrationFormbuilding_area").value = document.getElementById("bphtb_wsFormluas_bangunan").value;
-		window.close();
+                window.opener.document.getElementById("t_bphtb_registrationFormobject_rt").value = document.getElementById("bphtb_wsFormrt").value;
+                window.opener.document.getElementById("t_bphtb_registrationFormobject_rw").value = document.getElementById("bphtb_wsFormrw").value;
+                window.opener.document.getElementById("t_bphtb_registrationFormland_area").value = document.getElementById("bphtb_wsFormluas_bumi").value;
+                window.opener.document.getElementById("t_bphtb_registrationFormbuilding_area").value = document.getElementById("bphtb_wsFormluas_bangunan").value;
+				window.opener.document.getElementById("t_bphtb_registrationFormobject_address_name").value = document.getElementById("bphtb_wsFormjalan").value;
+                window.close();
 }
 </script>
 </body>
