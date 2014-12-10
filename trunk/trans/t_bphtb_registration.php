@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-E30B6D50
+//Class_Initialize Event @94-A5498050
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -157,6 +157,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->check_potongan = & new clsControl(ccsCheckBox, "check_potongan", "check_potongan", ccsText, "", CCGetRequestParam("check_potongan", $Method, NULL), $this);
             $this->check_potongan->CheckedValue = $this->check_potongan->GetParsedValue(Y);
             $this->check_potongan->UncheckedValue = $this->check_potongan->GetParsedValue(N);
+            $this->BtnSelect = & new clsButton("BtnSelect", $Method, $this);
+            $this->t_bphtb_registration_id_old = & new clsControl(ccsHidden, "t_bphtb_registration_id_old", "test", ccsFloat, "", CCGetRequestParam("t_bphtb_registration_id_old", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -202,7 +204,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-CC71A81D
+//Validate Method @94-89C4701C
     function Validate()
     {
         global $CCSLocales;
@@ -257,6 +259,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->prev_payment_amount->Validate() && $Validation);
         $Validation = ($this->bphtb_amt_final_old->Validate() && $Validation);
         $Validation = ($this->check_potongan->Validate() && $Validation);
+        $Validation = ($this->t_bphtb_registration_id_old->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -307,11 +310,12 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->prev_payment_amount->Errors->Count() == 0);
         $Validation =  $Validation && ($this->bphtb_amt_final_old->Errors->Count() == 0);
         $Validation =  $Validation && ($this->check_potongan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_bphtb_registration_id_old->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-AC7EA647
+//CheckErrors Method @94-5094D719
     function CheckErrors()
     {
         $errors = false;
@@ -364,6 +368,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->prev_payment_amount->Errors->Count());
         $errors = ($errors || $this->bphtb_amt_final_old->Errors->Count());
         $errors = ($errors || $this->check_potongan->Errors->Count());
+        $errors = ($errors || $this->t_bphtb_registration_id_old->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -547,7 +552,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-BA6224B6
+//Show Method @94-E8AF325A
     function Show()
     {
         global $CCSUseAmp;
@@ -624,6 +629,7 @@ function GetPrimaryKey($keyName)
                     $this->prev_payment_amount->SetValue($this->DataSource->prev_payment_amount->GetValue());
                     $this->bphtb_amt_final_old->SetValue($this->DataSource->bphtb_amt_final_old->GetValue());
                     $this->check_potongan->SetValue($this->DataSource->check_potongan->GetValue());
+                    $this->t_bphtb_registration_id_old->SetValue($this->DataSource->t_bphtb_registration_id_old->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -684,6 +690,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->prev_payment_amount->Errors->ToString());
             $Error = ComposeStrings($Error, $this->bphtb_amt_final_old->Errors->ToString());
             $Error = ComposeStrings($Error, $this->check_potongan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_bphtb_registration_id_old->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -759,6 +766,8 @@ function GetPrimaryKey($keyName)
         $this->prev_payment_amount->Show();
         $this->bphtb_amt_final_old->Show();
         $this->check_potongan->Show();
+        $this->BtnSelect->Show();
+        $this->t_bphtb_registration_id_old->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -769,7 +778,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-A72049E5
+//DataSource Variables @94-4C6E066F
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -834,9 +843,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $prev_payment_amount;
     var $bphtb_amt_final_old;
     var $check_potongan;
+    var $t_bphtb_registration_id_old;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-4822506C
+//DataSourceClass_Initialize Event @94-18908D48
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -940,6 +950,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->check_potongan = new clsField("check_potongan", ccsText, "");
         
+        $this->t_bphtb_registration_id_old = new clsField("t_bphtb_registration_id_old", ccsFloat, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1034,7 +1046,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-416A02A0
+//SetValues Method @94-740FEABD
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1083,6 +1095,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->prev_payment_amount->SetDBValue(trim($this->f("prev_payment_amount")));
         $this->bphtb_amt_final_old->SetDBValue(trim($this->f("bphtb_amt_final_old")));
         $this->check_potongan->SetDBValue($this->f("check_potongan"));
+        $this->t_bphtb_registration_id_old->SetDBValue(trim($this->f("t_bphtb_registration_id_old")));
     }
 //End SetValues Method
 
