@@ -132,9 +132,11 @@ class FormCetak extends FPDF {
 			array
 			(	"",
 				"No. Register\n".
-				"Tanggal Masuk",
+				"Tanggal Masuk\n".
+				"Jenis Transaksi",
 				": ".$data['registration_no']."\n".
-				": ".$data['tgl_masuk'].""
+				": ".$data['tgl_masuk']."\n".
+				": ".$data['jenis_perolehan_hak']."\n"
 
 			),
 			array
@@ -381,9 +383,11 @@ class FormCetak extends FPDF {
 			array
 			(	"",
 				"No. Register\n".
-				"Tanggal Masuk",
+				"Tanggal Masuk\n".
+				"Jenis Transaksi",
 				": ".$data['registration_no']."\n".
-				": ".$data['tgl_masuk'].""
+				": ".$data['tgl_masuk']."\n".
+				": ".$data['jenis_perolehan_hak']
 
 			),
 			array
@@ -427,9 +431,20 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Ln();
 		
-		$this->Ln();
+		
 		$this->SetWidths(array($lbody10,$lbody10));
 		$this->SetAligns(array("L","C"));
+		$this->RowMultiBorderWithHeight(
+			array
+			(	"Seksi Penyelesaian Piutang : (022)93216588",
+				""
+			),
+			array
+			(
+				"",""
+			),
+			$this->height);
+		
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
