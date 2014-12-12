@@ -303,7 +303,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .= '</table>';
 	$output .= '</td></tr>';
 	$output .= '</table>';
-	$output .= '<div align="right" style="text-align:right;font-size:15px;"> TIM IT Disyanjak@2014 &nbsp;&nbsp;&nbsp;&nbsp; www.disyanjak.bandung.go.id</div>';
+	$output .= '<div align="right" style="text-align:right;font-size:15px;color:#282A68;"> TIM IT Disyanjak@2014 &nbsp;&nbsp;&nbsp;&nbsp; www.disyanjak.bandung.go.id</div>';
 
 	return $output;
 } 
