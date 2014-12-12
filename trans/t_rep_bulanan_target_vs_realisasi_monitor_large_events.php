@@ -300,7 +300,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .= '<td align="right"> '.number_format($grand_total_selisih_, 0, ',', '.').' </td>';
 	$output .= '</tr>';	
 	$output .= '<tr>
-			<td colspan="4" align="right" style="padding-top:10px;text-align:right;font-size:15px;color:#282A68;">TIM IT Disyanjak@2014 &nbsp;&nbsp;&nbsp;&nbsp; www.disyanjak.bandung.go.id</td>
+			<td colspan="4" align="right" style="padding-top:10px;text-align:right;font-size:15px;color:#282A68;"><b>TIM IT Disyanjak@2014</b> &nbsp;&nbsp;&nbsp;&nbsp; www.disyanjak.bandung.go.id</td>
 	</tr>';
 	$output .= '</table>';
 	$output .= '</td></tr>';
