@@ -142,13 +142,13 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong style="font-size:25px;">LAPORAN TARGET DAN REALISASI</strong></td> 
+                  		<td class="th"><strong style="font-size:25px;">LAPORAN TARGET DAN REALISASI PERIODE : '.$param_arr["pajak_periode"].' s.d '.$param_arr["pajak_periode1"].'</strong></td> 
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               	</table>';
 	//$output .= '<div align="right"><a href="#" onClick="downloadGeneral();"> Download Excel </a></div>';
-	$output .= '<h3>BIDANG PAJAK PENDAFTARAN & PAJAK PENETAPAN</h3>';
-	$output .= '<h3>PERIODE : '.$param_arr["pajak_periode"].' s.d '.$param_arr["pajak_periode1"].'</h3> <br/>';
+	//$output .= '<h3>BIDANG PAJAK PENDAFTARAN & PAJAK PENETAPAN</h3>';
+	//$output .= '<h3>PERIODE : '.$param_arr["pajak_periode"].' s.d '.$param_arr["pajak_periode1"].'</h3> <br/>';
 	
 	$output .='<table class="report" cellspacing="0" cellpadding="4px" width="100%">
                 <tr style="background:#282A68;color:#FFFFFF; font-size:30px;">';
