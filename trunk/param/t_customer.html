@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -67,38 +67,38 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">&nbsp;NPWPD&nbsp;</td> 
-                    <td class="search-field"><input id="t_customerSearchs_npwd" class="ControlsIN" name="{s_npwd_Name}" maxlength="32" value="{s_npwd}" size="32">&nbsp;</td>
+                    <td class="search-field"><input id="t_customerSearchs_npwd" class="ControlsIN" value="{s_npwd}" maxlength="32" size="32" name="{s_npwd_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Nama Wajib Pajak&nbsp;</td> 
-                    <td class="search-field"><input id="t_customerSearchs_wp_name" class="ControlsIN" name="{s_wp_name_Name}" maxlength="32" value="{s_wp_name}" size="32">&nbsp;</td>
+                    <td class="search-field"><input id="t_customerSearchs_wp_name" class="ControlsIN" value="{s_wp_name}" maxlength="32" size="32" name="{s_wp_name_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Nama Badan/Perusahaan&nbsp;&nbsp; </td> 
-                    <td class="search-field"><input id="t_customerSearchs_company_name" class="ControlsIN" name="{s_company_name_Name}" maxlength="32" value="{s_company_name}" size="32">&nbsp;</td>
+                    <td class="search-field"><input id="t_customerSearchs_company_name" class="ControlsIN" value="{s_company_name}" maxlength="32" size="32" name="{s_company_name_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Nama Merk&nbsp;Dagang</td> 
-                    <td class="search-field"><input id="t_customerSearchs_company_brand" class="ControlsIN" name="{s_company_brand_Name}" maxlength="32" value="{s_company_brand}" size="32">&nbsp;</td>
+                    <td class="search-field"><input id="t_customerSearchs_company_brand" class="ControlsIN" value="{s_company_brand}" maxlength="32" size="32" name="{s_company_brand_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Nama Pemilik/Pengelola</td> 
-                    <td class="search-field"><input id="t_customerSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32">&nbsp;</td>
+                    <td class="search-field"><input id="t_customerSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">Alamat Lokasi Usaha</td> 
-                    <td style="TEXT-ALIGN: right" class="search-field"><input id="t_customerSearchs_address_name" class="ControlsIN" name="{s_address_name_Name}" maxlength="32" value="{s_address_name}" size="32">&nbsp;</td>
+                    <td style="TEXT-ALIGN: right" class="search-field"><input id="t_customerSearchs_address_name" class="ControlsIN" value="{s_address_name}" maxlength="32" size="32" name="{s_address_name_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">&nbsp;</td> 
                     <td style="TEXT-ALIGN: right" class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="t_customerSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_customerSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
@@ -120,30 +120,52 @@ $(document).ready(function()
  
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <tr class="Caption">
-                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">
+                  <p align="center">#</p>
+                  </th>
  
-                  <th style="TEXT-ALIGN: center" scope="col">&nbsp;Customer Account</th>
+                  <th style="TEXT-ALIGN: center" scope="col">
+                  <p>&nbsp;Customer <br>
+                  Account</p>
+                  </th>
  
-                  <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Pemilik/Pengelola</label></label></label></label></label></label></th>
+                  <th scope="col">
+                  <p align="center"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Pemilik/Pengelola</label></label></label></label></label></label></p>
+                  </th>
  
-                  <th scope="col">&nbsp;Merek Dagang</th>
+                  <th scope="col">
+                  <p align="center"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME">Alamat WP</label></label></p>
+                  </th>
  
-                  <th scope="col"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME">Alamat</label></label></th>
+                  <th scope="col">
+                  <p align="center">&nbsp;Merek Dagang</p>
+                  </th>
  
-                  <th scope="col">Jenis Pajak&nbsp;</th>
+                  <th scope="col">
+                  <p align="center">&nbsp;Alamat Merek Dagang</p>
+                  </th>
  
-                  <th scope="col">No Selular&nbsp;</th>
+                  <th scope="col">
+                  <p align="center">Jenis Pajak&nbsp;</p>
+                  </th>
  
-                  <th scope="col">Email</th>
+                  <th scope="col">
+                  <p align="center">No Selular&nbsp;</p>
+                  </th>
+ 
+                  <th scope="col">
+                  <p align="center">Email</p>
+                  </th>
                 </tr>
  
                 <!-- BEGIN Row -->
                 <tr {t_customerGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_customerGridDLink_{t_customerGrid:rowNumber}">{DLink}</a></td> 
                   <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="t_customerGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
-                  <td>{company_owner}&nbsp;<input id="t_customerGridt_customer_id" name="{t_customer_id_Name}" value="{t_customer_id}" type="hidden"></td> 
-                  <td>{company_brand}</td> 
+                  <td>{company_owner}&nbsp;<input id="t_customerGridt_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td> 
                   <td>{address_name_owner}&nbsp;No. {address_no_owner}&nbsp;Rt/Rw. {address_rt_owner}&nbsp;/ {address_rw_owner}</td> 
+                  <td>{company_brand}</td> 
+                  <td>&nbsp;{brand_address_name}</td> 
                   <td>&nbsp;{vat_code}</td> 
                   <td>{mobile_no_owner}&nbsp;</td> 
                   <td>{email_address}&nbsp;</td>
@@ -151,12 +173,12 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="8">-</td>
+                  <td colspan="9">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b><label for="t_customerGridTextBox1" style="display: none;">&nbsp;</label></b></td> 
-                  <td colspan="7">
+                  <td colspan="8">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -196,68 +218,68 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th" width="200"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama Pemilik/Pengelola</label></label></td> 
-                    <td colspan="3"><input id="t_customer_updateFormcompany_owner" class="ControlsRO" name="{company_owner_Name}" readonly maxlength="250" value="{company_owner}" size="50"><input id="t_customer_updateFormt_customer_id" name="{t_customer_id_Name}" value="{t_customer_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_customer_updateFormcompany_owner" class="ControlsRO" value="{company_owner}" readonly maxlength="250" size="50" name="{company_owner_Name}"><input id="t_customer_updateFormt_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Jabatan</td> 
-                    <td colspan="3"><input id="t_customer_updateFormnama_jabatan" class="ControlsRO" name="{nama_jabatan_Name}" readonly maxlength="250" value="{nama_jabatan}" size="50">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_jabatan()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_job_position_id" name="{p_job_position_id_Name}" value="{p_job_position_id}" type="hidden"></td>
+                    <td colspan="3"><input id="t_customer_updateFormnama_jabatan" class="ControlsRO" value="{nama_jabatan}" readonly maxlength="250" size="50" name="{nama_jabatan_Name}">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_jabatan()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_job_position_id" value="{p_job_position_id}" type="hidden" name="{p_job_position_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="t_customerFormis_head">Alamat</label></label></label></td> 
-                    <td colspan="3"><textarea id="t_customer_updateFormaddress_name_owner" class="ControlsRO" cols="64" rows="3" readonly name="{address_name_owner_Name}">{address_name_owner}</textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                    <td colspan="3"><textarea id="t_customer_updateFormaddress_name_owner" class="ControlsRO" rows="3" cols="64" readonly name="{address_name_owner_Name}">{address_name_owner}</textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No</td> 
-                    <td colspan="3"><input id="t_customer_updateFormaddress_no_owner" class="ControlsRO" name="{address_no_owner_Name}" readonly maxlength="20" value="{address_no_owner}" size="10">&nbsp;Rt/Rw <input id="t_customer_updateFormaddress_rt_owner" class="ControlsRO" name="{address_rt_owner_Name}" readonly maxlength="5" value="{address_rt_owner}" size="5">&nbsp;/ <input id="t_customer_updateFormaddress_rw_owner" class="ControlsRO" name="{address_rw_owner_Name}" readonly maxlength="5" value="{address_rw_owner}" size="5"></td>
+                    <td colspan="3"><input id="t_customer_updateFormaddress_no_owner" class="ControlsRO" value="{address_no_owner}" readonly maxlength="20" size="10" name="{address_no_owner_Name}">&nbsp;Rt/Rw <input id="t_customer_updateFormaddress_rt_owner" class="ControlsRO" value="{address_rt_owner}" readonly maxlength="5" size="5" name="{address_rt_owner_Name}">&nbsp;/ <input id="t_customer_updateFormaddress_rw_owner" class="ControlsRO" value="{address_rw_owner}" readonly maxlength="5" size="5" name="{address_rw_owner_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kota</td> 
-                    <td colspan="3"><input id="t_customer_updateFormnama_kota" class="ControlsRO" name="{nama_kota_Name}" readonly maxlength="32" value="{nama_kota}" size="32">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kota()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_owner" name="{p_region_id_owner_Name}" value="{p_region_id_owner}" type="hidden"></td>
+                    <td colspan="3"><input id="t_customer_updateFormnama_kota" class="ControlsRO" value="{nama_kota}" readonly maxlength="32" size="32" name="{nama_kota_Name}">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kota()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_owner" value="{p_region_id_owner}" type="hidden" name="{p_region_id_owner_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kecamatan</td> 
-                    <td colspan="3"><input id="t_customer_updateFormnama_kecamatan" class="ControlsRO" name="{nama_kecamatan_Name}" maxlength="32" value="{nama_kecamatan}" size="32">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kec()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_kec_owner" name="{p_region_id_kec_owner_Name}" value="{p_region_id_kec_owner}" type="hidden"></td>
+                    <td colspan="3"><input id="t_customer_updateFormnama_kecamatan" class="ControlsRO" value="{nama_kecamatan}" maxlength="32" size="32" name="{nama_kecamatan_Name}">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kec()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_kec_owner" value="{p_region_id_kec_owner}" type="hidden" name="{p_region_id_kec_owner_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kelurahan</td> 
-                    <td colspan="3"><input id="t_customer_updateFormnama_kelurahan" class="ControlsRO" name="{nama_kelurahan_Name}" maxlength="32" value="{nama_kelurahan}" size="32">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kel()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_kel_owner" name="{p_region_id_kel_owner_Name}" value="{p_region_id_kel_owner}" type="hidden"></td>
+                    <td colspan="3"><input id="t_customer_updateFormnama_kelurahan" class="ControlsRO" value="{nama_kelurahan}" maxlength="32" size="32" name="{nama_kelurahan_Name}">&nbsp;<img style="DISPLAY: none" onclick="javascript:lov_kel()" border="0" src="../images/view.gif"><input id="t_customer_updateFormp_region_id_kel_owner" value="{p_region_id_kel_owner}" type="hidden" name="{p_region_id_kel_owner_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_customer_updateFormnama_jabatan">No Telephon</label></td> 
-                    <td colspan="3"><input id="t_customer_updateFormphone_no_owner" class="ControlsRO" name="{phone_no_owner_Name}" readonly maxlength="20" value="{phone_no_owner}">&nbsp;</td>
+                    <td colspan="3"><input id="t_customer_updateFormphone_no_owner" class="ControlsRO" value="{phone_no_owner}" readonly maxlength="20" name="{phone_no_owner_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No Fax</td> 
-                    <td colspan="3"><input id="t_customer_updateFormfax_no_owner" class="ControlsRO" name="{fax_no_owner_Name}" readonly maxlength="20" value="{fax_no_owner}">&nbsp;</td>
+                    <td colspan="3"><input id="t_customer_updateFormfax_no_owner" class="ControlsRO" value="{fax_no_owner}" readonly maxlength="20" name="{fax_no_owner_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No Selular</td> 
-                    <td colspan="3"><input id="t_customer_updateFormmobile_no_owner" class="ControlsRO" name="{mobile_no_owner_Name}" maxlength="20" value="{mobile_no_owner}"></td>
+                    <td colspan="3"><input id="t_customer_updateFormmobile_no_owner" class="ControlsRO" value="{mobile_no_owner}" maxlength="20" name="{mobile_no_owner_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Email</td> 
-                    <td colspan="3"><input id="t_customer_updateFormemail_address" class="ControlsRO" name="{email_address_Name}" maxlength="64" value="{email_address}" size="50"><input id="t_customer_updateFormupdated_by" name="{updated_by_Name}" value="{updated_by}" type="hidden"></td>
+                    <td colspan="3"><input id="t_customer_updateFormemail_address" class="ControlsRO" value="{email_address}" maxlength="64" size="50" name="{email_address_Name}"><input id="t_customer_updateFormupdated_by" value="{updated_by}" type="hidden" name="{updated_by_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Pos</td> 
-                    <td colspan="3"><input id="t_customer_updateFormzip_code_owner" class="ControlsRO" name="{zip_code_owner_Name}" maxlength="5" value="{zip_code_owner}" size="6"></td>
+                    <td colspan="3"><input id="t_customer_updateFormzip_code_owner" class="ControlsRO" value="{zip_code_owner}" maxlength="5" size="6" name="{zip_code_owner_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="4" align="right">&nbsp; 
-                      <!-- BEGIN Button Button_Update --><input style="DISPLAY: none" id="t_customer_updateFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_customer_updateFormButton_Cancel" class="btn_tambah" name="{Button_Name}" alt="Cancel" value="BATAL" type="submit"><!-- END Button Button_Cancel --></td>
+                      <!-- BEGIN Button Button_Update --><input style="DISPLAY: none" id="t_customer_updateFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_customer_updateFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
                   </tr>
                 </table>
               </td>
