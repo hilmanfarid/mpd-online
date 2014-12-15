@@ -304,6 +304,7 @@ function Page_AfterInitialize(& $sender)
 	$p_year_period_id->SetText($data);
 
 	$_SESSION['p_year_period_id']=$data;
+	
 // -------------------------
 //End Custom Code
 
