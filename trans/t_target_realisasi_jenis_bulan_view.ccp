@@ -330,18 +330,18 @@ UNION
 			<Features/>
 		</Grid>
 		<Label id="21" fieldSourceType="DBColumn" dataType="Text" html="True" name="ayat" PathID="ayat">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="138" fieldSourceType="DBColumn" dataType="Text" html="True" name="p_year_period_id" PathID="p_year_period_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
+		<Label id="138" fieldSourceType="DBColumn" dataType="Text" html="True" name="p_year_period_id" PathID="p_year_period_id">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_target_realisasi_jenis_bulan_view_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_target_realisasi_jenis_bulan_view.php" forShow="True" url="t_target_realisasi_jenis_bulan_view.php" comment="//" codePage="windows-1252"/>
@@ -357,20 +357,20 @@ UNION
 			</Actions>
 		</Event>
 		<Event name="BeforeInitialize" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="139"/>
-</Actions>
-</Event>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="140"/>
-<Action actionName="Custom Code" actionCategory="General" id="141"/>
-</Actions>
-</Event>
-<Event name="AfterInitialize" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="142"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="139"/>
+			</Actions>
+		</Event>
+		<Event name="BeforeShow" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="140"/>
+				<Action actionName="Custom Code" actionCategory="General" id="141"/>
+			</Actions>
+		</Event>
+		<Event name="AfterInitialize" type="Server">
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="142"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
