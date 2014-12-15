@@ -46,7 +46,7 @@ if (empty($p_vat_type_id)) {
     $dbConn2->query($sql);
     while ($dbConn2->next_record()) {
         $data['Target'][] = $dbConn2->f("target_amount");
-        $data['Realisasi'][] = $dbConn2->f("realisasi_amt") + $dbConn2->f("debt_amt") + $dbConn2->f("denda_pokok") + $dbConn2->f("denda_piutang")+ $dbConn2->f("penalty_amt");
+        $data['Realisasi'][] = $dbConn2->f("realisasi_amt") + $dbConn2->f("debt_amt") + $dbConn2->f("denda_pokok") + $dbConn2->f("denda_piutang");
     }
 	$dbConn2->close();
 	
