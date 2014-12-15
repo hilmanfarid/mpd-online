@@ -1,11 +1,23 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style>
+#chart .c3-line-Target {
+stroke-width: 5px;
+}
+
+#chart .c3-line-Realisasi {
+stroke-width: 5px;
+}
+</style>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>Data Penerimaan PBB/PAT/Reklame</title>
-<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <meta http-equiv="refresh" content="3600">
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<link href="../js/graph/c3.css" rel="stylesheet" type="text/css">
+<script src="../js/graph/d3.v3.min.js" charset="utf-8"></script>
+<script src="../js/graph/c3.min.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 
@@ -72,7 +84,7 @@ function showTime(){
 window.onload = showTime;
 </script>
 </head>
-<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="CLEAR: both; PADDING-TOP: 5px">
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
@@ -80,7 +92,7 @@ window.onload = showTime;
         <table width="100%">
           <tr>
             <td>{ayat}</td> 
-            <td style="display:none">{p_year_period_id}</td> 
+            <td style="DISPLAY: none">{p_year_period_id}</td> 
             <td style="COLOR: #008041; FONT-SIZE: 15px; FONT-WEIGHT: bold" id="timer" align="right"></td>
           </tr>
         </table>
@@ -189,7 +201,7 @@ window.onload = showTime;
         </table>
         <!-- END Grid t_target_realisasiGrid -->
         <!-- BEGIN Grid t_target_realisasiGrid1 -->
-        <table style="WIDTH: 100%" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
+        <table style="DISPLAY: none" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
           <tr>
             <td valign="top">
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
@@ -255,17 +267,45 @@ window.onload = showTime;
         </table>
         <!-- END Grid t_target_realisasiGrid1 --></td>
     </tr>
- 
-    <tr>
-      <td>
-        <div style="PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #59b704; PADDING-RIGHT: 10px; COLOR: #000000; FONT-SIZE: 20px; FONT-WEIGHT: bold" id="timer" class="grid-table-container" align="right">
-        </div>
- 
-        <div style="PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #59b704; PADDING-RIGHT: 10px; COLOR: #000000; FONT-SIZE: 20px; FONT-WEIGHT: bold" class="grid-table-container" align="right">
-        </div>
-      </td>
-    </tr>
- 
+ 	
+  </table>
+  <br>
+  <div id="chart"></div>
+
+	<script>
+	$(document).ready(function()
+	{
+			var chart = c3.generate({
+			bindto: '#chart',
+			data: {
+				url: 'http://172.16.20.3:81/mpd/report/target_realisasi_perjenis_json.php?p_vat_type_id='+document.getElementById("t_target_realisasiGridp_vat_type_id").value,
+				mimeType: 'json',
+				labels:true,
+				labels : {
+					format: {
+						y : d3.format(",")
+					},
+					color : {
+						pattern : ['#000000','#000000']
+					}
+				}
+			},
+			axis: {
+			x: {
+			type: 'category',
+			categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+			},
+			y : {
+				tick: {
+				format: d3.format(",")
+				}
+			}
+			}
+
+			});
+	});
+	</script>
+  <table class="module-container" > 
     <tr>
       <td style="FONT-SIZE: 14px" align="right">Tim IT Disyanjak @2014 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; www.disyanjak.bandung.go.id </td>
     </tr>
