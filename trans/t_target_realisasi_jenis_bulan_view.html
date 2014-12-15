@@ -96,6 +96,46 @@ window.onload = showTime;
             <td style="COLOR: #008041; FONT-SIZE: 15px; FONT-WEIGHT: bold" id="timer" align="right"></td>
           </tr>
         </table>
+
+			<div id="chart"></div>
+
+			<script>
+			$(document).ready(function()
+			{
+					var chart = c3.generate({
+					bindto: '#chart',
+					data: {
+						url: 'http://172.16.20.3:81/mpd/report/target_realisasi_perjenis_json.php?p_vat_type_id='+document.getElementById("t_target_realisasiGridp_vat_type_id").value,
+						mimeType: 'json',
+						labels:true,
+						labels : {
+							format: {
+								y : d3.format(",")
+							},
+							color : {
+								pattern : ['#000000','#000000']
+							}
+						}
+					},
+					color: {
+						pattern: ['#1f77b4', '#ff0000']
+					},
+					axis: {
+					x: {
+					type: 'category',
+					categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+					},
+					y : {
+						tick: {
+						format: d3.format(",")
+						}
+					}
+					}
+
+					});
+			});
+			</script>
+
         <!-- BEGIN Grid t_target_realisasiGrid -->
         <table style="WIDTH: 100%" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
           <tr>
@@ -270,41 +310,7 @@ window.onload = showTime;
  	
   </table>
   <br>
-  <div id="chart"></div>
-
-	<script>
-	$(document).ready(function()
-	{
-			var chart = c3.generate({
-			bindto: '#chart',
-			data: {
-				url: 'http://172.16.20.3:81/mpd/report/target_realisasi_perjenis_json.php?p_vat_type_id='+document.getElementById("t_target_realisasiGridp_vat_type_id").value,
-				mimeType: 'json',
-				labels:true,
-				labels : {
-					format: {
-						y : d3.format(",")
-					},
-					color : {
-						pattern : ['#000000','#000000']
-					}
-				}
-			},
-			axis: {
-			x: {
-			type: 'category',
-			categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
-			},
-			y : {
-				tick: {
-				format: d3.format(",")
-				}
-			}
-			}
-
-			});
-	});
-	</script>
+  
   <table class="module-container" > 
     <tr>
       <td style="FONT-SIZE: 14px" align="right">Tim IT Disyanjak @2014 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; www.disyanjak.bandung.go.id </td>
