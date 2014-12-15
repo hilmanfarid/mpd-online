@@ -50,6 +50,7 @@ if (empty($p_vat_type_id)) {
     }
 	$dbConn2->close();
 	
+	header('Content-type: application/json');
 	echo json_encode($data);
     session_write_close();
     exit;
