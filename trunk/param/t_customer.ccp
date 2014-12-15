@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, c.vat_code, b.company_brand
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, c.vat_code, b.company_brand, b.brand_address_name
 FROM t_customer a
 LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
 LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
@@ -93,6 +93,12 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Features/>
 				</Label>
 				<Label id="526" fieldSourceType="DBColumn" dataType="Text" html="False" name="company_brand" fieldSource="company_brand" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridcompany_brand">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="527" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_name" fieldSource="brand_address_name" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridbrand_address_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
