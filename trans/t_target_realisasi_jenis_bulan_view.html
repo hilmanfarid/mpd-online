@@ -106,7 +106,7 @@ window.onload = showTime;
                                         var chart = c3.generate({
                                         bindto: '#chart',
                                         data: {
-                                                url: 'http://'+document.domain+'/mpd/report/target_realisasi_perjenis_json.php?p_vat_type_id='+document.getElementById("t_target_realisasiGridp_vat_type_id").value,
+                                                url: 'http://'+document.domain+':81/mpd/report/target_realisasi_perjenis_json.php?p_vat_type_id='+document.getElementById("t_target_realisasiGridp_vat_type_id").value,
                                                 mimeType: 'json',
                                                 labels:true,
                                                 labels : {
