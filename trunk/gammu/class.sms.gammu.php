@@ -38,7 +38,7 @@
 | - Add function enable_sudo([int]) 
 |   set 1 if using sudo for gammu command exe
 ------------------------------------------*/
-
+error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
 class gammu {
 
 /* Initializing gammu bin/EXE */

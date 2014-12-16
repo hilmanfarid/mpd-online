@@ -3,7 +3,9 @@
 		private $db;
 		private $gammuClass;
 		public function SendSms(){
-			define("RelativePath", "..");
+			if(!defined("RelativePath")){
+				define("RelativePath", "..");
+			}
 			include_once('class.sms.gammu.php');
 			include_once(RelativePath . "/Common.php");
 			$this->gammuClass = new gammu();
