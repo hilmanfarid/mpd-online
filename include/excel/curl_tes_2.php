@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL ^ E_WARNING);
+error_reporting(E_ALL ^ E_WARNING ^ E_DEPRECATED);
 define("RelativePath", "../..");
 	define("PathToCurrentPage", "/include/excel/");	
 	define("FileName", "curl_tes_2.php"); 	
