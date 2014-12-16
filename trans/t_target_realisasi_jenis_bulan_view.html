@@ -1,6 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Data Penerimaan PBB/PAT/Reklame</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<meta http-equiv="refresh" content="3600">
 <style>
 #chart .c3-line-Target {
 stroke-width: 5px;
@@ -10,13 +14,9 @@ stroke-width: 5px;
 stroke-width: 5px;
 }
 </style>
-<meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<title>Data Penerimaan PBB/PAT/Reklame</title>
-<meta http-equiv="refresh" content="3600">
-<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
-<link href="../js/graph/c3.css" rel="stylesheet" type="text/css">
-<script src="../js/graph/d3.v3.min.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="../js/graph/c3.css">
+<script charset="utf-8" src="../js/graph/d3.v3.min.js"></script>
 <script src="../js/graph/c3.min.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
@@ -84,11 +84,11 @@ function showTime(){
 window.onload = showTime;
 </script>
 </head>
-<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="CLEAR: both; PADDING-TOP: 5px">
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
-      <td><img align="center" src="../images/header_digs.gif" width="100%" height="80">
+      <td><img style="DISPLAY: none" align="center" src="../images/header_digs.gif" width="100%" height="80">
         <table width="100%">
           <tr>
             <td>{ayat}</td> 
@@ -96,53 +96,53 @@ window.onload = showTime;
             <td style="COLOR: #008041; FONT-SIZE: 15px; FONT-WEIGHT: bold" id="timer" align="right"></td>
           </tr>
         </table>
+ 
+        <div id="chart">
+        </div>
+ 
+        <script>
+                        $(document).ready(function()
+                        {
+                                        var chart = c3.generate({
+                                        bindto: '#chart',
+                                        data: {
+                                                url: 'http://'+document.domain+'/mpd/report/target_realisasi_perjenis_json.php?p_vat_type_id='+document.getElementById("t_target_realisasiGridp_vat_type_id").value,
+                                                mimeType: 'json',
+                                                labels:true,
+                                                labels : {
+                                                        format: {
+                                                                y : d3.format(",")
+                                                        },
+                                                        color : {
+                                                                pattern : ['#000000','#000000']
+                                                        }
+                                                }
+                                        },
+                                        color: {
+                                                pattern: ['#1f77b4', '#ff0000']
+                                        },
+                                        axis: {
+                                        x: {
+                                        type: 'category',
+                                        categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+                                        },
+                                        y : {
+                                                tick: {
+                                                format: d3.format(",")
+                                                }
+                                        }
+                                        }
 
-			<div id="chart"></div>
-
-			<script>
-			$(document).ready(function()
-			{
-					var chart = c3.generate({
-					bindto: '#chart',
-					data: {
-						url: 'http://172.16.20.3:81/mpd/report/target_realisasi_perjenis_json.php?p_vat_type_id='+document.getElementById("t_target_realisasiGridp_vat_type_id").value,
-						mimeType: 'json',
-						labels:true,
-						labels : {
-							format: {
-								y : d3.format(",")
-							},
-							color : {
-								pattern : ['#000000','#000000']
-							}
-						}
-					},
-					color: {
-						pattern: ['#1f77b4', '#ff0000']
-					},
-					axis: {
-					x: {
-					type: 'category',
-					categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
-					},
-					y : {
-						tick: {
-						format: d3.format(",")
-						}
-					}
-					}
-
-					});
-			});
-			</script>
-
+                                        });
+                        });
+                        </script>
         <!-- BEGIN Grid t_target_realisasiGrid -->
         <table style="WIDTH: 100%" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="50%">
           <tr>
             <td valign="top">
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="HeaderLeft"><img style="DISPLAY: none" border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR TARGET VS REALISASI</strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
@@ -307,11 +307,9 @@ window.onload = showTime;
         </table>
         <!-- END Grid t_target_realisasiGrid1 --></td>
     </tr>
- 	
   </table>
   <br>
-  
-  <table class="module-container" > 
+  <table class="module-container">
     <tr>
       <td style="FONT-SIZE: 14px" align="right">Tim IT Disyanjak @2014 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; www.disyanjak.bandung.go.id </td>
     </tr>
