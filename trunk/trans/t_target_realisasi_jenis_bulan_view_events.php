@@ -233,37 +233,37 @@ function Page_BeforeShow(& $sender)
 	
 
 	global $ayat;
-	$temp="<h1>TARGET DAN REALISASI BULANAN PAJAK ";	
+	$temp="<font size='6' color='blue'><b>TARGET DAN REALISASI BULANAN PAJAK ";	
 	
 	$p_vat_type_id		= CCGetFromGet("p_vat_type_id",6);
 	//$p_year_period_id		= CCGetFromGet("p_year_period_id",16);
 	switch ($p_vat_type_id) {
 	  case 1:
-	  	$temp.="HOTEL<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></H1>";
+	  	$temp.="HOTEL<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></b></font>";
 	    $ayat->SetText($temp);
 	    break;
 	  case 2:
-	    $temp.="RESTORAN<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $temp.="RESTORAN<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></b></font>";
 	    $ayat->SetText($temp);
 	    break;
 	  case 3:
-	    $temp.="HIBURAN<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $temp.="HIBURAN<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></b></font>";
 	    $ayat->SetText($temp);
 	    break;
 	  case 4:
-	    $temp.="PARKIR<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $temp.="PARKIR<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></b></font>";
 	    $ayat->SetText($temp);
 	    break;
 	  case 5:
-	    $temp.="PPJ<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $temp.="PPJ<span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></b></font>";
 	    $ayat->SetText($temp);
 	    break;
 	  case 6:
-	  	$temp.="BPHTB <span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></H1>";
+	  	$temp.="BPHTB <span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></b></font>";
 	    $ayat->SetText($temp);
 	    break;
 	  default:
-	    $temp.="BPHTB <span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></h1>";
+	    $temp.="BPHTB <span STYLE='DISPLAY:NONE;' id='tanggal_kemaren'></span></b></font>";
 	    $ayat->SetText($temp);
 	}
 // -------------------------
