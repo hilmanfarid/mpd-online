@@ -532,7 +532,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-C6D2722C
+//Class_Initialize Event @23-C583B97D
     function clsRecordt_ppatForm($RelativePath, & $Parent)
     {
 
@@ -592,7 +592,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
             $this->wp_p_region_id_kel->Required = true;
             $this->jenis_perolehan_hak = & new clsControl(ccsListBox, "jenis_perolehan_hak", "jenis_perolehan_hak", ccsText, "", CCGetRequestParam("jenis_perolehan_hak", $Method, NULL), $this);
             $this->jenis_perolehan_hak->DSType = dsListOfValues;
-            $this->jenis_perolehan_hak->Values = array(array("Waris", "Waris"), array("Fasos", "Fasos"), array("Rumah Dinas", "Rumah Dinas"), array("Waris Gono-Gini", "Waris Gono-Gini"), array("Hibah", "Hibah"), array("Peralihan Hak Baru", "Peralihan Hak Baru"));
+            $this->jenis_perolehan_hak->Values = array(array("Waris", "Waris"), array("Fasos", "Fasos"), array("Rumah Dinas", "Rumah Dinas"), array("Waris Gono-Gini", "Waris Gono-Gini"), array("Hibah", "Hibah"), array("Peralihan Hak Baru", "Peralihan Hak Baru"), array("Restitusi", "Restitusi"));
             $this->registration_no = & new clsControl(ccsTextBox, "registration_no", "registration_no", ccsText, "", CCGetRequestParam("registration_no", $Method, NULL), $this);
             $this->tgl_masuk = & new clsControl(ccsTextBox, "tgl_masuk", "tgl_masuk", ccsText, "", CCGetRequestParam("tgl_masuk", $Method, NULL), $this);
             $this->DatePicker_tgl_masuk1 = & new clsDatePicker("DatePicker_tgl_masuk1", "t_ppatForm", "tgl_masuk", $this);
