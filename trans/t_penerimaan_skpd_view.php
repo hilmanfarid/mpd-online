@@ -241,7 +241,7 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Prepare Method
 
-//Open Method @2-7FA83EA8
+//Open Method @2-1379396C
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -252,7 +252,7 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         "sum(jml_hari_ini) as payment_vat_amount \n" .
         "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
         "left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id \n" .
-        "where b.p_vat_type_id NOT IN (7,8,9,10)\n" .
+        "where b.p_vat_type_id NOT IN (7)\n" .
         "GROUP BY  b.p_vat_type_id, b.vat_code \n" .
         "ORDER BY b.p_vat_type_id\n" .
         ")\n" .
@@ -264,7 +264,7 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         "sum(jml_hari_ini) as payment_vat_amount \n" .
         "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
         "left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id \n" .
-        "where b.p_vat_type_id NOT IN (7,8,9,10)\n" .
+        "where b.p_vat_type_id NOT IN (7)\n" .
         "GROUP BY  b.p_vat_type_id, b.vat_code \n" .
         "ORDER BY b.p_vat_type_id\n" .
         ")\n" .
