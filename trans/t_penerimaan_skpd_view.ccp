@@ -7,7 +7,7 @@ united.payment_vat_amount FROM (
 sum(jml_hari_ini) as payment_vat_amount 
 from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a 
 left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id 
-where b.p_vat_type_id NOT IN (7,8,9,10)
+where b.p_vat_type_id NOT IN (7)
 GROUP BY  b.p_vat_type_id, b.vat_code 
 ORDER BY b.p_vat_type_id
 )
