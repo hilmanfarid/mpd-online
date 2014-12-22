@@ -27,7 +27,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<ListBox id="564" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="nama_teller" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_rep_lap_harian_bdhrSearchnama_teller" connection="ConnSIKP" dataSource="ESSYBKP;ESSYBKP;HERIBKP;HERIBKP;PAINCEBKP;PAINCEBKP" _valueOfList="PAINCEBKP" _nameOfList="PAINCEBKP">
+				<ListBox id="564" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="nama_teller" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_rep_lap_harian_bdhrSearchnama_teller" connection="ConnSIKP" dataSource="ESSYBKP;ESSYBKP;HERIBKP;HERIBKP;PAINCEBKP;PAINCEBKP;ABDURACHIM;ABDURACHIM" _valueOfList="ABDURACHIM" _nameOfList="ABDURACHIM">
 					<Components/>
 					<Events/>
 					<TableParameters/>
