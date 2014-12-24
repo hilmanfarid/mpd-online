@@ -64,8 +64,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -74,15 +74,15 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td><br>
         <!-- BEGIN Grid t_message_inboxGrid -->
-        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
           <tr>
             <td valign="top">
-              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR INBOX</strong></td> 
@@ -106,10 +106,10 @@ $(document).ready(function()
                 <!-- BEGIN Row -->
                 <tr {t_message_inboxGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_message_inboxGridDLink_{t_message_inboxGrid:rowNumber}">{DLink}</a></td> 
-                  <td style="WIDTH: 200px">&nbsp;{creation_date}<input id="t_message_inboxGridt_message_inbox_bphtb_id" value="{t_message_inbox_bphtb_id}" type="hidden" name="{t_message_inbox_bphtb_id_Name}"></td> 
+                  <td style="WIDTH: 200px">&nbsp;{creation_date}<input id="t_message_inboxGridt_message_inbox_bphtb_id" type="hidden" value="{t_message_inbox_bphtb_id}" name="{t_message_inbox_bphtb_id_Name}"></td> 
                   <td>{ppat_name}</td> 
                   <td>&nbsp;{message_type}</td> 
-                  <td colspan="2"><input id="t_message_inboxGridmessage_status_{t_message_inboxGrid:rowNumber}" value="{message_status}" type="hidden" name="{message_status_Name}">&nbsp;{status_view}</td>
+                  <td colspan="2"><input id="t_message_inboxGridmessage_status_{t_message_inboxGrid:rowNumber}" type="hidden" value="{message_status}" name="{message_status_Name}">&nbsp;{status_view}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -140,10 +140,10 @@ $(document).ready(function()
         <!-- END Grid t_message_inboxGrid --><br>
         <!-- BEGIN Record t_message_inboxForm -->
         <form id="t_message_inboxForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
             <tr>
               <td valign="top">
-                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI JENIS PAJAK</strong></td> 
@@ -159,18 +159,18 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="t_message_inboxFormmessage_body">Jenis Pesan</label></td> 
-                    <td><input id="t_message_inboxFormmessage_type" class="ControlsRO" value="{message_type}" readonly maxlength="12" size="32" name="{message_type_Name}">&nbsp;<input id="t_message_inboxFormt_message_inbox_bphtb_id" value="{t_message_inbox_bphtb_id}" type="hidden" name="{t_message_inbox_bphtb_id_Name}"><input id="t_message_inboxFormt_ppat_id" value="{t_ppat_id}" type="hidden" name="{t_ppat_id_Name}"></td>
+                    <td><input id="t_message_inboxFormmessage_type" class="ControlsRO" readonly maxlength="12" size="32" value="{message_type}" name="{message_type_Name}">&nbsp;<input id="t_message_inboxFormt_message_inbox_bphtb_id" type="hidden" value="{t_message_inbox_bphtb_id}" name="{t_message_inbox_bphtb_id_Name}"><input id="t_message_inboxFormt_ppat_id" type="hidden" value="{t_ppat_id}" name="{t_ppat_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Pengirim</td> 
-                    <td><input id="t_message_inboxFormppat_name" class="ControlsRO" value="{ppat_name}" readonly maxlength="12" size="32" name="{ppat_name_Name}"></td>
+                    <td><input id="t_message_inboxFormppat_name" class="ControlsRO" readonly maxlength="12" size="32" value="{ppat_name}" name="{ppat_name_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_message_inboxFormmessage_body">Isi</label></td> 
                     <td>
-                      <div style="BORDER-BOTTOM: #6f6f6f 1px solid; BORDER-LEFT: #6f6f6f 1px solid; BACKGROUND-COLOR: #dbdbdb; FONT-FAMILY: Verdana; COLOR: #000040; FONT-SIZE: 13px; BORDER-TOP: #6f6f6f 1px solid; FONT-WEIGHT: normal; BORDER-RIGHT: #6f6f6f 1px solid">
+                      <div style="FONT-SIZE: 13px; BORDER-TOP: #6f6f6f 1px solid; FONT-FAMILY: Verdana; BORDER-RIGHT: #6f6f6f 1px solid; BORDER-BOTTOM: #6f6f6f 1px solid; FONT-WEIGHT: normal; COLOR: #000040; BORDER-LEFT: #6f6f6f 1px solid; BACKGROUND-COLOR: #dbdbdb">
                         {message_body}&nbsp;&nbsp; 
                       </div>
                     </td>
@@ -178,10 +178,10 @@ $(document).ready(function()
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">&nbsp; 
-                      <!-- BEGIN Button Button_Insert1 --><input id="t_message_inboxFormButton_Insert1" class="btn_tambah" onclick="replyMessage();" value="Reply" alt="Add" type="button" name="{Button_Name}"><!-- END Button Button_Insert1 -->&nbsp;&nbsp; 
-                      <!-- BEGIN Button Button_Insert --><input id="t_message_inboxFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="t_message_inboxFormButton_Update" class="btn_tambah" value="SUBMIT" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input id="t_message_inboxFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+                      <!-- BEGIN Button Button_Insert1 --><input onclick="replyMessage();" id="t_message_inboxFormButton_Insert1" class="btn_tambah" alt="Add" type="button" value="Reply" name="{Button_Name}"><!-- END Button Button_Insert1 -->&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button_Insert --><input id="t_message_inboxFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_message_inboxFormButton_Update" class="btn_tambah" style="DISPLAY: none" alt="Submit" type="submit" value="SUBMIT" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_message_inboxFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete --></td>
                   </tr>
                 </table>
               </td>
