@@ -376,7 +376,6 @@ class FormCetak extends FPDF {
 			$this->height);
 		$this->Ln();
 		
-		$this->Ln();
 		$this->SetWidths(array($lbody1,$lbody2+$lbody1,""));
 		$this->SetAligns(array("L","J","J"));
 		$this->RowMultiBorderWithHeight(
