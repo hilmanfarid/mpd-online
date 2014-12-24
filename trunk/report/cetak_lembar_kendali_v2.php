@@ -430,12 +430,12 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Ln();
 		
-		$this->SetFont("Arial", "B", 13);	
+		
 		$this->SetWidths(array($lbody10,$lbody10));
 		$this->SetAligns(array("L","C"));
 		$this->RowMultiBorderWithHeight(
 			array
-			(	"Seksi Penyelesaian Piutang : (022)93216588",
+			(	"Seksi Penyelesaian Piutang : ",
 				""
 			),
 			array
@@ -443,6 +443,18 @@ class FormCetak extends FPDF {
 				"",""
 			),
 			$this->height);
+			
+		$this->SetFont("Arial", "B", 13);
+		$this->RowMultiBorderWithHeight(
+			array
+			(	"(022)93216588",
+				""
+			),
+			array
+			(
+				"",""
+			),
+			$this->height);	
 			
 		$this->SetFont("Arial", "B", 10);	
 		$this->RowMultiBorderWithHeight(
