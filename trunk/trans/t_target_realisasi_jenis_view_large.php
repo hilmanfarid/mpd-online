@@ -101,7 +101,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
     }
 //End Initialize Method
 
-//Show Method @2-E9EE1EA4
+//Show Method @2-7EB3C0C7
     function Show()
     {
         global $Tpl;
@@ -110,7 +110,7 @@ class clsGridt_target_realisasi_jenisGrid { //t_target_realisasi_jenisGrid class
 
         $this->RowNumber = 0;
 
-        $this->DataSource->Parameters["urlp_year_period_id2"] = CCGetFromGet("p_year_period_id2", NULL);
+        $this->DataSource->Parameters["sesp_year_period_id2"] = CCGetSession("p_year_period_id2", NULL);
         $this->DataSource->Parameters["urlp_vat_group_id"] = CCGetFromGet("p_vat_group_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
@@ -279,13 +279,13 @@ class clst_target_realisasi_jenisGridDataSource extends clsDBConnSIKP {  //t_tar
     }
 //End SetOrder Method
 
-//Prepare Method @2-295D4ADB
+//Prepare Method @2-4161607E
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
-        $this->wp->AddParameter("1", "urlp_year_period_id2", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $this->Parameters["urlp_year_period_id2"], 0, false);
+        $this->wp->AddParameter("1", "sesp_year_period_id2", ccsFloat, "", array(False, 0, Null, "", False, "", "", 1, True, ""), $this->Parameters["sesp_year_period_id2"], 0, false);
         $this->wp->AddParameter("2", "urlp_vat_group_id", ccsInteger, "", "", $this->Parameters["urlp_vat_group_id"], 0, false);
     }
 //End Prepare Method
