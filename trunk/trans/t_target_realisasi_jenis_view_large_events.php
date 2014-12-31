@@ -105,8 +105,11 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 	 $sum_target = $t_target_realisasi_jenisGrid->target_amount_sum->GetValue();
 	 $t_target_realisasi_jenisGrid->target_amount_sum->SetValue($sum_target+$target);
 	 $sum_percentage = $t_target_realisasi_jenisGrid->percentage_sum->GetValue();
-	 if($sum_target > 0)
-	 $t_target_realisasi_jenisGrid->percentage_sum->SetValue(number_format($sum_realisasi / $sum_target  * 100, 2, ".", ","));
+	 if($sum_target > 0) {
+	 	$sum_realisasi = $t_target_realisasi_jenisGrid->realisasi_amt_sum->GetValue();
+		$sum_target = $t_target_realisasi_jenisGrid->target_amount_sum->GetValue();
+	 	$t_target_realisasi_jenisGrid->percentage_sum->SetValue(number_format($sum_realisasi / $sum_target  * 100, 2, ".", ","));
+	 }
 //Close t_target_realisasi_jenisGrid_BeforeShowRow @2-1478D09A
     return $t_target_realisasi_jenisGrid_BeforeShowRow;
 }
@@ -332,6 +335,7 @@ function Page_OnInitializeView(& $sender)
 	while($dbConn->next_record()){
 		$item = $dbConn->f("p_year_period_id");
 	}
+	CCSetSession("p_year_period_id2",$item);
 	$t_target_realisasi_jenisGrid->p_year_period_id2->SetValue($item);
 	$t_target_realisasi_jenisGrid1->p_year_period_id2->SetValue($item);
   // -------------------------
