@@ -162,7 +162,7 @@ and p_vat_group_id = 1
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-				<SQLParameter id="677" parameterType="URL" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id2" DBFormat="0" defaultValue="0"/>
+				<SQLParameter id="677" parameterType="Session" variable="p_year_period_id" dataType="Float" parameterSource="p_year_period_id2" DBFormat="0" defaultValue="0"/>
 				<SQLParameter id="875" variable="p_vat_group_id" parameterType="URL" defaultValue="0" dataType="Integer" parameterSource="p_vat_group_id"/>
 			</SQLParameters>
 			<SecurityGroups/>
@@ -379,7 +379,7 @@ and rownum &lt; 4
 			<Attributes/>
 			<Features/>
 		</Grid>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_target_realisasi_jenis_view_large_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_target_realisasi_jenis_view_large.php" forShow="True" url="t_target_realisasi_jenis_view_large.php" comment="//" codePage="windows-1252"/>
