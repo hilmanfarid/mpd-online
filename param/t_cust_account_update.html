@@ -490,6 +490,11 @@ function lov_region1() {
         getFrom_LOV('t_cust_account_updateForm','p_region_id,nama_kota','lov_region.php');
 }
 
+function lov_kota() {
+        getFrom_LOV('t_cust_account_updateForm','p_region_id_owner,nama_kota_owner','lov_region.php');
+}
+
+
 function lov_region2() {
                 var kota = document.getElementById("t_cust_account_updateFormp_region_id").value;          
                 if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
@@ -499,10 +504,29 @@ function lov_region2() {
                 }
 }
 
+
+function lov_kec() {
+                var kota = document.getElementById("t_cust_account_updateFormp_region_id_owner").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_cust_account_updateForm','p_region_id_kec_owner,nama_kecamatan_owner','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
 function lov_region3() {
                 var kec = document.getElementById("t_cust_account_updateFormp_region_id_kecamatan").value;          
                 if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
                         getFrom_LOV('t_cust_account_updateForm','p_region_id_kelurahan,nama_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_kel() {
+                var kec = document.getElementById("t_cust_account_updateFormp_region_id_kec_owner").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_cust_account_updateForm','p_region_id_kel_owner,nama_kelurahan_owner','lov_region_kel.php?p_region_id='+kec);
                 }else{
                         alert("KECAMATAN Belum Diisi");
                 }
