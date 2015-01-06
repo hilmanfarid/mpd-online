@@ -359,7 +359,7 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-B0AE9A44
+//Class_Initialize Event @94-40DB95CB
     function clsRecordt_cust_account_updateForm($RelativePath, & $Parent)
     {
 
@@ -392,7 +392,8 @@ class clsRecordt_cust_account_updateForm { //t_cust_account_updateForm Class @94
             $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
             $this->p_cust_account_id = & new clsControl(ccsHidden, "p_cust_account_id", "Id", ccsFloat, "", CCGetRequestParam("p_cust_account_id", $Method, NULL), $this);
             $this->p_custGridPage = & new clsControl(ccsHidden, "p_custGridPage", "p_custGridPage", ccsText, "", CCGetRequestParam("p_custGridPage", $Method, NULL), $this);
-            $this->p_region_id = & new clsControl(ccsHidden, "p_region_id", "p_region_id", ccsText, "", CCGetRequestParam("p_region_id", $Method, NULL), $this);
+            $this->p_region_id = & new clsControl(ccsHidden, "p_region_id", "p_region_id", ccsFloat, "", CCGetRequestParam("p_region_id", $Method, NULL), $this);
+            $this->p_region_id->Required = true;
             $this->p_region_id_kecamatan = & new clsControl(ccsHidden, "p_region_id_kecamatan", "p_region_id_kecamatan", ccsText, "", CCGetRequestParam("p_region_id_kecamatan", $Method, NULL), $this);
             $this->p_region_id_kelurahan = & new clsControl(ccsHidden, "p_region_id_kelurahan", "p_region_id_kelurahan", ccsText, "", CCGetRequestParam("p_region_id_kelurahan", $Method, NULL), $this);
             $this->updated_by = & new clsControl(ccsHidden, "updated_by", "updated_by", ccsText, "", CCGetRequestParam("updated_by", $Method, NULL), $this);
@@ -1359,7 +1360,7 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
     var $address_no_owner;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-6EBAFCAD
+//DataSourceClass_Initialize Event @94-93CC5429
     function clst_cust_account_updateFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1371,7 +1372,7 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
         
         $this->p_custGridPage = new clsField("p_custGridPage", ccsText, "");
         
-        $this->p_region_id = new clsField("p_region_id", ccsText, "");
+        $this->p_region_id = new clsField("p_region_id", ccsFloat, "");
         
         $this->p_region_id_kecamatan = new clsField("p_region_id_kecamatan", ccsText, "");
         
@@ -1543,11 +1544,11 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
     }
 //End Prepare Method
 
-//Open Method @94-F3531A52
+//Open Method @94-EE453072
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "SELECT *,b.code AS nama_jabatan,\n" .
+        $this->SQL = "SELECT v.p_region_id as p_region_id_per, *,b.code AS nama_jabatan,\n" .
         "p.region_name as nama_kota_owner,\n" .
         "q.region_name as nama_kecamatan_owner,\n" .
         "r.region_name as nama_kelurahan_owner\n" .
@@ -1568,12 +1569,12 @@ class clst_cust_account_updateFormDataSource extends clsDBConnSIKP {  //t_cust_a
     }
 //End Open Method
 
-//SetValues Method @94-AF63B1BC
+//SetValues Method @94-1D71FB39
     function SetValues()
     {
         $this->t_cust_account_id->SetDBValue($this->f("t_cust_account_id"));
         $this->p_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
-        $this->p_region_id->SetDBValue($this->f("p_region_id"));
+        $this->p_region_id->SetDBValue(trim($this->f("p_region_id_per")));
         $this->p_region_id_kecamatan->SetDBValue($this->f("p_region_id_kecamatan"));
         $this->p_region_id_kelurahan->SetDBValue($this->f("p_region_id_kelurahan"));
         $this->updated_by->SetDBValue($this->f("updated_by"));
