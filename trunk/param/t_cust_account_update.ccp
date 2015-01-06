@@ -98,7 +98,7 @@ ORDER BY a.t_cust_account_id">
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_cust_account_updateForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_cust_account_updateForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="SELECT *,b.code AS nama_jabatan,
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_cust_account_updateForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_cust_account_updateForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="SELECT v.p_region_id as p_region_id_per, *,b.code AS nama_jabatan,
 p.region_name as nama_kota_owner,
 q.region_name as nama_kecamatan_owner,
 r.region_name as nama_kelurahan_owner
@@ -201,7 +201,7 @@ AND v.t_customer_id = {t_customer_id}
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="495" fieldSourceType="DBColumn" dataType="Text" name="p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id" fieldSource="p_region_id" defaultValue="749">
+				<Hidden id="495" fieldSourceType="DBColumn" dataType="Float" name="p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_cust_account_updateFormp_region_id" fieldSource="p_region_id_per" required="True" defaultValue="749">
 					<Components/>
 					<Events/>
 					<Attributes/>
