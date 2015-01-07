@@ -45,7 +45,7 @@ class clsRecordt_cust_acc_status_editForm { //t_cust_acc_status_editForm Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-6F8EF06D
+//Class_Initialize Event @3-AAD1AC38
     function clsRecordt_cust_acc_status_editForm($RelativePath, & $Parent)
     {
 
@@ -74,9 +74,10 @@ class clsRecordt_cust_acc_status_editForm { //t_cust_acc_status_editForm Class @
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->Button1 = & new clsButton("Button1", $Method, $this);
-            $this->p_account_status_id = & new clsControl(ccsListBox, "p_account_status_id", "p_account_status_id", ccsText, "", CCGetRequestParam("p_account_status_id", $Method, NULL), $this);
-            $this->p_account_status_id->DSType = dsListOfValues;
-            $this->p_account_status_id->Values = array(array("T", "BLOCK"), array("F", "BUKA BLOCK"));
+            $this->block_status = & new clsControl(ccsListBox, "block_status", "block_status", ccsText, "", CCGetRequestParam("block_status", $Method, NULL), $this);
+            $this->block_status->DSType = dsListOfValues;
+            $this->block_status->Values = array(array("T", "BLOCK"), array("F", "BUKA BLOCK"));
+            $this->alasan = & new clsControl(ccsTextArea, "alasan", "alasan", ccsText, "", CCGetRequestParam("alasan", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -91,24 +92,27 @@ class clsRecordt_cust_acc_status_editForm { //t_cust_acc_status_editForm Class @
     }
 //End Initialize Method
 
-//Validate Method @3-CACC5671
+//Validate Method @3-063CB0D2
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
-        $Validation = ($this->p_account_status_id->Validate() && $Validation);
+        $Validation = ($this->block_status->Validate() && $Validation);
+        $Validation = ($this->alasan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
-        $Validation =  $Validation && ($this->p_account_status_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->block_status->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->alasan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-4487C4CA
+//CheckErrors Method @3-5031116A
     function CheckErrors()
     {
         $errors = false;
-        $errors = ($errors || $this->p_account_status_id->Errors->Count());
+        $errors = ($errors || $this->block_status->Errors->Count());
+        $errors = ($errors || $this->alasan->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -166,19 +170,20 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//UpdateRow Method @3-E41FFFBC
+//UpdateRow Method @3-3A391904
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
-        $this->DataSource->p_account_status_id->SetValue($this->p_account_status_id->GetValue(true));
+        $this->DataSource->block_status->SetValue($this->block_status->GetValue(true));
+        $this->DataSource->alasan->SetValue($this->alasan->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @3-28A2C1A4
+//Show Method @3-701C3FB5
     function Show()
     {
         global $CCSUseAmp;
@@ -192,7 +197,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
-        $this->p_account_status_id->Prepare();
+        $this->block_status->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -207,16 +212,19 @@ function GetPrimaryKey($keyName)
             if($this->DataSource->Errors->Count() == 0 && $this->DataSource->next_record()) {
                 $this->DataSource->SetValues();
                 if(!$this->FormSubmitted){
-                    $this->p_account_status_id->SetValue($this->DataSource->p_account_status_id->GetValue());
+                    $this->block_status->SetValue($this->DataSource->block_status->GetValue());
                 }
             } else {
                 $this->EditMode = false;
             }
         }
+        if (!$this->FormSubmitted) {
+        }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
-            $Error = ComposeStrings($Error, $this->p_account_status_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->block_status->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->alasan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -237,7 +245,8 @@ function GetPrimaryKey($keyName)
         }
 
         $this->Button1->Show();
-        $this->p_account_status_id->Show();
+        $this->block_status->Show();
+        $this->alasan->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -248,7 +257,7 @@ function GetPrimaryKey($keyName)
 
 class clst_cust_acc_status_editFormDataSource extends clsDBConnSIKP {  //t_cust_acc_status_editFormDataSource Class @3-B007FFBE
 
-//DataSource Variables @3-05A08227
+//DataSource Variables @3-B49C90D8
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -259,22 +268,23 @@ class clst_cust_acc_status_editFormDataSource extends clsDBConnSIKP {  //t_cust_
     var $wp;
     var $AllParametersSet;
 
-    var $UpdateFields = array();
 
     // Datasource fields
-    var $p_account_status_id;
+    var $block_status;
+    var $alasan;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-69819B89
+//DataSourceClass_Initialize Event @3-5C80B7F7
     function clst_cust_acc_status_editFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
         $this->ErrorBlock = "Record t_cust_acc_status_editForm/Error";
         $this->Initialize();
-        $this->p_account_status_id = new clsField("p_account_status_id", ccsText, "");
+        $this->block_status = new clsField("block_status", ccsText, "");
+        
+        $this->alasan = new clsField("alasan", ccsText, "");
         
 
-        $this->UpdateFields["block_status"] = array("Name" => "block_status", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -299,34 +309,31 @@ class clst_cust_acc_status_editFormDataSource extends clsDBConnSIKP {  //t_cust_
     }
 //End Open Method
 
-//SetValues Method @3-6E46AE29
+//SetValues Method @3-771E4251
     function SetValues()
     {
-        $this->p_account_status_id->SetDBValue($this->f("block_status"));
+        $this->block_status->SetDBValue($this->f("block_status"));
     }
 //End SetValues Method
 
-//Update Method @3-156660C8
+//Update Method @3-6DEC46FE
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["block_status"] = new clsSQLParameter("ctrlp_account_status_id", ccsText, "", "", $this->p_account_status_id->GetValue(true), NULL, false, $this->ErrorBlock);
-        $wp = new clsSQLParameters($this->ErrorBlock);
-        $wp->AddParameter("1", "expr42", ccsInteger, "", "", 1, "", false);
-        if(!$wp->AllParamsSet()) {
-            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
-        }
+        $this->cp["block_status"] = new clsSQLParameter("ctrlblock_status", ccsText, "", "", $this->block_status->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["username"] = new clsSQLParameter("expr47", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["block_status"]->GetValue()) and !strlen($this->cp["block_status"]->GetText()) and !is_bool($this->cp["block_status"]->GetValue())) 
-            $this->cp["block_status"]->SetValue($this->p_account_status_id->GetValue(true));
-        $wp->Criterion[1] = $wp->Operation(opEqual, "block_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsInteger),false);
-        $Where = 
-             $wp->Criterion[1];
-        $this->UpdateFields["block_status"]["Value"] = $this->cp["block_status"]->GetDBValue(true);
-        $this->SQL = CCBuildUpdate("p_block_piutang", $this->UpdateFields, $this);
-        $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
+            $this->cp["block_status"]->SetValue($this->block_status->GetValue(true));
+        if (!is_null($this->cp["alasan"]->GetValue()) and !strlen($this->cp["alasan"]->GetText()) and !is_bool($this->cp["alasan"]->GetValue())) 
+            $this->cp["alasan"]->SetValue($this->alasan->GetValue(true));
+        if (!is_null($this->cp["username"]->GetValue()) and !strlen($this->cp["username"]->GetText()) and !is_bool($this->cp["username"]->GetValue())) 
+            $this->cp["username"]->SetValue(CCGetUserLogin());
+        $this->SQL = "select * from f_update_block_piutang\n" .
+        "('" . $this->SQLValue($this->cp["block_status"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["username"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
