@@ -27,8 +27,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -37,13 +37,13 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
         <!-- BEGIN Record t_cust_order_legal_docSearch -->
         <form id="t_cust_order_legal_docSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -53,9 +53,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field" colspan="2"><input id="t_cust_order_legal_docSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32">
+                    <td class="search-field" colspan="2"><input id="t_cust_order_legal_docSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}">
                       <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_cust_order_legal_docSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --><input style="WIDTH: 50px; HEIGHT: 22px" id="t_cust_order_legal_docSearchnpwd" name="{npwd_Name}" value="{npwd}" size="6" type="hidden"></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_cust_order_legal_docSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="t_cust_order_legal_docSearchnpwd" style="HEIGHT: 22px; WIDTH: 50px" size="6" type="hidden" value="{npwd}" name="{npwd_Name}"></td>
                     </tr>
                   </table>
                 </td>
@@ -64,10 +64,10 @@ $(document).ready(function()
           </form>
           <!-- END Record t_cust_order_legal_docSearch --><br>
           <!-- BEGIN Grid t_bphtb_registration_list -->
-          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
             <tr>
               <td valign="top">
-                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>DAFTAR&nbsp;BPHTB</strong></td> 
@@ -87,28 +87,31 @@ $(document).ready(function()
  
                     <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">No order</label></label></th>
  
+                    <th scope="col">&nbsp;Via Online ?</th>
+ 
                     <th scope="col">Print</th>
                   </tr>
  
                   <!-- BEGIN Row -->
                   <tr {t_bphtb_registration_list:rowStyle}>
                     <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_bphtb_registration_listDLink_{t_bphtb_registration_list:rowNumber}">{DLink}</a></td> 
-                    <td>&nbsp;<a href="t_bphtb_registration.php?ccsForm=:Edit&amp;t_bphtb_registration_id={t_bphtb_registration_id}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
-                    <td>&nbsp;{t_bphtb_registration_id}<input id="t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"><input id="t_bphtb_registration_listcheck_potongan_{t_bphtb_registration_list:rowNumber}" name="{check_potongan_Name}" value="{check_potongan}" type="hidden"></td> 
+                    <td>&nbsp;<a href="t_bphtb_registration.php?ccsForm=:Edit&amp;t_bphtb_registration_id={t_bphtb_registration_id}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
+                    <td>&nbsp;{t_bphtb_registration_id}<input id="t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"><input id="t_bphtb_registration_listcheck_potongan_{t_bphtb_registration_list:rowNumber}" type="hidden" value="{check_potongan}" name="{check_potongan_Name}"></td> 
                     <td>{wp_name}</td> 
                     <td><a href="../files/{origin_file_name_Src}" id="t_bphtb_registration_listorigin_file_name_{t_bphtb_registration_list:rowNumber}">{origin_file_name}</a>&nbsp;</td> 
+                    <td>&nbsp;{t_ppat_id}</td> 
                     <td>
-                      <!-- BEGIN Button Button1 --><input id="t_bphtb_registration_listButton1" class="btn_tambah" onclick="submitRegisBphtb({t_bphtb_registration_id},'t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}', 't_bphtb_registration_listcheck_potongan_{t_bphtb_registration_list:rowNumber}')" name="{Button_Name}" alt="Button1" value="SUBMIT" type="button"><!-- END Button Button1 --></td>
+                      <!-- BEGIN Button Button1 --><input onclick="submitRegisBphtb({t_bphtb_registration_id},'t_bphtb_registration_listt_customer_order_id_{t_bphtb_registration_list:rowNumber}', 't_bphtb_registration_listcheck_potongan_{t_bphtb_registration_list:rowNumber}')" id="t_bphtb_registration_listButton1" class="btn_tambah" alt="Button1" type="button" value="SUBMIT" name="{Button_Name}"><!-- END Button Button1 --></td>
                   </tr>
  <!-- END Row -->
                   <!-- BEGIN NoRecords -->
                   <tr class="NoRecords">
-                    <td colspan="6">-</td>
+                    <td colspan="7">-</td>
                   </tr>
                   <!-- END NoRecords -->
                   <tr class="Footer">
                     <td><b><a href="{Insert_Link_Src}" id="t_bphtb_registration_listInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
-                    <td colspan="5">
+                    <td colspan="6">
                       <!-- BEGIN Navigator Navigator -->
                       <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                       <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -203,8 +206,8 @@ function submitRegisBphtb(idVal,t_customer_order_id, is_potongan){
                                 var potongan = document.getElementById(is_potongan);
                 if(confirm("Anda Yakin Untuk Submit Data BPHTB?")){
                         location.href="t_bphtb_registration_list.php?submit_bphtb=1&t_bphtb_registration_id="+idVal+"&t_customer_order_id="+cust_id.value+"&is_potongan="+potongan.value;
-						return;
-				}
+                                                return;
+                                }
         
 }
 </script>
