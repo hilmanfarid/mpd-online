@@ -70,7 +70,13 @@ order by regis.t_bphtb_registration_id DESC">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Label id="706" fieldSourceType="DBColumn" dataType="Text" html="False" name="t_ppat_id" fieldSource="t_ppat_id" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_registration_listt_ppat_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
