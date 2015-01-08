@@ -42,7 +42,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-8877AB21
+//Class_Initialize Event @2-8B84C270
     function clsGridt_bphtb_registration_list($RelativePath, & $Parent)
     {
         global $FileName;
@@ -79,6 +79,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", ccsGet, NULL), $this);
         $this->check_potongan = & new clsControl(ccsHidden, "check_potongan", "check_potongan", ccsText, "", CCGetRequestParam("check_potongan", ccsGet, NULL), $this);
+        $this->t_ppat_id = & new clsControl(ccsLabel, "t_ppat_id", "t_ppat_id", ccsText, "", CCGetRequestParam("t_ppat_id", ccsGet, NULL), $this);
         $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
         $this->Insert_Link->Page = "t_bphtb_registration.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
@@ -97,7 +98,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Initialize Method
 
-//Show Method @2-7EEE1703
+//Show Method @2-F1CA9D5C
     function Show()
     {
         global $Tpl;
@@ -133,6 +134,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
             $this->ControlsVisible["Button1"] = $this->Button1->Visible;
             $this->ControlsVisible["t_customer_order_id"] = $this->t_customer_order_id->Visible;
             $this->ControlsVisible["check_potongan"] = $this->check_potongan->Visible;
+            $this->ControlsVisible["t_ppat_id"] = $this->t_ppat_id->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -148,6 +150,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
                 $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
                 $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
                 $this->check_potongan->SetValue($this->DataSource->check_potongan->GetValue());
+                $this->t_ppat_id->SetValue($this->DataSource->t_ppat_id->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -158,6 +161,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
                 $this->Button1->Show();
                 $this->t_customer_order_id->Show();
                 $this->check_potongan->Show();
+                $this->t_ppat_id->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -193,7 +197,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Show Method
 
-//GetErrors Method @2-CD0836D0
+//GetErrors Method @2-4BE474D9
     function GetErrors()
     {
         $errors = "";
@@ -203,6 +207,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         $errors = ComposeStrings($errors, $this->t_bphtb_registration_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_customer_order_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->check_potongan->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->t_ppat_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -213,7 +218,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
 
 class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_registration_listDataSource Class @2-07378C2F
 
-//DataSource Variables @2-2E659D6B
+//DataSource Variables @2-A38151BD
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -230,9 +235,10 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     var $t_bphtb_registration_id;
     var $t_customer_order_id;
     var $check_potongan;
+    var $t_ppat_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-AE7B7846
+//DataSourceClass_Initialize Event @2-D9C1DA80
     function clst_bphtb_registration_listDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -247,6 +253,8 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
         $this->t_customer_order_id = new clsField("t_customer_order_id", ccsText, "");
         
         $this->check_potongan = new clsField("check_potongan", ccsText, "");
+        
+        $this->t_ppat_id = new clsField("t_ppat_id", ccsText, "");
         
 
     }
@@ -299,7 +307,7 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Open Method
 
-//SetValues Method @2-69B0AB07
+//SetValues Method @2-9B7720A0
     function SetValues()
     {
         $this->wp_name->SetDBValue($this->f("wp_name"));
@@ -307,6 +315,7 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
         $this->t_bphtb_registration_id->SetDBValue($this->f("t_bphtb_registration_id"));
         $this->t_customer_order_id->SetDBValue($this->f("t_customer_order_id"));
         $this->check_potongan->SetDBValue($this->f("check_potongan"));
+        $this->t_ppat_id->SetDBValue($this->f("t_ppat_id"));
     }
 //End SetValues Method
 
