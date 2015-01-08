@@ -29,7 +29,14 @@ function t_bphtb_registration_list_BeforeShowRow(& $sender)
         $Component->Attributes->SetValue("rowStyle", $Style);
     }
 //End Set Row Style
-
+	$t_ppat_id = $Component->DataSource->t_ppat_id->GetValue();
+	if(!empty($t_ppat_id)) {
+		$Component->t_ppat_id->SetValue("Via Online");
+		$Component->Button1->Visible = false;
+	}else {
+		$Component->t_ppat_id->SetValue("-");
+		$Component->Button1->Visible = true;
+	}
 //Close t_bphtb_registration_list_BeforeShowRow @2-96DA6DA7
     return $t_bphtb_registration_list_BeforeShowRow;
 }
