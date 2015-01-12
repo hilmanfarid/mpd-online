@@ -341,7 +341,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Prepare Method
 
-//Open Method @2-6C244D2B
+//Open Method @2-F3CEEDCC
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -359,8 +359,8 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "       d.payment_amount,\n" .
         "       c.t_cust_account_id ,\n" .
         "       b.p_finance_period_id ,\n" .
-        "       to_char(b.start_date,'DD-MON-YYYY') as periode_awal_laporan,\n" .
-        "       to_char(b.end_date,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
+        "       to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
+        "       to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
         "	   e.code as type_code\n" .
         "from t_vat_setllement a ,\n" .
         "     p_finance_period b,\n" .
@@ -386,8 +386,8 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "       d.payment_amount,\n" .
         "       c.t_cust_account_id ,\n" .
         "       b.p_finance_period_id ,\n" .
-        "       to_char(b.start_date,'DD-MON-YYYY') as periode_awal_laporan,\n" .
-        "       to_char(b.end_date,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
+        "       to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
+        "       to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
         "	   e.code as type_code\n" .
         "from t_vat_setllement a ,\n" .
         "     p_finance_period b,\n" .
