@@ -159,7 +159,7 @@ generate_id('sikp','t_ppat','t_ppat_id'),
 '{address_no}', '{address_rt}', '{address_rw}', 
 {p_region_id}, {p_region_id_kec}, 
 {p_region_id_kel}, '{identification_no}', 
-'{personal_identification_id}', '{mobile_no}', 
+{personal_identification_id}, '{mobile_no}', 
 '{fax_no}', '{zip_code}', '{email_address}')" customInsertType="SQL" customUpdate="UPDATE t_ppat SET  
 phone_no='{phone_no}', 
 creation_date='{creation_date}', 
