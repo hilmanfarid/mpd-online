@@ -1130,7 +1130,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
     }
 //End Insert Method
 
-//Update Method @23-9842B4C2
+//Update Method @23-B2438F12
     function Update()
     {
         global $CCSLocales;
@@ -1176,7 +1176,8 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
         if (!is_null($this->cp["t_ppat_id"]->GetValue()) and !strlen($this->cp["t_ppat_id"]->GetText()) and !is_bool($this->cp["t_ppat_id"]->GetValue())) 
             $this->cp["t_ppat_id"]->SetValue($this->t_ppat_id->GetValue(true));
         $this->SQL = "UPDATE t_ppat_user SET \n" .
-        "updated_date='" . $this->SQLValue($this->cp["updated_date"]->GetDBValue(), ccsText) . "', \n" .
+        "updated_date='" . $this->SQLValue($this->cp["updated_date"]->GetDBValue(), ccsText) . "',\n" .
+        "user_pwd=md5('" . $this->SQLValue($this->cp["user_pwd"]->GetDBValue(), ccsText) . "'),\n" .
         "updated_by='" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', \n" .
         "mobile_phone_no='" . $this->SQLValue($this->cp["mobile_phone_no"]->GetDBValue(), ccsText) . "', \n" .
         "description='" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
