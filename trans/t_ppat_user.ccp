@@ -149,7 +149,7 @@ ORDER BY a.t_ppat_user_id" orderBy="p_vat_type_id" parameterTypeListName="Parame
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_ppatForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_ppatForm" customDeleteType="SQL" activeCollection="DSQLParameters" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="select * from f_insert_ppat_user(
+		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_ppatForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_ppatForm" customDeleteType="SQL" activeCollection="USQLParameters" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="select * from f_insert_ppat_user(
 {t_ppat_id}, '{user_name}', '{user_pwd}',
 '{ppat_name}', '{email_address}', 
 '{description}' , '{valid_from}', '{valid_to}',
@@ -167,7 +167,8 @@ a.t_ppat_user_id,
 created_by, updated_by
 from t_ppat_user a
 WHERE a.t_ppat_user_id = {t_ppat_user_id} " customUpdate="UPDATE t_ppat_user SET 
-updated_date='{updated_date}', 
+updated_date='{updated_date}',
+user_pwd=md5('{user_pwd}'),
 updated_by='{updated_by}', 
 mobile_phone_no='{mobile_phone_no}', 
 description='{description}', 
