@@ -1186,7 +1186,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
     }
 //End SetValues Method
 
-//Insert Method @23-6C305EE3
+//Insert Method @23-A2A75414
     function Insert()
     {
         global $CCSLocales;
@@ -1267,7 +1267,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
         "'" . $this->SQLValue($this->cp["address_no"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_rt"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["address_rw"]->GetDBValue(), ccsText) . "', \n" .
         "" . $this->SQLValue($this->cp["p_region_id"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["p_region_id_kec"]->GetDBValue(), ccsFloat) . ", \n" .
         "" . $this->SQLValue($this->cp["p_region_id_kel"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["identification_no"]->GetDBValue(), ccsText) . "', \n" .
-        "'" . $this->SQLValue($this->cp["personal_identification_id"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["mobile_no"]->GetDBValue(), ccsText) . "', \n" .
+        "" . $this->SQLValue($this->cp["personal_identification_id"]->GetDBValue(), ccsText) . ", '" . $this->SQLValue($this->cp["mobile_no"]->GetDBValue(), ccsText) . "', \n" .
         "'" . $this->SQLValue($this->cp["fax_no"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["zip_code"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["email_address"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
