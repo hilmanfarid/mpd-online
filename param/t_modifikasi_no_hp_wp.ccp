@@ -216,6 +216,7 @@ left join p_region z on a.wp_p_region_id_kelurahan = z.p_region_id
 
 WHERE a.t_cust_account_id = {t_cust_account_id}" activeTableType="customUpdate" customUpdateType="SQL" customUpdate="UPDATE t_cust_account
 SET mobile_no = '{mobile_no}',
+kode_wilayah = '{kode_wilayah}',
 updated_date = sysdate, 
 updated_by = '{updated_by}'
 WHERE t_cust_account_id = {t_cust_account_id}">
@@ -340,7 +341,25 @@ WHERE t_cust_account_id = {t_cust_account_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<ListBox id="537" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="kode_wilayah" wizardEmptyCaption="Select Value" PathID="t_customer_updateFormkode_wilayah" connection="ConnSIKP" fieldSource="kode_wilayah" required="True" _valueOfList="5" _nameOfList="5" dataSource="1;1;2;2;3;3;4;4;5;5">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="538"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+</Components>
 			<Events/>
 			<TableParameters>
 			</TableParameters>
@@ -408,7 +427,8 @@ WHERE t_cust_account_id = {t_cust_account_id}">
 				<SQLParameter id="449" variable="updated_by" dataType="Text" parameterType="Expression" parameterSource="CCGetUserLogin()"/>
 				<SQLParameter id="509" variable="t_cust_account_id" parameterType="Control" dataType="Float" parameterSource="t_cust_account_id" defaultValue="0"/>
 				<SQLParameter id="519" variable="mobile_no" parameterType="Control" dataType="Text" parameterSource="mobile_no"/>
-			</USQLParameters>
+				<SQLParameter id="539" variable="kode_wilayah" parameterType="Control" dataType="Text" parameterSource="kode_wilayah"/>
+</USQLParameters>
 			<UConditions>
 				<TableParameter id="446" conditionType="Parameter" useIsNull="False" field="p_job_position_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_job_position_id"/>
 			</UConditions>
