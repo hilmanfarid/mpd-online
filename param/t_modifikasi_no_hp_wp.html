@@ -22,8 +22,56 @@ $(document).ready(function()
     });
 });
 </script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_customer_updateFormkode_wilayah_OnChange @537-DD1B7D97
+function t_customer_updateFormkode_wilayah_OnChange()
+{
+    var result = true;
+//End t_customer_updateFormkode_wilayah_OnChange
+
+//Custom Code @538-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if(this.value==1){
+                
+        }else{
+                
+        }
+    // -------------------------
+//End Custom Code
+
+//Close t_customer_updateFormkode_wilayah_OnChange @537-BC33A33A
+    return result;
+}
+//End Close t_customer_updateFormkode_wilayah_OnChange
+
+//t_customer_updateFormButton_Cancel_OnClick @28-5FE2609D
+function t_customer_updateFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_customer_updateFormButton_Cancel_OnClick
+
+//bind_events @1-ECED1523
+function bind_events() {
+    addEventHandler("t_customer_updateFormkode_wilayah", "change", t_customer_updateFormkode_wilayah_OnChange);
+    addEventHandler("t_customer_updateFormButton_Cancel", "click", t_customer_updateFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -243,6 +291,16 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="th">Kode Pos</td> 
                     <td colspan="3"><input id="t_customer_updateFormzip_code_owner" class="ControlsRO" value="{zip_code_owner}" maxlength="5" size="6" name="{zip_code_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kode&nbsp;Wilayah</td> 
+                    <td colspan="3">
+                      <select id="t_customer_updateFormkode_wilayah" class="ControlsRQ" name="{kode_wilayah_Name}">
+                        <option selected value="">Select Value</option>
+                        {kode_wilayah_Options}
+                      </select>
+ </td>
                   </tr>
  
                   <tr class="Bottom">
