@@ -193,16 +193,16 @@ class FormCetak extends FPDF {
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, "ADHLI AL-AFWAN IZWAR, S.STP", "", "", 'C');
+        $this->Cell($lengWP2, $this->height, "OKKY DATUSUATI, S.STP", "", "", 'C');
         $this->Ln(6);
         $this->SetFont('Times', '', 12);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, "Penata", "", "", 'C');
+        $this->Cell($lengWP2, $this->height, "Penata Tingkat I", "", "", 'C');
         $this->Ln(6);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, "NIP. 19830418 200212 1 001", "", "", 'C');
+        $this->Cell($lengWP2, $this->height, "NIP. 19780927 199703 2 001", "", "", 'C');
         $this->Ln(6);
     }
 
