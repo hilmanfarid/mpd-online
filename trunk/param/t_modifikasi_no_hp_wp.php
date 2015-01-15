@@ -627,7 +627,7 @@ class clsRecordt_customer_updateForm { //t_customer_updateForm Class @94-52E2621
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-1A7C005B
+//Class_Initialize Event @94-71B4B3B3
     function clsRecordt_customer_updateForm($RelativePath, & $Parent)
     {
 
@@ -676,6 +676,10 @@ class clsRecordt_customer_updateForm { //t_customer_updateForm Class @94-52E2621
             $this->p_region_id_owner = & new clsControl(ccsHidden, "p_region_id_owner", "p_region_id_owner", ccsText, "", CCGetRequestParam("p_region_id_owner", $Method, NULL), $this);
             $this->fax_no_owner = & new clsControl(ccsTextBox, "fax_no_owner", "Description", ccsText, "", CCGetRequestParam("fax_no_owner", $Method, NULL), $this);
             $this->address_no_owner = & new clsControl(ccsTextBox, "address_no_owner", "No", ccsText, "", CCGetRequestParam("address_no_owner", $Method, NULL), $this);
+            $this->kode_wilayah = & new clsControl(ccsListBox, "kode_wilayah", "kode_wilayah", ccsText, "", CCGetRequestParam("kode_wilayah", $Method, NULL), $this);
+            $this->kode_wilayah->DSType = dsListOfValues;
+            $this->kode_wilayah->Values = array(array("1", "1"), array("2", "2"), array("3", "3"), array("4", "4"), array("5", "5"));
+            $this->kode_wilayah->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->updated_by->Value) && !strlen($this->updated_by->Value) && $this->updated_by->Value !== false)
                     $this->updated_by->SetText(CCGetUserLogin());
@@ -695,7 +699,7 @@ class clsRecordt_customer_updateForm { //t_customer_updateForm Class @94-52E2621
     }
 //End Initialize Method
 
-//Validate Method @94-700D0E68
+//Validate Method @94-C4BC7614
     function Validate()
     {
         global $CCSLocales;
@@ -722,6 +726,7 @@ class clsRecordt_customer_updateForm { //t_customer_updateForm Class @94-52E2621
         $Validation = ($this->p_region_id_owner->Validate() && $Validation);
         $Validation = ($this->fax_no_owner->Validate() && $Validation);
         $Validation = ($this->address_no_owner->Validate() && $Validation);
+        $Validation = ($this->kode_wilayah->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_cust_account_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->nama_kota->Errors->Count() == 0);
@@ -741,11 +746,12 @@ class clsRecordt_customer_updateForm { //t_customer_updateForm Class @94-52E2621
         $Validation =  $Validation && ($this->p_region_id_owner->Errors->Count() == 0);
         $Validation =  $Validation && ($this->fax_no_owner->Errors->Count() == 0);
         $Validation =  $Validation && ($this->address_no_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->kode_wilayah->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-28CC1792
+//CheckErrors Method @94-3A242F52
     function CheckErrors()
     {
         $errors = false;
@@ -767,6 +773,7 @@ class clsRecordt_customer_updateForm { //t_customer_updateForm Class @94-52E2621
         $errors = ($errors || $this->p_region_id_owner->Errors->Count());
         $errors = ($errors || $this->fax_no_owner->Errors->Count());
         $errors = ($errors || $this->address_no_owner->Errors->Count());
+        $errors = ($errors || $this->kode_wilayah->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -832,20 +839,21 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//UpdateRow Method @94-42064C30
+//UpdateRow Method @94-94294248
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
         $this->DataSource->t_cust_account_id->SetValue($this->t_cust_account_id->GetValue(true));
         $this->DataSource->mobile_no->SetValue($this->mobile_no->GetValue(true));
+        $this->DataSource->kode_wilayah->SetValue($this->kode_wilayah->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @94-CF6B83F6
+//Show Method @94-1AE4175B
     function Show()
     {
         global $CCSUseAmp;
@@ -859,6 +867,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->kode_wilayah->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -891,6 +900,7 @@ function GetPrimaryKey($keyName)
                     $this->p_region_id_owner->SetValue($this->DataSource->p_region_id_owner->GetValue());
                     $this->fax_no_owner->SetValue($this->DataSource->fax_no_owner->GetValue());
                     $this->address_no_owner->SetValue($this->DataSource->address_no_owner->GetValue());
+                    $this->kode_wilayah->SetValue($this->DataSource->kode_wilayah->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -917,6 +927,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->p_region_id_owner->Errors->ToString());
             $Error = ComposeStrings($Error, $this->fax_no_owner->Errors->ToString());
             $Error = ComposeStrings($Error, $this->address_no_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->kode_wilayah->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -956,6 +967,7 @@ function GetPrimaryKey($keyName)
         $this->p_region_id_owner->Show();
         $this->fax_no_owner->Show();
         $this->address_no_owner->Show();
+        $this->kode_wilayah->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -966,7 +978,7 @@ function GetPrimaryKey($keyName)
 
 class clst_customer_updateFormDataSource extends clsDBConnSIKP {  //t_customer_updateFormDataSource Class @94-14C13181
 
-//DataSource Variables @94-EA1EE393
+//DataSource Variables @94-C8E99C90
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -997,9 +1009,10 @@ class clst_customer_updateFormDataSource extends clsDBConnSIKP {  //t_customer_u
     var $p_region_id_owner;
     var $fax_no_owner;
     var $address_no_owner;
+    var $kode_wilayah;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-1FA6D455
+//DataSourceClass_Initialize Event @94-3BE37866
     function clst_customer_updateFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1041,6 +1054,8 @@ class clst_customer_updateFormDataSource extends clsDBConnSIKP {  //t_customer_u
         
         $this->address_no_owner = new clsField("address_no_owner", ccsText, "");
         
+        $this->kode_wilayah = new clsField("kode_wilayah", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1081,7 +1096,7 @@ class clst_customer_updateFormDataSource extends clsDBConnSIKP {  //t_customer_u
     }
 //End Open Method
 
-//SetValues Method @94-36E30616
+//SetValues Method @94-F8809CF0
     function SetValues()
     {
         $this->t_cust_account_id->SetDBValue($this->f("t_cust_account_id"));
@@ -1102,10 +1117,11 @@ class clst_customer_updateFormDataSource extends clsDBConnSIKP {  //t_customer_u
         $this->p_region_id_owner->SetDBValue($this->f("wp_p_region_id"));
         $this->fax_no_owner->SetDBValue($this->f("fax_no"));
         $this->address_no_owner->SetDBValue($this->f("wp_address_no"));
+        $this->kode_wilayah->SetDBValue($this->f("kode_wilayah"));
     }
 //End SetValues Method
 
-//Update Method @94-34BF4BBA
+//Update Method @94-1565DFEE
     function Update()
     {
         global $CCSLocales;
@@ -1114,6 +1130,7 @@ class clst_customer_updateFormDataSource extends clsDBConnSIKP {  //t_customer_u
         $this->cp["updated_by"] = new clsSQLParameter("expr449", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
         $this->cp["t_cust_account_id"] = new clsSQLParameter("ctrlt_cust_account_id", ccsFloat, "", "", $this->t_cust_account_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["mobile_no"] = new clsSQLParameter("ctrlmobile_no", ccsText, "", "", $this->mobile_no->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["kode_wilayah"] = new clsSQLParameter("ctrlkode_wilayah", ccsText, "", "", $this->kode_wilayah->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
             $this->cp["updated_by"]->SetValue(CCGetUserLogin());
@@ -1123,8 +1140,11 @@ class clst_customer_updateFormDataSource extends clsDBConnSIKP {  //t_customer_u
             $this->cp["t_cust_account_id"]->SetText(0);
         if (!is_null($this->cp["mobile_no"]->GetValue()) and !strlen($this->cp["mobile_no"]->GetText()) and !is_bool($this->cp["mobile_no"]->GetValue())) 
             $this->cp["mobile_no"]->SetValue($this->mobile_no->GetValue(true));
+        if (!is_null($this->cp["kode_wilayah"]->GetValue()) and !strlen($this->cp["kode_wilayah"]->GetText()) and !is_bool($this->cp["kode_wilayah"]->GetValue())) 
+            $this->cp["kode_wilayah"]->SetValue($this->kode_wilayah->GetValue(true));
         $this->SQL = "UPDATE t_cust_account\n" .
         "SET mobile_no = '" . $this->SQLValue($this->cp["mobile_no"]->GetDBValue(), ccsText) . "',\n" .
+        "kode_wilayah = '" . $this->SQLValue($this->cp["kode_wilayah"]->GetDBValue(), ccsText) . "',\n" .
         "updated_date = sysdate, \n" .
         "updated_by = '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "'\n" .
         "WHERE t_cust_account_id = " . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsFloat) . "";
