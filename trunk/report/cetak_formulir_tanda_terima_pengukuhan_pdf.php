@@ -157,7 +157,6 @@ class FormCetak extends FPDF {
 		
         $this->seEnter();
         $this->seEnter();
-        $this->seEnter();
 
         //---------------- TTD
         $ttdKolom1 = ($this->lengthCell * 5) / 8;
@@ -168,8 +167,6 @@ class FormCetak extends FPDF {
         $this->cell($ttdKolom1, $this->height, '', 'L', 0,'C');
         $this->cell($ttdKolom2, $this->height, '    Yang Menerima', 'R', 0,'C');
         $this->Ln();
-        $this->seEnter();
-        $this->seEnter();
         $this->seEnter();
         $this->seEnter();
         $this->seEnter();
