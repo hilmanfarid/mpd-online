@@ -211,8 +211,8 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toOrder()">
@@ -236,16 +236,16 @@ jQuery(document).ready(function()
   </div>
 </div>
 &nbsp;/ 
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <!-- BEGIN Record t_bphtb_registrationForm -->
         <form id="t_bphtb_registrationForm" onsubmit="return setNormalValue();" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td valign="top">
-                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI FORMULIR PENDAFTARAN</strong></td> 
@@ -266,13 +266,13 @@ jQuery(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th" colspan="3">&nbsp;A. Subjek Pajak</td> 
-                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormt_bphtb_registration_id" type="hidden" value="{t_bphtb_registration_id}" name="{t_bphtb_registration_id_Name}"></td>
+                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormt_bphtb_registration_id" value="{t_bphtb_registration_id}" type="hidden" name="{t_bphtb_registration_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama</label></label></label></label></label></label></label></td> 
-                    <td colspan="6"><label for="t_bphtb_registrationFormwp_name" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" value="{wp_name}" name="{wp_name_Name}">&nbsp;<input id="t_bphtb_registrationFormp_bphtb_type_id" type="hidden" value="{p_bphtb_type_id}" name="{p_bphtb_type_id_Name}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormwp_name" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" value="{wp_name}" name="{wp_name_Name}">&nbsp;<input id="t_bphtb_registrationFormp_bphtb_type_id" value="{p_bphtb_type_id}" type="hidden" name="{p_bphtb_type_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -284,7 +284,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Alamat</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormwp_address_name" style="HEIGHT: 22px; WIDTH: 491px" size="77" value="{wp_address_name}" name="{wp_address_name_Name}"></td>
+                    <td colspan="6"><input style="WIDTH: 491px; HEIGHT: 22px" id="t_bphtb_registrationFormwp_address_name" value="{wp_address_name}" size="77" name="{wp_address_name_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -302,25 +302,25 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;RT/ RW</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormwp_rt" size="2" value="{wp_rt}" name="{wp_rt_Name}">&nbsp;/ <input id="t_bphtb_registrationFormwp_rw" size="2" value="{wp_rw}" name="{wp_rw_Name}"></td>
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_rt" value="{wp_rt}" size="2" name="{wp_rt_Name}">&nbsp;/ <input id="t_bphtb_registrationFormwp_rw" value="{wp_rw}" size="2" name="{wp_rw_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Kota/Kabupaten&nbsp;</td> 
-                    <td colspan="6"><input tabindex="2" id="t_bphtb_registrationFormwp_kota" class="ControlsRQ" readonly maxlength="32" size="32" value="{wp_kota}" name="{wp_kota_Name}">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id" type="hidden" value="{wp_p_region_id}" name="{wp_p_region_id_Name}"></td>
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kota" class="ControlsRQ" tabindex="2" value="{wp_kota}" readonly maxlength="32" size="32" name="{wp_kota_Name}">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id" value="{wp_p_region_id}" type="hidden" name="{wp_p_region_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Kecamatan&nbsp;</td> 
-                    <td colspan="6"><input tabindex="2" id="t_bphtb_registrationFormwp_kecamatan" class="ControlsRQ" readonly maxlength="32" size="32" value="{wp_kecamatan}" name="{wp_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_wp2()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id_kec" type="hidden" value="{wp_p_region_id_kec}" name="{wp_p_region_id_kec_Name}"></td>
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kecamatan" class="ControlsRQ" tabindex="2" value="{wp_kecamatan}" readonly maxlength="32" size="32" name="{wp_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_wp2()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id_kec" value="{wp_p_region_id_kec}" type="hidden" name="{wp_p_region_id_kec_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Kelurahan&nbsp;</td> 
-                    <td colspan="6"><input tabindex="2" id="t_bphtb_registrationFormwp_kelurahan" class="ControlsRQ" readonly maxlength="32" size="32" value="{wp_kelurahan}" name="{wp_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id_kel" type="hidden" value="{wp_p_region_id_kel}" name="{wp_p_region_id_kel_Name}"></td>
+                    <td colspan="6"><input id="t_bphtb_registrationFormwp_kelurahan" class="ControlsRQ" tabindex="2" value="{wp_kelurahan}" readonly maxlength="32" size="32" name="{wp_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif">&nbsp;<input id="t_bphtb_registrationFormwp_p_region_id_kel" value="{wp_p_region_id_kel}" type="hidden" name="{wp_p_region_id_kel_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -329,14 +329,14 @@ jQuery(document).ready(function()
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th" colspan="9">&nbsp;Pilih Data BPHTB Sebelumnya : 
-                      <!-- BEGIN Button BtnSelect --><input onclick="javascript:lov_bphtb()" id="t_bphtb_registrationFormBtnSelect" class="Button" style="HEIGHT: 23px; WIDTH: 130px" alt="Button2" type="button" value="Pilih" name="{Button_Name}"><!-- END Button BtnSelect --><input onchange="javascript:fillTheForm();" id="t_bphtb_registrationFormt_bphtb_registration_id_old" style="HEIGHT: 22px; WIDTH: 182px" size="24" type="hidden" value="{t_bphtb_registration_id_old}" name="{t_bphtb_registration_id_old_Name}"></td>
+                    <td class="th" colspan="9">&nbsp; </td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Nomor Objek Pajak</td> 
-                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormnjop_pbb" style="HEIGHT: 22px; WIDTH: 246px" size="33" value="{njop_pbb}" name="{njop_pbb_Name}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input style="WIDTH: 246px; HEIGHT: 22px" id="t_bphtb_registrationFormnjop_pbb" value="{njop_pbb}" size="33" name="{njop_pbb_Name}">&nbsp;&nbsp; (Pilih Data BPHTB Sebelumnya)&nbsp; 
+                      <!-- BEGIN Button BtnSelect --><input style="WIDTH: 130px; HEIGHT: 23px" id="t_bphtb_registrationFormBtnSelect" class="Button" onclick="javascript:lov_bphtb()" value="Pilih" alt="Button2" type="button" name="{Button_Name}"><!-- END Button BtnSelect --><input style="WIDTH: 182px; HEIGHT: 22px" id="t_bphtb_registrationFormt_bphtb_registration_id_old" onchange="javascript:fillTheForm();" value="{t_bphtb_registration_id_old}" size="24" type="hidden" name="{t_bphtb_registration_id_old_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -348,25 +348,25 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;RT/ RW</td> 
-                    <td colspan="6"><input id="t_bphtb_registrationFormobject_rt" size="2" value="{object_rt}" name="{object_rt_Name}">&nbsp;/ <input id="t_bphtb_registrationFormobject_rw" size="2" value="{object_rw}" name="{object_rw_Name}"></td>
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_rt" value="{object_rt}" size="2" name="{object_rt_Name}">&nbsp;/ <input id="t_bphtb_registrationFormobject_rw" value="{object_rw}" size="2" name="{object_rw_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Kabupaten/ Kota</td> 
-                    <td colspan="6"><input tabindex="2" id="t_bphtb_registrationFormobject_kota" class="ControlsRQ" readonly maxlength="32" size="32" value="{object_kota}" name="{object_kota_Name}"><img onclick="javascript:lov_region_object1()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id" type="hidden" value="{object_p_region_id}" name="{object_p_region_id_Name}"></td>
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kota" class="ControlsRQ" tabindex="2" value="{object_kota}" readonly maxlength="32" size="32" name="{object_kota_Name}"><img onclick="javascript:lov_region_object1()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id" value="{object_p_region_id}" type="hidden" name="{object_p_region_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Kecamatan</td> 
-                    <td colspan="6"><input tabindex="2" id="t_bphtb_registrationFormobject_kecamatan" class="ControlsRQ" readonly maxlength="32" size="32" value="{object_kecamatan}" name="{object_kecamatan_Name}"><img onclick="javascript:lov_region_object2()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id_kec" type="hidden" value="{object_p_region_id_kec}" name="{object_p_region_id_kec_Name}"></td>
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kecamatan" class="ControlsRQ" tabindex="2" value="{object_kecamatan}" readonly maxlength="32" size="32" name="{object_kecamatan_Name}"><img onclick="javascript:lov_region_object2()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id_kec" value="{object_p_region_id_kec}" type="hidden" name="{object_p_region_id_kec_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Kelurahan</td> 
-                    <td colspan="6"><input tabindex="2" id="t_bphtb_registrationFormobject_kelurahan" class="ControlsRQ" readonly maxlength="32" size="32" value="{object_kelurahan}" name="{object_kelurahan_Name}"><img onclick="javascript:lov_region_object3()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id_kel" type="hidden" value="{object_p_region_id_kel}" name="{object_p_region_id_kel_Name}"></td>
+                    <td colspan="6"><input id="t_bphtb_registrationFormobject_kelurahan" class="ControlsRQ" tabindex="2" value="{object_kelurahan}" readonly maxlength="32" size="32" name="{object_kelurahan_Name}"><img onclick="javascript:lov_region_object3()" border="0" src="../images/view.gif"><input id="t_bphtb_registrationFormobject_p_region_id_kel" value="{object_p_region_id_kel}" type="hidden" name="{object_p_region_id_kel_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -384,7 +384,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;</td> 
-                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormnilai_doc" type="hidden" value="{nilai_doc}" name="{nilai_doc_Name}">Potongan 
+                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormnilai_doc" value="{nilai_doc}" type="hidden" name="{nilai_doc_Name}">Potongan 
                       <select id="t_bphtb_registrationFormadd_disc_percent" name="{add_disc_percent_Name}">
                         {add_disc_percent_Options}
                       </select>
@@ -394,24 +394,24 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Tanah</td> 
-                    <td colspan="4"><input onkeyup="hitungTotalTanah();return 1;" id="t_bphtb_registrationFormland_area" class="numeric-field" style="TEXT-ALIGN: right" value="{land_area}" name="{land_area_Name}">&nbsp;m2</td> 
-                    <td class="th">Rp. <input onkeyup="hitungTotalTanah();" id="t_bphtb_registrationFormland_price_per_m" class="numeric-field" style="TEXT-ALIGN: right" value="{land_price_per_m}" name="{land_price_per_m_Name}"></td> 
-                    <td>Rp. &nbsp;<input id="t_bphtb_registrationFormland_total_price" class="numeric-field" style="TEXT-ALIGN: right" readonly value="{land_total_price}" name="{land_total_price_Name}"></td>
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_area" class="numeric-field" onkeyup="hitungTotalTanah();return 1;" value="{land_area}" name="{land_area_Name}">&nbsp;m2</td> 
+                    <td class="th">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_price_per_m" class="numeric-field" onkeyup="hitungTotalTanah();" value="{land_price_per_m}" name="{land_price_per_m_Name}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormland_total_price" class="numeric-field" value="{land_total_price}" readonly name="{land_total_price_Name}"></td>
                   </tr>
  
-                  <tr onkeyup="document.getElementById(&amp;quot;t_bphtb_registrationFormland_total_price&amp;quot;).value=hitungTotalTanah();" class="Controls">
+                  <tr class="Controls" onkeyup="document.getElementById(&amp;quot;t_bphtb_registrationFormland_total_price&amp;quot;).value=hitungTotalTanah();">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;Bangunan</td> 
-                    <td colspan="4"><input onkeyup="hitungTotalBangunan();" id="t_bphtb_registrationFormbuilding_area" class="numeric-field" style="TEXT-ALIGN: right" value="{building_area}" name="{building_area_Name}">&nbsp;m2</td> 
-                    <td>&nbsp;Rp. <input onkeyup="hitungTotalBangunan();" id="t_bphtb_registrationFormbuilding_price_per_m" class="numeric-field" style="TEXT-ALIGN: right" value="{building_price_per_m}" name="{building_price_per_m_Name}"></td> 
-                    <td>Rp. &nbsp;<input id="t_bphtb_registrationFormbuilding_total_price" class="numeric-field" style="TEXT-ALIGN: right" readonly value="{building_total_price}" name="{building_total_price_Name}"></td>
+                    <td colspan="4"><input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_area" class="numeric-field" onkeyup="hitungTotalBangunan();" value="{building_area}" name="{building_area_Name}">&nbsp;m2</td> 
+                    <td>&nbsp;Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_price_per_m" class="numeric-field" onkeyup="hitungTotalBangunan();" value="{building_price_per_m}" name="{building_price_per_m_Name}"></td> 
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbuilding_total_price" class="numeric-field" value="{building_total_price}" readonly name="{building_total_price_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;</td> 
                     <td colspan="5">&nbsp;Total</td> 
-                    <td>Rp. &nbsp;<input id="t_bphtb_registrationFormtotal_price" class="numeric-field" style="TEXT-ALIGN: right" readonly value="{total_price}" name="{total_price_Name}"></td>
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormtotal_price" class="numeric-field" value="{total_price}" readonly name="{total_price_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -422,70 +422,70 @@ jQuery(document).ready(function()
                         {jenis_harga_bphtb_Options}
                       </select>
  : </td> 
-                    <td>Rp. &nbsp;<input onkeyup="getNPOP();" id="t_bphtb_registrationFormmarket_price" class="numeric-field" style="TEXT-ALIGN: right" value="{market_price}" name="{market_price_Name}"></td>
+                    <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" class="numeric-field" onkeyup="getNPOP();" value="{market_price}" name="{market_price_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak (NPOP)</td> 
-                    <td colspan="6">Rp. <input onchange="hitungNPOPKP();" id="t_bphtb_registrationFormnpop" class="numeric-field" style="TEXT-ALIGN: right" readonly value="{npop}" name="{npop_Name}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop" class="numeric-field" onchange="hitungNPOPKP();" value="{npop}" readonly name="{npop_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Potongan Tambahan</td> 
-                    <td colspan="6">Rp. <input id="t_bphtb_registrationFormadd_discount" style="TEXT-ALIGN: right" value="{add_discount}" name="{add_discount_Name}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormadd_discount" value="{add_discount}" name="{add_discount_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak Tidak Kena Pajak(NPOPTKP)</td> 
-                    <td colspan="6">Rp. <input id="t_bphtb_registrationFormnpop_tkp" class="numeric-field" style="TEXT-ALIGN: right" value="{npop_tkp}" name="{npop_tkp_Name}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_tkp" class="numeric-field" value="{npop_tkp}" name="{npop_tkp_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Perolehan Objek Pajak Kena Pajak(NPOPKP)</td> 
-                    <td colspan="6">Rp. <input id="t_bphtb_registrationFormnpop_kp" class="numeric-field" style="TEXT-ALIGN: right" value="{npop_kp}" name="{npop_kp_Name}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormnpop_kp" class="numeric-field" value="{npop_kp}" name="{npop_kp_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang terutang</td> 
-                    <td colspan="6">Rp. <input id="t_bphtb_registrationFormbphtb_amt" class="numeric-field" style="TEXT-ALIGN: right" value="{bphtb_amt}" name="{bphtb_amt_Name}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt" class="numeric-field" value="{bphtb_amt}" name="{bphtb_amt_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Potongan</td> 
-                    <td colspan="6">Rp. <input onkeyup="hitungPembayaran();" id="t_bphtb_registrationFormbphtb_discount" class="numeric-field" style="TEXT-ALIGN: right" value="{bphtb_discount}" name="{bphtb_discount_Name}">&nbsp; <input id="t_bphtb_registrationFormdescription" value="{description}" name="{description_Name}">&nbsp;Cek Potongan : <input id="t_bphtb_registrationFormcheck_potongan" type="checkbox" value="1" name="{check_potongan_Name}" {check_potongan}>&nbsp; (Silahkan cheklis utk pembayaran yg ada potongan)</td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_discount" class="numeric-field" onkeyup="hitungPembayaran();" value="{bphtb_discount}" name="{bphtb_discount_Name}">&nbsp; <input id="t_bphtb_registrationFormdescription" value="{description}" name="{description_Name}">&nbsp;Cek Potongan : <input id="t_bphtb_registrationFormcheck_potongan" value="1" type="checkbox" name="{check_potongan_Name}" {check_potongan}>&nbsp; (Silahkan cheklis utk pembayaran yg ada potongan)</td>
                   </tr>
  
-                  <tr id="tr-harus-bayar" class="Controls" style="DISPLAY: none">
+                  <tr style="DISPLAY: none" id="tr-harus-bayar" class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</td> 
-                    <td colspan="6">Rp. <input id="t_bphtb_registrationFormbphtb_amt_final_old" class="numeric-field" style="TEXT-ALIGN: right" readonly value="{bphtb_amt_final_old}" name="{bphtb_amt_final_old_Name}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt_final_old" class="numeric-field" value="{bphtb_amt_final_old}" readonly name="{bphtb_amt_final_old_Name}"></td>
                   </tr>
  
-                  <tr id="tr-pembayaran-sebelumnya" class="Controls" style="DISPLAY: none">
+                  <tr style="DISPLAY: none" id="tr-pembayaran-sebelumnya" class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">Nilai Pajak yang sudah dibayar</td> 
-                    <td colspan="6">Rp. <input id="t_bphtb_registrationFormprev_payment_amount" class="numeric-field" style="BACKGROUND: #84ffa3; TEXT-ALIGN: right" readonly value="{prev_payment_amount}" name="{prev_payment_amount_Name}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right; BACKGROUND: #84ffa3" id="t_bphtb_registrationFormprev_payment_amount" class="numeric-field" value="{prev_payment_amount}" readonly name="{prev_payment_amount_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2"><span id="total-bayar-text">Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar</span></td> 
-                    <td colspan="6">Rp. <input id="t_bphtb_registrationFormbphtb_amt_final" class="numeric-field" style="TEXT-ALIGN: right" readonly value="{bphtb_amt_final}" name="{bphtb_amt_final_Name}"></td>
+                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormbphtb_amt_final" class="numeric-field" value="{bphtb_amt_final}" readonly name="{bphtb_amt_final_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="9" align="right">&nbsp; 
-                      <!-- BEGIN Button Button3 --><input onclick="printLaporan();" id="t_bphtb_registrationFormButton3" class="btn_tambah" alt="Button2" type="submit" value="CETAK NOTA VERIFIKASI" name="{Button_Name}"><!-- END Button Button3 -->
-                      <!-- BEGIN Button Button_Insert --><input id="t_bphtb_registrationFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="t_bphtb_registrationFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input id="t_bphtb_registrationFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input id="t_bphtb_registrationFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                      <!-- BEGIN Button Button3 --><input id="t_bphtb_registrationFormButton3" class="btn_tambah" onclick="printLaporan();" value="CETAK NOTA VERIFIKASI" alt="Button2" type="submit" name="{Button_Name}"><!-- END Button Button3 -->
+                      <!-- BEGIN Button Button_Insert --><input id="t_bphtb_registrationFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_bphtb_registrationFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_bphtb_registrationFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="t_bphtb_registrationFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
                   </tr>
                 </table>
               </td>
