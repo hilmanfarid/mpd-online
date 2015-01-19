@@ -125,7 +125,7 @@ SELECT
 	) AS denda_tgl_bayar_formated,
 	sptpd_amount,
 	payment_amount
-from sikp.f_laporan_harian_denda(".$param_arr['p_vat_type_id'].",2014,'".$param_arr['date_start']."','".$param_arr['date_end']."')
+from sikp.f_laporan_harian_denda_v2(".$param_arr['p_vat_type_id'].",2014,'".$param_arr['date_start']."','".$param_arr['date_end']."')
 ORDER BY
 	nama,
 	trunc(start_period) ASC";	
