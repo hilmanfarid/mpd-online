@@ -321,11 +321,11 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "H. SONI BAKHTIYAR, S.SOS, M.SI", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Drs. H. GUN GUN SUMARYANA", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 8, $this->height, "NIP. 19750625 1994031 1 001", "T", 0, 'L'); //isi nip
+		$this->Cell($lbody1 + 8, $this->height, "NIP. 19700806 199101 1 001", "T", 0, 'L'); //isi nip
 		$this->Cell(2, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "LBR", 0, 'L');
