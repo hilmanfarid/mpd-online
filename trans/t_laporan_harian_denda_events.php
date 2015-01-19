@@ -196,7 +196,7 @@ ORDER BY
 			$item['denda_tgl_tap'] = "";
 			$item['denda_tgl_bayar'] = "";
 		}
-		$jumlah = $item['skpdkb_amount']+$item['sptpd_amount']-$item['payment_amount'];
+		$jumlah = $item['skpdkb_amount']+$item['sptpd_amount']+$item['denda_amount']-$item['payment_amount'];
 		$jumlah_selisih += $jumlah;
 		$pdf->RowMultiBorderWithHeight(array($no,$item['nama'],$item['alamat'],$item['npwpd'],$item['start_period']." s/d ".$item['end_period'],$item['no_kohir'],'Rp. '.number_format($item['sptpd_amount'], 2, ',', '.'),$item['tgl_masuk'],$item['jatuh_tempo'],$item['tgl_bayar'],'Rp. '.number_format($item['skpdkb_amount'], 2, ',', '.'),$item['skpdkb_no_kohir'],$item['skpdkb_tgl_tap'],$item['skpdkb_tgl_bayar'],'Rp. '.number_format($item['denda_amount'], 2, ',', '.'),$item['denda_no_kohir'],$item['denda_tgl_tap'],$item['denda_tgl_bayar'],'Rp. '.number_format($jumlah, 2, ',', '.')),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','TLB','TLB','TLB','TLB','TLB','TLB','TLB','TLBR'),6);
 		
