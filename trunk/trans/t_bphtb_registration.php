@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-A5498050
+//Class_Initialize Event @94-427337B0
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -159,6 +159,10 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->check_potongan->UncheckedValue = $this->check_potongan->GetParsedValue(N);
             $this->BtnSelect = & new clsButton("BtnSelect", $Method, $this);
             $this->t_bphtb_registration_id_old = & new clsControl(ccsHidden, "t_bphtb_registration_id_old", "test", ccsFloat, "", CCGetRequestParam("t_bphtb_registration_id_old", $Method, NULL), $this);
+            $this->land_area_real = & new clsControl(ccsTextBox, "land_area_real", "land_area_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_area_real", $Method, NULL), $this);
+            $this->building_area_real = & new clsControl(ccsTextBox, "building_area_real", "building_area_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_area_real", $Method, NULL), $this);
+            $this->land_price_real = & new clsControl(ccsTextBox, "land_price_real", "land_price_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_price_real", $Method, NULL), $this);
+            $this->building_price_real = & new clsControl(ccsTextBox, "building_price_real", "building_price_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_price_real", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -188,6 +192,14 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
                     $this->nilai_doc->SetText(0);
                 if(!is_array($this->check_potongan->Value) && !strlen($this->check_potongan->Value) && $this->check_potongan->Value !== false)
                     $this->check_potongan->SetValue(false);
+                if(!is_array($this->land_area_real->Value) && !strlen($this->land_area_real->Value) && $this->land_area_real->Value !== false)
+                    $this->land_area_real->SetText(0);
+                if(!is_array($this->building_area_real->Value) && !strlen($this->building_area_real->Value) && $this->building_area_real->Value !== false)
+                    $this->building_area_real->SetText(0);
+                if(!is_array($this->land_price_real->Value) && !strlen($this->land_price_real->Value) && $this->land_price_real->Value !== false)
+                    $this->land_price_real->SetText(0);
+                if(!is_array($this->building_price_real->Value) && !strlen($this->building_price_real->Value) && $this->building_price_real->Value !== false)
+                    $this->building_price_real->SetText(0);
             }
         }
     }
@@ -204,7 +216,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-89C4701C
+//Validate Method @94-1F18C2E3
     function Validate()
     {
         global $CCSLocales;
@@ -260,6 +272,10 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->bphtb_amt_final_old->Validate() && $Validation);
         $Validation = ($this->check_potongan->Validate() && $Validation);
         $Validation = ($this->t_bphtb_registration_id_old->Validate() && $Validation);
+        $Validation = ($this->land_area_real->Validate() && $Validation);
+        $Validation = ($this->building_area_real->Validate() && $Validation);
+        $Validation = ($this->land_price_real->Validate() && $Validation);
+        $Validation = ($this->building_price_real->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -311,11 +327,15 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->bphtb_amt_final_old->Errors->Count() == 0);
         $Validation =  $Validation && ($this->check_potongan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_bphtb_registration_id_old->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->land_area_real->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->building_area_real->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->land_price_real->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->building_price_real->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-5094D719
+//CheckErrors Method @94-E7EEAAB0
     function CheckErrors()
     {
         $errors = false;
@@ -369,6 +389,10 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->bphtb_amt_final_old->Errors->Count());
         $errors = ($errors || $this->check_potongan->Errors->Count());
         $errors = ($errors || $this->t_bphtb_registration_id_old->Errors->Count());
+        $errors = ($errors || $this->land_area_real->Errors->Count());
+        $errors = ($errors || $this->building_area_real->Errors->Count());
+        $errors = ($errors || $this->land_price_real->Errors->Count());
+        $errors = ($errors || $this->building_price_real->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -552,7 +576,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-E8AF325A
+//Show Method @94-D5E62172
     function Show()
     {
         global $CCSUseAmp;
@@ -630,6 +654,10 @@ function GetPrimaryKey($keyName)
                     $this->bphtb_amt_final_old->SetValue($this->DataSource->bphtb_amt_final_old->GetValue());
                     $this->check_potongan->SetValue($this->DataSource->check_potongan->GetValue());
                     $this->t_bphtb_registration_id_old->SetValue($this->DataSource->t_bphtb_registration_id_old->GetValue());
+                    $this->land_area_real->SetValue($this->DataSource->land_area_real->GetValue());
+                    $this->building_area_real->SetValue($this->DataSource->building_area_real->GetValue());
+                    $this->land_price_real->SetValue($this->DataSource->land_price_real->GetValue());
+                    $this->building_price_real->SetValue($this->DataSource->building_price_real->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -691,6 +719,10 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->bphtb_amt_final_old->Errors->ToString());
             $Error = ComposeStrings($Error, $this->check_potongan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_bphtb_registration_id_old->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->land_area_real->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->building_area_real->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->land_price_real->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->building_price_real->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -768,6 +800,10 @@ function GetPrimaryKey($keyName)
         $this->check_potongan->Show();
         $this->BtnSelect->Show();
         $this->t_bphtb_registration_id_old->Show();
+        $this->land_area_real->Show();
+        $this->building_area_real->Show();
+        $this->land_price_real->Show();
+        $this->building_price_real->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -778,7 +814,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-4C6E066F
+//DataSource Variables @94-620E50B6
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -844,9 +880,13 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $bphtb_amt_final_old;
     var $check_potongan;
     var $t_bphtb_registration_id_old;
+    var $land_area_real;
+    var $building_area_real;
+    var $land_price_real;
+    var $building_price_real;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-18908D48
+//DataSourceClass_Initialize Event @94-7CBEC052
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -952,6 +992,14 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->t_bphtb_registration_id_old = new clsField("t_bphtb_registration_id_old", ccsFloat, "");
         
+        $this->land_area_real = new clsField("land_area_real", ccsFloat, "");
+        
+        $this->building_area_real = new clsField("building_area_real", ccsFloat, "");
+        
+        $this->land_price_real = new clsField("land_price_real", ccsFloat, "");
+        
+        $this->building_price_real = new clsField("building_price_real", ccsFloat, "");
+        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1046,7 +1094,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-740FEABD
+//SetValues Method @94-18C32107
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1096,6 +1144,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->bphtb_amt_final_old->SetDBValue(trim($this->f("bphtb_amt_final_old")));
         $this->check_potongan->SetDBValue($this->f("check_potongan"));
         $this->t_bphtb_registration_id_old->SetDBValue(trim($this->f("t_bphtb_registration_id_old")));
+        $this->land_area_real->SetDBValue(trim($this->f("land_area_real")));
+        $this->building_area_real->SetDBValue(trim($this->f("building_area_real")));
+        $this->land_price_real->SetDBValue(trim($this->f("land_price_real")));
+        $this->building_price_real->SetDBValue(trim($this->f("building_price_real")));
     }
 //End SetValues Method
 
