@@ -309,7 +309,7 @@ class FormCetak extends FPDF {
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,30,$this->getY(),25,0,'PNG');
 	
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d M Y") /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "KEPALA BIDANG PAJAK, ", "R", 0, 'C');
@@ -348,7 +348,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height, ": " /*.$data["alamat"]*/, "R", 0, 'L');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d F Y") /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d M Y") /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Yang menerima, ", "R", 0, 'C');
