@@ -424,12 +424,36 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</Button>
-<Hidden id="1055" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_registration_id_old" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormt_bphtb_registration_id_old" fieldSource="t_bphtb_registration_id_old" caption="test">
+				<Hidden id="1055" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_registration_id_old" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormt_bphtb_registration_id_old" fieldSource="t_bphtb_registration_id_old" caption="test">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<TextBox id="1056" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_area_real" PathID="t_bphtb_registrationFormland_area_real" defaultValue="0" fieldSource="land_area_real" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="1057" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_area_real" PathID="t_bphtb_registrationFormbuilding_area_real" defaultValue="0" fieldSource="building_area_real" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="1058" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_price_real" PathID="t_bphtb_registrationFormland_price_real" defaultValue="0" fieldSource="land_price_real" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="1059" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_price_real" PathID="t_bphtb_registrationFormbuilding_price_real" defaultValue="0" fieldSource="building_price_real" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
