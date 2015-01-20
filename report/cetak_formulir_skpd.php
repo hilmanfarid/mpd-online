@@ -441,11 +441,11 @@ class FormCetak extends FPDF {
 		$this->Ln();
 
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Drs. H. GUN GUN SUMARYANA", "R", 0, 'C');
 		$this->Ln();
 
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "NIP. 19750625 199403 1 001", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "NIP. 19700806 199101 1 001", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$data["npwd"]."-".str_replace(" ","-",$data["finance_period_code"]),15,190,25,25,'PNG');
