@@ -436,25 +436,25 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="1057" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_area_real" PathID="t_bphtb_registrationFormbuilding_area_real" defaultValue="0" fieldSource="building_area_real" format="#,##0.00">
+				<TextBox id="1057" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_area_real" PathID="t_bphtb_registrationFormbuilding_area_real" defaultValue="0" fieldSource="building_area_real" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="1058" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_price_real" PathID="t_bphtb_registrationFormland_price_real" defaultValue="0" fieldSource="land_price_real" format="#,##0.00">
+				<TextBox id="1058" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_price_real" PathID="t_bphtb_registrationFormland_price_real" defaultValue="0" fieldSource="land_price_real" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="1059" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_price_real" PathID="t_bphtb_registrationFormbuilding_price_real" defaultValue="0" fieldSource="building_price_real" format="#,##0.00">
+				<TextBox id="1059" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="building_price_real" PathID="t_bphtb_registrationFormbuilding_price_real" defaultValue="0" fieldSource="building_price_real" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -532,7 +532,11 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key1010" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="bphtb_legal_doc_description" scale="0" precision="0" parameterSource="bphtb_legal_doc_description"/>
 				<SPParameter id="Key1013" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="add_disc_percent" scale="0" precision="0" parameterSource="add_disc_percent"/>
 				<SPParameter id="Key1018" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="check_potongan" scale="0" precision="0" parameterSource="check_potongan"/>
-				<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
+				<SPParameter id="Key1061" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_land_area_real" scale="0" precision="0" parameterSource="land_area_real"/>
+<SPParameter id="Key1062" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_land_price_real" scale="0" precision="0" parameterSource="land_price_real"/>
+<SPParameter id="Key1063" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_building_area_real" scale="0" precision="0" parameterSource="building_area_real"/>
+<SPParameter id="Key1064" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_building_price_real" scale="0" precision="0" parameterSource="building_price_real"/>
+<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
 				<SPParameter id="Key978" parameterName="o_mess" parameterSource="o_mess" dataType="Char" parameterType="URL" dataSize="255" direction="InputOutput" scale="10" precision="6"/>
 			</ISPParameters>
 			<ISQLParameters>
