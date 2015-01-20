@@ -234,15 +234,15 @@ class clsLovGridDataSource extends clsDBConnSIKP {  //LovGridDataSource Class @2
     }
 //End Prepare Method
 
-//Open Method @2-FB68A394
+//Open Method @2-899983A4
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT schema_name AS owner, object_name \n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT schemaname AS owner, object_name \n" .
         "FROM user_objects \n" .
         "WHERE object_type = 'PACKAGE'\n" .
         "AND upper(object_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')) cnt";
-        $this->SQL = "SELECT schema_name AS owner, object_name \n" .
+        $this->SQL = "SELECT schemaname AS owner, object_name \n" .
         "FROM user_objects \n" .
         "WHERE object_type = 'PACKAGE'\n" .
         "AND upper(object_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')";
