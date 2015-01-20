@@ -410,7 +410,8 @@ class FormCetak extends FPDF {
 		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
+		//$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date('d M Y'), "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -469,7 +470,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height, ": ".$data["wp_address_name"], "R", 0, 'L');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date('d M Y'), "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Yang Menerima, ", "R", 0, 'C');
