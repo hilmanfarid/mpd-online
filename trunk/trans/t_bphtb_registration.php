@@ -523,7 +523,7 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @94-91F2EA44
+//UpdateRow Method @94-8FBF7045
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -563,6 +563,10 @@ function GetPrimaryKey($keyName)
         $this->DataSource->jenis_harga_bphtb->SetValue($this->jenis_harga_bphtb->GetValue(true));
         $this->DataSource->bphtb_legal_doc_description->SetValue($this->bphtb_legal_doc_description->GetValue(true));
         $this->DataSource->add_disc_percent->SetValue($this->add_disc_percent->GetValue(true));
+        $this->DataSource->land_area_real->SetValue($this->land_area_real->GetValue(true));
+        $this->DataSource->land_price_real->SetValue($this->land_price_real->GetValue(true));
+        $this->DataSource->building_area_real->SetValue($this->building_area_real->GetValue(true));
+        $this->DataSource->building_price_real->SetValue($this->building_price_real->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -890,7 +894,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $building_price_real;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-7CBEC052
+//DataSourceClass_Initialize Event @94-468F498D
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1041,6 +1045,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["jenis_harga_bphtb"] = array("Name" => "jenis_harga_bphtb", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["bphtb_legal_doc_description"] = array("Name" => "bphtb_legal_doc_description", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["add_disc_percent"] = array("Name" => "add_disc_percent", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["land_area_real"] = array("Name" => "land_area_real", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+        $this->UpdateFields["land_price_real"] = array("Name" => "land_price_real", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
+        $this->UpdateFields["building_area_real"] = array("Name" => "building_area_real", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
+        $this->UpdateFields["building_price_real"] = array("Name" => "building_price_real", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -1406,7 +1414,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @94-AC9D83A6
+//Update Method @94-3CB04A66
     function Update()
     {
         global $CCSLocales;
@@ -1448,6 +1456,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["jenis_harga_bphtb"] = new clsSQLParameter("ctrljenis_harga_bphtb", ccsText, "", "", $this->jenis_harga_bphtb->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["bphtb_legal_doc_description"] = new clsSQLParameter("ctrlbphtb_legal_doc_description", ccsText, "", "", $this->bphtb_legal_doc_description->GetValue(true), NULL, false, $this->ErrorBlock);
         $this->cp["add_disc_percent"] = new clsSQLParameter("ctrladd_disc_percent", ccsFloat, "", "", $this->add_disc_percent->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["land_area_real"] = new clsSQLParameter("ctrlland_area_real", ccsInteger, "", "", $this->land_area_real->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["land_price_real"] = new clsSQLParameter("ctrlland_price_real", ccsFloat, "", "", $this->land_price_real->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["building_area_real"] = new clsSQLParameter("ctrlbuilding_area_real", ccsInteger, "", "", $this->building_area_real->GetValue(true), NULL, false, $this->ErrorBlock);
+        $this->cp["building_price_real"] = new clsSQLParameter("ctrlbuilding_price_real", ccsFloat, "", "", $this->building_price_real->GetValue(true), NULL, false, $this->ErrorBlock);
         $wp = new clsSQLParameters($this->ErrorBlock);
         $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
         if(!$wp->AllParamsSet()) {
@@ -1534,6 +1546,14 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["bphtb_legal_doc_description"]->SetValue($this->bphtb_legal_doc_description->GetValue(true));
         if (!is_null($this->cp["add_disc_percent"]->GetValue()) and !strlen($this->cp["add_disc_percent"]->GetText()) and !is_bool($this->cp["add_disc_percent"]->GetValue())) 
             $this->cp["add_disc_percent"]->SetValue($this->add_disc_percent->GetValue(true));
+        if (!is_null($this->cp["land_area_real"]->GetValue()) and !strlen($this->cp["land_area_real"]->GetText()) and !is_bool($this->cp["land_area_real"]->GetValue())) 
+            $this->cp["land_area_real"]->SetValue($this->land_area_real->GetValue(true));
+        if (!is_null($this->cp["land_price_real"]->GetValue()) and !strlen($this->cp["land_price_real"]->GetText()) and !is_bool($this->cp["land_price_real"]->GetValue())) 
+            $this->cp["land_price_real"]->SetValue($this->land_price_real->GetValue(true));
+        if (!is_null($this->cp["building_area_real"]->GetValue()) and !strlen($this->cp["building_area_real"]->GetText()) and !is_bool($this->cp["building_area_real"]->GetValue())) 
+            $this->cp["building_area_real"]->SetValue($this->building_area_real->GetValue(true));
+        if (!is_null($this->cp["building_price_real"]->GetValue()) and !strlen($this->cp["building_price_real"]->GetText()) and !is_bool($this->cp["building_price_real"]->GetValue())) 
+            $this->cp["building_price_real"]->SetValue($this->building_price_real->GetValue(true));
         $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
         $wp->Criterion[2] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("2"), $this->ToSQL($wp->GetDBValue("2"), ccsFloat),false);
         $wp->Criterion[3] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("3"), $this->ToSQL($wp->GetDBValue("3"), ccsFloat),false);
@@ -1579,6 +1599,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->UpdateFields["jenis_harga_bphtb"]["Value"] = $this->cp["jenis_harga_bphtb"]->GetDBValue(true);
         $this->UpdateFields["bphtb_legal_doc_description"]["Value"] = $this->cp["bphtb_legal_doc_description"]->GetDBValue(true);
         $this->UpdateFields["add_disc_percent"]["Value"] = $this->cp["add_disc_percent"]->GetDBValue(true);
+        $this->UpdateFields["land_area_real"]["Value"] = $this->cp["land_area_real"]->GetDBValue(true);
+        $this->UpdateFields["land_price_real"]["Value"] = $this->cp["land_price_real"]->GetDBValue(true);
+        $this->UpdateFields["building_area_real"]["Value"] = $this->cp["building_area_real"]->GetDBValue(true);
+        $this->UpdateFields["building_price_real"]["Value"] = $this->cp["building_price_real"]->GetDBValue(true);
         $this->SQL = CCBuildUpdate("t_bphtb_registration", $this->UpdateFields, $this);
         $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
