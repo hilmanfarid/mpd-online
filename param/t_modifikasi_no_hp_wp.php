@@ -627,7 +627,7 @@ class clsRecordt_customer_updateForm { //t_customer_updateForm Class @94-52E2621
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-71B4B3B3
+//Class_Initialize Event @94-2F83EEE0
     function clsRecordt_customer_updateForm($RelativePath, & $Parent)
     {
 
@@ -678,7 +678,7 @@ class clsRecordt_customer_updateForm { //t_customer_updateForm Class @94-52E2621
             $this->address_no_owner = & new clsControl(ccsTextBox, "address_no_owner", "No", ccsText, "", CCGetRequestParam("address_no_owner", $Method, NULL), $this);
             $this->kode_wilayah = & new clsControl(ccsListBox, "kode_wilayah", "kode_wilayah", ccsText, "", CCGetRequestParam("kode_wilayah", $Method, NULL), $this);
             $this->kode_wilayah->DSType = dsListOfValues;
-            $this->kode_wilayah->Values = array(array("1", "1"), array("2", "2"), array("3", "3"), array("4", "4"), array("5", "5"));
+            $this->kode_wilayah->Values = array(array("1", "1 (BARAT)"), array("2", "2 (UTARA)"), array("3", "3 (TENGAH)"), array("4", "4 (TIMUR)"), array("5", "5 (SELATAN)"));
             $this->kode_wilayah->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->updated_by->Value) && !strlen($this->updated_by->Value) && $this->updated_by->Value !== false)
