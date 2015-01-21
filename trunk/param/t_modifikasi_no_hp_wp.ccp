@@ -341,7 +341,7 @@ WHERE t_cust_account_id = {t_cust_account_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="537" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="kode_wilayah" wizardEmptyCaption="Select Value" PathID="t_customer_updateFormkode_wilayah" connection="ConnSIKP" fieldSource="kode_wilayah" required="True" _valueOfList="5" _nameOfList="5" dataSource="1;1;2;2;3;3;4;4;5;5">
+				<ListBox id="537" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="kode_wilayah" wizardEmptyCaption="Select Value" PathID="t_customer_updateFormkode_wilayah" connection="ConnSIKP" fieldSource="kode_wilayah" required="True" _valueOfList="2" _nameOfList="2" dataSource="1;1 (BARAT);2;2 (UTARA);3;3 (TENGAH);4;4 (TIMUR);5;5 (SELATAN)">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
@@ -359,7 +359,7 @@ WHERE t_cust_account_id = {t_cust_account_id}">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters>
 			</TableParameters>
@@ -428,7 +428,7 @@ WHERE t_cust_account_id = {t_cust_account_id}">
 				<SQLParameter id="509" variable="t_cust_account_id" parameterType="Control" dataType="Float" parameterSource="t_cust_account_id" defaultValue="0"/>
 				<SQLParameter id="519" variable="mobile_no" parameterType="Control" dataType="Text" parameterSource="mobile_no"/>
 				<SQLParameter id="539" variable="kode_wilayah" parameterType="Control" dataType="Text" parameterSource="kode_wilayah"/>
-</USQLParameters>
+			</USQLParameters>
 			<UConditions>
 				<TableParameter id="446" conditionType="Parameter" useIsNull="False" field="p_job_position_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="p_job_position_id"/>
 			</UConditions>
