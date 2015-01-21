@@ -20,7 +20,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<ListBox id="23" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="kode_wilayah" wizardEmptyCaption="Select Value" PathID="t_laporan_piutang_pajakkode_wilayah" connection="ConnSIKP" fieldSource="kode_wilayah" required="True" _valueOfList="5" _nameOfList="5" dataSource="1;1;2;2;3;3;4;4;5;5">
+				<ListBox id="23" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="kode_wilayah" wizardEmptyCaption="Select Value" PathID="t_laporan_piutang_pajakkode_wilayah" connection="ConnSIKP" fieldSource="kode_wilayah" required="True" _valueOfList="5" _nameOfList="5" dataSource="1;1 (BARAT);2;2 (UTARA);3;3 (TENGAH);4;4 (TIMUR);5;5 (SELATAN)">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
@@ -38,7 +38,7 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
