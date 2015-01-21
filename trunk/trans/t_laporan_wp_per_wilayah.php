@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-4A57E693
+//Class_Initialize Event @2-2F6AD6FE
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -74,7 +74,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
             $this->kode_wilayah = & new clsControl(ccsListBox, "kode_wilayah", "kode_wilayah", ccsText, "", CCGetRequestParam("kode_wilayah", $Method, NULL), $this);
             $this->kode_wilayah->DSType = dsListOfValues;
-            $this->kode_wilayah->Values = array(array("1", "1"), array("2", "2"), array("3", "3"), array("4", "4"), array("5", "5"));
+            $this->kode_wilayah->Values = array(array("1", "1 (BARAT)"), array("2", "2 (UTARA)"), array("3", "3 (TENGAH)"), array("4", "4 (TIMUR)"), array("5", "5 (SELATAN)"));
             $this->kode_wilayah->Required = true;
         }
     }
