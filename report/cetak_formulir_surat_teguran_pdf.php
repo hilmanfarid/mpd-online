@@ -462,7 +462,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
 		
-		if ($_SERVER['HTTP_HOST']=='172.16.20.1'){
+		/*if ($_SERVER['HTTP_HOST']=='172.16.20.1'){
 			$this->Image('http://'.$_SERVER['HTTP_HOST'].'/include/qrcode/generate-qr.php?param='.
 			str_replace(" ","-",$data['letter_date_txt'])."_".
 			$data["npwd"]."_".
@@ -474,8 +474,13 @@ class FormCetak extends FPDF {
 			$data["npwd"]."_".
 			str_replace(" ","-",$data["periode"])
 			,15,170,25,25,'PNG');
-		}
-		
+		}*/
+
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+		str_replace(" ","-",$data['letter_date_txt'])."_".
+		$data["npwd"]."_".
+		str_replace(" ","-",$data["periode"])
+		,15,170,25,25,'PNG');
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
