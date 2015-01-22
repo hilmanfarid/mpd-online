@@ -548,7 +548,7 @@ class clsRecordp_regionForm { //p_regionForm Class @23-41339AE1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-49C7BCBE
+//Class_Initialize Event @23-5D5C4DE6
     function clsRecordp_regionForm($RelativePath, & $Parent)
     {
 
@@ -603,6 +603,7 @@ class clsRecordp_regionForm { //p_regionForm Class @23-41339AE1
             $this->business_area = & new clsControl(ccsTextBox, "business_area", "Kode Wilayah", ccsText, "", CCGetRequestParam("business_area", $Method, NULL), $this);
             $this->p_business_area_id = & new clsControl(ccsHidden, "p_business_area_id", "p_business_area_id", ccsFloat, "", CCGetRequestParam("p_business_area_id", $Method, NULL), $this);
             $this->postal_code = & new clsControl(ccsTextBox, "postal_code", "Kode Pos", ccsText, "", CCGetRequestParam("postal_code", $Method, NULL), $this);
+            $this->nasional_code = & new clsControl(ccsTextBox, "nasional_code", "Kode Wilayah Nasional", ccsText, "", CCGetRequestParam("nasional_code", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->updated_date->Value) && !strlen($this->updated_date->Value) && $this->updated_date->Value !== false)
                     $this->updated_date->SetText(date("d-M-Y"));
@@ -624,15 +625,12 @@ class clsRecordp_regionForm { //p_regionForm Class @23-41339AE1
     }
 //End Initialize Method
 
-//Validate Method @23-566B1E6F
+//Validate Method @23-B602523E
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
-        if(strlen($this->postal_code->GetText()) && !preg_match ("/^\d+$/", $this->postal_code->GetText())) {
-            $this->postal_code->Errors->addError($CCSLocales->GetText("CCS_MaskValidation", "Kode Pos"));
-        }
         $Validation = ($this->p_region_id->Validate() && $Validation);
         $Validation = ($this->region_name->Validate() && $Validation);
         $Validation = ($this->description->Validate() && $Validation);
@@ -645,6 +643,7 @@ class clsRecordp_regionForm { //p_regionForm Class @23-41339AE1
         $Validation = ($this->business_area->Validate() && $Validation);
         $Validation = ($this->p_business_area_id->Validate() && $Validation);
         $Validation = ($this->postal_code->Validate() && $Validation);
+        $Validation = ($this->nasional_code->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->p_region_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->region_name->Errors->Count() == 0);
@@ -658,11 +657,12 @@ class clsRecordp_regionForm { //p_regionForm Class @23-41339AE1
         $Validation =  $Validation && ($this->business_area->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_business_area_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->postal_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nasional_code->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-158F97E9
+//CheckErrors Method @23-87FC1DD8
     function CheckErrors()
     {
         $errors = false;
@@ -678,6 +678,7 @@ class clsRecordp_regionForm { //p_regionForm Class @23-41339AE1
         $errors = ($errors || $this->business_area->Errors->Count());
         $errors = ($errors || $this->p_business_area_id->Errors->Count());
         $errors = ($errors || $this->postal_code->Errors->Count());
+        $errors = ($errors || $this->nasional_code->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -757,7 +758,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @23-2CD5CA18
+//InsertRow Method @23-160A4C20
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -769,13 +770,14 @@ function GetPrimaryKey($keyName)
         $this->DataSource->region_code->SetValue($this->region_code->GetValue(true));
         $this->DataSource->p_business_area_id->SetValue($this->p_business_area_id->GetValue(true));
         $this->DataSource->postal_code->SetValue($this->postal_code->GetValue(true));
+        $this->DataSource->nasional_code->SetValue($this->nasional_code->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @23-A68E64AE
+//UpdateRow Method @23-D17D2843
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -787,6 +789,7 @@ function GetPrimaryKey($keyName)
         $this->DataSource->region_code->SetValue($this->region_code->GetValue(true));
         $this->DataSource->p_business_area_id->SetValue($this->p_business_area_id->GetValue(true));
         $this->DataSource->postal_code->SetValue($this->postal_code->GetValue(true));
+        $this->DataSource->nasional_code->SetValue($this->nasional_code->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -805,7 +808,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-01CED4B6
+//Show Method @23-9C50CD7F
     function Show()
     {
         global $CCSUseAmp;
@@ -845,6 +848,7 @@ function GetPrimaryKey($keyName)
                     $this->business_area->SetValue($this->DataSource->business_area->GetValue());
                     $this->p_business_area_id->SetValue($this->DataSource->p_business_area_id->GetValue());
                     $this->postal_code->SetValue($this->DataSource->postal_code->GetValue());
+                    $this->nasional_code->SetValue($this->DataSource->nasional_code->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -867,6 +871,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->business_area->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_business_area_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->postal_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nasional_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -904,6 +909,7 @@ function GetPrimaryKey($keyName)
         $this->business_area->Show();
         $this->p_business_area_id->Show();
         $this->postal_code->Show();
+        $this->nasional_code->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -914,7 +920,7 @@ function GetPrimaryKey($keyName)
 
 class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSource Class @23-3F24FD31
 
-//DataSource Variables @23-C9924217
+//DataSource Variables @23-29949BC1
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -941,9 +947,10 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
     var $business_area;
     var $p_business_area_id;
     var $postal_code;
+    var $nasional_code;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-8C1EBABA
+//DataSourceClass_Initialize Event @23-3967B52C
     function clsp_regionFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -972,6 +979,8 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
         $this->p_business_area_id = new clsField("p_business_area_id", ccsFloat, "");
         
         $this->postal_code = new clsField("postal_code", ccsText, "");
+        
+        $this->nasional_code = new clsField("nasional_code", ccsText, "");
         
 
     }
@@ -1004,7 +1013,7 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
     }
 //End Open Method
 
-//SetValues Method @23-B681BA1C
+//SetValues Method @23-15783809
     function SetValues()
     {
         $this->p_region_id->SetDBValue(trim($this->f("p_region_id")));
@@ -1018,10 +1027,11 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
         $this->business_area->SetDBValue($this->f("business_area"));
         $this->p_business_area_id->SetDBValue(trim($this->f("p_business_area_id")));
         $this->postal_code->SetDBValue($this->f("postal_code"));
+        $this->nasional_code->SetDBValue($this->f("nasional_code"));
     }
 //End SetValues Method
 
-//Insert Method @23-D76271C7
+//Insert Method @23-8BB37BEE
     function Insert()
     {
         global $CCSLocales;
@@ -1035,6 +1045,7 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
         $this->cp["region_code"] = new clsSQLParameter("ctrlregion_code", ccsText, "", "", $this->region_code->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["p_business_area_id"] = new clsSQLParameter("ctrlp_business_area_id", ccsFloat, "", "", $this->p_business_area_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["postal_code"] = new clsSQLParameter("ctrlpostal_code", ccsText, "", "", $this->postal_code->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["nasional_code"] = new clsSQLParameter("ctrlnasional_code", ccsText, "", "", $this->nasional_code->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["region_name"]->GetValue()) and !strlen($this->cp["region_name"]->GetText()) and !is_bool($this->cp["region_name"]->GetValue())) 
             $this->cp["region_name"]->SetValue($this->region_name->GetValue(true));
@@ -1054,8 +1065,10 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
             $this->cp["p_business_area_id"]->SetText(0);
         if (!is_null($this->cp["postal_code"]->GetValue()) and !strlen($this->cp["postal_code"]->GetText()) and !is_bool($this->cp["postal_code"]->GetValue())) 
             $this->cp["postal_code"]->SetValue($this->postal_code->GetValue(true));
-        $this->SQL = "INSERT INTO p_region(p_region_id, p_business_area_id, region_name, description, updated_date, updated_by, p_region_level_id, parent_id, region_code, postal_code) \n" .
-        "VALUES(generate_id('sikp','p_region','p_region_id'), " . $this->SQLValue($this->cp["p_business_area_id"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["region_name"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["p_region_level_id"]->GetDBValue(), ccsText) . "', decode(" . $this->SQLValue($this->cp["parent_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["parent_id"]->GetDBValue(), ccsFloat) . "), '" . $this->SQLValue($this->cp["region_code"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["postal_code"]->GetDBValue(), ccsText) . "')";
+        if (!is_null($this->cp["nasional_code"]->GetValue()) and !strlen($this->cp["nasional_code"]->GetText()) and !is_bool($this->cp["nasional_code"]->GetValue())) 
+            $this->cp["nasional_code"]->SetValue($this->nasional_code->GetValue(true));
+        $this->SQL = "INSERT INTO p_region(p_region_id, p_business_area_id, region_name, description, updated_date, updated_by, p_region_level_id, parent_id, region_code, postal_code,national_code) \n" .
+        "VALUES(generate_id('sikp','p_region','p_region_id'), " . $this->SQLValue($this->cp["p_business_area_id"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["region_name"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["p_region_level_id"]->GetDBValue(), ccsText) . "', decode(" . $this->SQLValue($this->cp["parent_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["parent_id"]->GetDBValue(), ccsFloat) . "), '" . $this->SQLValue($this->cp["region_code"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["postal_code"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["nasional_code"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -1064,7 +1077,7 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
     }
 //End Insert Method
 
-//Update Method @23-D7C6FF29
+//Update Method @23-2AD66A74
     function Update()
     {
         global $CCSLocales;
@@ -1078,6 +1091,7 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
         $this->cp["region_code"] = new clsSQLParameter("ctrlregion_code", ccsText, "", "", $this->region_code->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["p_business_area_id"] = new clsSQLParameter("ctrlp_business_area_id", ccsFloat, "", "", $this->p_business_area_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["postal_code"] = new clsSQLParameter("ctrlpostal_code", ccsText, "", "", $this->postal_code->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["nasional_code"] = new clsSQLParameter("ctrlnasional_code", ccsText, "", "", $this->nasional_code->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["p_region_id"]->GetValue()) and !strlen($this->cp["p_region_id"]->GetText()) and !is_bool($this->cp["p_region_id"]->GetValue())) 
             $this->cp["p_region_id"]->SetValue($this->p_region_id->GetValue(true));
@@ -1099,6 +1113,8 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
             $this->cp["p_business_area_id"]->SetText(0);
         if (!is_null($this->cp["postal_code"]->GetValue()) and !strlen($this->cp["postal_code"]->GetText()) and !is_bool($this->cp["postal_code"]->GetValue())) 
             $this->cp["postal_code"]->SetValue($this->postal_code->GetValue(true));
+        if (!is_null($this->cp["nasional_code"]->GetValue()) and !strlen($this->cp["nasional_code"]->GetText()) and !is_bool($this->cp["nasional_code"]->GetValue())) 
+            $this->cp["nasional_code"]->SetValue($this->nasional_code->GetValue(true));
         $this->SQL = "UPDATE p_region SET \n" .
         "region_code='" . $this->SQLValue($this->cp["region_code"]->GetDBValue(), ccsText) . "',\n" .
         "region_name='" . $this->SQLValue($this->cp["region_name"]->GetDBValue(), ccsText) . "', \n" .
@@ -1107,7 +1123,8 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
         "updated_date=sysdate, \n" .
         "updated_by='" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "',\n" .
         "p_business_area_id = " . $this->SQLValue($this->cp["p_business_area_id"]->GetDBValue(), ccsFloat) . ",\n" .
-        "postal_code='" . $this->SQLValue($this->cp["postal_code"]->GetDBValue(), ccsText) . "'\n" .
+        "postal_code='" . $this->SQLValue($this->cp["postal_code"]->GetDBValue(), ccsText) . "',\n" .
+        "nasional_code='" . $this->SQLValue($this->cp["nasional_code"]->GetDBValue(), ccsText) . "'\n" .
         "WHERE p_region_id=" . $this->SQLValue($this->cp["p_region_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
