@@ -28,6 +28,16 @@ function p_regionGrid_BeforeShowRow(& $sender)
     global $p_regionGrid; //Compatibility
 //End p_regionGrid_BeforeShowRow
 
+//Set Row Style @87-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
+
 // Start Bdr
     global $p_regionForm;
     global $selected_id;
@@ -80,6 +90,12 @@ function p_regionGrid_BeforeShow(& $sender)
     global $p_regionGrid; //Compatibility
 //End p_regionGrid_BeforeShow
 
+//Custom Code @88-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close p_regionGrid_BeforeShow @2-9EDA0BDE
     return $p_regionGrid_BeforeShow;
 }
@@ -93,6 +109,12 @@ function p_regionGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_regionGrid; //Compatibility
 //End p_regionGrid_BeforeSelect
+
+//Custom Code @183-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -114,6 +136,12 @@ function p_regionForm_BeforeShow(& $sender)
     global $p_regionForm; //Compatibility
 //End p_regionForm_BeforeShow
 
+//Custom Code @128-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close p_regionForm_BeforeShow @23-C2D17AAB
     return $p_regionForm_BeforeShow;
 }
@@ -127,6 +155,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_region; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @89-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
