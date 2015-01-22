@@ -148,6 +148,9 @@ function bphtb_wsForm_BeforeShow(& $sender)
 //Custom Code @293-2A29BDB7
 // -------------------------
     // Write your own code hereglobal $ws_data;
+
+	$dbConn				= new clsDBConnSIKP();
+
 	$NOP = CCGetFromGet('NOP_SEARCH');
 	$Tahun = CCGetFromGet('TAHUN_SEARCH');
 	if(!empty($NOP)&&!empty($Tahun)){
@@ -158,8 +161,38 @@ function bphtb_wsForm_BeforeShow(& $sender)
 			$arr_status = array(0=>'Belum Dibayar', 1=>'Sudah Dibayar');
 			$bphtb_wsForm->NOP->SetValue($items->NOP);
 			$bphtb_wsForm->kota->SetValue($items->KOTA_OP);
+			$query = "select * from f_get_region_nascode('".$items->KOTA_OP."')";
+			$data = array();
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {				
+				$data["p_region_id"]	= $dbConn->f("p_region_id");
+				$data["region_name"]	= $dbConn->f("region_name");
+			}
+			$bphtb_wsForm->nama_kota->SetValue($data["region_name"]);
+			$bphtb_wsForm->id_kota->SetValue($data["p_region_id"]);
+
 			$bphtb_wsForm->kecamatan->SetValue($items->KEC_OP);
+			$query = "select * from f_get_region_nascode('".$items->KEC_OP."')";
+			$data = array();
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {				
+				$data["p_region_id"]	= $dbConn->f("p_region_id");
+				$data["region_name"]	= $dbConn->f("region_name");
+			}
+			$bphtb_wsForm->nama_kecamatan->SetValue($data["region_name"]);
+			$bphtb_wsForm->id_kecamatan->SetValue($data["p_region_id"]);
+
 			$bphtb_wsForm->kelurahan->SetValue($items->KEL_OP);
+			$query = "select * from f_get_region_nascode('".$items->KEL_OP."')";
+			$data = array();
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {				
+				$data["p_region_id"]	= $dbConn->f("p_region_id");
+				$data["region_name"]	= $dbConn->f("region_name");
+			}
+			$bphtb_wsForm->nama_kelurahan->SetValue($data["region_name"]);
+			$bphtb_wsForm->id_kelurahan->SetValue($data["p_region_id"]);
+
 			$bphtb_wsForm->jalan->SetValue($items->JALAN_OP);
 			$bphtb_wsForm->rt->SetValue($items->RT_OP);
 			$bphtb_wsForm->rw->SetValue($items->RW_OP);
@@ -169,6 +202,12 @@ function bphtb_wsForm_BeforeShow(& $sender)
 			$bphtb_wsForm->njop_bumi->SetValue($items->NJOP_BUMI);
 			$bphtb_wsForm->njop_pbb->SetValue($items->NJOP_PBB);
 			$bphtb_wsForm->pbb_terhutang->SetValue($items->PBB_TERHUTANG);
+			$bphtb_wsForm->luas_bumi1->SetValue($items->LUAS_BUMI);
+			$bphtb_wsForm->luas_bangunan1->SetValue($items->LUAS_BANG);
+			$bphtb_wsForm->njop_bangunan1->SetValue($items->NJOP_BANG);
+			$bphtb_wsForm->njop_bumi1->SetValue($items->NJOP_BUMI);
+			$bphtb_wsForm->njop_pbb1->SetValue($items->NJOP_PBB);
+			$bphtb_wsForm->pbb_terhutang1->SetValue($items->PBB_TERHUTANG);
 			$bphtb_wsForm->status_bayar->SetValue($arr_status[$items->STATUS_BAYAR]);
 			$bphtb_wsForm->Visible=true;
 		}
