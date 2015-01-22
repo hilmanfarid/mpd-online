@@ -27,6 +27,10 @@ function p_regionFormButton_Delete_OnClick()
     var result = true;
 //End p_regionFormButton_Delete_OnClick
 
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
 //Close p_regionFormButton_Delete_OnClick @26-BC33A33A
     return result;
 }
@@ -61,8 +65,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -71,13 +75,13 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>
         <!-- BEGIN Record p_regionSearch -->
         <form id="p_regionSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -87,9 +91,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="p_regionSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
+                    <td class="search-field"><input id="p_regionSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="p_regionSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="p_regionSearchparent_id" type="hidden" value="{parent_id}" name="{parent_id_Name}"></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_regionSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="p_regionSearchparent_id" value="{parent_id}" type="hidden" name="{parent_id_Name}"></td>
                   </tr>
                 </table>
               </td>
@@ -98,10 +102,10 @@ $(document).ready(function()
         </form>
         <!-- END Record p_regionSearch --><br>
         <!-- BEGIN Grid p_regionGrid -->
-        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
             <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR REGIONAL</strong></td> 
@@ -134,7 +138,7 @@ $(document).ready(function()
                   <td>{region_code}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">
                     <div align="left">
-                      {region_name}&nbsp;<input id="p_regionGridp_region_id" type="hidden" value="{p_region_id}" name="{p_region_id_Name}">&nbsp;&nbsp;&nbsp; 
+                      {region_name}&nbsp;<input id="p_regionGridp_region_id" value="{p_region_id}" type="hidden" name="{p_region_id_Name}">&nbsp;&nbsp;&nbsp; 
                     </div>
                   </td> 
                   <td>&nbsp;{business_area}</td> 
@@ -174,10 +178,10 @@ $(document).ready(function()
         <!-- END Grid p_regionGrid --><br>
         <!-- BEGIN Record p_regionForm -->
         <form id="p_regionForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
               <td valign="top">
-                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI REGIONAL</strong></td> 
@@ -193,17 +197,17 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th">Kode Regional&nbsp;</td> 
-                    <td><input id="p_regionFormregion_code" class="ControlsIN" maxlength="12" size="15" value="{region_code}" name="{region_code_Name}">&nbsp;</td>
+                    <td><input id="p_regionFormregion_code" class="ControlsIN" value="{region_code}" maxlength="12" size="15" name="{region_code_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_regionFormregion_name">Regional</label></td> 
-                    <td><input id="p_regionFormregion_name" class="ControlsRQ" maxlength="32" size="32" value="{region_name}" name="{region_name_Name}">&nbsp;<input id="p_regionFormparent_id" type="hidden" value="{parent_id}" name="{parent_id_Name}"></td>
+                    <td><input id="p_regionFormregion_name" class="ControlsRQ" value="{region_name}" maxlength="32" size="32" name="{region_name_Name}">&nbsp;<input id="p_regionFormparent_id" value="{parent_id}" type="hidden" name="{parent_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kode Wilayah</td> 
-                    <td><input id="p_regionFormbusiness_area" class="ControlsIN" maxlength="12" size="15" value="{business_area}" name="{business_area_Name}">&nbsp;<img onclick="javascript:kodewilayah()" border="0" src="../images/view.gif"><input id="p_regionFormp_business_area_id" type="hidden" value="{p_business_area_id}" name="{p_business_area_id_Name}"></td>
+                    <td><input id="p_regionFormbusiness_area" class="ControlsIN" value="{business_area}" maxlength="12" size="15" name="{business_area_Name}">&nbsp;<img onclick="javascript:kodewilayah()" border="0" src="../images/view.gif"><input id="p_regionFormp_business_area_id" value="{p_business_area_id}" type="hidden" name="{p_business_area_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -217,25 +221,30 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Kode Pos</td> 
-                    <td><input onkeypress="return isNumberKey(event)" id="p_regionFormpostal_code" class="ControlsIN" maxlength="12" size="15" value="{postal_code}" name="{postal_code_Name}"></td>
+                    <td><input id="p_regionFormpostal_code" class="ControlsIN" onkeypress="return isNumberKey(event)" value="{postal_code}" maxlength="12" size="15" name="{postal_code_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kode Wilayah Nasional</td> 
+                    <td><input id="p_regionFormnasional_code" class="ControlsIN" onkeypress="return isNumberKey(event)" value="{nasional_code}" maxlength="12" size="15" name="{nasional_code_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_regionFormdescription">Deskripsi</label></td> 
-                    <td><input id="p_regionFormdescription" class="ControlsIN" maxlength="250" size="50" value="{description}" name="{description_Name}"></td>
+                    <td><input id="p_regionFormdescription" class="ControlsIN" value="{description}" maxlength="250" size="50" name="{description_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_regionFormupdated_by">Diubah Oleh</label></td> 
-                    <td><input id="p_regionFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="15" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="p_regionFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_regionFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="15" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_regionFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">
-                      <!-- BEGIN Button Button_Insert --><input id="p_regionFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input id="p_regionFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input id="p_regionFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input id="p_regionFormButton_Cancel" class="btn_tambah" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_regionFormp_region_id" type="hidden" value="{p_region_id}" name="{p_region_id_Name}"><input id="p_regionFormp_regionGridPage" type="hidden" value="{p_regionGridPage}" name="{p_regionGridPage_Name}"></td>
+                      <!-- BEGIN Button Button_Insert --><input id="p_regionFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="p_regionFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_regionFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_regionFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_regionFormp_region_id" value="{p_region_id}" type="hidden" name="{p_region_id_Name}"><input id="p_regionFormp_regionGridPage" value="{p_regionGridPage}" type="hidden" name="{p_regionGridPage_Name}"></td>
                   </tr>
                 </table>
               </td>
