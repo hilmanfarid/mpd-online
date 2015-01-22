@@ -1031,7 +1031,7 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
     }
 //End SetValues Method
 
-//Insert Method @23-8BB37BEE
+//Insert Method @23-4723EE5A
     function Insert()
     {
         global $CCSLocales;
@@ -1067,7 +1067,7 @@ class clsp_regionFormDataSource extends clsDBConnSIKP {  //p_regionFormDataSourc
             $this->cp["postal_code"]->SetValue($this->postal_code->GetValue(true));
         if (!is_null($this->cp["nasional_code"]->GetValue()) and !strlen($this->cp["nasional_code"]->GetText()) and !is_bool($this->cp["nasional_code"]->GetValue())) 
             $this->cp["nasional_code"]->SetValue($this->nasional_code->GetValue(true));
-        $this->SQL = "INSERT INTO p_region(p_region_id, p_business_area_id, region_name, description, updated_date, updated_by, p_region_level_id, parent_id, region_code, postal_code,national_code) \n" .
+        $this->SQL = "INSERT INTO p_region(p_region_id, p_business_area_id, region_name, description, updated_date, updated_by, p_region_level_id, parent_id, region_code, postal_code,nasional_code) \n" .
         "VALUES(generate_id('sikp','p_region','p_region_id'), " . $this->SQLValue($this->cp["p_business_area_id"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["region_name"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', sysdate, '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["p_region_level_id"]->GetDBValue(), ccsText) . "', decode(" . $this->SQLValue($this->cp["parent_id"]->GetDBValue(), ccsFloat) . ",0,null," . $this->SQLValue($this->cp["parent_id"]->GetDBValue(), ccsFloat) . "), '" . $this->SQLValue($this->cp["region_code"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["postal_code"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["nasional_code"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
