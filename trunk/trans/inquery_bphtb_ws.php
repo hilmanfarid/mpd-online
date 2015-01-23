@@ -265,7 +265,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
     // Class variables
 //End Variables
 
-//Class_Initialize Event @51-4F065C0E
+//Class_Initialize Event @51-59D78724
     function clsRecordbphtb_wsForm($RelativePath, & $Parent)
     {
 
@@ -303,12 +303,12 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
             $this->jalan = & new clsControl(ccsTextBox, "jalan", "jalan", ccsText, "", CCGetRequestParam("jalan", $Method, NULL), $this);
             $this->rt = & new clsControl(ccsTextBox, "rt", "rt", ccsText, "", CCGetRequestParam("rt", $Method, NULL), $this);
             $this->rw = & new clsControl(ccsTextBox, "rw", "rw", ccsText, "", CCGetRequestParam("rw", $Method, NULL), $this);
-            $this->luas_bumi = & new clsControl(ccsTextBox, "luas_bumi", "luas_bumi", ccsText, "", CCGetRequestParam("luas_bumi", $Method, NULL), $this);
-            $this->luas_bangunan = & new clsControl(ccsTextBox, "luas_bangunan", "luas_bangunan", ccsText, "", CCGetRequestParam("luas_bangunan", $Method, NULL), $this);
-            $this->njop_bangunan = & new clsControl(ccsTextBox, "njop_bangunan", "njop_bangunan", ccsText, "", CCGetRequestParam("njop_bangunan", $Method, NULL), $this);
-            $this->njop_bumi = & new clsControl(ccsTextBox, "njop_bumi", "njop_bumi", ccsText, "", CCGetRequestParam("njop_bumi", $Method, NULL), $this);
-            $this->njop_pbb = & new clsControl(ccsTextBox, "njop_pbb", "njop_pbb", ccsText, "", CCGetRequestParam("njop_pbb", $Method, NULL), $this);
-            $this->pbb_terhutang = & new clsControl(ccsTextBox, "pbb_terhutang", "pbb_terhutang", ccsText, "", CCGetRequestParam("pbb_terhutang", $Method, NULL), $this);
+            $this->luas_bumi = & new clsControl(ccsTextBox, "luas_bumi", "luas_bumi", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("luas_bumi", $Method, NULL), $this);
+            $this->luas_bangunan = & new clsControl(ccsTextBox, "luas_bangunan", "luas_bangunan", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("luas_bangunan", $Method, NULL), $this);
+            $this->njop_bangunan = & new clsControl(ccsTextBox, "njop_bangunan", "njop_bangunan", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("njop_bangunan", $Method, NULL), $this);
+            $this->njop_bumi = & new clsControl(ccsTextBox, "njop_bumi", "njop_bumi", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("njop_bumi", $Method, NULL), $this);
+            $this->njop_pbb = & new clsControl(ccsTextBox, "njop_pbb", "njop_pbb", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("njop_pbb", $Method, NULL), $this);
+            $this->pbb_terhutang = & new clsControl(ccsTextBox, "pbb_terhutang", "pbb_terhutang", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("pbb_terhutang", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -675,7 +675,7 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
     var $pbb_terhutang;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @51-E15A1000
+//DataSourceClass_Initialize Event @51-DD28263A
     function clsbphtb_wsFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -695,17 +695,17 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
         
         $this->rw = new clsField("rw", ccsText, "");
         
-        $this->luas_bumi = new clsField("luas_bumi", ccsText, "");
+        $this->luas_bumi = new clsField("luas_bumi", ccsFloat, "");
         
-        $this->luas_bangunan = new clsField("luas_bangunan", ccsText, "");
+        $this->luas_bangunan = new clsField("luas_bangunan", ccsFloat, "");
         
-        $this->njop_bangunan = new clsField("njop_bangunan", ccsText, "");
+        $this->njop_bangunan = new clsField("njop_bangunan", ccsFloat, "");
         
-        $this->njop_bumi = new clsField("njop_bumi", ccsText, "");
+        $this->njop_bumi = new clsField("njop_bumi", ccsFloat, "");
         
-        $this->njop_pbb = new clsField("njop_pbb", ccsText, "");
+        $this->njop_pbb = new clsField("njop_pbb", ccsFloat, "");
         
-        $this->pbb_terhutang = new clsField("pbb_terhutang", ccsText, "");
+        $this->pbb_terhutang = new clsField("pbb_terhutang", ccsFloat, "");
         
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -801,7 +801,7 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
     }
 //End Open Method
 
-//SetValues Method @51-D2926183
+//SetValues Method @51-D0996B21
     function SetValues()
     {
         $this->NOP->SetDBValue($this->f("NOP"));
@@ -811,12 +811,12 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
         $this->jalan->SetDBValue($this->f("jalan"));
         $this->rt->SetDBValue($this->f("rt"));
         $this->rw->SetDBValue($this->f("kelurahan"));
-        $this->luas_bumi->SetDBValue($this->f("luas_bumi"));
-        $this->luas_bangunan->SetDBValue($this->f("luas_bangunan"));
-        $this->njop_bangunan->SetDBValue($this->f("njop_bangunan"));
-        $this->njop_bumi->SetDBValue($this->f("njop_bumi"));
-        $this->njop_pbb->SetDBValue($this->f("njop_pbb"));
-        $this->pbb_terhutang->SetDBValue($this->f("pbb_terhutang"));
+        $this->luas_bumi->SetDBValue(trim($this->f("luas_bumi")));
+        $this->luas_bangunan->SetDBValue(trim($this->f("luas_bangunan")));
+        $this->njop_bangunan->SetDBValue(trim($this->f("njop_bangunan")));
+        $this->njop_bumi->SetDBValue(trim($this->f("njop_bumi")));
+        $this->njop_pbb->SetDBValue(trim($this->f("njop_pbb")));
+        $this->pbb_terhutang->SetDBValue(trim($this->f("pbb_terhutang")));
     }
 //End SetValues Method
 
