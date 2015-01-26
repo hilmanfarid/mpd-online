@@ -184,7 +184,43 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<TextBox id="295" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kota" PathID="bphtb_wsFormnama_kota" fieldSource="nama_kota">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="297" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kota" PathID="bphtb_wsFormid_kota" fieldSource="id_kota">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="298" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kecamatan" PathID="bphtb_wsFormnama_kecamatan" fieldSource="nama_kecamatan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="300" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kecamatan" PathID="bphtb_wsFormid_kecamatan" fieldSource="id_kecamatan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="301" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kelurahan" PathID="bphtb_wsFormnama_kelurahan" fieldSource="nama_kelurahan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="303" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kelurahan" PathID="bphtb_wsFormid_kelurahan" fieldSource="id_kelurahan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
