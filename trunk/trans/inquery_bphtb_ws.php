@@ -265,7 +265,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
     // Class variables
 //End Variables
 
-//Class_Initialize Event @51-59D78724
+//Class_Initialize Event @51-FA28B22E
     function clsRecordbphtb_wsForm($RelativePath, & $Parent)
     {
 
@@ -309,6 +309,12 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
             $this->njop_bumi = & new clsControl(ccsTextBox, "njop_bumi", "njop_bumi", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("njop_bumi", $Method, NULL), $this);
             $this->njop_pbb = & new clsControl(ccsTextBox, "njop_pbb", "njop_pbb", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("njop_pbb", $Method, NULL), $this);
             $this->pbb_terhutang = & new clsControl(ccsTextBox, "pbb_terhutang", "pbb_terhutang", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("pbb_terhutang", $Method, NULL), $this);
+            $this->nama_kota = & new clsControl(ccsTextBox, "nama_kota", "nama_kota", ccsText, "", CCGetRequestParam("nama_kota", $Method, NULL), $this);
+            $this->id_kota = & new clsControl(ccsTextBox, "id_kota", "id_kota", ccsText, "", CCGetRequestParam("id_kota", $Method, NULL), $this);
+            $this->nama_kecamatan = & new clsControl(ccsTextBox, "nama_kecamatan", "nama_kecamatan", ccsText, "", CCGetRequestParam("nama_kecamatan", $Method, NULL), $this);
+            $this->id_kecamatan = & new clsControl(ccsTextBox, "id_kecamatan", "id_kecamatan", ccsText, "", CCGetRequestParam("id_kecamatan", $Method, NULL), $this);
+            $this->nama_kelurahan = & new clsControl(ccsTextBox, "nama_kelurahan", "nama_kelurahan", ccsText, "", CCGetRequestParam("nama_kelurahan", $Method, NULL), $this);
+            $this->id_kelurahan = & new clsControl(ccsTextBox, "id_kelurahan", "id_kelurahan", ccsText, "", CCGetRequestParam("id_kelurahan", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -324,7 +330,7 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
     }
 //End Initialize Method
 
-//Validate Method @51-28400909
+//Validate Method @51-A9E950C2
     function Validate()
     {
         global $CCSLocales;
@@ -343,6 +349,12 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
         $Validation = ($this->njop_bumi->Validate() && $Validation);
         $Validation = ($this->njop_pbb->Validate() && $Validation);
         $Validation = ($this->pbb_terhutang->Validate() && $Validation);
+        $Validation = ($this->nama_kota->Validate() && $Validation);
+        $Validation = ($this->id_kota->Validate() && $Validation);
+        $Validation = ($this->nama_kecamatan->Validate() && $Validation);
+        $Validation = ($this->id_kecamatan->Validate() && $Validation);
+        $Validation = ($this->nama_kelurahan->Validate() && $Validation);
+        $Validation = ($this->id_kelurahan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->NOP->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kota->Errors->Count() == 0);
@@ -357,11 +369,17 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
         $Validation =  $Validation && ($this->njop_bumi->Errors->Count() == 0);
         $Validation =  $Validation && ($this->njop_pbb->Errors->Count() == 0);
         $Validation =  $Validation && ($this->pbb_terhutang->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kota->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->id_kota->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kecamatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->id_kecamatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kelurahan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->id_kelurahan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @51-06CB6F73
+//CheckErrors Method @51-C4506761
     function CheckErrors()
     {
         $errors = false;
@@ -378,6 +396,12 @@ class clsRecordbphtb_wsForm { //bphtb_wsForm Class @51-99B46739
         $errors = ($errors || $this->njop_bumi->Errors->Count());
         $errors = ($errors || $this->njop_pbb->Errors->Count());
         $errors = ($errors || $this->pbb_terhutang->Errors->Count());
+        $errors = ($errors || $this->nama_kota->Errors->Count());
+        $errors = ($errors || $this->id_kota->Errors->Count());
+        $errors = ($errors || $this->nama_kecamatan->Errors->Count());
+        $errors = ($errors || $this->id_kecamatan->Errors->Count());
+        $errors = ($errors || $this->nama_kelurahan->Errors->Count());
+        $errors = ($errors || $this->id_kelurahan->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -539,7 +563,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @51-23135485
+//Show Method @51-9BE4F212
     function Show()
     {
         global $CCSUseAmp;
@@ -580,6 +604,12 @@ function GetPrimaryKey($keyName)
                     $this->njop_bumi->SetValue($this->DataSource->njop_bumi->GetValue());
                     $this->njop_pbb->SetValue($this->DataSource->njop_pbb->GetValue());
                     $this->pbb_terhutang->SetValue($this->DataSource->pbb_terhutang->GetValue());
+                    $this->nama_kota->SetValue($this->DataSource->nama_kota->GetValue());
+                    $this->id_kota->SetValue($this->DataSource->id_kota->GetValue());
+                    $this->nama_kecamatan->SetValue($this->DataSource->nama_kecamatan->GetValue());
+                    $this->id_kecamatan->SetValue($this->DataSource->id_kecamatan->GetValue());
+                    $this->nama_kelurahan->SetValue($this->DataSource->nama_kelurahan->GetValue());
+                    $this->id_kelurahan->SetValue($this->DataSource->id_kelurahan->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -601,6 +631,12 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->njop_bumi->Errors->ToString());
             $Error = ComposeStrings($Error, $this->njop_pbb->Errors->ToString());
             $Error = ComposeStrings($Error, $this->pbb_terhutang->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kota->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->id_kota->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kecamatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->id_kecamatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kelurahan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->id_kelurahan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -634,6 +670,12 @@ function GetPrimaryKey($keyName)
         $this->njop_bumi->Show();
         $this->njop_pbb->Show();
         $this->pbb_terhutang->Show();
+        $this->nama_kota->Show();
+        $this->id_kota->Show();
+        $this->nama_kecamatan->Show();
+        $this->id_kecamatan->Show();
+        $this->nama_kelurahan->Show();
+        $this->id_kelurahan->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -644,7 +686,7 @@ function GetPrimaryKey($keyName)
 
 class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSource Class @51-712692FB
 
-//DataSource Variables @51-242DFC92
+//DataSource Variables @51-0BF881B1
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -673,9 +715,15 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
     var $njop_bumi;
     var $njop_pbb;
     var $pbb_terhutang;
+    var $nama_kota;
+    var $id_kota;
+    var $nama_kecamatan;
+    var $id_kecamatan;
+    var $nama_kelurahan;
+    var $id_kelurahan;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @51-DD28263A
+//DataSourceClass_Initialize Event @51-DD38EE32
     function clsbphtb_wsFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -706,6 +754,18 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
         $this->njop_pbb = new clsField("njop_pbb", ccsFloat, "");
         
         $this->pbb_terhutang = new clsField("pbb_terhutang", ccsFloat, "");
+        
+        $this->nama_kota = new clsField("nama_kota", ccsText, "");
+        
+        $this->id_kota = new clsField("id_kota", ccsText, "");
+        
+        $this->nama_kecamatan = new clsField("nama_kecamatan", ccsText, "");
+        
+        $this->id_kecamatan = new clsField("id_kecamatan", ccsText, "");
+        
+        $this->nama_kelurahan = new clsField("nama_kelurahan", ccsText, "");
+        
+        $this->id_kelurahan = new clsField("id_kelurahan", ccsText, "");
         
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -801,7 +861,7 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
     }
 //End Open Method
 
-//SetValues Method @51-D0996B21
+//SetValues Method @51-0E47FF26
     function SetValues()
     {
         $this->NOP->SetDBValue($this->f("NOP"));
@@ -817,6 +877,12 @@ class clsbphtb_wsFormDataSource extends clsDBConnSIKP {  //bphtb_wsFormDataSourc
         $this->njop_bumi->SetDBValue(trim($this->f("njop_bumi")));
         $this->njop_pbb->SetDBValue(trim($this->f("njop_pbb")));
         $this->pbb_terhutang->SetDBValue(trim($this->f("pbb_terhutang")));
+        $this->nama_kota->SetDBValue($this->f("nama_kota"));
+        $this->id_kota->SetDBValue($this->f("id_kota"));
+        $this->nama_kecamatan->SetDBValue($this->f("nama_kecamatan"));
+        $this->id_kecamatan->SetDBValue($this->f("id_kecamatan"));
+        $this->nama_kelurahan->SetDBValue($this->f("nama_kelurahan"));
+        $this->id_kelurahan->SetDBValue($this->f("id_kelurahan"));
     }
 //End SetValues Method
 
