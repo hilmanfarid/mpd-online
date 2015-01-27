@@ -32,6 +32,12 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Button id="23" urlType="Relative" enableValidation="True" isDefault="False" name="Button3" PathID="t_laporan_piutang_pajakButton3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
