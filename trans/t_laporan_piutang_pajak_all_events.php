@@ -34,6 +34,12 @@ function Page_BeforeShow(& $sender)
 		
 		$Label1->SetText(view_html($param_arr));
 
+	}else if($cetak_laporan == 'download_excel') {
+		
+		$param_arr = array();
+		$param_arr['p_vat_type_id'] = CCGetFromGet("p_vat_type_id", 1);
+		$param_arr['vat_code'] = CCGetFromGet("vat_code", "");
+		print_excel($param_arr);
 	}
 	
 // -------------------------
@@ -43,6 +49,105 @@ function Page_BeforeShow(& $sender)
     return $Page_BeforeShow;
 }
 //End Close Page_BeforeShow
+
+
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
+
+
+function print_excel($param_arr) {
+	
+	startExcel("cetak_piutang_2002_2012_".str_replace(" ","",$param_arr['vat_code']));
+	echo "<div><h3> PIUTANG PAJAK TAHUN 2002-2012 (".strtoupper($param_arr['vat_code']).")</h3></div>";	
+	
+	//BESAR
+	$dbConn = new clsDBConnSIKP();
+	echo '
+		<br/> 
+		<table border="1">
+			<tr>
+				<th>NO</th>
+				<th>NPWPD</th>
+				<th>NAMA WP</th>
+				<th>MASA PAJAK</th>
+				<th>BESARNYA (Rp)</th>
+				<th>REALISASI PIUTANG (Rp)</th>
+				<th>TGL BAYAR</th>
+				<th>SISA PIUTANG (Rp)</th>
+				<th>KETERANGAN</th>
+			</tr>';
+	
+	$query="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.code as periode_bayar
+			from t_piutang_pajak_penetapan_final as a
+			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
+			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
+			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']. 
+			"order by wp_name, periode_bayar" ;
+	
+	$dbConn->query($query);
+	$no = 1;
+	$output = '';
+	$total_piutang=0;
+	$total_realisasi_piutang=0;
+	$total_sisa_piutang=0;
+
+	while($dbConn->next_record()){
+		$item = array(
+						"t_piutang_pajak_penetapan_final_id" => $dbConn->f("t_piutang_pajak_penetapan_final_id"),
+						"npwd" => $dbConn->f("npwd"),
+						"wp_name" => $dbConn->f("wp_name"),
+						"masa_pajak" => $dbConn->f("masa_pajak"),
+						"periode_bayar" => $dbConn->f("periode_bayar"),
+						"tgl_tap" => $dbConn->f("tgl_tap_formated"),
+						"no_kohir" => $dbConn->f("no_kohir"),
+						"realisasi_piutang" => $dbConn->f("realisasi_piutang"),
+						"tgl_bayar" => $dbConn->f("tgl_bayar_formated"),
+						"nilai_piutang" => $dbConn->f("nilai_piutang"),
+						"sisa_piutang" => $dbConn->f("sisa_piutang"),
+						"keterangan" => $dbConn->f("keterangan"),
+						"p_year_period_id" => $dbConn->f("p_year_period_id"),
+						"year_code" => $dbConn->f("year_code")
+						);
+		
+		$output .= '<tr>';
+			$output .= '<td align="center">'.$no++.'</td>';
+			$output .= '<td align="left">'.$item['npwd'].'</td>';
+			$output .= '<td align="left">'.$item['wp_name'].'</td>';
+			$output .= '<td align="left">&nbsp;'.$item['periode_bayar'].'</td>';
+			//$output .= '<td align="left">'.$item['tgl_tap'].'</td>';
+			//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
+			$output .= '<td align="right">'.number_format($item['nilai_piutang'],0,",",".").'</td>';
+			$output .= '<td align="right">'.number_format($item['realisasi_piutang'],0,",",".").'</td>';
+			$output .= '<td align="center">&nbsp;'.$item['tgl_bayar'].'</td>';
+			$output .= '<td align="right">'.number_format($item['sisa_piutang'],0,",",".").'</td>';
+			$output .= '<td align="left">'.$item['keterangan'].'</td>';
+			//$output .= '<td align="center">'.$item['year_code'].'</td>';
+			//$output .= '<td align="center"><button class="btn_tambah" onclick="viewFormModifikasi('.$item['t_piutang_pajak_penetapan_final_id'].')">Ubah Data</button></td>';
+		$output .= '</tr>';
+		$total_piutang = $total_piutang + $item['nilai_piutang'];
+		$total_realisasi_piutang = $total_realisasi_piutang + $item['realisasi_piutang'];
+		$total_sisa_piutang = $total_sisa_piutang + $item['sisa_piutang'];
+	}
+	
+	$output .= '<tr><td align="center" colspan=4>TOTAL</td>';
+	$output .= '<td align="right">'.number_format($total_piutang,0,",",".").'</td>';
+	$output .= '<td align="right">'.number_format($total_realisasi_piutang,0,",",".").'</td>';
+	$output .= '<td align="center"></td>';
+	$output .= '<td align="right">'.number_format($total_sisa_piutang,0,",",".").'</td>';
+	$output .= '<td align="left"></td></tr>';
+	$output.='</table>';
+	
+	$dbConn->close();
+
+	echo $output;	
+	exit;
+}
 
 function view_html($param_arr) {
 	
