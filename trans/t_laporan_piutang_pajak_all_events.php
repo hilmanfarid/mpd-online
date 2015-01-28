@@ -121,7 +121,7 @@ function print_excel($param_arr) {
 			$output .= '<td align="center">'.$no++.'</td>';
 			$output .= '<td align="left">'.$item['npwd'].'</td>';
 			$output .= '<td align="left">'.$item['wp_name'].'</td>';
-			$output .= '<td align="left">'.$item['p_finance_period_id'].'</td>';
+			$output .= '<td align="left" style="color:#008000;">'.$item['p_finance_period_id'].'</td>';
 			$output .= '<td align="left">&nbsp;'.$item['periode_bayar'].'</td>';
 			//$output .= '<td align="left">'.$item['tgl_tap'].'</td>';
 			//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
