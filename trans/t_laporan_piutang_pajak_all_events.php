@@ -75,6 +75,7 @@ function print_excel($param_arr) {
 				<th>NO</th>
 				<th>NPWPD</th>
 				<th>NAMA WP</th>
+				<th>(KODE MASA PAJAK)</th>
 				<th>MASA PAJAK</th>
 				<th>BESARNYA (Rp)</th>
 				<th>REALISASI PIUTANG (Rp)</th>
@@ -83,7 +84,7 @@ function print_excel($param_arr) {
 				<th>KETERANGAN</th>
 			</tr>';
 	
-	$query="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.code as periode_bayar
+	$query="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.p_finance_period_id, c.code as periode_bayar
 			from t_piutang_pajak_penetapan_final as a
 			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
 			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
@@ -112,13 +113,15 @@ function print_excel($param_arr) {
 						"sisa_piutang" => $dbConn->f("sisa_piutang"),
 						"keterangan" => $dbConn->f("keterangan"),
 						"p_year_period_id" => $dbConn->f("p_year_period_id"),
-						"year_code" => $dbConn->f("year_code")
+						"year_code" => $dbConn->f("year_code"),
+						"p_finance_period_id" => $dbConn->f("p_finance_period_id")
 						);
 		
 		$output .= '<tr>';
 			$output .= '<td align="center">'.$no++.'</td>';
 			$output .= '<td align="left">'.$item['npwd'].'</td>';
 			$output .= '<td align="left">'.$item['wp_name'].'</td>';
+			$output .= '<td align="left">'.$item['p_finance_period_id'].'</td>';
 			$output .= '<td align="left">&nbsp;'.$item['periode_bayar'].'</td>';
 			//$output .= '<td align="left">'.$item['tgl_tap'].'</td>';
 			//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
@@ -135,7 +138,7 @@ function print_excel($param_arr) {
 		$total_sisa_piutang = $total_sisa_piutang + $item['sisa_piutang'];
 	}
 	
-	$output .= '<tr><td align="center" colspan=4>TOTAL</td>';
+	$output .= '<tr><td align="center" colspan=5>TOTAL</td>';
 	$output .= '<td align="right">'.number_format($total_piutang,0,",",".").'</td>';
 	$output .= '<td align="right">'.number_format($total_realisasi_piutang,0,",",".").'</td>';
 	$output .= '<td align="center"></td>';
