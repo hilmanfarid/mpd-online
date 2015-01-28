@@ -124,7 +124,7 @@ function print_excel($param_arr) {
 			//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 			$output .= '<td align="right">'.number_format($item['nilai_piutang'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($item['realisasi_piutang'],0,",",".").'</td>';
-			$output .= '<td align="center">&nbsp;'.$item['tgl_bayar'].'</td>';
+			$output .= '<td align="center">'.$item['tgl_bayar'].'</td>';
 			$output .= '<td align="right">'.number_format($item['sisa_piutang'],0,",",".").'</td>';
 			$output .= '<td align="left">'.$item['keterangan'].'</td>';
 			//$output .= '<td align="center">'.$item['year_code'].'</td>';
