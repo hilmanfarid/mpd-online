@@ -530,8 +530,8 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_vat_setllement_ro_order_paymentkey_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="t_vat_setllement_ro_order_paymentkey.php" forShow="True" url="t_vat_setllement_ro_order_paymentkey.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="t_vat_setllement_ro_order_paymentkey.php" forShow="True" url="t_vat_setllement_ro_order_paymentkey.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
