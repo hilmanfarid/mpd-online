@@ -51,42 +51,43 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
 
   // -------------------------
       // Write your own code here.
-	$pajak = $t_vat_setllementGrid->total_vat_amount->GetValue();
-	$denda = $t_vat_setllementGrid->total_penalty_amount->GetValue();
-	$totaltotal = $pajak + $denda;
-	$t_vat_setllementGrid->total_total->SetValue($totaltotal);
-  	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
-  	$nilai2 = $t_vat_setllementGrid->p_vat_type_id->GetValue();
+	//$pajak = $t_vat_setllementGrid->total_vat_amount->GetValue();
+	//$denda = $t_vat_setllementGrid->total_penalty_amount->GetValue();
+	//$totaltotal = $pajak + $denda;
+	//$t_vat_setllementGrid->total_total->SetValue($totaltotal);
+  	//$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
+  	//$nilai2 = $t_vat_setllementGrid->p_vat_type_id->GetValue();
 
-  	$t_vat_setllementGrid->cetak_sptpd->SetValue("<input type='button' style='display:none;' value='CETAK' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
-    									 "cetakSptpd(".$nilai.",".$nilai2.")\">");
-  	$action_button = CCGetFromGet("action_button","");
-  	$action_button2 = CCGetFromGet("action_button2","");
-  	if($action_button=='flag_payment' && $action_button2!='cetak_register'){
-  		$dbConn = new clsDBConnSIKP();
-  		$sql="select sikp.f_payment_manual(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
-  		$dbConn->query($sql);
-  		$dbConn->next_record();
-  		echo "
-  		<script>
-  		alert('".$dbConn->f('f_payment_manual')."');
-  		</script>
-  		";
-  		$dbConn->close();	
-  	}else if($action_button2=='cetak_register'){
-  		$dbConn = new clsDBConnSIKP();
-  		$sql="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
-  		$dbConn->query($sql);
-  		$dbConn->next_record();
-  		print_laporan($dbConn->f('f_print_register'));
+  	//$t_vat_setllementGrid->cetak_sptpd->SetValue("<input type='button' style='display:none;' value='CETAK' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
+    //									 "cetakSptpd(".$nilai.",".$nilai2.")\">");
+  	//$action_button = CCGetFromGet("action_button","");
+  	//$action_button2 = CCGetFromGet("action_button2","");
+  	//if($action_button=='flag_payment' && $action_button2!='cetak_register'){
+  	//	$dbConn = new clsDBConnSIKP();
+  	//	$sql="select sikp.f_payment_manual(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  	//	$dbConn->query($sql);
+  	//	$dbConn->next_record();
+  	//	echo "
+  	//	<script>
+  	//	alert('".$dbConn->f('f_payment_manual')."');
+  	//	</script>
+  	//	";
+
+  	//	$dbConn->close();	
+  	//}else if($action_button2=='cetak_register'){
+  	//	$dbConn = new clsDBConnSIKP();
+  	//	$sql="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  	//	$dbConn->query($sql);
+  	//	$dbConn->next_record();
+  	//	print_laporan($dbConn->f('f_print_register'));
   		/*echo "
   			<script>
   				window.open('../services/print_string.php?input_number=".$dbConn->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
   			</script>
   		";*/
-  		$dbConn->close();
-  		exit;
-  	}
+  	//	$dbConn->close();
+  	//	exit;
+  	//}
   // -------------------------
 
 
@@ -270,7 +271,19 @@ function t_vat_setllementForm_BeforeShow(& $sender)
   		alert('".$dbConn->f('f_payment_manual')."');
   		</script>
   		";
-  		$dbConn->close();	
+		$dbConn->close();	
+
+		$dbConn2 = new clsDBConnSIKP();
+  		$sql2="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  		$dbConn2->query($sql2);
+  		$dbConn2->next_record();
+		echo "
+  			<script>
+  				window.open('../report/cetak_registrasi_payment.php?codeline=".$dbConn2->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+  			</script>
+  		";
+  		$dbConn2->close();
+
   	}else if($action_button2=='cetak_register'){
   		$dbConn = new clsDBConnSIKP();
   		$sql="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
