@@ -208,73 +208,73 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="299" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kecamatan" PathID="bphtb_wsFormnama_kecamatan" fieldSource="nama_kecamatan">
+				<TextBox id="299" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kecamatan" PathID="bphtb_wsFormnama_kecamatan" fieldSource="nama_kecamatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="300" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kelurahan" PathID="bphtb_wsFormnama_kelurahan" fieldSource="nama_kelurahan">
+				<TextBox id="300" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="nama_kelurahan" PathID="bphtb_wsFormnama_kelurahan" fieldSource="nama_kelurahan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="302" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kota" PathID="bphtb_wsFormid_kota" fieldSource="id_kota">
+				<TextBox id="302" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kota" PathID="bphtb_wsFormid_kota" fieldSource="id_kota">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="303" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kecamatan" PathID="bphtb_wsFormid_kecamatan" fieldSource="id_kecamatan">
+				<TextBox id="303" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kecamatan" PathID="bphtb_wsFormid_kecamatan" fieldSource="id_kecamatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="304" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kelurahan" PathID="bphtb_wsFormid_kelurahan" fieldSource="id_kelurahan">
+				<TextBox id="304" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="id_kelurahan" PathID="bphtb_wsFormid_kelurahan" fieldSource="id_kelurahan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="305" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="luas_bumi1" PathID="bphtb_wsFormluas_bumi1" fieldSource="luas_bumi">
+				<TextBox id="305" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="luas_bumi1" PathID="bphtb_wsFormluas_bumi1" fieldSource="luas_bumi">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="306" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="luas_bangunan1" PathID="bphtb_wsFormluas_bangunan1" fieldSource="luas_bangunan">
+				<TextBox id="306" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="luas_bangunan1" PathID="bphtb_wsFormluas_bangunan1" fieldSource="luas_bangunan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="307" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="njop_bangunan1" PathID="bphtb_wsFormnjop_bangunan1" fieldSource="njop_bangunan">
+				<TextBox id="307" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="njop_bangunan1" PathID="bphtb_wsFormnjop_bangunan1" fieldSource="njop_bangunan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="308" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="njop_bumi1" PathID="bphtb_wsFormnjop_bumi1" fieldSource="njop_bumi">
+				<TextBox id="308" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="njop_bumi1" PathID="bphtb_wsFormnjop_bumi1" fieldSource="njop_bumi">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="309" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="njop_pbb1" PathID="bphtb_wsFormnjop_pbb1" fieldSource="njop_pbb">
+				<TextBox id="309" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="njop_pbb1" PathID="bphtb_wsFormnjop_pbb1" fieldSource="njop_pbb">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="310" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="pbb_terhutang1" PathID="bphtb_wsFormpbb_terhutang1" fieldSource="pbb_terhutang">
+				<TextBox id="310" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="pbb_terhutang1" PathID="bphtb_wsFormpbb_terhutang1" fieldSource="pbb_terhutang">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
