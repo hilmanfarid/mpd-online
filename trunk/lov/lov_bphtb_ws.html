@@ -244,18 +244,26 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 window.opener.document.getElementById("t_bphtb_registrationFormobject_address_name").value = document.getElementById("bphtb_wsFormjalan").value;
                 window.opener.document.getElementById("t_bphtb_registrationFormland_price_real").value = document.getElementById("bphtb_wsFormnjop_bumi1").value;
                 window.opener.document.getElementById("t_bphtb_registrationFormbuilding_price_real").value = document.getElementById("bphtb_wsFormnjop_bangunan1").value;
-                window.opener.document.getElementById("t_bphtb_registrationFormland_price_per_m").value = document.getElementById("bphtb_wsFormnjop_bumi1").value/document.getElementById("bphtb_wsFormluas_bumi1").value;
-                window.opener.document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value = document.getElementById("bphtb_wsFormnjop_bangunan1").value/document.getElementById("bphtb_wsFormluas_bangunan1").value;
+                if (document.getElementById("bphtb_wsFormluas_bumi1").value != 0){
+					window.opener.document.getElementById("t_bphtb_registrationFormland_price_per_m").value = document.getElementById("bphtb_wsFormnjop_bumi1").value/document.getElementById("bphtb_wsFormluas_bumi1").value;
+				}else{
+					window.opener.document.getElementById("t_bphtb_registrationFormland_price_per_m").value = 0;
+				}
+				if (document.getElementById("bphtb_wsFormluas_bangunan1").value != 0){
+					window.opener.document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value = document.getElementById("bphtb_wsFormnjop_bangunan1").value/document.getElementById("bphtb_wsFormluas_bangunan1").value;
+				}else{
+					window.opener.document.getElementById("t_bphtb_registrationFormbuilding_price_per_m").value = 0;
+				}
                 window.opener.document.getElementById("t_bphtb_registrationFormland_total_price").value = document.getElementById("bphtb_wsFormnjop_bumi1").value;
                 window.opener.document.getElementById("t_bphtb_registrationFormbuilding_total_price").value = document.getElementById("bphtb_wsFormnjop_bangunan1").value;
                 window.opener.document.getElementById("t_bphtb_registrationFormtotal_price").value = parseFloat(document.getElementById("bphtb_wsFormnjop_bangunan1").value)+parseFloat(document.getElementById("bphtb_wsFormnjop_bumi1").value);
                                 
-                                window.opener.document.getElementById("t_bphtb_registrationFormobject_p_region_id").value = document.getElementById("bphtb_wsFormid_kota").value;
-                                window.opener.document.getElementById("t_bphtb_registrationFormobject_p_region_id_kec").value = document.getElementById("bphtb_wsFormid_kecamatan").value;
-                                window.opener.document.getElementById("t_bphtb_registrationFormobject_p_region_id_kel").value = document.getElementById("bphtb_wsFormid_kelurahan").value;
-                                window.opener.document.getElementById("t_bphtb_registrationFormobject_kota").value = document.getElementById("bphtb_wsFormnama_kota").value;
-                                window.opener.document.getElementById("t_bphtb_registrationFormobject_kecamatan").value = document.getElementById("bphtb_wsFormnama_kecamatan").value;
-                                window.opener.document.getElementById("t_bphtb_registrationFormobject_kelurahan").value = document.getElementById("bphtb_wsFormnama_kelurahan").value;
+				window.opener.document.getElementById("t_bphtb_registrationFormobject_p_region_id").value = document.getElementById("bphtb_wsFormid_kota").value;
+				window.opener.document.getElementById("t_bphtb_registrationFormobject_p_region_id_kec").value = document.getElementById("bphtb_wsFormid_kecamatan").value;
+				window.opener.document.getElementById("t_bphtb_registrationFormobject_p_region_id_kel").value = document.getElementById("bphtb_wsFormid_kelurahan").value;
+				window.opener.document.getElementById("t_bphtb_registrationFormobject_kota").value = document.getElementById("bphtb_wsFormnama_kota").value;
+				window.opener.document.getElementById("t_bphtb_registrationFormobject_kecamatan").value = document.getElementById("bphtb_wsFormnama_kecamatan").value;
+				window.opener.document.getElementById("t_bphtb_registrationFormobject_kelurahan").value = document.getElementById("bphtb_wsFormnama_kelurahan").value;
                 window.close();
 }
 </script>
