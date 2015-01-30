@@ -215,7 +215,13 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 				</TextBox>
 				<TextBox id="932" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_pbb" PathID="t_bphtb_registrationFormnjop_pbb" fieldSource="njop_pbb">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="1064"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
@@ -427,6 +433,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<Hidden id="1055" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_registration_id_old" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormt_bphtb_registration_id_old" fieldSource="t_bphtb_registration_id_old" caption="test">
 					<Components/>
 					<Events/>
+
 					<Attributes/>
 					<Features/>
 				</Hidden>
@@ -533,10 +540,10 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key1013" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="add_disc_percent" scale="0" precision="0" parameterSource="add_disc_percent"/>
 				<SPParameter id="Key1018" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="check_potongan" scale="0" precision="0" parameterSource="check_potongan"/>
 				<SPParameter id="Key1061" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_land_area_real" scale="0" precision="0" parameterSource="land_area_real"/>
-<SPParameter id="Key1062" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_land_price_real" scale="0" precision="0" parameterSource="land_price_real"/>
-<SPParameter id="Key1063" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_building_area_real" scale="0" precision="0" parameterSource="building_area_real"/>
-<SPParameter id="Key1064" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_building_price_real" scale="0" precision="0" parameterSource="building_price_real"/>
-<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
+				<SPParameter id="Key1062" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_land_price_real" scale="0" precision="0" parameterSource="land_price_real"/>
+				<SPParameter id="Key1063" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_building_area_real" scale="0" precision="0" parameterSource="building_area_real"/>
+				<SPParameter id="Key1064" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_building_price_real" scale="0" precision="0" parameterSource="building_price_real"/>
+				<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
 				<SPParameter id="Key978" parameterName="o_mess" parameterSource="o_mess" dataType="Char" parameterType="URL" dataSize="255" direction="InputOutput" scale="10" precision="6"/>
 			</ISPParameters>
 			<ISQLParameters>
@@ -701,10 +708,10 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<CustomParameter id="1012" field="bphtb_legal_doc_description" dataType="Text" parameterType="Control" omitIfEmpty="True" parameterSource="bphtb_legal_doc_description"/>
 				<CustomParameter id="1013" field="add_disc_percent" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="add_disc_percent"/>
 				<CustomParameter id="1060" field="land_area_real" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="land_area_real"/>
-<CustomParameter id="1061" field="land_price_real" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="land_price_real"/>
-<CustomParameter id="1062" field="building_area_real" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="building_area_real"/>
-<CustomParameter id="1063" field="building_price_real" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="building_price_real"/>
-</UFormElements>
+				<CustomParameter id="1061" field="land_price_real" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="land_price_real"/>
+				<CustomParameter id="1062" field="building_area_real" dataType="Integer" parameterType="Control" omitIfEmpty="True" parameterSource="building_area_real"/>
+				<CustomParameter id="1063" field="building_price_real" dataType="Float" parameterType="Control" omitIfEmpty="True" parameterSource="building_price_real"/>
+			</UFormElements>
 			<DSPParameters>
 				<SPParameter id="Key905" dataType="Char" parameterType="URL" dataSize="255" direction="ReturnValue" scale="0" precision="0"/>
 				<SPParameter id="Key906" parameterName="icode" parameterSource="icode" dataType="Char" parameterType="URL" dataSize="255" direction="Input" scale="0" precision="0"/>
