@@ -90,7 +90,7 @@ function print_excel($param_arr) {
 	
 	
 	if($param_arr['jenis_laporan'] == 'all'){
-		$query	= "select *,trunc(payment_date) from f_rep_bpps(".$param_arr['p_vat_type_id'].",
+		$query	= "select *,trunc(payment_date) from f_rep_bpps_piutang2new_mod_1(".$param_arr['p_vat_type_id'].",
 		".$param_arr['p_year_period_id'].", ".$param_arr['tgl_penerimaan'].", 
 		".$param_arr['tgl_penerimaan_last'].", ".$param_arr['i_flag_setoran'].") 
 		order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
