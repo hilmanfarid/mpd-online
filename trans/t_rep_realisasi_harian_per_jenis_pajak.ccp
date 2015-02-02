@@ -76,7 +76,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -114,9 +114,9 @@
 			</Actions>
 		</Event>
 		<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="568"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="568"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
