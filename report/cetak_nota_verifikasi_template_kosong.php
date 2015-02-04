@@ -70,7 +70,7 @@ while ($dbConn->next_record()) {
 	$data["bphtb_amt"]				= 0;
 	$data["bphtb_discount"]			= 0;
 	$data["bphtb_amt_final"]		= 0;
-	$data["registration_no"]		= '';
+	$data["registration_no"]		= $dbConn->f("registration_no");
 	$data["verificated_by"]			= '';
 	$data["verificated_nip"]		= '';
 	$data["jenis_harga_bphtb"]		= '';
@@ -327,10 +327,10 @@ class FormCetak extends FPDF {
 		$this->newLine();				
 		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height - 4, "()", "", 0, 'C');
 		$this->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
 		$this->newLine();
-		$this->Cell($lbody1 + 10, $this->height - 4, "NIP : 19630817.1989.01.1.006 ", "", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height - 4, "NIP : - ", "", 0, 'C');
 		$this->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
 
 			
