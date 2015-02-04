@@ -117,16 +117,9 @@ class FormCetak extends FPDF {
 	function PageCetak($data, $user) {
 		$this->AliasNbPages();
 		$this->AddPage("P");
-		$encImageData = '';
-		$dbConn = new clsDBConnSIKP();
-		$query = "select f_encrypt_str('".$data['registration_no']."') AS enc_data";
-
-		$dbConn->query($query);
-		while ($dbConn->next_record()) {
-			$encImageData = $dbConn->f("enc_data");
-		}
+		
 		$this->Image('../images/logo_pemda.png',20,10,25,25);
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param=ogeenx',165,10,25,25,'PNG');
 		$this->SetFont("Arial", "B", 12);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
 		$this->Ln();
