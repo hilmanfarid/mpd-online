@@ -45,7 +45,7 @@ class clsRecordt_debt_letterForm { //t_debt_letterForm Class @629-E780A3C4
     // Class variables
 //End Variables
 
-//Class_Initialize Event @629-5EB42B76
+//Class_Initialize Event @629-AB1E64E3
     function clsRecordt_debt_letterForm($RelativePath, & $Parent)
     {
 
@@ -128,6 +128,7 @@ class clsRecordt_debt_letterForm { //t_debt_letterForm Class @629-E780A3C4
             $this->Button4 = & new clsButton("Button4", $Method, $this);
             $this->sequence_no = & new clsControl(ccsTextBox, "sequence_no", "Surat Teguran Ke", ccsText, "", CCGetRequestParam("sequence_no", $Method, NULL), $this);
             $this->sequence_no->Required = true;
+            $this->Button5 = & new clsButton("Button5", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -317,7 +318,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @629-1DE0DF55
+//Operation Method @629-B3CF7C5E
     function Operation()
     {
         if(!$this->Visible)
@@ -348,6 +349,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button3";
             } else if($this->Button4->Pressed) {
                 $this->PressedButton = "Button4";
+            } else if($this->Button5->Pressed) {
+                $this->PressedButton = "Button5";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -384,6 +387,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button4->CCSEvents, "OnClick", $this->Button4)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button5") {
+                if(!CCGetEvent($this->Button5->CCSEvents, "OnClick", $this->Button5)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -407,7 +414,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @629-742C9BF6
+//Show Method @629-8C7B0E9E
     function Show()
     {
         global $CCSUseAmp;
@@ -575,6 +582,7 @@ function GetPrimaryKey($keyName)
         $this->Button3->Show();
         $this->Button4->Show();
         $this->sequence_no->Show();
+        $this->Button5->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
