@@ -279,7 +279,7 @@ function t_vat_setllementForm_BeforeShow(& $sender)
   		$dbConn2->next_record();
 		echo "
   			<script>
-  				window.open('../report/cetak_registrasi_payment.php?codeline=".$dbConn2->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+  				window.open('../report/cetak_registrasi_payment.php?t_customer_order_id=".CCGetFromGet('t_customer_order_id')."&codeline=".$dbConn2->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
   			</script>
   		";
   		$dbConn2->close();
