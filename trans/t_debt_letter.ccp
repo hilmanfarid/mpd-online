@@ -341,7 +341,19 @@ decode({p_hotel_grade_id},0,null,{p_hotel_grade_id}), decode({p_rest_service_typ
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<Button id="918" urlType="Relative" enableValidation="True" isDefault="False" name="Button5" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_debt_letterFormButton5">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="919" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeInsert" type="Server">
 					<Actions>
