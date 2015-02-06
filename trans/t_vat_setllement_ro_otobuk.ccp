@@ -455,7 +455,7 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="start_period" caption="Masa Pajak" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormstart_period" format="dd-mmm-yyyy" fieldSource="start_period">
+				<TextBox id="33" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="start_period" caption="Masa Pajak" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormstart_period" format="dd-mmm-yyyy" fieldSource="start_period">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -551,14 +551,32 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 					<Attributes/>
 					<Features/>
 				</TextArea>
-			</Components>
-			<Events>
-				<Event name="BeforeShow" type="Server">
+				<Button id="358" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_vat_setllementFormButton2">
+<Components/>
+<Events>
+<Event name="OnClick" type="Client">
 <Actions>
-<Action actionName="Custom Code" actionCategory="General" id="357"/>
+<Action actionName="Custom Code" actionCategory="General" id="360"/>
 </Actions>
 </Event>
 </Events>
+<Attributes/>
+<Features/>
+</Button>
+<Hidden id="359" fieldSourceType="DBColumn" dataType="Text" name="payment_key" PathID="t_vat_setllementFormpayment_key" fieldSource="payment_key">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Hidden>
+</Components>
+			<Events>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="357"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="327" conditionType="Parameter" useIsNull="False" field="t_vat_setllement_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_vat_setllement_id"/>
 			</TableParameters>
