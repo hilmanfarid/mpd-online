@@ -2,14 +2,19 @@
 //include_once(RelativePath . "/include/sessi.inc");
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
+$t_customer_order_id = CCGetFromGet('t_customer_order_id');
 $no_kohir = CCGetFromGet('s_keyword');
 	if(!empty($no_kohir)){
 		$dbConn = new clsDBConnSIKP();
   		$sql="select t_customer_order_id from t_vat_setllement where no_kohir='".$no_kohir."'";
   		$dbConn->query($sql);
   		$dbConn->next_record();
+		
 		$_POST['t_customer_order_id']=$_GET['t_customer_order_id'] = $dbConn->f('t_customer_order_id');
-  		$dbConn->close();		
+  		if(!empty($t_customer_order_id)) {
+			$_POST['t_customer_order_id']=$_GET['t_customer_order_id'] = $t_customer_order_id;
+		}
+		$dbConn->close();		
 	}else{
 		$_POST['t_customer_order_id']=$_GET['t_customer_order_id'] = CCGetFromGet('CURR_DOC_ID');
 	}
