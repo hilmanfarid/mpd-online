@@ -757,7 +757,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-CAB9D23E
+//Class_Initialize Event @23-13D677A6
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -814,6 +814,8 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->cr_stp = & new clsControl(ccsTextBox, "cr_stp", "cr_stp", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("cr_stp", $Method, NULL), $this);
             $this->wp_name = & new clsControl(ccsTextBox, "wp_name", "Nama Wajib Pajak", ccsText, "", CCGetRequestParam("wp_name", $Method, NULL), $this);
             $this->wp_address_name = & new clsControl(ccsTextArea, "wp_address_name", "Alamat Wajib Pajak", ccsText, "", CCGetRequestParam("wp_address_name", $Method, NULL), $this);
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->payment_key = & new clsControl(ccsHidden, "payment_key", "payment_key", ccsText, "", CCGetRequestParam("payment_key", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->due_date->Value) && !strlen($this->due_date->Value) && $this->due_date->Value !== false)
                     $this->due_date->SetText(date("d-M-Y h:i:s"));
@@ -833,7 +835,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     }
 //End Initialize Method
 
-//Validate Method @23-C5F17688
+//Validate Method @23-6D8614AE
     function Validate()
     {
         global $CCSLocales;
@@ -863,6 +865,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation = ($this->cr_stp->Validate() && $Validation);
         $Validation = ($this->wp_name->Validate() && $Validation);
         $Validation = ($this->wp_address_name->Validate() && $Validation);
+        $Validation = ($this->payment_key->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_vat_setllement_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->is_anomali->Errors->Count() == 0);
@@ -888,11 +891,12 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation =  $Validation && ($this->cr_stp->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_address_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->payment_key->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-E4433887
+//CheckErrors Method @23-72C985BD
     function CheckErrors()
     {
         $errors = false;
@@ -920,6 +924,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $errors = ($errors || $this->cr_stp->Errors->Count());
         $errors = ($errors || $this->wp_name->Errors->Count());
         $errors = ($errors || $this->wp_address_name->Errors->Count());
+        $errors = ($errors || $this->payment_key->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -941,7 +946,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-86B86149
+//Operation Method @23-AE965943
     function Operation()
     {
         if(!$this->Visible)
@@ -962,6 +967,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Update";
             } else if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -973,6 +980,10 @@ function GetPrimaryKey($keyName)
                 }
             } else if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -998,7 +1009,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @23-84694725
+//Show Method @23-9F12CF0E
     function Show()
     {
         global $CCSUseAmp;
@@ -1051,6 +1062,7 @@ function GetPrimaryKey($keyName)
                     $this->cr_stp->SetValue($this->DataSource->cr_stp->GetValue());
                     $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
                     $this->wp_address_name->SetValue($this->DataSource->wp_address_name->GetValue());
+                    $this->payment_key->SetValue($this->DataSource->payment_key->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -1083,6 +1095,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->cr_stp->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_address_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->payment_key->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1128,6 +1141,8 @@ function GetPrimaryKey($keyName)
         $this->cr_stp->Show();
         $this->wp_name->Show();
         $this->wp_address_name->Show();
+        $this->Button2->Show();
+        $this->payment_key->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1138,7 +1153,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllementFormDataSource Class @23-AF9958CC
 
-//DataSource Variables @23-45DFF164
+//DataSource Variables @23-3B8E07B3
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1175,9 +1190,10 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $cr_stp;
     var $wp_name;
     var $wp_address_name;
+    var $payment_key;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-2938F8DD
+//DataSourceClass_Initialize Event @23-65AB22CE
     function clst_vat_setllementFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1231,6 +1247,8 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->wp_address_name = new clsField("wp_address_name", ccsText, "");
         
+        $this->payment_key = new clsField("payment_key", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1261,7 +1279,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @23-648FD1F3
+//SetValues Method @23-D939D476
     function SetValues()
     {
         $this->t_vat_setllement_id->SetDBValue(trim($this->f("t_vat_setllement_id")));
@@ -1288,6 +1306,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->cr_stp->SetDBValue(trim($this->f("cr_stp")));
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
+        $this->payment_key->SetDBValue($this->f("payment_key"));
     }
 //End SetValues Method
 
