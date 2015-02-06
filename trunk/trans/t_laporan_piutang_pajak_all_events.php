@@ -75,7 +75,7 @@ function print_excel($param_arr) {
 				<th>NO</th>
 				<th>NPWPD</th>
 				<th>NAMA WP</th>
-				<th>(KODE MASA PAJAK)</th>
+				
 				<th>MASA PAJAK</th>
 				<th>BESARNYA (Rp)</th>
 				<th>REALISASI PIUTANG (Rp)</th>
@@ -121,7 +121,7 @@ function print_excel($param_arr) {
 			$output .= '<td align="center">'.$no++.'</td>';
 			$output .= '<td align="left">'.$item['npwd'].'</td>';
 			$output .= '<td align="left">'.$item['wp_name'].'</td>';
-			$output .= '<td align="left" style="color:#008000;">'.$item['p_finance_period_id'].'</td>';
+			//$output .= '<td align="left" style="color:#008000;">'.$item['p_finance_period_id'].'</td>';
 			$output .= '<td align="left">&nbsp;'.$item['periode_bayar'].'</td>';
 			//$output .= '<td align="left">'.$item['tgl_tap'].'</td>';
 			//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
@@ -138,7 +138,7 @@ function print_excel($param_arr) {
 		$total_sisa_piutang = $total_sisa_piutang + $item['sisa_piutang'];
 	}
 	
-	$output .= '<tr><td align="center" colspan=5>TOTAL</td>';
+	$output .= '<tr><td align="center" colspan=4>TOTAL</td>';
 	$output .= '<td align="right">'.number_format($total_piutang,0,",",".").'</td>';
 	$output .= '<td align="right">'.number_format($total_realisasi_piutang,0,",",".").'</td>';
 	$output .= '<td align="center"></td>';
