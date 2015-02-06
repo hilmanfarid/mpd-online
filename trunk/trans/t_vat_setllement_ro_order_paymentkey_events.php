@@ -263,12 +263,12 @@ function t_vat_setllementForm_BeforeShow(& $sender)
   	$action_button2 = CCGetFromGet("action_button2","");
   	if($action_button=='flag_payment' && $action_button2!='cetak_register'){
   		$dbConn = new clsDBConnSIKP();
-  		$sql="select sikp.f_payment_manual(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  		$sql="select sikp.f_payment_manual_paymentkey(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
   		$dbConn->query($sql);
   		$dbConn->next_record();
   		echo "
   		<script>
-  		alert('".$dbConn->f('f_payment_manual')."');
+  		alert('".$dbConn->f('f_payment_manual_paymentkey')."');
   		</script>
   		";
 		$dbConn->close();	
