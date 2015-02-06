@@ -215,7 +215,19 @@ function t_vat_setllementForm_BeforeShow(& $sender)
 	if(!empty($no_kohir)) {
 		$t_vat_setllementForm->Button1->Visible = false;
 	}
-// -------------------------
+
+
+	$dbConn = new clsDBConnSIKP();
+	$Idorder = $t_vat_setllementForm->t_customer_order_id->GetValue();
+	$cari = "select payment_key from t_vat_setllement where t_customer_order_id = ".$Idorder;
+	$dbConn->query($cari);
+	while($dbConn->next_record()){
+		$kode = $dbConn->f("payment_key");
+	}
+
+	$t_vat_setllementForm->payment_key->SetValue($kode);
+
+	// -------------------------
 //End Custom Code
 
 //Close t_vat_setllementForm_BeforeShow @23-08204CD1
