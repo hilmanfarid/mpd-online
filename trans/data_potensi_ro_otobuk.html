@@ -772,8 +772,9 @@ function toDokumenPendukung(){
         var slot4 = document.getElementById('t_vat_setllementSearchSLOT_4').value;
         var slot5 = document.getElementById('t_vat_setllementSearchSLOT_5').value;
         var msg = document.getElementById('t_vat_setllementSearchMESSAGE').value;
+                var custId = document.getElementById('t_vat_setllementSearcht_cust_account_id').value;
         
-         location.href="t_sptpd_legal_doc_ro_otobuk_v2.php?TAKEN_CTL="+takenCtl
+         location.href="t_order_log_kronologis_otobuk.php?TAKEN_CTL="+takenCtl
                                         +"&IS_TAKEN="+isTaken
                                         +"&CURR_DOC_ID="+currDocId
                                         +"&CURR_DOC_TYPE_ID="+currDocTypeId
@@ -796,7 +797,8 @@ function toDokumenPendukung(){
                                         +"&SLOT_3="+slot3
                                         +"&SLOT_4="+slot4
                                         +"&SLOT_5="+slot5
-                                        +"&MESSAGE="+msg;
+                                        +"&MESSAGE="+msg
+                                                                                +"&t_cust_account_id="+custId+"&t_customer_order_id="+currDocId;
 }
 
 </script>
