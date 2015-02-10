@@ -11,12 +11,14 @@ $data = array();
 
 $dbConn = new clsDBConnSIKP();
 
-$query = 	"select a.company_brand, a.brand_address_name, a.brand_address_no, a.wp_name, a.wp_address_name, a.company_name, a.address_name, b.code as job_name, a.bap_employee_no_1, a.bap_employee_name_1, a.bap_employee_no_2, a.bap_employee_name_2, a.bap_employee_job_pos_1, a.bap_employee_job_pos_2 " .
+$query = 	"select a.p_vat_type_dtl_id,a.t_vat_registration_id,c.vat_code,
+			a.company_brand, a.brand_address_name, a.brand_address_no, a.wp_name, a.wp_address_name, a.company_name, a.address_name, b.code as job_name, a.bap_employee_no_1, a.bap_employee_name_1, a.bap_employee_no_2, a.bap_employee_name_2, a.bap_employee_job_pos_1, a.bap_employee_job_pos_2 " .
 			"from t_vat_registration a " .
 			"join p_job_position b " .
 			"on a.p_job_position_id = b.p_job_position_id " .
+			"left join p_vat_type_dtl c on c.p_vat_type_dtl_id=a.p_vat_type_dtl_id ".
 			"where t_customer_order_id = $t_customer_order_id";
-// die($query);
+//die($query);
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 	$data["wp_name"]				= $dbConn->f("wp_name");
@@ -33,6 +35,9 @@ while ($dbConn->next_record()) {
 	$data["bap_employee_name_2"]	= $dbConn->f("bap_employee_name_2");
 	$data["bap_employee_job_pos_1"]	= $dbConn->f("bap_employee_job_pos_1");
 	$data["bap_employee_job_pos_2"]	= $dbConn->f("bap_employee_job_pos_2");
+	$data["p_vat_type_dtl_id"]	= $dbConn->f("p_vat_type_dtl_id");
+	$data["t_vat_registration_id"]	= $dbConn->f("t_vat_registration_id");
+	$data["vat_code"]	= $dbConn->f("vat_code");
 }
 
 $dbConn->close();
@@ -105,13 +110,9 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
-		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-		$this->Ln();
-		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-		$this->Ln();
 		
 		$this->SetFont('Arial', 'UB', 12);
-		$this->Cell($this->lengthCell, $this->height, "BERITA ACARA PEMERIKSAAN", "", 0, 'C');
+		$this->Cell($this->lengthCell, $this->height, "BERITA ACARA PENELITIAN LAPANGAN", "", 0, 'C');
 		$this->newLine();
 		$this->newLine();
 		
@@ -147,21 +148,18 @@ class FormCetak extends FPDF {
 		$this->newLine();
 		$this->Cell(10, $this->height, "", "", 0, 'L');
 		$this->Cell(5, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody2 * 2 - 25, $this->height, "Telah melakukan pemeriksaan atas:", "", 0, 'L');
+		$this->Cell($lbody2 * 2 - 25, $this->height, "Telah melakukan penelitian lapangan atas:", "", 0, 'L');
 		$this->Cell(10, $this->height, "", "", 0, 'L');
 		$this->Ln();
 		
-		$this->isi("1.", "Nama Wajib Pajak/", "");
-		$this->isi("", "Penanggung Pajak", ": " . $data["wp_name"]);
-		$this->isi("2.", "Alamat Wajib Pajak/", "");
-		
-		//alamat wajib pajak
+		$this->isi("1", "Nama Pemohon NPWPD", ": " . $data["wp_name"]);
+		//alamat wp
 		$this->SetWidths(array(10, 5, $lbody1, $lbody3 - 25, 10));
 		$this->SetAligns(array("L", "L", "L", "L", "L"));
 		$this->RowMultiBorderWithHeight(array(
 			"",
-			"",
-			"Penanggung Pajak",
+			"2.",
+			"Alamat Pemohon NPWPD",
 			": " . $data["wp_address_name"],
 			""
 			)
@@ -175,7 +173,7 @@ class FormCetak extends FPDF {
 			)
 			,
 			$this->height);
-		
+			
 		$this->isi("3.", "Nama Perusahaan", ": " . $data["company_name"]);
 		
 		//alamat perusahaan
@@ -234,54 +232,442 @@ class FormCetak extends FPDF {
 			)
 			,
 			$this->height);
-			
-		$this->Cell(10, $this->height + 2, "", "", 0, 'L');
-		$this->Cell(5, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1, $this->height + 2, "NPWPD", "", 0, 'L');
-		$this->Cell($lbody3 - 25, $this->height + 2, ":", "", 0, 'L');
-		$this->Cell(10, $this->height + 2, "", "", 0, 'L');
-		$this->Ln($this->height - 4);
 		
-		$this->Cell(10, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 + 8, $this->height, "", "", 0, 'L');
-		$rep_npwd = str_replace(".", "", $data["npwd"]);
-		$arr1 = str_split($rep_npwd);
-		
-		$this->kotak(1, 34, 1,$arr1[0]);
-		$this->kotakKosong(1, 34, 1);
-		$this->kotak(1, 34, 1,$arr1[1]);
-		$this->kotakKosong(1, 34, 1);
-		$this->kotak(1, 34, 1,$arr1[2]);
-		$this->kotak(1, 34, 1,$arr1[3]);
-		$this->kotak(1, 34, 1,$arr1[4]);
-		$this->kotak(1, 34, 1,$arr1[5]);
-		$this->kotak(1, 34, 1,$arr1[6]);
-		$this->kotak(1, 34, 1,$arr1[7]);
-		$this->kotak(1, 34, 1,$arr1[8]);
-		$this->kotakKosong(1, 34, 1);
-		$this->kotak(1, 34, 2,$arr1[9]);
-		$this->kotakKosong(1, 34, 1);
-		$this->kotak(1, 34, 2,$arr1[10]);
-		$this->Ln();
 
 		$this->newLine();
-		$this->isi_full("Dalam pemeriksaan tersebut di atas telah ditemukan hal-hal sebagai berikut:");
-		$this->isi_full(".................................................................................................................................................................");
-		$this->isi_full(".................................................................................................................................................................");
-		$this->isi_full(".................................................................................................................................................................");
-		$this->isi_full(".................................................................................................................................................................");
-		$this->isi_full(".................................................................................................................................................................");
-		// $this->isi_full(".................................................................................................................................................................");
-		$this->isi_full("Demikian Berita Acara Pemeriksaan ini dibuat dengan sebenar-benarnya.");
+		$this->isi_full("Dalam penelitian lapangan tersebut di atas telah ditemukan hal-hal sebagai berikut:");
+		
+		$data_pajak = array();
+		$dbConn = new clsDBConnSIKP();
+		$query = 	"select * from p_vat_type_dtl where p_vat_type_dtl_id =  " . $data["p_vat_type_dtl_id"];
+
+		$dbConn->query($query);
+		while ($dbConn->next_record()) {
+			$data_pajak["p_vat_type_id"]		= $dbConn->f("p_vat_type_id");
+		}
+		$dbConn->close();
+		
+		if ($data_pajak["p_vat_type_id"]==1){
+			$sePerLima = ($this->lengthCell -20) /5;
+			
+			$this->SetWidths(array(10,$sePerLima, $sePerLima, $sePerLima, $sePerLima, $sePerLima));
+			$this->SetAligns(array("C", "C", "C", "C", "C","C"));
+			//$this->SetvAligns(array("M", "M", "M", "M", "M","M"));
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"Kelas Hotel",
+				"Golongan Kamar",
+				"Jumlah Kamar",
+				"Frekuensi Pengguna Layanan",
+				"Tarif kamar"
+				)
+				,
+				array(
+				"",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR"
+				)
+				,
+				$this->height);
+			
+			$data_detail = array();
+			$dbConn = new clsDBConnSIKP();
+			$query = 	"select code,room_qty,service_qty,service_charge_wd,service_charge_we from t_vat_reg_dtl_hotel a
+					left join p_room_type x on a.p_room_type_id=x.p_room_type_id
+					where t_vat_registration_id = ".$data["t_vat_registration_id"];
+
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$data_detail["code"]		= $dbConn->f("code");
+				$data_detail["room_qty"]		= $dbConn->f("room_qty");
+				$data_detail["service_qty"]		= $dbConn->f("service_qty");
+				$data_detail["service_charge_wd"]		= $dbConn->f("service_charge_wd");
+				$data_detail["service_charge_we"]		= $dbConn->f("service_charge_we");
+				
+				$this->RowMultiBorderWithHeight(array(
+					"",
+					ucwords(strtolower($data["vat_code"])),
+					ucwords(strtolower($data_detail["code"])),
+					$data_detail["room_qty"],
+					$data_detail["service_qty"],
+					number_format($data_detail["service_charge_wd"],2,",",".")." (weekday), ".number_format($data_detail["service_charge_we"],2,",",".")." (weekend)"
+					)
+					,
+					array(
+					"",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR"
+					)
+					,
+					$this->height);
+			}
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"",
+				"",
+				"",
+				"",
+				""
+				)
+				,
+				array(
+				"",
+				"T",
+				"T",
+				"T",
+				"T",
+				"T"
+				)
+				,
+				$this->height);
+			$dbConn->close();
+			
+			
+			$this->SetWidths(array(10,40, ($this->lengthCell-60)));
+			$this->SetAligns(array("L", "L", "L"));
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"Tanggal Operasional",
+				""
+				)
+				,
+				array(
+				"",
+				"BLTR",
+				"BLTR"
+				)
+				,
+				$this->height);
+		}
+		
+		
+		if ($data_pajak["p_vat_type_id"]==2){
+			$sePerEnam = ($this->lengthCell -20) /6;
+			
+			$this->SetWidths(array(10,$sePerEnam, $sePerEnam, $sePerEnam, $sePerEnam, $sePerEnam,$sePerEnam));
+			$this->SetAligns(array("C", "C", "C", "C", "C","C","C"));
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"Jenis Pelayanan Restoran",
+				"Jumlah Meja dan Kursi",
+				"Harga Makanan Terendah & Tertinggi",
+				"Harga Minuman Terendah & Tertinggi",
+				"Daya Tampung",
+				"Jumlah Pengunjung Rata-rata Perbulan"
+				)
+				,
+				array(
+				"",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR"
+				)
+				,
+				$this->height);
+			
+			$data_detail = array();
+			$dbConn = new clsDBConnSIKP();
+			$query = 	"select * from t_vat_reg_dtl_restaurant
+					where t_vat_registration_id = ".$data["t_vat_registration_id"];
+
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$data_detail["seat_qty"]		= $dbConn->f("seat_qty");
+				$data_detail["table_qty"]		= $dbConn->f("table_qty");
+				$data_detail["max_service_qty"]		= $dbConn->f("max_service_qty");
+				$data_detail["avg_subscription"]		= $dbConn->f("avg_subscription");
+				$data_detail["service_type_desc"]		= $dbConn->f("service_type_desc");
+				
+				$this->RowMultiBorderWithHeight(array(
+					"",
+					ucwords(strtolower($data_detail["service_type_desc"])),
+					$data_detail["table_qty"]	." meja dan ".$data_detail["seat_qty"]." kursi",
+					"",
+					"",
+					$data_detail["max_service_qty"],
+					number_format($data_detail["avg_subscription"],0,",",".")
+					)
+					,
+					array(
+					"",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR"
+					)
+					,
+					$this->height);
+			}
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				""
+				)
+				,
+				array(
+				"",
+				"T",
+				"T",
+				"T",
+				"T",
+				"T",
+				"T"
+				)
+				,
+				$this->height);
+			
+			$dbConn->close();
+			
+			
+			$this->SetWidths(array(10,40, ($this->lengthCell-60)));
+			$this->SetAligns(array("L", "L", "L"));
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"Tanggal Operasional",
+				""
+				)
+				,
+				array(
+				"",
+				"BLTR",
+				"BLTR"
+				)
+				,
+				$this->height);
+		}
+		
+		if ($data_pajak["p_vat_type_id"]==3){
+			$sePerDelapan = ($this->lengthCell -20) /8;
+			
+			$this->SetWidths(array(10,$sePerDelapan, $sePerDelapan, $sePerDelapan+5, $sePerDelapan-5, $sePerDelapan,$sePerDelapan,$sePerDelapan,$sePerDelapan));
+			$this->SetAligns(array("C", "C", "C", "C", "C","C","C","C","C"));
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"Jenis Hiburan",
+				"Cover Charge / HTM / Tarif",
+				"Jumlah Lembar Meja / Kursi",
+				"Jumlah Room",
+				"Jumlah PL Pramuria / Pemijat",
+				"Booking / Jam",
+				"F / B",
+				"Porsi / Orang"
+				)
+				,
+				array(
+				"",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR"
+				)
+				,
+				$this->height);
+			
+			$data_detail = array();
+			$dbConn = new clsDBConnSIKP();
+			$query = 	"select * from t_vat_reg_dtl_entertaintment
+					where t_vat_registration_id = ".$data["t_vat_registration_id"];
+
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$data_detail["seat_qty"]		= $dbConn->f("seat_qty");
+				$data_detail["room_qty"]		= $dbConn->f("room_qty");
+				$data_detail["clerk_qty"]		= $dbConn->f("clerk_qty");
+				$data_detail["booking_hour"]		= $dbConn->f("booking_hour");
+				$data_detail["f_and_b"]		= $dbConn->f("f_and_b");
+				$data_detail["portion_person"]		= $dbConn->f("portion_person");
+				$data_detail["entertainment_desc"]		= $dbConn->f("entertainment_desc");
+				$data_detail["service_charge_wd"]		= $dbConn->f("service_charge_wd");
+				$data_detail["service_charge_we"]		= $dbConn->f("service_charge_we");
+				
+				$this->RowMultiBorderWithHeight(array(
+					"",
+					ucwords(strtolower($data_detail["entertainment_desc"])),
+					number_format($data_detail["service_charge_wd"],2,",",".")." (weekday), ".number_format($data_detail["service_charge_we"],2,",",".")." (weekend)",
+					$data_detail["seat_qty"],
+					$data_detail["room_qty"],
+					$data_detail["clerk_qty"],
+					$data_detail["booking_hour"],
+					$data_detail["f_and_b"],
+					$data_detail["portion_person"]
+					)
+					,
+					array(
+					"",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR"
+					)
+					,
+					$this->height);
+			}
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				""
+				)
+				,
+				array(
+				"",
+				"T",
+				"T",
+				"T",
+				"T",
+				"T",
+				"T",
+				"T",
+				"T"
+				)
+				,
+				$this->height);
+			
+			$dbConn->close();
+			
+			
+			$this->SetWidths(array(10,40, ($this->lengthCell-60)));
+			$this->SetAligns(array("L", "L", "L"));
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"Tanggal Operasional",
+				""
+				)
+				,
+				array(
+				"",
+				"BLTR",
+				"BLTR"
+				)
+				,
+				$this->height);
+		}
+		
+		if ($data_pajak["p_vat_type_id"]==4){
+			$sePerEmpat = ($this->lengthCell -20) /4;
+			
+			$this->SetWidths(array(10,$sePerEmpat, $sePerEmpat, $sePerEmpat, $sePerEmpat));
+			$this->SetAligns(array("C", "C", "C", "C", "C"));
+			//$this->SetvAligns(array("M", "M", "M", "M", "M","M"));
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"Klasifikasi Tempat Parkir",
+				"Luas Lahan Parkir",
+				"Daya Tampung Kendaraan Bermotor",
+				"Frekuensi Kendaraan Bermotor"
+				)
+				,
+				array(
+				"",
+				"BLTR",
+				"BLTR",
+				"BLTR",
+				"BLTR"
+				)
+				,
+				$this->height);
+			
+			$data_detail = array();
+			$dbConn = new clsDBConnSIKP();
+			$query = 	"select * from t_vat_reg_dtl_parking
+					where t_vat_registration_id = ".$data["t_vat_registration_id"];
+
+			$dbConn->query($query);
+			while ($dbConn->next_record()) {
+				$data_detail["classification_desc"]		= $dbConn->f("classification_desc");
+				$data_detail["parking_size"]		= $dbConn->f("parking_size");
+				$data_detail["max_load_qty"]		= $dbConn->f("max_load_qty");
+				$data_detail["avg_subscription_qty"]		= $dbConn->f("avg_subscription_qty");
+				
+				$this->SetAligns(array("C", "C", "C", "C", "R"));
+				$this->RowMultiBorderWithHeight(array(
+					"",
+					ucwords(strtolower($data_detail["classification_desc"])),
+					$data_detail["parking_size"],
+					$data_detail["max_load_qty"],
+					$data_detail["avg_subscription_qty"]
+					)
+					,
+					array(
+					"",
+					"LR",
+					"LR",
+					"LR",
+					"LR"
+					)
+					,
+					$this->height);
+			}
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"",
+				"",
+				"",
+				""
+				)
+				,
+				array(
+				"",
+				"T",
+				"T",
+				"T",
+				"T"
+				)
+				,
+				$this->height);
+			$dbConn->close();
+			
+			
+			$this->SetWidths(array(10,40, ($this->lengthCell-60)));
+			$this->SetAligns(array("L", "L", "L"));
+			$this->RowMultiBorderWithHeight(array(
+				"",
+				"Tanggal Operasional",
+				""
+				)
+				,
+				array(
+				"",
+				"BLTR",
+				"BLTR"
+				)
+				,
+				$this->height);
+		}
+		
+		$this->Ln();			
+		$this->isi_full("Demikian Berita Acara Penelitian Lapangan ini dibuat dengan sebenar-benarnya.");
 		
 		$lbody = $this->lengthCell / 16;
 		$lbody2 = $lbody * 2;
 		$lbody4 = $lbody * 4;
 
-		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-		$this->Ln();
-		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		//$this->Ln();
 		
@@ -300,13 +686,12 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4, $this->height, "Wajib Pajak/Penanggung Pajak", "", 0, 'C');
+		$this->Cell($lbody4, $this->height, "Pemohon NPWPD", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "Petugas Pendata 1,", "", 0, 'C');
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();
 		
-		$this->newLine();
 		$this->newLine();
 		$this->newLine();
 		$this->newLine();
@@ -358,7 +743,6 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();
 		
-		$this->newLine();
 		$this->newLine();
 		$this->newLine();
 		$this->newLine();
