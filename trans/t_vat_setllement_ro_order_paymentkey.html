@@ -23,8 +23,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -40,13 +40,13 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
       <td>&nbsp; 
         <!-- BEGIN Record t_vat_setllement_dtlSearch -->
         <form id="t_vat_setllement_dtlSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -56,9 +56,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">NOMOR PAYMENT KEY: <input id="t_vat_setllement_dtlSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}">
+                    <td class="search-field">NOMOR PAYMENT KEY: <input id="t_vat_setllement_dtlSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}">
                       <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_vat_setllement_dtlSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_vat_setllement_dtlSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td></td>
                   </tr>
                 </table>
               </td>
@@ -67,10 +67,10 @@ $(document).ready(function()
         </form>
         <!-- END Record t_vat_setllement_dtlSearch --><br>
         <!-- BEGIN Grid t_vat_setllementGrid -->
-        <table class="grid-table-container" style="DISPLAY: none" cellspacing="0" cellpadding="0" width="100%" border="0">
+        <table style="DISPLAY: none" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tr>
             <td valign="top">
-              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR SPTPD (Pelaporan Pajak)</strong></td> 
@@ -114,23 +114,23 @@ $(document).ready(function()
                 <!-- BEGIN Row -->
                 <tr {t_vat_setllementGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center" nowrap>&nbsp;<a href="{DLink_Src}" id="t_vat_setllementGridDLink_{t_vat_setllementGrid:rowNumber}">{DLink}</a></td> 
-                  <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="t_vat_setllementGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink1}" src="../images/list.gif"></a></td> 
-                  <td style="TEXT-ALIGN: center"><a href="{ImageLink2}" id="t_vat_setllementGridImageLink2_{p_app_menuGrid:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a>&nbsp;</td> 
-                  <td>&nbsp;{wp_name}<input id="t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"><input id="t_vat_setllementGriduser" type="hidden" value="{user}" name="{user_Name}"></td> 
-                  <td>{npwd}&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"></td> 
-                  <td>{finance_period_code}&nbsp;<input id="t_vat_setllementGridp_rqst_type_id_{t_vat_setllementGrid:rowNumber}" type="hidden" value="{p_rqst_type_id}" name="{p_rqst_type_id_Name}"></td> 
-                  <td>{order_no}<input id="t_vat_setllementGridp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></td> 
-                  <td style="COLOR: #008000; TEXT-ALIGN: right">{no_kohir}</td> 
-                  <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_trans_amount}</td> 
-                  <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_vat_amount}</td> 
-                  <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_penalty_amount}</td> 
-                  <td style="COLOR: #ff0000; TEXT-ALIGN: right">{total_total}</td> 
+                  <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="t_vat_setllementGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/list.gif"></a></td> 
+                  <td style="TEXT-ALIGN: center"><a href="{ImageLink2}" id="t_vat_setllementGridImageLink2_{p_app_menuGrid:rowNumber}"><img style="BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BORDER-TOP: 0px; BORDER-RIGHT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a>&nbsp;</td> 
+                  <td>&nbsp;{wp_name}<input id="t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"><input id="t_vat_setllementGriduser" value="{user}" type="hidden" name="{user_Name}"></td> 
+                  <td>{npwd}&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}"></td> 
+                  <td>{finance_period_code}&nbsp;<input id="t_vat_setllementGridp_rqst_type_id_{t_vat_setllementGrid:rowNumber}" value="{p_rqst_type_id}" type="hidden" name="{p_rqst_type_id_Name}"></td> 
+                  <td>{order_no}<input id="t_vat_setllementGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_trans_amount}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_vat_amount}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_total}</td> 
                   <td style="TEXT-ALIGN: center">&nbsp; 
-                    <!-- BEGIN Button cetak_payment --><input onclick="flagPayment('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" id="t_vat_setllementGridcetak_payment" class="btn_tambah" alt="Button2" type="button" value="Flag Payment" name="{Button_Name}"><!-- END Button cetak_payment --></td> 
+                    <!-- BEGIN Button cetak_payment --><input id="t_vat_setllementGridcetak_payment" class="btn_tambah" onclick="flagPayment('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" value="Flag Payment" alt="Button2" type="button" name="{Button_Name}"><!-- END Button cetak_payment --></td> 
                   <td style="TEXT-ALIGN: center">{cetak}&nbsp; 
-                    <!-- BEGIN Button cetak_register1 --><input onclick="DirectPrint()" id="t_vat_setllementGridcetak_register1" class="btn_tambah" alt="Button2" type="button" value="Cetak Register" name="{Button_Name}"><!-- END Button cetak_register1 -->&nbsp; </td> 
+                    <!-- BEGIN Button cetak_register1 --><input id="t_vat_setllementGridcetak_register1" class="btn_tambah" onclick="DirectPrint()" value="Cetak Register" alt="Button2" type="button" name="{Button_Name}"><!-- END Button cetak_register1 -->&nbsp; </td> 
                   <td style="TEXT-ALIGN: center" colspan="5">{cetak_sptpd} 
-                    <!-- BEGIN Button cetak_register --><input onclick="cetakRegister('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" id="t_vat_setllementGridcetak_register" class="btn_tambah" style="DISPLAY: none" alt="Button2" type="button" value="Cetak Register" name="{Button_Name}"><!-- END Button cetak_register -->&nbsp;&nbsp; </td>
+                    <!-- BEGIN Button cetak_register --><input style="DISPLAY: none" id="t_vat_setllementGridcetak_register" class="btn_tambah" onclick="cetakRegister('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" value="Cetak Register" alt="Button2" type="button" name="{Button_Name}"><!-- END Button cetak_register -->&nbsp;&nbsp; </td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -143,7 +143,7 @@ $(document).ready(function()
                   <td></td> 
                   <td>&nbsp;</td> 
                   <td style="TEXT-ALIGN: right" colspan="16">
-                    <!-- BEGIN Button Button1 --><input onclick="submitter()" id="t_vat_setllementGridButton1" class="btn_tambah" alt="Button1" type="submit" value="SUBMIT" name="{Button_Name}"><!-- END Button Button1 --></td>
+                    <!-- BEGIN Button Button1 --><input id="t_vat_setllementGridButton1" class="btn_tambah" onclick="submitter()" value="SUBMIT" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 --></td>
                 </tr>
               </table>
             </td>
@@ -153,10 +153,10 @@ $(document).ready(function()
         <p>
         <!-- BEGIN Record t_vat_setllementForm -->
         <form id="t_vat_setllementForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="20%" border="0">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="20%">
             <tr>
               <td valign="top">
-                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI</strong></td> 
@@ -172,32 +172,32 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th">No Order </td> 
-                    <td><input tabindex="2" id="t_vat_setllementFormorder_no" class="ControlsRO" readonly maxlength="14" value="{order_no}" name="{order_no_Name}"></td>
+                    <td><input id="t_vat_setllementFormorder_no" class="ControlsRO" tabindex="2" value="{order_no}" readonly maxlength="14" name="{order_no_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No Kwitansi</td> 
-                    <td><input tabindex="2" id="t_vat_setllementFormreceipt_no" class="ControlsRO" readonly maxlength="14" value="{receipt_no}" name="{receipt_no_Name}"></td>
+                    <td><input id="t_vat_setllementFormreceipt_no" class="ControlsRO" tabindex="2" value="{receipt_no}" readonly maxlength="14" name="{receipt_no_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Jenis Pajak </td> 
-                    <td><input tabindex="2" id="t_vat_setllementFormjenis_pajak" class="ControlsRO" readonly maxlength="32" size="32" value="{jenis_pajak}" name="{jenis_pajak_Name}"></td>
+                    <td><input id="t_vat_setllementFormjenis_pajak" class="ControlsRO" tabindex="2" value="{jenis_pajak}" readonly maxlength="32" size="32" name="{jenis_pajak_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No Ayat</td> 
-                    <td><input tabindex="2" id="t_vat_setllementFormno_ayat" class="ControlsRO" readonly maxlength="32" size="32" value="{no_ayat}" name="{no_ayat_Name}"></td>
+                    <td><input id="t_vat_setllementFormno_ayat" class="ControlsRO" tabindex="2" value="{no_ayat}" readonly maxlength="32" size="32" name="{no_ayat_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">NPWPD </td> 
-                    <td><input id="t_vat_setllementFormnpwd" class="ControlsRO" readonly maxlength="32" size="32" value="{npwd}" name="{npwd_Name}"></td>
+                    <td><input id="t_vat_setllementFormnpwd" class="ControlsRO" value="{npwd}" readonly maxlength="32" size="32" name="{npwd_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama WP </td> 
-                    <td><input tabindex="2" id="t_vat_setllementFormwp_name" class="ControlsRO" readonly maxlength="64" size="50" value="{wp_name}" name="{wp_name_Name}"></td>
+                    <td><input id="t_vat_setllementFormwp_name" class="ControlsRO" tabindex="2" value="{wp_name}" readonly maxlength="64" size="50" name="{wp_name_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -207,58 +207,58 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Periode </td> 
-                    <td><input id="t_vat_setllementFormfinance_period_code" class="ControlsRO" readonly maxlength="32" size="32" value="{finance_period_code}" name="{finance_period_code_Name}"></td>
+                    <td><input id="t_vat_setllementFormfinance_period_code" class="ControlsRO" value="{finance_period_code}" readonly maxlength="32" size="32" name="{finance_period_code_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Masa Pajak </td> 
-                    <td><input id="t_vat_setllementFormstart_period" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="12" value="{start_period}" name="{start_period_Name}">s/d <input id="t_vat_setllementFormend_period" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{end_period}" name="{end_period_Name}"></td>
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormstart_period" class="ControlsRO" value="{start_period}" readonly maxlength="100" size="12" name="{start_period_Name}">s/d <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormend_period" class="ControlsRO" value="{end_period}" readonly maxlength="100" size="15" name="{end_period_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Total Transaksi </td> 
-                    <td><input id="t_vat_setllementFormtotal_trans_amount" class="ControlsRO" style="TEXT-ALIGN: right" readonly maxlength="32" value="{total_trans_amount}" name="{total_trans_amount_Name}"></td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_trans_amount" class="ControlsRO" value="{total_trans_amount}" readonly maxlength="32" name="{total_trans_amount_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Total Pajak </td> 
-                    <td><input id="t_vat_setllementFormtotal_vat_amount" class="ControlsRO" style="TEXT-ALIGN: right" readonly maxlength="32" value="{total_vat_amount}" name="{total_vat_amount_Name}"></td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_vat_amount" class="ControlsRO" value="{total_vat_amount}" readonly maxlength="32" name="{total_vat_amount_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Total denda</td> 
-                    <td><input id="t_vat_setllementFormtotal_penalty_amount" class="ControlsRO" style="TEXT-ALIGN: right" readonly maxlength="32" value="{total_penalty_amount}" name="{total_penalty_amount_Name}"></td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_penalty_amount" class="ControlsRO" value="{total_penalty_amount}" readonly maxlength="32" name="{total_penalty_amount_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Total</td> 
-                    <td><input id="t_vat_setllementFormtotal_total" class="ControlsRO" style="TEXT-ALIGN: right" readonly maxlength="32" value="{total_total}" name="{total_total_Name}"></td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_total" class="ControlsRO" value="{total_total}" readonly maxlength="32" name="{total_total_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Tanggal jatuh tempo </td> 
-                    <td><input id="t_vat_setllementFormdue_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="25" value="{due_date}" name="{due_date_Name}"></td>
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormdue_date" class="ControlsRO" value="{due_date}" readonly maxlength="100" size="25" name="{due_date_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormis_anomali">Anomali ?</label></td> 
                     <td>
-                      <select disabled id="t_vat_setllementFormis_anomali" class="ControlsRQ" name="{is_anomali_Name}">
+                      <select id="t_vat_setllementFormis_anomali" class="ControlsRQ" disabled name="{is_anomali_Name}">
                         {is_anomali_Options}
                       </select>
- <input id="t_vat_setllementFormt_customer_order_id" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"></td>
+ <input id="t_vat_setllementFormt_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nomor Kohir </td> 
-                    <td nowrap><input id="t_vat_setllementFormno_kohir" class="ControlsRQ" readonly maxlength="12" size="12" value="{no_kohir}" name="{no_kohir_Name}"><input id="t_vat_setllementFormuser" type="hidden" value="{user}" name="{user_Name}"></td>
+                    <td nowrap><input id="t_vat_setllementFormno_kohir" class="ControlsRQ" value="{no_kohir}" readonly maxlength="12" size="12" name="{no_kohir_Name}"><input id="t_vat_setllementFormuser" value="{user}" type="hidden" name="{user_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">&nbsp; 
-                      <!-- BEGIN Button cetak_payment --><input onclick="flagPayment('t_vat_setllementFormt_customer_order_id');" id="t_vat_setllementFormcetak_payment" class="btn_tambah" alt="Button2" type="button" value="Flag Payment" name="{Button_Name}"><!-- END Button cetak_payment -->
-                      <!-- BEGIN Button cetak_register1 --><input onclick="DirectPrint()" id="t_vat_setllementFormcetak_register1" class="btn_tambah" alt="Button2" type="button" value="Cetak Register" name="{Button_Name}"><!-- END Button cetak_register1 -->
-                      <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update --><input id="t_vat_setllementFormt_vat_setllement_id" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"><input id="t_vat_setllementFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td>
+                      <!-- BEGIN Button cetak_payment --><input id="t_vat_setllementFormcetak_payment" class="btn_tambah" onclick="flagPayment('t_vat_setllementFormt_customer_order_id');" value="Flag Payment" alt="Button2" type="button" name="{Button_Name}"><!-- END Button cetak_payment -->
+                      <!-- BEGIN Button cetak_register1 --><input id="t_vat_setllementFormcetak_register1" class="btn_tambah" disabled onclick="DirectPrint()" value="Cetak Register" alt="Button2" type="button" name="{Button_Name}"><!-- END Button cetak_register1 -->
+                      <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Update --><input id="t_vat_setllementFormt_vat_setllement_id" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}"><input id="t_vat_setllementFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td>
                   </tr>
                 </table>
               </td>
