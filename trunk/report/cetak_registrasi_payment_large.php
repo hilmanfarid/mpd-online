@@ -68,8 +68,8 @@ $pdf->SetAutoPageBreak(false,0);
 
 $pdf->SetFont('Courier', 'B',9);
 
-$pdf->Image('../images/logo_pemda.png',10,5,20,20);
-$pdf->ln(20);
+//$pdf->Image('../images/logo_pemda.png',10,5,20,20);
+$pdf->ln(25);
 $pdf->SetWidths(array(5,130, 60));
 $pdf->SetAligns(array("L","L", "L"));
 $pdf->RowMultiBorderWithHeight(
