@@ -3,7 +3,8 @@
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="25" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.no_kohir,sett_type.code as sett_code,d.wp_name, a.t_vat_setllement_id, a.t_customer_order_id, a.total_penalty_amount, 
 a.settlement_date, a.p_finance_period_id, 
 a.t_cust_account_id, a.npwd, a.total_trans_amount,
-a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id
+a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id,
+a.payment_key
 FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e,p_settlement_type sett_type
 WHERE a.p_finance_period_id = b.p_finance_period_id AND
 a.t_customer_order_id = c.t_customer_order_id AND
@@ -12,7 +13,8 @@ c.p_rqst_type_id = e.p_rqst_type_id AND
 sett_type.p_settlement_type_id = a.p_settlement_type_id(+) AND
 ( upper(d.wp_name) LIKE upper('%{s_keyword}%') OR 
   upper(a.npwd) LIKE upper('%{s_keyword}%') OR
-  upper(a.no_kohir) LIKE upper('%{s_keyword}%')
+  upper(a.no_kohir) LIKE upper('%{s_keyword}%') OR
+  upper(a.payment_key) LIKE upper('%{s_keyword}%')
 )
 ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeList">
 			<Components>
@@ -151,7 +153,13 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="321" fieldSourceType="DBColumn" dataType="Text" html="False" name="payment_key" fieldSource="payment_key" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridpayment_key" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
