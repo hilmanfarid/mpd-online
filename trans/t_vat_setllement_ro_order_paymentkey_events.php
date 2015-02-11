@@ -292,7 +292,7 @@ function t_vat_setllementForm_BeforeShow(& $sender)
   		print_laporan($dbConn->f('f_print_register'));
   		/*echo "
   			<script>
-  				window.open('../services/print_string.php?input_number=".$dbConn->f('f_print_register')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+  				window.open('../../mpd-wp/client/ws.php?json&module=bds&class=t_vat_settlement&method=printNoBayar&no_bayar=".CCGetFromGet('s_keyword')."', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
   			</script>
   		";*/
   		$dbConn->close();
