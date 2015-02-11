@@ -57,14 +57,16 @@ $size = $pdf->_getpagesize('Legal');
 $size[1]=6;
 $pdf->DefPageSize = $size;
 $pdf->CurPageSize = $size;
-$pdf->AddPage('P',array(210,296));
+//$pdf->AddPage('P',array(210,296));
+$pdf->AddPage('P',array(210,210));
+
 $pdf->SetFont('helvetica', '', $_FONTSIZE);
 $pdf->SetRightMargin($_HEIGHT);
 $pdf->SetLeftMargin($_HEIGHT);
 
 $pdf->SetAutoPageBreak(false,0);
 
-$pdf->SetFont('Courier', 'B',10);
+$pdf->SetFont('Courier', 'B',9);
 
 $pdf->Image('../images/logo_pemda.png',10,5,20,20);
 $pdf->ln(20);
@@ -142,7 +144,7 @@ $pdf->RowMultiBorderWithHeight(
 			array
 			(	
 			    "",
-				"----------------------------------------------------------------------------------------",
+				"--------------------------------------------------------------------------------------------------",
 				
 			),
 			array
@@ -409,7 +411,7 @@ $pdf->RowMultiBorderWithHeight(
 			array
 			(	
 			    "",
-				"----------------------------------------------------------------------------------------",
+				"--------------------------------------------------------------------------------------------------",
 				
 			),
 			array
