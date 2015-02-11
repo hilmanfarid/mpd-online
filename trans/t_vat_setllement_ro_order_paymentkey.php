@@ -977,11 +977,11 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @23-46DBD901
+//Open Method @23-C8B2F837
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "select sett.*,vat_type.code||' '||dtl.code as no_ayat from v_vat_setllement_ro sett\n" .
+        $this->SQL = "select sett.*,vat_type.code||' '||dtl.code as no_ayat from v_vat_setllement_ro_payment_key sett\n" .
         "left join p_vat_type_dtl dtl on sett.p_vat_type_dtl_id = dtl.p_vat_type_dtl_id\n" .
         "left join p_vat_type vat_type on vat_type.p_vat_type_id = dtl.p_vat_type_id\n" .
         "where t_customer_order_id  = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "";
