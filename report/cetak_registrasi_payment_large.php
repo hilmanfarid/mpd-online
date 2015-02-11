@@ -57,8 +57,8 @@ $size = $pdf->_getpagesize('Legal');
 $size[1]=6;
 $pdf->DefPageSize = $size;
 $pdf->CurPageSize = $size;
+$pdf->AddPage('P',array(210,296));
 //$pdf->AddPage('P',array(210,296));
-$pdf->AddPage('P',array(210,210));
 
 $pdf->SetFont('helvetica', '', $_FONTSIZE);
 $pdf->SetRightMargin($_HEIGHT);
