@@ -273,7 +273,7 @@ class FormCetak extends FPDF {
 				,
 				$this->height);
 			
-			$data_detail = array();
+			/*$data_detail = array();
 			$dbConn = new clsDBConnSIKP();
 			$query = 	"select code,room_qty,service_qty,service_charge_wd,service_charge_we from t_vat_reg_dtl_hotel a
 					left join p_room_type x on a.p_room_type_id=x.p_room_type_id
@@ -306,7 +306,26 @@ class FormCetak extends FPDF {
 					)
 					,
 					$this->height);
-			}
+			}*/
+			$this->RowMultiBorderWithHeight(array(
+					"",
+					"",
+					"",
+					"",
+					"",
+					""
+					)
+					,
+					array(
+					"",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR"
+					)
+					,
+					25);
 			$this->RowMultiBorderWithHeight(array(
 				"",
 				"",
@@ -373,7 +392,7 @@ class FormCetak extends FPDF {
 				,
 				$this->height);
 			
-			$data_detail = array();
+			/*$data_detail = array();
 			$dbConn = new clsDBConnSIKP();
 			$query = 	"select * from t_vat_reg_dtl_restaurant
 					where t_vat_registration_id = ".$data["t_vat_registration_id"];
@@ -407,7 +426,28 @@ class FormCetak extends FPDF {
 					)
 					,
 					$this->height);
-			}
+			}*/
+			$this->RowMultiBorderWithHeight(array(
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					""
+					)
+					,
+					array(
+					"",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR"
+					)
+					,
+					25);
 			$this->RowMultiBorderWithHeight(array(
 				"",
 				"",
@@ -480,7 +520,7 @@ class FormCetak extends FPDF {
 				,
 				$this->height);
 			
-			$data_detail = array();
+			/*$data_detail = array();
 			$dbConn = new clsDBConnSIKP();
 			$query = 	"select * from t_vat_reg_dtl_entertaintment
 					where t_vat_registration_id = ".$data["t_vat_registration_id"];
@@ -522,7 +562,32 @@ class FormCetak extends FPDF {
 					)
 					,
 					$this->height);
-			}
+			}*/
+			$this->RowMultiBorderWithHeight(array(
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					""
+					)
+					,
+					array(
+					"",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR",
+					"LR"
+					)
+					,
+					25);
 			$this->RowMultiBorderWithHeight(array(
 				"",
 				"",
@@ -593,7 +658,7 @@ class FormCetak extends FPDF {
 				,
 				$this->height);
 			
-			$data_detail = array();
+			/*$data_detail = array();
 			$dbConn = new clsDBConnSIKP();
 			$query = 	"select * from t_vat_reg_dtl_parking
 					where t_vat_registration_id = ".$data["t_vat_registration_id"];
@@ -623,7 +688,24 @@ class FormCetak extends FPDF {
 					)
 					,
 					$this->height);
-			}
+			}*/
+			$this->RowMultiBorderWithHeight(array(
+					"",
+					"",
+					"",
+					"",
+					""
+					)
+					,
+					array(
+					"",
+					"LR",
+					"LR",
+					"LR",
+					"LR"
+					)
+					,
+					25);
 			$this->RowMultiBorderWithHeight(array(
 				"",
 				"",
