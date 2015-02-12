@@ -3,7 +3,7 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-4232DD01
+//BindEvents Method @1-32878279
 function BindEvents()
 {
     global $t_vat_setllementGrid;
@@ -14,6 +14,7 @@ function BindEvents()
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
     $t_vat_setllementForm->Button1->CCSEvents["OnClick"] = "t_vat_setllementForm_Button1_OnClick";
+    $t_vat_setllementForm->Button2->CCSEvents["OnClick"] = "t_vat_setllementForm_Button2_OnClick";
     $t_vat_setllementForm->CCSEvents["BeforeShow"] = "t_vat_setllementForm_BeforeShow";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
@@ -199,6 +200,76 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
     return $t_vat_setllementForm_Button1_OnClick;
 }
 //End Close t_vat_setllementForm_Button1_OnClick
+
+//t_vat_setllementForm_Button2_OnClick @358-08A3AA5F
+function t_vat_setllementForm_Button2_OnClick(& $sender)
+{
+    $t_vat_setllementForm_Button2_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementForm; //Compatibility
+//End t_vat_setllementForm_Button2_OnClick
+
+//Custom Code @361-2A29BDB7
+// -------------------------
+    $no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
+	
+	if(!empty($no_kohir)) {
+		//empty statement		
+	}else {
+	
+		$dbConn1 = new clsDBConnSIKP();
+		$Idorder = $t_vat_setllementForm->t_customer_order_id->GetValue();
+		$cari = "select f_generate_kohir(".$Idorder.") from dual";
+		$dbConn1->query($cari);
+		while($dbConn1->next_record()){
+			$kode = $dbConn1->f("f_generate_kohir");
+		}
+
+		$t_vat_setllementForm->no_kohir->SetValue($kode);
+
+		$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
+		$i_no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
+	
+	
+		$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."') from dual";
+		$dbConn1->query($sql_update_kohir);
+		
+	}
+	
+	//update anomali 
+	$dbConn2 = new clsDBConnSIKP();
+	$is_anomali = $t_vat_setllementForm->is_anomali->GetValue();
+	$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
+	$sql_update_anomali = "UPDATE t_vat_setllement SET
+							is_anomali = '".$is_anomali."'
+							WHERE t_vat_setllement_id = ".$i_vat_setllement_id;
+	
+	$dbConn2->query($sql_update_anomali);
+	//end update
+
+	$payment_key = $t_vat_setllementForm->payment_key->GetFormattedValue();
+	if(empty($payment_key)) {
+		echo "<script>
+			alert('Tidak dapat cetak. No Pembayaran masih kosong');
+		</script>";
+		
+	}else {
+		$urlref = "http://202.154.24.4:81/mpd-wp/client/ws.php?type=json&module=bds&class=t_vat_settlement&method=printNoBayar&no_bayar=".$payment_key;
+		echo "
+  			<script>
+  				window.open('".$urlref."', '_blank', 'location=yes,height=500,width=800,scrollbars=yes,status=yes');
+  			</script>
+  		";
+	}
+	return;
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementForm_Button2_OnClick @358-F4594333
+    return $t_vat_setllementForm_Button2_OnClick;
+}
+//End Close t_vat_setllementForm_Button2_OnClick
 
 //t_vat_setllementForm_BeforeShow @23-FE2321F2
 function t_vat_setllementForm_BeforeShow(& $sender)
