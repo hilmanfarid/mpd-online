@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_app_user_role</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//DEL  
+//DEL  var p_app_user_roleForm_DatePicker_valid_from = new Object(); 
+//DEL  p_app_user_roleForm_DatePicker_valid_from.format           = "dd-mmm-yyyy";
+//DEL  p_app_user_roleForm_DatePicker_valid_from.style            = "Styles/sikp/Style.css";
+//DEL  p_app_user_roleForm_DatePicker_valid_from.relativePathPart = "../";
+//DEL  p_app_user_roleForm_DatePicker_valid_from.themeVersion = "3.0";
+//DEL  
+//DEL  var p_app_user_roleForm_DatePicker_valid_to = new Object(); 
+//DEL  p_app_user_roleForm_DatePicker_valid_to.format           = "dd-mmm-yyyy";
+//DEL  p_app_user_roleForm_DatePicker_valid_to.style            = "Styles/sikp/Style.css";
+//DEL  p_app_user_roleForm_DatePicker_valid_to.relativePathPart = "../";
+//DEL  p_app_user_roleForm_DatePicker_valid_to.themeVersion = "3.0";
+//DEL  
+
+
+//p_app_user_roleFormButton_Delete_OnClick @27-E4BE1EA4
+function p_app_user_roleFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_app_user_roleFormButton_Delete_OnClick
+
+//Confirmation Message @28-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_app_user_roleFormButton_Delete_OnClick @27-BC33A33A
+    return result;
+}
+//End Close p_app_user_roleFormButton_Delete_OnClick
+
+//p_app_user_roleFormButton_Cancel_OnClick @29-D5FE20DF
+function p_app_user_roleFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_app_user_roleFormButton_Cancel_OnClick
+
+//bind_events @1-FCA594B8
+function bind_events() {
+    addEventHandler("p_app_user_roleFormButton_Delete", "click", p_app_user_roleFormButton_Delete_OnClick);
+    addEventHandler("p_app_user_roleFormButton_Cancel", "click", p_app_user_roleFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toBank()">
+      <div class="tab-title">
+        ADMINISTRASI&nbsp;BANK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        CABANG BANK 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <table class="param-grid" cellspacing="0" cellpadding="0">
+          <tr>
+            <th nowrap>USER&nbsp;:&nbsp;</th>
+ 
+            <th nowrap>{app_user_name}&nbsp;</th>
+          </tr>
+        </table>
+        <!-- BEGIN Record p_app_user_roleSearch -->
+        <form id="p_app_user_roleSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="p_app_user_roleSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_app_user_roleSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp;<input style="WIDTH: 80px; HEIGHT: 22px" id="p_app_user_id" value="{p_bank_id}" size="10" type="hidden" name="{p_bank_id_Name}"><input style="WIDTH: 76px; HEIGHT: 22px" id="p_app_user_roleSearchp_app_userGridPage" value="{p_app_userGridPage}" size="10" type="hidden" name="{p_app_userGridPage_Name}"><input style="WIDTH: 76px; HEIGHT: 22px" id="p_app_user_roleSearchuser_s_keyword" value="{user_s_keyword}" size="10" type="hidden" name="{user_s_keyword_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_app_user_roleSearch -->&nbsp; <br>
+        <!-- BEGIN Grid p_app_user_roleGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR CABANG BANK</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">Nama Cabang</th>
+ 
+                  <th scope="col">Deskripsi</th>
+ 
+                  <th scope="col">&nbsp;Jumlah Pengguna Maksimal</th>
+ 
+                  <th scope="col">Kode</th>
+ 
+                  <th colspan="3" scope="col">Kode Bank</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_app_user_roleGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_app_user_roleGridDLink_{p_app_user_roleGrid:rowNumber}">{DLink}</a></td> 
+                  <td>{branch_name}&nbsp;<input id="p_app_user_roleGridp_bank_branch_id_{p_app_user_roleGrid:rowNumber}" value="{p_bank_branch_id}" type="hidden" name="{p_bank_branch_id_Name}"></td> 
+                  <td>{description}&nbsp;</td> 
+                  <td>&nbsp;{maximum_user}</td> 
+                  <td>{code}&nbsp;</td> 
+                  <td colspan="3">{parent_code}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="8">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="p_app_user_roleGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="7">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_app_user_roleGrid --><br>
+        <!-- BEGIN Record p_app_user_roleForm -->
+        <form id="p_app_user_roleForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI CABANG BANK</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th">Nama Cabang</td> 
+                    <td><input id="p_app_user_roleFormbranch_name" class="ControlsRQ" value="{branch_name}" maxlength="32" size="32" name="{branch_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kode</td> 
+                    <td><input id="p_app_user_roleFormcode" class="ControlsRQ" value="{code}" maxlength="32" size="32" name="{code_Name}">&nbsp;&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kode Bank</td> 
+                    <td><input id="p_app_user_roleFormparent_code" class="ControlsIN" value="{parent_code}" maxlength="32" size="32" name="{parent_code_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jumlah Maksimal Penggguna</td> 
+                    <td><input style="WIDTH: 163px; HEIGHT: 20px" id="p_app_user_roleFormmaximum_user" class="ControlsIN" value="{maximum_user}" maxlength="250" size="21" name="{maximum_user_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_user_roleFormdescription">Deskripsi</label></td> 
+                    <td><input id="p_app_user_roleFormdescription" class="ControlsIN" value="{description}" maxlength="250" size="50" name="{description_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_user_roleFormupdate_by">Diubah Oleh</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_user_roleFormupdate_by" class="ControlsRO" value="{update_by}" readonly maxlength="16" size="15" name="{update_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_app_user_roleFormupdate_date" class="ControlsRO" value="{update_date}" readonly maxlength="100" size="15" name="{update_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button_Insert --><input id="p_app_user_roleFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="p_app_user_roleFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_app_user_roleFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_app_user_roleFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_app_user_roleFormp_bank_branch_id" value="{p_bank_branch_id}" type="hidden" name="{p_bank_branch_id_Name}"><input id="p_app_user_roleFormp_bank_id" value="{p_bank_id}" type="hidden" name="{p_bank_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_app_user_roleForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" src="../js/lov.js"></script>
+<script language="javascript">
+function toBank()
+{
+  var idelement;
+  if (idelement = document.getElementById('p_app_user_id'))
+  {
+    var pid=idelement.value;
+    var skw=document.getElementById("p_app_user_roleSearchuser_s_keyword").value;
+    var page=document.getElementById("p_app_user_roleSearchp_app_userGridPage").value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="p_bank.php?p_app_user_id="+pid+"&s_keyword="+skw+"&p_app_userGridPage="+page;
+    } else {
+     alert("Pilih salah satu Cabang!");
+    }
+  } else {
+     alert("Pilih salah satu Cabang!");
+  }
+}
+
+function lov_role() {
+        getFrom_LOV('p_app_user_roleForm','p_app_role_id,role_code','lov_2_field.php?TABLE=p_app_role&FIELD_0=p_app_role_id&FIELD_1=code&FIELD_2=description&LABEL1=Role&LABEL2=Deskripsi&HEADER_PAGE=ROLE&HEADER_LOV=DAFTAR ROLE&ORDER=LISTING_NO');
+}
+
+</script>
+</body>
+</html>
