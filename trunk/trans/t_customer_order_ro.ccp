@@ -357,7 +357,7 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="676" visible="Dynamic" fieldSourceType="DBColumn" sourceType="Table" dataType="Float" returnValueType="Number" name="p_rest_service_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_rest_service_type_id" connection="ConnSIKP" activeCollection="TableParameters" boundColumn="p_rest_service_type_id" textColumn="code" fieldSource="p_rest_service_type_id" dataSource="p_rest_service_type">
+				<ListBox id="676" visible="Dynamic" fieldSourceType="DBColumn" sourceType="Table" dataType="Float" returnValueType="Number" name="p_rest_service_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_rest_service_type_id" connection="ConnSIKP" activeCollection="TableParameters" boundColumn="p_vat_type_dtl_id" textColumn="code" fieldSource="p_rest_service_type_id" dataSource="p_rest_service_type">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -371,7 +371,7 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="678" visible="Dynamic" fieldSourceType="DBColumn" sourceType="Table" dataType="Float" returnValueType="Number" name="p_entertaintment_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_entertaintment_type_id" connection="ConnSIKP" activeCollection="TableParameters" boundColumn="p_entertaintment_type_id" textColumn="entertaintment_name" fieldSource="p_entertaintment_type_id" dataSource="p_entertaintment_type">
+				<ListBox id="678" visible="Dynamic" fieldSourceType="DBColumn" sourceType="Table" dataType="Float" returnValueType="Number" name="p_entertaintment_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_entertaintment_type_id" connection="ConnSIKP" activeCollection="TableParameters" boundColumn="p_vat_type_dtl_id" textColumn="entertaintment_name" fieldSource="p_entertaintment_type_id" dataSource="p_entertaintment_type">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -385,7 +385,7 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="680" visible="Dynamic" fieldSourceType="DBColumn" sourceType="Table" dataType="Float" returnValueType="Number" name="p_parking_classification_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_parking_classification_id" connection="ConnSIKP" activeCollection="TableParameters" boundColumn="p_parking_classification_id" textColumn="code" fieldSource="p_parking_classification_id" dataSource="p_parking_classification">
+				<ListBox id="680" visible="Dynamic" fieldSourceType="DBColumn" sourceType="Table" dataType="Float" returnValueType="Number" name="p_parking_classification_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_parking_classification_id" connection="ConnSIKP" activeCollection="TableParameters" boundColumn="p_vat_type_dtl_id" textColumn="code" fieldSource="p_parking_classification_id" dataSource="p_parking_classification">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -777,7 +777,26 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<ListBox id="935" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id" connection="ConnSIKP" dataSource="p_vat_type_dtl" boundColumn="p_vat_type_dtl_id" textColumn="vat_code">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables>
+<JoinTable id="936" tableName="p_vat_type_dtl" schemaName="sikp" posLeft="10" posTop="10" posWidth="136" posHeight="180"/>
+</JoinTables>
+<JoinLinks/>
+<Fields>
+<Field id="937" tableName="p_vat_type_dtl" fieldName="p_vat_type_dtl_id"/>
+<Field id="938" tableName="p_vat_type_dtl" fieldName="code"/>
+<Field id="939" tableName="p_vat_type_dtl" fieldName="p_vat_type_id"/>
+<Field id="940" tableName="p_vat_type_dtl" fieldName="vat_code"/>
+</Fields>
+<Attributes/>
+<Features/>
+</ListBox>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -866,7 +885,6 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 				<CustomParameter id="741" field="registration_date" dataType="Text" parameterType="Control" parameterSource="registration_date" format="dd-mmm-yyyy"/>
 				<CustomParameter id="742" field="t_customer_order_id" dataType="Float" parameterType="Control" parameterSource="t_customer_order_id"/>
 				<CustomParameter id="743" field="kelurahan_code" dataType="Text" parameterType="Control" parameterSource="kelurahan_code"/>
-
 				<CustomParameter id="744" field="kecamatan_code" dataType="Text" parameterType="Control" parameterSource="kecamatan_code"/>
 				<CustomParameter id="745" field="kota_code" dataType="Text" parameterType="Control" parameterSource="kota_code"/>
 				<CustomParameter id="746" field="p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="p_region_id_kelurahan"/>
