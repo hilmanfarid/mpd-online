@@ -271,7 +271,7 @@ function toBank()
     var page=document.getElementById("p_app_user_roleSearchp_app_userGridPage").value;
     if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
     {
-     location.href="p_bank.php?p_app_user_id="+pid+"&s_keyword="+skw+"&p_app_userGridPage="+page;
+     location.href="p_bank.php?p_bank_id="+pid+"&s_keyword="+skw+"&p_app_userGridPage="+page;
     } else {
      alert("Pilih salah satu Cabang!");
     }
