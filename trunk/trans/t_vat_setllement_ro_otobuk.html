@@ -22,50 +22,8 @@ $(document).ready(function()
     });
 });
 </script>
-<script language="JavaScript" type="text/javascript">
-//Begin CCS script
-//Include Common JSFunctions @1-9722A627
-</script>
-<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
-<script language="JavaScript" type="text/javascript">
-//End Include Common JSFunctions
-
-//t_vat_setllementFormButton2_OnClick @358-F2983AEB
-function t_vat_setllementFormButton2_OnClick()
-{
-    var result = true;
-//End t_vat_setllementFormButton2_OnClick
-
-//Custom Code @360-2A29BDB7
-    // -------------------------
-    var payment_key = document.getElementById('t_vat_setllementFormpayment_key').value;
-	if(payment_key == "") {
-		alert('Tidak dapat cetak. No Pembayaran masih kosong');
-		return;
-	}else {
-		urlref = "http://202.154.24.4:81/mpd-wp/client/ws.php?type=json&module=bds&class=t_vat_settlement&method=printNoBayar&no_bayar="+payment_key;
-        window.open(urlref, "_blank", "toolbar=0,location=0,menubar=0");
-	}
-    // -------------------------
-//End Custom Code
-
-//Close t_vat_setllementFormButton2_OnClick @358-BC33A33A
-    return result;
-}
-//End Close t_vat_setllementFormButton2_OnClick
-
-//bind_events @1-5BF3C3CB
-function bind_events() {
-    addEventHandler("t_vat_setllementFormButton2", "click", t_vat_setllementFormButton2_OnClick);
-}
-//End bind_events
-
-window.onload = bind_events; //Assign bind_events @1-19F7B649
-
-//End CCS script
-</script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -87,10 +45,10 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
       </div>
       </label>
     </div>
-	<div class="th tab-button">
+    <div class="th tab-button">
       <label onclick="javascript:toDokumenPendukung()">
       <div class="tab-title">
-        DOKUMEN PENDUKUNG
+        DOKUMEN PENDUKUNG 
       </div>
       </label>
     </div>
@@ -294,13 +252,13 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <tr class="Controls">
                     <td class="th">Nomor Kohir&nbsp;</td> 
                     <td nowrap><input id="t_vat_setllementFormno_kohir" class="ControlsRQ" readonly maxlength="12" size="12" value="{no_kohir}" name="{no_kohir_Name}">&nbsp; 
-                      <!-- BEGIN Button Button1 --><input onclick="cek()" id="t_vat_setllementFormButton1" class="Button" alt="Button1" type="submit" value="Generate Code" name="{Button_Name}"><!-- END Button Button1 --></td>
+                      <!-- BEGIN Button Button1 --><input onclick="cek()" id="t_vat_setllementFormButton1" class="Button" style="DISPLAY: none" alt="Button1" type="submit" value="Generate Code" name="{Button_Name}"><!-- END Button Button1 --></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="2" align="right"><input id="t_vat_setllementFormpayment_key" type="hidden" value="{payment_key}" name="{payment_key_Name}">
-                      <!-- BEGIN Button Button2 --><input id="t_vat_setllementFormButton2" class="btn_tambah" style="HEIGHT: 24px; WIDTH: 160px" alt="Button2" size="1" type="button" value="Print Nomor Pembayaran" name="{Button_Name}"><!-- END Button Button2 -->&nbsp; 
-                      <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update --><input id="t_vat_setllementFormt_vat_setllement_id" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"><input id="t_vat_setllementFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td>
+                      <!-- BEGIN Button Button2 --><input id="t_vat_setllementFormButton2" class="btn_tambah" style="HEIGHT: 24px; WIDTH: 160px" alt="Button2" size="1" type="submit" value="Print Nomor Pembayaran" name="{Button_Name}"><!-- END Button Button2 -->&nbsp; 
+                      <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" style="DISPLAY: none" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update --><input id="t_vat_setllementFormt_vat_setllement_id" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}"><input id="t_vat_setllementFormt_cust_account_id" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td>
                   </tr>
                 </table>
               </td>
