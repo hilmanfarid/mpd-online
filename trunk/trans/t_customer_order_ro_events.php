@@ -93,28 +93,28 @@ function t_vat_registrationForm_BeforeShow(& $sender)
 	$id = $t_vat_registrationForm->p_rqst_type_id->GetValue();
 	if($id == 1){
   		$t_vat_registrationForm->Label1->setValue("Kelas Hotel");
-  		$t_vat_registrationForm->p_hotel_grade_id->Visible = true;
+  		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
   		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
   		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
   		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
   	}else if($id == 2){
   		$t_vat_registrationForm->Label1->setValue("Jenis Pelayanan");
   		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
-  		$t_vat_registrationForm->p_rest_service_type_id->Visible = true;
+  		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
   		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
   		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
   	}else if($id == 3){
   		$t_vat_registrationForm->Label1->setValue("Jenis Hiburan");
   		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
   		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
-  		$t_vat_registrationForm->p_entertaintment_type_id->Visible = true;
+  		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
   		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
   	}else if($id == 4){
   		$t_vat_registrationForm->Label1->setValue("Klasifikasi Temapat Parkir");
   		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
   		$t_vat_registrationForm->p_rest_service_type_id->Visible = false;
   		$t_vat_registrationForm->p_entertaintment_type_id->Visible = false;
-  		$t_vat_registrationForm->p_parking_classification_id->Visible = true;
+  		$t_vat_registrationForm->p_parking_classification_id->Visible = false;
   	}else{
   		$t_vat_registrationForm->Label1->setValue("");
   		$t_vat_registrationForm->p_hotel_grade_id->Visible = false;
