@@ -552,24 +552,24 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 					<Features/>
 				</TextArea>
 				<Button id="358" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_vat_setllementFormButton2">
-<Components/>
-<Events>
-<Event name="OnClick" type="Client">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
 <Actions>
-<Action actionName="Custom Code" actionCategory="General" id="360"/>
+<Action actionName="Custom Code" actionCategory="General" id="361"/>
 </Actions>
 </Event>
 </Events>
-<Attributes/>
-<Features/>
-</Button>
-<Hidden id="359" fieldSourceType="DBColumn" dataType="Text" name="payment_key" PathID="t_vat_setllementFormpayment_key" fieldSource="payment_key">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Hidden id="359" fieldSourceType="DBColumn" dataType="Text" name="payment_key" PathID="t_vat_setllementFormpayment_key" fieldSource="payment_key">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
