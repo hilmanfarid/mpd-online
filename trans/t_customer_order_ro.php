@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     // Class variables
 //End Variables
 
-//Class_Initialize Event @629-0AAFA9D0
+//Class_Initialize Event @629-25D4B908
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -135,21 +135,21 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->p_rest_service_type_id->ds = & $this->p_rest_service_type_id->DataSource;
             $this->p_rest_service_type_id->DataSource->SQL = "SELECT * \n" .
 "FROM p_rest_service_type {SQL_Where} {SQL_OrderBy}";
-            list($this->p_rest_service_type_id->BoundColumn, $this->p_rest_service_type_id->TextColumn, $this->p_rest_service_type_id->DBFormat) = array("p_rest_service_type_id", "code", "");
+            list($this->p_rest_service_type_id->BoundColumn, $this->p_rest_service_type_id->TextColumn, $this->p_rest_service_type_id->DBFormat) = array("p_vat_type_dtl_id", "code", "");
             $this->p_entertaintment_type_id = & new clsControl(ccsListBox, "p_entertaintment_type_id", "p_entertaintment_type_id", ccsFloat, "", CCGetRequestParam("p_entertaintment_type_id", $Method, NULL), $this);
             $this->p_entertaintment_type_id->DSType = dsTable;
             $this->p_entertaintment_type_id->DataSource = new clsDBConnSIKP();
             $this->p_entertaintment_type_id->ds = & $this->p_entertaintment_type_id->DataSource;
             $this->p_entertaintment_type_id->DataSource->SQL = "SELECT * \n" .
 "FROM p_entertaintment_type {SQL_Where} {SQL_OrderBy}";
-            list($this->p_entertaintment_type_id->BoundColumn, $this->p_entertaintment_type_id->TextColumn, $this->p_entertaintment_type_id->DBFormat) = array("p_entertaintment_type_id", "entertaintment_name", "");
+            list($this->p_entertaintment_type_id->BoundColumn, $this->p_entertaintment_type_id->TextColumn, $this->p_entertaintment_type_id->DBFormat) = array("p_vat_type_dtl_id", "entertaintment_name", "");
             $this->p_parking_classification_id = & new clsControl(ccsListBox, "p_parking_classification_id", "p_parking_classification_id", ccsFloat, "", CCGetRequestParam("p_parking_classification_id", $Method, NULL), $this);
             $this->p_parking_classification_id->DSType = dsTable;
             $this->p_parking_classification_id->DataSource = new clsDBConnSIKP();
             $this->p_parking_classification_id->ds = & $this->p_parking_classification_id->DataSource;
             $this->p_parking_classification_id->DataSource->SQL = "SELECT * \n" .
 "FROM p_parking_classification {SQL_Where} {SQL_OrderBy}";
-            list($this->p_parking_classification_id->BoundColumn, $this->p_parking_classification_id->TextColumn, $this->p_parking_classification_id->DBFormat) = array("p_parking_classification_id", "code", "");
+            list($this->p_parking_classification_id->BoundColumn, $this->p_parking_classification_id->TextColumn, $this->p_parking_classification_id->DBFormat) = array("p_vat_type_dtl_id", "code", "");
             $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->t_vat_registration_id = & new clsControl(ccsHidden, "t_vat_registration_id", "t_vat_registration_id", ccsFloat, "", CCGetRequestParam("t_vat_registration_id", $Method, NULL), $this);
             $this->Label3 = & new clsControl(ccsLabel, "Label3", "Label3", ccsText, "", CCGetRequestParam("Label3", $Method, NULL), $this);
@@ -212,6 +212,13 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->brand_p_region_id = & new clsControl(ccsHidden, "brand_p_region_id", "Kota/Kabupaten - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id", $Method, NULL), $this);
             $this->brand_p_region_id_kec = & new clsControl(ccsHidden, "brand_p_region_id_kec", "Kecamatan - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kec", $Method, NULL), $this);
             $this->brand_p_region_id_kel = & new clsControl(ccsHidden, "brand_p_region_id_kel", "Kelurahan - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kel", $Method, NULL), $this);
+            $this->p_vat_type_dtl_id = & new clsControl(ccsListBox, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
+            $this->p_vat_type_dtl_id->DSType = dsTable;
+            $this->p_vat_type_dtl_id->DataSource = new clsDBConnSIKP();
+            $this->p_vat_type_dtl_id->ds = & $this->p_vat_type_dtl_id->DataSource;
+            $this->p_vat_type_dtl_id->DataSource->SQL = "SELECT p_vat_type_dtl_id, code, p_vat_type_id, vat_code \n" .
+"FROM p_vat_type_dtl {SQL_Where} {SQL_OrderBy}";
+            list($this->p_vat_type_dtl_id->BoundColumn, $this->p_vat_type_dtl_id->TextColumn, $this->p_vat_type_dtl_id->DBFormat) = array("p_vat_type_dtl_id", "vat_code", "");
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -251,7 +258,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     }
 //End Initialize Method
 
-//Validate Method @629-6EACA9A6
+//Validate Method @629-F39E2DF9
     function Validate()
     {
         global $CCSLocales;
@@ -362,6 +369,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->brand_p_region_id->Validate() && $Validation);
         $Validation = ($this->brand_p_region_id_kec->Validate() && $Validation);
         $Validation = ($this->brand_p_region_id_kel->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->created_by->Errors->Count() == 0);
         $Validation =  $Validation && ($this->updated_by->Errors->Count() == 0);
@@ -468,11 +476,12 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->brand_p_region_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_p_region_id_kec->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_p_region_id_kel->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @629-C78457C7
+//CheckErrors Method @629-7DF5786E
     function CheckErrors()
     {
         $errors = false;
@@ -583,6 +592,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->brand_p_region_id->Errors->Count());
         $errors = ($errors || $this->brand_p_region_id_kec->Errors->Count());
         $errors = ($errors || $this->brand_p_region_id_kel->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -781,7 +791,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @629-A55BF875
+//Show Method @629-14D4CE08
     function Show()
     {
         global $CCSUseAmp;
@@ -799,6 +809,7 @@ function GetPrimaryKey($keyName)
         $this->p_rest_service_type_id->Prepare();
         $this->p_entertaintment_type_id->Prepare();
         $this->p_parking_classification_id->Prepare();
+        $this->p_vat_type_dtl_id->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -894,6 +905,7 @@ function GetPrimaryKey($keyName)
                     $this->brand_p_region_id->SetValue($this->DataSource->brand_p_region_id->GetValue());
                     $this->brand_p_region_id_kec->SetValue($this->DataSource->brand_p_region_id_kec->GetValue());
                     $this->brand_p_region_id_kel->SetValue($this->DataSource->brand_p_region_id_kel->GetValue());
+                    $this->p_vat_type_dtl_id->SetValue($this->DataSource->p_vat_type_dtl_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -1011,6 +1023,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->brand_p_region_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_p_region_id_kec->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_p_region_id_kel->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1145,6 +1158,7 @@ function GetPrimaryKey($keyName)
         $this->brand_p_region_id->Show();
         $this->brand_p_region_id_kec->Show();
         $this->brand_p_region_id_kel->Show();
+        $this->p_vat_type_dtl_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1155,7 +1169,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_registrationFormDataSource Class @629-5993B12E
 
-//DataSource Variables @629-6BE8FB76
+//DataSource Variables @629-34E9A5D8
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1277,9 +1291,10 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $brand_p_region_id;
     var $brand_p_region_id_kec;
     var $brand_p_region_id_kel;
+    var $p_vat_type_dtl_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @629-5F6F7A8F
+//DataSourceClass_Initialize Event @629-73FF3C27
     function clst_vat_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1499,6 +1514,8 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->brand_p_region_id_kel = new clsField("brand_p_region_id_kel", ccsFloat, "");
         
+        $this->p_vat_type_dtl_id = new clsField("p_vat_type_dtl_id", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1529,7 +1546,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End Open Method
 
-//SetValues Method @629-6EDE8AD3
+//SetValues Method @629-F09826E7
     function SetValues()
     {
         $this->created_by->SetDBValue($this->f("created_by"));
@@ -1613,6 +1630,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->brand_p_region_id->SetDBValue(trim($this->f("brand_p_region_id")));
         $this->brand_p_region_id_kec->SetDBValue(trim($this->f("brand_p_region_id_kec")));
         $this->brand_p_region_id_kel->SetDBValue(trim($this->f("brand_p_region_id_kel")));
+        $this->p_vat_type_dtl_id->SetDBValue($this->f("p_vat_type_dtl_id"));
     }
 //End SetValues Method
 
