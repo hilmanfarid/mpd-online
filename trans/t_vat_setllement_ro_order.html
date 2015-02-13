@@ -282,7 +282,7 @@ $(document).ready(function()
                                                 Dim user
                                                 t_customer_order_id = Document.getElementByID("t_vat_setllementFormt_customer_order_id").Value
                                                 user = Document.getElementByID("t_vat_setllementFormuser").Value
-                        strURL = "http://172.16.20.2:81/mpd/report/cetak_registrasi.php?t_customer_order_id=" & t_customer_order_id & "&user=" & user
+                        strURL = "http://172.16.20.1/mpd/report/cetak_registrasi.php?t_customer_order_id=" & t_customer_order_id & "&user=" & user
                         Set objHTTP = CreateObject("MSXML2.XMLHTTP") 
                         Call objHTTP.Open("GET", strURL, FALSE) 
                         objHTTP.Send
