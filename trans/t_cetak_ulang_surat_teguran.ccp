@@ -38,7 +38,7 @@
 					<Events>
 						<Event name="OnChange" type="Client">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="567"/>
+								<Action actionName="Custom Code" actionCategory="General" id="567" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
@@ -51,7 +51,25 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<ListBox id="568" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox2" connection="ConnSIKP" _valueOfList="2" _nameOfList="Denda" dataSource="1;Drs. H. GUN GUN SUMARYANA;2;H. SONI BAKHTIAR, S.Sos, M.Si." fieldSource="i_flag_setoran" required="True">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="569"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
