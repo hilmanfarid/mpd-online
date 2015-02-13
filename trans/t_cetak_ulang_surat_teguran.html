@@ -52,9 +52,32 @@ function t_rep_lap_spjpSearchListBox1_OnChange()
 }
 //End Close t_rep_lap_spjpSearchListBox1_OnChange
 
-//bind_events @1-468F19BE
+//t_rep_lap_spjpSearchListBox2_OnChange @568-377444BF
+function t_rep_lap_spjpSearchListBox2_OnChange()
+{
+    var result = true;
+//End t_rep_lap_spjpSearchListBox2_OnChange
+
+//Custom Code @569-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if(this.value==1){
+                
+        }else{
+                
+        }
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_lap_spjpSearchListBox2_OnChange @568-BC33A33A
+    return result;
+}
+//End Close t_rep_lap_spjpSearchListBox2_OnChange
+
+//bind_events @1-B599DEC6
 function bind_events() {
     addEventHandler("t_rep_lap_spjpSearchListBox1", "change", t_rep_lap_spjpSearchListBox1_OnChange);
+    addEventHandler("t_rep_lap_spjpSearchListBox2", "change", t_rep_lap_spjpSearchListBox2_OnChange);
 }
 //End bind_events
 
@@ -63,7 +86,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -108,12 +131,23 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td class="search-field">Surat Teguran ke</td> 
                     <td class="search-field">
                       <select id="t_rep_lap_spjpSearchListBox1" class="ControlsRQ" name="{ListBox1_Name}">
- {ListBox1_Options} 
+                        {ListBox1_Options} 
                       </select>
  </td> 
                     <td>&nbsp;</td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="TAMPILKAN PDF" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Pejabat Penanda</td> 
+                    <td class="search-field">
+                      <select id="t_rep_lap_spjpSearchListBox2" class="ControlsRQ" name="{ListBox2_Name}">
+                        {ListBox2_Options} 
+                      </select>
+ </td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td> 
                   </tr>
  
                 </table>
@@ -162,12 +196,13 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
     {
         p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
-		sequence_no = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
-		if(p_year_period_id == "" || p_finance_period_id == "" || sequence_no == "" ) {
+        sequence_no = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
+		pejabat = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
+        if(p_year_period_id == "" || p_finance_period_id == "" || sequence_no == "" ) {
             alert("Semua Filter Harus Diisi");
         }else {
-        	window.open("../report/cetak_ulang_formulir_surat_teguran_pdf.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id+"&sequence_no=" + sequence_no, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-		}
+                window.open("../report/cetak_ulang_formulir_surat_teguran_pdf.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id+"&sequence_no=" + sequence_no +"&pejabat="+pejabat, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                }
     }
 </script>
 </body>
