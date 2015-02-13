@@ -9,6 +9,7 @@ include_once("../include/qrcode/generate-qr-file.php");
 $p_year_period_id = CCGetFromGet("p_year_period_id", "");
 $p_finance_period_id = CCGetFromGet("p_finance_period_id", "");
 $sequence_no = CCGetFromGet("sequence_no", "");
+$pejabat = CCGetFromGet("pejabat", 1);
 
 $dbConn = new clsDBConnSIKP();
 $query="select * from t_debt_letter where 
@@ -498,16 +499,23 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4-5, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "B", 0, 'C');
-		//$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
+		if (pejabat == 1){
+			$this->Cell($lbody4+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "B", 0, 'C');
+		}else{
+			$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
+			$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,168,$lbody4+48,20);
+		}
 		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4 - 2, $this->height, "NIP. 19700806 199101 1 001", "", 0, 'C'); //isi nip
-		//$this->Cell($lbody4 - 2, $this->height, "NIP. 19750625 199403 1 001", "", 0, 'C'); //isi nip
+		if (pejabat == 1){
+			$this->Cell($lbody4 - 2, $this->height, "NIP. 19700806 199101 1 001", "", 0, 'C'); //isi nip
+		}else{
+			$this->Cell($lbody4 - 2, $this->height, "NIP. 19750625 199403 1 001", "", 0, 'C'); //isi nip
+		}
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
