@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="12" connection="ConnSIKP" name="HistoryGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="Select c.npwd , 
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="12" connection="ConnSIKP" name="HistoryGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="Select c.npwd, 
 	   a.t_vat_setllement_id,	
 	   c.t_cust_account_id,
        c.company_name, 
@@ -16,8 +16,11 @@
        b.p_finance_period_id ,
        to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,
        to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,
-	   e.code as type_code
-from t_vat_setllement a ,
+	   e.code as type_code,
+		nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,
+		nvl(a.db_increasing_charge,0) as db_increasing_charge,
+		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) + a.total_penalty_amount as total_hrs_bayar
+from t_vat_setllement a,
      p_finance_period b,
      t_cust_account c,
      t_payment_receipt d,
@@ -151,7 +154,25 @@ order by c.npwd , b.start_date desc,
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Label id="147" fieldSourceType="DBColumn" dataType="Float" html="False" name="debt_vat_amt" fieldSource="debt_vat_amt" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGriddebt_vat_amt" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="148" fieldSourceType="DBColumn" dataType="Float" html="False" name="db_increasing_charge" fieldSource="db_increasing_charge" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGriddb_increasing_charge" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="149" fieldSourceType="DBColumn" dataType="Float" html="False" name="total_hrs_bayar" fieldSource="total_hrs_bayar" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridtotal_hrs_bayar" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
