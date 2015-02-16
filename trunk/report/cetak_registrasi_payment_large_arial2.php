@@ -24,7 +24,7 @@ LEFT JOIN t_payment_receipt AS b ON a.t_vat_setllement_id = b.t_vat_setllement_i
 LEFT JOIN p_vat_type_dtl AS c ON a.p_vat_type_dtl_id = c.p_vat_type_dtl_id
 LEFT JOIN p_vat_type AS d ON c.p_vat_type_id = d.p_vat_type_id
 LEFT JOIN t_cust_account AS e ON a.t_cust_account_id = e.t_cust_account_id
-WHERE b.receipt_no = '$param_arr'";
+WHERE a.payment_key = '$param_arr'";
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
