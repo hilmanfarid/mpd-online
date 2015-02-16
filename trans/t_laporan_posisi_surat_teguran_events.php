@@ -204,29 +204,71 @@ function GetCetakHTML($data,$param_arr) {
 		$output.='</tr>';
     	
 		$temp = $data[0];
-		$surat_teguran_1 =0;
-		$surat_teguran_2 =0;
-		$surat_teguran_3 =0;
+		$debt_amount =0;
+		
+		$pf = CCGetFromGet('p_finance_period_id');
+		$dbConn	= new clsDBConnSIKP();
+		$query="select f_cek_penerbitan_surat_teguran from 
+		f_cek_penerbitan_surat_teguran(".$pf.",1);";
+		$dbConn->query($query);
+		$dbConn->next_record();
+		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
+		if ($result==1){
+			$surat_teguran_1_desc="Sudah Bayar";
+		}else{
+			$surat_teguran_1_desc="Belum Terbit";
+		}
+		$query="select f_cek_penerbitan_surat_teguran from 
+		f_cek_penerbitan_surat_teguran(".$pf.",2);";
+		$dbConn->query($query);
+		$dbConn->next_record();
+		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
+		if ($result==1){
+			$surat_teguran_2_desc="Sudah Bayar";
+		}else{
+			$surat_teguran_2_desc="Belum Terbit";
+		}
+		$query="select f_cek_penerbitan_surat_teguran from 
+		f_cek_penerbitan_surat_teguran(".$pf.",3);";
+		$dbConn->query($query);
+		$dbConn->next_record();
+		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
+		if ($result==1){
+			$surat_teguran_3_desc="Sudah Bayar";
+		}else{
+			$surat_teguran_3_desc="Belum Terbit";
+		}
+
+
+		$dbConn->close();
+
+		$surat_teguran_1 =$surat_teguran_1_desc;
+		$surat_teguran_2 =$surat_teguran_2_desc;
+		$surat_teguran_3 =$surat_teguran_3_desc;
 		if ($temp['surat_teguran_1']=='1'){
-			$surat_teguran_1 = 1;
+			$surat_teguran_1 = 'Terbit';
 		}
 		if ($temp['surat_teguran_2']=='1'){
-			$surat_teguran_2 = 1;
+			$surat_teguran_2 = 'Terbit';
 		}
 		if ($temp['surat_teguran_3']=='1'){
-			$surat_teguran_3 = 1;
+			$surat_teguran_3 = 'Terbit';
 		}
 		$j=0;
 		for ($i = 1; $i < count($data); $i++) {
 			if($temp['npwpd']==$data[$i]['npwpd']){
 				if ($data[$i]['surat_teguran_1']=='1'){
-					$surat_teguran_1 = 1;
+					$surat_teguran_1 = 'Terbit';
+					$debt_amount =0;
 				}
 				if ($data[$i]['surat_teguran_2']=='1'){
-					$surat_teguran_2 = 1;
+					$surat_teguran_2 = 'Terbit';
+					$debt_amount =0;
 				}
 				if ($data[$i]['surat_teguran_3']=='1'){
-					$surat_teguran_3 = 1;
+					$debt_amount =$data[$i]['debt_amount'];
+					$surat_teguran_3 = 'Terbit ('.number_format($debt_amount, 2, ',', '.').')';
+					$debt_amount =0;
 				}
 			}else{
 				$output .= '<tr>';
@@ -238,29 +280,35 @@ function GetCetakHTML($data,$param_arr) {
 				$output .= '<td align="center">'.$surat_teguran_3.'</td>'; 
 				$output .= '</tr>';
 				$temp = $data[$i];
-				$surat_teguran_1 =0;
-				$surat_teguran_2 =0;
-				$surat_teguran_3 =0;
+				$surat_teguran_1 =$surat_teguran_1_desc;
+				$surat_teguran_2 =$surat_teguran_2_desc;
+				$surat_teguran_3 =$surat_teguran_3_desc;
 				if ($temp['surat_teguran_1']=='1'){
-					$surat_teguran_1 = 1;
+					$surat_teguran_1 = 'Terbit';
+					$debt_amount =0;
 				}
 				if ($temp['surat_teguran_2']=='1'){
-					$surat_teguran_2 = 1;
+					$surat_teguran_2 = 'Terbit';
+					$debt_amount =0;
 				}
 				if ($temp['surat_teguran_3']=='1'){
-					$surat_teguran_3 = 1;
+					$debt_amount =$data[$i]['debt_amount'];
+					$surat_teguran_3 = 'Terbit ('.number_format($debt_amount, 2, ',', '.').')';	
+					$debt_amount =0;				
 				}
 				$j=$j+1;
 			}
 		}
-		$output .= '<tr>';
-		$output .= '<td align="center">'.($j+1).'</td>';
-		$output .= '<td align="left">'.$temp['wp_name'].'</td>';
-		$output .= '<td align="center">'.$temp['npwpd'].'</td>';
-		$output .= '<td align="center">'.$surat_teguran_1.'</td>';
-		$output .= '<td align="center">'.$surat_teguran_2.'</td>';
-		$output .= '<td align="center">'.$surat_teguran_3.'</td>'; 
-		$output .= '</tr>';
+		if ($j > 0){
+			$output .= '<tr>';
+			$output .= '<td align="center">'.($j+1).'</td>';
+			$output .= '<td align="left">'.$temp['wp_name'].'</td>';
+			$output .= '<td align="center">'.$temp['npwpd'].'</td>';
+			$output .= '<td align="center">'.$surat_teguran_1.'</td>';
+			$output .= '<td align="center">'.$surat_teguran_2.'</td>';
+			$output .= '<td align="center">'.$surat_teguran_3.'</td>'; 
+			$output .= '</tr>';
+		}
 		$output.='</table>';
 	
 	return $output;
