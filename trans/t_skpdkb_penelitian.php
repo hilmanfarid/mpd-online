@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-86A9EA52
+//Class_Initialize Event @2-6486B7D1
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -75,14 +75,16 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsFloat, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
-            $this->vat_code->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->Button2 = & new clsButton("Button2", $Method, $this);
+            $this->status = & new clsControl(ccsListBox, "status", "status", ccsText, "", CCGetRequestParam("status", $Method, NULL), $this);
+            $this->status->DSType = dsListOfValues;
+            $this->status->Values = array(array("1", "SUDAH BAYAR"), array("2", "BELUM BAYAR"));
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-1F03B81F
+//Validate Method @2-8E1E68C6
     function Validate()
     {
         global $CCSLocales;
@@ -93,17 +95,19 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
         $Validation = ($this->cetak_laporan->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->status->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->status->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-DD9FFD03
+//CheckErrors Method @2-C9045346
     function CheckErrors()
     {
         $errors = false;
@@ -112,6 +116,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
         $errors = ($errors || $this->cetak_laporan->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->status->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -170,7 +175,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-978CCAFB
+//Show Method @2-1A6099E5
     function Show()
     {
         global $CCSUseAmp;
@@ -184,6 +189,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->status->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -199,6 +205,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->status->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -223,6 +230,7 @@ function GetPrimaryKey($keyName)
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
         $this->Button2->Show();
+        $this->status->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -264,7 +272,9 @@ include_once("./t_skpdkb_penelitian_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-E44352ED
+//Initialize Objects @1-9E07BFC4
+$DBConnSIKP = new clsDBConnSIKP();
+$MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
 $MainPage->Attributes = & $Attributes;
 
@@ -300,10 +310,11 @@ $Attributes->Show();
 $t_laporan_piutang_pajak->Operation();
 //End Execute Components
 
-//Go to destination page @1-03A7ACFB
+//Go to destination page @1-1FE94886
 if($Redirect)
 {
     $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
+    $DBConnSIKP->close();
     header("Location: " . $Redirect);
     unset($t_laporan_piutang_pajak);
     unset($Tpl);
@@ -321,8 +332,9 @@ $CCSEventResult = CCGetEvent($CCSEvents, "BeforeOutput", $MainPage);
 if ($CCSEventResult) echo $main_block;
 //End Show Page
 
-//Unload Page @1-21C95434
+//Unload Page @1-7272FD6B
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeUnload", $MainPage);
+$DBConnSIKP->close();
 unset($t_laporan_piutang_pajak);
 unset($Tpl);
 //End Unload Page
