@@ -25,8 +25,18 @@ function Page_BeforeShow(& $sender)
 	global $Label1;
 // -------------------------
     // Write your own code here.
-		
-	$Label1->SetText(view_html());
+	$tahun = CCGetFromGet('year_code');	
+	$status = CCGetFromGet('status');	
+	
+	$param_arr = array();
+	$param_arr['tahun'] = $tahun;
+	$param_arr['status'] = $status;
+
+	
+    if(!empty($param_arr['tahun'])) {
+		$Label1->SetText(view_html($param_arr));
+	}
+	
 	
 // -------------------------
 
@@ -36,7 +46,7 @@ function Page_BeforeShow(& $sender)
 }
 //End Close Page_BeforeShow
 
-function view_html() {
+function view_html($param_arr) {
 	
 	
 	$output = '';	
@@ -67,14 +77,31 @@ function view_html() {
 
 
 	$dbConn = new clsDBConnSIKP();
+	$kriteriaStatus = '';
+	if(!empty($param_arr['status'])) {
+					
+		if($param_arr['status'] == 1) {
+			$kriteriaStatus = ' AND x.receipt_no is not null';
+		}
+		
+		if($param_arr['status'] == 2) {
+			$kriteriaStatus = ' AND x.receipt_no is null';
+		}
+		
+	}
 	
-	$query="select receipt_no,wp_name,a.npwd,z.code,a.total_vat_amount from t_vat_setllement a
+	$kriteriaTahunTap = '';
+	if(!empty($param_arr['tahun'])) {
+		$kriteriaTahunTap = ' AND extract(year from a.settlement_date) = '.$param_arr['tahun'];
+	}
+
+	$query="select a.settlement_date, x.receipt_no,wp_name,a.npwd,z.code,a.total_vat_amount from t_vat_setllement a
 		left join t_payment_receipt x on a.t_vat_setllement_id=x.t_vat_setllement_id 
 		left join t_cust_account y on y.t_cust_account_id = a.t_cust_account_id
 		left JOIN p_finance_period z on z.p_finance_period_id = a.p_finance_period_id
 		WHERE
 		p_settlement_type_id = 2 
-		and a.p_vat_type_dtl_id != 14
+		and a.p_vat_type_dtl_id != 14".$kriteriaStatus.$kriteriaTahunTap."
 		ORDER BY wp_name, z.start_date
 		;";
 	$dbConn->query($query);
