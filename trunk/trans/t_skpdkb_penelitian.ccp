@@ -26,7 +26,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_laporan_piutang_pajakvat_code" required="True" caption="Ayat Pajak">
+				<TextBox id="18" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_laporan_piutang_pajakvat_code" required="False" caption="Ayat Pajak">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -44,7 +44,19 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<ListBox id="23" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="status" wizardEmptyCaption="Select Value" PathID="t_laporan_piutang_pajakstatus" connection="ConnSIKP" _valueOfList="2" _nameOfList="BELUM BAYAR" dataSource="1;SUDAH BAYAR;2;BELUM BAYAR">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<Attributes/>
+<Features/>
+</ListBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
