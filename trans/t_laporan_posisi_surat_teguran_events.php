@@ -68,9 +68,9 @@ function Page_BeforeShow(& $sender)
 		$t_rep_sisa_piutangSearch->vat_code->SetValue($param_arr['jenis_pajak']);
 
 		if(!empty($param_arr['p_finance_period_id']) and !empty($param_arr['p_vat_type_id'])) {
-			
+		$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 			$dbConn	= new clsDBConnSIKP();
-			$query="select * from f_posisi_surat_teguran(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].")
+			$query="select * from f_posisi_surat_teguran(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."')
 				ORDER BY wp_name, surat_teguran_3,surat_teguran_2,surat_teguran_1";
 			//echo $query;exit;
 			$data = array();
@@ -190,7 +190,7 @@ function GetCetakHTML($data,$param_arr) {
 	
 	$output .= '<h2>JENIS PAJAK : '.$param_arr['jenis_pajak'].' </h2>';
 	$output .= '<h2>PERIODE PAJAK : '.$param_arr['pajak_periode'].'</h2>';
-
+	$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
                 <tr >';
 
@@ -201,6 +201,8 @@ function GetCetakHTML($data,$param_arr) {
 		$output.='<th align="center" >SURAT TEGURAN 1</th>';
 		$output.='<th align="center" >SURAT TEGURAN 2</th>';
 		$output.='<th align="center" >SURAT TEGURAN 3</th>';
+		$output.='<th align="center" >PER TANGGAL '.$tanggal.'</th>';
+		$output.='<th align="center" >SETELAH TANGGAL '.$tanggal.'</th>';
 		$output.='</tr>';
     	
 		$temp = $data[0];
@@ -255,6 +257,8 @@ function GetCetakHTML($data,$param_arr) {
 			$surat_teguran_3 = 'Terbit('.$temp['tgl_teg_3'].')';
 		}
 		$j=0;
+		$sebelum = 'Belum Bayar';
+		$sesudah = 'Belum Bayar';
 		for ($i = 1; $i < count($data); $i++) {
 			if($temp['npwpd']==$data[$i]['npwpd']){
 				if ($data[$i]['surat_teguran_1']=='1'){
@@ -278,6 +282,15 @@ function GetCetakHTML($data,$param_arr) {
 				$output .= '<td align="center">'.$surat_teguran_1.'</td>';
 				$output .= '<td align="center">'.$surat_teguran_2.'</td>';
 				$output .= '<td align="center">'.$surat_teguran_3.'</td>'; 
+				if (date($data[$i-1]['tgl_bayar']) < date($tanggal)){
+					$sebelum = 'Belum Bayar';
+					$sesudah = $data[$i-1]['tgl_bayar'];
+				}else{
+					$sebelum = $data[$i-1]['tgl_bayar'];
+					$sesudah = $data[$i-1]['tgl_bayar'];
+				}
+				$output .= '<td align="center">'.$data[$i-1]['tgl_bayar'].'</td>'; 
+				$output .= '<td align="center">'.$data[$i-1]['tgl_bayar2'].'</td>'; 
 				$output .= '</tr>';
 				$temp = $data[$i];
 				$surat_teguran_1 =$surat_teguran_1_desc;
@@ -300,6 +313,13 @@ function GetCetakHTML($data,$param_arr) {
 			}
 		}
 		if ($j > 0){
+			if (date($data[$i-1]['tgl_bayar']) > date($tanggal)){
+				$sebelum = 'Belum Bayar';
+				$sesudah = $data[$i-1]['tgl_bayar'];
+			}else{
+				$sebelum = $data[$i-1]['tgl_bayar'];
+				$sesudah = $data[$i-1]['tgl_bayar'];
+			}
 			$output .= '<tr>';
 			$output .= '<td align="center">'.($j+1).'</td>';
 			$output .= '<td align="left">'.$temp['wp_name'].'</td>';
@@ -307,6 +327,8 @@ function GetCetakHTML($data,$param_arr) {
 			$output .= '<td align="center">'.$surat_teguran_1.'</td>';
 			$output .= '<td align="center">'.$surat_teguran_2.'</td>';
 			$output .= '<td align="center">'.$surat_teguran_3.'</td>'; 
+			$output .= '<td align="center">'.$data[$i-1]['tgl_bayar'].'</td>'; 
+			$output .= '<td align="center">'.$data[$i-1]['tgl_bayar2'].'</td>'; 
 			$output .= '</tr>';
 		}
 		$output.='</table>';
