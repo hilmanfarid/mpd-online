@@ -45,7 +45,7 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-CF3E43F4
+//Class_Initialize Event @3-3CA1DAB8
     function clsRecordt_rep_sisa_piutangSearch($RelativePath, & $Parent)
     {
 
@@ -78,11 +78,14 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->date_end_laporan = & new clsControl(ccsTextBox, "date_end_laporan", "date_end_laporan", ccsText, "", CCGetRequestParam("date_end_laporan", $Method, NULL), $this);
+            $this->date_end_laporan->Required = true;
+            $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_rep_sisa_piutangSearch", "date_end_laporan", $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-20DC6238
+//Validate Method @3-BAD453F6
     function Validate()
     {
         global $CCSLocales;
@@ -94,6 +97,7 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
         $Validation = ($this->year_code->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->date_end_laporan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
@@ -101,11 +105,12 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-40C59293
+//CheckErrors Method @3-7E745B31
     function CheckErrors()
     {
         $errors = false;
@@ -115,6 +120,8 @@ class clsRecordt_rep_sisa_piutangSearch { //t_rep_sisa_piutangSearch Class @3-7D
         $errors = ($errors || $this->year_code->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->date_end_laporan->Errors->Count());
+        $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -173,7 +180,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-3B35BE5C
+//Show Method @3-EDCCCAFE
     function Show()
     {
         global $CCSUseAmp;
@@ -203,6 +210,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -228,6 +237,8 @@ function GetPrimaryKey($keyName)
         $this->p_vat_type_id->Show();
         $this->Button_DoSearch->Show();
         $this->Button_DoSearch1->Show();
+        $this->date_end_laporan->Show();
+        $this->DatePicker_end_start_laporan1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
