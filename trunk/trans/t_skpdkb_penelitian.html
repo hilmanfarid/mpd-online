@@ -68,22 +68,22 @@ padding-right:4px;
 
 </style>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN SKPDKB PENELITIAN
+        LAPORAN SKPDKB PENELITIAN 
       </div>
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
         <!-- BEGIN Record t_laporan_piutang_pajak -->
-        <form style="DISPLAY: none" id="t_laporan_piutang_pajak" method="post" name="{HTMLFormName}" action="{Action}">
+        <form id="t_laporan_piutang_pajak" method="get" name="{HTMLFormName}" action="{Action}">
           <table class="search-field">
             <tr>
               <td valign="top">
@@ -94,21 +94,31 @@ padding-right:4px;
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Tahun 
-                      <td class="search-field"><input id="t_laporan_piutang_pajakyear_code" class="ControlsRQ" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajakp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_laporan_piutang_pajakcetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></td>
+                    <td class="search-field">&nbsp;Tahun Ketetapan 
+                      <td class="search-field"><input id="t_laporan_piutang_pajakyear_code" class="ControlsRQ" readonly maxlength="32" size="32" value="{year_code}" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajakp_year_period_id" type="hidden" value="{p_year_period_id}" name="{p_year_period_id_Name}"><input id="t_laporan_piutang_pajakcetak_laporan" type="hidden" value="T" name="{cetak_laporan_Name}"></td>
                     </tr>
  
                     <tr>
+                      <td align="left">&nbsp;Status</td> 
+                      <td>
+                        <select id="t_laporan_piutang_pajakstatus" style="WIDTH: 172px" name="{status_Name}">
+                          <option selected value="">-- Semua --</option>
+                          {status_Options}
+                        </select>
+ </td>
+                    </tr>
+ 
+                    <tr style="DISPLAY: none">
                       <td align="left">Jenis&nbsp;Pajak&nbsp;</td> 
                       <td>
-                        <p>&nbsp;<input id="t_laporan_piutang_pajakvat_code" class="ControlsRQ" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}"><img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajakp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></p>
+                        <p>&nbsp;<input id="t_laporan_piutang_pajakvat_code" class="ControlsRQ" readonly maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}"><img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajakp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}"></p>
                       </td>
                     </tr>
  
                     <tr>
                       <td colspan="2" align="right">&nbsp; 
-                        <!-- BEGIN Button Button2 --><input id="t_laporan_piutang_pajakButton2" class="btn_tambah" onclick="printLaporanHTML()" value="Tampilkan" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->
-                        <!-- BEGIN Button Button1 --><input id="t_laporan_piutang_pajakButton1" class="btn_tambah" onclick="printLaporan()" value="Download" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 --></td>
+                        <!-- BEGIN Button Button2 --><input onclick="printLaporanHTML()" id="t_laporan_piutang_pajakButton2" class="btn_tambah" alt="Button1" type="submit" value="Tampilkan" name="{Button_Name}"><!-- END Button Button2 -->
+                        <!-- BEGIN Button Button1 --><input onclick="printLaporan()" id="t_laporan_piutang_pajakButton1" class="btn_tambah" style="DISPLAY: none" alt="Button1" type="button" value="Download" name="{Button_Name}"><!-- END Button Button1 --></td>
                     </tr>
                   </table>
                 </td>
