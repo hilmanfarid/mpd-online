@@ -262,16 +262,16 @@ function GetCetakHTML($data,$param_arr) {
 		for ($i = 1; $i < count($data); $i++) {
 			if($temp['npwpd']==$data[$i]['npwpd']){
 				if ($data[$i]['surat_teguran_1']=='1'){
-					$surat_teguran_1 = 'Terbit('.$data[$i]['tgl_teg_1'].')';
+					$surat_teguran_1 = 'Terbit ('.$data[$i]['tgl_teg_1'].')';
 					$debt_amount =0;
 				}
 				if ($data[$i]['surat_teguran_2']=='1'){
-					$surat_teguran_2 = 'Terbit('.$data[$i]['tgl_teg_2'].')';
+					$surat_teguran_2 = 'Terbit ('.$data[$i]['tgl_teg_2'].')';
 					$debt_amount =0;
 				}
 				if ($data[$i]['surat_teguran_3']=='1'){
 					$debt_amount =$data[$i]['debt_amount'];
-					$surat_teguran_3 = 'Terbit (Rp. '.number_format($debt_amount, 2, ',', '.').')('.$data[$i]['tgl_teg_3'].')';
+					$surat_teguran_3 = 'Terbit ('.$data[$i]['tgl_teg_3'].') (Rp. '.number_format($debt_amount, 2, ',', '.').')';
 					$debt_amount =0;
 				}
 			}else{
@@ -297,16 +297,16 @@ function GetCetakHTML($data,$param_arr) {
 				$surat_teguran_2 =$surat_teguran_2_desc;
 				$surat_teguran_3 =$surat_teguran_3_desc;
 				if ($temp['surat_teguran_1']=='1'){
-					$surat_teguran_1 = 'Terbit('.$data[$i]['tgl_teg_1'].')';
+					$surat_teguran_1 = 'Terbit ('.$data[$i]['tgl_teg_1'].')';
 					$debt_amount =0;
 				}
 				if ($temp['surat_teguran_2']=='1'){
-					$surat_teguran_2 = 'Terbit('.$data[$i]['tgl_teg_2'].')';
+					$surat_teguran_2 = 'Terbit ('.$data[$i]['tgl_teg_2'].')';
 					$debt_amount =0;
 				}
 				if ($temp['surat_teguran_3']=='1'){
 					$debt_amount =$data[$i]['debt_amount'];
-					$surat_teguran_3 = 'Terbit (Rp. '.number_format($debt_amount, 2, ',', '.').')('.$data[$i]['tgl_teg_3'].')';	
+					$surat_teguran_3 = 'Terbit ('.$data[$i]['tgl_teg_3'].') (Rp. '.number_format($debt_amount, 2, ',', '.').')';	
 					$debt_amount =0;				
 				}
 				$j=$j+1;
