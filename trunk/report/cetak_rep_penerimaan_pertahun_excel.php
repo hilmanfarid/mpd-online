@@ -187,7 +187,11 @@ echo '<table style="font-style:italic;">
 </tr>
 <tr>
     <td>UNKNOWN</td>
-    <td colspan="2">: -</td>
+    <td colspan="2">: Belum ada ketetapan apapun pada bulan yang tercantung sampai dengan posisi tgl report</td>
+</tr>
+<tr>
+    <td>OTHERS</td>
+    <td colspan="2">: Ada ketetapan lainnya yang sampai posisi tgl report belum bayar</td>
 </tr>
 </table>';
 
