@@ -157,6 +157,47 @@ echo '<tr>
 		<td><b>'.number_format($grand_total, 0, ',', '.').'</b></td>
 	</tr>';
 echo '</table>';
+
+echo '<br>';
+echo '<i>Keterangan:</i>';
+echo '<table>
+<tr>
+    <td>UNREGISTER </td>
+    <td>:</td>
+    <td>Belum terdaftar pada saat posisi bulan yang tercantum</td>
+</tr>
+<tr>
+    <td>INSIDENTIL </td>
+    <td>:</td>
+    <td>WP yang transaksinya insidentil (non reguler)</td>
+</tr>
+<tr>
+    <td>NIHIL1  </td>
+    <td>:</td>
+    <td>WP melaporkan NIHIL dan sudah register(flag bayar) pada saat posisi tgl report</td>
+</tr>
+<tr>
+    <td>NIHIL2  </td>
+    <td>:</td>
+    <td>WP melaporkan NIHIL tapi belum register(flag bayar) pada saat posisi tgl report</td>
+</tr>
+<tr>
+    <td>SKPDKB</td>
+    <td>:</td>
+    <td>WP belum bayar sampai dengan posisi report dan ditetapkan secara jabatan</td>
+</tr>
+<tr>
+    <td>NEVERTRANS</td>
+    <td>:</td>
+    <td>WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report</td>
+</tr>
+<tr>
+    <td>UNKNOWN</td>
+    <td>:</td>
+    <td>-</td>
+</tr>
+</table>';
+
 exit;
 
 
