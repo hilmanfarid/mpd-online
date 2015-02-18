@@ -100,7 +100,7 @@ function Page_BeforeShow(& $sender)
 		$param_arr['tahun_periode'] = CCGetFromGet('tahun_periode');
 		$param_arr['pajak_periode'] = CCGetFromGet('pajak_periode');
 		$param_arr['jenis_pajak'] = CCGetFromGet('jenis_pajak');
-		$param_arr['status'] = CCGetFromGet('status');
+		$param_arr['status'] = CCGetFromGet('status',1);
 
 		$t_rep_sisa_piutangSearch->p_year_period_id->SetValue($param_arr['p_year_period_id']);
 		$t_rep_sisa_piutangSearch->p_finance_period_id->SetValue($param_arr['p_finance_period_id']);
@@ -109,57 +109,21 @@ function Page_BeforeShow(& $sender)
 		$t_rep_sisa_piutangSearch->year_code->SetValue($param_arr['tahun_periode']);
 		$t_rep_sisa_piutangSearch->code->SetValue($param_arr['pajak_periode']);
 		$t_rep_sisa_piutangSearch->vat_code->SetValue($param_arr['jenis_pajak']);
-		
-		$t_rep_sisa_piutangSearch->ListBox1->SetValue($param_arr['status']);
 
 		if(!empty($param_arr['p_finance_period_id']) and !empty($param_arr['p_vat_type_id'])) {
-			
+		$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 			$dbConn	= new clsDBConnSIKP();
-			
-			if(empty($param_arr['status'])) { /* GLOBAL */
-				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)";
-			}
-			else if($param_arr['status'] == '1') { /* BELUM BAYAR */
-				$query="SELECT * FROM f_rep_status_piutang2 (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
-						WHERE ((f_teg1_amount is null) OR (f_teg1_amount < 1)) AND
-							  ((f_teg2_amount is null) OR (f_teg2_amount < 1)) AND
-							  ((f_teg3_amount is null) OR (f_teg3_amount < 1))
-							  AND NOT textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
-							  ";
-			
-			}else if($param_arr['status'] == '2') { /* SUDAH BAYAR */
-				$query="SELECT *, (f_amount IS NULL AND f_teg1_amount IS NULL AND f_teg2_amount IS NULL AND f_teg3_amount IS NULL AND f_action_sts > 0) AS bayar_setelah
-						FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
-						WHERE (f_teg1_amount > 0) OR 
-							  (f_teg2_amount > 0) OR 
-							  (f_teg3_amount > 0) 
-							  OR textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
-							  ";
-			}
-			
+			$query="select * from f_posisi_surat_teguran(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."')
+				ORDER BY wp_name, surat_teguran_3,surat_teguran_2,surat_teguran_1";
+			//echo $query;exit;
 			$data = array();
 			$dbConn->query($query);
 			while ($dbConn->next_record()) {
 				$data[] = $dbConn->Record;
 			}
 			$dbConn->close();
-			
-			// ----- AMBIL JATUH TEMPO ------
-			$dbConn2	= new clsDBConnSIKP();
-			$tgl_jatuh_tempo = '';
-			$qJatuhTempo = "SELECT to_char((trunc(start_date) + due_in_day-1),'yyyy-mm-dd') AS jatuh_tempo
-							FROM p_finance_period WHERE to_char(trunc(start_date),'yyyy-mm-dd') IN 
-							( 	SELECT to_char((trunc(end_date) + 1), 'yyyy-mm-dd') 
-								FROM p_finance_period 
-								WHERE p_finance_period_id = ".$param_arr['p_finance_period_id'].")";
-			$dbConn2->query($qJatuhTempo);
-			while ($dbConn2->next_record()) {
-				$tgl_jatuh_tempo = $dbConn2->f('jatuh_tempo');
-			}
 
-			$dbConn2->close();
-
-			CetakExcel($data, $param_arr['pajak_periode'], $param_arr['jenis_pajak'], $tgl_jatuh_tempo, $param_arr['status']);
+			CetakExcel($data, $param_arr);
 
 		 }else {
 			/* Tampilkan Alert */
@@ -322,81 +286,146 @@ function GetCetakHTML($data,$param_arr) {
 	return $output;
 }
 
-function CetakExcel($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $status) {
+function CetakExcel($data, $param_arr) {
 	
-	startExcel("laporan_status_teguran");
+	startExcel("laporan_posisi_status_teguran");
 	
 	$output = '';
 
-	$output .= '<h2>LAPORAN SURAT TEGURAN<h2/>';
+	$output .= '<h2>LAPORAN POSISI SURAT TEGURAN<h2/>';
 
-	$output .= '<h3>JENIS PAJAK : '.$jenis_pajak.'<br/>';
-	$output .= 'PERIODE PAJAK : '.$pajak_periode.'<br/>';
-	$output .= 'JATUH TEMPO : '.strtoupper(dateToString($tgl_jatuh_tempo)).'</h3>';
+
+
+	$output .= '<h3>JENIS PAJAK : '.$param_arr['jenis_pajak'].'<br/>';
+	$output .= 'PERIODE PAJAK : '.$param_arr['pajak_periode'].'<br/>';
+	//$output .= 'JATUH TEMPO : '.strtoupper(dateToString($tgl_jatuh_tempo)).'</h3>';
 
 	$output .='<table border="1" widht="100%">
                 <tr>';
-
-
-		$output.='<th align="center" rowspan="2">NO</th>';
-		$output.='<th align="center" rowspan="2">WAJIB PAJAK</th>';
-		$output.='<th align="center" rowspan="2">ALAMAT</th>';
-		$output.='<th align="center" rowspan="2">NPWPD</th>';
-		$output.='<th align="center" rowspan="2">SPTPD</th>';
-		$output.='<th align="center" rowspan="2">STPD</th>';
-		$output.='<th align="center" colspan="2">TEGURAN I <br/> '.$data[0]['f_teg1_sts'].'</th>';
-		$output.='<th align="center" colspan="2">TEGURAN II <br/> '.$data[0]['f_teg2_sts'].'</th>';
-		$output.='<th align="center" colspan="2">TEGURAN III <br/> '.$data[0]['f_teg3_sts'].'</th>';
-		$output.='<th align="center" rowspan="2">AKSI <br/>'.$data[0]['f_action_date'].'</th>';
-		if($status == '2') /* SUDAH BAYAR */ {
-			$output.='<th align="center" rowspan="2">PEMBAYARAN <br/> SETELAH <br/>'.$data[0]['f_action_date'].'</th>';
+		$output.='<th align="center" >NO</th>';
+		$output.='<th align="center" >WAJIB PAJAK</th>';
+		$output.='<th align="center" >NPWPD</th>';
+		$output.='<th align="center" >SURAT TEGURAN 1</th>';
+		$output.='<th align="center" >SURAT TEGURAN 2</th>';
+		$output.='<th align="center" >SURAT TEGURAN 3</th>';
+		$output.='<th align="center" >PER TANGGAL '.$tanggal.'</th>';
+		$output.='<th align="center" >SETELAH TANGGAL '.$tanggal.'</th>';
+		$output.='</tr>';
+    	
+		$temp = $data[0];
+		$debt_amount =0;
+		
+		$pf = CCGetFromGet('p_finance_period_id');
+		$dbConn	= new clsDBConnSIKP();
+		$query="select f_cek_penerbitan_surat_teguran from 
+		f_cek_penerbitan_surat_teguran(".$pf.",1);";
+		$dbConn->query($query);
+		$dbConn->next_record();
+		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
+		if ($result==1){
+			$surat_teguran_1_desc="Tidak Terbit";
+		}else{
+			$surat_teguran_1_desc="Belum Terbit";
 		}
-		$output.='</tr>';
-    	
-		$output.='<tr >';
-		$output.='<th align="center">SPTPD</th>';
-		$output.='<th align="center">STPD</th>';
-		$output.='<th align="center">SPTPD</th>';
-		$output.='<th align="center">STPD</th>';
-		$output.='<th align="center">SPTPD</th>';
-		$output.='<th align="center">STPD</th>';
-		$output.='</tr>';
-    	
-		for ($i = 0; $i < count($data); $i++) {
+		$query="select f_cek_penerbitan_surat_teguran from 
+		f_cek_penerbitan_surat_teguran(".$pf.",2);";
+		$dbConn->query($query);
+		$dbConn->next_record();
+		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
+		if ($result==1){
+			$surat_teguran_2_desc="Tidak Terbit";
+		}else{
+			$surat_teguran_2_desc="Belum Terbit";
+		}
+		$query="select f_cek_penerbitan_surat_teguran from 
+		f_cek_penerbitan_surat_teguran(".$pf.",3);";
+		$dbConn->query($query);
+		$dbConn->next_record();
+		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
+		if ($result==1){
+			$surat_teguran_3_desc="Tidak Terbit";
+		}else{
+			$surat_teguran_3_desc="Belum Terbit";
+		}
 
-			$output .= '<tr>';
-			$output .= '<td align="center">'.($i+1).'</td>';
-			$output .= '<td align="left">'.$data[$i]['nama'].'</td>';
-			$output .= '<td align="left">'.$data[$i]['alamat'].'</td>';
-			$output .= '<td align="center">'.$data[$i]['npwpd'].'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_amount'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_penalty'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_teg1_amount'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_teg1_penalty'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_teg2_amount'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_teg2_penalty'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_amount'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($data[$i]['f_teg3_penalty'],0,",",".").'</td>';
-			
-			if($status == '') {
-				$kolom_aksi = is_numeric($data[$i]['f_action_sts']) ? number_format($data[$i]['f_action_sts'],0,",",".") : $data[$i]['f_action_sts'];
-				$output .= '<td align="right">'.$kolom_aksi.'</td>';
-			}else if($status == '1') /* BELUM BAYAR */ {
-				$output .= '<td align="right">'.$data[$i]['f_action_sts'].'</td>';
-			}else if($status == '2') /* SUDAH BAYAR */ {
-				if($data[$i]['bayar_setelah'] == 't') {
-					$output .= '<td align="right"> </td>';
-					$output .= '<td align="right">'. number_format($data[$i]['f_action_sts'],0,",",".").'</td>';
-				}else {
-					$output .= '<td align="right"></td>';
-					$output .= '<td align="right"></td>';
-				}				
+
+		$dbConn->close();
+
+		$surat_teguran_1 =$surat_teguran_1_desc;
+		$surat_teguran_2 =$surat_teguran_2_desc;
+		$surat_teguran_3 =$surat_teguran_3_desc;
+		if ($temp['surat_teguran_1']=='1'){
+			$surat_teguran_1 = 'Terbit('.$temp['tgl_teg_1'].')';
+		}
+		if ($temp['surat_teguran_2']=='1'){
+			$surat_teguran_2 = 'Terbit('.$temp['tgl_teg_2'].')';
+		}
+		if ($temp['surat_teguran_3']=='1'){
+			$surat_teguran_3 = 'Terbit('.$temp['tgl_teg_3'].')';
+		}
+		$j=0;
+		$sebelum = 'Belum Bayar';
+		$sesudah = 'Belum Bayar';
+		for ($i = 1; $i < count($data); $i++) {
+			if($temp['npwpd']==$data[$i]['npwpd']){
+				if ($data[$i]['surat_teguran_1']=='1'){
+					$surat_teguran_1 = 'Terbit ('.$data[$i]['tgl_teg_1'].')';
+					$debt_amount =0;
+				}
+				if ($data[$i]['surat_teguran_2']=='1'){
+					$surat_teguran_2 = 'Terbit ('.$data[$i]['tgl_teg_2'].')';
+					$debt_amount =0;
+				}
+				if ($data[$i]['surat_teguran_3']=='1'){
+					$debt_amount =$data[$i]['debt_amount'];
+					$surat_teguran_3 = 'Terbit ('.$data[$i]['tgl_teg_3'].') (Rp. '.number_format($debt_amount, 2, ',', '.').')';
+					$debt_amount =0;
+				}
+			}else{
+				$output .= '<tr>';
+				$output .= '<td align="center">'.($j+1).'</td>';
+				$output .= '<td align="left">'.$temp['wp_name'].'</td>';
+				$output .= '<td align="center">'.$temp['npwpd'].'</td>';
+				$output .= '<td align="center">'.$surat_teguran_1.'</td>';
+				$output .= '<td align="center">'.$surat_teguran_2.'</td>';
+				$output .= '<td align="center">'.$surat_teguran_3.'</td>'; 
+				$output .= '<td align="center">'.$data[$i-1]['tgl_bayar'].'</td>'; 
+				$output .= '<td align="center">'.$data[$i-1]['tgl_bayar2'].'</td>'; 
+				$output .= '</tr>';
+				$temp = $data[$i];
+				$surat_teguran_1 =$surat_teguran_1_desc;
+				$surat_teguran_2 =$surat_teguran_2_desc;
+				$surat_teguran_3 =$surat_teguran_3_desc;
+				if ($temp['surat_teguran_1']=='1'){
+					$surat_teguran_1 = 'Terbit ('.$data[$i]['tgl_teg_1'].')';
+					$debt_amount =0;
+				}
+				if ($temp['surat_teguran_2']=='1'){
+					$surat_teguran_2 = 'Terbit ('.$data[$i]['tgl_teg_2'].')';
+					$debt_amount =0;
+				}
+				if ($temp['surat_teguran_3']=='1'){
+					$debt_amount =$data[$i]['debt_amount'];
+					$surat_teguran_3 = 'Terbit ('.$data[$i]['tgl_teg_3'].') (Rp. '.number_format($debt_amount, 2, ',', '.').')';	
+					$debt_amount =0;				
+				}
+				$j=$j+1;
 			}
- 
+		}
+		if ($j > 0){
+			$output .= '<tr>';
+			$output .= '<td align="center">'.($j+1).'</td>';
+			$output .= '<td align="left">'.$temp['wp_name'].'</td>';
+			$output .= '<td align="center">'.$temp['npwpd'].'</td>';
+			$output .= '<td align="center">'.$surat_teguran_1.'</td>';
+			$output .= '<td align="center">'.$surat_teguran_2.'</td>';
+			$output .= '<td align="center">'.$surat_teguran_3.'</td>'; 
+			$output .= '<td align="center">'.$data[$i-1]['tgl_bayar'].'</td>'; 
+			$output .= '<td align="center">'.$data[$i-1]['tgl_bayar2'].'</td>'; 
 			$output .= '</tr>';
 		}
-	
-	$output.='</table>';
+		$output.='</table>';
+
 	echo $output;
 	exit;
 }
