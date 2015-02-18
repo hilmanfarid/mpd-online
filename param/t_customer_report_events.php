@@ -202,11 +202,17 @@ function print_excel($param_arr) {
 		<th>NO</th>
 		<th>NAMA PEMILIK/PENGELOLA</th>
 		<th>NPWD</th>
-		<th>ALAMAT</th>
+		<th>ALAMAT PEMILIK</th>
 		<th>JENIS PAJAK</th>
 		<th>AYAT PAJAK</th>
 		<th>NO SELULAR</th>
 		<th>EMAIL</th>
+		<th>NAMA WP</th>
+		<th>ALAMAT WP</th>
+		<th>NAMA PERUSAHAAN</th>
+		<th>ALAMAT PERUSAHAAN</th>
+		<th>NAMA BRAND PERUSAHAAN</th>
+		<th>ALAMAT BRAND PERUSAHAAN</th>
 	</tr>';
 	
 	
@@ -216,22 +222,27 @@ function print_excel($param_arr) {
 		$p_vat_type_dtl_id_condition = 'and b.p_vat_type_dtl_id = '.$param_arr['p_vat_type_dtl_id'].' ';
 	}
 
-	$query="select a.*, b.npwd, c.vat_code, d.vat_code as detail_pajak_code
+	$query="select a.*, b.npwd, c.vat_code, d.vat_code as detail_pajak_code,
+				wp_name, wp_address_name,
+				company_name, address_name as company_address_name,
+				company_brand, brand_address_name, mobile_no
 			FROM t_customer a
 			LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
 			LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
 			LEFT JOIN p_vat_type_dtl d ON b.p_vat_type_dtl_id = d.p_vat_type_dtl_id
 
 			WHERE upper(a.company_owner) like upper('%".$param_arr['s_keyword']."%') 
-			       and upper(a.address_name_owner) like upper('%".$param_arr['s_keyword']."%')
+				   and upper(a.address_name_owner) like upper('%".$param_arr['s_keyword']."%')
 			       and upper(b.npwd) like upper('%".$param_arr['s_npwd']."%')
 			       and upper(b.wp_name) like upper('%".$param_arr['s_wp_name']."%')
 			       and upper(b.company_name) like upper('%".$param_arr['s_company_name']."%')
 			       and upper(b.company_brand) like upper('%".$param_arr['s_company_brand']."%')
 				   and b.p_vat_type_id like '%".$param_arr['p_vat_type_id']."%'
 				   $p_vat_type_dtl_id_condition
-				   and b.p_account_status_id = 1
+				   and b.p_account_status_id = 1 
+				   ORDER BY b.p_vat_type_id,b.p_vat_type_dtl_id,company_owner
 				   ";
+	
 	$dbConn->query($query);
 	
 	$no = 1;
@@ -243,8 +254,14 @@ function print_excel($param_arr) {
 		echo '<td valign="top" >'.$dbConn->f("address_name_owner")." No ".$dbConn->f("address_no_owner")." RT/RW : ".$dbConn->f("address_rt_owner")."/".$dbConn->f("address_rw_owner").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("vat_code").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("detail_pajak_code").'</td>';
-		echo '<td valign="top">&nbsp;'.$dbConn->f("mobile_no_owner").'</td>';
+		echo '<td valign="top">&nbsp;'.$dbConn->f("mobile_no").'</td>';
 		echo '<td valign="top">'.$dbConn->f("email_address").'</td>';
+		echo '<td valign="top" >'.$dbConn->f("wp_name").'</td>';
+		echo '<td valign="top" >'.$dbConn->f("wp_address_name").'</td>';
+		echo '<td valign="top" >'.$dbConn->f("company_name").'</td>';
+		echo '<td valign="top" >'.$dbConn->f("company_address_name").'</td>';
+		echo '<td valign="top" >'.$dbConn->f("company_brand").'</td>';
+		echo '<td valign="top" >'.$dbConn->f("brand_address_name").'</td>';
 		echo '</tr>';
 	}
 
