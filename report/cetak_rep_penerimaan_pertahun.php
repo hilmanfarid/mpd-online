@@ -333,7 +333,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 + 10, $this->height, "NIP. ", "", 0, 'L');
 		$this->Ln();
 		
-		$this->SetWidths(array($ltable2,130, 60));
+		$this->Ln();
+		$this->SetWidths(array($ltable2,60, 130));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
