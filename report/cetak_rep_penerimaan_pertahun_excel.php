@@ -162,36 +162,36 @@ echo '<br>';
 echo '<i>Keterangan:</i>';
 echo '<table style="font-style:italic;">
 <tr>
-    <td>UNREGISTER </td>
-    <td colspan="2">: Belum terdaftar pada saat posisi bulan yang tercantum</td>
+    <td valign="top">UNREGISTER </td>
+    <td valign="top" colspan="2">: Belum terdaftar pada saat posisi bulan yang tercantum</td>
 </tr>
 <tr>
-    <td>INSIDENTIL </td>
-    <td colspan="2">: WP yang transaksinya insidentil (non reguler)</td>
+    <td valign="top">INSIDENTIL </td>
+    <td valign="top" colspan="2">: WP yang transaksinya insidentil (non reguler)</td>
 </tr>
 <tr>
-    <td>NIHIL1  </td>
-    <td colspan="2">: WP melaporkan NIHIL dan sudah register(flag bayar) pada saat posisi tgl report</td>
+    <td valign="top">NIHIL1  </td>
+    <td valign="top" colspan="2">: WP melaporkan NIHIL dan sudah register(flag bayar) pada saat posisi tgl report</td>
 </tr>
 <tr>
-    <td>NIHIL2  </td>
-    <td colspan="2">: WP melaporkan NIHIL tapi belum register(flag bayar) pada saat posisi tgl report</td>
+    <td valign="top">NIHIL2  </td>
+    <td valign="top" colspan="2">: WP melaporkan NIHIL tapi belum register(flag bayar) pada saat posisi tgl report</td>
 </tr>
 <tr>
-    <td>SKPDKB</td>
-    <td colspan="2">: WP belum bayar sampai dengan posisi report dan ditetapkan secara jabatan</td>
+    <td valign="top">SKPDKB</td>
+    <td valign="top" colspan="2">: WP belum bayar sampai dengan posisi report dan ditetapkan secara jabatan</td>
 </tr>
 <tr>
-    <td>NEVERTRANS</td>
-    <td colspan="2">: WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report</td>
+    <td valign="top">NEVERTRANS</td>
+    <td valign="top" colspan="2">: WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report</td>
 </tr>
 <tr>
-    <td>UNKNOWN</td>
-    <td colspan="2">: Belum ada ketetapan apapun pada bulan yang tercantung sampai dengan posisi tgl report</td>
+    <td valign="top">UNKNOWN</td>
+    <td valign="top" colspan="2">: Belum ada ketetapan apapun pada bulan yang tercantung sampai dengan posisi tgl report</td>
 </tr>
 <tr>
-    <td>OTHERS</td>
-    <td colspan="2">: Ada ketetapan lainnya yang sampai posisi tgl report belum bayar</td>
+    <td valign="top">OTHERS</td>
+    <td valign="top" colspan="2">: Ada ketetapan lainnya yang sampai posisi tgl report belum bayar</td>
 </tr>
 </table>';
 
