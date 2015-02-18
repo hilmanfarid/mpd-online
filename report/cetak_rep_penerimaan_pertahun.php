@@ -335,7 +335,7 @@ class FormCetak extends FPDF {
 		
 		$this->Ln();
 		$this->SetFont('Arial', '', 6);
-		$this->SetWidths(array($ltable2,30, 160));
+		$this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -346,13 +346,13 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
         			
-        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -363,12 +363,12 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
-        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -379,12 +379,12 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
-        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -395,12 +395,12 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
-        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -411,12 +411,12 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
-        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -427,13 +427,13 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
         
-        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -444,13 +444,13 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
         
-        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -461,13 +461,13 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
         
-        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
@@ -478,9 +478,9 @@ class FormCetak extends FPDF {
         			),
         			array
         			(
-        			    "BLTR",
-        				"BLTR",
-        				"BLTR"
+        			    "",
+        				"",
+        				""
         			),
         			5);
 	}
