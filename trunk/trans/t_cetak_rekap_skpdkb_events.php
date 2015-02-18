@@ -65,11 +65,11 @@ function GetCetakHTML($param_arr) {
 	
 	$output = '';
 	
-	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="700">
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0">
           		<tr>
             		<td valign="top">';
 
-	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0" width="900">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   		<td class="th"><strong>LAPORAN REKAP SKPDKB</strong></td> 
