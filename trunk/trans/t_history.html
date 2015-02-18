@@ -16,8 +16,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -27,13 +27,13 @@ $(document).ready(function()
   </div>
 </div>
 {settlement_date} 
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
         <!-- BEGIN Record p_room_typeSearch -->
         <form id="p_room_typeSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -43,9 +43,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="p_room_typeSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
+                    <td class="search-field"><input id="p_room_typeSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="p_room_typeSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_room_typeSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
@@ -54,10 +54,10 @@ $(document).ready(function()
         </form>
         <!-- END Record p_room_typeSearch --><br>
         <!-- BEGIN Grid p_room_typeGrid -->
-        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
           <tr>
             <td valign="top">
-              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>HISTORY LOG</strong></td> 
@@ -77,6 +77,8 @@ $(document).ready(function()
  
                   <th scope="col">Settlement Date</th>
  
+                  <th scope="col">&nbsp;Execute By</th>
+ 
                   <th scope="col">&nbsp;Modification type</th>
  
                   <th scope="col">&nbsp;Reason</th>
@@ -89,18 +91,19 @@ $(document).ready(function()
                   <td>{periode_code}&nbsp;</td> 
                   <td>&nbsp;{settlement_type}</td> 
                   <td>{settlement_date}&nbsp;</td> 
+                  <td>&nbsp;{modified_by}</td> 
                   <td>&nbsp;{modification_type}</td> 
                   <td>&nbsp;{alasan}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="7">-</td>
+                  <td colspan="8">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b><a href="{Insert_Link_Src}" id="p_room_typeGridInsert_Link">&nbsp;</a></b></td> 
-                  <td colspan="6">
+                  <td colspan="7">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
