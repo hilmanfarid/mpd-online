@@ -216,7 +216,7 @@ function GetCetakHTML($data,$param_arr) {
 		$dbConn->next_record();
 		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
 		if ($result==1){
-			$surat_teguran_1_desc="Sudah Bayar";
+			$surat_teguran_1_desc="Tidak Terbit";
 		}else{
 			$surat_teguran_1_desc="Belum Terbit";
 		}
@@ -226,7 +226,7 @@ function GetCetakHTML($data,$param_arr) {
 		$dbConn->next_record();
 		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
 		if ($result==1){
-			$surat_teguran_2_desc="Sudah Bayar";
+			$surat_teguran_2_desc="Tidak Terbit";
 		}else{
 			$surat_teguran_2_desc="Belum Terbit";
 		}
@@ -236,7 +236,7 @@ function GetCetakHTML($data,$param_arr) {
 		$dbConn->next_record();
 		$result=$dbConn->f('f_cek_penerbitan_surat_teguran');
 		if ($result==1){
-			$surat_teguran_3_desc="Sudah Bayar";
+			$surat_teguran_3_desc="Tidak Terbit";
 		}else{
 			$surat_teguran_3_desc="Belum Terbit";
 		}
@@ -282,13 +282,6 @@ function GetCetakHTML($data,$param_arr) {
 				$output .= '<td align="center">'.$surat_teguran_1.'</td>';
 				$output .= '<td align="center">'.$surat_teguran_2.'</td>';
 				$output .= '<td align="center">'.$surat_teguran_3.'</td>'; 
-				if (date($data[$i-1]['tgl_bayar']) < date($tanggal)){
-					$sebelum = 'Belum Bayar';
-					$sesudah = $data[$i-1]['tgl_bayar'];
-				}else{
-					$sebelum = $data[$i-1]['tgl_bayar'];
-					$sesudah = $data[$i-1]['tgl_bayar'];
-				}
 				$output .= '<td align="center">'.$data[$i-1]['tgl_bayar'].'</td>'; 
 				$output .= '<td align="center">'.$data[$i-1]['tgl_bayar2'].'</td>'; 
 				$output .= '</tr>';
@@ -313,13 +306,6 @@ function GetCetakHTML($data,$param_arr) {
 			}
 		}
 		if ($j > 0){
-			if (date($data[$i-1]['tgl_bayar']) > date($tanggal)){
-				$sebelum = 'Belum Bayar';
-				$sesudah = $data[$i-1]['tgl_bayar'];
-			}else{
-				$sebelum = $data[$i-1]['tgl_bayar'];
-				$sesudah = $data[$i-1]['tgl_bayar'];
-			}
 			$output .= '<tr>';
 			$output .= '<td align="center">'.($j+1).'</td>';
 			$output .= '<td align="left">'.$temp['wp_name'].'</td>';
