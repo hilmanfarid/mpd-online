@@ -65,7 +65,7 @@ function GetCetakHTML($param_arr) {
 	
 	$output = '';
 	
-	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="700">
           		<tr>
             		<td valign="top">';
 
