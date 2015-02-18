@@ -160,41 +160,34 @@ echo '</table>';
 
 echo '<br>';
 echo '<i>Keterangan:</i>';
-echo '<table>
+echo '<table style="font-style:italic;">
 <tr>
     <td>UNREGISTER </td>
-    <td>:</td>
-    <td>Belum terdaftar pada saat posisi bulan yang tercantum</td>
+    <td colspan="2">: Belum terdaftar pada saat posisi bulan yang tercantum</td>
 </tr>
 <tr>
     <td>INSIDENTIL </td>
-    <td>:</td>
-    <td>WP yang transaksinya insidentil (non reguler)</td>
+    <td colspan="2">: WP yang transaksinya insidentil (non reguler)</td>
 </tr>
 <tr>
     <td>NIHIL1  </td>
-    <td>:</td>
-    <td>WP melaporkan NIHIL dan sudah register(flag bayar) pada saat posisi tgl report</td>
+    <td colspan="2">: WP melaporkan NIHIL dan sudah register(flag bayar) pada saat posisi tgl report</td>
 </tr>
 <tr>
     <td>NIHIL2  </td>
-    <td>:</td>
-    <td>WP melaporkan NIHIL tapi belum register(flag bayar) pada saat posisi tgl report</td>
+    <td colspan="2">: WP melaporkan NIHIL tapi belum register(flag bayar) pada saat posisi tgl report</td>
 </tr>
 <tr>
     <td>SKPDKB</td>
-    <td>:</td>
-    <td>WP belum bayar sampai dengan posisi report dan ditetapkan secara jabatan</td>
+    <td colspan="2">: WP belum bayar sampai dengan posisi report dan ditetapkan secara jabatan</td>
 </tr>
 <tr>
     <td>NEVERTRANS</td>
-    <td>:</td>
-    <td>WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report</td>
+    <td colspan="2">: WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report</td>
 </tr>
 <tr>
     <td>UNKNOWN</td>
-    <td>:</td>
-    <td>-</td>
+    <td colspan="2">: -</td>
 </tr>
 </table>';
 
