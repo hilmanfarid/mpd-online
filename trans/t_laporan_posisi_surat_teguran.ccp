@@ -58,13 +58,13 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="17" name="DatePicker_end_start_laporan1" PathID="t_rep_sisa_piutangSearchDatePicker_end_start_laporan1" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+				<DatePicker id="17" name="DatePicker_end_start_laporan1" PathID="t_rep_sisa_piutangSearchDatePicker_end_start_laporan1" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
