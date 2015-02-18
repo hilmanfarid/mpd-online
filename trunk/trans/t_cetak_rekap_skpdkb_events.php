@@ -80,7 +80,7 @@ function GetCetakHTML($param_arr) {
 	$output .= '<h2>JENIS PAJAK : '.$param_arr['vat_code'].' </h2>';
 	$output .= '<h2>PERIODE PAJAK : '.$param_arr['code'].'</h2>';
 	$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
-	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
+	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
                 <tr >';
 
 	$output.='<th align="center" >NO</th>';
@@ -89,6 +89,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >ALAMAT</th>';
 	$output.='<th align="center" >JATUH TEMPO</th>';
 	$output.='<th align="center" >MASA PAJAK</th>';
+	$output.='<th align="center" >TGL TAP</th>';
 	$output.='<th align="center" >POKOK (PAJAK TERHUTANG+KENAIKAN)</th>';
 	$output.='<th align="center" >PAJAK TEHUTANG</th>';
 	$output.='<th align="center" >KENAIKAN PAJAK TERHUTANG</th>';
@@ -100,7 +101,7 @@ function GetCetakHTML($param_arr) {
 	
 	$dbConn	= new clsDBConnSIKP();
 	$query="select a.npwd as npwpd ,to_char(start_period,'dd-mm-yyyy')||' s.d. '||to_char(end_period,'dd-mm-yyyy') as masa_pajak,
-		to_char(due_date,'dd-mm-yyyy')as due_date_char,
+		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
 		* from t_vat_setllement a
 		left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 		left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
@@ -131,6 +132,7 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['wp_address_name'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['due_date_char'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['total_vat_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['db_increasing_charge'], 2, ',', '.').'</td>';
