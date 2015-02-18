@@ -232,7 +232,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-85A635EC
+//Class_Initialize Event @2-28223FA5
     function clsGridp_room_typeGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -268,6 +268,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
         $this->settlement_type = & new clsControl(ccsLabel, "settlement_type", "settlement_type", ccsText, "", CCGetRequestParam("settlement_type", ccsGet, NULL), $this);
         $this->modification_type = & new clsControl(ccsLabel, "modification_type", "modification_type", ccsText, "", CCGetRequestParam("modification_type", ccsGet, NULL), $this);
         $this->alasan = & new clsControl(ccsLabel, "alasan", "alasan", ccsText, "", CCGetRequestParam("alasan", ccsGet, NULL), $this);
+        $this->modified_by = & new clsControl(ccsLabel, "modified_by", "modified_by", ccsText, "", CCGetRequestParam("modified_by", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -284,7 +285,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
     }
 //End Initialize Method
 
-//Show Method @2-8D8D9C07
+//Show Method @2-97529569
     function Show()
     {
         global $Tpl;
@@ -320,6 +321,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
             $this->ControlsVisible["settlement_type"] = $this->settlement_type->Visible;
             $this->ControlsVisible["modification_type"] = $this->modification_type->Visible;
             $this->ControlsVisible["alasan"] = $this->alasan->Visible;
+            $this->ControlsVisible["modified_by"] = $this->modified_by->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -335,6 +337,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
                 $this->settlement_type->SetValue($this->DataSource->settlement_type->GetValue());
                 $this->modification_type->SetValue($this->DataSource->modification_type->GetValue());
                 $this->alasan->SetValue($this->DataSource->alasan->GetValue());
+                $this->modified_by->SetValue($this->DataSource->modified_by->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -345,6 +348,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
                 $this->settlement_type->Show();
                 $this->modification_type->Show();
                 $this->alasan->Show();
+                $this->modified_by->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -378,7 +382,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
 //End Show Method
 
 
-//GetErrors Method @2-11F14CA7
+//GetErrors Method @2-43E1B771
     function GetErrors()
     {
         $errors = "";
@@ -389,6 +393,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
         $errors = ComposeStrings($errors, $this->settlement_type->Errors->ToString());
         $errors = ComposeStrings($errors, $this->modification_type->Errors->ToString());
         $errors = ComposeStrings($errors, $this->alasan->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->modified_by->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -399,7 +404,7 @@ class clsGridp_room_typeGrid { //p_room_typeGrid class @2-BD72B7F0
 
 class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDataSource Class @2-5ECC680F
 
-//DataSource Variables @2-137D7749
+//DataSource Variables @2-2FB82512
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -417,9 +422,10 @@ class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDat
     var $settlement_type;
     var $modification_type;
     var $alasan;
+    var $modified_by;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-D15E7E2B
+//DataSourceClass_Initialize Event @2-CD9353E4
     function clsp_room_typeGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -436,6 +442,8 @@ class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDat
         $this->modification_type = new clsField("modification_type", ccsText, "");
         
         $this->alasan = new clsField("alasan", ccsText, "");
+        
+        $this->modified_by = new clsField("modified_by", ccsText, "");
         
 
     }
@@ -488,7 +496,7 @@ class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDat
     }
 //End Open Method
 
-//SetValues Method @2-E79DC139
+//SetValues Method @2-2ADC264D
     function SetValues()
     {
         $this->code->SetDBValue($this->f("npwd"));
@@ -497,6 +505,7 @@ class clsp_room_typeGridDataSource extends clsDBConnSIKP {  //p_room_typeGridDat
         $this->settlement_type->SetDBValue($this->f("type_code"));
         $this->modification_type->SetDBValue($this->f("modification_type"));
         $this->alasan->SetDBValue($this->f("alasan"));
+        $this->modified_by->SetDBValue($this->f("modified_by"));
     }
 //End SetValues Method
 
