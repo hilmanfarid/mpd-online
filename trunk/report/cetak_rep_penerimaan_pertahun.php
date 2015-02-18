@@ -332,6 +332,23 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "NIP. ", "", 0, 'L');
 		$this->Ln();
+		
+		$this->SetWidths(array(5,130, 60));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"USER ID : test",
+        				"TGL CETAK : ".date('d/m/Y')
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
 	}
 
 	function newLine(){
