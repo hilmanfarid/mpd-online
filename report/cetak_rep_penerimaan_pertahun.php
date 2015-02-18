@@ -334,14 +334,147 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Ln();
-		$this->SetWidths(array($ltable2,60, 130));
+		$this->SetFont('Arial', '', 6);
+		$this->SetWidths(array($ltable2,30, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
         			array
         			(	
         			    "",
         				"KETERANGAN :",
-        				"TEST"
+        				""
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
+        			
+        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"UNREGISTER",
+        				": Belum terdaftar pada saat posisi bulan yang tercantum"
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
+        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"INSIDENTIL",
+        				": WP yang transaksinya insidentil (non reguler)"
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
+        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"NIHIL1	   ",
+        				": WP melaporkan NIHIL dan sudah register(flag bayar) pada saat posisi tgl report"
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
+        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"NIHIL2",
+        				": WP melaporkan NIHIL tapi belum register(flag bayar) pada saat posisi tgl report"
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
+        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"SKPDKB",
+        				": WP belum bayar sampai dengan posisi report dan ditetapkan secara jabatan"
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
+        
+        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"NEVERTRANS",
+        				": WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report"
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
+        
+        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"UNKNOWN",
+        				": Belum ada ketetapan apapun pada bulan yang tercantung sampai dengan posisi tgl report"
+        			),
+        			array
+        			(
+        			    "BLTR",
+        				"BLTR",
+        				"BLTR"
+        			),
+        			5);
+        
+        $this->SetWidths(array($ltable2,30, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"OTHERS",
+        				": Ada ketetapan lainnya yang sampai posisi tgl report belum bayar"
         			),
         			array
         			(
