@@ -365,7 +365,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Prepare Method
 
-//Open Method @2-9A2EAC43
+//Open Method @2-9481470E
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -388,7 +388,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "	   e.code as type_code,\n" .
         "		nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
         "		nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
-        "		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) + a.total_penalty_amount as total_hrs_bayar\n" .
+        "		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar\n" .
         "from t_vat_setllement a,\n" .
         "     p_finance_period b,\n" .
         "     t_cust_account c,\n" .
@@ -418,7 +418,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "	   e.code as type_code,\n" .
         "		nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
         "		nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
-        "		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) + a.total_penalty_amount as total_hrs_bayar\n" .
+        "		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar\n" .
         "from t_vat_setllement a,\n" .
         "     p_finance_period b,\n" .
         "     t_cust_account c,\n" .
