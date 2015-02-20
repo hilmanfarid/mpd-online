@@ -450,7 +450,7 @@ class FormCetak extends FPDF {
         				""
         			),
         			5);
-        
+        /*
         $this->SetWidths(array($ltable2,25, 160));
         $this->SetAligns(array("L","L", "L"));
         $this->RowMultiBorderWithHeight(
@@ -483,7 +483,7 @@ class FormCetak extends FPDF {
         				"",
         				""
         			),
-        			5);
+        			5);*/
 	}
 
 	function newLine(){
