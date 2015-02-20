@@ -440,8 +440,24 @@ class FormCetak extends FPDF {
         			array
         			(	
         			    "",
-        				"NEVERTRANS",
+        				"NOREPORT",
         				": WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report"
+        			),
+        			array
+        			(
+        			    "",
+        				"",
+        				""
+        			),
+        			5);
+        $this->SetWidths(array($ltable2,25, 160));
+        $this->SetAligns(array("L","L", "L"));
+        $this->RowMultiBorderWithHeight(
+        			array
+        			(	
+        			    "",
+        				"SPTPD",
+        				": WP melapor dan membayar pajak tepat waktu"
         			),
         			array
         			(
