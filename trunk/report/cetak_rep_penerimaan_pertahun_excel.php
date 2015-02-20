@@ -182,10 +182,13 @@ echo '<table style="font-style:italic;">
     <td valign="top" colspan="2">: WP belum bayar sampai dengan posisi report dan ditetapkan secara jabatan</td>
 </tr>
 <tr>
-    <td valign="top">NEVERTRANS</td>
+    <td valign="top">NOREPORT</td>
     <td valign="top" colspan="2">: WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report</td>
 </tr>
-
+<tr>
+    <td valign="top">SPTPD</td>
+    <td valign="top" colspan="2">: WP melapor dan membayar pajak tepat waktu</td>
+</tr>
 </table>';
 
 exit;
