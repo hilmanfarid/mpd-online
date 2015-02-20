@@ -185,14 +185,7 @@ echo '<table style="font-style:italic;">
     <td valign="top">NEVERTRANS</td>
     <td valign="top" colspan="2">: WP sudah aktif tetapi belum pernah melakukan transaksi sampai dengan posisi tgl report</td>
 </tr>
-<tr>
-    <td valign="top">UNKNOWN</td>
-    <td valign="top" colspan="2">: Belum ada ketetapan apapun pada bulan yang tercantung sampai dengan posisi tgl report</td>
-</tr>
-<tr>
-    <td valign="top">OTHERS</td>
-    <td valign="top" colspan="2">: Ada ketetapan lainnya yang sampai posisi tgl report belum bayar</td>
-</tr>
+
 </table>';
 
 exit;
