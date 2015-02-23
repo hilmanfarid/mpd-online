@@ -319,7 +319,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		$nama_pajak = strtoupper(substr($data["jenis_pajak"][0], 5));
-		$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR " . $nama_pajak, "", 0, 'C');
+		//$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR " . $nama_pajak, "", 0, 'C');
 		$this->Ln();
 		$this->newLine();
 		$this->newLine();
