@@ -46,7 +46,7 @@ function printLembarPerhitungan() {
                 }
 
         var params = document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
-        if(lembar_cetak == '4') {
+        if(lembar_cetak == '4' || lembar_cetak == '7') {
                         window.open("../report/cetak_rep_pengurangan_bphtb_gono_gini.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
                 }else {
                         window.open("../report/cetak_rep_pengurangan_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
@@ -61,7 +61,7 @@ function printBeritaAcara() {
         }
 
         var params = document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
-                if(lembar_cetak == '2' || lembar_cetak == '3' || lembar_cetak == '4') {
+                if(lembar_cetak == '2' || lembar_cetak == '3' || lembar_cetak == '4' || lembar_cetak == '7') {
                         window.open("../report/cetak_rep_pengurangan_bphtb_berita_acara.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
                 }else {
                 window.open("../report/cetak_rep_pengurangan_bphtb_berita_acara_v2.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
@@ -326,7 +326,8 @@ jQuery(document).ready(function()
                         return ['Anak Dari','Orang Tua Dari'];
                 if(lembar_cetak == '6')
                         return ['Penerima Hibah Dari'];
-                
+                if(lembar_cetak == '7')
+                        return ['Ahli Waris'];
                 return [];
         }
                 
@@ -344,6 +345,8 @@ jQuery(document).ready(function()
                         return ['SHM No','SK Kepala Kantor Pertanahan','Letter C', 'HGB No'];
                 if(lembar_cetak == '6')
                         return ['SK Kepala Kantor Pertanahan', 'HGB No'];
+                                if(lembar_cetak == '7')
+                        return ['SHM No','SK Kepala Kantor Pertanahan','Letter C', 'HGB No'];
                 
                 return [];
         }
@@ -368,6 +371,9 @@ jQuery(document).ready(function()
                         }
                         if(lembar_cetak == '6') {
                                 return 'Pemberian pengurangan dan keringanan dapat diberikan kepada Wajib Pajak atau penanggung pajak badan yang memperoleh hak baru selain Hak Pengelolaan dan telah menguasai tanan dan/atau bangunan secara fisik lebih dari 20 (dua puluh) tahun yang dibuktikan dengan surat pernyataan Wajib Pajak atau penanggung pajak dan keterangan dari Pejabat Pemerintah Daerah setempat, diberikan pengurangan sebersar 50% ( lima puluh persen ).';
+                        }
+                                                if(lembar_cetak == '7') {
+                                return 'Secara normatif, berdasarkan Pasal 17 Ayat 3 huruf a angka 4 Peraturan Walikota Nomor 308 Tahun 2013 bahwa Pemberian pengurangan dan keringanan dapat diberikan kepada Wajib Pajak orang pribadi yang menerima waris dari orang pribadi yang mempunyai hubungan keluarga sedarah dalam garis keturunan lurus satu derajat ke atas atau satu derajat ke bawah, sebesar 50% (lima puluh persen) yang didukung oleh bukti keterangan waris yang berdasarkan ketentuan yang berlaku. Di luar garis keturunan tersebut tidak memperoleh hak keringanan atau pengurangan';
                         }
                         return '';
                 }
@@ -395,7 +401,7 @@ jQuery(document).ready(function()
         jQuery("#t_bphtb_registrationFormopsi_a2").val(a2_val);
         jQuery("#t_bphtb_registrationFormopsi_b7").val(b7_val);
 
-                if(lembar_cetak == '4') { //gono-gini
+                if(lembar_cetak == '4' || lembar_cetak == '7') { //gono-gini
                         jQuery("#keterangan-gono-gini").show();
                 }else {
                         jQuery("#keterangan-gono-gini").hide();
@@ -408,7 +414,7 @@ jQuery(document).ready(function()
                         
                         jQuery("#t_bphtb_registrationFormopsi_a2").html("");
                         jQuery("#t_bphtb_registrationFormopsi_b7").html("");
-                                                if(selected_val == '4') { //gono-gini
+                                                if(selected_val == '4' || selected_val == '7') { //gono-gini
                                                         jQuery("#keterangan-gono-gini").show();
                                                 }else {
                                                         jQuery("#t_bphtb_registrationFormketerangan_opsi_c_gono_gini").html("");
@@ -425,7 +431,7 @@ jQuery(document).ready(function()
                                            /*analisa pengurangan*/
                                                 jQuery("#t_bphtb_registrationFormanalisa_penguranan").html("");
                                                 if(selected_val != "") {
-                                                        if(selected_val == '4' || selected_val == '6')
+                                                        if(selected_val == '4' || selected_val == '6' || selected_val == '7')
                                                                 jQuery("#t_bphtb_registrationFormanalisa_penguranan").html("Setelah diteliti secara administratif Permohonan Pengurangan Waris untuk Tanah dan Bangunan sebagaimana yang diajukan oleh Pemohon dapat dipertimbangkan");
                                                         else
                                                                 jQuery("#t_bphtb_registrationFormanalisa_penguranan").html("Setelah diteliti secara administratif Permohonan Pengurangan "+ jQuery("#t_bphtb_registrationFormpilihan_lembar_cetak option:selected").text() +" untuk Tanah dan Bangunan sebagaimana yang diajukan oleh Pemohon dapat dipertimbangkan");
@@ -440,7 +446,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 100%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -496,13 +502,13 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="4">No Registrasi&nbsp;</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormregistration_no">&nbsp;</label><input id="t_bphtb_registrationFormregistration_no" style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" readonly value="{registration_no}" name="{registration_no_Name}"><input id="t_bphtb_registrationFormp_bphtb_type_id" type="hidden" value="{p_bphtb_type_id}" name="{p_bphtb_type_id_Name}"><input id="t_bphtb_registrationFormt_bphtb_exemption_id" type="hidden" value="{t_bphtb_exemption_id}" name="{t_bphtb_exemption_id_Name}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormregistration_no" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormregistration_no" style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" readonly value="{registration_no}" name="{registration_no_Name}"><input id="t_bphtb_registrationFormp_bphtb_type_id" type="hidden" value="{p_bphtb_type_id}" name="{p_bphtb_type_id_Name}"><input id="t_bphtb_registrationFormt_bphtb_exemption_id" type="hidden" value="{t_bphtb_exemption_id}" name="{t_bphtb_exemption_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="4"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nama</label></label></label></label></label></label></label></td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormwp_name">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" value="{wp_name}" name="{wp_name_Name}">&nbsp;</td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormwp_name" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormwp_name" value="{wp_name}" name="{wp_name_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -561,7 +567,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="4">&nbsp;Nomor Objek Pajak</td> 
-                    <td colspan="6"><label style="display: none;" for="t_bphtb_registrationFormnjop_pbb">&nbsp;</label><input id="t_bphtb_registrationFormnjop_pbb" style="HEIGHT: 22px; WIDTH: 244px" size="33" value="{njop_pbb}" name="{njop_pbb_Name}"></td>
+                    <td colspan="6"><label for="t_bphtb_registrationFormnjop_pbb" style="display: none;">&nbsp;</label><input id="t_bphtb_registrationFormnjop_pbb" style="HEIGHT: 22px; WIDTH: 244px" size="33" value="{njop_pbb}" name="{njop_pbb_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -761,7 +767,7 @@ jQuery(document).ready(function()
                   <tr id="keterangan-gono-gini" class="Controls">
                     <td class="th"></td> 
                     <td class="th" colspan="4">
-                      <p style="FONT-WEIGHT: bold; COLOR: #008000">Keterangan Opsi C Khusus Gono-Gini :</p>
+                      <p style="FONT-WEIGHT: bold; COLOR: #008000">Keterangan Opsi C Khusus Gono-Gini/Harta Bersama&nbsp;:</p>
  
                       <p><textarea id="t_bphtb_registrationFormketerangan_opsi_c_gono_gini" style="HEIGHT: 61px; WIDTH: 392px" rows="3" cols="37" name="{keterangan_opsi_c_gono_gini_Name}">{keterangan_opsi_c_gono_gini}</textarea></p>
                     </td> 
