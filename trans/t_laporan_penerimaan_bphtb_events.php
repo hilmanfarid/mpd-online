@@ -175,8 +175,8 @@ function print_excel($param_arr) {
 		echo '<td align="right">'.number_format($item['building_area'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['land_total_price'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['payment_amount'],0,",",".").'</td>';
-		echo '<td align="left">'.$item['verificated_by'].'</td>';
-		echo '<td align="left">'.$status_daftar.'</td>';
+		echo '<td align="center">'.$item['verificated_by'].'</td>';
+		echo '<td align="center">'.$status_daftar.'</td>';
 		echo '</tr>';
 		
 		$total_nilai_penerimaan += $item['payment_amount'];
