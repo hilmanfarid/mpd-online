@@ -84,6 +84,7 @@ function print_excel($param_arr) {
 			<th>NJOP (Rp)</th>
 			<th>TOTAL BAYAR (Rp)</th>
 			<th>VERIFIKATOR</th>
+			<th>DAFTAR ONLINE?</th>
 	  </tr>
 	 ';
 
@@ -123,7 +124,7 @@ function print_excel($param_arr) {
 	}
 	
 	$whereClause = join(" AND ", $criteria);
-	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date,
+	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date, b.t_ppat_id,
 					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount, b.verificated_by    
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
@@ -154,9 +155,12 @@ function print_excel($param_arr) {
 					   'building_area' => $dbConn->f("building_area"),
 					   'land_total_price' => $dbConn->f("land_total_price"),
 					   'payment_amount' => $dbConn->f("payment_amount"),
-					   'verificated_by' => $dbConn->f("verificated_by")
+					   'verificated_by' => $dbConn->f("verificated_by"),
+					   't_ppat_id' => $dbConn->f("t_ppat_id")
 						);
 		
+		$status_daftar = empty($item['t_ppat_id']) ? "Tidak" : "Ya";
+
 		echo '<tr>';
 		echo '<td align="center">'.$no.'</td>';
 		echo '<td align="center">'.$item['receipt_no'].'</td>';
@@ -172,6 +176,7 @@ function print_excel($param_arr) {
 		echo '<td align="right">'.number_format($item['land_total_price'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['payment_amount'],0,",",".").'</td>';
 		echo '<td align="left">'.$item['verificated_by'].'</td>';
+		echo '<td align="left">'.$status_daftar.'</td>';
 		echo '</tr>';
 		
 		$total_nilai_penerimaan += $item['payment_amount'];
@@ -179,7 +184,7 @@ function print_excel($param_arr) {
 	}
 
 	echo '<tr>
-			<td colspan="12" align="center"> <b>TOTAL</b> </td>
+			<td colspan="13" align="center"> <b>TOTAL</b> </td>
 			<td align="right"><b>'.number_format($total_nilai_penerimaan,0,",",".").'</b></td>
 		 </tr>';
 	echo '</table>';
