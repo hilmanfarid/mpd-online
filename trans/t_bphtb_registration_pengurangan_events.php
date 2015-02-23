@@ -306,7 +306,8 @@ function t_bphtb_registrationForm_ds_BeforeExecuteUpdate(& $sender)
 							  '3' => 'Rumah Dinas',
 							  '4' => 'Waris Gono-Gini',
 							  '5' => 'Hibah',
-							  '6' => 'Peralihan Hak Baru');
+							  '6' => 'Peralihan Hak Baru',
+							  '7' => 'Harta Bersama');
 	
 	$jenis_perolehan_hak = $arrJenisPerolehan[$pilihan_lembar_cetak];
 
