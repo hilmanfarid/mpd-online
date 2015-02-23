@@ -74,6 +74,7 @@ function print_excel($param_arr) {
 			<th>NO TRANSAKSI</th>
 			<th>NOP</th>
 			<th>TGL BAYAR</th>
+			<th>TGL DAFTAR</th>
 			<th>NAMA</th>
 			<th>ALAMAT</th>
 			<th>KELURAHAN</th>
@@ -122,7 +123,7 @@ function print_excel($param_arr) {
 	}
 	
 	$whereClause = join(" AND ", $criteria);
-	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date,
+	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date,
 					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount, b.verificated_by    
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
@@ -144,6 +145,7 @@ function print_excel($param_arr) {
 					   'receipt_no' => $dbConn->f("receipt_no"), 	
 					   'njop_pbb' => $dbConn->f("njop_pbb"),
 					   'payment_date' => $dbConn->f("payment_date"),
+					   'creation_date' => $dbConn->f("creation_date"),
 					   'wp_name' => $dbConn->f("wp_name"),
 					   'wp_address_name' => $dbConn->f("wp_address_name"),
 					   'kelurahan_name' => $dbConn->f("kelurahan_name"),
@@ -160,6 +162,7 @@ function print_excel($param_arr) {
 		echo '<td align="center">'.$item['receipt_no'].'</td>';
 		echo '<td align="left">&nbsp;'.$item['njop_pbb'].'</td>';
 		echo '<td align="center">'.dateToString($item['payment_date']).'</td>';
+		echo '<td align="center">'.dateToString($item['creation_date']).'</td>';
 		echo '<td align="left">'.trim(strtoupper($item['wp_name'])).'</td>';
 		echo '<td align="left">'.$item['wp_address_name'].'</td>';
 		echo '<td align="left">'.$item['kelurahan_name'].'</td>';
@@ -176,7 +179,7 @@ function print_excel($param_arr) {
 	}
 
 	echo '<tr>
-			<td colspan="11" align="center"> <b>TOTAL</b> </td>
+			<td colspan="12" align="center"> <b>TOTAL</b> </td>
 			<td align="right"><b>'.number_format($total_nilai_penerimaan,0,",",".").'</b></td>
 		 </tr>';
 	echo '</table>';
@@ -243,7 +246,7 @@ function print_laporan($param_arr){
 	}
 	
 	$whereClause = join(" AND ", $criteria);
-	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date,
+	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date,
 					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount    
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
@@ -262,22 +265,23 @@ function print_laporan($param_arr){
 	
 	/* HEADER */
 	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C','C'));
-	$pdf->SetWidths(array(10,28,35,21,41,51,28,28,21,21,25,28));
+	$pdf->SetWidths(array(10,28,35,19,19,41,51,28,28,15,15,25,28));
 	$pdf->SetFont('arial', 'B',7);
-	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","NAMA","ALAMAT","KELURAHAN","KECAMATAN","LUAS TNH","LUAS BGN","NJOP (Rp)","TOTAL BAYAR (Rp)"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','TLBR'),5);
+	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","TGL DAFTAR","NAMA","ALAMAT","KELURAHAN","KECAMATAN","LUAS TNH","LUAS BGN","NJOP (Rp)","TOTAL BAYAR (Rp)"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','TLBR'),5);
 	/* END HEADER */	
 
 	
 	/* CONTENTS */
 	$pdf->SetFont('arial', '',8);
 	$no =1;
-	$pdf->SetAligns(Array('C','L','L','C','L','L','L','L','R','R','R','R'));
+	$pdf->SetAligns(Array('C','L','L','C','C','L','L','L','L','R','R','R','R'));
 	$total_nilai_penerimaan = 0;
 	while($dbConn->next_record()){
 		$items[]= $item = array(
 					   'receipt_no' => $dbConn->f("receipt_no"), 	
 					   'njop_pbb' => $dbConn->f("njop_pbb"),
 					   'payment_date' => $dbConn->f("payment_date"),
+					   'creation_date' => $dbConn->f("creation_date"),
 					   'wp_name' => $dbConn->f("wp_name"),
 					   'wp_address_name' => $dbConn->f("wp_address_name"),
 					   'kelurahan_name' => $dbConn->f("kelurahan_name"),
@@ -291,6 +295,7 @@ function print_laporan($param_arr){
 											$item['receipt_no'],
 											$item['njop_pbb'],
 											dateToString($item['payment_date']),
+											dateToString($item['creation_date']),
 											trim(strtoupper($item['wp_name'])),
 											$item['wp_address_name'],
 											$item['kelurahan_name'],
@@ -299,7 +304,7 @@ function print_laporan($param_arr){
 											number_format($item['building_area'],0),
 											number_format($item['land_total_price'],0,",","."),
 											number_format($item['payment_amount'],0,",",".")
-											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
+											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
 		
 		$total_nilai_penerimaan += $item['payment_amount'];
 		$no++;
@@ -308,7 +313,7 @@ function print_laporan($param_arr){
 	
 
 	/* BOTTOM */
-	$pdf->SetWidths(array(309,28));
+	$pdf->SetWidths(array(314,28));
 	$pdf->SetAligns(Array('C','R'));
 	$pdf->SetFont('arial', 'B',8);
 	$pdf->RowMultiBorderWithHeight(array("TOTAL", number_format($total_nilai_penerimaan,0,",",".")), array('LB','LBR'), 6);
