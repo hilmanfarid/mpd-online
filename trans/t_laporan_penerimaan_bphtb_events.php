@@ -184,8 +184,10 @@ function print_excel($param_arr) {
 	}
 
 	echo '<tr>
-			<td colspan="13" align="center"> <b>TOTAL</b> </td>
+			<td colspan="11" align="center"> <b>TOTAL</b> </td>
 			<td align="right"><b>'.number_format($total_nilai_penerimaan,0,",",".").'</b></td>
+			<td align="center"> &nbsp; </td>
+			<td align="center"> &nbsp; </td>
 		 </tr>';
 	echo '</table>';
 	exit;
