@@ -614,7 +614,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</Button>
-				<ListBox id="209" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="pilihan_lembar_cetak" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormpilihan_lembar_cetak" connection="ConnSIKP" _valueOfList="6" _nameOfList="Peralihan Hak Baru" dataSource="1;Waris;2;Fasos;3;Rumah Dinas;4;Waris Gono-Gini;5;Hibah;6;Peralihan Hak Baru" fieldSource="pilihan_lembar_cetak" required="True">
+				<ListBox id="209" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="pilihan_lembar_cetak" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormpilihan_lembar_cetak" connection="ConnSIKP" dataSource="1;Waris;2;Fasos;3;Rumah Dinas;4;Waris Gono-Gini;5;Hibah;6;Peralihan Hak Baru;7;Harta Bersama" fieldSource="pilihan_lembar_cetak" required="True" _valueOfList="7" _nameOfList="Harta Bersama">
 					<Components/>
 					<Events/>
 					<TableParameters/>
