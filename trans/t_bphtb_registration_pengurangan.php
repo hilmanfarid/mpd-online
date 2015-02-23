@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-D9FCEA9D
+//Class_Initialize Event @2-292740F0
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -185,7 +185,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @2-9C
             $this->Button6 = & new clsButton("Button6", $Method, $this);
             $this->pilihan_lembar_cetak = & new clsControl(ccsListBox, "pilihan_lembar_cetak", "pilihan_lembar_cetak", ccsText, "", CCGetRequestParam("pilihan_lembar_cetak", $Method, NULL), $this);
             $this->pilihan_lembar_cetak->DSType = dsListOfValues;
-            $this->pilihan_lembar_cetak->Values = array(array("1", "Waris"), array("2", "Fasos"), array("3", "Rumah Dinas"), array("4", "Waris Gono-Gini"), array("5", "Hibah"), array("6", "Peralihan Hak Baru"));
+            $this->pilihan_lembar_cetak->Values = array(array("1", "Waris"), array("2", "Fasos"), array("3", "Rumah Dinas"), array("4", "Waris Gono-Gini"), array("5", "Hibah"), array("6", "Peralihan Hak Baru"), array("7", "Harta Bersama"));
             $this->pilihan_lembar_cetak->Required = true;
             $this->opsi_a2 = & new clsControl(ccsListBox, "opsi_a2", "opsi_a2", ccsText, "", CCGetRequestParam("opsi_a2", $Method, NULL), $this);
             $this->opsi_a2->DSType = dsListOfValues;
