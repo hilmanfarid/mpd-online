@@ -97,10 +97,11 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
+	$output.='<th align="center" >CETAK</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select a.npwd as npwpd ,to_char(start_period,'dd-mm-yyyy')||' s.d. '||to_char(end_period,'dd-mm-yyyy') as masa_pajak,
+	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,to_char(start_period,'dd-mm-yyyy')||' s.d. '||to_char(end_period,'dd-mm-yyyy') as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
 		* from t_vat_setllement a
 		left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
@@ -138,12 +139,14 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="right" >'.number_format($data[$i]['db_increasing_charge'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format(($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['debt_vat_amt']), 2, ',', '.').'</td>';
+		
 		if ($data[$i]['payment_date']=='') {
 			$output.='<td align="left" >Belum Bayar</td>';
 		}else{
 			$output.='<td align="left" >Sudah Bayar</td>';
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
+		$output.='<td align="left" ><input id="cetak_skpdkb" class="btn_tambah" onclick="cetak_skpdkb('.$data[$i]['set_id'].'); return false;" value="Cetak SKPDKB" type="button"></td>';
 		$output.='</tr>';
 	}
 
