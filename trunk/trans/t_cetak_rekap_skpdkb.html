@@ -197,6 +197,11 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
             //window.open("../report/view_ulang_daftar_surat_teguran_pdf.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id+"&status=" + status_bayar +"&p_vat_type_id="+p_vat_type_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
     }
+
+	function cetak_skpdkb(set_id)
+    {
+		window.open("../report/cetak_formulir_skpdkb_jabatan.php?t_vat_setllement_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+    }
 </script>
 <p>{Label1}</p>
 </body>
