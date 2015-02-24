@@ -97,7 +97,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
-	$output.='<th align="center" >CETAK</th>';
+	$output.='<th align="center" >CETAK DATA TERPILIH</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
