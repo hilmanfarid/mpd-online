@@ -72,7 +72,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -128,6 +128,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td>&nbsp;</td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="TAMPILKAN" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_spjpSearchButton_DoSearch1" class="btn_tambah" onclick="cetak_semua_skpdkb(); return false;" value="CETAK SKPDKB" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 --></td>
                   </tr>
                 </table>
               </td>
@@ -198,9 +206,35 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         }
     }
 
-	function cetak_skpdkb(set_id)
+        function cetak_skpdkb(set_id)
     {
-		window.open("../report/cetak_formulir_skpdkb_jabatan.php?t_vat_setllement_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                window.open("../report/cetak_formulir_skpdkb_jabatan.php?t_vat_setllement_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+    }
+
+	function cetak_semua_skpdkb()
+    {
+        p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
+        p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
+        status_bayar = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
+        p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
+                code= document.getElementById("t_rep_lap_spjpSearchcode").value;
+        vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
+        year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
+        
+                if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "" ) {
+            alert("Semua Filter Harus Diisi");
+        }else {
+                        var params = "?printAll='SKPDKB JABATAN'";
+                params += "&p_year_period_id="+p_year_period_id;
+                params += "&p_finance_period_id="+p_finance_period_id;
+                params += "&p_vat_type_id="+p_vat_type_id;
+                        params += "&year_code="+year_code;
+                params += "&code="+code;
+                params += "&vat_code="+vat_code;
+                        params += "&ListBox1="+status_bayar;
+                //location.href="t_cetak_rekap_skpdkb.php"+params;
+            window.open("../report/cetak_formulir_skpdkb_jabatan_v2.php" +params, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        }
     }
 </script>
 <p>{Label1}</p>
