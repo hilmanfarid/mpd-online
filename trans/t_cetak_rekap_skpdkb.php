@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-79A57C35
+//Class_Initialize Event @3-4E21C8CA
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -80,6 +80,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->ListBox1->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -140,7 +141,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-B3C58359
+//Operation Method @3-0CD5926D
     function Operation()
     {
         if(!$this->Visible)
@@ -157,12 +158,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoSearch1->Pressed) {
+                $this->PressedButton = "Button_DoSearch1";
             }
         }
         $Redirect = "t_cetak_rekap_skpdkb.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch1") {
+                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
             }
@@ -172,7 +179,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-4D31A034
+//Show Method @3-B6B3B5E4
     function Show()
     {
         global $CCSUseAmp;
@@ -229,6 +236,7 @@ function GetPrimaryKey($keyName)
         $this->ListBox1->Show();
         $this->p_vat_type_id->Show();
         $this->vat_code->Show();
+        $this->Button_DoSearch1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
