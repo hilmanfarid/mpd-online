@@ -28,7 +28,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -99,7 +99,7 @@ $(document).ready(function()
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">
-                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" value="SUBMIT" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 -->&nbsp;&nbsp;&nbsp; </td>
+                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" value="SIMPAN" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 -->&nbsp;&nbsp;&nbsp; </td>
                   </tr>
                 </table>
               </td>
@@ -115,7 +115,7 @@ $(document).ready(function()
 <script language="javascript">
 function lov_npwd() {
         //getFrom_LOV('t_vat_setllementForm','t_cust_account_id,npwd,company_name,p_vat_type_id,vat_code,p_vat_type_dtl_id,vat_code_dtl','lov_npwd_manual.php');
-		getFrom_LOV('t_vat_setllementForm','t_cust_account_id,npwd,company_name','lov_npwd_manual.php');
+                getFrom_LOV('t_vat_setllementForm','t_cust_account_id,npwd,company_name','lov_npwd_manual.php');
 }
 
 function lov_year_period() {
