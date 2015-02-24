@@ -91,7 +91,7 @@
 			<Attributes/>
 			<Features/>
 		</Label>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_cetak_rekap_skpdkb_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_cetak_rekap_skpdkb.php" forShow="True" url="t_cetak_rekap_skpdkb.php" comment="//" codePage="windows-1252"/>
@@ -107,9 +107,9 @@
 			</Actions>
 		</Event>
 		<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="572"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="572"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
