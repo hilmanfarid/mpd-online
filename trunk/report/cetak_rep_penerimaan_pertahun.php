@@ -457,7 +457,7 @@ class FormCetak extends FPDF {
         			(	
         			    "",
         				"SPTPD",
-        				": WP melapor dan membayar pajak tepat waktu"
+        				": WP melaporkan berdasarkan omset yang mereka laporkan"
         			),
         			array
         			(
