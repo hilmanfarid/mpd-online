@@ -187,7 +187,7 @@ echo '<table style="font-style:italic;">
 </tr>
 <tr>
     <td valign="top">SPTPD</td>
-    <td valign="top" colspan="2">: WP melapor dan membayar pajak tepat waktu</td>
+    <td valign="top" colspan="2">: WP melaporkan berdasarkan omset yang mereka laporkan</td>
 </tr>
 </table>';
 
