@@ -390,7 +390,7 @@ class FormCetak extends FPDF {
 			),
 			$this->height);
 		$this->Ln();
-		
+		$this->SetFont("Arial", "B", 8);
 		$this->SetWidths(array($lbody1,$lbody2+$lbody1,""));
 		$this->SetAligns(array("L","J","J"));
 		$this->RowMultiBorderWithHeight(
