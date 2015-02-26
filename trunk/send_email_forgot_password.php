@@ -16,7 +16,7 @@
 	Username dan Password yang baru untuk akun Anda adalah sebagai berikut:</p>
 	<p>	username : '.$_GET['username'].'</p>
 	<p>	password baru : '.$_GET['password'].'</p>';
-    $message = Swift_Message::newInstance('PENGGANTIAN PASSWORD')//SUBJECT
+    $message = Swift_Message::newInstance('PENGUBAHAN PASSWORD')//SUBJECT
       ->setFrom(array($mailConfig['username'] => 'DINAS PELAYANAN PAJAK KOTA BANDUNG'))//NAME APPEAR IN INBOX (sender's name)
       ->setTo($_GET['receiver'])
       //->setBody($_GET['message'], 'text/html');
