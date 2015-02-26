@@ -207,7 +207,7 @@ function print_excel() {
 		and (
 		 f_search_finance_period(a.finance_period_code) ilike '%".$periode."%'
 		) 
-		ORDER BY x.start_date";
+		ORDER BY x.start_date, a.jenis_pajak, a.wp_name";
 	$dbConn->query($query);
 
 	$jumlah_pajak = 0;
