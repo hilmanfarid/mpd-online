@@ -86,7 +86,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -122,7 +122,7 @@ $(document).ready(function()
                     <td class="search-field">Periode</td> 
                     <td class="search-field"><input id="t_vat_setllementSearchs_periode" class="ControlsIN" value="{s_periode}" maxlength="32" size="32" name="{s_periode_Name}"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_PrintExcel --><input id="t_vat_setllementSearchButton_PrintExcel" class="btn_tambah" value="Cetak Excel" alt="Search" type="button" onclick="printLaporanExcel()" name="{Button_Name}"><!-- END Button Button_PrintExcel --></td>
+                      <!-- BEGIN Button Button_PrintExcel --><input id="t_vat_setllementSearchButton_PrintExcel" class="btn_tambah" onclick="printLaporanExcel()" value="Cetak Excel" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_PrintExcel --></td>
                   </tr>
                 </table>
               </td>
@@ -331,7 +331,8 @@ $(document).ready(function()
                       <!-- BEGIN Button ubah_kenaikan --><input id="t_vat_setllementFormubah_kenaikan" class="btn_tambah" onclick="ubahKenaikan()" value="UBAH KENAIKAN" alt="Add" type="button" name="{Button_Name}"><!-- END Button ubah_kenaikan -->
                       <!-- BEGIN Button print_skpdkb --><input id="t_vat_setllementFormprint_skpdkb" class="btn_tambah" onclick="cetak_skpdkb()" value="CETAK SEMUA SKPDKB JABATAN" alt="Add" type="button" name="{Button_Name}"><!-- END Button print_skpdkb -->
                       <!-- BEGIN Button print_skpd --><input id="t_vat_setllementFormprint_skpd" class="btn_tambah" onclick="cetak_skpd()" value="CETAK SEMUA SKPD" alt="Add" type="button" name="{Button_Name}"><!-- END Button print_skpd -->
-                      <!-- BEGIN Button print_selected --><input id="t_vat_setllementFormprint_selected" class="btn_tambah" onclick="cetak_selected()" value="CETAK DATA TERPILIH" alt="Add" type="button" name="{Button_Name}"><!-- END Button print_selected -->&nbsp;&nbsp; 
+                      <!-- BEGIN Button print_selected --><input id="t_vat_setllementFormprint_selected" class="btn_tambah" onclick="cetak_selected()" value="CETAK DATA TERPILIH" alt="Add" type="button" name="{Button_Name}"><!-- END Button print_selected -->&nbsp; 
+                      <!-- BEGIN Button print_selected1 --><input id="t_vat_setllementFormprint_selected1" class="btn_tambah" onclick="cetak_selected_barcode()" value="CETAK DATA TERPILIH DGN BARCODE" alt="Add" type="button" name="{Button_Name}"><!-- END Button print_selected1 -->&nbsp;&nbsp; 
                       <!-- BEGIN Button delete_selected --><input id="t_vat_setllementFormdelete_selected" class="btn_tambah" onclick="hapus()" value="HAPUS" alt="Add" type="button" name="{Button_Name}"><!-- END Button delete_selected -->
                       <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input id="t_vat_setllementFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
@@ -378,6 +379,11 @@ function lov_period() {
 function cetak_selected(){
         var tid = document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
     window.open("../report/cetak_formulir_skpdkb_jabatan.php?t_vat_setllement_id=" + tid, "_blank", "width=650,height=500,top=0,left=0");
+}
+
+function cetak_selected_barcode(){
+        var tid = document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
+    window.open("../report/cetak_formulir_skpdkb_jabatan_barcode.php?t_vat_setllement_id=" + tid, "_blank", "width=650,height=500,top=0,left=0");
 }
 
 function cetak_skpd(){
