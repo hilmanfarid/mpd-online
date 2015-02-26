@@ -4,6 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>t_vat_setllement</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<meta http-equiv="x-ua-compatible" content="IE=10">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
@@ -282,7 +283,10 @@ $(document).ready(function()
                                                 Dim user
                                                 t_customer_order_id = Document.getElementByID("t_vat_setllementFormt_customer_order_id").Value
                                                 user = Document.getElementByID("t_vat_setllementFormuser").Value
-                        strURL = "http://172.16.20.1/mpd/report/cetak_registrasi.php?t_customer_order_id=" & t_customer_order_id & "&user=" & user
+                        Dim tNum
+						Randomize
+						tNum = Int(Rnd * 9999)
+						strURL = "http://172.16.20.1/mpd/report/cetak_registrasi.php?trandom="&tNum&"&t_customer_order_id=" & t_customer_order_id & "&user=" & user
                         Set objHTTP = CreateObject("MSXML2.XMLHTTP") 
                         Call objHTTP.Open("GET", strURL, FALSE) 
                         objHTTP.Send
