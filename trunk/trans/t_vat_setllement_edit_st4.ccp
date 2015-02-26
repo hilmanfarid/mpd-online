@@ -380,7 +380,13 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Button id="396" urlType="Relative" enableValidation="True" isDefault="False" name="print_selected1" wizardCaption="Add" PathID="t_vat_setllementFormprint_selected1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 			</Events>
 			<TableParameters>
@@ -516,7 +522,7 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
