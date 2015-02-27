@@ -70,6 +70,20 @@ while ($dbConn->next_record()) {
 }
 $dbConn->close();
 
+$total_per_bulan = array();
+$total_per_bulan[12] = 0;
+$total_per_bulan[1] = 0;
+$total_per_bulan[2] = 0;
+$total_per_bulan[3] = 0;
+$total_per_bulan[4] = 0;
+$total_per_bulan[5] = 0;
+$total_per_bulan[6] = 0;
+$total_per_bulan[7] = 0;
+$total_per_bulan[8] = 0;
+$total_per_bulan[9] = 0;
+$total_per_bulan[10] = 0;
+$total_per_bulan[11] = 0;
+
 
 startExcel("laporan_penerimaan_pertahun_".$data["tahun"][0]);
 echo "<div><h3> LAPORAN PENERIMAAN PER TAHUN </h3></div>";	
@@ -103,6 +117,8 @@ echo '<tr>
 
 $jumlah_kanan = array();
 $grand_total = 0;
+
+	
 for ($i = 0; $i < count($data["nama"]); $i++) {
 
 	$data2 = array();
@@ -129,6 +145,20 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 	}
 	
 	$grand_total += $jumlah_kanan[$i]; //total bottom
+    
+    //jumlah per bulan
+    $total_per_bulan[12] += $data2[12];
+    $total_per_bulan[1]  += $data2[1];
+    $total_per_bulan[2]  += $data2[2];
+    $total_per_bulan[3]  += $data2[3];
+    $total_per_bulan[4]  += $data2[4];
+    $total_per_bulan[5]  += $data2[5];
+    $total_per_bulan[6]  += $data2[6];
+    $total_per_bulan[7]  += $data2[7];
+    $total_per_bulan[8]  += $data2[8];
+    $total_per_bulan[9]  += $data2[9];
+    $total_per_bulan[10] += $data2[10];
+    $total_per_bulan[11] += $data2[11];
 
 	echo '<tr>
 		<td align="center" valign="top">'.($i+1).'</td>
@@ -153,7 +183,19 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 
 
 echo '<tr>
-		<td colspan="15" align="center"> <b>TOTAL</b> </td>
+		<td colspan="3" align="center"> <b>TOTAL</b> </td>
+		<td><b>'.number_format($total_per_bulan[12], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[1], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[2], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[3], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[4], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[5], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[6], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[7], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[8], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[9], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[10], 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[11], 0, ',', '.').'</b></td>
 		<td><b>'.number_format($grand_total, 0, ',', '.').'</b></td>
 	</tr>';
 echo '</table>';
