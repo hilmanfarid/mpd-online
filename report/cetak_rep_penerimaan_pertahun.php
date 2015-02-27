@@ -203,7 +203,7 @@ class FormCetak extends FPDF {
 				$amt = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_amt";
 				
 				if(is_null($data[$sts][$i])){
-					$data2[$j] = number_format($data[$amt][$i], 0, ',', '.');
+					$data2[$j] = number_format(round($data[$amt][$i]), 0, ',', '.');
 				}
 				else{
 					$data2[$j] = $data[$sts][$i];
