@@ -132,7 +132,7 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 		if(is_null($data[$sts][$i])){
 			$data2[$j] = number_format(round($data[$amt][$i]), 0, ',', '.');
 			$arrpaydate[$j] = $data[$paydate][$i];
-		}
+		} 
 		else{
 			$data2[$j] = $data[$sts][$i];
 		}
