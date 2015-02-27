@@ -139,7 +139,7 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 		
 		//jumlah ke bawah per bulan
 		$total_per_bulan[$j] += round($data[$amt][$i]);
-        
+         
 	}
 	
 	$jumlah_kanan[$i] = 0;
