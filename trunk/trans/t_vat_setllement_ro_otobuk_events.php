@@ -232,7 +232,7 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 		$i_no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
 	
 	
-		$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."') from dual";
+		$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."','".CCGetUserLogin()."') from dual";
 		$dbConn1->query($sql_update_kohir);
 		
 	}
