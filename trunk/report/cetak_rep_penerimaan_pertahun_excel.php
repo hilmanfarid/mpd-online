@@ -138,14 +138,14 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 		}
 		
 		//jumlah ke bawah per bulan
-		$total_per_bulan[$j] += $data[$amt][$i];
+		$total_per_bulan[$j] += round($data[$amt][$i]);
         
 	}
 	
 	$jumlah_kanan[$i] = 0;
 	for($k = 1; $k <=12; $k++) {
 		$amt = "f_" . str_pad($k, 2, '0', STR_PAD_LEFT) . "_amt";
-		$jumlah_kanan[$i] += $data[$amt][$i];
+		$jumlah_kanan[$i] += round($data[$amt][$i]);
 	}
 	
 	$grand_total += $jumlah_kanan[$i]; //total bottom
