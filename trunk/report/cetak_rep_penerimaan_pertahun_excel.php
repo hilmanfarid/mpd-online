@@ -130,7 +130,7 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 		$paydate = "f_" . str_pad($j, 2, '0', STR_PAD_LEFT) . "_paydate";
 					
 		if(is_null($data[$sts][$i])){
-			$data2[$j] = number_format($data[$amt][$i], 0, ',', '.');
+			$data2[$j] = number_format($data[$amt][$i], 2, ',', '.');
 			$arrpaydate[$j] = $data[$paydate][$i];
 		}
 		else{
@@ -169,7 +169,7 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 		<td align="right" valign="top">'.$data2[9].'<br/> '.$arrpaydate[9].'</td>
 		<td align="right" valign="top">'.$data2[10].'<br/> '.$arrpaydate[10].'</td>
 		<td align="right" valign="top">'.$data2[11].'<br/> '.$arrpaydate[11].'</td>
-		<td align="right" valign="top">'.number_format($jumlah_kanan[$i], 0, ',', '.').'</td>
+		<td align="right" valign="top">'.number_format($jumlah_kanan[$i], 2, ',', '.').'</td>
 	</tr>';
 	
 }
@@ -177,19 +177,19 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 
 echo '<tr>
 		<td colspan="3" align="center"> <b>TOTAL</b> </td>
-		<td><b>'.number_format($total_per_bulan[12], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[1], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[2], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[3], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[4], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[5], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[6], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[7], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[8], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[9], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[10], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($total_per_bulan[11], 0, ',', '.').'</b></td>
-		<td><b>'.number_format($grand_total, 0, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[12], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[1], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[2], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[3], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[4], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[5], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[6], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[7], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[8], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[9], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[10], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($total_per_bulan[11], 2, ',', '.').'</b></td>
+		<td><b>'.number_format($grand_total, 2, ',', '.').'</b></td>
 	</tr>';
 echo '</table>';
 
