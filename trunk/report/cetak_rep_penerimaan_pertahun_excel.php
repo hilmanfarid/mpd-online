@@ -136,6 +136,10 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 		else{
 			$data2[$j] = $data[$sts][$i];
 		}
+		
+		//jumlah ke bawah per bulan
+		$total_per_bulan[$j] += $data[$amt][$i];
+        
 	}
 	
 	$jumlah_kanan[$i] = 0;
@@ -147,18 +151,7 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 	$grand_total += $jumlah_kanan[$i]; //total bottom
     
     //jumlah per bulan
-    $total_per_bulan[12] += $data2[12];
-    $total_per_bulan[1]  += $data2[1];
-    $total_per_bulan[2]  += $data2[2];
-    $total_per_bulan[3]  += $data2[3];
-    $total_per_bulan[4]  += $data2[4];
-    $total_per_bulan[5]  += $data2[5];
-    $total_per_bulan[6]  += $data2[6];
-    $total_per_bulan[7]  += $data2[7];
-    $total_per_bulan[8]  += $data2[8];
-    $total_per_bulan[9]  += $data2[9];
-    $total_per_bulan[10] += $data2[10];
-    $total_per_bulan[11] += $data2[11];
+    
 
 	echo '<tr>
 		<td align="center" valign="top">'.($i+1).'</td>
