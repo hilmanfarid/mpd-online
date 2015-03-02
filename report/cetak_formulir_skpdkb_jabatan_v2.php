@@ -22,7 +22,14 @@
 
 	
 	if($t_vat_setllement_id > 0){
-		$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
+		//$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
+		$sql="select a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
+			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
+			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
+			left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
+			left join p_year_period w on w.p_year_period_id=z.p_year_period_id
+			left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
+			where a.t_vat_setllement_id=".$t_vat_setllement_id;
 	}
 	else{
 		//$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE settlement_type = " . $settlement_type;
