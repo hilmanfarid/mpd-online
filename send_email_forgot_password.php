@@ -2,8 +2,10 @@
     require_once 'include/swift/lib/swift_required.php';               
     $mailConfig = array(
         'host_smtp' => 'smtp.gmail.com',
-        'username' => 'helpdesk@disyanjak.net',
-        'password' => 'disyanjakbdg'
+        //'username' => 'helpdesk@disyanjak.net',
+        //'password' => 'disyanjakbdg'
+		'username' => 'testmpd2014@gmail.com',
+        'password' => 'mpdonline'
     );
     
     $transport = Swift_SmtpTransport::newInstance($mailConfig['host_smtp'], 465, "ssl")
