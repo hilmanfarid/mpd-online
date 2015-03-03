@@ -2,7 +2,7 @@
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_setllementGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" dataSource="SELECT x.* 
 FROM v_t_cust_acc_status_modif x
-where p_order_status_id =2
+where p_order_status_id =2 and p_order_status_id =3
 and (x.wp_name ILIKE '%{s_keyword}%' OR x.npwd ILIKE '%{s_keyword}%')
 order by x.updated_date desc">
 			<Components>
