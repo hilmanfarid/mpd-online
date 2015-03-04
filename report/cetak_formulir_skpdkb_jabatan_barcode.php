@@ -445,43 +445,102 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3 - 10, $this->height, "", "BL", 0, 'L');
 		$this->Cell($lbody1 + 8, $this->height, "NIP. 19700806 199101 1 001", "BT", 0, 'C'); //isi nip
 		$this->Cell(2, $this->height, "", "BR", 0, 'L');
-		$this->Ln($this->height + 4);
+		$this->Ln($this->height);
 		
 		$this->SetFont('Arial', '', 6);
 		$this->Cell($this->lengthCell, $this->height, "———————————————————————————————————————— Gunting di sini ————————————————————————————————————————", "", 0, 'C');
 		$this->SetFont('Arial', '', 8);		
 		$this->Ln();
 		$this->Cell($lbody1, $this->height, "", "TL", 0, 'L');
-		$this->Cell($lbody2, $this->height, "", "T", 0, 'C');
-		$this->Cell($lbody1, $this->height, "No. SKPDKB : ".$data["no_urut"], "TR", 0, 'L');
+		$this->Cell($lbody2, $this->height, "TANDA TERIMA", "T", 0, 'C');
+		$this->Cell($lbody1, $this->height, "", "TR", 0, 'L');
 		$this->Ln();
 		
-		$this->SetFont('Arial', '', 11);
-		$this->Cell($lbody1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody2, $this->height, "TANDA TERIMA", "", 0, 'C');
-		$this->Cell($lbody1, $this->height, "", "R", 0, 'C');
-		$this->Ln();
 		
 		$this->SetFont('Arial', '', 8);
-		$this->Cell($lbody1, $this->height, "     NPWPD", "L", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": ".$data["npwd"], "R", 0, 'L');
-		$this->Ln();
+		$this->Image('../images/logo_pemda.png',16,235,12,12);
+		$this->Cell($lheader1,$this->height-1, "", "LT", 0, 'C');			
+		$this->Cell($lheader2, $this->height-1, "PEMERINTAH KOTA", "RT", 0, 'C');
+		$this->SetFont('Arial', '', 10);
+		$this->Cell($lheader3, $this->height-1, "SKPDKB", "RT", 0, 'C');
+		$this->Cell($lheader2, $this->height-1, "", "RT", 0, 'C');
+		$this->Ln($this->height-1);
 		
-		$this->Cell($lbody1, $this->height, "     Nama", "L", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": ".$data["wp_name"], "R", 0, 'L');
-		$this->Ln();
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lheader1, $this->height-2, "", "L", 0, 'C');			
+		$this->Cell($lheader2, $this->height-2, "BANDUNG", "R", 0, 'C');
+		$this->SetFont('Arial', '', 7);
+		$this->Cell($lheader3, $this->height-2, "(Surat Ketetapan Pajak Daerah Kurang Bayar)", "R", 0, 'C');
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lheader2, $this->height-2, "No. Urut", "R", 0, 'C');
+		$this->Ln($this->height-2);
+		
+		$this->Cell($lheader1, $this->height-2, "", "L", 0, 'C');	
+		$this->Cell($lheader2, $this->height-2, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$this->Cell($lheader3, $this->height-2, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
+		$this->Cell($lheader2, $this->height-2, "", "R", 0, 'C');
+		$this->Ln($this->height -2);
+		
+		
+		// No Urut
+		$this->Cell($lheader2 + $lheader4 + 1, $this->height-2, "", "R", 0, 'C');
+		$no_urut = str_split($data["no_urut"]);
+		$this->kotak(1, 34, 1, $no_urut[0]);
+		$this->kotak(1, 34, 1, $no_urut[1]);
+		$this->kotak(1, 34, 1, $no_urut[2]);
+		$this->kotak(1, 34, 1, $no_urut[3]);
+		$this->kotak(1, 34, 1, $no_urut[4]);
+		$this->kotak(1, 34, 1, $no_urut[5]);
+		$this->kotak(1, 34, 1, $no_urut[6]);
+		$this->kotak(1, 34, 1, $no_urut[7]);
+		$this->Ln($this->height-5);
+		
+		$this->Cell($lheader1, $this->height-1, "", "L", 0, 'C');	
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lheader2, $this->height-1, "Jalan Wastukancana No.2", "R", 0, 'C');
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
+		$this->Cell($lheader2, $this->height-1, "", "R", 0, 'C');
+		$this->Ln($this->height-2);
+		
+		$this->Cell($lheader1, $this->height-1, "", "BL", 0, 'C');	
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lheader2, $this->height-1, "Telp. 022-4235052 - Bandung", "BR", 0, 'C');
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lheader3, $this->height-1, "", "BR", 0, 'L');
+		$this->Cell($lheader2, $this->height-1, "", "BR", 0, 'C');
+		$this->Ln($this->height-1);
 
-		$this->Cell($lbody1, $this->height, "     Alamat", "L", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": ".$data["wp_address_name"], "R", 0, 'L');
-		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
+		$lbody = $this->lengthCell / 4;
+		$lbody1 = $lbody * 1;
+		$lbody2 = $lbody * 2;
+		$lbody3 = $lbody * 3;
+		$this->SetFont('Arial', '', 8);
+		$this->Cell(5, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 - 5, $this->height, "Nama", "", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": " . $data["wp_name"], "R", 0, 'L');
+		$this->Ln($this->height-2);
+		
+		$this->Cell(5, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 - 5, $this->height, "Alamat", "", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": " . $data["wp_address_name"], "R", 0, 'L');
+		$this->Ln($this->height-2);
+		
+		$this->Cell(5, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 - 5, $this->height, "NPWPD", "", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": " . $data["npwd"], "R", 0, 'L');
+		$this->Ln($this->height-2);
+		
+		$this->Cell(5, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "", 0, 'L');
+		$this->Cell($lbody3-$lbody1 - 10, $this->height, ": ".$data["due_date"], "", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date('d M Y'), "R", 0, 'C');
-		$this->Ln();
+		$this->Ln($this->height-2);
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Yang Menerima, ", "R", 0, 'C');
 		$this->newLine();
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
-		$this->Ln();
+		$this->Ln($this->height);
 		$this->Cell($lbody3 - 10, $this->height, "", "BL", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "(............................................................)", "BR", 0, 'C');
 	}
