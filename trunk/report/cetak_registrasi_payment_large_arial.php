@@ -14,7 +14,7 @@ if(empty($t_customer_order_id)) exit;
 $data = array();
 $dbConn				= new clsDBConnSIKP();
 $query				= "SELECT a.t_vat_setllement_id, b.p_cg_terminal_id, upper(d.vat_code) as jenis_pajak, to_char(b.payment_date,'dd/mm/yyyy') as tgl_transaksi, 
-to_char(b.payment_date,'HH24:MI:SS') as jam_transaksi, b.receipt_no, a.payment_key, a.npwd,
+to_char(b.payment_date,'HH24:MI:SS') as jam_transaksi, b.receipt_no, a.payment_key, a.npwd, a.no_kohir,
 e.wp_name, (e.wp_address_name || '/' || e.wp_address_no) AS alamat_wp,
 b.payment_vat_amount as total_pokok, b.penalty_amount as total_denda, b.payment_amount as total_tagihan,
 upper(trim(replace(f_terbilang(to_char(round(b.payment_amount)),'rp.'), '  ', ' '))) || ' RUPIAH' as dengan_huruf,
@@ -47,6 +47,8 @@ while ($dbConn->next_record()) {
 	$data["nama_rekening"]		    = $dbConn->f("nama_rekening");
 	$data["start_period"]		    = $dbConn->f("start_period");
 	$data["end_period"]		        = $dbConn->f("end_period");
+	$data["no_kohir"]		        = $dbConn->f("no_kohir");
+	
 }
 $_HEIGHT = 4;
 $_BORDER = 0;
@@ -180,7 +182,8 @@ $pdf->RowMultiBorderWithHeight(
 			(	
 			    "",
 				"NTP", ": ".$data['receipt_no'],
-				"NOMOR BAYAR   : ".$data['payment_key']
+				"NOMOR KOHIR    : ".$data['no_kohir']
+				
 			),
 			array
 			(
@@ -198,7 +201,7 @@ $pdf->RowMultiBorderWithHeight(
 			(	
 			    "",
 				"NPWPD/NOPD", ": ".$data['npwd'],
-				""
+				"NOMOR BAYAR   : ".$data['payment_key']
 			),
 			array
 			(
