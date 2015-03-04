@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_app_user</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//DEL  
+//DEL  var p_app_userForm_DatePicker_expired_user = new Object(); 
+//DEL  p_app_userForm_DatePicker_expired_user.format           = "dd-mmm-yyyy";
+//DEL  p_app_userForm_DatePicker_expired_user.style            = "Styles/sikp/Style.css";
+//DEL  p_app_userForm_DatePicker_expired_user.relativePathPart = "../";
+//DEL  p_app_userForm_DatePicker_expired_user.themeVersion = "3.0";
+//DEL  
+//DEL  var p_app_userForm_DatePicker_expired_pwd = new Object(); 
+//DEL  p_app_userForm_DatePicker_expired_pwd.format           = "dd-mmm-yyyy";
+//DEL  p_app_userForm_DatePicker_expired_pwd.style            = "Styles/sikp/Style.css";
+//DEL  p_app_userForm_DatePicker_expired_pwd.relativePathPart = "../";
+//DEL  p_app_userForm_DatePicker_expired_pwd.themeVersion = "3.0";
+//DEL  
+
+
+//p_app_userFormButton_Delete_OnClick @97-9EDC5CD6
+function p_app_userFormButton_Delete_OnClick()
+{
+    var result = true;
+//End p_app_userFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close p_app_userFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close p_app_userFormButton_Delete_OnClick
+
+//p_app_userFormButton_Cancel_OnClick @99-D6837D77
+function p_app_userFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End p_app_userFormButton_Cancel_OnClick
+
+//bind_events @1-8AFD9D35
+function bind_events() {
+    addEventHandler("p_app_userFormButton_Delete", "click", p_app_userFormButton_Delete_OnClick);
+    addEventHandler("p_app_userFormButton_Cancel", "click", p_app_userFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        ADMINISTRASI USER 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record p_app_userSearch -->
+        <form id="p_app_userSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="p_app_userSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_app_userSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_app_userSearch --><br>
+        <!-- BEGIN Grid p_app_userGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR&nbsp;USER&nbsp;</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">Nama User</th>
+ 
+                  <th scope="col">Nama Lengkap</th>
+ 
+                  <th scope="col">Deskripsi</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_app_userGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_app_userGridDLink_{p_app_userGrid:rowNumber}">{DLink}</a></td> 
+                  <td>{app_user_name}&nbsp;<input id="p_app_userGridp_app_user_id_{p_app_userGrid:rowNumber}" value="{p_app_user_id}" type="hidden" name="{p_app_user_id_Name}"></td> 
+                  <td>{full_name}&nbsp;</td> 
+                  <td>{description}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="4">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="p_app_userGridInsert_Link"><img style="DISPLAY: none" border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="3">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_app_userGrid --><br>
+        <!-- BEGIN Record p_app_userForm -->
+        <form id="p_app_userForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI USER&nbsp;</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record Grid" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormapp_user_name">Nama User</label></td> 
+                    <td><input id="p_app_userFormapp_user_name" class="ControlsRO" value="{app_user_name}" readonly maxlength="16" size="12" name="{app_user_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormfull_name">Nama Lengkap</label></td> 
+                    <td><input id="p_app_userFormfull_name" class="ControlsRO" value="{full_name}" readonly maxlength="96" size="40" name="{full_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormemail_address">Email</label></td> 
+                    <td><input id="p_app_userFormemail_address" class="ControlsRO" value="{email_address}" readonly maxlength="128" size="50" name="{email_address_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormp_user_status_id">Status</label></td> 
+                    <td>
+                      <select id="p_app_userFormp_user_status_id" class="ControlsRO" disabled name="{p_user_status_id_Name}">
+                        {p_user_status_id_Options}
+                      </select>
+ &nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Employee ?&nbsp;</td> 
+                    <td>
+                      <select id="p_app_userFormis_employee" class="ControlsRO" disabled name="{is_employee_Name}">
+                        <option selected value="">Pilih</option>
+                        {is_employee_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormdescription">Deskripsi</label></td> 
+                    <td><input id="p_app_userFormdescription" class="ControlsRO" value="{description}" readonly maxlength="250" size="60" name="{description_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormip_address_v4">IP Address v4</label></td> 
+                    <td><input id="p_app_userFormip_address_v4" class="ControlsRO" value="{ip_address_v4}" readonly maxlength="24" name="{ip_address_v4_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormip_address_v4">IP Address v6</label></td> 
+                    <td><input id="p_app_userFormip_address_v6" class="ControlsRO" value="{ip_address_v6}" readonly maxlength="24" name="{ip_address_v6_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormexpired_user">Expired User</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormexpired_user" class="ControlsRO" value="{expired_user}" readonly maxlength="100" size="15" name="{expired_user_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormexpired_pwd">Expired Pwd</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormexpired_pwd" class="ControlsRO" value="{expired_pwd}" readonly maxlength="100" size="15" name="{expired_pwd_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormlast_login_time">Terakhir Login</label></td> 
+                    <td><input id="p_app_userFormlast_login_time" class="ControlsRO" value="{last_login_time}" readonly maxlength="100" size="30" name="{last_login_time_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormcreated_by">Dibuat Oleh</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="16" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="15" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_app_userFormupdated_by">Diubah Oleh</label></td> 
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="16" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="p_app_userFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_update --><input id="p_app_userFormButton_update" class="btn_tambah" value="RESET PASSWORD" type="submit" name="{Button_Name}"><!-- END Button Button_update -->
+                      <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="p_app_userFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="p_app_userFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input style="WIDTH: 76px; HEIGHT: 22px" id="p_app_userFormp_app_userGridPage" value="{p_app_userGridPage}" size="10" type="hidden" name="{p_app_userGridPage_Name}"><input id="p_app_userFormp_app_user_id" value="{p_app_user_id}" type="hidden" name="{p_app_user_id_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_app_userForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
