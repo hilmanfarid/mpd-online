@@ -164,7 +164,7 @@ $pdf->RowMultiBorderWithHeight(
 			(	
 			    "",
 				"TANGGAL TRANSAKSI", ": ".$data['tgl_transaksi']." (DD/MM/YYYY)",
-				"JAM TRANSAKSI : ".$data['jam_transaksi']
+				"JAM TRANSAKSI  : ".$data['jam_transaksi']
 			),
 			array
 			(
@@ -175,7 +175,7 @@ $pdf->RowMultiBorderWithHeight(
 			$_HEIGHT);
 
 
-$pdf->SetWidths(array(5,45, 75, 70));
+/*$pdf->SetWidths(array(5,45, 75, 70));
 $pdf->SetAligns(array("L", "L", "L"));
 $pdf->RowMultiBorderWithHeight(
 			array
@@ -191,10 +191,20 @@ $pdf->RowMultiBorderWithHeight(
 				"","",
 				""
 			),
-			$_HEIGHT);
-			
-	
-$pdf->SetWidths(array(5,45, 75, 70));
+			$_HEIGHT);*/
+
+$pdf->Cell(5, $_HEIGHT, "", "", 0, "");
+$pdf->Cell(45, $_HEIGHT, "NTP", "", 0, "");
+$pdf->Cell(75, $_HEIGHT, ": ".$data['receipt_no'], "", 0, "");
+
+$pdf->Cell(29, $_HEIGHT, "NOMOR KOHIR    :", "", 0, "");
+$pdf->SetFont('Arial', '',11);
+$pdf->Cell(41, $_HEIGHT, $data['no_kohir'], "", 0, "");
+$pdf->ln();
+
+
+$pdf->SetFont('Arial', '',9);
+/*$pdf->SetWidths(array(5,45, 75, 70));
 $pdf->SetAligns(array("L", "L", "L"));
 $pdf->RowMultiBorderWithHeight(
 			array
@@ -209,8 +219,19 @@ $pdf->RowMultiBorderWithHeight(
 				"","",
 				""
 			),
-			$_HEIGHT);
+			$_HEIGHT);*/
 
+$pdf->Cell(5, $_HEIGHT, "", "", 0, "");
+$pdf->Cell(45, $_HEIGHT, "NPWPD/NOPD", "", 0, "");
+$pdf->Cell(75, $_HEIGHT, ": ".$data['npwd'], "", 0, "");
+
+$pdf->Cell(29, $_HEIGHT, "NOMOR BAYAR   :", "", 0, "");
+$pdf->SetFont('Arial', '',11);
+$pdf->Cell(41, $_HEIGHT, $data['payment_key'], "", 0, "");
+
+
+$pdf->ln();
+$pdf->SetFont('Arial', '',9);
 $pdf->SetWidths(array(5,45, 75, 70));
 $pdf->SetAligns(array("L", "L", "L"));
 $pdf->RowMultiBorderWithHeight(
@@ -345,7 +366,7 @@ $pdf->RowMultiBorderWithHeight(
 			),
 			$_HEIGHT);
 			
-$pdf->SetWidths(array(5,45, 15, 60, 70));
+/*$pdf->SetWidths(array(5,45, 15, 60, 70));
 $pdf->SetAligns(array("L", "L", "L", "R", "L"));
 $pdf->RowMultiBorderWithHeight(
 			array
@@ -360,7 +381,15 @@ $pdf->RowMultiBorderWithHeight(
 				"","",
 				"",""
 			),
-			$_HEIGHT);	
+			$_HEIGHT);	*/
+$pdf->Cell(5, $_HEIGHT, "", "", 0, "");
+$pdf->Cell(45, $_HEIGHT, "TOTAL BAYAR", "", 0, "");
+$pdf->Cell(15, $_HEIGHT, ": RP.", "", 0, "");
+$pdf->SetFont('Arial', '',11);
+$pdf->Cell(60, $_HEIGHT, number_format($data['total_tagihan'], 0, ",", "."), "", 0, "R");
+$pdf->SetFont('Arial', '',9);
+$pdf->Cell(70, $_HEIGHT, "", "", 0, "");
+$pdf->ln();
 
 $pdf->SetWidths(array(5,45, 145));
 $pdf->SetAligns(array("L", "L", "L"));
@@ -393,7 +422,7 @@ $pdf->RowMultiBorderWithHeight(
 			),
 			$_HEIGHT);
 
-$pdf->SetWidths(array(5,45, 145));
+/*$pdf->SetWidths(array(5,45, 145));
 $pdf->SetAligns(array("L", "L", "L"));
 $pdf->RowMultiBorderWithHeight(
 			array
@@ -406,7 +435,14 @@ $pdf->RowMultiBorderWithHeight(
 			    "",
 				"",""
 			),
-			$_HEIGHT);
+			$_HEIGHT);*/
+
+$pdf->Cell(5, $_HEIGHT, "", "", 0, "");
+$pdf->Cell(45, $_HEIGHT, "MASA AWAL/AKHIR PJK", "", 0, "");
+$pdf->SetFont('Arial', '',11);
+$pdf->Cell(145, $_HEIGHT, ": ".$data['start_period']." / ".$data['end_period'], "", 0, "");
+$pdf->SetFont('Arial', '',9);
+$pdf->ln();
 
 $pdf->SetWidths(array(5,190));
 $pdf->SetAligns(array("L", "L"));
