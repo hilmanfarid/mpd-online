@@ -281,17 +281,17 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @2-26280CBF
+//Open Method @2-56E3014D
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (SELECT x.* \n" .
         "FROM v_t_cust_acc_status_modif x\n" .
-        "where p_order_status_id =2 and p_order_status_id =3\n" .
+        "where (p_order_status_id =2 or p_order_status_id =3)\n" .
         "and (x.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR x.npwd ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')) cnt";
         $this->SQL = "SELECT x.* \n" .
         "FROM v_t_cust_acc_status_modif x\n" .
-        "where p_order_status_id =2 and p_order_status_id =3\n" .
+        "where (p_order_status_id =2 or p_order_status_id =3)\n" .
         "and (x.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR x.npwd ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%') {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
