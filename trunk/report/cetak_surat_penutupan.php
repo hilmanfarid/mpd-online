@@ -28,24 +28,18 @@ $query="select
 		type.vat_code,
 		a.order_no as reg_letter_no,
 		decode(c.p_vat_type_dtl_id,null,null,1,1,2,1,3,1,4,1,8,1,0) as klasifikasi,
-		d.vat_code as detail_jenis_pajak,
+		nvl(d.vat_code,type.vat_code) as detail_jenis_pajak,
 		to_char (e.status_request_date,'dd-mm-yyyy') as status_request_date,
 		decode(e.reason_status_id,1,g.code,2,g.code,3,g.code,e.reason_description) as reason_code
-from t_customer_order a,
-		p_rqst_type b,
-		t_cust_account c,
-		p_vat_type type,
-		p_vat_type_dtl d,
-		t_cust_acc_status_modif e,
-		t_customer f,
-		p_reference_list g
-where a.p_rqst_type_id = b.p_rqst_type_id
-	and a.t_customer_order_id = e.t_customer_order_id
-	and c.p_vat_type_dtl_id = d.p_vat_type_dtl_id
-	and d.p_vat_type_id = type.p_vat_type_id
-	and c.t_cust_account_id = e.t_cust_account_id
-	and f.t_customer_id = c.t_customer_id
-	and a.t_customer_order_id =".$t_customer_order_id;
+from t_cust_acc_status_modif e
+left join t_customer_order a on a.t_customer_order_id = e.t_customer_order_id
+left join	p_rqst_type b on a.p_rqst_type_id = b.p_rqst_type_id
+left join t_cust_account c on c.t_cust_account_id = e.t_cust_account_id
+left join	p_vat_type type on c.p_vat_type_id = type.p_vat_type_id
+left join p_vat_type_dtl d on c.p_vat_type_dtl_id = d.p_vat_type_dtl_id
+left join t_customer f on f.t_customer_id = c.t_customer_id
+left join p_reference_list g on g.p_reference_list_id = e.reason_status_id
+where a.t_customer_order_id =".$t_customer_order_id;
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
