@@ -256,7 +256,7 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 		</script>";
 		
 	}else {
-		$urlref = "http://202.154.24.4:81/mpd-wp/client/ws.php?type=json&module=bds&class=t_vat_settlement&method=printNoBayar&no_bayar=".$payment_key;
+		$urlref = "http://172.16.21.7:81/mpd-wp/client/ws.php?type=json&module=bds&class=t_vat_settlement&method=printNoBayar&no_bayar=".$payment_key;
 		echo "
   			<script>
   				window.open('".$urlref."', '_blank', 'location=yes,height=500,width=800,scrollbars=yes,status=yes');
