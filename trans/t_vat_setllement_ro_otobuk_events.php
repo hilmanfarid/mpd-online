@@ -216,6 +216,15 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 	
 	if(!empty($no_kohir)) {
 		//empty statement		
+		$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
+		$i_no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
+	
+	
+		$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."','".CCGetUserLogin()."') as payment_key";
+		$dbConn1->query($sql_update_kohir);
+		$dbConn1->next_record();
+		$t_vat_setllementForm->payment_key->SetValue($dbConn1->f("payment_key"));
+
 	}else {
 	
 		$dbConn1 = new clsDBConnSIKP();
