@@ -258,7 +258,7 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 	$dbConn2->query($sql_update_anomali);
 	//end update
 
-	$payment_key = $t_vat_setllementForm->payment_key->GetFormattedValue();
+	$payment_key = $t_vat_setllementForm->payment_key->GetValue();
 	if(empty($payment_key)) {
 		echo "<script>
 			alert('Tidak dapat cetak. No Pembayaran masih kosong');
