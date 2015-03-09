@@ -159,6 +159,12 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Attributes/>
 					<Features/>
 				</Label>
+				<Button id="322" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetakNoBayar" PathID="t_vat_setllementGridBtnCetakNoBayar">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
