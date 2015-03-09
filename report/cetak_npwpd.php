@@ -99,15 +99,20 @@ class FormCetak extends FPDF {
 		$lheader4 = $lheader * 4;
 		
 		$dbConn				= new clsDBConnSIKP(); 
-        $query = "select a.*, b.npwd
-                    FROM t_customer a
-                    LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
-                    where b.npwd = '".$npwpd."'";
+        $query = "SELECT a.*,
+                    c.region_name AS nama_kota,
+                    d.region_name AS nama_kecamatan,
+                    e.region_name AS nama_kelurahan
+                    FROM t_cust_account a
+                    LEFT JOIN p_region c ON a.brand_p_region_id = c.p_region_id
+                    LEFT JOIN p_region d ON a.brand_p_region_id_kec = d.p_region_id
+                    LEFT JOIN p_region e ON a.brand_p_region_id_kel = e.p_region_id
+                    where a.npwd = '".$npwpd."'";
         $dbConn->query($query);
         
         $alamat = '';
         while ($dbConn->next_record()) {
-        	$alamat = $dbConn->f("address_name_owner")." .No ". $dbConn->f("address_no_owner")." RT/RW: ".$dbConn->f("address_rt_owner")."/".$dbConn->f("address_rw_owner");
+        	$alamat = $dbConn->f("brand_address_name")." .No ". $dbConn->f("brand_address_no")." RT/RW: ".$dbConn->f("brand_address_rt")."/".$dbConn->f("brand_address_rw"). "Kec.".$dbConn->f("nama_kecamatan")." Kel.".$dbConn->f("nama_kelurahan");
         }
         $dbConn->close();
         
@@ -115,7 +120,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader2, $this->height, "NPWPD :");
 		$this->Cell($lheader1, $this->height, $npwpd);
 		$this->Ln();
-		$this->Cell($lheader2, $this->height, "Alamat :");
+		$this->Cell($lheader2, $this->height, "Alamat WP :");
 		$this->Cell($lheader1, $this->height, $alamat);
 		$this->SetFont('Arial', '', 10);
 		$this->Ln();
