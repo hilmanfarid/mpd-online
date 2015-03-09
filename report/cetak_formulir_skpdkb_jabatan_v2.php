@@ -11,8 +11,10 @@
 
 	$t_vat_setllement_id = CCGetFromGet("t_vat_setllement_id","");
 	$settlement_type = CCGetFromGet("printall","");
+	$mode = CCGetFromGet("mode","1");
 	
 	$param_arr['p_finance_period_id'] = CCGetFromGet('p_finance_period_id');
+	$param_arr['p_finance_period_id1'] = CCGetFromGet('p_finance_period_id1');
 	$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
 	$param_arr['status_bayar'] = CCGetFromGet('ListBox1');
 
@@ -22,7 +24,6 @@
 
 	
 	if($t_vat_setllement_id > 0){
-		//$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 		$sql="select t.vat_code as jenis_pajak, u.vat_code as vat_code,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
@@ -34,25 +35,47 @@
 			where a.t_vat_setllement_id=".$t_vat_setllement_id;
 	}
 	else{
-		//$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement_skpd_kb_jabatan WHERE settlement_type = " . $settlement_type;
-		$sql="select t.vat_code as jenis_pajak, u.vat_code as vat_code,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
-			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
-			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
-			left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
-			left join p_year_period w on w.p_year_period_id=z.p_year_period_id
-			left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
-			left join p_vat_type_dtl u on u.p_vat_type_dtl_id=a.p_vat_type_dtl_id
-			left join p_vat_type t on t.p_vat_type_id=u.p_vat_type_id
-			where p_settlement_type_id = 4 and a.p_finance_period_id =".$param_arr['p_finance_period_id']."
-			and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
-			and x.p_account_status_id = 1";
+		if ($mode==2){
+			$sql="select t.vat_code as jenis_pajak, u.vat_code as vat_code,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
+				left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
+				left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
+				left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
+				left join p_year_period w on w.p_year_period_id=z.p_year_period_id
+				left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
+				left join p_vat_type_dtl u on u.p_vat_type_dtl_id=a.p_vat_type_dtl_id
+				left join p_vat_type t on t.p_vat_type_id=u.p_vat_type_id
+				where p_settlement_type_id = 4 
+				and a.p_finance_period_id in(
+					select p_finance_period_id 
+					from p_finance_period
+					where 
+						start_date >= (select start_date from p_finance_period
+							where p_finance_period_id = ".$param_arr['p_finance_period_id'].") 
+						and end_date <= (select end_date from p_finance_period
+							where p_finance_period_id = ".$param_arr['p_finance_period_id1'].") 
+				)
+				and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
+				and x.p_account_status_id = 1";
+		}else{
+			$sql="select t.vat_code as jenis_pajak, u.vat_code as vat_code,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
+				left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
+				left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
+				left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
+				left join p_year_period w on w.p_year_period_id=z.p_year_period_id
+				left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
+				left join p_vat_type_dtl u on u.p_vat_type_dtl_id=a.p_vat_type_dtl_id
+				left join p_vat_type t on t.p_vat_type_id=u.p_vat_type_id
+				where p_settlement_type_id = 4 and a.p_finance_period_id =".$param_arr['p_finance_period_id']."
+				and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
+				and x.p_account_status_id = 1";
+		}
 		if ($param_arr['status_bayar']==2){
 			$sql.="and receipt_no is not null ORDER BY wp_name";
 		}else{
 			if ($param_arr['status_bayar']==3){
 				$sql.="and receipt_no is null ORDER BY wp_name";
 			}else{
-				$sql.="ORDER BY wp_name";
+				$sql.="ORDER BY wp_name,start_period";
 			}
 		}
 	}
