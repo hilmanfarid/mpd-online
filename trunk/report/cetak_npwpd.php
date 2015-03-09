@@ -112,7 +112,7 @@ class FormCetak extends FPDF {
         
         $alamat = '';
         while ($dbConn->next_record()) {
-        	$alamat = $dbConn->f("brand_address_name")." .No ". $dbConn->f("brand_address_no")." RT/RW: ".$dbConn->f("brand_address_rt")."/".$dbConn->f("brand_address_rw"). "Kec.".$dbConn->f("nama_kecamatan")." Kel.".$dbConn->f("nama_kelurahan");
+        	$alamat = $dbConn->f("brand_address_name")." .No ". $dbConn->f("brand_address_no")." RT/RW: ".$dbConn->f("brand_address_rt")."/".$dbConn->f("brand_address_rw"). ". KEC.".$dbConn->f("nama_kecamatan")." KEL.".$dbConn->f("nama_kelurahan");
         }
         $dbConn->close();
         
