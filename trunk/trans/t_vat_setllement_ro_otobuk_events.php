@@ -219,7 +219,7 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 		$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
 		$i_no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
 	
-	
+		$dbConn1 = new clsDBConnSIKP();
 		$sql_update_kohir = "select f_update_no_kohir_vat_settlement(".$i_vat_setllement_id.",'".$i_no_kohir."','".CCGetUserLogin()."') as payment_key";
 		$dbConn1->query($sql_update_kohir);
 		$dbConn1->next_record();
