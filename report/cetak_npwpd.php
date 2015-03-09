@@ -107,18 +107,18 @@ class FormCetak extends FPDF {
         
         $alamat = '';
         while ($dbConn->next_record()) {
-        	$alamat = $dbConn->f("address_name_owner")."No.". $dbConn->f("address_no_owner")." RT/RW: ".$dbConn->f("address_rt_owner")."/".$dbConn->f("address_rw_owner");
+        	$alamat = $dbConn->f("address_name_owner")." .No ". $dbConn->f("address_no_owner")." RT/RW: ".$dbConn->f("address_rt_owner")."/".$dbConn->f("address_rw_owner");
         }
         $dbConn->close();
         
         
 		$this->Cell($lheader2, $this->height, "NPWPD :");
 		$this->Cell($lheader1, $this->height, $npwpd);
-		$this->SetFont('Arial', '', 10);
 		$this->Ln();
 		$this->Cell($lheader2, $this->height, "Alamat :");
 		$this->Cell($lheader1, $this->height, $alamat);
 		$this->SetFont('Arial', '', 10);
+		$this->Ln();
 		$this->Ln();
 		
 		$ltable = $this->lengthCell / 26;
