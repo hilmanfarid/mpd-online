@@ -213,8 +213,7 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 //Custom Code @361-2A29BDB7
 // -------------------------
     $no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
-	$payment_key = '';
-
+	
 	if(!empty($no_kohir)) {
 		//empty statement		
 		$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
@@ -225,7 +224,7 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 		$dbConn1->query($sql_update_kohir);
 		$dbConn1->next_record();
 		$t_vat_setllementForm->payment_key->SetValue($dbConn1->f("payment_key"));
-		$payment_key = $dbConn1->f("payment_key");
+		
 	}else {
 	
 		$dbConn1 = new clsDBConnSIKP();
@@ -246,7 +245,6 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 		$dbConn1->query($sql_update_kohir);
 		$dbConn1->next_record();
 		$t_vat_setllementForm->payment_key->SetValue($dbConn1->f("payment_key"));		
-		$payment_key = $dbConn1->f("payment_key");
 	}
 	
 	//update anomali 
@@ -259,9 +257,8 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 	
 	$dbConn2->query($sql_update_anomali);
 	//end update
-
-	print_r($payment_key);
-	exit;
+	
+	$payment_key = $t_vat_setllementForm->payment_key->GetValue();
 	if(empty($payment_key)) {
 		echo "<script>
 			alert('Tidak dapat cetak. No Pembayaran masih kosong');
