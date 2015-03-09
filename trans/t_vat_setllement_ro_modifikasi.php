@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-9B860552
+//Class_Initialize Event @2-1FD37630
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -92,6 +92,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->BtnUbahDenda = & new clsButton("BtnUbahDenda", ccsGet, $this);
         $this->order_no2 = & new clsControl(ccsLabel, "order_no2", "order_no2", ccsText, "", CCGetRequestParam("order_no2", ccsGet, NULL), $this);
         $this->payment_key = & new clsControl(ccsLabel, "payment_key", "payment_key", ccsText, "", CCGetRequestParam("payment_key", ccsGet, NULL), $this);
+        $this->BtnCetakNoBayar = & new clsButton("BtnCetakNoBayar", ccsGet, $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -109,7 +110,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-43556404
+//Show Method @2-4B99AE07
     function Show()
     {
         global $Tpl;
@@ -159,6 +160,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["BtnUbahDenda"] = $this->BtnUbahDenda->Visible;
             $this->ControlsVisible["order_no2"] = $this->order_no2->Visible;
             $this->ControlsVisible["payment_key"] = $this->payment_key->Visible;
+            $this->ControlsVisible["BtnCetakNoBayar"] = $this->BtnCetakNoBayar->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -207,6 +209,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->BtnUbahDenda->Show();
                 $this->order_no2->Show();
                 $this->payment_key->Show();
+                $this->BtnCetakNoBayar->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
