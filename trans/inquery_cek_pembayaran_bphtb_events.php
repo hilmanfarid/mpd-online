@@ -186,20 +186,22 @@ function Page_BeforeShow(& $sender)
 
 	}
 	
-	$Label1->SetText('<table style="WIDTH:98%; margin-left:5px;margin-right:5px;" cellspacing="0" cellpadding="0" border="0"><tr><td align="center">
-			<table class="grid-table" cellspacing="0" cellpadding="0" border="0">
-                  <tr>
-                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                    <td class="th"><strong>INFORMASI PEMBAYARAN BPHTB</strong></td> 
-                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
-                  </tr>
-                </table>
+	if(!empty($output)) {
+		$Label1->SetText('<table style="WIDTH:98%; margin-left:5px;margin-right:5px;" cellspacing="0" cellpadding="0" border="0"><tr><td align="center">
+				<table class="grid-table" cellspacing="0" cellpadding="0" border="0">
+	                  <tr>
+	                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+	                    <td class="th"><strong>INFORMASI PEMBAYARAN BPHTB</strong></td> 
+	                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+	                  </tr>
+	                </table>
 			
-	</td></tr>
-	<tr>
-		<td>'.$output.'</td>
-	</tr>
-	</table>');
+		</td></tr>
+		<tr>
+			<td>'.$output.'</td>
+		</tr>
+		</table>');
+	}
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
 }
