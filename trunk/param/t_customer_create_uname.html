@@ -124,7 +124,7 @@ $(document).ready(function()
                   <p align="center">#</p>
                   </th>
  
-                  <th style="TEXT-ALIGN: center" scope="col">Generate Username&nbsp;</th>
+                  <th style="TEXT-ALIGN: center" scope="col">Generate </th>
  
                   <th style="TEXT-ALIGN: center" scope="col">
                   <p>&nbsp;Customer <br>
@@ -332,20 +332,20 @@ function toCustomerAccount()
 
 
 function genUname(t_customer_id) {
-	url = "t_customer_create_uname.php?generate=yes&t_customer_id="+t_customer_id;
+        url = "t_customer_create_uname.php?generate=yes&t_customer_id="+t_customer_id;
 
     params  = 'width=650';
     params += ', height=300';
     params += ', top=0, left=0';
-	
-	var r = confirm("Apakah Anda Yakin?");
-	if (r == true) {
-	    newwin=window.open(url,'windowname4', params);
-    	if (window.focus) {newwin.focus()}
-    	return false;
-	} 
-	
-	return;
+        
+        var r = confirm("Apakah Anda Yakin?");
+        if (r == true) {
+            newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+        return false;
+        } 
+        
+        return;
 
 }
 </script>
