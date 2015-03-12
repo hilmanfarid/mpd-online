@@ -42,7 +42,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-F13E3BDA
+//Class_Initialize Event @2-8A4626D4
     function clsGridt_customerGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -86,6 +86,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
         $this->company_brand = & new clsControl(ccsLabel, "company_brand", "company_brand", ccsText, "", CCGetRequestParam("company_brand", ccsGet, NULL), $this);
         $this->brand_address_name = & new clsControl(ccsLabel, "brand_address_name", "brand_address_name", ccsText, "", CCGetRequestParam("brand_address_name", ccsGet, NULL), $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
+        $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -102,7 +103,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     }
 //End Initialize Method
 
-//Show Method @2-ABC62715
+//Show Method @2-4428045C
     function Show()
     {
         global $Tpl;
@@ -150,6 +151,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
             $this->ControlsVisible["company_brand"] = $this->company_brand->Visible;
             $this->ControlsVisible["brand_address_name"] = $this->brand_address_name->Visible;
             $this->ControlsVisible["Button1"] = $this->Button1->Visible;
+            $this->ControlsVisible["npwd"] = $this->npwd->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -173,6 +175,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
                 $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
                 $this->company_brand->SetValue($this->DataSource->company_brand->GetValue());
                 $this->brand_address_name->SetValue($this->DataSource->brand_address_name->GetValue());
+                $this->npwd->SetValue($this->DataSource->npwd->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -190,6 +193,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
                 $this->company_brand->Show();
                 $this->brand_address_name->Show();
                 $this->Button1->Show();
+                $this->npwd->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -222,7 +226,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
     }
 //End Show Method
 
-//GetErrors Method @2-28EE42D1
+//GetErrors Method @2-A4DCCA77
     function GetErrors()
     {
         $errors = "";
@@ -239,6 +243,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
         $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->company_brand->Errors->ToString());
         $errors = ComposeStrings($errors, $this->brand_address_name->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->npwd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -249,7 +254,7 @@ class clsGridt_customerGrid { //t_customerGrid class @2-4EE8899F
 
 class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataSource Class @2-DC00010F
 
-//DataSource Variables @2-5C1D5A88
+//DataSource Variables @2-560CA0CF
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -272,9 +277,10 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     var $vat_code;
     var $company_brand;
     var $brand_address_name;
+    var $npwd;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-E2DD67AD
+//DataSourceClass_Initialize Event @2-38CA5DC5
     function clst_customerGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -301,6 +307,8 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         $this->company_brand = new clsField("company_brand", ccsText, "");
         
         $this->brand_address_name = new clsField("brand_address_name", ccsText, "");
+        
+        $this->npwd = new clsField("npwd", ccsText, "");
         
 
     }
@@ -330,11 +338,11 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End Prepare Method
 
-//Open Method @2-3F214784
+//Open Method @2-FE81190A
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select a.*, c.vat_code, b.company_brand, b.brand_address_name\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select a.*, c.vat_code, b.company_brand, b.brand_address_name, b.npwd\n" .
         "FROM t_cust_account b \n" .
         "LEFT JOIN t_customer a ON b.t_customer_id = a.t_customer_id\n" .
         "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
@@ -348,7 +356,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         "	   and upper(a.address_name_owner) like upper('%" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "%')\n" .
         "AND b.t_customer_id NOT IN (select t_customer_id from t_customer_user)\n" .
         "AND b.p_account_status_id = 1) cnt";
-        $this->SQL = "select a.*, c.vat_code, b.company_brand, b.brand_address_name\n" .
+        $this->SQL = "select a.*, c.vat_code, b.company_brand, b.brand_address_name, b.npwd\n" .
         "FROM t_cust_account b \n" .
         "LEFT JOIN t_customer a ON b.t_customer_id = a.t_customer_id\n" .
         "LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id\n" .
@@ -372,7 +380,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
     }
 //End Open Method
 
-//SetValues Method @2-B02BFF88
+//SetValues Method @2-657FF4CD
     function SetValues()
     {
         $this->company_owner->SetDBValue($this->f("company_owner"));
@@ -386,6 +394,7 @@ class clst_customerGridDataSource extends clsDBConnSIKP {  //t_customerGridDataS
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->company_brand->SetDBValue($this->f("company_brand"));
         $this->brand_address_name->SetDBValue($this->f("brand_address_name"));
+        $this->npwd->SetDBValue($this->f("npwd"));
     }
 //End SetValues Method
 
