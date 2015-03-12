@@ -124,9 +124,12 @@ $(document).ready(function()
                   <p align="center">#</p>
                   </th>
  
-                  <th style="TEXT-ALIGN: center" scope="col"><p>Generate <p/></th>
- 
                   <th style="TEXT-ALIGN: center" scope="col">
+                  <p>Generate 
+                  <p></p>
+                  </th>
+ 
+                  <th style="TEXT-ALIGN: center;display:none;" scope="col">
                   <p>&nbsp;Customer <br>
                   Account</p>
                   </th>
@@ -165,8 +168,8 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_customerGridDLink_{t_customerGrid:rowNumber}">{DLink}</a></td> 
                   <td style="TEXT-ALIGN: center">
                     <!-- BEGIN Button Button1 --><input onclick="genUname({t_customer_id})" id="t_customerGridButton1" class="btn_tambah" alt="Button1" type="button" value="Generate" name="{Button_Name}"><!-- END Button Button1 --></td> 
-                  <td style="TEXT-ALIGN: center"><a href="{ImageLink1}" id="t_customerGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
-                  <td>{company_owner}&nbsp;<input id="t_customerGridt_customer_id" type="hidden" value="{t_customer_id}" name="{t_customer_id_Name}"></td> 
+                  <td style="TEXT-ALIGN: center;display:none;"><a href="{ImageLink1}" id="t_customerGridImageLink1_{p_app_menuGrid:rowNumber}"><img style="BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px" alt="{ImageLink1}" src="../images/table.gif"></a></td> 
+                  <td>{company_owner}<br/>({npwd})&nbsp;<input id="t_customerGridt_customer_id" type="hidden" value="{t_customer_id}" name="{t_customer_id_Name}"></td> 
                   <td>{address_name_owner}&nbsp;No. {address_no_owner}&nbsp;Rt/Rw. {address_rt_owner}&nbsp;/ {address_rw_owner}</td> 
                   <td>{company_brand}</td> 
                   <td>&nbsp;{brand_address_name}</td> 
