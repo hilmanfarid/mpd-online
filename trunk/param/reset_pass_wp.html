@@ -79,8 +79,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -89,13 +89,13 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
         <!-- BEGIN Record p_app_userSearch -->
         <form id="p_app_userSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -105,9 +105,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="p_app_userSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
+                    <td class="search-field"><input id="p_app_userSearchs_keyword" class="ControlsIN" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="p_app_userSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_app_userSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="CARI" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
@@ -116,10 +116,10 @@ $(document).ready(function()
         </form>
         <!-- END Record p_app_userSearch --><br>
         <!-- BEGIN Grid p_app_userGrid -->
-        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
           <tr>
             <td valign="top">
-              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR&nbsp;USER&nbsp;</strong></td> 
@@ -133,6 +133,8 @@ $(document).ready(function()
  
                   <th scope="col">Nama User</th>
  
+                  <th scope="col">&nbsp;NPWPD</th>
+ 
                   <th scope="col">Nama Lengkap</th>
  
                   <th scope="col">Deskripsi</th>
@@ -141,19 +143,20 @@ $(document).ready(function()
                 <!-- BEGIN Row -->
                 <tr {p_app_userGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_app_userGridDLink_{p_app_userGrid:rowNumber}">{DLink}</a></td> 
-                  <td>{app_user_name}&nbsp;<input id="p_app_userGridp_app_user_id_{p_app_userGrid:rowNumber}" value="{p_app_user_id}" type="hidden" name="{p_app_user_id_Name}"></td> 
+                  <td>{app_user_name}&nbsp;<input id="p_app_userGridp_app_user_id_{p_app_userGrid:rowNumber}" type="hidden" value="{p_app_user_id}" name="{p_app_user_id_Name}"></td> 
+                  <td>&nbsp;{npwd}</td> 
                   <td>{full_name}&nbsp;</td> 
                   <td>{description}&nbsp;</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="4">-</td>
+                  <td colspan="5">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b><a href="{Insert_Link_Src}" id="p_app_userGridInsert_Link"><img style="DISPLAY: none" border="0" src="../images/insert_link.gif"></a></b></td> 
-                  <td colspan="3">
+                  <td colspan="4">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -174,10 +177,10 @@ $(document).ready(function()
         <!-- END Grid p_app_userGrid --><br>
         <!-- BEGIN Record p_app_userForm -->
         <form id="p_app_userForm" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
             <tr>
               <td valign="top">
-                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                     <td class="th"><strong>INFORMASI USER&nbsp;</strong></td> 
@@ -193,23 +196,23 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormapp_user_name">Nama User</label></td> 
-                    <td><input id="p_app_userFormapp_user_name" class="ControlsRO" value="{app_user_name}" readonly maxlength="16" size="12" name="{app_user_name_Name}"></td>
+                    <td><input id="p_app_userFormapp_user_name" class="ControlsRO" readonly maxlength="16" size="12" value="{app_user_name}" name="{app_user_name_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormfull_name">Nama Lengkap</label></td> 
-                    <td><input id="p_app_userFormfull_name" class="ControlsRO" value="{full_name}" readonly maxlength="96" size="40" name="{full_name_Name}"></td>
+                    <td><input id="p_app_userFormfull_name" class="ControlsRO" readonly maxlength="96" size="40" value="{full_name}" name="{full_name_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormemail_address">Email</label></td> 
-                    <td><input id="p_app_userFormemail_address" class="ControlsRO" value="{email_address}" readonly maxlength="128" size="50" name="{email_address_Name}"></td>
+                    <td><input id="p_app_userFormemail_address" class="ControlsRO" readonly maxlength="128" size="50" value="{email_address}" name="{email_address_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormp_user_status_id">Status</label></td> 
                     <td>
-                      <select id="p_app_userFormp_user_status_id" class="ControlsRO" disabled name="{p_user_status_id_Name}">
+                      <select disabled id="p_app_userFormp_user_status_id" class="ControlsRO" name="{p_user_status_id_Name}">
                         {p_user_status_id_Options}
                       </select>
  &nbsp;</td>
@@ -218,7 +221,7 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="th">Employee ?&nbsp;</td> 
                     <td>
-                      <select id="p_app_userFormis_employee" class="ControlsRO" disabled name="{is_employee_Name}">
+                      <select disabled id="p_app_userFormis_employee" class="ControlsRO" name="{is_employee_Name}">
                         <option selected value="">Pilih</option>
                         {is_employee_Options}
                       </select>
@@ -227,50 +230,50 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormdescription">Deskripsi</label></td> 
-                    <td><input id="p_app_userFormdescription" class="ControlsRO" value="{description}" readonly maxlength="250" size="60" name="{description_Name}"></td>
+                    <td><input id="p_app_userFormdescription" class="ControlsRO" readonly maxlength="250" size="60" value="{description}" name="{description_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormip_address_v4">IP Address v4</label></td> 
-                    <td><input id="p_app_userFormip_address_v4" class="ControlsRO" value="{ip_address_v4}" readonly maxlength="24" name="{ip_address_v4_Name}"></td>
+                    <td><input id="p_app_userFormip_address_v4" class="ControlsRO" readonly maxlength="24" value="{ip_address_v4}" name="{ip_address_v4_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormip_address_v4">IP Address v6</label></td> 
-                    <td><input id="p_app_userFormip_address_v6" class="ControlsRO" value="{ip_address_v6}" readonly maxlength="24" name="{ip_address_v6_Name}"></td>
+                    <td><input id="p_app_userFormip_address_v6" class="ControlsRO" readonly maxlength="24" value="{ip_address_v6}" name="{ip_address_v6_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormexpired_user">Expired User</label></td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormexpired_user" class="ControlsRO" value="{expired_user}" readonly maxlength="100" size="15" name="{expired_user_Name}"></td>
+                    <td><input id="p_app_userFormexpired_user" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{expired_user}" name="{expired_user_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormexpired_pwd">Expired Pwd</label></td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormexpired_pwd" class="ControlsRO" value="{expired_pwd}" readonly maxlength="100" size="15" name="{expired_pwd_Name}"></td>
+                    <td><input id="p_app_userFormexpired_pwd" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{expired_pwd}" name="{expired_pwd_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormlast_login_time">Terakhir Login</label></td> 
-                    <td><input id="p_app_userFormlast_login_time" class="ControlsRO" value="{last_login_time}" readonly maxlength="100" size="30" name="{last_login_time_Name}"></td>
+                    <td><input id="p_app_userFormlast_login_time" class="ControlsRO" readonly maxlength="100" size="30" value="{last_login_time}" name="{last_login_time_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormcreated_by">Dibuat Oleh</label></td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="16" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="15" name="{creation_date_Name}"></td>
+                    <td><input id="p_app_userFormcreated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{created_by}" name="{created_by_Name}">; Tanggal : <input id="p_app_userFormcreation_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{creation_date}" name="{creation_date_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="p_app_userFormupdated_by">Diubah Oleh</label></td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="16" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_app_userFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
+                    <td><input id="p_app_userFormupdated_by" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="16" size="15" value="{updated_by}" name="{updated_by_Name}">; Tanggal : <input id="p_app_userFormupdated_date" class="ControlsRO" style="TEXT-TRANSFORM: uppercase" readonly maxlength="100" size="15" value="{updated_date}" name="{updated_date_Name}"></td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">
-                      <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="p_app_userFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_update --><input id="p_app_userFormButton_update" class="btn_tambah" value="RESET PASSWORD" type="submit" name="{Button_Name}"><!-- END Button Button_update -->
-                      <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="p_app_userFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="p_app_userFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input style="WIDTH: 76px; HEIGHT: 22px" id="p_app_userFormp_app_userGridPage" value="{p_app_userGridPage}" size="10" type="hidden" name="{p_app_userGridPage_Name}"><input id="p_app_userFormp_app_user_id" value="{p_app_user_id}" type="hidden" name="{p_app_user_id_Name}"></td>
+                      <!-- BEGIN Button Button_Insert --><input id="p_app_userFormButton_Insert" class="btn_tambah" style="DISPLAY: none" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_update --><input id="p_app_userFormButton_update" class="btn_tambah" type="submit" value="RESET PASSWORD" name="{Button_Name}"><!-- END Button Button_update -->
+                      <!-- BEGIN Button Button_Delete --><input id="p_app_userFormButton_Delete" class="btn_tambah" style="DISPLAY: none" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="p_app_userFormButton_Cancel" class="btn_tambah" style="DISPLAY: none" alt="Cancel" type="submit" value="BATAL" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="p_app_userFormp_app_userGridPage" style="HEIGHT: 22px; WIDTH: 76px" size="10" type="hidden" value="{p_app_userGridPage}" name="{p_app_userGridPage_Name}"><input id="p_app_userFormp_app_user_id" type="hidden" value="{p_app_user_id}" name="{p_app_user_id_Name}"></td>
                   </tr>
                 </table>
               </td>
