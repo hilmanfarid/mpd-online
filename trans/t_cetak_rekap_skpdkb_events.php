@@ -98,6 +98,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
 	$output.='<th align="center" >CETAK DATA TERPILIH</th>';
+	$output.='<th align="center" >CETAK DATA TERPILIH</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
@@ -147,6 +148,7 @@ function GetCetakHTML($param_arr) {
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
 		$output.='<td align="left" ><input id="cetak_skpdkb" class="btn_tambah" onclick="cetak_skpdkb('.$data[$i]['set_id'].'); return false;" value="Cetak SKPDKB" type="button"></td>';
+		$output.='<td align="left" ><input id="cetak_skpdkb_barcode" class="btn_tambah" onclick="cetak_skpdkb_barcode('.$data[$i]['set_id'].'); return false;" value="Cetak SKPDKB Barcode" type="button"></td>';
 		$output.='</tr>';
 	}
 
