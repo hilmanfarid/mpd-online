@@ -499,7 +499,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4-5, $this->height, "", "", 0, 'C');
-		if (pejabat == 1){
+		$pejabat = CCGetFromGet("pejabat", 1);
+		if ($pejabat == 1){
 			$this->Cell($lbody4+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "B", 0, 'C');
 		}else{
 			$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
@@ -511,7 +512,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		if (pejabat == 1){
+		if ($pejabat == 1){
 			$this->Cell($lbody4 - 2, $this->height, "NIP. 19700806 199101 1 001", "", 0, 'C'); //isi nip
 		}else{
 			$this->Cell($lbody4 - 2, $this->height, "NIP. 19750625 199403 1 001", "", 0, 'C'); //isi nip
