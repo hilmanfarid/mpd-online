@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LAPORAN PEMBAYARAN WP ONLINE</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL          if(this.value==1){
+//DEL                  
+//DEL          }else{
+//DEL                  
+//DEL          }
+//DEL      // -------------------------
+
+//Date Picker Object Definitions @1-566EFBB8
+
+var t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan = new Object(); 
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan.format           = "dd-mm-yyyy";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan.relativePathPart = "../";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL          if(this.value==1){
+//DEL                  
+//DEL          }else{
+//DEL                  
+//DEL          }
+//DEL      // -------------------------
+
+//bind_events @1-BF0EB765
+function bind_events() {
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN PEMBAYARAN WP ONLINE&nbsp; 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_rep_lap_spjpSearch -->
+        <form id="t_rep_lap_spjpSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Jenis Pajak</td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}"></td> 
+                    <td><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Periode Tahun</td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchyear_code" class="ControlsIN" value="{year_code}" maxlength="32" size="32" name="{year_code_Name}"></td> 
+                    <td><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
+                    <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Periode Pajak</td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchcode" class="ControlsIN" value="{code}" maxlength="32" size="32" name="{code_Name}"></td> 
+                    <td><img onclick="javascript:periodepajak()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td> 
+                    <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Tanggal Bayar</td> 
+                    <td class="search-field"><input style="WIDTH: 95px; HEIGHT: 20px" id="t_rep_lap_spjpSearchtgl_penerimaan" class="ControlsIN" value="{tgl_penerimaan}" maxlength="32" size="11" name="{tgl_penerimaan_Name}">
+                      <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_spjpSearchDatePicker_tgl_penerimaan"><img id="t_rep_lap_spjpSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan --></td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" onclick="tampilkan(); return false;" value="TAMPILKAN" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_rep_lap_spjpSearch -->
+        <div align="left">
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+    function periodepajak() {
+                var idelement;
+
+        if (idelement = document.getElementById("t_rep_lap_spjpSearchp_year_period_id"))
+        {
+                var pid = idelement.value;
+
+                if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+                {                
+                        getFrom_LOV("t_rep_lap_spjpSearch", "p_finance_period_id,code", "lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode Pajak&LABEL2=Deskripsi&HEADER_PAGE=PERIODE PAJAK&HEADER_LOV=DAFTAR PERIODE PAJAK&FIELD_3=AND p_year_period_id=" + pid + "ORDER BY start_date");
+                }
+                else
+                {
+                        alert("Pilih salah satu PERIODE TAHUN!");
+                }
+        } 
+        else 
+        {
+                alert("Pilih salah satu PERIODE TAHUN!");
+        }
+    }
+
+    function periodetahun() {
+        getFrom_LOV('t_rep_lap_spjpSearch','p_year_period_id,year_code','lov_year_period.php');
+    }
+
+        function jenispajak() {
+            getFrom_LOV('t_rep_lap_spjpSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+    }
+
+    function tampilkan()
+    {
+        p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
+        p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
+        tgl_penerimaan = document.getElementById("t_rep_lap_spjpSearchtgl_penerimaan").value;
+        p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
+        code= document.getElementById("t_rep_lap_spjpSearchcode").value;
+        vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
+        year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
+        
+                if(p_vat_type_id == "" || (p_finance_period_id=="" && tgl_penerimaan=="")) {
+            alert("Jenis Pajak dan Masa Pajak/Tanggal Penerimaan Harus Diisi");
+        }else {
+                        var params = "?doAction=view_html";
+            params += "&p_year_period_id="+p_year_period_id;
+            params += "&p_finance_period_id="+p_finance_period_id;
+            params += "&p_vat_type_id="+p_vat_type_id;
+                        params += "&year_code="+year_code;
+            params += "&code="+code;
+            params += "&vat_code="+vat_code;
+                        params += "&tgl_penerimaan="+tgl_penerimaan;
+            location.href="t_laporan_pembayaran_wp_online.php"+params;
+        }
+    }
+</script>
+<p>{Label1}</p>
+</body>
+</html>
