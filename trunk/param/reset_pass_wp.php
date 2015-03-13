@@ -42,7 +42,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-46F51669
+//Class_Initialize Event @2-14366514
     function clsGridp_app_userGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -76,6 +76,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
         $this->description = & new clsControl(ccsLabel, "description", "description", ccsText, "", CCGetRequestParam("description", ccsGet, NULL), $this);
         $this->full_name = & new clsControl(ccsLabel, "full_name", "full_name", ccsText, "", CCGetRequestParam("full_name", ccsGet, NULL), $this);
         $this->p_app_user_id = & new clsControl(ccsHidden, "p_app_user_id", "p_app_user_id", ccsFloat, "", CCGetRequestParam("p_app_user_id", ccsGet, NULL), $this);
+        $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
@@ -94,7 +95,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
     }
 //End Initialize Method
 
-//Show Method @2-40D23F7F
+//Show Method @2-2639D384
     function Show()
     {
         global $Tpl;
@@ -128,6 +129,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
             $this->ControlsVisible["description"] = $this->description->Visible;
             $this->ControlsVisible["full_name"] = $this->full_name->Visible;
             $this->ControlsVisible["p_app_user_id"] = $this->p_app_user_id->Visible;
+            $this->ControlsVisible["npwd"] = $this->npwd->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -141,6 +143,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
                 $this->description->SetValue($this->DataSource->description->GetValue());
                 $this->full_name->SetValue($this->DataSource->full_name->GetValue());
                 $this->p_app_user_id->SetValue($this->DataSource->p_app_user_id->GetValue());
+                $this->npwd->SetValue($this->DataSource->npwd->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -149,6 +152,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
                 $this->description->Show();
                 $this->full_name->Show();
                 $this->p_app_user_id->Show();
+                $this->npwd->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -184,7 +188,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
     }
 //End Show Method
 
-//GetErrors Method @2-1B1865D0
+//GetErrors Method @2-9B759357
     function GetErrors()
     {
         $errors = "";
@@ -193,6 +197,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
         $errors = ComposeStrings($errors, $this->description->Errors->ToString());
         $errors = ComposeStrings($errors, $this->full_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_app_user_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->npwd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -203,7 +208,7 @@ class clsGridp_app_userGrid { //p_app_userGrid class @2-42EB5B77
 
 class clsp_app_userGridDataSource extends clsDBConnSIKP {  //p_app_userGridDataSource Class @2-56E5BB0D
 
-//DataSource Variables @2-E1042568
+//DataSource Variables @2-4D587BAE
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -219,9 +224,10 @@ class clsp_app_userGridDataSource extends clsDBConnSIKP {  //p_app_userGridDataS
     var $description;
     var $full_name;
     var $p_app_user_id;
+    var $npwd;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-8620923C
+//DataSourceClass_Initialize Event @2-9C0FBC29
     function clsp_app_userGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -234,6 +240,8 @@ class clsp_app_userGridDataSource extends clsDBConnSIKP {  //p_app_userGridDataS
         $this->full_name = new clsField("full_name", ccsText, "");
         
         $this->p_app_user_id = new clsField("p_app_user_id", ccsFloat, "");
+        
+        $this->npwd = new clsField("npwd", ccsText, "");
         
 
     }
@@ -258,23 +266,29 @@ class clsp_app_userGridDataSource extends clsDBConnSIKP {  //p_app_userGridDataS
     }
 //End Prepare Method
 
-//Open Method @2-76BD24FD
+//Open Method @2-D09C9A16
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select b.* from t_customer_user a\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select b.*, c.npwd from t_customer_user a\n" .
         "left join p_app_user b on a.p_app_user_id=b.p_app_user_id\n" .
+        "left join t_cust_account c on a.t_customer_id = c.t_customer_id\n" .
         "WHERE ( upper(b.app_user_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(b.full_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(b.email_address) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(b.description) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
+        "OR upper(b.description) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' \n" .
+        "OR upper(c.npwd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        ")\n" .
         "and  b.p_user_status_id =1 and is_employee = 'N') cnt";
-        $this->SQL = "select b.* from t_customer_user a\n" .
+        $this->SQL = "select b.*, c.npwd from t_customer_user a\n" .
         "left join p_app_user b on a.p_app_user_id=b.p_app_user_id\n" .
+        "left join t_cust_account c on a.t_customer_id = c.t_customer_id\n" .
         "WHERE ( upper(b.app_user_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(b.full_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(b.email_address) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(b.description) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
+        "OR upper(b.description) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' \n" .
+        "OR upper(c.npwd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        ")\n" .
         "and  b.p_user_status_id =1 and is_employee = 'N' {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
@@ -286,13 +300,14 @@ class clsp_app_userGridDataSource extends clsDBConnSIKP {  //p_app_userGridDataS
     }
 //End Open Method
 
-//SetValues Method @2-BEB141F2
+//SetValues Method @2-4DFA68C9
     function SetValues()
     {
         $this->app_user_name->SetDBValue($this->f("app_user_name"));
         $this->description->SetDBValue($this->f("description"));
         $this->full_name->SetDBValue($this->f("full_name"));
         $this->p_app_user_id->SetDBValue(trim($this->f("p_app_user_id")));
+        $this->npwd->SetDBValue($this->f("npwd"));
     }
 //End SetValues Method
 
