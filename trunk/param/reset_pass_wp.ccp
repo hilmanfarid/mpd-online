@@ -1,11 +1,14 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" dataSource="select b.* from t_customer_user a
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" dataSource="select b.*, c.npwd from t_customer_user a
 left join p_app_user b on a.p_app_user_id=b.p_app_user_id
+left join t_cust_account c on a.t_customer_id = c.t_customer_id
 WHERE ( upper(b.app_user_name) LIKE '%{s_keyword}%'
 OR upper(b.full_name) LIKE '%{s_keyword}%'
 OR upper(b.email_address) LIKE '%{s_keyword}%'
-OR upper(b.description) LIKE '%{s_keyword}%' )
+OR upper(b.description) LIKE '%{s_keyword}%' 
+OR upper(c.npwd) LIKE '%{s_keyword}%'
+)
 and  b.p_user_status_id =1 and is_employee = 'N'
 ORDER BY user_name" name="p_app_userGrid" orderBy="p_app_user_id" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters">
 			<Components>
@@ -49,14 +52,20 @@ ORDER BY user_name" name="p_app_userGrid" orderBy="p_app_user_id" pageSizeLimit=
 					<Features/>
 				</Hidden>
 				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="reset_pass_wp.ccp" removeParameters="p_app_user_id;s_keyword" PathID="p_app_userGridInsert_Link">
-<Components/>
-<Events/>
-<LinkParameters>
-<LinkParameter id="67" sourceType="Expression" format="yyyy-mm-dd" name="FLAG" source="&quot;ADD&quot;"/>
-</LinkParameters>
-<Attributes/>
-<Features/>
-</Link>
+					<Components/>
+					<Events/>
+					<LinkParameters>
+						<LinkParameter id="67" sourceType="Expression" format="yyyy-mm-dd" name="FLAG" source="&quot;ADD&quot;"/>
+					</LinkParameters>
+					<Attributes/>
+					<Features/>
+				</Link>
+				<Label id="289" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwd" fieldSource="npwd" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="p_app_userGridnpwd">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
@@ -77,15 +86,14 @@ ORDER BY user_name" name="p_app_userGrid" orderBy="p_app_user_id" pageSizeLimit=
 				<TableParameter id="9" conditionType="Parameter" useIsNull="False" field="upper(description)" dataType="Text" logicOperator="Or" searchConditionType="Contains" parameterType="URL" orderNumber="2" rightBrackets="1" parameterSource="s_keyword"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="278" tableName="p_app_user" posLeft="10" posTop="10" posWidth="133" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-<SQLParameter id="287" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
-</SQLParameters>
+				<SQLParameter id="287" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -172,12 +180,12 @@ sysdate,
 				<Button id="96" urlType="Relative" enableValidation="True" isDefault="False" name="Button_update" wizardCaption="Submit" PathID="p_app_userFormButton_update">
 					<Components/>
 					<Events>
-<Event name="OnClick" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="288"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="288"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
