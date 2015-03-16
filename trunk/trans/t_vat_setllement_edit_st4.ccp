@@ -386,7 +386,19 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+				<Button id="397" urlType="Relative" enableValidation="True" isDefault="False" name="update_denda" wizardCaption="Add" PathID="t_vat_setllementFormupdate_denda">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="398"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
 			<Events>
 			</Events>
 			<TableParameters>
