@@ -55,6 +55,7 @@
 							where p_finance_period_id = ".$param_arr['p_finance_period_id1'].") 
 				)
 				and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
+				and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 				and x.p_account_status_id = 1";
 		}else{
 			$sql="select t.vat_code as jenis_pajak, u.vat_code as vat_code,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
@@ -67,6 +68,7 @@
 				left join p_vat_type t on t.p_vat_type_id=u.p_vat_type_id
 				where p_settlement_type_id = 4 and a.p_finance_period_id =".$param_arr['p_finance_period_id']."
 				and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
+				and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 				and x.p_account_status_id = 1";
 		}
 		if ($param_arr['status_bayar']==2){
