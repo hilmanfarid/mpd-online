@@ -19,14 +19,14 @@
 
 	
 	if($t_vat_setllement_id > 0){
-		$sql = "select t.vat_code as jenis_pajak, u.vat_code as vat_code,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
+		$sql = "select t.vat_code as jenis_pajak, nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 			left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
 			left join p_year_period w on w.p_year_period_id=z.p_year_period_id
 			left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
 			left join p_vat_type_dtl u on u.p_vat_type_dtl_id=a.p_vat_type_dtl_id
-			left join p_vat_type t on t.p_vat_type_id=u.p_vat_type_id
+			left join p_vat_type t on t.p_vat_type_id=x.p_vat_type_id
 			where a.t_vat_setllement_id=".$t_vat_setllement_id;
 	}
 	else{
@@ -56,7 +56,7 @@
 		$data["settlement_date"] = $dbConn->f("settlement_date");
 		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
 		$data["total_trans_amount"] = $dbConn->f("total_trans_amount");
-		$data["vat_code"] = $dbConn->f("vat_code");
+		$data["vat_code"] = $dbConn->f("vat_codes");
 				
 		$items[] = $data;
 	}
