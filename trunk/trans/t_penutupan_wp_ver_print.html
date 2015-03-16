@@ -66,7 +66,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -248,7 +248,8 @@ $(document).ready(function()
  
               <tr class="Bottom">
                 <td colspan="4" align="right">&nbsp; 
-                  <!-- BEGIN Button Button5 --><input style="DISPLAY: none" id="t_vat_registrationFormButton5" class="btn_tambah" onclick="cetak_tri()" value="CETAK SPTPD/SKPDKB/SKPDN" alt="Button3" type="submit" name="{Button_Name}"><!-- END Button Button5 -->
+                  <!-- BEGIN Button Button5 --><input style="DISPLAY: none" id="t_vat_registrationFormButton5" class="btn_tambah" onclick="cetak_tri()" value="CETAK SPTPD/SKPDKB/SKPDN" alt="Button3" type="submit" name="{Button_Name}"><!-- END Button Button5 -->&nbsp; 
+                  <!-- BEGIN Button Button7 --><input id="t_vat_registrationFormButton7" class="btn_tambah" onclick="cetak_nota_dinas()" value="CETAK NOTA DINAS" alt="Button3" type="button" name="{Button_Name}"><!-- END Button Button7 -->
                   <!-- BEGIN Button Button4 --><input id="t_vat_registrationFormButton4" class="btn_tambah" onclick="cetak_formulir()" value="CETAK FORMULIR" alt="Button3" type="button" name="{Button_Name}"><!-- END Button Button4 -->
                   <!-- BEGIN Button Button3 --><input style="DISPLAY: none" id="t_vat_registrationFormButton3" class="btn_tambah" onclick="cetak_sp()" value="CETAK SURAT PENOLAKAN" alt="Button3" type="submit" name="{Button_Name}"><!-- END Button Button3 -->
                   <!-- BEGIN Button Button2 --><input id="t_vat_registrationFormButton2" class="btn_tambah" onclick="submitter()" value="SUBMIT" alt="Button2" type="submit" name="{Button_Name}"><!-- END Button Button2 -->
@@ -494,6 +495,16 @@ function cetak_formulir(){
         var urlLink = "?CURR_DOC_ID="+idd;
         if(idd != ''){
                 return popup("../report/cetak_surat_penutupan.php"+urlLink);
+        }else{
+                alert("Formulir Kosong");
+        }
+}
+
+function cetak_nota_dinas(){
+        var idd = document.getElementById('t_vat_registrationFormCURR_DOC_ID').value;
+        var urlLink = "?CURR_DOC_ID="+idd;
+        if(idd != ''){
+                return popup("../report/nota_dinas_penutupan.php"+urlLink);
         }else{
                 alert("Formulir Kosong");
         }
