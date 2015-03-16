@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     // Class variables
 //End Variables
 
-//Class_Initialize Event @629-81F1053E
+//Class_Initialize Event @629-265B70C6
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -173,6 +173,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->bap_employee_job_pos_2 = & new clsControl(ccsTextBox, "bap_employee_job_pos_2", "Jabatan Petugas 2", ccsText, "", CCGetRequestParam("bap_employee_job_pos_2", $Method, NULL), $this);
             $this->doc_no = & new clsControl(ccsTextBox, "doc_no", "Nama Petugas 1", ccsText, "", CCGetRequestParam("doc_no", $Method, NULL), $this);
             $this->t_vat_registration_id = & new clsControl(ccsHidden, "t_vat_registration_id", "vat", ccsFloat, "", CCGetRequestParam("t_vat_registration_id", $Method, NULL), $this);
+            $this->Button7 = & new clsButton("Button7", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -417,7 +418,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @629-D65E5C1E
+//Operation Method @629-B8B3F14F
     function Operation()
     {
         if(!$this->Visible)
@@ -452,6 +453,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button5";
             } else if($this->Button6->Pressed) {
                 $this->PressedButton = "Button6";
+            } else if($this->Button7->Pressed) {
+                $this->PressedButton = "Button7";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -496,6 +499,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button6->CCSEvents, "OnClick", $this->Button6)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button7") {
+                if(!CCGetEvent($this->Button7->CCSEvents, "OnClick", $this->Button7)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -526,7 +533,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @629-2C786BD8
+//Show Method @629-F9BC8911
     function Show()
     {
         global $CCSUseAmp;
@@ -755,6 +762,7 @@ function GetPrimaryKey($keyName)
         $this->bap_employee_job_pos_2->Show();
         $this->doc_no->Show();
         $this->t_vat_registration_id->Show();
+        $this->Button7->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
