@@ -19,7 +19,7 @@
 
 	
 	if($t_vat_setllement_id > 0){
-		$sql = "select t.vat_code as jenis_pajak, nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
+		$sql = "select upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2,t.vat_code as jenis_pajak, nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 			left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
@@ -42,7 +42,7 @@
 		$data["finance_period_code"] = $dbConn->f("fin_code");
 		$data["tahun"] = $dbConn->f("tahun");
 		$data["npwd"] = $dbConn->f("npwd_2");
-		$data["due_date"] = $dbConn->f("due_date");
+		$data["due_date"] = $dbConn->f("due_date_2");
 		$data["no_urut"] = $dbConn->f("order_no");
 		$data["jenis_pajak"] = $dbConn->f("jenis_pajak");
 		$data["debt_vat_amt"] = $dbConn->f("debt_vat_amt");
