@@ -3,13 +3,15 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-38C08D62
+//BindEvents Method @1-62922174
 function BindEvents()
 {
     global $t_vat_setllementGrid;
+    global $t_vat_setllementForm;
     global $CCSEvents;
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
+    $t_vat_setllementForm->update_denda->CCSEvents["OnClick"] = "t_vat_setllementForm_update_denda_OnClick";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
@@ -98,6 +100,45 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
     return $t_vat_setllementGrid_BeforeShowRow;
 }
 //End Close t_vat_setllementGrid_BeforeShowRow
+
+//t_vat_setllementForm_update_denda_OnClick @397-0030E755
+function t_vat_setllementForm_update_denda_OnClick(& $sender)
+{
+    $t_vat_setllementForm_update_denda_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementForm; //Compatibility
+//End t_vat_setllementForm_update_denda_OnClick
+
+//Custom Code @398-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$dbConn = new clsDBConnSIKP();	
+	$selected_id=$t_vat_setllementForm->t_vat_setllement_id->GetValue();
+	//echo $selected_id." ".CCGETUserLogin();exit; 
+	$query = "select f_hitung_ulang_denda as hasil from 
+		f_hitung_ulang_denda(".$selected_id.",'".CCGETUserLogin()."')";
+	//echo $query;exit;
+	$dbConn->query($query);
+	$dbConn->next_record();
+	$hasil = $dbConn->f("hasil");
+	if ($hasil=="OK"){
+		echo "<script>
+				alert ('Denda berhasil diperbaharui');
+			</script>";
+	}else{
+		echo "<script>
+				alert ('Denda gagal diperbaharui'".$hasil.");
+			</script>";
+	}
+	return;
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementForm_update_denda_OnClick @397-F71BE8B5
+    return $t_vat_setllementForm_update_denda_OnClick;
+}
+//End Close t_vat_setllementForm_update_denda_OnClick
 
 //DEL  // -------------------------
 //DEL      
