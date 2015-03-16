@@ -39,9 +39,9 @@
 		$data["t_cust_account_id"] = $dbConn->f("t_cust_account_id");
 		$data["wp_name"] = $dbConn->f("wp_name");
 		$data["wp_address_name"] = $dbConn->f("wp_address_name");
-		$data["finance_period_code"] = $dbConn->f("finance_period_code");
+		$data["finance_period_code"] = $dbConn->f("fin_code");
 		$data["tahun"] = $dbConn->f("tahun");
-		$data["npwd"] = $dbConn->f("npwd");
+		$data["npwd"] = $dbConn->f("npwd_2");
 		$data["due_date"] = $dbConn->f("due_date");
 		$data["no_urut"] = $dbConn->f("order_no");
 		$data["jenis_pajak"] = $dbConn->f("jenis_pajak");
