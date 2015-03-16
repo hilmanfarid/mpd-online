@@ -481,7 +481,13 @@ WHERE t_customer_order_id = {CURR_DOC_ID} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Button id="961" urlType="Relative" enableValidation="True" isDefault="False" name="Button7" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormButton7">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
