@@ -255,18 +255,18 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Prepare Method
 
-//Open Method @2-E1742C75
+//Open Method @2-16F92CC4
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select cust_order.*,regis.* from t_bphtb_registration regis\n" .
         "LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id\n" .
-        "where\n" .
+        "WHERE regis.t_bphtb_registration_id NOT IN (select t_bphtb_registration_id from t_payment_receipt_bphtb) AND\n" .
         "(cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
         "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')) cnt";
         $this->SQL = "select cust_order.*,regis.* from t_bphtb_registration regis\n" .
         "LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id\n" .
-        "where\n" .
+        "WHERE regis.t_bphtb_registration_id NOT IN (select t_bphtb_registration_id from t_payment_receipt_bphtb) AND\n" .
         "(cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
         "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')  {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
