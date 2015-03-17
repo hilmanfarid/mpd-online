@@ -43,7 +43,7 @@
 			<Attributes/>
 			<Features/>
 		</Label>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="inquery_cek_pembayaran_bphtb_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="inquery_cek_pembayaran_bphtb.php" forShow="True" url="inquery_cek_pembayaran_bphtb.php" comment="//" codePage="windows-1252"/>
@@ -59,9 +59,9 @@
 			</Actions>
 		</Event>
 		<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="295"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="295"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
