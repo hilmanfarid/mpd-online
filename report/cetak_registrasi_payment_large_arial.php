@@ -16,7 +16,7 @@ $dbConn				= new clsDBConnSIKP();
 $query				= "SELECT a.t_vat_setllement_id, b.p_cg_terminal_id, upper(d.vat_code) as jenis_pajak, to_char(b.payment_date,'dd/mm/yyyy') as tgl_transaksi, 
 to_char(b.payment_date,'HH24:MI:SS') as jam_transaksi, b.receipt_no, a.payment_key, a.npwd, a.no_kohir,
 e.wp_name, (e.wp_address_name || '/' || e.wp_address_no) AS alamat_wp,
-b.payment_vat_amount as total_pokok, a.total_penalty_amount as total_denda, b.payment_amount as total_tagihan,
+b.payment_vat_amount as total_pokok, a.total_penalty_amount as total_denda, b.payment_vat_amount + a.total_penalty_amount as total_tagihan,
 upper(trim(replace(f_terbilang(to_char(round(b.payment_amount)),'rp.'), '  ', ' '))) || ' RUPIAH' as dengan_huruf,
 '4'||(d.code || c.code) AS kode_rekening, upper(c.vat_code) as nama_rekening,
 to_char(a.start_period,'yyyymmdd') as start_period, to_char(a.end_period,'yyyymmdd') as end_period
