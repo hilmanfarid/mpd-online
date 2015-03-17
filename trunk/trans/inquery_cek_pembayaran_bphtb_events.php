@@ -53,7 +53,8 @@ function Page_BeforeShow(& $sender)
 				a.land_area, a.building_area, a.bphtb_amt_final, b.receipt_no, to_char(b.payment_date, 'DD-MM-YYYY') as payment_date
                             FROM t_bphtb_registration AS a
                             LEFT JOIN t_payment_receipt_bphtb AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
-                            WHERE a.registration_no = '".trim($registration_no)."'";
+                            WHERE a.registration_no = '".trim($registration_no)."' 
+							OR b.receipt_no = '".trim($registration_no)."'";
 		
 		$dbConn	= new clsDBConnSIKP();
 		$item = array();
@@ -86,7 +87,7 @@ function Page_BeforeShow(& $sender)
             	
 				$output = '<table class="Record" cellspacing="0" cellpadding="5" style="font-size:15px;padding-left:15px;" border="0">
 				<tr>
-					<td colspan="3">Status Pembayaran atas Nomer Registrasi: <b>'.$registration_no.'</b>. <b style="color:#FF0000;">BELUM DIBAYAR</b></td>
+					<td colspan="3">Status Pembayaran atas Nomer Registrasi/No. Kwitansi: <b>'.$registration_no.'</b>. <b style="color:#FF0000;">BELUM DIBAYAR</b></td>
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
@@ -137,7 +138,7 @@ function Page_BeforeShow(& $sender)
 			
 			$output = '<table class="Record" cellspacing="0" cellpadding="5" style="font-size:15px;padding-left:15px;" border="0">
 				<tr>
-					<td colspan="3">Status Pembayaran atas Nomer Registrasi: <b>'.$registration_no.'</b>. <b style="color:#008000;">SUDAH DIBAYAR</b></td>
+					<td colspan="3">Status Pembayaran atas Nomer Registras/No. Kwitansii: <b>'.$registration_no.'</b>. <b style="color:#008000;">SUDAH DIBAYAR</b></td>
 				</tr>
 				<tr>
 					<td colspan="3">&nbsp;</td>
