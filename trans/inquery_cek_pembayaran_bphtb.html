@@ -30,35 +30,33 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body style="MARGIN: 0px" marginwidth="0" marginheight="0">
-
-<div style="PADDING-TOP: 50px; CLEAR: both">
-  <table style="WIDTH: 100%" cellspacing="0" cellpadding="0" border="0">
+<body style="MARGIN: 0px; BACKGROUND: #e1ffc4" marginheight="0" marginwidth="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table style="WIDTH: 100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td align="center">
         <!-- BEGIN Record LOV -->
         <form id="LOV" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td valign="top">
-                <table class="Record" style="HEIGHT: 79px; WIDTH: 107.67%" cellspacing="0" cellpadding="0">
+                <table style="WIDTH: 107.67%; HEIGHT: 79px" class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
                     <td colspan="3">{Error}</td>
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field" valign="top">
-                      <p>&nbsp; INPUTKAN NO REGISTRASI&nbsp;:&nbsp;</p>
-                    </td> 
-                    <td class="search-field" valign="top"><input id="LOVregistration_no" class="ControlsIN" maxlength="32" size="32" value="{registration_no}" name="{registration_no_Name}"><label style="display: none;" for="LOVOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
+                    <td class="search-field" valign="top">&nbsp;&nbsp; INPUTKAN NO REGISTRASI<br>
+                      &nbsp;&nbsp; ATAU NO KWITANSI: </td> 
+                    <td class="search-field" valign="top"><input id="LOVregistration_no" class="ControlsIN" value="{registration_no}" maxlength="32" size="32" name="{registration_no_Name}"><label for="LOVOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
                     <td class="search-field"></td>
                   </tr>
  
                   <tr class="Controls" valign="top">
                     <td class="search-field">&nbsp;</td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="LOVButton_DoSearch" class="btn_tambah" style="HEIGHT: 24px; WIDTH: 136px" alt="Search" size="4" type="submit" value="CEK PEMBAYARAN" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                      <!-- BEGIN Button Button_DoSearch --><input style="WIDTH: 136px; HEIGHT: 24px" id="LOVButton_DoSearch" class="btn_tambah" value="CEK PEMBAYARAN" alt="Search" size="4" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
                     <td class="search-field">&nbsp;</td>
                   </tr>
                 </table>
