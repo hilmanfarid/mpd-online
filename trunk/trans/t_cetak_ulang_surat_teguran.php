@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-03022764
+//Class_Initialize Event @3-BC198FED
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -80,7 +80,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->ListBox1->Required = true;
             $this->ListBox2 = & new clsControl(ccsListBox, "ListBox2", "ListBox2", ccsText, "", CCGetRequestParam("ListBox2", $Method, NULL), $this);
             $this->ListBox2->DSType = dsListOfValues;
-            $this->ListBox2->Values = array(array("1", "Drs. H. GUN GUN SUMARYANA"), array("2", "H. SONI BAKHTIAR, S.Sos, M.Si."));
+            $this->ListBox2->Values = array(array("1", "Drs. H. GUN GUN SUMARYANA"), array("2", "H. SONI BAKHTIAR, S.Sos, M.Si."), array("3", "Drs. H. GUN GUN SUMARYANA (+)"));
             $this->ListBox2->Required = true;
         }
     }
