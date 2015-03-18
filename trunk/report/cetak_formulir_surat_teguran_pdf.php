@@ -481,7 +481,7 @@ class FormCetak extends FPDF {
 		str_replace(" ","-",$data['letter_date_txt'])."_".
 		$data["npwd"]."_".
 		str_replace(" ","-",$data["periode"])
-		,15,170,25,25,'PNG');
+		,28,168,25,25,'PNG');
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
