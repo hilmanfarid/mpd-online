@@ -51,7 +51,7 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="568" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox2" connection="ConnSIKP" _valueOfList="2" _nameOfList="Denda" dataSource="1;Drs. H. GUN GUN SUMARYANA;2;H. SONI BAKHTIAR, S.Sos, M.Si." fieldSource="i_flag_setoran" required="True">
+				<ListBox id="568" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox2" connection="ConnSIKP" dataSource="1;Drs. H. GUN GUN SUMARYANA;2;H. SONI BAKHTIAR, S.Sos, M.Si.;3;Drs. H. GUN GUN SUMARYANA (+)" fieldSource="i_flag_setoran" required="True" _valueOfList="3" _nameOfList="Drs. H. GUN GUN SUMARYANA (+)">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
@@ -69,7 +69,7 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
