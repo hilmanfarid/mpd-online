@@ -6,6 +6,7 @@ include_once(RelativePath . "/Common.php");
 include_once("../include/fpdf.php");
 
 $npwd = CCGetFromGet("npwd", "");
+$teguran = CCGetFromGet("teguran", 3);
 $p_finance_period_id = CCGetFromGet("p_finance_period_id", "");
 
 //$t_customer_order_id = 67;
@@ -34,7 +35,7 @@ $dbConn = new clsDBConnSIKP();
 	}
 
 
-$query="select 3 as sequence_no, to_char(sysdate,'dd-mm-yyyy') as letter_date_txt,  
+$query="select ".$teguran." as sequence_no, to_char(sysdate,'dd-mm-yyyy') as letter_date_txt,  
 	upper(vat_code) as vat_code,
 	x.code as periode,
 	* 
