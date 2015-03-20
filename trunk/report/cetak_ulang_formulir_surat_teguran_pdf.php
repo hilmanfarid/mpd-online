@@ -489,25 +489,29 @@ class FormCetak extends FPDF {
 			str_replace(" ","-",$data["periode"])
 			,15,170,25,25,'PNG');
 		}*/
-
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
-		str_replace(" ","-",$data['letter_date_txt'])."_".
-		$data["npwd"]."_".
-		str_replace(" ","-",$data["periode"])
-		,15,170,25,25,'PNG');
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4-5, $this->height, "", "", 0, 'C');
 		$pejabat = CCGetFromGet("pejabat", 1);
-		if ($pejabat == 1){
+		if ($pejabat == 3){
 			$this->Cell($lbody4+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "B", 0, 'C');
+			$this->Image('../images/ttd_pa_gun_gun.jpg',$lbody2+$lbody4+$lbody4-18,168,$lbody4+48,20);
 		}else{
-			$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
-			$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,168,$lbody4+48,20);
+			if ($pejabat == 1){
+				$this->Cell($lbody4+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "B", 0, 'C');
+			}else{
+				$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
+				$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,168,$lbody4+48,20);
+			}
 		}
 		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
 		$this->Ln();
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+		str_replace(" ","-",$data['letter_date_txt'])."_".
+		$data["npwd"]."_".
+		str_replace(" ","-",$data["periode"])
+		,28,168,25,25,'PNG');
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
