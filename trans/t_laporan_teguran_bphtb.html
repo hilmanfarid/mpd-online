@@ -27,26 +27,41 @@
                 }
 
                 function cetakSuratTeguranAll() {
-					var params = "";
-					var date_start = document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
-					var date_end = document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+                                        var params = "";
+                                        var date_start = document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+                                        var date_end = document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
 
-					if(date_start == "" || date_end == "") {
-						alert("Filter Tanggal Harus Diisi");
-						return false;
-					}
+                                        if(date_start == "" || date_end == "") {
+                                                alert("Filter Tanggal Harus Diisi");
+                                                return false;
+                                        }
 
-					params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
-                	params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
-                	window.open("../report/cetak_surat_teguran_bphtb_pdf2.php?"+params, "_blank", "toolbar=0,location=0,menubar=0");
+                                        params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+                        params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+                        window.open("../report/cetak_surat_teguran_bphtb_pdf2.php?"+params, "_blank", "toolbar=0,location=0,menubar=0");
                 }
 
-				function cetakSuratTeguran(t_bphtb_registration_id) {
-                	var params = "";
-					params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
-                	params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
-                	params += "&t_bphtb_registration_id="+t_bphtb_registration_id;
-					window.open("../report/cetak_surat_teguran_bphtb_pdf2.php?"+params, "_blank", "toolbar=0,location=0,menubar=0");
+				function cetakSuratTeguranAll2() {
+                                        var params = "";
+                                        var date_start = document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+                                        var date_end = document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+
+                                        if(date_start == "" || date_end == "") {
+                                                alert("Filter Tanggal Harus Diisi");
+                                                return false;
+                                        }
+
+                                        params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+                        params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+                        window.open("../report/cetak_surat_teguran_bphtb_pdf2_tanpa_barcode.php?"+params, "_blank", "toolbar=0,location=0,menubar=0");
+                }
+
+                                function cetakSuratTeguran(t_bphtb_registration_id) {
+                        var params = "";
+                                        params += "&date_start="+document.getElementById("t_laporan_teguran_bphtbdate_start_laporan").value;
+                        params += "&date_end="+document.getElementById("t_laporan_teguran_bphtbdate_end_laporan").value;
+                        params += "&t_bphtb_registration_id="+t_bphtb_registration_id;
+                                        window.open("../report/cetak_surat_teguran_bphtb_pdf2.php?"+params, "_blank", "toolbar=0,location=0,menubar=0");
                 
                 }
 
@@ -86,7 +101,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -113,15 +128,16 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Tanggal</label></td> 
-                    <td class="search-field"><label for="t_laporan_teguran_bphtbdate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_teguran_bphtbdate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
-                      <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_teguran_bphtbDatePicker_date_start_laporan1"><img id="t_laporan_teguran_bphtbDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_teguran_bphtbdate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
+                    <td class="search-field"><label for="t_laporan_teguran_bphtbdate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_teguran_bphtbdate_start_laporan" class="ControlsRQ" value="{date_start_laporan}" name="{date_start_laporan_Name}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_teguran_bphtbDatePicker_date_start_laporan1"><img id="t_laporan_teguran_bphtbDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_teguran_bphtbdate_end_laporan" class="ControlsRQ" value="{date_end_laporan}" name="{date_end_laporan_Name}">&nbsp; 
                       <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_teguran_bphtbDatePicker_end_start_laporan1"><img id="t_laporan_teguran_bphtbDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
                   </tr>
  
                   <tr>
-                    <td colspan="2" align="right"><input id="t_laporan_teguran_bphtbcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden">
-                      <!-- BEGIN Button Button3 --><input id="t_laporan_teguran_bphtbButton3" class="btn_tambah" onclick="cetakSuratTeguranAll(); return false;" name="{Button_Name}" alt="Button1" value="Cetak Surat Teguran" type="button"><!-- END Button Button3 -->
-                      <!-- BEGIN Button Button2 --><input id="t_laporan_teguran_bphtbButton2" class="btn_tambah" onclick="tampilkanLaporan(); return false;" name="{Button_Name}" alt="Button1" value="Tampilkan" type="button"><!-- END Button Button2 --></td>
+                    <td colspan="2" align="right"><input id="t_laporan_teguran_bphtbcetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}">
+                      <!-- BEGIN Button Button3 --><input id="t_laporan_teguran_bphtbButton3" class="btn_tambah" onclick="cetakSuratTeguranAll(); return false;" value="Cetak Surat Teguran" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button3 -->
+                      <!-- BEGIN Button Button4 --><input id="t_laporan_teguran_bphtbButton4" class="btn_tambah" onclick="cetakSuratTeguranAll2(); return false;" value="Cetak Surat Teguran Tanpa Barcode" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button4 -->
+                      <!-- BEGIN Button Button2 --><input id="t_laporan_teguran_bphtbButton2" class="btn_tambah" onclick="tampilkanLaporan(); return false;" value="Tampilkan" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 --></td>
                   </tr>
                 </table>
               </td>
