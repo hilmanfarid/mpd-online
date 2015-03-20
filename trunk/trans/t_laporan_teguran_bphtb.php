@@ -45,7 +45,7 @@ class clsRecordt_laporan_teguran_bphtb { //t_laporan_teguran_bphtb Class @2-93BD
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-3F6A6EB1
+//Class_Initialize Event @2-81F240C5
     function clsRecordt_laporan_teguran_bphtb($RelativePath, & $Parent)
     {
 
@@ -78,6 +78,7 @@ class clsRecordt_laporan_teguran_bphtb { //t_laporan_teguran_bphtb Class @2-93BD
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
             $this->Button2 = & new clsButton("Button2", $Method, $this);
             $this->Button3 = & new clsButton("Button3", $Method, $this);
+            $this->Button4 = & new clsButton("Button4", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -128,7 +129,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-1F557F50
+//Operation Method @2-D96D1C0D
     function Operation()
     {
         if(!$this->Visible)
@@ -147,6 +148,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button2";
             } else if($this->Button3->Pressed) {
                 $this->PressedButton = "Button3";
+            } else if($this->Button4->Pressed) {
+                $this->PressedButton = "Button4";
             }
         }
         $Redirect = "t_laporan_teguran_bphtb.php";
@@ -159,6 +162,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button4") {
+                if(!CCGetEvent($this->Button4->CCSEvents, "OnClick", $this->Button4)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -166,7 +173,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-B3761408
+//Show Method @2-63DD9925
     function Show()
     {
         global $CCSUseAmp;
@@ -219,6 +226,7 @@ function GetPrimaryKey($keyName)
         $this->cetak_laporan->Show();
         $this->Button2->Show();
         $this->Button3->Show();
+        $this->Button4->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
