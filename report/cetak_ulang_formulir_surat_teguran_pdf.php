@@ -49,7 +49,7 @@ $dbConn = new clsDBConnSIKP();
 
 $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
-		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)";
+		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)"." limit 10";
 
 $dbConn->query($query);
 $data=array();
@@ -496,22 +496,33 @@ class FormCetak extends FPDF {
 		$pejabat = CCGetFromGet("pejabat", 1);
 		if ($pejabat == 3){
 			$this->Cell($lbody4+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "B", 0, 'C');
-			$this->Image('../images/ttd_pa_gun_gun.jpg',$lbody2+$lbody4+$lbody4-18,168,$lbody4+48,20);
+			//$this->Image('../images/ttd_pa_gun_gun.jpg',$lbody2+$lbody4+$lbody4-18,168,$lbody4+48,20);
+			$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+			str_replace(" ","-",$data['letter_date_txt'])."_".
+			$data["npwd"]."_".
+			str_replace(" ","-",$data["periode"])
+			,161,168,25,25,'PNG');
 		}else{
 			if ($pejabat == 1){
 				$this->Cell($lbody4+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "B", 0, 'C');
+				$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+				str_replace(" ","-",$data['letter_date_txt'])."_".
+				$data["npwd"]."_".
+				str_replace(" ","-",$data["periode"])
+				,28,168,25,25,'PNG');
 			}else{
 				$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
 				$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,168,$lbody4+48,20);
+				$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+				str_replace(" ","-",$data['letter_date_txt'])."_".
+				$data["npwd"]."_".
+				str_replace(" ","-",$data["periode"])
+				,28,168,25,25,'PNG');
 			}
 		}
 		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
 		$this->Ln();
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
-		str_replace(" ","-",$data['letter_date_txt'])."_".
-		$data["npwd"]."_".
-		str_replace(" ","-",$data["periode"])
-		,28,168,25,25,'PNG');
+		
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
