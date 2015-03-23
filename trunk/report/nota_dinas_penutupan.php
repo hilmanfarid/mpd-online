@@ -136,11 +136,11 @@ class FormCetak extends FPDF {
         //Isi
         $this->SetFont('Times', '', 12);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Dipermaklumkan dengan hormat, berdasarkan Peraturan Walikota Bandung Nomor 016 Tahun 2014 tentang Standar Operasional Prosedur Tata Cara Pemungutan Pajak Daerah, berdasarkan permohonan dari Wajib Pajak dapat diusulkan pencabutan dan penutupan NPWPD dengan persyaratansesuai ketentuan yang berlaku.", "", 'J');
+        $this->MultiCell($lengthJudul2, $this->height, "Dipermaklumkan dengan hormat, berdasarkan Peraturan Walikota Bandung Nomor 016 Tahun 2014 tentang Standar Operasional Prosedur Tata Cara Pemungutan Pajak Daerah, berdasarkan permohonan dari Wajib Pajak / Berita Acara dapat diusulkan pencabutan dan penutupan NPWPD dengan persyaratan sesuai ketentuan yang berlaku.", "", 'J');
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Pada tanggal " .$data["status_request_date"]. ", telah diterima surat permohonan penutupan wajib pajak daerah dengan data sebagai berikut : ", "", 'J');
+        $this->MultiCell($lengthJudul2, $this->height, "Pada tanggal " .$data["status_request_date"]. ", telah diterima surat permohonan penutupan wajib pajak daerah / BA dengan data sebagai berikut : ", "", 'J');
         $this->Ln(6);
 
         //data wajib pajak
@@ -175,8 +175,7 @@ class FormCetak extends FPDF {
         $this->Cell($lengWP1, $this->height, "Jenis Usaha", "", "", 'L');
         $this->Cell($lengWP2, $this->height, ": ".$data["vat_code"], "", "", 'L');
         $this->Ln(5);
-
-
+		$this->Ln();
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->MultiCell($lengthJudul2, $this->height, "Sehubungan dengan permohonan tersebut diatas mohon kiranya Bapak berkenan untuk menandatangani Surat Pencabutan dan Penutupan NPWPD.", "", 'J');
