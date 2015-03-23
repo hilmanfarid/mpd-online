@@ -116,8 +116,8 @@ function t_vat_setllementForm_update_denda_OnClick(& $sender)
 	$dbConn = new clsDBConnSIKP();	
 	$selected_id=$t_vat_setllementForm->t_vat_setllement_id->GetValue();
 	//echo $selected_id." ".CCGETUserLogin();exit; 
-	$query = "select f_hitung_ulang_denda as hasil from 
-		f_hitung_ulang_denda(".$selected_id.",'".CCGETUserLogin()."')";
+	$query = "select f_hitung_ulang_denda_v2 as hasil from 
+		f_hitung_ulang_denda_v2(".$selected_id.",'".CCGETUserLogin()."')";
 	//echo $query;exit;
 	$dbConn->query($query);
 	$dbConn->next_record();
@@ -131,7 +131,7 @@ function t_vat_setllementForm_update_denda_OnClick(& $sender)
 				alert ('Denda gagal diperbaharui'".$hasil.");
 			</script>";
 	}
-	return;
+	//return;
 // -------------------------
 //End Custom Code
 
