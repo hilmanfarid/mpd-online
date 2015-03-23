@@ -27,7 +27,8 @@
 		$sql="select t.vat_code as jenis_pajak,
 			nvl(u.vat_code,t.code) as vat_codes,
 			upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2,
-			a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
+			a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, 
+			to_char(a.settlement_date,'DD-MM-YYYY') AS tgl_setllement,* from t_vat_setllement a
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 			left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
@@ -40,7 +41,8 @@
 	else{
 		if ($mode==2){
 			$sql="select t.vat_code as jenis_pajak,upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2,
-			 nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
+			 nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun,
+			to_char(a.settlement_date,'DD-MM-YYYY') AS tgl_setllement,* from t_vat_setllement a
 				left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 				left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 				left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
@@ -63,7 +65,8 @@
 				and x.p_account_status_id = 1";
 		}else{
 			$sql="select t.vat_code as jenis_pajak, upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2,
-			nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, * from t_vat_setllement a
+			nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun, 
+			to_char(a.settlement_date,'DD-MM-YYYY') AS tgl_setllement,* from t_vat_setllement a
 				left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 				left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 				left join p_finance_period z on z.p_finance_period_id=a.p_finance_period_id
@@ -411,7 +414,7 @@ class FormCetak extends FPDF {
 		$this->Cell(10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody2 - 10, $this->height, "    a. Bunga (Pasal 65 ayat(2)", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["total_penalty_amount"],2,",","."), "", 0, 'R');
+		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["db_interest_charge"],2,",","."), "", 0, 'R');
 		$this->Cell(10, $this->height, "", "", 0, 'R');
 		$this->Cell($lbody1, $this->height, "", "R", 0, 'L');
 		$this->Ln();
@@ -424,7 +427,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		
-		$jumno5 = $data["total_penalty_amount"] + $data["db_increasing_charge"];
+		$jumno5 = $data["db_interest_charge"] + $data["db_increasing_charge"];
 		$this->Cell(10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody2 - 10, $this->height, "    c. Jumlah sanksi administrasi (a + b)", "", 0, 'L');
 		$this->Cell($lbody1, $this->height, "" , "", 0, 'L');
@@ -474,7 +477,7 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date('d M Y'), "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -592,7 +595,7 @@ class FormCetak extends FPDF {
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "", 0, 'L');
 		$this->Cell($lbody3-$lbody1 - 10, $this->height, ": ".$data["due_date"], "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date('d M Y'), "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
 		$this->Ln($this->height-2);
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Yang Menerima, ", "R", 0, 'C');
