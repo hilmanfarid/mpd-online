@@ -21,7 +21,7 @@ if ($dbConn->next_record()) {
 		'finance_period_code' => $dbConn->f("finance_period_code")
 		);
 	$json['items']=$item;
-	echo json_encode($json);
+	print_r( ($json));
 }else{
 	$json = array('items'=>array(),'message'=>'data tidak ditemukan','success'=>'fail');
 	echo json_encode($json);
