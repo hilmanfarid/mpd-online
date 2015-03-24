@@ -18,7 +18,7 @@ $query="SELECT a.registration_no, to_char(a.creation_date, 'DD-MM-YYYY') as crea
 $dbConn->query($query);
 $data=array();
 if ($dbConn->next_record()) {
-	$json = array('items'=>array(),'message'=>'data ditemukan','success'=>'success');
+	/*$json = array('items'=>array(),'message'=>'data ditemukan','success'=>'success');
 	$item = array(
 		'registration_no' => $dbConn->f("registration_no"),
 		'creation_date' => $dbConn->f("creation_date"),
@@ -31,10 +31,34 @@ if ($dbConn->next_record()) {
 		'wp_name' => $dbConn->f("wp_name")
 		);
 	$json['items']=$item;
-	print_r( ($json));
+	print_r( ($json));*/
+	$myXMLData =
+	"<?xml version='1.0' encoding='UTF-8'?>
+	<pembayaran_bphtb>
+		<registration_no>".$dbConn->f("registration_no")."</registration_no>
+		<creation_date>".$dbConn->f("creation_date")."</creation_date>
+		<njop_pbb>".$dbConn->f("njop_pbb")."</njop_pbb>
+		<land_area>".$dbConn->f("land_area")."</land_area>
+		<building_area>".$dbConn->f("building_area")."</building_area>
+		<bphtb_amt_final>".$dbConn->f("bphtb_amt_final")."</bphtb_amt_final>
+		<receipt_no>".$dbConn->f("receipt_no")."</receipt_no>
+		<wp_name>".$dbConn->f("wp_name")."</wp_name>
+	</pembayaran_bphtb>";
+	print_r($myXMLData);
 }else{
-	$json = array('items'=>array(),'message'=>'data tidak ditemukan','success'=>'fail');
-	echo json_encode($json);
+	$myXMLData =
+	"<?xml version='1.0' encoding='UTF-8'?>
+	<pembayaran_bphtb>
+		<registration_no></registration_no>
+		<creation_date></creation_date>
+		<njop_pbb></njop_pbb>
+		<land_area></land_area>
+		<building_area></building_area>
+		<bphtb_amt_final></bphtb_amt_final>
+		<receipt_no></receipt_no>
+		<wp_name></wp_name>
+	</pembayaran_bphtb>";
+	print_r($myXMLData);
 }
 $dbConn->close();
 
