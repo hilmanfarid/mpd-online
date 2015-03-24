@@ -137,9 +137,9 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['total_vat_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt'], 2, ',', '.').'</td>';
-		$output.='<td align="right" >'.number_format($data[$i]['db_increasing_charge'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
-		$output.='<td align="right" >'.number_format(($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['debt_vat_amt']), 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format(($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']), 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
 			$output.='<td align="left" >Belum Bayar</td>';
