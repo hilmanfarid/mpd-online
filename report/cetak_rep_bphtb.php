@@ -75,6 +75,8 @@ while ($dbConn->next_record()) {
 	$data["verificated_nip"]		= $dbConn->f("verificated_nip");
 	$data["jenis_harga_bphtb"]		= $dbConn->f("jenis_harga_bphtb");
 	$data["description"]			= $dbConn->f("description");
+	$data["check_potongan"]			= $dbConn->f("check_potongan");
+	
 }
 
 $dbConn->close();
@@ -283,7 +285,11 @@ class FormCetak extends FPDF {
 			
 		$this->SetFont("Arial", "i", 8);
 		
-		$this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran", "", 0, 'L');
+		if($data['check_potongan'] == 'Y') {
+		    $this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran", "", 0, 'L');
+		}else {
+		    $this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran. Nota akan menjadi expired jika dalam 7 hari tidak dibayarkan.", "", 0, 'L');
+	    }
 		$this->Ln();
 		//$this->Cell($lbody1 + 10, $this->height, "            Catatan: ".$data["description"], "", 0, 'L');
 		$this->SetWidths(array(9, 150, $lbodyx2));
