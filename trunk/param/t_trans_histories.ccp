@@ -19,7 +19,8 @@
 	   e.code as type_code,
 		nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,
 		nvl(a.db_increasing_charge,0) as db_increasing_charge,
-		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar
+		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,
+		nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan
 from t_vat_setllement a,
      p_finance_period b,
      t_cust_account c,
@@ -160,7 +161,7 @@ order by c.npwd , b.start_date desc,
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="148" fieldSourceType="DBColumn" dataType="Float" html="False" name="db_increasing_charge" fieldSource="db_increasing_charge" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGriddb_increasing_charge" format="#,##0.00">
+				<Label id="148" fieldSourceType="DBColumn" dataType="Float" html="False" name="kenaikan" fieldSource="kenaikan" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridkenaikan" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
