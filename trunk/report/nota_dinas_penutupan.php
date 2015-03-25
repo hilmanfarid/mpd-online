@@ -140,7 +140,7 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Pada tanggal " .$data["status_request_date"]. ", telah diterima surat permohonan penutupan wajib pajak daerah / BA dengan data sebagai berikut : ", "", 'J');
+        $this->MultiCell($lengthJudul2, $this->height, "Pada tanggal " .$data["status_request_date"]. ", telah diterima surat permohonan penutupan wajib pajak daerah / Berita Acara dengan data sebagai berikut : ", "", 'J');
         $this->Ln(6);
 
         //data wajib pajak
@@ -182,7 +182,7 @@ class FormCetak extends FPDF {
         $this->Ln();
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Demikian permohonan kami sampaikan, atas perhatian Bapak kami mengucapkan terima kasih.", "", 'J');
+        $this->MultiCell($lengthJudul2, $this->height, "Demikian permohonan ini kami sampaikan, atas perhatian Bapak kami mengucapkan terima kasih.", "", 'J');
         $this->Ln();
 
         //TTD
