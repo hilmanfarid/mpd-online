@@ -132,7 +132,10 @@ function print_excel($param_arr) {
 		<th>Tgl. Pelaporan</th>
 		<th>Total Transaksi</th>
 		<th>Total Pajak</th>
+		<th>Pajak Terhutang</th>
+		<th>Kenaikan Pajak Terhutang</th>
 		<th>Denda</th>
+		<th>Total Harus Bayar</th>
 		<th>No. Kwitansi</th>
 		<th>Tgl. Pembayaran</th>
 		<th>Nilai Pembayaran</th>
@@ -157,7 +160,10 @@ function print_excel($param_arr) {
 			       b.p_finance_period_id ,
 			       to_char(b.start_date,'DD-MON-YYYY') as periode_awal_laporan,
 			       to_char(b.end_date,'DD-MON-YYYY') as periode_akhir_laporan,
-				   e.code as type_code
+				   e.code as type_code,
+				   nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan,
+				   nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,
+				   nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar
 			from t_vat_setllement a ,
 			     p_finance_period b,
 			     t_cust_account c,
@@ -180,12 +186,15 @@ function print_excel($param_arr) {
 		echo '<td valign="top" >'.$dbConn->f("npwd").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("company_name").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("type_code").'</td>';
-		echo '<td valign="top" >'.$dbConn->f("Periode_pelaporan").'</td>';
+		echo '<td valign="top" >'.$dbConn->f("periode_pelaporan").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("periode_awal_laporan").' s.d. '.$dbConn->f("periode_akhir_laporan").'</td>';
 		echo '<td valign="top">'.$dbConn->f("tgl_pelaporan").'&nbsp;</td>';
 		echo '<td valign="top">'.$dbConn->f("total_transaksi").'</td>';
 		echo '<td valign="top">'.$dbConn->f("total_pajak").'</td>';
+		echo '<td valign="top">'.$dbConn->f("debt_vat_amt").'</td>';
+		echo '<td valign="top">'.$dbConn->f("kenaikan").'</td>';
 		echo '<td valign="top">'.$dbConn->f("total_denda").'</td>';
+		echo '<td valign="top">'.$dbConn->f("total_hrs_bayar").'</td>';
 		echo '<td valign="top">'.$dbConn->f("kuitansi_pembayaran").'&nbsp;</td>';
 		echo '<td valign="top">'.$dbConn->f("tgl_pembayaran").'&nbsp;</td>';
 		echo '<td valign="top">'.$dbConn->f("payment_amount").'</td>';
