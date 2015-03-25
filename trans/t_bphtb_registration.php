@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-427337B0
+//Class_Initialize Event @94-955059C5
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -163,6 +163,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->building_area_real = & new clsControl(ccsTextBox, "building_area_real", "building_area_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_area_real", $Method, NULL), $this);
             $this->land_price_real = & new clsControl(ccsTextBox, "land_price_real", "land_price_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_price_real", $Method, NULL), $this);
             $this->building_price_real = & new clsControl(ccsTextBox, "building_price_real", "building_price_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_price_real", $Method, NULL), $this);
+            $this->Button4 = & new clsButton("Button4", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -584,7 +585,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-D5E62172
+//Show Method @94-00EADBEB
     function Show()
     {
         global $CCSUseAmp;
@@ -812,6 +813,7 @@ function GetPrimaryKey($keyName)
         $this->building_area_real->Show();
         $this->land_price_real->Show();
         $this->building_price_real->Show();
+        $this->Button4->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
