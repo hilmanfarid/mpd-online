@@ -42,7 +42,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-DB990AB1
+//Class_Initialize Event @2-7D277F0F
     function clsGridHistoryGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -87,6 +87,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $this->debt_vat_amt = & new clsControl(ccsLabel, "debt_vat_amt", "debt_vat_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_vat_amt", ccsGet, NULL), $this);
         $this->kenaikan = & new clsControl(ccsLabel, "kenaikan", "kenaikan", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("kenaikan", ccsGet, NULL), $this);
         $this->total_hrs_bayar = & new clsControl(ccsLabel, "total_hrs_bayar", "total_hrs_bayar", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_hrs_bayar", ccsGet, NULL), $this);
+        $this->ayat = & new clsControl(ccsLabel, "ayat", "ayat", ccsText, "", CCGetRequestParam("ayat", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->t_customer_id = & new clsControl(ccsHidden, "t_customer_id", "t_customer_id", ccsFloat, "", CCGetRequestParam("t_customer_id", ccsGet, NULL), $this);
@@ -107,7 +108,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     }
 //End Initialize Method
 
-//Show Method @2-A0AE77FF
+//Show Method @2-FC107E65
     function Show()
     {
         global $Tpl;
@@ -154,6 +155,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
             $this->ControlsVisible["debt_vat_amt"] = $this->debt_vat_amt->Visible;
             $this->ControlsVisible["kenaikan"] = $this->kenaikan->Visible;
             $this->ControlsVisible["total_hrs_bayar"] = $this->total_hrs_bayar->Visible;
+            $this->ControlsVisible["ayat"] = $this->ayat->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -179,6 +181,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
                 $this->debt_vat_amt->SetValue($this->DataSource->debt_vat_amt->GetValue());
                 $this->kenaikan->SetValue($this->DataSource->kenaikan->GetValue());
                 $this->total_hrs_bayar->SetValue($this->DataSource->total_hrs_bayar->GetValue());
+                $this->ayat->SetValue($this->DataSource->ayat->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -200,6 +203,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
                 $this->debt_vat_amt->Show();
                 $this->kenaikan->Show();
                 $this->total_hrs_bayar->Show();
+                $this->ayat->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -236,7 +240,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     }
 //End Show Method
 
-//GetErrors Method @2-26695C5A
+//GetErrors Method @2-B5A519D8
     function GetErrors()
     {
         $errors = "";
@@ -258,6 +262,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $errors = ComposeStrings($errors, $this->debt_vat_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->kenaikan->Errors->ToString());
         $errors = ComposeStrings($errors, $this->total_hrs_bayar->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->ayat->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -268,7 +273,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
 
 class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource Class @2-7CE034AB
 
-//DataSource Variables @2-3495CA14
+//DataSource Variables @2-A742997E
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -298,9 +303,10 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     var $debt_vat_amt;
     var $kenaikan;
     var $total_hrs_bayar;
+    var $ayat;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-FEC2C339
+//DataSourceClass_Initialize Event @2-C9B33CD9
     function clsHistoryGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -342,14 +348,16 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         
         $this->total_hrs_bayar = new clsField("total_hrs_bayar", ccsFloat, "");
         
+        $this->ayat = new clsField("ayat", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-82817A39
+//SetOrder Method @2-9E1383D1
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "c.npwd , b.start_date desc,  a.t_vat_setllement_id";
+        $this->Order = "";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -365,72 +373,82 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Prepare Method
 
-//Open Method @2-B55D5BEA
+//Open Method @2-C3AED0BA
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (Select c.npwd, \n" .
-        "	   a.t_vat_setllement_id,	\n" .
-        "	   c.t_cust_account_id,\n" .
-        "       c.company_name, \n" .
-        "       b.code as Periode_pelaporan, \n" .
-        "       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, \n" .
-        "       a.total_trans_amount as total_transaksi,\n" .
-        "       a.total_vat_amount as total_pajak ,\n" .
-        "	   a.total_penalty_amount as total_denda,\n" .
-        "       d.receipt_no as kuitansi_pembayaran,\n" .
-        "       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,\n" .
-        "       d.payment_amount,\n" .
-        "       c.t_cust_account_id ,\n" .
-        "       b.p_finance_period_id ,\n" .
-        "       to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
-        "       to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
-        "	   e.code as type_code,\n" .
-        "		nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
-        "		nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
-        "		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
-        "		nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan\n" .
-        "from t_vat_setllement a,\n" .
-        "     p_finance_period b,\n" .
-        "     t_cust_account c,\n" .
-        "     t_payment_receipt d,\n" .
-        "	 p_settlement_type e\n" .
-        "where a.p_finance_period_id = b.p_finance_period_id\n" .
-        "      and a.t_cust_account_id = c.t_cust_account_id\n" .
-        "	  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
-        "	  and a.p_settlement_type_id = e.p_settlement_type_id) cnt";
-        $this->SQL = "Select c.npwd, \n" .
-        "	   a.t_vat_setllement_id,	\n" .
-        "	   c.t_cust_account_id,\n" .
-        "       c.company_name, \n" .
-        "       b.code as Periode_pelaporan, \n" .
-        "       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, \n" .
-        "       a.total_trans_amount as total_transaksi,\n" .
-        "       a.total_vat_amount as total_pajak ,\n" .
-        "	   a.total_penalty_amount as total_denda,\n" .
-        "       d.receipt_no as kuitansi_pembayaran,\n" .
-        "       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,\n" .
-        "       d.payment_amount,\n" .
-        "       c.t_cust_account_id ,\n" .
-        "       b.p_finance_period_id ,\n" .
-        "       to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
-        "       to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
-        "	   e.code as type_code,\n" .
-        "		nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
-        "		nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
-        "		nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
-        "		nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan\n" .
-        "from t_vat_setllement a,\n" .
-        "     p_finance_period b,\n" .
-        "     t_cust_account c,\n" .
-        "     t_payment_receipt d,\n" .
-        "	 p_settlement_type e\n" .
-        "where a.p_finance_period_id = b.p_finance_period_id\n" .
-        "      and a.t_cust_account_id = c.t_cust_account_id\n" .
-        "	  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
-        "	  and a.p_settlement_type_id = e.p_settlement_type_id {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*) FROM (select x.vat_code as ayat,hasil.* from \n" .
+        "	(Select c.npwd, \n" .
+        "		   a.t_vat_setllement_id,	\n" .
+        "		   c.t_cust_account_id,\n" .
+        "	       c.company_name, \n" .
+        "	       b.code as Periode_pelaporan, \n" .
+        "	       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, \n" .
+        "	       a.total_trans_amount as total_transaksi,\n" .
+        "	       a.total_vat_amount as total_pajak ,\n" .
+        "		   a.total_penalty_amount as total_denda,\n" .
+        "	       d.receipt_no as kuitansi_pembayaran,\n" .
+        "	       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,\n" .
+        "	       d.payment_amount,\n" .
+        "	       c.t_cust_account_id ,\n" .
+        "	       b.p_finance_period_id ,\n" .
+        "	       to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
+        "	       to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
+        "				 e.code as type_code,\n" .
+        "	 			 nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
+        "				 nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
+        "				 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
+        "				 nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan,\n" .
+        "				 a.p_vat_type_dtl_id\n" .
+        "	from t_vat_setllement a,\n" .
+        "	     p_finance_period b,\n" .
+        "	     t_cust_account c,\n" .
+        "	     t_payment_receipt d,\n" .
+        "		 p_settlement_type e\n" .
+        "	where a.p_finance_period_id = b.p_finance_period_id\n" .
+        "	      and a.t_cust_account_id = c.t_cust_account_id\n" .
+        "		  and a.t_cust_account_id = 266\n" .
+        "	      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
+        "		  and a.p_settlement_type_id = e.p_settlement_type_id\n" .
+        "	order by c.npwd , b.start_date desc,\n" .
+        "	  a.t_vat_setllement_id) as hasil\n" .
+        "left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id) cnt";
+        $this->SQL = "select x.vat_code as ayat,hasil.* from \n" .
+        "	(Select c.npwd, \n" .
+        "		   a.t_vat_setllement_id,	\n" .
+        "		   c.t_cust_account_id,\n" .
+        "	       c.company_name, \n" .
+        "	       b.code as Periode_pelaporan, \n" .
+        "	       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, \n" .
+        "	       a.total_trans_amount as total_transaksi,\n" .
+        "	       a.total_vat_amount as total_pajak ,\n" .
+        "		   a.total_penalty_amount as total_denda,\n" .
+        "	       d.receipt_no as kuitansi_pembayaran,\n" .
+        "	       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,\n" .
+        "	       d.payment_amount,\n" .
+        "	       c.t_cust_account_id ,\n" .
+        "	       b.p_finance_period_id ,\n" .
+        "	       to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
+        "	       to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
+        "				 e.code as type_code,\n" .
+        "	 			 nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
+        "				 nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
+        "				 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
+        "				 nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan,\n" .
+        "				 a.p_vat_type_dtl_id\n" .
+        "	from t_vat_setllement a,\n" .
+        "	     p_finance_period b,\n" .
+        "	     t_cust_account c,\n" .
+        "	     t_payment_receipt d,\n" .
+        "		 p_settlement_type e\n" .
+        "	where a.p_finance_period_id = b.p_finance_period_id\n" .
+        "	      and a.t_cust_account_id = c.t_cust_account_id\n" .
+        "		  and a.t_cust_account_id = 266\n" .
+        "	      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
+        "		  and a.p_settlement_type_id = e.p_settlement_type_id\n" .
+        "	order by c.npwd , b.start_date desc,\n" .
+        "	  a.t_vat_setllement_id) as hasil\n" .
+        "left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -441,7 +459,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Open Method
  
-//SetValues Method @2-89DF1361
+//SetValues Method @2-C915B828
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
@@ -462,6 +480,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         $this->debt_vat_amt->SetDBValue(trim($this->f("debt_vat_amt")));
         $this->kenaikan->SetDBValue(trim($this->f("kenaikan")));
         $this->total_hrs_bayar->SetDBValue(trim($this->f("total_hrs_bayar")));
+        $this->ayat->SetDBValue($this->f("ayat"));
     }
 //End SetValues Method
 
