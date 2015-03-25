@@ -9,7 +9,7 @@ f.region_name as object_kecamatan,
 g.region_name as object_kelurahan,
 h.description as doc_name
 
-from t_bphtb_registration as a 
+from t_bphtb_registration_expired as a 
 left join p_region as b
 	on a.wp_p_region_id = b.p_region_id
 left join p_region as c
@@ -698,8 +698,8 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_bphtb_registration_master_expired_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_master_expired.php" forShow="True" url="t_bphtb_registration_master_expired.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_master_expired.php" forShow="True" url="t_bphtb_registration_master_expired.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
