@@ -42,7 +42,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-10C076FE
+//Class_Initialize Event @2-46789D8F
     function clsGridt_bphtb_registration_list($RelativePath, & $Parent)
     {
         global $FileName;
@@ -77,6 +77,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         $this->DLink->Page = "t_bphtb_registration_list_expired.php";
         $this->t_bphtb_registration_id = & new clsControl(ccsLabel, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsText, "", CCGetRequestParam("t_bphtb_registration_id", ccsGet, NULL), $this);
         $this->t_customer_order_id = & new clsControl(ccsHidden, "t_customer_order_id", "t_customer_order_id", ccsText, "", CCGetRequestParam("t_customer_order_id", ccsGet, NULL), $this);
+        $this->tgl_verifikasi = & new clsControl(ccsLabel, "tgl_verifikasi", "tgl_verifikasi", ccsText, "", CCGetRequestParam("tgl_verifikasi", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -93,7 +94,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Initialize Method
 
-//Show Method @2-4B0905D3
+//Show Method @2-6BD4817E
     function Show()
     {
         global $Tpl;
@@ -127,6 +128,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
             $this->ControlsVisible["DLink"] = $this->DLink->Visible;
             $this->ControlsVisible["t_bphtb_registration_id"] = $this->t_bphtb_registration_id->Visible;
             $this->ControlsVisible["t_customer_order_id"] = $this->t_customer_order_id->Visible;
+            $this->ControlsVisible["tgl_verifikasi"] = $this->tgl_verifikasi->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -138,9 +140,10 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
                 $this->origin_file_name->SetValue($this->DataSource->origin_file_name->GetValue());
                 $this->origin_file_name->Page = $this->DataSource->f("file_name");
                 $this->DLink->Parameters = CCGetQueryString("QueryString", array("FLAG", "ccsForm"));
-                $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_cust_order_legal_doc_id", $this->DataSource->f("t_cust_order_legal_doc_id"));
+                $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_bphtb_registration_id", $this->DataSource->f("t_bphtb_registration_id"));
                 $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
                 $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
+                $this->tgl_verifikasi->SetValue($this->DataSource->tgl_verifikasi->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -149,6 +152,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
                 $this->DLink->Show();
                 $this->t_bphtb_registration_id->Show();
                 $this->t_customer_order_id->Show();
+                $this->tgl_verifikasi->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -181,7 +185,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
     }
 //End Show Method
 
-//GetErrors Method @2-3E814539
+//GetErrors Method @2-F7D6BA26
     function GetErrors()
     {
         $errors = "";
@@ -190,6 +194,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
         $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_bphtb_registration_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_customer_order_id->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->tgl_verifikasi->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -200,7 +205,7 @@ class clsGridt_bphtb_registration_list { //t_bphtb_registration_list class @2-DB
 
 class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_registration_listDataSource Class @2-07378C2F
 
-//DataSource Variables @2-9FAD01CC
+//DataSource Variables @2-587E2D16
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -216,9 +221,10 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     var $origin_file_name;
     var $t_bphtb_registration_id;
     var $t_customer_order_id;
+    var $tgl_verifikasi;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-FD46AE25
+//DataSourceClass_Initialize Event @2-10D3D77D
     function clst_bphtb_registration_listDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -231,6 +237,8 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
         $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsText, "");
         
         $this->t_customer_order_id = new clsField("t_customer_order_id", ccsText, "");
+        
+        $this->tgl_verifikasi = new clsField("tgl_verifikasi", ccsText, "");
         
 
     }
@@ -255,15 +263,15 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Prepare Method
 
-//Open Method @2-A53EFF61
+//Open Method @2-50F3A547
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select cust_order.*,regis.* from t_bphtb_registration_expired regis\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select cust_order.*,regis.*, to_char(regis.verification_date,'dd-mm-yyyy') as tgl_verifikasi from t_bphtb_registration_expired regis\n" .
         "LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id\n" .
         "WHERE (cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
         "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')) cnt";
-        $this->SQL = "select cust_order.*,regis.* from t_bphtb_registration_expired regis\n" .
+        $this->SQL = "select cust_order.*,regis.*, to_char(regis.verification_date,'dd-mm-yyyy') as tgl_verifikasi from t_bphtb_registration_expired regis\n" .
         "LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id\n" .
         "WHERE (cust_order.order_no ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' OR\n" .
         "regis.wp_name ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')  {SQL_OrderBy}";
@@ -277,13 +285,14 @@ class clst_bphtb_registration_listDataSource extends clsDBConnSIKP {  //t_bphtb_
     }
 //End Open Method
 
-//SetValues Method @2-D7947AAE
+//SetValues Method @2-79E2EAF9
     function SetValues()
     {
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->origin_file_name->SetDBValue($this->f("order_no"));
         $this->t_bphtb_registration_id->SetDBValue($this->f("t_bphtb_registration_id"));
         $this->t_customer_order_id->SetDBValue($this->f("t_customer_order_id"));
+        $this->tgl_verifikasi->SetDBValue($this->f("tgl_verifikasi"));
     }
 //End SetValues Method
 
