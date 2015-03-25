@@ -216,12 +216,12 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 				<TextBox id="932" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="njop_pbb" PathID="t_bphtb_registrationFormnjop_pbb" fieldSource="njop_pbb">
 					<Components/>
 					<Events>
-<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="1064"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="1064"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</TextBox>
@@ -433,7 +433,6 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<Hidden id="1055" fieldSourceType="DBColumn" dataType="Float" name="t_bphtb_registration_id_old" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormt_bphtb_registration_id_old" fieldSource="t_bphtb_registration_id_old" caption="test">
 					<Components/>
 					<Events/>
-
 					<Attributes/>
 					<Features/>
 				</Hidden>
@@ -461,7 +460,19 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<Button id="1065" urlType="Relative" enableValidation="True" isDefault="False" name="Button4" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormButton4">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="1066" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
