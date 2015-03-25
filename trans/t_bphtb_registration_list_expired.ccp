@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_bphtb_registration_list" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="select cust_order.*,regis.* from t_bphtb_registration_expired regis
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_bphtb_registration_list" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="select cust_order.*,regis.*, to_char(regis.verification_date,'dd-mm-yyyy') as tgl_verifikasi from t_bphtb_registration_expired regis
 LEFT JOIN t_customer_order cust_order on regis.t_customer_order_id = cust_order.t_customer_order_id
 WHERE (cust_order.order_no ILIKE '%{s_keyword}%' OR
 regis.wp_name ILIKE '%{s_keyword}%') 
@@ -46,7 +46,13 @@ order by regis.t_bphtb_registration_id DESC">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Label id="705" fieldSourceType="DBColumn" dataType="Text" html="False" name="tgl_verifikasi" fieldSource="tgl_verifikasi" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_registration_listtgl_verifikasi">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
