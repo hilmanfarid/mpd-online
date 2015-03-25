@@ -7,6 +7,7 @@ include_once(RelativePath . "/Common.php");
 require("../include/qrcode/fpdf17/fpdf.php");
 
 $t_bphtb_registration_id		= CCGetFromGet("t_bphtb_registration_id", "");
+$pejabat 						= CCGetFromGet("pejabat", 1);
 
 // $t_bphtb_registration_id		= 23;
 
@@ -310,7 +311,8 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "B", 10);
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
+		//$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
+		$this->Cell($lbody1 - 103, $this->height, "Bandung, 30-12-2014", "", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR PEMERIKSA", "", 0, 'C');
 		$this->Cell($lbody3 - $lbody1 - 20, $this->height, "", "", 0, 'L');
@@ -327,12 +329,20 @@ class FormCetak extends FPDF {
 		$this->newLine();				
 		//$this->Cell($lbody3 - 10, $this->height, "", "", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "(....................................)", "", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
-		$this->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
-		$this->newLine();
-		$this->Cell($lbody1 + 10, $this->height - 4, "NIP : 19630817.1989.01.1.006 ", "", 0, 'C');
-		$this->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
-
+		$pejabat = CCGetFromGet("pejabat", 1);
+		if ($pejabat==2){
+			$this->Cell($lbody1 + 10, $this->height - 4, "(INDRA WISNU, SE)", "", 0, 'C');
+			$this->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
+			$this->newLine();
+			$this->Cell($lbody1 + 10, $this->height - 4, "NIP : 19731031 200901 1001 ", "", 0, 'C');
+			$this->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
+		}else{
+			$this->Cell($lbody1 + 10, $this->height - 4, "(ZAENAL MANSUR)", "", 0, 'C');
+			$this->Cell(202, $this->height - 4, "( ".$data['verificated_by']." )", "", 0, 'C');
+			$this->newLine();
+			$this->Cell($lbody1 + 10, $this->height - 4, "NIP : 19630817.1989.01.1.006 ", "", 0, 'C');
+			$this->Cell(202, $this->height - 4, "NIP : ".$data['verificated_nip']." ", "", 0, 'C');
+		}
 			
 	}
 	
