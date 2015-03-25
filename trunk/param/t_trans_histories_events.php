@@ -127,6 +127,7 @@ function print_excel($param_arr) {
 		<th>NPWPD</th>
 		<th>Nama Badan</th>
 		<th>Jenis Ketetapan</th>
+		<th>Ayat Pajak</th>
 		<th>Periode Pelaporan</th>
 		<th>Periode Transaksi</th>
 		<th>Tgl. Pelaporan</th>
@@ -144,39 +145,42 @@ function print_excel($param_arr) {
 	
 	$dbConn = new clsDBConnSIKP();
 	
-	$query= " Select c.npwd , 
-				   a.t_vat_setllement_id,	
-				   c.t_cust_account_id,
-			       c.company_name, 
-			       b.code as Periode_pelaporan, 
-			       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, 
-			       a.total_trans_amount as total_transaksi,
-			       a.total_vat_amount as total_pajak ,
-				   a.total_penalty_amount as total_denda,
-			       to_char(d.receipt_no) as kuitansi_pembayaran,
-			       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,
-			       d.payment_amount,
-			       c.t_cust_account_id ,
-			       b.p_finance_period_id ,
-			       to_char(b.start_date,'DD-MON-YYYY') as periode_awal_laporan,
-			       to_char(b.end_date,'DD-MON-YYYY') as periode_akhir_laporan,
-				   e.code as type_code,
-				   nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan,
-				   nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,
-				   nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar
-			from t_vat_setllement a ,
-			     p_finance_period b,
-			     t_cust_account c,
-			     t_payment_receipt d,
-				 p_settlement_type e
-			where a.p_finance_period_id = b.p_finance_period_id
-			      and a.t_cust_account_id = c.t_cust_account_id
-				  and a.t_cust_account_id = ".$param_arr['t_cust_acc_id']."
-			      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) 
-				  and a.p_settlement_type_id = e.p_settlement_type_id
-			order by c.npwd , b.start_date desc,
-			  a.t_vat_setllement_id";
-
+	$query= " select x.vat_code as ayat,hasil.* from (
+				   Select c.npwd ,
+					   a.t_vat_setllement_id,	
+					   c.t_cust_account_id,
+				       c.company_name, 
+				       b.code as Periode_pelaporan, 
+				       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, 
+				       a.total_trans_amount as total_transaksi,
+				       a.total_vat_amount as total_pajak ,
+					   a.total_penalty_amount as total_denda,
+				       to_char(d.receipt_no) as kuitansi_pembayaran,
+				       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,
+				       d.payment_amount,
+				       c.t_cust_account_id ,
+				       b.p_finance_period_id ,
+				       to_char(b.start_date,'DD-MON-YYYY') as periode_awal_laporan,
+				       to_char(b.end_date,'DD-MON-YYYY') as periode_akhir_laporan,
+					   e.code as type_code,
+					   nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan,
+					   nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,
+					   nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,
+					   a.p_vat_type_dtl_id
+				from t_vat_setllement a ,
+				     p_finance_period b,
+				     t_cust_account c,
+				     t_payment_receipt d,
+					 p_settlement_type e
+				where a.p_finance_period_id = b.p_finance_period_id
+				      and a.t_cust_account_id = c.t_cust_account_id
+					  and a.t_cust_account_id = ".$param_arr['t_cust_acc_id']."
+				      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) 
+					  and a.p_settlement_type_id = e.p_settlement_type_id
+				order by c.npwd , b.start_date desc,
+				  a.t_vat_setllement_id) as hasil
+			left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id";
+	
 	$dbConn->query($query);
 	
 	$no = 1;
@@ -186,6 +190,7 @@ function print_excel($param_arr) {
 		echo '<td valign="top" >'.$dbConn->f("npwd").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("company_name").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("type_code").'</td>';
+		echo '<td valign="top" >'.$dbConn->f("ayat").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("periode_pelaporan").'</td>';
 		echo '<td valign="top" >'.$dbConn->f("periode_awal_laporan").' s.d. '.$dbConn->f("periode_akhir_laporan").'</td>';
 		echo '<td valign="top">'.$dbConn->f("tgl_pelaporan").'&nbsp;</td>';
