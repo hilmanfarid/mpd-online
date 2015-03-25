@@ -432,7 +432,19 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<Button id="1061" urlType="Relative" enableValidation="True" isDefault="False" name="Button4" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormButton4">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="1062" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -698,8 +710,8 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_bphtb_registration_master_plus_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_master_plus.php" forShow="True" url="t_bphtb_registration_master_plus.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="t_bphtb_registration_master_plus.php" forShow="True" url="t_bphtb_registration_master_plus.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
