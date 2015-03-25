@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-6FE4DECE
+//Class_Initialize Event @94-E146B03B
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -151,6 +151,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->bphtb_discount = & new clsControl(ccsTextBox, "bphtb_discount", "bphtb_discount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("bphtb_discount", $Method, NULL), $this);
             $this->description = & new clsControl(ccsTextBox, "description", "description", ccsText, "", CCGetRequestParam("description", $Method, NULL), $this);
             $this->bphtb_amt_final = & new clsControl(ccsTextBox, "bphtb_amt_final", "bphtb_amt_final", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("bphtb_amt_final", $Method, NULL), $this);
+            $this->Button4 = & new clsButton("Button4", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -368,7 +369,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-8C34A409
+//Operation Method @94-6DAB6E70
     function Operation()
     {
         if(!$this->Visible)
@@ -395,6 +396,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Cancel";
             } else if($this->Button3->Pressed) {
                 $this->PressedButton = "Button3";
+            } else if($this->Button4->Pressed) {
+                $this->PressedButton = "Button4";
             }
         }
         $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -421,6 +424,10 @@ function GetPrimaryKey($keyName)
                 }
             } else if($this->PressedButton == "Button3") {
                 if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button4") {
+                if(!CCGetEvent($this->Button4->CCSEvents, "OnClick", $this->Button4)) {
                     $Redirect = "";
                 }
             }
@@ -481,7 +488,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @94-EC73A1DD
+//Show Method @94-C68461E4
     function Show()
     {
         global $CCSUseAmp;
@@ -683,6 +690,7 @@ function GetPrimaryKey($keyName)
         $this->bphtb_discount->Show();
         $this->description->Show();
         $this->bphtb_amt_final->Show();
+        $this->Button4->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
