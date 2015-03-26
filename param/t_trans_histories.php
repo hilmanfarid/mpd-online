@@ -373,7 +373,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Prepare Method
 
-//Open Method @2-C3AED0BA
+//Open Method @2-7A718257
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -407,7 +407,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "		 p_settlement_type e\n" .
         "	where a.p_finance_period_id = b.p_finance_period_id\n" .
         "	      and a.t_cust_account_id = c.t_cust_account_id\n" .
-        "		  and a.t_cust_account_id = 266\n" .
+        "		  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
         "	      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
         "		  and a.p_settlement_type_id = e.p_settlement_type_id\n" .
         "	order by c.npwd , b.start_date desc,\n" .
@@ -443,7 +443,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "		 p_settlement_type e\n" .
         "	where a.p_finance_period_id = b.p_finance_period_id\n" .
         "	      and a.t_cust_account_id = c.t_cust_account_id\n" .
-        "		  and a.t_cust_account_id = 266\n" .
+        "		  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
         "	      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
         "		  and a.p_settlement_type_id = e.p_settlement_type_id\n" .
         "	order by c.npwd , b.start_date desc,\n" .
