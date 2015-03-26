@@ -43,7 +43,7 @@ $pdf->SetLeftMargin($_HEIGHT);
 
 $pdf->SetAutoPageBreak(false,0);
 
-$pdf->SetFont('Arial', '',8);
+$pdf->SetFont('Arial', '',9);
 
 $pdf->Image('../images/logo_pemda.png',5.5,8,10,10);
 $pdf->ln();
