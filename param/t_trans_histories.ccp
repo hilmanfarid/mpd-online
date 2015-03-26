@@ -30,7 +30,7 @@
 		 p_settlement_type e
 	where a.p_finance_period_id = b.p_finance_period_id
 	      and a.t_cust_account_id = c.t_cust_account_id
-		  and a.t_cust_account_id = 266
+		  and a.t_cust_account_id = {t_cust_acc_id}
 	      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) 
 		  and a.p_settlement_type_id = e.p_settlement_type_id
 	order by c.npwd , b.start_date desc,
@@ -181,7 +181,7 @@ left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
