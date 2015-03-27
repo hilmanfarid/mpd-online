@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-6FE4DECE
+//Class_Initialize Event @94-B4184589
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -74,10 +74,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
             $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
             $this->wp_kota = & new clsControl(ccsTextBox, "wp_kota", "Kota/Kabupaten - WP", ccsText, "", CCGetRequestParam("wp_kota", $Method, NULL), $this);
             $this->wp_kota->Required = true;
             $this->wp_kelurahan = & new clsControl(ccsTextBox, "wp_kelurahan", "Kelurahan - WP", ccsText, "", CCGetRequestParam("wp_kelurahan", $Method, NULL), $this);
@@ -115,8 +112,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->mobile_phone_no = & new clsControl(ccsTextBox, "mobile_phone_no", "mobile_phone_no", ccsText, "", CCGetRequestParam("mobile_phone_no", $Method, NULL), $this);
             $this->t_bphtb_registration_id = & new clsControl(ccsHidden, "t_bphtb_registration_id", "t_bphtb_registration_id", ccsInteger, "", CCGetRequestParam("t_bphtb_registration_id", $Method, NULL), $this);
             $this->Button3 = & new clsButton("Button3", $Method, $this);
-            $this->alasan = & new clsControl(ccsTextArea, "alasan", "alasan", ccsText, "", CCGetRequestParam("alasan", $Method, NULL), $this);
-            $this->alasan->Required = true;
             $this->land_area = & new clsControl(ccsTextBox, "land_area", "land_area", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_area", $Method, NULL), $this);
             $this->land_price_per_m = & new clsControl(ccsTextBox, "land_price_per_m", "land_price_per_m", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_price_per_m", $Method, NULL), $this);
             $this->land_total_price = & new clsControl(ccsTextBox, "land_total_price", "land_total_price", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_total_price", $Method, NULL), $this);
@@ -194,7 +189,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-BE1FFF2C
+//Validate Method @94-675289FA
     function Validate()
     {
         global $CCSLocales;
@@ -224,7 +219,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->phone_no->Validate() && $Validation);
         $Validation = ($this->mobile_phone_no->Validate() && $Validation);
         $Validation = ($this->t_bphtb_registration_id->Validate() && $Validation);
-        $Validation = ($this->alasan->Validate() && $Validation);
         $Validation = ($this->land_area->Validate() && $Validation);
         $Validation = ($this->land_price_per_m->Validate() && $Validation);
         $Validation = ($this->land_total_price->Validate() && $Validation);
@@ -271,7 +265,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->phone_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->mobile_phone_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_bphtb_registration_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->alasan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->land_area->Errors->Count() == 0);
         $Validation =  $Validation && ($this->land_price_per_m->Errors->Count() == 0);
         $Validation =  $Validation && ($this->land_total_price->Errors->Count() == 0);
@@ -297,7 +290,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Validate Method
 
-//CheckErrors Method @94-F27A46F5
+//CheckErrors Method @94-8A9B6AC4
     function CheckErrors()
     {
         $errors = false;
@@ -325,7 +318,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->phone_no->Errors->Count());
         $errors = ($errors || $this->mobile_phone_no->Errors->Count());
         $errors = ($errors || $this->t_bphtb_registration_id->Errors->Count());
-        $errors = ($errors || $this->alasan->Errors->Count());
         $errors = ($errors || $this->land_area->Errors->Count());
         $errors = ($errors || $this->land_price_per_m->Errors->Count());
         $errors = ($errors || $this->land_total_price->Errors->Count());
@@ -368,7 +360,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-8C34A409
+//Operation Method @94-C15035EE
     function Operation()
     {
         if(!$this->Visible)
@@ -384,37 +376,16 @@ function GetPrimaryKey($keyName)
         }
 
         if($this->FormSubmitted) {
-            $this->PressedButton = $this->EditMode ? "Button_Update" : "Button_Insert";
-            if($this->Button_Insert->Pressed) {
-                $this->PressedButton = "Button_Insert";
-            } else if($this->Button_Update->Pressed) {
+            $this->PressedButton = $this->EditMode ? "Button_Update" : "Button3";
+            if($this->Button_Update->Pressed) {
                 $this->PressedButton = "Button_Update";
-            } else if($this->Button_Delete->Pressed) {
-                $this->PressedButton = "Button_Delete";
-            } else if($this->Button_Cancel->Pressed) {
-                $this->PressedButton = "Button_Cancel";
             } else if($this->Button3->Pressed) {
                 $this->PressedButton = "Button3";
             }
         }
         $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
-        if($this->PressedButton == "Button_Delete") {
-            $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG", "t_vat_registration_id"));
-            if(!CCGetEvent($this->Button_Delete->CCSEvents, "OnClick", $this->Button_Delete)) {
-                $Redirect = "";
-            }
-        } else if($this->PressedButton == "Button_Cancel") {
-            $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
-            if(!CCGetEvent($this->Button_Cancel->CCSEvents, "OnClick", $this->Button_Cancel)) {
-                $Redirect = "";
-            }
-        } else if($this->Validate()) {
-            if($this->PressedButton == "Button_Insert") {
-                $Redirect = "t_bphtb_registration_list.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
-                if(!CCGetEvent($this->Button_Insert->CCSEvents, "OnClick", $this->Button_Insert)) {
-                    $Redirect = "";
-                }
-            } else if($this->PressedButton == "Button_Update") {
+        if($this->Validate()) {
+            if($this->PressedButton == "Button_Update") {
                 $Redirect = "t_bphtb_registration_list_update_master.php" . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
                     $Redirect = "";
@@ -481,7 +452,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @94-EC73A1DD
+//Show Method @94-550C4422
     function Show()
     {
         global $CCSUseAmp;
@@ -589,7 +560,6 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->phone_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->mobile_phone_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_bphtb_registration_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->alasan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->land_area->Errors->ToString());
             $Error = ComposeStrings($Error, $this->land_price_per_m->Errors->ToString());
             $Error = ComposeStrings($Error, $this->land_total_price->Errors->ToString());
@@ -621,9 +591,7 @@ function GetPrimaryKey($keyName)
         $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
         $Tpl->SetVar("HTMLFormName", $this->ComponentName);
         $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
-        $this->Button_Insert->Visible = !$this->EditMode && $this->InsertAllowed;
         $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
-        $this->Button_Delete->Visible = $this->EditMode && $this->DeleteAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -632,10 +600,7 @@ function GetPrimaryKey($keyName)
             return;
         }
 
-        $this->Button_Insert->Show();
         $this->Button_Update->Show();
-        $this->Button_Delete->Show();
-        $this->Button_Cancel->Show();
         $this->wp_kota->Show();
         $this->wp_kelurahan->Show();
         $this->wp_p_region_id->Show();
@@ -661,7 +626,6 @@ function GetPrimaryKey($keyName)
         $this->mobile_phone_no->Show();
         $this->t_bphtb_registration_id->Show();
         $this->Button3->Show();
-        $this->alasan->Show();
         $this->land_area->Show();
         $this->land_price_per_m->Show();
         $this->land_total_price->Show();
@@ -693,7 +657,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-30B84624
+//DataSource Variables @94-057FDDE0
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -730,7 +694,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $phone_no;
     var $mobile_phone_no;
     var $t_bphtb_registration_id;
-    var $alasan;
     var $land_area;
     var $land_price_per_m;
     var $land_total_price;
@@ -754,7 +717,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $bphtb_amt_final;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-A08E3A76
+//DataSourceClass_Initialize Event @94-D1A3078A
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -807,8 +770,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->mobile_phone_no = new clsField("mobile_phone_no", ccsText, "");
         
         $this->t_bphtb_registration_id = new clsField("t_bphtb_registration_id", ccsInteger, "");
-        
-        $this->alasan = new clsField("alasan", ccsText, "");
         
         $this->land_area = new clsField("land_area", ccsFloat, "");
         
@@ -952,7 +913,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End SetValues Method
 
-//Update Method @94-5DD59841
+//Update Method @94-C942AB99
     function Update()
     {
         global $CCSLocales;
@@ -1119,46 +1080,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["add_disc_percent"]->SetValue($this->add_disc_percent->GetValue(true));
         if (!strlen($this->cp["add_disc_percent"]->GetText()) and !is_bool($this->cp["add_disc_percent"]->GetValue(true))) 
             $this->cp["add_disc_percent"]->SetText(0);
-        $this->SQL = "select * from f_update_master_bphtb (\n" .
-        "" . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsFloat) . ",\n" .
-        "'" . $this->SQLValue($this->cp["wp_name"]->GetDBValue(), ccsText) . "',\n" .
-        "'" . $this->SQLValue($this->cp["npwp"]->GetDBValue(), ccsText) . "',\n" .
-        "'" . $this->SQLValue($this->cp["wp_address_name"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["phone_no"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["mobile_phone_no"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["wp_rt"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["wp_rw"]->GetDBValue(), ccsText) . "' ,\n" .
-        "" . $this->SQLValue($this->cp["wp_p_region_id"]->GetDBValue(), ccsFloat) . " ,\n" .
-        "" . $this->SQLValue($this->cp["wp_p_region_id_kec"]->GetDBValue(), ccsFloat) . " ,\n" .
-        "" . $this->SQLValue($this->cp["wp_p_region_id_kel"]->GetDBValue(), ccsFloat) . " ,\n" .
-        "'" . $this->SQLValue($this->cp["njop_pbb"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["object_address_name"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["object_rt"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["object_rw"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["object_p_region_id"]->GetDBValue(), ccsFloat) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["object_p_region_id_kec"]->GetDBValue(), ccsFloat) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["object_p_region_id_kel"]->GetDBValue(), ccsFloat) . "' ,\n" .
-        "" . $this->SQLValue($this->cp["p_bphtb_legal_doc_type_id"]->GetDBValue(), ccsInteger) . ", \n" .
-        "" . $this->SQLValue($this->cp["land_area"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["land_price_per_m"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["land_total_price"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["building_area"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["building_price_per_m"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["building_total_price"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["market_price"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["npop"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["npop_tkp"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["npop_kp"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["bphtb_amt"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["bphtb_discount"]->GetDBValue(), ccsFloat) . ", \n" .
-        "" . $this->SQLValue($this->cp["bphtb_amt_final"]->GetDBValue(), ccsFloat) . ", \n" .
-        "'" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
-        "" . $this->SQLValue($this->cp["jenis_harga_bphtb"]->GetDBValue(), ccsInteger) . ", \n" .
-        "'" . $this->SQLValue($this->cp["bphtb_legal_doc_description"]->GetDBValue(), ccsText) . "', \n" .
-        "" . $this->SQLValue($this->cp["add_disc_percent"]->GetDBValue(), ccsFloat) . ",\n" .
-        "'" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "' ,\n" .
-        "'" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "' \n" .
-        ")";
+        $this->SQL = "select * from f_restore_bphtb_expired(\n" .
+        "" . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsFloat) . ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
