@@ -24,72 +24,10 @@ left join p_region as g
 	on a.object_p_region_id_kel = g.p_region_id
 left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
-where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="select * from f_update_master_bphtb (
-{t_bphtb_registration_id},
-'{wp_name}',
-'{npwp}',
-'{wp_address_name}' ,
-'{phone_no}' ,
-'{mobile_phone_no}' ,
-'{wp_rt}' ,
-'{wp_rw}' ,
-{wp_p_region_id} ,
-{wp_p_region_id_kec} ,
-{wp_p_region_id_kel} ,
-'{njop_pbb}' ,
-'{object_address_name}' ,
-'{object_rt}' ,
-'{object_rw}' ,
-'{object_p_region_id}' ,
-'{object_p_region_id_kec}' ,
-'{object_p_region_id_kel}' ,
-{p_bphtb_legal_doc_type_id}, 
-{land_area}, 
-{land_price_per_m}, 
-{land_total_price}, 
-{building_area}, 
-{building_price_per_m}, 
-{building_total_price}, 
-{market_price}, 
-{npop}, 
-{npop_tkp}, 
-{npop_kp}, 
-{bphtb_amt}, 
-{bphtb_discount}, 
-{bphtb_amt_final}, 
-'{description}', 
-{jenis_harga_bphtb}, 
-'{bphtb_legal_doc_description}', 
-{add_disc_percent},
-'{alasan}' ,
-'{user_name}' 
-)" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp">
+where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="select * from f_restore_bphtb_expired(
+{t_bphtb_registration_id})" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp">
 			<Components>
-				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<Button id="96" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update" operation="Update" wizardCaption="Submit" PathID="t_bphtb_registrationFormButton_Update" removeParameters="FLAG" returnPage="t_bphtb_registration_list_update_master.ccp">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="97" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Delete" operation="Delete" wizardCaption="Delete" PathID="t_bphtb_registrationFormButton_Delete" removeParameters="FLAG;t_vat_registration_id">
-					<Components/>
-					<Events>
-						<Event name="OnClick" type="Client">
-							<Actions>
-								<Action actionName="Confirmation Message" actionCategory="General" id="98" message="Delete record?" eventType="Client"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
-				<Button id="99" urlType="Relative" enableValidation="False" isDefault="False" name="Button_Cancel" operation="Cancel" wizardCaption="Cancel" PathID="t_bphtb_registrationFormButton_Cancel" returnPage="t_bphtb_registration_list.ccp" removeParameters="FLAG">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -251,12 +189,6 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="selec
 					<Attributes/>
 					<Features/>
 				</Button>
-				<TextArea id="1014" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="alasan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormalasan" required="True">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextArea>
 				<TextBox id="922" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="land_area" PathID="t_bphtb_registrationFormland_area" defaultValue="0" fieldSource="land_area" format="#,##0.00">
 					<Components/>
 					<Events/>
