@@ -43,6 +43,7 @@ if ($dbConn->next_record()) {
 		<bphtb_amt_final>".$dbConn->f("bphtb_amt_final")."</bphtb_amt_final>
 		<receipt_no>".$dbConn->f("receipt_no")."</receipt_no>
 		<wp_name>".$dbConn->f("wp_name")."</wp_name>
+		<payment_date>".$dbConn->f("payment_date")."</payment_date>
 	</pembayaran_bphtb>";
 	print_r($myXMLData);
 }else{
@@ -57,6 +58,7 @@ if ($dbConn->next_record()) {
 		<bphtb_amt_final></bphtb_amt_final>
 		<receipt_no></receipt_no>
 		<wp_name></wp_name>
+		<payment_date></payment_date>
 	</pembayaran_bphtb>";
 	print_r($myXMLData);
 }
