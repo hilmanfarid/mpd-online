@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-CEFAB12C
+//Class_Initialize Event @2-B22A554A
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -79,6 +79,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->wp_name = & new clsControl(ccsLabel, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", ccsGet, NULL), $this);
         $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
         $this->order_no = & new clsControl(ccsLabel, "order_no", "order_no", ccsText, "", CCGetRequestParam("order_no", ccsGet, NULL), $this);
+        $this->no_dokumen = & new clsControl(ccsLabel, "no_dokumen", "no_dokumen", ccsText, "", CCGetRequestParam("no_dokumen", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -95,7 +96,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-4402BBDB
+//Show Method @2-F940E373
     function Show()
     {
         global $Tpl;
@@ -134,6 +135,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["wp_name"] = $this->wp_name->Visible;
             $this->ControlsVisible["npwd"] = $this->npwd->Visible;
             $this->ControlsVisible["order_no"] = $this->order_no->Visible;
+            $this->ControlsVisible["no_dokumen"] = $this->no_dokumen->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -150,6 +152,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
                 $this->npwd->SetValue($this->DataSource->npwd->GetValue());
                 $this->order_no->SetValue($this->DataSource->order_no->GetValue());
+                $this->no_dokumen->SetValue($this->DataSource->no_dokumen->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -161,6 +164,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->wp_name->Show();
                 $this->npwd->Show();
                 $this->order_no->Show();
+                $this->no_dokumen->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -193,7 +197,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Show Method
 
-//GetErrors Method @2-9432DCE0
+//GetErrors Method @2-DD713961
     function GetErrors()
     {
         $errors = "";
@@ -205,6 +209,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->npwd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->order_no->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->no_dokumen->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -215,7 +220,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
 class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllementGridDataSource Class @2-F0AECE38
 
-//DataSource Variables @2-A78B4774
+//DataSource Variables @2-F87F8864
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -234,9 +239,10 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $wp_name;
     var $npwd;
     var $order_no;
+    var $no_dokumen;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-049D56B8
+//DataSourceClass_Initialize Event @2-69C766E1
     function clst_vat_setllementGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -255,6 +261,8 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->npwd = new clsField("npwd", ccsText, "");
         
         $this->order_no = new clsField("order_no", ccsText, "");
+        
+        $this->no_dokumen = new clsField("no_dokumen", ccsText, "");
         
 
     }
@@ -281,14 +289,14 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @2-6376BC62
+//Open Method @2-3E5F6A11
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT x.* \n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT lpad(x.doc_no,5,'00000') as no_dokumen,x.* \n" .
         "FROM v_t_cust_acc_status_modif x\n" .
         "where p_order_status_id =1) cnt";
-        $this->SQL = "SELECT x.* \n" .
+        $this->SQL = "SELECT lpad(x.doc_no,5,'00000') as no_dokumen,x.* \n" .
         "FROM v_t_cust_acc_status_modif x\n" .
         "where p_order_status_id =1 {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -301,7 +309,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @2-4B821FF3
+//SetValues Method @2-7226902D
     function SetValues()
     {
         $this->status_request_date->SetDBValue($this->f("status_request_date"));
@@ -311,6 +319,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->npwd->SetDBValue($this->f("npwd"));
         $this->order_no->SetDBValue($this->f("order_no"));
+        $this->no_dokumen->SetDBValue($this->f("no_dokumen"));
     }
 //End SetValues Method
 
@@ -352,7 +361,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-43ED9377
+//Class_Initialize Event @23-70FD4FB7
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -413,6 +422,8 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->creation_date = & new clsControl(ccsTextBox, "creation_date", "Creation Date", ccsText, "", CCGetRequestParam("creation_date", $Method, NULL), $this);
             $this->updated_by = & new clsControl(ccsTextBox, "updated_by", "Updated By", ccsText, "", CCGetRequestParam("updated_by", $Method, NULL), $this);
             $this->updated_date = & new clsControl(ccsTextBox, "updated_date", "Updated Date", ccsText, "", CCGetRequestParam("updated_date", $Method, NULL), $this);
+            $this->no_dokumen = & new clsControl(ccsTextBox, "no_dokumen", "no_dokumen", ccsText, "", CCGetRequestParam("no_dokumen", $Method, NULL), $this);
+            $this->no_dokumen->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -438,7 +449,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     }
 //End Initialize Method
 
-//Validate Method @23-B1471699
+//Validate Method @23-8CBE6E5F
     function Validate()
     {
         global $CCSLocales;
@@ -464,6 +475,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation = ($this->creation_date->Validate() && $Validation);
         $Validation = ($this->updated_by->Validate() && $Validation);
         $Validation = ($this->updated_date->Validate() && $Validation);
+        $Validation = ($this->no_dokumen->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->order_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->reason_description->Errors->Count() == 0);
@@ -485,11 +497,12 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation =  $Validation && ($this->creation_date->Errors->Count() == 0);
         $Validation =  $Validation && ($this->updated_by->Errors->Count() == 0);
         $Validation =  $Validation && ($this->updated_date->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->no_dokumen->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-AF3A4DCF
+//CheckErrors Method @23-0C156DB2
     function CheckErrors()
     {
         $errors = false;
@@ -513,6 +526,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $errors = ($errors || $this->creation_date->Errors->Count());
         $errors = ($errors || $this->updated_by->Errors->Count());
         $errors = ($errors || $this->updated_date->Errors->Count());
+        $errors = ($errors || $this->no_dokumen->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -631,7 +645,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-18837A1A
+//Show Method @23-640E85F5
     function Show()
     {
         global $CCSUseAmp;
@@ -679,6 +693,7 @@ function GetPrimaryKey($keyName)
                     $this->creation_date->SetValue($this->DataSource->creation_date->GetValue());
                     $this->updated_by->SetValue($this->DataSource->updated_by->GetValue());
                     $this->updated_date->SetValue($this->DataSource->updated_date->GetValue());
+                    $this->no_dokumen->SetValue($this->DataSource->no_dokumen->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -707,6 +722,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->creation_date->Errors->ToString());
             $Error = ComposeStrings($Error, $this->updated_by->Errors->ToString());
             $Error = ComposeStrings($Error, $this->updated_date->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->no_dokumen->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -754,6 +770,7 @@ function GetPrimaryKey($keyName)
         $this->creation_date->Show();
         $this->updated_by->Show();
         $this->updated_date->Show();
+        $this->no_dokumen->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -764,7 +781,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllementFormDataSource Class @23-AF9958CC
 
-//DataSource Variables @23-FFEC246E
+//DataSource Variables @23-6259303B
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -798,9 +815,10 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $creation_date;
     var $updated_by;
     var $updated_date;
+    var $no_dokumen;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-94E8950C
+//DataSourceClass_Initialize Event @23-45AA73F3
     function clst_vat_setllementFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -846,6 +864,8 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->updated_date = new clsField("updated_date", ccsText, "");
         
+        $this->no_dokumen = new clsField("no_dokumen", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -861,11 +881,11 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @23-4371C7D4
+//Open Method @23-9CEE8B6C
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "SELECT x.* \n" .
+        $this->SQL = "SELECT lpad(x.doc_no,5,'00000') as no_dokumen, x.* \n" .
         "FROM v_t_cust_acc_status_modif x\n" .
         "WHERE t_cust_acc_status_modif_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ";
         $this->Order = "";
@@ -876,7 +896,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @23-AA4A3070
+//SetValues Method @23-5AC18494
     function SetValues()
     {
         $this->order_no->SetDBValue($this->f("order_no"));
@@ -899,6 +919,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->creation_date->SetDBValue($this->f("creation_date"));
         $this->updated_by->SetDBValue($this->f("updated_by"));
         $this->updated_date->SetDBValue($this->f("updated_date"));
+        $this->no_dokumen->SetDBValue($this->f("no_dokumen"));
     }
 //End SetValues Method
 
