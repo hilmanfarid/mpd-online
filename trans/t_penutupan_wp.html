@@ -142,7 +142,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -196,6 +196,8 @@ $(document).ready(function()
  
                   <th scope="col">No Order</th>
  
+                  <th scope="col">No Dokumen&nbsp;</th>
+ 
                   <th scope="col">Nama WP</th>
  
                   <th scope="col">NPWPD</th>
@@ -211,6 +213,7 @@ $(document).ready(function()
                 <tr {t_vat_setllementGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_vat_setllementGridDLink_{t_vat_setllementGrid:rowNumber}">{DLink}</a></td> 
                   <td>&nbsp;{order_no}</td> 
+                  <td>{no_dokumen}</td> 
                   <td>{wp_name}&nbsp;</td> 
                   <td>&nbsp;{npwd}</td> 
                   <td>{reason_code}&nbsp;&nbsp;<input id="t_vat_setllementGridt_cust_acc_status_modif_id_{t_vat_setllementGrid:rowNumber}" value="{t_cust_acc_status_modif_id}" type="hidden" name="{t_cust_acc_status_modif_id_Name}"></td> 
@@ -220,12 +223,12 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="8">-</td>
+                  <td colspan="9">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b></b></td> 
-                  <td colspan="7">
+                  <td colspan="8">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -268,6 +271,11 @@ $(document).ready(function()
                     <td colspan="2"><input style="WIDTH: 154px; HEIGHT: 20px" id="t_vat_setllementFormorder_no" class="ControlsRO" value="{order_no}" readonly maxlength="32" size="19" name="{order_no_Name}">&nbsp;&nbsp; 
                       <!-- No Kohir : -->
                       <input id="t_vat_setllementFormt_cust_acc_status_modif_id" value="{t_cust_acc_status_modif_id}" type="hidden" name="{t_cust_acc_status_modif_id_Name}"><input id="t_vat_setllementFormt_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No. Dokumen</td> 
+                    <td colspan="2"><input style="WIDTH: 154px; HEIGHT: 20px" id="t_vat_setllementFormno_dokumen" class="ControlsRO" value="{no_dokumen}" readonly maxlength="32" size="19" name="{no_dokumen_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
