@@ -30,7 +30,8 @@ $query="select
 		decode(c.p_vat_type_dtl_id,null,null,1,1,2,1,3,1,4,1,8,1,0) as klasifikasi,
 		nvl(d.vat_code,type.vat_code) as detail_jenis_pajak,
 		to_char (e.status_request_date,'dd-mm-yyyy') as status_request_date,
-		decode(e.reason_status_id,1,g.code,2,g.code,3,g.code,e.reason_description) as reason_code
+		decode(e.reason_status_id,1,g.code,2,g.code,3,g.code,e.reason_description) as reason_code,
+		lpad (e.doc_no,5,'00000') as no_dokumen
 from t_cust_acc_status_modif e
 left join t_customer_order a on a.t_customer_order_id = e.t_customer_order_id
 left join	p_rqst_type b on a.p_rqst_type_id = b.p_rqst_type_id
@@ -54,7 +55,7 @@ while ($dbConn->next_record()) {
 		$data["alamat_pajak"] = $dbConn->f("alamat_pajak");
 		$data["alamat_brand"] = $dbConn->f("alamat_brand");
 		$data["p_vat_type_id"] = $dbConn->f("p_vat_type_id");
-		$data["reg_letter_no"] = $dbConn->f("reg_letter_no");
+		$data["reg_letter_no"] = $dbConn->f("no_dokumen");
 		$data["klasifikasi"] = $dbConn->f("klasifikasi");
 		$data["vat_code"] = $dbConn->f("vat_code");
 		$data["detail_jenis_pajak"] = $dbConn->f("detail_jenis_pajak");
@@ -107,10 +108,26 @@ class FormCetak extends FPDF {
 		$this->SetRightMargin(15);
 		
 		// Judul
-		for($i = 0; $i < 7; $i++){
-			$this->Cell($lengthCell, $this->height, "", 0, 0, "C");
-			$this->Ln();
-		}
+		$lengthJudul1 = ($lengthCell * 1) / 6;
+        $lengthJudul2 = ($lengthCell * 5) / 6-15;
+
+        $this->Image('../images/logo_pemda.png', 15, 14, 25, 25);
+        // $this->Cell($lengthCell, $this->height, "2.	BENTUK SURAT PEMBERITAHUAN PAJAK DAERAH UNTUK PAJAK HIBURAN", 0, 0, 'L');
+        // $this->Ln(6);
+        $this->Ln(6);
+        $this->SetFont('Times', 'B', 12);
+        $this->Cell($lengthJudul1, $this->height, "", "", 0, 'C');
+        $this->Cell($lengthJudul2, $this->height, "PEMERINTAHAN KOTA BANDUNG", "", 0, 'C');
+        $this->Ln(10);
+        $this->SetFont('Times', 'B', 22);
+        $this->Cell($lengthJudul1, $this->height, "", "", 0, 'C');
+        $this->Cell($lengthJudul2, $this->height, "DINAS PELAYANAN PAJAK", "", 0, 'C');
+        $this->Ln(8);
+        $this->SetFont('Times', '', 12);
+        $this->Cell($lengthJudul1, $this->height, "", "B", 0, 'C');
+        $this->Cell($lengthJudul2, $this->height, "Jalan Wastukancana No. 2 Telp. 022. 4232338 - Bandung", "B", 0, 'C');
+		
+		
 		$this->Ln();
 		$this->Ln();
 		$this->Ln();
@@ -124,9 +141,9 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Ln();
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "                Berdasarkan Surat Permohonan Wajib Pajak Daerah dan Berita Acara Pemeriksaan", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "                Berdasarkan Surat Permohonan Wajib Pajak Daerah dan Berita Acara yang kami terima, dengan", 0, 0, 'L');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "(BAP) yang kami terima, dengan ini dinyatakan bahwa:", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "ini dinyatakan bahwa:", 0, 0, 'L');
 		
 		// Form
 		$this->Ln();
@@ -318,7 +335,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Ln();
 		$this->SetFont('Times', '', 11);
-		$this->SetWidths(array($lengthCell));
+		$this->SetWidths(array($lengthCell-5));
 		$this->SetAligns(array("L"));
 		$this->RowMultiBorderWithHeight(
 			array("Terhitung mulai tanggal ".$data["status_request_date"]." telah mengajukan Penutupan dengan alasan ".$data["reason_code"]
