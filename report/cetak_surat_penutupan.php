@@ -141,9 +141,9 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Ln();
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "                Berdasarkan Surat Permohonan Wajib Pajak Daerah dan Berita Acara yang kami terima, dengan", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "                Berdasarkan Surat Permohonan Wajib Pajak Daerah / Berita Acara yang kami terima, dengan ini", 0, 0, 'L');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "ini dinyatakan bahwa:", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "dinyatakan bahwa:", 0, 0, 'L');
 		
 		// Form
 		$this->Ln();
