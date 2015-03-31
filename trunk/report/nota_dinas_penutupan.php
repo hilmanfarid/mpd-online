@@ -108,12 +108,12 @@ class FormCetak extends FPDF {
         $this->Cell($lengthJudul2, $this->height, "Yth. Bapak Kepala Dinas Pelayanan Pajak Kota Bandung", "", 0, 'L');
         $this->Ln(6);
 
-        $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
+        /*$this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengthJudul2, $this->height, "Melalui Kepala Bidang Pajak Pendaftaran", "", 0, 'L');
-        $this->Ln(6);
+        $this->Ln(6);*/
 
         $this->Cell($lengthJudul1, $this->height, "Dari              :", "", 0, 'L');
-        $this->Cell($lengthJudul2, $this->height, "Kepala Seksi Pendaftaran dan Pendataan", "", 0, 'L');
+        $this->Cell($lengthJudul2, $this->height, "Kepala Bidang Pajak Pendaftaran", "", 0, 'L');
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Tanggal        :", "", 0, 'L');
@@ -136,7 +136,7 @@ class FormCetak extends FPDF {
         //Isi
         $this->SetFont('Times', '', 12);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Dipermaklumkan dengan hormat, berdasarkan Peraturan Walikota Bandung Nomor 016 Tahun 2014 tentang Standar Operasional Prosedur Tata Cara Pemungutan Pajak Daerah, berdasarkan permohonan dari Wajib Pajak / Berita Acara dapat diusulkan pencabutan dan penutupan NPWPD dengan persyaratan sesuai ketentuan yang berlaku.", "", 'J');
+        $this->MultiCell($lengthJudul2, $this->height, "Dipermaklumkan dengan hormat, berdasarkan Peraturan Walikota Bandung Nomor 016 Tahun 2014 tentang Standar Operasional Prosedur Tata Cara Pemungutan Pajak Daerah, atas permohonan dari Wajib Pajak / Berita Acara dapat diusulkan pencabutan dan penutupan NPWPD dengan persyaratan sesuai ketentuan yang berlaku.", "", 'J');
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
@@ -189,12 +189,12 @@ class FormCetak extends FPDF {
         $this->SetFont('Times', 'B', 12);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, "KEPALA SEKSI", "", "", 'C');
+        $this->Cell($lengWP2, $this->height, "KEPALA BIDANG", "", "", 'C');
         $this->Ln();
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, "PENDAFTARAN DAN PENDATAAN", "", "", 'C');
+        $this->Cell($lengWP2, $this->height, "PAJAK PENDAFTARAN", "", "", 'C');
         $this->Ln();
 		$this->Ln();
 		$this->Ln();
@@ -203,16 +203,16 @@ class FormCetak extends FPDF {
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, "OKKY DATUSUATI, S.STP", "", "", 'C');
+        $this->Cell($lengWP2, $this->height, "Drs. H. GUN GUN SUMARYANA", "", "", 'C');
         $this->Ln(6);
         $this->SetFont('Times', '', 12);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, "Penata Tingkat I", "", "", 'C');
+        $this->Cell($lengWP2, $this->height, "Pembina IV/a", "", "", 'C');
         $this->Ln(6);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
         $this->Cell($lengWP1, $this->height, "", "", "", 'L');
-        $this->Cell($lengWP2, $this->height, "NIP. 19780927 199703 2 001", "", "", 'C');
+        $this->Cell($lengWP2, $this->height, "NIP. 19700806 199101 1 001", "", "", 'C');
         $this->Ln(6);
     }
 
