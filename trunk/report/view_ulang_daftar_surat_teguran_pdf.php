@@ -41,6 +41,7 @@ while ($dbConn->next_record()) {
 		$data["end_date"][] = $dbConn->f("end_date");
 		$data["debt_amount"][] = $dbConn->f("debt_amount");
 		$data["description"][] = $dbConn->f("description");
+		$data["wp_address_no"][] = $dbConn->f("wp_address_no");
 }
 
 $dbConn->close();
@@ -107,7 +108,7 @@ class FormCetak extends FPDF {
 					$i + 1,
 					$data["npwd"][$i],
 					$data["company_name"][$i],
-					$data["address_name"][$i],
+					$data["address_name"][$i].' '.$data["wp_address_no"][$i],
 					$data["due_date"][$i],
 					$data["start_date"][$i]." - ".$data["end_date"][$i],
 					$data["debt_amount"][$i],
