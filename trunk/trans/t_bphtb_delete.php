@@ -270,7 +270,7 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     var $alasan;
     var $t_bphtb_registration_id;
 //End DataSource Variables
-	var $itemResult;
+
 //DataSourceClass_Initialize Event @3-ED3989A8
     function clsLOVDataSource(& $Parent)
     {
@@ -313,28 +313,28 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End SetValues Method
 
-//Insert Method @3-BC66C94A
+//Insert Method @3-48E4E141
     function Insert()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["t_vat_setllement_id"] = new clsSQLParameter("ctrlt_vat_setllement_id", ccsInteger, "", "", $this->t_vat_setllement_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_i", ccsInteger, "", "", $this->t_bphtb_registration_i->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["user_name"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
-        if (!is_null($this->cp["t_vat_setllement_id"]->GetValue()) and !strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue())) 
-            $this->cp["t_vat_setllement_id"]->SetValue($this->t_vat_setllement_id->GetValue(true));
-        if (!strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue(true))) 
-            $this->cp["t_vat_setllement_id"]->SetText(0);
+        if (!is_null($this->cp["t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue())) 
+            $this->cp["t_bphtb_registration_id"]->SetValue($this->t_bphtb_registration_i->GetValue(true));
+        if (!strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue(true))) 
+            $this->cp["t_bphtb_registration_id"]->SetText(0);
         if (!is_null($this->cp["alasan"]->GetValue()) and !strlen($this->cp["alasan"]->GetText()) and !is_bool($this->cp["alasan"]->GetValue())) 
             $this->cp["alasan"]->SetValue($this->alasan->GetValue(true));
         if (!is_null($this->cp["user_name"]->GetValue()) and !strlen($this->cp["user_name"]->GetText()) and !is_bool($this->cp["user_name"]->GetValue())) 
             $this->cp["user_name"]->SetValue(CCGetSession("UserLogin", NULL));
-        $this->SQL = "SELECT f_del_payment_trans(" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . ",'" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "', 0, '') AS msg";
+        $this->SQL = "SELECT f_delete_bphtb(" . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsInteger) . ",'" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "') AS msg";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->itemResult = $this->query($this->SQL);
+            $this->query($this->SQL);
             $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
         }
     }
