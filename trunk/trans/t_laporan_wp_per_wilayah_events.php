@@ -30,7 +30,7 @@ function Page_BeforeShow(& $sender)
 	if($cetak_laporan == 'view_html') {
 		$param_arr = array();
 		$param_arr['kode_wilayah'] = CCGetFromGet("kode_wilayah", 1);
-		
+		$param_arr['p_vat_type_id'] = CCGetFromGet("p_vat_type_id", 1);
 		$Label1->SetText(view_html($param_arr));
 
 	}
@@ -65,6 +65,7 @@ function view_html($param_arr) {
 	$output.='<th>NAMA WP</th>';
 	$output.='<th>ALAMAT WP</th>';
 	$output.='<th>AYAT PAJAK</th>';
+	$output.='<th>STATUS WP</th>';
 	$output.='</tr>';
 	
 	$no=1;
@@ -72,10 +73,14 @@ function view_html($param_arr) {
 
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="select * FROM T_CUST_ACCOUNT a
+	$query="select y.code as status_code,* FROM T_CUST_ACCOUNT a
 		left join p_vat_type_dtl x on x.p_vat_type_dtl_id = a.p_vat_type_dtl_id 
-		WHERE kode_wilayah = '".$param_arr['kode_wilayah']."' 
-		order by wp_name" ;
+		left join p_account_status y on y.p_account_status_id = a.p_account_status_id
+		WHERE kode_wilayah = '".$param_arr['kode_wilayah']."'";
+	if ($param_arr['p_vat_type_id']!=''){
+		$query .= "and a.p_vat_type_id = ".$param_arr['p_vat_type_id'];
+	}
+	$query .= " order by x.vat_code, wp_name";
 	$dbConn->query($query);
 
 	while($dbConn->next_record()){
@@ -84,6 +89,7 @@ function view_html($param_arr) {
 						"npwd" => $dbConn->f("npwd"),
 						"wp_name" => $dbConn->f("wp_name"),
 						"wp_address_name" => $dbConn->f("wp_address_name"),
+						"status_code" => $dbConn->f("status_code"),
 						"ayat_pajak" => $dbConn->f("vat_code")
 						);
 		
@@ -93,6 +99,7 @@ function view_html($param_arr) {
 			$output .= '<td align="left">'.$item['wp_name'].'</td>';
 			$output .= '<td align="left">'.$item['wp_address_name'].'</td>';
 			$output .= '<td align="left">'.$item['ayat_pajak'].'</td>';
+			$output .= '<td align="left">'.$item['status_code'].'</td>';
 		$output .= '</tr>';
 	}
 	$output.='</table>';
