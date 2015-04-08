@@ -314,7 +314,7 @@ class FormCetak extends FPDF {
 		if($data['check_potongan'] == 'Y') {
 		    $this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran", "", 0, 'L');
 		}else {
-		    $this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran. Nota akan menjadi expired jika dalam 7 hari tidak dibayarkan.", "", 0, 'L');
+		    $this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran. Nota akan menjadi expired jika dalam 10 hari tidak dibayarkan.", "", 0, 'L');
 	    }
 	    
 		$this->Ln();
