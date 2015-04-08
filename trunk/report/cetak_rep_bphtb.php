@@ -283,7 +283,7 @@ class FormCetak extends FPDF {
 		$lbody2 = $lbody * 2;
 		$lbody3 = $lbody * 3;
 		
-			
+		                                            	
 		$this->SetFont("Arial", "i", 8);
 		
 		if($data['check_potongan'] == 'Y') {
