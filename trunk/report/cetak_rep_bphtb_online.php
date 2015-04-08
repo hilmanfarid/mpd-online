@@ -127,7 +127,8 @@ class FormCetak extends FPDF {
 			$encImageData = $dbConn->f("enc_data");
 		}
 		$this->Image('../images/logo_pemda.png',20,10,25,25);
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
+		//$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
+		$this->Image('http://172.16.20.1/mpd/include/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
 		$this->SetFont("Arial", "B", 12);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
 		$this->Ln();
@@ -293,7 +294,7 @@ class FormCetak extends FPDF {
 		if($data['check_potongan'] == 'Y') {
 		    $this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran", "", 0, 'L');
 		}else {
-		    $this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran. Nota akan menjadi expired jika dalam 7 hari tidak dibayarkan.", "", 0, 'L');
+		    $this->Cell($lbody1 + 10 , $this->height, "            Keterangan: Nota ini bukan bukti pembayaran. Nota akan menjadi expired jika dalam 10 hari tidak dibayarkan.", "", 0, 'L');
 	    }
 	    
 		$this->Ln();
