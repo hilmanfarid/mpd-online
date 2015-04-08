@@ -128,7 +128,7 @@ class FormCetak extends FPDF {
 			$encImageData = $dbConn->f("enc_data");
 		}
 		$this->Image('../images/logo_pemda.png',20,10,25,25);
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
+		$this->Image('http://172.16.20.1/mpd/include/qrcode/generate-qr.php?param='.$encImageData,165,10,25,25,'PNG');
 		$this->SetFont("Arial", "B", 12);
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, "C");
 		$this->Ln();
