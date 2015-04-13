@@ -102,7 +102,8 @@ function view_html($param_arr) {
 			from t_piutang_pajak_penetapan_final as a
 			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
 			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
-			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']." and a.p_year_period_id = ".$param_arr['year_period_id'];
+			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']." and a.p_year_period_id = ".$param_arr['year_period_id'].
+			"order by b.wp_name, c.start_date";
 	$dbConn->query($query);
 
 	while($dbConn->next_record()){
@@ -187,7 +188,12 @@ function print_laporan($param_arr){
 	/*echo '<pre>';
 	print_r($param_arr);
 	exit;*/
-	$query="select *,to_char(tgl_tap,'dd-mm-yyyy') as tgl_tap_formated,to_char(tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated from t_piutang_pajak_penetapan_final where p_vat_type_id=".$param_arr['p_vat_type_id']." and p_year_period_id = ".$param_arr['year_period_id'];
+	$query="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.code as periode_bayar
+			from t_piutang_pajak_penetapan_final as a
+			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
+			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
+			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']." and a.p_year_period_id = ".$param_arr['year_period_id'].
+			"order by b.wp_name, c.start_date";
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
