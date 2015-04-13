@@ -44,7 +44,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -67,12 +67,12 @@
 			<Features/>
 		</Record>
 		<Label id="22" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_piutang_pajak_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_laporan_piutang_pajak.php" forShow="True" url="t_laporan_piutang_pajak.php" comment="//" codePage="windows-1252"/>
