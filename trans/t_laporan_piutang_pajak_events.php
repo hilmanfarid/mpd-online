@@ -92,7 +92,9 @@ function view_html($param_arr) {
 	$output.='</tr>';
 	
 	$no=1;
-
+	$total_piutang=0;
+	$total_realisasi=0;
+	$total_sisa=0;
 
 	$dbConn = new clsDBConnSIKP();
 	
@@ -136,8 +138,20 @@ function view_html($param_arr) {
 			//$output .= '<td align="center">'.$item['year_code'].'</td>';
 			$output .= '<td align="center"><button class="btn_tambah" onclick="viewFormModifikasi('.$item['t_piutang_pajak_penetapan_final_id'].')">Ubah Data</button></td>';
 		$output .= '</tr>';
+
+		$total_piutang=$total_piutang+$item['nilai_piutang'];
+		$total_realisasi=$total_realisasi+$item['realisasi_piutang'];
+		$total_sisa=$total_sisa+$item['sisa_piutang'];
 	}
-	
+	$output .= '<tr>';
+		$output .= '<td align="center" colspan = 6>Total</td>';
+		$output .= '<td align="right">'.number_format($total_piutang,0,",",".").'</td>';
+		$output .= '<td align="right">'.number_format($total_realisasi,0,",",".").'</td>';
+		$output .= '<td align="center"></td>';
+		$output .= '<td align="right">'.number_format($total_sisa,0,",",".").'</td>';
+		$output .= '<td align="left"></td>';
+		$output .= '<td align="left"></td>';
+	$output .= '</tr>';
 	$output.='</td></tr></table>';
 	$output.='</table>';
 	
@@ -196,6 +210,9 @@ function print_laporan($param_arr){
 	$pdf->SetAligns(Array('C','L','C','L','R','R','C','R','R','L','L'));
 	$jumlah_omzet = 0;
 	$jumlah_ketetapan = 0;
+	$total_piutang=0;
+	$total_realisasi=0;
+	$total_sisa=0;
 	while($dbConn->next_record()){
 		$items[]= $item = array(
 						"npwd" => $dbConn->f("npwd"),
@@ -222,6 +239,10 @@ function print_laporan($param_arr){
 									'Rp ' . number_format($item["sisa_piutang"], 2, ',', '.'),
 									$item["keterangan"],
 									$item["year_code"]),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
+		
+		$total_piutang=$total_piutang+$item['nilai_piutang'];
+		$total_realisasi=$total_realisasi+$item['realisasi_piutang'];
+		$total_sisa=$total_sisa+$item['sisa_piutang'];
 		/*if(!empty($param_arr['p_vat_type_dtl_id'])){
 			$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak'],'Rp '.number_format($item['omzet'], 2, ',', '.'),'Rp '.number_format($item['ketetapan']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
 		}else{
@@ -231,6 +252,16 @@ function print_laporan($param_arr){
 		$jumlah_ketetapan += $dbConn->f("ketetapan");
 		$no++;*/
 	}
+	$pdf->SetWidths(array(28+43+23+23,35,35,25,35,35,25,20));
+	$pdf->SetAligns(Array('C','R','R','C','R','C','C','C'));
+	$pdf->RowMultiBorderWithHeight(array(
+									'Total',
+									'Rp ' . number_format($total_piutang, 2, ',', '.'),
+									'Rp ' . number_format($total_realisasi, 2, ',', '.'),
+									'',									
+									'Rp ' . number_format($total_sisa, 2, ',', '.'),
+									'',
+									''),array('LTB','LTB','LTB','LTB','LTB','LTB','LTBR'),6);
 	/*$pdf->SetWidths(array(259,40,40));
 	$pdf->SetAligns(Array('C','R','R'));
 	$pdf->RowMultiBorderWithHeight(array('JUMLAH', 'Rp ' . number_format($jumlah_omzet, 2, ',', '.'), 'Rp ' . number_format($jumlah_ketetapan, 2, ',', '.')),array('LB','LB','LBR'),6);
