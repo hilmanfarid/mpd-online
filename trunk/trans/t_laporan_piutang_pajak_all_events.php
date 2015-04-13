@@ -89,7 +89,7 @@ function print_excel($param_arr) {
 			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
 			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
 			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']. 
-			"order by wp_name, periode_bayar" ;
+			"order by wp_name, c.start_date" ;
 	
 	$dbConn->query($query);
 	$no = 1;
@@ -198,7 +198,7 @@ function view_html($param_arr) {
 			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
 			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
 			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']. 
-			"order by wp_name, periode_bayar" ;
+			"order by wp_name, c.start_date" ;
 	$dbConn->query($query);
 
 	while($dbConn->next_record()){
