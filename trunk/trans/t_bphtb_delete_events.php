@@ -40,10 +40,6 @@ function LOV_AfterInsert(& $sender)
 
 //Custom Code @22-2A29BDB7
 // -------------------------
-    if($row = pg_fetch_array($LOV->DataSource->itemResult)) {
-	
-	}
-	
     echo "<script> 
 		alert('".$row['msg']."');
 		
