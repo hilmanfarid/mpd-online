@@ -168,12 +168,12 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @3-0BEB0CEF
+//InsertRow Method @3-8E0A072F
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
         if(!$this->InsertAllowed) return false;
-        $this->DataSource->t_bphtb_registration_i->SetValue($this->t_bphtb_registration_i->GetValue(true));
+        $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
         $this->DataSource->alasan->SetValue($this->alasan->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
@@ -313,18 +313,18 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End SetValues Method
 
-//Insert Method @3-48E4E141
+//Insert Method @3-0938D4B7
     function Insert()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_i", ccsInteger, "", "", $this->t_bphtb_registration_i->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_id", ccsInteger, "", "", $this->t_bphtb_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["user_name"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue())) 
-            $this->cp["t_bphtb_registration_id"]->SetValue($this->t_bphtb_registration_i->GetValue(true));
+            $this->cp["t_bphtb_registration_id"]->SetValue($this->t_bphtb_registration_id->GetValue(true));
         if (!strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue(true))) 
             $this->cp["t_bphtb_registration_id"]->SetText(0);
         if (!is_null($this->cp["alasan"]->GetValue()) and !strlen($this->cp["alasan"]->GetText()) and !is_bool($this->cp["alasan"]->GetValue())) 
