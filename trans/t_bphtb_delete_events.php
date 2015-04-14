@@ -41,7 +41,7 @@ function LOV_AfterInsert(& $sender)
 //Custom Code @22-2A29BDB7
 // -------------------------
     echo "<script> 
-		alert('".$row['msg']."');
+		alert('data berhasil dihapus');
 		
 	</script>";
 	exit;
