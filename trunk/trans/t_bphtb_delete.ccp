@@ -46,7 +46,7 @@
 			<Fields/>
 			<ISPParameters/>
 			<ISQLParameters>
-				<SQLParameter id="18" variable="t_bphtb_registration_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_bphtb_registration_i"/>
+				<SQLParameter id="18" variable="t_bphtb_registration_id" parameterType="Control" defaultValue="0" dataType="Integer" parameterSource="t_bphtb_registration_id"/>
 				<SQLParameter id="20" variable="alasan" parameterType="Control" dataType="Text" parameterSource="alasan"/>
 				<SQLParameter id="21" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
 			</ISQLParameters>
