@@ -249,6 +249,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
                 p_finance_period_id1= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id1").value;
         status_bayar = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
+		ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
         code= document.getElementById("t_rep_lap_spjpSearchcode").value;
                 code1= document.getElementById("t_rep_lap_spjpSearchcode1").value;
@@ -268,6 +269,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 params += "&code1="+code1;
                 params += "&vat_code="+vat_code;
                         params += "&ListBox1="+status_bayar;
+						params += "&ListBox2="+ketetapan;
                 location.href="t_laporan_history_potensi_piutang.php"+params;
         }
     }
@@ -278,6 +280,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
                 p_finance_period_id1= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id1").value;
         status_bayar = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
+		ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
         code= document.getElementById("t_rep_lap_spjpSearchcode").value;
                 code1= document.getElementById("t_rep_lap_spjpSearchcode1").value;
@@ -297,6 +300,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 params += "&code1="+code1;
                 params += "&vat_code="+vat_code;
                         params += "&ListBox1="+status_bayar;
+						params += "&ListBox2="+ketetapan;
                 location.href="t_laporan_history_potensi_piutang.php"+params;
         }
     }
