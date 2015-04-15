@@ -79,7 +79,7 @@ function GetCetakHTML($param_arr) {
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0" width="900">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>LAPORAN REKAP SKPDKB</strong></td> 
+                  		<td class="th"><strong>LAPORAN REKAP SKPDKB / STPD</strong></td> 
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               		</table>';
