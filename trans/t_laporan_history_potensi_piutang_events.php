@@ -146,7 +146,8 @@ function GetCetakHTML($param_arr) {
 	$dbConn->close();
 	$jumlah =0;
 	for ($i = 0; $i < count($data); $i++) {
-		$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
+		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
+		$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
 		$jumlah = $jumlah + $temp;
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
