@@ -75,7 +75,7 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<ListBox id="577" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox2" connection="ConnSIKP" _valueOfList="7" _nameOfList="SPTD" dataSource="2;SKPDKB Pemeriksaan;4;SKPDKB Jabatan;7;SPTD" fieldSource="i_flag_setoran" required="True">
+				<ListBox id="577" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox2" connection="ConnSIKP" _valueOfList="7" _nameOfList="STPD" dataSource="2;SKPDKB Pemeriksaan;4;SKPDKB Jabatan;7;STPD" fieldSource="i_flag_setoran" required="True">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
