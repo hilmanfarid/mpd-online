@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-E8285F70
+//Class_Initialize Event @3-18A0D7F7
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -84,7 +84,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->p_finance_period_id1 = & new clsControl(ccsHidden, "p_finance_period_id1", "p_finance_period_id1", ccsText, "", CCGetRequestParam("p_finance_period_id1", $Method, NULL), $this);
             $this->ListBox2 = & new clsControl(ccsListBox, "ListBox2", "ListBox2", ccsText, "", CCGetRequestParam("ListBox2", $Method, NULL), $this);
             $this->ListBox2->DSType = dsListOfValues;
-            $this->ListBox2->Values = array(array("2", "SKPDKB Pemeriksaan"), array("4", "SKPDKB Jabatan"), array("7", "SPTD"));
+            $this->ListBox2->Values = array(array("2", "SKPDKB Pemeriksaan"), array("4", "SKPDKB Jabatan"), array("7", "STPD"));
             $this->ListBox2->Required = true;
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
         }
