@@ -95,12 +95,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        CETAK REKAP&nbsp;SKPDKB&nbsp; 
+        CETAK REKAP&nbsp;SKPDKB&nbsp;DAN SPTD&nbsp;
       </div>
     </div>
   </div>
@@ -249,7 +249,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
                 p_finance_period_id1= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id1").value;
         status_bayar = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
-		ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
+                ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
         code= document.getElementById("t_rep_lap_spjpSearchcode").value;
                 code1= document.getElementById("t_rep_lap_spjpSearchcode1").value;
@@ -269,18 +269,18 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 params += "&code1="+code1;
                 params += "&vat_code="+vat_code;
                         params += "&ListBox1="+status_bayar;
-						params += "&ListBox2="+ketetapan;
+                                                params += "&ListBox2="+ketetapan;
                 location.href="t_laporan_history_potensi_piutang.php"+params;
         }
     }
 
-	function cetak_excel()
+        function cetak_excel()
     {
         p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
                 p_finance_period_id1= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id1").value;
         status_bayar = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
-		ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
+                ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
         code= document.getElementById("t_rep_lap_spjpSearchcode").value;
                 code1= document.getElementById("t_rep_lap_spjpSearchcode1").value;
@@ -300,7 +300,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 params += "&code1="+code1;
                 params += "&vat_code="+vat_code;
                         params += "&ListBox1="+status_bayar;
-						params += "&ListBox2="+ketetapan;
+                                                params += "&ListBox2="+ketetapan;
                 location.href="t_laporan_history_potensi_piutang.php"+params;
         }
     }
