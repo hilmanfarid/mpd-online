@@ -1,14 +1,14 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="Spring" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_setllement_dtlGrid" pageSizeLimit="100" wizardCaption="List of P App Module Role " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="True" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="data tidak ditemukan" activeCollection="TableParameters" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="v_vat_setllement_dtl" orderBy="t_vat_setllement_dtl_id">
+		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="500" connection="ConnSIKP" name="t_vat_setllement_dtlGrid" pageSizeLimit="100" wizardCaption="List of P App Module Role " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="True" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="data tidak ditemukan" activeCollection="TableParameters" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="v_vat_setllement_dtl" orderBy="t_vat_setllement_dtl_id">
 			<Components>
-				<Label id="28" fieldSourceType="DBColumn" dataType="Float" html="False" name="service_charge" fieldSource="service_charge" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridservice_charge" format="0">
+				<Label id="28" fieldSourceType="DBColumn" dataType="Float" html="False" name="service_charge" fieldSource="service_charge" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridservice_charge" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="30" fieldSourceType="DBColumn" dataType="Float" html="False" name="vat_charge" fieldSource="vat_charge" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridvat_charge" format="0">
+				<Label id="30" fieldSourceType="DBColumn" dataType="Float" html="False" name="vat_charge" fieldSource="vat_charge" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridvat_charge" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -53,12 +53,25 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="226" fieldSourceType="DBColumn" dataType="Float" html="False" name="jumlah_service" PathID="t_vat_setllement_dtlGridjumlah_service" format="#,##0.00">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+<Label id="227" fieldSourceType="DBColumn" dataType="Float" html="False" name="jumlah_pajak" PathID="t_vat_setllement_dtlGridjumlah_pajak" format="#,##0.00">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
 						<Action actionName="Set Row Style" actionCategory="General" id="87" styles="Row;AltRow" name="rowStyle"/>
-					</Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="228"/>
+</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -325,8 +338,8 @@
 	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_vat_setllement_dtl_ro_otobuk_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-<CodeFile id="Code" language="PHPTemplates" name="t_vat_setllement_dtl_ro_otobuk.php" forShow="True" url="t_vat_setllement_dtl_ro_otobuk.php" comment="//" codePage="windows-1252"/>
-</CodeFiles>
+		<CodeFile id="Code" language="PHPTemplates" name="t_vat_setllement_dtl_ro_otobuk.php" forShow="True" url="t_vat_setllement_dtl_ro_otobuk.php" comment="//" codePage="windows-1252"/>
+	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
 	<Attributes/>
