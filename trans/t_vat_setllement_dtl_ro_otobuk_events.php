@@ -59,6 +59,20 @@ function t_vat_setllement_dtlGrid_BeforeShowRow(& $sender)
         $Component->Attributes->SetValue("rowStyle", $Style);
     }
 //End Set Row Style
+
+//Custom Code @228-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$t_vat_setllement_dtlGrid->jumlah_service->SetValue(
+		$t_vat_setllement_dtlGrid->jumlah_service->GetValue()+
+		$t_vat_setllement_dtlGrid->service_charge->GetValue()
+	);
+	$t_vat_setllement_dtlGrid->jumlah_pajak->SetValue(
+		$t_vat_setllement_dtlGrid->jumlah_pajak->GetValue()+
+		$t_vat_setllement_dtlGrid->vat_charge->GetValue()
+	);
+// -------------------------
+//End Custom Code
 $Component->DLink->SetValue($img_radio);  // Bdr
 
 //Close t_vat_setllement_dtlGrid_BeforeShowRow @2-1442371A
@@ -78,6 +92,8 @@ function t_vat_setllement_dtlGrid_BeforeShow(& $sender)
 //Custom Code @88-2A29BDB7
 // -------------------------
     // Write your own code here.
+	$t_vat_setllement_dtlGrid->jumlah_service->SetValue(0);
+	$t_vat_setllement_dtlGrid->jumlah_pajak->SetValue(0);
 // -------------------------
 //End Custom Code
 
