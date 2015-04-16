@@ -42,7 +42,7 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-2037EB4B
+//Class_Initialize Event @2-4CF4B56A
     function clsGridt_vat_setllement_dtlGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -59,7 +59,7 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
-            $this->PageSize = 5;
+            $this->PageSize = 500;
         else
             $this->PageSize = intval($this->PageSize);
         if ($this->PageSize > 100)
@@ -69,8 +69,8 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
         $this->PageNumber = intval(CCGetParam($this->ComponentName . "Page", 1));
         if ($this->PageNumber <= 0) $this->PageNumber = 1;
 
-        $this->service_charge = & new clsControl(ccsLabel, "service_charge", "service_charge", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("service_charge", ccsGet, NULL), $this);
-        $this->vat_charge = & new clsControl(ccsLabel, "vat_charge", "vat_charge", ccsFloat, array(False, 0, Null, "", False, "", "", 1, True, ""), CCGetRequestParam("vat_charge", ccsGet, NULL), $this);
+        $this->service_charge = & new clsControl(ccsLabel, "service_charge", "service_charge", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("service_charge", ccsGet, NULL), $this);
+        $this->vat_charge = & new clsControl(ccsLabel, "vat_charge", "vat_charge", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("vat_charge", ccsGet, NULL), $this);
         $this->company_name = & new clsControl(ccsLabel, "company_name", "company_name", ccsText, "", CCGetRequestParam("company_name", ccsGet, NULL), $this);
         $this->service_desc = & new clsControl(ccsLabel, "service_desc", "service_desc", ccsText, "", CCGetRequestParam("service_desc", ccsGet, NULL), $this);
         $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
@@ -80,6 +80,8 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
         $this->trans_date = & new clsControl(ccsLabel, "trans_date", "trans_date", ccsText, "", CCGetRequestParam("trans_date", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
+        $this->jumlah_service = & new clsControl(ccsLabel, "jumlah_service", "jumlah_service", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("jumlah_service", ccsGet, NULL), $this);
+        $this->jumlah_pajak = & new clsControl(ccsLabel, "jumlah_pajak", "jumlah_pajak", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("jumlah_pajak", ccsGet, NULL), $this);
     }
 //End Class_Initialize Event
 
@@ -94,7 +96,7 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
     }
 //End Initialize Method
 
-//Show Method @2-BBC6E6F1
+//Show Method @2-7555C1AB
     function Show()
     {
         global $Tpl;
@@ -182,6 +184,8 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
             $this->Navigator->Visible = false;
         }
         $this->Navigator->Show();
+        $this->jumlah_service->Show();
+        $this->jumlah_pajak->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
