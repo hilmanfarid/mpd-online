@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -83,44 +83,46 @@ $(document).ready(function()
  
                   <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="3" scope="col">Nama Badan</th>
  
-                  <th style="TEXT-ALIGN: center" colspan="13" scope="col">Pelaporan Pajak</th>
+                  <th style="TEXT-ALIGN: center" colspan="14" scope="col">Pelaporan Pajak</th>
  
                   <th style="TEXT-ALIGN: center" colspan="3" scope="col">&nbsp;Pembayaran</th>
                 </tr>
  
                 <tr class="Caption">
-                  <th scope="col" rowspan="2">&nbsp;Jenis Ketetapan</th>
+                  <th rowspan="2" scope="col">&nbsp;Jenis Ketetapan</th>
  
-                  <th scope="col" rowspan="2">Ayat Pajak&nbsp;</th>
+                  <th rowspan="2" scope="col">Ayat Pajak&nbsp;</th>
  
-                  <th scope="col" rowspan="2">Periode Pelaporan</th>
+                  <th rowspan="2" scope="col">Periode Pelaporan</th>
  
-                  <th scope="col" rowspan="2">&nbsp;Periode Transaksi</th>
+                  <th rowspan="2" scope="col">&nbsp;Periode Transaksi</th>
  
-                  <th scope="col" rowspan="2">&nbsp;Tgl. Pelaporan</th>
+                  <th rowspan="2" scope="col">&nbsp;Tgl. Pelaporan</th>
  
-                  <th scope="col" rowspan="2">Total Transaksi&nbsp;</th>
+                  <th rowspan="2" scope="col">No. Kohir&nbsp;</th>
  
-                  <th scope="col" rowspan="2">&nbsp;Total Pajak</th>
+                  <th rowspan="2" scope="col">Total Transaksi&nbsp;</th>
  
-                  <th scope="col" rowspan="2">&nbsp;Pajak Terhutang</th>
+                  <th rowspan="2" scope="col">&nbsp;Total Pajak</th>
  
-                  <th scope="col" colspan="2">Sanksi Adm.&nbsp;</th>
+                  <th rowspan="2" scope="col">&nbsp;Pajak Terhutang</th>
  
-                  <th scope="col" rowspan="2">&nbsp;Denda</th>
+                  <th colspan="2" scope="col">Sanksi Adm.&nbsp;</th>
  
-                  <th scope="col" rowspan="2">&nbsp;Total Harus Bayar</th>
+                  <th rowspan="2" scope="col">&nbsp;Denda</th>
  
-                  <th scope="col" rowspan="2">Pilihan&nbsp;</th>
+                  <th rowspan="2" scope="col">&nbsp;Total Harus Bayar</th>
  
-                  <th scope="col" rowspan="2">&nbsp;No. Kwitansi</th>
+                  <th rowspan="2" scope="col">Pilihan&nbsp;</th>
  
-                  <th scope="col" rowspan="2">Tgl. Pembayaran&nbsp;</th>
+                  <th rowspan="2" scope="col">&nbsp;No. Kwitansi</th>
  
-                  <th scope="col" rowspan="2">Nilai Pembayaran&nbsp;</th>
+                  <th rowspan="2" scope="col">Tgl. Pembayaran&nbsp;</th>
+ 
+                  <th rowspan="2" scope="col">Nilai Pembayaran&nbsp;</th>
                 </tr>
-
-				<tr class="Caption">
+ 
+                <tr class="Caption">
                   <th scope="col">25%</th>
  
                   <th scope="col">2%</th>
@@ -135,11 +137,12 @@ $(document).ready(function()
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_awal_laporan}&nbsp;s/d {periode_akhir_laporan}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pelaporan}</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{no_kohir}</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_transaksi}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{debt_vat_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kenaikan}&nbsp;</td> 
-				  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kenaikan1}&nbsp;</td>
+                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kenaikan1}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right; COLOR: red; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_denda}</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_hrs_bayar}&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap><a href="#" id="HistoryGridLink1_{HistoryGrid:rowNumber}" onclick="javascript:detailTransaksi({t_cust_account_id}, {t_vat_setllement_id})"><u>Lihat Transaksi</u></a></td> 
@@ -150,13 +153,13 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="17">-</td>
+                  <td colspan="19">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td>&nbsp; 
                     <!-- BEGIN Button Button_DoPrint1 --><input style="WIDTH: 120px; HEIGHT: 26px" id="HistoryGridButton_DoPrint1" class="btn_tambah" onclick="printLaporanExcel()" value="DOWNLOAD EXCEL" alt="Search" size="12" type="button" name="{Button_Name}"><!-- END Button Button_DoPrint1 --></td> 
-                  <td colspan="16">
+                  <td colspan="18">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
