@@ -9,7 +9,7 @@
 	       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, 
 	       a.total_trans_amount as total_transaksi,
 	       a.total_vat_amount as total_pajak ,
-		   a.total_penalty_amount as total_denda,
+		   nvl(a.total_penalty_amount,0) as total_denda,
 	       d.receipt_no as kuitansi_pembayaran,
 	       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,
 	       d.payment_amount,
@@ -21,7 +21,8 @@
 	 			 nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,
 				 nvl(a.db_increasing_charge,0) as db_increasing_charge,
 				 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,
-				 nvl(a.db_increasing_charge,0)+nvl(a.db_interest_charge,0) as kenaikan,
+				 nvl(a.db_increasing_charge,0) as kenaikan,
+				 nvl(a.db_interest_charge,0) as kenaikan1,
 				 a.p_vat_type_dtl_id
 	from t_vat_setllement a,
 	     p_finance_period b,
@@ -181,7 +182,13 @@ left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="151" fieldSourceType="DBColumn" dataType="Float" html="False" name="kenaikan1" fieldSource="kenaikan1" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridkenaikan1" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
