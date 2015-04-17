@@ -79,45 +79,51 @@ $(document).ready(function()
  
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <tr class="Caption">
-                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="2" scope="col">NPWPD</th>
+                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="3" scope="col">NPWPD</th>
  
-                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="2" scope="col">Nama Badan</th>
+                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="3" scope="col">Nama Badan</th>
  
-                  <th style="TEXT-ALIGN: center" colspan="12" scope="col">Pelaporan Pajak</th>
+                  <th style="TEXT-ALIGN: center" colspan="13" scope="col">Pelaporan Pajak</th>
  
                   <th style="TEXT-ALIGN: center" colspan="3" scope="col">&nbsp;Pembayaran</th>
                 </tr>
  
                 <tr class="Caption">
-                  <th scope="col">&nbsp;Jenis Ketetapan</th>
+                  <th scope="col" rowspan="2">&nbsp;Jenis Ketetapan</th>
  
-                  <th scope="col">Ayat Pajak&nbsp;</th>
+                  <th scope="col" rowspan="2">Ayat Pajak&nbsp;</th>
  
-                  <th scope="col">Periode Pelaporan</th>
+                  <th scope="col" rowspan="2">Periode Pelaporan</th>
  
-                  <th scope="col">&nbsp;Periode Transaksi</th>
+                  <th scope="col" rowspan="2">&nbsp;Periode Transaksi</th>
  
-                  <th scope="col">&nbsp;Tgl. Pelaporan</th>
+                  <th scope="col" rowspan="2">&nbsp;Tgl. Pelaporan</th>
  
-                  <th scope="col">Total Transaksi&nbsp;</th>
+                  <th scope="col" rowspan="2">Total Transaksi&nbsp;</th>
  
-                  <th scope="col">&nbsp;Total Pajak</th>
+                  <th scope="col" rowspan="2">&nbsp;Total Pajak</th>
  
-                  <th scope="col">&nbsp;Pajak Terhutang</th>
+                  <th scope="col" rowspan="2">&nbsp;Pajak Terhutang</th>
  
-                  <th scope="col">Sanksi Adm.&nbsp;</th>
+                  <th scope="col" colspan="2">Sanksi Adm.&nbsp;</th>
  
-                  <th scope="col">&nbsp;Denda</th>
+                  <th scope="col" rowspan="2">&nbsp;Denda</th>
  
-                  <th scope="col">&nbsp;Total Harus Bayar</th>
+                  <th scope="col" rowspan="2">&nbsp;Total Harus Bayar</th>
  
-                  <th scope="col">Pilihan&nbsp;</th>
+                  <th scope="col" rowspan="2">Pilihan&nbsp;</th>
  
-                  <th scope="col">&nbsp;No. Kwitansi</th>
+                  <th scope="col" rowspan="2">&nbsp;No. Kwitansi</th>
  
-                  <th scope="col">Tgl. Pembayaran&nbsp;</th>
+                  <th scope="col" rowspan="2">Tgl. Pembayaran&nbsp;</th>
  
-                  <th scope="col">Nilai Pembayaran&nbsp;</th>
+                  <th scope="col" rowspan="2">Nilai Pembayaran&nbsp;</th>
+                </tr>
+
+				<tr class="Caption">
+                  <th scope="col">25%</th>
+ 
+                  <th scope="col">2%</th>
                 </tr>
  
                 <!-- BEGIN Row -->
@@ -133,6 +139,7 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{debt_vat_amt}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kenaikan}&nbsp;</td> 
+				  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kenaikan1}&nbsp;</td>
                   <td style="TEXT-ALIGN: right; COLOR: red; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_denda}</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_hrs_bayar}&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap><a href="#" id="HistoryGridLink1_{HistoryGrid:rowNumber}" onclick="javascript:detailTransaksi({t_cust_account_id}, {t_vat_setllement_id})"><u>Lihat Transaksi</u></a></td> 
