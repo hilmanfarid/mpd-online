@@ -23,7 +23,8 @@
 				 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,
 				 nvl(a.db_increasing_charge,0) as kenaikan,
 				 nvl(a.db_interest_charge,0) as kenaikan1,
-				 a.p_vat_type_dtl_id
+				 a.p_vat_type_dtl_id,
+				 a.no_kohir
 	from t_vat_setllement a,
 	     p_finance_period b,
 	     t_cust_account c,
@@ -183,6 +184,12 @@ left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id">
 					<Features/>
 				</Label>
 				<Label id="151" fieldSourceType="DBColumn" dataType="Float" html="False" name="kenaikan1" fieldSource="kenaikan1" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridkenaikan1" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="152" fieldSourceType="DBColumn" dataType="Text" html="False" name="no_kohir" fieldSource="no_kohir" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridno_kohir">
 					<Components/>
 					<Events/>
 					<Attributes/>
