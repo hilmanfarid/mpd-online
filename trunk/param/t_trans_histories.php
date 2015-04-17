@@ -42,7 +42,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-37704F37
+//Class_Initialize Event @2-0C1655A7
     function clsGridHistoryGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -89,6 +89,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $this->total_hrs_bayar = & new clsControl(ccsLabel, "total_hrs_bayar", "total_hrs_bayar", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_hrs_bayar", ccsGet, NULL), $this);
         $this->ayat = & new clsControl(ccsLabel, "ayat", "ayat", ccsText, "", CCGetRequestParam("ayat", ccsGet, NULL), $this);
         $this->kenaikan1 = & new clsControl(ccsLabel, "kenaikan1", "kenaikan1", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("kenaikan1", ccsGet, NULL), $this);
+        $this->no_kohir = & new clsControl(ccsLabel, "no_kohir", "no_kohir", ccsText, "", CCGetRequestParam("no_kohir", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->t_customer_id = & new clsControl(ccsHidden, "t_customer_id", "t_customer_id", ccsFloat, "", CCGetRequestParam("t_customer_id", ccsGet, NULL), $this);
@@ -109,7 +110,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     }
 //End Initialize Method
 
-//Show Method @2-007DF1FC
+//Show Method @2-7C7DFBF2
     function Show()
     {
         global $Tpl;
@@ -158,6 +159,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
             $this->ControlsVisible["total_hrs_bayar"] = $this->total_hrs_bayar->Visible;
             $this->ControlsVisible["ayat"] = $this->ayat->Visible;
             $this->ControlsVisible["kenaikan1"] = $this->kenaikan1->Visible;
+            $this->ControlsVisible["no_kohir"] = $this->no_kohir->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -185,6 +187,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
                 $this->total_hrs_bayar->SetValue($this->DataSource->total_hrs_bayar->GetValue());
                 $this->ayat->SetValue($this->DataSource->ayat->GetValue());
                 $this->kenaikan1->SetValue($this->DataSource->kenaikan1->GetValue());
+                $this->no_kohir->SetValue($this->DataSource->no_kohir->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -208,6 +211,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
                 $this->total_hrs_bayar->Show();
                 $this->ayat->Show();
                 $this->kenaikan1->Show();
+                $this->no_kohir->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -244,7 +248,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     }
 //End Show Method
 
-//GetErrors Method @2-CF3DCBBB
+//GetErrors Method @2-1C751551
     function GetErrors()
     {
         $errors = "";
@@ -268,6 +272,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $errors = ComposeStrings($errors, $this->total_hrs_bayar->Errors->ToString());
         $errors = ComposeStrings($errors, $this->ayat->Errors->ToString());
         $errors = ComposeStrings($errors, $this->kenaikan1->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->no_kohir->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -278,7 +283,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
 
 class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource Class @2-7CE034AB
 
-//DataSource Variables @2-F89AC635
+//DataSource Variables @2-FFB6783C
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -310,9 +315,10 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     var $total_hrs_bayar;
     var $ayat;
     var $kenaikan1;
+    var $no_kohir;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-A6CD132B
+//DataSourceClass_Initialize Event @2-2C70CB0D
     function clsHistoryGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -358,6 +364,8 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         
         $this->kenaikan1 = new clsField("kenaikan1", ccsFloat, "");
         
+        $this->no_kohir = new clsField("no_kohir", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -381,7 +389,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Prepare Method
 
-//Open Method @2-5F7C8ADB
+//Open Method @2-72299C66
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -408,7 +416,8 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "				 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
         "				 nvl(a.db_increasing_charge,0) as kenaikan,\n" .
         "				 nvl(a.db_interest_charge,0) as kenaikan1,\n" .
-        "				 a.p_vat_type_dtl_id\n" .
+        "				 a.p_vat_type_dtl_id,\n" .
+        "				 a.no_kohir\n" .
         "	from t_vat_setllement a,\n" .
         "	     p_finance_period b,\n" .
         "	     t_cust_account c,\n" .
@@ -445,7 +454,8 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "				 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
         "				 nvl(a.db_increasing_charge,0) as kenaikan,\n" .
         "				 nvl(a.db_interest_charge,0) as kenaikan1,\n" .
-        "				 a.p_vat_type_dtl_id\n" .
+        "				 a.p_vat_type_dtl_id,\n" .
+        "				 a.no_kohir\n" .
         "	from t_vat_setllement a,\n" .
         "	     p_finance_period b,\n" .
         "	     t_cust_account c,\n" .
@@ -469,7 +479,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Open Method
  
-//SetValues Method @2-B1A0DCB1
+//SetValues Method @2-20673A33
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
@@ -492,6 +502,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         $this->total_hrs_bayar->SetDBValue(trim($this->f("total_hrs_bayar")));
         $this->ayat->SetDBValue($this->f("ayat"));
         $this->kenaikan1->SetDBValue(trim($this->f("kenaikan1")));
+        $this->no_kohir->SetDBValue($this->f("no_kohir"));
     }
 //End SetValues Method
 
