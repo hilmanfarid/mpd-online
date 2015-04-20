@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -83,7 +83,7 @@ $(document).ready(function()
  
                   <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="3" scope="col">Nama Badan</th>
  
-                  <th style="TEXT-ALIGN: center" colspan="14" scope="col">Pelaporan Pajak</th>
+                  <th style="TEXT-ALIGN: center" colspan="15" scope="col">Pelaporan Pajak</th>
  
                   <th style="TEXT-ALIGN: center" colspan="3" scope="col">&nbsp;Pembayaran</th>
                 </tr>
@@ -98,6 +98,8 @@ $(document).ready(function()
                   <th rowspan="2" scope="col">&nbsp;Periode Transaksi</th>
  
                   <th rowspan="2" scope="col">&nbsp;Tgl. Pelaporan</th>
+ 
+                  <th scope="col" rowspan="2" >Tgl.Jatuh Tempo&nbsp;</th>
  
                   <th rowspan="2" scope="col">No. Kohir&nbsp;</th>
  
@@ -137,6 +139,7 @@ $(document).ready(function()
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_awal_laporan}&nbsp;s/d {periode_akhir_laporan}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pelaporan}</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{jatuh_tempo}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{no_kohir}</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_transaksi}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
@@ -153,13 +156,13 @@ $(document).ready(function()
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="19">-</td>
+                  <td colspan="20">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td>&nbsp; 
                     <!-- BEGIN Button Button_DoPrint1 --><input style="WIDTH: 120px; HEIGHT: 26px" id="HistoryGridButton_DoPrint1" class="btn_tambah" onclick="printLaporanExcel()" value="DOWNLOAD EXCEL" alt="Search" size="12" type="button" name="{Button_Name}"><!-- END Button Button_DoPrint1 --></td> 
-                  <td colspan="18">
+                  <td colspan="19">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
