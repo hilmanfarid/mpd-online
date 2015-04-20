@@ -24,7 +24,8 @@
 				 nvl(a.db_increasing_charge,0) as kenaikan,
 				 nvl(a.db_interest_charge,0) as kenaikan1,
 				 a.p_vat_type_dtl_id,
-				 a.no_kohir
+				 a.no_kohir,
+				 to_char(a.due_date,'DD-MON-YYYY') as jatuh_tempo
 	from t_vat_setllement a,
 	     p_finance_period b,
 	     t_cust_account c,
@@ -189,7 +190,13 @@ left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="152" fieldSourceType="DBColumn" dataType="Text" html="False" name="no_kohir" fieldSource="no_kohir" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridno_kohir">
+				<Label id="152" fieldSourceType="DBColumn" dataType="Text" html="False" name="no_kohir" fieldSource="no_kohir" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridno_kohir">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="153" fieldSourceType="DBColumn" dataType="Text" html="False" name="jatuh_tempo" fieldSource="jatuh_tempo" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridjatuh_tempo">
 					<Components/>
 					<Events/>
 					<Attributes/>
