@@ -115,7 +115,7 @@ function view_html($param_arr) {
 	}
 	$tgl_peneriamaan = CCGetFromGet('tgl_penerimaan',"");
 	if($tgl_peneriamaan!=""){
-		$query=$query." AND trunc(tgl_bayar)=trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD')";
+		$query=$query." AND trunc(tgl_bayar)<=trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD')";
 	}
 	//echo $query;
 	//exit;
