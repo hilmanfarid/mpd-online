@@ -5,7 +5,8 @@ FROM v_vat_setllement_skpd_kb_jabatan
 WHERE ( upper(npwd) LIKE '%{s_keyword}%'
 OR upper(wp_name) LIKE '%{s_keyword}%'
 OR upper(settlement_type) LIKE '%{s_keyword}%'
-OR upper(finance_period_code) LIKE '%{s_keyword}%' )
+OR upper(finance_period_code) LIKE '%{s_keyword}%')
+AND (p_settlement_type_id = {p_settlement_type_id_search} OR 0 = {p_settlement_type_id_search})
 and (
  f_search_finance_period(finance_period_code) ilike '%{s_periode}%'
 ) 
@@ -115,7 +116,8 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 			<SQLParameters>
 				<SQLParameter id="393" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
 				<SQLParameter id="394" variable="s_periode" parameterType="URL" dataType="Text" parameterSource="s_periode"/>
-			</SQLParameters>
+				<SQLParameter id="400" variable="p_settlement_type_id_search" parameterType="URL" dataType="Integer" parameterSource="p_settlement_type_id_search" defaultValue="0"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -534,7 +536,19 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<ListBox id="399" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_settlement_type_id_search" wizardEmptyCaption="Select Value" PathID="t_vat_setllementSearchp_settlement_type_id_search" connection="ConnSIKP" dataSource="select * from p_settlement_type where p_settlement_type_id in(4,5,7)" fieldSource="p_settlement_type_id_search">
+<Components/>
+<Events/>
+<TableParameters/>
+<SPParameters/>
+<SQLParameters/>
+<JoinTables/>
+<JoinLinks/>
+<Fields/>
+<Attributes/>
+<Features/>
+</ListBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
