@@ -237,6 +237,7 @@ function print_excel() {
 	$dbConn				= new clsDBConnSIKP();
 	$keyword = CCGetFromGet('s_keyword');
 	$periode = CCGetFromGet('s_periode');
+	$p_settlement_type_id_search = CCGetFromGet('p_settlement_type_id_search');
 
 	$query = "SELECT * 
 		FROM v_vat_setllement_skpd_kb_jabatan a
@@ -245,6 +246,7 @@ function print_excel() {
 		OR upper(a.wp_name) LIKE '%".$keyword."%'
 		OR upper(a.settlement_type) LIKE '%".$keyword."%'
 		OR upper(a.finance_period_code) LIKE '%".$keyword."%' )
+		AND (p_settlement_type_id = $p_settlement_type_id_search OR 0 = $p_settlement_type_id_search)
 		and (
 		 f_search_finance_period(a.finance_period_code) ilike '%".$periode."%'
 		) 

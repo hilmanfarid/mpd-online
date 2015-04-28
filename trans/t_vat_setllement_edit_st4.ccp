@@ -536,7 +536,7 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 					<Attributes/>
 					<Features/>
 				</Button>
-				<ListBox id="399" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_settlement_type_id_search" wizardEmptyCaption="Select Value" PathID="t_vat_setllementSearchp_settlement_type_id_search" connection="ConnSIKP" dataSource="select * from p_settlement_type where p_settlement_type_id in(4,5,7)" fieldSource="p_settlement_type_id_search">
+				<ListBox id="399" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_settlement_type_id_search" wizardEmptyCaption="Select Value" PathID="t_vat_setllementSearchp_settlement_type_id_search" connection="ConnSIKP" dataSource="select * from p_settlement_type where p_settlement_type_id in(3,4,5,7)" fieldSource="p_settlement_type_id_search">
 <Components/>
 <Events/>
 <TableParameters/>
