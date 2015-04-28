@@ -98,7 +98,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-90E53400
+//Show Method @2-D40AEE0C
     function Show()
     {
         global $Tpl;
@@ -109,6 +109,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
 
         $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
         $this->DataSource->Parameters["urls_periode"] = CCGetFromGet("s_periode", NULL);
+        $this->DataSource->Parameters["urlp_settlement_type_id_search"] = CCGetFromGet("p_settlement_type_id_search", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -292,7 +293,7 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End SetOrder Method
 
-//Prepare Method @2-B7E071CE
+//Prepare Method @2-1BFE8562
     function Prepare()
     {
         global $CCSLocales;
@@ -300,10 +301,11 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
         $this->wp->AddParameter("2", "urls_periode", ccsText, "", "", $this->Parameters["urls_periode"], "", false);
+        $this->wp->AddParameter("3", "urlp_settlement_type_id_search", ccsInteger, "", "", $this->Parameters["urlp_settlement_type_id_search"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-AB90C971
+//Open Method @2-F6088730
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -312,7 +314,8 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         "WHERE ( upper(npwd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(wp_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(settlement_type) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(finance_period_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
+        "OR upper(finance_period_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        "AND (p_settlement_type_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " OR 0 = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
         "and (\n" .
         " f_search_finance_period(finance_period_code) ilike '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'\n" .
         ")) cnt";
@@ -321,7 +324,8 @@ class clst_vat_setllementGridDataSource extends clsDBConnSIKP {  //t_vat_setllem
         "WHERE ( upper(npwd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(wp_name) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(settlement_type) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(finance_period_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
+        "OR upper(finance_period_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
+        "AND (p_settlement_type_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . " OR 0 = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsInteger) . ")\n" .
         "and (\n" .
         " f_search_finance_period(finance_period_code) ilike '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'\n" .
         ")  {SQL_OrderBy}";
@@ -1287,7 +1291,7 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-E159688B
+//Class_Initialize Event @3-07CD56FB
     function clsRecordt_vat_setllementSearch($RelativePath, & $Parent)
     {
 
@@ -1315,11 +1319,18 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->s_periode = & new clsControl(ccsTextBox, "s_periode", "s_periode", ccsText, "", CCGetRequestParam("s_periode", $Method, NULL), $this);
             $this->Button_PrintExcel = & new clsButton("Button_PrintExcel", $Method, $this);
+            $this->p_settlement_type_id_search = & new clsControl(ccsListBox, "p_settlement_type_id_search", "p_settlement_type_id_search", ccsText, "", CCGetRequestParam("p_settlement_type_id_search", $Method, NULL), $this);
+            $this->p_settlement_type_id_search->DSType = dsSQL;
+            $this->p_settlement_type_id_search->DataSource = new clsDBConnSIKP();
+            $this->p_settlement_type_id_search->ds = & $this->p_settlement_type_id_search->DataSource;
+            list($this->p_settlement_type_id_search->BoundColumn, $this->p_settlement_type_id_search->TextColumn, $this->p_settlement_type_id_search->DBFormat) = array("", "", "");
+            $this->p_settlement_type_id_search->DataSource->SQL = "select * from p_settlement_type where p_settlement_type_id in(4,5,7)";
+            $this->p_settlement_type_id_search->DataSource->Order = "";
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-401C9046
+//Validate Method @3-A45BC4A3
     function Validate()
     {
         global $CCSLocales;
@@ -1327,19 +1338,22 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
         $Where = "";
         $Validation = ($this->s_keyword->Validate() && $Validation);
         $Validation = ($this->s_periode->Validate() && $Validation);
+        $Validation = ($this->p_settlement_type_id_search->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_periode->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_settlement_type_id_search->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-7D72EA35
+//CheckErrors Method @3-137F83C5
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->s_keyword->Errors->Count());
         $errors = ($errors || $this->s_periode->Errors->Count());
+        $errors = ($errors || $this->p_settlement_type_id_search->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -1400,7 +1414,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-4CAEF67D
+//Show Method @3-8477B2EE
     function Show()
     {
         global $CCSUseAmp;
@@ -1414,6 +1428,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->p_settlement_type_id_search->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -1426,6 +1441,7 @@ function GetPrimaryKey($keyName)
             $Error = "";
             $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_periode->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_settlement_type_id_search->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -1447,6 +1463,7 @@ function GetPrimaryKey($keyName)
         $this->Button_DoSearch->Show();
         $this->s_periode->Show();
         $this->Button_PrintExcel->Show();
+        $this->p_settlement_type_id_search->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
