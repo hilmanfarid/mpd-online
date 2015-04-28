@@ -415,6 +415,7 @@ function printLaporanExcel(){
         var params = "?doAction=cetak_excel";
         params += "&s_keyword="+document.getElementById("t_vat_setllementSearchs_keyword").value;
         params += "&s_periode="+document.getElementById("t_vat_setllementSearchs_periode").value;
+		params += "&p_settlement_type_id_search="+document.getElementById("t_vat_setllementSearchp_settlement_type_id_search").value;
         location.href = "t_vat_setllement_edit_st4.php"+params;
 }
 </script>

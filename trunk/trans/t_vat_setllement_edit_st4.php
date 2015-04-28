@@ -1291,7 +1291,7 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-07CD56FB
+//Class_Initialize Event @3-8F794C9A
     function clsRecordt_vat_setllementSearch($RelativePath, & $Parent)
     {
 
@@ -1324,7 +1324,7 @@ class clsRecordt_vat_setllementSearch { //t_vat_setllementSearch Class @3-56E117
             $this->p_settlement_type_id_search->DataSource = new clsDBConnSIKP();
             $this->p_settlement_type_id_search->ds = & $this->p_settlement_type_id_search->DataSource;
             list($this->p_settlement_type_id_search->BoundColumn, $this->p_settlement_type_id_search->TextColumn, $this->p_settlement_type_id_search->DBFormat) = array("", "", "");
-            $this->p_settlement_type_id_search->DataSource->SQL = "select * from p_settlement_type where p_settlement_type_id in(4,5,7)";
+            $this->p_settlement_type_id_search->DataSource->SQL = "select * from p_settlement_type where p_settlement_type_id in(3,4,5,7)";
             $this->p_settlement_type_id_search->DataSource->Order = "";
         }
     }
