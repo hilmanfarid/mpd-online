@@ -56,9 +56,9 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 	$cust_id = $dbConn->f("o_cust_order_id");
 	$mess = $dbConn->f("o_mess");
 
+
 	if(!$cust_id == 0 && !$cust_id == ""){
-		
-		$sql2 = "select * from f_first_submit_engine_2step(
+		$sql2 = "select * from f_first_submit_engine(
 		501,
 		$cust_id,
 		'$User')";
@@ -84,23 +84,9 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 	    $mess = str_replace('"','',$mess);
 		echo '<script language="javascript">';
 		echo 'alert("'.$mess.'");';
-		echo '</script>';
-		
+		echo '</script>';	
 	}
 	
-	if(!$cust_id == 0 && !$cust_id == ""){
-		$dbConn2 = new clsDBConnSIKP();
-		$sqlPayment = "select payment_key from t_vat_setllement where t_customer_order_id = ".$cust_id;
-		$dbConn2->query($sqlPayment);
-		$dbConn2->next_record();
-		$payment_key = $dbConn2->f("payment_key");
-	  	
-		echo '<script language="javascript">';
-		echo "window.open('http://172.16.20.1/mpd/report/cetak_no_bayar_anjungan.php?no_bayar='".$payment_key.",'No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
-		echo '</script>';
-		
-	}
-
 	return;
 // -------------------------
 
