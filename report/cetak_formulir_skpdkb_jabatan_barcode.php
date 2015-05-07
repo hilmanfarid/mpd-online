@@ -426,7 +426,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
 		$this->Ln();
 		
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-online/include/qrcode/generate-qr.php?param='.
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
 		$data["npwd"]."_".
 		str_replace(" ","-",$data["finance_period_code"])."_".
 		$data["no_urut"]."_".
