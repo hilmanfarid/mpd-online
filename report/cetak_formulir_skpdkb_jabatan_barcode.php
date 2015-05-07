@@ -19,7 +19,7 @@
 
 	
 	if($t_vat_setllement_id > 0){
-		$sql = "select upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2,t.vat_code as jenis_pajak, 
+		$sql = "select a.payment_key as no_bayar,upper(to_char(A.due_date,'dd-mon-yyyy')) as due_date_2,t.vat_code as jenis_pajak, 
 				nvl(u.vat_code,t.code) as vat_codes,a.npwd as npwd_2, z.code as fin_code,w.year_code as tahun,
 				to_char(a.settlement_date,'DD-MM-YYYY') AS tgl_setllement, * 
 				from t_vat_setllement a
@@ -60,10 +60,9 @@
 		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
 		$data["total_trans_amount"] = $dbConn->f("total_trans_amount");
 		$data["vat_code"] = $dbConn->f("vat_codes");
-		$data["payment_key"] = $dbConn->f("payment_key");		
+		$data["no_bayar"] = $dbConn->f("no_bayar");		
 		$items[] = $data;
 	}
-
 	$dbConn->close();
 
 class FormCetak extends FPDF {
@@ -197,7 +196,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - Bandung", "BR", 0, 'C');
 		$this->SetFont('Arial', '', 10);
 		$this->Cell($lheader3, $this->height+1, "", "BR", 0, 'L');
-		$this->Cell($lheader2, $this->height+1, $data["payment_key"], "BR", 0, 'C');;
+		$this->Cell($lheader2, $this->height+1, $data["no_bayar"], "BR", 0, 'C');;
 		$this->Ln();
 
 		$lbody = $this->lengthCell / 4;
@@ -427,7 +426,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
 		$this->Ln();
 		
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-online/include/qrcode/generate-qr.php?param='.
 		$data["npwd"]."_".
 		str_replace(" ","-",$data["finance_period_code"])."_".
 		$data["no_urut"]."_".
