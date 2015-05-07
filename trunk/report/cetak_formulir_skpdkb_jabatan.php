@@ -48,7 +48,7 @@
 		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
 		$data["total_trans_amount"] = $dbConn->f("total_trans_amount");
 		$data["vat_code"] = $dbConn->f("vat_code");
-				
+		$data["payment_key"] = $dbConn->f("payment_key");		
 		$items[] = $data;
 	}
 
@@ -157,8 +157,9 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', '', 8);
 		$this->Cell($lheader2, $this->height-1, "Jalan Wastukancana No.2", "R", 0, 'C');
 		$this->SetFont('Arial', '', 10);
-		$this->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
-		$this->Cell($lheader2, $this->height-1, "", "R", 0, 'C');
+		$this->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');	
+		$this->SetFont('Arial', '', 8);
+		$this->Cell($lheader2, $this->height-1, "No.Bayar", "R", 0, 'C');
 		$this->Ln();
 		
 		// $this->Cell($lheader3, $this->height + 2, "", "BL", 0, 'R');
@@ -171,7 +172,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - Bandung", "BR", 0, 'C');
 		$this->SetFont('Arial', '', 10);
 		$this->Cell($lheader3, $this->height+1, "", "BR", 0, 'L');
-		$this->Cell($lheader2, $this->height+1, "", "BR", 0, 'C');
+		$this->Cell($lheader2, $this->height+1, $data["payment_key"], "BR", 0, 'C');
 		$this->Ln();
 
 		$lbody = $this->lengthCell / 4;
