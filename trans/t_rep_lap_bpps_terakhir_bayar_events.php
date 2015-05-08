@@ -25,7 +25,7 @@ function Page_BeforeShow(& $sender)
 		$p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
 		//$year_code = CCGetFromGet("year_code", "");
 
-		$tgl_penerimaan = "'01-01-2013'";
+		$tgl_penerimaan = "'01-01-2010'";
 		$tgl_penerimaan_last = "'31-12-2014'";
 		$i_flag_setoran = 1;
 
@@ -43,8 +43,8 @@ function Page_BeforeShow(& $sender)
 		$dbConn				= new clsDBConnSIKP();
 		$jenis_laporan		= "all"; 
 		$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
-			order by kode_ayat, npwpd, payment_date";	
+			from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, to_char(sysdate,'dd-mm-yyyy'), $i_flag_setoran) 
+			order by kode_ayat, wp_name, payment_date";	
 		
 		//echo $query;
 		//exit;
