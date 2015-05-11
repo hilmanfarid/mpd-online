@@ -45,7 +45,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-23E0DE79
+//Class_Initialize Event @3-8FA49E5A
     function clsRecordLOV($RelativePath, & $Parent)
     {
 
@@ -59,7 +59,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
         $this->ErrorBlock = "Record LOV/Error";
         $this->DataSource = new clsLOVDataSource($this);
         $this->ds = & $this->DataSource;
-        $this->InsertAllowed = true;
+        $this->ReadAllowed = true;
         if($this->Visible)
         {
             $this->ComponentName = "LOV";
@@ -132,7 +132,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-991AD935
+//Operation Method @3-07B9E79C
     function Operation()
     {
         if(!$this->Visible)
@@ -156,7 +156,7 @@ function GetPrimaryKey($keyName)
         $Redirect = "t_bphtb_delete.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
-                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1) || !$this->InsertRow()) {
+                if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
                     $Redirect = "";
                 }
             }
@@ -168,20 +168,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @3-8E0A072F
-    function InsertRow()
-    {
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
-        if(!$this->InsertAllowed) return false;
-        $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
-        $this->DataSource->alasan->SetValue($this->alasan->GetValue(true));
-        $this->DataSource->Insert();
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
-        return (!$this->CheckErrors());
-    }
-//End InsertRow Method
-
-//Show Method @3-E5F2A5F7
+//Show Method @3-8BDE9CA1
     function Show()
     {
         global $CCSUseAmp;
@@ -232,7 +219,6 @@ function GetPrimaryKey($keyName)
         $Tpl->SetVar("Action", !$CCSUseAmp ? $this->HTMLFormAction : str_replace("&", "&amp;", $this->HTMLFormAction));
         $Tpl->SetVar("HTMLFormName", $this->ComponentName);
         $Tpl->SetVar("HTMLFormEnctype", $this->FormEnctype);
-        $this->Button1->Visible = !$this->EditMode && $this->InsertAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -254,14 +240,13 @@ function GetPrimaryKey($keyName)
 
 class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026EF
 
-//DataSource Variables @3-7C3C2F34
+//DataSource Variables @3-6A3E9B95
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
     var $ErrorBlock;
     var $CmdExecution;
 
-    var $InsertParameters;
     var $wp;
     var $AllParametersSet;
 
@@ -312,33 +297,6 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         $this->t_bphtb_registration_id->SetDBValue($this->f("t_bphtb_registration_id"));
     }
 //End SetValues Method
-
-//Insert Method @3-0938D4B7
-    function Insert()
-    {
-        global $CCSLocales;
-        global $DefaultDateFormat;
-        $this->CmdExecution = true;
-        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("ctrlt_bphtb_registration_id", ccsInteger, "", "", $this->t_bphtb_registration_id->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["alasan"] = new clsSQLParameter("ctrlalasan", ccsText, "", "", $this->alasan->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["user_name"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
-        if (!is_null($this->cp["t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue())) 
-            $this->cp["t_bphtb_registration_id"]->SetValue($this->t_bphtb_registration_id->GetValue(true));
-        if (!strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue(true))) 
-            $this->cp["t_bphtb_registration_id"]->SetText(0);
-        if (!is_null($this->cp["alasan"]->GetValue()) and !strlen($this->cp["alasan"]->GetText()) and !is_bool($this->cp["alasan"]->GetValue())) 
-            $this->cp["alasan"]->SetValue($this->alasan->GetValue(true));
-        if (!is_null($this->cp["user_name"]->GetValue()) and !strlen($this->cp["user_name"]->GetText()) and !is_bool($this->cp["user_name"]->GetValue())) 
-            $this->cp["user_name"]->SetValue(CCGetSession("UserLogin", NULL));
-        $this->SQL = "SELECT f_delete_bphtb(" . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsInteger) . ",'" . $this->SQLValue($this->cp["alasan"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "') AS msg";
-        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
-        if($this->Errors->Count() == 0 && $this->CmdExecution) {
-            $this->query($this->SQL);
-            $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterExecuteInsert", $this->Parent);
-        }
-    }
-//End Insert Method
 
 } //End LOVDataSource Class @3-FCB6E20C
 
