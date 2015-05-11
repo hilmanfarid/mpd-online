@@ -1,13 +1,56 @@
 <?php
-//BindEvents Method @1-00E5DF06
+//BindEvents Method @1-7A92143C
 function BindEvents()
 {
     global $LOV;
+    $LOV->Button1->CCSEvents["OnClick"] = "LOV_Button1_OnClick";
     $LOV->CCSEvents["BeforeShow"] = "LOV_BeforeShow";
     $LOV->CCSEvents["AfterInsert"] = "LOV_AfterInsert";
     $LOV->CCSEvents["AfterUpdate"] = "LOV_AfterUpdate";
 }
 //End BindEvents Method
+
+//LOV_Button1_OnClick @16-1EC49D4D
+function LOV_Button1_OnClick(& $sender)
+{
+    $LOV_Button1_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $LOV; //Compatibility
+//End LOV_Button1_OnClick
+
+//Custom Code @24-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$t_bphtb_registration_id= CCGetFromGet("t_bphtb_registration_id");
+	$alasan= $LOV->alasan->GetValue();
+	$user = CCGetUserLogin();
+	$dbConn	= new clsDBConnSIKP();
+	if($t_bphtb_registration_id != "" && $alasan != "" && $user != ""){ 
+		$query="select f_delete_bphtb from 
+			f_delete_bphtb(".$t_bphtb_registration_id.",'".$alasan."','".$user."')";
+		//echo $query;exit;
+		$dbConn->query($query);
+		$dbConn->next_record();
+		$result = $dbConn->f("f_delete_bphtb");
+	}else{
+		$result = "id bphtb, alasan atau user login tidak boleh kosong";
+	}
+
+
+    echo "<script> 
+		alert('".$result."');
+		window.opener.location.reload();
+		window.close();
+	</script>";
+	exit;
+// -------------------------
+//End Custom Code
+
+//Close LOV_Button1_OnClick @16-408DE5C8
+    return $LOV_Button1_OnClick;
+}
+//End Close LOV_Button1_OnClick
 
 //LOV_BeforeShow @3-EE802C40
 function LOV_BeforeShow(& $sender)
@@ -40,11 +83,10 @@ function LOV_AfterInsert(& $sender)
 
 //Custom Code @22-2A29BDB7
 // -------------------------
-    echo "<script> 
-		alert('data berhasil dihapus');
-		
-	</script>";
-	exit;
+	
+	
+
+	
 // -------------------------
 //End Custom Code
 
