@@ -19,7 +19,8 @@ e.wp_name, (e.wp_address_name || '/' || e.wp_address_no) AS alamat_wp,
 b.payment_vat_amount as total_pokok, a.total_penalty_amount as total_denda, b.payment_vat_amount + nvl(A .total_penalty_amount,0) as total_tagihan,
 upper(trim(replace(f_terbilang(to_char(round(b.payment_vat_amount + nvl(A .total_penalty_amount,0))),'rp.'), '  ', ' '))) || ' RUPIAH' as dengan_huruf,
 '4'||(d.code || c.code) AS kode_rekening, upper(c.vat_code) as nama_rekening,
-to_char(a.start_period,'yyyymmdd') as start_period, to_char(a.end_period,'yyyymmdd') as end_period
+to_char(a.start_period,'yyyymmdd') as start_period, to_char(a.end_period,'yyyymmdd') as end_period,
+company_brand
 FROM t_vat_setllement AS a
 LEFT JOIN t_payment_receipt AS b ON a.t_vat_setllement_id = b.t_vat_setllement_id
 LEFT JOIN p_vat_type_dtl AS c ON a.p_vat_type_dtl_id = c.p_vat_type_dtl_id
@@ -48,6 +49,7 @@ while ($dbConn->next_record()) {
 	$data["start_period"]		    = $dbConn->f("start_period");
 	$data["end_period"]		        = $dbConn->f("end_period");
 	$data["no_kohir"]		        = $dbConn->f("no_kohir");
+	$data["company_brand"]		        = $dbConn->f("company_brand");
 	
 }
 $_HEIGHT = 4;
@@ -71,7 +73,7 @@ $pdf->SetAutoPageBreak(false,0);
 $pdf->SetFont('Arial', '',9);
 
 //$pdf->Image('../images/logo_pemda.png',10,5,20,20);
-$pdf->ln(20);
+$pdf->ln(10);
 $pdf->SetWidths(array(5,130, 60));
 $pdf->SetAligns(array("L","L", "L"));
 $pdf->RowMultiBorderWithHeight(
@@ -239,6 +241,23 @@ $pdf->RowMultiBorderWithHeight(
 			(	
 			    "",
 				"NAMA WP/OP", ": ".$data['wp_name'],
+				""
+			),
+			array
+			(
+			    "",
+				"","",
+				""
+			),
+			$_HEIGHT);
+$pdf->SetFont('Arial', '',9);
+$pdf->SetWidths(array(5,45, 75, 70));
+$pdf->SetAligns(array("L", "L", "L"));
+$pdf->RowMultiBorderWithHeight(
+			array
+			(	
+			    "",
+				"NAMA MERK DAGANG", ": ".$data['company_brand'],
 				""
 			),
 			array
