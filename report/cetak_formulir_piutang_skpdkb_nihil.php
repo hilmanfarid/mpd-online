@@ -13,10 +13,19 @@
 
 	
 	if($t_piutang_pajak_penetapan_final_id > 0){
-		$sql = "select c.code as vat_type_code,lpad(no_kohir,8,0) as no_kohir_formated,d.code as finance_period_code,* FROM t_piutang_pajak_penetapan_final_2 a
+		$sql = "select c.code as vat_type_code,lpad(a.no_kohir,8,0) as no_kohir_formated,d.code as finance_period_code,* FROM t_piutang_pajak_penetapan_final_2 a
 		left join t_cust_account b on b.t_cust_account_id=a.t_cust_account_id
 		left join p_vat_type c on c.p_vat_type_id=a.p_vat_type_id
 		left join p_finance_period d on d.p_finance_period_id=a.p_finance_period_id
+		left join t_vat_setllement e on (a.npwd = e.npwd
+			and a.p_finance_period_id = e.p_finance_period_id
+			and (
+				trunc(e.start_period) = to_date(SUBSTRING(a.masa_pajak,1,10),'dd-mm-yyyy')
+				and 
+				trunc(e.end_period) = to_date(SUBSTRING(a.masa_pajak,16,10),'dd-mm-yyyy')
+			)
+		)
+		left join t_payment_receipt f on f.t_vat_setllement_id=e.t_vat_setllement_id
 		WHERE t_piutang_pajak_penetapan_final_id = " . $t_piutang_pajak_penetapan_final_id;
 	}
 
@@ -46,7 +55,7 @@
 		$data["vat_code"] = $dbConn->f("vat_type_code");
 		$data["nilai_piutang"] = $dbConn->f("nilai_piutang");
 		$data["realisasi_piutang"] = $dbConn->f("realisasi_piutang");
-		
+		$data["receipt_no"] = $dbConn->f("receipt_no");
 		$items[] = $data;
 	}
 
@@ -113,7 +122,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'C');			
 		$this->Cell($lheader2, $this->height, "PEMERINTAH KOTA", "R", 0, 'C');
 		$this->SetFont('Arial', '', 12);
-		$this->Cell($lheader3, $this->height, "SKPDKB", "R", 0, 'C');
+		$this->Cell($lheader3, $this->height, "SKPDN", "R", 0, 'C');
 		$this->Cell($lheader2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
@@ -128,7 +137,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader1, $this->height-2, "", "L", 0, 'C');			
 		$this->Cell($lheader2, $this->height-2, "BANDUNG", "R", 0, 'C');
 		$this->SetFont('Arial', '', 9);
-		$this->Cell($lheader3, $this->height-2, "(Surat Ketetapan Pajak Daerah Kurang Bayar)", "R", 0, 'C');
+		$this->Cell($lheader3, $this->height-2, "(Surat Ketetapan Pajak Daerah Nihil)", "R", 0, 'C');
 		$this->SetFont('Arial', '', 10);
 		$this->Cell($lheader2, $this->height-2, "No. Urut", "R", 0, 'C');
 		$this->Ln();
@@ -316,6 +325,16 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		
+		$this->SetFont('Arial', '', 6.5);
+		$this->Cell(10, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody2 - 10, $this->height, "          (".$data["receipt_no"].")", "", 0, 'L');
+		$this->Cell($lbodyx1, $this->height, "", "", 0, 'L');
+		$this->Cell($lbodyx1 - 10, $this->height, "", "", 0, 'R');
+		$this->Cell(10, $this->height, "", "", 0, 'R');
+		$this->Cell($lbody1, $this->height, "", "R", 0, 'L');
+		$this->Ln();
+		
+		$this->SetFont('Arial', '', 8);
 		$this->Cell(10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody2 - 10, $this->height, "    c. Lain-lain", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "B", 0, 'L');
@@ -339,7 +358,12 @@ class FormCetak extends FPDF {
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "    4. Jumlah kekurangan pembayaran Pokok Pajak (2-3d)", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["nilai_piutang"] - $jumno3,2,",","."), "", 0, 'R');
+		//$this->Cell($lbodyx1 - 10, $this->height, number_format($data["nilai_piutang"] - $jumno3,2,",","."), "", 0, 'R');
+		if ($data["nilai_piutang"] - $jumno3 <0){
+			$this->Cell($lbodyx1 - 10, $this->height, "(".number_format(abs($data["nilai_piutang"] - $jumno3),2,",",".").")", "", 0, 'R');
+		}else{
+			$this->Cell($lbodyx1 - 10, $this->height, number_format($data["nilai_piutang"] - $jumno3,2,",","."), "", 0, 'R');
+		}
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
@@ -375,7 +399,11 @@ class FormCetak extends FPDF {
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody3 - 5, $this->height, "    6. Jumlah yang masih harus dibayar (4 + 5c)", "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "", 0, 'L');
-		$this->Cell($lbodyx1 - 10, $this->height, number_format($total,2,",","."), "", 0, 'R');
+		if ($total <0){
+			$this->Cell($lbodyx1 - 10, $this->height, "(".number_format(abs($total),2,",",".").")", "", 0, 'R');
+		}else{
+			$this->Cell($lbodyx1 - 10, $this->height, number_format($total,2,",","."), "", 0, 'R');
+		}
 		$this->Cell(10, $this->height, "", "R", 0, 'R');
 		$this->Ln();
 		
@@ -401,22 +429,25 @@ class FormCetak extends FPDF {
 		
 		// Dengan huruf
 		$this->Cell($lbody1 - 5, $this->height, "", "", 0, 'L');
-		if ($positive ==1){
-			$this->kotak(25, 34, 1, $huruf);
+		if ($total ==1){
+			$this->kotak(25, 34, 1, 'Nihil');
 		}else{
-			$this->kotak(25, 34, 1, "minus ".$huruf);
+			//if ($positive ==1){
+				$this->kotak(25, 34, 1, $huruf);
+			//}else{
+			//	$this->kotak(25, 34, 1, "minus ".$huruf);
+			//}
 		}
 		$this->Ln();
 		// ============
 		
 		$this->SetFont('Arial', 'U', 8);
-		$this->Cell($lbody1, $this->height+1, "PERHATIAN:", "L", 0, 'L');
+		$this->Cell($lbody1, $this->height+1, "", "L", 0, 'L');
 		$this->Cell($lbody3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		$this->SetFont('Arial', '', 8);
-		$this->tulis("1. Harap penyetoran dilakukan melalui Kas Daerah atau tempat lain yang ditunjuk dengan menggunakan Surat Setoran Pajak Daerah (SSPD)", "L");
-		$this->tulis("2. Apabila SKPDKB ini tidak atau kurang dibayar setelah lewat waktu paling lama 15 hari kalender sejak SKPDKB ini diterbitkan dikenakan", "L");
-		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
+		$this->tulis("", "L");
+		$this->tulis("", "L");
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
@@ -457,7 +488,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lbody1, $this->height, "", "TL", 0, 'L');
 		$this->Cell($lbody2, $this->height, "", "T", 0, 'C');
-		$this->Cell($lbody1, $this->height, "No. SKPDKB : ".$data["no_urut"], "TR", 0, 'L');
+		$this->Cell($lbody1, $this->height, "No. SKPDN : ".$data["no_urut"], "TR", 0, 'L');
 		$this->Ln();
 		
 		$this->SetFont('Arial', '', 11);
