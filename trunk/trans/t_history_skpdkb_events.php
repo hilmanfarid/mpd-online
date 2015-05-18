@@ -147,8 +147,8 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" width="85px">'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ketetapan_lama'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ketetapan_baru'].'</td>';
-		$output.='<td align="right" >'.number_format($data[$i]['jumlah'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['jumlah_lama'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['jumlah'], 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
 			$output.='<td align="left" >Belum Bayar</td>';
