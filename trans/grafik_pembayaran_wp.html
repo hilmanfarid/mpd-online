@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>t_customer_order</title>
-<meta http-equiv="refresh" content="300">
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<meta http-equiv="refresh" content="300">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 <script src="../js/highcharts.js"></script>
@@ -58,7 +58,7 @@ $(function () {
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -89,22 +89,22 @@ $(function () {
                         <select id="grafik_pembayaran_formp_year_period_id" name="{p_year_period_id_Name}">
                           {p_year_period_id_Options}
                         </select>
- </td>
+                        &nbsp; </td>
                     </tr>
  
                     <tr class="Controls">
                       <td class="search-field">NPWPD</td> 
-                      <td class="search-field"><input id="grafik_pembayaran_formnpwd" class="ControlsRQ" value="{npwd}" readonly maxlength="32" size="32" name="{npwd_Name}">&nbsp;<img onclick="javascript:lov_npwd()" border="0" src="../images/view.gif"><input id="grafik_pembayaran_formt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td>
+                      <td class="search-field"><input id="grafik_pembayaran_formnpwd" class="ControlsRQ" name="{npwd_Name}" readonly maxlength="32" value="{npwd}" size="32">&nbsp;<img onclick="javascript:lov_npwd()" border="0" src="../images/view.gif"><input id="grafik_pembayaran_formt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td>
                     </tr>
  
                     <tr>
                       <td>Nama&nbsp;</td> 
-                      <td><input id="grafik_pembayaran_formcompany_name" class="ControlsRO" value="{company_name}" readonly maxlength="14" size="32" name="{company_name_Name}"></td>
+                      <td><input id="grafik_pembayaran_formcompany_name" class="ControlsRO" name="{company_name_Name}" readonly maxlength="14" value="{company_name}" size="32"></td>
                     </tr>
  
                     <tr>
                       <td colspan="2" align="right">&nbsp; 
-                        <!-- BEGIN Button Button2 --><input id="grafik_pembayaran_formButton2" class="btn_tambah" onclick="showGrafik()" value="Download Excel" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                        <!-- BEGIN Button Button2 --><input id="grafik_pembayaran_formButton2" class="btn_tambah" onclick="showGrafik()" name="{Button_Name}" alt="Button1" value="Download Excel" type="button"><!-- END Button Button2 -->&nbsp;&nbsp;&nbsp;&nbsp; </td>
                     </tr>
                   </table>
                 </td>
@@ -114,7 +114,7 @@ $(function () {
           <!-- END Record grafik_pembayaran_form --><br>
         </td>
       </tr>
-    </table>  
+    </table>
     <div style="WIDTH: 100%; DISPLAY: inline-block" id="container">
     </div>
   </div>
@@ -148,16 +148,16 @@ function lov_npwd() {
 }
 function showGrafik(){
         $.getJSON( "../services/pembayaran_wp.php?p_year_period_id="+document.getElementById("grafik_pembayaran_formp_year_period_id").value+"&t_cust_account_id="+document.getElementById("grafik_pembayaran_formt_cust_account_id").value, function( items ) {
-				var data_items = [];
-				var theseries;
-				var color=['#fe0000','#56b945','#0000fe']
-				var i =0;
-				$.each(items, function( index, value ) {
-				  var item = value;
-				  data_items.push({color: color[i],showInLegend: true, name: value.tahun, data: value.amount});
-				  i++;
-				});
-				$("#container").highcharts({
+                                var data_items = [];
+                                var theseries;
+                                var color=['#fe0000','#56b945','#0000fe']
+                                var i =0;
+                                $.each(items, function( index, value ) {
+                                  var item = value;
+                                  data_items.push({color: color[i],showInLegend: true, name: value.tahun, data: value.amount});
+                                  i++;
+                                });
+                                $("#container").highcharts({
                         chart: {
                                 type: "line"
                         },
@@ -172,17 +172,17 @@ function showGrafik(){
                         },
                         xAxis: {
                                 categories: ['Januari',
-											 'Februari',
-											 'Maret',
-											 'April',
-											 'Mei',
-											 'Juni',
-											 'juli',
-											 'Agustus',
-											 'September',
-											 'Oktober',
-											 'Novenber',
-											 'Desember']
+                                                                                         'Februari',
+                                                                                         'Maret',
+                                                                                         'April',
+                                                                                         'Mei',
+                                                                                         'Juni',
+                                                                                         'juli',
+                                                                                         'Agustus',
+                                                                                         'September',
+                                                                                         'Oktober',
+                                                                                         'Novenber',
+                                                                                         'Desember']
                         },
                         yAxis: {
                                 title: {
@@ -200,7 +200,7 @@ function showGrafik(){
                         series: data_items
                 });
 
-				
+                                
 
         });
 }
