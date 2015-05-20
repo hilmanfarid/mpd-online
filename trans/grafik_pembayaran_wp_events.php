@@ -1,7 +1,7 @@
 <?php
 //BindEvents Method @1-FA3AC75D
 function BindEvents()
-{
+{ 
     global $CCSEvents;
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
 }
