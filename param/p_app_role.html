@@ -72,6 +72,27 @@ $(document).ready(function()
             $('#tabtop').css('top', $(window).scrollTop());
     });
 });
+
+
+function toUser()
+{
+  var idelement;
+  if (idelement = document.getElementById('p_app_roleFormp_app_role_id'))
+  {
+    var pid = idelement.value;
+    var pcode = document.getElementById("p_app_roleFormcode").value;
+    var skw = document.getElementById("p_app_roleSearchs_keyword").value;
+    
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="p_app_role_user.php?p_app_role_id="+pid+"&p_app_role_code="+pcode+"&role_s_keyword="+skw;
+    } else {
+     alert("Pilih salah satu ROLE!");
+    }
+  } else {
+     alert("Pilih salah satu ROLE!");
+  }
+}
 </script>
 </head>
 <body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
@@ -82,6 +103,15 @@ $(document).ready(function()
         ADMINISTRASI ROLE 
       </div>
     </div>
+
+	<div class="th tab-button">
+      <label onclick="javascript:toUser()">
+      <div class="tab-title">
+        USER ROLE
+      </div>
+      </label>
+    </div>
+
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
