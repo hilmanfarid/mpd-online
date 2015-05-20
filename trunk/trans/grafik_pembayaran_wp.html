@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<meta http-equiv="refresh" content="300">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script>
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+$(function () {
+        $.getJSON( "../services/pembayaran_wp.php?p_year_period_id="+document.getElementById("grafik_pembayaran_formp_year_period_id").value, function( items ) {
+                var target_amt = items[0][0];
+                var realisasi_amt = items[0][1];
+                var tahun = items[0][2];
+                $("#container").highcharts({
+                        chart: {
+                                type: "line"
+                        },
+                        title: {
+                                text: "Target vs Realisasi " + tahun
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        tooltip: {
+                                
+                        },
+                        xAxis: {
+                                categories: [tahun]
+                        },
+                        yAxis: {
+                                title: {
+                    text: ""
+                }
+                        },
+                        plotOptions: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        series: [
+                        {showInLegend: true, name: "Target " + tahun, data: [target_amt]},
+                        {showInLegend: true, name: "Realisasi " + tahun, data: [realisasi_amt]}
+                        ]
+                });
+        });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        GRAFIK PEMBAYARAN WP 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record grafik_pembayaran_form -->
+        <form id="grafik_pembayaran_form" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field">
+            <tr>
+              <td valign="top">
+                <table class="Record">
+                  <!-- BEGIN Error -->
+                  <tr>
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Tahun 
+                      <td class="search-field">
+                        <select id="grafik_pembayaran_formp_year_period_id" name="{p_year_period_id_Name}">
+                          {p_year_period_id_Options}
+                        </select>
+                        &nbsp; </td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="search-field">NPWPD</td> 
+                      <td class="search-field"><input id="grafik_pembayaran_formnpwd" class="ControlsRQ" name="{npwd_Name}" readonly maxlength="32" value="{npwd}" size="32">&nbsp;<img onclick="javascript:lov_npwd()" border="0" src="../images/view.gif"><input id="grafik_pembayaran_formt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td>
+                    </tr>
+ 
+                    <tr>
+                      <td>Nama&nbsp;</td> 
+                      <td><input id="grafik_pembayaran_formcompany_name" class="ControlsRO" name="{company_name_Name}" readonly maxlength="14" value="{company_name}" size="32"></td>
+                    </tr>
+ 
+                    <tr>
+                      <td colspan="2" align="right">&nbsp; 
+                        <!-- BEGIN Button Button2 --><input id="grafik_pembayaran_formButton2" class="btn_tambah" onclick="showGrafik()" name="{Button_Name}" alt="Button1" value="Download Excel" type="button"><!-- END Button Button2 -->&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record grafik_pembayaran_form --><br>
+        </td>
+      </tr>
+    </table>
+    <div style="WIDTH: 100%; DISPLAY: inline-block" id="container">
+    </div>
+  </div>
+  <script language="javascript">
+function toJenis()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasiGridp_year_period_id2"))
+  {
+    var pid=idelement.value;
+    if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null)
+    {
+     location.href="t_target_realisasi_jenis.php?p_year_period_id="+pid;
+    } else {
+     alert("Pilih salah satu TAHUN!");
+    }
+  } else {
+     alert("Pilih salah satu TAHUN!");
+  }
+}
+function toBidang()
+{
+  var idelement;
+  if (idelement = document.getElementById("t_target_realisasiGridp_year_period_id2")){
+    var pid=idelement.value;
+    location.href="t_target_realisasi_bidang.php?p_year_period_id="+pid;
+  }
+}
+function lov_npwd() {
+        getFrom_LOV('grafik_pembayaran_form','t_cust_account_id,npwd,company_name','lov_npwd_manual.php');
+}
+function showGrafik(){
+        $.getJSON( "../services/pembayaran_wp.php?p_year_period_id="+document.getElementById("grafik_pembayaran_formp_year_period_id").value+"&t_cust_account_id="+document.getElementById("grafik_pembayaran_formt_cust_account_id").value, function( items ) {
+                                var data_items = [];
+                                var theseries;
+                                var color=['#fe0000','#56b945','#0000fe']
+                                var i =0;
+                                $.each(items, function( index, value ) {
+                                  var item = value;
+                                  data_items.push({color: color[i],showInLegend: true, name: value.tahun, data: value.amount});
+                                  i++;
+                                });
+                                $("#container").highcharts({
+                        chart: {
+                                type: "line"
+                        },
+                        title: {
+                                text: "Grafik Pembayaran WP"
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        tooltip: {
+                                
+                        },
+                        xAxis: {
+                                categories: ['Januari',
+                                                                                         'Februari',
+                                                                                         'Maret',
+                                                                                         'April',
+                                                                                         'Mei',
+                                                                                         'Juni',
+                                                                                         'juli',
+                                                                                         'Agustus',
+                                                                                         'September',
+                                                                                         'Oktober',
+                                                                                         'Novenber',
+                                                                                         'Desember']
+                        },
+                        yAxis: {
+                                title: {
+                    text: ""
+                }
+                        },
+                        plotOptions: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        series: data_items
+                });
+
+                                
+
+        });
+}
+</script>
+  </body>
+  </html>
