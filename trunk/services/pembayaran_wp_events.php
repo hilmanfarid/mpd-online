@@ -21,10 +21,13 @@ function SELECT_target_amt_realisa_ds_AfterExecuteSelect(& $sender)
     // Write your own code here.
 	$data = array();
 	while($SELECT_target_amt_realisa->DataSource->next_record()){
-		$data[]=$SELECT_target_amt_realisa->DataSource->Record;
+		$arr_items = $SELECT_target_amt_realisa->DataSource->Record;
+		$thiskey = $SELECT_target_amt_realisa->DataSource->Record['p_year_period_id'];
+		$data[$thiskey]['arr_data'][]=$arr_items;
+		$data[$thiskey]['amount'][]=(float)$arr_items['pajak'];
+		$data[$thiskey]['tahun']=$arr_items['year_code'];
 	}
-	echo "<pre>";
-	print_r($data);exit;
+	echo json_encode($data);exit;
 
 // -------------------------
 //End Custom Code
