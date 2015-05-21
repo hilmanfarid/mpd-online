@@ -1,0 +1,189 @@
+<?php
+//BindEvents Method @1-EF623785
+function BindEvents()
+{
+    global $CCSEvents;
+    $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
+}
+//End BindEvents Method
+
+//Page_OnInitializeView @1-32AA2FF9
+function Page_OnInitializeView(& $sender)
+{
+    $Page_OnInitializeView = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_laporan_pembayaran_wp_per_3_tahun; //Compatibility
+//End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close Page_OnInitializeView @1-81DF8332
+    return $Page_OnInitializeView;
+}
+//End Close Page_OnInitializeView
+
+//Page_BeforeShow @1-775905FC
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_laporan_pembayaran_wp_per_3_tahun; //Compatibility
+//End Page_BeforeShow
+
+//Custom Code @572-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$doAction = CCGetFromGet('doAction');
+	global $Label1;
+	if($doAction == 'view_html') {
+		$param_arr['p_year_period_id'] = CCGetFromGet('p_year_period_id');
+		$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
+
+		$param_arr['vat_code'] = CCGetFromGet('vat_code');
+		$Label1->SetText(GetCetakHTML($param_arr));
+	}
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
+
+function GetCetakHTML($param_arr) {
+	
+	$output = '';
+	
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0">
+          		<tr>
+            		<td valign="top">';
+
+	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0" width="900">
+                	<tr>
+                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  		<td class="th"><strong>LAPORAN REKAP SKPDKB</strong></td> 
+                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                	</tr>
+              		</table>';
+	
+	$output .= '<h2>JENIS PAJAK : '.$param_arr['vat_code'].' </h2>';
+	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
+                <tr >';
+
+	$output.='<th align="center" >NO</th>';
+	$output.='<th align="center" >NPWPD</th>';
+	$output.='<th align="center" >MASA PAJAK</th>';
+	$output.='<th align="center" >2013</th>';
+	$output.='<th align="center" >2014</th>';
+	$output.='<th align="center" >2015</th>';
+	$output.='</tr>';
+	
+	$dbConn	= new clsDBConnSIKP();
+	$query="select DISTINCT (a.npwd),a.t_cust_account_id from t_vat_setllement a, t_payment_receipt b
+			where a.t_vat_setllement_id = b.t_vat_setllement_id
+			and a.npwd != '' 
+			and a.p_vat_type_dtl_id in
+				(select p_vat_type_dtl_id from p_vat_type_dtl 
+				where p_vat_type_id = ".$param_arr['p_vat_type_id'].")
+			and a.start_period > to_date ('31-12-2012','dd-mm-yyyy')
+			order by a.npwd";
+	//echo $query;exit;
+	$data = array();
+	$dbConn->query($query);
+	while ($dbConn->next_record()) {
+		$data[] = $dbConn->Record;
+	}
+	$dbConn->close();
+	asort ($data);
+	/*echo "<pre>";
+	print_r($data);
+	echo "</pre>";
+	exit;*/
+
+	//echo $data[1]['t_cust_account_id'];
+	//exit;
+	$masa =array();
+	$masa[0]= '<td>Januari</td>';
+	$masa[1]= '<td>Februari</td>';
+	$masa[2]= '<td>Maret</td>';
+	$masa[3]= '<td>April</td>';
+	$masa[4]= '<td>Mei</td>';
+	$masa[5]= '<td>Juni</td>';
+	$masa[6]= '<td>Juli</td>';
+	$masa[7]= '<td>Agustus</td>';
+	$masa[8]= '<td>September</td>';
+	$masa[9]= '<td>Oktober</td>';
+	$masa[10]= '<td>November</td>';
+	$masa[11]= '<td>Desember</td>';
+
+	for( $k = 0 ; $k<count($data); $k++ ){ 
+		$json_url = "http://localhost/mpd/services/pembayaran_wp.php?p_year_period_id=".$param_arr['p_year_period_id']."&t_cust_account_id=".$data[$k]['t_cust_account_id'];
+		$json = file_get_contents($json_url);
+		$data_json = json_decode($json, TRUE);
+		/*echo "<pre>";
+		print_r($data_json);
+		echo "</pre>";
+		exit;
+		*/
+		$arr_month = array();
+		$html = array();
+		$j=0;
+		foreach($data_json as $tahun){
+			$i=0;
+			foreach($tahun['arr_data'] as $bulan){
+				if($j==0){
+					$no = '<tr><td>'.($k+1).'-'.($i+1).'</td>';
+					$npwpd= '<td>'.$bulan['npwd'].'</td>';
+					//$masa= '<td>'.$bulan['code'].'</td>';
+					$tahun = '<td>'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
+					$html[$i].=$no.$npwpd.$masa[$i].$tahun;
+				}else{
+					$html[$i].='<td>'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
+					if($j==2){
+						$html[$i].='</tr>';
+					}
+				}
+				$i++;
+			}
+			$j++;	
+		}
+		
+		$output.=(implode($html,''));
+		
+	}
+	
+	//echo '<script>';
+	return $output;
+	//echo '</script>';
+	
+	/*$j = 0;
+	$i = 0;
+	foreach ($data_json as $tahun){
+		//echo "<pre>";
+		//print_r($tahun['arr_data']);
+		//echo "</pre>";
+		//exit;
+		foreach ($tahun['arr_data'] as $bulan){
+			/*echo "<pre>";
+			print_r($bulan['code']);
+			echo "</pre>";
+			exit;*/
+	/*		$output.='<tr><td align="center" >'.($i+1).'</td>';
+			$output.='<td align="left" >'.$bulan['npwd'].'</td>';
+			$output.='<td align="left" >'.$bulan['code'].'</td>';
+			$output.='<td align="right" >'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
+			$output.='</tr>';
+			$i++;
+		}	
+	}*/
+	
+	return $output;
+}
+?>
