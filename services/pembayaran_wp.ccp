@@ -2,7 +2,7 @@
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" connection="ConnSIKP" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select c.npwd,c.wp_name,a.p_finance_period_id,a.code,case when a.p_finance_period_id=192 then sum(nvl(total_vat_amount,0)) else max(nvl(total_vat_amount,0)) end as pajak,e.code as ketetapan,d.p_year_period_id, d.year_code from p_finance_period a
 left join t_cust_account c on c.t_cust_account_id = {t_cust_account_id}
-left join t_vat_setllement b on b.p_finance_period_id = a.p_finance_period_id and b.t_cust_account_id = c.t_cust_account_id and p_settlement_type_id in (1,4,6)
+left join t_vat_setllement b on b.p_finance_period_id = a.p_finance_period_id and b.t_cust_account_id = c.t_cust_account_id and p_settlement_type_id in (1,4,6) and b.p_vat_type_dtl_id not in (11,27,14,15)
 left join p_year_period d on d.p_year_period_id = a.p_year_period_id
 left join p_settlement_type e on e.p_settlement_type_id=b.p_settlement_type_id
 where a. p_year_period_id in (
@@ -29,7 +29,6 @@ AND start_date &lt;= (
 )
 and start_date &gt; '2012-12-31'
 )
-and b.p_vat_type_dtl_id not in (11,27,14,15)
 group by 
 c.npwd,c.wp_name,a.p_finance_period_id,a.code,e.code,d.p_year_period_id, d.year_code
 ORDER BY a.start_date
