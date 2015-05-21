@@ -223,13 +223,13 @@ class clsSELECT_target_amt_realisaDataSource extends clsDBConnSIKP {  //SELECT_t
     }
 //End Prepare Method
 
-//Open Method @2-FB585D2B
+//Open Method @2-C1DD9D71
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "select c.npwd,c.wp_name,a.p_finance_period_id,a.code,case when a.p_finance_period_id=192 then sum(nvl(total_vat_amount,0)) else max(nvl(total_vat_amount,0)) end as pajak,e.code as ketetapan,d.p_year_period_id, d.year_code from p_finance_period a\n" .
         "left join t_cust_account c on c.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
-        "left join t_vat_setllement b on b.p_finance_period_id = a.p_finance_period_id and b.t_cust_account_id = c.t_cust_account_id and p_settlement_type_id in (1,4,6)\n" .
+        "left join t_vat_setllement b on b.p_finance_period_id = a.p_finance_period_id and b.t_cust_account_id = c.t_cust_account_id and p_settlement_type_id in (1,4,6) and b.p_vat_type_dtl_id not in (11,27,14,15)\n" .
         "left join p_year_period d on d.p_year_period_id = a.p_year_period_id\n" .
         "left join p_settlement_type e on e.p_settlement_type_id=b.p_settlement_type_id\n" .
         "where a. p_year_period_id in (\n" .
@@ -256,7 +256,6 @@ class clsSELECT_target_amt_realisaDataSource extends clsDBConnSIKP {  //SELECT_t
         ")\n" .
         "and start_date > '2012-12-31'\n" .
         ")\n" .
-        "and b.p_vat_type_dtl_id not in (11,27,14,15)\n" .
         "group by \n" .
         "c.npwd,c.wp_name,a.p_finance_period_id,a.code,e.code,d.p_year_period_id, d.year_code\n" .
         "ORDER BY a.start_date\n" .
