@@ -44,6 +44,7 @@
 		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
 		$data["total_trans_amount"] = $dbConn->f("total_trans_amount");
 		$data["vat_code"] = $dbConn->f("nomor_ayat");
+		$data["no_bayar"] = $dbConn->f("payment_key");
 				
 		$items[] = $data;
 	}
@@ -168,7 +169,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader2, $this->height-1, "Jalan Wastukancana No.2", "R", 0, 'C');
 		$this->SetFont('Arial', '', 10);
 		$this->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
-		$this->Cell($lheader2, $this->height-1, "", "R", 0, 'C');
+		$this->Cell($lheader2, $this->height-1, "No.Bayar", "R", 0, 'C');
 		$this->Ln();
 		
 		// $this->Cell($lheader3, $this->height + 2, "", "BL", 0, 'R');
@@ -181,7 +182,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - Bandung", "BR", 0, 'C');
 		$this->SetFont('Arial', '', 10);
 		$this->Cell($lheader3, $this->height+1, "", "BR", 0, 'L');
-		$this->Cell($lheader2, $this->height+1, "", "BR", 0, 'C');
+		$this->Cell($lheader2, $this->height+1, $data["no_bayar"], "BR", 0, 'C');
 		$this->Ln();
 
 		$lbody = $this->lengthCell / 4;
@@ -230,7 +231,7 @@ class FormCetak extends FPDF {
 		
 		$this->Cell(5, $this->height, "", "BL", 0, 'L');
 		$this->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "B", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": ".$data["due_date"], "BR", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": ".Date("d M Y",strtotime("+15 day")), "BR", 0, 'L');
 		
 		
 		$this->Ln();
@@ -407,7 +408,7 @@ class FormCetak extends FPDF {
 		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . Date("d M Y") /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
@@ -467,7 +468,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height, ": ".$data["wp_address_name"], "R", 0, 'L');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . Date("d M Y"), "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Yang Menerima, ", "R", 0, 'C');
