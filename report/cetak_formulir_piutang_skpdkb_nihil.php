@@ -13,7 +13,7 @@
 
 	
 	if($t_piutang_pajak_penetapan_final_id > 0){
-		$sql = "select c.code as vat_type_code,lpad(a.no_kohir,8,0) as no_kohir_formated,d.code as finance_period_code,* FROM t_piutang_pajak_penetapan_final_2 a
+		$sql = "select c.code as vat_type_code,lpad(a.no_kohir,8,0) as no_kohir_formated,d.code as finance_period_codes,a.npwd as npwpd,a.year_code as tahun,* FROM t_piutang_pajak_penetapan_final_2 a
 		left join t_cust_account b on b.t_cust_account_id=a.t_cust_account_id
 		left join p_vat_type c on c.p_vat_type_id=a.p_vat_type_id
 		left join p_finance_period d on d.p_finance_period_id=a.p_finance_period_id
@@ -35,9 +35,9 @@
 		$data["t_cust_account_id"] = $dbConn->f("t_cust_account_id");
 		$data["wp_name"] = $dbConn->f("wp_name");
 		$data["wp_address_name"] = $dbConn->f("wp_address_name");
-		$data["finance_period_code"] = $dbConn->f("finance_period_code");
-		$data["tahun"] = $dbConn->f("year_code");
-		$data["npwd"] = $dbConn->f("npwd");
+		$data["finance_period_code"] = $dbConn->f("finance_period_codes");
+		$data["tahun"] = $dbConn->f("tahun");
+		$data["npwd"] = $dbConn->f("npwpd");
 		$data["due_date"] = $dbConn->f("due_date");
 		$data["no_urut"] = $dbConn->f("no_kohir_formated");
 		$data["jenis_pajak"] = $dbConn->f("vat_code");
@@ -327,7 +327,11 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('Arial', '', 6.5);
 		$this->Cell(10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody2 - 10, $this->height, "          (".$data["receipt_no"].")", "", 0, 'L');
+		if ($data["receipt_no"]!=''){
+			$this->Cell($lbody2 - 10, $this->height, "          (".$data["receipt_no"].")", "", 0, 'L');
+		}else{
+			$this->Cell($lbody2 - 10, $this->height, "          ", "", 0, 'L');
+		}
 		$this->Cell($lbodyx1, $this->height, "", "", 0, 'L');
 		$this->Cell($lbodyx1 - 10, $this->height, "", "", 0, 'R');
 		$this->Cell(10, $this->height, "", "", 0, 'R');
