@@ -105,7 +105,7 @@ function t_vat_setllementForm_Button1_OnClick(& $sender)
 		$t_vat_setllement_id = $dbConn2->f("t_vat_setllement_id");
 	  	
 		echo '<script language="javascript">';
-		echo "window.open('http://localhost/mpd/report/cetak_formulir_sptpd.php?t_vat_setllement_id=".$t_vat_setllement_id."','No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
+		echo "window.open('http://172.16.20.1/mpd/report/cetak_formulir_sptpd.php?t_vat_setllement_id=".$t_vat_setllement_id."','No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
 		echo '</script>';
 		
 	}
