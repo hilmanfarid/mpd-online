@@ -468,7 +468,7 @@ class FormCetak extends FPDF {
 		$data['njop_pbb']."_".
 		$data['registration_no']."_".
 		str_replace(" ","-",dateToString($data['creation_date']))
-		,160,195,25,25,'PNG');
+		,160,200,25,25,'PNG');
 		$this->SetFont('Times', 'B', 12);
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
@@ -492,6 +492,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
+		$this->Ln();
 		$this->Ln();
 		
 		$this->SetFont('Times', 'B', 12);
