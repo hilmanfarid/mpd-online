@@ -36,8 +36,8 @@ $dbConn = new clsDBConnSIKP();
 
 $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
-		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)";
-
+		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) LIMIT 5";
+//echo $query;exit;
 $dbConn->query($query);
 $data=array();
 while ($dbConn->next_record()) {
@@ -100,12 +100,13 @@ class FormCetak extends FPDF {
 	function PageCetak($data,$no_urut) {
 		$this->AliasNbPages();
 		$this->SetLeftMargin(10);
+		$this->SetTopMargin(2);
 		$this->AddPage("P");
 		$this->AddFont('BKANT');
 		
 		$this->SetFont('BKANT', '', 12);
 		
-		// $this->Image('../images/logo_pemda.png',25,17,25,25);
+		$this->Image('../images/logo_pemda.png',3,3,15,15);
 		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
@@ -114,39 +115,37 @@ class FormCetak extends FPDF {
 		$lheader4 = $lheader * 4;
 		$lheader7 = $lheader * 7;
 		
-		$this->SetFont('BKANT', '', 12);
+		$this->SetFont('Arial', 'B', 6);
 		
-		// $this->Cell($lheader1, $this->height, "", "LT", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "", "TR", 0, 'C');
-		// $this->Ln();
-		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "", "R", 0, 'C');
-		// $this->Ln();
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
+		$this->Ln();
 		
-		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
-		// $this->Ln();
+		//$this->SetFont('BKANT', '', 16);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "DINAS PELAYANAN PAJAK", "", 0, 'C');
+		$this->Ln();
 		
-		// $this->SetFont('BKANT', '', 16);
-		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		// $this->Ln();
+		$this->SetFont('Arial', '', 6);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "JALAN WASTUKENCANA NO. 2 TELP 4235052 FAX. Pes. 33", "", 0, 'C');
+		$this->Ln();
+		$this->SetFont('Arial', 'B', 6);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "BANDUNG", "", 0, 'C');
+		$this->Ln();
 		
-		// $this->SetFont('BKANT', '', 12);
-		// $this->Cell($lheader1, $this->height + 3, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height + 3, "Jalan Wastukancana No. 2 Telp. 022. 4235052 - Bandung", "R", 0, 'C');
-		// $this->Ln();
-		
-		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "", "R", 0, 'C');
-		// $this->Ln();
-		// $this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "", "BR", 0, 'C');
-		// $this->Ln();
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
+		$this->Ln();
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
+		$this->Ln();
 		
 		$this->Cell($this->lengthCell, $this->height, "", "TLR", 0, 'L');
 		$this->Ln();
 		
+		$this->SetFont('BKANT', '', 12);
 		$lbody = $this->lengthCell / 4;
 		$lbody1 = $lbody * 1;
 		$lbody2 = $lbody * 2;
