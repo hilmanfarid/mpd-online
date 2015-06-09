@@ -26,6 +26,11 @@ $(function() {
         realisasi_amt = items[0][1];
         group_code = items[0][2];
         year_code = items[0][3];
+		Highcharts.setOptions({
+			lang:{
+				numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+			}
+		});
         $("#container").highcharts({
             chart: {
                 type: "column"
@@ -78,6 +83,12 @@ $(function () {
                         realisasi_amt[i] = items[i][1];
                         vat_code[i] = items[i][2];
                 }
+
+				Highcharts.setOptions({
+					lang:{
+						numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+					}
+				});
                 
                 $("#container2").highcharts({
                         chart: {
