@@ -13,7 +13,7 @@ $pejabat = CCGetFromGet("pejabat", 1);
 
 $dbConn = new clsDBConnSIKP();
 $query="select * from t_debt_letter where 
-	p_finance_period_id=".$p_finance_period_id." and sequence_no = ".$sequence_no;
+	p_finance_period_id=".$p_finance_period_id." and sequence_no = ".$sequence_no." limit 10";
 //echo $query;exit;
 $dbConn->query($query);
 $dbConn->next_record();
@@ -52,6 +52,7 @@ $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)";
 
 $dbConn->query($query);
+//echo $query;exit;
 $data=array();
 while ($dbConn->next_record()) {
 		$data[]= array(
@@ -113,12 +114,12 @@ class FormCetak extends FPDF {
 	function PageCetak($data,$no_urut) {
 		$this->AliasNbPages();
 		$this->SetLeftMargin(10);
+		$this->SetTopMargin(2);
 		$this->AddPage("P");
 		$this->AddFont('BKANT');
 		
-		$this->SetFont('BKANT', '', 12);
 		
-		// $this->Image('../images/logo_pemda.png',25,17,25,25);
+		$this->Image('../images/logo_pemda.png',3,3,15,15);
 		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
@@ -127,39 +128,37 @@ class FormCetak extends FPDF {
 		$lheader4 = $lheader * 4;
 		$lheader7 = $lheader * 7;
 		
-		$this->SetFont('BKANT', '', 12);
+		$this->SetFont('Arial', 'B', 6);
 		
-		// $this->Cell($lheader1, $this->height, "", "LT", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "", "TR", 0, 'C');
-		// $this->Ln();
-		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "", "R", 0, 'C');
-		// $this->Ln();
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
+		$this->Ln();
 		
-		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
-		// $this->Ln();
+		//$this->SetFont('BKANT', '', 16);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "DINAS PELAYANAN PAJAK", "", 0, 'C');
+		$this->Ln();
 		
-		// $this->SetFont('BKANT', '', 16);
-		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		// $this->Ln();
+		$this->SetFont('Arial', '', 6);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "JALAN WASTUKENCANA NO. 2 TELP 4235052 FAX. Pes. 33", "", 0, 'C');
+		$this->Ln();
+		$this->SetFont('Arial', 'B', 6);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "BANDUNG", "", 0, 'C');
+		$this->Ln();
 		
-		// $this->SetFont('BKANT', '', 12);
-		// $this->Cell($lheader1, $this->height + 3, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height + 3, "Jalan Wastukancana No. 2 Telp. 022. 4235052 - Bandung", "R", 0, 'C');
-		// $this->Ln();
-		
-		// $this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "", "R", 0, 'C');
-		// $this->Ln();
-		// $this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
-		// $this->Cell($lheader7, $this->height, "", "BR", 0, 'C');
-		// $this->Ln();
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
+		$this->Ln();
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
+		$this->Ln();
 		
 		$this->Cell($this->lengthCell, $this->height, "", "TLR", 0, 'L');
 		$this->Ln();
 		
+		$this->SetFont('BKANT', '', 12);
 		$lbody = $this->lengthCell / 4;
 		$lbody1 = $lbody * 1;
 		$lbody2 = $lbody * 2;
@@ -501,7 +500,7 @@ class FormCetak extends FPDF {
 			str_replace(" ","-",$data['letter_date_txt'])."_".
 			$data["npwd"]."_".
 			str_replace(" ","-",$data["periode"])
-			,161,168,25,25,'PNG');
+			,161,181,25,25,'PNG');
 		}else{
 			if ($pejabat == 1){
 				$this->Cell($lbody4+10, $this->height, "Drs. H. GUN GUN SUMARYANA", "B", 0, 'C');
@@ -509,7 +508,7 @@ class FormCetak extends FPDF {
 				str_replace(" ","-",$data['letter_date_txt'])."_".
 				$data["npwd"]."_".
 				str_replace(" ","-",$data["periode"])
-				,28,168,25,25,'PNG');
+				,28,181,25,25,'PNG');
 			}else{
 				$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
 				$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,168,$lbody4+48,20);
@@ -517,7 +516,7 @@ class FormCetak extends FPDF {
 				str_replace(" ","-",$data['letter_date_txt'])."_".
 				$data["npwd"]."_".
 				str_replace(" ","-",$data["periode"])
-				,28,168,25,25,'PNG');
+				,28,181,25,25,'PNG');
 			}
 		}
 		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
