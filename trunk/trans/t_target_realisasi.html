@@ -15,8 +15,13 @@ $(function () {
                 var target_amt = items[0][0];
                 var realisasi_amt = items[0][1];
                 var tahun = items[0][2];
+				Highcharts.setOptions({
+					lang:{
+						numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+					}
+				});
                 $("#container").highcharts({
-                        chart: {
+						chart: {
                                 type: "column"
                         },
                         title: {
