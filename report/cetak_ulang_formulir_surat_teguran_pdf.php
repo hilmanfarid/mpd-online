@@ -13,7 +13,7 @@ $pejabat = CCGetFromGet("pejabat", 1);
 
 $dbConn = new clsDBConnSIKP();
 $query="select * from t_debt_letter where 
-	p_finance_period_id=".$p_finance_period_id." and sequence_no = ".$sequence_no." limit 10";
+	p_finance_period_id=".$p_finance_period_id." and sequence_no = ".$sequence_no;
 //echo $query;exit;
 $dbConn->query($query);
 $dbConn->next_record();
@@ -128,24 +128,24 @@ class FormCetak extends FPDF {
 		$lheader4 = $lheader * 4;
 		$lheader7 = $lheader * 7;
 		
-		$this->SetFont('Arial', 'B', 6);
+		$this->SetFont('Arial', 'B', 8);
 		
 		$this->Cell(8, 3, "", "", 0, 'L');
-		$this->Cell(70, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
+		$this->Cell(90, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
 		$this->Ln();
 		
 		//$this->SetFont('BKANT', '', 16);
 		$this->Cell(8, 3, "", "", 0, 'L');
-		$this->Cell(70, 3, "DINAS PELAYANAN PAJAK", "", 0, 'C');
+		$this->Cell(90, 3, "DINAS PELAYANAN PAJAK", "", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', '', 6);
+		$this->SetFont('Arial', '', 8);
 		$this->Cell(8, 3, "", "", 0, 'L');
-		$this->Cell(70, 3, "JALAN WASTUKENCANA NO. 2 TELP 4235052 FAX. Pes. 33", "", 0, 'C');
+		$this->Cell(90, 3, "JALAN WASTUKENCANA NO. 2 TELP 4235052 FAX. Pes. 33", "", 0, 'C');
 		$this->Ln();
-		$this->SetFont('Arial', 'B', 6);
+		$this->SetFont('Arial', 'B', 8);
 		$this->Cell(8, 3, "", "", 0, 'L');
-		$this->Cell(70, 3, "BANDUNG", "", 0, 'C');
+		$this->Cell(90, 3, "BANDUNG", "", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
