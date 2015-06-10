@@ -6,6 +6,7 @@ include_once(RelativePath . "/Common.php");
 include_once("../include/fpdf.php");
 
 $t_customer_order_id = CCGetFromGet("CURR_DOC_ID", "");
+$tgl = CCGetFromGet("tgl", "");
 //$t_customer_order_id = 1;
 $data = array();
 
@@ -378,9 +379,13 @@ class FormCetak extends FPDF {
 		$sigLen1 = $sigLen * 1;
 		$sigLen2 = $sigLen * 2;
 		
+		$tgl = CCGetFromGet("tgl", "");
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		//$this->Cell($sigLen1, $this->height, "Bandung, 26 September 2014" , 0, 0, 'C');
-		$this->Cell($sigLen1, $this->height, "Bandung, " . date("j F Y"), 0, 0, 'C');
+		if ($tgl == ''){
+			$this->Cell($sigLen1, $this->height, "Bandung, " . date("j F Y"), 0, 0, 'C');
+		}else{
+			$this->Cell($sigLen1, $this->height, "Bandung, ".$tgl , 0, 0, 'C');
+		}
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
