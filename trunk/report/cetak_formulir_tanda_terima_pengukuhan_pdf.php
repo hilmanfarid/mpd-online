@@ -6,6 +6,7 @@ include_once(RelativePath . "/Common.php");
 include_once("../include/fpdf.php");
 
 $t_customer_order_id = CCGetFromGet("t_customer_order_id", "");
+$tgl = CCGetFromGet("tgl", "");
 //$t_customer_order_id = 1;
 $data = array();
 $dbConn = new clsDBConnSIKP();
@@ -161,11 +162,17 @@ class FormCetak extends FPDF {
         //---------------- TTD
         $ttdKolom1 = ($this->lengthCell * 5) / 8;
         $ttdKolom2 = ($this->lengthCell * 3) / 8;
+		
+		$tgl = CCGetFromGet("tgl", "");
         $this->cell($ttdKolom1, $this->height, '', 'L', 0,'L');
-        $this->cell($ttdKolom2, $this->height, 'Bandung, '. date('d F Y').'           ', 'R', 0,'R');
+        if ($tgl == ''){
+			$this->cell($ttdKolom2, $this->height, 'Bandung, '. date('d F Y'), 'R', 0,'C');
+		}else{
+			$this->cell($ttdKolom2, $this->height, 'Bandung, '. $tgl, 'R', 0,'C');
+		}
         $this->Ln();
         $this->cell($ttdKolom1, $this->height, '', 'L', 0,'C');
-        $this->cell($ttdKolom2, $this->height, '    Yang Menerima', 'R', 0,'C');
+        $this->cell($ttdKolom2, $this->height, 'Yang Menerima', 'R', 0,'C');
         $this->Ln();
         $this->seEnter();
         $this->seEnter();
