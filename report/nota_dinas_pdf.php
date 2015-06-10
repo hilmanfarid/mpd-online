@@ -11,6 +11,7 @@ $dbConn = new clsDBConnSIKP();
 $data = array();
 
 $idVatSS = CCGetFromGet("CURR_DOC_ID", "");
+$tgl = CCGetFromGet("tgl", "");
 
 if (empty($idVatSS)) {
     echo "Data Tidak Ditemukan";
@@ -112,9 +113,13 @@ class FormCetak extends FPDF {
         $this->Cell($lengthJudul2, $this->height, "Kepala Seksi Pendaftaran dan Pendataan", "", 0, 'L');
         $this->Ln(6);
 
+		$tgl = CCGetFromGet("tgl", "");
         $this->Cell($lengthJudul1, $this->height, "Tanggal        :", "", 0, 'L');
-        $this->Cell($lengthJudul2, $this->height, date('d F Y'), "", 0, 'L');
-		//$this->Cell($lengthJudul2, $this->height, "20 Mei 2015", "", 0, 'L');
+        if ($tgl == ''){
+			$this->Cell($lengthJudul2, $this->height, date('d F Y'), "", 0, 'L');
+		}else{
+			$this->Cell($lengthJudul2, $this->height, $tgl, "", 0, 'L');
+		}
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Nomor          :", "", 0, 'L');
@@ -137,8 +142,11 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        //$this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal " . date('d F Y') . ", telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
-        $this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal 20 Mei 2015, telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
+        if ($tgl == ''){
+			$this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal " . date('d F Y') . ", telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
+		}else{
+			$this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal ".$tgl.", telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
+		}
 		$this->Ln(6);
 
         //data wajib pajak
