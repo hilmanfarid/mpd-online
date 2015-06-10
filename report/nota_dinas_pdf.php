@@ -83,7 +83,7 @@ class FormCetak extends FPDF {
         $this->Ln(6);
         $this->SetFont('Times', 'B', 12);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'C');
-        $this->Cell($lengthJudul2, $this->height, "PEMERINTAHAN KOTA BANDUNG", "", 0, 'C');
+        $this->Cell($lengthJudul2, $this->height, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
         $this->Ln(10);
         $this->SetFont('Times', 'B', 22);
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'C');
@@ -91,7 +91,7 @@ class FormCetak extends FPDF {
         $this->Ln(8);
         $this->SetFont('Times', '', 12);
         $this->Cell($lengthJudul1, $this->height, "", "B", 0, 'C');
-        $this->Cell($lengthJudul2, $this->height, "Jalan Wastukancana No. 2 Telp. 022. 4232338 - Bandung", "B", 0, 'C');
+        $this->Cell($lengthJudul2, $this->height, "Jalan Wastukancana No. 2 Telp. 022.4235052 - Bandung", "B", 0, 'C');
 
         $this->Ln(10);
         $this->SetFont('Times', 'B', 14);
@@ -114,6 +114,7 @@ class FormCetak extends FPDF {
 
         $this->Cell($lengthJudul1, $this->height, "Tanggal        :", "", 0, 'L');
         $this->Cell($lengthJudul2, $this->height, date('d F Y'), "", 0, 'L');
+		//$this->Cell($lengthJudul2, $this->height, "20 Mei 2015", "", 0, 'L');
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "Nomor          :", "", 0, 'L');
@@ -136,8 +137,9 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
         $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal " . date('d F Y') . ", telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
-        $this->Ln(6);
+        //$this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal " . date('d F Y') . ", telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
+        $this->MultiCell($lengthJudul2, $this->height, "Perlu disampaikan bahwa pada tanggal 20 Mei 2015, telah diterima surat permohonan menjadi wajib pajak daerah dengan identitas pemohon sebagai berikut : ", "", 'J');
+		$this->Ln(6);
 
         //data wajib pajak
         $lengWP1 = $lengthJudul2 * 1/3;
