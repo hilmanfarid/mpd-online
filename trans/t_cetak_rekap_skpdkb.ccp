@@ -70,7 +70,13 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<TextBox id="574" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="npwpd" PathID="t_rep_lap_spjpSearchnpwpd">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
