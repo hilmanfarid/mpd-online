@@ -72,7 +72,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -97,6 +97,13 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td colspan="4">{Error}</td>
                   </tr>
                   <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">NPWPD</td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchnpwpd" class="ControlsIN" value="{npwpd}" maxlength="32" size="32" name="{npwpd_Name}"></td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
                   <tr class="Controls">
                     <td class="search-field">Jenis Pajak</td> 
                     <td class="search-field"><input id="t_rep_lap_spjpSearchvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}"></td> 
@@ -186,10 +193,10 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
         status_bayar = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
-                code= document.getElementById("t_rep_lap_spjpSearchcode").value;
+        code= document.getElementById("t_rep_lap_spjpSearchcode").value;
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
-        
+        npwpd= document.getElementById("t_rep_lap_spjpSearchnpwpd").value;
                 if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "" ) {
             alert("Semua Filter Harus Diisi");
         }else {
@@ -197,10 +204,11 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 params += "&p_year_period_id="+p_year_period_id;
                 params += "&p_finance_period_id="+p_finance_period_id;
                 params += "&p_vat_type_id="+p_vat_type_id;
-                        params += "&year_code="+year_code;
+                params += "&year_code="+year_code;
                 params += "&code="+code;
                 params += "&vat_code="+vat_code;
-                        params += "&ListBox1="+status_bayar;
+                params += "&ListBox1="+status_bayar;
+				params += "&npwpd="+npwpd;
                 location.href="t_cetak_rekap_skpdkb.php"+params;
             //window.open("../report/view_ulang_daftar_surat_teguran_pdf.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id+"&status=" + status_bayar +"&p_vat_type_id="+p_vat_type_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
@@ -211,12 +219,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 window.open("../report/cetak_formulir_skpdkb_jabatan_v2.php?t_vat_setllement_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
 
-	function cetak_skpdkb_barcode(set_id)
+        function cetak_skpdkb_barcode(set_id)
     {
                 window.open("../report/cetak_formulir_skpdkb_jabatan_barcode.php?t_vat_setllement_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
 
-	function cetak_semua_skpdkb()
+        function cetak_semua_skpdkb()
     {
         p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
@@ -225,7 +233,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 code= document.getElementById("t_rep_lap_spjpSearchcode").value;
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
-        
+        npwpd= document.getElementById("t_rep_lap_spjpSearchnpwpd").value;
                 if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "" ) {
             alert("Semua Filter Harus Diisi");
         }else {
@@ -237,7 +245,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 params += "&code="+code;
                 params += "&vat_code="+vat_code;
                         params += "&ListBox1="+status_bayar;
-                //location.href="t_cetak_rekap_skpdkb.php"+params;
+						params += "&npwpd="+npwpd;
             window.open("../report/cetak_formulir_skpdkb_jabatan_v2.php" +params, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
     }
