@@ -47,6 +47,7 @@ function Page_BeforeShow(& $sender)
 		$param_arr['p_finance_period_id'] = CCGetFromGet('p_finance_period_id');
 		$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
 		$param_arr['status_bayar'] = CCGetFromGet('ListBox1');
+		$param_arr['npwpd'] = CCGetFromGet('npwpd');
 
 		$param_arr['vat_code'] = CCGetFromGet('vat_code');
 		$param_arr['year_code'] = CCGetFromGet('year_code');
@@ -109,7 +110,8 @@ function GetCetakHTML($param_arr) {
 		where p_settlement_type_id = 4 and a.p_finance_period_id =".$param_arr['p_finance_period_id']."
 		and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
 		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
-		and x.p_account_status_id = 1";
+		and x.p_account_status_id = 1
+		and a.npwd ilike '%".$param_arr['npwpd']."%'";
 	if ($param_arr['status_bayar']==2){
 		$query.="and receipt_no is not null ORDER BY wp_name";
 	}else{
