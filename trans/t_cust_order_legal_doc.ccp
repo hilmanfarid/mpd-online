@@ -165,7 +165,13 @@ WHERE t_cust_order_legal_doc_id = {t_cust_order_legal_doc_id} ">
 			<Components>
 				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_cust_order_legal_docFormButton_Insert" removeParameters="FLAG">
 					<Components/>
-					<Events/>
+					<Events>
+<Event name="OnClick" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="695"/>
+</Actions>
+</Event>
+</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
@@ -277,7 +283,7 @@ WHERE t_cust_order_legal_doc_id = {t_cust_order_legal_doc_id} ">
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters>
 				<TableParameter id="626" conditionType="Parameter" useIsNull="False" field="t_cust_order_legal_doc_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cust_order_legal_doc_id"/>
