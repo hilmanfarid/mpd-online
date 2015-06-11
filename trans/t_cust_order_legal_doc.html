@@ -21,6 +21,31 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
 <script language="JavaScript" type="text/javascript">
 //End Include Common JSFunctions
 
+//t_cust_order_legal_docFormButton_Insert_OnClick @95-2D492B7D
+function t_cust_order_legal_docFormButton_Insert_OnClick()
+{
+    var result = true;
+//End t_cust_order_legal_docFormButton_Insert_OnClick
+
+//Custom Code @695-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+	var file_name=document.getElementById("t_cust_order_legal_docFormfile_nameFileControl").value;
+	if (file_name ==''){
+		if (confirm('Anda Yakin akan menyimpan data tanpa upload file?')){
+		
+		}else{
+			return false;
+		}
+	}
+    // -------------------------
+//End Custom Code
+
+//Close t_cust_order_legal_docFormButton_Insert_OnClick @95-BC33A33A
+    return result;
+}
+//End Close t_cust_order_legal_docFormButton_Insert_OnClick
+
 //t_cust_order_legal_docFormButton_Delete_OnClick @97-E2E64A33
 function t_cust_order_legal_docFormButton_Delete_OnClick()
 {
@@ -43,8 +68,9 @@ function t_cust_order_legal_docFormButton_Cancel_OnClick()
 }
 //End t_cust_order_legal_docFormButton_Cancel_OnClick
 
-//bind_events @1-415A3D61
+//bind_events @1-414E5327
 function bind_events() {
+    addEventHandler("t_cust_order_legal_docFormButton_Insert", "click", t_cust_order_legal_docFormButton_Insert_OnClick);
     addEventHandler("t_cust_order_legal_docFormButton_Delete", "click", t_cust_order_legal_docFormButton_Delete_OnClick);
     addEventHandler("t_cust_order_legal_docFormButton_Cancel", "click", t_cust_order_legal_docFormButton_Cancel_OnClick);
 }
