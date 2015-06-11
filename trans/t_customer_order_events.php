@@ -151,6 +151,34 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
     // Write your own code here.
 	$dbConnect = new clsDBConnSIKP();
 	$CustId = $t_customer_orderForm->t_customer_order_id->GetValue();
+	$npwpd = '';
+	//generate npwpd
+	$sql = "select npwpd from t_vat_registration where t_customer_order_id =".$CustId;
+	//echo $sql; exit;
+	$dbConnect->query($sql);
+	while($dbConnect->next_record()){
+		$npwpd = $dbConnect->f("npwpd");
+	}
+	
+	if ($npwpd='' || empty($npwpd)){
+		$sql = "select f_gen_npwpd(".$CustId.")as npwpd from dual";
+		$dbConnect->query($sql);
+		while($dbConnect->next_record()){
+			$val = $dbConnect->f("npwpd");
+		}
+	
+		//update npwpd
+		if ($val != ''){
+			$sql = "update t_vat_registration
+				set npwpd = '".$val."'
+				where t_customer_order_id =".$CustId;
+			$dbConnect->query($sql);
+			$dbConnect->next_record();
+			//echo $sql;exit;
+		}
+	}
+	
+	//submit
 	$sql = "select o_result_code, o_result_msg from f_first_submit_engine(500,".$CustId.",'".CCGetUserLogin()."')";
 	//die($sql);
 	$dbConnect->query($sql);
@@ -160,7 +188,14 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
 	}
 
 	echo "<meta http-equiv='refresh' content='0;url=t_customer_order.php?pesan=".$errMsg."'/>";
-	exit;
+	
+	//print kartu npwpd
+	echo '<script language="javascript">';
+	//echo "window.open('http://172.16.20.1/mpd/report/cetak_formulir_skpd_nihil.php?t_vat_setllement_id=".$t_vat_setllement_id."','No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
+	echo "window.open('../report/cetak_kartu_npwpd.php?t_customer_order_id=".$CustId."','', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
+	echo '</script>';
+	return;
+	
 // -------------------------
 //End Custom Code
 
