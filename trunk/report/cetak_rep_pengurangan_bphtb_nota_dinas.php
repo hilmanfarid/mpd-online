@@ -321,16 +321,29 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "B", 8);
 		$this->SetWidths(array($this->lengthCell/2,$this->lengthCell/2));
 		$this->SetAligns(array("C","C"));
-		$this->RowMultiBorderWithHeight(
-			array
-			(	"",
-				"a.n. KEPALA BIDANG PAJAK PENDAFTARAN \nKASI PENYELESAIAN PIUTANG \n\n\n\nRACHMAT SATIADI, S.IP, M.Si. \nPembina \nNIP. 19691104 1998031 007"
-			),
-			array
-			(
-				"",""
-			),
-			$this->height-1);
+		/*if (){
+				$this->RowMultiBorderWithHeight(
+				array
+				(	"",
+					"a.n. KEPALA BIDANG PAJAK PENDAFTARAN \nKASI PENYELESAIAN PIUTANG \n\n\n\nRACHMAT SATIADI, S.IP, M.Si. \nPembina \nNIP. 19691104 1998031 007"
+				),
+				array
+				(
+					"",""
+				),
+				$this->height-1);
+		}else{*/
+				$this->RowMultiBorderWithHeight(
+				array
+				(	"",
+					"a.n. KEPALA BIDANG PAJAK PENDAFTARAN \nKASI PENYELESAIAN PIUTANG \n\n\n\nDIN KAMADIANTINI S.IP, MM \nPembina \nNIP. 19710320 1998032 006"
+				),
+				array
+				(
+					"",""
+				),
+				$this->height-1);
+		//}
 	}
 	
 	function barisBaru3($subtractor, $field, $middle, $currency, $data){
