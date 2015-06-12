@@ -84,6 +84,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >NOTA DINAS</th>';
 	$output.='<th align="center" >PENGUKUHAN</th>';
 	$output.='<th align="center" >TANDA TERIMA</th>';
+	$output.='<th align="center" >KARTU NPWPD</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
@@ -109,6 +110,7 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="center" ><input id="cetak_nota_dinas" class="btn_tambah" onClick="cetak_nota_dinas('.$data[$i]['t_customer_order_id'].')" value="cetak_nota_dinas" type="button">';
 		$output.='<td align="center" ><input id="cetak_pegukuhan" class="btn_tambah" onclick="cetak_pengukuhan('.$data[$i]['t_customer_order_id'].'); return false;" value="cetak_pengukuhan" type="button">';
 		$output.='<td align="center" ><input id="cetak_tanda_terima" class="btn_tambah" onclick="cetak_tanda_terima('.$data[$i]['t_customer_order_id'].'); return false;" value="cetak_tanda_terima" type="button"></td>';
+		$output.='<td align="center" ><input id="cetak_kartu_npwpd" class="btn_tambah" onclick="cetak_kartu_npwpd('.$data[$i]['t_customer_order_id'].'); return false;" value="cetak_kartu_npwpd" type="button"></td>';
 		$output.='</tr>';
 	}
 
