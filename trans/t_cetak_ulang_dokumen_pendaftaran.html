@@ -166,6 +166,11 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 tgl= document.getElementById("t_rep_lap_spjpSearchtgl").value;
                 window.open("../report/cetak_formulir_tanda_terima_pengukuhan_pdf.php?t_customer_order_id=" + set_id +"&tgl="+tgl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
+	
+		function cetak_kartu_npwpd(set_id)
+    {
+                window.open("../report/cetak_kartu_npwpd.php?t_customer_order_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+    }
 </script>
 <p>{Label1}</p>
 </body>
