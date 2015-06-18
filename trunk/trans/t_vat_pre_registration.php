@@ -514,7 +514,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-326CDA25
+//Class_Initialize Event @23-979120E9
     function clsRecordt_ppatForm($RelativePath, & $Parent)
     {
 
@@ -596,8 +596,6 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
                     $this->updated_by->SetText(CCGetUserLogin());
                 if(!is_array($this->updated_date->Value) && !strlen($this->updated_date->Value) && $this->updated_date->Value !== false)
                     $this->updated_date->SetText(date("d-M-Y"));
-                if(!is_array($this->reg_duedate->Value) && !strlen($this->reg_duedate->Value) && $this->reg_duedate->Value !== false)
-                    $this->reg_duedate->SetText(date("d-M-Y"));
             }
         }
     }
@@ -1162,7 +1160,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
     }
 //End SetValues Method
 
-//Insert Method @23-82F12F97
+//Insert Method @23-423EF6F5
     function Insert()
     {
         global $CCSLocales;
@@ -1242,7 +1240,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
         "            '" . $this->SQLValue($this->cp["company_brand"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["company_additional_addr"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["brand_address_name"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["brand_address_no"]->GetDBValue(), ccsText) . "', \n" .
         "            '" . $this->SQLValue($this->cp["brand_address_rt"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["brand_address_rw"]->GetDBValue(), ccsText) . "', " . $this->SQLValue($this->cp["brand_p_region_id_kel"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["brand_p_region_id_kec"]->GetDBValue(), ccsFloat) . ", \n" .
         "            " . $this->SQLValue($this->cp["brand_p_region_id"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["brand_phone_no"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["brand_mobile_no"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["brand_fax_no"]->GetDBValue(), ccsText) . "', \n" .
-        "            '" . $this->SQLValue($this->cp["brand_zip_code"]->GetDBValue(), ccsText) . "', sysdate, sysdate, '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', sysdate, \n" .
+        "            '" . $this->SQLValue($this->cp["brand_zip_code"]->GetDBValue(), ccsText) . "', f_get_work_day_relatif(sysdate, 7, 0), sysdate, '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', sysdate, \n" .
         "            '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
