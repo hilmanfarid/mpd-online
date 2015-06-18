@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>PENCARIAN PEMBAYARAN TERAKHIR</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Record t_rep_lap_spjpSearch -->
+        <form id="t_rep_lap_spjpSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="middle">
+                <p align="center"><font size="6"><strong>&nbsp;<font color="#000000">&nbsp;SURVEY KEPUASAN PELANGGAN <br>
+                PENDAFTARAN WP</font></strong></font></p>
+                <br>
+                <br>
+                <table id="masukan_npwpd" class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="3">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field" valign="middle" colspan="3">
+                      <p align="center"><font size="4"></font>&nbsp;</p>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field" valign="middle"><font size="4">{no}</font></td> 
+                    <td class="search-field"><font size="4">{survey_question}</font></td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchp_survey_question_id" value="{p_survey_question_id}" type="hidden" name="{p_survey_question_id_Name}"><input id="t_rep_lap_spjpSearcht_vat_registration_id" value="{t_vat_registration_id}" type="hidden" name="{t_vat_registration_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field" valign="middle">&nbsp;</td> 
+                    <td class="search-field"><font size="4">
+                      <!-- BEGIN RadioButton pilihan_jawaban --><input id="t_rep_lap_spjpSearchpilihan_jawaban_{pilihan_jawaban:optionNumber}" value="{Value}" type="radio" name="{pilihan_jawaban_Name}" {Check}><label for="t_rep_lap_spjpSearchpilihan_jawaban_{pilihan_jawaban:optionNumber}">{Description}</label><br>
+                      <!-- END RadioButton pilihan_jawaban --></font></td> 
+                    <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field" valign="middle">&nbsp;</td> 
+                    <td class="search-field">
+                      <p align="center">
+                      <!-- BEGIN Button Button_DoSearch2 --><input id="t_rep_lap_spjpSearchButton_DoSearch2" class="btn_tambah" onclick="cari();" value="Submit" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch2 --></p>
+                    </td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_rep_lap_spjpSearch -->
+        <div align="left">
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+    function cari()
+    {
+        question = document.getElementById("t_rep_lap_spjpSearchp_survey_question_id").value;
+        if(question  == "" || question  == "" ) {
+            alert("Pertanyaan dan Data Registrasi tidak ditemukan");
+			location.href="t_survey_kepuasan_pelanggan_pendaftaran.php";
+        }else {
+            var params = "?doAction=view_survey";
+			var paramsarr = location.href.split("?")[1].split("&");
+			//alert(paramsarr[1].split("="));return;
+			var newparams = Array();
+			for(var i = 0; i <paramsarr.length; i++){
+				var temp = paramsarr[i].split("=");
+				newparams [temp[0]]=temp[1];
+			}
+			reg_id = newparams["t_vat_registration_id"];
+            params += "&p_survey_question_id="+question;
+			params += "&t_vat_registration_id="+reg_id;
+            location.href="t_survey_kepuasan_pelanggan_pendaftaran_pertanyaan.php"+params;
+        }
+    }
+</script>
+<p>{Label1}</p>
+</body>
+</html>
