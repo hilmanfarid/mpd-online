@@ -81,7 +81,7 @@ while ($dbConn->next_record()) {
 		$data["o_brand_mobile_no"] = $dbConn->f("o_brand_mobile_no");
 		$data["o_brand_fax_no"] = $dbConn->f("o_brand_fax_no");
 		$data["o_brand_zip_code"] = $dbConn->f("o_brand_zip_code");
-		$data["npwpd"] = $dbConn->f("npwpd");
+		$data["npwpd"] = $dbConn->f("o_npwpd");
 }
 
 $query = "fetch all in \"refone\";";
@@ -691,6 +691,7 @@ class FormCetak extends FPDF {
 		$this->Cell($ttdP2, $this->height+2, "", "TRB", 0, 'L'); //NPWPD
 		
 		//isi NPWPD
+		
 		$spasi2 = ($per3 * 1) / 20;
 		$npwpd1 = ($per3 * 1) / 20;
 		$npwpd2 = ($per3 * 1) / 20;
@@ -708,23 +709,23 @@ class FormCetak extends FPDF {
 		$this->Ln($this->height-4);
 		$this->Cell($jarak+$ttdP1, $this->height, "", 0, 0, 'C');
 		$this->Cell($spasi2-4, $this->height, "", 0, 0, 'C'); //spasi npwpd
-		$this->Cell($npwpd1, $this->height, "", 1, 0, 'C');
+		$this->Cell($npwpd1, $this->height, $data["npwpd"][0], 1, 0, 'C');
 		$this->Cell($spasi2-4, $this->height, "", 0, 0, 'C'); //spasi npwpd
-		$this->Cell($npwpd2, $this->height, "", 1, 0, 'C');
+		$this->Cell($npwpd2, $this->height, $data["npwpd"][1], 1, 0, 'C');
 		$this->Cell($spasi2-4, $this->height, "", 0, 0, 'C'); //spasi npwpd
-		$this->Cell($npwpd3, $this->height, "", 1, 0, 'C');
-		$this->Cell($npwpd4, $this->height, "", 1, 0, 'C');
-		$this->Cell($npwpd5, $this->height, "", 1, 0, 'C');
-		$this->Cell($npwpd6, $this->height, "", 1, 0, 'C');
-		$this->Cell($npwpd7, $this->height, "", 1, 0, 'C');
-		$this->Cell($npwpd8, $this->height, "", 1, 0, 'C');
-		$this->Cell($npwpd9, $this->height, "", 1, 0, 'C');
+		$this->Cell($npwpd3, $this->height, $data["npwpd"][2], 1, 0, 'C');
+		$this->Cell($npwpd4, $this->height, $data["npwpd"][3], 1, 0, 'C');
+		$this->Cell($npwpd5, $this->height, $data["npwpd"][4], 1, 0, 'C');
+		$this->Cell($npwpd6, $this->height, $data["npwpd"][5], 1, 0, 'C');
+		$this->Cell($npwpd7, $this->height, $data["npwpd"][6], 1, 0, 'C');
+		$this->Cell($npwpd8, $this->height, $data["npwpd"][7], 1, 0, 'C');
+		$this->Cell($npwpd9, $this->height, $data["npwpd"][8], 1, 0, 'C');
 		$this->Cell($spasi2-4, $this->height, "", 0, 0, 'C'); //spasi npwpd
-		$this->Cell($npwpd10, $this->height, "", 1, 0, 'C');
-		$this->Cell($npwpd11, $this->height, "", 1, 0, 'C');
+		$this->Cell($npwpd10, $this->height, $data["npwpd"][9], 1, 0, 'C');
+		$this->Cell($npwpd11, $this->height, $data["npwpd"][10], 1, 0, 'C');
 		$this->Cell($spasi2-4, $this->height, "", 0, 0, 'C'); //spasi npwpd
-		$this->Cell($npwpd12, $this->height, "", 1, 0, 'C');
-		$this->Cell($npwpd13, $this->height, "", 1, 0, 'C');
+		$this->Cell($npwpd12, $this->height, $data["npwpd"][11], 1, 0, 'C');
+		$this->Cell($npwpd13, $this->height, $data["npwpd"][12], 1, 0, 'C');
 		$this->Ln(6);
 		
 		$this->Cell($lengthCell, $this->height, "", 1, 0, 'C');
