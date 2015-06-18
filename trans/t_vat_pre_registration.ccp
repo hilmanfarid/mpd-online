@@ -132,7 +132,7 @@ ORDER BY company_brand" orderBy="p_vat_type_id">
             '{company_brand}', '{company_additional_addr}', '{brand_address_name}', '{brand_address_no}', 
             '{brand_address_rt}', '{brand_address_rw}', {brand_p_region_id_kel}, {brand_p_region_id_kec}, 
             {brand_p_region_id}, '{brand_phone_no}', '{brand_mobile_no}', '{brand_fax_no}', 
-            '{brand_zip_code}', sysdate, sysdate, '{created_by}', sysdate, 
+            '{brand_zip_code}', f_get_work_day_relatif(sysdate, 7, 0), sysdate, '{created_by}', sysdate, 
             '{updated_by}')" customInsertType="SQL" customUpdate="UPDATE t_ppat SET  
 phone_no='{phone_no}', 
 creation_date='{creation_date}', 
@@ -340,7 +340,7 @@ WHERE t_vat_pre_registration_id = {t_vat_pre_registration_id} " activeTableType=
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="367" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="reg_duedate" fieldSource="reg_duedate" required="False" caption="reg_duedate" wizardCaption="Updated Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormreg_duedate" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
+<TextBox id="367" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="reg_duedate" fieldSource="reg_duedate" required="False" caption="reg_duedate" wizardCaption="Updated Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormreg_duedate" format="dd-mmm-yyyy">
 					<Components/>
 					<Events/>
 					<Attributes/>
