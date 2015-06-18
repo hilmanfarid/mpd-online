@@ -192,7 +192,8 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
 	//print kartu npwpd
 	echo '<script language="javascript">';
 	//echo "window.open('http://172.16.20.1/mpd/report/cetak_formulir_skpd_nihil.php?t_vat_setllement_id=".$t_vat_setllement_id."','No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
-	echo "window.open('../report/cetak_kartu_npwpd.php?t_customer_order_id=".$CustId."','', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
+	echo "window.open('../report/cetak_kartu_npwpd.php?t_customer_order_id=".$CustId."','', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');";
+	echo "window.open('../report/cetak_berita_acara_pemeriksaan_pdf.php?t_customer_order_id=".$CustId."','', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');";
 	echo '</script>';
 	return;
 	
