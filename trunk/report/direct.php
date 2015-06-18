@@ -13,6 +13,6 @@
 	  
 	// Have FPDF create and stream the auto-printing PDF to the browser  
 	$paperpdf->Output('D:\work\list_pdf'.$name_of_file,'F');  
-	shell_exec('AcroRd32.exe /t "D:\work\list_pdf'.$name_of_file.'" "Send To OneNote 2010" "Send To OneNote 2010" "127.0.0.1"');
+	shell_exec('AcroRd32.exe /n /t "D:\work\list_pdf'.$name_of_file.'" "Send To OneNote 2010" "Send To OneNote 2010" "127.0.0.1"');
 	echo 'AcroRd32.exe /t "D:\work\list_pdf'.$name_of_file.'" "Send To OneNote 2010" "Send To OneNote 2010" "127.0.0.1"';
 ?>
