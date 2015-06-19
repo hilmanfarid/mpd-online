@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @94-5A819
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-B7FD3005
+//Class_Initialize Event @94-EE44D1F5
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -224,6 +224,16 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @94-5A819
             "where p_rqst_type_id = " . $this->p_vat_type_dtl_id->DataSource->SQLValue($this->p_vat_type_dtl_id->DataSource->wp->GetDBValue("1"), ccsFloat) . "";
             $this->p_vat_type_dtl_id->DataSource->Order = "";
             $this->p_vat_type_dtl_id->Required = true;
+            $this->pre_vat_brand_name = & new clsControl(ccsTextBox, "pre_vat_brand_name", "merek dagang dari npwpd jabatan", ccsText, "", CCGetRequestParam("pre_vat_brand_name", $Method, NULL), $this);
+            $this->t_vat_pre_registration_id = & new clsControl(ccsHidden, "t_vat_pre_registration_id", "surat npwpd jabatan", ccsFloat, "", CCGetRequestParam("t_vat_pre_registration_id", $Method, NULL), $this);
+            $this->p_doc_delivery_type_id = & new clsControl(ccsListBox, "p_doc_delivery_type_id", "Pilih Pertanyaan", ccsText, "", CCGetRequestParam("p_doc_delivery_type_id", $Method, NULL), $this);
+            $this->p_doc_delivery_type_id->DSType = dsSQL;
+            $this->p_doc_delivery_type_id->DataSource = new clsDBConnSIKP();
+            $this->p_doc_delivery_type_id->ds = & $this->p_doc_delivery_type_id->DataSource;
+            list($this->p_doc_delivery_type_id->BoundColumn, $this->p_doc_delivery_type_id->TextColumn, $this->p_doc_delivery_type_id->DBFormat) = array("p_doc_delivery_type_id", "code", "");
+            $this->p_doc_delivery_type_id->DataSource->SQL = "SELECT * \n" .
+            "FROM p_doc_delivery_type  {SQL_OrderBy}";
+            $this->p_doc_delivery_type_id->DataSource->Order = "p_doc_delivery_type_id";
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -267,7 +277,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @94-5A819
     }
 //End Initialize Method
 
-//Validate Method @94-5A340563
+//Validate Method @94-4961EB81
     function Validate()
     {
         global $CCSLocales;
@@ -359,6 +369,9 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @94-5A819
         $Validation = ($this->brand_mobile_no->Validate() && $Validation);
         $Validation = ($this->brand_fax_no->Validate() && $Validation);
         $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
+        $Validation = ($this->pre_vat_brand_name->Validate() && $Validation);
+        $Validation = ($this->t_vat_pre_registration_id->Validate() && $Validation);
+        $Validation = ($this->p_doc_delivery_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->created_by->Errors->Count() == 0);
         $Validation =  $Validation && ($this->updated_by->Errors->Count() == 0);
@@ -440,11 +453,14 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @94-5A819
         $Validation =  $Validation && ($this->brand_mobile_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_fax_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->pre_vat_brand_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_vat_pre_registration_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_doc_delivery_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-0D16BF26
+//CheckErrors Method @94-445C921F
     function CheckErrors()
     {
         $errors = false;
@@ -530,6 +546,9 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @94-5A819
         $errors = ($errors || $this->brand_mobile_no->Errors->Count());
         $errors = ($errors || $this->brand_fax_no->Errors->Count());
         $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
+        $errors = ($errors || $this->pre_vat_brand_name->Errors->Count());
+        $errors = ($errors || $this->t_vat_pre_registration_id->Errors->Count());
+        $errors = ($errors || $this->p_doc_delivery_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -615,7 +634,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @94-FCBB0346
+//InsertRow Method @94-8A1580BE
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -678,6 +697,8 @@ function GetPrimaryKey($keyName)
         $this->DataSource->brand_zip_code->SetValue($this->brand_zip_code->GetValue(true));
         $this->DataSource->p_private_question_id->SetValue($this->p_private_question_id->GetValue(true));
         $this->DataSource->private_answer->SetValue($this->private_answer->GetValue(true));
+        $this->DataSource->p_vat_pre_registration_id->SetValue($this->p_vat_pre_registration_id->GetValue(true));
+        $this->DataSource->p_doc_delivery_type_id->SetValue($this->p_doc_delivery_type_id->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
@@ -767,7 +788,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-6EBFA7E8
+//Show Method @94-2FEEEDE2
     function Show()
     {
         global $CCSUseAmp;
@@ -783,6 +804,7 @@ function GetPrimaryKey($keyName)
 
         $this->p_private_question_id->Prepare();
         $this->p_vat_type_dtl_id->Prepare();
+        $this->p_doc_delivery_type_id->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -874,6 +896,8 @@ function GetPrimaryKey($keyName)
                     $this->brand_mobile_no->SetValue($this->DataSource->brand_mobile_no->GetValue());
                     $this->brand_fax_no->SetValue($this->DataSource->brand_fax_no->GetValue());
                     $this->p_vat_type_dtl_id->SetValue($this->DataSource->p_vat_type_dtl_id->GetValue());
+                    $this->t_vat_pre_registration_id->SetValue($this->DataSource->t_vat_pre_registration_id->GetValue());
+                    $this->p_doc_delivery_type_id->SetValue($this->DataSource->p_doc_delivery_type_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -966,6 +990,9 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->brand_mobile_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_fax_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->pre_vat_brand_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_vat_pre_registration_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_doc_delivery_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1074,6 +1101,9 @@ function GetPrimaryKey($keyName)
         $this->brand_mobile_no->Show();
         $this->brand_fax_no->Show();
         $this->p_vat_type_dtl_id->Show();
+        $this->pre_vat_brand_name->Show();
+        $this->t_vat_pre_registration_id->Show();
+        $this->p_doc_delivery_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1084,7 +1114,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_registrationFormDataSource Class @94-5993B12E
 
-//DataSource Variables @94-3E16AEAD
+//DataSource Variables @94-102E56BD
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1181,9 +1211,12 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $brand_mobile_no;
     var $brand_fax_no;
     var $p_vat_type_dtl_id;
+    var $pre_vat_brand_name;
+    var $t_vat_pre_registration_id;
+    var $p_doc_delivery_type_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-0BADBDC8
+//DataSourceClass_Initialize Event @94-6B3213A4
     function clst_vat_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1353,6 +1386,12 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->p_vat_type_dtl_id = new clsField("p_vat_type_dtl_id", ccsFloat, "");
         
+        $this->pre_vat_brand_name = new clsField("pre_vat_brand_name", ccsText, "");
+        
+        $this->t_vat_pre_registration_id = new clsField("t_vat_pre_registration_id", ccsFloat, "");
+        
+        $this->p_doc_delivery_type_id = new clsField("p_doc_delivery_type_id", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1383,7 +1422,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End Open Method
 
-//SetValues Method @94-D0BA0D89
+//SetValues Method @94-477BFFD4
     function SetValues()
     {
         $this->created_by->SetDBValue($this->f("created_by"));
@@ -1463,6 +1502,8 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->brand_mobile_no->SetDBValue($this->f("brand_mobile_no"));
         $this->brand_fax_no->SetDBValue($this->f("brand_fax_no"));
         $this->p_vat_type_dtl_id->SetDBValue(trim($this->f("p_vat_type_dtl_id")));
+        $this->t_vat_pre_registration_id->SetDBValue(trim($this->f("t_vat_pre_registration_id")));
+        $this->p_doc_delivery_type_id->SetDBValue($this->f("p_doc_delivery_type_id"));
     }
 //End SetValues Method
 
