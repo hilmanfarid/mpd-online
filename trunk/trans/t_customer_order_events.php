@@ -179,7 +179,7 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
 	}
 	
 	//submit
-	$sql = "select o_result_code, o_result_msg from f_first_submit_engine(500,".$CustId.",'".CCGetUserLogin()."')";
+	$sql = "select o_result_code, o_result_msg from f_first_submit_engine_daftar(500,".$CustId.",'".CCGetUserLogin()."')";
 	//die($sql);
 	$dbConnect->query($sql);
 	while($dbConnect->next_record()){
