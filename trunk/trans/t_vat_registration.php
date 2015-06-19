@@ -634,7 +634,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @94-8A1580BE
+//InsertRow Method @94-D53BED9A
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -697,7 +697,7 @@ function GetPrimaryKey($keyName)
         $this->DataSource->brand_zip_code->SetValue($this->brand_zip_code->GetValue(true));
         $this->DataSource->p_private_question_id->SetValue($this->p_private_question_id->GetValue(true));
         $this->DataSource->private_answer->SetValue($this->private_answer->GetValue(true));
-        $this->DataSource->p_vat_pre_registration_id->SetValue($this->p_vat_pre_registration_id->GetValue(true));
+        $this->DataSource->t_vat_pre_registration_id->SetValue($this->t_vat_pre_registration_id->GetValue(true));
         $this->DataSource->p_doc_delivery_type_id->SetValue($this->p_doc_delivery_type_id->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
