@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_registrationForm" activeCollection="DSPParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Procedure" parameterTypeListName="ParameterTypeList" customUpdateType="Procedure" customInsertType="Procedure" customUpdate="f_crud_vat_reg" customDelete="f_crud_vat_reg" customInsert="f_crud_vat_reg" dataSource="SELECT * 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_registrationForm" activeCollection="ISPParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Procedure" parameterTypeListName="ParameterTypeList" customUpdateType="Procedure" customInsertType="Procedure" customUpdate="f_crud_vat_reg" customDelete="f_crud_vat_reg" customInsert="f_crud_vat_reg" dataSource="SELECT * 
 FROM v_vat_registration
 WHERE t_customer_order_id = {t_customer_order_id} ">
 			<Components>
@@ -557,7 +557,37 @@ where p_rqst_type_id = {p_rqst_type_id}" boundColumn="p_vat_type_dtl_id" textCol
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<TextBox id="906" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="pre_vat_brand_name" caption="merek dagang dari npwpd jabatan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormpre_vat_brand_name">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Hidden id="908" fieldSourceType="DBColumn" dataType="Float" name="t_vat_pre_registration_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormt_vat_pre_registration_id" fieldSource="t_vat_pre_registration_id" caption="surat npwpd jabatan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<ListBox id="909" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_doc_delivery_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_doc_delivery_type_id" connection="ConnSIKP" dataSource="SELECT * 
+FROM p_doc_delivery_type 
+ORDER BY p_doc_delivery_type_id" orderBy="p_private_question_id" boundColumn="p_doc_delivery_type_id" textColumn="code" fieldSource="p_doc_delivery_type_id" caption="Pilih Pertanyaan">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+						<JoinTable id="910" tableName="p_private_question" posWidth="160" posHeight="168" posLeft="10" posTop="10"/>
+</JoinTables>
+					<JoinLinks/>
+					<Fields>
+						<Field id="911" fieldName="*"/>
+					</Fields>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -645,7 +675,9 @@ where p_rqst_type_id = {p_rqst_type_id}" boundColumn="p_vat_type_dtl_id" textCol
 				<SPParameter id="Key961" parameterName="questionid" parameterSource="p_private_question_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key962" parameterName="privateanswer" parameterSource="private_answer" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key963" parameterName="i_mode" parameterSource="'I'" dataType="Char" parameterType="Expression" dataSize="255" direction="Input" scale="10" precision="6"/>
-			</ISPParameters>
+				<SPParameter id="Key964" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_p_vat_pre_registration_id" scale="0" precision="0" parameterSource="p_vat_pre_registration_id"/>
+<SPParameter id="Key965" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_p_doc_delivery_type_id" scale="0" precision="0" parameterSource="p_doc_delivery_type_id"/>
+</ISPParameters>
 			<ISQLParameters>
 			</ISQLParameters>
 			<IFormElements>
