@@ -198,6 +198,19 @@ $pdf->Cell(90, 5, "", "BLR", 0, 'C');
 $pdf->Cell(10, 5, "", "", 0, 'C');
 $pdf->Cell(90, 5, "", "BLR", 0, 'C');
 	
-$pdf->Output("","I");
+//$pdf->Output("","I");
+if(!empty($_GET['save'])){
+	$name_of_file = "print_pdf_".time().".pdf";
+	try{
+		$dbConn->query("INSERT INTO t_print_queue(t_customer_order_id, file_name, status) VALUES (".$t_customer_order_id.",'".$name_of_file."', 'SAVED');");
+		$dbConn->next_record();
+		
+		$pdf->Output('D:\work\list_pdf\\'.$name_of_file,'F');
+	}catch(Exception $e){
+		@unlink('D:\work\list_pdf\\'.$name_of_file);
+	}
+}else{
+	$pdf->Output("","I");
+}
 exit;
 ?>
