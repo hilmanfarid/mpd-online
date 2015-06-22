@@ -110,14 +110,24 @@ function view_html($param_arr) {
 	if($param_arr['status_bayar']!=0){
 		if($param_arr['status_bayar']==1){
 			$query=$query." and tgl_bayar is not null";
+			$tgl_peneriamaan = CCGetFromGet('tgl_penerimaan',"");
+			if($tgl_peneriamaan!=""){
+				$query=$query." AND trunc(tgl_bayar)<=trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD')";
+			}
 		}else{
-			$query=$query." and tgl_bayar is null";
+			$tgl_peneriamaan = CCGetFromGet('tgl_penerimaan',"");
+			if($tgl_peneriamaan!=""){
+				$query=$query." and (
+						tgl_bayar is null
+					OR 
+						( trunc(tgl_bayar) > trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD'))
+					) ";
+			}else{
+				$query=$query." and tgl_bayar is null";
+			}
 		}
 	}
-	$tgl_peneriamaan = CCGetFromGet('tgl_penerimaan',"");
-	if($tgl_peneriamaan!=""){
-		$query=$query." AND trunc(tgl_bayar)<=trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD')";
-	}
+	
 	$query=$query." order by wp_name,p_finance_period_id, masa_pajak";
 	//echo $query;
 	//exit;
