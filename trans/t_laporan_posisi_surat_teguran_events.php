@@ -70,8 +70,8 @@ function Page_BeforeShow(& $sender)
 		if(!empty($param_arr['p_finance_period_id']) and !empty($param_arr['p_vat_type_id'])) {
 		$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 			$dbConn	= new clsDBConnSIKP();
-			$query="select * from f_posisi_surat_teguran(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."')
-				ORDER BY wp_name, surat_teguran_3,surat_teguran_2,surat_teguran_1";
+			$query="select * from f_posisi_surat_teguran_test_2(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."')
+				ORDER BY wp_name,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
 			//echo $query;exit;
 			$data = array();
 			$dbConn->query($query);
@@ -113,8 +113,8 @@ function Page_BeforeShow(& $sender)
 		if(!empty($param_arr['p_finance_period_id']) and !empty($param_arr['p_vat_type_id'])) {
 		$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 			$dbConn	= new clsDBConnSIKP();
-			$query="select * from f_posisi_surat_teguran(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."')
-				ORDER BY wp_name, surat_teguran_3,surat_teguran_2,surat_teguran_1";
+			$query="select * from f_posisi_surat_teguran_test_2(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."')
+				ORDER BY  wp_name,npwpd,surat_teguran_3,surat_teguran_2,surat_teguran_1";
 			//echo $query;exit;
 			$data = array();
 			$dbConn->query($query);
