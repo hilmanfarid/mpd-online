@@ -187,11 +187,13 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
 		$errMsg = $dbConnect->f("o_result_msg");
 	}
 
-	echo "<meta http-equiv='refresh' content='0;url=t_customer_order.php?pesan=".$errMsg."'/>";
-	
 	//print kartu npwpd
 	file_get_contents("http://172.16.20.1/mpd/report/cetak_kartu_npwpd2.php?t_customer_order_id=".$CustId);
 	file_get_contents("http://172.16.20.1/mpd/report/cetak_berita_acara_pemeriksaan_pdf2.php?t_customer_order_id=".$CustId);
+	
+	echo "<meta http-equiv='refresh' content='0;url=t_customer_order.php?pesan=".$errMsg."'/>";
+	
+	
 	/*
 	echo '<script language="javascript">';
 	//echo "window.open('http://172.16.20.1/mpd/report/cetak_formulir_skpd_nihil.php?t_vat_setllement_id=".$t_vat_setllement_id."','No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
