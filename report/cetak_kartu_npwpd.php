@@ -9,7 +9,7 @@ include "../include/fpdf17/mc_table.php";
 
 $t_customer_order_id = CCGetFromGet("t_customer_order_id", "");
 
-//$t_customer_order_id = 67;
+//$t_customer_order_id = 67;     
 //$dataArr = array();
 // $dataBaru = array();
 
