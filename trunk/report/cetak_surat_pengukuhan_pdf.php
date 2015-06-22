@@ -581,5 +581,17 @@ class FormCetak extends FPDF {
 
 $formulir = new FormCetak();
 $formulir->PageCetak($data);
-$formulir->Output();
+if(!empty($_GET['save'])){
+	$name_of_file = "print_pdf_".time().".pdf";
+	try{
+		$dbConn->query("INSERT INTO t_print_queue(t_customer_order_id, file_name, status) VALUES (".$t_customer_order_id.",'".$name_of_file."', 'SAVED');");
+		$dbConn->next_record();
+		
+		$formulir->Output('D:\work\list_pdf\\'.$name_of_file,'F');
+	}catch(Exception $e){
+		@unlink('D:\work\list_pdf\\'.$name_of_file);
+	}
+}else{
+	$formulir->Output();
+}
 ?>
