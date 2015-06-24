@@ -126,14 +126,14 @@ function t_vat_registrationForm_BeforeShow(& $sender)
 		$t_vat_registrationForm->Button5->Visible = false;
 		$t_vat_registrationForm->Button6->Visible = false;
 		$t_vat_registrationForm->Button4->Visible = true;
-		$t_vat_registrationForm->Button_Update->Visible = true;
+		//$t_vat_registrationForm->Button_Update->Visible = true;
 	}else{
 		$t_vat_registrationForm->Button2->Visible = true;
 		$t_vat_registrationForm->Button3->Visible = true;
 		$t_vat_registrationForm->Button5->Visible = true;
 		$t_vat_registrationForm->Button4->Visible = false;
 		$t_vat_registrationForm->Button6->Visible = true;
-		$t_vat_registrationForm->Button_Update->Visible = false;
+		//$t_vat_registrationForm->Button_Update->Visible = false;
 	}
 
 	$id = $t_vat_registrationForm->p_rqst_type_id->GetValue();
