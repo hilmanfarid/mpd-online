@@ -45,7 +45,7 @@ class clsRecordgrafik_pembayaran_form { //grafik_pembayaran_form Class @2-0F0D7D
     // Class variables
 //End Variables
  
-//Class_Initialize Event @2-175D6B8C
+//Class_Initialize Event @2-E1885113
     function clsRecordgrafik_pembayaran_form($RelativePath, & $Parent)
     {
 
@@ -70,8 +70,6 @@ class clsRecordgrafik_pembayaran_form { //grafik_pembayaran_form Class @2-0F0D7D
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->Button2 = & new clsButton("Button2", $Method, $this);
-            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
-            $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->code = & new clsControl(ccsTextBox, "code", "code", ccsText, "", CCGetRequestParam("code", $Method, NULL), $this);
@@ -80,21 +78,17 @@ class clsRecordgrafik_pembayaran_form { //grafik_pembayaran_form Class @2-0F0D7D
     }
 //End Class_Initialize Event
 
-//Validate Method @2-DA1909E1
+//Validate Method @2-116841F9
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
-        $Validation = ($this->vat_code->Validate() && $Validation);
-        $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $Validation = ($this->year_code->Validate() && $Validation);
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->code->Validate() && $Validation);
         $Validation = ($this->p_finance_period_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
-        $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
@@ -103,12 +97,10 @@ class clsRecordgrafik_pembayaran_form { //grafik_pembayaran_form Class @2-0F0D7D
     }
 //End Validate Method
 
-//CheckErrors Method @2-02B499AA
+//CheckErrors Method @2-B527DED7
     function CheckErrors()
     {
         $errors = false;
-        $errors = ($errors || $this->vat_code->Errors->Count());
-        $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->year_code->Errors->Count());
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->code->Errors->Count());
@@ -165,7 +157,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-902A33F8
+//Show Method @2-BE1B662F
     function Show()
     {
         global $CCSUseAmp;
@@ -189,8 +181,6 @@ function GetPrimaryKey($keyName)
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
-            $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->code->Errors->ToString());
@@ -213,8 +203,6 @@ function GetPrimaryKey($keyName)
         }
 
         $this->Button2->Show();
-        $this->vat_code->Show();
-        $this->p_vat_type_id->Show();
         $this->year_code->Show();
         $this->p_year_period_id->Show();
         $this->code->Show();
