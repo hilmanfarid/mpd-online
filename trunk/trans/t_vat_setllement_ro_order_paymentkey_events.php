@@ -1,5 +1,6 @@
 <?php
 //include_once(RelativePath . "/include/sessi.inc");
+include_once(RelativePath . "/check_open_session.php");
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 $no_kohir = CCGetFromGet('s_keyword');
