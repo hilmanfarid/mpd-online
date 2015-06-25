@@ -151,6 +151,11 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
     // Write your own code here.
 	$dbConnect = new clsDBConnSIKP();
 	$CustId = $t_customer_orderForm->t_customer_order_id->GetValue();
+	//print kartu npwpd
+	file_get_contents("http://172.16.20.1/mpd/report/cetak_kartu_npwpd2.php?t_customer_order_id=".$CustId."&save=true");
+	file_get_contents("http://172.16.20.1/mpd/report/cetak_berita_acara_pemeriksaan_pdf2.php?t_customer_order_id=".$CustId."&save=true");
+	//exit;
+
 	$npwpd = '';
 	//generate npwpd
 	$sql = "select npwpd from t_vat_registration where t_customer_order_id =".$CustId;
@@ -187,9 +192,6 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
 		$errMsg = $dbConnect->f("o_result_msg");
 	}
 
-	//print kartu npwpd
-	file_get_contents("http://172.16.20.1/mpd/report/cetak_kartu_npwpd2.php?t_customer_order_id=".$CustId);
-	file_get_contents("http://172.16.20.1/mpd/report/cetak_berita_acara_pemeriksaan_pdf2.php?t_customer_order_id=".$CustId);
 	
 	echo "<meta http-equiv='refresh' content='0;url=t_customer_order.php?pesan=".$errMsg."'/>";
 	
