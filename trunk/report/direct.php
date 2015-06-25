@@ -23,7 +23,7 @@
 	while ($dbConn->next_record()) {
 		$item = $dbConn->Record;
 		if(is_file('D:\work\list_pdf\\'.$item['file_name'])){
-			echo shell_exec('AcroRd32.exe /n /t "D:\work\list_pdf\\'.$item['file_name'].'" "HP LaserJet 200 color M251 PCL 6" "HP LaserJet 200 color M251 PCL 6" "172.16.20.203"');
+			shell_exec('AcroRd32.exe /n /t "D:\work\list_pdf\\'.$item['file_name'].'" "HP LaserJet 200 color M251 PCL 6" "HP LaserJet 200 color M251 PCL 6" "172.16.20.203"');
 			//@unlink('D:\work\list_pdf\\'.$item);
 			$dbConn2->query("update t_print_queue set status='PRINTED' where t_customer_order_id=".$item['t_customer_order_id']);
 		}
