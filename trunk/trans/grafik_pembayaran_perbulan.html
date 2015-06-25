@@ -17,7 +17,7 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
 
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -52,14 +52,9 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
                       <td class="search-field"><input id="grafik_pembayaran_formcode" class="ControlsRQ" value="{code}" maxlength="32" size="32" name="{code_Name}">&nbsp;<img onclick="javascript:periodepajak()" border="0" src="../images/view.gif">&nbsp;<input id="grafik_pembayaran_formp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td>
                     </tr>
  
-                    <tr class="Controls">
-                      <td class="search-field">Jenis Pajak</td> 
-                      <td class="search-field"><input id="grafik_pembayaran_formvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}">&nbsp;<img onclick="javascript:jenispajak()" border="0" src="../images/view.gif">&nbsp;<input id="grafik_pembayaran_formp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td>
-                    </tr>
- 
                     <tr>
                       <td colspan="2" align="right">&nbsp; 
-                        <!-- BEGIN Button Button2 --><input id="grafik_pembayaran_formButton2" class="btn_tambah" onclick="showGrafik()" value="Tampilkan Grafik" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                        <!-- BEGIN Button Button2 --><input id="grafik_pembayaran_formButton2" class="btn_tambah" onclick="showAllGrafik()" value="Tampilkan Grafik" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->&nbsp;&nbsp;&nbsp;&nbsp; </td>
                     </tr>
                   </table>
                 </td>
@@ -70,7 +65,14 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
         </td>
       </tr>
     </table>
-    <div style="WIDTH: 100%; DISPLAY: inline-block" id="container">
+    <div style="WIDTH: 50%; DISPLAY: inline-block; float:left" id="leftTop">
+    </div>
+	<div style="WIDTH: 50%; DISPLAY: inline-block; float:right" id="rightTop">
+    </div>
+	</br>
+	<div style="WIDTH: 50%; DISPLAY: inline-block; float:left" id="leftBottom">
+    </div>
+	<div style="WIDTH: 50%; DISPLAY: inline-block; float:right" id="rightBottom">
     </div>
   </div>
   <script language="javascript">
@@ -89,43 +91,50 @@ if (idelement = document.getElementById("grafik_pembayaran_formp_year_period_id"
         {
                 alert("Pilih salah satu PERIODE TAHUN!");
         }
-	} 
-	else 
-	{
-	        alert("Pilih salah satu PERIODE TAHUN!");
-	}
+        } 
+        else 
+        {
+                alert("Pilih salah satu PERIODE TAHUN!");
+        }
 }
 
 function periodetahun() {
-	getFrom_LOV('grafik_pembayaran_form','p_year_period_id,year_code','lov_year_period.php');
+        getFrom_LOV('grafik_pembayaran_form','p_year_period_id,year_code','lov_year_period.php');
 }
 
 function jenispajak() {
     getFrom_LOV('grafik_pembayaran_form','p_vat_type_id,vat_code','lov_vat_type.php');
 }
 
-function showGrafik(){
-        $.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id="+document.getElementById("grafik_pembayaran_formp_finance_period_id").value+"&p_vat_type_id="+document.getElementById("grafik_pembayaran_formp_vat_type_id").value, function( items ) {
-		//$.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id=193&p_vat_type_id=1", function( items ) {
+function showAllGrafik() {
+    showGrafikHotel();
+	showGrafikRestoran();
+	showGrafikHiburan();
+	showGrafikParkir();
+}
+
+function showGrafikHotel(){
+        $.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id="+document.getElementById("grafik_pembayaran_formp_finance_period_id").value+"&p_vat_type_id=1", function( items ) {
+                //$.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id=193&p_vat_type_id=1", function( items ) {
                         var tanggal = [];
-						var realisasi = [];
-						for (var i =0;i<items.length;i++){
-							tanggal.push(items[i]['tanggal']);
-							realisasi.push(parseFloat(items[i]['realisasi']));
-						}
+                                                var realisasi = [];
+                                                for (var i =0;i<items.length;i++){
+                                                        tanggal.push(items[i]['tanggal']);
+                                                        realisasi.push(parseFloat(items[i]['realisasi']));
+                                                }
                         var theseries;
                         var color=['#fe0000','#56b945','#0000fe']
                         Highcharts.setOptions({
-							lang:{
-								numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
-							}
-						});
-                        $("#container").highcharts({
+                                                        lang:{
+                                                                numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                                                        }
+                                                });
+                        $("#leftTop").highcharts({
                         chart: {
                                 type: "line"
                         },
                         title: {
-                                text: "Grafik Pembayaran Per Bulan"
+                                text: "Grafik Pembayaran Pajak Hotel Per Bulan"
                         },
                         subtitle: {
                                 text: "Disyanjak Kota Bandung"
@@ -135,14 +144,14 @@ function showGrafik(){
                         },
                         xAxis: {
                                 categories: tanggal,
-								title: {
-				                text: 'Tanggal'
-				            }
+                                                                title: {
+                                                text: 'Tanggal'
+                                            }
                         },
                         yAxis: {
                                 title: {
-				                text: 'Realisasi'
-				            }
+                                                text: 'Realisasi'
+                                            }
                         },
                         plotOptions: {
                                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
@@ -153,9 +162,186 @@ function showGrafik(){
                                 useHTML: true
                         },
                         series: [{
-							        name: 'Realisasi',
-							        data: realisasi
-							    }]
+                                                                name: 'Realisasi Pajak Hotel',
+                                                                data: realisasi
+                                                            }]
+                });
+
+                                
+
+        });
+}
+
+function showGrafikRestoran(){
+        $.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id="+document.getElementById("grafik_pembayaran_formp_finance_period_id").value+"&p_vat_type_id=2", function( items ) {
+                //$.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id=193&p_vat_type_id=1", function( items ) {
+                        var tanggal = [];
+                                                var realisasi = [];
+                                                for (var i =0;i<items.length;i++){
+                                                        tanggal.push(items[i]['tanggal']);
+                                                        realisasi.push(parseFloat(items[i]['realisasi']));
+                                                }
+                        var theseries;
+                        var color=['#fe0000','#56b945','#0000fe']
+                        Highcharts.setOptions({
+                                                        lang:{
+                                                                numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                                                        }
+                                                });
+                        $("#rightTop").highcharts({
+                        chart: {
+                                type: "line"
+                        },
+                        title: {
+                                text: "Grafik Pembayaran Pajak Restoran Per Bulan"
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        tooltip: {
+                                
+                        },
+                        xAxis: {
+                                categories: tanggal,
+                                                                title: {
+                                                text: 'Tanggal'
+                                            }
+                        },
+                        yAxis: {
+                                title: {
+                                                text: 'Realisasi'
+                                            }
+                        },
+                        plotOptions: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        series: [{
+                                                                name: 'Realisasi Pajak Restoran',
+                                                                data: realisasi
+                                                            }]
+                });
+
+                                
+
+        });
+}
+
+function showGrafikHiburan(){
+        $.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id="+document.getElementById("grafik_pembayaran_formp_finance_period_id").value+"&p_vat_type_id=3", function( items ) {
+                //$.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id=193&p_vat_type_id=1", function( items ) {
+                        var tanggal = [];
+                                                var realisasi = [];
+                                                for (var i =0;i<items.length;i++){
+                                                        tanggal.push(items[i]['tanggal']);
+                                                        realisasi.push(parseFloat(items[i]['realisasi']));
+                                                }
+                        var theseries;
+                        var color=['#fe0000','#56b945','#0000fe']
+                        Highcharts.setOptions({
+                                                        lang:{
+                                                                numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                                                        }
+                                                });
+                        $("#leftBottom").highcharts({
+                        chart: {
+                                type: "line"
+                        },
+                        title: {
+                                text: "Grafik Pembayaran Pajak Hiburan Per Bulan"
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        tooltip: {
+                                
+                        },
+                        xAxis: {
+                                categories: tanggal,
+                                                                title: {
+                                                text: 'Tanggal'
+                                            }
+                        },
+                        yAxis: {
+                                title: {
+                                                text: 'Realisasi'
+                                            }
+                        },
+                        plotOptions: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        series: [{
+                                                                name: 'Realisasi Pajak Hiburan',
+                                                                data: realisasi
+                                                            }]
+                });
+
+                                
+
+        });
+}
+
+function showGrafikParkir(){
+        $.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id="+document.getElementById("grafik_pembayaran_formp_finance_period_id").value+"&p_vat_type_id=4", function( items ) {
+                //$.getJSON( "../services/pembayaran_per_bulan.php?p_finance_period_id=193&p_vat_type_id=1", function( items ) {
+                        var tanggal = [];
+                                                var realisasi = [];
+                                                for (var i =0;i<items.length;i++){
+                                                        tanggal.push(items[i]['tanggal']);
+                                                        realisasi.push(parseFloat(items[i]['realisasi']));
+                                                }
+                        var theseries;
+                        var color=['#fe0000','#56b945','#0000fe']
+                        Highcharts.setOptions({
+                                                        lang:{
+                                                                numericSymbols: [" Ribu"," Juta"," Milyar"," Triliun"," Biliun"," Seliun"]
+                                                        }
+                                                });
+                        $("#rightBottom").highcharts({
+                        chart: {
+                                type: "line"
+                        },
+                        title: {
+                                text: "Grafik Pembayaran Pajak Parkir Per Bulan"
+                        },
+                        subtitle: {
+                                text: "Disyanjak Kota Bandung"
+                        },
+                        tooltip: {
+                                
+                        },
+                        xAxis: {
+                                categories: tanggal,
+                                                                title: {
+                                                text: 'Tanggal'
+                                            }
+                        },
+                        yAxis: {
+                                title: {
+                                                text: 'Realisasi'
+                                            }
+                        },
+                        plotOptions: {
+                                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                footerFormat: '</table>',
+                                shared: true,
+                                useHTML: true
+                        },
+                        series: [{
+                                                                name: 'Realisasi Pajak Parkir',
+                                                                data: realisasi
+                                                            }]
                 });
 
                                 
