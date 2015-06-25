@@ -8,43 +8,31 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<TextBox id="70" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" PathID="grafik_pembayaran_formvat_code">
+				<TextBox id="72" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" PathID="grafik_pembayaran_formyear_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="71" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="grafik_pembayaran_formp_vat_type_id">
+				<Hidden id="73" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="grafik_pembayaran_formp_year_period_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="72" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" PathID="grafik_pembayaran_formyear_code">
+				<TextBox id="74" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="code" PathID="grafik_pembayaran_formcode">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="73" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="grafik_pembayaran_formp_year_period_id">
+				<Hidden id="75" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="grafik_pembayaran_formp_finance_period_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="74" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="code" PathID="grafik_pembayaran_formcode">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-<Hidden id="75" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="grafik_pembayaran_formp_finance_period_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
