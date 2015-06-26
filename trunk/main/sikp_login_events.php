@@ -29,6 +29,13 @@ function Login_Button_DoLogin_OnClick(& $sender)
         global $Redirect;
         $Redirect = CCGetParam("ret_link", $Redirect);
         $Login_Button_DoLogin_OnClick = 1;
+		$redirect_url = CCGetFromGet("redirect");
+		if(!empty($redirect_url)){
+			echo "<script>
+			location.href='".base64_decode($redirect_url)."';
+			</script>";
+			exit;
+		}
     }
 //End Login
 
