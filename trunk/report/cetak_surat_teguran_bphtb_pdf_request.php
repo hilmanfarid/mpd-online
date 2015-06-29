@@ -65,6 +65,7 @@ class FormCetak extends FPDF {
 	function PageCetak($data,$no_urut) {
 		$this->AliasNbPages();
 		$this->SetLeftMargin(10);
+		$this->SetTopMargin(5);
 		$this->AddPage("P");
 		$this->AddFont('BKANT');
 		
@@ -81,7 +82,7 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('BKANT', '', 12);
 
-		$this->Image('../images/logo_pemda.png',17,13,25,25);
+		$this->Image('../images/logo_pemda.png',17,6,25,25);
 
 		$this->SetFont('TIMES', 'B', 14);
 		$this->Cell(40, $this->height, "", "", 0, 'L');
@@ -432,7 +433,7 @@ class FormCetak extends FPDF {
 
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
 		$this->Ln();
-		$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,205,$lbody4+48,20);
+		$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,203,$lbody4+48,20);
 		
 		
 		$this->SetFont('Times', 'B', 12);
@@ -477,11 +478,12 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "", 0, 'C');
 		$this->Ln();
 
-		$this->Image('http://172.16.20.2:81/mpd/include/qrcode/generate-qr.php?param='.
+		/*$this->Image('http://172.16.20.2:81/mpd/include/qrcode/generate-qr.php?param='.
 		$data['nop']."_".
 		$data['nomor']
 		,15,200,30,30,'PNG');
-		
+		*/
+
 		/*$this->Image('http://172.16.20.2:81/mpd/include/qrcode/generate-qr.php?param='.
 		$data['nop']."_".
 		$data['nomor']
