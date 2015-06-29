@@ -118,9 +118,6 @@ class FormCetak extends FPDF {
 		$this->AddPage("P");
 		$this->AddFont('BKANT');
 		
-		
-		$this->Image('../images/logo_pemda.png',3,3,15,15);
-		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
 		$lheader2 = $lheader * 2;
@@ -130,22 +127,42 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('Arial', 'B', 8);
 		
+		/*$this->Image('../images/logo_pemda.png',3,3,15,15);
 		$this->Cell(8, 3, "", "", 0, 'L');
-		$this->Cell(90, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
+		$this->Cell(70, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
 		$this->Ln();
 		
 		//$this->SetFont('BKANT', '', 16);
 		$this->Cell(8, 3, "", "", 0, 'L');
-		$this->Cell(90, 3, "DINAS PELAYANAN PAJAK", "", 0, 'C');
+		$this->Cell(70, 3, "DINAS PELAYANAN PAJAK", "", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', '', 8);
+		$this->SetFont('Arial', '', 6);
 		$this->Cell(8, 3, "", "", 0, 'L');
-		$this->Cell(90, 3, "JALAN WASTUKENCANA NO. 2 TELP 4235052 FAX. Pes. 33", "", 0, 'C');
+		$this->Cell(70, 3, "JALAN WASTUKENCANA NO. 2 TELP 4235052 FAX. Pes. 33", "", 0, 'C');
 		$this->Ln();
-		$this->SetFont('Arial', 'B', 8);
+		$this->SetFont('Arial', 'B', 6);
 		$this->Cell(8, 3, "", "", 0, 'L');
-		$this->Cell(90, 3, "BANDUNG", "", 0, 'C');
+		$this->Cell(70, 3, "BANDUNG", "", 0, 'C');
+		$this->Ln();
+		*/
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "", "", 0, 'C');
+		$this->Ln();
+		
+		//$this->SetFont('BKANT', '', 16);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "", "", 0, 'C');
+		$this->Ln();
+		
+		$this->SetFont('Arial', '', 6);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "", "", 0, 'C');
+		$this->Ln();
+		$this->SetFont('Arial', 'B', 6);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "", "", 0, 'C');
+		$this->Ln();
 		$this->Ln();
 		
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
