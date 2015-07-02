@@ -412,7 +412,7 @@ function print_laporan($param_arr){
 
 
 	$pdf->SetFont('helvetica', '',12);
-	$pdf->SetWidths(array(200));
+	//$pdf->SetWidths(array(200));
 	$pdf->ln(1);
     $pdf->RowMultiBorderWithHeight(array("DAFTAR NOTA VERIFIKASI BPHTB ".$textFilter),array('',''),6);
 	//$pdf->ln(8);
