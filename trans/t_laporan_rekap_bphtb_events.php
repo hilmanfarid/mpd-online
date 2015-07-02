@@ -97,7 +97,7 @@ function print_excel($param_arr) {
 		if($param_arr['filter_lap'] == 1) //sudah bayar
 			$textFilter = '(Sudah Bayar)';
 		if($param_arr['filter_lap'] == 2) //belum bayar
-			$textFilter = '(Belum Bayar)';
+			$textFilter = 'YANG BELUM ADA KONFIRMASI LEBIH LANJUT OLEH PEMOHON';
 		if($param_arr['filter_lap'] == 3) //belum bayar
 			$textFilter = '(Nihil)';
 	}
@@ -405,7 +405,7 @@ function print_laporan($param_arr){
 		if($param_arr['filter_lap'] == 1) //sudah bayar
 			$textFilter = '(Sudah Bayar)';
 		if($param_arr['filter_lap'] == 2) //belum bayar
-			$textFilter = '(Belum Bayar)';
+			$textFilter = 'YANG BELUM ADA KONFIRMASI LEBIH LANJUT OLEH PEMOHON';
 		if($param_arr['filter_lap'] == 3) //belum bayar
 			$textFilter = '(Nihil)';
 	}
