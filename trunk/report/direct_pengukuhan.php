@@ -77,8 +77,7 @@
 					$message = Swift_Message::newInstance('PENGUBAHAN PASSWORD')//SUBJECT
 					  ->setFrom(array($mailConfig['username'] => 'DINAS PELAYANAN PAJAK KOTA BANDUNG'))//NAME APPEAR IN INBOX (sender's name)
 					  //->setTo($_GET['receiver'])
-					  //->setTo($receiver2)
-					  ->setTo('fajar.kharisma@triklin-rekatama.co.id')
+					  ->setTo($receiver2)
 					  //->setBody($_GET['message'], 'text/html');
 					  ->setBody($html, 'text/html');
 					  ->attach(
