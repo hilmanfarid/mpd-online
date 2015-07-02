@@ -35,7 +35,7 @@
 	$dbConn = new clsDBConnSIKP();
 	$dbConn2 = new clsDBConnSIKP();
 	$files1 = scandir('D:\work\list_pdf');  
-	$dbConn->query("select * from t_print_queue where left(a.file_name,9)!='print_pdf' and status='SAVED'");
+	$dbConn->query("select * from t_print_queue where left(a.file_name,9) != 'print_pdf' and status='SAVED'");
 	while ($dbConn->next_record()) {
 		$item = $dbConn->Record;
 		if(is_file('D:\work\list_pdf\\'.$item['file_name'])){
