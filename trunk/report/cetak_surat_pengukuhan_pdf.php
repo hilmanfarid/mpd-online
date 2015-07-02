@@ -29,7 +29,8 @@ $query="select
 		type.vat_code,
 		c.reg_letter_no,
 		decode(c.p_hotel_grade_id,null,null,1,1,2,1,3,1,4,1,5,1,0) as klasifikasi,
-		d.vat_code as detail_jenis_pajak
+		d.vat_code as detail_jenis_pajak,
+		a.jenis_usaha
 from t_customer_order a,
 		p_rqst_type b,
 		t_vat_registration c,
@@ -58,6 +59,7 @@ while ($dbConn->next_record()) {
 		$data["klasifikasi"] = $dbConn->f("klasifikasi");
 		$data["vat_code"] = $dbConn->f("vat_code");
 		$data["detail_jenis_pajak"] = $dbConn->f("detail_jenis_pajak");
+		$data["jenis_usaha"] = $dbConn->f("jenis_usaha");
 }
 
 $dbConn->query("end;");
@@ -124,7 +126,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height, "                Berdasarkan Undang-undang Nomor 28 Tahun 2009 tentang Pajak Daerah dan Retribusi Daerah dan", 0, 0, 'L');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "Peraturan Daerah No. 20 tahun 2011 tentang Pajak Daerah, dengan ini menyatakan bahwa:", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "Peraturan Daerah Nomor 20 tahun 2011 tentang Pajak Daerah, dengan ini menyatakan bahwa:", 0, 0, 'L');
 		
 		// Form
 		$this->Ln();
@@ -163,7 +165,7 @@ class FormCetak extends FPDF {
 		if(empty($data['company_name']) or $data['company_name'] == '-' or $data['company_name'] == 'A' or strlen($data['company_name']) < 3 ) { 
 			//PERORANGAN
 			
-			// Form 3. Nama Merek Dagang
+			/*// Form 3. Nama Merek Dagang
 			$this->Ln();
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "3. Nama Merek Dagang", 0, 0, 'L');
@@ -178,7 +180,8 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', '', 11);
 			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_brand"], 0, 0, 'L');
-		
+			*/
+			
 			// Form 5. Alamat Wajib Pajak
 			$this->Ln();
 			$this->SetFont('Times', 'B', 11);
@@ -197,7 +200,7 @@ class FormCetak extends FPDF {
 
 		} else { //PERUSAHAAN
 
-			// Form 3. Nama Badan/Perusahaan
+			/*// Form 3. Nama Badan/Perusahaan
 			$this->Ln();
 			$this->SetFont('Times', 'B', 11);
 			$this->Cell($formLen1, $this->height, "3. Nama Badan/Perusahaan", 0, 0, 'L');
@@ -213,7 +216,7 @@ class FormCetak extends FPDF {
 			$this->SetFont('Times', '', 11);
 			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
 			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_brand"], 0, 0, 'L');
-		
+			*/
 			// Form 5. Alamat Merek Dagang
 			$this->Ln();
 			$this->SetFont('Times', 'B', 11);
@@ -366,7 +369,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Ln();
 		$this->SetFont('Times', '', 11);
-		$this->Cell($lengthCell, $this->height, "Telah dikukuhkan pada tata usaha kami sebagai Wajib Pajak", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "telah terdaftar dan dikukuhkan dengan NPWPD ".$data["npwpd"].".", 0, 0, 'L');
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height, "                Dengan terbitnya surat ini, maka dalam melaksanakan hak dan kewajiban yang berkenaan dengan", 0, 0, 'L');
 		$this->Ln();
