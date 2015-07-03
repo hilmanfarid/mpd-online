@@ -35,33 +35,56 @@
 	$dbConn = new clsDBConnSIKP();
 	$dbConn2 = new clsDBConnSIKP();
 	$files1 = scandir('D:\work\list_pdf');  
-	$dbConn->query("select b.t_customer_order_id as order_id,* from t_print_queue a
+	$dbConn->query("select b.t_customer_order_id as order_id,c.code as jabatan,* from t_print_queue a
 					left join t_vat_registration b on a.t_customer_order_id=b.t_customer_order_id
+					left join p_job_position c on c.p_job_position_id=b.p_job_position_id
 					where left(a.file_name,9)='print_pdf' and status='SAVED'");
 	while ($dbConn->next_record()) {
 		$item = $dbConn->Record;
 		if(is_file('D:\work\list_pdf\\'.$item['file_name'])){
 			if($item['p_doc_delivery_type_id']==3){
-				            				
-				$html.= '<p>Anda telah terdaftar dan dikukuhkan dengan NPWPD '.$item['npwpd'].'</p>';
-				$html.= '<p>Berikut kami lampirkan Surat Pengukuhan Wajib Pajak Daerah pada attachment email ini.</p>';
 				
 				if ($item['jenis_usaha']=='Badan'){
 					$receiver = $item['email'];
 					$receiver2 = $item['wp_email'];
+					
+					$html.= '<table>
+						<tr>
+							<td widtth = "60%"></td>
+							<td>
+								Yth. '.$item['wp_name'].' </br>
+								'.$item['company_brand'].' </br>
+								di Bandung
+							</td>
+						</tr>				
+					</table>';
 				}else{
 					$receiver = $item['wp_email'];
 					$receiver2 = '';
+					
+					$html.= '<table>
+						<tr>
+							<td widtth = "60%"></td>
+							<td>
+								Yth. '.$item['company_owner'].' </br>
+								'.$item['jabatan'].' - '.$item['wp_name'].'</br>
+								di Bandung
+							</td>
+						</tr>				
+					</table>';
 				}
 				
-				$message = Swift_Message::newInstance('PENGUBAHAN PASSWORD')//SUBJECT
+				$html.= '<p>Anda telah terdaftar dan dikukuhkan dengan NPWPD '.$item['npwpd'].'</p>';
+				$html.= '<p>Berikut kami lampirkan Surat Pengukuhan Wajib Pajak Daerah pada attachment email ini.</p>';
+				
+				$message = Swift_Message::newInstance('SURAT PENGUKUHAN NPWPD')//SUBJECT
 				  ->setFrom(array($mailConfig['username'] => 'DINAS PELAYANAN PAJAK KOTA BANDUNG'))//NAME APPEAR IN INBOX (sender's name)
 				  //->setTo($_GET['receiver'])
 				  ->setTo($receiver)
 				  //->setBody($_GET['message'], 'text/html');
 				  ->setBody($html, 'text/html');
 				  ->attach(
-				Swift_Attachment::fromPath('D:\work\list_pdf\\'.$item['file_name'])->setFilename('surat_pengukuhan.jpg')
+				Swift_Attachment::fromPath('D:\work\list_pdf\\'.$item['file_name'])->setFilename('surat_pengukuhan.pdf')
 				);
 				
 				$result = $mailer->send($message);
@@ -74,14 +97,14 @@
 				}
 				
 				if ($receiver2 != ''){
-					$message = Swift_Message::newInstance('PENGUBAHAN PASSWORD')//SUBJECT
+					$message = Swift_Message::newInstance('SURAT PENGUKUHAN NPWPD')//SUBJECT
 					  ->setFrom(array($mailConfig['username'] => 'DINAS PELAYANAN PAJAK KOTA BANDUNG'))//NAME APPEAR IN INBOX (sender's name)
 					  //->setTo($_GET['receiver'])
 					  ->setTo($receiver2)
 					  //->setBody($_GET['message'], 'text/html');
 					  ->setBody($html, 'text/html');
 					  ->attach(
-					Swift_Attachment::fromPath('D:\work\list_pdf\\'.$item['file_name'])->setFilename('surat_pengukuhan.jpg')
+					Swift_Attachment::fromPath('D:\work\list_pdf\\'.$item['file_name'])->setFilename('surat_pengukuhan.pdf')
 					);
 					$result = $mailer->send($message);
 					if ($result==1){
