@@ -48,7 +48,7 @@
 					$receiver = $item['email'];
 					$receiver2 = $item['wp_email'];
 					
-					$html.= '<table>
+					$html.= '<table width="100%">
 						<tr>
 							<td widtth = "60%"></td>
 							<td>
@@ -56,13 +56,12 @@
 								'.$item['company_brand'].' </br>
 								di Bandung
 							</td>
-						</tr>				
-					</table>';
+						</tr>';
 				}else{
 					$receiver = $item['wp_email'];
 					$receiver2 = '';
 					
-					$html.= '<table>
+					$html.= '<table width="100%">
 						<tr>
 							<td widtth = "60%"></td>
 							<td>
@@ -70,12 +69,26 @@
 								'.$item['jabatan'].' - '.$item['wp_name'].'</br>
 								di Bandung
 							</td>
-						</tr>				
-					</table>';
+						</tr>';
 				}
 				
-				$html.= '<p>Anda telah terdaftar dan dikukuhkan dengan NPWPD '.$item['npwpd'].'</p>';
-				$html.= '<p>Berikut kami lampirkan Surat Pengukuhan Wajib Pajak Daerah pada attachment email ini.</p>';
+				$html.= '<tr>
+						<td colspan=2>
+							</br>
+							Terima kasih Anda telah terdaftar sebagai Wajib Pajak dengan NPWPD '.$item['npwpd'].'. 
+							NPWPD ini merupakan tanda pengenal diri atau identitas Wajib Pajak dalam melakukan hak dan kewajiban perpajakan daerah di Kota Bandung.
+							</br>
+							</br>
+							Terlampir kami sampaikan Surat Pengukuhan Wajib Pajak Daerah.
+							Informasi tentang perpajakan daerah Kota Bandung dapat dilihat pada www.disyanjak.bandung.go.id .
+							</br>
+							</br>
+							Hormat kami.
+							</br>
+							Dinas Pelayanan Pajak Kota Bandung.
+						</td>
+					</tr>
+				</table>';
 				
 				$message = Swift_Message::newInstance('SURAT PENGUKUHAN NPWPD')//SUBJECT
 				  ->setFrom(array($mailConfig['username'] => 'DINAS PELAYANAN PAJAK KOTA BANDUNG'))//NAME APPEAR IN INBOX (sender's name)
