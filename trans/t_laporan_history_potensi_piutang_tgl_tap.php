@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-1AB9E5AC
+//Class_Initialize Event @3-6593317A
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -77,8 +77,13 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->ListBox2 = & new clsControl(ccsListBox, "ListBox2", "ListBox2", ccsText, "", CCGetRequestParam("ListBox2", $Method, NULL), $this);
-            $this->ListBox2->DSType = dsListOfValues;
-            $this->ListBox2->Values = array(array("2", "SKPDKB Pemeriksaan"), array("4", "SKPDKB Jabatan"), array("7", "STPD"));
+            $this->ListBox2->DSType = dsSQL;
+            $this->ListBox2->DataSource = new clsDBConnSIKP();
+            $this->ListBox2->ds = & $this->ListBox2->DataSource;
+            list($this->ListBox2->BoundColumn, $this->ListBox2->TextColumn, $this->ListBox2->DBFormat) = array("", "", "");
+            $this->ListBox2->DataSource->SQL = "select p_settlement_type_id, code\n" .
+            "from p_settlement_type {SQL_OrderBy}";
+            $this->ListBox2->DataSource->Order = "p_settlement_type_id";
             $this->ListBox2->Required = true;
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
             $this->date_start_laporan = & new clsControl(ccsTextBox, "date_start_laporan", "date_start_laporan", ccsText, "", CCGetRequestParam("date_start_laporan", $Method, NULL), $this);
