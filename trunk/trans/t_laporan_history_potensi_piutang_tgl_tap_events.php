@@ -110,7 +110,7 @@ function GetCetakHTML($param_arr) {
 		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id 
 		where p_settlement_type_id = ".$param_arr['ketetapan']." 
 		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
-			and to_date('".$param_arr['end_date']."','yyyy-mm-dd')
+			and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 		and x.p_account_status_id = 1";
 	if ($param_arr['p_vat_type_id']!=''){
@@ -191,7 +191,7 @@ function CetakExcel($param_arr) {
 		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id 
 		where p_settlement_type_id = ".$param_arr['ketetapan']." 
 		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
-			and to_date('".$param_arr['end_date']."','yyyy-mm-dd')
+			and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 		and x.p_account_status_id = 1";
 	if ($param_arr['p_vat_type_id']!=''){
