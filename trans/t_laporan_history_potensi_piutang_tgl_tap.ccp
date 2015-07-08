@@ -39,7 +39,9 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="577" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox2" connection="ConnSIKP" _valueOfList="7" _nameOfList="STPD" dataSource="2;SKPDKB Pemeriksaan;4;SKPDKB Jabatan;7;STPD" fieldSource="i_flag_setoran" required="True">
+				<ListBox id="577" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox2" connection="ConnSIKP" _valueOfList="7" _nameOfList="STPD" dataSource="select p_settlement_type_id, code
+from p_settlement_type
+order by p_settlement_type_id" fieldSource="i_flag_setoran" required="True">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
@@ -70,25 +72,25 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="580" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_end_laporan" PathID="t_rep_lap_spjpSearchdate_end_laporan" format="yyyy-mm-dd" required="True">
+				<TextBox id="580" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_end_laporan" PathID="t_rep_lap_spjpSearchdate_end_laporan" format="yyyy-mm-dd" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="17" name="DatePicker_end_start_laporan1" PathID="t_rep_lap_spjpSearchDatePicker_end_start_laporan1" control="date_start_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+				<DatePicker id="17" name="DatePicker_end_start_laporan1" PathID="t_rep_lap_spjpSearchDatePicker_end_start_laporan1" control="date_start_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<DatePicker id="581" name="DatePicker_end_start_laporan2" PathID="t_rep_lap_spjpSearchDatePicker_end_start_laporan2" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+				<DatePicker id="581" name="DatePicker_end_start_laporan2" PathID="t_rep_lap_spjpSearchDatePicker_end_start_laporan2" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
