@@ -188,17 +188,10 @@ function CetakExcel($param_arr) {
 		left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 		left join p_finance_period z on z.p_finance_period_id = a.p_finance_period_id
 		left join p_vat_type_dtl p on p.p_vat_type_dtl_id = a.p_vat_type_dtl_id
-		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id
+		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id 
 		where p_settlement_type_id = ".$param_arr['ketetapan']." 
-		and a.p_finance_period_id in(
-			select p_finance_period_id 
-			from p_finance_period 
-			where 
-				start_date >= (select start_date from p_finance_period
-					where p_finance_period_id = ".$param_arr['p_finance_period_id'].") 
-				and end_date <= (select end_date from p_finance_period
-					where p_finance_period_id = ".$param_arr['p_finance_period_id1'].") 
-		)
+		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
+			and to_date('".$param_arr['end_date']."','yyyy-mm-dd')
 		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 		and x.p_account_status_id = 1";
 	if ($param_arr['p_vat_type_id']!=''){
@@ -224,7 +217,7 @@ function CetakExcel($param_arr) {
 
 	$output = '';
 	$output .= '<h2>LAPORAN HISTORY POTENSI PIUTANG<h2/>';
-	$output .= '<h2>PERIODE PENETAPAN : '.$param_arr['date_start_laporan'].' s.d. '.$param_arr['date_start_laporan'].'</h2>';
+	$output .= '<h2>PERIODE PENETAPAN : '.$param_arr['start_date'].' s.d. '.$param_arr['end_date'].'</h2>';
 
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
                 <tr >';
@@ -267,6 +260,56 @@ function CetakExcel($param_arr) {
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
 	$output.='</tr>';
 
+	$output.='</table></br></br>';
+
+	$output.='<table width="100%">';
+	$output.='<tr>
+				<td align="center" width="50%"></td>
+			 </tr>
+			 <tr>
+				<td align="center" width="50%"></td>
+			 </tr>
+			 <tr>
+				<td align="center" colspan=2 width="50%">Mengetahui,</td>
+				<td align="center" colspan=5 width="50%"></td>
+				<td align="center" colspan=3 width="50%"></td>
+			 </tr>
+			 <tr>
+				<td align="center" colspan=2 width="50%">KEPALA BIDANG</td>
+				<td align="center" colspan=5 width="50%"></td>
+				<td align="center" colspan=3 width="50%">KEPALA VERIFIKASI, OTORISASI DAN PEMBUKUAN</td>
+			 </tr>
+			 <tr>
+				<td align="center" colspan=2 width="50%">PAJAK PENDAFTARAN</td>
+				<td align="center" colspan=5 width="50%"></td>
+				<td align="center" colspan=3 width="50%">BIDANG PAJAK PENDAFTARAN</td>
+			 </tr>
+			 <tr>
+				<td align="center" colspan=2 width="50%"></td>
+				<td align="center" colspan=5 width="50%"></td>
+				<td align="center" colspan=3 width="50%"></td>
+			 </tr>
+			 <tr>
+				<td align="center" colspan=2 width="50%"></td>
+				<td align="center" colspan=5 width="50%"></td>
+				<td align="center" colspan=3 width="50%"></td>
+			 </tr>
+			 <tr>
+				<td align="center" colspan=2 width="50%"></td>
+				<td align="center" colspan=5 width="50%"></td>
+				<td align="center" colspan=3 width="50%"></td>
+			 </tr>
+			 <tr>
+				<td align="center" colspan=2 width="50%">Drs, H. GUN GUN SUMARYANA</td>
+				<td align="center" colspan=5 width="50%"></td>
+				<td align="center" colspan=3 width="50%">Drs. H. DEDEN SAEPULLOH, MM</td>
+			 </tr>
+			 <tr>
+				<td align="center" colspan=2 width="50%">NIP. 19700806 199101 1001</td>
+				<td align="center" colspan=5 width="50%"></td>
+				<td align="center" colspan=3 width="50%">NIP. 19681210 199010 1001</td>
+			 </tr>
+			 ';
 	$output.='</table>';
 
 	echo $output;
