@@ -96,6 +96,8 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
+	$output.='<th align="center" >BESARNYA</th>';
+	$output.='<th align="center" >SISA</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
@@ -134,10 +136,15 @@ function GetCetakHTML($param_arr) {
 	}
 	$dbConn->close();
 	$jumlah =0;
+	$jumlah_relisasi =0;
+	$jumlah_sisa =0;
 	for ($i = 0; $i < count($data); $i++) {
 		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
 		$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
+		$temp_sisa = $temp - $data[$i]['payment_amount'];
 		$jumlah = $jumlah + $temp;
+		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_amount'];
+		$jumlah_sisa = $jumlah_sisa + $temp_sisa;
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
@@ -153,11 +160,16 @@ function GetCetakHTML($param_arr) {
 			$output.='<td align="left" >Sudah Bayar</td>';
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_amount'], 2, ',', '.').'</td>';
 		$output.='</tr>';
 	}
 
 	$output.='<tr><td align="center" colspan=7 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
+	$output.='<td align="center" colspan=2 ></td>';
+	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_sisa, 2, ',', '.').'</td>';
 	$output.='</tr>';
 
 	$output.='</table>';
@@ -232,13 +244,20 @@ function CetakExcel($param_arr) {
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
+	$output.='<th align="center" >BESARNYA</th>';
+	$output.='<th align="center" >SISA</th>';
 	$output.='</tr>';
 	$jumlah = 0;
+	$jumlah_relisasi =0;
+	$jumlah_sisa =0;
 
     for ($i = 0; $i < count($data); $i++) {
 		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
 		$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
+		$temp_sisa = $temp - $data[$i]['payment_amount'];
 		$jumlah = $jumlah + $temp;
+		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_amount'];
+		$jumlah_sisa = $jumlah_sisa + $temp_sisa;
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
@@ -254,10 +273,15 @@ function CetakExcel($param_arr) {
 			$output.='<td align="left" >Sudah Bayar</td>';
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_amount'], 2, ',', '.').'</td>';
 		$output.='</tr>';
 	}
 	$output.='<tr><td align="center" colspan=7 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
+	$output.='<td align="center" colspan=2 ></td>';
+	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_sisa, 2, ',', '.').'</td>';
 	$output.='</tr>';
 
 	$output.='</table></br></br>';
@@ -270,41 +294,49 @@ function CetakExcel($param_arr) {
 				<td align="center" width="50%"></td>
 			 </tr>
 			 <tr>
+			 	<td></td>
 				<td align="center" colspan=2 width="50%">Mengetahui,</td>
 				<td align="center" colspan=5 width="50%"></td>
 				<td align="center" colspan=3 width="50%"></td>
 			 </tr>
 			 <tr>
+			 	<td></td>
 				<td align="center" colspan=2 width="50%">KEPALA BIDANG</td>
 				<td align="center" colspan=5 width="50%"></td>
 				<td align="center" colspan=3 width="50%">KEPALA VERIFIKASI, OTORISASI DAN PEMBUKUAN</td>
 			 </tr>
 			 <tr>
+			 	<td></td>
 				<td align="center" colspan=2 width="50%">PAJAK PENDAFTARAN</td>
 				<td align="center" colspan=5 width="50%"></td>
 				<td align="center" colspan=3 width="50%">BIDANG PAJAK PENDAFTARAN</td>
 			 </tr>
 			 <tr>
+			 	<td></td>
 				<td align="center" colspan=2 width="50%"></td>
 				<td align="center" colspan=5 width="50%"></td>
 				<td align="center" colspan=3 width="50%"></td>
 			 </tr>
 			 <tr>
+			 	<td></td>
 				<td align="center" colspan=2 width="50%"></td>
 				<td align="center" colspan=5 width="50%"></td>
 				<td align="center" colspan=3 width="50%"></td>
 			 </tr>
 			 <tr>
+			 	<td></td>
 				<td align="center" colspan=2 width="50%"></td>
 				<td align="center" colspan=5 width="50%"></td>
 				<td align="center" colspan=3 width="50%"></td>
 			 </tr>
 			 <tr>
+			 	<td></td>
 				<td align="center" colspan=2 width="50%">Drs, H. GUN GUN SUMARYANA</td>
 				<td align="center" colspan=5 width="50%"></td>
 				<td align="center" colspan=3 width="50%">Drs. H. DEDEN SAEPULLOH, MM</td>
 			 </tr>
 			 <tr>
+			 	<td></td>
 				<td align="center" colspan=2 width="50%">NIP. 19700806 199101 1001</td>
 				<td align="center" colspan=5 width="50%"></td>
 				<td align="center" colspan=3 width="50%">NIP. 19681210 199010 1001</td>
