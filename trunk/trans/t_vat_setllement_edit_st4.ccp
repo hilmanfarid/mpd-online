@@ -117,7 +117,7 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 				<SQLParameter id="393" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
 				<SQLParameter id="394" variable="s_periode" parameterType="URL" dataType="Text" parameterSource="s_periode"/>
 				<SQLParameter id="400" variable="p_settlement_type_id_search" parameterType="URL" dataType="Integer" parameterSource="p_settlement_type_id_search" defaultValue="0"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -402,7 +402,12 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 				</Button>
 			</Components>
 			<Events>
-			</Events>
+				<Event name="BeforeExecuteDelete" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="401"/>
+</Actions>
+</Event>
+</Events>
 			<TableParameters>
 				<TableParameter id="378" conditionType="Parameter" useIsNull="False" field="t_vat_setllement_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_vat_setllement_id"/>
 			</TableParameters>
@@ -537,18 +542,18 @@ ORDER BY settlement_date desc" orderBy="settlement_date desc" parameterTypeListN
 					<Features/>
 				</Button>
 				<ListBox id="399" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_settlement_type_id_search" wizardEmptyCaption="Select Value" PathID="t_vat_setllementSearchp_settlement_type_id_search" connection="ConnSIKP" dataSource="select * from p_settlement_type where p_settlement_type_id in(3,4,5,7)" fieldSource="p_settlement_type_id_search">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
-</Components>
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
