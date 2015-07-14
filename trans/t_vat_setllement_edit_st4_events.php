@@ -3,7 +3,7 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-62922174
+//BindEvents Method @1-B66D0255
 function BindEvents()
 {
     global $t_vat_setllementGrid;
@@ -12,6 +12,7 @@ function BindEvents()
     $t_vat_setllementGrid->CCSEvents["BeforeSelect"] = "t_vat_setllementGrid_BeforeSelect";
     $t_vat_setllementGrid->CCSEvents["BeforeShowRow"] = "t_vat_setllementGrid_BeforeShowRow";
     $t_vat_setllementForm->update_denda->CCSEvents["OnClick"] = "t_vat_setllementForm_update_denda_OnClick";
+    $t_vat_setllementForm->ds->CCSEvents["BeforeExecuteDelete"] = "t_vat_setllementForm_ds_BeforeExecuteDelete";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
     $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
@@ -139,6 +140,40 @@ function t_vat_setllementForm_update_denda_OnClick(& $sender)
     return $t_vat_setllementForm_update_denda_OnClick;
 }
 //End Close t_vat_setllementForm_update_denda_OnClick
+
+//t_vat_setllementForm_ds_BeforeExecuteDelete @23-D6E00F6D
+function t_vat_setllementForm_ds_BeforeExecuteDelete(& $sender)
+{
+    $t_vat_setllementForm_ds_BeforeExecuteDelete = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_vat_setllementForm; //Compatibility
+//End t_vat_setllementForm_ds_BeforeExecuteDelete
+
+//Custom Code @401-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$dbConn = new clsDBConnSIKP();	
+	$selected_id=$t_vat_setllementForm->t_vat_setllement_id->GetValue();
+	$query = "select p_order_status_id from v_vat_setllement_skpd_kb_jabatan where t_vat_setllement_id = ".$selected_id;
+	//echo $query;exit;
+	$dbConn->query($query);
+	$dbConn->next_record();
+	$p_order_status_id = $dbConn->f("p_order_status_id");
+	if ($p_order_status_id != 1){
+		echo "<script>
+				alert ('Data sudah pernah disubmit.');
+				window.history.back();
+			</script>";
+		exit;
+	}
+// -------------------------
+//End Custom Code
+
+//Close t_vat_setllementForm_ds_BeforeExecuteDelete @23-F6BC4481
+    return $t_vat_setllementForm_ds_BeforeExecuteDelete;
+}
+//End Close t_vat_setllementForm_ds_BeforeExecuteDelete
 
 //DEL  // -------------------------
 //DEL      
