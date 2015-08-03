@@ -84,7 +84,10 @@ function print_laporan($param_arr){
 	$pdf->RowMultiBorderWithHeight(array("Tanggal",": ".dateToString($param_arr['date_start'])." s/d ".dateToString($param_arr['date_end'])),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="select * from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
+	$query="select a.*, c.nama_wilayah
+			from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
+			left join t_cust_account b on a.npwpd = b.npwd
+			left join t_kode_wilayah c on b.kode_wilayah = c.t_kode_wilayah_id";
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',8);
@@ -103,9 +106,13 @@ function print_laporan($param_arr){
 					   'npwpd' => $dbConn->f("npwpd"),
 					   'amount' => $dbConn->f("amount"),
 					   'tot_sspd' => $dbConn->f("tot_sspd"),
-					   'jenis_pajak' => $dbConn->f("jenis_pajak")
+					   'jenis_pajak' => $dbConn->f("jenis_pajak"),
+					   'nama_wilayah' => $dbConn->f("nama_wilayah")
 						);
-		$pdf->RowMultiBorderWithHeight(array($no,$dbConn->f("nama_wp"),$dbConn->f("alamat_wp"),$dbConn->f("npwpd"),'Rp. '.number_format($dbConn->f("amount"), 2, ',', '.'),$dbConn->f("tot_sspd"),$dbConn->f('jenis_pajak'),''),array('LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
+		if ($dbConn->f("nama_wilayah")!='') {
+			$items[$no-1]["nama_wilayah"]='WILAYAH '.$dbConn->f("nama_wilayah");
+		}
+		$pdf->RowMultiBorderWithHeight(array($no,$dbConn->f("nama_wp"),$dbConn->f("alamat_wp"),$dbConn->f("npwpd"),'Rp. '.number_format($dbConn->f("amount"), 2, ',', '.'),$dbConn->f("tot_sspd"),$dbConn->f('jenis_pajak'),$items[$no-1]["nama_wilayah"]),array('LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
 		$jumlah+=$dbConn->f("amount");
 		$jumlah_wp+=$dbConn->f("tot_sspd");
 		$no++;
@@ -164,7 +171,10 @@ function print_excel($param_arr) {
 	echo "<div><b>Tanggal : ".dateToString($param_arr['date_start'])." s.d ".dateToString($param_arr['date_end'])."</b></div><br/>";	
 
 	$dbConn = new clsDBConnSIKP();
-	$query="select * from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."')";
+	$query="select a.*, c.nama_wilayah
+			from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
+			left join t_cust_account b on a.npwpd = b.npwd
+			left join t_kode_wilayah c on b.kode_wilayah = c.t_kode_wilayah_id";
 	$dbConn->query($query);
 
 	$no =1;
@@ -189,9 +199,12 @@ function print_excel($param_arr) {
 					   'npwpd' => $dbConn->f("npwpd"),
 					   'amount' => $dbConn->f("amount"),
 					   'tot_sspd' => $dbConn->f("tot_sspd"),
-					   'jenis_pajak' => $dbConn->f("jenis_pajak")
+					   'jenis_pajak' => $dbConn->f("jenis_pajak"),
+					   'nama_wilayah' => $dbConn->f("nama_wilayah")
 						);
-		
+		if ($dbConn->f("nama_wilayah")!='') {
+			$items[$no-1]["nama_wilayah"]='WILAYAH '.$dbConn->f("nama_wilayah");
+		}
 		echo '<tr>';
 		echo '<td align="center">'.$no.'</td>';
 		echo '<td>'.$dbConn->f("nama_wp").'</td>';
@@ -200,7 +213,7 @@ function print_excel($param_arr) {
 		echo '<td align="right">'.number_format($dbConn->f("amount"), 2, ",", ".").'</td>';
 		echo '<td align="right">'.$dbConn->f("tot_sspd").'</td>';
 		echo '<td>'.$dbConn->f('jenis_pajak').'</td>';
-		echo '<td>&nbsp;</td>';
+		echo '<td>'.$items[$no-1]["nama_wilayah"].'</td>';
 		echo '</tr>';
 		
 		$jumlah += $dbConn->f("amount");
