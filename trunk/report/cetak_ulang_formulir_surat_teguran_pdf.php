@@ -10,6 +10,7 @@ $p_year_period_id = CCGetFromGet("p_year_period_id", "");
 $p_finance_period_id = CCGetFromGet("p_finance_period_id", "");
 $sequence_no = CCGetFromGet("sequence_no", "");
 $pejabat = CCGetFromGet("pejabat", 1);
+$p_vat_type_id = CCGetFromGet("p_vat_type_id", 1);
 
 $dbConn = new clsDBConnSIKP();
 $query="select * from t_debt_letter where 
@@ -49,7 +50,8 @@ $dbConn = new clsDBConnSIKP();
 
 $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
-		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) LIMIT 5";
+		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) 
+		and b.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$p_vat_type_id.")";
 
 $dbConn->query($query);
 //echo $query;exit;
