@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-BC198FED
+//Class_Initialize Event @3-70814C16
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -82,11 +82,13 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->ListBox2->DSType = dsListOfValues;
             $this->ListBox2->Values = array(array("1", "Drs. H. GUN GUN SUMARYANA"), array("2", "H. SONI BAKHTIAR, S.Sos, M.Si."), array("3", "Drs. H. GUN GUN SUMARYANA (+)"));
             $this->ListBox2->Required = true;
+            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-0343A164
+//Validate Method @3-5F0B6E2F
     function Validate()
     {
         global $CCSLocales;
@@ -98,6 +100,8 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation = ($this->year_code->Validate() && $Validation);
         $Validation = ($this->ListBox1->Validate() && $Validation);
         $Validation = ($this->ListBox2->Validate() && $Validation);
+        $Validation = ($this->vat_code->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
@@ -105,11 +109,13 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->ListBox1->Errors->Count() == 0);
         $Validation =  $Validation && ($this->ListBox2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-AD456912
+//CheckErrors Method @3-E55CB0F0
     function CheckErrors()
     {
         $errors = false;
@@ -119,6 +125,8 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $errors = ($errors || $this->year_code->Errors->Count());
         $errors = ($errors || $this->ListBox1->Errors->Count());
         $errors = ($errors || $this->ListBox2->Errors->Count());
+        $errors = ($errors || $this->vat_code->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -171,7 +179,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-2955193A
+//Show Method @3-B63B211F
     function Show()
     {
         global $CCSUseAmp;
@@ -203,6 +211,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->ListBox1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->ListBox2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -227,6 +237,8 @@ function GetPrimaryKey($keyName)
         $this->Button_DoSearch->Show();
         $this->ListBox1->Show();
         $this->ListBox2->Show();
+        $this->vat_code->Show();
+        $this->p_vat_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
