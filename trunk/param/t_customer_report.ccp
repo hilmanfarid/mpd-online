@@ -1,12 +1,12 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, b.npwd, c.vat_code, d.vat_code as nama_ayat
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customerGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select a.*, b.npwd, c.vat_code, d.vat_code as nama_ayat,brand_address_name, brand_address_no, brand_address_rt, brand_address_rw
 FROM t_customer a
 LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
 LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
 LEFT JOIN p_vat_type_dtl d ON b.p_vat_type_dtl_id = d.p_vat_type_dtl_id
 
-WHERE upper(a.company_owner) like upper('%{s_keyword}%') 
+WHERE upper(b.brand_address_name) like upper('%{s_keyword}%') 
        and upper(a.address_name_owner) like upper('%{s_keyword}%')
        and upper(b.npwd) like upper('%{s_npwd}%')
        and upper(b.wp_name) like upper('%{s_wp_name}%')
@@ -65,25 +65,25 @@ WHERE upper(a.company_owner) like upper('%{s_keyword}%')
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="487" fieldSourceType="DBColumn" dataType="Text" html="False" name="address_name_owner" fieldSource="address_name_owner" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridaddress_name_owner">
+				<Label id="487" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_name" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridbrand_address_name" fieldSource="brand_address_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="488" fieldSourceType="DBColumn" dataType="Text" html="False" name="address_no_owner" fieldSource="address_no_owner" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridaddress_no_owner">
+				<Label id="488" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_no" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridbrand_address_no" fieldSource="brand_address_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="489" fieldSourceType="DBColumn" dataType="Text" html="False" name="address_rt_owner" fieldSource="address_rt_owner" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridaddress_rt_owner">
+				<Label id="489" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_rt" fieldSource="brand_address_rt" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridbrand_address_rt">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="490" fieldSourceType="DBColumn" dataType="Text" html="False" name="address_rw_owner" fieldSource="address_rw_owner" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridaddress_rw_owner">
+				<Label id="490" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_rw" fieldSource="brand_address_rw" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customerGridbrand_address_rw">
 					<Components/>
 					<Events/>
 					<Attributes/>
