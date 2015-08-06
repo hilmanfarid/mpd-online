@@ -231,7 +231,7 @@ function print_excel($param_arr) {
 			LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
 			LEFT JOIN p_vat_type_dtl d ON b.p_vat_type_dtl_id = d.p_vat_type_dtl_id
 
-			WHERE upper(a.company_owner) like upper('%".$param_arr['s_keyword']."%') 
+			WHERE upper(b.brand_address_name) like upper('%".$param_arr['s_keyword']."%') 
 				   and upper(a.address_name_owner) like upper('%".$param_arr['s_keyword']."%')
 			       and upper(b.npwd) like upper('%".$param_arr['s_npwd']."%')
 			       and upper(b.wp_name) like upper('%".$param_arr['s_wp_name']."%')
