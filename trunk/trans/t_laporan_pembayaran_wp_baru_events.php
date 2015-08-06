@@ -76,17 +76,25 @@ function view_html($param_arr) {
 
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="SELECT d.vat_code,B.npwpd as npwd,B.wp_name,B.wp_address_name FROM t_customer_order A
-			LEFT JOIN t_vat_registration B ON A.t_customer_order_id=B.t_customer_order_id
-			left join p_vat_type_dtl d on b.p_vat_type_dtl_id=d.p_vat_type_dtl_id
-			WHERE p_rqst_type_id IN (1,2,3,4,5)
-			AND p_order_status_id = 3" ;
+	$query="SELECT
+				d.vat_code,
+				B.npwpd AS npwd,
+				B.wp_name,
+				B.wp_address_name
+			FROM
+				t_customer_order A
+			LEFT JOIN t_vat_registration B ON A .t_customer_order_id = B.t_customer_order_id
+			LEFT JOIN p_vat_type_dtl d ON b.p_vat_type_dtl_id = d.p_vat_type_dtl_id
+			left join t_cust_account e on e.npwd=b.npwpd
+			WHERE p_rqst_type_id IN (1,2,3,4,5)" ;
 	if ($param_arr['status_pembayaran'] == 1){
 		$query.='AND EXISTS (select 1 from t_vat_setllement where npwd = b.npwpd)';
 	}else{
 		$query.='and not EXISTS (select 1 from t_vat_setllement where npwd = b.npwpd)';
 	}
-	$query.='ORDER BY d.p_vat_type_id, d.p_vat_type_dtl_id, B.wp_name';
+	$query.='and e.npwd is not null
+			ORDER BY d.p_vat_type_id, d.p_vat_type_dtl_id, B.wp_name';
+	//echo	$query; exit;
 	$dbConn->query($query);
 
 	while($dbConn->next_record()){
