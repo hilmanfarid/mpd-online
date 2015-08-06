@@ -669,7 +669,7 @@ class clsRecordsearchForm { //searchForm Class @312-7BAF3A53
     // Class variables
 //End Variables
 
-//Class_Initialize Event @312-68605B77
+//Class_Initialize Event @312-541D117E
     function clsRecordsearchForm($RelativePath, & $Parent)
     {
 
@@ -695,28 +695,34 @@ class clsRecordsearchForm { //searchForm Class @312-7BAF3A53
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
             $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->tgl = & new clsControl(ccsTextBox, "tgl", "tgl", ccsText, "", CCGetRequestParam("tgl", $Method, NULL), $this);
+            $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "searchForm", "tgl", $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @312-A144A629
+//Validate Method @312-B426396B
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
         $Validation = ($this->s_keyword->Validate() && $Validation);
+        $Validation = ($this->tgl->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->tgl->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @312-D6729123
+//CheckErrors Method @312-464A2EBE
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->s_keyword->Errors->Count());
+        $errors = ($errors || $this->tgl->Errors->Count());
+        $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -770,7 +776,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @312-7913FA87
+//Show Method @312-6A86DE09
     function Show()
     {
         global $CCSUseAmp;
@@ -795,6 +801,8 @@ function GetPrimaryKey($keyName)
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
             $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->tgl->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -814,6 +822,8 @@ function GetPrimaryKey($keyName)
 
         $this->s_keyword->Show();
         $this->Button_DoSearch->Show();
+        $this->tgl->Show();
+        $this->DatePicker_end_start_laporan1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
