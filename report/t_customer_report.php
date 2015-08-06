@@ -16,11 +16,11 @@ $s_keyword = CCGetFromGet("s_keyword", "");
 //$t_customer_order_id = 67;
 $data = array();
 
-if(empty($p_vat_type_id)){
+/*if(empty($p_vat_type_id)){
 	echo "Inputkan Jenis Pajak";
 	exit();
 }else{
-
+*/
 $dbConn = new clsDBConnSIKP();
 
 $p_vat_type_dtl_id_condition = '';
@@ -34,7 +34,7 @@ LEFT JOIN t_cust_account b ON a.t_customer_id = b.t_customer_id
 LEFT JOIN p_vat_type c ON b.p_vat_type_id = c.p_vat_type_id
 LEFT JOIN p_vat_type_dtl d ON b.p_vat_type_dtl_id = d.p_vat_type_dtl_id
 
-WHERE upper(a.company_owner) like upper('%$s_keyword%') 
+WHERE upper(b.brand_address_name) like upper('%$s_keyword%') 
        and upper(a.address_name_owner) like upper('%$s_keyword%')
        and upper(b.npwd) like upper('%$s_npwd%')
        and upper(b.wp_name) like upper('%$s_wp_name%')
@@ -61,7 +61,7 @@ while ($dbConn->next_record()) {
 }
 
 $dbConn->close();
-}
+//}
 
 class FormCetak extends FPDF {
 	var $fontSize = 10;
