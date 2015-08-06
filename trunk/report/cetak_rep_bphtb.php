@@ -8,6 +8,7 @@ require("../include/qrcode/fpdf17/fpdf.php");
 
 $t_bphtb_registration_id		= CCGetFromGet("t_bphtb_registration_id", "");
 $pejabat 						= CCGetFromGet("pejabat", 1);
+$tgl 						    = CCGetFromGet("tgl", 1);
 
 // $t_bphtb_registration_id		= 23;
 
@@ -311,8 +312,14 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "B", 10);
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "", 0, 'L');
-		$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
-		//$this->Cell($lbody1 - 103, $this->height, "Bandung, 30-12-2014", "", 0, 'C');
+		
+		$tgl = CCGetFromGet("tgl", '');
+		if ($tgl == ''){
+			$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
+		}else{
+			$this->Cell($lbody1 - 103, $this->height, "Bandung, ".$tgl, "", 0, 'C');
+		}
+		
 		$this->Ln();
 		$this->Cell($lbody1 + 10, $this->height, "KOORDINATOR PEMERIKSA", "", 0, 'C');
 		$this->Cell($lbody3 - $lbody1 - 20, $this->height, "", "", 0, 'L');
