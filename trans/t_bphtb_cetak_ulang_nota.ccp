@@ -74,7 +74,7 @@ ORDER BY trim(a.wp_name) ASC" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -270,7 +270,7 @@ ORDER BY trim(a.wp_name) ASC" parameterTypeListName="ParameterTypeList">
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="312" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="searchForm" returnPage="t_bphtb_cetak_ulang_nota.ccp" PathID="searchForm" connection="ConnSIKP">
+		<Record id="312" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="searchForm" returnPage="t_bphtb_cetak_ulang_nota.ccp" PathID="searchForm" connection="ConnSIKP" pasteActions="pasteActions">
 			<Components>
 				<TextBox id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_keyword" PathID="searchForms_keyword">
 					<Components/>
@@ -284,7 +284,19 @@ ORDER BY trim(a.wp_name) ASC" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<TextBox id="315" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="tgl" PathID="searchFormtgl">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<DatePicker id="316" name="DatePicker_end_start_laporan1" PathID="searchFormDatePicker_end_start_laporan1" control="tgl" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
