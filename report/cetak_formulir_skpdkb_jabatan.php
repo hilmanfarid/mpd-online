@@ -220,10 +220,10 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Cell(5, $this->height, "", "BL", 0, 'L');
-		/*$this->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "B", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": ".$data["due_date"], "BR", 0, 'L');*/
-		$this->Cell($lbody1 - 5, $this->height, "", "B", 0, 'L');
-		$this->Cell($lbody3, $this->height, "", "BR", 0, 'L');
+		$this->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "B", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": ".$data["due_date"], "BR", 0, 'L');
+		/*$this->Cell($lbody1 - 5, $this->height, "", "B", 0, 'L');
+		$this->Cell($lbody3, $this->height, "", "BR", 0, 'L');*/
 		
 		$this->Ln();
 		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota Bandung Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
