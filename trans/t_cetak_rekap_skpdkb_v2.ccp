@@ -26,13 +26,6 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_lap_spjpSearchButton_DoSearch">
-					<Components/>
-					<Events>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<ListBox id="566" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ListBox1" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox1" connection="ConnSIKP" _valueOfList="2" _nameOfList="Denda" dataSource="1;Semua;2;Sudah Bayar;3;Belum Bayar" fieldSource="i_flag_setoran" required="True">
 					<Components/>
 					<Events>
@@ -63,6 +56,37 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<TextBox id="574" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="code1" PathID="t_rep_lap_spjpSearchcode1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Hidden id="576" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchp_finance_period_id1">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<TextBox id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_end_laporan" PathID="t_rep_lap_spjpSearchdate_end_laporan" format="yyyy-mm-dd" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<DatePicker id="17" name="DatePicker_end_start_laporan1" PathID="t_rep_lap_spjpSearchDatePicker_end_start_laporan1" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_lap_spjpSearchButton_DoSearch">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 				<Button id="573" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_lap_spjpSearchButton_DoSearch1">
 					<Components/>
 					<Events>
@@ -70,18 +94,13 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<TextBox id="574" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="code1" PathID="t_rep_lap_spjpSearchcode1">
+				<Button id="575" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch2" PathID="t_rep_lap_spjpSearchButton_DoSearch2">
 					<Components/>
-					<Events/>
+					<Events>
+					</Events>
 					<Attributes/>
 					<Features/>
-				</TextBox>
-<Hidden id="576" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchp_finance_period_id1">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
