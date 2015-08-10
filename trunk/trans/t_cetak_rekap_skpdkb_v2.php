@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-2E45ADFB
+//Class_Initialize Event @3-FB48FFF3
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -73,21 +73,25 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
             $this->ListBox1->DSType = dsListOfValues;
             $this->ListBox1->Values = array(array("1", "Semua"), array("2", "Sudah Bayar"), array("3", "Belum Bayar"));
             $this->ListBox1->Required = true;
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
-            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
             $this->code1 = & new clsControl(ccsTextBox, "code1", "code1", ccsText, "", CCGetRequestParam("code1", $Method, NULL), $this);
             $this->p_finance_period_id1 = & new clsControl(ccsHidden, "p_finance_period_id1", "p_finance_period_id1", ccsText, "", CCGetRequestParam("p_finance_period_id1", $Method, NULL), $this);
+            $this->date_end_laporan = & new clsControl(ccsTextBox, "date_end_laporan", "date_end_laporan", ccsText, "", CCGetRequestParam("date_end_laporan", $Method, NULL), $this);
+            $this->date_end_laporan->Required = true;
+            $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_rep_lap_spjpSearch", "date_end_laporan", $this);
+            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-EA71D3D4
+//Validate Method @3-3644C78F
     function Validate()
     {
         global $CCSLocales;
@@ -102,6 +106,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->code1->Validate() && $Validation);
         $Validation = ($this->p_finance_period_id1->Validate() && $Validation);
+        $Validation = ($this->date_end_laporan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
@@ -112,11 +117,12 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->code1->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-6D1B4917
+//CheckErrors Method @3-243E9E5F
     function CheckErrors()
     {
         $errors = false;
@@ -129,6 +135,8 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->code1->Errors->Count());
         $errors = ($errors || $this->p_finance_period_id1->Errors->Count());
+        $errors = ($errors || $this->date_end_laporan->Errors->Count());
+        $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -149,7 +157,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-7218C8A9
+//Operation Method @3-52580C8C
     function Operation()
     {
         if(!$this->Visible)
@@ -168,6 +176,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_DoSearch";
             } else if($this->Button_DoSearch1->Pressed) {
                 $this->PressedButton = "Button_DoSearch1";
+            } else if($this->Button_DoSearch2->Pressed) {
+                $this->PressedButton = "Button_DoSearch2";
             }
         }
         $Redirect = "t_cetak_rekap_skpdkb_v2.php";
@@ -180,6 +190,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button_DoSearch2") {
+                if(!CCGetEvent($this->Button_DoSearch2->CCSEvents, "OnClick", $this->Button_DoSearch2)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -187,7 +201,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-83860701
+//Show Method @3-1D710804
     function Show()
     {
         global $CCSUseAmp;
@@ -221,6 +235,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->code1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_finance_period_id1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -242,13 +258,16 @@ function GetPrimaryKey($keyName)
         $this->p_finance_period_id->Show();
         $this->p_year_period_id->Show();
         $this->year_code->Show();
-        $this->Button_DoSearch->Show();
         $this->ListBox1->Show();
         $this->p_vat_type_id->Show();
         $this->vat_code->Show();
-        $this->Button_DoSearch1->Show();
         $this->code1->Show();
         $this->p_finance_period_id1->Show();
+        $this->date_end_laporan->Show();
+        $this->DatePicker_end_start_laporan1->Show();
+        $this->Button_DoSearch->Show();
+        $this->Button_DoSearch1->Show();
+        $this->Button_DoSearch2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
