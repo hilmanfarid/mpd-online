@@ -77,23 +77,36 @@ function GetCetakHTML($param_arr) {
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
                 <tr >';
 
+	$dbConn	= new clsDBConnSIKP();
+	$query="select year_code from p_year_period where p_year_period_id = ".$param_arr['p_year_period_id'];
+	//echo $query;exit;
+	$data = array();
+	$dbConn->query($query);
+	$dbConn->next_record();
+	$tahun = $dbConn->f('year_code');
+	$dbConn->close();
+
 	$output.='<th align="center" >NO</th>';
 	$output.='<th align="center" >NPWPD</th>';
+	$output.='<th align="center" >NAMA MERK DAGANG</th>';
+	$output.='<th align="center" >ALAMAT MERK DAGANG</th>';
 	$output.='<th align="center" >MASA PAJAK</th>';
-	$output.='<th align="center" >2013</th>';
-	$output.='<th align="center" >2014</th>';
-	$output.='<th align="center" >2015</th>';
+	$output.='<th align="center" >'.($tahun-2).'</th>';
+	$output.='<th align="center" >'.($tahun-1).'</th>';
+	$output.='<th align="center" >'.$tahun.'</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select DISTINCT (a.npwd),a.t_cust_account_id from t_vat_setllement a, t_payment_receipt b
+	$query="select DISTINCT (a.npwd),a.t_cust_account_id,c.company_brand,c.brand_address_name||' '||c.brand_address_no as alamat 
+			from t_vat_setllement a, t_payment_receipt b, t_cust_account c
 			where a.t_vat_setllement_id = b.t_vat_setllement_id
-			and a.npwd != '' 
-			and a.p_vat_type_dtl_id in
-				(select p_vat_type_dtl_id from p_vat_type_dtl 
-				where p_vat_type_id = ".$param_arr['p_vat_type_id'].")
-			and a.start_period > to_date ('31-12-2012','dd-mm-yyyy')
-			order by a.npwd";
+				and a.npwd != '' 
+				and a.p_vat_type_dtl_id in
+					(select p_vat_type_dtl_id from p_vat_type_dtl 
+					where p_vat_type_id = ".$param_arr['p_vat_type_id'].")
+				and a.start_period > to_date ('31-12-2012','dd-mm-yyyy')
+			and c.t_cust_account_id=a.t_cust_account_id
+			order by c.company_brand,a.npwd";
 	//echo $query;exit;
 	$data = array();
 	$dbConn->query($query);
@@ -141,9 +154,11 @@ function GetCetakHTML($param_arr) {
 				if($j==0){
 					$no = '<tr><td>'.($k+1).'-'.($i+1).'</td>';
 					$npwpd= '<td>'.$bulan['npwd'].'</td>';
+					$company_brand= '<td>'.$data[$k]['company_brand'].'</td>';
+					$alamat= '<td>'.$data[$k]['alamat'].'</td>';
 					//$masa= '<td>'.$bulan['code'].'</td>';
 					$tahun = '<td>'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
-					$html[$i].=$no.$npwpd.$masa[$i].$tahun;
+					$html[$i].=$no.$npwpd.$company_brand.$alamat.$masa[$i].$tahun;
 				}else{
 					$html[$i].='<td>'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
 					if($j==2){
