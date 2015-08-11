@@ -42,7 +42,7 @@ class clsGridSELECT_MAX_p_finance_peri { //SELECT_MAX_p_finance_peri class @2-E6
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-0ECF9054
+//Class_Initialize Event @2-1E1011BE
     function clsGridSELECT_MAX_p_finance_peri($RelativePath, & $Parent)
     {
         global $FileName;
@@ -59,7 +59,7 @@ class clsGridSELECT_MAX_p_finance_peri { //SELECT_MAX_p_finance_peri class @2-E6
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
-            $this->PageSize = 10;
+            $this->PageSize = 100;
         else
             $this->PageSize = intval($this->PageSize);
         if ($this->PageSize > 100)
