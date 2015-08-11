@@ -469,22 +469,22 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		// ============
 		
-		/*$this->SetFont('Arial', 'U', 8);
+		$this->SetFont('Arial', 'U', 8);
 		$this->Cell($lbody1, $this->height+1, "PERHATIAN:", "L", 0, 'L');
 		$this->Cell($lbody3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		$this->SetFont('Arial', '', 8);
 		$this->tulis("1. Harap penyetoran dilakukan melalui Kas Daerah atau tempat lain yang ditunjuk dengan menggunakan Surat Setoran Pajak Daerah (SSPD)", "L");
 		$this->tulis("2. Apabila SKPDKB ini tidak atau kurang dibayar setelah lewat waktu paling lama 15 hari kalender sejak SKPDKB ini diterbitkan dikenakan", "L");
-		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");*/
-		$this->SetFont('Arial', 'U', 8);
+		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
+		/*$this->SetFont('Arial', 'U', 8);
 		$this->Cell($lbody1, $this->height+1, "", "L", 0, 'L');
 		$this->Cell($lbody3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		$this->SetFont('Arial', '', 8);
 		$this->tulis("", "L");
 		$this->tulis("", "L");
-		$this->tulis("", "L");
+		$this->tulis("", "L");*/
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
