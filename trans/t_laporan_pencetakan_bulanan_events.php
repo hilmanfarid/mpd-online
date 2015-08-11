@@ -108,8 +108,8 @@ function print_laporan($param_arr){
 	//	$jumlah_wp+=$dbConn->f("jumlah_wp");
 		$no++;
 	}
-	print_r($items);
-	exit;
+	//print_r($items);
+	//exit;
 	$pdf->SetWidths(array(250,70));
 	$pdf->ln(8);
 	$pdf->RowMultiBorderWithHeight(array("","KASIE VOP"),array('','','','','','',''),6);
