@@ -118,6 +118,9 @@ function print_excel($param_arr) {
 	$whereClause= " WHERE ";
 	$whereClause.=" (trunc(a.verification_date) BETWEEN '".$param_arr['date_start']."'";
 	$whereClause.=" AND '".$param_arr['date_end']."')";
+	if ($param_arr['object_p_region_id_kec']!=''){
+		$whereClause.=" AND object_p_region_id_kec = ".$param_arr['object_p_region_id_kec'];
+	}
 	
 	$query="SELECT a.*, to_char(a.creation_date,'yyyy-mm-dd') AS tgl_bphtb, b.order_no, kelurahan_wp.region_name AS kelurahan_wp_name, kecamatan_wp.region_name AS kecamatan_wp_name,
 			kelurahan_op.region_name AS kelurahan_op_name, kecamatan_op.region_name AS kecamatan_op_name,
@@ -134,6 +137,7 @@ function print_excel($param_arr) {
 			left join t_payment_receipt_bphtb as c on a.t_bphtb_registration_id = c.t_bphtb_registration_id";
 	$query.= $whereClause;
 	$query.= " ORDER BY a.wp_name ASC";
+
 	$dbConn->query($query);
 	
 	
