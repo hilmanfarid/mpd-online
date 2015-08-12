@@ -271,6 +271,9 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody15-10, $this->height, ": ". "Rp.".number_format($data['npop'], 0, ",", "."), "", 0, "");
 		$this->Ln();
 		$this->Ln();
+		
+		
+		$this->AddPage("P");
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($lbody1, $this->height, "1", "", 0, "");
 		$this->SetWidths(array($this->lengthCell-$lbody1-$lbody1));
@@ -348,7 +351,7 @@ class FormCetak extends FPDF {
 
 	function signaturePage($data) {
 		$this->AliasNbPages();
-		$this->AddPage("P");
+		//$this->AddPage("P");
 		$encImageData = '';
 
 		//$this->Image('../images/logo_pemda.png',10,10,20,20);
