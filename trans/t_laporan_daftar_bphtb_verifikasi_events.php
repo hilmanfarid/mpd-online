@@ -210,7 +210,7 @@ function print_excel($param_arr) {
 		echo '<td align="left">'.$item['receipt_no'].'</td>';
 		echo '<td align="left">'.$item['tgl_bayar'].'</td>';
 		echo '<td align="right">'.number_format($item['payment_amount'],0,",",".").'</td>';
-		echo '<td align="left">'.$item['order_no'].'</td>';
+		echo '<td align="left">&nbsp;'.$item['order_no'].'</td>';
 		echo '<td align="left">'.$item['tgl_bayar'].'</td>';
 		if ($item['receipt_no']==''){
 			echo '<td align="right">'.number_format(0,0,",",".").'</td>';
