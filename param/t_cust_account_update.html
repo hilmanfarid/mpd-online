@@ -52,6 +52,13 @@ $(document).ready(function()
       </div>
       </label>
     </div>
+	<div class="th tab-button">
+	  <label onclick="javascript:toMasaJabatan()">
+      <div class="tab-title">
+        MASA JABATAN
+      </div>
+	   </label>
+    </div>
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -616,6 +623,14 @@ function toDoc()
        var pid = document.getElementById('p_cust_account_updateSearcht_customer_id').value;
        var t_cust = document.getElementById('t_custAccountGridt_cust_account_id').value;
         location.href="t_cacc_legal_doc.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust;
+}
+
+function toMasaJabatan()
+{
+       var customerName = document.getElementById('p_cust_account_updateSearchcustomer_name').value;
+       var pid = document.getElementById('p_cust_account_updateSearcht_customer_id').value;
+       var t_cust = document.getElementById('t_custAccountGridt_cust_account_id').value;
+        location.href="t_cacc_masa_jab.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust;
 }
 </script>
 </body>
