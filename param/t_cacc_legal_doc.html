@@ -93,6 +93,13 @@ $(document).ready(function()
         DOKUMEN PENDUKUNG 
       </div>
     </div>
+	<div class="th tab-button">
+	  <label onclick="javascript:toMasaJabatan()">
+      <div class="tab-title">
+        MASA JABATAN
+      </div>
+	   </label>
+    </div>
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -261,8 +268,10 @@ function lov_doc() {
 }
 
 function toCustomer()
-{     
-     location.href="t_customer.php";
+{
+       var customerName = document.getElementById('t_cacc_legal_docSearchcustomer_name').value;
+       var pid = document.getElementById('t_cacc_legal_docSearcht_customer_id').value;
+       location.href="t_customer_update.php?t_customer_id="+pid+"&customer_name="+customerName;
 }
 
 function toCustAcc()
@@ -287,6 +296,14 @@ function toPotensi()
   var cusName=document.getElementById("t_cacc_legal_docSearchcustomer_name").value;
   var idCus=document.getElementById("t_cacc_legal_docSearcht_customer_id").value;    
   location.href="data_potensi_update.php?t_customer_id="+idCus+"&customer_name="+cusName+"&t_cust_account_id="+pid;
+}
+
+function toMasaJabatan()
+{
+       var customerName = document.getElementById('t_cacc_legal_docSearchcustomer_name').value;
+       var pid = document.getElementById('t_cacc_legal_docSearcht_customer_id').value;
+       var t_cust = document.getElementById('t_cacc_legal_docSearcht_cust_account_id').value;
+        location.href="t_cacc_masa_jab.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust;
 }
 </script>
   </body>
