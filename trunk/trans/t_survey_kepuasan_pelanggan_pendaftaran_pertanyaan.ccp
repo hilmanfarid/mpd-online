@@ -28,8 +28,9 @@ WHERE p_survey_question_id={p_survey_question_id}" activeCollection="SQLParamete
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<RadioButton id="578" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" html="True" returnValueType="Number" name="pilihan_jawaban" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchpilihan_jawaban" connection="ConnSIKP" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select p_survey_answer_score,score_number from p_survey_answer_score
-where p_survey_question_id = {p_survey_question_id}" boundColumn="p_survey_answer_score_id" textColumn="score_number">
+				<RadioButton id="578" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" html="True" returnValueType="Number" name="pilihan_jawaban" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchpilihan_jawaban" connection="ConnSIKP" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select p_survey_answer_score_id,score_number from p_survey_answer_score
+where p_survey_question_id = 1
+ORDER BY score_number desc" boundColumn="p_survey_answer_score_id" textColumn="score_number">
 					<Components/>
 					<Events/>
 					<TableParameters/>
@@ -49,7 +50,7 @@ where p_survey_question_id = {p_survey_question_id}" boundColumn="p_survey_answe
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
