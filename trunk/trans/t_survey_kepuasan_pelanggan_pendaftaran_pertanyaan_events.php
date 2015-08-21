@@ -78,6 +78,7 @@ function Page_BeforeShow(& $sender)
 //End Close Page_BeforeShow
 
 function GetSurvey($param_arr) {
+	global $t_rep_lap_spjpSearch;
 	$output = '';
 	$dbConn	= new clsDBConnSIKP();
 	$query="select * from p_survey_question WHERE p_survey_question_id=".$param_arr['p_survey_question_id'];
