@@ -50,7 +50,19 @@ ORDER BY score_number desc" boundColumn="p_survey_answer_score_id" textColumn="s
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Hidden id="582" fieldSourceType="DBColumn" dataType="Text" html="False" name="score_number" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_rep_lap_spjpSearchscore_number">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+<Hidden id="583" fieldSourceType="DBColumn" dataType="Text" html="False" name="p_survey_answer_score_id" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_rep_lap_spjpSearchp_survey_answer_score_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
