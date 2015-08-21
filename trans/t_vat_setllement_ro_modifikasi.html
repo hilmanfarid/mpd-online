@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -64,7 +64,7 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir / No.Pembayaran&nbsp;: <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
+                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir / No.Pembayaran&nbsp;: <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label style="display: none;" for="searchFormOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" value="Cari" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -112,6 +112,8 @@ $(document).ready(function()
  
                   <th style="TEXT-ALIGN: center" scope="col">No.Pembayaran&nbsp;</th>
  
+                  <th style="TEXT-ALIGN: center" scope="col">Dibuat Oleh</th>
+ 
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;HAPUS TRANSAKSI</th>
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;UBAH AYAT</th>
@@ -140,6 +142,7 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: right; COLOR: #ff0000">{total_penalty_amount}</td> 
                   <td style="TEXT-ALIGN: right; COLOR: #008000">{no_kohir}&nbsp;</td> 
                   <td style="TEXT-ALIGN: left">&nbsp;{payment_key}</td> 
+                  <td style="TEXT-ALIGN: left">&nbsp;{created_by}</td> 
                   <td style="TEXT-ALIGN: center">
                     <!-- BEGIN Button BtnHapusTransaksi --><input style="WIDTH: 104px; HEIGHT: 23px" id="t_vat_setllementGridBtnHapusTransaksi" class="Button" onclick="viewFormHapusTransaksi({t_vat_setllement_id});" value="Hapus Transaksi" alt="Button2" type="button" name="{Button_Name}"><!-- END Button BtnHapusTransaksi --></td> 
                   <td>
@@ -149,20 +152,19 @@ $(document).ready(function()
                   <td>
                     <!-- BEGIN Button BtnUbahNilaiTransaksi --><input style="WIDTH: 113px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahNilaiTransaksi" class="Button" onclick="viewFormUbahNilaiTransaksi({t_vat_setllement_id});" value="Ubah Total Trans" alt="Button2" size="17" type="button" name="{Button_Name}"><!-- END Button BtnUbahNilaiTransaksi --></td> 
                   <td>
-                    <!-- BEGIN Button BtnCetakNoBayar --><input style="WIDTH: 90px; HEIGHT: 23px" id="t_vat_setllementGridBtnCetakNoBayar" class="Button" onclick="cetakNoBayar('{payment_key}');" value="Cetak No Bayar" alt="Button2" size="17" type="button" name="{Button_Name}"><!-- END Button BtnCetakNoBayar -->
-                  </td> 
+                    <!-- BEGIN Button BtnCetakNoBayar --><input style="WIDTH: 90px; HEIGHT: 23px" id="t_vat_setllementGridBtnCetakNoBayar" class="Button" onclick="cetakNoBayar('{payment_key}');" value="Cetak No Bayar" alt="Button2" size="17" type="button" name="{Button_Name}"><!-- END Button BtnCetakNoBayar --></td> 
                   <td colspan="6">
                     <!-- BEGIN Button BtnUbahDenda --><input style="WIDTH: 78px; HEIGHT: 23px" id="t_vat_setllementGridBtnUbahDenda" class="Button" onclick="viewFormUbahDenda({t_vat_setllement_id},'{total_penalty_amount}');" value="Ubah Denda" alt="Button2" size="15" type="button" name="{Button_Name}"><!-- END Button BtnUbahDenda --></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="22">-</td>
+                  <td colspan="23">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b>&nbsp;</b></td> 
-                  <td colspan="21">&nbsp; 
+                  <td colspan="22">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -366,10 +368,10 @@ function cetakRegister(cust_order_id){
 
 function cetakNoBayar(no_bayar){
         if (no_bayar!=''){
-        	return popup("http://172.16.21.7:81/mpd-wp/client/ws.php?type=json&module=bds&class=t_vat_settlement&method=printNoBayar&no_bayar="+no_bayar);
-		}else{
-			alert ('Belum ada no bayar');
-		}
+                return popup("http://172.16.21.7:81/mpd-wp/client/ws.php?type=json&module=bds&class=t_vat_settlement&method=printNoBayar&no_bayar="+no_bayar);
+                }else{
+                        alert ('Belum ada no bayar');
+                }
 }
 
 function viewFormUbahDenda(t_vat_setllement_id,denda_amount) {
