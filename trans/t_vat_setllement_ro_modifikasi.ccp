@@ -4,7 +4,8 @@
 a.settlement_date, a.p_finance_period_id, 
 a.t_cust_account_id, a.npwd, a.total_trans_amount,
 a.total_vat_amount, b.code as finance_period_code, c.order_no, c.p_rqst_type_id, e.code as rqst_type_code, d.p_vat_type_id,
-a.payment_key
+a.payment_key,
+a.created_by
 FROM t_vat_setllement a, p_finance_period b, t_customer_order c, t_cust_account d, p_rqst_type e,p_settlement_type sett_type
 WHERE a.p_finance_period_id = b.p_finance_period_id AND
 a.t_customer_order_id = c.t_customer_order_id AND
@@ -160,11 +161,17 @@ ORDER BY d.wp_name ASC, b.start_date DESC" parameterTypeListName="ParameterTypeL
 					<Features/>
 				</Label>
 				<Button id="322" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetakNoBayar" PathID="t_vat_setllementGridBtnCetakNoBayar">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Label id="323" fieldSourceType="DBColumn" dataType="Text" html="False" name="created_by" fieldSource="created_by" wizardCaption="Valid To" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllementGridcreated_by" format="#,##">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
