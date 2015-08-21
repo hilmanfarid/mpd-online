@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-698E7924
+//Class_Initialize Event @3-0E3FDD26
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -89,6 +89,8 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->pilihan_jawaban->DataSource->Order = "score_number desc";
             $this->pilihan_jawaban->HTML = true;
             $this->t_vat_registration_id = & new clsControl(ccsHidden, "t_vat_registration_id", "t_vat_registration_id", ccsInteger, "", CCGetRequestParam("t_vat_registration_id", $Method, NULL), $this);
+            $this->score_number = & new clsControl(ccsHidden, "score_number", "score_number", ccsText, "", CCGetRequestParam("score_number", $Method, NULL), $this);
+            $this->p_survey_answer_score_id = & new clsControl(ccsHidden, "p_survey_answer_score_id", "p_survey_answer_score_id", ccsText, "", CCGetRequestParam("p_survey_answer_score_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
@@ -104,7 +106,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     }
 //End Initialize Method
 
-//Validate Method @3-59BB7FAD
+//Validate Method @3-B1E87133
     function Validate()
     {
         global $CCSLocales;
@@ -113,15 +115,19 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation = ($this->p_survey_question_id->Validate() && $Validation);
         $Validation = ($this->pilihan_jawaban->Validate() && $Validation);
         $Validation = ($this->t_vat_registration_id->Validate() && $Validation);
+        $Validation = ($this->score_number->Validate() && $Validation);
+        $Validation = ($this->p_survey_answer_score_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->p_survey_question_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->pilihan_jawaban->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_vat_registration_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->score_number->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_survey_answer_score_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-FAB7D584
+//CheckErrors Method @3-3E466236
     function CheckErrors()
     {
         $errors = false;
@@ -130,6 +136,8 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $errors = ($errors || $this->p_survey_question_id->Errors->Count());
         $errors = ($errors || $this->pilihan_jawaban->Errors->Count());
         $errors = ($errors || $this->t_vat_registration_id->Errors->Count());
+        $errors = ($errors || $this->score_number->Errors->Count());
+        $errors = ($errors || $this->p_survey_answer_score_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -187,7 +195,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-8061EC34
+//Show Method @3-AD59C643
     function Show()
     {
         global $CCSUseAmp;
@@ -235,6 +243,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->p_survey_question_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->pilihan_jawaban->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_vat_registration_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->score_number->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_survey_answer_score_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -259,6 +269,8 @@ function GetPrimaryKey($keyName)
         $this->p_survey_question_id->Show();
         $this->pilihan_jawaban->Show();
         $this->t_vat_registration_id->Show();
+        $this->score_number->Show();
+        $this->p_survey_answer_score_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -269,7 +281,7 @@ function GetPrimaryKey($keyName)
 
 class clst_rep_lap_spjpSearchDataSource extends clsDBConnSIKP {  //t_rep_lap_spjpSearchDataSource Class @3-CB0D4001
 
-//DataSource Variables @3-F502E205
+//DataSource Variables @3-B631F925
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -286,9 +298,11 @@ class clst_rep_lap_spjpSearchDataSource extends clsDBConnSIKP {  //t_rep_lap_spj
     var $p_survey_question_id;
     var $pilihan_jawaban;
     var $t_vat_registration_id;
+    var $score_number;
+    var $p_survey_answer_score_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @3-43476719
+//DataSourceClass_Initialize Event @3-338E7B59
     function clst_rep_lap_spjpSearchDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -303,6 +317,10 @@ class clst_rep_lap_spjpSearchDataSource extends clsDBConnSIKP {  //t_rep_lap_spj
         $this->pilihan_jawaban = new clsField("pilihan_jawaban", ccsText, "");
         
         $this->t_vat_registration_id = new clsField("t_vat_registration_id", ccsInteger, "");
+        
+        $this->score_number = new clsField("score_number", ccsText, "");
+        
+        $this->p_survey_answer_score_id = new clsField("p_survey_answer_score_id", ccsText, "");
         
 
     }
