@@ -206,9 +206,11 @@ class FormCetak extends FPDF {
 		$this->kotak(1, 34, 1,$arr1[7]);
 		$this->kotak(1, 34, 1,$arr1[8]);
 		$this->kotakKosong(1, 34, 1);
-		$this->kotak(1, 34, 2,$arr1[9]);
+		$this->kotak(1, 34, 1,$arr1[9]);
+		$this->kotak(1, 34, 1,$arr1[10]);
 		$this->kotakKosong(1, 34, 1);
-		$this->kotak(1, 34, 2,$arr1[10]);
+		$this->kotak(1, 34, 1,$arr1[11]);
+		$this->kotak(1, 34, 1,$arr1[12]);
 		$this->Ln();
 		
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
