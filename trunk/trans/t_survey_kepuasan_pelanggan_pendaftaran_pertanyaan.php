@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-0C446FC9
+//Class_Initialize Event @3-698E7924
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -84,9 +84,9 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->pilihan_jawaban->DataSource->Parameters["urlp_survey_question_id"] = CCGetFromGet("p_survey_question_id", NULL);
             $this->pilihan_jawaban->DataSource->wp = new clsSQLParameters();
             $this->pilihan_jawaban->DataSource->wp->AddParameter("1", "urlp_survey_question_id", ccsInteger, "", "", $this->pilihan_jawaban->DataSource->Parameters["urlp_survey_question_id"], 0, false);
-            $this->pilihan_jawaban->DataSource->SQL = "select p_survey_answer_score,score_number from p_survey_answer_score\n" .
-            "where p_survey_question_id = " . $this->pilihan_jawaban->DataSource->SQLValue($this->pilihan_jawaban->DataSource->wp->GetDBValue("1"), ccsInteger) . "";
-            $this->pilihan_jawaban->DataSource->Order = "";
+            $this->pilihan_jawaban->DataSource->SQL = "select p_survey_answer_score_id,score_number from p_survey_answer_score\n" .
+            "where p_survey_question_id = 1{SQL_OrderBy}";
+            $this->pilihan_jawaban->DataSource->Order = "score_number desc";
             $this->pilihan_jawaban->HTML = true;
             $this->t_vat_registration_id = & new clsControl(ccsHidden, "t_vat_registration_id", "t_vat_registration_id", ccsInteger, "", CCGetRequestParam("t_vat_registration_id", $Method, NULL), $this);
         }
