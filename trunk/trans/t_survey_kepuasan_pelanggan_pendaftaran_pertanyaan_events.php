@@ -67,6 +67,7 @@ function Page_BeforeShow(& $sender)
 	if($doAction == 'view_survey') {
 		$param_arr['p_survey_question_id'] = strtoupper(CCGetFromGet('p_survey_question_id'));
 		$param_arr['t_vat_registration_id'] = strtoupper(CCGetFromGet('t_vat_registration_id'));
+		$param_arr['p_survey_answer_score_id'] = strtoupper(CCGetFromGet('p_survey_answer_score_id'));
 		$Label1->SetText(GetSurvey($param_arr));
 	}
 // -------------------------
@@ -86,6 +87,37 @@ function GetSurvey($param_arr) {
 	$dbConn->query($query);
 	if ($dbConn->next_record()) {
 		$data = $dbConn->Record;
+		//insert answer
+		$dbConn_vat_reg	= new clsDBConnSIKP();
+		$query_vat_reg = "select * from t_vat_registration
+							WHERE t_vat_registration_id=".$param_arr['t_vat_registration_id'];
+		$dbConn_vat_reg->query($query_vat_reg);
+		$dbConn_vat_reg->next_record();
+		$data_vat_reg = $dbConn_vat_reg->Record;
+		
+		$dbConn_answer_score	= new clsDBConnSIKP();
+		$query_answer_score = "select * from p_survey_answer_score
+							WHERE p_survey_answer_score_id=".$param_arr['p_survey_answer_score_id'];
+		$dbConn_answer_score->query($query_answer_score);
+		$dbConn_answer_score->next_record();
+		$data_answer_score = $dbConn_answer_score->Record;
+
+		$dbConn_insert	= new clsDBConnSIKP();
+		$query_insert = "INSERT INTO t_req_satisfaction_survey(
+	            t_customer_order_id, p_survey_question_id, 
+	            p_survey_answer_score_id, score_number, 
+				sequence_no, npwpd,
+	            creation_date, created_by, updated_date, updated_by)
+	    VALUES (generate_id('sikp','t_customer_order','t_customer_order_id'), ".$param_arr['p_survey_question_id'].", 
+	            ".$param_arr['p_survey_answer_score_id'].", ".$data_answer_score["score_number"].
+				", ".$data_answer_score["sequence_no"].", '".$data_vat_reg["npwpd"]."',  
+	            sysdate, '".$data_vat_reg["npwpd"]."', sysdate, '".$data_vat_reg["npwpd"]."')";
+		
+		//echo $query_insert; exit;
+		$dbConn_insert->query($query_insert);
+		
+
+		//next question
 		$query2="select * from p_survey_question WHERE p_survey_type_id=".$data["p_survey_type_id"]." and sequence_no =".($data["sequence_no"]+1);
 		$dbConn2 = new clsDBConnSIKP();
 		$dbConn2->query($query2);
