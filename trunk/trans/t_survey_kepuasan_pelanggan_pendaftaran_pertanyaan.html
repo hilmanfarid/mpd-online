@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<title>PENCARIAN PEMBAYARAN TERAKHIR</title>
+<title>SURVEY KEPUASAN PELANGGAN</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="CLEAR: both; PADDING-TOP: 50px">
   <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
     <tr>
@@ -50,16 +50,20 @@ $(document).ready(function()
                   </tr>
  
                   <tr class="Controls">
-                    <td class="search-field" valign="middle"><font size="4">{no}</font></td> 
+                    <td class="search-field" valign="middle"><font size="4">{no}.</font></td> 
                     <td class="search-field"><font size="4">{survey_question}</font></td> 
-                    <td class="search-field"><input id="t_rep_lap_spjpSearchp_survey_question_id" value="{p_survey_question_id}" type="hidden" name="{p_survey_question_id_Name}"><input id="t_rep_lap_spjpSearcht_vat_registration_id" value="{t_vat_registration_id}" type="hidden" name="{t_vat_registration_id_Name}"></td>
+                    <td class="search-field">
+							<input id="t_rep_lap_spjpSearchp_survey_question_id" value="{p_survey_question_id}" type="hidden" name="{p_survey_question_id_Name}"><input id="t_rep_lap_spjpSearcht_vat_registration_id" value="{t_vat_registration_id}" type="hidden" name="{t_vat_registration_id_Name}">
+					</td>
                   </tr>
  
-                  <tr class="Controls">
-                    <td class="search-field" valign="middle">&nbsp;</td> 
-                    <td class="search-field"><font size="4">
-                      <!-- BEGIN RadioButton pilihan_jawaban --><input id="t_rep_lap_spjpSearchpilihan_jawaban_{pilihan_jawaban:optionNumber}" value="{Value}" type="radio" name="{pilihan_jawaban_Name}" {Check}><label for="t_rep_lap_spjpSearchpilihan_jawaban_{pilihan_jawaban:optionNumber}">{Description}</label><br>
-                      <!-- END RadioButton pilihan_jawaban --></font></td> 
+                  <tr style="HEIGHT: 150px" class="Controls">
+                    <td class="search-field" valign="middle"></td> 
+                    <td style="VERTICAL-ALIGN: middle" class="search-field">
+                      <!-- BEGIN RadioButton pilihan_jawaban --><div class="pilihan_jawaban_class" id="div_pilihan_jawaban_{pilihan_jawaban:optionNumber}" style="float:left; padding-left:10px; border-radius:25px;">
+					  		<input style="display:none" id="t_rep_lap_spjpSearchpilihan_jawaban_{pilihan_jawaban:optionNumber}" onchange="pilih_jawaban('div_pilihan_jawaban_{pilihan_jawaban:optionNumber}')" value="{Value}" type="radio" name="{pilihan_jawaban_Name}" {Check}><label for="t_rep_lap_spjpSearchpilihan_jawaban_{pilihan_jawaban:optionNumber}" style="vertical-align:middle"><img src="../images/emoticon_{pilihan_jawaban:optionNumber}.png" style="cursor:pointer;"></label> 
+					  </div><!-- END RadioButton pilihan_jawaban -->
+					</td> 
                     <td class="search-field"></td>
                   </tr>
  
@@ -89,22 +93,32 @@ $(document).ready(function()
         question = document.getElementById("t_rep_lap_spjpSearchp_survey_question_id").value;
         if(question  == "" || question  == "" ) {
             alert("Pertanyaan dan Data Registrasi tidak ditemukan");
-			location.href="t_survey_kepuasan_pelanggan_pendaftaran.php";
+                        location.href="t_survey_kepuasan_pelanggan_pendaftaran.php";
         }else {
             var params = "?doAction=view_survey";
-			var paramsarr = location.href.split("?")[1].split("&");
-			//alert(paramsarr[1].split("="));return;
-			var newparams = Array();
-			for(var i = 0; i <paramsarr.length; i++){
-				var temp = paramsarr[i].split("=");
-				newparams [temp[0]]=temp[1];
-			}
-			reg_id = newparams["t_vat_registration_id"];
+                        var paramsarr = location.href.split("?")[1].split("&");
+                        //alert(paramsarr[1].split("="));return;
+                        var newparams = Array();
+                        for(var i = 0; i <paramsarr.length; i++){
+                                var temp = paramsarr[i].split("=");
+                                newparams [temp[0]]=temp[1];
+                        }
+                        reg_id = newparams["t_vat_registration_id"];
             params += "&p_survey_question_id="+question;
-			params += "&t_vat_registration_id="+reg_id;
+                        params += "&t_vat_registration_id="+reg_id;
             location.href="t_survey_kepuasan_pelanggan_pendaftaran_pertanyaan.php"+params;
         }
     }
+
+function pilih_jawaban(label_id){
+	//alert(label_id);
+    var class_var = $('.pilihan_jawaban_class');
+	$.each(class_var,function(index,value){
+		$(value).css("background-color","#FFFFFF")
+	});
+	var label_var = document.getElementById(label_id);
+	label_var.style.backgroundColor="khaki";
+}
 </script>
 <p>{Label1}</p>
 </body>
