@@ -136,7 +136,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader2, $this->height + 2, "", "R", 0, 'C');
 		$this->Ln($this->height-4);
 		// No Urut
-		$this->Cell($lheader2 + $lheader4 + 7, $this->height, "", "R", 0, 'C');
+		$this->Cell($lheader2 + $lheader4 + 1.5, $this->height, "", "R", 0, 'C');
 
 
 		$no_urt = str_split($data["order_no"]);
@@ -146,6 +146,8 @@ class FormCetak extends FPDF {
 		$this->kotak(1, 34, 1, $no_urt[3]);
 		$this->kotak(1, 34, 1, $no_urt[4]);
 		$this->kotak(1, 34, 1, $no_urt[5]);
+		$this->kotak(1, 34, 1, $no_urt[6]);
+		$this->kotak(1, 34, 1, $no_urt[7]);
 		$this->Ln();
 		// =======
 		
