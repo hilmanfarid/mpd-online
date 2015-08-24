@@ -1,11 +1,12 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\lov" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="LOV_ORDER" pageSizeLimit="100" wizardCaption="List of P CUSTOMER SEGMENT " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="select ty_lov_npwd as t_cust_account_id, npwd, company_name,company_brand as wp_address_name,
-p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl
-from f_get_npwd_by_username('{puser}') AS tbl (ty_lov_npwd)
-where upper(npwd) like '%{s_keyword}%' OR
-upper(company_name) like '%{s_keyword}%' OR
-upper(company_brand) like '%{s_keyword}%'">
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="LOV_ORDER" pageSizeLimit="100" wizardCaption="List of P CUSTOMER SEGMENT " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="select a.t_cust_account_id, a.npwd, wp_name,
+a.p_vat_type_id, vat_code, a.p_vat_type_dtl_id, vat_code_dtl
+from f_get_npwd_by_username('{puser}') AS tbl
+LEFT JOIN t_cust_account A ON A.t_cust_account_id= tbl.t_cust_account_id
+where upper(a.npwd) like '%{s_keyword}%' OR
+upper(a.wp_name) like '%{s_keyword}%' OR
+upper(a.company_brand) like '%{s_keyword}%'">
 			<Components>
 				<Label id="14" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwd" fieldSource="npwd" wizardCaption="CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_ORDERnpwd">
 					<Components/>
@@ -13,7 +14,7 @@ upper(company_brand) like '%{s_keyword}%'">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="16" fieldSourceType="DBColumn" dataType="Text" html="False" name="company_name" fieldSource="company_name" wizardCaption="DESCRIPTION" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_ORDERcompany_name">
+				<Label id="16" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_name" fieldSource="wp_name" wizardCaption="DESCRIPTION" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_ORDERwp_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -74,12 +75,12 @@ upper(company_brand) like '%{s_keyword}%'">
 					<Features/>
 				</Hidden>
 				<Label id="53" fieldSourceType="DBColumn" dataType="Text" html="False" name="vat_code2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERvat_code2" fieldSource="vat_code">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>

@@ -18,6 +18,12 @@ function LOV_ORDER_PILIH_BeforeShow(& $sender)
     global $LOV_ORDER; //Compatibility
 //End LOV_ORDER_PILIH_BeforeShow
 
+//Custom Code @26-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close LOV_ORDER_PILIH_BeforeShow @25-5BF0AA63
     return $LOV_ORDER_PILIH_BeforeShow;
 }
@@ -32,17 +38,23 @@ function LOV_ORDER_BeforeShowRow(& $sender)
     global $LOV_ORDER; //Compatibility
 //End LOV_ORDER_BeforeShowRow
 
+//Custom Code @32-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
       // Write your own code here.
 	$t_cust_account_id = $LOV_ORDER->t_cust_account_id->GetValue();
 	$npwd = $LOV_ORDER->npwd->GetValue();
-	$company_name = $LOV_ORDER->company_name->GetValue();
+	$wp_name = $LOV_ORDER->wp_name->GetValue();
   	$p_vat_type_id = $LOV_ORDER->p_vat_type_id->GetValue();
 	$vat_code = $LOV_ORDER->vat_code->GetValue();
 	$p_vat_type_dtl_id = $LOV_ORDER->p_vat_type_dtl_id->GetValue();
 	$vat_code_dtl = $LOV_ORDER->vat_code_dtl->GetValue();
 
-	$nilai = "$t_cust_account_id#~#$npwd#~#$company_name#~#$p_vat_type_id#~#$vat_code#~#$p_vat_type_dtl_id#~#$vat_code_dtl";
+	$nilai = "$t_cust_account_id#~#$npwd#~#$wp_name#~#$p_vat_type_id#~#$vat_code#~#$p_vat_type_dtl_id#~#$vat_code_dtl";
 	//$nilai = "$t_cust_account_id#~#$npwd#~#$p_vat_type_id";
   	$LOV_ORDER->PILIH->SetValue("<input type=button value=PILIH class=btn_tambah onclick=\"" .
   									 "clickReturn('".$nilai."')\">");
@@ -62,6 +74,12 @@ function LOV_ORDER_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $LOV_ORDER; //Compatibility
 //End LOV_ORDER_BeforeSelect
+
+//Custom Code @35-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
