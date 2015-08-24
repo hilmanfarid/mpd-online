@@ -42,7 +42,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-0977368F
+//Class_Initialize Event @2-1FEFEFD6
     function clsGridLOV_ORDER($RelativePath, & $Parent)
     {
         global $FileName;
@@ -70,7 +70,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
         if ($this->PageNumber <= 0) $this->PageNumber = 1;
 
         $this->npwd = & new clsControl(ccsLabel, "npwd", "npwd", ccsText, "", CCGetRequestParam("npwd", ccsGet, NULL), $this);
-        $this->company_name = & new clsControl(ccsLabel, "company_name", "company_name", ccsText, "", CCGetRequestParam("company_name", ccsGet, NULL), $this);
+        $this->wp_name = & new clsControl(ccsLabel, "wp_name", "wp_name", ccsText, "", CCGetRequestParam("wp_name", ccsGet, NULL), $this);
         $this->PILIH = & new clsControl(ccsLabel, "PILIH", "PILIH", ccsText, "", CCGetRequestParam("PILIH", ccsGet, NULL), $this);
         $this->PILIH->HTML = true;
         $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsFloat, "", CCGetRequestParam("p_vat_type_id", ccsGet, NULL), $this);
@@ -96,7 +96,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     }
 //End Initialize Method
 
-//Show Method @2-3D2034CD
+//Show Method @2-E9AD6C4C
     function Show()
     {
         global $Tpl;
@@ -127,7 +127,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
 
         if (!$this->IsEmpty) {
             $this->ControlsVisible["npwd"] = $this->npwd->Visible;
-            $this->ControlsVisible["company_name"] = $this->company_name->Visible;
+            $this->ControlsVisible["wp_name"] = $this->wp_name->Visible;
             $this->ControlsVisible["PILIH"] = $this->PILIH->Visible;
             $this->ControlsVisible["p_vat_type_id"] = $this->p_vat_type_id->Visible;
             $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
@@ -144,7 +144,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
                 }
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
                 $this->npwd->SetValue($this->DataSource->npwd->GetValue());
-                $this->company_name->SetValue($this->DataSource->company_name->GetValue());
+                $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
                 $this->p_vat_type_id->SetValue($this->DataSource->p_vat_type_id->GetValue());
                 $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
                 $this->t_cust_account_id->SetValue($this->DataSource->t_cust_account_id->GetValue());
@@ -156,7 +156,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
                 $this->npwd->Show();
-                $this->company_name->Show();
+                $this->wp_name->Show();
                 $this->PILIH->Show();
                 $this->p_vat_type_id->Show();
                 $this->vat_code->Show();
@@ -197,12 +197,12 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
     }
 //End Show Method
 
-//GetErrors Method @2-DC45E289
+//GetErrors Method @2-56744EE1
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->npwd->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->company_name->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->PILIH->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_vat_type_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
@@ -221,7 +221,7 @@ class clsGridLOV_ORDER { //LOV_ORDER class @2-6579D3B5
 
 class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Class @2-A587E400
 
-//DataSource Variables @2-C5F3206C
+//DataSource Variables @2-CB7DE92A
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -234,7 +234,7 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
 
     // Datasource fields
     var $npwd;
-    var $company_name;
+    var $wp_name;
     var $p_vat_type_id;
     var $vat_code;
     var $t_cust_account_id;
@@ -244,7 +244,7 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     var $vat_code2;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-130A0C13
+//DataSourceClass_Initialize Event @2-773C8DE2
     function clsLOV_ORDERDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -252,7 +252,7 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
         $this->Initialize();
         $this->npwd = new clsField("npwd", ccsText, "");
         
-        $this->company_name = new clsField("company_name", ccsText, "");
+        $this->wp_name = new clsField("wp_name", ccsText, "");
         
         $this->p_vat_type_id = new clsField("p_vat_type_id", ccsFloat, "");
         
@@ -292,22 +292,17 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Prepare Method
 
-//Open Method @2-BE4880EC
+//Open Method @2-7BEE14BD
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select ty_lov_npwd as t_cust_account_id, npwd, company_name,company_brand as wp_address_name,\n" .
-        "p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl\n" .
-        "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl (ty_lov_npwd)\n" .
-        "where upper(npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
-        "upper(company_name) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
-        "upper(company_brand) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%') cnt";
-        $this->SQL = "select ty_lov_npwd as t_cust_account_id, npwd, company_name,company_brand as wp_address_name,\n" .
-        "p_vat_type_id, vat_code, p_vat_type_dtl_id, vat_code_dtl\n" .
-        "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl (ty_lov_npwd)\n" .
-        "where upper(npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
-        "upper(company_name) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
-        "upper(company_brand) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'";
+        $this->SQL = "select a.t_cust_account_id, a.npwd, wp_name,\n" .
+        "a.p_vat_type_id, vat_code, a.p_vat_type_dtl_id, vat_code_dtl\n" .
+        "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl\n" .
+        "LEFT JOIN t_cust_account A ON A.t_cust_account_id= tbl.t_cust_account_id\n" .
+        "where upper(a.npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
+        "upper(a.wp_name) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
+        "upper(a.company_brand) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%'";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -318,11 +313,11 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Open Method
 
-//SetValues Method @2-9F7864B2
+//SetValues Method @2-60119B0A
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
-        $this->company_name->SetDBValue($this->f("company_name"));
+        $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->p_vat_type_id->SetDBValue(trim($this->f("p_vat_type_id")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->t_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
