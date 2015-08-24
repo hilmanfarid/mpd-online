@@ -33,7 +33,7 @@ order by start_date DESC" boundColumn="p_year_period_id" textColumn="year_code" 
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="69" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_name" caption="Nama Perusahaan" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="grafik_pembayaran_formcompany_name">
+				<TextBox id="69" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_name" caption="Nama Perusahaan" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="grafik_pembayaran_formwp_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
