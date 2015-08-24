@@ -45,7 +45,7 @@ class clsRecordgrafik_pembayaran_form { //grafik_pembayaran_form Class @2-0F0D7D
     // Class variables
 //End Variables
  
-//Class_Initialize Event @2-3646D8DE
+//Class_Initialize Event @2-F25B8A1A
     function clsRecordgrafik_pembayaran_form($RelativePath, & $Parent)
     {
 
@@ -80,12 +80,12 @@ class clsRecordgrafik_pembayaran_form { //grafik_pembayaran_form Class @2-0F0D7D
             $this->p_year_period_id->DataSource->SQL = "select * from p_year_period where start_date > '2012-12-31' {SQL_OrderBy}";
             $this->p_year_period_id->DataSource->Order = "start_date DESC";
             $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsFloat, "", CCGetRequestParam("t_cust_account_id", $Method, NULL), $this);
-            $this->company_name = & new clsControl(ccsTextBox, "company_name", "Nama Perusahaan", ccsText, "", CCGetRequestParam("company_name", $Method, NULL), $this);
+            $this->wp_name = & new clsControl(ccsTextBox, "wp_name", "Nama Perusahaan", ccsText, "", CCGetRequestParam("wp_name", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-266C8D85
+//Validate Method @2-33831B6C
     function Validate()
     {
         global $CCSLocales;
@@ -94,24 +94,24 @@ class clsRecordgrafik_pembayaran_form { //grafik_pembayaran_form Class @2-0F0D7D
         $Validation = ($this->npwd->Validate() && $Validation);
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->t_cust_account_id->Validate() && $Validation);
-        $Validation = ($this->company_name->Validate() && $Validation);
+        $Validation = ($this->wp_name->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->npwd->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_cust_account_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->company_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->wp_name->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-A146CB9C
+//CheckErrors Method @2-44736F74
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->npwd->Errors->Count());
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->t_cust_account_id->Errors->Count());
-        $errors = ($errors || $this->company_name->Errors->Count());
+        $errors = ($errors || $this->wp_name->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -164,7 +164,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-A3674A28
+//Show Method @2-1F1EFAD2
     function Show()
     {
         global $CCSUseAmp;
@@ -192,7 +192,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->npwd->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_cust_account_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->company_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->wp_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -214,7 +214,7 @@ function GetPrimaryKey($keyName)
         $this->npwd->Show();
         $this->p_year_period_id->Show();
         $this->t_cust_account_id->Show();
-        $this->company_name->Show();
+        $this->wp_name->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
