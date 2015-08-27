@@ -115,7 +115,7 @@ class FormCetak extends FPDF {
 		$lheader4 = $lheader * 4;
 		$lheader7 = $lheader * 7;
 		
-		$this->SetFont('Arial', 'B', 6);
+		$this->SetFont('Arial', 'B', 8);
 		
 		$this->Cell(8, 3, "", "", 0, 'L');
 		$this->Cell(70, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
