@@ -72,7 +72,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -113,14 +113,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <tr class="Controls">
                     <td class="search-field">Periode Tahun</td> 
-                    <td class="search-field"><input id="t_rep_lap_spjpSearchyear_code" class="ControlsRQ" value="{year_code}" maxlength="32" size="32" name="{year_code_Name}"></td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchyear_code" class="ControlsIN" value="{year_code}" maxlength="32" size="32" name="{year_code_Name}"></td> 
                     <td><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
                     <td class="search-field"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">Periode Pajak</td> 
-                    <td class="search-field"><input id="t_rep_lap_spjpSearchcode" class="ControlsRQ" value="{code}" maxlength="32" size="32" name="{code_Name}"></td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchcode" class="ControlsIN" value="{code}" maxlength="32" size="32" name="{code_Name}"></td> 
                     <td><img onclick="javascript:periodepajak()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td> 
                     <td class="search-field"></td>
                   </tr>
@@ -205,8 +205,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
         npwpd= document.getElementById("t_rep_lap_spjpSearchnpwpd").value;
-                if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "" ) {
-            alert("Semua Filter Harus Diisi");
+                if(p_vat_type_id == "" ) {
+            alert("Filter Berwarna Kuning Harus Diisi");
         }else {
                         var params = "?doAction=view_html";
                 params += "&p_year_period_id="+p_year_period_id;
@@ -222,7 +222,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         }
     }
 
-	function cetak_excel()
+        function cetak_excel()
     {
         p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
@@ -232,8 +232,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
         npwpd= document.getElementById("t_rep_lap_spjpSearchnpwpd").value;
-                if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "" ) {
-            alert("Semua Filter Harus Diisi");
+                if(p_vat_type_id == "" ) {
+            alert("Filter Berwarna Kuning Harus Diisi");
         }else {
                         var params = "?doAction=view_excel";
                 params += "&p_year_period_id="+p_year_period_id;
@@ -269,8 +269,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
         npwpd= document.getElementById("t_rep_lap_spjpSearchnpwpd").value;
-                if(p_year_period_id == "" || p_finance_period_id == "" || p_vat_type_id == "" ) {
-            alert("Semua Filter Harus Diisi");
+                if(p_vat_type_id == "" ) {
+            alert("Filter Berwarna Kuning Harus Diisi");
         }else {
                         var params = "?printAll='SKPDKB JABATAN'";
                 params += "&p_year_period_id="+p_year_period_id;
