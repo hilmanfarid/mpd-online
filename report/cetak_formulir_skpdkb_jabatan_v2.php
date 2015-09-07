@@ -75,11 +75,14 @@
 				left join t_customer_order v on v.t_customer_order_id=a.t_customer_order_id
 				left join p_vat_type_dtl u on u.p_vat_type_dtl_id=a.p_vat_type_dtl_id
 				left join p_vat_type t on t.p_vat_type_id=x.p_vat_type_id
-				where p_settlement_type_id = 4 and a.p_finance_period_id =".$param_arr['p_finance_period_id']."
+				where p_settlement_type_id = 4
 				and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
 				and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 				and x.p_account_status_id = 1
 				and a.npwd ilike '%".$param_arr['npwpd']."%'";
+		}
+		if ($param_arr['p_finance_period_id']!=''){
+			$query.="and a.p_finance_period_id =".$param_arr['p_finance_period_id'];
 		}
 		if ($param_arr['status_bayar']==2){
 			$sql.="and receipt_no is not null ORDER BY wp_name";
