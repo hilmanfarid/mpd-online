@@ -182,16 +182,16 @@ function Page_BeforeShow(& $sender)
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['tgl_pelaporan'].'&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['jatuh_tempo'].'&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['no_kohir'].'&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['total_transaksi'].'&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['total_pajak'].'&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['debt_vat_amt'].'&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['kenaikan'].'&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['kenaikan1'].'&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: red; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['total_denda'].'&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['total_hrs_bayar'].'&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.number_format($data[$i]['total_transaksi'], 2, ',', '.').'&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.number_format($data[$i]['total_pajak'], 2, ',', '.').'&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.number_format($data[$i]['debt_vat_amt'], 2, ',', '.').'&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.number_format($data[$i]['kenaikan'], 2, ',', '.').'&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.number_format($data[$i]['kenaikan1'], 2, ',', '.').'&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; COLOR: red; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.number_format($data[$i]['total_denda'], 2, ',', '.').'&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.number_format($data[$i]['total_hrs_bayar'], 2, ',', '.').'&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['kuitansi_pembayaran'].'&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['tgl_pembayaran'].'&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.$data[$i]['payment_amount'].'&nbsp;</td>
+                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;'.number_format($data[$i]['payment_amount'], 2, ',', '.').'&nbsp;</td>
                 </tr>';
 	}
 
