@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="p_room_typeSearch" wizardCaption="Search P App Role " wizardOrientation="Vertical" wizardFormMethod="post" returnPage="t_history.ccp" PathID="p_room_typeSearch">
+		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="p_room_typeSearch" wizardCaption="Search P App Role " wizardOrientation="Vertical" wizardFormMethod="post" returnPage="t_history.ccp" PathID="p_room_typeSearch" pasteActions="pasteActions">
 			<Components>
 				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" operation="Search" wizardCaption="Search" PathID="p_room_typeSearchButton_DoSearch">
 					<Components/>
@@ -14,6 +14,42 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<TextBox id="171" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" PathID="p_room_typeSearchvat_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_end_laporan" PathID="p_room_typeSearchdate_end_laporan" format="yyyy-mm-dd">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<DatePicker id="173" name="DatePicker_end_start_laporan1" PathID="p_room_typeSearchDatePicker_end_start_laporan1" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+				<TextBox id="174" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_start_laporan" PathID="p_room_typeSearchdate_start_laporan" format="yyyy-mm-dd">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<DatePicker id="176" name="DatePicker_end_start_laporan2" PathID="p_room_typeSearchDatePicker_end_start_laporan2" control="date_start_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+				<Hidden id="172" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="p_room_typeSearchp_vat_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
 			</Components>
 			<Events/>
 			<TableParameters/>
@@ -36,14 +72,13 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="15" name="p_room_typeGrid" connection="ConnSIKP" dataSource="SELECT *, p.code, t.code as type_code
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" name="p_room_typeGrid" connection="ConnSIKP" dataSource="SELECT *, p.code, t.code as type_code
 FROM h_vat_setllement h
 LEFT JOIN p_finance_period p 
 on p.p_finance_period_id = h.p_finance_period_id
 LEFT JOIN p_settlement_type t 
 on t.p_settlement_type_id = h.p_settlement_type_id
-WHERE h.npwd LIKE '%{s_keyword}%'
-ORDER BY h.updated_date" pageSizeLimit="100" pasteActions="pasteActions">
+WHERE h.npwd LIKE '%{s_keyword}%'" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" dataType="Text" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" hrefSource="t_history.ccp" removeParameters="FLAG" PathID="p_room_typeGridDLink">
 					<Components/>
@@ -102,7 +137,13 @@ ORDER BY h.updated_date" pageSizeLimit="100" pasteActions="pasteActions">
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+				<Label id="179" fieldSourceType="DBColumn" dataType="Text" html="False" name="modification_date" fieldSource="modification_date" PathID="p_room_typeGridmodification_date">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -112,6 +153,16 @@ ORDER BY h.updated_date" pageSizeLimit="100" pasteActions="pasteActions">
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
 						<Action actionName="Set Row Style" actionCategory="General" id="151" styles="Row;AltRow" name="rowStyle"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeBuildSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="177"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeExecuteSelect" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="178"/>
 					</Actions>
 				</Event>
 			</Events>
@@ -125,6 +176,9 @@ ORDER BY h.updated_date" pageSizeLimit="100" pasteActions="pasteActions">
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="149" variable="s_keyword" dataType="Text" parameterType="URL" parameterSource="s_keyword"/>
+				<SQLParameter id="180" variable="p_vat_type_id" parameterType="URL" defaultValue="null" dataType="Float" parameterSource="p_vat_type_id" designDefaultValue="null"/>
+				<SQLParameter id="181" variable="date_start_laporan" parameterType="URL" defaultValue="null" dataType="Text" parameterSource="date_start_laporan" designDefaultValue="null"/>
+				<SQLParameter id="182" variable="date_end_laporan" parameterType="URL" defaultValue="null" dataType="Text" parameterSource="date_end_laporan" designDefaultValue="null"/>
 			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
