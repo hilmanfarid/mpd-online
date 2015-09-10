@@ -104,7 +104,7 @@ function p_room_typeGrid_ds_BeforeBuildSelect(& $sender)
 
 //Custom Code @177-2A29BDB7
 // -------------------------
-    // Write your own code here.	
+    // Write your own code here.
 // -------------------------
 //End Custom Code
 
@@ -126,7 +126,6 @@ function p_room_typeGrid_ds_BeforeExecuteSelect(& $sender)
 // -------------------------
     // Write your own code here.
 	if ( CCGetFromGet('s_keyword','') ==  '' && 
-		 CCGetFromGet('p_vat_type_id','') ==  '' &&
 		 CCGetFromGet('date_start_laporan','') ==  '' &&
 		 CCGetFromGet('date_end_laporan','') ==  ''){
 		
@@ -145,11 +144,6 @@ function p_room_typeGrid_ds_BeforeExecuteSelect(& $sender)
 		if ( CCGetFromGet('date_start_laporan','') !=  '' ){
 			$p_room_typeGrid->DataSource->SQL .= " and (trunc(modification_date) >= '".CCGetFromGet('date_start_laporan','')."')";
 		}
-		
-		if ( CCGetFromGet('p_vat_type_id','') !=  '' ){
-			$p_room_typeGrid->DataSource->SQL .= " and (h.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".CCGetFromGet('p_vat_type_id','')."))";
-		}
-
 		$p_room_typeGrid->DataSource->SQL .= " order by modification_date desc";
 	}
 	//$p_room_typeGrid->DataSource->SQL .= 'asdasda';
@@ -169,13 +163,13 @@ function p_room_typeGrid_ds_BeforeExecuteSelect(& $sender)
 //DEL  	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
 //DEL  // -------------------------
 
-//Page_OnInitializeView @1-F3290273
+//Page_OnInitializeView @1-A6D7F39D
 function Page_OnInitializeView(& $sender)
 {
     $Page_OnInitializeView = true;
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
-    global $t_history; //Compatibility
+    global $t_history_bphtb; //Compatibility
 //End Page_OnInitializeView
 
 //Custom Code @66-2A29BDB7
