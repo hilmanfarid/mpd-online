@@ -25,8 +25,11 @@ $dbConn				= new clsDBConnSIKP();
 $jenis_laporan		= CCGetFromGet("jenis_laporan", "all"); 
 
 if($jenis_laporan == 'all'){
-	$query	= "select *,trunc(payment_date) 
-	from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
+	$query	= "select b.t_vat_setllement_id,c.code,
+	a.*,trunc(payment_date) 
+	from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) a
+	left join t_vat_setllement b on a.no_kohir = b.no_kohir
+	left join p_settlement_type c on c.p_settlement_type_id=b.p_settlement_type_id
 	order by kode_ayat, npwpd, masa_pajak";	
 	//echo $query;
 	//exit;
@@ -110,6 +113,8 @@ while ($dbConn->next_record()) {
 	"kd_tap"			=> $dbConn->f("kd_tap"),
 	"keterangan"		=> $dbConn->f("keterangan"),
 	"payment_date"		=> $dbConn->f("payment_date"),
+	"t_vat_setllement_id"		=> $dbConn->f("t_vat_setllement_id"),
+	"code"		=> $dbConn->f("code"),
 	"jam"		=> $dbConn->f("jam"));
 }
 $dbConn->close();
@@ -198,16 +203,17 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable2, $this->height + 2, "NO. AYAT", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "NAMA AYAT", "TBLR", 0, 'C');
 		//$this->Cell($ltable2, $this->height + 2, "NO. KOHIR", "TBLR", 0, 'C');
-		$this->Cell($ltable5, $this->height + 2, "NAMA WP", "TBLR", 0, 'C');
+		$this->Cell($ltable5-($ltable3/3), $this->height + 2, "NAMA WP", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "NPWPD", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height + 2, "JUMLAH", "TBLR", 0, 'C');
+		$this->Cell($ltable3-($ltable3/3), $this->height + 2, "JUMLAH", "TBLR", 0, 'C');
 		$this->Cell($ltable3, $this->height + 2, "MASA PAJAK", "TBLR", 0, 'C');
 		$this->Cell($ltable2, $this->height + 2, "TGL TAP", "TBLR", 0, 'C');
-		$this->Cell($ltable2*2, $this->height + 2, "TGL BAYAR.", "TBLR", 0, 'C');
+		$this->Cell($ltable2*2-($ltable3/3), $this->height + 2, "TGL BAYAR.", "TBLR", 0, 'C');
+		$this->Cell($ltable3, $this->height + 2, "KETERANGAN", "TBLR", 0, 'C');
 		$this->Ln();
 
 		//isi kolom
-		$this->SetWidths(array($ltable1, $ltable2, $ltable3, $ltable5, $ltable3, $ltable3, $ltable3, $ltable2, $ltable2*2));
+		$this->SetWidths(array($ltable1, $ltable2, $ltable3, $ltable5-($ltable3/3), $ltable3, $ltable3-($ltable3/3), $ltable3, $ltable2, $ltable2*2-($ltable3/3),$ltable3));
 		$this->SetAligns(array("C", "L", "L", "L", "L", "R", "L", "L", "L"));
 		$no = 1;
 		$jumlahperayat = array();
@@ -226,9 +232,11 @@ class FormCetak extends FPDF {
 												  number_format($item["jumlah_terima"], 0, ',', '.'),
 												  $item["masa_pajak"],
 												  $item["kd_tap"],
-												  $item["payment_date"]
+												  $item["payment_date"],
+												  $item["code"]
 												  ),
 											array('TBLR',
+												  'TBLR',
 												  'TBLR',
 												  'TBLR',
 												  'TBLR',
@@ -249,8 +257,8 @@ class FormCetak extends FPDF {
 			$ayatsesudah = $data[$i+1]["kode_ayat"];
 			if(($ayat != $ayatsesudah&&count($data)>1)||empty($data[$i+1])){
 				$jumlahperayat[] = $jumlahtemp;
-				$this->Cell($ltable22, $this->height + 2, "JUMLAH PAJAK ".$item["nama_ayat"], "TBLR", 0, 'C');
-				$this->Cell($ltable4, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable22+($ltable3/3), $this->height + 2, "JUMLAH PAJAK ".$item["nama_ayat"], "TBLR", 0, 'C');
+				$this->Cell($ltable4-($ltable3/3), $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtemp = 0;
 				
@@ -273,8 +281,8 @@ class FormCetak extends FPDF {
 			}*/
 			$i++;
 		}
-		$this->Cell($ltable22, $this->height + 2, "TOTAL " . strtoupper($item["jns_pajak"]), "TBLR", 0, 'C');
-		$this->Cell($ltable4, $this->height + 2, number_format($total, 0, ',', '.'), "TBLR", 0, 'R');
+		$this->Cell($ltable22+($ltable3/3), $this->height + 2, "TOTAL " . strtoupper($item["jns_pajak"]), "TBLR", 0, 'C');
+		$this->Cell($ltable4-($ltable3/3), $this->height + 2, number_format($total, 0, ',', '.'), "TBLR", 0, 'R');
 
 		$this->Ln();
 		$this->newLine();
