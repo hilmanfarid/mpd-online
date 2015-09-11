@@ -83,16 +83,20 @@ function print_excel($param_arr) {
 			<th>MASA PAJAK</th>
 			<th>TANGGAL TAP</th>
 			<th>TANGGAL BAYAR</th>
+			<th>KETERANGAN</th>
 	  </tr>
 	 ';
 
 	$dbConn = new clsDBConnSIKP();
 	
 	
-	if($param_arr['jenis_laporan'] == 'all'){
-		$query	= "select *,trunc(payment_date) from f_rep_bpps_piutang2new_mod_1(".$param_arr['p_vat_type_id'].",
+	if($param_arr['jenis_laporan'] == 'all'){ 
+		$query	= "select b.t_vat_setllement_id,c.code,
+		a.*,trunc(payment_date) from f_rep_bpps_piutang2new_mod_1(".$param_arr['p_vat_type_id'].",
 		".$param_arr['p_year_period_id'].", ".$param_arr['tgl_penerimaan'].", 
-		".$param_arr['tgl_penerimaan_last'].", ".$param_arr['i_flag_setoran'].") 
+		".$param_arr['tgl_penerimaan_last'].", ".$param_arr['i_flag_setoran'].") a
+		left join t_vat_setllement b on a.no_kohir = b.no_kohir
+		left join p_settlement_type c on c.p_settlement_type_id=b.p_settlement_type_id
 		order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
 	}else if($param_arr['jenis_laporan'] == 'piutang'){
 		$query	= "select *,trunc(payment_date) 
@@ -137,6 +141,8 @@ function print_excel($param_arr) {
 		"kd_tap"			=> $dbConn->f("kd_tap"),
 		"keterangan"		=> $dbConn->f("keterangan"),
 		"payment_date"		=> $dbConn->f("payment_date"),
+		"t_vat_setllement_id"		=> $dbConn->f("t_vat_setllement_id"),
+		"code"		=> $dbConn->f("code"),
 		"jam"		=> $dbConn->f("jam"));
 	}
 	
@@ -155,6 +161,7 @@ function print_excel($param_arr) {
 		echo '<td align="left">'.$item['masa_pajak'].'</td>';
 		echo '<td align="center">'.$item['kd_tap'].'</td>';
 		echo '<td align="center">'.$item['payment_date'].'</td>';
+		echo '<td align="center">'.$item['code'].'</td>';
 		echo '</tr>';
 		
 		$total_nilai_penerimaan += $item['jumlah_terima'];
@@ -162,7 +169,7 @@ function print_excel($param_arr) {
 	}
 
 	echo '<tr>
-			<td colspan="9" align="center"> <b>TOTAL</b> </td>
+			<td colspan="10" align="center"> <b>TOTAL</b> </td>
 			<td align="right"><b>'.number_format($total_nilai_penerimaan,2,",",".").'</b></td>
 		 </tr>';
 	echo '</table>';
