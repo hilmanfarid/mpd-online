@@ -83,6 +83,18 @@
 					<Attributes/>
 					<Features/>
 				</Button>
+				<TextBox id="576" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="tgl" PathID="t_rep_lap_spjpSearchtgl">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<DatePicker id="17" name="DatePicker_end_start_laporan1" PathID="t_rep_lap_spjpSearchDatePicker_end_start_laporan1" control="tgl" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
 </Components>
 			<Events/>
 			<TableParameters/>

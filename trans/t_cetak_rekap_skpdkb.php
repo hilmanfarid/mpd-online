@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-14C12522
+//Class_Initialize Event @3-48566BFC
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -83,11 +83,13 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
             $this->npwpd = & new clsControl(ccsTextBox, "npwpd", "npwpd", ccsText, "", CCGetRequestParam("npwpd", $Method, NULL), $this);
             $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
+            $this->tgl = & new clsControl(ccsTextBox, "tgl", "tgl", ccsText, "", CCGetRequestParam("tgl", $Method, NULL), $this);
+            $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_rep_lap_spjpSearch", "tgl", $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-04D494F4
+//Validate Method @3-15D46696
     function Validate()
     {
         global $CCSLocales;
@@ -101,6 +103,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->npwpd->Validate() && $Validation);
+        $Validation = ($this->tgl->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
@@ -110,11 +113,12 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->npwpd->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->tgl->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-E76B5716
+//CheckErrors Method @3-4CBD9271
     function CheckErrors()
     {
         $errors = false;
@@ -126,6 +130,8 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->npwpd->Errors->Count());
+        $errors = ($errors || $this->tgl->Errors->Count());
+        $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -190,7 +196,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-82522B55
+//Show Method @3-FE37E4D5
     function Show()
     {
         global $CCSUseAmp;
@@ -223,6 +229,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->npwpd->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->tgl->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -251,6 +259,8 @@ function GetPrimaryKey($keyName)
         $this->Button_DoSearch1->Show();
         $this->npwpd->Show();
         $this->Button_DoSearch2->Show();
+        $this->tgl->Show();
+        $this->DatePicker_end_start_laporan1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

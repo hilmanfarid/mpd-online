@@ -24,11 +24,22 @@ $(document).ready(function()
 </script>
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
-//Include Common JSFunctions @1-9722A627
+//Include Common JSFunctions @1-86BEACD2
 </script>
 <script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
 <script language="JavaScript" type="text/javascript">
 //End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-1D8C6AEE
+
+var t_rep_lap_spjpSearch_DatePicker_end_start_laporan1 = new Object(); 
+t_rep_lap_spjpSearch_DatePicker_end_start_laporan1.format           = "dd-mm-yyyy";
+t_rep_lap_spjpSearch_DatePicker_end_start_laporan1.style            = "Styles/sikp/Style.css";
+t_rep_lap_spjpSearch_DatePicker_end_start_laporan1.relativePathPart = "../";
+t_rep_lap_spjpSearch_DatePicker_end_start_laporan1.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
 
 //t_rep_lap_spjpSearchListBox1_OnChange @566-35AA4398
 function t_rep_lap_spjpSearchListBox1_OnChange()
@@ -72,7 +83,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -138,9 +149,10 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   </tr>
  
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;</td> 
-                    <td class="search-field">&nbsp;</td> 
-                    <td>&nbsp;</td> 
+                    <td class="search-field">Tanggal Surat</td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchtgl" class="ControlsIN" value="{tgl}" maxlength="32" size="32" name="{tgl_Name}"></td> 
+                    <td>
+                      <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_spjpSearchDatePicker_end_start_laporan1"><img id="t_rep_lap_spjpSearchDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_spjpSearchButton_DoSearch1" class="btn_tambah" onclick="cetak_semua_skpdkb(); return false;" value="CETAK SKPDKB" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 --></td>
                   </tr>
@@ -205,10 +217,11 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
         npwpd= document.getElementById("t_rep_lap_spjpSearchnpwpd").value;
-                if(p_vat_type_id == "" ) {
+        tgl= document.getElementById("t_rep_lap_spjpSearchtgl").value;
+		if(p_vat_type_id == "" ) {
             alert("Filter Berwarna Kuning Harus Diisi");
         }else {
-                        var params = "?doAction=view_html";
+                var params = "?doAction=view_html";
                 params += "&p_year_period_id="+p_year_period_id;
                 params += "&p_finance_period_id="+p_finance_period_id;
                 params += "&p_vat_type_id="+p_vat_type_id;
@@ -216,7 +229,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 params += "&code="+code;
                 params += "&vat_code="+vat_code;
                 params += "&ListBox1="+status_bayar;
-                                params += "&npwpd="+npwpd;
+                params += "&npwpd="+npwpd;
+                params += "&tgl="+tgl;
                 location.href="t_cetak_rekap_skpdkb.php"+params;
             //window.open("../report/view_ulang_daftar_surat_teguran_pdf.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id+"&status=" + status_bayar +"&p_vat_type_id="+p_vat_type_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
@@ -251,12 +265,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 
         function cetak_skpdkb(set_id)
     {
-                window.open("../report/cetak_formulir_skpdkb_jabatan_v2.php?t_vat_setllement_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        tgl= document.getElementById("t_rep_lap_spjpSearchtgl").value;
+                window.open("../report/cetak_formulir_skpdkb_jabatan_v2.php?t_vat_setllement_id=" + set_id +"&tgl="+tgl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
 
         function cetak_skpdkb_barcode(set_id)
     {
-                window.open("../report/cetak_formulir_skpdkb_jabatan_barcode.php?t_vat_setllement_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+        tgl= document.getElementById("t_rep_lap_spjpSearchtgl").value;
+                window.open("../report/cetak_formulir_skpdkb_jabatan_barcode.php?t_vat_setllement_id=" + set_id +"&tgl="+tgl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
 
         function cetak_semua_skpdkb()
