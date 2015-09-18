@@ -433,7 +433,12 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		//$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
+		$tgl = CCGetFromGet("tgl", "");
+		if ($tgl == ''){
+			$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
+		}else{
+			$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $tgl, "R", 0, 'C');
+		}
 		$this->Ln();
 		
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
@@ -555,7 +560,12 @@ class FormCetak extends FPDF {
 		$this->Cell(5, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "", 0, 'L');
 		$this->Cell($lbody3-$lbody1 - 10, $this->height, ": ".$data["due_date"], "", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
+		$tgl = CCGetFromGet("tgl", "");
+		if ($tgl == ''){
+			$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"], "R", 0, 'C');
+		}else{
+			$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $tgl, "R", 0, 'C');
+		}
 		$this->Ln($this->height-2);
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Yang Menerima, ", "R", 0, 'C');
