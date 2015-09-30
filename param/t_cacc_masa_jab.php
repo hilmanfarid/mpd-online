@@ -94,7 +94,7 @@ class clsGridt_cacc_legal_docGrid { //t_cacc_legal_docGrid class @2-D96D8240
     }
 //End Initialize Method
 
-//Show Method @2-B0339C12
+//Show Method @2-66B22C4F
     function Show()
     {
         global $Tpl;
@@ -166,7 +166,7 @@ class clsGridt_cacc_legal_docGrid { //t_cacc_legal_docGrid class @2-D96D8240
             $Tpl->block_path = $ParentPath;
             return;
         }
-        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("t_cacc_masa_jab_id", "s_keyword", "ccsForm"));
+        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("t_cust_acc_masa_jab_id", "s_keyword", "ccsForm"));
         $this->Insert_Link->Parameters = CCAddParam($this->Insert_Link->Parameters, "FLAG", "ADD");
         $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
         $this->Navigator->PageSize = $this->PageSize;
@@ -536,7 +536,7 @@ class clsRecordt_cacc_legal_docForm { //t_cacc_legal_docForm Class @94-AD55A895
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-85D36D73
+//Class_Initialize Event @94-55D2213E
     function clsRecordt_cacc_legal_docForm($RelativePath, & $Parent)
     {
 
@@ -582,7 +582,6 @@ class clsRecordt_cacc_legal_docForm { //t_cacc_legal_docForm Class @94-AD55A895
             $this->masa_awal->Required = true;
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_cacc_legal_docForm", "masa_awal", $this);
             $this->masa_akhir = & new clsControl(ccsTextBox, "masa_akhir", "masa akhir", ccsText, "", CCGetRequestParam("masa_akhir", $Method, NULL), $this);
-            $this->masa_akhir->Required = true;
             $this->DatePicker_tgl_penerimaan1 = & new clsDatePicker("DatePicker_tgl_penerimaan1", "t_cacc_legal_docForm", "masa_akhir", $this);
             $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsText, "", CCGetRequestParam("t_cust_account_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
@@ -993,7 +992,7 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
     }
 //End SetValues Method
 
-//Insert Method @94-4CBC4800
+//Insert Method @94-B1178A66
     function Insert()
     {
         global $CCSLocales;
@@ -1034,7 +1033,9 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
         $this->SQL = "INSERT INTO t_cust_acc_masa_jab \n" .
         "(nama,t_cust_account_id,created_by, update_by, creation_date, updated_date, masa_awal, masa_akhir) \n" .
         "VALUES\n" .
-        "('" . $this->SQLValue($this->cp["nama"]->GetDBValue(), ccsText) . "'," . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsFloat) . ",'" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', to_date('" . $this->SQLValue($this->cp["creation_date"]->GetDBValue(), ccsText) . "','dd-mm-yyyy'), to_date('" . $this->SQLValue($this->cp["updated_date"]->GetDBValue(), ccsText) . "','dd-mm-yyyy'), '" . $this->SQLValue($this->cp["masa_awal"]->GetDBValue(), ccsDate) . "', '" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsDate) . "')";
+        "('" . $this->SQLValue($this->cp["nama"]->GetDBValue(), ccsText) . "'," . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsFloat) . ",'" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', to_date('" . $this->SQLValue($this->cp["creation_date"]->GetDBValue(), ccsText) . "','dd-mm-yyyy'), to_date('" . $this->SQLValue($this->cp["updated_date"]->GetDBValue(), ccsText) . "','dd-mm-yyyy'), '" . $this->SQLValue($this->cp["masa_awal"]->GetDBValue(), ccsDate) . "', \n" .
+        "case when '" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsDate) . "' = '' then null else to_date('" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsDate) . "') end\n" .
+        ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -1043,7 +1044,7 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
     }
 //End Insert Method
 
-//Update Method @94-C7C04223
+//Update Method @94-63A25A4B
     function Update()
     {
         global $CCSLocales;
@@ -1073,7 +1074,7 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
         "updated_date=sysdate, \n" .
         "nama='" . $this->SQLValue($this->cp["nama"]->GetDBValue(), ccsText) . "', \n" .
         "masa_awal='" . $this->SQLValue($this->cp["masa_awal"]->GetDBValue(), ccsText) . "', \n" .
-        "masa_akhir='" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsText) . "'\n" .
+        "masa_akhir=case when '" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsText) . "' = '' then null else to_date('" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsText) . "') end\n" .
         "where \n" .
         "t_cust_acc_masa_jab_id=" . $this->SQLValue($this->cp["t_cust_acc_masa_jab_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);

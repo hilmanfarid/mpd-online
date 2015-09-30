@@ -378,10 +378,10 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-9E1383D1
+//SetOrder Method @2-94C6B779
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "";
+        $this->Order = "npwd, start_date desc, t_vat_setllement_id";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -397,88 +397,118 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Prepare Method
 
-//Open Method @2-017EF92C
+//Open Method @2-26CE80E4
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select x.vat_code as ayat,hasil.* from \n" .
-        "	(Select c.npwd, \n" .
-        "		   a.t_vat_setllement_id,	\n" .
-        "		   c.t_cust_account_id,\n" .
-        "	       c.company_name, \n" .
-        "	       b.code as Periode_pelaporan, \n" .
-        "	       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, \n" .
-        "	       a.total_trans_amount as total_transaksi,\n" .
-        "	       a.total_vat_amount as total_pajak ,\n" .
-        "		   nvl(a.total_penalty_amount,0) as total_denda,\n" .
-        "	       d.receipt_no as kuitansi_pembayaran,\n" .
-        "	       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,\n" .
-        "	       d.payment_amount,\n" .
-        "	       c.t_cust_account_id ,\n" .
-        "	       b.p_finance_period_id ,\n" .
-        "	       to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
-        "	       to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
-        "				 e.code as type_code,\n" .
-        "	 			 nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
-        "				 nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
-        "				 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
-        "				 nvl(a.db_increasing_charge,0) as kenaikan,\n" .
-        "				 nvl(a.db_interest_charge,0) as kenaikan1,\n" .
-        "				 a.p_vat_type_dtl_id,\n" .
-        "				 a.no_kohir,\n" .
-        "				 to_char(a.due_date,'DD-MON-YYYY') as jatuh_tempo\n" .
-        "	from t_vat_setllement a,\n" .
-        "	     p_finance_period b,\n" .
-        "	     t_cust_account c,\n" .
-        "	     t_payment_receipt d,\n" .
-        "		 p_settlement_type e\n" .
-        "	where a.p_finance_period_id = b.p_finance_period_id\n" .
-        "	      and a.t_cust_account_id = c.t_cust_account_id\n" .
-        "		  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "	      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
-        "		  and a.p_settlement_type_id = e.p_settlement_type_id\n" .
-        "	order by c.npwd , b.start_date desc,\n" .
-        "	  a.t_vat_setllement_id) as hasil\n" .
-        "left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id) cnt";
-        $this->SQL = "select x.vat_code as ayat,hasil.* from \n" .
-        "	(Select c.npwd, \n" .
-        "		   a.t_vat_setllement_id,	\n" .
-        "		   c.t_cust_account_id,\n" .
-        "	       c.company_name, \n" .
-        "	       b.code as Periode_pelaporan, \n" .
-        "	       to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, \n" .
-        "	       a.total_trans_amount as total_transaksi,\n" .
-        "	       a.total_vat_amount as total_pajak ,\n" .
-        "		   nvl(a.total_penalty_amount,0) as total_denda,\n" .
-        "	       d.receipt_no as kuitansi_pembayaran,\n" .
-        "	       to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,\n" .
-        "	       d.payment_amount,\n" .
-        "	       c.t_cust_account_id ,\n" .
-        "	       b.p_finance_period_id ,\n" .
-        "	       to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
-        "	       to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
-        "				 e.code as type_code,\n" .
-        "	 			 nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
-        "				 nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
-        "				 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
-        "				 nvl(a.db_increasing_charge,0) as kenaikan,\n" .
-        "				 nvl(a.db_interest_charge,0) as kenaikan1,\n" .
-        "				 a.p_vat_type_dtl_id,\n" .
-        "				 a.no_kohir,\n" .
-        "				 to_char(a.due_date,'DD-MON-YYYY') as jatuh_tempo\n" .
-        "	from t_vat_setllement a,\n" .
-        "	     p_finance_period b,\n" .
-        "	     t_cust_account c,\n" .
-        "	     t_payment_receipt d,\n" .
-        "		 p_settlement_type e\n" .
-        "	where a.p_finance_period_id = b.p_finance_period_id\n" .
-        "	      and a.t_cust_account_id = c.t_cust_account_id\n" .
-        "		  and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
-        "	      and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
-        "		  and a.p_settlement_type_id = e.p_settlement_type_id\n" .
-        "	order by c.npwd , b.start_date desc,\n" .
-        "	  a.t_vat_setllement_id) as hasil\n" .
-        "left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id";
+        $this->CountSQL = "SELECT COUNT(*) FROM (select \n" .
+        "	nvl(nama,company_name)as new_company_name, masa_awal, masa_akhir,data_transaksi.* \n" .
+        "from \n" .
+        "	(select \n" .
+        "	*\n" .
+        "	from \n" .
+        "		(Select c.npwd, \n" .
+        "					 a.t_vat_setllement_id,	\n" .
+        "						 c.company_name, \n" .
+        "						 b.code as Periode_pelaporan, \n" .
+        "						 to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, \n" .
+        "						 a.total_trans_amount as total_transaksi,\n" .
+        "						 a.total_vat_amount as total_pajak ,\n" .
+        "					 nvl(a.total_penalty_amount,0) as total_denda,\n" .
+        "						 d.receipt_no as kuitansi_pembayaran,\n" .
+        "						 to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,\n" .
+        "						 d.payment_amount,\n" .
+        "						 c.t_cust_account_id ,\n" .
+        "						 b.p_finance_period_id ,\n" .
+        "						 to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
+        "						 to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
+        "						 e.code as type_code,\n" .
+        "						 nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
+        "						 nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
+        "						 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
+        "						 nvl(a.db_increasing_charge,0) as kenaikan,\n" .
+        "						 nvl(a.db_interest_charge,0) as kenaikan1,\n" .
+        "						 a.p_vat_type_dtl_id,\n" .
+        "						 a.no_kohir,\n" .
+        "						 to_char(a.due_date,'DD-MON-YYYY') as jatuh_tempo,\n" .
+        "						 settlement_date,\n" .
+        "						 b.start_date\n" .
+        "			from t_vat_setllement a,\n" .
+        "					 p_finance_period b,\n" .
+        "					 t_cust_account c,\n" .
+        "					 t_payment_receipt d,\n" .
+        "					 p_settlement_type e\n" .
+        "			where a.p_finance_period_id = b.p_finance_period_id\n" .
+        "						and a.t_cust_account_id = c.t_cust_account_id\n" .
+        "					and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "						and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
+        "					and a.p_settlement_type_id = e.p_settlement_type_id) as hasil\n" .
+        "	left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id) as data_transaksi\n" .
+        "\n" .
+        "left join t_cust_acc_masa_jab masa_jab\n" .
+        "	on masa_jab.t_cust_account_id = data_transaksi.t_cust_account_id\n" .
+        "	and masa_awal <= settlement_date\n" .
+        "	and\n" .
+        "		case \n" .
+        "			when masa_akhir is NULL\n" .
+        "				then true\n" .
+        "			when masa_akhir >= settlement_date\n" .
+        "				then masa_akhir >= settlement_date\n" .
+        "		end) cnt";
+        $this->SQL = "select \n" .
+        "	nvl(nama,company_name)as new_company_name, masa_awal, masa_akhir,data_transaksi.* \n" .
+        "from \n" .
+        "	(select \n" .
+        "	*\n" .
+        "	from \n" .
+        "		(Select c.npwd, \n" .
+        "					 a.t_vat_setllement_id,	\n" .
+        "						 c.company_name, \n" .
+        "						 b.code as Periode_pelaporan, \n" .
+        "						 to_char(a.settlement_date,'DD-MON-YYYY') tgl_pelaporan, \n" .
+        "						 a.total_trans_amount as total_transaksi,\n" .
+        "						 a.total_vat_amount as total_pajak ,\n" .
+        "					 nvl(a.total_penalty_amount,0) as total_denda,\n" .
+        "						 d.receipt_no as kuitansi_pembayaran,\n" .
+        "						 to_char(payment_date,'DD-MON-YYYY HH24:MI:SS') tgl_pembayaran ,\n" .
+        "						 d.payment_amount,\n" .
+        "						 c.t_cust_account_id ,\n" .
+        "						 b.p_finance_period_id ,\n" .
+        "						 to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
+        "						 to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
+        "						 e.code as type_code,\n" .
+        "						 nvl(A.debt_vat_amt,a.total_vat_amount) as debt_vat_amt,\n" .
+        "						 nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
+        "						 nvl(A.debt_vat_amt,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
+        "						 nvl(a.db_increasing_charge,0) as kenaikan,\n" .
+        "						 nvl(a.db_interest_charge,0) as kenaikan1,\n" .
+        "						 a.p_vat_type_dtl_id,\n" .
+        "						 a.no_kohir,\n" .
+        "						 to_char(a.due_date,'DD-MON-YYYY') as jatuh_tempo,\n" .
+        "						 settlement_date,\n" .
+        "						 b.start_date\n" .
+        "			from t_vat_setllement a,\n" .
+        "					 p_finance_period b,\n" .
+        "					 t_cust_account c,\n" .
+        "					 t_payment_receipt d,\n" .
+        "					 p_settlement_type e\n" .
+        "			where a.p_finance_period_id = b.p_finance_period_id\n" .
+        "						and a.t_cust_account_id = c.t_cust_account_id\n" .
+        "					and a.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "\n" .
+        "						and a.t_vat_setllement_id = d.t_vat_setllement_id (+) \n" .
+        "					and a.p_settlement_type_id = e.p_settlement_type_id) as hasil\n" .
+        "	left join p_vat_type_dtl x on x.p_vat_type_dtl_id = hasil.p_vat_type_dtl_id) as data_transaksi\n" .
+        "\n" .
+        "left join t_cust_acc_masa_jab masa_jab\n" .
+        "	on masa_jab.t_cust_account_id = data_transaksi.t_cust_account_id\n" .
+        "	and masa_awal <= settlement_date\n" .
+        "	and\n" .
+        "		case \n" .
+        "			when masa_akhir is NULL\n" .
+        "				then true\n" .
+        "			when masa_akhir >= settlement_date\n" .
+        "				then masa_akhir >= settlement_date\n" .
+        "		end {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -489,11 +519,11 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Open Method
  
-//SetValues Method @2-2306A9AC
+//SetValues Method @2-36FE8371
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
-        $this->company_name->SetDBValue($this->f("company_name"));
+        $this->company_name->SetDBValue($this->f("new_company_name"));
         $this->periode_pelaporan->SetDBValue($this->f("periode_pelaporan"));
         $this->periode_awal_laporan->SetDBValue($this->f("periode_awal_laporan"));
         $this->tgl_pelaporan->SetDBValue($this->f("tgl_pelaporan"));

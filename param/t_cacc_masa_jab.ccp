@@ -5,7 +5,7 @@ FROM t_cust_acc_masa_jab
 WHERE nama LIKE '%{s_keyword}%'
 AND t_cust_account_id = {t_cust_account_id} ">
 			<Components>
-				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_cacc_masa_jab.ccp" removeParameters="t_cacc_masa_jab_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_cacc_legal_docGridInsert_Link">
+				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_cacc_masa_jab.ccp" removeParameters="t_cust_acc_masa_jab_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_cacc_legal_docGridInsert_Link">
 					<Components/>
 					<Events/>
 					<LinkParameters>
@@ -148,12 +148,14 @@ FROM t_cust_acc_masa_jab
 WHERE t_cust_acc_masa_jab_id = {t_cust_acc_masa_jab_id} " customInsert="INSERT INTO t_cust_acc_masa_jab 
 (nama,t_cust_account_id,created_by, update_by, creation_date, updated_date, masa_awal, masa_akhir) 
 VALUES
-('{nama}',{t_cust_account_id},'{created_by}', '{updated_by}', to_date('{creation_date}','dd-mm-yyyy'), to_date('{updated_date}','dd-mm-yyyy'), '{masa_awal}', '{masa_akhir}')" removeParameters="add_flag;" customUpdate="UPDATE t_cust_acc_masa_jab 
+('{nama}',{t_cust_account_id},'{created_by}', '{updated_by}', to_date('{creation_date}','dd-mm-yyyy'), to_date('{updated_date}','dd-mm-yyyy'), '{masa_awal}', 
+case when '{masa_akhir}' = '' then null else to_date('{masa_akhir}') end
+)" removeParameters="add_flag;" customUpdate="UPDATE t_cust_acc_masa_jab 
 SET update_by='{updated_by}', 
 updated_date=sysdate, 
 nama='{nama}', 
 masa_awal='{masa_awal}', 
-masa_akhir='{masa_akhir}'
+masa_akhir=case when '{masa_akhir}' = '' then null else to_date('{masa_akhir}') end
 where 
 t_cust_acc_masa_jab_id={t_cust_acc_masa_jab_id}" customDelete="DELETE FROM t_cust_acc_masa_jab
 where 
@@ -243,7 +245,7 @@ t_cust_acc_masa_jab_id = {t_cust_acc_masa_jab_id}">
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-				<TextBox id="702" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="masa_akhir" PathID="t_cacc_legal_docFormmasa_akhir" format="dd-mm-yyyy" required="True" fieldSource="masa_akhir" caption="masa akhir">
+				<TextBox id="702" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="masa_akhir" PathID="t_cacc_legal_docFormmasa_akhir" format="dd-mm-yyyy" fieldSource="masa_akhir" caption="masa akhir">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -325,11 +327,11 @@ t_cust_acc_masa_jab_id = {t_cust_acc_masa_jab_id}">
 			<USQLParameters>
 				<SQLParameter id="666" variable="updated_by" dataType="Text" parameterType="Control" parameterSource="updated_by"/>
 				<SQLParameter id="734" variable="updated_date" dataType="Text" parameterType="Control" parameterSource="updated_date" format="dd-mmm-yyyy"/>
-<SQLParameter id="741" variable="t_cust_acc_masa_jab_id" dataType="Float" parameterType="Control" parameterSource="t_cust_acc_masa_jab_id"/>
-<SQLParameter id="742" variable="nama" dataType="Text" parameterType="Control" parameterSource="nama"/>
-<SQLParameter id="743" variable="masa_awal" dataType="Text" parameterType="Control" parameterSource="masa_awal" format="dd-mm-yyyy"/>
-<SQLParameter id="744" variable="masa_akhir" dataType="Text" parameterType="Control" parameterSource="masa_akhir" format="dd-mm-yyyy"/>
-</USQLParameters>
+				<SQLParameter id="741" variable="t_cust_acc_masa_jab_id" dataType="Float" parameterType="Control" parameterSource="t_cust_acc_masa_jab_id"/>
+				<SQLParameter id="742" variable="nama" dataType="Text" parameterType="Control" parameterSource="nama"/>
+				<SQLParameter id="743" variable="masa_awal" dataType="Text" parameterType="Control" parameterSource="masa_awal" format="dd-mm-yyyy"/>
+				<SQLParameter id="744" variable="masa_akhir" dataType="Text" parameterType="Control" parameterSource="masa_akhir" format="dd-mm-yyyy"/>
+			</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>
@@ -346,11 +348,11 @@ t_cust_acc_masa_jab_id = {t_cust_acc_masa_jab_id}">
 				<CustomParameter id="661" field="file_folder" dataType="Text" parameterType="Control" parameterSource="file_folder"/>
 				<CustomParameter id="662" field="file_name" dataType="Text" parameterType="Control" parameterSource="file_name"/>
 				<CustomParameter id="725" field="t_cust_acc_masa_jab_id" dataType="Float" parameterType="Control" parameterSource="t_cust_acc_masa_jab_id"/>
-<CustomParameter id="726" field="nama" dataType="Text" parameterType="Control" parameterSource="nama"/>
-<CustomParameter id="727" field="masa_awal" dataType="Text" parameterType="Control" parameterSource="masa_awal" format="dd-mm-yyyy"/>
-<CustomParameter id="728" field="masa_akhir" dataType="Text" parameterType="Control" parameterSource="masa_akhir" format="dd-mm-yyyy"/>
-<CustomParameter id="729" field="t_cust_account_id" dataType="Text" parameterType="Control" parameterSource="t_cust_account_id"/>
-</UFormElements>
+				<CustomParameter id="726" field="nama" dataType="Text" parameterType="Control" parameterSource="nama"/>
+				<CustomParameter id="727" field="masa_awal" dataType="Text" parameterType="Control" parameterSource="masa_awal" format="dd-mm-yyyy"/>
+				<CustomParameter id="728" field="masa_akhir" dataType="Text" parameterType="Control" parameterSource="masa_akhir" format="dd-mm-yyyy"/>
+				<CustomParameter id="729" field="t_cust_account_id" dataType="Text" parameterType="Control" parameterSource="t_cust_account_id"/>
+			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
 				<SQLParameter id="674" variable="t_cust_acc_masa_jab_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_cust_acc_masa_jab_id"/>
