@@ -196,25 +196,25 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($lbodyx1, $this->height, "Tanah (bumi)", "L", 0, "");
-		$this->Cell($lbodyx1, $this->height, number_format($data["land_area"], 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx1, $this->height, number_format($data["land_area"], 2, ",", "."), "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "m2", "R", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
-		$this->Cell($lbodyx1, $this->height, number_format($data["land_price_per_m"], 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx1, $this->height, number_format($data["land_price_per_m"], 2, ",", "."), "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "");
 		$this->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
-		$this->Cell($lbodyx1, $this->height, number_format($data["land_total_price"], 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx1, $this->height, number_format($data["land_total_price"], 2, ",", "."), "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "");
 		$this->Ln();
 		
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($lbodyx1, $this->height, "Bangunan", "L", 0, "");
-		$this->Cell($lbodyx1, $this->height, number_format($data["building_area"], 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx1, $this->height, number_format($data["building_area"], 2, ",", "."), "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "m2", "R", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
-		$this->Cell($lbodyx1, $this->height, number_format($data["building_price_per_m"], 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx1, $this->height, number_format($data["building_price_per_m"], 2, ",", "."), "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "");
 		$this->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
-		$this->Cell($lbodyx1, $this->height, number_format($data["building_total_price"], 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx1, $this->height, number_format($data["building_total_price"], 2, ",", "."), "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "");
 		$this->Ln();
 		
@@ -226,7 +226,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx1, $this->height, "", "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "NJOP PBB", "R", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "Rp", "", 0, "L");
-		$this->Cell($lbodyx1, $this->height, number_format($data["land_total_price"] + $data["building_total_price"], 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx1, $this->height, number_format($data["land_total_price"] + $data["building_total_price"], 2, ",", "."), "", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "R", 0, "");
 		$this->Ln();
 		$jenis_harga_bphtb = $data["jenis_harga_bphtb"];
@@ -241,7 +241,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx1-20, $this->height, "", "B", 0, "R");
 		$this->Cell($lbodyx1+20, $this->height, $jenis_harga[$jenis_harga_bphtb], "RB", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "Rp", "B", 0, "L");
-		$this->Cell($lbodyx1, $this->height, number_format($data["market_price"], 0, ",", "."), "B", 0, "R");
+		$this->Cell($lbodyx1, $this->height, number_format($data["market_price"], 2, ",", "."), "B", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "", "BR", 0, "");
 		$this->Ln();
 		$this->Ln();
@@ -364,7 +364,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx3 + $lbodyx2, $this->height, "$field", "", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "$middle", "", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "$currency", "", 0, "L");
-		$this->Cell($lbodyx2, $this->height, number_format($data, 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx2, $this->height, number_format($data, 2, ",", "."), "", 0, "R");
 		$this->Ln();
 	}
 
