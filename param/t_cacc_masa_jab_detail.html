@@ -34,9 +34,11 @@ $(document).ready(function()
       </label>
     </div>
     <div class="th tab-button">
-      <div class="tab-title-selected">
+      <label onclick="javascript:toCustAcc()">
+      <div class="tab-title">
         CUSTOMER ACCOUNT 
       </div>
+      </label>
     </div>
     <div class="th tab-button">
       <label onclick="javascript:toPotensi()">
@@ -45,19 +47,24 @@ $(document).ready(function()
       </div>
       </label>
     </div>
-	<div class="th tab-button">
+    <div class="th tab-button">
       <label onclick="javascript:toDoc()">
       <div class="tab-title">
         DOKUMEN PENDUKUNG 
       </div>
       </label>
     </div>
-	<div class="th tab-button">
-	  <label onclick="javascript:toMasaJabatan()">
+    <div class="th tab-button">
+      <label onclick="javascript:toMasaJabatan()">
       <div class="tab-title">
-        MASA BERLAKU
+        MASA BERLAKU 
       </div>
-	   </label>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        MASA BERLAKU DETAIL 
+      </div>
     </div>
   </div>
 </div>
@@ -77,7 +84,7 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="p_cust_account_updateSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><input id="p_cust_account_updateSearcht_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"><input id="p_cust_account_updateSearchcustomer_name" value="{customer_name}" type="hidden" name="{customer_name_Name}"></td> 
+                    <td class="search-field"><input id="p_cust_account_updateSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><input id="p_cust_account_updateSearcht_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"><input id="p_cust_account_updateSearcht_cust_acc_masa_jab_id" value="{t_cust_acc_masa_jab_id}" type="hidden" name="{t_cust_acc_masa_jab_id_Name}"><input id="p_cust_account_updateSearchcustomer_name" value="{customer_name}" type="hidden" name="{customer_name_Name}"><input id="p_cust_account_updateSearcht_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="p_cust_account_updateSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -421,7 +428,7 @@ $(document).ready(function()
                   <tr class="Bottom">
                     <td colspan="4" align="right">&nbsp; 
                       <!-- BEGIN Button Button_Update --><input id="t_cust_account_updateFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; 
-                      <!-- BEGIN Button Button_Cancel --><input id="t_cust_account_updateFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_cust_account_updateFormp_cust_account_id" value="{p_cust_account_id}" type="hidden" name="{p_cust_account_id_Name}"><input id="t_cust_account_updateFormp_custGridPage" value="{p_custGridPage}" type="hidden" name="{p_custGridPage_Name}"><input id="t_cust_account_updateFormupdated_by" value="{updated_by}" type="hidden" name="{updated_by_Name}"></td>
+                      <!-- BEGIN Button Button_Cancel --><input id="t_cust_account_updateFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --><input id="t_cust_account_updateFormt_cust_acc_masa_jab_detail_id" value="{t_cust_acc_masa_jab_detail_id}" type="hidden" name="{t_cust_acc_masa_jab_detail_id_Name}"><input id="t_cust_account_updateFormp_cust_account_id" value="{p_cust_account_id}" type="hidden" name="{p_cust_account_id_Name}"><input id="t_cust_account_updateFormp_custGridPage" value="{p_custGridPage}" type="hidden" name="{p_custGridPage_Name}"><input id="t_cust_account_updateFormupdated_by" value="{updated_by}" type="hidden" name="{updated_by_Name}"></td>
                   </tr>
                 </table>
               </td>
@@ -629,8 +636,17 @@ function toMasaJabatan()
 {
        var customerName = document.getElementById('p_cust_account_updateSearchcustomer_name').value;
        var pid = document.getElementById('p_cust_account_updateSearcht_customer_id').value;
-       var t_cust = document.getElementById('t_custAccountGridt_cust_account_id').value;
-        location.href="t_cacc_masa_jab.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust;
+       var t_cust = document.getElementById('p_cust_account_updateSearcht_cust_account_id').value;
+	   var t_cust_acc_masa_jab_id = document.getElementById('p_cust_account_updateSearcht_cust_acc_masa_jab_id').value;
+        location.href="t_cacc_masa_jab.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust+"&t_cust_acc_masa_jab_id="+t_cust_acc_masa_jab_id;
+}
+
+function toCustAcc()
+{
+  var pid=document.getElementById("p_cust_account_updateSearcht_cust_account_id").value;
+  var cusName=document.getElementById("p_cust_account_updateSearchcustomer_name").value;
+  var idCus=document.getElementById("p_cust_account_updateSearcht_customer_id").value;    
+  location.href="t_cust_account_update.php?t_customer_id="+idCus+"&customer_name="+cusName+"&t_cust_account_id="+pid;
 }
 </script>
 </body>

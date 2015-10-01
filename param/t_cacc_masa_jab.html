@@ -81,7 +81,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -114,8 +114,15 @@ $(document).ready(function()
     </div>
     <div class="th tab-button">
       <div class="tab-title-selected">
-        MASA JABATAN 
+        MASA&nbsp;BERLAKU 
       </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toMasaJabDetail()">
+      <div class="tab-title">
+        MASA JABATAN DETAIL 
+      </div>
+      </label>
     </div>
   </div>
 </div>
@@ -137,7 +144,7 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="search-field" colspan="2"><input id="t_cacc_legal_docSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}">
                       <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_cacc_legal_docSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="t_cacc_legal_docSearcht_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"><input id="t_cacc_legal_docSearchcustomer_name" value="{customer_name}" type="hidden" name="{customer_name_Name}"><input id="t_cacc_legal_docSearcht_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_cacc_legal_docSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --><input id="t_cacc_legal_docSearcht_cust_acc_masa_jab_id" value="{t_cust_acc_masa_jab_id}" type="hidden" name="{t_cust_acc_masa_jab_id_Name}"><input id="t_cacc_legal_docSearcht_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"><input id="t_cacc_legal_docSearchcustomer_name" value="{customer_name}" type="hidden" name="{customer_name_Name}"><input id="t_cacc_legal_docSearcht_customer_id" value="{t_customer_id}" type="hidden" name="{t_customer_id_Name}"></td>
                     </tr>
                   </table>
                 </td>
@@ -152,7 +159,7 @@ $(document).ready(function()
                 <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                    <td class="th"><strong>DAFTAR&nbsp;MASA JABATAN</strong></td> 
+                    <td class="th"><strong>DAFTAR&nbsp;MASA BERLAKU</strong></td> 
                     <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
                 </table>
@@ -161,7 +168,7 @@ $(document).ready(function()
                   <tr class="Caption">
                     <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
  
-                    <th scope="col">Nama</th>
+                    <th scope="col">Nama Merk Dagang</th>
  
                     <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Masa Awal</label></label></th>
  
@@ -210,7 +217,7 @@ $(document).ready(function()
                   <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                       <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                      <td class="th"><strong>INFORMASI MASA JABATAN</strong></td> 
+                      <td class="th"><strong>INFORMASI MASA BERLAKU</strong></td> 
                       <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                     </tr>
                   </table>
@@ -222,7 +229,7 @@ $(document).ready(function()
                     </tr>
                     <!-- END Error -->
                     <tr class="Controls">
-                      <td class="th">Nama</td> 
+                      <td class="th">Nama Merk Dagang</td> 
                       <td colspan="4"><input id="t_cacc_legal_docFormnama" class="ControlsRQ" value="{nama}" maxlength="250" size="60" name="{nama_Name}">&nbsp;<input id="t_cacc_legal_docFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td>
                     </tr>
  
@@ -319,6 +326,15 @@ function toDoc()
        var pid = document.getElementById('t_cacc_legal_docSearcht_customer_id').value;
        var t_cust = document.getElementById('t_cacc_legal_docSearcht_cust_account_id').value;
         location.href="t_cacc_legal_doc.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust;
+}
+
+function toMasaJabDetail()
+{
+       var customerName = document.getElementById('t_cacc_legal_docSearchcustomer_name').value;
+       var pid = document.getElementById('t_cacc_legal_docSearcht_customer_id').value;
+       var t_cust = document.getElementById('t_cacc_legal_docSearcht_cust_account_id').value;
+           var t_cust_acc_masa_jab_id = document.getElementById('t_cacc_legal_docFormt_cust_acc_masa_jab_id').value;
+        location.href="t_cacc_masa_jab_detail.php?t_customer_id="+pid+"&customer_name="+customerName+"&t_cust_account_id="+t_cust+"&t_cust_acc_masa_jab_id="+t_cust_acc_masa_jab_id;
 }
 
 

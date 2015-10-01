@@ -117,7 +117,13 @@ AND t_cust_account_id = {t_cust_account_id} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Hidden id="745" fieldSourceType="DBColumn" dataType="Float" name="t_cust_acc_masa_jab_id" fieldSource="t_cust_acc_masa_jab_id" caption="Id" wizardCaption="P App User Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_cacc_legal_docSearcht_cust_acc_masa_jab_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -139,18 +145,16 @@ AND t_cust_account_id = {t_cust_account_id} ">
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_cacc_legal_docForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_cacc_legal_docForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" dataSource="SELECT t_cust_acc_masa_jab_id, t_cust_account_id, nama, 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_cacc_legal_docForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_cacc_legal_docForm" activeCollection="ISQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" dataSource="SELECT t_cust_acc_masa_jab_id, t_cust_account_id, nama, 
 to_char(masa_awal, 'DD-MM-YYYY')as masa_awal, 
 to_char(masa_akhir, 'DD-MM-YYYY')as masa_akhir,
 to_char(creation_date, 'DD-MM-YYYY')as creation_date, 
 created_by , to_char(updated_date,'DD-MM-YYYY')as updated_date, update_by 
 FROM t_cust_acc_masa_jab
-WHERE t_cust_acc_masa_jab_id = {t_cust_acc_masa_jab_id} " customInsert="INSERT INTO t_cust_acc_masa_jab 
-(nama,t_cust_account_id,created_by, update_by, creation_date, updated_date, masa_awal, masa_akhir) 
-VALUES
-('{nama}',{t_cust_account_id},'{created_by}', '{updated_by}', to_date('{creation_date}','dd-mm-yyyy'), to_date('{updated_date}','dd-mm-yyyy'), '{masa_awal}', 
-case when '{masa_akhir}' = '' then null else to_date('{masa_akhir}') end
-)" removeParameters="add_flag;" customUpdate="UPDATE t_cust_acc_masa_jab 
+WHERE t_cust_acc_masa_jab_id = {t_cust_acc_masa_jab_id} " customInsert="select * from 
+f_insert_t_cust_acc_masa_jab('{nama}', 
+{t_cust_account_id}, '{created_by}', 
+'{updated_by}','{masa_awal}', '{masa_akhir}')" removeParameters="add_flag;" customUpdate="UPDATE t_cust_acc_masa_jab 
 SET update_by='{updated_by}', 
 updated_date=sysdate, 
 nama='{nama}', 
@@ -296,8 +300,8 @@ t_cust_acc_masa_jab_id = {t_cust_acc_masa_jab_id}">
 				<SQLParameter id="710" variable="updated_date" dataType="Text" parameterType="Control" parameterSource="updated_date" format="dd-mmm-yyyy"/>
 				<SQLParameter id="715" variable="t_cust_acc_masa_jab_id" dataType="Float" parameterType="Control" parameterSource="t_cust_acc_masa_jab_id" defaultValue="0"/>
 				<SQLParameter id="716" variable="nama" dataType="Text" parameterType="Control" parameterSource="nama"/>
-				<SQLParameter id="717" variable="masa_awal" dataType="Date" parameterType="Control" parameterSource="masa_awal" format="dd-mm-yyyy"/>
-				<SQLParameter id="718" variable="masa_akhir" dataType="Date" parameterType="Control" parameterSource="masa_akhir" format="dd-mm-yyyy"/>
+				<SQLParameter id="717" variable="masa_awal" dataType="Text" parameterType="Control" parameterSource="masa_awal" format="dd-mm-yyyy"/>
+				<SQLParameter id="718" variable="masa_akhir" dataType="Text" parameterType="Control" parameterSource="masa_akhir" format="dd-mm-yyyy"/>
 			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="629" field="created_by" dataType="Text" parameterType="Control" parameterSource="created_by" omitIfEmpty="True"/>

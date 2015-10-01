@@ -330,7 +330,7 @@ class clsRecordt_cacc_legal_docSearch { //t_cacc_legal_docSearch Class @3-56636B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-F2B9D4BF
+//Class_Initialize Event @3-4B466022
     function clsRecordt_cacc_legal_docSearch($RelativePath, & $Parent)
     {
 
@@ -359,11 +359,12 @@ class clsRecordt_cacc_legal_docSearch { //t_cacc_legal_docSearch Class @3-56636B
             $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsText, "", CCGetRequestParam("t_cust_account_id", $Method, NULL), $this);
             $this->t_customer_id = & new clsControl(ccsHidden, "t_customer_id", "t_customer_id", ccsText, "", CCGetRequestParam("t_customer_id", $Method, NULL), $this);
             $this->customer_name = & new clsControl(ccsHidden, "customer_name", "customer_name", ccsText, "", CCGetRequestParam("customer_name", $Method, NULL), $this);
+            $this->t_cust_acc_masa_jab_id = & new clsControl(ccsHidden, "t_cust_acc_masa_jab_id", "Id", ccsFloat, "", CCGetRequestParam("t_cust_acc_masa_jab_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-97D20803
+//Validate Method @3-7128C4D7
     function Validate()
     {
         global $CCSLocales;
@@ -373,16 +374,18 @@ class clsRecordt_cacc_legal_docSearch { //t_cacc_legal_docSearch Class @3-56636B
         $Validation = ($this->t_cust_account_id->Validate() && $Validation);
         $Validation = ($this->t_customer_id->Validate() && $Validation);
         $Validation = ($this->customer_name->Validate() && $Validation);
+        $Validation = ($this->t_cust_acc_masa_jab_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_cust_account_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_customer_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->customer_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_cust_acc_masa_jab_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-07C547D5
+//CheckErrors Method @3-FE5AFEE2
     function CheckErrors()
     {
         $errors = false;
@@ -390,6 +393,7 @@ class clsRecordt_cacc_legal_docSearch { //t_cacc_legal_docSearch Class @3-56636B
         $errors = ($errors || $this->t_cust_account_id->Errors->Count());
         $errors = ($errors || $this->t_customer_id->Errors->Count());
         $errors = ($errors || $this->customer_name->Errors->Count());
+        $errors = ($errors || $this->t_cust_acc_masa_jab_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -443,7 +447,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-A5EA508A
+//Show Method @3-4998A0DB
     function Show()
     {
         global $CCSUseAmp;
@@ -471,6 +475,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->t_cust_account_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_customer_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->customer_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_cust_acc_masa_jab_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -493,6 +498,7 @@ function GetPrimaryKey($keyName)
         $this->t_cust_account_id->Show();
         $this->t_customer_id->Show();
         $this->customer_name->Show();
+        $this->t_cust_acc_masa_jab_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -992,7 +998,7 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
     }
 //End SetValues Method
 
-//Insert Method @94-B1178A66
+//Insert Method @94-A8479801
     function Insert()
     {
         global $CCSLocales;
@@ -1005,8 +1011,8 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
         $this->cp["updated_date"] = new clsSQLParameter("ctrlupdated_date", ccsText, "", "", $this->updated_date->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["t_cust_acc_masa_jab_id"] = new clsSQLParameter("ctrlt_cust_acc_masa_jab_id", ccsFloat, "", "", $this->t_cust_acc_masa_jab_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["nama"] = new clsSQLParameter("ctrlnama", ccsText, "", "", $this->nama->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["masa_awal"] = new clsSQLParameter("ctrlmasa_awal", ccsDate, array("dd", "-", "mm", "-", "yyyy"), $this->DateFormat, $this->masa_awal->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["masa_akhir"] = new clsSQLParameter("ctrlmasa_akhir", ccsDate, array("dd", "-", "mm", "-", "yyyy"), $this->DateFormat, $this->masa_akhir->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["masa_awal"] = new clsSQLParameter("ctrlmasa_awal", ccsText, "", "", $this->masa_awal->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["masa_akhir"] = new clsSQLParameter("ctrlmasa_akhir", ccsText, "", "", $this->masa_akhir->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["created_by"]->GetValue()) and !strlen($this->cp["created_by"]->GetText()) and !is_bool($this->cp["created_by"]->GetValue())) 
             $this->cp["created_by"]->SetValue($this->created_by->GetValue(true));
@@ -1030,12 +1036,10 @@ class clst_cacc_legal_docFormDataSource extends clsDBConnSIKP {  //t_cacc_legal_
             $this->cp["masa_awal"]->SetValue($this->masa_awal->GetValue(true));
         if (!is_null($this->cp["masa_akhir"]->GetValue()) and !strlen($this->cp["masa_akhir"]->GetText()) and !is_bool($this->cp["masa_akhir"]->GetValue())) 
             $this->cp["masa_akhir"]->SetValue($this->masa_akhir->GetValue(true));
-        $this->SQL = "INSERT INTO t_cust_acc_masa_jab \n" .
-        "(nama,t_cust_account_id,created_by, update_by, creation_date, updated_date, masa_awal, masa_akhir) \n" .
-        "VALUES\n" .
-        "('" . $this->SQLValue($this->cp["nama"]->GetDBValue(), ccsText) . "'," . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsFloat) . ",'" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', to_date('" . $this->SQLValue($this->cp["creation_date"]->GetDBValue(), ccsText) . "','dd-mm-yyyy'), to_date('" . $this->SQLValue($this->cp["updated_date"]->GetDBValue(), ccsText) . "','dd-mm-yyyy'), '" . $this->SQLValue($this->cp["masa_awal"]->GetDBValue(), ccsDate) . "', \n" .
-        "case when '" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsDate) . "' = '' then null else to_date('" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsDate) . "') end\n" .
-        ")";
+        $this->SQL = "select * from \n" .
+        "f_insert_t_cust_acc_masa_jab('" . $this->SQLValue($this->cp["nama"]->GetDBValue(), ccsText) . "', \n" .
+        "" . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', \n" .
+        "'" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "','" . $this->SQLValue($this->cp["masa_awal"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["masa_akhir"]->GetDBValue(), ccsText) . "')";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
