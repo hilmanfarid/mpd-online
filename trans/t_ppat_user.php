@@ -797,11 +797,12 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @23-35B0541C
+//UpdateRow Method @23-79239C86
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
+        $this->DataSource->t_ppat_user_id->SetValue($this->t_ppat_user_id->GetValue(true));
         $this->DataSource->creation_date->SetValue($this->creation_date->GetValue(true));
         $this->DataSource->created_by->SetValue($this->created_by->GetValue(true));
         $this->DataSource->updated_date->SetValue($this->updated_date->GetValue(true));
@@ -1130,13 +1131,13 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
     }
 //End Insert Method
 
-//Update Method @23-B2438F12
+//Update Method @23-968C539F
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["t_ppat_user_id"] = new clsSQLParameter("urlt_ppat_user_id", ccsFloat, "", "", CCGetFromGet("t_ppat_user_id", NULL), 0, false, $this->ErrorBlock);
+        $this->cp["t_ppat_user_id"] = new clsSQLParameter("ctrlt_ppat_user_id", ccsFloat, "", "", $this->t_ppat_user_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["creation_date"] = new clsSQLParameter("ctrlcreation_date", ccsText, "", "", $this->creation_date->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["created_by"] = new clsSQLParameter("ctrlcreated_by", ccsText, "", "", $this->created_by->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["updated_date"] = new clsSQLParameter("ctrlupdated_date", ccsText, "", "", $this->updated_date->GetValue(true), "", false, $this->ErrorBlock);
@@ -1150,7 +1151,7 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
         $this->cp["t_ppat_id"] = new clsSQLParameter("ctrlt_ppat_id", ccsFloat, "", "", $this->t_ppat_id->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["t_ppat_user_id"]->GetValue()) and !strlen($this->cp["t_ppat_user_id"]->GetText()) and !is_bool($this->cp["t_ppat_user_id"]->GetValue())) 
-            $this->cp["t_ppat_user_id"]->SetText(CCGetFromGet("t_ppat_user_id", NULL));
+            $this->cp["t_ppat_user_id"]->SetValue($this->t_ppat_user_id->GetValue(true));
         if (!strlen($this->cp["t_ppat_user_id"]->GetText()) and !is_bool($this->cp["t_ppat_user_id"]->GetValue(true))) 
             $this->cp["t_ppat_user_id"]->SetText(0);
         if (!is_null($this->cp["creation_date"]->GetValue()) and !strlen($this->cp["creation_date"]->GetText()) and !is_bool($this->cp["creation_date"]->GetValue())) 

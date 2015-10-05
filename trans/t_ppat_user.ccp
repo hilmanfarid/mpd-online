@@ -350,7 +350,7 @@ t_ppat_user_id = {t_ppat_user_id}" activeTableType="customUpdate">
 			</IFormElements>
 			<USPParameters/>
 			<USQLParameters>
-				<SQLParameter id="401" variable="t_ppat_user_id" dataType="Float" parameterType="URL" parameterSource="t_ppat_user_id" defaultValue="0"/>
+				<SQLParameter id="401" variable="t_ppat_user_id" dataType="Float" parameterType="Control" parameterSource="t_ppat_user_id" defaultValue="0"/>
 				<SQLParameter id="402" variable="creation_date" dataType="Text" parameterType="Control" parameterSource="creation_date" format="dd-mmm-yyyy"/>
 				<SQLParameter id="403" variable="created_by" dataType="Text" parameterType="Control" parameterSource="created_by"/>
 				<SQLParameter id="404" variable="updated_date" dataType="Text" parameterType="Control" parameterSource="updated_date" format="dd-mmm-yyyy"/>
