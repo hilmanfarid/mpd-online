@@ -46,7 +46,7 @@ $size = $pdf->_getpagesize('Legal');
 $size[1]=6;
 $pdf->DefPageSize = $size;
 $pdf->CurPageSize = $size;
-$pdf->AddPage('L',array(200,80));
+$pdf->AddPage('L',array(200,150));
 //$pdf->AddPage('P',array(210,296));
 
 $pdf->SetFont('helvetica', '', $_FONTSIZE);
@@ -197,7 +197,84 @@ $pdf->Ln(1);
 $pdf->Cell(90, 5, "", "BLR", 0, 'C');	
 $pdf->Cell(10, 5, "", "", 0, 'C');
 $pdf->Cell(90, 5, "", "BLR", 0, 'C');
-	
+
+$pdf->Ln(7);
+$pdf->SetWidths(array(190));
+$pdf->SetAligns(array("C"));
+$pdf->RowMultiBorderWithHeight(
+	array
+	(	
+		"--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+	),
+	array
+	(
+		""
+	),
+	$_HEIGHT
+);
+$pdf->Ln(2);
+
+$pdf->SetFont('Arial', 'B', 14);
+$pdf->RowMultiBorderWithHeight(
+	array
+	(	
+		"\nTANDA TERIMA KARTU NPWPD\n"
+	),
+	array
+	(
+		"TLR"
+	),
+	$_HEIGHT
+);
+$pdf->SetFont('Arial', '', 10);
+$pdf->SetWidths(array(10,40,130,10));
+$pdf->SetAligns(array("L","L","L","L"));
+$pdf->RowMultiBorderWithHeight(
+	array
+	(	
+		"",
+		"\nNPWPD
+		\nMerk Dagang
+		\nAlamat
+		",
+		
+		"\n: ".$data['npwpd']."
+		\n: ".$data['company_brand']."
+		\n: ".$data['brand_address_name']."
+		\n",
+		""
+	),
+	array
+	(
+		"L",
+		"",
+		"",
+		"R"
+	),
+	$_HEIGHT
+);
+
+$pdf->SetWidths(array(70,120));
+$pdf->SetAligns(array("L","C"));
+$pdf->RowMultiBorderWithHeight(
+	array
+	(	
+		"",
+		"Bandung, ".date('d-m-Y')."
+		\nYang menerima
+		\n
+		\n
+		".$data['company_name']."
+		\n"
+	),
+	array
+	(
+		"BL",
+		"BR"
+	),
+	$_HEIGHT
+);
+
 //$pdf->Output("","I");
 if(!empty($_GET['save'])){
 	$name_of_file = "print_kartu_pdf_".time().".pdf";
