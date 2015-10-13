@@ -132,6 +132,9 @@ function GetCetakHTML($param_arr) {
 		$data[] = $dbConn->Record;
 	}
 	$dbConn->close();
+	$jumlah_proses=0;
+	$jumlah_tercapai=0;
+	$jumlah_tidak_tecapai=0;
 
 	for ($i = 0; $i < count($data); $i++) {
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
@@ -141,7 +144,17 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" >'.($data[$i]['proses']-$data[$i]['tercapai']).'</td>';
 		$output.='<td align="left" ></td>';
 		$output.='<td align="left" ></td>';
+		$jumlah_proses+=$data[$i]['proses'];
+		$jumlah_tercapai=$data[$i]['tercapai'];
+		$jumlah_tidak_tecapai+=($data[$i]['proses']-$data[$i]['tercapai']);
 	}
+	$output.='<tr><td align="center" ></td>';
+	$output.='<td align="left" >Jumlah</td>';
+	$output.='<td align="left" >'.$jumlah_proses.'</td>';
+	$output.='<td align="left" >'.$jumlah_tercapai.'</td>';
+	$output.='<td align="left" >'.$jumlah_tidak_tecapai.'</td>';
+	$output.='<td align="left" ></td>';
+	$output.='<td align="left" ></td>';
 
 	$output.='</table>';
 	
