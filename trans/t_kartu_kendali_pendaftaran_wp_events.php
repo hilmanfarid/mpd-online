@@ -92,7 +92,7 @@ function GetCetakHTML($param_arr) {
 	$output .='<table>';
 	$output .= '<tr><td>JENIS PAJAK </td><td>: '.$param_arr['vat_code'].'</td></tr>';
 	$output .= '<tr><td>PERIODE </td><td>: '.$param_arr['code'].'</td></tr>';
-	$output .= '<tr><td>JENIS TARGET </td><td>: PENERBITAN NPWPD 6 HARI KERJA</td></tr>';
+	$output .= '<tr><td>JENIS TARGET </td><td>: PENERBITAN NPWPD 7 HARI KERJA</td></tr>';
 	$output .= '</table></br>';
 	$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
@@ -112,7 +112,7 @@ function GetCetakHTML($param_arr) {
 	$query="SELECT --t_cust_account_id,*
 			to_char(a.registration_date,'dd-mm-yyyy') as tanggal, count (to_char(a.registration_date,'dd-mm-yyyy')) as proses,
 			count (case 
-				when b.creation_date < f_get_work_day_relatif(trunc(a.registration_date), 6, 0) 
+				when b.creation_date < f_get_work_day_relatif(trunc(a.registration_date), 7, 0) 
 				then true 
 				--OTHERS 
 				--then FALSE
@@ -145,7 +145,7 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" ></td>';
 		$output.='<td align="left" ></td>';
 		$jumlah_proses+=$data[$i]['proses'];
-		$jumlah_tercapai=$data[$i]['tercapai'];
+		$jumlah_tercapai+=$data[$i]['tercapai'];
 		$jumlah_tidak_tecapai+=($data[$i]['proses']-$data[$i]['tercapai']);
 	}
 	$output.='<tr><td align="center" ></td>';
@@ -217,7 +217,7 @@ function GetCetakExcel($param_arr) {
 	$output .= '<tr></tr>';
 	$output .= '<tr><td colspan=2>JENIS PAJAK </td><td>: '.$param_arr['vat_code'].'</td></tr>';
 	$output .= '<tr><td colspan=2>PERIODE </td><td>: '.$param_arr['code'].'</td></tr>';
-	$output .= '<tr><td colspan=2>JENIS TARGET </td><td>: PENERBITAN NPWPD 6 HARI KERJA</td></tr>';
+	$output .= '<tr><td colspan=2>JENIS TARGET </td><td>: PENERBITAN NPWPD 7 HARI KERJA</td></tr>';
 	$output .= '<tr></tr>';
 	$output .= '</table></br>';
 	$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
@@ -238,7 +238,7 @@ function GetCetakExcel($param_arr) {
 	$query="SELECT --t_cust_account_id,*
 			to_char(a.registration_date,'dd-mm-yyyy') as tanggal, count (to_char(a.registration_date,'dd-mm-yyyy')) as proses,
 			count (case 
-				when b.creation_date < f_get_work_day_relatif(trunc(a.registration_date), 6, 0) 
+				when b.creation_date < f_get_work_day_relatif(trunc(a.registration_date), 7, 0) 
 				then true 
 				--OTHERS 
 				--then FALSE
@@ -258,6 +258,10 @@ function GetCetakExcel($param_arr) {
 		$data[] = $dbConn->Record;
 	}
 	$dbConn->close();
+	$jumlah_proses=0;
+	$jumlah_tercapai=0;
+	$jumlah_tidak_tecapai=0;
+
 
 	for ($i = 0; $i < count($data); $i++) {
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
@@ -267,7 +271,17 @@ function GetCetakExcel($param_arr) {
 		$output.='<td align="left" >'.($data[$i]['proses']-$data[$i]['tercapai']).'</td>';
 		$output.='<td align="left" ></td>';
 		$output.='<td align="left" ></td>';
+		$jumlah_proses+=$data[$i]['proses'];
+		$jumlah_tercapai+=$data[$i]['tercapai'];
+		$jumlah_tidak_tecapai+=($data[$i]['proses']-$data[$i]['tercapai']);
 	}
+	$output.='<tr><td align="center" ></td>';
+	$output.='<td align="left" >Jumlah</td>';
+	$output.='<td align="left" >'.$jumlah_proses.'</td>';
+	$output.='<td align="left" >'.$jumlah_tercapai.'</td>';
+	$output.='<td align="left" >'.$jumlah_tidak_tecapai.'</td>';
+	$output.='<td align="left" ></td>';
+	$output.='<td align="left" ></td>';	
 
 	$output.='</table>';
 	
