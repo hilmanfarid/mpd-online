@@ -39,14 +39,6 @@ if (empty($nilai)){
 		      	while($DBConn->next_record()){
 		      		$option[$DBConn->f(0)]=$DBConn->f(1);
 		      	}
-				
-				$DBConn = new clsDBConnSIKP();
-		      	$list = "select * from p_year_period order by year_code desc";
-		      	$DBConn->query($list);
-		      	$year = array();
-		      	while($DBConn->next_record()){
-		      		$year[$DBConn->f('p_year_period_id')]=$DBConn->f('year_code');
-		      	}
 		      	?>
 <title>MONITORING TITK PROSES PENDAFTARAN WP</title>
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
@@ -92,18 +84,6 @@ $(document).ready(function()
 	      <td class="search-field"><label>
 	        <input name="Cari" type="submit" class="btn_tambah" value="CARI">
 	      </label></td>
-	    </tr>
-		<tr class="Controls">
-	      <td class="search-field">Tahun</td>
-	      <td class="search-field"> 
-	      	<select name="nilai">
-		        <option value="0">Pilih</option>
-		        <?php
-		        	foreach($year as $key => $value){
-		        		echo "<option value=".$key.">".$value."</option>";
-		        	}
-		        ?>	      
-		      </select></td>
 	    </tr>
  	</table>
 	</td>
