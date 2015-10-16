@@ -91,7 +91,7 @@ function GetCetakHTML($param_arr) {
 	
 	$output .='<table>';
 	$output .= '<tr><td>PERIODE </td><td>: '.$param_arr['code'].'</td></tr>';
-	$output .= '<tr><td>JENIS TARGET </td><td>: PENERBITAN NOTA VERIFIKASI BPHTB 1 HARI KERJA</td></tr>';
+	$output .= '<tr><td>JENIS TARGET </td><td>: PENERBITAN NOTA VERIFIKASI BPHTB 3 HARI KERJA</td></tr>';
 	$output .= '</table></br>';
 	$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
@@ -111,7 +111,7 @@ function GetCetakHTML($param_arr) {
 	$query="SELECT --*
 			to_char(a.creation_date,'dd-mm-yyyy') as tanggal, count (to_char(a.creation_date,'dd-mm-yyyy')) as proses,
 			count (case 
-				when b.donor_date < f_get_work_day_relatif(trunc(a.creation_date), 2, 0) 
+				when b.donor_date < f_get_work_day_relatif(trunc(a.creation_date), 4, 0) 
 				then true 
 				--OTHERS 
 				--then FALSE
@@ -214,7 +214,7 @@ function GetCetakExcel($param_arr) {
 	$output .= '<tr></tr>';
 	$output .= '<tr></tr>';
 	$output .= '<tr><td colspan=2>PERIODE </td><td>: '.$param_arr['code'].'</td></tr>';
-	$output .= '<tr><td colspan=2>JENIS TARGET </td><td>: PENERBITAN NOTA VERIFIKASI BPHTB 1 HARI KERJA</td></tr>';
+	$output .= '<tr><td colspan=2>JENIS TARGET </td><td>: PENERBITAN NOTA VERIFIKASI BPHTB 3 HARI KERJA</td></tr>';
 	$output .= '<tr></tr>';
 	$output .= '</table></br>';
 	$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
@@ -235,7 +235,7 @@ function GetCetakExcel($param_arr) {
 	$query="SELECT --*
 			to_char(a.creation_date,'dd-mm-yyyy') as tanggal, count (to_char(a.creation_date,'dd-mm-yyyy')) as proses,
 			count (case 
-				when b.donor_date < f_get_work_day_relatif(trunc(a.creation_date), 2, 0) 
+				when b.donor_date < f_get_work_day_relatif(trunc(a.creation_date), 4, 0) 
 				then true 
 				--OTHERS 
 				--then FALSE
