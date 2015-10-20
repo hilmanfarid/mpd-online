@@ -25,7 +25,6 @@ $dbConn				= new clsDBConnSIKP();
 $query				= "select * from f_rep_penerimaan_pertahun_sts_new_desc($p_year_period_id, $p_vat_type_id, $tgl_status, $p_account_status_id, $status_bayar);";
 
 
-
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 	$data["jenis_pajak"][]	= $dbConn->f("jenis_pajak");
@@ -69,6 +68,13 @@ while ($dbConn->next_record()) {
 	$data["f_01_sts"][]		= $dbConn->f("f_01_sts");
 	$data["f_01_amt"][]		= $dbConn->f("f_01_amt");
 	$data["f_01_paydate"][]	= $dbConn->f("f_01_paydate");
+	$active_date = $dbConn->f("active_date");
+	if(!empty($active_date)){
+		$active_date = DateTime::createFromFormat('d-M-y H:i:s', $dbConn->f("active_date"));
+		$data["active_date"][] =   date_format($active_date, 'd-M-Y');
+	}else{
+		$data["active_date"][] = '';
+	}
 }
 $dbConn->close();
 
@@ -103,6 +109,7 @@ class FormCetak extends FPDF {
 	
 	function PageCetak($data, $user) {
 		$this->AliasNbPages();
+		$this->DefPageSize=array(215,325);
 		$this->AddPage("L");
 		$this->SetFont('Arial', '', 10);
 		
@@ -113,52 +120,56 @@ class FormCetak extends FPDF {
 		$lheader3 = $lheader * 3;
 		$lheader4 = $lheader * 4;
 		
-		$this->Cell($lheader1, $this->height, "", "LT", 0, 'L');
-		$this->Cell($lheader3, $this->height, "", "TR", 0, 'L');
-		$this->Cell($lheader3, $this->height, "", "T", 0, 'L');
-		$this->Cell($lheader1, $this->height, "", "TR", 0, 'L');
-		$this->Ln();
-		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lheader3, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "LAPORAN PENERIMAAN PER TAHUN", "R", 0, 'C');
-		$this->Ln();
-		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lheader3, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "", "R", 0, 'C');
-		$this->Ln();
-		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lheader3, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "Tahun " . $data["tahun"][0], "R", 0, 'C');		
-		$this->Ln();
-		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
-		$this->Cell($lheader3, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
-		$this->Cell($lheader4, $this->height, "", "R", 0, 'C');
-		$this->Ln();
-		$this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
-		$this->Cell($lheader3, $this->height, "", "BR", 0, 'L');
-		$this->Cell($lheader3, $this->height, "", "B", 0, 'L');
-		$this->Cell($lheader1, $this->height, "", "BR", 0, 'L');
-		$this->Ln();
-		
 		$ltable = $this->lengthCell / 46;
 		$ltable1 = $ltable * 1;
 		$ltable2 = $ltable * 2;
 		$ltable3 = $ltable * 3;
 		$ltable4 = $ltable * 4;
 		$ltable9 = $ltable * 9;
-		$ltable36 = $ltable * 36;
+		$ltable36 = $ltable * 36;		
+
+		$this->Cell($lheader1, $this->height, "", "LT", 0, 'L');
+		$this->Cell($lheader3+$ltable2, $this->height, "", "TR", 0, 'L');
+		$this->Cell($lheader3+ltable2, $this->height, "", "T", 0, 'L');
+		$this->Cell($lheader1+ltable2+$ltable1, $this->height, "", "TR", 0, 'L');
+		$this->Ln();
+		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
+		$this->Cell($lheader3+$ltable2, $this->height, "PEMERINTAH KOTA BANDUNG", "R", 0, 'C');
+		$this->Cell($lheader4+ltable2+$ltable1, $this->height, "LAPORAN PENERIMAAN PER TAHUN", "R", 0, 'C');
+		$this->Ln();
+		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
+		$this->Cell($lheader3+$ltable2, $this->height, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
+		$this->Cell($lheader4+ltable2+$ltable1, $this->height, "", "R", 0, 'C');
+		$this->Ln();
+		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
+		$this->Cell($lheader3+$ltable2, $this->height, "Jalan Wastukancana no. 2", "R", 0, 'C');
+		$this->Cell($lheader4+ltable2+$ltable1, $this->height, "Tahun " . $data["tahun"][0], "R", 0, 'C');		
+		$this->Ln();
+		$this->Cell($lheader1, $this->height, "", "L", 0, 'L');
+		$this->Cell($lheader3+$ltable2, $this->height, "Telp. 022. 4235052 - Bandung", "R", 0, 'C');
+		$this->Cell($lheader4+ltable2+$ltable1, $this->height, "", "R", 0, 'C');
+		$this->Ln();
+		$this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
+		$this->Cell($lheader3+$ltable2, $this->height, "", "BR", 0, 'L');
+		$this->Cell($lheader3, $this->height, "", "B", 0, 'L');
+		$this->Cell($lheader1+ltable3+$ltable1, $this->height, "", "BR", 0, 'L');
+		$this->Ln();
+		
+		
 
 		$this->SetFont('Arial', '', 6);
 		
 		$this->Cell($ltable2, $this->height + 5, "NO.", "TLR", 0, 'C');
 		$this->Cell($ltable4, $this->height, "NAMA", "TLR", 0, 'C');
 		$this->Cell($ltable4, $this->height + 5, "ALAMAT", "TLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "TANGGAL", "TLR", 0, 'C');
 		$this->Cell($ltable36, $this->height, "REALISASI DAN TANGGAL BAYAR", "TBLR", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($ltable2, $this->height, "", "LR", 0, 'C');
 		$this->Cell($ltable4, $this->height, "PERUSAHAAN", "LR", 0, 'C');
 		$this->Cell($ltable4, $this->height, "", "LR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "PENGUKUHAN", "LR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "DESEMBER", "TLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "JANUARI", "TLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "FEBRUARI", "TLR", 0, 'C');
@@ -176,6 +187,7 @@ class FormCetak extends FPDF {
 		$this->Cell($ltable2, $this->height, "", "BLR", 0, 'C');
 		$this->Cell($ltable4, $this->height, "", "BLR", 0, 'C');
 		$this->Cell($ltable4, $this->height, "", "BLR", 0, 'C');
+		$this->Cell($ltable3, $this->height, "", "LR", 0, 'C');
 		$this->Cell($ltable3, $this->height, $data["tahun"][0] - 1, "BLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
 		$this->Cell($ltable3, $this->height, "", "BLR", 0, 'C');
@@ -193,8 +205,8 @@ class FormCetak extends FPDF {
 		//isi kolom
 		$no = 1;
 		for ($i = 0; $i < count($data["nama"]); $i++) {
-			$this->SetWidths(array($ltable2, $ltable4, $ltable4, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3));
-			$this->SetAligns(array("C", "L", "L", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
+			$this->SetWidths(array($ltable2, $ltable4, $ltable4,$ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3, $ltable3));
+			$this->SetAligns(array("C", "L", "L","C", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R", "R"));
 			
 			// print data piutang
 			$data2 = array();
@@ -215,6 +227,7 @@ class FormCetak extends FPDF {
 					$no,
 					$data["nama"][$i],
 					$data["alamat"][$i],
+					$data["active_date"][$i],
 					$data2[12],
 					$data2[1],
 					$data2[2],
@@ -229,6 +242,7 @@ class FormCetak extends FPDF {
 					$data2[11]
 				),
 				array(
+					"TLR",
 					"TLR",
 					"TLR",
 					"TLR",
@@ -267,6 +281,7 @@ class FormCetak extends FPDF {
 					"",
 					"",
 					$data["npwpd"][$i],
+					"",
 					$data2[12],
 					$data2[1],
 					$data2[2],
