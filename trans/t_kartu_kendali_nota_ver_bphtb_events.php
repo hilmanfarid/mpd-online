@@ -177,8 +177,8 @@ function GetCetakHTML($param_arr) {
 						Yang Membuat, </br> 
 						Kepala Seksi Pendaftaran dan Pendataan</br>
 						</br></br></br>
-						OKKY DATUSUATI, S.STP</br>
-						NIP. 19780927 199101 1 001
+						DIN KAMADIANTINI S.IP, MM</br>
+						NIP. 19710320 199803 2 006
 					</td>
 				</tr>';
 	$output .= '</table>';
@@ -329,7 +329,7 @@ function GetCetakExcel($param_arr) {
 						Drs. ASEP SAEPUL GUFRON, M.Si
 					</td>
 					<td width=50% align="center" colspan=3>
-						OKKY DATUSUATI, S.STP
+						DIN KAMADIANTINI S.IP, MM
 					</td>
 				</tr>';
 	$output .= '<tr >
@@ -337,7 +337,7 @@ function GetCetakExcel($param_arr) {
 						NIP. 19690519 199603 1 003
 					</td>
 					<td width=50% align="center" colspan=3>
-						NIP. 19780927 199101 1 001
+						NIP. 19710320 199803 2 006
 					</td>
 				</tr>';
 	$output .= '</table>';
