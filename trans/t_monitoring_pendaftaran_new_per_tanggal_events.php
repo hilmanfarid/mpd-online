@@ -53,7 +53,7 @@ function Page_BeforeShow(& $sender)
 		$Label1->SetText(GetCetakHTML($param_arr));
 	}
 	if($doAction == 'view_excel') {
-		$Label1->SetText(GetCetakExcel($param_arr));
+		GetCetakExcel($param_arr);
 	}
 // -------------------------
 //End Custom Code
@@ -74,6 +74,78 @@ function GetCetakHTML($param_arr) {
 	$DBConn->query($SQL);
 		  
 	return create_table_grid ($DBConn, "INFORMASI MONITORING", "", $qs, "Y", $arrJml, "2");
+}
+
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
+
+function GetCetakExcel($param_arr) {
+	
+	startExcel("pendaftaran_wp.xls");
+	
+	$output = '';
+	
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0">
+          		<tr>
+            		<td valign="top">';
+	$output .='<table>';
+	//$output .= '<tr><td class="th" align="center" colspan=7><h1><strong>KARTU LAPORAN</strong></td> </tr>';
+	//$output .= '<tr><td class="th" align="center" colspan=7><h1><strong>REKAPITULASI TARGET/SASARAN MUTU</strong></td> </tr>';
+	$output .= '<tr><td class="th" align="center" colspan=4><h1><strong>PENDAFTARAN WAJIB PAJAK BARU</strong></td></tr>';
+	$output .= '</table></br>';
+	
+	$output .='<table>';
+	$output .= '<tr></tr>';
+	$output .= '<tr></tr>';
+	//$output .= '<tr><td colspan=2>JENIS PAJAK </td><td>: '.$param_arr['vat_code'].'</td></tr>';
+	$output .= '<tr><td colspan=2>PERIODE </td><td>: '.$param_arr['date_start_laporan'].' s.d. '.$param_arr['date_end_laporan'].' </td></tr>';
+	//$output .= '<tr><td colspan=2>JENIS TARGET </td><td>: PENERBITAN NPWPD 7 HARI KERJA</td></tr>';
+	$output .= '<tr></tr>';
+	$output .= '</table></br>';
+	$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
+	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
+                <tr >';
+
+	$output.='<th align="center" >NO</th>';
+	$output.='<th align="center" >NPWPD</th>';
+	$output.='<th align="center" >MERK DAGANG</th>';
+	$output.='<th align="center" >ALAMAT MERK DAGANG</th>';
+	$output.='</tr>';
+	
+	$dbConn	= new clsDBConnSIKP();
+	
+	$query="SELECT * 
+			FROM t_vat_registration a  
+			where trunc(a.registration_date) BETWEEN to_date('".$param_arr['date_start_laporan']."','dd-mm-yyyy') 
+				and to_date('".$param_arr['date_end_laporan']."','dd-mm-yyyy')
+			and case when ".$param_arr['p_vat_type_id']."=0 then true
+					else a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
+				end ";
+	//echo $query;exit;
+	$data = array();
+	$dbConn->query($query);
+	while ($dbConn->next_record()) {
+		$data[] = $dbConn->Record;
+	}
+	$dbConn->close();
+
+	for ($i = 0; $i < count($data); $i++) {
+		$output.='<tr><td align="center" >'.($i+1).'</td>';
+		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['brand_address_name'].'</td>';
+	}
+
+	$output.='</table>';
+
+	echo $output;
+	exit;
 }
 
 ?>

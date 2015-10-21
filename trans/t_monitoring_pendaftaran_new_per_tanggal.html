@@ -57,7 +57,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -111,6 +111,13 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td class="search-field">&nbsp;</td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="TAMPILKAN" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch2 --><input id="t_rep_lap_spjpSearchButton_DoSearch2" class="btn_tambah" onclick="cetak_excel(); return false;" value="CETAK EXCEL" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch2 --></td>
                   </tr>
                 </table>
               </td>
@@ -170,6 +177,54 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
             alert("Filter Berwarna Kuning Harus Diisi");
         }else {
                 var params = "?doAction=view_html";
+                params += "&date_start_laporan="+date_start_laporan;
+                params += "&date_end_laporan="+date_end_laporan;
+                params += "&p_vat_type_id="+p_vat_type_id;
+                params += "&vat_code="+vat_code;
+                                params += "&nilai="+nilai;
+                location.href="t_monitoring_pendaftaran_new_per_tanggal.php"+params;
+        }
+    }
+
+        function cetak()
+    {
+        p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
+        vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
+                date_start_laporan= document.getElementById("t_rep_lap_spjpSearchdate_start_laporan").value;
+                date_end_laporan= document.getElementById("t_rep_lap_spjpSearchdate_end_laporan").value;
+                
+        nilai= document.getElementById("t_rep_lap_spjpSearchnilai").value;
+        if(p_vat_type_id == "" ) {
+            p_vat_type_id=0;
+        }       
+        if(date_start_laporan == ""|| date_end_laporan == "") {
+            alert("Filter Berwarna Kuning Harus Diisi");
+        }else {
+                var params = "?doAction=view_html";
+                params += "&date_start_laporan="+date_start_laporan;
+                params += "&date_end_laporan="+date_end_laporan;
+                params += "&p_vat_type_id="+p_vat_type_id;
+                params += "&vat_code="+vat_code;
+                                params += "&nilai="+nilai;
+                location.href="t_monitoring_pendaftaran_new_per_tanggal.php"+params;
+        }
+    }
+
+	function cetak_excel()
+    {
+        p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
+        vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
+                date_start_laporan= document.getElementById("t_rep_lap_spjpSearchdate_start_laporan").value;
+                date_end_laporan= document.getElementById("t_rep_lap_spjpSearchdate_end_laporan").value;
+                
+        nilai= document.getElementById("t_rep_lap_spjpSearchnilai").value;
+        if(p_vat_type_id == "" ) {
+            p_vat_type_id=0;
+        }       
+        if(date_start_laporan == ""|| date_end_laporan == "") {
+            alert("Filter Berwarna Kuning Harus Diisi");
+        }else {
+                var params = "?doAction=view_excel";
                 params += "&date_start_laporan="+date_start_laporan;
                 params += "&date_end_laporan="+date_end_laporan;
                 params += "&p_vat_type_id="+p_vat_type_id;
