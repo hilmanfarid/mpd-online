@@ -67,6 +67,13 @@ while ($dbConn->next_record()) {
 	$data["f_01_sts"][]		= $dbConn->f("f_01_sts");
 	$data["f_01_amt"][]		= $dbConn->f("f_01_amt");
 	$data["f_01_paydate"][]	= $dbConn->f("f_01_paydate");
+	$active_date = $dbConn->f("active_date");
+	if(!empty($active_date)){
+		$active_date = DateTime::createFromFormat('d-M-y H:i:s', $dbConn->f("active_date"));
+		$data["active_date"][] =   date_format($active_date, 'd-M-Y');
+	}else{
+		$data["active_date"][] = '';
+	}
 }
 $dbConn->close();
 
@@ -95,6 +102,7 @@ echo '<tr>
 			<th rowspan="2">NO</th>
 			<th rowspan="2">Nama Perusahaan</th>
 			<th rowspan="2">Alamat</th>
+			<th rowspan="2">Tanggal Pengukuhan</th>
 			<th colspan="12">Realisasi dan Tanggal Bayar</th>
 			<th rowspan="2">Jumlah</th>
 	  </tr>
@@ -157,6 +165,7 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 		<td align="center" valign="top">'.($i+1).'</td>
 		<td valign="top">'.$data["nama"][$i].'</td>
 		<td valign="top">'.$data["alamat"][$i].' <br/> '.$data["npwpd"][$i].'</td>
+		<td valign="top">'.$data["active_date"][$i].'</td>
 		<td align="right" valign="top">'.$data2[12].'<br/> '.$arrpaydate[12].'</td>
 		<td align="right" valign="top">'.$data2[1].'<br/> '.$arrpaydate[1].'</td>
 		<td align="right" valign="top">'.$data2[2].'<br/> '.$arrpaydate[2].'</td>
@@ -176,7 +185,7 @@ for ($i = 0; $i < count($data["nama"]); $i++) {
 
 
 echo '<tr>
-		<td colspan="3" align="center"> <b>TOTAL</b> </td>
+		<td colspan="4" align="center"> <b>TOTAL</b> </td>
 		<td><b>'.number_format($total_per_bulan[12], 0, ',', '.').'</b></td>
 		<td><b>'.number_format($total_per_bulan[1], 0, ',', '.').'</b></td>
 		<td><b>'.number_format($total_per_bulan[2], 0, ',', '.').'</b></td>
