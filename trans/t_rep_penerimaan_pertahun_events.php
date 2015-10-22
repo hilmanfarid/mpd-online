@@ -66,6 +66,7 @@ function Page_BeforeShow(& $sender)
 			$data["nama"][]			= $dbConn->f("nama");
 			$data["alamat"][]		= $dbConn->f("alamat");
 			$data["npwpd"][]		= $dbConn->f("npwpd");
+			$data["active_date"][]		= $dbConn->f("active_date");
 			$data["f_12_sts"][]		= $dbConn->f("f_12_sts");
 			$data["f_12_amt"][]		= $dbConn->f("f_12_amt");
 			$data["f_12_paydate"][]	= $dbConn->f("f_12_paydate");
@@ -139,6 +140,7 @@ function GetCetakHTML($data) {
 	$output.='<th>NPWPD</th>';
 	$output.='<th>NAMA</th>';
 	$output.='<th>ALAMAT</th>';
+	//$output.='<th>TANGGAL PENGUKUHAN</th>';
 	$output.='<th>REALISASI TGL BAYAR</th>';
 	$output.='<th>MASA PAJAK</th>';
 	$output.='<th>JUMLAH</th>';
@@ -155,6 +157,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_12_amt"][$i]) ? '-' : $data["f_12_paydate"][$i]).'</td>';
 			$output.='<td>DESEMBER '.($data["tahun"][0]-1).'</td>';
 			$output.='<td align="right">'.number_format($data["f_12_amt"][$i], 2, ',', '.').'</td>';
@@ -167,6 +170,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_01_amt"][$i]) ? '-' : $data["f_01_paydate"][$i]).'</td>';
 			$output.='<td>JANUARI '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_01_amt"][$i], 2, ',', '.').'</td>';
@@ -179,6 +183,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_02_amt"][$i]) ? '-' : $data["f_02_paydate"][$i]).'</td>';
 			$output.='<td>FEBRUARI '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_02_amt"][$i], 2, ',', '.').'</td>';
@@ -191,6 +196,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_03_amt"][$i]) ? '-' : $data["f_03_paydate"][$i]).'</td>';
 			$output.='<td>MARET '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_03_amt"][$i], 2, ',', '.').'</td>';
@@ -203,6 +209,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_04_amt"][$i]) ? '-' : $data["f_04_paydate"][$i]).'</td>';
 			$output.='<td>APRIL '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_04_amt"][$i], 2, ',', '.').'</td>';
@@ -215,6 +222,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_05_amt"][$i]) ? '-' : $data["f_05_paydate"][$i]).'</td>';
 			$output.='<td>MEI '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_05_amt"][$i], 2, ',', '.').'</td>';
@@ -227,6 +235,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_06_amt"][$i]) ? '-' : $data["f_06_paydate"][$i]).'</td>';
 			$output.='<td>JUNI '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_06_amt"][$i], 2, ',', '.').'</td>';
@@ -239,6 +248,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_07_amt"][$i]) ? '-' : $data["f_07_paydate"][$i]).'</td>';
 			$output.='<td>JULI '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_07_amt"][$i], 2, ',', '.').'</td>';
@@ -251,6 +261,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_08_amt"][$i]) ? '-' : $data["f_08_paydate"][$i]).'</td>';
 			$output.='<td>AGUSTUS '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_08_amt"][$i], 2, ',', '.').'</td>';
@@ -263,6 +274,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_09_amt"][$i]) ? '-' : $data["f_09_paydate"][$i]).'</td>';
 			$output.='<td>SEPTEMBER '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_09_amt"][$i], 2, ',', '.').'</td>';
@@ -275,6 +287,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_10_amt"][$i]) ? '-' : $data["f_10_paydate"][$i]).'</td>';
 			$output.='<td>OKTOBER '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_10_amt"][$i], 2, ',', '.').'</td>';
@@ -287,6 +300,7 @@ function GetCetakHTML($data) {
 			$output.='<td>'.$data["npwpd"][$i].'</td>';
 			$output.='<td>'.$data["nama"][$i].'</td>';
 			$output.='<td>'.$data["alamat"][$i].'</td>';
+			//$output.='<td>'.$data["active_date"][$i].'</td>';
 			$output.='<td>'.(empty($data["f_11_amt"][$i]) ? '-' : $data["f_11_paydate"][$i]).'</td>';
 			$output.='<td>NOVEMBER '.$data["tahun"][0].'</td>';
 			$output.='<td align="right">'.number_format($data["f_11_amt"][$i], 2, ',', '.').'</td>';
