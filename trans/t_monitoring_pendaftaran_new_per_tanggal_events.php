@@ -153,8 +153,72 @@ function GetCetakExcel($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['brand_address_name'].'</td>';
 		$output.='<td align="left" ></td>';
 		$output.='<td align="left" >'.$data[$i]['vat_code'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td></tr>';
 	}
+
+	$output.='</table>';
+	
+	$output .='<table width=100% border=0>';
+
+	$output.='<tr></tr>';
+	$output.='<tr></tr>';
+	$output .= '<tr >
+					<td width=50% align="center" colspan=5>
+						 
+					</td>
+					<td width=50% align="center" colspan=3>
+						KEPALA BIDANG 
+					</td>
+				</tr>';
+	$output .= '<tr >
+					<td width=50% align="center" colspan=5>
+						
+					</td>
+					<td width=50% align="center" colspan=3>
+						PAJAK PENDAFTARAN,
+					</td>
+				</tr>';
+	$output .= '<tr >
+					<td width=50% align="center" colspan=5>
+						 
+					</td>
+					<td width=50% align="center" colspan=3>
+						 
+					</td>
+				</tr>';
+	$output .= '<tr >
+					<td width=50% align="center" colspan=5>
+						
+					</td>
+					<td width=50% align="center" colspan=3>
+						
+					</td>
+				</tr>';
+	$output .= '<tr >
+					<td width=50% align="center" colspan=5>
+						
+					</td>
+					<td width=50% align="center" colspan=3>
+						Drs. H. GUN GUN SUMARYANA
+					</td>
+				</tr>';
+	$output .= '<tr >
+					<td width=50% align="center" colspan=5>
+						
+					</td>
+					<td width=50% align="center" colspan=3>
+						Pembina
+					</td>
+				</tr>';
+	$output .= '<tr >
+					<td width=50% align="center" colspan=5>
+						
+					</td>
+					<td width=50% align="center" colspan=3>
+						NIP. 19700806 199101 1 001
+					</td>
+				</tr>';
+
 
 	$output.='</table>';
 
