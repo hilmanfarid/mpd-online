@@ -64,6 +64,13 @@
 					<Attributes/>
 					<Features/>
 				</Button>
+				<Button id="574" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch3" PathID="t_rep_lap_spjpSearchButton_DoSearch3">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>

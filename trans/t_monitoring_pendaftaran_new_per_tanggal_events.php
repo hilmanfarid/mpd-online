@@ -97,14 +97,15 @@ function GetCetakExcel($param_arr) {
 	$output .='<table>';
 	//$output .= '<tr><td class="th" align="center" colspan=7><h1><strong>KARTU LAPORAN</strong></td> </tr>';
 	//$output .= '<tr><td class="th" align="center" colspan=7><h1><strong>REKAPITULASI TARGET/SASARAN MUTU</strong></td> </tr>';
-	$output .= '<tr><td class="th" align="center" colspan=4><h1><strong>PENDAFTARAN WAJIB PAJAK BARU</strong></td></tr>';
+	$output .= '<tr><td class="th" align="center" colspan=8><h1><strong>DAFTAR PERMOHOAN</strong></td></tr>';
+	$output .= '<tr><td class="th" align="center" colspan=8><h1><strong>PENDAFTARAN WAJIB PAJAK DAERAH</strong></td></tr>';
 	$output .= '</table></br>';
 	
 	$output .='<table>';
 	$output .= '<tr></tr>';
 	$output .= '<tr></tr>';
 	//$output .= '<tr><td colspan=2>JENIS PAJAK </td><td>: '.$param_arr['vat_code'].'</td></tr>';
-	$output .= '<tr><td colspan=2>PERIODE </td><td>: '.$param_arr['date_start_laporan'].' s.d. '.$param_arr['date_end_laporan'].' </td></tr>';
+	$output .= '<tr><td colspan=2>TANNGAL </td><td>: '.$param_arr['date_start_laporan'].' s.d. '.$param_arr['date_end_laporan'].' </td></tr>';
 	//$output .= '<tr><td colspan=2>JENIS TARGET </td><td>: PENERBITAN NPWPD 7 HARI KERJA</td></tr>';
 	$output .= '<tr></tr>';
 	$output .= '</table></br>';
@@ -113,19 +114,28 @@ function GetCetakExcel($param_arr) {
                 <tr >';
 
 	$output.='<th align="center" >NO</th>';
-	$output.='<th align="center" >NPWPD</th>';
+	$output.='<th align="center" >NAMA WAJIB PAJAK</th>';
+	$output.='<th align="center" >NAMA PENANGGUNG PAJAK</th>';
 	$output.='<th align="center" >MERK DAGANG</th>';
-	$output.='<th align="center" >ALAMAT MERK DAGANG</th>';
+	$output.='<th align="center" >ALAMAT USAHA</th>';
+	$output.='<th align="center" >WILAYAH</th>';
+	$output.='<th align="center" >JENIS PAJAK</th>';
+	$output.='<th align="center" >NPWPD</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
 	
 	$query="SELECT * 
-			FROM t_vat_registration a  
+			FROM t_vat_registration a 
+			left join p_vat_type_dtl b on a.p_vat_type_dtl_id=b.p_vat_type_dtl_id  
+			left join t_customer_order c on a.t_customer_order_id = c. t_customer_order_id
 			where trunc(a.registration_date) BETWEEN to_date('".$param_arr['date_start_laporan']."','dd-mm-yyyy') 
 				and to_date('".$param_arr['date_end_laporan']."','dd-mm-yyyy')
 			and case when ".$param_arr['p_vat_type_id']."=0 then true
 					else a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
+				end 
+			and case when ".$param_arr['nilai']."=0 then true
+					else c.p_order_status_id = ".$param_arr['nilai']."
 				end ";
 	//echo $query;exit;
 	$data = array();
@@ -137,9 +147,13 @@ function GetCetakExcel($param_arr) {
 
 	for ($i = 0; $i < count($data); $i++) {
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
-		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['company_owner'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['brand_address_name'].'</td>';
+		$output.='<td align="left" ></td>';
+		$output.='<td align="left" >'.$data[$i]['vat_code'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
 	}
 
 	$output.='</table>';
