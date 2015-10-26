@@ -97,7 +97,7 @@ function GetCetakExcel($param_arr) {
 	$output .='<table>';
 	//$output .= '<tr><td class="th" align="center" colspan=7><h1><strong>KARTU LAPORAN</strong></td> </tr>';
 	//$output .= '<tr><td class="th" align="center" colspan=7><h1><strong>REKAPITULASI TARGET/SASARAN MUTU</strong></td> </tr>';
-	$output .= '<tr><td class="th" align="center" colspan=8><h1><strong>DAFTAR PERMOHOAN</strong></td></tr>';
+	$output .= '<tr><td class="th" align="center" colspan=8><h1><strong>DAFTAR PERMOHONAN</strong></td></tr>';
 	$output .= '<tr><td class="th" align="center" colspan=8><h1><strong>PENDAFTARAN WAJIB PAJAK DAERAH</strong></td></tr>';
 	$output .= '</table></br>';
 	
@@ -105,7 +105,7 @@ function GetCetakExcel($param_arr) {
 	$output .= '<tr></tr>';
 	$output .= '<tr></tr>';
 	//$output .= '<tr><td colspan=2>JENIS PAJAK </td><td>: '.$param_arr['vat_code'].'</td></tr>';
-	$output .= '<tr><td colspan=2>TANNGAL </td><td>: '.$param_arr['date_start_laporan'].' s.d. '.$param_arr['date_end_laporan'].' </td></tr>';
+	$output .= '<tr><td colspan=2>TANGGAL </td><td>: '.$param_arr['date_start_laporan'].' s.d. '.$param_arr['date_end_laporan'].' </td></tr>';
 	//$output .= '<tr><td colspan=2>JENIS TARGET </td><td>: PENERBITAN NPWPD 7 HARI KERJA</td></tr>';
 	$output .= '<tr></tr>';
 	$output .= '</table></br>';
