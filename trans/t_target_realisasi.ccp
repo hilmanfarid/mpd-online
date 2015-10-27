@@ -55,7 +55,19 @@ where target_amt &gt; 0 AND realisasi_amt &gt; 0
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="751" fieldSourceType="CodeExpression" dataType="Float" html="False" name="selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridselisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="752" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage_selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridpercentage_selisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>

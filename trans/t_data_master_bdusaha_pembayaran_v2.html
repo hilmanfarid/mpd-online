@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_entertaintment_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toCustomerAcc()">
+      <div class="tab-title">
+        WAJIB PAJAK 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        DATA PEMBAYARAN WAJIB PAJAK 
+      </div>
+    </div>
+    <input style="WIDTH: 112px; HEIGHT: 22px" id="nama_bu" value="{nama_bu}" size="15" type="hidden" name="{nama_bu_Name}"><input style="WIDTH: 112px; HEIGHT: 22px" id="npwpd_bu" value="{npwpd_bu}" size="15" type="hidden" name="{npwpd_bu_Name}"><input style="WIDTH: 112px; HEIGHT: 22px" id="s_keyword" value="{s_keyword}" size="15" type="hidden" name="{s_keyword_Name}">
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td><br>
+        <!-- BEGIN Grid t_ppatGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR WAJIB PAJAK </strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" border="1" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">No. SPT</th>
+ 
+                  <th scope="col">Nama</th>
+ 
+                  <th scope="col">NPWPD</th>
+ 
+                  <th scope="col">Periode</th>
+ 
+                  <th scope="col">&nbsp;Tanggal Ketetapan</th>
+ 
+                  <th scope="col">&nbsp;Jumlah Ketetapan</th>
+ 
+                  <th scope="col">Tanggal Setor</th>
+ 
+                  <th scope="col">&nbsp;Jumlah Setor</th>
+ 
+                  <th scope="col">No. Kohir</th>
+ 
+                  <th scope="col">&nbsp;No. Bukti Setor</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_ppatGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center">&nbsp;{no_spt}</td> 
+                  <td>&nbsp;{nama_bu}</td> 
+                  <td>&nbsp;{npwpd_set}</td> 
+                  <td>&nbsp;{thn_bln}</td> 
+                  <td>&nbsp;{tgl_tetap}</td> 
+                  <td align="right">&nbsp;{jml_tetap}</td> 
+                  <td>&nbsp;{tanggal_set}</td> 
+                  <td style="TEXT-ALIGN: right">{jml_setor}</td> 
+                  <td>&nbsp;{no_kohir}</td> 
+                  <td>&nbsp;{no_bukti_set}</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="10">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td colspan="10">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_ppatGrid --><br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function toCustomerAcc()
+{
+                var nama_bu = document.getElementById('nama_bu').value;
+                var npwpd_bu = document.getElementById('npwpd_bu').value;
+                var s_keyword = document.getElementById('s_keyword').value;
+        location.href="t_data_master_bdusaha.php?nama_bu="+nama_bu+"&npwpd_bu="+npwpd_bu+"&s_keyword="+s_keyword;
+}
+</script>
+</body>
+</html>

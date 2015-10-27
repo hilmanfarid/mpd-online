@@ -42,7 +42,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-869A6057
+//Class_Initialize Event @2-7D20E1CF
     function clsGridt_target_realisasiGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -77,6 +77,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", ccsGet, NULL), $this);
         $this->realisasi_amt = & new clsControl(ccsLabel, "realisasi_amt", "realisasi_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("realisasi_amt", ccsGet, NULL), $this);
         $this->percentage = & new clsControl(ccsLabel, "percentage", "percentage", ccsFloat, "", CCGetRequestParam("percentage", ccsGet, NULL), $this);
+        $this->selisih = & new clsControl(ccsLabel, "selisih", "selisih", ccsFloat, "", CCGetRequestParam("selisih", ccsGet, NULL), $this);
+        $this->percentage_selisih = & new clsControl(ccsLabel, "percentage_selisih", "percentage_selisih", ccsFloat, "", CCGetRequestParam("percentage_selisih", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->p_year_period_id2 = & new clsControl(ccsHidden, "p_year_period_id2", "p_year_period_id2", ccsText, "", CCGetRequestParam("p_year_period_id2", ccsGet, NULL), $this);
@@ -94,7 +96,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     }
 //End Initialize Method
 
-//Show Method @2-A5C748C9
+//Show Method @2-2EA3CD50
     function Show()
     {
         global $Tpl;
@@ -128,6 +130,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
             $this->ControlsVisible["p_year_period_id"] = $this->p_year_period_id->Visible;
             $this->ControlsVisible["realisasi_amt"] = $this->realisasi_amt->Visible;
             $this->ControlsVisible["percentage"] = $this->percentage->Visible;
+            $this->ControlsVisible["selisih"] = $this->selisih->Visible;
+            $this->ControlsVisible["percentage_selisih"] = $this->percentage_selisih->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -150,6 +154,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
                 $this->p_year_period_id->Show();
                 $this->realisasi_amt->Show();
                 $this->percentage->Show();
+                $this->selisih->Show();
+                $this->percentage_selisih->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -183,7 +189,7 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
     }
 //End Show Method
 
-//GetErrors Method @2-12C3946C
+//GetErrors Method @2-C00EB83F
     function GetErrors()
     {
         $errors = "";
@@ -193,6 +199,8 @@ class clsGridt_target_realisasiGrid { //t_target_realisasiGrid class @2-7DA52549
         $errors = ComposeStrings($errors, $this->p_year_period_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->realisasi_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->percentage->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->selisih->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->percentage_selisih->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;

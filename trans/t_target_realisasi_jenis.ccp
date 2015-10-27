@@ -121,6 +121,18 @@ and p_vat_group_id = {p_vat_group_id})" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Label id="751" fieldSourceType="CodeExpression" dataType="Float" html="False" name="selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridselisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="752" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage_selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridpercentage_selisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">

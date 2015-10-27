@@ -57,10 +57,20 @@ global $selected_id;
 	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
 	 if(!empty($target)) {
 	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
+		$selisih = number_format($realisasi - $target , 2, ".", ",");
+		if($percent >= 100) {
+			$percent_selisih = $percent;
+		}else{
+			$percent_selisih = number_format($percent-100, 2, ".", ",");
+		}
 	 }else {
 		$percent = 0;
+		$selisih = 0;
+		$percent_selisih = 0;
 	 }
 	 $Component->percentage->SetValue("$percent %");
+	 $Component->selisih->SetValue("$selisih");
+	 $Component->percentage_selisih->SetValue("$percent_selisih %");
 //Close t_target_realisasiGrid_BeforeShowRow @2-DFE61ABB
     return $t_target_realisasiGrid_BeforeShowRow;
 }
