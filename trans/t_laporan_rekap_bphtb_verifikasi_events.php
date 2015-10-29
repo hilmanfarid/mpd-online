@@ -205,12 +205,24 @@ function tampilkan_html($param_arr){
 }
 function updateStatusVerifikasi($id){
 	$dbConn = new clsDBConnSIKP();
+	$query="select 'V-'||nextval('nomor_validasi_seq')||'/BPHTB-DYJ/'||to_char(sysdate,'YYYY') as nomor_validasi from dual";
+	
+	$dbConn->query($query);
+	$dbConn->next_record();
+	$nomor_validasi = $dbConn->f("nomor_validasi");
+
 	$query="UPDATE t_bphtb_registration 
-	set status_verifikasi = 'Y' 
+	set status_verifikasi = 'Y', 
+	nomor_validasi = '".$nomor_validasi."' ,
+	tanggal_validasi = sysdate
 	WHERE t_bphtb_registration_id = $id";
 	//echo $query;
 	//exit;
 	$dbConn->query($query);
+	echo '<script language="javascript">';
+  	echo 'alert("BPHTB telah diverifikasi dengan nomor : '.$nomor_validasi.'");';
+  	echo '</script>';
+
 	echo "<script>window.opener.location.reload();
 	window.close();</script>";
 	exit;
