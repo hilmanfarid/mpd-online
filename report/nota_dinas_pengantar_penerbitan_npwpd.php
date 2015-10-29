@@ -24,7 +24,7 @@ if (empty($param_arr['date_start_laporan']) && empty($param_arr['date_end_lapora
 			FROM t_vat_registration a 
 			left join p_vat_type_dtl b on a.p_vat_type_dtl_id=b.p_vat_type_dtl_id  
 			left join t_customer_order c on a.t_customer_order_id = c. t_customer_order_id
-			where trunc(a.registration_date) BETWEEN to_date('".$param_arr['date_start_laporan']."','dd-mm-yyyy') 
+			where trunc(a.creation_date) BETWEEN to_date('".$param_arr['date_start_laporan']."','dd-mm-yyyy') 
 				and to_date('".$param_arr['date_end_laporan']."','dd-mm-yyyy')
 			and case when ".$param_arr['p_vat_type_id']."=0 then true
 					else a.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")
