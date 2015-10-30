@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_registrationForm" activeCollection="ISPParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Procedure" parameterTypeListName="ParameterTypeList" customUpdateType="Procedure" customInsertType="Procedure" customUpdate="f_crud_vat_reg" customDelete="f_crud_vat_reg" customInsert="f_crud_vat_reg" dataSource="SELECT * 
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_registrationForm" activeCollection="USPParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Procedure" parameterTypeListName="ParameterTypeList" customUpdateType="Procedure" customInsertType="Procedure" customUpdate="f_crud_vat_reg" customDelete="f_crud_vat_reg" customInsert="f_crud_vat_reg" dataSource="SELECT * 
 FROM v_vat_registration
 WHERE t_customer_order_id = {t_customer_order_id} ">
 			<Components>
@@ -76,91 +76,91 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="620" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kelurahan_code" fieldSource="kelurahan_code" required="True" caption="Kelurahan - Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkelurahan_code">
+				<TextBox id="620" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kelurahan_code" fieldSource="kelurahan_code" required="False" caption="Kelurahan - Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkelurahan_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="621" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kecamatan_code" fieldSource="kecamatan_code" required="True" caption="Kecamatan - Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkecamatan_code">
+				<TextBox id="621" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kecamatan_code" fieldSource="kecamatan_code" required="False" caption="Kecamatan - Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkecamatan_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="622" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kota_code" fieldSource="kota_code" required="True" caption="Kota/Kabupaten - Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkota_code" defaultValue="'KOTA BANDUNG'">
+				<TextBox id="622" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kota_code" fieldSource="kota_code" required="False" caption="Kota/Kabupaten - Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkota_code" defaultValue="'KOTA BANDUNG'">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="623" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kelurahan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_kelurahan" fieldSource="p_region_id_kelurahan" caption="Kelurahan - Badan" required="True">
+				<Hidden id="623" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kelurahan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_kelurahan" fieldSource="p_region_id_kelurahan" caption="Kelurahan - Badan" required="False">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="624" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kecamatan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_kecamatan" fieldSource="p_region_id_kecamatan" caption="Kecamatan - Badan" required="True">
+				<Hidden id="624" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kecamatan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_kecamatan" fieldSource="p_region_id_kecamatan" caption="Kecamatan - Badan" required="False">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="625" fieldSourceType="DBColumn" dataType="Float" name="p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id" fieldSource="p_region_id" caption="Kota/Kabupaten - Badan" defaultValue="749" required="True">
+				<Hidden id="625" fieldSourceType="DBColumn" dataType="Float" name="p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id" fieldSource="p_region_id" caption="Kota/Kabupaten - Badan" defaultValue="749" required="False">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="626" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kelurahan_own_code" fieldSource="kelurahan_own_code" required="True" caption="Kelurahan - Pemilk" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkelurahan_own_code">
+				<TextBox id="626" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kelurahan_own_code" fieldSource="kelurahan_own_code" required="False" caption="Kelurahan - Pemilk" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkelurahan_own_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="627" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kecamatan_own_code" fieldSource="kecamatan_own_code" required="True" caption="Kecamatan - Pemilik" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkecamatan_own_code">
+				<TextBox id="627" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kecamatan_own_code" fieldSource="kecamatan_own_code" required="False" caption="Kecamatan - Pemilik" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkecamatan_own_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="628" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kota_own_code" fieldSource="kota_own_code" required="True" caption="Kota/Kabupaten - Pemilik" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkota_own_code" defaultValue="'KOTA BANDUNG'">
+				<TextBox id="628" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kota_own_code" fieldSource="kota_own_code" required="False" caption="Kota/Kabupaten - Pemilik" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkota_own_code" defaultValue="'KOTA BANDUNG'">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="629" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kel_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_kel_owner" fieldSource="p_region_id_kel_owner" caption="Kelurahan - Pemilk" required="True">
+				<Hidden id="629" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kel_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_kel_owner" fieldSource="p_region_id_kel_owner" caption="Kelurahan - Pemilk" required="False">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="630" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kec_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_kec_owner" fieldSource="p_region_id_kec_owner" caption="Kecamatan - Pemilik" required="True">
+				<Hidden id="630" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_kec_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_kec_owner" fieldSource="p_region_id_kec_owner" caption="Kecamatan - Pemilik" required="False">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="631" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_owner" fieldSource="p_region_id_owner" caption="Kota/Kabupaten - Pemilik" defaultValue="749" required="True">
+				<Hidden id="631" fieldSourceType="DBColumn" dataType="Float" name="p_region_id_owner" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormp_region_id_owner" fieldSource="p_region_id_owner" caption="Kota/Kabupaten - Pemilik" defaultValue="749" required="False">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="632" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_name" fieldSource="company_name" required="True" caption="Nama Badan/Perusahaan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormcompany_name">
+				<TextBox id="632" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_name" fieldSource="company_name" required="False" caption="Nama Badan/Perusahaan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormcompany_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextArea id="633" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name" fieldSource="address_name" required="True" caption="Alamat Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormaddress_name">
+				<TextArea id="633" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name" fieldSource="address_name" required="False" caption="Alamat Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormaddress_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-				<TextBox id="565" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="job_position_code" fieldSource="job_position_code" required="True" caption="Jabatan Pemilik" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormjob_position_code">
+				<TextBox id="565" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="job_position_code" fieldSource="job_position_code" required="False" caption="Jabatan Pemilik" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormjob_position_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -172,13 +172,7 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="634" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_brand" fieldSource="company_brand" required="True" caption="Nama Merk Dagang" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormcompany_brand">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="635" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no" fieldSource="address_no" required="True" caption="No - Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormaddress_no">
+				<TextBox id="635" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no" fieldSource="address_no" required="False" caption="No - Badan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormaddress_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -196,7 +190,7 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="638" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no_owner" fieldSource="address_no_owner" required="True" caption="No - Pemilik" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormaddress_no_owner">
+				<TextBox id="638" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_no_owner" fieldSource="address_no_owner" required="False" caption="No - Pemilik" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormaddress_no_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -232,13 +226,7 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="647" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_owner" fieldSource="company_owner" required="True" caption="Nama Pemilik/Pengelola" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormcompany_owner">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="648" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_no_owner" fieldSource="mobile_no_owner" required="True" caption="No. Selular - Pemilk" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormmobile_no_owner">
+				<TextBox id="647" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_owner" fieldSource="company_owner" required="False" caption="Nama Pemilik/Pengelola" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormcompany_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -262,7 +250,7 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextArea id="652" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name_owner" fieldSource="address_name_owner" required="True" caption="Alamat Tempat Tinggal" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormaddress_name_owner">
+				<TextArea id="652" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="address_name_owner" fieldSource="address_name_owner" required="False" caption="Alamat Tempat Tinggal" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormaddress_name_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -286,18 +274,6 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Button id="851" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormButton1">
-					<Components/>
-					<Events>
-						<Event name="OnClick" type="Server">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="862"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<TextBox id="852" visible="Dynamic" fieldSourceType="DBColumn" dataType="Text" name="validation_code" required="False" caption="Kode Validasi" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormvalidation_code">
 					<Components/>
 					<Events/>
@@ -328,12 +304,6 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Label id="863" fieldSourceType="DBColumn" dataType="Text" html="False" name="pesan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormpesan">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<TextBox id="646" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="phone_no_owner" fieldSource="phone_no_owner" required="False" caption="No. Telephon - Pemilk" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormphone_no_owner">
 					<Components/>
 					<Events/>
@@ -388,6 +358,148 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
+				<TextBox id="881" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_phone_no" fieldSource="wp_phone_no" required="False" caption="No. Telephon - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_phone_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="882" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_zip_code" fieldSource="wp_zip_code" required="False" caption="Kode Pos - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_zip_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Hidden id="885" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormwp_p_region_id" fieldSource="wp_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="887" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kecamatan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormwp_p_region_id_kecamatan" fieldSource="wp_p_region_id_kecamatan" caption="Kecamatan - WP" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<Hidden id="889" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kelurahan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormwp_p_region_id_kelurahan" fieldSource="wp_p_region_id_kelurahan" caption="Kelurahan - WP" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<TextBox id="892" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_email" fieldSource="wp_email" required="False" caption="Email - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_email" inputMask="^[\w\.-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]+$">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="893" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_fax_no" fieldSource="wp_fax_no" required="False" caption="No. Fax - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_fax_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<ListBox id="898" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="p_private_question_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_private_question_id" connection="ConnSIKP" dataSource="p_private_question" orderBy="p_private_question_id" boundColumn="p_private_question_id" textColumn="question_pwd" fieldSource="p_private_question_id" caption="Pilih Pertanyaan">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+						<JoinTable id="901" tableName="p_private_question" posLeft="10" posTop="10" posWidth="160" posHeight="168"/>
+					</JoinTables>
+					<JoinLinks/>
+					<Fields>
+						<Field id="900" fieldName="*"/>
+					</Fields>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<TextBox id="899" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="private_answer" fieldSource="private_answer" required="True" caption="Jawaban" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormprivate_answer">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<ListBox id="904" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Float" returnValueType="Number" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id" caption="Nama Ayat" connection="ConnSIKP" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select * from v_p_vat_type_dtl_rqst_type
+where p_rqst_type_id = {p_rqst_type_id}" boundColumn="p_vat_type_dtl_id" textColumn="nama_ayat" required="True">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters>
+						<SQLParameter id="905" variable="p_rqst_type_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_rqst_type_id"/>
+					</SQLParameters>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<TextBox id="906" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="pre_vat_brand_name" caption="merek dagang dari npwpd jabatan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormpre_vat_brand_name" fieldSource="pre_brand_name">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<Hidden id="908" fieldSourceType="DBColumn" dataType="Float" name="t_vat_pre_registration_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormt_vat_pre_registration_id" fieldSource="t_vat_pre_registration_id" caption="surat npwpd jabatan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<ListBox id="909" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_doc_delivery_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_doc_delivery_type_id" connection="ConnSIKP" dataSource="SELECT * 
+FROM p_doc_delivery_type 
+ORDER BY p_doc_delivery_type_id" orderBy="p_private_question_id" boundColumn="p_doc_delivery_type_id" textColumn="code" fieldSource="p_doc_delivery_type_id" caption="Pilih media pengiriman">
+					<Components/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="916"/>
+</Actions>
+</Event>
+</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+						<JoinTable id="910" tableName="p_private_question" posWidth="160" posHeight="168" posLeft="10" posTop="10"/>
+					</JoinTables>
+					<JoinLinks/>
+					<Fields>
+						<Field id="911" fieldName="*"/>
+					</Fields>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<ListBox id="912" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="jenis_usaha" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormjenis_usaha" connection="ConnSIKP" orderBy="p_private_question_id" fieldSource="jenis_usaha" caption="Pilih Jenis Usaha" _valueOfList="Badan" _nameOfList="Badan" dataSource="Perorangan;Perorangan;Badan;Badan">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="915" eventType="Client"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+					</JoinTables>
+					<JoinLinks/>
+					<Fields>
+						<Field id="914" fieldName="*"/>
+					</Fields>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<TextBox id="634" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_brand" fieldSource="company_brand" required="True" caption="Nama Merk Dagang" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormcompany_brand">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 				<TextBox id="872" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="brand_kelurahan" fieldSource="brand_kelurahan" required="True" caption="Kelurahan - Usaha" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbrand_kelurahan">
 					<Components/>
 					<Events/>
@@ -430,43 +542,13 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="881" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_phone_no" fieldSource="wp_phone_no" required="False" caption="No. Telephon - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_phone_no">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="882" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_zip_code" fieldSource="wp_zip_code" required="False" caption="Kode Pos - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_zip_code">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
 				<TextBox id="883" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="brand_zip_code" fieldSource="brand_zip_code" required="False" caption="Kode Pos - Usaha" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbrand_zip_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="884" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_mobile_no" fieldSource="wp_mobile_no" caption="No. Selular - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_mobile_no" required="False">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<Hidden id="885" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormwp_p_region_id" fieldSource="wp_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<Hidden id="886" fieldSourceType="DBColumn" dataType="Float" name="brand_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormbrand_p_region_id" fieldSource="brand_p_region_id" caption="Kota/Kabupaten - Usaha" defaultValue="749" required="True">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-				<Hidden id="887" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kecamatan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormwp_p_region_id_kecamatan" fieldSource="wp_p_region_id_kecamatan" caption="Kecamatan - WP" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -478,58 +560,18 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Hidden id="889" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kelurahan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormwp_p_region_id_kelurahan" fieldSource="wp_p_region_id_kelurahan" caption="Kelurahan - WP" required="True">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<Hidden id="890" fieldSourceType="DBColumn" dataType="Float" name="brand_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormbrand_p_region_id_kel" fieldSource="brand_p_region_id_kel" caption="Kelurahan - Usaha" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="892" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_email" fieldSource="wp_email" required="False" caption="Email - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_email" inputMask="^[\w\.-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]+$">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<TextBox id="893" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_fax_no" fieldSource="wp_fax_no" required="False" caption="No. Fax - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_fax_no">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
 				<TextArea id="894" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="brand_address_name" fieldSource="brand_address_name" required="True" caption="Alamat" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbrand_address_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextArea>
-				<ListBox id="898" visible="Yes" fieldSourceType="DBColumn" sourceType="Table" dataType="Text" returnValueType="Number" name="p_private_question_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_private_question_id" connection="ConnSIKP" dataSource="p_private_question" orderBy="p_private_question_id" boundColumn="p_private_question_id" textColumn="question_pwd" fieldSource="p_private_question_id" caption="Pilih Pertanyaan">
-					<Components/>
-					<Events/>
-					<TableParameters/>
-					<SPParameters/>
-					<SQLParameters/>
-					<JoinTables>
-						<JoinTable id="901" tableName="p_private_question" posLeft="10" posTop="10" posWidth="160" posHeight="168"/>
-					</JoinTables>
-					<JoinLinks/>
-					<Fields>
-						<Field id="900" fieldName="*"/>
-					</Fields>
-					<Attributes/>
-					<Features/>
-				</ListBox>
-				<TextBox id="899" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="private_answer" fieldSource="private_answer" required="True" caption="Jawaban" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormprivate_answer">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
 				<TextBox id="902" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="brand_mobile_no" fieldSource="brand_mobile_no" caption="No. Selular - Usaha" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbrand_mobile_no" required="False">
 					<Components/>
 					<Events/>
@@ -542,51 +584,36 @@ WHERE t_customer_order_id = {t_customer_order_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="904" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Float" returnValueType="Number" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id" caption="Nama Ayat" connection="ConnSIKP" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select * from v_p_vat_type_dtl_rqst_type
-where p_rqst_type_id = {p_rqst_type_id}" boundColumn="p_vat_type_dtl_id" textColumn="nama_ayat" required="True">
-					<Components/>
-					<Events/>
-					<TableParameters/>
-					<SPParameters/>
-					<SQLParameters>
-						<SQLParameter id="905" variable="p_rqst_type_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_rqst_type_id"/>
-					</SQLParameters>
-					<JoinTables/>
-					<JoinLinks/>
-					<Fields/>
-					<Attributes/>
-					<Features/>
-				</ListBox>
-				<TextBox id="906" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="pre_vat_brand_name" caption="merek dagang dari npwpd jabatan" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormpre_vat_brand_name">
+				<TextBox id="917" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="wp_mobile_no" fieldSource="wp_mobile_no" caption="No. Selular - WP" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormwp_mobile_no" required="False">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="908" fieldSourceType="DBColumn" dataType="Float" name="t_vat_pre_registration_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormt_vat_pre_registration_id" fieldSource="t_vat_pre_registration_id" caption="surat npwpd jabatan">
+<TextBox id="648" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="mobile_no_owner" fieldSource="mobile_no_owner" required="False" caption="No. Selular - Pemilk" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormmobile_no_owner">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
-				</Hidden>
-<ListBox id="909" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_doc_delivery_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_vat_registrationFormp_doc_delivery_type_id" connection="ConnSIKP" dataSource="SELECT * 
-FROM p_doc_delivery_type 
-ORDER BY p_doc_delivery_type_id" orderBy="p_private_question_id" boundColumn="p_doc_delivery_type_id" textColumn="code" fieldSource="p_doc_delivery_type_id" caption="Pilih Pertanyaan">
+				</TextBox>
+<Button id="851" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormButton1">
 					<Components/>
-					<Events/>
-					<TableParameters/>
-					<SPParameters/>
-					<SQLParameters/>
-					<JoinTables>
-						<JoinTable id="910" tableName="p_private_question" posWidth="160" posHeight="168" posLeft="10" posTop="10"/>
-</JoinTables>
-					<JoinLinks/>
-					<Fields>
-						<Field id="911" fieldName="*"/>
-					</Fields>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="862"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
-				</ListBox>
+				</Button>
+<Label id="863" fieldSourceType="DBColumn" dataType="Text" html="False" name="pesan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormpesan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 </Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
@@ -625,7 +652,7 @@ ORDER BY p_doc_delivery_type_id" orderBy="p_private_question_id" boundColumn="p_
 				<SPParameter id="Key907" parameterName="regionidown" parameterSource="p_region_id_owner" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key908" parameterName="companyname" parameterSource="company_name" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key909" parameterName="addressname" parameterSource="address_name" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
-				<SPParameter id="Key910" parameterName="jobid" parameterSource="p_job_position_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key910" parameterName="jobid" parameterSource="p_job_position_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6" defaultValue="16"/>
 				<SPParameter id="Key911" parameterName="companybrand" parameterSource="company_brand" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key912" parameterName="addressno" parameterSource="address_no" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key913" parameterName="addressrt" parameterSource="address_rt" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
@@ -675,9 +702,10 @@ ORDER BY p_doc_delivery_type_id" orderBy="p_private_question_id" boundColumn="p_
 				<SPParameter id="Key961" parameterName="questionid" parameterSource="p_private_question_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key962" parameterName="privateanswer" parameterSource="private_answer" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key963" parameterName="i_mode" parameterSource="'I'" dataType="Char" parameterType="Expression" dataSize="255" direction="Input" scale="10" precision="6"/>
-				<SPParameter id="Key964" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_p_vat_pre_registration_id" scale="0" precision="0" parameterSource="p_vat_pre_registration_id"/>
-<SPParameter id="Key965" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_p_doc_delivery_type_id" scale="0" precision="0" parameterSource="p_doc_delivery_type_id"/>
-</ISPParameters>
+				<SPParameter id="Key964" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_p_vat_pre_registration_id" scale="0" precision="0" parameterSource="t_vat_pre_registration_id"/>
+				<SPParameter id="Key965" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_p_doc_delivery_type_id" scale="0" precision="0" parameterSource="p_doc_delivery_type_id"/>
+				<SPParameter id="Key966" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="i_jenis_usaha" scale="0" precision="0" parameterSource="jenis_usaha"/>
+			</ISPParameters>
 			<ISQLParameters>
 			</ISQLParameters>
 			<IFormElements>
@@ -786,6 +814,9 @@ ORDER BY p_doc_delivery_type_id" orderBy="p_private_question_id" boundColumn="p_
 				<SPParameter id="Key968" parameterName="questionid" parameterSource="p_private_question_id" dataType="Numeric" parameterType="Control" dataSize="28" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key969" parameterName="privateanswer" parameterSource="private_answer" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key970" parameterName="i_mode" parameterSource="'U'" dataType="Char" parameterType="Expression" dataSize="255" direction="Input" scale="10" precision="6"/>
+				<SPParameter id="Key971" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_p_vat_pre_registration_id" scale="0" precision="0" parameterSource="t_vat_pre_registration_id"/>
+				<SPParameter id="Key972" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_p_doc_delivery_type_id" scale="0" precision="0" parameterSource="p_doc_delivery_type_id"/>
+				<SPParameter id="Key973" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="i_jenis_usaha" scale="0" precision="0" parameterSource="jenis_usaha"/>
 			</USPParameters>
 			<USQLParameters>
 			</USQLParameters>
