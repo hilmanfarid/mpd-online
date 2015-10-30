@@ -53,7 +53,7 @@ ORDER BY company_brand" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -280,7 +280,7 @@ WHERE t_vat_pre_registration_id = {t_vat_pre_registration_id} " activeTableType=
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="269" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="brand_mobile_no" fieldSource="brand_mobile_no" required="True" caption="No Handphone" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormbrand_mobile_no">
+				<TextBox id="269" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="brand_mobile_no" fieldSource="brand_mobile_no" required="False" caption="No Handphone" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormbrand_mobile_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -304,49 +304,49 @@ WHERE t_vat_pre_registration_id = {t_vat_pre_registration_id} " activeTableType=
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="38" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="creation_date" fieldSource="creation_date" required="False" caption="Creation Date" wizardCaption="Creation Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormcreation_date" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
+				<TextBox id="38" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="creation_date" fieldSource="creation_date" required="False" caption="Creation Date" wizardCaption="Creation Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormcreation_date" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="43" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="updated_by" fieldSource="updated_by" required="False" caption="Updated By" wizardCaption="Updated By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormupdated_by" defaultValue="CCGetUserLogin()">
+				<TextBox id="43" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="updated_by" fieldSource="updated_by" required="False" caption="Updated By" wizardCaption="Updated By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormupdated_by" defaultValue="CCGetUserLogin()">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="41" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="updated_date" fieldSource="updated_date" required="False" caption="Updated Date" wizardCaption="Updated Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormupdated_date" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
+				<TextBox id="41" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="updated_date" fieldSource="updated_date" required="False" caption="Updated Date" wizardCaption="Updated Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormupdated_date" format="dd-mmm-yyyy" defaultValue="date(&quot;d-M-Y&quot;)">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="362" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" PathID="t_ppatFormvat_code" fieldSource="vat_code" required="True" caption="Jenis Pajak">
+				<TextBox id="362" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" PathID="t_ppatFormvat_code" fieldSource="vat_code" required="True" caption="Jenis Pajak">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="363" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_ppatFormp_vat_type_id" fieldSource="p_vat_type_id">
+				<Hidden id="363" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_ppatFormp_vat_type_id" fieldSource="p_vat_type_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="365" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_additional_addr" fieldSource="company_additional_addr" caption="alamat lokasi tambahan" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormcompany_additional_addr">
+				<TextBox id="365" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="company_additional_addr" fieldSource="company_additional_addr" caption="alamat lokasi tambahan" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormcompany_additional_addr">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="367" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="reg_duedate" fieldSource="reg_duedate" required="False" caption="reg_duedate" wizardCaption="Updated Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormreg_duedate" format="dd-mmm-yyyy">
+				<TextBox id="367" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="reg_duedate" fieldSource="reg_duedate" required="False" caption="reg_duedate" wizardCaption="Updated Date" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_ppatFormreg_duedate" format="dd-mmm-yyyy">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 			</Events>
 			<TableParameters>
@@ -379,8 +379,8 @@ WHERE t_vat_pre_registration_id = {t_vat_pre_registration_id} " activeTableType=
 				<SQLParameter id="311" variable="brand_fax_no" dataType="Text" parameterType="Control" parameterSource="brand_fax_no"/>
 				<SQLParameter id="312" variable="brand_zip_code" dataType="Text" parameterType="Control" parameterSource="brand_zip_code"/>
 				<SQLParameter id="364" variable="p_vat_type_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_vat_type_id"/>
-<SQLParameter id="366" variable="company_additional_addr" parameterType="Control" dataType="Text" parameterSource="company_additional_addr"/>
-</ISQLParameters>
+				<SQLParameter id="366" variable="company_additional_addr" parameterType="Control" dataType="Text" parameterSource="company_additional_addr"/>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="231" field="creation_date" dataType="Text" parameterType="Control" parameterSource="creation_date" format="dd-mmm-yyyy" omitIfEmpty="True"/>
 				<CustomParameter id="232" field="created_by" dataType="Text" parameterType="Control" parameterSource="created_by" omitIfEmpty="True"/>
