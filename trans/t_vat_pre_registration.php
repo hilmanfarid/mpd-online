@@ -514,7 +514,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-979120E9
+//Class_Initialize Event @23-8C5B8C01
     function clsRecordt_ppatForm($RelativePath, & $Parent)
     {
 
@@ -571,7 +571,6 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
             $this->brand_p_region_id_kel = & new clsControl(ccsHidden, "brand_p_region_id_kel", "Kelurahan - WP", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kel", $Method, NULL), $this);
             $this->brand_p_region_id_kel->Required = true;
             $this->brand_mobile_no = & new clsControl(ccsTextBox, "brand_mobile_no", "No Handphone", ccsText, "", CCGetRequestParam("brand_mobile_no", $Method, NULL), $this);
-            $this->brand_mobile_no->Required = true;
             $this->brand_fax_no = & new clsControl(ccsTextBox, "brand_fax_no", "no fax", ccsText, "", CCGetRequestParam("brand_fax_no", $Method, NULL), $this);
             $this->brand_zip_code = & new clsControl(ccsTextBox, "brand_zip_code", "kode pos", ccsText, "", CCGetRequestParam("brand_zip_code", $Method, NULL), $this);
             $this->created_by = & new clsControl(ccsTextBox, "created_by", "Created By", ccsText, "", CCGetRequestParam("created_by", $Method, NULL), $this);
