@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     // Class variables
 //End Variables
 
-//Class_Initialize Event @629-007D19F8
+//Class_Initialize Event @629-2172E584
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -100,7 +100,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->address_name = & new clsControl(ccsTextArea, "address_name", "Alamat", ccsText, "", CCGetRequestParam("address_name", $Method, NULL), $this);
             $this->job_position_code = & new clsControl(ccsTextBox, "job_position_code", "Jabatan", ccsText, "", CCGetRequestParam("job_position_code", $Method, NULL), $this);
             $this->p_job_position_id = & new clsControl(ccsHidden, "p_job_position_id", "p_order_status_id", ccsFloat, "", CCGetRequestParam("p_job_position_id", $Method, NULL), $this);
-            $this->company_brand = & new clsControl(ccsTextBox, "company_brand", "Merek Usaha", ccsText, "", CCGetRequestParam("company_brand", $Method, NULL), $this);
             $this->address_no = & new clsControl(ccsTextBox, "address_no", "No", ccsText, "", CCGetRequestParam("address_no", $Method, NULL), $this);
             $this->address_rt = & new clsControl(ccsTextBox, "address_rt", "Rt", ccsText, "", CCGetRequestParam("address_rt", $Method, NULL), $this);
             $this->address_rw = & new clsControl(ccsTextBox, "address_rw", "Rw", ccsText, "", CCGetRequestParam("address_rw", $Method, NULL), $this);
@@ -118,36 +117,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->address_name_owner = & new clsControl(ccsTextArea, "address_name_owner", "Alamat", ccsText, "", CCGetRequestParam("address_name_owner", $Method, NULL), $this);
             $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsFloat, "", CCGetRequestParam("p_rqst_type_id", $Method, NULL), $this);
             $this->email = & new clsControl(ccsTextBox, "email", "Email", ccsText, "", CCGetRequestParam("email", $Method, NULL), $this);
-            $this->company_additional_addr = & new clsControl(ccsTextArea, "company_additional_addr", "Alamat Badan", ccsText, "", CCGetRequestParam("company_additional_addr", $Method, NULL), $this);
-            $this->Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", $Method, NULL), $this);
-            $this->p_hotel_grade_id = & new clsControl(ccsListBox, "p_hotel_grade_id", "p_hotel_grade_id", ccsFloat, "", CCGetRequestParam("p_hotel_grade_id", $Method, NULL), $this);
-            $this->p_hotel_grade_id->DSType = dsTable;
-            $this->p_hotel_grade_id->DataSource = new clsDBConnSIKP();
-            $this->p_hotel_grade_id->ds = & $this->p_hotel_grade_id->DataSource;
-            $this->p_hotel_grade_id->DataSource->SQL = "SELECT * \n" .
-"FROM p_hotel_grade {SQL_Where} {SQL_OrderBy}";
-            list($this->p_hotel_grade_id->BoundColumn, $this->p_hotel_grade_id->TextColumn, $this->p_hotel_grade_id->DBFormat) = array("p_hotel_grade_id", "grade_name", "");
-            $this->p_rest_service_type_id = & new clsControl(ccsListBox, "p_rest_service_type_id", "p_rest_service_type_id", ccsFloat, "", CCGetRequestParam("p_rest_service_type_id", $Method, NULL), $this);
-            $this->p_rest_service_type_id->DSType = dsTable;
-            $this->p_rest_service_type_id->DataSource = new clsDBConnSIKP();
-            $this->p_rest_service_type_id->ds = & $this->p_rest_service_type_id->DataSource;
-            $this->p_rest_service_type_id->DataSource->SQL = "SELECT * \n" .
-"FROM p_rest_service_type {SQL_Where} {SQL_OrderBy}";
-            list($this->p_rest_service_type_id->BoundColumn, $this->p_rest_service_type_id->TextColumn, $this->p_rest_service_type_id->DBFormat) = array("p_rest_service_type_id", "code", "");
-            $this->p_entertaintment_type_id = & new clsControl(ccsListBox, "p_entertaintment_type_id", "p_entertaintment_type_id", ccsFloat, "", CCGetRequestParam("p_entertaintment_type_id", $Method, NULL), $this);
-            $this->p_entertaintment_type_id->DSType = dsTable;
-            $this->p_entertaintment_type_id->DataSource = new clsDBConnSIKP();
-            $this->p_entertaintment_type_id->ds = & $this->p_entertaintment_type_id->DataSource;
-            $this->p_entertaintment_type_id->DataSource->SQL = "SELECT * \n" .
-"FROM p_entertaintment_type {SQL_Where} {SQL_OrderBy}";
-            list($this->p_entertaintment_type_id->BoundColumn, $this->p_entertaintment_type_id->TextColumn, $this->p_entertaintment_type_id->DBFormat) = array("p_entertaintment_type_id", "entertaintment_name", "");
-            $this->p_parking_classification_id = & new clsControl(ccsListBox, "p_parking_classification_id", "p_parking_classification_id", ccsFloat, "", CCGetRequestParam("p_parking_classification_id", $Method, NULL), $this);
-            $this->p_parking_classification_id->DSType = dsTable;
-            $this->p_parking_classification_id->DataSource = new clsDBConnSIKP();
-            $this->p_parking_classification_id->ds = & $this->p_parking_classification_id->DataSource;
-            $this->p_parking_classification_id->DataSource->SQL = "SELECT * \n" .
-"FROM p_parking_classification {SQL_Where} {SQL_OrderBy}";
-            list($this->p_parking_classification_id->BoundColumn, $this->p_parking_classification_id->TextColumn, $this->p_parking_classification_id->DBFormat) = array("p_parking_classification_id", "code", "");
             $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->t_vat_registration_id = & new clsControl(ccsHidden, "t_vat_registration_id", "t_vat_registration_id", ccsFloat, "", CCGetRequestParam("t_vat_registration_id", $Method, NULL), $this);
             $this->Label3 = & new clsControl(ccsLabel, "Label3", "Label3", ccsText, "", CCGetRequestParam("Label3", $Method, NULL), $this);
@@ -179,21 +148,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->Button2 = & new clsButton("Button2", $Method, $this);
             $this->Hidden1 = & new clsControl(ccsHidden, "Hidden1", "Hidden1", ccsText, "", CCGetRequestParam("Hidden1", $Method, NULL), $this);
             $this->Button4 = & new clsButton("Button4", $Method, $this);
-            $this->mobile_no_owner = & new clsControl(ccsTextBox, "mobile_no_owner", "No. Handphone", ccsText, "", CCGetRequestParam("mobile_no_owner", $Method, NULL), $this);
-            $this->brand_address_name = & new clsControl(ccsTextArea, "brand_address_name", "Alamat", ccsText, "", CCGetRequestParam("brand_address_name", $Method, NULL), $this);
-            $this->brand_address_no = & new clsControl(ccsTextBox, "brand_address_no", "No - Usaha", ccsText, "", CCGetRequestParam("brand_address_no", $Method, NULL), $this);
-            $this->brand_address_rt = & new clsControl(ccsTextBox, "brand_address_rt", "Rt - Usaha", ccsText, "", CCGetRequestParam("brand_address_rt", $Method, NULL), $this);
-            $this->brand_address_rw = & new clsControl(ccsTextBox, "brand_address_rw", "Rw - Usaha", ccsText, "", CCGetRequestParam("brand_address_rw", $Method, NULL), $this);
-            $this->brand_kota = & new clsControl(ccsTextBox, "brand_kota", "Kota/Kabupaten - Usaha", ccsText, "", CCGetRequestParam("brand_kota", $Method, NULL), $this);
-            $this->brand_p_region_id = & new clsControl(ccsHidden, "brand_p_region_id", "Kota/Kabupaten - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id", $Method, NULL), $this);
-            $this->brand_kecamatan = & new clsControl(ccsTextBox, "brand_kecamatan", "Kecamatan - Usaha", ccsText, "", CCGetRequestParam("brand_kecamatan", $Method, NULL), $this);
-            $this->brand_p_region_id_kec = & new clsControl(ccsHidden, "brand_p_region_id_kec", "Kecamatan - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kec", $Method, NULL), $this);
-            $this->brand_kelurahan = & new clsControl(ccsTextBox, "brand_kelurahan", "Kelurahan - Usaha", ccsText, "", CCGetRequestParam("brand_kelurahan", $Method, NULL), $this);
-            $this->brand_p_region_id_kel = & new clsControl(ccsHidden, "brand_p_region_id_kel", "Kelurahan - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kel", $Method, NULL), $this);
-            $this->brand_phone_no = & new clsControl(ccsTextBox, "brand_phone_no", "No. Telephon - Usaha", ccsText, "", CCGetRequestParam("brand_phone_no", $Method, NULL), $this);
-            $this->brand_fax_no = & new clsControl(ccsTextBox, "brand_fax_no", "No. Fax - Usaha", ccsText, "", CCGetRequestParam("brand_fax_no", $Method, NULL), $this);
-            $this->brand_zip_code = & new clsControl(ccsTextBox, "brand_zip_code", "Kode Pos - Usaha", ccsText, "", CCGetRequestParam("brand_zip_code", $Method, NULL), $this);
-            $this->brand_mobile_no = & new clsControl(ccsTextBox, "brand_mobile_no", "No. Selular - Usaha", ccsText, "", CCGetRequestParam("brand_mobile_no", $Method, NULL), $this);
             $this->wp_user_name = & new clsControl(ccsTextBox, "wp_user_name", "User Name", ccsText, "", CCGetRequestParam("wp_user_name", $Method, NULL), $this);
             $this->wp_user_pwd = & new clsControl(ccsTextBox, "wp_user_pwd", "Password", ccsText, "", CCGetRequestParam("wp_user_pwd", $Method, NULL), $this);
             $this->wp_name = & new clsControl(ccsTextBox, "wp_name", "Nama Wajib Pajak", ccsText, "", CCGetRequestParam("wp_name", $Method, NULL), $this);
@@ -218,6 +172,72 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->bap_employee_no_2 = & new clsControl(ccsTextBox, "bap_employee_no_2", "NIP Petugas 2", ccsText, "", CCGetRequestParam("bap_employee_no_2", $Method, NULL), $this);
             $this->bap_employee_job_pos_1 = & new clsControl(ccsTextBox, "bap_employee_job_pos_1", "Jabatan Petugas 1", ccsText, "", CCGetRequestParam("bap_employee_job_pos_1", $Method, NULL), $this);
             $this->bap_employee_job_pos_2 = & new clsControl(ccsTextBox, "bap_employee_job_pos_2", "Jabatan Petugas 2", ccsText, "", CCGetRequestParam("bap_employee_job_pos_2", $Method, NULL), $this);
+            $this->p_doc_delivery_type_id = & new clsControl(ccsListBox, "p_doc_delivery_type_id", "Pilih Pertanyaan", ccsText, "", CCGetRequestParam("p_doc_delivery_type_id", $Method, NULL), $this);
+            $this->p_doc_delivery_type_id->DSType = dsSQL;
+            $this->p_doc_delivery_type_id->DataSource = new clsDBConnSIKP();
+            $this->p_doc_delivery_type_id->ds = & $this->p_doc_delivery_type_id->DataSource;
+            list($this->p_doc_delivery_type_id->BoundColumn, $this->p_doc_delivery_type_id->TextColumn, $this->p_doc_delivery_type_id->DBFormat) = array("p_doc_delivery_type_id", "code", "");
+            $this->p_doc_delivery_type_id->DataSource->SQL = "SELECT * \n" .
+            "FROM p_doc_delivery_type  {SQL_OrderBy}";
+            $this->p_doc_delivery_type_id->DataSource->Order = "p_doc_delivery_type_id";
+            $this->jenis_usaha = & new clsControl(ccsListBox, "jenis_usaha", "Pilih Jenis Usaha", ccsText, "", CCGetRequestParam("jenis_usaha", $Method, NULL), $this);
+            $this->jenis_usaha->DSType = dsListOfValues;
+            $this->jenis_usaha->Values = array(array("Perorangan", "Perorangan"), array("Badan", "Badan"));
+            $this->company_brand = & new clsControl(ccsTextBox, "company_brand", "Merek Usaha", ccsText, "", CCGetRequestParam("company_brand", $Method, NULL), $this);
+            $this->company_additional_addr = & new clsControl(ccsTextArea, "company_additional_addr", "Alamat Badan", ccsText, "", CCGetRequestParam("company_additional_addr", $Method, NULL), $this);
+            $this->brand_address_name = & new clsControl(ccsTextArea, "brand_address_name", "Alamat", ccsText, "", CCGetRequestParam("brand_address_name", $Method, NULL), $this);
+            $this->brand_address_no = & new clsControl(ccsTextBox, "brand_address_no", "No - Usaha", ccsText, "", CCGetRequestParam("brand_address_no", $Method, NULL), $this);
+            $this->brand_address_rt = & new clsControl(ccsTextBox, "brand_address_rt", "Rt - Usaha", ccsText, "", CCGetRequestParam("brand_address_rt", $Method, NULL), $this);
+            $this->brand_address_rw = & new clsControl(ccsTextBox, "brand_address_rw", "Rw - Usaha", ccsText, "", CCGetRequestParam("brand_address_rw", $Method, NULL), $this);
+            $this->brand_kota = & new clsControl(ccsTextBox, "brand_kota", "Kota/Kabupaten - Usaha", ccsText, "", CCGetRequestParam("brand_kota", $Method, NULL), $this);
+            $this->brand_p_region_id = & new clsControl(ccsHidden, "brand_p_region_id", "Kota/Kabupaten - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id", $Method, NULL), $this);
+            $this->brand_kecamatan = & new clsControl(ccsTextBox, "brand_kecamatan", "Kecamatan - Usaha", ccsText, "", CCGetRequestParam("brand_kecamatan", $Method, NULL), $this);
+            $this->brand_p_region_id_kec = & new clsControl(ccsHidden, "brand_p_region_id_kec", "Kecamatan - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kec", $Method, NULL), $this);
+            $this->brand_kelurahan = & new clsControl(ccsTextBox, "brand_kelurahan", "Kelurahan - Usaha", ccsText, "", CCGetRequestParam("brand_kelurahan", $Method, NULL), $this);
+            $this->brand_p_region_id_kel = & new clsControl(ccsHidden, "brand_p_region_id_kel", "Kelurahan - Usaha", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kel", $Method, NULL), $this);
+            $this->brand_phone_no = & new clsControl(ccsTextBox, "brand_phone_no", "No. Telephon - Usaha", ccsText, "", CCGetRequestParam("brand_phone_no", $Method, NULL), $this);
+            $this->brand_fax_no = & new clsControl(ccsTextBox, "brand_fax_no", "No. Fax - Usaha", ccsText, "", CCGetRequestParam("brand_fax_no", $Method, NULL), $this);
+            $this->brand_zip_code = & new clsControl(ccsTextBox, "brand_zip_code", "Kode Pos - Usaha", ccsText, "", CCGetRequestParam("brand_zip_code", $Method, NULL), $this);
+            $this->brand_mobile_no = & new clsControl(ccsTextBox, "brand_mobile_no", "No. Selular - Usaha", ccsText, "", CCGetRequestParam("brand_mobile_no", $Method, NULL), $this);
+            $this->pre_vat_brand_name = & new clsControl(ccsTextBox, "pre_vat_brand_name", "merek dagang dari npwpd jabatan", ccsText, "", CCGetRequestParam("pre_vat_brand_name", $Method, NULL), $this);
+            $this->t_vat_pre_registration_id = & new clsControl(ccsHidden, "t_vat_pre_registration_id", "surat npwpd jabatan", ccsFloat, "", CCGetRequestParam("t_vat_pre_registration_id", $Method, NULL), $this);
+            $this->mobile_no_owner = & new clsControl(ccsTextBox, "mobile_no_owner", "No. Handphone", ccsText, "", CCGetRequestParam("mobile_no_owner", $Method, NULL), $this);
+            $this->Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", $Method, NULL), $this);
+            $this->p_vat_type_dtl_id = & new clsControl(ccsListBox, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
+            $this->p_vat_type_dtl_id->DSType = dsTable;
+            $this->p_vat_type_dtl_id->DataSource = new clsDBConnSIKP();
+            $this->p_vat_type_dtl_id->ds = & $this->p_vat_type_dtl_id->DataSource;
+            $this->p_vat_type_dtl_id->DataSource->SQL = "SELECT p_vat_type_dtl_id, code, p_vat_type_id, vat_code \n" .
+"FROM p_vat_type_dtl {SQL_Where} {SQL_OrderBy}";
+            list($this->p_vat_type_dtl_id->BoundColumn, $this->p_vat_type_dtl_id->TextColumn, $this->p_vat_type_dtl_id->DBFormat) = array("p_vat_type_dtl_id", "vat_code", "");
+            $this->p_hotel_grade_id = & new clsControl(ccsListBox, "p_hotel_grade_id", "p_hotel_grade_id", ccsFloat, "", CCGetRequestParam("p_hotel_grade_id", $Method, NULL), $this);
+            $this->p_hotel_grade_id->DSType = dsTable;
+            $this->p_hotel_grade_id->DataSource = new clsDBConnSIKP();
+            $this->p_hotel_grade_id->ds = & $this->p_hotel_grade_id->DataSource;
+            $this->p_hotel_grade_id->DataSource->SQL = "SELECT * \n" .
+"FROM p_hotel_grade {SQL_Where} {SQL_OrderBy}";
+            list($this->p_hotel_grade_id->BoundColumn, $this->p_hotel_grade_id->TextColumn, $this->p_hotel_grade_id->DBFormat) = array("p_hotel_grade_id", "grade_name", "");
+            $this->p_rest_service_type_id = & new clsControl(ccsListBox, "p_rest_service_type_id", "p_rest_service_type_id", ccsFloat, "", CCGetRequestParam("p_rest_service_type_id", $Method, NULL), $this);
+            $this->p_rest_service_type_id->DSType = dsTable;
+            $this->p_rest_service_type_id->DataSource = new clsDBConnSIKP();
+            $this->p_rest_service_type_id->ds = & $this->p_rest_service_type_id->DataSource;
+            $this->p_rest_service_type_id->DataSource->SQL = "SELECT * \n" .
+"FROM p_rest_service_type {SQL_Where} {SQL_OrderBy}";
+            list($this->p_rest_service_type_id->BoundColumn, $this->p_rest_service_type_id->TextColumn, $this->p_rest_service_type_id->DBFormat) = array("p_vat_type_dtl_id", "code", "");
+            $this->p_entertaintment_type_id = & new clsControl(ccsListBox, "p_entertaintment_type_id", "p_entertaintment_type_id", ccsFloat, "", CCGetRequestParam("p_entertaintment_type_id", $Method, NULL), $this);
+            $this->p_entertaintment_type_id->DSType = dsTable;
+            $this->p_entertaintment_type_id->DataSource = new clsDBConnSIKP();
+            $this->p_entertaintment_type_id->ds = & $this->p_entertaintment_type_id->DataSource;
+            $this->p_entertaintment_type_id->DataSource->SQL = "SELECT * \n" .
+"FROM p_entertaintment_type {SQL_Where} {SQL_OrderBy}";
+            list($this->p_entertaintment_type_id->BoundColumn, $this->p_entertaintment_type_id->TextColumn, $this->p_entertaintment_type_id->DBFormat) = array("p_vat_type_dtl_id", "entertaintment_name", "");
+            $this->p_parking_classification_id = & new clsControl(ccsListBox, "p_parking_classification_id", "p_parking_classification_id", ccsFloat, "", CCGetRequestParam("p_parking_classification_id", $Method, NULL), $this);
+            $this->p_parking_classification_id->DSType = dsTable;
+            $this->p_parking_classification_id->DataSource = new clsDBConnSIKP();
+            $this->p_parking_classification_id->ds = & $this->p_parking_classification_id->DataSource;
+            $this->p_parking_classification_id->DataSource->SQL = "SELECT * \n" .
+"FROM p_parking_classification {SQL_Where} {SQL_OrderBy}";
+            list($this->p_parking_classification_id->BoundColumn, $this->p_parking_classification_id->TextColumn, $this->p_parking_classification_id->DBFormat) = array("p_vat_type_dtl_id", "code", "");
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -233,14 +253,14 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
                     $this->kota_own_code->SetText('KOTA BANDUNG');
                 if(!is_array($this->p_region_id_owner->Value) && !strlen($this->p_region_id_owner->Value) && $this->p_region_id_owner->Value !== false)
                     $this->p_region_id_owner->SetText(749);
-                if(!is_array($this->brand_kota->Value) && !strlen($this->brand_kota->Value) && $this->brand_kota->Value !== false)
-                    $this->brand_kota->SetText('KOTA BANDUNG');
-                if(!is_array($this->brand_p_region_id->Value) && !strlen($this->brand_p_region_id->Value) && $this->brand_p_region_id->Value !== false)
-                    $this->brand_p_region_id->SetText(749);
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
                 if(!is_array($this->wp_p_region_id->Value) && !strlen($this->wp_p_region_id->Value) && $this->wp_p_region_id->Value !== false)
                     $this->wp_p_region_id->SetText(749);
+                if(!is_array($this->brand_kota->Value) && !strlen($this->brand_kota->Value) && $this->brand_kota->Value !== false)
+                    $this->brand_kota->SetText('KOTA BANDUNG');
+                if(!is_array($this->brand_p_region_id->Value) && !strlen($this->brand_p_region_id->Value) && $this->brand_p_region_id->Value !== false)
+                    $this->brand_p_region_id->SetText(749);
             }
         }
     }
@@ -257,7 +277,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     }
 //End Initialize Method
 
-//Validate Method @629-27ACBA9C
+//Validate Method @629-940610C7
     function Validate()
     {
         global $CCSLocales;
@@ -286,7 +306,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->address_name->Validate() && $Validation);
         $Validation = ($this->job_position_code->Validate() && $Validation);
         $Validation = ($this->p_job_position_id->Validate() && $Validation);
-        $Validation = ($this->company_brand->Validate() && $Validation);
         $Validation = ($this->address_no->Validate() && $Validation);
         $Validation = ($this->address_rt->Validate() && $Validation);
         $Validation = ($this->address_rw->Validate() && $Validation);
@@ -304,11 +323,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->address_name_owner->Validate() && $Validation);
         $Validation = ($this->p_rqst_type_id->Validate() && $Validation);
         $Validation = ($this->email->Validate() && $Validation);
-        $Validation = ($this->company_additional_addr->Validate() && $Validation);
-        $Validation = ($this->p_hotel_grade_id->Validate() && $Validation);
-        $Validation = ($this->p_rest_service_type_id->Validate() && $Validation);
-        $Validation = ($this->p_entertaintment_type_id->Validate() && $Validation);
-        $Validation = ($this->p_parking_classification_id->Validate() && $Validation);
         $Validation = ($this->t_vat_registration_id->Validate() && $Validation);
         $Validation = ($this->rqst_type_code->Validate() && $Validation);
         $Validation = ($this->TAKEN_CTL->Validate() && $Validation);
@@ -336,21 +350,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->SLOT_5->Validate() && $Validation);
         $Validation = ($this->MESSAGE->Validate() && $Validation);
         $Validation = ($this->Hidden1->Validate() && $Validation);
-        $Validation = ($this->mobile_no_owner->Validate() && $Validation);
-        $Validation = ($this->brand_address_name->Validate() && $Validation);
-        $Validation = ($this->brand_address_no->Validate() && $Validation);
-        $Validation = ($this->brand_address_rt->Validate() && $Validation);
-        $Validation = ($this->brand_address_rw->Validate() && $Validation);
-        $Validation = ($this->brand_kota->Validate() && $Validation);
-        $Validation = ($this->brand_p_region_id->Validate() && $Validation);
-        $Validation = ($this->brand_kecamatan->Validate() && $Validation);
-        $Validation = ($this->brand_p_region_id_kec->Validate() && $Validation);
-        $Validation = ($this->brand_kelurahan->Validate() && $Validation);
-        $Validation = ($this->brand_p_region_id_kel->Validate() && $Validation);
-        $Validation = ($this->brand_phone_no->Validate() && $Validation);
-        $Validation = ($this->brand_fax_no->Validate() && $Validation);
-        $Validation = ($this->brand_zip_code->Validate() && $Validation);
-        $Validation = ($this->brand_mobile_no->Validate() && $Validation);
         $Validation = ($this->wp_user_name->Validate() && $Validation);
         $Validation = ($this->wp_user_pwd->Validate() && $Validation);
         $Validation = ($this->wp_name->Validate() && $Validation);
@@ -375,6 +374,32 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->bap_employee_no_2->Validate() && $Validation);
         $Validation = ($this->bap_employee_job_pos_1->Validate() && $Validation);
         $Validation = ($this->bap_employee_job_pos_2->Validate() && $Validation);
+        $Validation = ($this->p_doc_delivery_type_id->Validate() && $Validation);
+        $Validation = ($this->jenis_usaha->Validate() && $Validation);
+        $Validation = ($this->company_brand->Validate() && $Validation);
+        $Validation = ($this->company_additional_addr->Validate() && $Validation);
+        $Validation = ($this->brand_address_name->Validate() && $Validation);
+        $Validation = ($this->brand_address_no->Validate() && $Validation);
+        $Validation = ($this->brand_address_rt->Validate() && $Validation);
+        $Validation = ($this->brand_address_rw->Validate() && $Validation);
+        $Validation = ($this->brand_kota->Validate() && $Validation);
+        $Validation = ($this->brand_p_region_id->Validate() && $Validation);
+        $Validation = ($this->brand_kecamatan->Validate() && $Validation);
+        $Validation = ($this->brand_p_region_id_kec->Validate() && $Validation);
+        $Validation = ($this->brand_kelurahan->Validate() && $Validation);
+        $Validation = ($this->brand_p_region_id_kel->Validate() && $Validation);
+        $Validation = ($this->brand_phone_no->Validate() && $Validation);
+        $Validation = ($this->brand_fax_no->Validate() && $Validation);
+        $Validation = ($this->brand_zip_code->Validate() && $Validation);
+        $Validation = ($this->brand_mobile_no->Validate() && $Validation);
+        $Validation = ($this->pre_vat_brand_name->Validate() && $Validation);
+        $Validation = ($this->t_vat_pre_registration_id->Validate() && $Validation);
+        $Validation = ($this->mobile_no_owner->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
+        $Validation = ($this->p_hotel_grade_id->Validate() && $Validation);
+        $Validation = ($this->p_rest_service_type_id->Validate() && $Validation);
+        $Validation = ($this->p_entertaintment_type_id->Validate() && $Validation);
+        $Validation = ($this->p_parking_classification_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->created_by->Errors->Count() == 0);
         $Validation =  $Validation && ($this->updated_by->Errors->Count() == 0);
@@ -399,7 +424,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->address_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->job_position_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_job_position_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->company_brand->Errors->Count() == 0);
         $Validation =  $Validation && ($this->address_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->address_rt->Errors->Count() == 0);
         $Validation =  $Validation && ($this->address_rw->Errors->Count() == 0);
@@ -417,11 +441,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->address_name_owner->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->email->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->company_additional_addr->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_hotel_grade_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_rest_service_type_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_entertaintment_type_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_parking_classification_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_vat_registration_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->rqst_type_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->TAKEN_CTL->Errors->Count() == 0);
@@ -449,21 +468,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->SLOT_5->Errors->Count() == 0);
         $Validation =  $Validation && ($this->MESSAGE->Errors->Count() == 0);
         $Validation =  $Validation && ($this->Hidden1->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->mobile_no_owner->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_address_name->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_address_no->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_address_rt->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_address_rw->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_kota->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_p_region_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_kecamatan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_p_region_id_kec->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_kelurahan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_p_region_id_kel->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_phone_no->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_fax_no->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_zip_code->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_mobile_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_user_name->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_user_pwd->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_name->Errors->Count() == 0);
@@ -488,11 +492,37 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->bap_employee_no_2->Errors->Count() == 0);
         $Validation =  $Validation && ($this->bap_employee_job_pos_1->Errors->Count() == 0);
         $Validation =  $Validation && ($this->bap_employee_job_pos_2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_doc_delivery_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->jenis_usaha->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->company_brand->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->company_additional_addr->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_address_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_address_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_address_rt->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_address_rw->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_kota->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_p_region_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_kecamatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_p_region_id_kec->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_kelurahan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_p_region_id_kel->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_phone_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_fax_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_zip_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->brand_mobile_no->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->pre_vat_brand_name->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->t_vat_pre_registration_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->mobile_no_owner->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_hotel_grade_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_rest_service_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_entertaintment_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_parking_classification_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @629-57762126
+//CheckErrors Method @629-F286EF4B
     function CheckErrors()
     {
         $errors = false;
@@ -519,7 +549,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->address_name->Errors->Count());
         $errors = ($errors || $this->job_position_code->Errors->Count());
         $errors = ($errors || $this->p_job_position_id->Errors->Count());
-        $errors = ($errors || $this->company_brand->Errors->Count());
         $errors = ($errors || $this->address_no->Errors->Count());
         $errors = ($errors || $this->address_rt->Errors->Count());
         $errors = ($errors || $this->address_rw->Errors->Count());
@@ -537,12 +566,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->address_name_owner->Errors->Count());
         $errors = ($errors || $this->p_rqst_type_id->Errors->Count());
         $errors = ($errors || $this->email->Errors->Count());
-        $errors = ($errors || $this->company_additional_addr->Errors->Count());
-        $errors = ($errors || $this->Label1->Errors->Count());
-        $errors = ($errors || $this->p_hotel_grade_id->Errors->Count());
-        $errors = ($errors || $this->p_rest_service_type_id->Errors->Count());
-        $errors = ($errors || $this->p_entertaintment_type_id->Errors->Count());
-        $errors = ($errors || $this->p_parking_classification_id->Errors->Count());
         $errors = ($errors || $this->t_vat_registration_id->Errors->Count());
         $errors = ($errors || $this->Label3->Errors->Count());
         $errors = ($errors || $this->rqst_type_code->Errors->Count());
@@ -571,21 +594,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->SLOT_5->Errors->Count());
         $errors = ($errors || $this->MESSAGE->Errors->Count());
         $errors = ($errors || $this->Hidden1->Errors->Count());
-        $errors = ($errors || $this->mobile_no_owner->Errors->Count());
-        $errors = ($errors || $this->brand_address_name->Errors->Count());
-        $errors = ($errors || $this->brand_address_no->Errors->Count());
-        $errors = ($errors || $this->brand_address_rt->Errors->Count());
-        $errors = ($errors || $this->brand_address_rw->Errors->Count());
-        $errors = ($errors || $this->brand_kota->Errors->Count());
-        $errors = ($errors || $this->brand_p_region_id->Errors->Count());
-        $errors = ($errors || $this->brand_kecamatan->Errors->Count());
-        $errors = ($errors || $this->brand_p_region_id_kec->Errors->Count());
-        $errors = ($errors || $this->brand_kelurahan->Errors->Count());
-        $errors = ($errors || $this->brand_p_region_id_kel->Errors->Count());
-        $errors = ($errors || $this->brand_phone_no->Errors->Count());
-        $errors = ($errors || $this->brand_fax_no->Errors->Count());
-        $errors = ($errors || $this->brand_zip_code->Errors->Count());
-        $errors = ($errors || $this->brand_mobile_no->Errors->Count());
         $errors = ($errors || $this->wp_user_name->Errors->Count());
         $errors = ($errors || $this->wp_user_pwd->Errors->Count());
         $errors = ($errors || $this->wp_name->Errors->Count());
@@ -610,6 +618,33 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->bap_employee_no_2->Errors->Count());
         $errors = ($errors || $this->bap_employee_job_pos_1->Errors->Count());
         $errors = ($errors || $this->bap_employee_job_pos_2->Errors->Count());
+        $errors = ($errors || $this->p_doc_delivery_type_id->Errors->Count());
+        $errors = ($errors || $this->jenis_usaha->Errors->Count());
+        $errors = ($errors || $this->company_brand->Errors->Count());
+        $errors = ($errors || $this->company_additional_addr->Errors->Count());
+        $errors = ($errors || $this->brand_address_name->Errors->Count());
+        $errors = ($errors || $this->brand_address_no->Errors->Count());
+        $errors = ($errors || $this->brand_address_rt->Errors->Count());
+        $errors = ($errors || $this->brand_address_rw->Errors->Count());
+        $errors = ($errors || $this->brand_kota->Errors->Count());
+        $errors = ($errors || $this->brand_p_region_id->Errors->Count());
+        $errors = ($errors || $this->brand_kecamatan->Errors->Count());
+        $errors = ($errors || $this->brand_p_region_id_kec->Errors->Count());
+        $errors = ($errors || $this->brand_kelurahan->Errors->Count());
+        $errors = ($errors || $this->brand_p_region_id_kel->Errors->Count());
+        $errors = ($errors || $this->brand_phone_no->Errors->Count());
+        $errors = ($errors || $this->brand_fax_no->Errors->Count());
+        $errors = ($errors || $this->brand_zip_code->Errors->Count());
+        $errors = ($errors || $this->brand_mobile_no->Errors->Count());
+        $errors = ($errors || $this->pre_vat_brand_name->Errors->Count());
+        $errors = ($errors || $this->t_vat_pre_registration_id->Errors->Count());
+        $errors = ($errors || $this->mobile_no_owner->Errors->Count());
+        $errors = ($errors || $this->Label1->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
+        $errors = ($errors || $this->p_hotel_grade_id->Errors->Count());
+        $errors = ($errors || $this->p_rest_service_type_id->Errors->Count());
+        $errors = ($errors || $this->p_entertaintment_type_id->Errors->Count());
+        $errors = ($errors || $this->p_parking_classification_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -727,7 +762,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @629-427A2944
+//Show Method @629-74ECF9AD
     function Show()
     {
         global $CCSUseAmp;
@@ -741,6 +776,9 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->p_doc_delivery_type_id->Prepare();
+        $this->jenis_usaha->Prepare();
+        $this->p_vat_type_dtl_id->Prepare();
         $this->p_hotel_grade_id->Prepare();
         $this->p_rest_service_type_id->Prepare();
         $this->p_entertaintment_type_id->Prepare();
@@ -782,7 +820,6 @@ function GetPrimaryKey($keyName)
                     $this->address_name->SetValue($this->DataSource->address_name->GetValue());
                     $this->job_position_code->SetValue($this->DataSource->job_position_code->GetValue());
                     $this->p_job_position_id->SetValue($this->DataSource->p_job_position_id->GetValue());
-                    $this->company_brand->SetValue($this->DataSource->company_brand->GetValue());
                     $this->address_no->SetValue($this->DataSource->address_no->GetValue());
                     $this->address_rt->SetValue($this->DataSource->address_rt->GetValue());
                     $this->address_rw->SetValue($this->DataSource->address_rw->GetValue());
@@ -800,29 +837,9 @@ function GetPrimaryKey($keyName)
                     $this->address_name_owner->SetValue($this->DataSource->address_name_owner->GetValue());
                     $this->p_rqst_type_id->SetValue($this->DataSource->p_rqst_type_id->GetValue());
                     $this->email->SetValue($this->DataSource->email->GetValue());
-                    $this->company_additional_addr->SetValue($this->DataSource->company_additional_addr->GetValue());
-                    $this->p_hotel_grade_id->SetValue($this->DataSource->p_hotel_grade_id->GetValue());
-                    $this->p_rest_service_type_id->SetValue($this->DataSource->p_rest_service_type_id->GetValue());
-                    $this->p_entertaintment_type_id->SetValue($this->DataSource->p_entertaintment_type_id->GetValue());
-                    $this->p_parking_classification_id->SetValue($this->DataSource->p_parking_classification_id->GetValue());
                     $this->t_vat_registration_id->SetValue($this->DataSource->t_vat_registration_id->GetValue());
                     $this->rqst_type_code->SetValue($this->DataSource->rqst_type_code->GetValue());
                     $this->Hidden1->SetValue($this->DataSource->Hidden1->GetValue());
-                    $this->mobile_no_owner->SetValue($this->DataSource->mobile_no_owner->GetValue());
-                    $this->brand_address_name->SetValue($this->DataSource->brand_address_name->GetValue());
-                    $this->brand_address_no->SetValue($this->DataSource->brand_address_no->GetValue());
-                    $this->brand_address_rt->SetValue($this->DataSource->brand_address_rt->GetValue());
-                    $this->brand_address_rw->SetValue($this->DataSource->brand_address_rw->GetValue());
-                    $this->brand_kota->SetValue($this->DataSource->brand_kota->GetValue());
-                    $this->brand_p_region_id->SetValue($this->DataSource->brand_p_region_id->GetValue());
-                    $this->brand_kecamatan->SetValue($this->DataSource->brand_kecamatan->GetValue());
-                    $this->brand_p_region_id_kec->SetValue($this->DataSource->brand_p_region_id_kec->GetValue());
-                    $this->brand_kelurahan->SetValue($this->DataSource->brand_kelurahan->GetValue());
-                    $this->brand_p_region_id_kel->SetValue($this->DataSource->brand_p_region_id_kel->GetValue());
-                    $this->brand_phone_no->SetValue($this->DataSource->brand_phone_no->GetValue());
-                    $this->brand_fax_no->SetValue($this->DataSource->brand_fax_no->GetValue());
-                    $this->brand_zip_code->SetValue($this->DataSource->brand_zip_code->GetValue());
-                    $this->brand_mobile_no->SetValue($this->DataSource->brand_mobile_no->GetValue());
                     $this->wp_user_name->SetValue($this->DataSource->wp_user_name->GetValue());
                     $this->wp_user_pwd->SetValue($this->DataSource->wp_user_pwd->GetValue());
                     $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
@@ -847,6 +864,32 @@ function GetPrimaryKey($keyName)
                     $this->bap_employee_no_2->SetValue($this->DataSource->bap_employee_no_2->GetValue());
                     $this->bap_employee_job_pos_1->SetValue($this->DataSource->bap_employee_job_pos_1->GetValue());
                     $this->bap_employee_job_pos_2->SetValue($this->DataSource->bap_employee_job_pos_2->GetValue());
+                    $this->p_doc_delivery_type_id->SetValue($this->DataSource->p_doc_delivery_type_id->GetValue());
+                    $this->jenis_usaha->SetValue($this->DataSource->jenis_usaha->GetValue());
+                    $this->company_brand->SetValue($this->DataSource->company_brand->GetValue());
+                    $this->company_additional_addr->SetValue($this->DataSource->company_additional_addr->GetValue());
+                    $this->brand_address_name->SetValue($this->DataSource->brand_address_name->GetValue());
+                    $this->brand_address_no->SetValue($this->DataSource->brand_address_no->GetValue());
+                    $this->brand_address_rt->SetValue($this->DataSource->brand_address_rt->GetValue());
+                    $this->brand_address_rw->SetValue($this->DataSource->brand_address_rw->GetValue());
+                    $this->brand_kota->SetValue($this->DataSource->brand_kota->GetValue());
+                    $this->brand_p_region_id->SetValue($this->DataSource->brand_p_region_id->GetValue());
+                    $this->brand_kecamatan->SetValue($this->DataSource->brand_kecamatan->GetValue());
+                    $this->brand_p_region_id_kec->SetValue($this->DataSource->brand_p_region_id_kec->GetValue());
+                    $this->brand_kelurahan->SetValue($this->DataSource->brand_kelurahan->GetValue());
+                    $this->brand_p_region_id_kel->SetValue($this->DataSource->brand_p_region_id_kel->GetValue());
+                    $this->brand_phone_no->SetValue($this->DataSource->brand_phone_no->GetValue());
+                    $this->brand_fax_no->SetValue($this->DataSource->brand_fax_no->GetValue());
+                    $this->brand_zip_code->SetValue($this->DataSource->brand_zip_code->GetValue());
+                    $this->brand_mobile_no->SetValue($this->DataSource->brand_mobile_no->GetValue());
+                    $this->pre_vat_brand_name->SetValue($this->DataSource->pre_vat_brand_name->GetValue());
+                    $this->t_vat_pre_registration_id->SetValue($this->DataSource->t_vat_pre_registration_id->GetValue());
+                    $this->mobile_no_owner->SetValue($this->DataSource->mobile_no_owner->GetValue());
+                    $this->p_vat_type_dtl_id->SetValue($this->DataSource->p_vat_type_dtl_id->GetValue());
+                    $this->p_hotel_grade_id->SetValue($this->DataSource->p_hotel_grade_id->GetValue());
+                    $this->p_rest_service_type_id->SetValue($this->DataSource->p_rest_service_type_id->GetValue());
+                    $this->p_entertaintment_type_id->SetValue($this->DataSource->p_entertaintment_type_id->GetValue());
+                    $this->p_parking_classification_id->SetValue($this->DataSource->p_parking_classification_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -880,7 +923,6 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->address_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->job_position_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_job_position_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->company_brand->Errors->ToString());
             $Error = ComposeStrings($Error, $this->address_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->address_rt->Errors->ToString());
             $Error = ComposeStrings($Error, $this->address_rw->Errors->ToString());
@@ -898,12 +940,6 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->address_name_owner->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_rqst_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->email->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->company_additional_addr->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->Label1->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_hotel_grade_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_rest_service_type_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_entertaintment_type_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_parking_classification_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_vat_registration_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Label3->Errors->ToString());
             $Error = ComposeStrings($Error, $this->rqst_type_code->Errors->ToString());
@@ -932,21 +968,6 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->SLOT_5->Errors->ToString());
             $Error = ComposeStrings($Error, $this->MESSAGE->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Hidden1->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->mobile_no_owner->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_address_name->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_address_no->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_address_rt->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_address_rw->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_kota->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_p_region_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_kecamatan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_p_region_id_kec->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_kelurahan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_p_region_id_kel->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_phone_no->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_fax_no->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_zip_code->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_mobile_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_user_name->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_user_pwd->Errors->ToString());
             $Error = ComposeStrings($Error, $this->wp_name->Errors->ToString());
@@ -971,6 +992,33 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->bap_employee_no_2->Errors->ToString());
             $Error = ComposeStrings($Error, $this->bap_employee_job_pos_1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->bap_employee_job_pos_2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_doc_delivery_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->jenis_usaha->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->company_brand->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->company_additional_addr->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_address_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_address_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_address_rt->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_address_rw->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_kota->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_p_region_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_kecamatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_p_region_id_kec->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_kelurahan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_p_region_id_kel->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_phone_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_fax_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_zip_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->brand_mobile_no->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->pre_vat_brand_name->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->t_vat_pre_registration_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->mobile_no_owner->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->Label1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_hotel_grade_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_rest_service_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_entertaintment_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_parking_classification_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -1019,7 +1067,6 @@ function GetPrimaryKey($keyName)
         $this->address_name->Show();
         $this->job_position_code->Show();
         $this->p_job_position_id->Show();
-        $this->company_brand->Show();
         $this->address_no->Show();
         $this->address_rt->Show();
         $this->address_rw->Show();
@@ -1037,12 +1084,6 @@ function GetPrimaryKey($keyName)
         $this->address_name_owner->Show();
         $this->p_rqst_type_id->Show();
         $this->email->Show();
-        $this->company_additional_addr->Show();
-        $this->Label1->Show();
-        $this->p_hotel_grade_id->Show();
-        $this->p_rest_service_type_id->Show();
-        $this->p_entertaintment_type_id->Show();
-        $this->p_parking_classification_id->Show();
         $this->Button1->Show();
         $this->t_vat_registration_id->Show();
         $this->Label3->Show();
@@ -1074,21 +1115,6 @@ function GetPrimaryKey($keyName)
         $this->Button2->Show();
         $this->Hidden1->Show();
         $this->Button4->Show();
-        $this->mobile_no_owner->Show();
-        $this->brand_address_name->Show();
-        $this->brand_address_no->Show();
-        $this->brand_address_rt->Show();
-        $this->brand_address_rw->Show();
-        $this->brand_kota->Show();
-        $this->brand_p_region_id->Show();
-        $this->brand_kecamatan->Show();
-        $this->brand_p_region_id_kec->Show();
-        $this->brand_kelurahan->Show();
-        $this->brand_p_region_id_kel->Show();
-        $this->brand_phone_no->Show();
-        $this->brand_fax_no->Show();
-        $this->brand_zip_code->Show();
-        $this->brand_mobile_no->Show();
         $this->wp_user_name->Show();
         $this->wp_user_pwd->Show();
         $this->wp_name->Show();
@@ -1113,6 +1139,33 @@ function GetPrimaryKey($keyName)
         $this->bap_employee_no_2->Show();
         $this->bap_employee_job_pos_1->Show();
         $this->bap_employee_job_pos_2->Show();
+        $this->p_doc_delivery_type_id->Show();
+        $this->jenis_usaha->Show();
+        $this->company_brand->Show();
+        $this->company_additional_addr->Show();
+        $this->brand_address_name->Show();
+        $this->brand_address_no->Show();
+        $this->brand_address_rt->Show();
+        $this->brand_address_rw->Show();
+        $this->brand_kota->Show();
+        $this->brand_p_region_id->Show();
+        $this->brand_kecamatan->Show();
+        $this->brand_p_region_id_kec->Show();
+        $this->brand_kelurahan->Show();
+        $this->brand_p_region_id_kel->Show();
+        $this->brand_phone_no->Show();
+        $this->brand_fax_no->Show();
+        $this->brand_zip_code->Show();
+        $this->brand_mobile_no->Show();
+        $this->pre_vat_brand_name->Show();
+        $this->t_vat_pre_registration_id->Show();
+        $this->mobile_no_owner->Show();
+        $this->Label1->Show();
+        $this->p_vat_type_dtl_id->Show();
+        $this->p_hotel_grade_id->Show();
+        $this->p_rest_service_type_id->Show();
+        $this->p_entertaintment_type_id->Show();
+        $this->p_parking_classification_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -1123,7 +1176,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_registrationFormDataSource Class @629-5993B12E
 
-//DataSource Variables @629-F29BD646
+//DataSource Variables @629-36A40E7A
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -1159,7 +1212,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $address_name;
     var $job_position_code;
     var $p_job_position_id;
-    var $company_brand;
     var $address_no;
     var $address_rt;
     var $address_rw;
@@ -1177,12 +1229,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $address_name_owner;
     var $p_rqst_type_id;
     var $email;
-    var $company_additional_addr;
-    var $Label1;
-    var $p_hotel_grade_id;
-    var $p_rest_service_type_id;
-    var $p_entertaintment_type_id;
-    var $p_parking_classification_id;
     var $t_vat_registration_id;
     var $Label3;
     var $rqst_type_code;
@@ -1211,21 +1257,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $SLOT_5;
     var $MESSAGE;
     var $Hidden1;
-    var $mobile_no_owner;
-    var $brand_address_name;
-    var $brand_address_no;
-    var $brand_address_rt;
-    var $brand_address_rw;
-    var $brand_kota;
-    var $brand_p_region_id;
-    var $brand_kecamatan;
-    var $brand_p_region_id_kec;
-    var $brand_kelurahan;
-    var $brand_p_region_id_kel;
-    var $brand_phone_no;
-    var $brand_fax_no;
-    var $brand_zip_code;
-    var $brand_mobile_no;
     var $wp_user_name;
     var $wp_user_pwd;
     var $wp_name;
@@ -1250,9 +1281,36 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $bap_employee_no_2;
     var $bap_employee_job_pos_1;
     var $bap_employee_job_pos_2;
+    var $p_doc_delivery_type_id;
+    var $jenis_usaha;
+    var $company_brand;
+    var $company_additional_addr;
+    var $brand_address_name;
+    var $brand_address_no;
+    var $brand_address_rt;
+    var $brand_address_rw;
+    var $brand_kota;
+    var $brand_p_region_id;
+    var $brand_kecamatan;
+    var $brand_p_region_id_kec;
+    var $brand_kelurahan;
+    var $brand_p_region_id_kel;
+    var $brand_phone_no;
+    var $brand_fax_no;
+    var $brand_zip_code;
+    var $brand_mobile_no;
+    var $pre_vat_brand_name;
+    var $t_vat_pre_registration_id;
+    var $mobile_no_owner;
+    var $Label1;
+    var $p_vat_type_dtl_id;
+    var $p_hotel_grade_id;
+    var $p_rest_service_type_id;
+    var $p_entertaintment_type_id;
+    var $p_parking_classification_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @629-56E86D56
+//DataSourceClass_Initialize Event @629-316BBB8C
     function clst_vat_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1304,8 +1362,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->p_job_position_id = new clsField("p_job_position_id", ccsFloat, "");
         
-        $this->company_brand = new clsField("company_brand", ccsText, "");
-        
         $this->address_no = new clsField("address_no", ccsText, "");
         
         $this->address_rt = new clsField("address_rt", ccsText, "");
@@ -1339,18 +1395,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->p_rqst_type_id = new clsField("p_rqst_type_id", ccsFloat, "");
         
         $this->email = new clsField("email", ccsText, "");
-        
-        $this->company_additional_addr = new clsField("company_additional_addr", ccsText, "");
-        
-        $this->Label1 = new clsField("Label1", ccsText, "");
-        
-        $this->p_hotel_grade_id = new clsField("p_hotel_grade_id", ccsFloat, "");
-        
-        $this->p_rest_service_type_id = new clsField("p_rest_service_type_id", ccsFloat, "");
-        
-        $this->p_entertaintment_type_id = new clsField("p_entertaintment_type_id", ccsFloat, "");
-        
-        $this->p_parking_classification_id = new clsField("p_parking_classification_id", ccsFloat, "");
         
         $this->t_vat_registration_id = new clsField("t_vat_registration_id", ccsFloat, "");
         
@@ -1408,36 +1452,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->Hidden1 = new clsField("Hidden1", ccsText, "");
         
-        $this->mobile_no_owner = new clsField("mobile_no_owner", ccsText, "");
-        
-        $this->brand_address_name = new clsField("brand_address_name", ccsText, "");
-        
-        $this->brand_address_no = new clsField("brand_address_no", ccsText, "");
-        
-        $this->brand_address_rt = new clsField("brand_address_rt", ccsText, "");
-        
-        $this->brand_address_rw = new clsField("brand_address_rw", ccsText, "");
-        
-        $this->brand_kota = new clsField("brand_kota", ccsText, "");
-        
-        $this->brand_p_region_id = new clsField("brand_p_region_id", ccsFloat, "");
-        
-        $this->brand_kecamatan = new clsField("brand_kecamatan", ccsText, "");
-        
-        $this->brand_p_region_id_kec = new clsField("brand_p_region_id_kec", ccsFloat, "");
-        
-        $this->brand_kelurahan = new clsField("brand_kelurahan", ccsText, "");
-        
-        $this->brand_p_region_id_kel = new clsField("brand_p_region_id_kel", ccsFloat, "");
-        
-        $this->brand_phone_no = new clsField("brand_phone_no", ccsText, "");
-        
-        $this->brand_fax_no = new clsField("brand_fax_no", ccsText, "");
-        
-        $this->brand_zip_code = new clsField("brand_zip_code", ccsText, "");
-        
-        $this->brand_mobile_no = new clsField("brand_mobile_no", ccsText, "");
-        
         $this->wp_user_name = new clsField("wp_user_name", ccsText, "");
         
         $this->wp_user_pwd = new clsField("wp_user_pwd", ccsText, "");
@@ -1486,6 +1500,60 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->bap_employee_job_pos_2 = new clsField("bap_employee_job_pos_2", ccsText, "");
         
+        $this->p_doc_delivery_type_id = new clsField("p_doc_delivery_type_id", ccsText, "");
+        
+        $this->jenis_usaha = new clsField("jenis_usaha", ccsText, "");
+        
+        $this->company_brand = new clsField("company_brand", ccsText, "");
+        
+        $this->company_additional_addr = new clsField("company_additional_addr", ccsText, "");
+        
+        $this->brand_address_name = new clsField("brand_address_name", ccsText, "");
+        
+        $this->brand_address_no = new clsField("brand_address_no", ccsText, "");
+        
+        $this->brand_address_rt = new clsField("brand_address_rt", ccsText, "");
+        
+        $this->brand_address_rw = new clsField("brand_address_rw", ccsText, "");
+        
+        $this->brand_kota = new clsField("brand_kota", ccsText, "");
+        
+        $this->brand_p_region_id = new clsField("brand_p_region_id", ccsFloat, "");
+        
+        $this->brand_kecamatan = new clsField("brand_kecamatan", ccsText, "");
+        
+        $this->brand_p_region_id_kec = new clsField("brand_p_region_id_kec", ccsFloat, "");
+        
+        $this->brand_kelurahan = new clsField("brand_kelurahan", ccsText, "");
+        
+        $this->brand_p_region_id_kel = new clsField("brand_p_region_id_kel", ccsFloat, "");
+        
+        $this->brand_phone_no = new clsField("brand_phone_no", ccsText, "");
+        
+        $this->brand_fax_no = new clsField("brand_fax_no", ccsText, "");
+        
+        $this->brand_zip_code = new clsField("brand_zip_code", ccsText, "");
+        
+        $this->brand_mobile_no = new clsField("brand_mobile_no", ccsText, "");
+        
+        $this->pre_vat_brand_name = new clsField("pre_vat_brand_name", ccsText, "");
+        
+        $this->t_vat_pre_registration_id = new clsField("t_vat_pre_registration_id", ccsFloat, "");
+        
+        $this->mobile_no_owner = new clsField("mobile_no_owner", ccsText, "");
+        
+        $this->Label1 = new clsField("Label1", ccsText, "");
+        
+        $this->p_vat_type_dtl_id = new clsField("p_vat_type_dtl_id", ccsText, "");
+        
+        $this->p_hotel_grade_id = new clsField("p_hotel_grade_id", ccsFloat, "");
+        
+        $this->p_rest_service_type_id = new clsField("p_rest_service_type_id", ccsFloat, "");
+        
+        $this->p_entertaintment_type_id = new clsField("p_entertaintment_type_id", ccsFloat, "");
+        
+        $this->p_parking_classification_id = new clsField("p_parking_classification_id", ccsFloat, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1516,7 +1584,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End Open Method
 
-//SetValues Method @629-41772E7C
+//SetValues Method @629-4E8A14D4
     function SetValues()
     {
         $this->created_by->SetDBValue($this->f("created_by"));
@@ -1542,7 +1610,6 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->address_name->SetDBValue($this->f("address_name"));
         $this->job_position_code->SetDBValue($this->f("job_position_code"));
         $this->p_job_position_id->SetDBValue(trim($this->f("p_job_position_id")));
-        $this->company_brand->SetDBValue($this->f("company_brand"));
         $this->address_no->SetDBValue($this->f("address_no"));
         $this->address_rt->SetDBValue($this->f("address_rt"));
         $this->address_rw->SetDBValue($this->f("address_rw"));
@@ -1560,29 +1627,9 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->address_name_owner->SetDBValue($this->f("address_name_owner"));
         $this->p_rqst_type_id->SetDBValue(trim($this->f("p_rqst_type_id")));
         $this->email->SetDBValue($this->f("email"));
-        $this->company_additional_addr->SetDBValue($this->f("company_additional_addr"));
-        $this->p_hotel_grade_id->SetDBValue(trim($this->f("p_hotel_grade_id")));
-        $this->p_rest_service_type_id->SetDBValue(trim($this->f("p_rest_service_type_id")));
-        $this->p_entertaintment_type_id->SetDBValue(trim($this->f("p_entertaintment_type_id")));
-        $this->p_parking_classification_id->SetDBValue(trim($this->f("p_parking_classification_id")));
         $this->t_vat_registration_id->SetDBValue(trim($this->f("t_vat_registration_id")));
         $this->rqst_type_code->SetDBValue($this->f("rqst_type_code"));
         $this->Hidden1->SetDBValue($this->f("npwpd"));
-        $this->mobile_no_owner->SetDBValue($this->f("mobile_no_owner"));
-        $this->brand_address_name->SetDBValue($this->f("brand_address_name"));
-        $this->brand_address_no->SetDBValue($this->f("brand_address_no"));
-        $this->brand_address_rt->SetDBValue($this->f("brand_address_rt"));
-        $this->brand_address_rw->SetDBValue($this->f("brand_address_rw"));
-        $this->brand_kota->SetDBValue($this->f("brand_kota"));
-        $this->brand_p_region_id->SetDBValue(trim($this->f("brand_p_region_id")));
-        $this->brand_kecamatan->SetDBValue($this->f("brand_kecamatan"));
-        $this->brand_p_region_id_kec->SetDBValue(trim($this->f("brand_p_region_id_kec")));
-        $this->brand_kelurahan->SetDBValue($this->f("brand_kelurahan"));
-        $this->brand_p_region_id_kel->SetDBValue(trim($this->f("brand_p_region_id_kel")));
-        $this->brand_phone_no->SetDBValue($this->f("brand_phone_no"));
-        $this->brand_fax_no->SetDBValue($this->f("brand_fax_no"));
-        $this->brand_zip_code->SetDBValue($this->f("brand_zip_code"));
-        $this->brand_mobile_no->SetDBValue($this->f("brand_mobile_no"));
         $this->wp_user_name->SetDBValue($this->f("wp_user_name"));
         $this->wp_user_pwd->SetDBValue($this->f("wp_user_pwd"));
         $this->wp_name->SetDBValue($this->f("wp_name"));
@@ -1607,6 +1654,32 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->bap_employee_no_2->SetDBValue($this->f("bap_employee_no_2"));
         $this->bap_employee_job_pos_1->SetDBValue($this->f("bap_employee_job_pos_1"));
         $this->bap_employee_job_pos_2->SetDBValue($this->f("bap_employee_job_pos_2"));
+        $this->p_doc_delivery_type_id->SetDBValue($this->f("p_doc_delivery_type_id"));
+        $this->jenis_usaha->SetDBValue($this->f("jenis_usaha"));
+        $this->company_brand->SetDBValue($this->f("company_brand"));
+        $this->company_additional_addr->SetDBValue($this->f("company_additional_addr"));
+        $this->brand_address_name->SetDBValue($this->f("brand_address_name"));
+        $this->brand_address_no->SetDBValue($this->f("brand_address_no"));
+        $this->brand_address_rt->SetDBValue($this->f("brand_address_rt"));
+        $this->brand_address_rw->SetDBValue($this->f("brand_address_rw"));
+        $this->brand_kota->SetDBValue($this->f("brand_kota"));
+        $this->brand_p_region_id->SetDBValue(trim($this->f("brand_p_region_id")));
+        $this->brand_kecamatan->SetDBValue($this->f("brand_kecamatan"));
+        $this->brand_p_region_id_kec->SetDBValue(trim($this->f("brand_p_region_id_kec")));
+        $this->brand_kelurahan->SetDBValue($this->f("brand_kelurahan"));
+        $this->brand_p_region_id_kel->SetDBValue(trim($this->f("brand_p_region_id_kel")));
+        $this->brand_phone_no->SetDBValue($this->f("brand_phone_no"));
+        $this->brand_fax_no->SetDBValue($this->f("brand_fax_no"));
+        $this->brand_zip_code->SetDBValue($this->f("brand_zip_code"));
+        $this->brand_mobile_no->SetDBValue($this->f("brand_mobile_no"));
+        $this->pre_vat_brand_name->SetDBValue($this->f("pre_brand_name"));
+        $this->t_vat_pre_registration_id->SetDBValue(trim($this->f("t_vat_pre_registration_id")));
+        $this->mobile_no_owner->SetDBValue($this->f("mobile_no_owner"));
+        $this->p_vat_type_dtl_id->SetDBValue($this->f("p_vat_type_dtl_id"));
+        $this->p_hotel_grade_id->SetDBValue(trim($this->f("p_hotel_grade_id")));
+        $this->p_rest_service_type_id->SetDBValue(trim($this->f("p_rest_service_type_id")));
+        $this->p_entertaintment_type_id->SetDBValue(trim($this->f("p_entertaintment_type_id")));
+        $this->p_parking_classification_id->SetDBValue(trim($this->f("p_parking_classification_id")));
     }
 //End SetValues Method
 
