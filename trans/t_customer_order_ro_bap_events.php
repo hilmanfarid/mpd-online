@@ -24,6 +24,12 @@ function t_vat_registrationForm_Button2_OnClick(& $sender)
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_Button2_OnClick
 
+//Custom Code @902-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close t_vat_registrationForm_Button2_OnClick @901-30B4EE07
     return $t_vat_registrationForm_Button2_OnClick;
 }
@@ -37,6 +43,12 @@ function t_vat_registrationForm_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_BeforeSelect
+
+//Custom Code @686-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 //Close t_vat_registrationForm_BeforeSelect @629-D64E68A4
     return $t_vat_registrationForm_BeforeSelect;
@@ -52,6 +64,12 @@ function t_vat_registrationForm_BeforeInsert(& $sender)
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_BeforeInsert
 
+//Custom Code @687-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close t_vat_registrationForm_BeforeInsert @629-23179109
     return $t_vat_registrationForm_BeforeInsert;
 }
@@ -65,6 +83,12 @@ function t_vat_registrationForm_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_registrationForm; //Compatibility
 //End t_vat_registrationForm_BeforeShow
+
+//Custom Code @874-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
       // Write your own code here.
@@ -128,6 +152,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_customer_order_ro_bap; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 //Close Page_OnInitializeView @1-81DF8332
     return $Page_OnInitializeView;
