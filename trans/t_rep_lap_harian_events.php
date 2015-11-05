@@ -67,6 +67,7 @@ function Page_BeforeShow(& $sender)
 			$data["jml_hari_ini"][]		= $dbConn->f("jml_hari_ini");
 			$data["jml_sd_hari_lalu"][]	= $dbConn->f("jml_sd_hari_lalu");
 			$data["jml_sd_hari_ini"][]	= $dbConn->f("jml_sd_hari_ini");
+			$data["jml_transaksi"][]	= $dbConn->f("jml_transaksi");
 		}
 
 		$dbConn->close();
@@ -129,6 +130,7 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 		$output.='<th>AYAT</th>';
 		$output.='<th>PAJAK/RETRIBUSI</th>';
 		$output.='<th>JUMLAH HARI INI</th>';
+		$output.='<th>JUMLAH TRANSAKSI HARI INI</th>';
 		$output.='<th>JUMLAH S/D HARI YANG LALU</th>';
 		$output.='<th>JUMLAH S/D HARI INI</th>';
 		$output.='</tr>';
@@ -144,6 +146,8 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 		$jumlahperjenis_hariini = array();
 		$jumlahtotal_hariini = 0;
 		$jumlahtemp_hariini = 0;
+		$jml_transaksi_per_jenis_pajak = 0;
+		$jml_transaksi_semua_jenis_pajak = 0;
 		
 		for ($i = 0; $i < count($data['nomor_ayat']); $i++) {
 			//print data
@@ -162,8 +166,11 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 					 <td>
 							P. ' . strtoupper($data["nama_ayat"][$i]).'	
 					 </td>
-					 <td>
+					 <td align="right">
 							'.number_format($data["jml_hari_ini"][$i], 0, ',', '.').'	
+					 </td>
+					 <td align="right">
+							'.number_format($data["jml_transaksi"][$i], 0, ',', '.').'	
 					 </td>
 					 <td align="right">
 					 		'.number_format($data["jml_sd_hari_lalu"][$i], 0, ',', '.').'												  
@@ -181,6 +188,8 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 			$jumlahtotal_harilalu += $data["jml_sd_hari_lalu"][$i];
 			$jumlahtemp_hariini += $data["jml_sd_hari_ini"][$i];
 			$jumlahtotal_hariini += $data["jml_sd_hari_ini"][$i];
+			$jml_transaksi_per_jenis_pajak += $data["jml_transaksi"][$i];
+			$jml_transaksi_semua_jenis_pajak += $data["jml_transaksi"][$i];
 			
 			//cek apakah perlu bikin baris jumlah
 			//jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
@@ -193,7 +202,8 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 				
 				$output.='<tr>';
 				$output.='<td style="font-weight:bold;" align="center" colspan=3>'.strtoupper($data["nama_jns_pajak"][$i]).'</td>';
-				$output.='<td style="font-weight:bold;">'.number_format($jumlahtemp, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="right">'.number_format($jml_transaksi_per_jenis_pajak, 0, ',', '.').'</td>';
 				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp_harilalu, 0, ',', '.').'</td>';
 				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtemp_hariini, 0, ',', '.').'</td>';
 				$output.='</tr>';				
@@ -201,18 +211,21 @@ function PageCetak($data, $user, $tgl_penerimaan) {
 				$jumlahtemp = 0;
 				$jumlahtemp_harilalu = 0;
 				$jumlahtemp_hariini = 0;
+				$jml_transaksi_per_jenis_pajak = 0;
 			}
 			
 			if($i == count($data['nomor_ayat']) - 1){
 				$output.='<tr>';
 				$output.='<td style="font-weight:bold;" align="center" colspan=3>JUMLAH TOTAL</td>';
-				$output.='<td style="font-weight:bold;">'.number_format($jumlahtotal, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal, 0, ',', '.').'</td>';
+				$output.='<td style="font-weight:bold;" align="right">'.number_format($jml_transaksi_semua_jenis_pajak, 0, ',', '.').'</td>';
 				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal_harilalu, 0, ',', '.').'</td>';
 				$output.='<td style="font-weight:bold;" align="right">'.number_format($jumlahtotal_hariini, 0, ',', '.').'</td>';
 				$output.='</tr>';
 				$jumlahtotal = 0;
 				$jumlahtotal_harilalu = 0;
 				$jumlahtotal_hariini = 0;
+				$jml_transaksi_per_jenis_pajak = 0;
 			}
 		}
 

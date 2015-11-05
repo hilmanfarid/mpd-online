@@ -34,7 +34,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -57,12 +57,12 @@
 			<Features/>
 		</Record>
 		<Label id="561" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-</Components>
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_lap_harian_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_rep_lap_harian.php" forShow="True" url="t_rep_lap_harian.php" comment="//" codePage="windows-1252"/>
@@ -78,9 +78,9 @@
 			</Actions>
 		</Event>
 		<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="562"/>
-</Actions>
-</Event>
-</Events>
+			<Actions>
+				<Action actionName="Custom Code" actionCategory="General" id="562"/>
+			</Actions>
+		</Event>
+	</Events>
 </Page>
