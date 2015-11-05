@@ -29,6 +29,7 @@ while ($dbConn->next_record()) {
 	$data["jml_hari_ini"][]		= $dbConn->f("jml_hari_ini");
 	$data["jml_sd_hari_lalu"][]	= $dbConn->f("jml_sd_hari_lalu");
 	$data["jml_sd_hari_ini"][]	= $dbConn->f("jml_sd_hari_ini");
+	$data["jml_transaksi"][]	= $dbConn->f("jml_transaksi");
 }
 
 $dbConn->close();
@@ -135,17 +136,36 @@ class FormCetak extends FPDF {
 		$ltable4 = $ltable * 2.6;
 		$ltable16 = $ltable * 16;
 		
-		$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
-		$this->Cell($ltable3, $this->height + 2, "AYAT", "TBLR", 0, 'C');
+		/*$this->Cell($ltable1, $this->height + 2, "NO.", "TBLR", 0, 'C');
+		$this->Cell($ltable3 - 20, $this->height + 2, "AYAT", "TBLR", 0, 'C');
 		$this->Cell($ltable4*2.2+4, $this->height + 2, "PAJAK/RETRIBUSI", "TBLR", 0, 'C');
 		$this->Cell($ltable4*1.1, $this->height + 2, "JUMLAH HARI INI", "TBLR", 0, 'C');
+		$this->Cell(20, $this->height + 2, "JUMLAH TRANSAKSI HARI INI", "TBLR", 0, 'C');
 		$this->Cell($ltable*4.04, $this->height + 2, "JUMLAH S/D HARI YANG LALU", "TBLR", 0, 'C');
 		$this->Cell($ltable4*1.3-4, $this->height + 2, "JUMLAH S/D HARI INI", "TBLR", 0, 'C');
-		$this->Ln();
+		$this->Ln();*/
 
 		//isi kolom
-		$this->SetWidths(array($ltable1, $ltable3, $ltable4*2.2+4, $ltable4*1.1, $ltable*4.04, $ltable4*1.3-4));
-		$this->SetAligns(array("C", "L", "L", "R", "R", "R"));
+		$this->SetWidths(array($ltable1, $ltable3-25, $ltable4*2.2-1, $ltable4*1.1-5,40, $ltable*4.04-2.5, $ltable4*1.3-6.5));
+		$this->SetAligns(array("C", "C", "C", "C", "C", "C", "C"));
+		
+		$this->RowMultiBorderWithHeight(array("NO.",
+											  "AYAT",
+											  "PAJAK / RETRIBUSI",
+											  "JUMLAH\nHARI INI",
+											  "JUMLAH TRANSAKSI HARI INI",
+											  "JUMLAH S/D\nHARI YANG LALU",
+											  "JUMLAH S/D\nHARI INI",
+											  ),
+										array('TBLR',
+											  'TBLR',
+											  'TBLR',
+											  'TBLR',
+											  'TBLR',
+											  'TBLR',
+											  'TBLR'
+											  )
+											  ,$this->height);
 		$no = 1;
 		
 		$jumlahperjenis = array();
@@ -157,6 +177,8 @@ class FormCetak extends FPDF {
 		$jumlahperjenis_hariini = array();
 		$jumlahtotal_hariini = 0;
 		$jumlahtemp_hariini = 0;
+		$jml_transaksi_per_jenis_pajak = 0;
+		$jml_transaksi_semua_jenis_pajak = 0;
 		
 		for ($i = 0; $i < count($data['nomor_ayat']); $i++) {
 			//print data
@@ -165,10 +187,12 @@ class FormCetak extends FPDF {
 				$data["jml_sd_hari_lalu"][$i]=$bphtb_row['sd_hari_kemarin'];
 				$data["jml_sd_hari_ini"][$i]=$bphtb_row['sd_hari_ini'];
 			}
+			$this->SetAligns(array("C", "L", "L", "R", "R", "R", "R"));
 			$this->RowMultiBorderWithHeight(array($no,
 												  $data["nomor_ayat"][$i] . " " . $data["kode_jns_trans"][$i],
 												  "P. " . strtoupper($data["nama_ayat"][$i]),
 												  number_format($data["jml_hari_ini"][$i], 0, ',', '.'),
+												  number_format($data["jml_transaksi"][$i], 0, ',', '.'),
 												  number_format($data["jml_sd_hari_lalu"][$i], 0, ',', '.'),
 												  number_format($data["jml_sd_hari_ini"][$i], 0, ',', '.')
 												  ),
@@ -189,6 +213,8 @@ class FormCetak extends FPDF {
 			$jumlahtotal_harilalu += $data["jml_sd_hari_lalu"][$i];
 			$jumlahtemp_hariini += $data["jml_sd_hari_ini"][$i];
 			$jumlahtotal_hariini += $data["jml_sd_hari_ini"][$i];
+			$jml_transaksi_per_jenis_pajak += $data["jml_transaksi"][$i];
+			$jml_transaksi_semua_jenis_pajak += $data["jml_transaksi"][$i];
 			
 			//cek apakah perlu bikin baris jumlah
 			//jika iya, simpan jumlahtemp ke jumlahperjenis, print jumlahtemp, reset jumlahtemp
@@ -199,25 +225,29 @@ class FormCetak extends FPDF {
 				$jumlahperjenis[] = $jumlahtemp;
 				$jumlahperjenis_harilalu[] = $jumlahtemp_harilalu;
 				$jumlahperjenis_hariini[] = $jumlahtemp_hariini;
-				$this->Cell($ltable1 + $ltable3 + $ltable4*2.2+4, $this->height + 2, "JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]), "TBLR", 0, 'C');
-				$this->Cell($ltable4*1.1, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
-				$this->Cell($ltable*4.04, $this->height + 2, number_format($jumlahtemp_harilalu, 0, ',', '.'), "TBLR", 0, 'R');
-				$this->Cell($ltable4*1.3-4, $this->height + 2, number_format($jumlahtemp_hariini, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable1+ $ltable3-25 + $ltable4*2.2-1, $this->height + 2, "JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]), "TBLR", 0, 'C');
+				$this->Cell($ltable4*1.1-5, $this->height + 2, number_format($jumlahtemp, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell(40, $this->height + 2, number_format($jml_transaksi_per_jenis_pajak, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable*4.04-2.5, $this->height + 2, number_format($jumlahtemp_harilalu, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable4*1.3-6.5, $this->height + 2, number_format($jumlahtemp_hariini, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtemp = 0;
 				$jumlahtemp_harilalu = 0;
 				$jumlahtemp_hariini = 0;
+				$jml_transaksi_per_jenis_pajak = 0;
 			}
 			
 			if($i == count($data['nomor_ayat']) - 1){
-				$this->Cell($ltable1 + $ltable3 + $ltable4*2.2+4, $this->height + 2, "JUMLAH TOTAL", "TBLR", 0, 'C');
-				$this->Cell($ltable4*1.1, $this->height + 2, number_format($jumlahtotal, 0, ',', '.'), "TBLR", 0, 'R');
-				$this->Cell($ltable*4.04, $this->height + 2, number_format($jumlahtotal_harilalu, 0, ',', '.'), "TBLR", 0, 'R');
-				$this->Cell($ltable4*1.3-4, $this->height + 2, number_format($jumlahtotal_hariini, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable1+ $ltable3-25 + $ltable4*2.2-1, $this->height + 2, "JUMLAH TOTAL", "TBLR", 0, 'C');
+				$this->Cell($ltable4*1.1-5, $this->height + 2, number_format($jumlahtotal, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell(40, $this->height + 2, number_format($jml_transaksi_semua_jenis_pajak, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable*4.04-2.5, $this->height + 2, number_format($jumlahtotal_harilalu, 0, ',', '.'), "TBLR", 0, 'R');
+				$this->Cell($ltable4*1.3-6.5, $this->height + 2, number_format($jumlahtotal_hariini, 0, ',', '.'), "TBLR", 0, 'R');
 				$this->Ln();
 				$jumlahtotal = 0;
 				$jumlahtotal_harilalu = 0;
 				$jumlahtotal_hariini = 0;
+				$jml_transaksi_per_jenis_pajak = 0;
 			}
 			$this->SetFont('Arial', '', 10);
 		}
