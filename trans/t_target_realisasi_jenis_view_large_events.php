@@ -96,10 +96,21 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
 	 if(!empty($target)){
 	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
-	 }else{
-	 	$percent =0;
+		$selisih = number_format($realisasi - $target , 2, ".", ",");
+		if($percent >= 100) {
+			$percent_selisih = $percent;
+		}else{
+			$percent_selisih = number_format($percent-100, 2, ".", ",");
+		}
+	 }else {
+		$percent = 0;
+		$selisih = 0;
+		$percent_selisih = 0;
 	 }
 	 $Component->percentage->SetValue("$percent %");
+	 $Component->selisih->SetValue("$selisih");
+	 $Component->percentage_selisih->SetValue("$percent_selisih %");
+
 	 $sum_realisasi = $t_target_realisasi_jenisGrid->realisasi_amt_sum->GetValue();
 	 $t_target_realisasi_jenisGrid->realisasi_amt_sum->SetValue($sum_realisasi+$realisasi);
 	 $sum_target = $t_target_realisasi_jenisGrid->target_amount_sum->GetValue();
@@ -108,8 +119,15 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 	 if($sum_target > 0) {
 	 	$sum_realisasi = $t_target_realisasi_jenisGrid->realisasi_amt_sum->GetValue();
 		$sum_target = $t_target_realisasi_jenisGrid->target_amount_sum->GetValue();
-	 	$t_target_realisasi_jenisGrid->percentage_sum->SetValue(number_format($sum_realisasi / $sum_target  * 100, 2, ".", ","));
+		$sum_percentage_temp = $sum_realisasi / $sum_target  * 100;
+	 	$t_target_realisasi_jenisGrid->percentage_sum->SetValue(number_format($sum_percentage_temp, 2, ".", ","));
 	 }
+	 $t_target_realisasi_jenisGrid->selisih_sum->SetValue(number_format($sum_realisasi-$sum_target, 2, ".", ","));
+	 if($sum_percentage_temp >= 100) {
+	 	$t_target_realisasi_jenisGrid->percentage_selisih_sum->SetValue(number_format($sum_percentage_temp, 2, ".", ","));
+	}else{
+		$t_target_realisasi_jenisGrid->percentage_selisih_sum->SetValue(number_format($sum_percentage_temp - 100, 2, ".", ","));
+	}
 //Close t_target_realisasi_jenisGrid_BeforeShowRow @2-1478D09A
     return $t_target_realisasi_jenisGrid_BeforeShowRow;
 }
@@ -193,17 +211,37 @@ function t_target_realisasi_jenisGrid1_BeforeShowRow(& $sender)
 	 $realisasi = $t_target_realisasi_jenisGrid1->DataSource->realisasi_amt->GetValue();
 	 if(!empty($target)){
 	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
-	 }else{
-	 	$percent =0;
+	 	$selisih = number_format($realisasi - $target , 2, ".", ",");
+		if($percent >= 100) {
+			$percent_selisih = $percent;
+		}else{
+			$percent_selisih = number_format($percent-100, 2, ".", ",");
+		}
+	 }else {
+		$percent = 0;
+		$selisih = 0;
+		$percent_selisih = 0;
 	 }
 	 $Component->percentage->SetValue("$percent %");
+	 $Component->selisih->SetValue("$selisih");
+	 $Component->percentage_selisih->SetValue("$percent_selisih %");
+	 
 	 $sum_realisasi = $t_target_realisasi_jenisGrid1->realisasi_amt_sum->GetValue();
 	 $t_target_realisasi_jenisGrid1->realisasi_amt_sum->SetValue($sum_realisasi+$realisasi);
 	 $sum_target = $t_target_realisasi_jenisGrid1->target_amount_sum->GetValue();
 	 $t_target_realisasi_jenisGrid1->target_amount_sum->SetValue($sum_target+$target);
 	 $sum_percentage = $t_target_realisasi_jenisGrid1->percentage_sum->GetValue();
-	 if($sum_target > 0)
-	 $t_target_realisasi_jenisGrid1->percentage_sum->SetValue(number_format($sum_realisasi / $sum_target  * 100, 2, ".", ","));
+	 if($sum_target > 0){
+	 	$t_target_realisasi_jenisGrid1->percentage_sum->SetValue(number_format($sum_realisasi / $sum_target  * 100, 2, ".", ","));
+		$sum_percentage_temp = $sum_realisasi / $sum_target  * 100;
+	 	$t_target_realisasi_jenisGrid1->percentage_sum->SetValue(number_format($sum_percentage_temp, 2, ".", ","));
+	 }
+	 $t_target_realisasi_jenisGrid1->selisih_sum->SetValue(number_format($sum_realisasi-$sum_target, 2, ".", ","));
+	 if($sum_percentage_temp >= 100) {
+	 	$t_target_realisasi_jenisGrid1->percentage_selisih_sum->SetValue(number_format($sum_percentage_temp, 2, ".", ","));
+	}else{
+		$t_target_realisasi_jenisGrid1->percentage_selisih_sum->SetValue(number_format($sum_percentage_temp - 100, 2, ".", ","));
+	}
 
 //Close t_target_realisasi_jenisGrid1_BeforeShowRow @880-1F3D6C11
     return $t_target_realisasi_jenisGrid1_BeforeShowRow;
@@ -254,10 +292,20 @@ function t_target_realisasiGrid_BeforeShowRow(& $sender)
 	 $realisasi = $Component->DataSource->realisasi_amt->GetValue();
 	 if(!empty($target)) {
 	 	$percent = number_format($realisasi / $target * 100, 2, ".", ",");
+		$selisih = number_format($realisasi - $target , 2, ".", ",");
+		if($percent >= 100) {
+			$percent_selisih = $percent;
+		}else{
+			$percent_selisih = number_format($percent-100, 2, ".", ",");
+		}
 	 }else {
 		$percent = 0;
+		$selisih = 0;
+		$percent_selisih = 0;
 	 }
 	 $Component->percentage->SetValue("$percent %");
+	 $Component->selisih->SetValue("$selisih");
+	 $Component->percentage_selisih->SetValue("$percent_selisih %");
 // -------------------------
 //End Custom Code
 
