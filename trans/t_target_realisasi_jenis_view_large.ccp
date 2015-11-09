@@ -75,18 +75,6 @@ and p_vat_group_id = 1
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-				<Label id="871" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridpercentage">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
 				<Hidden id="874" fieldSourceType="DBColumn" dataType="Float" name="p_vat_type_id2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridp_vat_type_id2">
 					<Components/>
 					<Events/>
@@ -128,7 +116,43 @@ and p_vat_group_id = 1
 					<Attributes/>
 					<Features/>
 				</Link>
-			</Components>
+				<Label id="676" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridrealisasi_amt" fieldSource="realisasi_amt" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="871" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridpercentage">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="918" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridselisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="919" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage_selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGridpercentage_selisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="920" fieldSourceType="CodeExpression" dataType="Float" html="False" name="selisih_sum" PathID="t_target_realisasi_jenisGridselisih_sum">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="921" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_sum" PathID="t_target_realisasi_jenisGridpercentage_selisih_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -259,7 +283,31 @@ and p_vat_group_id = 2)" orderBy="p_vat_type_id">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Label id="922" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="924" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage_selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="925" fieldSourceType="CodeExpression" dataType="Float" html="False" name="selisih_sum" PathID="t_target_realisasi_jenisGrid1selisih_sum">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="927" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_sum" PathID="t_target_realisasi_jenisGrid1percentage_selisih_sum" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -341,6 +389,18 @@ and rownum &lt; 4
 					<Features/>
 				</Label>
 				<Label id="750" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridpercentage">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="916" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridselisih">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="917" fieldSourceType="CodeExpression" dataType="Float" html="False" name="percentage_selisih" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasiGridpercentage_selisih">
 					<Components/>
 					<Events/>
 					<Attributes/>
