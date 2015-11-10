@@ -7,12 +7,19 @@ include_once(RelativePath . "/Common.php");
 require("../include/qrcode/fpdf17/fpdf.php");
 
 $tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");//'15-12-2013';
+$kode_bank		= CCGetFromGet("kode_bank", "");
+$kabid = CCGetFromGet('kabid');
 // $tgl_penerimaan		= '15-12-2013';
 
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_lap_harian_bdhr_mod_1($tgl_penerimaan) order by nomor_ayat";
+if($kabid=='T'){
+	$query				= "select * from f_rep_lap_harian_bdhr_mod_2($tgl_penerimaan,'$kode_bank') order by nomor_ayat";
+}else{
+	$query				= "select * from f_rep_lap_harian_bdhr_mod_1($tgl_penerimaan) order by nomor_ayat";
+}
+
 $tgl_penerimaan		= str_replace("'", "", $tgl_penerimaan);
 $dbConn->query($query);
 while ($dbConn->next_record()) {
@@ -183,9 +190,9 @@ class FormCetak extends FPDF {
 		for ($i = 0; $i < count($data['nomor_ayat']); $i++) {
 			//print data
 			if($kabid=='T' && $data['nama_ayat'][$i]=='BPHTB'){
-				$data["jml_hari_ini"][$i]=$bphtb_row['hari_ini'];
+				/*$data["jml_hari_ini"][$i]=$bphtb_row['hari_ini'];
 				$data["jml_sd_hari_lalu"][$i]=$bphtb_row['sd_hari_kemarin'];
-				$data["jml_sd_hari_ini"][$i]=$bphtb_row['sd_hari_ini'];
+				$data["jml_sd_hari_ini"][$i]=$bphtb_row['sd_hari_ini'];*/
 			}
 			$this->SetAligns(array("C", "L", "L", "R", "R", "R", "R"));
 			$this->RowMultiBorderWithHeight(array($no,
