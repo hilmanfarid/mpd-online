@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<meta http-equiv="refresh" content="30" />
 <title>t_customer_order</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<meta http-equiv="refresh" content="30">
 <link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
@@ -52,7 +52,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -79,12 +79,24 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Tanggal Penerimaan</td> 
-                    <td class="search-field"><input id="t_rep_lap_harian_bdhrSearchtgl_penerimaan" class="ControlsRQ" name="{tgl_penerimaan_Name}" maxlength="32" value="{tgl_penerimaan}" size="32">
+                    <td class="search-field"><input id="t_rep_lap_harian_bdhrSearchtgl_penerimaan" class="ControlsRQ" value="{tgl_penerimaan}" maxlength="32" size="32" name="{tgl_penerimaan_Name}">
                       <td>
                         <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan"><img id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;</td> 
                       <td class="search-field">
-                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD PDF" type="submit"><!-- END Button Button_DoSearch -->&nbsp; 
-                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch1" class="btn_tambah" onclick="tampil(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchkabid" name="{kabid_Name}" value="T" type="hidden"></td>
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="DOWNLOAD PDF" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch1" class="btn_tambah" onclick="tampil(); return false;" value="TAMPILKAN" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchkabid" value="T" type="hidden" name="{kabid_Name}"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="search-field">Bank Penerimaan</td> 
+                      <td class="search-field">
+                        <select id="t_rep_lap_harian_bdhrSearchkode_bank" name="{kode_bank_Name}">
+                          <option selected value="">Select Value</option>
+                          {kode_bank_Options}
+                        </select>
+ </td> 
+                      <td>&nbsp;</td> 
+                      <td class="search-field">&nbsp;</td>
                     </tr>
                   </table>
                 </td>
@@ -102,12 +114,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 function cetak()
                 {
                         tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
-                        window.open("../report/cetak_rep_lap_harian_bdhr.php?tgl_penerimaan='" + tgl_penerimaan + "'&kabid=T", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+						kode_bank = document.getElementById("t_rep_lap_harian_bdhrSearchkode_bank").value;
+                        window.open("../report/cetak_rep_lap_harian_bdhr.php?tgl_penerimaan='" + tgl_penerimaan + "'&kabid=T"+ "&kode_bank="+kode_bank, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
                 }
-				function tampil()
+                                function tampil()
                 {
                         tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
-                       	location.href="t_rep_lap_harian.php?tgl_penerimaan=" + tgl_penerimaan + "&kabid=T&tampil=T";
+						kode_bank = document.getElementById("t_rep_lap_harian_bdhrSearchkode_bank").value;
+                        location.href="t_rep_lap_harian.php?tgl_penerimaan=" + tgl_penerimaan + "&kode_bank="+kode_bank+"&kabid=T&tampil=T";
                 }
         </script>
   <br>

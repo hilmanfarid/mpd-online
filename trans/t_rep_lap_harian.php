@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-F14B83A8
+//Class_Initialize Event @3-61859AB4
     function clsRecordt_rep_lap_harian_bdhrSearch($RelativePath, & $Parent)
     {
 
@@ -74,11 +74,18 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_rep_lap_harian_bdhrSearch", "tgl_penerimaan", $this);
             $this->kabid = & new clsControl(ccsHidden, "kabid", "kabid", ccsText, "", CCGetRequestParam("kabid", $Method, NULL), $this);
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->kode_bank = & new clsControl(ccsListBox, "kode_bank", "kode_bank", ccsText, "", CCGetRequestParam("kode_bank", $Method, NULL), $this);
+            $this->kode_bank->DSType = dsSQL;
+            $this->kode_bank->DataSource = new clsDBConnSIKP();
+            $this->kode_bank->ds = & $this->kode_bank->DataSource;
+            list($this->kode_bank->BoundColumn, $this->kode_bank->TextColumn, $this->kode_bank->DBFormat) = array("", "", "");
+            $this->kode_bank->DataSource->SQL = "select code,bank_name from p_bank";
+            $this->kode_bank->DataSource->Order = "";
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-0A44BDF0
+//Validate Method @3-3C74F225
     function Validate()
     {
         global $CCSLocales;
@@ -86,20 +93,23 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
         $Where = "";
         $Validation = ($this->tgl_penerimaan->Validate() && $Validation);
         $Validation = ($this->kabid->Validate() && $Validation);
+        $Validation = ($this->kode_bank->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kabid->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->kode_bank->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-4E09CF6D
+//CheckErrors Method @3-E4DD4EDD
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->kabid->Errors->Count());
+        $errors = ($errors || $this->kode_bank->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -158,7 +168,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-1B7C0047
+//Show Method @3-76F3B360
     function Show()
     {
         global $CCSUseAmp;
@@ -172,6 +182,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->kode_bank->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -185,6 +196,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->kabid->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->kode_bank->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -207,6 +219,7 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_tgl_penerimaan->Show();
         $this->kabid->Show();
         $this->Button_DoSearch1->Show();
+        $this->kode_bank->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
