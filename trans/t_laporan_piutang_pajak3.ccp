@@ -68,6 +68,12 @@
 					<Attributes/>
 					<Features/>
 				</DatePicker>
+				<Button id="27" urlType="Relative" enableValidation="True" isDefault="False" name="Button3" PathID="t_laporan_piutang_pajak2Button3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 			</Components>
 			<Events/>
 			<TableParameters/>

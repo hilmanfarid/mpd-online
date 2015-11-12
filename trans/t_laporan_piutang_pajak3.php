@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak2 { //t_laporan_piutang_pajak2 Class @2-48
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-0BF4B3F2
+//Class_Initialize Event @2-7BECD7B9
     function clsRecordt_laporan_piutang_pajak2($RelativePath, & $Parent)
     {
 
@@ -84,6 +84,7 @@ class clsRecordt_laporan_piutang_pajak2 { //t_laporan_piutang_pajak2 Class @2-48
             $this->status_bayar->Required = true;
             $this->tgl_penerimaan = & new clsControl(ccsTextBox, "tgl_penerimaan", "tgl_penerimaan", ccsDate, array("dd", "-", "mmm", "-", "yy"), CCGetRequestParam("tgl_penerimaan", $Method, NULL), $this);
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_laporan_piutang_pajak2", "tgl_penerimaan", $this);
+            $this->Button3 = & new clsButton("Button3", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -145,7 +146,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-2ECE84F6
+//Operation Method @2-2B36F154
     function Operation()
     {
         if(!$this->Visible)
@@ -164,6 +165,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button1";
             } else if($this->Button2->Pressed) {
                 $this->PressedButton = "Button2";
+            } else if($this->Button3->Pressed) {
+                $this->PressedButton = "Button3";
             }
         }
         $Redirect = "t_laporan_piutang_pajak3.php";
@@ -176,6 +179,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button3") {
+                if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -183,7 +190,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-51892678
+//Show Method @2-B690E934
     function Show()
     {
         global $CCSUseAmp;
@@ -243,6 +250,7 @@ function GetPrimaryKey($keyName)
         $this->status_bayar->Show();
         $this->tgl_penerimaan->Show();
         $this->DatePicker_tgl_penerimaan->Show();
+        $this->Button3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

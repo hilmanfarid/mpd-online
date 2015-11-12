@@ -36,6 +36,24 @@
                                                 location.href = "t_laporan_piutang_pajak3.php"+params;
                                         }
                 }
+
+                                function printLaporanExcel(){
+                        if( document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value == "" || 
+                                document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
+                                document.getElementById("t_laporan_piutang_pajak2status_bayar").value == "") {
+                                alert("Ada Filter yang Harus Diisi");
+                     }else {
+					 	
+                        var params = "?cetak_laporan=view_excel";
+                        params += "&year_code="+document.getElementById("t_laporan_piutang_pajak2year_code").value;
+                        params += "&vat_code="+document.getElementById("t_laporan_piutang_pajak2vat_code").value;
+                        params += "&p_year_period_id="+document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value;
+                        params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value;
+                        params += "&status_bayar="+document.getElementById("t_laporan_piutang_pajak2status_bayar").value;
+                        params += "&tgl_penerimaan="+document.getElementById("t_laporan_piutang_pajak2tgl_penerimaan").value;
+                                                location.href = "t_laporan_piutang_pajak3.php"+params;
+                                        }
+                }
                 
                 function viewFormModifikasi(t_piutang_pajak_penetapan_final_id) {
                         
@@ -113,12 +131,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN&nbsp;PIUTANG 2002-2014&nbsp;
+        LAPORAN&nbsp;PIUTANG 2002-2014&nbsp; 
       </div>
     </div>
   </div>
@@ -167,6 +185,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                     <tr>
                       <td colspan="2" align="right">&nbsp; 
+                        <!-- BEGIN Button Button3 --><input id="t_laporan_piutang_pajak2Button3" class="btn_tambah" onclick="printLaporanExcel()" value="Cetak Excel" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button3 -->
                         <!-- BEGIN Button Button2 --><input id="t_laporan_piutang_pajak2Button2" class="btn_tambah" onclick="printLaporanHTML()" value="Tampilkan" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->
                         <!-- BEGIN Button Button1 --><input id="t_laporan_piutang_pajak2Button1" class="btn_tambah" onclick="printLaporan()" value="Download" alt="Button1" type="hidden" name="{Button_Name}"><!-- END Button Button1 --></td>
                     </tr>
