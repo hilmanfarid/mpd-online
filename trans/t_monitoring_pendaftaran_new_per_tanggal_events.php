@@ -150,7 +150,7 @@ function GetCetakExcel($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['company_owner'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['brand_address_name'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
 		$output.='<td align="left" ></td>';
 		$output.='<td align="left" >'.$data[$i]['vat_code'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td></tr>';
