@@ -45,7 +45,7 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-69E347CB
+//Class_Initialize Event @2-C8219B9D
     function clsRecordt_laporan_global_per_wp($RelativePath, & $Parent)
     {
 
@@ -81,8 +81,13 @@ class clsRecordt_laporan_global_per_wp { //t_laporan_global_per_wp Class @2-B2F5
             $this->Button2 = & new clsButton("Button2", $Method, $this);
             $this->Button1 = & new clsButton("Button1", $Method, $this);
             $this->kode_wilayah = & new clsControl(ccsListBox, "kode_wilayah", "kode_wilayah", ccsText, "", CCGetRequestParam("kode_wilayah", $Method, NULL), $this);
-            $this->kode_wilayah->DSType = dsListOfValues;
-            $this->kode_wilayah->Values = array(array("1", "1 (BARAT)"), array("2", "2 (UTARA)"), array("3", "3 (TENGAH)"), array("4", "4 (TIMUR)"), array("5", "5 (SELATAN)"));
+            $this->kode_wilayah->DSType = dsSQL;
+            $this->kode_wilayah->DataSource = new clsDBConnSIKP();
+            $this->kode_wilayah->ds = & $this->kode_wilayah->DataSource;
+            list($this->kode_wilayah->BoundColumn, $this->kode_wilayah->TextColumn, $this->kode_wilayah->DBFormat) = array("", "", "");
+            $this->kode_wilayah->DataSource->SQL = "select p_business_area_id, business_area_name\n" .
+            "from p_business_area ";
+            $this->kode_wilayah->DataSource->Order = "";
             $this->kode_wilayah->Required = true;
         }
     }

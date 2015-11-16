@@ -76,7 +76,7 @@ function view_html($param_arr) {
 	$query="select y.code as status_code,* FROM T_CUST_ACCOUNT a
 		left join p_vat_type_dtl x on x.p_vat_type_dtl_id = a.p_vat_type_dtl_id 
 		left join p_account_status y on y.p_account_status_id = a.p_account_status_id
-		WHERE kode_wilayah = '".$param_arr['kode_wilayah']."'";
+		WHERE f_get_wilayah_id(a.npwd) = '".$param_arr['kode_wilayah']."'";
 	if ($param_arr['p_vat_type_id']!=''){
 		$query .= "and a.p_vat_type_id = ".$param_arr['p_vat_type_id'];
 	}

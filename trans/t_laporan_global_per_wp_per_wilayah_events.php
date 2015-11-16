@@ -86,10 +86,10 @@ function print_laporan($param_arr){
 	$pdf->RowMultiBorderWithHeight(array("Tanggal",": ".dateToString($param_arr['date_start'])." s/d ".dateToString($param_arr['date_end'])),array('',''),6);
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="select a.*, b.kode_wilayah
+	$query="select a.*, f_get_wilayah(b.npwd) as kode_wilayah 
 			from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
 			left join t_cust_account b on a.npwpd = b.npwd
-			where b.kode_wilayah = ".$param_arr['kode_wilayah'];
+			where f_get_wilayah_id(b.npwd) = ".$param_arr['kode_wilayah'];
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',8);
@@ -169,10 +169,10 @@ function print_excel($param_arr) {
 	echo "<div><b>Tanggal : ".dateToString($param_arr['date_start'])." s.d ".dateToString($param_arr['date_end'])."</b></div><br/>";	
 
 	$dbConn = new clsDBConnSIKP();
-	$query="select a.*, b.kode_wilayah
+	$query="select a.*, f_get_wilayah(b.npwd) as kode_wilayah 
 			from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
 			left join t_cust_account b on a.npwpd = b.npwd
-			where b.kode_wilayah = ".$param_arr['kode_wilayah'];
+			where f_get_wilayah_id(b.npwd) = ".$param_arr['kode_wilayah'];
 	$dbConn->query($query);
 
 	$no =1;

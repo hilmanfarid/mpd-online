@@ -75,7 +75,7 @@ function GetCetakHTML($param_arr) {
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0" width="900">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>LAPORAN REKAP SKPDKB / STPD</strong></td> 
+                  		<td class="th"><strong>LAPORAN PEMBAYARAN</strong></td> 
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               		</table>';
@@ -184,7 +184,7 @@ function startExcel($filename = "laporan.xls") {
 
 function CetakExcel($param_arr) {
 	
-	startExcel("laporan_history_potensi_piutang.xls");
+	startExcel("laporan_pembayaran.xls");
 	
 	$dbConn	= new clsDBConnSIKP();
 	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
@@ -217,7 +217,7 @@ function CetakExcel($param_arr) {
 	$dbConn->close();
 
 	$output = '';
-	$output .= '<h2>LAPORAN HISTORY POTENSI PIUTANG<h2/>';
+	$output .= '<h2>LAPORAN PEMBAYARAN BERDASARKAN CARA BAYAR<h2/>';
 	$output .= '<h2>PERIODE PENETAPAN : '.$param_arr['start_date'].' s.d. '.$param_arr['end_date'].'</h2>';
 
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">

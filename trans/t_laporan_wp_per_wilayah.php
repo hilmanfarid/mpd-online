@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-AD36D502
+//Class_Initialize Event @2-4648786B
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -73,8 +73,13 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->Button2 = & new clsButton("Button2", $Method, $this);
             $this->cetak_laporan = & new clsControl(ccsHidden, "cetak_laporan", "cetak_laporan", ccsText, "", CCGetRequestParam("cetak_laporan", $Method, NULL), $this);
             $this->kode_wilayah = & new clsControl(ccsListBox, "kode_wilayah", "kode_wilayah", ccsText, "", CCGetRequestParam("kode_wilayah", $Method, NULL), $this);
-            $this->kode_wilayah->DSType = dsListOfValues;
-            $this->kode_wilayah->Values = array(array("1", "1 (BARAT)"), array("2", "2 (UTARA)"), array("3", "3 (TENGAH)"), array("4", "4 (TIMUR)"), array("5", "5 (SELATAN)"));
+            $this->kode_wilayah->DSType = dsSQL;
+            $this->kode_wilayah->DataSource = new clsDBConnSIKP();
+            $this->kode_wilayah->ds = & $this->kode_wilayah->DataSource;
+            list($this->kode_wilayah->BoundColumn, $this->kode_wilayah->TextColumn, $this->kode_wilayah->DBFormat) = array("", "", "");
+            $this->kode_wilayah->DataSource->SQL = "select p_business_area_id, business_area_name\n" .
+            "from p_business_area ";
+            $this->kode_wilayah->DataSource->Order = "";
             $this->kode_wilayah->Required = true;
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Jenis Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
