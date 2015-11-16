@@ -65,7 +65,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -207,7 +207,7 @@ $(document).ready(function()
  
                   <tr class="Controls">
                     <td class="th">Kode Wilayah</td> 
-                    <td><input id="p_regionFormbusiness_area" class="ControlsIN" value="{business_area}" maxlength="12" size="15" name="{business_area_Name}">&nbsp;<img onclick="javascript:kodewilayah()" border="0" src="../images/view.gif"><input id="p_regionFormp_business_area_id" value="{p_business_area_id}" type="hidden" name="{p_business_area_id_Name}"></td>
+                    <td><input style="WIDTH: 238px; HEIGHT: 20px" id="p_regionFormbusiness_area_name" class="ControlsIN" value="{business_area_name}" maxlength="12" size="27" name="{business_area_name_Name}">&nbsp;<img onclick="javascript:kodewilayah()" border="0" src="../images/view.gif"><input id="p_regionFormp_business_area_id" value="{p_business_area_id}" type="hidden" name="{p_business_area_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -269,6 +269,10 @@ function isNumberKey(evt)
 
          return true;
       }
+
+          function kodewilayah() {
+        getFrom_LOV('p_regionForm','p_business_area_id,business_area_name','lov_kode_wilayah.php');
+    }
         </script>
 </body>
 </html>

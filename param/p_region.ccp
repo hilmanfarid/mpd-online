@@ -139,9 +139,12 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="23" sourceType="Table" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_regionForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_regionForm" customDeleteType="SQL" customDelete="DELETE FROM p_region 
+		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_regionForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_regionForm" customDeleteType="SQL" customDelete="DELETE FROM p_region 
 WHERE  p_region_id = {p_region_id}" activeCollection="USQLParameters" customUpdateType="SQL" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customInsert="INSERT INTO p_region(p_region_id, p_business_area_id, region_name, description, updated_date, updated_by, p_region_level_id, parent_id, region_code, postal_code,nasional_code) 
-VALUES(generate_id('sikp','p_region','p_region_id'), {p_business_area_id}, '{region_name}', '{description}', sysdate, '{updated_by}', '{p_region_level_id}', decode({parent_id},0,null,{parent_id}), '{region_code}', '{postal_code}','{nasional_code}')" customInsertType="SQL" dataSource="p_region" customUpdate="UPDATE p_region SET 
+VALUES(generate_id('sikp','p_region','p_region_id'), {p_business_area_id}, '{region_name}', '{description}', sysdate, '{updated_by}', '{p_region_level_id}', decode({parent_id},0,null,{parent_id}), '{region_code}', '{postal_code}','{nasional_code}')" customInsertType="SQL" dataSource="SELECT a.* ,business_area_name
+FROM p_region a
+left join p_business_area b on a.p_business_area_id = b.p_business_area_id
+WHERE p_region_id = {p_region_id} " customUpdate="UPDATE p_region SET 
 region_code='{region_code}',
 region_name='{region_name}', 
 p_region_level_id={p_region_level_id},
@@ -245,7 +248,7 @@ WHERE p_region_id={p_region_id}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="251" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="business_area" fieldSource="business_area" required="False" caption="Kode Wilayah" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="p_regionFormbusiness_area">
+				<TextBox id="251" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="business_area_name" fieldSource="business_area_name" required="False" caption="Kode Wilayah" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="p_regionFormbusiness_area_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -285,7 +288,6 @@ WHERE p_region_id={p_region_id}">
 				<SQLParameter id="240" parameterType="URL" variable="p_region_id" dataType="Float" parameterSource="p_region_id"/>
 			</SQLParameters>
 			<JoinTables>
-				<JoinTable id="259" tableName="p_region" schemaName="sikp" posLeft="10" posTop="10" posWidth="153" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
