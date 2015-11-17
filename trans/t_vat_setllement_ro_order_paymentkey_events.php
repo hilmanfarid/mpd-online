@@ -267,6 +267,7 @@ function t_vat_setllementForm_BeforeShow(& $sender)
   		$sql="select sikp.f_payment_manual_paymentkey(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
   		$dbConn->query($sql);
   		$dbConn->next_record();
+		$pesan = $dbConn->f('f_payment_manual_paymentkey');
   		echo "
   		<script>
   		alert('".$dbConn->f('f_payment_manual_paymentkey')."');
@@ -278,11 +279,13 @@ function t_vat_setllementForm_BeforeShow(& $sender)
   		$sql2="select sikp.f_print_register(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
   		$dbConn2->query($sql2);
   		$dbConn2->next_record();
-		echo "
-  			<script>
-  				window.open('../report/cetak_registrasi_payment_large_arial.php?t_customer_order_id=".CCGetFromGet('t_customer_order_id')."&codeline=".$dbConn2->f('f_print_register')."', '_blank', 'location=yes,height=500,width=800,scrollbars=yes,status=yes');
-  			</script>
-  		";
+		if ($pesan != "Proses dibatalkan. Flag Pembayaran sudah pernah dilakukan."){
+			echo "
+	  			<script>
+	  				window.open('../report/cetak_registrasi_payment_large_arial.php?t_customer_order_id=".CCGetFromGet('t_customer_order_id')."&codeline=".$dbConn2->f('f_print_register')."', '_blank', 'location=yes,height=500,width=800,scrollbars=yes,status=yes');
+	  			</script>
+	  		";
+		}
   		$dbConn2->close();
 
   	}else if($action_button2=='cetak_register'){
