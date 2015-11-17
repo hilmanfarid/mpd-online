@@ -7,7 +7,7 @@ function BindEvents()
 }
 //End BindEvents Method
 
-//Page_BeforeShow @1-3CA6B8E9
+//Page_BeforeShow @1-83C61F57
 function Page_BeforeShow(& $sender)
 {
     $Page_BeforeShow = true;
@@ -67,7 +67,7 @@ function Page_BeforeShow(& $sender)
 function print_excel($param_arr) {
 	
 	startExcel("laporan_penerimaan_bpthb");
-	echo "<div><h3> LAPORAN PENERIMAAN BPHTB </h3></div>";	
+	echo "<div><h3> LAPORAN PENERIMAAN BPHTB PENGURANGAN</h3></div>";	
 	echo "<div><h3>TANGGAL : ".dateToString($param_arr['date_start'], true)." s/d ".dateToString($param_arr['date_end'], true)."</h3></div>";	
 
 	echo '<table border="1" width="100%"> ';
@@ -129,13 +129,16 @@ function print_excel($param_arr) {
 		$criteria[] = " b.p_bphtb_legal_doc_type_id = ".$param_arr['p_bphtb_legal_doc_type_id'];
 	}
 	
+	$criteria[] = " pengurangan.t_bphtb_exemption_id is not null ";	
+
 	$whereClause = join(" AND ", $criteria);
 	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date, b.t_ppat_id,
 					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount, b.verificated_by    
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
-			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id";
+			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id
+			LEFT JOIN t_bphtb_exemption AS pengurangan ON b.t_bphtb_registration_id = pengurangan.t_bphtb_registration_id";
 	if(!empty($whereClause))
 		$query.= " WHERE ".$whereClause;
 	$query.= " ORDER BY a.receipt_no ASC";
@@ -218,7 +221,7 @@ function print_laporan($param_arr){
 	$pdf->SetFont('helvetica', '',12);
 	$pdf->SetWidths(array(200));
 	$pdf->ln(1);
-    $pdf->RowMultiBorderWithHeight(array("LAPORAN PENERIMAAN BPHTB "),array('',''),6);
+    $pdf->RowMultiBorderWithHeight(array("LAPORAN PENERIMAAN BPHTB PENGURANGAN"),array('',''),6);
 	//$pdf->ln(8);
 	$pdf->SetWidths(array(40,200));
 	$pdf->ln(4);
@@ -262,13 +265,16 @@ function print_laporan($param_arr){
 		$criteria[] = " b.p_bphtb_legal_doc_type_id = ".$param_arr['p_bphtb_legal_doc_type_id'];
 	}
 
+	$criteria[] = " pengurangan.t_bphtb_exemption_id is not null ";
+
 	$whereClause = join(" AND ", $criteria);
 	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date,
 					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount    
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
-			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id";
+			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id
+			LEFT JOIN t_bphtb_exemption AS pengurangan ON b.t_bphtb_registration_id = pengurangan.t_bphtb_registration_id";
 	if(!empty($whereClause))
 		$query.= " WHERE ".$whereClause;
 	$query.= " order by trunc(b.creation_date) ASC, upper(b.wp_name) ASC";

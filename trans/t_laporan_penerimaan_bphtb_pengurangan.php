@@ -1,8 +1,8 @@
 <?php
-//Include Common Files @1-B1528462
+//Include Common Files @1-4FBE7F66
 define("RelativePath", "..");
 define("PathToCurrentPage", "/trans/");
-define("FileName", "t_laporan_penerimaan_bphtb.php");
+define("FileName", "t_laporan_penerimaan_bphtb_pengurangan.php");
 include_once(RelativePath . "/Common.php");
 include_once(RelativePath . "/Template.php");
 include_once(RelativePath . "/Sorter.php");
@@ -170,7 +170,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-4E5FB586
+//Operation Method @2-5046556B
     function Operation()
     {
         if(!$this->Visible)
@@ -193,7 +193,7 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button3";
             }
         }
-        $Redirect = "t_laporan_penerimaan_bphtb.php";
+        $Redirect = "t_laporan_penerimaan_bphtb_pengurangan.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
@@ -292,7 +292,7 @@ function GetPrimaryKey($keyName)
 
 } //End t_laporan_penerimaan_bphtb Class @2-FCB6E20C
 
-//Initialize Page @1-36DE4740
+//Initialize Page @1-6606A62E
 // Variables
 $FileName = "";
 $Redirect = "";
@@ -308,7 +308,7 @@ $CCSEventResult = "";
 
 $FileName = FileName;
 $Redirect = "";
-$TemplateFileName = "t_laporan_penerimaan_bphtb.html";
+$TemplateFileName = "t_laporan_penerimaan_bphtb_pengurangan.html";
 $BlockToParse = "main";
 $TemplateEncoding = "CP1252";
 $ContentType = "text/html";
@@ -316,8 +316,8 @@ $PathToRoot = "../";
 $Charset = $Charset ? $Charset : "windows-1252";
 //End Initialize Page
 
-//Include events file @1-B9F4F9FC
-include_once("./t_laporan_penerimaan_bphtb_events.php");
+//Include events file @1-DD6A6DEB
+include_once("./t_laporan_penerimaan_bphtb_pengurangan_events.php");
 //End Include events file
 
 //Before Initialize @1-E870CEBC

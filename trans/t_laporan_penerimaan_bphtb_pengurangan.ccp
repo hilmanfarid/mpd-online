@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="None" wizardThemeVersion="3.0" pasteActions="pasteActions" needGeneration="0">
 	<Components>
-		<Record id="2" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_laporan_penerimaan_bphtb" wizardCaption="Search T Payment Receipt " wizardOrientation="Vertical" wizardFormMethod="post" returnPage="t_laporan_penerimaan_bphtb.ccp" PathID="t_laporan_penerimaan_bphtb" pasteActions="pasteActions">
+		<Record id="2" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_laporan_penerimaan_bphtb" wizardCaption="Search T Payment Receipt " wizardOrientation="Vertical" wizardFormMethod="post" returnPage="t_laporan_penerimaan_bphtb_pengurangan.ccp" PathID="t_laporan_penerimaan_bphtb" pasteActions="pasteActions">
 			<Components>
 				<Button id="7" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" PathID="t_laporan_penerimaan_bphtbButton1">
 					<Components/>
@@ -111,7 +111,7 @@ from p_bphtb_legal_doc_type">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -135,8 +135,8 @@ from p_bphtb_legal_doc_type">
 		</Record>
 	</Components>
 	<CodeFiles>
-		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_penerimaan_bphtb_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-		<CodeFile id="Code" language="PHPTemplates" name="t_laporan_penerimaan_bphtb.php" forShow="True" url="t_laporan_penerimaan_bphtb.php" comment="//" codePage="windows-1252"/>
+		<CodeFile id="Events" language="PHPTemplates" name="t_laporan_penerimaan_bphtb_pengurangan_events.php" forShow="False" comment="//" codePage="windows-1252"/>
+		<CodeFile id="Code" language="PHPTemplates" name="t_laporan_penerimaan_bphtb_pengurangan.php" forShow="True" url="t_laporan_penerimaan_bphtb_pengurangan.php" comment="//" codePage="windows-1252"/>
 	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
