@@ -20,7 +20,7 @@ b.payment_vat_amount as total_pokok, a.total_penalty_amount as total_denda, b.pa
 upper(trim(replace(f_terbilang(to_char(round(b.payment_vat_amount + nvl(A .total_penalty_amount,0))),'rp.'), '  ', ' '))) || ' RUPIAH' as dengan_huruf,
 '4'||(d.code || c.code) AS kode_rekening, upper(c.vat_code) as nama_rekening,
 to_char(a.start_period,'yyyymmdd') as start_period, to_char(a.end_period,'yyyymmdd') as end_period,
-company_brand
+company_brand,brand_address_name,brand_address_no
 FROM t_vat_setllement AS a
 LEFT JOIN t_payment_receipt AS b ON a.t_vat_setllement_id = b.t_vat_setllement_id
 LEFT JOIN p_vat_type_dtl AS c ON a.p_vat_type_dtl_id = c.p_vat_type_dtl_id
@@ -50,6 +50,8 @@ while ($dbConn->next_record()) {
 	$data["end_period"]		        = $dbConn->f("end_period");
 	$data["no_kohir"]		        = $dbConn->f("no_kohir");
 	$data["company_brand"]		        = $dbConn->f("company_brand");
+	$data["brand_address_name"]		        = $dbConn->f("brand_address_name");
+	$data["brand_address_no"]		        = $dbConn->f("brand_address_no");
 	
 }
 $_HEIGHT = 4;
@@ -274,7 +276,7 @@ $pdf->RowMultiBorderWithHeight(
 			array
 			(	
 			    "",
-				"ALAMAT", ": ".$data['alamat_wp']
+				"ALAMAT MERK DAGANG", ": ".$data['brand_address_name']." ".$data['brand_address_no']
 			),
 			array
 			(
