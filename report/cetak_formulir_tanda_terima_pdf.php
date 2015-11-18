@@ -12,7 +12,7 @@ $dbConn = new clsDBConnSIKP();
 
 $query = "begin;";
 $dbConn->query($query);
-$query = "SELECT * from(
+$query = "SELECT *,regexp_replace(brand_address_name, '\r|\n', '', 'g') as brand_address_name from(
 SELECT
 	 b.code || decode(a.legal_doc_desc,null,'',' ('||a.legal_doc_desc||')') as doc_name, c.order_no,A.t_customer_order_id
 FROM
@@ -33,7 +33,10 @@ while ($dbConn->next_record()) {
 	if($i==0){
 		$data["order_no"] = $dbConn->f("order_no");
 		$data["wp_name"] = $dbConn->f("wp_name");
+		$data["company_brand"] = $dbConn->f("company_brand");
 		$data["address_name"] = $dbConn->f("address_name");
+		$data["brand_address_name"] = $dbConn->f("brand_address_name");
+		$data["brand_address_no"] = $dbConn->f("brand_address_no");
 	}
 	$i++;
 }
@@ -203,21 +206,33 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array($kolom1, $kolom2));
 		$this->SetAligns(array("L", "L"));
 		if(empty($data["wp_name"])){
-			$this->printIsi('Nama', 2);
+			$this->printIsi('Nama / Merk Dagang', 2);
 		}else{
-	   		$this->RowMultiBorderWithHeight(array("       "."Nama",
-											  ":  ".$data["wp_name"])
+	   		$this->RowMultiBorderWithHeight(array("       "."Nama / Merk Dagang",
+											  ":  ".$data["wp_name"]." / ".$data["company_brand"])
 											  ,
 										array('L',
 										      'R')
 											  ,$this->height*2);
 		
 	   	}
-		if(empty($data["address_name"])){
-			$this->printIsi('Alamat', 2);
+		
+		/*if(empty($data["company_brand"])){
+			$this->printIsi('Merk Dagang', 2);
 		}else{
-	   	$this->RowMultiBorderWithHeight(array("       "."Alamat",
-											  ":  ".$data["address_name"])
+	   		$this->RowMultiBorderWithHeight(array("       "."Merk Dagang",
+											  ":  ".$data["company_brand"])
+											  ,
+										array('L',
+										      'R')
+											  ,$this->height*2);
+		
+	   	}*/
+		if(empty($data["brand_address_name"])){
+			$this->printIsi('Alamat Merk Dagang', 2);
+		}else{
+	   	$this->RowMultiBorderWithHeight(array("       "."Alamat Merk Dagang",
+											  ":  ".$data["brand_address_name"]." ".$data["brand_address_no"])
 											  ,
 										array('L',
 										      'R')
@@ -256,7 +271,7 @@ class FormCetak extends FPDF {
         $ttdKolom1 = ($this->lengthCell * 5) / 8;
         $ttdKolom2 = ($this->lengthCell * 3) / 8;
         $this->cell($ttdKolom1, $this->height, '', 'L', 0,'L');
-        $this->cell($ttdKolom2, $this->height, 'Bandung, '. date('d F Y').'           ', 'R', 0,'R');
+        $this->cell($ttdKolom2, $this->height, 'Bandung, ...................................................', 'R', 0,'R');
         $this->Ln();
         $this->cell($ttdKolom1, $this->height, '', 'L', 0,'C');
         $this->cell($ttdKolom2, $this->height, '    Yang Menerima', 'R', 0,'C');
