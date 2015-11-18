@@ -166,9 +166,11 @@ class FormCetak extends FPDF {
 		$tgl = CCGetFromGet("tgl", "");
         $this->cell($ttdKolom1, $this->height, '', 'L', 0,'L');
         if ($tgl == ''){
-			$this->cell($ttdKolom2, $this->height, 'Bandung, '. date('d F Y'), 'R', 0,'C');
+			//$this->cell($ttdKolom2, $this->height, 'Bandung, '. date('d F Y'), 'R', 0,'C');
+			$this->cell($ttdKolom2, $this->height, 'Bandung, ....................................................', 'R', 0,'C');
 		}else{
-			$this->cell($ttdKolom2, $this->height, 'Bandung, '. $tgl, 'R', 0,'C');
+			//$this->cell($ttdKolom2, $this->height, 'Bandung, '. $tgl, 'R', 0,'C');
+			$this->cell($ttdKolom2, $this->height, 'Bandung, ....................................................', 'R', 0,'C');
 		}
         $this->Ln();
         $this->cell($ttdKolom1, $this->height, '', 'L', 0,'C');
