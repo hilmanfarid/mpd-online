@@ -30,6 +30,7 @@ function Page_BeforeShow(& $sender)
 	if($cetak_laporan == 'view_html') {
 		$param_arr = array();
 		$param_arr['status_pembayaran'] = CCGetFromGet("status_pembayaran", 1);
+		$param_arr['p_vat_type_id'] = CCGetFromGet("p_vat_type_id",'');
 		if ($param_arr['status_pembayaran'] == 1){
 			$param_arr['status_pembayaran_code']='SUDAH PERNAH BAYAR';
 		}else{
@@ -65,10 +66,15 @@ function view_html($param_arr) {
                 <tr>';
 
 	$output.='<th>NO</th>';
+	$output.='<th>TANGGAL PENGUKUHAN</th>';
 	$output.='<th>NPWPD</th>';
 	$output.='<th>NAMA WP</th>';
 	$output.='<th>ALAMAT WP</th>';
+	$output.='<th>NAMA MERK DAGANG</th>';
+	$output.='<th>ALAMAT MERK DAGANG</th>';
 	$output.='<th>AYAT PAJAK</th>';
+	$output.='<th>WILAYAH</th>';
+	$output.='<th>BESARNYA</th>';
 	$output.='</tr>';
 	
 	$no=1;
@@ -79,8 +85,15 @@ function view_html($param_arr) {
 	$query="SELECT
 				d.vat_code,
 				B.npwpd AS npwd,
-				B.wp_name,
-				B.wp_address_name
+				to_char (e.active_date,'dd-mm-yyyy') as active_date_short,
+				e.wp_name,
+				e.wp_address_name,
+				e.wp_address_no,
+				e.company_brand,
+				e.brand_address_name,
+				e.brand_address_no,
+				e.t_cust_account_id,
+				f_get_wilayah(e.npwd) as kode_wilayah 
 			FROM
 				t_customer_order A
 			LEFT JOIN t_vat_registration B ON A .t_customer_order_id = B.t_customer_order_id
@@ -88,12 +101,15 @@ function view_html($param_arr) {
 			left join t_cust_account e on e.npwd=b.npwpd
 			WHERE p_rqst_type_id IN (1,2,3,4,5)" ;
 	if ($param_arr['status_pembayaran'] == 1){
-		$query.='AND EXISTS (select 1 from t_vat_setllement where npwd = b.npwpd)';
+		$query.='AND EXISTS (select 1 from t_payment_receipt where t_cust_account_id = e.t_cust_account_id)';
 	}else{
-		$query.='and not EXISTS (select 1 from t_vat_setllement where npwd = b.npwpd)';
+		$query.='and not EXISTS (select 1 from t_payment_receipt where t_cust_account_id = e.t_cust_account_id)';
 	}
-	$query.='and e.npwd is not null
-			ORDER BY d.p_vat_type_id, d.p_vat_type_dtl_id, B.wp_name';
+	if ($param_arr['p_vat_type_id']!=''){
+		$query.="and e.p_vat_type_id = ".$param_arr['p_vat_type_id'];
+	}
+	$query.="and e.npwd is not null
+			ORDER BY d.p_vat_type_id,d.vat_code, B.wp_name";
 	//echo	$query; exit;
 	$dbConn->query($query);
 
@@ -102,16 +118,35 @@ function view_html($param_arr) {
 						"t_piutang_pajak_penetapan_final_id" => $dbConn->f("t_piutang_pajak_penetapan_final_id"),
 						"npwd" => $dbConn->f("npwd"),
 						"wp_name" => $dbConn->f("wp_name"),
-						"wp_address_name" => $dbConn->f("wp_address_name"),
+						"wp_address_name" => $dbConn->f("wp_address_name").' '.$dbConn->f("wp_address_no"),
+						"active_date" => $dbConn->f("active_date_short"),
+						"company_brand" => $dbConn->f("company_brand"),
+						"brand_address_name" => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no"),
+						"kode_wilayah" => $dbConn->f("kode_wilayah"),
+						"t_cust_account_id" => $dbConn->f("t_cust_account_id"),
 						"ayat_pajak" => $dbConn->f("vat_code")
 						);
 		
 		$output .= '<tr>';
 			$output .= '<td align="center">'.$no++.'</td>';
+			$output .= '<td align="left">'.$item['active_date'].'</td>';
 			$output .= '<td align="left">'.$item['npwd'].'</td>';
 			$output .= '<td align="left">'.$item['wp_name'].'</td>';
 			$output .= '<td align="left">'.$item['wp_address_name'].'</td>';
+			$output .= '<td align="left">'.$item['company_brand'].'</td>';
+			$output .= '<td align="left">'.$item['brand_address_name'].'</td>';
 			$output .= '<td align="left">'.$item['ayat_pajak'].'</td>';
+			$output .= '<td align="left">'.$item['kode_wilayah'].'</td>';
+			
+			$dbConn2 = new clsDBConnSIKP();
+
+			$query2 ="SELECT sum (payment_amount) as jumlah from t_payment_receipt 
+					 where t_cust_account_id = ".$item['t_cust_account_id'];
+			$dbConn2->query($query2);
+			$dbConn2->next_record();
+			$jumlah = $dbConn2->f("jumlah");
+
+			$output .= '<td align="right">'.number_format($jumlah,0,",",".").'</td>';
 		$output .= '</tr>';
 	}
 	$output.='</table>';

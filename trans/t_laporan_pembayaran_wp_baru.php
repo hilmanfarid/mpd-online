@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-D4141023
+//Class_Initialize Event @2-A453409F
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -76,11 +76,13 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->status_pembayaran->DSType = dsListOfValues;
             $this->status_pembayaran->Values = array(array("1", "SUDAH BAYAR"), array("2", "BELUM BAYAR"));
             $this->status_pembayaran->Required = true;
+            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-09627291
+//Validate Method @2-BEB89528
     function Validate()
     {
         global $CCSLocales;
@@ -88,19 +90,25 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
         $Where = "";
         $Validation = ($this->cetak_laporan->Validate() && $Validation);
         $Validation = ($this->status_pembayaran->Validate() && $Validation);
+        $Validation = ($this->vat_code->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->status_pembayaran->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-2552E42D
+//CheckErrors Method @2-7ABEDA9B
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->cetak_laporan->Errors->Count());
         $errors = ($errors || $this->status_pembayaran->Errors->Count());
+        $errors = ($errors || $this->vat_code->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -159,7 +167,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-D9691347
+//Show Method @2-278F735E
     function Show()
     {
         global $CCSUseAmp;
@@ -186,6 +194,8 @@ function GetPrimaryKey($keyName)
             $Error = "";
             $Error = ComposeStrings($Error, $this->cetak_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->status_pembayaran->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -207,6 +217,8 @@ function GetPrimaryKey($keyName)
         $this->Button2->Show();
         $this->cetak_laporan->Show();
         $this->status_pembayaran->Show();
+        $this->vat_code->Show();
+        $this->p_vat_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
