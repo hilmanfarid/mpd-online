@@ -117,7 +117,7 @@ function view_html($param_arr) {
 			ORDER BY d.p_vat_type_id,d.vat_code, B.wp_name";
 	//echo	$query; exit;
 	$dbConn->query($query);
-
+	$total = 0;
 	while($dbConn->next_record()){
 		$item = array(
 						"t_piutang_pajak_penetapan_final_id" => $dbConn->f("t_piutang_pajak_penetapan_final_id"),
@@ -150,10 +150,15 @@ function view_html($param_arr) {
 			$dbConn2->query($query2);
 			$dbConn2->next_record();
 			$jumlah = $dbConn2->f("jumlah");
+			$total += $jumlah;
 
 			$output .= '<td align="right">'.number_format($jumlah,0,",",".").'</td>';
 		$output .= '</tr>';
 	}
+	$output .= '<tr>';
+		$output .= '<td align="center" colspan=9>JUMLAH</td>';
+		$output .= '<td align="center">'.number_format($total,0,",",".").'</td>';
+	$output .= '</tr>';
 	$output.='</table>';
 	
 	return $output;

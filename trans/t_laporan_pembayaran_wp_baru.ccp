@@ -56,13 +56,13 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="27" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_laporan_piutang_pajakp_year_period_id" required="True">
+				<Hidden id="27" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_laporan_piutang_pajakp_year_period_id" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
