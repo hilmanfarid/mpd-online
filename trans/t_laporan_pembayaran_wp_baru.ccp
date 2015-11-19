@@ -44,7 +44,19 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="20" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_laporan_piutang_pajakp_vat_type_id" fieldSource="p_vat_type_id">
+				<Hidden id="20" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" PathID="t_laporan_piutang_pajakp_vat_type_id" fieldSource="p_vat_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<TextBox id="25" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="year_code" PathID="t_laporan_piutang_pajakyear_code" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Hidden id="27" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_laporan_piutang_pajakp_year_period_id" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>

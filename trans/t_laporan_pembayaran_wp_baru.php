@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-A453409F
+//Class_Initialize Event @2-982B0577
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -78,11 +78,15 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->status_pembayaran->Required = true;
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
+            $this->year_code->Required = true;
+            $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
+            $this->p_year_period_id->Required = true;
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-BEB89528
+//Validate Method @2-E4550097
     function Validate()
     {
         global $CCSLocales;
@@ -92,16 +96,20 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
         $Validation = ($this->status_pembayaran->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->year_code->Validate() && $Validation);
+        $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->status_pembayaran->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-7ABEDA9B
+//CheckErrors Method @2-1450E68E
     function CheckErrors()
     {
         $errors = false;
@@ -109,6 +117,8 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
         $errors = ($errors || $this->status_pembayaran->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->year_code->Errors->Count());
+        $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -167,7 +177,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-278F735E
+//Show Method @2-2E67C68B
     function Show()
     {
         global $CCSUseAmp;
@@ -196,6 +206,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->status_pembayaran->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -219,6 +231,8 @@ function GetPrimaryKey($keyName)
         $this->status_pembayaran->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
+        $this->year_code->Show();
+        $this->p_year_period_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

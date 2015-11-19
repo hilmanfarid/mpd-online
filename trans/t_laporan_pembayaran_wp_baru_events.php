@@ -31,6 +31,7 @@ function Page_BeforeShow(& $sender)
 		$param_arr = array();
 		$param_arr['status_pembayaran'] = CCGetFromGet("status_pembayaran", 1);
 		$param_arr['p_vat_type_id'] = CCGetFromGet("p_vat_type_id",'');
+		$param_arr['p_year_period_id'] = CCGetFromGet("p_year_period_id",'');
 		if ($param_arr['status_pembayaran'] == 1){
 			$param_arr['status_pembayaran_code']='SUDAH PERNAH BAYAR';
 		}else{
@@ -108,7 +109,11 @@ function view_html($param_arr) {
 	if ($param_arr['p_vat_type_id']!=''){
 		$query.="and e.p_vat_type_id = ".$param_arr['p_vat_type_id'];
 	}
-	$query.="and e.npwd is not null
+	$query.="and e.npwd is not null 
+			and e.active_date between 
+					(select start_date from p_year_period where p_year_period_id = ".$param_arr['p_year_period_id'].")
+			 	and
+					(select end_date from p_year_period where p_year_period_id = ".$param_arr['p_year_period_id'].")
 			ORDER BY d.p_vat_type_id,d.vat_code, B.wp_name";
 	//echo	$query; exit;
 	$dbConn->query($query);
