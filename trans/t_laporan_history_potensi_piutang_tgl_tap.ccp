@@ -90,7 +90,14 @@ order by p_settlement_type_id" fieldSource="i_flag_setoran" required="True">
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-			</Components>
+				<Button id="582" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch2" PathID="t_rep_lap_spjpSearchButton_DoSearch2">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

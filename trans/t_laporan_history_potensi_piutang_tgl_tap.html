@@ -112,7 +112,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -186,9 +186,17 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <tr class="Controls">
                     <td class="search-field">&nbsp;</td> 
                     <td class="search-field">&nbsp;</td> 
-                    <td>&nbsp;</td> 
+                    <td></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_spjpSearchButton_DoSearch1" class="btn_tambah" onclick="cetak_excel(); return false;" value="TAMPILKAN EXCEL" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch2 --><input id="t_rep_lap_spjpSearchButton_DoSearch2" class="btn_tambah" onclick="cetak_rekap(); return false;" value="TAMPILKAN REKAP" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch2 --></td>
                   </tr>
                 </table>
               </td>
@@ -269,6 +277,30 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
             alert("Semua Filter Harus Diisi");
         }else {
                 var params = "?doAction=view_html";
+                params += "&p_vat_type_id="+p_vat_type_id;
+                params += "&vat_code="+vat_code;
+                params += "&ListBox1="+status_bayar;
+                params += "&ListBox2="+ketetapan;
+                params += "&date_start_laporan="+start_date;
+                params += "&date_end_laporan="+end_date;
+                location.href="t_laporan_history_potensi_piutang_tgl_tap.php"+params;
+        }
+    }
+
+	function cetak_rekap()
+    {
+        status_bayar = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
+        ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
+        p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
+        vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
+        start_date = document.getElementById("t_rep_lap_spjpSearchdate_start_laporan").value;
+        end_date = document.getElementById("t_rep_lap_spjpSearchdate_end_laporan").value;
+
+                
+        if(start_date == "" || end_date == "") {
+            alert("Semua Filter Harus Diisi");
+        }else {
+                var params = "?doAction=view_rekap_html";
                 params += "&p_vat_type_id="+p_vat_type_id;
                 params += "&vat_code="+vat_code;
                 params += "&ListBox1="+status_bayar;
