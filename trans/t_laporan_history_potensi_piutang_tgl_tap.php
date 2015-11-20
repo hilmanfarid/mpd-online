@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-A3AB14BF
+//Class_Initialize Event @3-5FEE0913
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -93,6 +93,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->DatePicker_end_start_laporan1 = & new clsDatePicker("DatePicker_end_start_laporan1", "t_rep_lap_spjpSearch", "date_start_laporan", $this);
             $this->DatePicker_end_start_laporan2 = & new clsDatePicker("DatePicker_end_start_laporan2", "t_rep_lap_spjpSearch", "date_end_laporan", $this);
             $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
+            $this->Button_DoSearch3 = & new clsButton("Button_DoSearch3", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -152,7 +153,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-2B2B3509
+//Operation Method @3-DC11CDFE
     function Operation()
     {
         if(!$this->Visible)
@@ -173,6 +174,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_DoSearch1";
             } else if($this->Button_DoSearch2->Pressed) {
                 $this->PressedButton = "Button_DoSearch2";
+            } else if($this->Button_DoSearch3->Pressed) {
+                $this->PressedButton = "Button_DoSearch3";
             }
         }
         $Redirect = "t_laporan_history_potensi_piutang_tgl_tap.php";
@@ -189,6 +192,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button_DoSearch2->CCSEvents, "OnClick", $this->Button_DoSearch2)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button_DoSearch3") {
+                if(!CCGetEvent($this->Button_DoSearch3->CCSEvents, "OnClick", $this->Button_DoSearch3)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -196,7 +203,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-7E2A3BD4
+//Show Method @3-7DA689E0
     function Show()
     {
         global $CCSUseAmp;
@@ -258,6 +265,7 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_end_start_laporan1->Show();
         $this->DatePicker_end_start_laporan2->Show();
         $this->Button_DoSearch2->Show();
+        $this->Button_DoSearch3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

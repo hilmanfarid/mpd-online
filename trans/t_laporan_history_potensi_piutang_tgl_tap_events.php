@@ -58,6 +58,9 @@ function Page_BeforeShow(& $sender)
 	if($doAction == 'cetak_excel') {		
 		CetakExcel($param_arr);
 	}
+	if($doAction == 'cetak_rekap_excel') {		
+		CetakRekapExcel($param_arr);
+	}
 	
 // -------------------------
 //End Custom Code
@@ -458,5 +461,153 @@ function GetCetakRekapHTML($param_arr) {
 	$output.='</table>';
 	
 	return $output;
+}
+
+function CetakRekapExcel($param_arr) {
+	
+	startExcel("laporan_history_potensi_piutang.xls");
+	$dbConn	= new clsDBConnSIKP();
+	$query="select code from p_settlement_type 
+			where p_settlement_type_id =".$param_arr['ketetapan'];
+	//echo $query;exit;
+	
+	$dbConn->query($query);
+	$dbConn->next_record();
+	$ketetapan = $dbConn->f("code");
+
+	$output = '';
+	$output .= '<table><tr><td colspan=6 align="center"><strong>LAPORAN PENERBITAN '.$ketetapan.'<strong/></td></tr>';
+	$output .= '<tr><td colspan=6 align="center"><strong>TAHUN '.substr($param_arr['start_date'],0,4).'</strong></td></tr>';
+	$output .= '<tr><td colspan=6 align="center"><strong>PERIODE '.$param_arr['start_date'].' SD '.$param_arr['end_date'].'</strong></td></tr>';
+	$output .= '<tr><td colspan=6 align="center"></td></tr>';
+	$output .= '<tr><td colspan=6 align="center"></td></tr></table>';
+
+	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
+                <tr >';
+
+	$output.='<th align="center" >NO</th>';
+	$output.='<th align="center" >BULAN PENERBITAN</th>';
+	$output.='<th align="center" >KETETAPAN</th>';
+	$output.='<th align="center" >REALISASI</th>';
+	$output.='<th align="center" >SISA</th>';
+	$output.='<th align="center" >KETERANGAN</th>';
+	$output.='</tr>';
+	
+	$dbConn	= new clsDBConnSIKP();
+	$query="SELECT code,to_char(start_date,'yyyy-mm-dd') as start_date,
+			to_char(end_date,'yyyy-mm-dd') as end_date 
+			FROM p_finance_period where  
+			start_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
+				and to_date('".$param_arr['end_date']."','yyyy-mm-dd')
+			or
+			end_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
+				and to_date('".$param_arr['end_date']."','yyyy-mm-dd')
+			ORDER BY start_date";
+	//echo $query;exit;
+	$data = array();
+	$dbConn->query($query);
+	while ($dbConn->next_record()) {
+		$data[] = $dbConn->Record;
+	}
+	$dbConn->close();
+	$jumlah =0;
+	$jumlah_relisasi =0;
+	$jumlah_sisa =0;
+	for ($i = 0; $i < count($data); $i++) {
+
+		$dbConn2	= new clsDBConnSIKP();
+		$query2="select sum(y.payment_amount) as realisasi, 
+						sum(a.total_vat_amount+nvl(a.total_penalty_amount,0)) as ketetapan
+			from t_vat_setllement a 
+			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
+			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
+			where p_settlement_type_id = ".$param_arr['ketetapan']." 
+			and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
+				and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
+			and a.settlement_date between to_date('".$data[$i]['start_date']."','yyyy-mm-dd') 
+				and (to_date('".$data[$i]['end_date']."','yyyy-mm-dd')+1)
+			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
+			and x.p_account_status_id = 1";
+		if ($param_arr['p_vat_type_id']!=''){
+			$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
+					from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
+		}
+		if ($param_arr['status_bayar']==2){
+			$query2.="and receipt_no is not null";
+		}
+		if ($param_arr['status_bayar']==3){
+			$query2.="and receipt_no is null";
+		}
+
+		//echo $query2;exit;
+		$data2 = array();
+		$dbConn2->query($query2);
+		while ($dbConn2->next_record()) {
+			$data2 = $dbConn2->Record;
+		}
+		$dbConn2->close();
+		//print_r($data2); exit;
+		
+		$output.='<tr ><td align="center" >'.($i+1).'</td>';
+		$output.='<td align="left" >'.$data[$i]['code'].'</td>';
+		$output.='<td align="right" >'.number_format($data2['ketetapan'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data2['realisasi'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data2['ketetapan']-$data2['realisasi'], 2, ',', '.').'</td>';
+		$output.='<td align="left" ></td>';
+		$output.='</tr>';
+		$jumlah +=$data2['ketetapan'];
+		$jumlah_relisasi += $data2['realisasi'];
+		$jumlah_sisa += ($data2['ketetapan']-$data2['realisasi']);
+	}
+
+	$output.='<tr><td align="center" colspan=2 >Jumlah</td>';
+	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_relisasi, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_sisa, 2, ',', '.').'</td>';
+	$output.='<td align="center"></td>';
+	$output.='</tr>';
+
+	$output.='</table>';
+
+	$output.='<table width="100%">';
+	$output.='<tr>
+				<td align="center" width="50%"></td>
+			 </tr>
+			 <tr>
+				<td align="center" width="50%"></td>
+			 </tr>
+			 <tr>
+			 	<td colspan=3></td>
+				<td align="center" colspan=3 width="50%">KEPALA VERIFIKASI, OTORISASI DAN PEMBUKUAN</td>
+			 </tr>
+			 <tr>
+			 	<td colspan=3></td>
+				<td align="center" colspan=3 width="50%">BIDANG PAJAK PENDAFTARAN</td>
+			 </tr>
+			 <tr>
+			 	<td colspan=3></td>
+				<td align="center" colspan=3 width="50%"></td>
+			 </tr>
+			 <tr>
+			 	<td colspan=3></td>
+				<td align="center" colspan=3 width="50%"></td>
+			 </tr>
+			 <tr>
+			 	<td colspan=3></td>
+				<td align="center" colspan=3 width="50%"></td>
+			 </tr>
+			 <tr>
+			 	<td colspan=3></td>
+				<td align="center" colspan=3 width="50%">Drs. H. DEDEN SAEPULLOH, MM</td>
+			 </tr>
+			 <tr>
+			 	<td colspan=3></td>
+				<td align="center" colspan=3 width="50%">NIP. 19681210 199010 1001</td>
+			 </tr>
+			 ';
+	$output.='</table>';
+
+	echo $output;
+	exit;
 }
 ?>

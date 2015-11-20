@@ -97,6 +97,13 @@ order by p_settlement_type_id" fieldSource="i_flag_setoran" required="True">
 					<Attributes/>
 					<Features/>
 				</Button>
+				<Button id="583" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch3" PathID="t_rep_lap_spjpSearchButton_DoSearch3">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
