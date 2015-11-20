@@ -405,7 +405,7 @@ function GetCetakRekapHTML($param_arr) {
 
 		$dbConn2	= new clsDBConnSIKP();
 		$query2="select sum(y.payment_amount) as realisasi, 
-						sum(a.total_vat_amount+a.total_penalty_amount) as ketetapan
+						sum(a.total_vat_amount+nvl(a.total_penalty_amount,0)) as ketetapan
 			from t_vat_setllement a 
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
