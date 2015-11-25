@@ -51,13 +51,14 @@ function Page_BeforeShow(& $sender)
 		$data				= array();
 		$dbConn				= new clsDBConnSIKP();
 		$tgl_penerimaan		= str_replace("'", "", $tgl_penerimaan);
-		$query				= "
+		$query				= " 
 				select
 					nama_jns_pajak,sum(jml_sd_hari_ini) as realisasi,p_vat_type_id 
 				from f_rep_lap_harian_bdhr_mod_1('".$tgl_penerimaan."') 
-				where p_vat_type_id != 7
+				where p_vat_type_id in (1,2,3,4,5,6)
 				GROUP BY nama_jns_pajak,p_vat_type_id
 				ORDER BY p_vat_type_id";
+		//echo $query;exit;
 		$tgl_penerimaan		= str_replace("'", "", $tgl_penerimaan);
 		$dbConn->query($query);
 		while ($dbConn->next_record()) {
