@@ -91,11 +91,11 @@ function print_excel($param_arr) {
 	
 	
 	if($param_arr['jenis_laporan'] == 'all'){ 
-		$query	= "select b.t_vat_setllement_id,c.code,
+		$query	= "select b.t_vat_setllement_id,c.code, 
 		a.*,trunc(payment_date) from f_rep_bpps_piutang2new_mod_1(".$param_arr['p_vat_type_id'].",
 		".$param_arr['p_year_period_id'].", ".$param_arr['tgl_penerimaan'].", 
 		".$param_arr['tgl_penerimaan_last'].", ".$param_arr['i_flag_setoran'].") a
-		left join t_vat_setllement b on a.no_kohir = b.no_kohir
+		left join t_vat_setllement b on a.t_vat_setllement_id = b.t_vat_setllement_id
 		left join p_settlement_type c on c.p_settlement_type_id=b.p_settlement_type_id
 		order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
 	}else if($param_arr['jenis_laporan'] == 'piutang'){
