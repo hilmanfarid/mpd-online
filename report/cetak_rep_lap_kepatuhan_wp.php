@@ -62,10 +62,14 @@ while ($dbConn->next_record()) {
 	"masa_pajak"		=> $dbConn->f("masa_pajak"),
 	"kd_tap"			=> $dbConn->f("kd_tap"),
 	"keterangan"		=> $dbConn->f("keterangan"),
-	"payment_date"		=> date("d-m-Y", strtotime($dbConn->f("payment_date"))),
-	"settlement_date"	=> date("d-m-Y", strtotime($dbConn->f("settlement_date"))),
+	//"payment_date"		=> date("d-m-Y", strtotime($dbConn->f("payment_date"))),
+	//"settlement_date"	=> date("d-m-Y", strtotime($dbConn->f("settlement_date"))),
+	"payment_date"		=> $dbConn->f("payment_date"),
+	"settlement_date"	=> $dbConn->f("settlement_date"),
 	"jam"		=> $dbConn->f("jam"));
 }
+
+//print_r($data);exit;
 $dbConn->close();
 
 class FormCetak extends FPDF {
@@ -210,14 +214,16 @@ class FormCetak extends FPDF {
 				//print data
 				
 				$s_date="";
-				if ($item["settlement_date"] == date("d-m-Y", strtotime()) ){
+				//if ($item["settlement_date"] == date("d-m-Y", strtotime("now")) ){
+				if ($item["settlement_date"] == "" ){
 					$s_date="-";
 				}else{	
 					$s_date=$item["settlement_date"];
 				}
 
 				$p_date="";
-				if ($item["payment_date"] == date("d-m-Y", strtotime()) ){
+				//if ($item["payment_date"] == date("d-m-Y", strtotime("now")) ){
+				if ($item["payment_date"] == "" ){
 					$p_date="-";
 				}else{	
 					$p_date=$item["payment_date"];
@@ -326,7 +332,8 @@ class FormCetak extends FPDF {
 				//print data
 
 				$p_date="";
-				if ($item["payment_date"] == date("d-m-Y", strtotime()) ){
+				//if ($item["payment_date"] == date("d-m-Y", strtotime("now")) ){
+				if ($item["payment_date"] == "" ){
 					$p_date="-";
 				}else{	
 					$p_date=$item["payment_date"];
