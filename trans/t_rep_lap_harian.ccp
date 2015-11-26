@@ -46,7 +46,7 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
