@@ -450,18 +450,6 @@ WHERE pemeriksa_status = 'administrator'" boundColumn="t_bphtb_exemption_pemerik
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<Button id="458" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update1" operation="Update" removeParameters="FLAG" PathID="t_ppatFormButton_Update1">
-					<Components/>
-					<Events>
-						<Event name="OnClick" type="Client">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="459"/>
-							</Actions>
-						</Event>
-					</Events>
-					<Attributes/>
-					<Features/>
-				</Button>
 			</Components>
 			<Events/>
 			<TableParameters>
