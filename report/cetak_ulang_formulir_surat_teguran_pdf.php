@@ -532,7 +532,7 @@ class FormCetak extends FPDF {
 				,28,184,25,25,'PNG');
 			}else{
 				$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
-				$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,168,$lbody4+48,20);
+				$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,178,$lbody4+48,20);
 				$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
 				str_replace(" ","-",$data['letter_date_txt'])."_".
 				$data["npwd"]."_".
@@ -547,7 +547,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		if ($pejabat == 1){
+		if ($pejabat == 1 || $pejabat == 3){
 			$this->Cell($lbody4 - 2, $this->height, "NIP. 19700806 199101 1 001", "", 0, 'C'); //isi nip
 		}else{
 			$this->Cell($lbody4 - 2, $this->height, "NIP. 19750625 199403 1 001", "", 0, 'C'); //isi nip
