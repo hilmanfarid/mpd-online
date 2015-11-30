@@ -3,7 +3,7 @@
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_ppatGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" dataSource="SELECT *
 FROM t_bphtb_lembar_kendali
 WHERE upper(wp_name) LIKE '%{s_keyword}%'
-ORDER BY t_bphtb_lembar_kendali_id" orderBy="p_vat_type_id">
+ORDER BY t_bphtb_lembar_kendali_id DESC" orderBy="p_vat_type_id">
 			<Components>
 				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_bphtb_lembar_kendali.ccp" wizardThemeItem="GridA" PathID="t_ppatGridDLink" removeParameters="FLAG">
 					<Components/>
@@ -450,6 +450,18 @@ WHERE pemeriksa_status = 'administrator'" boundColumn="t_bphtb_exemption_pemerik
 					<Attributes/>
 					<Features/>
 				</ListBox>
+				<Button id="458" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Update1" operation="Update" removeParameters="FLAG" PathID="t_ppatFormButton_Update1">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="459"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 			</Components>
 			<Events/>
 			<TableParameters>
