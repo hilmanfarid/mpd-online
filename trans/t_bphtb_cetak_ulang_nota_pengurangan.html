@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
 <title>CETAK ULANG NOTA VERIFIKASI BPHTB</title>
 <meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
-<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css" />
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 function getFrom_LOV(formName,fieldList,LOV_NM)
@@ -30,9 +30,7 @@ $(document).ready(function()
       <div class="tab-title-selected">
         CETAK ULANG NOTA PENGURANGAN BPHTB&nbsp; 
       </div>
- 
     </div>
- 
     <!--<div class="th tab-button">
       <label onclick="javascript:toActive()">
       <div class="tab-title">
@@ -55,27 +53,23 @@ $(document).ready(function()
                 <table class="Record" cellspacing="0" cellpadding="0">
                   <!-- BEGIN Error -->
                   <tr class="Error">
-                    <td colspan="3">{Error}</td> 
+                    <td colspan="3">{Error}</td>
                   </tr>
- <!-- END Error -->
+                  <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Nama WP/&nbsp;NOP / No Registrasi</td> 
                     <td class="search-field">&nbsp;: <input id="searchForms_keyword" class="ControlsIN" style="TEXT-TRANSFORM: uppercase" maxlength="32" size="32" value="{s_keyword}" name="{s_keyword_Name}"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="Cari" name="{Button_Name}"><!-- END Button Button_DoSearch --></td> 
+                      <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="Cari" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
- 
                 </table>
- </td> 
+              </td>
             </tr>
- 
           </table>
- 
         </form>
- <!-- END Record searchForm --></p>
+        <!-- END Record searchForm --></p>
  
         <p>&nbsp;</p>
- 
         <!-- BEGIN Grid t_bphtb_registrationGrid -->
         <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
           <tr>
@@ -84,9 +78,8 @@ $(document).ready(function()
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
                   <td class="th"><strong>DAFTAR BPHTB PENGURANGAN</strong></td> 
-                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
- 
               </table>
  
               <table class="Grid" cellspacing="0" cellpadding="0">
@@ -114,14 +107,13 @@ $(document).ready(function()
                   <th style="TEXT-ALIGN: center" valign="middle" scope="col">Cetak 4</th>
  
                   <th style="TEXT-ALIGN: center" valign="middle" scope="col">Cetak 5</th>
- 
                 </tr>
  
                 <!-- BEGIN Row -->
                 <tr {t_bphtb_registrationGrid:rowStyle}>
                   <td>{wp_name}<input id="t_bphtb_registrationGridt_customer_order_id_{t_bphtb_registrationGrid:rowNumber}" type="hidden" value="{t_customer_order_id}" name="{t_customer_order_id_Name}"></td> 
                   <td style="TEXT-ALIGN: right">{registration_no}<input id="t_bphtb_registrationGridt_bphtb_registration_id_{t_bphtb_registrationGrid:rowNumber}" type="hidden" value="{t_bphtb_registration_id}" name="{t_bphtb_registration_id_Name}"></td> 
-                  <td><input id="t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}" type="hidden" value="{pilihan_lembar_cetak}" name="{pilihan_lembar_cetak_Name}">&nbsp;</td> 
+                  <td><input id="t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}" type="hidden" value="{pilihan_lembar_cetak}" name="{pilihan_lembar_cetak_Name}"></td> 
                   <td>{njop_pbb}</td> 
                   <td>{wp_address_name}</td> 
                   <td style="TEXT-ALIGN: left">{object_address_name}</td> 
@@ -135,14 +127,14 @@ $(document).ready(function()
                   <td style="COLOR: #ff0000; TEXT-ALIGN: right">
                     <!-- BEGIN Button BtnCetak3 --><input onclick="cetak_nota_dinas({t_bphtb_registration_id},'t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}');" id="t_bphtb_registrationGridBtnCetak3" class="Button" style="HEIGHT: 21px; WIDTH: 77px" alt="Button2" size="1" type="button" value="Nota Dinas" name="{Button_Name}"><!-- END Button BtnCetak3 --></td> 
                   <td style="TEXT-ALIGN: center">
-                    <!-- BEGIN Button BtnCetak4 --><input onclick="cetak_keputusan_kadis({t_bphtb_registration_id},'t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}');" id="t_bphtb_registrationGridBtnCetak4" class="Button" style="HEIGHT: 21px; WIDTH: 97px" alt="Button2" size="1" type="button" value="Keputusan Kadis" name="{Button_Name}"><!-- END Button BtnCetak4 --></td> 
+                    <!-- BEGIN Button BtnCetak4 --><input onclick="cetak_keputusan_kadis({t_bphtb_registration_id},'t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}');" id="t_bphtb_registrationGridBtnCetak4" class="Button" style="HEIGHT: 21px; WIDTH: 97px" alt="Button2" size="1" type="button" value="Keputusan Kadis" name="{Button_Name}"><!-- END Button BtnCetak4 --></td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="12">-</td> 
+                  <td colspan="12">-</td>
                 </tr>
- <!-- END NoRecords -->
+                <!-- END NoRecords -->
                 <tr class="Footer">
                   <td style="TEXT-ALIGN: center" colspan="12">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
@@ -156,17 +148,14 @@ $(document).ready(function()
                     <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
                     <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
                     <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
-                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator --></td> 
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator --></td>
                 </tr>
- 
               </table>
- </td> 
+            </td>
           </tr>
- 
         </table>
- <!-- END Grid t_bphtb_registrationGrid --></td> 
+        <!-- END Grid t_bphtb_registrationGrid --></td>
     </tr>
- 
   </table>
 </div>
 <script type="text/javascript" src="../js/lov.js"></script>
@@ -179,7 +168,8 @@ function cetak_nota(t_bphtb_registration_id,pejabat) {
 
 function cetak_lembar_perhitungan(params, lembar_cetak) {
 
-    var lembar_cetak = document.getElementById(lembar_cetak);
+    var lembar_cetak = document.getElementById(lembar_cetak).value;
+	
     if(lembar_cetak == 4 || lembar_cetak == 7) {
         window.open("../report/cetak_rep_pengurangan_bphtb_gono_gini.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
     }else {
@@ -192,7 +182,7 @@ function cetak_lembar_disposisi(params, lembar_cetak) {
 }
 
 function cetak_berita_acara(params, lembar_cetak) {
-	var lembar_cetak = document.getElementById(lembar_cetak);
+        var lembar_cetak = document.getElementById(lembar_cetak).value;
     if(lembar_cetak == 2 || lembar_cetak == 3 || lembar_cetak == 4 || lembar_cetak == 7) {
         window.open("../report/cetak_rep_pengurangan_bphtb_berita_acara.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
     }else {
