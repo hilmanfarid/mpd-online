@@ -42,10 +42,23 @@ function t_ppatFormButton_Delete_OnClick()
 }
 //End Close t_ppatFormButton_Delete_OnClick
 
-//DEL      // -------------------------
-//DEL                  var params = document.getElementById('t_ppatFormt_bphtb_lembar_kendali_id').value;
-//DEL          window.open("../report/cetak_lembar_kendali_v2.php?t_bphtb_lembar_kendali_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
-//DEL      // -------------------------
+//t_ppatFormButton_Update1_OnClick @458-4B06458D
+function t_ppatFormButton_Update1_OnClick()
+{
+    var result = true;
+//End t_ppatFormButton_Update1_OnClick
+
+//Custom Code @459-2A29BDB7
+    // -------------------------
+                var params = document.getElementById('t_ppatFormt_bphtb_lembar_kendali_id').value;
+        window.open("../report/cetak_lembar_kendali_v2.php?t_bphtb_lembar_kendali_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+    // -------------------------
+//End Custom Code
+
+//Close t_ppatFormButton_Update1_OnClick @458-BC33A33A
+    return result;
+}
+//End Close t_ppatFormButton_Update1_OnClick
 
 //t_ppatFormButton_Cancel_OnClick @28-90202B36
 function t_ppatFormButton_Cancel_OnClick()
@@ -54,9 +67,10 @@ function t_ppatFormButton_Cancel_OnClick()
 }
 //End t_ppatFormButton_Cancel_OnClick
 
-//bind_events @1-A3A8FAC7
+//bind_events @1-08A89BEB
 function bind_events() {
     addEventHandler("t_ppatFormButton_Delete", "click", t_ppatFormButton_Delete_OnClick);
+    addEventHandler("t_ppatFormButton_Update1", "click", t_ppatFormButton_Update1_OnClick);
     addEventHandler("t_ppatFormButton_Cancel", "click", t_ppatFormButton_Cancel_OnClick);
 }
 //End bind_events
@@ -244,10 +258,10 @@ jQuery(document).ready(function()
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th">Petugas Penerima</td> 
+                    <td class="th">Petugas Pemeriksa</td> 
                     <td>
                       <select id="t_ppatFormadministrator_id" class="ControlsIN" name="{administrator_id_Name}">
-                        <option selected value="">-- Pilih Petugas Penerima --</option>
+                        <option selected value="">-- Pilih Petugas Pemeriksa --</option>
                         {administrator_id_Options}
                       </select>
  </td>
@@ -364,7 +378,8 @@ jQuery(document).ready(function()
                   </tr>
  
                   <tr class="Bottom">
-                    <td colspan="2" align="right"><input id="t_ppatFormButton_Update1" class="btn_tambah" style="HEIGHT: 24px; WIDTH: 192px" alt="Submit" size="1" type="button" value="CETAK PENYERAHAN DOKUMEN" name="{Button_Name}">
+                    <td colspan="2" align="right">
+                      <!-- BEGIN Button Button_Update1 --><input id="t_ppatFormButton_Update1" class="btn_tambah" style="HEIGHT: 24px; WIDTH: 192px" alt="Submit" size="1" type="button" value="CETAK PENYERAHAN DOKUMEN" name="{Button_Name}"><!-- END Button Button_Update1 -->
                       <!-- BEGIN Button Button_Insert --><input id="t_ppatFormButton_Insert" class="btn_tambah" alt="Add" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input id="t_ppatFormButton_Update" class="btn_tambah" alt="Submit" type="submit" value="SIMPAN" name="{Button_Name}"><!-- END Button Button_Update -->
                       <!-- BEGIN Button Button_Delete --><input id="t_ppatFormButton_Delete" class="btn_tambah" alt="Delete" type="submit" value="HAPUS" name="{Button_Name}"><!-- END Button Button_Delete -->
