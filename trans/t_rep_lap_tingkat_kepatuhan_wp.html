@@ -23,12 +23,12 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN STATUS&nbsp;SURAT TEGURAN&nbsp; 
+        LAPORAN TINGKAT KEPATUHAN WP
       </div>
     </div>
   </div>
@@ -130,42 +130,42 @@ $(document).ready(function()
     }
 
 
-	function cetak(){
+        function cetak(){
         var i_p_year_period_id = document.getElementById("t_rep_sisa_piutangSearchp_year_period_id").value;
-		var i_p_finance_period_id = document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
-	    var i_p_vat_type_id = document.getElementById("t_rep_sisa_piutangSearchp_vat_type_id").value;
-		var i_ListBox1 = document.getElementById("t_rep_sisa_piutangSearchListBox1").value;
-		
+                var i_p_finance_period_id = document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
+            var i_p_vat_type_id = document.getElementById("t_rep_sisa_piutangSearchp_vat_type_id").value;
+                var i_ListBox1 = document.getElementById("t_rep_sisa_piutangSearchListBox1").value;
+                
         if(i_p_year_period_id == "" || i_p_finance_period_id == "" || i_p_vat_type_id == "" || i_ListBox1 =="" ) {
-        	alert("Semua Filter Harus Diisi");
+                alert("Semua Filter Harus Diisi");
         }else {
-        	window.open("../report/cetak_rep_lap_kepatuhan_wp.php?p_vat_type_id='" + i_p_vat_type_id +
-			 "'&p_finance_period_id=" + i_p_finance_period_id + 
-			 "&p_year_period_id =" + i_p_year_period_id +
-			 "&ListBox1=" + i_ListBox1 +
-			 "&cetak=group" 
-			 , '_blank', 'location=yes,scrollbars=yes,status=yes');
+                window.open("../report/cetak_rep_lap_kepatuhan_wp.php?p_vat_type_id='" + i_p_vat_type_id +
+                         "'&p_finance_period_id=" + i_p_finance_period_id + 
+                         "&p_year_period_id =" + i_p_year_period_id +
+                         "&ListBox1=" + i_ListBox1 +
+                         "&cetak=group" 
+                         , '_blank', 'location=yes,scrollbars=yes,status=yes');
         }
     }
 
-	function cetakUmum(){
+        function cetakUmum(){
         var i_p_year_period_id = document.getElementById("t_rep_sisa_piutangSearchp_year_period_id").value;
-		var i_p_finance_period_id = document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
-	    var i_p_vat_type_id = document.getElementById("t_rep_sisa_piutangSearchp_vat_type_id").value;
-		var i_ListBox1 = document.getElementById("t_rep_sisa_piutangSearchListBox1").value;
-		
+                var i_p_finance_period_id = document.getElementById("t_rep_sisa_piutangSearchp_finance_period_id").value;
+            var i_p_vat_type_id = document.getElementById("t_rep_sisa_piutangSearchp_vat_type_id").value;
+                var i_ListBox1 = document.getElementById("t_rep_sisa_piutangSearchListBox1").value;
+                
         if(i_p_year_period_id == "" || i_p_finance_period_id == "" || i_p_vat_type_id == "" || i_ListBox1 =="" ) {
-        	alert("Semua Filter Harus Diisi");
+                alert("Semua Filter Harus Diisi");
         }else {
-        	window.open("../report/cetak_rep_lap_kepatuhan_wp.php?p_vat_type_id='" + i_p_vat_type_id +
-			 "'&p_finance_period_id=" + i_p_finance_period_id + 
-			 "&p_year_period_id =" + i_p_year_period_id +
-			 "&ListBox1=" + i_ListBox1+
-			 "&cetak=umum" 
-			 , '_blank', 'location=yes,scrollbars=yes,status=yes');
+                window.open("../report/cetak_rep_lap_kepatuhan_wp.php?p_vat_type_id='" + i_p_vat_type_id +
+                         "'&p_finance_period_id=" + i_p_finance_period_id + 
+                         "&p_year_period_id =" + i_p_year_period_id +
+                         "&ListBox1=" + i_ListBox1+
+                         "&cetak=umum" 
+                         , '_blank', 'location=yes,scrollbars=yes,status=yes');
         }
     }
-	        
+                
         function jenispajak() {
         getFrom_LOV('t_rep_sisa_piutangSearch','p_vat_type_id,vat_code','lov_vat_type.php');
     }
