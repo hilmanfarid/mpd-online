@@ -255,10 +255,10 @@ class clst_ppatGridDataSource extends clsDBConnSIKP {  //t_ppatGridDataSource Cl
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-B292526B
+//SetOrder Method @2-FD317C9A
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "t_bphtb_lembar_kendali_id";
+        $this->Order = "t_bphtb_lembar_kendali_id DESC";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
@@ -532,7 +532,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-E0244125
+//Class_Initialize Event @23-C583B97D
     function clsRecordt_ppatForm($RelativePath, & $Parent)
     {
 
@@ -623,6 +623,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
             $this->administrator_id->DataSource->SQL = "SELECT * FROM t_bphtb_exemption_pemeriksa\n" .
             "WHERE pemeriksa_status = 'administrator'";
             $this->administrator_id->DataSource->Order = "";
+            $this->Button_Update1 = & new clsButton("Button_Update1", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->creation_date->Value) && !strlen($this->creation_date->Value) && $this->creation_date->Value !== false)
                     $this->creation_date->SetText(date("d-M-Y"));
@@ -798,7 +799,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @23-AB2B1752
+//Operation Method @23-0DF9432A
     function Operation()
     {
         if(!$this->Visible)
@@ -823,6 +824,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Delete";
             } else if($this->Button_Cancel->Pressed) {
                 $this->PressedButton = "Button_Cancel";
+            } else if($this->Button_Update1->Pressed) {
+                $this->PressedButton = "Button_Update1";
             }
         }
         $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -845,6 +848,11 @@ function GetPrimaryKey($keyName)
             } else if($this->PressedButton == "Button_Update") {
                 $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
                 if(!CCGetEvent($this->Button_Update->CCSEvents, "OnClick", $this->Button_Update) || !$this->UpdateRow()) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_Update1") {
+                $Redirect = $FileName . "?" . CCGetQueryString("QueryString", array("ccsForm", "FLAG"));
+                if(!CCGetEvent($this->Button_Update1->CCSEvents, "OnClick", $this->Button_Update1) || !$this->UpdateRow()) {
                     $Redirect = "";
                 }
             }
@@ -944,7 +952,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-0110D976
+//Show Method @23-15610426
     function Show()
     {
         global $CCSUseAmp;
@@ -1066,6 +1074,7 @@ function GetPrimaryKey($keyName)
         $this->Button_Insert->Visible = !$this->EditMode && $this->InsertAllowed;
         $this->Button_Update->Visible = $this->EditMode && $this->UpdateAllowed;
         $this->Button_Delete->Visible = $this->EditMode && $this->DeleteAllowed;
+        $this->Button_Update1->Visible = $this->EditMode && $this->UpdateAllowed;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShow", $this);
         $this->Attributes->Show();
@@ -1114,6 +1123,7 @@ function GetPrimaryKey($keyName)
         $this->harga_transaksi->Show();
         $this->jumlah_disetor->Show();
         $this->administrator_id->Show();
+        $this->Button_Update1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
