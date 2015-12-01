@@ -195,7 +195,7 @@ ORDER BY npwd, start_date desc, t_vat_setllement_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="150" fieldSourceType="DBColumn" dataType="Text" html="False" name="ayat" fieldSource="ayat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridayat">
+				<Label id="150" fieldSourceType="DBColumn" dataType="Text" html="False" name="vat_code" fieldSource="vat_code" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="HistoryGridvat_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
