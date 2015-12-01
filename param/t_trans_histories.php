@@ -42,7 +42,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-03388D86
+//Class_Initialize Event @2-E67FF0DA
     function clsGridHistoryGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -87,7 +87,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $this->debt_vat_amt = & new clsControl(ccsLabel, "debt_vat_amt", "debt_vat_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("debt_vat_amt", ccsGet, NULL), $this);
         $this->kenaikan = & new clsControl(ccsLabel, "kenaikan", "kenaikan", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("kenaikan", ccsGet, NULL), $this);
         $this->total_hrs_bayar = & new clsControl(ccsLabel, "total_hrs_bayar", "total_hrs_bayar", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_hrs_bayar", ccsGet, NULL), $this);
-        $this->ayat = & new clsControl(ccsLabel, "ayat", "ayat", ccsText, "", CCGetRequestParam("ayat", ccsGet, NULL), $this);
+        $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
         $this->kenaikan1 = & new clsControl(ccsLabel, "kenaikan1", "kenaikan1", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("kenaikan1", ccsGet, NULL), $this);
         $this->no_kohir = & new clsControl(ccsLabel, "no_kohir", "no_kohir", ccsText, "", CCGetRequestParam("no_kohir", ccsGet, NULL), $this);
         $this->jatuh_tempo = & new clsControl(ccsLabel, "jatuh_tempo", "jatuh_tempo", ccsText, "", CCGetRequestParam("jatuh_tempo", ccsGet, NULL), $this);
@@ -111,7 +111,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     }
 //End Initialize Method
 
-//Show Method @2-FED7283D
+//Show Method @2-BA4F582E
     function Show()
     {
         global $Tpl;
@@ -158,7 +158,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
             $this->ControlsVisible["debt_vat_amt"] = $this->debt_vat_amt->Visible;
             $this->ControlsVisible["kenaikan"] = $this->kenaikan->Visible;
             $this->ControlsVisible["total_hrs_bayar"] = $this->total_hrs_bayar->Visible;
-            $this->ControlsVisible["ayat"] = $this->ayat->Visible;
+            $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
             $this->ControlsVisible["kenaikan1"] = $this->kenaikan1->Visible;
             $this->ControlsVisible["no_kohir"] = $this->no_kohir->Visible;
             $this->ControlsVisible["jatuh_tempo"] = $this->jatuh_tempo->Visible;
@@ -187,7 +187,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
                 $this->debt_vat_amt->SetValue($this->DataSource->debt_vat_amt->GetValue());
                 $this->kenaikan->SetValue($this->DataSource->kenaikan->GetValue());
                 $this->total_hrs_bayar->SetValue($this->DataSource->total_hrs_bayar->GetValue());
-                $this->ayat->SetValue($this->DataSource->ayat->GetValue());
+                $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
                 $this->kenaikan1->SetValue($this->DataSource->kenaikan1->GetValue());
                 $this->no_kohir->SetValue($this->DataSource->no_kohir->GetValue());
                 $this->jatuh_tempo->SetValue($this->DataSource->jatuh_tempo->GetValue());
@@ -212,7 +212,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
                 $this->debt_vat_amt->Show();
                 $this->kenaikan->Show();
                 $this->total_hrs_bayar->Show();
-                $this->ayat->Show();
+                $this->vat_code->Show();
                 $this->kenaikan1->Show();
                 $this->no_kohir->Show();
                 $this->jatuh_tempo->Show();
@@ -252,7 +252,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
     }
 //End Show Method
 
-//GetErrors Method @2-B78D288F
+//GetErrors Method @2-E4CB0122
     function GetErrors()
     {
         $errors = "";
@@ -274,7 +274,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
         $errors = ComposeStrings($errors, $this->debt_vat_amt->Errors->ToString());
         $errors = ComposeStrings($errors, $this->kenaikan->Errors->ToString());
         $errors = ComposeStrings($errors, $this->total_hrs_bayar->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->ayat->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->kenaikan1->Errors->ToString());
         $errors = ComposeStrings($errors, $this->no_kohir->Errors->ToString());
         $errors = ComposeStrings($errors, $this->jatuh_tempo->Errors->ToString());
@@ -288,7 +288,7 @@ class clsGridHistoryGrid { //HistoryGrid class @2-8E77C6FA
 
 class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource Class @2-7CE034AB
 
-//DataSource Variables @2-5EA197FF
+//DataSource Variables @2-1D6602C0
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -318,13 +318,13 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     var $debt_vat_amt;
     var $kenaikan;
     var $total_hrs_bayar;
-    var $ayat;
+    var $vat_code;
     var $kenaikan1;
     var $no_kohir;
     var $jatuh_tempo;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-5E679278
+//DataSourceClass_Initialize Event @2-0F2EE288
     function clsHistoryGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -366,7 +366,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         
         $this->total_hrs_bayar = new clsField("total_hrs_bayar", ccsFloat, "");
         
-        $this->ayat = new clsField("ayat", ccsText, "");
+        $this->vat_code = new clsField("vat_code", ccsText, "");
         
         $this->kenaikan1 = new clsField("kenaikan1", ccsFloat, "");
         
@@ -519,7 +519,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Open Method
  
-//SetValues Method @2-36FE8371
+//SetValues Method @2-5A9FC032
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
@@ -540,7 +540,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         $this->debt_vat_amt->SetDBValue(trim($this->f("debt_vat_amt")));
         $this->kenaikan->SetDBValue(trim($this->f("kenaikan")));
         $this->total_hrs_bayar->SetDBValue(trim($this->f("total_hrs_bayar")));
-        $this->ayat->SetDBValue($this->f("ayat"));
+        $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->kenaikan1->SetDBValue(trim($this->f("kenaikan1")));
         $this->no_kohir->SetDBValue($this->f("no_kohir"));
         $this->jatuh_tempo->SetDBValue($this->f("jatuh_tempo"));
