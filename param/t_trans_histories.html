@@ -23,8 +23,8 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <label onclick="javascript:toCustomer()">
@@ -61,27 +61,27 @@ $(document).ready(function()
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
         <!-- BEGIN Grid HistoryGrid -->
-        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+        <table class="grid-table-container" cellspacing="0" cellpadding="0" width="100%" border="0">
           <tr>
             <td valign="top">
-              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+              <table class="grid-table" cellspacing="0" cellpadding="0" border="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>HISTORY TRANSAKSI WAJIB PAJAK <input style="WIDTH: 112px; HEIGHT: 22px" id="HistoryGridcustomer_name" value="{customer_name}" size="15" type="hidden" name="{customer_name_Name}">&nbsp;<input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_customer_id" value="{t_customer_id}" size="13" type="hidden" name="{t_customer_id_Name}"><input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_cust_acc_id" value="{t_cust_acc_id}" size="13" type="hidden" name="{t_cust_acc_id_Name}"></strong></td> 
+                  <td class="th"><strong>HISTORY TRANSAKSI WAJIB PAJAK <input id="HistoryGridcustomer_name" style="HEIGHT: 22px; WIDTH: 112px" size="15" type="hidden" value="{customer_name}" name="{customer_name_Name}">&nbsp;<input id="HistoryGridt_customer_id" style="HEIGHT: 22px; WIDTH: 100px" size="13" type="hidden" value="{t_customer_id}" name="{t_customer_id_Name}"><input id="HistoryGridt_cust_acc_id" style="HEIGHT: 22px; WIDTH: 100px" size="13" type="hidden" value="{t_cust_acc_id}" name="{t_cust_acc_id_Name}"></strong></td> 
                   <td class="HeaderRight"><font color="#ffffff"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></font></td>
                 </tr>
               </table>
  
               <table class="Grid" cellspacing="0" cellpadding="0">
                 <tr class="Caption">
-                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="3" scope="col">NPWPD</th>
+                  <th style="VERTICAL-ALIGN: middle; TEXT-ALIGN: center" rowspan="3" scope="col">NPWPD</th>
  
-                  <th style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" rowspan="3" scope="col">Nama Badan</th>
+                  <th style="VERTICAL-ALIGN: middle; TEXT-ALIGN: center" rowspan="3" scope="col">Nama Badan</th>
  
                   <th style="TEXT-ALIGN: center" colspan="15" scope="col">Pelaporan Pajak</th>
  
@@ -99,7 +99,7 @@ $(document).ready(function()
  
                   <th rowspan="2" scope="col">&nbsp;Tgl. Pelaporan</th>
  
-                  <th scope="col" rowspan="2" >Tgl.Jatuh Tempo&nbsp;</th>
+                  <th rowspan="2" scope="col">Tgl.Jatuh Tempo&nbsp;</th>
  
                   <th rowspan="2" scope="col">No. Kohir&nbsp;</th>
  
@@ -132,26 +132,26 @@ $(document).ready(function()
  
                 <!-- BEGIN Row -->
                 <tr {HistoryGrid:rowStyle}>
-                  <td style="BORDER-LEFT: #dcdcdc 1px solid; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{npwd}<input id="HistoryGridt_vat_setllement_id" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}">&nbsp;<input style="WIDTH: 100px; HEIGHT: 22px" id="HistoryGridt_cust_account_id" value="{t_cust_account_id}" size="13" type="hidden" name="{t_cust_account_id_Name}"></td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; BORDER-LEFT: #dcdcdc 1px solid" nowrap>{npwd}<input id="HistoryGridt_vat_setllement_id" type="hidden" value="{t_vat_setllement_id}" name="{t_vat_setllement_id_Name}">&nbsp;<input id="HistoryGridt_cust_account_id" style="HEIGHT: 22px; WIDTH: 100px" size="13" type="hidden" value="{t_cust_account_id}" name="{t_cust_account_id_Name}"></td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{company_name}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>&nbsp;{type_code}</td> 
-                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{ayat}</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{vat_code}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_pelaporan}&nbsp;</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{periode_awal_laporan}&nbsp;s/d {periode_akhir_laporan}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pelaporan}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{jatuh_tempo}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{no_kohir}</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_transaksi}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_pajak}</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{debt_vat_amt}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kenaikan}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kenaikan1}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; COLOR: red; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_denda}</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{total_hrs_bayar}&nbsp;</td> 
-                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap><a href="#" id="HistoryGridLink1_{HistoryGrid:rowNumber}" onclick="javascript:detailTransaksi({t_cust_account_id}, {t_vat_setllement_id})"><u>Lihat Transaksi</u></a></td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{total_transaksi}&nbsp;</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{total_pajak}</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{debt_vat_amt}&nbsp;</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{kenaikan}&nbsp;</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{kenaikan1}&nbsp;</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; COLOR: red; TEXT-ALIGN: right" nowrap>{total_denda}</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{total_hrs_bayar}&nbsp;</td> 
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap><a href="#" onclick="javascript:detailTransaksi({t_cust_account_id}, {t_vat_setllement_id})" id="HistoryGridLink1_{HistoryGrid:rowNumber}"><u>Lihat Transaksi</u></a></td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{kuitansi_pembayaran}</td> 
                   <td style="BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{tgl_pembayaran}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; BORDER-RIGHT: #dcdcdc 1px solid" nowrap>{payment_amount}&nbsp;</td>
+                  <td style="BORDER-RIGHT: #dcdcdc 1px solid; TEXT-ALIGN: right" nowrap>{payment_amount}&nbsp;</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
@@ -161,7 +161,7 @@ $(document).ready(function()
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td>&nbsp; 
-                    <!-- BEGIN Button Button_DoPrint1 --><input style="WIDTH: 120px; HEIGHT: 26px" id="HistoryGridButton_DoPrint1" class="btn_tambah" onclick="printLaporanExcel()" value="DOWNLOAD EXCEL" alt="Search" size="12" type="button" name="{Button_Name}"><!-- END Button Button_DoPrint1 --></td> 
+                    <!-- BEGIN Button Button_DoPrint1 --><input onclick="printLaporanExcel()" id="HistoryGridButton_DoPrint1" class="btn_tambah" style="HEIGHT: 26px; WIDTH: 120px" alt="Search" size="12" type="button" value="DOWNLOAD EXCEL" name="{Button_Name}"><!-- END Button Button_DoPrint1 --></td> 
                   <td colspan="19">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
