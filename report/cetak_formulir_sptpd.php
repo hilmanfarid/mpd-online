@@ -17,7 +17,9 @@
 	}
 	
 	if($t_vat_setllement_id > 0){
-		$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement FROM v_vat_setllement WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
+		$sql = "SELECT *, to_char(settlement_date,'DD Month YYYY') AS tgl_setllement,
+				to_char(settlement_date+15,'DD Month YYYY') AS tgl_jatuh_tempo 
+				FROM v_vat_setllement WHERE t_vat_setllement_id = " . $t_vat_setllement_id;
 	}
 
 	$dbConn->query($sql);
@@ -42,6 +44,7 @@
 		$data["db_increasing_charge"] = $dbConn->f("db_increasing_charge");
 		$data["settlement_date"] = $dbConn->f("settlement_date");
 		$data["tgl_setllement"] = $dbConn->f("tgl_setllement");
+		$data["tgl_jatuh_tempo"] = $dbConn->f("tgl_jatuh_tempo");
 		$data["total_trans_amount"] = $dbConn->f("total_trans_amount");
 		$data["vat_code"] = $dbConn->f("nomor_ayat");
 		$data["no_bayar"] = $dbConn->f("payment_key");
@@ -231,8 +234,8 @@ class FormCetak extends FPDF {
 		
 		$this->Cell(5, $this->height, "", "BL", 0, 'L');
 		$this->Cell($lbody1 - 5, $this->height, "Tanggal jatuh tempo", "B", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": ".Date("d M Y",strtotime("+15 day")), "BR", 0, 'L');
-		
+		//$this->Cell($lbody3, $this->height, ": ".Date("d M Y",strtotime("+15 day")), "BR", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": ".$data["tgl_jatuh_tempo"], "BR", 0, 'L');
 		
 		$this->Ln();
 		//$this->tulis("I. Berdasarkan Pasal 65 ayat (2) dan (3) Peraturan Daerah Kota Bandung Nomor 20 Tahun 2011 tentang Pajak Daerah, telah dilakukan", "L");
@@ -409,7 +412,8 @@ class FormCetak extends FPDF {
 		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . Date("d M Y") /*. $data["tanggal"]*/, "R", 0, 'C');
+		//$this->Cell($lbody1 + 10, $this->height, "Bandung, " . Date("d M Y") /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $data["tgl_setllement"] /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
