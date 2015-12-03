@@ -45,7 +45,7 @@ class clsRecordt_laporan_penerimaan_pajak { //t_laporan_penerimaan_pajak Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-8B0BE2E4
+//Class_Initialize Event @2-BB3B158E
     function clsRecordt_laporan_penerimaan_pajak($RelativePath, & $Parent)
     {
 
@@ -85,6 +85,7 @@ class clsRecordt_laporan_penerimaan_pajak { //t_laporan_penerimaan_pajak Class @
             $this->jenis_tahun = & new clsControl(ccsListBox, "jenis_tahun", "jenis_tahun", ccsText, "", CCGetRequestParam("jenis_tahun", $Method, NULL), $this);
             $this->jenis_tahun->DSType = dsListOfValues;
             $this->jenis_tahun->Values = array(array("bayar", "Tahun Bayar"), array("pajak", "Tahun Pajak"));
+            $this->Button2 = & new clsButton("Button2", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->jenis_tahun->Value) && !strlen($this->jenis_tahun->Value) && $this->jenis_tahun->Value !== false)
                     $this->jenis_tahun->SetText(bayar);
@@ -154,7 +155,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-71CBB241
+//Operation Method @2-F37A589D
     function Operation()
     {
         if(!$this->Visible)
@@ -171,12 +172,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button1";
             if($this->Button1->Pressed) {
                 $this->PressedButton = "Button1";
+            } else if($this->Button2->Pressed) {
+                $this->PressedButton = "Button2";
             }
         }
         $Redirect = "t_laporan_penerimaan_pajak.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button1") {
                 if(!CCGetEvent($this->Button1->CCSEvents, "OnClick", $this->Button1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button2") {
+                if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
             }
@@ -186,7 +193,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-0699D044
+//Show Method @2-1DE377A5
     function Show()
     {
         global $CCSUseAmp;
@@ -249,6 +256,7 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_end_start_laporan1->Show();
         $this->p_rqst_type_id->Show();
         $this->jenis_tahun->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

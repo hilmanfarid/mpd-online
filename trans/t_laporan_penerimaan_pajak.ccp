@@ -26,54 +26,60 @@
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="13" fieldSourceType="DBColumn" dataType="Float" name="p_year_period_id" PathID="t_laporan_penerimaan_pajakp_year_period_id">
+				<Hidden id="13" fieldSourceType="DBColumn" dataType="Float" name="p_year_period_id" PathID="t_laporan_penerimaan_pajakp_year_period_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-<TextBox id="14" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_start_laporan" PathID="t_laporan_penerimaan_pajakdate_start_laporan" format="yyyy-mm-dd" required="True">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<DatePicker id="15" name="DatePicker_date_start_laporan1" PathID="t_laporan_penerimaan_pajakDatePicker_date_start_laporan1" control="date_start_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</DatePicker>
-<TextBox id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_end_laporan" PathID="t_laporan_penerimaan_pajakdate_end_laporan" format="yyyy-mm-dd" required="True">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</TextBox>
-<DatePicker id="17" name="DatePicker_end_start_laporan1" PathID="t_laporan_penerimaan_pajakDatePicker_end_start_laporan1" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</DatePicker>
-<Hidden id="18" fieldSourceType="DBColumn" dataType="Text" name="p_rqst_type_id" PathID="t_laporan_penerimaan_pajakp_rqst_type_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-<ListBox id="19" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="jenis_tahun" wizardEmptyCaption="Select Value" PathID="t_laporan_penerimaan_pajakjenis_tahun" connection="ConnSIKP" _valueOfList="bayar" _nameOfList="Tahun Bayar" dataSource="bayar;Tahun Bayar;pajak;Tahun Pajak" defaultValue="bayar">
-<Components/>
-<Events/>
-<TableParameters/>
-<SPParameters/>
-<SQLParameters/>
-<JoinTables/>
-<JoinLinks/>
-<Fields/>
-<Attributes/>
-<Features/>
-</ListBox>
+				<TextBox id="14" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_start_laporan" PathID="t_laporan_penerimaan_pajakdate_start_laporan" format="yyyy-mm-dd" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<DatePicker id="15" name="DatePicker_date_start_laporan1" PathID="t_laporan_penerimaan_pajakDatePicker_date_start_laporan1" control="date_start_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+				<TextBox id="16" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="date_end_laporan" PathID="t_laporan_penerimaan_pajakdate_end_laporan" format="yyyy-mm-dd" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<DatePicker id="17" name="DatePicker_end_start_laporan1" PathID="t_laporan_penerimaan_pajakDatePicker_end_start_laporan1" control="date_end_laporan" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+				<Hidden id="18" fieldSourceType="DBColumn" dataType="Text" name="p_rqst_type_id" PathID="t_laporan_penerimaan_pajakp_rqst_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+				<ListBox id="19" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="jenis_tahun" wizardEmptyCaption="Select Value" PathID="t_laporan_penerimaan_pajakjenis_tahun" connection="ConnSIKP" _valueOfList="bayar" _nameOfList="Tahun Bayar" dataSource="bayar;Tahun Bayar;pajak;Tahun Pajak" defaultValue="bayar">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<Button id="20" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_laporan_penerimaan_pajakButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
