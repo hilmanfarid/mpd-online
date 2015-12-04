@@ -60,6 +60,7 @@ $query="select to_char(letter_date,'dd-mm-yyyy') as letter_date_short,c.region_n
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
 		left join p_region as c on b.brand_p_region_id = c.p_region_id
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)
+			AND B.p_account_status_id = 1
 			and case 
 					when ".$p_vat_type_id." = 0 then true
 					else b.p_vat_type_id = ".$p_vat_type_id."
@@ -524,7 +525,7 @@ class FormCetak extends FPDF {
 			array("",
 				"\nUntuk    mencegah    tindakan    penagihan    dengan    Surat    Paksa    berdasarkan    Peraturan    Daerah    Kota    Bandung ".
 				"Nomor 20 Tahun 2011 tentang Pajak Daerah, maka diminta kepada Saudara agar melunasi jumlah tunggakan dimaksud ".
-				"paling lambat 14 (empat belas) hari setelah diterimanya Surat Teguran ini. Lewat batas waktu tersebut tindakan ".
+				"paling lambat 7 (tujuh) hari setelah diterimanya Surat Teguran ini. Lewat batas waktu tersebut tindakan ".
 				"penagihan akan dilanjutkan dengan penyerahan Surat Paksa.",
 				""
 			),
@@ -538,7 +539,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array("",
 				"\nDalam hal saudara telah melunasi Tunggakan di atas, diminta agat Saudara segera melapor kepada Seksi Penyelesaian ".
-				"Piutang pada Bidang Pajak Pendaftaran Dinas Pelayanan Pajak Kota Bandung.",
+				"Piutang pada Bidang Pajak Pendaftaran Dinas Pelayanan Pajak Kota Bandung (dengan membawa bukti pembayaran).",
 				""
 			),
 			array("L",
