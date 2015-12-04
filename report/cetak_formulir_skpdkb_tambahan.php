@@ -354,8 +354,13 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		
+		if ($data["db_increasing_charge"]>0){
+			$pasal = "    b. Kenaikan (Pasal 65 ayat (3)";
+		}else{
+			$pasal = "    b. Kenaikan (Pasal 65 ayat (4)";
+		}
 		$this->Cell(10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody2 - 10, $this->height, "    b. Kenaikan (Pasal 65 ayat (3)", "", 0, 'L');
+		$this->Cell($lbody2 - 10, $this->height, $pasal, "", 0, 'L');
 		$this->Cell($lbodyx1, $this->height, "Rp ", "B", 0, 'L');
 		$this->Cell($lbodyx1 - 10, $this->height, number_format($data["db_increasing_charge"],2,",","."), "B", 0, 'R');
 		$this->Cell(10, $this->height, "", "", 0, 'R');
