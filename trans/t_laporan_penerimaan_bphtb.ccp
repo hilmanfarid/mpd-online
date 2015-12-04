@@ -111,7 +111,7 @@ from p_bphtb_legal_doc_type">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
