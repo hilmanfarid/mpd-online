@@ -522,7 +522,7 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("L","J","L"));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				"\nUntuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Peraturan Daerah Kota Bandung ".
+				"\nUntuk    mencegah    tindakan    penagihan    dengan    Surat    Paksa    berdasarkan    Peraturan    Daerah    Kota    Bandung ".
 				"Nomor 20 Tahun 2011 tentang Pajak Daerah, maka diminta kepada Saudara agar melunasi jumlah tunggakan dimaksud ".
 				"paling lambat 14 (empat belas) hari setelah diterimanya Surat Teguran ini. Lewat batas waktu tersebut tindakan ".
 				"penagihan akan dilanjutkan dengan penyerahan Surat Paksa.",
