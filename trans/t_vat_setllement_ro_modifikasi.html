@@ -374,7 +374,7 @@ function cetakRegister(cust_order_id){
 
 function cetakNoBayar(no_bayar){
         if (no_bayar!=''){
-                return popup("http://172.16.21.7:81/mpd-wp/client/ws.php?type=json&module=bds&class=t_vat_settlement&method=printNoBayar&no_bayar="+no_bayar);
+                return popup("../report/cetak_no_bayar.php?no_bayar="+no_bayar);
                 }else{
                         alert ('Belum ada no bayar');
                 }
