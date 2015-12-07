@@ -342,7 +342,7 @@ class FormCetak extends FPDF {
 		$dbConn = new clsDBConnSIKP();
 		$query="select to_char(start_period,'dd-mm-yyyy') ||' s.d. '||to_char(end_period,'dd-mm-yyyy') as masa_pajak,  
 				c.code,to_char(a.due_date,'dd-mm-yyyy') as due_date_short, 
-				round(total_vat_amount + total_penalty_amount) as piutang,
+				round(nvl(total_vat_amount,0) + nvl(total_penalty_amount,0)) as piutang,
 				d.order_no,
 				to_char(a.settlement_date,'dd-mm-yyyy') as tgl_ketetapan
 				from t_vat_setllement a 
