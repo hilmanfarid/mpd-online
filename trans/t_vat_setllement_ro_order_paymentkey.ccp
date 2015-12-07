@@ -262,9 +262,12 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_setllementForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_vat_setllementForm" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customUpdateType="SQL" dataSource="select sett.*,vat_type.code||' '||dtl.code as no_ayat from v_vat_setllement_ro_paymentkey sett
+		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_setllementForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="t_vat_setllementForm" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customUpdateType="SQL" dataSource="select sett.*, vat_type.code||' '||dtl.code as no_ayat, settlement_type.code as settlement_type_code, payment_receipt.p_payment_type_id from 
+v_vat_setllement_ro_paymentkey sett
 left join p_vat_type_dtl dtl on sett.p_vat_type_dtl_id = dtl.p_vat_type_dtl_id
 left join p_vat_type vat_type on vat_type.p_vat_type_id = dtl.p_vat_type_id
+left join p_settlement_type settlement_type on sett.p_settlement_type_id = settlement_type.p_settlement_type_id
+left join t_payment_receipt payment_receipt ON sett.t_vat_setllement_id = payment_receipt.t_vat_setllement_id
 where t_customer_order_id  = {thisFormParam}" customUpdate="UPDATE t_vat_setllement SET
 is_anomali = '{is_anomali}',
 no_kohir='{no_kohir}' 
@@ -426,7 +429,29 @@ WHERE t_vat_setllement_id = {t_vat_setllement_id} ">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<TextBox id="390" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="settlement_type_code" fieldSource="settlement_type_code" caption="Nomor Order" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormsettlement_type_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<ListBox id="391" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_payment_type_id" fieldSource="p_payment_type_id" wizardCaption="Updated By" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_setllementFormp_payment_type_id" format="0" sourceType="SQL" connection="ConnSIKP" _valueOfList="N" _nameOfList="TIDAK" dataSource="SELECT * 
+FROM p_payment_type
+ORDER BY p_payment_type_id ASC" caption="Jenis Pembayaran" boundColumn="p_payment_type_id" textColumn="code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables>
+<JoinTable id="392" tableName="N;TIDAK;Y;YA" posLeft="10" posTop="10" posWidth="20" posHeight="40"/>
+</JoinTables>
+					<JoinLinks/>
+					<Fields/>
+				</ListBox>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>

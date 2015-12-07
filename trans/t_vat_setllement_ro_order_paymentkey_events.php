@@ -262,15 +262,18 @@ function t_vat_setllementForm_BeforeShow(& $sender)
     									 "cetakSptpd(".$nilai.",".$nilai2.")\">");
   	$action_button = CCGetFromGet("action_button","");
   	$action_button2 = CCGetFromGet("action_button2","");
+
+	$p_payment_type_id = CCGetFromGet("p_payment_type_id","");
+
   	if($action_button=='flag_payment' && $action_button2!='cetak_register'){
   		$dbConn = new clsDBConnSIKP();
-  		$sql="select sikp.f_payment_manual_paymentkey(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."')";
+  		$sql="select sikp.f_payment_manual_paymentkey_v2(".CCGetFromGet('t_customer_order_id').",'".CCGetSession('UserLogin')."',".$p_payment_type_id.")";
   		$dbConn->query($sql);
   		$dbConn->next_record();
-		$pesan = $dbConn->f('f_payment_manual_paymentkey');
+		$pesan = $dbConn->f('f_payment_manual_paymentkey_v2');
   		echo "
   		<script>
-  		alert('".$dbConn->f('f_payment_manual_paymentkey')."');
+  		alert('".$dbConn->f('f_payment_manual_paymentkey_v2')."');
   		</script>
   		";
 		$dbConn->close();	

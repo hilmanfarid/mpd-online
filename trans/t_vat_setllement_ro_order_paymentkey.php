@@ -508,7 +508,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-22351EF9
+//Class_Initialize Event @23-334EF477
     function clsRecordt_vat_setllementForm($RelativePath, & $Parent)
     {
 
@@ -563,6 +563,15 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
             $this->total_total = & new clsControl(ccsTextBox, "total_total", "Total Pajak", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_total", $Method, NULL), $this);
             $this->receipt_no = & new clsControl(ccsTextBox, "receipt_no", "Nomor Order", ccsText, "", CCGetRequestParam("receipt_no", $Method, NULL), $this);
             $this->no_ayat = & new clsControl(ccsTextBox, "no_ayat", "no_ayat", ccsText, "", CCGetRequestParam("no_ayat", $Method, NULL), $this);
+            $this->settlement_type_code = & new clsControl(ccsTextBox, "settlement_type_code", "Nomor Order", ccsText, "", CCGetRequestParam("settlement_type_code", $Method, NULL), $this);
+            $this->p_payment_type_id = & new clsControl(ccsListBox, "p_payment_type_id", "Jenis Pembayaran", ccsText, "", CCGetRequestParam("p_payment_type_id", $Method, NULL), $this);
+            $this->p_payment_type_id->DSType = dsSQL;
+            $this->p_payment_type_id->DataSource = new clsDBConnSIKP();
+            $this->p_payment_type_id->ds = & $this->p_payment_type_id->DataSource;
+            list($this->p_payment_type_id->BoundColumn, $this->p_payment_type_id->TextColumn, $this->p_payment_type_id->DBFormat) = array("p_payment_type_id", "code", "");
+            $this->p_payment_type_id->DataSource->SQL = "SELECT * \n" .
+            "FROM p_payment_type {SQL_OrderBy}";
+            $this->p_payment_type_id->DataSource->Order = "p_payment_type_id ASC";
             if(!$this->FormSubmitted) {
                 if(!is_array($this->due_date->Value) && !strlen($this->due_date->Value) && $this->due_date->Value !== false)
                     $this->due_date->SetText(date("d-M-Y h:i:s"));
@@ -582,7 +591,7 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
     }
 //End Initialize Method
 
-//Validate Method @23-B22615B0
+//Validate Method @23-18EE75CF
     function Validate()
     {
         global $CCSLocales;
@@ -609,6 +618,8 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation = ($this->total_total->Validate() && $Validation);
         $Validation = ($this->receipt_no->Validate() && $Validation);
         $Validation = ($this->no_ayat->Validate() && $Validation);
+        $Validation = ($this->settlement_type_code->Validate() && $Validation);
+        $Validation = ($this->p_payment_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_vat_setllement_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->is_anomali->Errors->Count() == 0);
@@ -631,11 +642,13 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $Validation =  $Validation && ($this->total_total->Errors->Count() == 0);
         $Validation =  $Validation && ($this->receipt_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->no_ayat->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->settlement_type_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_payment_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-F7614DE9
+//CheckErrors Method @23-801F3820
     function CheckErrors()
     {
         $errors = false;
@@ -660,6 +673,8 @@ class clsRecordt_vat_setllementForm { //t_vat_setllementForm Class @23-D94969C3
         $errors = ($errors || $this->total_total->Errors->Count());
         $errors = ($errors || $this->receipt_no->Errors->Count());
         $errors = ($errors || $this->no_ayat->Errors->Count());
+        $errors = ($errors || $this->settlement_type_code->Errors->Count());
+        $errors = ($errors || $this->p_payment_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -744,7 +759,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @23-E488441F
+//Show Method @23-637EFE42
     function Show()
     {
         global $CCSUseAmp;
@@ -759,6 +774,7 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->is_anomali->Prepare();
+        $this->p_payment_type_id->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -793,6 +809,8 @@ function GetPrimaryKey($keyName)
                     $this->total_total->SetValue($this->DataSource->total_total->GetValue());
                     $this->receipt_no->SetValue($this->DataSource->receipt_no->GetValue());
                     $this->no_ayat->SetValue($this->DataSource->no_ayat->GetValue());
+                    $this->settlement_type_code->SetValue($this->DataSource->settlement_type_code->GetValue());
+                    $this->p_payment_type_id->SetValue($this->DataSource->p_payment_type_id->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -825,6 +843,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->total_total->Errors->ToString());
             $Error = ComposeStrings($Error, $this->receipt_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->no_ayat->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->settlement_type_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_payment_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -868,6 +888,8 @@ function GetPrimaryKey($keyName)
         $this->total_total->Show();
         $this->receipt_no->Show();
         $this->no_ayat->Show();
+        $this->settlement_type_code->Show();
+        $this->p_payment_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -878,7 +900,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllementFormDataSource Class @23-AF9958CC
 
-//DataSource Variables @23-0FB45726
+//DataSource Variables @23-EF950285
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -912,9 +934,11 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     var $total_total;
     var $receipt_no;
     var $no_ayat;
+    var $settlement_type_code;
+    var $p_payment_type_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-DB48B07F
+//DataSourceClass_Initialize Event @23-0757F7F3
     function clst_vat_setllementFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -962,6 +986,10 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         
         $this->no_ayat = new clsField("no_ayat", ccsText, "");
         
+        $this->settlement_type_code = new clsField("settlement_type_code", ccsText, "");
+        
+        $this->p_payment_type_id = new clsField("p_payment_type_id", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -977,13 +1005,16 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Prepare Method
 
-//Open Method @23-04B6AC51
+//Open Method @23-8B87FBAA
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "select sett.*,vat_type.code||' '||dtl.code as no_ayat from v_vat_setllement_ro_paymentkey sett\n" .
+        $this->SQL = "select sett.*, vat_type.code||' '||dtl.code as no_ayat, settlement_type.code as settlement_type_code, payment_receipt.p_payment_type_id from \n" .
+        "v_vat_setllement_ro_paymentkey sett\n" .
         "left join p_vat_type_dtl dtl on sett.p_vat_type_dtl_id = dtl.p_vat_type_dtl_id\n" .
         "left join p_vat_type vat_type on vat_type.p_vat_type_id = dtl.p_vat_type_id\n" .
+        "left join p_settlement_type settlement_type on sett.p_settlement_type_id = settlement_type.p_settlement_type_id\n" .
+        "left join t_payment_receipt payment_receipt ON sett.t_vat_setllement_id = payment_receipt.t_vat_setllement_id\n" .
         "where t_customer_order_id  = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "";
         $this->Order = "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -993,7 +1024,7 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
     }
 //End Open Method
 
-//SetValues Method @23-20A7A23B
+//SetValues Method @23-6BD3C568
     function SetValues()
     {
         $this->t_vat_setllement_id->SetDBValue(trim($this->f("t_vat_setllement_id")));
@@ -1016,6 +1047,8 @@ class clst_vat_setllementFormDataSource extends clsDBConnSIKP {  //t_vat_setllem
         $this->total_total->SetDBValue(trim($this->f("total_total")));
         $this->receipt_no->SetDBValue($this->f("receipt_no"));
         $this->no_ayat->SetDBValue($this->f("no_ayat"));
+        $this->settlement_type_code->SetDBValue($this->f("settlement_type_code"));
+        $this->p_payment_type_id->SetDBValue($this->f("p_payment_type_id"));
     }
 //End SetValues Method
 
