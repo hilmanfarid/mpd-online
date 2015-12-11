@@ -10,6 +10,9 @@ $p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
 $p_year_period_id	= CCGetFromGet("p_year_period_id", "");
 $tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
 $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
+$p_settlement_type_id		= CCGetFromGet("p_settlement_type_id", 1);
+$p_payment_type_id		= CCGetFromGet("p_payment_type_id", 2);
+$pemisah_kas_register		= CCGetFromGet("pemisah_kas_register", 0);
 
 // $p_vat_type_id		= 1;
 // $p_year_period_id	= 4;
@@ -19,7 +22,21 @@ $i_flag_setoran		= CCGetFromGet("i_flag_setoran", "");
 $user				= CCGetUserLogin();
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
-$query				= "select * from f_rep_bpps_mod_2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+if ($pemisah_kas_register == 1){
+	$query				= "select * from f_rep_bpps_mod_2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) 
+							where case when ".$p_payment_type_id."=0 then true
+									 when ".$p_payment_type_id."=2 and p_payment_type_id is null then TRUE
+									 else p_payment_type_id = ".$p_payment_type_id."
+								end
+							and case when ".$p_settlement_type_id."=0 then true
+									 else p_settlement_type_id = ".$p_settlement_type_id."
+								end
+							order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+}else{
+	$query				= "select * from f_rep_bpps_mod_2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan,$i_flag_setoran) order by kode_jns_trans, kode_jns_pajak, kode_ayat";
+}
+
+//echo $query;exit;
 $dbConn->query($query);
 
 $tgl_penerimaan2 = $tgl_penerimaan;
