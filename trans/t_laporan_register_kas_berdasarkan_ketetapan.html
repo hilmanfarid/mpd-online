@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-A4139E39
+
+var t_rep_bppsSearch_DatePicker_tgl_penerimaan = new Object(); 
+t_rep_bppsSearch_DatePicker_tgl_penerimaan.format           = "dd-mm-yyyy";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan.relativePathPart = "../";
+t_rep_bppsSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//t_rep_bppsSearchp_settlement_type_id_OnChange @565-AB37150D
+function t_rep_bppsSearchp_settlement_type_id_OnChange()
+{
+    var result = true;
+//End t_rep_bppsSearchp_settlement_type_id_OnChange
+
+//Custom Code @566-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if(this.value==1){
+                
+        }else{
+                
+        }
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_bppsSearchp_settlement_type_id_OnChange @565-BC33A33A
+    return result;
+}
+//End Close t_rep_bppsSearchp_settlement_type_id_OnChange
+
+//t_rep_bppsSearchp_payment_type_id_OnChange @567-2C551D93
+function t_rep_bppsSearchp_payment_type_id_OnChange()
+{
+    var result = true;
+//End t_rep_bppsSearchp_payment_type_id_OnChange
+
+//Custom Code @568-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if(this.value==1){
+                
+        }else{
+                
+        }
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_bppsSearchp_payment_type_id_OnChange @567-BC33A33A
+    return result;
+}
+//End Close t_rep_bppsSearchp_payment_type_id_OnChange
+
+//bind_events @1-2AF5B566
+function bind_events() {
+    addEventHandler("t_rep_bppsSearchp_settlement_type_id", "change", t_rep_bppsSearchp_settlement_type_id_OnChange);
+    addEventHandler("t_rep_bppsSearchp_payment_type_id", "change", t_rep_bppsSearchp_payment_type_id_OnChange);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        LAPORAN REGISTER KAS BERDASARKAN KETETAPAN 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_rep_bppsSearch -->
+        <form id="t_rep_bppsSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Jenis Pajak</td> 
+                    <td class="search-field"><input id="t_rep_bppsSearchvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}"></td> 
+                    <td><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_bppsSearchp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
+                    <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Periode Tahun</td> 
+                    <td class="search-field"><input id="t_rep_bppsSearchyear_code" class="ControlsRQ" value="{year_code}" maxlength="32" size="32" name="{year_code_Name}"></td> 
+                    <td><img onclick="javascript:periodetahun()" border="0" src="../images/view.gif"><input id="t_rep_bppsSearchp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
+                    <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Tanggal Penerimaan</td> 
+                    <td class="search-field"><input id="t_rep_bppsSearchtgl_penerimaan" class="ControlsRQ" value="{tgl_penerimaan}" maxlength="32" size="32" name="{tgl_penerimaan_Name}">
+                      <td>
+                        <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_bppsSearchDatePicker_tgl_penerimaan"><img id="t_rep_bppsSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;</td> 
+                      <td class="search-field"></td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="search-field">Jenis Ketetapan</td> 
+                      <td class="search-field">
+                        <select id="t_rep_bppsSearchp_settlement_type_id" class="ControlsRQ" name="{p_settlement_type_id_Name}">
+                          <option selected value="0">Semua</option>
+						  {p_settlement_type_id_Options}
+                        </select>
+ </td> 
+                      <td>&nbsp;</td> 
+                      <td class="search-field">&nbsp;</td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="search-field">Cara Bayar</td> 
+                      <td class="search-field">
+                        <select id="t_rep_bppsSearchp_payment_type_id" class="ControlsRQ" name="{p_payment_type_id_Name}">
+                          <option selected value="0">Semua</option>
+                          {p_payment_type_id_Options}
+                        </select>
+ </td> 
+                      <td>&nbsp;</td> 
+                      <td class="search-field">&nbsp;</td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="search-field">Jenis Setoran</td> 
+                      <td class="search-field">
+                        <select id="t_rep_bppsSearchListBox1" class="ControlsRQ" name="{ListBox1_Name}">
+                          {ListBox1_Options}
+                        </select>
+ </td> 
+                      <td>&nbsp;</td> 
+                      <td class="search-field">&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_rep_bppsSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="TAMPILKAN" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <!-- END Record t_rep_bppsSearch -->
+          <div align="left">
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script language="javascript">
+                function jenispajak() {
+                getFrom_LOV('t_rep_bppsSearch','p_vat_type_id,vat_code','lov_vat_type.php');
+        }
+
+        function periodetahun() {
+                getFrom_LOV('t_rep_bppsSearch','p_year_period_id,year_code','lov_year_period.php');
+        }
+
+        function cetak()
+        {
+                tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
+                p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
+                var i_flag_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
+                p_payment_type_id = document.getElementById("t_rep_bppsSearchp_payment_type_id").value;
+                p_settlement_type_id = document.getElementById("t_rep_bppsSearchp_settlement_type_id").value;
+                if(tgl_penerimaan == "" || p_payment_type_id == "" || p_vat_type_id == "" 
+					|| i_flag_setoran == "" || p_year_period_id == "" || p_settlement_type_id == "" ) {
+                    alert("Semua Filter Harus Diisi");
+        		}else {
+					window.open("../report/cetak_rep_bpps.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id 
+                            + "&p_vat_type_id=" + p_vat_type_id
+                            +"&i_flag_setoran="+i_flag_setoran
+                            +"&p_payment_type_id="+p_payment_type_id
+                            +"&p_settlement_type_id="+p_settlement_type_id
+							+"&pemisah_kas_register=1", 
+                            '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+				}
+        }
+        </script>
+  </body>
+  </html>
