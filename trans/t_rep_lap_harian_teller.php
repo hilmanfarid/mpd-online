@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-F50B4422
+//Class_Initialize Event @3-9BEA9BA3
     function clsRecordt_rep_lap_harian_bdhrSearch($RelativePath, & $Parent)
     {
 
@@ -75,7 +75,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
             $this->nama_teller = & new clsControl(ccsListBox, "nama_teller", "nama_teller", ccsText, "", CCGetRequestParam("nama_teller", $Method, NULL), $this);
             $this->nama_teller->DSType = dsListOfValues;
-            $this->nama_teller->Values = array(array("ESSYBKP", "ESSYBKP"), array("HERIBKP", "HERIBKP"), array("PAINCEBKP", "PAINCEBKP"), array("MOBIL1", "MOBIL1"));
+            $this->nama_teller->Values = array(array("ESSYBKP", "ESSYBKP"), array("HERIBKP", "HERIBKP"), array("PAINCEBKP", "PAINCEBKP"), array("MOBIL1", "MOBIL1"), array("TINE", "TINE"));
             $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
             $this->Button_DoSearch3 = & new clsButton("Button_DoSearch3", $Method, $this);
         }
