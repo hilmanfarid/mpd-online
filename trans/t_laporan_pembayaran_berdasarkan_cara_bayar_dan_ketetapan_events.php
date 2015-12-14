@@ -95,6 +95,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >TGL TAP</th>';
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
+	$output.='<th align="center" >CARA BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
 	$output.='<th align="center" >BESARNYA</th>';
 	$output.='<th align="center" >SISA</th>';
@@ -103,13 +104,14 @@ function GetCetakHTML($param_arr) {
 	$dbConn	= new clsDBConnSIKP();
 	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
-		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,
-		* from t_vat_setllement a 
+		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak, 
+		*, (case when r.code is null then 'Tunai' else r.code end) as p_payment_type_code from t_vat_setllement a 
 		left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 		left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 		left join p_finance_period z on z.p_finance_period_id = a.p_finance_period_id
 		left join p_vat_type_dtl p on p.p_vat_type_dtl_id = a.p_vat_type_dtl_id
 		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id 
+		left join p_payment_type r on y.p_payment_type_id = r.p_payment_type_id
 		where p_settlement_type_id = ".$param_arr['ketetapan']."
 		and trunc(y.payment_date) between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 			and to_date('".$param_arr['end_date']."','yyyy-mm-dd')
@@ -123,6 +125,7 @@ function GetCetakHTML($param_arr) {
 	}
 	$query.="ORDER BY q.p_vat_type_id, ayat_pajak, wp_name, start_period";
 	
+	//print_r($query);exit;
 	//echo $query;exit;
 	$data = array();
 	$dbConn->query($query);
@@ -154,6 +157,7 @@ function GetCetakHTML($param_arr) {
 		}else{
 			$output.='<td align="left" >Sudah Bayar</td>';
 		}
+		$output.='<td align="left" >'.$data[$i]['p_payment_type_code'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_amount'], 2, ',', '.').'</td>';
@@ -162,7 +166,7 @@ function GetCetakHTML($param_arr) {
 
 	$output.='<tr><td align="center" colspan=7 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
-	$output.='<td align="center" colspan=2 ></td>';
+	$output.='<td align="center" colspan=3 ></td>';
 	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_sisa, 2, ',', '.').'</td>';
 	$output.='</tr>';
@@ -190,12 +194,13 @@ function CetakExcel($param_arr) {
 	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
 		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,
-		* from t_vat_setllement a 
+		*, (case when r.code is null then 'Tunai' else r.code end) as p_payment_type_code from t_vat_setllement a 
 		left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 		left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 		left join p_finance_period z on z.p_finance_period_id = a.p_finance_period_id
 		left join p_vat_type_dtl p on p.p_vat_type_dtl_id = a.p_vat_type_dtl_id
 		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id 
+		left join p_payment_type r on y.p_payment_type_id = r.p_payment_type_id
 		where p_settlement_type_id = ".$param_arr['ketetapan']."
 		and trunc(y.payment_date) between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 			and to_date('".$param_arr['end_date']."','yyyy-mm-dd')
@@ -232,6 +237,7 @@ function CetakExcel($param_arr) {
 	$output.='<th align="center" >TGL TAP</th>';
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
+	$output.='<th align="center" >CARA BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
 	$output.='<th align="center" >BESARNYA</th>';
 	$output.='<th align="center" >SISA</th>';
@@ -261,6 +267,7 @@ function CetakExcel($param_arr) {
 		}else{
 			$output.='<td align="left" >Sudah Bayar</td>';
 		}
+		$output.='<td align="left" >'.$data[$i]['p_payment_type_code'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_amount'], 2, ',', '.').'</td>';
@@ -268,7 +275,7 @@ function CetakExcel($param_arr) {
 	}
 	$output.='<tr><td align="center" colspan=7 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
-	$output.='<td align="center" colspan=2 ></td>';
+	$output.='<td align="center" colspan=3 ></td>';
 	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_sisa, 2, ',', '.').'</td>';
 	$output.='</tr>';
