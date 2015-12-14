@@ -85,7 +85,7 @@ function print_laporan($param_arr){
 	$dbConn = new clsDBConnSIKP();
 	
 	$query="select a.*, c.nama_wilayah
-			from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
+			from sikp.f_laporan_global_wp2(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
 			left join t_cust_account b on a.npwpd = b.npwd
 			left join t_kode_wilayah c on b.kode_wilayah = c.t_kode_wilayah_id";
 	$dbConn->query($query);
@@ -172,7 +172,7 @@ function print_excel($param_arr) {
 
 	$dbConn = new clsDBConnSIKP();
 	$query="select a.*, c.nama_wilayah
-			from sikp.f_laporan_global_wp(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
+			from sikp.f_laporan_global_wp2(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
 			left join t_cust_account b on a.npwpd = b.npwd
 			left join t_kode_wilayah c on b.kode_wilayah = c.t_kode_wilayah_id";
 	$dbConn->query($query);
