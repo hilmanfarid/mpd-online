@@ -114,7 +114,7 @@ function view_html($param_arr) {
 					(select start_date from p_year_period where p_year_period_id = ".$param_arr['p_year_period_id'].")
 			 	and
 					(select end_date from p_year_period where p_year_period_id = ".$param_arr['p_year_period_id'].")
-			ORDER BY d.p_vat_type_id,d.vat_code, B.wp_name";
+			ORDER BY e.active_date, d.p_vat_type_id,d.vat_code, B.wp_name";
 	//echo	$query; exit;
 	$dbConn->query($query);
 	$total = 0;
