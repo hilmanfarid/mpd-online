@@ -20,7 +20,7 @@ if (empty($param_arr['date_start_laporan']) && empty($param_arr['date_end_lapora
     echo "Data Tidak Ditemukan";
     exit;
 }else {
-    $sql = "SELECT COUNT (*)as jumlah , left(f_eja(COUNT (*)::VARCHAR),length(f_eja(COUNT (*)::VARCHAR))-2) as huruf
+    $sql = "SELECT COUNT (*)as jumlah , RTRIM(f_eja(COUNT (*)::VARCHAR)) as huruf
 			FROM t_vat_registration a 
 			left join p_vat_type_dtl b on a.p_vat_type_dtl_id=b.p_vat_type_dtl_id  
 			left join t_customer_order c on a.t_customer_order_id = c. t_customer_order_id
@@ -117,9 +117,21 @@ class FormCetak extends FPDF {
         $this->Ln(6);
 
 		$tgl = CCGetFromGet("tgl", "");
+		//Format Tanggal
+		$tanggal = date ('j');
+
+		//Array Bulan
+		$array_bulan = array(1=>'Januari','Februari','Maret', 'April', 'Mei', 'Juni','Juli','Agustus','September','Oktober', 'November','Desember');
+		$bulan = $array_bulan[date('n')];
+
+		//Format Tahun
+		$tahun = date('Y');
+
+		//Menampilkan hari dan tanggal
+		//echo $hari . ',' . $tanggal . $bulan . $tahun;
         $this->Cell($lengthJudul1, $this->height, "Tanggal        :", "", 0, 'L');
         if ($tgl == ''){
-			$this->Cell($lengthJudul2, $this->height, date('d F Y'), "", 0, 'L');
+			$this->Cell($lengthJudul2, $this->height, $tanggal." ".$bulan ." ". $tahun, "", 0, 'L');
 		}else{
 			$this->Cell($lengthJudul2, $this->height, $tgl, "", 0, 'L');
 		}
