@@ -53,7 +53,25 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<ListBox id="567" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_payment_type_id" wizardEmptyCaption="Select Value" PathID="t_rep_lap_harian_bdhrSearchp_payment_type_id" connection="ConnSIKP" _valueOfList="7" _nameOfList="STPD" dataSource="select p_payment_type_id,code from p_payment_type" fieldSource="i_flag_setoran" required="True">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="568"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

@@ -42,8 +42,31 @@ t_rep_lap_harian_bdhrSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
 
 //End Date Picker Object Definitions
 
-//bind_events @1-BF0EB765
+//t_rep_lap_harian_bdhrSearchp_payment_type_id_OnChange @567-11D0F1CB
+function t_rep_lap_harian_bdhrSearchp_payment_type_id_OnChange()
+{
+    var result = true;
+//End t_rep_lap_harian_bdhrSearchp_payment_type_id_OnChange
+
+//Custom Code @568-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if(this.value==1){
+                
+        }else{
+                
+        }
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_lap_harian_bdhrSearchp_payment_type_id_OnChange @567-BC33A33A
+    return result;
+}
+//End Close t_rep_lap_harian_bdhrSearchp_payment_type_id_OnChange
+
+//bind_events @1-8A44279A
 function bind_events() {
+    addEventHandler("t_rep_lap_harian_bdhrSearchp_payment_type_id", "change", t_rep_lap_harian_bdhrSearchp_payment_type_id_OnChange);
 }
 //End bind_events
 
@@ -76,7 +99,7 @@ table.report td{
 
 </style>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -103,20 +126,30 @@ table.report td{
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Tanggal Penerimaan</td> 
-                    <td class="search-field"><input style="WIDTH: 175px; HEIGHT: 20px" id="t_rep_lap_harian_bdhrSearchtgl_penerimaan" class="ControlsRQ" name="{tgl_penerimaan_Name}" maxlength="32" value="{tgl_penerimaan}" size="19">
+                    <td class="search-field"><input style="WIDTH: 175px; HEIGHT: 20px" id="t_rep_lap_harian_bdhrSearchtgl_penerimaan" class="ControlsRQ" value="{tgl_penerimaan}" maxlength="32" size="19" name="{tgl_penerimaan_Name}">
                       <td>
                         <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan"><img id="t_rep_lap_harian_bdhrSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;</td> 
                       <td class="search-field">&nbsp; 
-                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch1" class="btn_tambah" onclick="tampil(); return false;" name="{Button_Name}" alt="Search" value="TAMPILKAN" type="submit"><!-- END Button Button_DoSearch1 -->
-                        <!-- BEGIN Button Button_DoSearch2 --><input style="WIDTH: 119px; DISPLAY: none; HEIGHT: 26px" id="t_rep_lap_harian_bdhrSearchButton_DoSearch2" class="btn_tambah" onclick="tampilExcel(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD EXCEL" size="13" type="submit"><!-- END Button Button_DoSearch2 -->
-                        <!-- BEGIN Button Button_DoSearch3 --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_lap_harian_bdhrSearchButton_DoSearch3" class="btn_tambah" onclick="tampilPdf(); return false;" name="{Button_Name}" alt="Search" value="DOWNLOAD PDF" size="13" type="submit"><!-- END Button Button_DoSearch3 --><input style="WIDTH: 76px; HEIGHT: 22px" id="t_rep_lap_harian_bdhrSearchkabid" name="{kabid_Name}" value="T" size="10" type="hidden"></td>
+                        <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_harian_bdhrSearchButton_DoSearch1" class="btn_tambah" onclick="tampil(); return false;" value="TAMPILKAN" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 -->
+                        <!-- BEGIN Button Button_DoSearch2 --><input style="WIDTH: 119px; DISPLAY: none; HEIGHT: 26px" id="t_rep_lap_harian_bdhrSearchButton_DoSearch2" class="btn_tambah" onclick="tampilExcel(); return false;" value="DOWNLOAD EXCEL" alt="Search" size="13" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch2 -->
+                        <!-- BEGIN Button Button_DoSearch3 --><input style="WIDTH: 119px; HEIGHT: 26px" id="t_rep_lap_harian_bdhrSearchButton_DoSearch3" class="btn_tambah" onclick="tampilPdf(); return false;" value="DOWNLOAD PDF" alt="Search" size="13" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch3 --><input style="WIDTH: 76px; HEIGHT: 22px" id="t_rep_lap_harian_bdhrSearchkabid" value="T" size="10" type="hidden" name="{kabid_Name}"></td>
                     </tr>
  
                     <tr class="Controls">
                       <td class="search-field">Nama Teller</td> 
                       <td class="search-field" colspan="3">
-                        <select id="t_rep_lap_harian_bdhrSearchnama_teller" name="{nama_teller_Name}">
+                        <select id="t_rep_lap_harian_bdhrSearchnama_teller" class="ControlsRQ" name="{nama_teller_Name}">
                           {nama_teller_Options}
+                        </select>
+ </td>
+                    </tr>
+ 
+                    <tr class="Controls">
+                      <td class="search-field">Cara Bayar</td> 
+                      <td class="search-field" colspan="3">
+                        <select id="t_rep_lap_harian_bdhrSearchp_payment_type_id" class="ControlsRQ" name="{p_payment_type_id_Name}">
+                          <option selected value="0">Semua</option>
+                          {p_payment_type_id_Options}
                         </select>
  </td>
                     </tr>
@@ -142,41 +175,55 @@ table.report td{
                 function tampil()
                 {
                         var tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
-                        var                        nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
-                        
-                                                if(tgl_penerimaan == "" || nama_teller == "") {
-                                                        alert('Tanggal Penerimaan dan Nama Teller harus diisi');
-                                                        return false;
-                                                }                                               
+                        var nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
+						var p_payment_type_id = document.getElementById("t_rep_lap_harian_bdhrSearchp_payment_type_id").value;
+						if (p_payment_type_id == ""){
+							p_payment_type_id=0;
+						}
+                        if (tgl_penerimaan == "" || nama_teller == "") {
+                            alert('Tanggal Penerimaan dan Nama Teller harus diisi');
+                            return false;
+                        }                                               
 
-                                                location.href="t_rep_lap_harian_teller.php?tgl_penerimaan=" + tgl_penerimaan + "&nama_teller="+ nama_teller +"&kabid=T&tampil=T";
+                        location.href="t_rep_lap_harian_teller.php?tgl_penerimaan=" + tgl_penerimaan 
+						+ "&nama_teller="+ nama_teller +"&kabid=T&tampil=T"
+						+ "&p_payment_type_id=" + p_payment_type_id;
                 }
 
                 function tampilExcel()
                 {
                         var tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
-                        var                        nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
-                        
-                                                if(tgl_penerimaan == "" || nama_teller == "") {
-                                                        alert('Tanggal Penerimaan dan Nama Teller harus diisi');
-                                                        return false;
-                                                }                                               
+                        var nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
+                        var p_payment_type_id = document.getElementById("t_rep_lap_harian_bdhrSearchp_payment_type_id").value;
+						if (p_payment_type_id == ""){
+							p_payment_type_id=0;
+						}
+                        if(tgl_penerimaan == "" || nama_teller == "") {
+                            alert('Tanggal Penerimaan dan Nama Teller harus diisi');
+                            return false;
+                        }                                               
 
-                                                location.href="t_rep_lap_harian_teller.php?tgl_penerimaan=" + tgl_penerimaan + "&nama_teller="+ nama_teller +"&kabid=T&tampil=download_excel";
+                        location.href="t_rep_lap_harian_teller.php?tgl_penerimaan=" + tgl_penerimaan 
+						+ "&nama_teller="+ nama_teller +"&kabid=T&tampil=download_excel"
+						+ "&p_payment_type_id=" + p_payment_type_id;
                 }
 
-                                function tampilPdf()
+                function tampilPdf()
                 {
                         var tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
-                        var                        nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
+                        var nama_teller = document.getElementById("t_rep_lap_harian_bdhrSearchnama_teller").value;
+                        var p_payment_type_id = document.getElementById("t_rep_lap_harian_bdhrSearchp_payment_type_id").value;
+						if (p_payment_type_id == ""){
+							p_payment_type_id=0;
+						}
+                        if(tgl_penerimaan == "" || nama_teller == "") {
+                                alert('Tanggal Penerimaan dan Nama Teller harus diisi');
+                                return false;
+                        }                                               
                         
-                                                if(tgl_penerimaan == "" || nama_teller == "") {
-                                                        alert('Tanggal Penerimaan dan Nama Teller harus diisi');
-                                                        return false;
-                                                }                                               
-                                                
-                                                var params = "?tgl_penerimaan="+tgl_penerimaan;
+                        var params = "?tgl_penerimaan="+tgl_penerimaan;
                         params += "&nama_teller="+nama_teller;
+						params += "&p_payment_type_id="+p_payment_type_id;
 
                         window.open("../report/cetak_lap_harian_teller.php" + params, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
                 }

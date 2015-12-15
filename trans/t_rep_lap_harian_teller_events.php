@@ -42,23 +42,18 @@ function Page_BeforeShow(& $sender)
     // Write your own code here.
 	global $Label1;
 	$tampil = CCGetFromGet('tampil');
+	$tgl_penerimaan = CCGetFromGet('tgl_penerimaan');
+	$nama_teller = CCGetFromGet('nama_teller');
+	$p_payment_type_id = CCGetFromGet('p_payment_type_id');
+	
+	$param_arr = array();
+
+	$param_arr['tgl_penerimaan'] = CCGetFromGet('tgl_penerimaan');
+	$param_arr['nama_teller'] = CCGetFromGet('nama_teller');
+	$param_arr['p_payment_type_id'] = CCGetFromGet('p_payment_type_id');
 	if($tampil=='T'){
-		$tgl_penerimaan = CCGetFromGet('tgl_penerimaan');
-		$nama_teller = CCGetFromGet('nama_teller');
-		$param_arr = array();
-
-		$param_arr['tgl_penerimaan'] = CCGetFromGet('tgl_penerimaan');
-		$param_arr['nama_teller'] = CCGetFromGet('nama_teller');
-
 		$Label1->SetText(GetCetakGeneralHTML($param_arr));
 	}elseif($tampil == 'download_excel') {
-		$tgl_penerimaan = CCGetFromGet('tgl_penerimaan');
-		$nama_teller = CCGetFromGet('nama_teller');
-		$param_arr = array();
-
-		$param_arr['tgl_penerimaan'] = CCGetFromGet('tgl_penerimaan');
-		$param_arr['nama_teller'] = CCGetFromGet('nama_teller');
-
 		print_excel($param_arr);
 		
 	}
@@ -263,18 +258,22 @@ function GetCetakGeneralHTML($param_arr) {
 	$query = "SELECT f.t_payment_receipt_id, f.p_cg_terminal_id, f.npwd, d.wp_name, f.receipt_no, f.payment_date, 
 					a.no_kohir, f.finance_period_code, f.payment_amount, f.payment_vat_amount,
 						c.vat_code as ayat_pajak,
-						c.code as dtl_code,
+						c.code as dtl_code, 
 						vat.code as vat_code
 						FROM t_payment_receipt f, t_vat_setllement a, p_vat_type_dtl c, t_cust_account d,
-						p_vat_type vat
-						WHERE 
+						p_vat_type vat 
+						WHERE
 						f.t_vat_setllement_id = a.t_vat_setllement_id AND
 						f.p_vat_type_dtl_id = c.p_vat_type_dtl_id AND
 						a.t_cust_account_id = d.t_cust_account_id AND
 						( upper(f.p_cg_terminal_id) LIKE upper('%".$param_arr['nama_teller']."%')
-						) 
+						)  
 						AND trunc(f.payment_date) = '".$param_arr['tgl_penerimaan']."'
 						and vat.p_vat_type_id = c.p_vat_type_id
+						and case when ".$param_arr['p_payment_type_id']."=0 then true
+								 when ".$param_arr['p_payment_type_id']."=2 and p_payment_type_id is null then TRUE
+								 else p_payment_type_id = ".$param_arr['p_payment_type_id']."
+							end
 						ORDER BY c.vat_code ASC";
 	//ECHO $query;EXIT;
 	$dbConn->query($query);

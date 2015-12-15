@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-9BEA9BA3
+//Class_Initialize Event @3-A9297C26
     function clsRecordt_rep_lap_harian_bdhrSearch($RelativePath, & $Parent)
     {
 
@@ -78,11 +78,19 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
             $this->nama_teller->Values = array(array("ESSYBKP", "ESSYBKP"), array("HERIBKP", "HERIBKP"), array("PAINCEBKP", "PAINCEBKP"), array("MOBIL1", "MOBIL1"), array("TINE", "TINE"));
             $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
             $this->Button_DoSearch3 = & new clsButton("Button_DoSearch3", $Method, $this);
+            $this->p_payment_type_id = & new clsControl(ccsListBox, "p_payment_type_id", "p_payment_type_id", ccsText, "", CCGetRequestParam("p_payment_type_id", $Method, NULL), $this);
+            $this->p_payment_type_id->DSType = dsSQL;
+            $this->p_payment_type_id->DataSource = new clsDBConnSIKP();
+            $this->p_payment_type_id->ds = & $this->p_payment_type_id->DataSource;
+            list($this->p_payment_type_id->BoundColumn, $this->p_payment_type_id->TextColumn, $this->p_payment_type_id->DBFormat) = array("", "", "");
+            $this->p_payment_type_id->DataSource->SQL = "select p_payment_type_id,code from p_payment_type";
+            $this->p_payment_type_id->DataSource->Order = "";
+            $this->p_payment_type_id->Required = true;
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-5712E20A
+//Validate Method @3-DD0FA961
     function Validate()
     {
         global $CCSLocales;
@@ -91,15 +99,17 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
         $Validation = ($this->tgl_penerimaan->Validate() && $Validation);
         $Validation = ($this->kabid->Validate() && $Validation);
         $Validation = ($this->nama_teller->Validate() && $Validation);
+        $Validation = ($this->p_payment_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kabid->Errors->Count() == 0);
         $Validation =  $Validation && ($this->nama_teller->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_payment_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-A675072A
+//CheckErrors Method @3-1B07F964
     function CheckErrors()
     {
         $errors = false;
@@ -107,6 +117,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
         $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->kabid->Errors->Count());
         $errors = ($errors || $this->nama_teller->Errors->Count());
+        $errors = ($errors || $this->p_payment_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -171,7 +182,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-310EA0CA
+//Show Method @3-94C414FC
     function Show()
     {
         global $CCSUseAmp;
@@ -186,6 +197,7 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->nama_teller->Prepare();
+        $this->p_payment_type_id->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -200,6 +212,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->kabid->Errors->ToString());
             $Error = ComposeStrings($Error, $this->nama_teller->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_payment_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -224,6 +237,7 @@ function GetPrimaryKey($keyName)
         $this->nama_teller->Show();
         $this->Button_DoSearch2->Show();
         $this->Button_DoSearch3->Show();
+        $this->p_payment_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
