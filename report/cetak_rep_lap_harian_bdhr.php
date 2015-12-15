@@ -312,7 +312,7 @@ class FormCetak extends FPDF {
 				$this->SetWidths(array($ltable1+ $ltable1+1+ $ltable1 * 5.2, $sepertiga/3*2,$sepertiga/3*1,$sepertiga/3*2,$sepertiga/3*1, $sepertiga/3*2,$sepertiga/3*1));
 				$this->SetAligns(array("C", "R", "R", "R", "R", "R", "R"));
 				
-				$this->RowMultiBorderWithHeight(array("JUMLAH " . strtoupper($data["nama_jns_pajak"][$i]),
+				$this->RowMultiBorderWithHeight(array("JUMLAH TOTAL" ,
 													  number_format($jumlahtotal, 0, ',', '.'),
 													  number_format($jml_transaksi_semua_jenis_pajak, 0, ',', '.'),
 													  number_format($jumlahtotal_harilalu, 0, ',', '.'),
