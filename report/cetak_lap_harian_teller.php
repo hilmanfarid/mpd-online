@@ -11,6 +11,7 @@ $nama_teller = CCGetFromGet('nama_teller');
 $param_arr = array();
 $param_arr['tgl_penerimaan'] = CCGetFromGet('tgl_penerimaan');
 $param_arr['nama_teller'] = CCGetFromGet('nama_teller');
+$param_arr['p_payment_type_id'] = CCGetFromGet('p_payment_type_id');
 		
 $data				= array();
 $dbConn				= new clsDBConnSIKP();
@@ -125,6 +126,10 @@ class FormCetak extends FPDF {
 						( upper(f.p_cg_terminal_id) LIKE upper('%".$param_arr['nama_teller']."%')
 						) 
 						AND trunc(f.payment_date) = '".$param_arr['tgl_penerimaan']."'
+						and case when ".$param_arr['p_payment_type_id']."=0 then true
+								 when ".$param_arr['p_payment_type_id']."=2 and p_payment_type_id is null then TRUE
+								 else p_payment_type_id = ".$param_arr['p_payment_type_id']."
+							end
 						ORDER BY c.vat_code ASC, f.payment_date DESC";
         $dbConn->query($query);
 
