@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-955059C5
+//Class_Initialize Event @94-42999F65
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -147,9 +147,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->Button3 = & new clsButton("Button3", $Method, $this);
             $this->nilai_doc = & new clsControl(ccsHidden, "nilai_doc", "nilai_doc", ccsFloat, "", CCGetRequestParam("nilai_doc", $Method, NULL), $this);
             $this->bphtb_legal_doc_description = & new clsControl(ccsTextBox, "bphtb_legal_doc_description", "bphtb_legal_doc_description", ccsText, "", CCGetRequestParam("bphtb_legal_doc_description", $Method, NULL), $this);
-            $this->add_disc_percent = & new clsControl(ccsListBox, "add_disc_percent", "add_disc_percent", ccsText, "", CCGetRequestParam("add_disc_percent", $Method, NULL), $this);
-            $this->add_disc_percent->DSType = dsListOfValues;
-            $this->add_disc_percent->Values = array(array("0", "0%"), array("0.25", "25%"), array("0.5", "50%"), array("0.75", "75%"), array("1", "100%"));
             $this->add_discount = & new clsControl(ccsTextBox, "add_discount", "add_discount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("add_discount", $Method, NULL), $this);
             $this->p_bphtb_type_id = & new clsControl(ccsTextBox, "p_bphtb_type_id", "p_bphtb_type_id", ccsText, "", CCGetRequestParam("p_bphtb_type_id", $Method, NULL), $this);
             $this->prev_payment_amount = & new clsControl(ccsTextBox, "prev_payment_amount", "prev_payment_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("prev_payment_amount", $Method, NULL), $this);
@@ -164,6 +161,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->land_price_real = & new clsControl(ccsTextBox, "land_price_real", "land_price_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("land_price_real", $Method, NULL), $this);
             $this->building_price_real = & new clsControl(ccsTextBox, "building_price_real", "building_price_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_price_real", $Method, NULL), $this);
             $this->Button4 = & new clsButton("Button4", $Method, $this);
+            $this->add_disc_percent = & new clsControl(ccsTextBox, "add_disc_percent", "add_disc_percent", ccsFloat, "", CCGetRequestParam("add_disc_percent", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -201,6 +199,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
                     $this->land_price_real->SetText(0);
                 if(!is_array($this->building_price_real->Value) && !strlen($this->building_price_real->Value) && $this->building_price_real->Value !== false)
                     $this->building_price_real->SetText(0);
+                if(!is_array($this->add_disc_percent->Value) && !strlen($this->add_disc_percent->Value) && $this->add_disc_percent->Value !== false)
+                    $this->add_disc_percent->SetText(0);
             }
         }
     }
@@ -217,7 +217,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-1F18C2E3
+//Validate Method @94-A7790B36
     function Validate()
     {
         global $CCSLocales;
@@ -266,7 +266,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->jenis_harga_bphtb->Validate() && $Validation);
         $Validation = ($this->nilai_doc->Validate() && $Validation);
         $Validation = ($this->bphtb_legal_doc_description->Validate() && $Validation);
-        $Validation = ($this->add_disc_percent->Validate() && $Validation);
         $Validation = ($this->add_discount->Validate() && $Validation);
         $Validation = ($this->p_bphtb_type_id->Validate() && $Validation);
         $Validation = ($this->prev_payment_amount->Validate() && $Validation);
@@ -277,6 +276,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->building_area_real->Validate() && $Validation);
         $Validation = ($this->land_price_real->Validate() && $Validation);
         $Validation = ($this->building_price_real->Validate() && $Validation);
+        $Validation = ($this->add_disc_percent->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -321,7 +321,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->jenis_harga_bphtb->Errors->Count() == 0);
         $Validation =  $Validation && ($this->nilai_doc->Errors->Count() == 0);
         $Validation =  $Validation && ($this->bphtb_legal_doc_description->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->add_disc_percent->Errors->Count() == 0);
         $Validation =  $Validation && ($this->add_discount->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_bphtb_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->prev_payment_amount->Errors->Count() == 0);
@@ -332,11 +331,12 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->building_area_real->Errors->Count() == 0);
         $Validation =  $Validation && ($this->land_price_real->Errors->Count() == 0);
         $Validation =  $Validation && ($this->building_price_real->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->add_disc_percent->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-E7EEAAB0
+//CheckErrors Method @94-22E23C2E
     function CheckErrors()
     {
         $errors = false;
@@ -383,7 +383,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->jenis_harga_bphtb->Errors->Count());
         $errors = ($errors || $this->nilai_doc->Errors->Count());
         $errors = ($errors || $this->bphtb_legal_doc_description->Errors->Count());
-        $errors = ($errors || $this->add_disc_percent->Errors->Count());
         $errors = ($errors || $this->add_discount->Errors->Count());
         $errors = ($errors || $this->p_bphtb_type_id->Errors->Count());
         $errors = ($errors || $this->prev_payment_amount->Errors->Count());
@@ -394,6 +393,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->building_area_real->Errors->Count());
         $errors = ($errors || $this->land_price_real->Errors->Count());
         $errors = ($errors || $this->building_price_real->Errors->Count());
+        $errors = ($errors || $this->add_disc_percent->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -524,12 +524,11 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @94-8FBF7045
+//UpdateRow Method @94-6E04F1F6
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
         if(!$this->UpdateAllowed) return false;
-        $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
         $this->DataSource->wp_p_region_id->SetValue($this->wp_p_region_id->GetValue(true));
         $this->DataSource->wp_p_region_id_kel->SetValue($this->wp_p_region_id_kel->GetValue(true));
         $this->DataSource->wp_name->SetValue($this->wp_name->GetValue(true));
@@ -568,6 +567,7 @@ function GetPrimaryKey($keyName)
         $this->DataSource->land_price_real->SetValue($this->land_price_real->GetValue(true));
         $this->DataSource->building_area_real->SetValue($this->building_area_real->GetValue(true));
         $this->DataSource->building_price_real->SetValue($this->building_price_real->GetValue(true));
+        $this->DataSource->t_bphtb_registration_id->SetValue($this->t_bphtb_registration_id->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -585,7 +585,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-00EADBEB
+//Show Method @94-5D6EC5A9
     function Show()
     {
         global $CCSUseAmp;
@@ -601,7 +601,6 @@ function GetPrimaryKey($keyName)
 
         $this->p_bphtb_legal_doc_type_id->Prepare();
         $this->jenis_harga_bphtb->Prepare();
-        $this->add_disc_percent->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -657,7 +656,6 @@ function GetPrimaryKey($keyName)
                     $this->t_bphtb_registration_id->SetValue($this->DataSource->t_bphtb_registration_id->GetValue());
                     $this->jenis_harga_bphtb->SetValue($this->DataSource->jenis_harga_bphtb->GetValue());
                     $this->bphtb_legal_doc_description->SetValue($this->DataSource->bphtb_legal_doc_description->GetValue());
-                    $this->add_disc_percent->SetValue($this->DataSource->add_disc_percent->GetValue());
                     $this->p_bphtb_type_id->SetValue($this->DataSource->p_bphtb_type_id->GetValue());
                     $this->prev_payment_amount->SetValue($this->DataSource->prev_payment_amount->GetValue());
                     $this->bphtb_amt_final_old->SetValue($this->DataSource->bphtb_amt_final_old->GetValue());
@@ -667,6 +665,7 @@ function GetPrimaryKey($keyName)
                     $this->building_area_real->SetValue($this->DataSource->building_area_real->GetValue());
                     $this->land_price_real->SetValue($this->DataSource->land_price_real->GetValue());
                     $this->building_price_real->SetValue($this->DataSource->building_price_real->GetValue());
+                    $this->add_disc_percent->SetValue($this->DataSource->add_disc_percent->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -721,7 +720,6 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->jenis_harga_bphtb->Errors->ToString());
             $Error = ComposeStrings($Error, $this->nilai_doc->Errors->ToString());
             $Error = ComposeStrings($Error, $this->bphtb_legal_doc_description->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->add_disc_percent->Errors->ToString());
             $Error = ComposeStrings($Error, $this->add_discount->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_bphtb_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->prev_payment_amount->Errors->ToString());
@@ -732,6 +730,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->building_area_real->Errors->ToString());
             $Error = ComposeStrings($Error, $this->land_price_real->Errors->ToString());
             $Error = ComposeStrings($Error, $this->building_price_real->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->add_disc_percent->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -801,7 +800,6 @@ function GetPrimaryKey($keyName)
         $this->Button3->Show();
         $this->nilai_doc->Show();
         $this->bphtb_legal_doc_description->Show();
-        $this->add_disc_percent->Show();
         $this->add_discount->Show();
         $this->p_bphtb_type_id->Show();
         $this->prev_payment_amount->Show();
@@ -814,6 +812,7 @@ function GetPrimaryKey($keyName)
         $this->land_price_real->Show();
         $this->building_price_real->Show();
         $this->Button4->Show();
+        $this->add_disc_percent->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -824,7 +823,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-620E50B6
+//DataSource Variables @94-D9D775DA
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -837,7 +836,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $wp;
     var $AllParametersSet;
 
-    var $UpdateFields = array();
 
     // Datasource fields
     var $wp_kota;
@@ -883,7 +881,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $jenis_harga_bphtb;
     var $nilai_doc;
     var $bphtb_legal_doc_description;
-    var $add_disc_percent;
     var $add_discount;
     var $p_bphtb_type_id;
     var $prev_payment_amount;
@@ -894,9 +891,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $building_area_real;
     var $land_price_real;
     var $building_price_real;
+    var $add_disc_percent;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-468F498D
+//DataSourceClass_Initialize Event @94-251D461E
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -988,8 +986,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->bphtb_legal_doc_description = new clsField("bphtb_legal_doc_description", ccsText, "");
         
-        $this->add_disc_percent = new clsField("add_disc_percent", ccsText, "");
-        
         $this->add_discount = new clsField("add_discount", ccsFloat, "");
         
         $this->p_bphtb_type_id = new clsField("p_bphtb_type_id", ccsText, "");
@@ -1010,47 +1006,9 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->building_price_real = new clsField("building_price_real", ccsFloat, "");
         
+        $this->add_disc_percent = new clsField("add_disc_percent", ccsFloat, "");
+        
 
-        $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["wp_p_region_id"] = array("Name" => "wp_p_region_id", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["wp_p_region_id_kel"] = array("Name" => "wp_p_region_id_kel", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["wp_name"] = array("Name" => "wp_name", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["wp_address_name"] = array("Name" => "wp_address_name", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["npwp"] = array("Name" => "npwp", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["object_p_region_id_kec"] = array("Name" => "object_p_region_id_kec", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["object_p_region_id"] = array("Name" => "object_p_region_id", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["land_area"] = array("Name" => "land_area", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["land_price_per_m"] = array("Name" => "land_price_per_m", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["land_total_price"] = array("Name" => "land_total_price", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["building_area"] = array("Name" => "building_area", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["building_price_per_m"] = array("Name" => "building_price_per_m", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["building_total_price"] = array("Name" => "building_total_price", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["wp_rt"] = array("Name" => "wp_rt", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["wp_rw"] = array("Name" => "wp_rw", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["object_rt"] = array("Name" => "object_rt", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["object_rw"] = array("Name" => "object_rw", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["njop_pbb"] = array("Name" => "njop_pbb", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["object_address_name"] = array("Name" => "object_address_name", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["p_bphtb_legal_doc_type_id"] = array("Name" => "p_bphtb_legal_doc_type_id", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["npop"] = array("Name" => "npop", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["npop_tkp"] = array("Name" => "npop_tkp", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["npop_kp"] = array("Name" => "npop_kp", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["bphtb_amt"] = array("Name" => "bphtb_amt", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["bphtb_amt_final"] = array("Name" => "bphtb_amt_final", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["bphtb_discount"] = array("Name" => "bphtb_discount", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["description"] = array("Name" => "description", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["market_price"] = array("Name" => "market_price", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["mobile_phone_no"] = array("Name" => "mobile_phone_no", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["wp_p_region_id_kec"] = array("Name" => "wp_p_region_id_kec", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["object_p_region_id_kel"] = array("Name" => "object_p_region_id_kel", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["jenis_harga_bphtb"] = array("Name" => "jenis_harga_bphtb", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["bphtb_legal_doc_description"] = array("Name" => "bphtb_legal_doc_description", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
-        $this->UpdateFields["add_disc_percent"] = array("Name" => "add_disc_percent", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["land_area_real"] = array("Name" => "land_area_real", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
-        $this->UpdateFields["land_price_real"] = array("Name" => "land_price_real", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
-        $this->UpdateFields["building_area_real"] = array("Name" => "building_area_real", "Value" => "", "DataType" => ccsInteger, "OmitIfEmpty" => 1);
-        $this->UpdateFields["building_price_real"] = array("Name" => "building_price_real", "Value" => "", "DataType" => ccsFloat, "OmitIfEmpty" => 1);
     }
 //End DataSourceClass_Initialize Event
 
@@ -1065,11 +1023,11 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Prepare Method
 
-//Open Method @94-9BC57282
+//Open Method @94-C040A1CB
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "select a.*,\n" .
+        $this->SQL = "select a.add_disc_percent*100 as add_disc_percent_2,a.*,\n" .
         "b.region_name as wp_kota,\n" .
         "c.region_name as wp_kecamatan,\n" .
         "d.region_name as wp_kelurahan,\n" .
@@ -1108,7 +1066,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-18C32107
+//SetValues Method @94-D547FC86
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1152,7 +1110,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->t_bphtb_registration_id->SetDBValue(trim($this->f("t_bphtb_registration_id")));
         $this->jenis_harga_bphtb->SetDBValue(trim($this->f("jenis_harga_bphtb")));
         $this->bphtb_legal_doc_description->SetDBValue($this->f("bphtb_legal_doc_description"));
-        $this->add_disc_percent->SetDBValue($this->f("add_disc_percent"));
         $this->p_bphtb_type_id->SetDBValue($this->f("p_bphtb_type_id"));
         $this->prev_payment_amount->SetDBValue(trim($this->f("prev_payment_amount")));
         $this->bphtb_amt_final_old->SetDBValue(trim($this->f("bphtb_amt_final_old")));
@@ -1162,6 +1119,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->building_area_real->SetDBValue(trim($this->f("building_area_real")));
         $this->land_price_real->SetDBValue(trim($this->f("land_price_real")));
         $this->building_price_real->SetDBValue(trim($this->f("building_price_real")));
+        $this->add_disc_percent->SetDBValue(trim($this->f("add_disc_percent_2")));
     }
 //End SetValues Method
 
@@ -1416,70 +1374,58 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Insert Method
 
-//Update Method @94-3CB04A66
+//Update Method @94-2383800C
     function Update()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["updated_by"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), NULL, false, $this->ErrorBlock);
-        $this->cp["updated_date"] = new clsSQLParameter("expr739", ccsText, "", "", date("Y-m-d H:i:s"), NULL, false, $this->ErrorBlock);
-        $this->cp["wp_p_region_id"] = new clsSQLParameter("ctrlwp_p_region_id", ccsFloat, "", "", $this->wp_p_region_id->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["wp_p_region_id_kel"] = new clsSQLParameter("ctrlwp_p_region_id_kel", ccsFloat, "", "", $this->wp_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["wp_name"] = new clsSQLParameter("ctrlwp_name", ccsText, "", "", $this->wp_name->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["wp_address_name"] = new clsSQLParameter("ctrlwp_address_name", ccsText, "", "", $this->wp_address_name->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["npwp"] = new clsSQLParameter("ctrlnpwp", ccsText, "", "", $this->npwp->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["object_p_region_id_kec"] = new clsSQLParameter("ctrlobject_p_region_id_kec", ccsText, "", "", $this->object_p_region_id_kec->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["object_p_region_id"] = new clsSQLParameter("ctrlobject_p_region_id", ccsText, "", "", $this->object_p_region_id->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["land_area"] = new clsSQLParameter("ctrlland_area", ccsFloat, "", "", $this->land_area->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["land_price_per_m"] = new clsSQLParameter("ctrlland_price_per_m", ccsFloat, "", "", $this->land_price_per_m->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["land_total_price"] = new clsSQLParameter("ctrlland_total_price", ccsFloat, "", "", $this->land_total_price->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["building_area"] = new clsSQLParameter("ctrlbuilding_area", ccsFloat, "", "", $this->building_area->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["building_price_per_m"] = new clsSQLParameter("ctrlbuilding_price_per_m", ccsFloat, "", "", $this->building_price_per_m->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["building_total_price"] = new clsSQLParameter("ctrlbuilding_total_price", ccsFloat, "", "", $this->building_total_price->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["wp_rt"] = new clsSQLParameter("ctrlwp_rt", ccsText, "", "", $this->wp_rt->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["wp_rw"] = new clsSQLParameter("ctrlwp_rw", ccsText, "", "", $this->wp_rw->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["object_rt"] = new clsSQLParameter("ctrlobject_rt", ccsText, "", "", $this->object_rt->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["object_rw"] = new clsSQLParameter("ctrlobject_rw", ccsText, "", "", $this->object_rw->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["njop_pbb"] = new clsSQLParameter("ctrlnjop_pbb", ccsText, "", "", $this->njop_pbb->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["object_address_name"] = new clsSQLParameter("ctrlobject_address_name", ccsText, "", "", $this->object_address_name->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["p_bphtb_legal_doc_type_id"] = new clsSQLParameter("ctrlp_bphtb_legal_doc_type_id", ccsText, "", "", $this->p_bphtb_legal_doc_type_id->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["npop"] = new clsSQLParameter("ctrlnpop", ccsFloat, "", "", $this->npop->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["npop_tkp"] = new clsSQLParameter("ctrlnpop_tkp", ccsFloat, "", "", $this->npop_tkp->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["npop_kp"] = new clsSQLParameter("ctrlnpop_kp", ccsFloat, "", "", $this->npop_kp->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["bphtb_amt"] = new clsSQLParameter("ctrlbphtb_amt", ccsFloat, "", "", $this->bphtb_amt->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["bphtb_amt_final"] = new clsSQLParameter("ctrlbphtb_amt_final", ccsFloat, "", "", $this->bphtb_amt_final->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["bphtb_discount"] = new clsSQLParameter("ctrlbphtb_discount", ccsFloat, "", "", $this->bphtb_discount->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["market_price"] = new clsSQLParameter("ctrlmarket_price", ccsFloat, "", "", $this->market_price->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["mobile_phone_no"] = new clsSQLParameter("ctrlmobile_phone_no", ccsText, "", "", $this->mobile_phone_no->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["wp_p_region_id_kec"] = new clsSQLParameter("ctrlwp_p_region_id_kec", ccsFloat, "", "", $this->wp_p_region_id_kec->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["jenis_harga_bphtb"] = new clsSQLParameter("ctrljenis_harga_bphtb", ccsText, "", "", $this->jenis_harga_bphtb->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["bphtb_legal_doc_description"] = new clsSQLParameter("ctrlbphtb_legal_doc_description", ccsText, "", "", $this->bphtb_legal_doc_description->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["add_disc_percent"] = new clsSQLParameter("ctrladd_disc_percent", ccsFloat, "", "", $this->add_disc_percent->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["land_area_real"] = new clsSQLParameter("ctrlland_area_real", ccsInteger, "", "", $this->land_area_real->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["land_price_real"] = new clsSQLParameter("ctrlland_price_real", ccsFloat, "", "", $this->land_price_real->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["building_area_real"] = new clsSQLParameter("ctrlbuilding_area_real", ccsInteger, "", "", $this->building_area_real->GetValue(true), NULL, false, $this->ErrorBlock);
-        $this->cp["building_price_real"] = new clsSQLParameter("ctrlbuilding_price_real", ccsFloat, "", "", $this->building_price_real->GetValue(true), NULL, false, $this->ErrorBlock);
-        $wp = new clsSQLParameters($this->ErrorBlock);
-        $wp->AddParameter("1", "ctrlt_bphtb_registration_id", ccsFloat, "", "", $this->t_bphtb_registration_id->GetValue(true), "", false);
-        if(!$wp->AllParamsSet()) {
-            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
-        }
-        $wp->AddParameter("2", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
-        if(!$wp->AllParamsSet()) {
-            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
-        }
-        $wp->AddParameter("3", "urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), "", false);
-        if(!$wp->AllParamsSet()) {
-            $this->Errors->addError($CCSLocales->GetText("CCS_CustomOperationError_MissingParameters"));
-        }
+        $this->cp["UserLogin"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
+        $this->cp["Expr0"] = new clsSQLParameter("expr1018", ccsText, "", "", date("Y-m-d H:i:s"), "", false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id"] = new clsSQLParameter("ctrlwp_p_region_id", ccsFloat, "", "", $this->wp_p_region_id->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id_kel"] = new clsSQLParameter("ctrlwp_p_region_id_kel", ccsFloat, "", "", $this->wp_p_region_id_kel->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_name"] = new clsSQLParameter("ctrlwp_name", ccsText, "", "", $this->wp_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_address_name"] = new clsSQLParameter("ctrlwp_address_name", ccsText, "", "", $this->wp_address_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["npwp"] = new clsSQLParameter("ctrlnpwp", ccsText, "", "", $this->npwp->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_p_region_id_kec"] = new clsSQLParameter("ctrlobject_p_region_id_kec", ccsText, "", "", $this->object_p_region_id_kec->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_p_region_id"] = new clsSQLParameter("ctrlobject_p_region_id", ccsText, "", "", $this->object_p_region_id->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["land_area"] = new clsSQLParameter("ctrlland_area", ccsFloat, "", "", $this->land_area->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["land_price_per_m"] = new clsSQLParameter("ctrlland_price_per_m", ccsFloat, "", "", $this->land_price_per_m->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["land_total_price"] = new clsSQLParameter("ctrlland_total_price", ccsFloat, "", "", $this->land_total_price->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["building_area"] = new clsSQLParameter("ctrlbuilding_area", ccsFloat, "", "", $this->building_area->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["building_price_per_m"] = new clsSQLParameter("ctrlbuilding_price_per_m", ccsFloat, "", "", $this->building_price_per_m->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["building_total_price"] = new clsSQLParameter("ctrlbuilding_total_price", ccsFloat, "", "", $this->building_total_price->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_rt"] = new clsSQLParameter("ctrlwp_rt", ccsText, "", "", $this->wp_rt->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_rw"] = new clsSQLParameter("ctrlwp_rw", ccsText, "", "", $this->wp_rw->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_rt"] = new clsSQLParameter("ctrlobject_rt", ccsText, "", "", $this->object_rt->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_rw"] = new clsSQLParameter("ctrlobject_rw", ccsText, "", "", $this->object_rw->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["njop_pbb"] = new clsSQLParameter("ctrlnjop_pbb", ccsText, "", "", $this->njop_pbb->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_address_name"] = new clsSQLParameter("ctrlobject_address_name", ccsText, "", "", $this->object_address_name->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["p_bphtb_legal_doc_type_id"] = new clsSQLParameter("ctrlp_bphtb_legal_doc_type_id", ccsText, "", "", $this->p_bphtb_legal_doc_type_id->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["npop"] = new clsSQLParameter("ctrlnpop", ccsFloat, "", "", $this->npop->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["npop_tkp"] = new clsSQLParameter("ctrlnpop_tkp", ccsFloat, "", "", $this->npop_tkp->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["npop_kp"] = new clsSQLParameter("ctrlnpop_kp", ccsFloat, "", "", $this->npop_kp->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bphtb_amt"] = new clsSQLParameter("ctrlbphtb_amt", ccsFloat, "", "", $this->bphtb_amt->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bphtb_amt_final"] = new clsSQLParameter("ctrlbphtb_amt_final", ccsFloat, "", "", $this->bphtb_amt_final->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bphtb_discount"] = new clsSQLParameter("ctrlbphtb_discount", ccsFloat, "", "", $this->bphtb_discount->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["market_price"] = new clsSQLParameter("ctrlmarket_price", ccsFloat, "", "", $this->market_price->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["mobile_phone_no"] = new clsSQLParameter("ctrlmobile_phone_no", ccsText, "", "", $this->mobile_phone_no->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["wp_p_region_id_kec"] = new clsSQLParameter("ctrlwp_p_region_id_kec", ccsFloat, "", "", $this->wp_p_region_id_kec->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["object_p_region_id_kel"] = new clsSQLParameter("ctrlobject_p_region_id_kel", ccsFloat, "", "", $this->object_p_region_id_kel->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["jenis_harga_bphtb"] = new clsSQLParameter("ctrljenis_harga_bphtb", ccsText, "", "", $this->jenis_harga_bphtb->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bphtb_legal_doc_description"] = new clsSQLParameter("ctrlbphtb_legal_doc_description", ccsText, "", "", $this->bphtb_legal_doc_description->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["add_disc_percent"] = new clsSQLParameter("ctrladd_disc_percent", ccsFloat, "", "", $this->add_disc_percent->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["t_bphtb_registration_id"] = new clsSQLParameter("urlt_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("t_bphtb_registration_id", NULL), 0, false, $this->ErrorBlock);
+        $this->cp["land_area_real"] = new clsSQLParameter("ctrlland_area_real", ccsInteger, "", "", $this->land_area_real->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["land_price_real"] = new clsSQLParameter("ctrlland_price_real", ccsFloat, "", "", $this->land_price_real->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["building_area_real"] = new clsSQLParameter("ctrlbuilding_area_real", ccsInteger, "", "", $this->building_area_real->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["building_price_real"] = new clsSQLParameter("ctrlbuilding_price_real", ccsFloat, "", "", $this->building_price_real->GetValue(true), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
-        if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
-            $this->cp["updated_by"]->SetValue(CCGetSession("UserLogin", NULL));
-        if (!is_null($this->cp["updated_date"]->GetValue()) and !strlen($this->cp["updated_date"]->GetText()) and !is_bool($this->cp["updated_date"]->GetValue())) 
-            $this->cp["updated_date"]->SetValue(date("Y-m-d H:i:s"));
+        if (!is_null($this->cp["UserLogin"]->GetValue()) and !strlen($this->cp["UserLogin"]->GetText()) and !is_bool($this->cp["UserLogin"]->GetValue())) 
+            $this->cp["UserLogin"]->SetValue(CCGetSession("UserLogin", NULL));
+        if (!is_null($this->cp["Expr0"]->GetValue()) and !strlen($this->cp["Expr0"]->GetText()) and !is_bool($this->cp["Expr0"]->GetValue())) 
+            $this->cp["Expr0"]->SetValue(date("Y-m-d H:i:s"));
         if (!is_null($this->cp["wp_p_region_id"]->GetValue()) and !strlen($this->cp["wp_p_region_id"]->GetText()) and !is_bool($this->cp["wp_p_region_id"]->GetValue())) 
             $this->cp["wp_p_region_id"]->SetValue($this->wp_p_region_id->GetValue(true));
         if (!is_null($this->cp["wp_p_region_id_kel"]->GetValue()) and !strlen($this->cp["wp_p_region_id_kel"]->GetText()) and !is_bool($this->cp["wp_p_region_id_kel"]->GetValue())) 
@@ -1548,6 +1494,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["bphtb_legal_doc_description"]->SetValue($this->bphtb_legal_doc_description->GetValue(true));
         if (!is_null($this->cp["add_disc_percent"]->GetValue()) and !strlen($this->cp["add_disc_percent"]->GetText()) and !is_bool($this->cp["add_disc_percent"]->GetValue())) 
             $this->cp["add_disc_percent"]->SetValue($this->add_disc_percent->GetValue(true));
+        if (!is_null($this->cp["t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue())) 
+            $this->cp["t_bphtb_registration_id"]->SetText(CCGetFromGet("t_bphtb_registration_id", NULL));
+        if (!strlen($this->cp["t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["t_bphtb_registration_id"]->GetValue(true))) 
+            $this->cp["t_bphtb_registration_id"]->SetText(0);
         if (!is_null($this->cp["land_area_real"]->GetValue()) and !strlen($this->cp["land_area_real"]->GetText()) and !is_bool($this->cp["land_area_real"]->GetValue())) 
             $this->cp["land_area_real"]->SetValue($this->land_area_real->GetValue(true));
         if (!is_null($this->cp["land_price_real"]->GetValue()) and !strlen($this->cp["land_price_real"]->GetText()) and !is_bool($this->cp["land_price_real"]->GetValue())) 
@@ -1556,57 +1506,49 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["building_area_real"]->SetValue($this->building_area_real->GetValue(true));
         if (!is_null($this->cp["building_price_real"]->GetValue()) and !strlen($this->cp["building_price_real"]->GetText()) and !is_bool($this->cp["building_price_real"]->GetValue())) 
             $this->cp["building_price_real"]->SetValue($this->building_price_real->GetValue(true));
-        $wp->Criterion[1] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("1"), $this->ToSQL($wp->GetDBValue("1"), ccsFloat),false);
-        $wp->Criterion[2] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("2"), $this->ToSQL($wp->GetDBValue("2"), ccsFloat),false);
-        $wp->Criterion[3] = $wp->Operation(opEqual, "t_bphtb_registration_id", $wp->GetDBValue("3"), $this->ToSQL($wp->GetDBValue("3"), ccsFloat),false);
-        $Where = $wp->opAND(
-             false, $wp->opAND(
-             false, 
-             $wp->Criterion[1], 
-             $wp->Criterion[2]), 
-             $wp->Criterion[3]);
-        $this->UpdateFields["updated_by"]["Value"] = $this->cp["updated_by"]->GetDBValue(true);
-        $this->UpdateFields["updated_date"]["Value"] = $this->cp["updated_date"]->GetDBValue(true);
-        $this->UpdateFields["wp_p_region_id"]["Value"] = $this->cp["wp_p_region_id"]->GetDBValue(true);
-        $this->UpdateFields["wp_p_region_id_kel"]["Value"] = $this->cp["wp_p_region_id_kel"]->GetDBValue(true);
-        $this->UpdateFields["wp_name"]["Value"] = $this->cp["wp_name"]->GetDBValue(true);
-        $this->UpdateFields["wp_address_name"]["Value"] = $this->cp["wp_address_name"]->GetDBValue(true);
-        $this->UpdateFields["npwp"]["Value"] = $this->cp["npwp"]->GetDBValue(true);
-        $this->UpdateFields["object_p_region_id_kec"]["Value"] = $this->cp["object_p_region_id_kec"]->GetDBValue(true);
-        $this->UpdateFields["object_p_region_id"]["Value"] = $this->cp["object_p_region_id"]->GetDBValue(true);
-        $this->UpdateFields["land_area"]["Value"] = $this->cp["land_area"]->GetDBValue(true);
-        $this->UpdateFields["land_price_per_m"]["Value"] = $this->cp["land_price_per_m"]->GetDBValue(true);
-        $this->UpdateFields["land_total_price"]["Value"] = $this->cp["land_total_price"]->GetDBValue(true);
-        $this->UpdateFields["building_area"]["Value"] = $this->cp["building_area"]->GetDBValue(true);
-        $this->UpdateFields["building_price_per_m"]["Value"] = $this->cp["building_price_per_m"]->GetDBValue(true);
-        $this->UpdateFields["building_total_price"]["Value"] = $this->cp["building_total_price"]->GetDBValue(true);
-        $this->UpdateFields["wp_rt"]["Value"] = $this->cp["wp_rt"]->GetDBValue(true);
-        $this->UpdateFields["wp_rw"]["Value"] = $this->cp["wp_rw"]->GetDBValue(true);
-        $this->UpdateFields["object_rt"]["Value"] = $this->cp["object_rt"]->GetDBValue(true);
-        $this->UpdateFields["object_rw"]["Value"] = $this->cp["object_rw"]->GetDBValue(true);
-        $this->UpdateFields["njop_pbb"]["Value"] = $this->cp["njop_pbb"]->GetDBValue(true);
-        $this->UpdateFields["object_address_name"]["Value"] = $this->cp["object_address_name"]->GetDBValue(true);
-        $this->UpdateFields["p_bphtb_legal_doc_type_id"]["Value"] = $this->cp["p_bphtb_legal_doc_type_id"]->GetDBValue(true);
-        $this->UpdateFields["npop"]["Value"] = $this->cp["npop"]->GetDBValue(true);
-        $this->UpdateFields["npop_tkp"]["Value"] = $this->cp["npop_tkp"]->GetDBValue(true);
-        $this->UpdateFields["npop_kp"]["Value"] = $this->cp["npop_kp"]->GetDBValue(true);
-        $this->UpdateFields["bphtb_amt"]["Value"] = $this->cp["bphtb_amt"]->GetDBValue(true);
-        $this->UpdateFields["bphtb_amt_final"]["Value"] = $this->cp["bphtb_amt_final"]->GetDBValue(true);
-        $this->UpdateFields["bphtb_discount"]["Value"] = $this->cp["bphtb_discount"]->GetDBValue(true);
-        $this->UpdateFields["description"]["Value"] = $this->cp["description"]->GetDBValue(true);
-        $this->UpdateFields["market_price"]["Value"] = $this->cp["market_price"]->GetDBValue(true);
-        $this->UpdateFields["mobile_phone_no"]["Value"] = $this->cp["mobile_phone_no"]->GetDBValue(true);
-        $this->UpdateFields["wp_p_region_id_kec"]["Value"] = $this->cp["wp_p_region_id_kec"]->GetDBValue(true);
-        $this->UpdateFields["object_p_region_id_kel"]["Value"] = $this->cp["object_p_region_id_kel"]->GetDBValue(true);
-        $this->UpdateFields["jenis_harga_bphtb"]["Value"] = $this->cp["jenis_harga_bphtb"]->GetDBValue(true);
-        $this->UpdateFields["bphtb_legal_doc_description"]["Value"] = $this->cp["bphtb_legal_doc_description"]->GetDBValue(true);
-        $this->UpdateFields["add_disc_percent"]["Value"] = $this->cp["add_disc_percent"]->GetDBValue(true);
-        $this->UpdateFields["land_area_real"]["Value"] = $this->cp["land_area_real"]->GetDBValue(true);
-        $this->UpdateFields["land_price_real"]["Value"] = $this->cp["land_price_real"]->GetDBValue(true);
-        $this->UpdateFields["building_area_real"]["Value"] = $this->cp["building_area_real"]->GetDBValue(true);
-        $this->UpdateFields["building_price_real"]["Value"] = $this->cp["building_price_real"]->GetDBValue(true);
-        $this->SQL = CCBuildUpdate("t_bphtb_registration", $this->UpdateFields, $this);
-        $this->SQL .= strlen($Where) ? " WHERE " . $Where : $Where;
+        $this->SQL = "UPDATE t_bphtb_registration SET \n" .
+        "updated_by='" . $this->SQLValue($this->cp["UserLogin"]->GetDBValue(), ccsText) . "', \n" .
+        "updated_date='" . $this->SQLValue($this->cp["Expr0"]->GetDBValue(), ccsText) . "', \n" .
+        "wp_p_region_id=" . $this->SQLValue($this->cp["wp_p_region_id"]->GetDBValue(), ccsFloat) . ", \n" .
+        "wp_p_region_id_kel=" . $this->SQLValue($this->cp["wp_p_region_id_kel"]->GetDBValue(), ccsFloat) . ", \n" .
+        "wp_name='" . $this->SQLValue($this->cp["wp_name"]->GetDBValue(), ccsText) . "', \n" .
+        "wp_address_name='" . $this->SQLValue($this->cp["wp_address_name"]->GetDBValue(), ccsText) . "', \n" .
+        "npwp='" . $this->SQLValue($this->cp["npwp"]->GetDBValue(), ccsText) . "', \n" .
+        "object_p_region_id_kec='" . $this->SQLValue($this->cp["object_p_region_id_kec"]->GetDBValue(), ccsText) . "',\n" .
+        "object_p_region_id='" . $this->SQLValue($this->cp["object_p_region_id"]->GetDBValue(), ccsText) . "', \n" .
+        "land_area=" . $this->SQLValue($this->cp["land_area"]->GetDBValue(), ccsFloat) . ", \n" .
+        "land_price_per_m=" . $this->SQLValue($this->cp["land_price_per_m"]->GetDBValue(), ccsFloat) . ", \n" .
+        "land_total_price=" . $this->SQLValue($this->cp["land_total_price"]->GetDBValue(), ccsFloat) . ", \n" .
+        "building_area=" . $this->SQLValue($this->cp["building_area"]->GetDBValue(), ccsFloat) . ", \n" .
+        "building_price_per_m=" . $this->SQLValue($this->cp["building_price_per_m"]->GetDBValue(), ccsFloat) . ", \n" .
+        "building_total_price=" . $this->SQLValue($this->cp["building_total_price"]->GetDBValue(), ccsFloat) . ", \n" .
+        "wp_rt='" . $this->SQLValue($this->cp["wp_rt"]->GetDBValue(), ccsText) . "', \n" .
+        "wp_rw='" . $this->SQLValue($this->cp["wp_rw"]->GetDBValue(), ccsText) . "', \n" .
+        "object_rt='" . $this->SQLValue($this->cp["object_rt"]->GetDBValue(), ccsText) . "', \n" .
+        "object_rw='" . $this->SQLValue($this->cp["object_rw"]->GetDBValue(), ccsText) . "', \n" .
+        "njop_pbb='" . $this->SQLValue($this->cp["njop_pbb"]->GetDBValue(), ccsText) . "', \n" .
+        "object_address_name='" . $this->SQLValue($this->cp["object_address_name"]->GetDBValue(), ccsText) . "', \n" .
+        "p_bphtb_legal_doc_type_id='" . $this->SQLValue($this->cp["p_bphtb_legal_doc_type_id"]->GetDBValue(), ccsText) . "', \n" .
+        "npop=" . $this->SQLValue($this->cp["npop"]->GetDBValue(), ccsFloat) . ", \n" .
+        "npop_tkp=" . $this->SQLValue($this->cp["npop_tkp"]->GetDBValue(), ccsFloat) . ", \n" .
+        "npop_kp=" . $this->SQLValue($this->cp["npop_kp"]->GetDBValue(), ccsFloat) . ", \n" .
+        "bphtb_amt=" . $this->SQLValue($this->cp["bphtb_amt"]->GetDBValue(), ccsFloat) . ", \n" .
+        "bphtb_amt_final=" . $this->SQLValue($this->cp["bphtb_amt_final"]->GetDBValue(), ccsFloat) . ", \n" .
+        "bphtb_discount=" . $this->SQLValue($this->cp["bphtb_discount"]->GetDBValue(), ccsFloat) . ", \n" .
+        "description='" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
+        "market_price=" . $this->SQLValue($this->cp["market_price"]->GetDBValue(), ccsFloat) . ", \n" .
+        "mobile_phone_no='" . $this->SQLValue($this->cp["mobile_phone_no"]->GetDBValue(), ccsText) . "', \n" .
+        "wp_p_region_id_kec=" . $this->SQLValue($this->cp["wp_p_region_id_kec"]->GetDBValue(), ccsFloat) . ", \n" .
+        "object_p_region_id_kel=" . $this->SQLValue($this->cp["object_p_region_id_kel"]->GetDBValue(), ccsFloat) . ", \n" .
+        "jenis_harga_bphtb='" . $this->SQLValue($this->cp["jenis_harga_bphtb"]->GetDBValue(), ccsText) . "', \n" .
+        "bphtb_legal_doc_description='" . $this->SQLValue($this->cp["bphtb_legal_doc_description"]->GetDBValue(), ccsText) . "', \n" .
+        "add_disc_percent=" . $this->SQLValue($this->cp["add_disc_percent"]->GetDBValue(), ccsFloat) . "/100, \n" .
+        "land_area_real=" . $this->SQLValue($this->cp["land_area_real"]->GetDBValue(), ccsInteger) . ", \n" .
+        "land_price_real=" . $this->SQLValue($this->cp["land_price_real"]->GetDBValue(), ccsFloat) . ", \n" .
+        "building_area_real=" . $this->SQLValue($this->cp["building_area_real"]->GetDBValue(), ccsInteger) . ", \n" .
+        "building_price_real=" . $this->SQLValue($this->cp["building_price_real"]->GetDBValue(), ccsFloat) . " \n" .
+        "WHERE  \n" .
+        "t_bphtb_registration_id = " . $this->SQLValue($this->cp["t_bphtb_registration_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);

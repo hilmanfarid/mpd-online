@@ -105,25 +105,12 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange()
 }
 //End Close t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange
 
-//t_bphtb_registrationFormadd_disc_percent_OnChange @1009-18264CC2
-function t_bphtb_registrationFormadd_disc_percent_OnChange()
-{
-    var result = true;
-//End t_bphtb_registrationFormadd_disc_percent_OnChange
-
-//Custom Code @1010-2A29BDB7
-    // -------------------------
-    // Write your own code here.
-    var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
-    document.getElementById('t_bphtb_registrationFormadd_discount').value = ReplaceNumberWithCommas(this.value*npop);
-        hitungNPOPKP();    
-        // -------------------------
-//End Custom Code
-
-//Close t_bphtb_registrationFormadd_disc_percent_OnChange @1009-BC33A33A
-    return result;
-}
-//End Close t_bphtb_registrationFormadd_disc_percent_OnChange
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL      var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
+//DEL      document.getElementById('t_bphtb_registrationFormadd_discount').value = ReplaceNumberWithCommas(this.value*npop);
+//DEL          hitungNPOPKP();    
+//DEL          // -------------------------
 
 //t_bphtb_registrationForm_OnSubmit @94-5816823C
 function t_bphtb_registrationForm_OnSubmit()
@@ -186,13 +173,12 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(send
 }
 //End PTAutoFill1 Loading
 
-//bind_events @1-7965E1A1
+//bind_events @1-DD6EE2E3
 function bind_events() {
     addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start);
     addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange);
     addEventHandler("t_bphtb_registrationFormButton_Delete", "click", t_bphtb_registrationFormButton_Delete_OnClick);
     addEventHandler("t_bphtb_registrationFormnjop_pbb", "change", t_bphtb_registrationFormnjop_pbb_OnChange);
-    addEventHandler("t_bphtb_registrationFormadd_disc_percent", "change", t_bphtb_registrationFormadd_disc_percent_OnChange);
     addEventHandler("t_bphtb_registrationForm", "submit", t_bphtb_registrationForm_OnSubmit);
     addEventHandler("t_bphtb_registrationFormButton_Cancel", "click", t_bphtb_registrationFormButton_Cancel_OnClick);
 }
@@ -407,11 +393,7 @@ jQuery(document).ready(function()
                   <tr class="Controls">
                     <td class="th">&nbsp;</td> 
                     <td class="th" colspan="2">&nbsp;</td> 
-                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormnilai_doc" value="{nilai_doc}" type="hidden" name="{nilai_doc_Name}">Potongan 
-                      <select id="t_bphtb_registrationFormadd_disc_percent" name="{add_disc_percent_Name}">
-                        {add_disc_percent_Options}
-                      </select>
- </td>
+                    <td colspan="6">&nbsp;<input id="t_bphtb_registrationFormnilai_doc" value="{nilai_doc}" type="hidden" name="{nilai_doc_Name}">Potongan&nbsp; <input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormadd_disc_percent" onkeyup="hitungTotalTanah();return 1;" value="{add_disc_percent}" name="{add_disc_percent_Name}">&nbsp;% (Gunakan tanda "."(titik) untuk potongan dengan bilangan pecahan)</td>
                   </tr>
  
                   <tr class="Controls">
@@ -736,7 +718,7 @@ function getNPOP(){
                                 document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,'')*npotkp_cons));
                                 }
                                 var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
-                var persen_kurang = document.getElementById('t_bphtb_registrationFormadd_disc_percent').value;
+                var persen_kurang = document.getElementById('t_bphtb_registrationFormadd_disc_percent').value/100;
                                 if(persen_kurang==''){
                                         persen_kurang=0;
                                 }

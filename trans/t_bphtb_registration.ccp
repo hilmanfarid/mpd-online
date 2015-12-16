@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="UFormElements" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration" dataSource="select a.*,
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="ISPParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration" dataSource="select a.add_disc_percent*100 as add_disc_percent_2,a.*,
 b.region_name as wp_kota,
 c.region_name as wp_kecamatan,
 d.region_name as wp_kelurahan,
@@ -30,7 +30,49 @@ left join t_bphtb_registration as i
 	on a.registration_no_ref = i.registration_no
 left join t_payment_receipt_bphtb as j
 	on i.t_bphtb_registration_id = j.t_bphtb_registration_id
-where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bphtb_registration" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp">
+where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="UPDATE t_bphtb_registration SET 
+updated_by='{UserLogin}', 
+updated_date='{Expr0}', 
+wp_p_region_id={wp_p_region_id}, 
+wp_p_region_id_kel={wp_p_region_id_kel}, 
+wp_name='{wp_name}', 
+wp_address_name='{wp_address_name}', 
+npwp='{npwp}', 
+object_p_region_id_kec='{object_p_region_id_kec}',
+object_p_region_id='{object_p_region_id}', 
+land_area={land_area}, 
+land_price_per_m={land_price_per_m}, 
+land_total_price={land_total_price}, 
+building_area={building_area}, 
+building_price_per_m={building_price_per_m}, 
+building_total_price={building_total_price}, 
+wp_rt='{wp_rt}', 
+wp_rw='{wp_rw}', 
+object_rt='{object_rt}', 
+object_rw='{object_rw}', 
+njop_pbb='{njop_pbb}', 
+object_address_name='{object_address_name}', 
+p_bphtb_legal_doc_type_id='{p_bphtb_legal_doc_type_id}', 
+npop={npop}, 
+npop_tkp={npop_tkp}, 
+npop_kp={npop_kp}, 
+bphtb_amt={bphtb_amt}, 
+bphtb_amt_final={bphtb_amt_final}, 
+bphtb_discount={bphtb_discount}, 
+description='{description}', 
+market_price={market_price}, 
+mobile_phone_no='{mobile_phone_no}', 
+wp_p_region_id_kec={wp_p_region_id_kec}, 
+object_p_region_id_kel={object_p_region_id_kel}, 
+jenis_harga_bphtb='{jenis_harga_bphtb}', 
+bphtb_legal_doc_description='{bphtb_legal_doc_description}', 
+add_disc_percent={add_disc_percent}/100, 
+land_area_real={land_area_real}, 
+land_price_real={land_price_real}, 
+building_area_real={building_area_real}, 
+building_price_real={building_price_real} 
+WHERE  
+t_bphtb_registration_id = {t_bphtb_registration_id}" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list.ccp">
 			<Components>
 				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG">
 					<Components/>
@@ -83,7 +125,6 @@ where a.t_bphtb_registration_id = {t_bphtb_registration_id}" customUpdate="t_bph
 				<Hidden id="887" fieldSourceType="DBColumn" dataType="Float" name="wp_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormwp_p_region_id_kec" fieldSource="wp_p_region_id_kec" caption="Kecamatan - WP" required="True">
 					<Components/>
 					<Events/>
-
 					<Attributes/>
 					<Features/>
 				</Hidden>
@@ -376,24 +417,6 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="1009" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="add_disc_percent" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormadd_disc_percent" connection="ConnSIKP" _valueOfList="0.75" _nameOfList="75%" dataSource="0;0%;0.25;25%;0.5;50%;0.75;75%;1;100%" fieldSource="add_disc_percent">
-					<Components/>
-					<Events>
-						<Event name="OnChange" type="Client">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="1010" eventType="Client"/>
-							</Actions>
-						</Event>
-					</Events>
-					<TableParameters/>
-					<SPParameters/>
-					<SQLParameters/>
-					<JoinTables/>
-					<JoinLinks/>
-					<Fields/>
-					<Attributes/>
-					<Features/>
-				</ListBox>
 				<TextBox id="1011" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="add_discount" PathID="t_bphtb_registrationFormadd_discount" format="#,##0.00">
 					<Components/>
 					<Events/>
@@ -472,7 +495,13 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+				<TextBox id="1067" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="add_disc_percent" PathID="t_bphtb_registrationFormadd_disc_percent" defaultValue="0" fieldSource="add_disc_percent_2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -548,7 +577,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key976" parameterName="i_user" parameterSource="UserLogin" dataType="Char" parameterType="Session" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key1007" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="jenis_harga_bphtb" scale="0" precision="0" parameterSource="jenis_harga_bphtb"/>
 				<SPParameter id="Key1010" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="bphtb_legal_doc_description" scale="0" precision="0" parameterSource="bphtb_legal_doc_description"/>
-				<SPParameter id="Key1013" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="add_disc_percent" scale="0" precision="0" parameterSource="add_disc_percent"/>
+				<SPParameter id="Key1013" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="add_disc_percent" scale="100" precision="0" parameterSource="add_disc_percent"/>
 				<SPParameter id="Key1018" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="check_potongan" scale="0" precision="0" parameterSource="check_potongan"/>
 				<SPParameter id="Key1061" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_land_area_real" scale="0" precision="0" parameterSource="land_area_real"/>
 				<SPParameter id="Key1062" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="i_land_price_real" scale="0" precision="0" parameterSource="land_price_real"/>
@@ -558,7 +587,19 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key978" parameterName="o_mess" parameterSource="o_mess" dataType="Char" parameterType="URL" dataSize="255" direction="InputOutput" scale="10" precision="6"/>
 			</ISPParameters>
 			<ISQLParameters>
-			</ISQLParameters>
+				<SQLParameter id="1068" variable="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
+<SQLParameter id="1069" variable="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
+<SQLParameter id="1070" variable="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
+<SQLParameter id="1071" variable="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kecamatan"/>
+<SQLParameter id="1072" variable="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kelurahan"/>
+<SQLParameter id="1073" variable="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="wp_kecamatan"/>
+<SQLParameter id="1074" variable="object_kelurahan" dataType="Text" parameterType="Control" parameterSource="object_kelurahan"/>
+<SQLParameter id="1075" variable="object_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kelurahan"/>
+<SQLParameter id="1076" variable="object_kecamatan" dataType="Text" parameterType="Control" parameterSource="object_kecamatan"/>
+<SQLParameter id="1077" variable="object_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kecamatan"/>
+<SQLParameter id="1078" variable="object_kota" dataType="Text" parameterType="Control" parameterSource="object_kota"/>
+<SQLParameter id="1079" variable="object_p_region_id" dataType="Float" parameterType="Control" parameterSource="object_p_region_id"/>
+</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="910" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
 				<CustomParameter id="911" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
@@ -675,7 +716,11 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SQLParameter id="1051" variable="bphtb_legal_doc_description" dataType="Text" parameterType="Control" parameterSource="bphtb_legal_doc_description"/>
 				<SQLParameter id="1052" variable="add_disc_percent" dataType="Float" parameterType="Control" parameterSource="add_disc_percent"/>
 				<SQLParameter id="1053" variable="t_bphtb_registration_id" parameterType="URL" dataType="Float" parameterSource="t_bphtb_registration_id" defaultValue="0"/>
-			</USQLParameters>
+				<SQLParameter id="1080" variable="land_area_real" dataType="Integer" parameterType="Control" parameterSource="land_area_real"/>
+<SQLParameter id="1081" variable="land_price_real" dataType="Float" parameterType="Control" parameterSource="land_price_real"/>
+<SQLParameter id="1082" variable="building_area_real" dataType="Integer" parameterType="Control" parameterSource="building_area_real"/>
+<SQLParameter id="1083" variable="building_price_real" dataType="Float" parameterType="Control" parameterSource="building_price_real"/>
+</USQLParameters>
 			<UConditions>
 				<TableParameter id="778" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
 				<TableParameter id="995" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
