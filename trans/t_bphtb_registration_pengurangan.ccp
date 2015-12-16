@@ -795,7 +795,19 @@ WHERE pemeriksa_status = 'pemeriksa'"><Components/>
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Button id="228" urlType="Relative" enableValidation="True" isDefault="False" name="Button9" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_bphtb_registrationFormButton9">
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="229" eventType="Server"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
