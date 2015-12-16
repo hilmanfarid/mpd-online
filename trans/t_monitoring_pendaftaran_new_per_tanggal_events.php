@@ -148,7 +148,12 @@ function GetCetakExcel($param_arr) {
 	for ($i = 0; $i < count($data); $i++) {
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['company_owner'].'</td>';
+		if ($data[$i]['company_owner'] == $data[$i]['wp_name']){
+			$output.='<td align="left" >-</td>';
+		}else{
+			$output.='<td align="left" >'.$data[$i]['company_owner'].'</td>';
+		}
+		//$output.='<td align="left" >'.$data[$i]['company_owner'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
 		$output.='<td align="left" ></td>';
