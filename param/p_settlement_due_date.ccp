@@ -174,7 +174,7 @@ ORDER BY p_settlement_due_date_id" name="p_settlement_due_dateGrid" pageSizeLimi
 			<Attributes/>
 			<Features/>
 		</Record>
-		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_settlement_due_dateForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_settlement_due_dateForm" customDeleteType="SQL" customDelete="DELETE FROM p_settlement_due_date WHERE  p_settlement_due_date_id = {p_settlement_due_date_id}" activeCollection="USQLParameters" activeTableType="customDelete" customUpdateType="SQL" customUpdate="UPDATE p_settlement_due_date SET
+		<Record id="23" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="p_settlement_due_dateForm" errorSummator="Error" wizardCaption="Add/Edit P App Role " wizardFormMethod="post" PathID="p_settlement_due_dateForm" customDeleteType="SQL" customDelete="DELETE FROM p_settlement_due_date WHERE  p_settlement_due_date_id = {p_settlement_due_date_id}" activeCollection="ISQLParameters" activeTableType="customDelete" customUpdateType="SQL" customUpdate="UPDATE p_settlement_due_date SET
 p_vat_type_id = {p_vat_type_id}, 
 due_in_day = {due_in_day},
 debt_letter1_in_day = {debt_letter1_in_day},
@@ -411,9 +411,9 @@ ORDER BY p_settlement_due_date_id">
 				<SQLParameter id="179" variable="valid_from" parameterType="Control" dataType="Text" parameterSource="valid_from"/>
 				<SQLParameter id="180" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
 				<SQLParameter id="181" variable="description" parameterType="Control" dataType="Text" parameterSource="description"/>
-				<SQLParameter id="182" variable="updated_by" parameterType="Control" dataType="Text" parameterSource="updated_by"/>
+				<SQLParameter id="182" variable="updated_by" parameterType="Expression" dataType="Text" parameterSource="CCGetUserLogin()"/>
 				<SQLParameter id="183" variable="p_settlement_due_date_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="p_settlement_due_date_id"/>
-</USQLParameters>
+			</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>

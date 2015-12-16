@@ -20,6 +20,16 @@ function p_settlement_due_dateGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_settlement_due_dateGrid; //Compatibility
 //End p_settlement_due_dateGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
 global $p_settlement_due_dateForm;
     global $selected_id;
     global $add_flag;
@@ -64,6 +74,12 @@ function p_settlement_due_dateGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_settlement_due_dateGrid; //Compatibility
 //End p_settlement_due_dateGrid_BeforeSelect
+
+//Custom Code @97-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
   // -------------------------
       // Write your own code here.
           $Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
@@ -81,6 +97,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $p_settlement_due_date; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
   // -------------------------
     global $selected_id;

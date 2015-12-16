@@ -837,7 +837,7 @@ function GetPrimaryKey($keyName)
     }
 //End InsertRow Method
 
-//UpdateRow Method @23-BB24A384
+//UpdateRow Method @23-A04E7614
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -850,7 +850,6 @@ function GetPrimaryKey($keyName)
         $this->DataSource->valid_from->SetValue($this->valid_from->GetValue(true));
         $this->DataSource->valid_to->SetValue($this->valid_to->GetValue(true));
         $this->DataSource->description->SetValue($this->description->GetValue(true));
-        $this->DataSource->updated_by->SetValue($this->updated_by->GetValue(true));
         $this->DataSource->p_settlement_due_date_id->SetValue($this->p_settlement_due_date_id->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
@@ -1205,7 +1204,7 @@ class clsp_settlement_due_dateFormDataSource extends clsDBConnSIKP {  //p_settle
     }
 //End Insert Method
 
-//Update Method @23-E7666E29
+//Update Method @23-0C66253E
     function Update()
     {
         global $CCSLocales;
@@ -1219,7 +1218,7 @@ class clsp_settlement_due_dateFormDataSource extends clsDBConnSIKP {  //p_settle
         $this->cp["valid_from"] = new clsSQLParameter("ctrlvalid_from", ccsText, "", "", $this->valid_from->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["valid_to"] = new clsSQLParameter("ctrlvalid_to", ccsText, "", "", $this->valid_to->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["updated_by"] = new clsSQLParameter("ctrlupdated_by", ccsText, "", "", $this->updated_by->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["updated_by"] = new clsSQLParameter("expr182", ccsText, "", "", CCGetUserLogin(), "", false, $this->ErrorBlock);
         $this->cp["p_settlement_due_date_id"] = new clsSQLParameter("ctrlp_settlement_due_date_id", ccsFloat, "", "", $this->p_settlement_due_date_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["p_vat_type_id"]->GetValue()) and !strlen($this->cp["p_vat_type_id"]->GetText()) and !is_bool($this->cp["p_vat_type_id"]->GetValue())) 
@@ -1249,7 +1248,7 @@ class clsp_settlement_due_dateFormDataSource extends clsDBConnSIKP {  //p_settle
         if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
             $this->cp["description"]->SetValue($this->description->GetValue(true));
         if (!is_null($this->cp["updated_by"]->GetValue()) and !strlen($this->cp["updated_by"]->GetText()) and !is_bool($this->cp["updated_by"]->GetValue())) 
-            $this->cp["updated_by"]->SetValue($this->updated_by->GetValue(true));
+            $this->cp["updated_by"]->SetValue(CCGetUserLogin());
         if (!is_null($this->cp["p_settlement_due_date_id"]->GetValue()) and !strlen($this->cp["p_settlement_due_date_id"]->GetText()) and !is_bool($this->cp["p_settlement_due_date_id"]->GetValue())) 
             $this->cp["p_settlement_due_date_id"]->SetValue($this->p_settlement_due_date_id->GetValue(true));
         if (!strlen($this->cp["p_settlement_due_date_id"]->GetText()) and !is_bool($this->cp["p_settlement_due_date_id"]->GetValue(true))) 
