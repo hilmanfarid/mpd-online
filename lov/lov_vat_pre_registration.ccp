@@ -44,85 +44,85 @@ OR upper(brand_address_name) LIKE '%{s_keyword}%' )">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Label id="43" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_no" fieldSource="brand_address_no" wizardCaption="DESCRIPTION" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_REGIONbrand_address_no">
+				<Label id="43" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_no" fieldSource="brand_address_no" wizardCaption="DESCRIPTION" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_REGIONbrand_address_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<TextBox id="44" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_address_rw" PathID="LOV_REGIONbrand_address_rw" fieldSource="brand_address_rw">
+				<TextBox id="44" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_address_rw" PathID="LOV_REGIONbrand_address_rw" fieldSource="brand_address_rw">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Label id="45" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_name" fieldSource="brand_address_name" wizardCaption="CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_REGIONbrand_address_name">
+				<Label id="45" fieldSourceType="DBColumn" dataType="Text" html="False" name="brand_address_name" fieldSource="brand_address_name" wizardCaption="CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_REGIONbrand_address_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<TextBox id="46" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_p_region_id" PathID="LOV_REGIONbrand_p_region_id" fieldSource="brand_p_region_id">
+				<TextBox id="46" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_p_region_id" PathID="LOV_REGIONbrand_p_region_id" fieldSource="brand_p_region_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="47" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_p_region_id_kel" PathID="LOV_REGIONbrand_p_region_id_kel" fieldSource="brand_p_region_id_kel">
+				<TextBox id="47" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_p_region_id_kel" PathID="LOV_REGIONbrand_p_region_id_kel" fieldSource="brand_p_region_id_kel">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="48" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_p_region_id_kec" PathID="LOV_REGIONbrand_p_region_id_kec" fieldSource="brand_p_region_id_kec">
+				<TextBox id="48" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_p_region_id_kec" PathID="LOV_REGIONbrand_p_region_id_kec" fieldSource="brand_p_region_id_kec">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="49" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_phone_no" PathID="LOV_REGIONbrand_phone_no" fieldSource="brand_phone_no">
+				<TextBox id="49" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_phone_no" PathID="LOV_REGIONbrand_phone_no" fieldSource="brand_phone_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="50" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_mobile_no" PathID="LOV_REGIONbrand_mobile_no" fieldSource="brand_mobile_no">
+				<TextBox id="50" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_mobile_no" PathID="LOV_REGIONbrand_mobile_no" fieldSource="brand_mobile_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="51" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_fax_no" PathID="LOV_REGIONbrand_fax_no" fieldSource="brand_fax_no">
+				<TextBox id="51" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_fax_no" PathID="LOV_REGIONbrand_fax_no" fieldSource="brand_fax_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="52" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_zip_code" PathID="LOV_REGIONbrand_zip_code" fieldSource="brand_zip_code">
+				<TextBox id="52" visible="No" fieldSourceType="DBColumn" dataType="Text" name="brand_zip_code" PathID="LOV_REGIONbrand_zip_code" fieldSource="brand_zip_code">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="53" visible="No" fieldSourceType="DBColumn" dataType="Text" name="kota" PathID="LOV_REGIONkota" fieldSource="kota">
+				<TextBox id="53" visible="No" fieldSourceType="DBColumn" dataType="Text" name="kota" PathID="LOV_REGIONkota" fieldSource="kota">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="54" visible="No" fieldSourceType="DBColumn" dataType="Text" name="kec" PathID="LOV_REGIONkec" fieldSource="kec">
+				<TextBox id="54" visible="No" fieldSourceType="DBColumn" dataType="Text" name="kec" PathID="LOV_REGIONkec" fieldSource="kec">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="55" visible="No" fieldSourceType="DBColumn" dataType="Text" name="kel" PathID="LOV_REGIONkel" fieldSource="kel">
+				<TextBox id="55" visible="No" fieldSourceType="DBColumn" dataType="Text" name="kel" PathID="LOV_REGIONkel" fieldSource="kel">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -149,9 +149,9 @@ OR upper(brand_address_name) LIKE '%{s_keyword}%' )">
 			</SPParameters>
 			<SQLParameters>
 				<SQLParameter id="39" parameterType="Expression" variable="Expr0" dataType="Float" parameterSource="3"/>
-<SQLParameter id="40" parameterType="Expression" variable="Expr1" dataType="Float" parameterSource="4"/>
-<SQLParameter id="41" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
-</SQLParameters>
+				<SQLParameter id="40" parameterType="Expression" variable="Expr1" dataType="Float" parameterSource="4"/>
+				<SQLParameter id="41" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>

@@ -54,7 +54,10 @@ function LOV_REGION_BeforeShowRow(& $sender)
 	$LOV_REGION->brand_phone_no->GetValue() ."#~#".
 	$LOV_REGION->brand_mobile_no->GetValue() ."#~#".
 	$LOV_REGION->brand_fax_no->GetValue() ."#~#".
-	$LOV_REGION->brand_zip_code->GetValue();
+	$LOV_REGION->brand_zip_code->GetValue()."#~#".
+	$LOV_REGION->kota->GetValue()."#~#".
+	$LOV_REGION->kec->GetValue()."#~#".
+	$LOV_REGION->kel->GetValue();
 	$LOV_REGION->PILIH->SetValue("<input type=button value=PILIH class=btn_tambah onclick=\"" .
 									 "clickReturn('".$nilai."')\">");
 // -------------------------
