@@ -42,7 +42,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-2FB3DEC4
+//Class_Initialize Event @2-4B8009DF
     function clsGridt_bphtb_registrationGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -83,6 +83,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
         $this->BtnCetak3 = & new clsButton("BtnCetak3", ccsGet, $this);
         $this->BtnCetak4 = & new clsButton("BtnCetak4", ccsGet, $this);
         $this->pilihan_lembar_cetak = & new clsControl(ccsHidden, "pilihan_lembar_cetak", "pilihan_lembar_cetak", ccsInteger, "", CCGetRequestParam("pilihan_lembar_cetak", ccsGet, NULL), $this);
+        $this->BtnCetak5 = & new clsButton("BtnCetak5", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -99,7 +100,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
     }
 //End Initialize Method
 
-//Show Method @2-E56AC71A
+//Show Method @2-A7749BE1
     function Show()
     {
         global $Tpl;
@@ -142,6 +143,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
             $this->ControlsVisible["BtnCetak3"] = $this->BtnCetak3->Visible;
             $this->ControlsVisible["BtnCetak4"] = $this->BtnCetak4->Visible;
             $this->ControlsVisible["pilihan_lembar_cetak"] = $this->pilihan_lembar_cetak->Visible;
+            $this->ControlsVisible["BtnCetak5"] = $this->BtnCetak5->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -175,6 +177,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
                 $this->BtnCetak3->Show();
                 $this->BtnCetak4->Show();
                 $this->pilihan_lembar_cetak->Show();
+                $this->BtnCetak5->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }

@@ -76,30 +76,36 @@ ORDER BY trim(b.wp_name) ASC" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="318" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetak2" PathID="t_bphtb_registrationGridBtnCetak2">
+				<Button id="318" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetak2" PathID="t_bphtb_registrationGridBtnCetak2">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-<Button id="319" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetak3" PathID="t_bphtb_registrationGridBtnCetak3">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-<Button id="321" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetak4" PathID="t_bphtb_registrationGridBtnCetak4">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-<Hidden id="322" fieldSourceType="DBColumn" dataType="Integer" name="pilihan_lembar_cetak" PathID="t_bphtb_registrationGridpilihan_lembar_cetak" fieldSource="pilihan_lembar_cetak">
+				<Button id="319" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetak3" PathID="t_bphtb_registrationGridBtnCetak3">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Button id="321" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetak4" PathID="t_bphtb_registrationGridBtnCetak4">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<Hidden id="322" fieldSourceType="DBColumn" dataType="Integer" name="pilihan_lembar_cetak" PathID="t_bphtb_registrationGridpilihan_lembar_cetak" fieldSource="pilihan_lembar_cetak">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
+				<Button id="323" urlType="Relative" enableValidation="True" isDefault="False" name="BtnCetak5" PathID="t_bphtb_registrationGridBtnCetak5">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
