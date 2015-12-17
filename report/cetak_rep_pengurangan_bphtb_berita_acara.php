@@ -329,7 +329,7 @@ class FormCetak extends FPDF {
 
 	function signaturePage($data) {
 		$this->AliasNbPages();
-		$this->AddPage("P");
+		//$this->AddPage("P");
 		$encImageData = '';
 
 		//$this->Image('../images/logo_pemda.png',10,10,20,20);
