@@ -279,6 +279,8 @@ class FormCetak extends FPDF {
 				""
 			),
 			$this->height-1);
+		
+		$this->AddPage("P");
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($lbody1, $this->height, "3", "", 0, "");
 		$this->SetWidths(array($this->lengthCell-$lbody1-$lbody1));
