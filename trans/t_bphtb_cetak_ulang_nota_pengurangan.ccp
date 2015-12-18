@@ -1,8 +1,9 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="CoffeeBreak" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="15" connection="ConnSIKP" name="t_bphtb_registrationGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT a.t_bphtb_registration_id, a.pilihan_lembar_cetak, b.t_customer_order_id, b.registration_no, b.wp_name, b.njop_pbb, b.wp_address_name, b.object_address_name, b.bphtb_amt_final, a.exemption_amount
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="15" connection="ConnSIKP" name="t_bphtb_registrationGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" dataSource="SELECT c.order_no,a.t_bphtb_registration_id, a.pilihan_lembar_cetak, b.t_customer_order_id, b.registration_no, b.wp_name, b.njop_pbb, b.wp_address_name, b.object_address_name, b.bphtb_amt_final, a.exemption_amount
 FROM t_bphtb_exemption AS a 
 INNER JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
+left join t_customer_order as c on a.t_customer_order_id = c.t_customer_order_id
 WHERE ( upper(b.wp_name) LIKE upper('%{s_keyword}%') OR 
   upper(b.njop_pbb) LIKE upper('%{s_keyword}%') OR
   upper(b.registration_no) LIKE upper('%{s_keyword}%')
@@ -106,6 +107,12 @@ ORDER BY trim(b.wp_name) ASC" parameterTypeListName="ParameterTypeList">
 					<Attributes/>
 					<Features/>
 				</Button>
+				<Label id="324" fieldSourceType="DBColumn" dataType="Text" html="False" name="order_no" fieldSource="order_no" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_bphtb_registrationGridorder_no">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">

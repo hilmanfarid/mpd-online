@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -58,7 +58,7 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Nama WP/&nbsp;NOP / No Registrasi</td> 
-                    <td class="search-field">&nbsp;: <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label style="display: none;" for="searchFormOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
+                    <td class="search-field">&nbsp;: <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" value="Cari" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -88,7 +88,7 @@ $(document).ready(function()
  
                   <th valign="center" scope="col">No Registrasi</th>
  
-                  <th valign="center" scope="col">&nbsp;</th>
+                  <th valign="center" scope="col">&nbsp;No Order</th>
  
                   <th valign="center" scope="col">NOP</th>
  
@@ -113,7 +113,7 @@ $(document).ready(function()
                 <tr {t_bphtb_registrationGrid:rowStyle}>
                   <td>{wp_name}<input id="t_bphtb_registrationGridt_customer_order_id_{t_bphtb_registrationGrid:rowNumber}" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"></td> 
                   <td style="TEXT-ALIGN: right">{registration_no}<input id="t_bphtb_registrationGridt_bphtb_registration_id_{t_bphtb_registrationGrid:rowNumber}" value="{t_bphtb_registration_id}" type="hidden" name="{t_bphtb_registration_id_Name}"></td> 
-                  <td><input id="t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}" value="{pilihan_lembar_cetak}" type="hidden" name="{pilihan_lembar_cetak_Name}"></td> 
+                  <td>{order_no}<input id="t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}" value="{pilihan_lembar_cetak}" type="hidden" name="{pilihan_lembar_cetak_Name}"></td> 
                   <td>{njop_pbb}</td> 
                   <td>{wp_address_name}</td> 
                   <td style="TEXT-ALIGN: left">{object_address_name}</td> 
@@ -124,7 +124,7 @@ $(document).ready(function()
                     <!-- BEGIN Button BtnCetak1 --><input style="WIDTH: 102px; HEIGHT: 21px" id="t_bphtb_registrationGridBtnCetak1" class="Button" onclick="cetak_lembar_disposisi({t_bphtb_registration_id},'t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}');" value="Lembar Disposisi" alt="Button2" size="1" type="button" name="{Button_Name}"><!-- END Button BtnCetak1 --></td> 
                   <td style="TEXT-ALIGN: right; COLOR: #ff0000">
                     <!-- BEGIN Button BtnCetak2 --><input style="WIDTH: 81px; HEIGHT: 21px" id="t_bphtb_registrationGridBtnCetak2" class="Button" onclick="cetak_berita_acara({t_bphtb_registration_id},'t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}');" value="Berita Acara" alt="Button2" size="1" type="button" name="{Button_Name}"><!-- END Button BtnCetak2 --></td> 
-                  <td  WIDTH=220px style="TEXT-ALIGN: right; COLOR: #ff0000" >
+                  <td style="TEXT-ALIGN: right; COLOR: #ff0000" width="220">
                     <!-- BEGIN Button BtnCetak3 --><input style="WIDTH: 107px; HEIGHT: 21px" id="t_bphtb_registrationGridBtnCetak3" class="Button" onclick="cetak_nota_dinas({t_bphtb_registration_id},'t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}',1);" value="Nota Dinas KASI" alt="Button2" size="1" type="button" name="{Button_Name}"><!-- END Button BtnCetak3 -->
                     <!-- BEGIN Button BtnCetak5 --><input style="WIDTH: 104px; HEIGHT: 21px" id="t_bphtb_registrationGridBtnCetak5" class="Button" onclick="cetak_nota_dinas({t_bphtb_registration_id},'t_bphtb_registrationGridpilihan_lembar_cetak_{t_bphtb_registrationGrid:rowNumber}',2);" value="Nota Dinas KABID" alt="Button2" size="1" type="button" name="{Button_Name}"><!-- END Button BtnCetak5 --></td> 
                   <td style="TEXT-ALIGN: center">
@@ -137,7 +137,7 @@ $(document).ready(function()
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
-                  <td style="TEXT-ALIGN: center" colspan="12">&nbsp; 
+                  <td colspan="12">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->

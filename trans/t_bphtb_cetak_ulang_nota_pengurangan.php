@@ -42,7 +42,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-4B8009DF
+//Class_Initialize Event @2-80F279F5
     function clsGridt_bphtb_registrationGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -84,6 +84,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
         $this->BtnCetak4 = & new clsButton("BtnCetak4", ccsGet, $this);
         $this->pilihan_lembar_cetak = & new clsControl(ccsHidden, "pilihan_lembar_cetak", "pilihan_lembar_cetak", ccsInteger, "", CCGetRequestParam("pilihan_lembar_cetak", ccsGet, NULL), $this);
         $this->BtnCetak5 = & new clsButton("BtnCetak5", ccsGet, $this);
+        $this->order_no = & new clsControl(ccsLabel, "order_no", "order_no", ccsText, "", CCGetRequestParam("order_no", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -100,7 +101,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
     }
 //End Initialize Method
 
-//Show Method @2-A7749BE1
+//Show Method @2-362FF964
     function Show()
     {
         global $Tpl;
@@ -144,6 +145,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
             $this->ControlsVisible["BtnCetak4"] = $this->BtnCetak4->Visible;
             $this->ControlsVisible["pilihan_lembar_cetak"] = $this->pilihan_lembar_cetak->Visible;
             $this->ControlsVisible["BtnCetak5"] = $this->BtnCetak5->Visible;
+            $this->ControlsVisible["order_no"] = $this->order_no->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -160,6 +162,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
                 $this->wp_name->SetValue($this->DataSource->wp_name->GetValue());
                 $this->t_customer_order_id->SetValue($this->DataSource->t_customer_order_id->GetValue());
                 $this->pilihan_lembar_cetak->SetValue($this->DataSource->pilihan_lembar_cetak->GetValue());
+                $this->order_no->SetValue($this->DataSource->order_no->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -178,6 +181,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
                 $this->BtnCetak4->Show();
                 $this->pilihan_lembar_cetak->Show();
                 $this->BtnCetak5->Show();
+                $this->order_no->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -210,7 +214,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
     }
 //End Show Method
 
-//GetErrors Method @2-AD69B2A1
+//GetErrors Method @2-6BA9FC18
     function GetErrors()
     {
         $errors = "";
@@ -223,6 +227,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
         $errors = ComposeStrings($errors, $this->wp_name->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_customer_order_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->pilihan_lembar_cetak->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->order_no->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -233,7 +238,7 @@ class clsGridt_bphtb_registrationGrid { //t_bphtb_registrationGrid class @2-1401
 
 class clst_bphtb_registrationGridDataSource extends clsDBConnSIKP {  //t_bphtb_registrationGridDataSource Class @2-E2CB564B
 
-//DataSource Variables @2-74A60D5B
+//DataSource Variables @2-9BD8AB4B
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -254,9 +259,10 @@ class clst_bphtb_registrationGridDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $wp_name;
     var $t_customer_order_id;
     var $pilihan_lembar_cetak;
+    var $order_no;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-B067F0E5
+//DataSourceClass_Initialize Event @2-5EDB619B
     function clst_bphtb_registrationGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -279,6 +285,8 @@ class clst_bphtb_registrationGridDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->t_customer_order_id = new clsField("t_customer_order_id", ccsInteger, "");
         
         $this->pilihan_lembar_cetak = new clsField("pilihan_lembar_cetak", ccsInteger, "");
+        
+        $this->order_no = new clsField("order_no", ccsText, "");
         
 
     }
@@ -303,21 +311,23 @@ class clst_bphtb_registrationGridDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Prepare Method
 
-//Open Method @2-CAFD1327
+//Open Method @2-239D0EEF
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT a.t_bphtb_registration_id, a.pilihan_lembar_cetak, b.t_customer_order_id, b.registration_no, b.wp_name, b.njop_pbb, b.wp_address_name, b.object_address_name, b.bphtb_amt_final, a.exemption_amount\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT c.order_no,a.t_bphtb_registration_id, a.pilihan_lembar_cetak, b.t_customer_order_id, b.registration_no, b.wp_name, b.njop_pbb, b.wp_address_name, b.object_address_name, b.bphtb_amt_final, a.exemption_amount\n" .
         "FROM t_bphtb_exemption AS a \n" .
         "INNER JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id\n" .
+        "left join t_customer_order as c on a.t_customer_order_id = c.t_customer_order_id\n" .
         "WHERE ( upper(b.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
         "  upper(b.njop_pbb) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
         "  upper(b.registration_no) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
         ")\n" .
         "AND a.pilihan_lembar_cetak is not null) cnt";
-        $this->SQL = "SELECT a.t_bphtb_registration_id, a.pilihan_lembar_cetak, b.t_customer_order_id, b.registration_no, b.wp_name, b.njop_pbb, b.wp_address_name, b.object_address_name, b.bphtb_amt_final, a.exemption_amount\n" .
+        $this->SQL = "SELECT c.order_no,a.t_bphtb_registration_id, a.pilihan_lembar_cetak, b.t_customer_order_id, b.registration_no, b.wp_name, b.njop_pbb, b.wp_address_name, b.object_address_name, b.bphtb_amt_final, a.exemption_amount\n" .
         "FROM t_bphtb_exemption AS a \n" .
         "INNER JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id\n" .
+        "left join t_customer_order as c on a.t_customer_order_id = c.t_customer_order_id\n" .
         "WHERE ( upper(b.wp_name) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR \n" .
         "  upper(b.njop_pbb) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%') OR\n" .
         "  upper(b.registration_no) LIKE upper('%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%')\n" .
@@ -333,7 +343,7 @@ class clst_bphtb_registrationGridDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @2-3F2EDF6D
+//SetValues Method @2-725CDA08
     function SetValues()
     {
         $this->registration_no->SetDBValue($this->f("registration_no"));
@@ -345,6 +355,7 @@ class clst_bphtb_registrationGridDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->wp_name->SetDBValue($this->f("wp_name"));
         $this->t_customer_order_id->SetDBValue(trim($this->f("t_customer_order_id")));
         $this->pilihan_lembar_cetak->SetDBValue(trim($this->f("pilihan_lembar_cetak")));
+        $this->order_no->SetDBValue($this->f("order_no"));
     }
 //End SetValues Method
 
