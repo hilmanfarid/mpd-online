@@ -193,7 +193,7 @@ function Page_OnInitializeView(& $sender)
     $selected_id = -1;
     $selected_id=CCGetFromGet("pic_id", $selected_id);
 
-	global $selected_id2;
+	global $selected_id2; 
     $selected_id2 = -1;
     $selected_id2=CCGetFromGet("t_cust_account_id", $selected_id2);
 //Close Page_OnInitializeView @1-81DF8332
