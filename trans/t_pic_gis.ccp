@@ -14,7 +14,19 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<Button id="683" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_pic_gisSearchButton1">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
+<Button id="684" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_pic_gisSearchButton2">
+<Components/>
+<Events/>
+<Attributes/>
+<Features/>
+</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -127,7 +139,7 @@ ORDER BY a.t_cust_account_id">
 			<Attributes/>
 			<Features/>
 		</Grid>
-<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_pic_gisGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select t_pic_gis.pic_id as pic_id,
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_pic_gisGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select t_pic_gis.pic_id as pic_id,
 							t_pic_gis.file_name as file_name, 
 							t_pic_gis.longitude as &quot;Longitude&quot;, 
 							t_pic_gis.latitude as &quot;Latitude&quot;, 
@@ -222,7 +234,7 @@ order by pic_id ASC">
 			<Attributes/>
 			<Features/>
 		</Grid>
-<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_pic_gisForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_pic_gisForm" activeCollection="UConditions" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="SQL" dataSource="select t_pic_gis.pic_id as pic_id,
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_pic_gisForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_pic_gisForm" activeCollection="UConditions" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="SQL" dataSource="select t_pic_gis.pic_id as pic_id,
 							t_pic_gis.file_name as file_name, 
 							t_pic_gis.longitude as longitude, 
 							t_pic_gis.latitude as latitude, 
@@ -324,12 +336,12 @@ WHERE t_customer_order_id = {t_customer_order_id}" removeParameters="pic_id" cus
 					<Features/>
 				</FileUpload>
 				<Hidden id="671" fieldSourceType="DBColumn" dataType="Float" name="t_cust_account_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_pic_gisFormt_cust_account_id" fieldSource="t_cust_account_id">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Hidden>
-</Components>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+			</Components>
 			<Events>
 				<Event name="OnSubmit" type="Client">
 					<Actions>
@@ -337,21 +349,21 @@ WHERE t_customer_order_id = {t_customer_order_id}" removeParameters="pic_id" cus
 					</Actions>
 				</Event>
 				<Event name="BeforeBuildInsert" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="672"/>
-</Actions>
-</Event>
-<Event name="BeforeInsert" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="673"/>
-</Actions>
-</Event>
-<Event name="BeforeShow" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="675"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="672"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeInsert" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="673"/>
+					</Actions>
+				</Event>
+				<Event name="BeforeShow" type="Server">
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="675"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 				<TableParameter id="563" conditionType="Parameter" useIsNull="False" field="t_customer_order_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_customer_order_id"/>
 			</TableParameters>
@@ -385,7 +397,7 @@ WHERE t_customer_order_id = {t_customer_order_id}" removeParameters="pic_id" cus
 				<SQLParameter id="649" variable="longitude" dataType="Float" parameterType="Control" parameterSource="longitude"/>
 				<SQLParameter id="650" variable="file_name" dataType="Text" parameterType="Control" parameterSource="file_name"/>
 				<SQLParameter id="674" variable="t_cust_account_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_cust_account_id"/>
-</ISQLParameters>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="571" field="created_by" dataType="Text" parameterType="Control" parameterSource="created_by" omitIfEmpty="True"/>
 				<CustomParameter id="572" field="updated_by" dataType="Text" parameterType="Control" parameterSource="updated_by" omitIfEmpty="True"/>
@@ -420,13 +432,13 @@ WHERE t_customer_order_id = {t_customer_order_id}" removeParameters="pic_id" cus
 				<SQLParameter id="615" variable="p_rqst_type_id" dataType="Float" parameterType="Control" parameterSource="p_rqst_type_id"/>
 				<SQLParameter id="616" variable="p_order_status_id" dataType="Float" parameterType="Expression" parameterSource="1" defaultValue="0"/>
 				<SQLParameter id="676" variable="created_by" dataType="Text" parameterType="Control" parameterSource="created_by"/>
-<SQLParameter id="677" variable="creation_date" dataType="Text" parameterType="Control" parameterSource="creation_date" format="dd-mmm-yyyy"/>
-<SQLParameter id="678" variable="updated_date" dataType="Text" parameterType="Control" parameterSource="updated_date" format="dd-mmm-yyyy"/>
-<SQLParameter id="679" variable="latitude" dataType="Float" parameterType="Control" parameterSource="latitude"/>
-<SQLParameter id="680" variable="longitude" dataType="Float" parameterType="Control" parameterSource="longitude"/>
-<SQLParameter id="681" variable="file_name" dataType="Text" parameterType="Control" parameterSource="file_name"/>
-<SQLParameter id="682" variable="pic_id" parameterType="URL" dataType="Float" parameterSource="pic_id" defaultValue="0"/>
-</USQLParameters>
+				<SQLParameter id="677" variable="creation_date" dataType="Text" parameterType="Control" parameterSource="creation_date" format="dd-mmm-yyyy"/>
+				<SQLParameter id="678" variable="updated_date" dataType="Text" parameterType="Control" parameterSource="updated_date" format="dd-mmm-yyyy"/>
+				<SQLParameter id="679" variable="latitude" dataType="Float" parameterType="Control" parameterSource="latitude"/>
+				<SQLParameter id="680" variable="longitude" dataType="Float" parameterType="Control" parameterSource="longitude"/>
+				<SQLParameter id="681" variable="file_name" dataType="Text" parameterType="Control" parameterSource="file_name"/>
+				<SQLParameter id="682" variable="pic_id" parameterType="URL" dataType="Float" parameterSource="pic_id" defaultValue="0"/>
+			</USQLParameters>
 			<UConditions>
 				<TableParameter id="655" conditionType="Parameter" useIsNull="False" field="pic_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="pic_id"/>
 			</UConditions>
@@ -449,7 +461,7 @@ WHERE t_customer_order_id = {t_customer_order_id}" removeParameters="pic_id" cus
 			<Attributes/>
 			<Features/>
 		</Record>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_pic_gis_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_pic_gis.php" forShow="True" url="t_pic_gis.php" comment="//" codePage="windows-1252"/>
