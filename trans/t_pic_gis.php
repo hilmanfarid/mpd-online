@@ -9,10 +9,6 @@ include_once(RelativePath . "/Sorter.php");
 include_once(RelativePath . "/Navigator.php");
 //End Include Common Files
 
-error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED ^ E_WARNING);
-
-
-
 class clsRecordt_pic_gisSearch { //t_pic_gisSearch Class @3-5C32F87B
 
 //Variables @3-D6FF3E86
@@ -200,8 +196,6 @@ function GetPrimaryKey($keyName)
 //End Show Method
 
 } //End t_pic_gisSearch Class @3-FCB6E20C
-
-
 
 class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
 
@@ -597,7 +591,7 @@ class clsGridt_pic_gisGrid { //t_pic_gisGrid class @2-6FC49145
     }
 //End Initialize Method
 
-//Show Method @2-037698A6
+//Show Method @2-B1C072F3
     function Show()
     {
         global $Tpl;
@@ -665,7 +659,7 @@ class clsGridt_pic_gisGrid { //t_pic_gisGrid class @2-6FC49145
             $Tpl->block_path = $ParentPath;
             return;
         }
-        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("pic_id", "s_keyword", "ccsForm"));
+        $this->Insert_Link->Parameters = CCGetQueryString("QueryString", array("pic_id", "ccsForm"));
         $this->Insert_Link->Parameters = CCAddParam($this->Insert_Link->Parameters, "FLAG", "ADD");
         $this->Navigator->PageNumber = $this->DataSource->AbsolutePage;
         $this->Navigator->PageSize = $this->PageSize;
@@ -1085,12 +1079,12 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//DeleteRow Method @94-328D3C2F
+//DeleteRow Method @94-C448A910
     function DeleteRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeDelete", $this);
         if(!$this->DeleteAllowed) return false;
-        $this->DataSource->t_customer_order_id->SetValue($this->t_customer_order_id->GetValue(true));
+        $this->DataSource->pic_id->SetValue($this->pic_id->GetValue(true));
         $this->DataSource->Delete();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterDelete", $this);
         if($this->DataSource->Errors->Count() == 0) {
@@ -1417,20 +1411,20 @@ class clst_pic_gisFormDataSource extends clsDBConnSIKP {  //t_pic_gisFormDataSou
     }
 //End Update Method
 
-//Delete Method @94-F4E3EBF7
+//Delete Method @94-0F2C5459
     function Delete()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->CmdExecution = true;
-        $this->cp["t_customer_order_id"] = new clsSQLParameter("ctrlt_customer_order_id", ccsFloat, "", "", $this->t_customer_order_id->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["pic_id"] = new clsSQLParameter("ctrlpic_id", ccsFloat, "", "", $this->pic_id->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildDelete", $this->Parent);
-        if (!is_null($this->cp["t_customer_order_id"]->GetValue()) and !strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue())) 
-            $this->cp["t_customer_order_id"]->SetValue($this->t_customer_order_id->GetValue(true));
-        if (!strlen($this->cp["t_customer_order_id"]->GetText()) and !is_bool($this->cp["t_customer_order_id"]->GetValue(true))) 
-            $this->cp["t_customer_order_id"]->SetText(0);
-        $this->SQL = "DELETE FROM t_customer_order\n" .
-        "WHERE t_customer_order_id = " . $this->SQLValue($this->cp["t_customer_order_id"]->GetDBValue(), ccsFloat) . "";
+        if (!is_null($this->cp["pic_id"]->GetValue()) and !strlen($this->cp["pic_id"]->GetText()) and !is_bool($this->cp["pic_id"]->GetValue())) 
+            $this->cp["pic_id"]->SetValue($this->pic_id->GetValue(true));
+        if (!strlen($this->cp["pic_id"]->GetText()) and !is_bool($this->cp["pic_id"]->GetValue(true))) 
+            $this->cp["pic_id"]->SetText(0);
+        $this->SQL = "DELETE FROM tb_pic_gis\n" .
+        "WHERE pic_id = " . $this->SQLValue($this->cp["pic_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteDelete", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);

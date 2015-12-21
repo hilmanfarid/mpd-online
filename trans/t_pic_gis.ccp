@@ -14,19 +14,7 @@
 					<Attributes/>
 					<Features/>
 				</Button>
-				<Button id="683" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_pic_gisSearchButton1">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-<Button id="684" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_pic_gisSearchButton2">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -158,7 +146,7 @@ FROM sikp.tb_pic_gis t_pic_gis
 where t_cust_acc.t_cust_account_id = {t_cust_account_id}
 order by pic_id ASC">
 			<Components>
-				<Link id="663" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_pic_gis.ccp" removeParameters="pic_id;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_pic_gisGridInsert_Link">
+				<Link id="663" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_pic_gis.ccp" removeParameters="pic_id" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_pic_gisGridInsert_Link">
 					<Components/>
 					<Events/>
 					<LinkParameters>
@@ -234,7 +222,7 @@ order by pic_id ASC">
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_pic_gisForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_pic_gisForm" activeCollection="UConditions" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="SQL" dataSource="select t_pic_gis.pic_id as pic_id,
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_pic_gisForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_pic_gisForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="SQL" dataSource="select t_pic_gis.pic_id as pic_id,
 							t_pic_gis.file_name as file_name, 
 							t_pic_gis.longitude as longitude, 
 							t_pic_gis.latitude as latitude, 
@@ -254,8 +242,8 @@ order by pic_id ASC">
 FROM sikp.tb_pic_gis t_pic_gis
 						  left join sikp.tipe_lokasi as lokasi on lokasi.id_tipe_lokasi = t_pic_gis.id_tipe_lokasi
 						  left join sikp.t_cust_account as t_cust_acc on t_cust_acc.npwd = t_pic_gis.&quot;NPWPD&quot;
-						  where pic_id = {pic_id}" customDelete="DELETE FROM t_customer_order
-WHERE t_customer_order_id = {t_customer_order_id}" removeParameters="pic_id" customInsert="INSERT INTO tb_pic_gis(&quot;NPWPD&quot;,created_by, updated_by, creation_date, updated_date, latitude, longitude, file_name) VALUES((select npwd from t_cust_account where t_cust_account_id = {t_cust_account_id}),'{created_by}', '{updated_by}', '{creation_date}', '{updated_date}', {latitude}, {longitude}, '{file_name}')" customUpdate="tb_pic_gis" activeTableType="customUpdate">
+						  where pic_id = {pic_id}" customDelete="DELETE FROM tb_pic_gis
+WHERE pic_id = {pic_id}" removeParameters="pic_id" customInsert="INSERT INTO tb_pic_gis(&quot;NPWPD&quot;,created_by, updated_by, creation_date, updated_date, latitude, longitude, file_name) VALUES((select npwd from t_cust_account where t_cust_account_id = {t_cust_account_id}),'{created_by}', '{updated_by}', '{creation_date}', '{updated_date}', {latitude}, {longitude}, '{file_name}')" customUpdate="tb_pic_gis" activeTableType="customUpdate">
 			<Components>
 				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_pic_gisFormButton_Insert" removeParameters="FLAG">
 					<Components/>
@@ -453,7 +441,7 @@ WHERE t_customer_order_id = {t_customer_order_id}" removeParameters="pic_id" cus
 			</UFormElements>
 			<DSPParameters/>
 			<DSQLParameters>
-				<SQLParameter id="617" variable="t_customer_order_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="t_customer_order_id"/>
+				<SQLParameter id="617" variable="pic_id" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="pic_id"/>
 			</DSQLParameters>
 			<DConditions>
 			</DConditions>

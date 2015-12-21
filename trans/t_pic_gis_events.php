@@ -27,6 +27,16 @@ function t_custAccountGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_custAccountGrid; //Compatibility
 //End t_custAccountGrid_BeforeShowRow
+
+//Set Row Style @660-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
     global $selected_id2;
     global $add_flag;
 	global $t_pic_gisGrid;
@@ -70,6 +80,12 @@ function t_custAccountGrid_BeforeSelect(& $sender)
     global $t_custAccountGrid; //Compatibility
 //End t_custAccountGrid_BeforeSelect
 
+//Custom Code @661-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close t_custAccountGrid_BeforeSelect @656-48A5AED5
     return $t_custAccountGrid_BeforeSelect;
 }
@@ -83,6 +99,22 @@ function t_pic_gisGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_pic_gisGrid; //Compatibility
 //End t_pic_gisGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
+
+//Custom Code @622-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 	global $t_pic_gisForm;
     global $selected_id;
     global $add_flag;
@@ -129,6 +161,12 @@ function t_pic_gisGrid_BeforeSelect(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_pic_gisGrid; //Compatibility
 //End t_pic_gisGrid_BeforeSelect
+
+//Custom Code @129-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 	global $selected_id2;
 	if($t_pic_gisGrid->DataSource->Parameters["urlt_cust_account_id"] == NULL){
 		$t_pic_gisGrid->DataSource->Parameters["urlt_cust_account_id"] = $selected_id2;
@@ -146,6 +184,12 @@ function t_pic_gisForm_ds_BeforeBuildInsert(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_pic_gisForm; //Compatibility
 //End t_pic_gisForm_ds_BeforeBuildInsert
+
+//Custom Code @672-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 	
 //Close t_pic_gisForm_ds_BeforeBuildInsert @94-DBE4253D
     return $t_pic_gisForm_ds_BeforeBuildInsert;
@@ -161,6 +205,12 @@ function t_pic_gisForm_BeforeInsert(& $sender)
     global $t_pic_gisForm; //Compatibility
 //End t_pic_gisForm_BeforeInsert
 
+//Custom Code @673-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close t_pic_gisForm_BeforeInsert @94-95B18A10
     return $t_pic_gisForm_BeforeInsert;
 }
@@ -174,6 +224,12 @@ function t_pic_gisForm_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_pic_gisForm; //Compatibility
 //End t_pic_gisForm_BeforeShow
+
+//Custom Code @675-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 	global $selected_id2;
 	$t_pic_gisForm->t_cust_account_id->SetValue($selected_id2);
 //Close t_pic_gisForm_BeforeShow @94-0EFEE2D0
@@ -189,6 +245,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_pic_gis; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 	global $selected_id;
     $selected_id = -1;
     $selected_id=CCGetFromGet("pic_id", $selected_id);
