@@ -115,7 +115,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'C');			
 		$this->Cell($lheader2, $this->height, "PEMERINTAH KOTA", "R", 0, 'C');
 		$this->SetFont('Arial', '', 12);
-		$this->Cell($lheader3, $this->height, "SKPDKB", "R", 0, 'C');
+		$this->Cell($lheader3, $this->height, "SKPDKBT", "R", 0, 'C');
 		$this->Cell($lheader2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
@@ -130,7 +130,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader1, $this->height-2, "", "L", 0, 'C');			
 		$this->Cell($lheader2, $this->height-2, "BANDUNG", "R", 0, 'C');
 		$this->SetFont('Arial', '', 9);
-		$this->Cell($lheader3, $this->height-2, "(Surat Ketetapan Pajak Daerah Kurang Bayar)", "R", 0, 'C');
+		$this->Cell($lheader3, $this->height-2, "(Surat Ketetapan Pajak Daerah", "R", 0, 'C');
 		$this->SetFont('Arial', '', 10);
 		$this->Cell($lheader2, $this->height-2, "No. Urut", "R", 0, 'C');
 		$this->Ln();
@@ -143,7 +143,8 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
 		$this->Cell($lheader2, $this->height + 1, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
-		$this->Cell($lheader3, $this->height + 1, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
+		$this->SetFont('Arial', '', 9);
+		$this->Cell($lheader3, $this->height + 1, "Kurang Bayar Tambahan)", "R", 0, 'C');
 		$this->Cell($lheader2, $this->height + 1, "", "R", 0, 'C');
 		$this->Ln($this->height - 4);
 		
@@ -171,7 +172,7 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', '', 8);
 		$this->Cell($lheader2, $this->height-1, "Jalan Wastukancana No.2", "R", 0, 'C');
 		$this->SetFont('Arial', '', 10);
-		$this->Cell($lheader3, $this->height-1, "     Tahun Pajak   : ".$data["tahun"], "R", 0, 'L');
+		$this->Cell($lheader3, $this->height-1, "     Masa Pajak    : ".$data["finance_period_code"], "R", 0, 'L');
 		$this->Cell($lheader2, $this->height-1, "No.Bayar", "R", 0, 'C');
 		$this->Ln();
 		
@@ -184,7 +185,7 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', '', 8);
 		$this->Cell($lheader2, $this->height+1, "Telp. 022-4235052 - Bandung", "BR", 0, 'C');
 		$this->SetFont('Arial', '', 10);
-		$this->Cell($lheader3, $this->height+1, "", "BR", 0, 'L');
+		$this->Cell($lheader3, $this->height+1, "     Tahun Pajak   : ".$data["tahun"], "BR", 0, 'L');
 		$this->Cell($lheader2, $this->height+1, $data["no_bayar"], "BR", 0, 'C');
 		$this->Ln();
 
