@@ -1,7 +1,7 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\lov" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="LOV_ORDER" pageSizeLimit="100" wizardCaption="List of P CUSTOMER SEGMENT " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="select a.t_cust_account_id, a.npwd, wp_name,a.wp_address_name, 
-a.p_vat_type_id, vat_code, a.p_vat_type_dtl_id, vat_code_dtl
+a.p_vat_type_id, vat_code, a.p_vat_type_dtl_id, vat_code_dtl,a.company_brand,a.brand_address_name||' '||a.brand_address_no as brand_address_name
 from f_get_npwd_by_username('{puser}') AS tbl
 LEFT JOIN t_cust_account A ON A.t_cust_account_id= tbl.t_cust_account_id
 where upper(a.npwd) like '%{s_keyword}%' OR
@@ -14,7 +14,7 @@ upper(a.company_brand) like '%{s_keyword}%'">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="16" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_name" fieldSource="wp_name" wizardCaption="DESCRIPTION" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_ORDERwp_name">
+				<Label id="16" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_name" fieldSource="company_brand" wizardCaption="DESCRIPTION" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="LOV_ORDERwp_name">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -56,7 +56,7 @@ upper(a.company_brand) like '%{s_keyword}%'">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Label id="50" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_address_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERwp_address_name" fieldSource="wp_address_name">
+				<Label id="50" fieldSourceType="DBColumn" dataType="Text" html="False" name="wp_address_name" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOV_ORDERwp_address_name" fieldSource="brand_address_name">
 					<Components/>
 					<Events/>
 					<Attributes/>

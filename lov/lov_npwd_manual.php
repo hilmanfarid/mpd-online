@@ -292,12 +292,12 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Prepare Method
 
-//Open Method @2-16B45996
+//Open Method @2-02415B5B
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "select a.t_cust_account_id, a.npwd, wp_name,a.wp_address_name,\n" .
-        "a.p_vat_type_id, vat_code, a.p_vat_type_dtl_id, vat_code_dtl\n" .
+        $this->SQL = "select a.t_cust_account_id, a.npwd, wp_name,a.wp_address_name, \n" .
+        "a.p_vat_type_id, vat_code, a.p_vat_type_dtl_id, vat_code_dtl,a.company_brand,a.brand_address_name||' '||a.brand_address_no as brand_address_name\n" .
         "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl\n" .
         "LEFT JOIN t_cust_account A ON A.t_cust_account_id= tbl.t_cust_account_id\n" .
         "where upper(a.npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
@@ -313,15 +313,15 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Open Method
 
-//SetValues Method @2-60119B0A
+//SetValues Method @2-0B274D5A
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
-        $this->wp_name->SetDBValue($this->f("wp_name"));
+        $this->wp_name->SetDBValue($this->f("company_brand"));
         $this->p_vat_type_id->SetDBValue(trim($this->f("p_vat_type_id")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->t_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
-        $this->wp_address_name->SetDBValue($this->f("wp_address_name"));
+        $this->wp_address_name->SetDBValue($this->f("brand_address_name"));
         $this->p_vat_type_dtl_id->SetDBValue($this->f("p_vat_type_dtl_id"));
         $this->vat_code_dtl->SetDBValue($this->f("vat_code_dtl"));
         $this->vat_code2->SetDBValue($this->f("vat_code"));
