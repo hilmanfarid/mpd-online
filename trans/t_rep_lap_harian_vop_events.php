@@ -85,7 +85,7 @@ function startExcel($filename = "laporan.xls") {
 function print_excel($param_arr) {
 	
 	startExcel("laporan_harian_teller");
-	echo "<div><h3> LAPORAN HARIAN TELLER </h3></div>";	
+	echo "<div><h3> LAPORAN HARIAN VOP </h3></div>";	
 	echo "<div><b>NAMA VOP : ".$param_arr['nama_teller']."</b></div>";	
 	echo "<div><b>TGL PENERIMAAN : ".$param_arr['tgl_penerimaan']."</b></div>";
 	//echo "<div><b>STATUS : ".$param_arr['status_text']."</b></div><br/>";
@@ -236,7 +236,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>LAPORAN HARIAN TELLER</strong></td> 
+                  		<td class="th"><strong>LAPORAN HARIAN VOP</strong></td> 
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               	</table>';

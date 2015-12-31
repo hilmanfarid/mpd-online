@@ -28,6 +28,10 @@ function t_vat_setllementFormButton_Delete_OnClick()
     var result = true;
 //End t_vat_setllementFormButton_Delete_OnClick
 
+//Confirmation Message @27-B1A89A24
+    return confirm('Submit record?');
+//End Confirmation Message
+
 //Close t_vat_setllementFormButton_Delete_OnClick @26-BC33A33A
     return result;
 }
@@ -54,12 +58,12 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        SPTPD (Pelaporan Pajak) 
+        MODIFIKASI SPTPD (STATUS OPEN) 
       </div>
     </div>
   </div>
@@ -80,9 +84,9 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field"><input id="t_vat_setllementSearchs_keyword" class="ControlsIN" name="{s_keyword_Name}" maxlength="32" value="{s_keyword}" size="32"></td> 
+                    <td class="search-field"><input id="t_vat_setllementSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="t_vat_setllementSearchButton_DoSearch" class="btn_tambah" name="{Button_Name}" alt="Search" value="CARI" type="submit"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_vat_setllementSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
@@ -97,7 +101,7 @@ $(document).ready(function()
               <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  <td class="th"><strong>DAFTAR SPTPD</strong></td> 
+                  <td class="th"><strong>DAFTAR SPTPD (STATUS OPEN)</strong></td> 
                   <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 </tr>
               </table>
@@ -121,7 +125,7 @@ $(document).ready(function()
                 <tr {t_vat_setllementGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_vat_setllementGridDLink_{t_vat_setllementGrid:rowNumber}">{DLink}</a></td> 
                   <td>{npwd}&nbsp;</td> 
-                  <td>{finance_period_code}&nbsp;&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden"></td> 
+                  <td>{finance_period_code}&nbsp;&nbsp;<input id="t_vat_setllementGridt_vat_setllement_id_{t_vat_setllementGrid:rowNumber}" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}"></td> 
                   <td>{order_no}&nbsp;</td> 
                   <td>{total_trans_amount}&nbsp;</td> 
                   <td colspan="2">{total_vat_amount}&nbsp;</td>
@@ -161,7 +165,7 @@ $(document).ready(function()
                 <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                    <td class="th"><strong>INFORMASI SPTPD</strong></td> 
+                    <td class="th"><strong>INFORMASI SPTPD (STATUS OPEN)</strong></td> 
                     <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                   </tr>
                 </table>
@@ -174,106 +178,106 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormorder_no">No. Order</label></td> 
-                    <td><input id="t_vat_setllementFormorder_no" class="ControlsRO" name="{order_no_Name}" readonly maxlength="32" value="{order_no}" size="32">&nbsp;<input id="t_vat_setllementFormp_rqst_type_id" name="{p_rqst_type_id_Name}" value="{p_rqst_type_id}" type="hidden"></td>
+                    <td><input id="t_vat_setllementFormorder_no" class="ControlsRO" value="{order_no}" readonly maxlength="32" size="32" name="{order_no_Name}">&nbsp;<input id="t_vat_setllementFormp_rqst_type_id" value="{p_rqst_type_id}" type="hidden" name="{p_rqst_type_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Nama WP&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormwp_name" class="ControlsRO" tabindex="2" name="{wp_name_Name}" readonly maxlength="64" value="{wp_name}" size="50">&nbsp;</td>
+                    <td><input id="t_vat_setllementFormwp_name" class="ControlsRO" tabindex="2" value="{wp_name}" readonly maxlength="64" size="50" name="{wp_name_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Alamat WP&nbsp;</td> 
-                    <td><textarea id="t_vat_setllementFormwp_address_name" class="ControlsRO" cols="64" rows="3" readonly name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
+                    <td><textarea id="t_vat_setllementFormwp_address_name" class="ControlsRO" rows="3" cols="64" readonly name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Jenis Pajak&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormjenis_pajak" class="ControlsRO" tabindex="2" name="{jenis_pajak_Name}" readonly maxlength="32" value="{jenis_pajak}" size="32">&nbsp;</td>
+                    <td><input id="t_vat_setllementFormjenis_pajak" class="ControlsRO" tabindex="2" value="{jenis_pajak}" readonly maxlength="32" size="32" name="{jenis_pajak_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormfinance_period_code">NPWPD</label></td> 
-                    <td><input id="t_vat_setllementFormnpwd" class="ControlsRO" name="{npwd_Name}" readonly maxlength="12" value="{npwd}" size="32">&nbsp;<input id="t_vat_setllementFormt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"><input id="t_vat_setllementFormp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></td>
+                    <td><input id="t_vat_setllementFormnpwd" class="ControlsRO" value="{npwd}" readonly maxlength="12" size="32" name="{npwd_Name}">&nbsp;<input id="t_vat_setllementFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"><input id="t_vat_setllementFormp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Periode Tahun&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormyear_code" class="ControlsRO" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<input id="t_vat_setllementFormp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"></td>
+                    <td><input id="t_vat_setllementFormyear_code" class="ControlsRO" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<input id="t_vat_setllementFormp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormfinance_period_code">Periode</label></td> 
-                    <td><input id="t_vat_setllementFormfinance_period_code" class="ControlsRO" name="{finance_period_code_Name}" readonly maxlength="25" value="{finance_period_code}" size="25">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" name="{p_finance_period_id_Name}" value="{p_finance_period_id}" type="hidden"></td>
+                    <td><input id="t_vat_setllementFormfinance_period_code" class="ControlsRO" value="{finance_period_code}" readonly maxlength="25" size="25" name="{finance_period_code_Name}">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Masa Pajak&nbsp;&nbsp;</td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormstart_period" class="ControlsRO" name="{start_period_Name}" readonly maxlength="100" value="{start_period}" size="12">s/d <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormend_period" class="ControlsRO" name="{end_period_Name}" readonly maxlength="100" value="{end_period}" size="15">&nbsp; </td>
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormstart_period" class="ControlsRO" value="{start_period}" readonly maxlength="100" size="12" name="{start_period_Name}">s/d <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormend_period" class="ControlsRO" value="{end_period}" readonly maxlength="100" size="15" name="{end_period_Name}">&nbsp; </td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">No&nbsp;Kohir&nbsp;</td> 
-                    <td><input id="t_vat_setllementFormno_kohir" class="ControlsRO" name="{no_kohir_Name}" readonly maxlength="32" value="{no_kohir}" size="32">&nbsp;</td>
+                    <td><input id="t_vat_setllementFormno_kohir" class="ControlsRO" value="{no_kohir}" readonly maxlength="32" size="32" name="{no_kohir_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormtotal_trans_amount">Total Transaksi</label></td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_trans_amount" class="ControlsRO" name="{total_trans_amount_Name}" readonly maxlength="20" value="{total_trans_amount}">&nbsp;<input id="t_vat_setllementFormt_vat_setllement_id" name="{t_vat_setllement_id_Name}" value="{t_vat_setllement_id}" type="hidden"></td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_trans_amount" class="ControlsRO" value="{total_trans_amount}" readonly maxlength="20" name="{total_trans_amount_Name}">&nbsp;<input id="t_vat_setllementFormt_vat_setllement_id" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_vat_setllementFormtotal_vat_amount">Total Pajak</label></td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_vat_amount" class="ControlsRO" name="{total_vat_amount_Name}" readonly maxlength="20" value="{total_vat_amount}">&nbsp;<input id="t_vat_setllementFormt_customer_order_id" name="{t_customer_order_id_Name}" value="{t_customer_order_id}" type="hidden"></td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_vat_amount" class="ControlsRO" value="{total_vat_amount}" readonly maxlength="20" name="{total_vat_amount_Name}">&nbsp;<input id="t_vat_setllementFormt_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Tanggal jatuh tempo&nbsp;&nbsp;</td> 
-                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormdue_date" class="ControlsRO" name="{due_date_Name}" readonly maxlength="100" value="{due_date}" size="12">&nbsp;</td>
+                    <td><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormdue_date" class="ControlsRO" value="{due_date}" readonly maxlength="100" size="12" name="{due_date_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Dasar Pengenaan&nbsp;&nbsp;</td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdebt_vat_amt" class="ControlsRO" name="{debt_vat_amt_Name}" readonly maxlength="32" value="{debt_vat_amt}">&nbsp;</td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdebt_vat_amt" class="ControlsRO" value="{debt_vat_amt}" readonly maxlength="32" name="{debt_vat_amt_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kompensasi kelebihan dari tahun sebelumnya&nbsp;</td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_adjustment" class="ControlsRO" name="{cr_adjustment_Name}" readonly maxlength="32" value="{cr_adjustment}">&nbsp;</td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_adjustment" class="ControlsRO" value="{cr_adjustment}" readonly maxlength="32" name="{cr_adjustment_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Setoran yang dilakukan&nbsp;&nbsp;</td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_payment" class="ControlsRO" name="{cr_payment_Name}" readonly maxlength="32" value="{cr_payment}">&nbsp;</td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_payment" class="ControlsRO" value="{cr_payment}" readonly maxlength="32" name="{cr_payment_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Lain-lain&nbsp;&nbsp;</td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_others" class="ControlsRO" name="{cr_others_Name}" readonly maxlength="32" value="{cr_others}"></td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_others" class="ControlsRO" value="{cr_others}" readonly maxlength="32" name="{cr_others_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">STP (Pokok)&nbsp;&nbsp;</td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_stp" class="ControlsRO" name="{cr_stp_Name}" readonly maxlength="32" value="{cr_stp}">&nbsp;</td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormcr_stp" class="ControlsRO" value="{cr_stp}" readonly maxlength="32" name="{cr_stp_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Bunga (Pasal 65 ayat(2))&nbsp;&nbsp;</td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdb_interest_charge" class="ControlsRO" name="{db_interest_charge_Name}" readonly maxlength="32" value="{db_interest_charge}">&nbsp;</td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdb_interest_charge" class="ControlsRO" value="{db_interest_charge}" readonly maxlength="32" name="{db_interest_charge_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th">Kenaikan (Pasal 65 ayat (3))&nbsp;&nbsp;</td> 
-                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdb_increasing_charge" class="ControlsRO" name="{db_increasing_charge_Name}" readonly maxlength="32" value="{db_increasing_charge}">&nbsp;</td>
+                    <td><input style="TEXT-ALIGN: right" id="t_vat_setllementFormdb_increasing_charge" class="ControlsRO" value="{db_increasing_charge}" readonly maxlength="32" name="{db_increasing_charge_Name}">&nbsp;</td>
                   </tr>
  
                   <tr class="Bottom">
                     <td colspan="2" align="right">&nbsp; 
-                      <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Insert" class="btn_tambah" name="{Button_Name}" alt="Add" value="SIMPAN" type="submit"><!-- END Button Button_Insert -->
-                      <!-- BEGIN Button Button_Update --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Update" class="btn_tambah" name="{Button_Name}" alt="Submit" value="SIMPAN" type="submit"><!-- END Button Button_Update -->
-                      <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Delete" class="btn_tambah" name="{Button_Name}" alt="Delete" value="SUBMIT" type="submit"><!-- END Button Button_Delete -->
-                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" onclick="return updateVat()" name="{Button_Name}" alt="Button1" value="UPDATE" type="submit"><!-- END Button Button1 -->
-                      <!-- BEGIN Button Button2 --><input id="t_vat_setllementFormButton2" class="btn_tambah" onclick="hapus();" name="{Button_Name}" alt="Button1" value="HAPUS" type="button"><!-- END Button Button2 --></td>
+                      <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Delete" class="btn_tambah" value="SUBMIT" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" onclick="return updateVat()" value="UPDATE" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 -->
+                      <!-- BEGIN Button Button2 --><input id="t_vat_setllementFormButton2" class="btn_tambah" onclick="hapus();" value="HAPUS" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 --></td>
                   </tr>
                 </table>
               </td>
@@ -305,8 +309,8 @@ function updateVat() {
 }
 function hapus(){
         var tid = document.getElementById("t_vat_setllementFormt_vat_setllement_id").value;
-		
-    	if(confirm('Delete record?'))
+                
+        if(confirm('Delete record?'))
         document.location.href = "t_vat_setllement_edit_ro.php?flag_delete=true&t_vat_setllement_id=" + tid;
 }
 </script>

@@ -23,12 +23,12 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        Modifikasi SPTPD (Pelaporan Pajak) 
+        CETAK SURAT TEGURAN MANUAL
       </div>
     </div>
     <!--<div class="th tab-button">
@@ -65,7 +65,7 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Nama WP/ NPWD :</td> 
-                    <td class="search-field">&nbsp;<input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
+                    <td class="search-field">&nbsp;<input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label style="display: none;" for="searchFormOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" value="Cari" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -411,9 +411,9 @@ function viewFormUbahNPWD(t_vat_setllement_id) {
                 return false;
 }
 function cetak(npwd) {
-		var p_finance_period_id = document.getElementById('searchFormp_finance_period_id').value;
+                var p_finance_period_id = document.getElementById('searchFormp_finance_period_id').value;
         url = "../report/cetak_formulir_surat_teguran_pdf_manual.php?npwd="+npwd
-			+ "&p_finance_period_id="+p_finance_period_id;
+                        + "&p_finance_period_id="+p_finance_period_id;
                 
                 params  = 'width=650';
         params += ', height=300';
