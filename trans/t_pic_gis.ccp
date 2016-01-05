@@ -43,7 +43,8 @@ c.registration_date AS vat_registration_date,
 d.order_no, d. order_date,
 e.region_name AS nama_kota,
 f.region_name AS nama_kecamatan,
-g.region_name AS nama_kelurahan
+g.region_name AS nama_kelurahan,
+a.brand_address_name ||' '||a.brand_address_no as alamat
 
 FROM t_cust_account a
 LEFT JOIN p_vat_type b ON a.p_vat_type_id = b.p_vat_type_id
@@ -92,6 +93,18 @@ ORDER BY a.t_cust_account_id">
 					<Features/>
 				</Hidden>
 				<Label id="318" fieldSourceType="DBColumn" dataType="Text" html="False" name="vat_code" fieldSource="vat_code" wizardCaption="Valid From" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_custAccountGridvat_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="683" fieldSourceType="DBColumn" dataType="Text" html="False" name="company_brand" fieldSource="company_brand" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_custAccountGridcompany_brand">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="684" fieldSourceType="DBColumn" dataType="Text" html="False" name="alamat" fieldSource="alamat" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_custAccountGridalamat">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -153,6 +166,7 @@ order by pic_id ASC">
 						<LinkParameter id="664" sourceType="Expression" name="FLAG" source="&quot;ADD&quot;"/>
 					</LinkParameters>
 					<Attributes/>
+
 					<Features/>
 				</Link>
 				<Link id="665" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_pic_gis.ccp" wizardThemeItem="GridA" PathID="t_pic_gisGridDLink" removeParameters="FLAG">
@@ -222,7 +236,7 @@ order by pic_id ASC">
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_pic_gisForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_pic_gisForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="SQL" dataSource="select t_pic_gis.pic_id as pic_id,
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_pic_gisForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_pic_gisForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="SQL" dataSource="select t_pic_gis.pic_id as pic_id,
 							t_pic_gis.file_name as file_name, 
 							t_pic_gis.longitude as longitude, 
 							t_pic_gis.latitude as latitude, 
@@ -425,7 +439,7 @@ WHERE pic_id = {pic_id}" removeParameters="pic_id" customInsert="INSERT INTO tb_
 				<SQLParameter id="679" variable="latitude" dataType="Float" parameterType="Control" parameterSource="latitude"/>
 				<SQLParameter id="680" variable="longitude" dataType="Float" parameterType="Control" parameterSource="longitude"/>
 				<SQLParameter id="681" variable="file_name" dataType="Text" parameterType="Control" parameterSource="file_name"/>
-				<SQLParameter id="682" variable="pic_id" parameterType="URL" dataType="Float" parameterSource="pic_id" defaultValue="0"/>
+				<SQLParameter id="682" variable="pic_id" parameterType="Control" dataType="Float" parameterSource="pic_id" defaultValue="0"/>
 			</USQLParameters>
 			<UConditions>
 				<TableParameter id="655" conditionType="Parameter" useIsNull="False" field="pic_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="pic_id"/>

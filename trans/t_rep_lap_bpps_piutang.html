@@ -80,12 +80,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN HARIAN PER JENIS PAJAK 
+        LAPORAN REALISASI HARIAN DAN PIUTANG 
       </div>
     </div>
   </div>
@@ -175,14 +175,15 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
                 var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
                 
-                                var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                                var periode_tahun = document.getElementById("t_rep_bppsSearchyear_code").value;
                 var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
                 var i_flag_setoran = document.getElementById("t_rep_bppsSearchListBox1").value;
                 
-                                if(tgl_penerimaan == "" || tgl_penerimaan_last == "" || p_year_period_id == "" || p_vat_type_id == "" || i_flag_setoran == "") {
-                                        alert("Semua Filter Harus Diisi");
-                                }else {
-                                        window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak2.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'&jenis_laporan="+document.getElementById('t_rep_bppsSearchjenis_laporan').value, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+                if(tgl_penerimaan == "" || tgl_penerimaan_last == "" || p_year_period_id == "" || p_vat_type_id == "" || i_flag_setoran == "") {
+                        alert("Semua Filter Harus Diisi");
+                }else {
+                        window.open("../report/cetak_rep_realisasi_harian_per_jenis_pajak2.php?tgl_penerimaan='" + tgl_penerimaan + "'&p_year_period_id=" + p_year_period_id + "&p_vat_type_id=" + p_vat_type_id+"&i_flag_setoran="+i_flag_setoran+"&tgl_penerimaan_last='"+tgl_penerimaan_last+"'&jenis_laporan="+document.getElementById('t_rep_bppsSearchjenis_laporan').value+"&year_code="+periode_tahun, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
                         }
                 }
                 

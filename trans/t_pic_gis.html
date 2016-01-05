@@ -144,6 +144,10 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <th scope="col"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">NPWPD</label></label></th>
  
+                  <th scope="col">Merk Dagang</th>
+ 
+                  <th scope="col">Alamat Merk Dagang&nbsp;</th>
+ 
                   <th scope="col"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME">Tgl Registrasi</label></label></th>
  
                   <th scope="col">Jenis Pajak</th>
@@ -153,18 +157,20 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 <tr {t_custAccountGrid:rowStyle}>
                   <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="t_custAccountGridDLink_{t_custAccountGrid:rowNumber}"><u><font color="#000080">{DLink}</font></u></a></td> 
                   <td>{npwd}&nbsp;<input id="t_custAccountGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
+                  <td>&nbsp;{company_brand}</td> 
+                  <td>&nbsp;{alamat}</td> 
                   <td>{registration_date}&nbsp;</td> 
                   <td>{vat_code}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="4">-</td>
+                  <td colspan="6">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b></b></td> 
-                  <td colspan="3">
+                  <td colspan="5">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -268,12 +274,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <tr class="Controls">
                     <td class="th">Longitude</td> 
-                    <td colspan="5"><input id="t_pic_gisFormlongitude" class="ControlsRO" value="{longitude}" readonly name="{longitude_Name}"><input id="t_pic_gisFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td>
+                    <td colspan="5"><input id="t_pic_gisFormlongitude" class="ControlsRQ" value="{longitude}" name="{longitude_Name}"><input id="t_pic_gisFormt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="th"><label for="t_pic_gisFormlatitude">Latitude</label></td> 
-                    <td colspan="5"><input id="t_pic_gisFormlatitude" class="ControlsRO" value="{latitude}" readonly name="{latitude_Name}"></td>
+                    <td colspan="5"><input id="t_pic_gisFormlatitude" class="ControlsRQ" value="{latitude}" name="{latitude_Name}"></td>
                   </tr>
  
                   <tr class="Controls">

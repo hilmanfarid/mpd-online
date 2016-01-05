@@ -230,7 +230,7 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @656-DCBA7BD2
+//Class_Initialize Event @656-4C7AB2EB
     function clsGridt_custAccountGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -264,6 +264,8 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
         $this->registration_date = & new clsControl(ccsLabel, "registration_date", "registration_date", ccsText, "", CCGetRequestParam("registration_date", ccsGet, NULL), $this);
         $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsText, "", CCGetRequestParam("t_cust_account_id", ccsGet, NULL), $this);
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
+        $this->company_brand = & new clsControl(ccsLabel, "company_brand", "company_brand", ccsText, "", CCGetRequestParam("company_brand", ccsGet, NULL), $this);
+        $this->alamat = & new clsControl(ccsLabel, "alamat", "alamat", ccsText, "", CCGetRequestParam("alamat", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -280,7 +282,7 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
     }
 //End Initialize Method
 
-//Show Method @656-64505057
+//Show Method @656-58EC4C31
     function Show()
     {
         global $Tpl;
@@ -315,6 +317,8 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
             $this->ControlsVisible["registration_date"] = $this->registration_date->Visible;
             $this->ControlsVisible["t_cust_account_id"] = $this->t_cust_account_id->Visible;
             $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
+            $this->ControlsVisible["company_brand"] = $this->company_brand->Visible;
+            $this->ControlsVisible["alamat"] = $this->alamat->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -328,6 +332,8 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
                 $this->registration_date->SetValue($this->DataSource->registration_date->GetValue());
                 $this->t_cust_account_id->SetValue($this->DataSource->t_cust_account_id->GetValue());
                 $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
+                $this->company_brand->SetValue($this->DataSource->company_brand->GetValue());
+                $this->alamat->SetValue($this->DataSource->alamat->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -336,6 +342,8 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
                 $this->registration_date->Show();
                 $this->t_cust_account_id->Show();
                 $this->vat_code->Show();
+                $this->company_brand->Show();
+                $this->alamat->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -368,7 +376,7 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
     }
 //End Show Method
 
-//GetErrors Method @656-E26EBA78
+//GetErrors Method @656-FBC301AA
     function GetErrors()
     {
         $errors = "";
@@ -377,6 +385,8 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
         $errors = ComposeStrings($errors, $this->registration_date->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_cust_account_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->company_brand->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->alamat->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -387,7 +397,7 @@ class clsGridt_custAccountGrid { //t_custAccountGrid class @656-1C8EC641
 
 class clst_custAccountGridDataSource extends clsDBConnSIKP {  //t_custAccountGridDataSource Class @656-4119FF54
 
-//DataSource Variables @656-3959D78F
+//DataSource Variables @656-937436CD
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -403,9 +413,11 @@ class clst_custAccountGridDataSource extends clsDBConnSIKP {  //t_custAccountGri
     var $registration_date;
     var $t_cust_account_id;
     var $vat_code;
+    var $company_brand;
+    var $alamat;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @656-C0E377EF
+//DataSourceClass_Initialize Event @656-7C08F86B
     function clst_custAccountGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -418,6 +430,10 @@ class clst_custAccountGridDataSource extends clsDBConnSIKP {  //t_custAccountGri
         $this->t_cust_account_id = new clsField("t_cust_account_id", ccsText, "");
         
         $this->vat_code = new clsField("vat_code", ccsText, "");
+        
+        $this->company_brand = new clsField("company_brand", ccsText, "");
+        
+        $this->alamat = new clsField("alamat", ccsText, "");
         
 
     }
@@ -443,7 +459,7 @@ class clst_custAccountGridDataSource extends clsDBConnSIKP {  //t_custAccountGri
     }
 //End Prepare Method
 
-//Open Method @656-AB3ADF60
+//Open Method @656-04B792F4
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -454,7 +470,8 @@ class clst_custAccountGridDataSource extends clsDBConnSIKP {  //t_custAccountGri
         "d.order_no, d. order_date,\n" .
         "e.region_name AS nama_kota,\n" .
         "f.region_name AS nama_kecamatan,\n" .
-        "g.region_name AS nama_kelurahan\n" .
+        "g.region_name AS nama_kelurahan,\n" .
+        "a.brand_address_name ||' '||a.brand_address_no as alamat\n" .
         "\n" .
         "FROM t_cust_account a\n" .
         "LEFT JOIN p_vat_type b ON a.p_vat_type_id = b.p_vat_type_id\n" .
@@ -473,7 +490,8 @@ class clst_custAccountGridDataSource extends clsDBConnSIKP {  //t_custAccountGri
         "d.order_no, d. order_date,\n" .
         "e.region_name AS nama_kota,\n" .
         "f.region_name AS nama_kecamatan,\n" .
-        "g.region_name AS nama_kelurahan\n" .
+        "g.region_name AS nama_kelurahan,\n" .
+        "a.brand_address_name ||' '||a.brand_address_no as alamat\n" .
         "\n" .
         "FROM t_cust_account a\n" .
         "LEFT JOIN p_vat_type b ON a.p_vat_type_id = b.p_vat_type_id\n" .
@@ -495,13 +513,15 @@ class clst_custAccountGridDataSource extends clsDBConnSIKP {  //t_custAccountGri
     }
 //End Open Method
 
-//SetValues Method @656-2041A464
+//SetValues Method @656-45D222A4
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
         $this->registration_date->SetDBValue($this->f("registration_date"));
         $this->t_cust_account_id->SetDBValue($this->f("t_cust_account_id"));
         $this->vat_code->SetDBValue($this->f("vat_code"));
+        $this->company_brand->SetDBValue($this->f("company_brand"));
+        $this->alamat->SetDBValue($this->f("alamat"));
     }
 //End SetValues Method
 
