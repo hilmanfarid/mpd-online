@@ -328,7 +328,7 @@ class clsRecordTaskSearch { //TaskSearch Class @19-99DDB752
     // Class variables
 //End Variables
 
-//Class_Initialize Event @19-0668E4E5
+//Class_Initialize Event @19-5A0E73BE
     function clsRecordTaskSearch($RelativePath, & $Parent)
     {
 
@@ -359,11 +359,12 @@ class clsRecordTaskSearch { //TaskSearch Class @19-99DDB752
             $this->s_keyword = & new clsControl(ccsTextBox, "s_keyword", "s_keyword", ccsText, "", CCGetRequestParam("s_keyword", $Method, NULL), $this);
             $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->DatePicker_sdonor_date = & new clsDatePicker("DatePicker_sdonor_date", "TaskSearch", "sdonor_date", $this);
+            $this->PROFILE_TYPE = & new clsControl(ccsTextBox, "PROFILE_TYPE", "PROFILE_TYPE", ccsText, "", CCGetRequestParam("PROFILE_TYPE", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @19-1AF3CBA2
+//Validate Method @19-966F1C89
     function Validate()
     {
         global $CCSLocales;
@@ -374,17 +375,19 @@ class clsRecordTaskSearch { //TaskSearch Class @19-99DDB752
         $Validation = ($this->P_W_PROC_ID->Validate() && $Validation);
         $Validation = ($this->ELEMENT_ID->Validate() && $Validation);
         $Validation = ($this->s_keyword->Validate() && $Validation);
+        $Validation = ($this->PROFILE_TYPE->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->sdonor_date->Errors->Count() == 0);
         $Validation =  $Validation && ($this->P_W_DOC_TYPE_ID->Errors->Count() == 0);
         $Validation =  $Validation && ($this->P_W_PROC_ID->Errors->Count() == 0);
         $Validation =  $Validation && ($this->ELEMENT_ID->Errors->Count() == 0);
         $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->PROFILE_TYPE->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @19-515A70FE
+//CheckErrors Method @19-F692B943
     function CheckErrors()
     {
         $errors = false;
@@ -394,6 +397,7 @@ class clsRecordTaskSearch { //TaskSearch Class @19-99DDB752
         $errors = ($errors || $this->ELEMENT_ID->Errors->Count());
         $errors = ($errors || $this->s_keyword->Errors->Count());
         $errors = ($errors || $this->DatePicker_sdonor_date->Errors->Count());
+        $errors = ($errors || $this->PROFILE_TYPE->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -447,7 +451,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @19-2FB3E0E5
+//Show Method @19-8D8DEBD6
     function Show()
     {
         global $CCSUseAmp;
@@ -477,6 +481,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->ELEMENT_ID->Errors->ToString());
             $Error = ComposeStrings($Error, $this->s_keyword->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_sdonor_date->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->PROFILE_TYPE->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -501,6 +506,7 @@ function GetPrimaryKey($keyName)
         $this->s_keyword->Show();
         $this->Button_DoSearch->Show();
         $this->DatePicker_sdonor_date->Show();
+        $this->PROFILE_TYPE->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -1047,7 +1053,7 @@ class clsTaskDataSource extends clsDBConnSIKP {  //TaskDataSource Class @16-7E9C
         $this->SQL = "select * from pack_task_profile.user_task_list (" . $this->SQLValue($this->wp->GetDBValue("4"), ccsText) . "," . $this->SQLValue($this->wp->GetDBValue("5"), ccsText) . ",'" . $this->SQLValue($this->wp->GetDBValue("6"), ccsText) . "','" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "','{skeyword}') \n" .
         "where trunc(donor_date) = nvl(to_date('" . $this->SQLValue($this->wp->GetDBValue("3"), ccsText) . "','DD-MON-YYYY'),trunc(donor_date)) \n" .
         "and keyword like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' ";
-		$this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
+        $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
         else

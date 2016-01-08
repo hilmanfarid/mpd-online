@@ -60,7 +60,7 @@ where p_w_doc_type_id = {test}">
 					<Actions>
 						<Action actionName="Set Row Style" actionCategory="General" id="484" styles="Row;AltRow" name="rowStyle"/>
 						<Action actionName="Custom Code" actionCategory="General" id="492"/>
-</Actions>
+					</Actions>
 				</Event>
 			</Events>
 			<TableParameters>
@@ -88,42 +88,48 @@ where p_w_doc_type_id = {test}">
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="99" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="P_W_DOC_TYPE_ID" required="False" caption="P_W_DOC_TYPE_ID" wizardCaption="DATE OF BIRTH" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="TaskSearchP_W_DOC_TYPE_ID">
+				<TextBox id="99" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="P_W_DOC_TYPE_ID" required="False" caption="P_W_DOC_TYPE_ID" wizardCaption="DATE OF BIRTH" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="TaskSearchP_W_DOC_TYPE_ID">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="100" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="P_W_PROC_ID" required="False" caption="P_W_PROC_ID" wizardCaption="DATE OF BIRTH" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="TaskSearchP_W_PROC_ID">
+				<TextBox id="100" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="P_W_PROC_ID" required="False" caption="P_W_PROC_ID" wizardCaption="DATE OF BIRTH" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="TaskSearchP_W_PROC_ID">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="101" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="ELEMENT_ID" required="False" caption="ELEMENT_ID" wizardCaption="DATE OF BIRTH" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="TaskSearchELEMENT_ID">
+				<TextBox id="101" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="ELEMENT_ID" required="False" caption="ELEMENT_ID" wizardCaption="DATE OF BIRTH" wizardSize="8" wizardMaxLength="100" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="TaskSearchELEMENT_ID">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<TextBox id="495" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_keyword" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="TaskSearchs_keyword">
+				<TextBox id="495" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_keyword" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="TaskSearchs_keyword">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Button id="496" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" operation="Search" wizardCaption="Search" PathID="TaskSearchButton_DoSearch">
+				<Button id="496" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" operation="Search" wizardCaption="Search" PathID="TaskSearchButton_DoSearch">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Button>
-<DatePicker id="34" name="DatePicker_sdonor_date" control="sdonor_date" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="TaskSearchDatePicker_sdonor_date">
+				<DatePicker id="34" name="DatePicker_sdonor_date" control="sdonor_date" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="TaskSearchDatePicker_sdonor_date">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
+				<TextBox id="498" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="PROFILE_TYPE" PathID="TaskSearchPROFILE_TYPE" fieldSource="profile_type">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
 </Components>
 			<Events/>
 			<TableParameters>
@@ -135,7 +141,7 @@ where p_w_doc_type_id = {test}">
 			<JoinLinks/>
 			<Fields>
 				<Field id="493" fieldName="*"/>
-</Fields>
+			</Fields>
 			<ISPParameters/>
 			<ISQLParameters>
 			</ISQLParameters>
@@ -157,7 +163,7 @@ where p_w_doc_type_id = {test}">
 			<Attributes/>
 			<Features/>
 		</Record>
-<Grid id="16" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="Task" pageSizeLimit="100" wizardCaption="List of Grid1 " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" pasteActions="pasteActions" pasteAsReplace="pasteAsReplace" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select * from pack_task_profile.user_task_list ({pdoctype_id},{pproc_id},'{pprof_type}','{puser}','{skeyword}') 
+		<Grid id="16" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="Task" pageSizeLimit="100" wizardCaption="List of Grid1 " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" pasteActions="pasteActions" pasteAsReplace="pasteAsReplace" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select * from pack_task_profile.user_task_list ({pdoctype_id},{pproc_id},'{pprof_type}','{puser}','{skeyword}') 
 where trunc(donor_date) = nvl(to_date('{sdonor_date}','DD-MON-YYYY'),trunc(donor_date)) 
 and keyword like '%{s_keyword}%' ">
 			<Components>
@@ -455,7 +461,7 @@ and keyword like '%{s_keyword}%' ">
 			<Attributes/>
 			<Features/>
 		</Grid>
-<Record id="125" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="BROAD" actionPage="workflow_summary" errorSummator="Error" wizardFormMethod="post" PathID="BROAD" dataSource="select postcast from pack_task_profile.broadcaster ('{puser}') as tbl (ty_broadcast_ctl) 
+		<Record id="125" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="BROAD" actionPage="workflow_summary" errorSummator="Error" wizardFormMethod="post" PathID="BROAD" dataSource="select postcast from pack_task_profile.broadcaster ('{puser}') as tbl (ty_broadcast_ctl) 
 where ty_broadcast_ctl = -99999" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" connection="ConnSIKP">
 			<Components>
 				<TextArea id="126" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="CASTER" PathID="BROADCASTER" fieldSource="POSTCAST">
@@ -488,7 +494,7 @@ where ty_broadcast_ctl = -99999" activeCollection="SQLParameters" parameterTypeL
 			<Attributes/>
 			<Features/>
 		</Record>
-</Components>
+	</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="workflow_summary_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="workflow_summary.php" forShow="True" url="workflow_summary.php" comment="//" codePage="windows-1252"/>
