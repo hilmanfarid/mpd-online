@@ -420,10 +420,12 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		$this->SetFont('Arial', '', 8);
-		$this->tulis("1. Harap penyetoran dilakukan melalui Kas Daerah atau tempat lain yang ditunjuk dengan menggunakan Surat Setoran Pajak Daerah (SSPD)", "L");
+		$this->tulis("1. Harap penyetoran dilakukan melalui Kas Daerah atau tempat lain yang ditunjuk dengan menggunakan Surat Setoran Pajak Daerah (SSPD).", "L");
 		$this->tulis("2. Apabila SKPD ini tidak atau kurang dibayar setelah lewat waktu paling lama 15 hari kalender sejak SKPD ini diterbitkan dikenakan", "L");
 		$this->tulis("    sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
-		
+		$this->tulis("3. Salinan ini sesuai dengan aslinya sebagaimana telah diterbitkan tanggal ".$data["tgl_setllement"]." dan telah diterima oleh wajib pajak.", "L");
+		$this->tulis("", "L");
+		$this->tulis("", "L");
 		//$encImageData = $data["npwd"]."-".$data["finance_period_code"];
 		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
@@ -445,8 +447,8 @@ class FormCetak extends FPDF {
 		$this->Ln();
 
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "TTD", "R", 0, 'C');
-		//$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
+		//$this->Cell($lbody1 + 10, $this->height, "TTD", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'C');
@@ -461,9 +463,9 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1 + 10, $this->height, "NIP. 19700806 199101 1 001", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$data["npwd"]."-".str_replace(" ","-",$data["finance_period_code"]),15,190,25,25,'PNG');
+		//$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$data["npwd"]."-".str_replace(" ","-",$data["finance_period_code"]),15,190,25,25,'PNG');
 
-		
+		/*
 		$this->Cell($lbody3 - 10, $this->height, "Bandung, " . Date("d M Y"), "L", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "R", 0, 'C');
 		$this->Ln();
@@ -485,8 +487,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3 - 10, $this->height, "NIP. 19710320 199803 2 006", "BL", 0, 'C');
 		$this->Cell($lbody1 + 10, $this->height, "", "BR", 0, 'C');
 		$this->Ln($this->height + 4);
-			
-		//$this->Cell($this->lengthCell, $this->height, "", "LBR", 0, 'C');
+		*/	
+		$this->Cell($this->lengthCell, $this->height, "", "LBR", 0, 'C');
 		
 	}
 
