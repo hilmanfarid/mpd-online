@@ -36,7 +36,7 @@ function grafik_pembayaran_form_Button2_OnClick(& $sender)
 	$username = $dbConn->f("number");
 	$password = $dbConn->f("password");
 
-	file_get_contents("http://localhost/chat-api/send_message.php?username=".$username.
+	file_get_contents("http://".$_SERVER['HTTP_HOST']."/chat-api/send_message.php?username=".$username.
 			"&password=".urlencode($password)."&message=".urlencode($message).
 			"&target=".$mobile_no);
 	//exit;
