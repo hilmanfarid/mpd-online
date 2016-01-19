@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script src="../js/exporting.js"></script>
+<script>
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-8F4AB263
+
+var grafik_pembayaran_form_DatePicker_tgl_penerimaan = new Object(); 
+grafik_pembayaran_form_DatePicker_tgl_penerimaan.format           = "dd-mm-yyyy";
+grafik_pembayaran_form_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
+grafik_pembayaran_form_DatePicker_tgl_penerimaan.relativePathPart = "../";
+grafik_pembayaran_form_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//grafik_pembayaran_formButton2_OnClick @20-6B8DA38D
+function grafik_pembayaran_formButton2_OnClick()
+{
+    var result = true;
+//End grafik_pembayaran_formButton2_OnClick
+
+//Custom Code @70-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        mobile_no = document.getElementById('grafik_pembayaran_formmobile_no').value;
+        message = document.getElementById('grafik_pembayaran_formmessage').value;
+        app_user_name = document.getElementById('grafik_pembayaran_formapp_user_name').value;
+        if (mobile_no=='' || message==''){
+                alert ('Pesan dan No telpon harus diisi!');
+                return false;
+        }
+        return;
+    // -------------------------
+//End Custom Code
+
+//Close grafik_pembayaran_formButton2_OnClick @20-BC33A33A
+    return result;
+}
+//End Close grafik_pembayaran_formButton2_OnClick
+
+//grafik_pembayaran_formButton_DoSearch1_OnClick @74-13FCF3AD
+function grafik_pembayaran_formButton_DoSearch1_OnClick()
+{
+    var result = true;
+//End grafik_pembayaran_formButton_DoSearch1_OnClick
+
+//Custom Code @76-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        //document.getElementById('grafik_pembayaran_formmessage').value='asdasdasas';
+    // -------------------------
+//End Custom Code
+
+//Close grafik_pembayaran_formButton_DoSearch1_OnClick @74-BC33A33A
+    return result;
+}
+//End Close grafik_pembayaran_formButton_DoSearch1_OnClick
+
+//bind_events @1-67122A38
+function bind_events() {
+    addEventHandler("grafik_pembayaran_formButton2", "click", grafik_pembayaran_formButton2_OnClick);
+    addEventHandler("grafik_pembayaran_formButton_DoSearch1", "click", grafik_pembayaran_formButton_DoSearch1_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        PENGIRIMAN&nbsp;PESAN WHATSAPP 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record grafik_pembayaran_form -->
+        <form id="grafik_pembayaran_form" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field">
+            <tr>
+              <td valign="top">
+                <table class="Record">
+                  <!-- BEGIN Error -->
+                  <tr>
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">Username</td> 
+                    <td class="search-field"><input id="grafik_pembayaran_formapp_user_name" class="ControlsRO" value="{app_user_name}" readonly maxlength="32" size="32" name="{app_user_name_Name}">&nbsp;<img onclick="javascript:lov_user()" border="0" src="../images/view.gif"><input id="grafik_pembayaran_formp_app_user_id" value="{p_app_user_id}" type="hidden" name="{p_app_user_id_Name}"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td>No Telpon</td> 
+                    <td><input id="grafik_pembayaran_formmobile_no" class="ControlsRQ" value="{mobile_no}" maxlength="14" size="32" name="{mobile_no_Name}"></td>
+                  </tr>
+ 
+                  <tr>
+                    <td>Tanggal Penerimaan</td> 
+                    <td><input id="grafik_pembayaran_formtgl_penerimaan" class="ControlsRO" value="{tgl_penerimaan}" readonly maxlength="32" size="32" name="{tgl_penerimaan_Name}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="grafik_pembayaran_formDatePicker_tgl_penerimaan"><img id="grafik_pembayaran_formDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch1 --><input id="grafik_pembayaran_formButton_DoSearch1" class="btn_tambah" onclick="get_data()" value="Ambil Data Penerimaan" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch1 --></td>
+                  </tr>
+ 
+                  <tr>
+                    <td>Pesan</td> 
+                    <td><textarea style="WIDTH: 443px; HEIGHT: 365px" id="grafik_pembayaran_formmessage" class="ControlsRQ" rows="9" cols="38" name="{message_Name}">{message}</textarea></td>
+                  </tr>
+ 
+                  <tr>
+                    <td colspan="2" align="right">&nbsp; 
+                      <!-- BEGIN Button Button2 --><input id="grafik_pembayaran_formButton2" class="btn_tambah" value="Kirim Pesan" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button2 -->&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record grafik_pembayaran_form --><br>
+      </td>
+    </tr>
+  </table>
+  <div style="WIDTH: 100%; DISPLAY: inline-block" id="container">
+  </div>
+</div>
+<script language="javascript">
+function lov_user() {
+        getFrom_LOV('grafik_pembayaran_form','app_user_name,mobile_no','lov_user_with_mobile_no.php');
+}
+
+function get_data() {
+        tgl_penerimaan = document.getElementById('grafik_pembayaran_formtgl_penerimaan').value;
+                mobile_no = document.getElementById('grafik_pembayaran_formmobile_no').value;
+        p_app_user_id = document.getElementById('grafik_pembayaran_formp_app_user_id').value;
+        app_user_name = document.getElementById('grafik_pembayaran_formapp_user_name').value;
+                if (tgl_penerimaan == ''){
+                        alert('Tanggal Penerimaan harus diisi.');
+                }else{
+                        location.href="t_send_sms_to_app_user_whatsapp.php?doAction=get_data&tgl_penerimaan="+tgl_penerimaan+
+                        "&mobile_no="+mobile_no+
+                        "&p_app_user_id="+p_app_user_id+
+                        "&app_user_name="+app_user_name;
+                }
+}
+</script>
+</body>
+</html>
