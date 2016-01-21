@@ -511,7 +511,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				"KEPALA DINAS PELAYANAN PAJAK\n\n\n\n\nDrs. H. Ema Sumarna, M. Si\nPembina Utama Muda\nNIP. 19661207 198603 1 006"
+				"KEPALA DINAS PELAYANAN PAJAK\n\n\n\n\nDrs. H. Ema Sumarna, M. Si\nPembina Utama Muda IV/C\nNIP. 19661207 198603 1 006"
 			),
 			array
 			(
