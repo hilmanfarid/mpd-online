@@ -498,10 +498,20 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "B", 8);
 		$this->SetWidths(array($ttd2,$ttd1));
 		$this->SetAligns(array("C","C"));
-		$this->RowMultiBorderWithHeight(
+		/*$this->RowMultiBorderWithHeight(
 			array
 			(	"",
 				"KEPALA DINAS PELAYANAN PAJAK\n\n\n\n\nDrs. PRIANA WIRASAPUTRA, MM\nPembina Utama Muda\nNIP. 19600308 198503 1 007"
+			),
+			array
+			(
+				"",""
+			),
+			$this->height-1);*/
+		$this->RowMultiBorderWithHeight(
+			array
+			(	"",
+				"KEPALA DINAS PELAYANAN PAJAK\n\n\n\n\nDrs. H. Ema Sumarna, M. Si\nPembina Utama Muda\nNIP. 19661207 198603 1 006"
 			),
 			array
 			(
