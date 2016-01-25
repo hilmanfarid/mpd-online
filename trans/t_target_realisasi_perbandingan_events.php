@@ -90,7 +90,7 @@ function Page_BeforeShow(& $sender)
 		$query				= " 
 				select
 					nama_jns_pajak,sum(jml_sd_hari_ini) as realisasi,p_vat_type_id 
-				from f_rep_lap_harian_bdhr_mod_1('".$tgl_penerimaan2."') 
+				from f_rep_lap_harian_bdhr_mod_1('".$tgl_penerimaan3."') 
 				where p_vat_type_id in (1,2,3,4,5,6)
 				GROUP BY nama_jns_pajak,p_vat_type_id
 				ORDER BY p_vat_type_id";
@@ -141,6 +141,7 @@ function PageCetak($data,$data2,$data3, $user, $tgl_penerimaan) {
 		$tahun 	= substr ($tgl_penerimaan,6,4);
 		$tgl_penerimaan2 = substr ($tgl_penerimaan,0,6).($tahun-1);
 		$tgl_penerimaan3 = substr ($tgl_penerimaan,0,6).($tahun-2);
+		//echo $tgl_penerimaan2 .' '. $tgl_penerimaan3;exit;
 		$output.='<th rowspan=2 style="text-align:center;">NO</th>';
 		$output.='<th rowspan=2 style="text-align:center;">JENIS PAJAK</th>';
 		$output.='<th colspan=3 style="text-align:center;">'.($tahun-2).'</th>';
