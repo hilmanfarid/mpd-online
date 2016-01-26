@@ -310,7 +310,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array
 			(	"",
-				"Demikian hal-hal yang dapat kami sampaikan, Atas perhatian dan perkenan Bapak diucapkan terima kasih serta mohom petunjuk lebih lanjut."
+				"Demikian hal-hal yang dapat kami sampaikan, Atas perhatian dan perkenan Bapak diucapkan terima kasih serta mohon petunjuk lebih lanjut."
 			),
 			array
 			(
