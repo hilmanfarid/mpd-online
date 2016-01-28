@@ -414,7 +414,7 @@ class FormCetak extends FPDF {
 		$this->Cell($sigLen1, $this->height, "NIP. 19600308 198503 1 007", 0, 0, 'C');
 		*/
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$this->Cell($sigLen1, $this->height, "Drs. H. Ema Sumarna, M. Si", 0, 0, 'C');
+		$this->Cell($sigLen1, $this->height, "Drs. H. EMA SUMARNA, M. Si", 0, 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
