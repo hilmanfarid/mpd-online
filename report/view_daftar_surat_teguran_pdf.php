@@ -24,15 +24,15 @@ $query = "select * from f_debt_letter_list($t_customer_order_id) as a
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 		$data["npwd"][] = $dbConn->f("npwd");
-		$data["company_name"][] = $dbConn->f("company_name");
-		$data["address_name"][] = $dbConn->f("address_name");
+		$data["company_name"][] = $dbConn->f("company_brand");
+		$data["address_name"][] = $dbConn->f("brand_address_name");
 		$data["vat_code"][] = $dbConn->f("vat_code");
 		$data["due_date"][] = $dbConn->f("due_date");
 		$data["start_date"][] = $dbConn->f("start_date");
 		$data["end_date"][] = $dbConn->f("end_date");
 		$data["debt_amount"][] = $dbConn->f("debt_amount");
 		$data["description"][] = $dbConn->f("description");
-		$data["wp_address_no"][] = $dbConn->f("wp_address_no");
+		$data["wp_address_no"][] = $dbConn->f("brand_address_no");
 }
 
 $dbConn->close();
