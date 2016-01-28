@@ -44,6 +44,9 @@ while ($dbConn->next_record()) {
 		$data[]= array(
 			'npwd' => $dbConn->f("npwd"),
 			'company_name' => $dbConn->f("company_name"),
+			'company_brand' => $dbConn->f("company_brand"),
+			'brand_address_name' => $dbConn->f("brand_address_name"),
+			'brand_address_no' => $dbConn->f("brand_address_no"),
 			'address' => $dbConn->f("address"),
 			'letter_no' => $dbConn->f("letter_no"),
 			'vat_code' => $dbConn->f("vat_code"),
@@ -106,8 +109,6 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('BKANT', '', 12);
 		
-		$this->Image('../images/logo_pemda.png',3,3,15,15);
-		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
 		$lheader2 = $lheader * 2;
@@ -117,6 +118,7 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('Arial', 'B', 8);
 		
+		/*$this->Image('../images/logo_pemda.png',3,3,15,15);
 		$this->Cell(8, 3, "", "", 0, 'L');
 		$this->Cell(70, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
 		$this->Ln();
@@ -133,6 +135,25 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', 'B', 6);
 		$this->Cell(8, 3, "", "", 0, 'L');
 		$this->Cell(70, 3, "BANDUNG", "", 0, 'C');
+		$this->Ln();
+		*/
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "", "", 0, 'C');
+		$this->Ln();
+		
+		//$this->SetFont('BKANT', '', 16);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "", "", 0, 'C');
+		$this->Ln();
+		
+		$this->SetFont('Arial', '', 6);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "", "", 0, 'C');
+		$this->Ln();
+		$this->SetFont('Arial', 'B', 6);
+		$this->Cell(8, 3, "", "", 0, 'L');
+		$this->Cell(70, 3, "", "", 0, 'C');
+		$this->Ln();
 		$this->Ln();
 		
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
@@ -212,7 +233,7 @@ class FormCetak extends FPDF {
 			array("",
 				"Pimpinan",
 				":",
-				$data['company_name']
+				$data['company_brand']
 			),
 			array("L",
 				"",
@@ -242,7 +263,7 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("L","L"));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				$data["address"]
+				$data["brand_address_name"].' '.$data["brand_address_no"]
 			),
 			array("L",
 				"R"
