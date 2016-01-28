@@ -157,15 +157,17 @@ function Page_BeforeShow(& $sender)
 				from f_rep_bpps_list_distinct_non_murni($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_year_date) rep order by npwpd";	
 			}*/
 			if($jenis_laporan == 'all'){
-				$query	= "select *,trunc(payment_date) 
-				from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) 
+				$query	= "select to_char(active_date,'dd-mm-yyyy') as active_date2,*,trunc(payment_date) 
+				from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) a
+				left join t_cust_account x on a.npwpd = x.npwd 
 				order by kode_ayat, npwpd, masa_pajak";	
 				//echo $query;
 				//exit;
 			}else if($jenis_laporan == 'piutang'){
 				$border= $year_date-1;
-				$query	= "select *,trunc(payment_date) 
+				$query	= "select to_char(active_date,'dd-mm-yyyy') as active_date2,*,trunc(payment_date) 
 				from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+				left join t_cust_account x on rep.npwpd = x.npwd 
 			WHERE
 				(	SUBSTRING(rep.masa_pajak,22,4) < $year_date
 					AND 
@@ -185,10 +187,11 @@ function Page_BeforeShow(& $sender)
 				//echo $query;
 				//exit;
 			}else if($jenis_laporan == 'murni'){
-				$query	= "select *,trunc(payment_date) 
-				from f_rep_bpps_piutang3new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) rep
+				$query	= "select to_char(active_date,'dd-mm-yyyy') as active_date2,*,trunc(payment_date) 
+				from f_rep_bpps_piutang3new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, $i_flag_setoran) a
+				left join t_cust_account x on a.npwpd = x.npwd 
 			WHERE
-				EXTRACT (YEAR FROM rep.settlement_date) = $year_date
+				EXTRACT (YEAR FROM a.settlement_date) = $year_date
 				order by kode_ayat, npwpd, masa_pajak";
 			}
 			//die($query);
@@ -212,9 +215,10 @@ function Page_BeforeShow(& $sender)
 				"jns_ayat"			=> $dbConn->f("jns_ayat"),
 				"nama_ayat"		=> $dbConn->f("nama_ayat"),
 				"no_kohir"		=> $dbConn->f("no_kohir"),
-				"wp_name"			=> $dbConn->f("wp_name"),
-				"wp_address_name"	=> $dbConn->f("wp_address_name"),
-				"wp_address_no"		=> $dbConn->f("wp_address_no"),
+				"wp_name"			=> $dbConn->f("company_brand"),
+				"wp_address_name"	=> $dbConn->f("brand_address_name"),
+				"wp_address_no"		=> $dbConn->f("brand_address_no"),
+				"active_date2"		=> $dbConn->f("active_date2"),
 				"npwpd"			=> $dbConn->f("npwpd"),
 				"jumlah_terima"	=> $dbConn->f("jumlah_terima"),
 				"masa_pajak"		=> $dbConn->f("masa_pajak"),
@@ -363,7 +367,9 @@ function GetCetakHTML2($data) {
 	$output.='<th rowspan = 2>NO AYAT</th>';
 	$output.='<th rowspan = 2>NAMA AYAT</th>';
 	//$output.='<th>NO KOHIR</th>';
-	$output.='<th rowspan = 2>NAMA WP</th>';
+	$output.='<th rowspan = 2>MERK DAGANG</th>';
+	$output.='<th rowspan = 2>ALAMAT MERK DAGANG</th>';
+	$output.='<th rowspan = 2>TANGGAL PENGUKUHAN</th>';
 	$output.='<th rowspan = 2>NPWPD</th>';
 	$jenis_laporan		= CCGetFromGet("jenis_laporan", "all");
 	if($jenis_laporan == 'murni'){ 
@@ -414,6 +420,8 @@ function GetCetakHTML2($data) {
 				$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
 				//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 				$output .= '<td align="left">'.$item['wp_name'].'</td>';
+				$output .= '<td align="left">'.$item['wp_address_name'].' '.$item['wp_address_no'].'</td>';
+				$output .= '<td align="left">'.$item['active_date2'].'</td>';
 				$output .= '<td align="left">'.$item['npwpd'].'</td>';
 				//$before = $item;
 				//if ($thn == $year_date && $bln != 12){
@@ -578,6 +586,8 @@ function GetCetakHTML2($data) {
 					$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
 					//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 					$output .= '<td align="left">'.$item['wp_name'].'</td>';
+					$output .= '<td align="left">'.$item['wp_address_name'].' '.$item['wp_address_no'].'</td>';
+					$output .= '<td align="left">'.$item['active_date2'].'</td>';
 					$output .= '<td align="left">'.$item['npwpd'].'</td>';
 					//$before = $item;
 					//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
@@ -664,7 +674,7 @@ function GetCetakHTML2($data) {
 			}
 		}
 		$output .= '<tr>';
-			$output .= '<td align="CENTER" colspan=17>TOTAL PAJAK</td>';
+			$output .= '<td align="CENTER" colspan=19>TOTAL PAJAK</td>';
 			$output .= '<td align="right">'.number_format($jumlahperayat, 2, ',', '.').'</td>';
 		$output .= '</tr>';
 
@@ -724,6 +734,8 @@ function GetCetakHTML2($data) {
 					$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
 					//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 					$output .= '<td align="left">'.$item['wp_name'].'</td>';
+					$output .= '<td align="left">'.$item['wp_address_name'].' '.$item['wp_address_no'].'</td>';
+					$output .= '<td align="left">'.$item['active_date2'].'</td>';
 					$output .= '<td align="left">'.$item['npwpd'].'</td>';
 					//$before = $item;
 					if ($thn == $year_date && $bln != 12){
@@ -884,6 +896,8 @@ function GetCetakHTML2($data) {
 						$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
 						//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 						$output .= '<td align="left">'.$item['wp_name'].'</td>';
+						$output .= '<td align="left">'.$item['wp_address_name'].' '.$item['wp_address_no'].'</td>';
+						$output .= '<td align="left">'.$item['active_date2'].'</td>';
 						$output .= '<td align="left">'.$item['npwpd'].'</td>';
 						//$before = $item;
 						//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
@@ -968,7 +982,7 @@ function GetCetakHTML2($data) {
 				}
 			}
 			$output .= '<tr>';
-				$output .= '<td align="CENTER" colspan=19>TOTAL PAJAK</td>';
+				$output .= '<td align="CENTER" colspan=21>TOTAL PAJAK</td>';
 				$output .= '<td align="right">'.number_format($jumlahperayat, 2, ',', '.').'</td>';
 			$output .= '</tr>';
 	
@@ -1029,6 +1043,8 @@ function GetCetakHTML2($data) {
 						$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
 						//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 						$output .= '<td align="left">'.$item['wp_name'].'</td>';
+						$output .= '<td align="left">'.$item['wp_address_name'].' '.$item['wp_address_no'].'</td>';
+						$output .= '<td align="left">'.$item['active_date2'].'</td>';
 						$output .= '<td align="left">'.$item['npwpd'].'</td>';
 						//$before = $item;
 
@@ -1202,6 +1218,8 @@ function GetCetakHTML2($data) {
 							$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
 							//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
 							$output .= '<td align="left">'.$item['wp_name'].'</td>';
+							$output .= '<td align="left">'.$item['wp_address_name'].' '.$item['wp_address_no'].'</td>';
+							$output .= '<td align="left">'.$item['active_date2'].'</td>';
 							$output .= '<td align="left">'.$item['npwpd'].'</td>';
 							//$before = $item;
 							//$output .= '<td align="right">'.number_format($item["jumlah_terima"], 2, ',', '.').'<br></br>'.$item['kd_tap'].'</td>';
@@ -1292,7 +1310,7 @@ function GetCetakHTML2($data) {
 					}
 				}
 				$output .= '<tr>';
-					$output .= '<td align="CENTER" colspan=19>TOTAL PAJAK</td>';
+					$output .= '<td align="CENTER" colspan=21>TOTAL PAJAK</td>';
 					$output .= '<td align="right">'.number_format($jumlahperayat, 2, ',', '.').'</td>';
 				$output .= '</tr>';
 
