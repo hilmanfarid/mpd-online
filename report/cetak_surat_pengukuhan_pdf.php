@@ -419,7 +419,7 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
 		$this->SetFont('Times', '', 11);
-		$this->Cell($sigLen1, $this->height, "Pembina Utama Muda IV/C", 0, 0, 'C');
+		$this->Cell($sigLen1, $this->height, "Pembina Utama Muda", 0, 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
