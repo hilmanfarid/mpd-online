@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-5033BA03
+//Class_Initialize Event @3-B11776CF
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -74,21 +74,6 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->ListBox1->DSType = dsListOfValues;
             $this->ListBox1->Values = array(array("1", "Semua"), array("2", "Sudah Bayar"), array("3", "Belum Bayar"));
             $this->ListBox1->Required = true;
-            $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
-            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
-            $this->ListBox2 = & new clsControl(ccsListBox, "ListBox2", "ListBox2", ccsText, "", CCGetRequestParam("ListBox2", $Method, NULL), $this);
-            $this->ListBox2->DSType = dsSQL;
-            $this->ListBox2->DataSource = new clsDBConnSIKP();
-            $this->ListBox2->ds = & $this->ListBox2->DataSource;
-            list($this->ListBox2->BoundColumn, $this->ListBox2->TextColumn, $this->ListBox2->DBFormat) = array("", "", "");
-            $this->ListBox2->DataSource->SQL = "(select 0,'SPTPD dan SPTD')\n" .
-            "UNION(\n" .
-            "select p_settlement_type_id, code\n" .
-            "from p_settlement_type\n" .
-            "where p_settlement_type_id in (1,7)\n" .
-            "order by p_settlement_type_id)";
-            $this->ListBox2->DataSource->Order = "";
-            $this->ListBox2->Required = true;
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
             $this->date_start_laporan = & new clsControl(ccsTextBox, "date_start_laporan", "date_start_laporan", ccsText, "", CCGetRequestParam("date_start_laporan", $Method, NULL), $this);
             $this->date_start_laporan->Required = true;
@@ -98,45 +83,44 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->DatePicker_end_start_laporan2 = & new clsDatePicker("DatePicker_end_start_laporan2", "t_rep_lap_spjpSearch", "date_end_laporan", $this);
             $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
             $this->Button_DoSearch3 = & new clsButton("Button_DoSearch3", $Method, $this);
+            $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Nama Ayat", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
+            $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-B47E8119
+//Validate Method @3-4FEF1223
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
         $Validation = ($this->ListBox1->Validate() && $Validation);
-        $Validation = ($this->p_vat_type_id->Validate() && $Validation);
-        $Validation = ($this->vat_code->Validate() && $Validation);
-        $Validation = ($this->ListBox2->Validate() && $Validation);
         $Validation = ($this->date_start_laporan->Validate() && $Validation);
         $Validation = ($this->date_end_laporan->Validate() && $Validation);
+        $Validation = ($this->vat_code->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->ListBox1->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->ListBox2->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_start_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-B15A64A5
+//CheckErrors Method @3-6CE9D2BF
     function CheckErrors()
     {
         $errors = false;
         $errors = ($errors || $this->ListBox1->Errors->Count());
-        $errors = ($errors || $this->p_vat_type_id->Errors->Count());
-        $errors = ($errors || $this->vat_code->Errors->Count());
-        $errors = ($errors || $this->ListBox2->Errors->Count());
         $errors = ($errors || $this->date_start_laporan->Errors->Count());
         $errors = ($errors || $this->date_end_laporan->Errors->Count());
         $errors = ($errors || $this->DatePicker_end_start_laporan1->Errors->Count());
         $errors = ($errors || $this->DatePicker_end_start_laporan2->Errors->Count());
+        $errors = ($errors || $this->vat_code->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -207,7 +191,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-7DA689E0
+//Show Method @3-C4BA0071
     function Show()
     {
         global $CCSUseAmp;
@@ -222,7 +206,6 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->ListBox1->Prepare();
-        $this->ListBox2->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -234,13 +217,12 @@ function GetPrimaryKey($keyName)
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
             $Error = ComposeStrings($Error, $this->ListBox1->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->ListBox2->Errors->ToString());
             $Error = ComposeStrings($Error, $this->date_start_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->date_end_laporan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_end_start_laporan2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -260,9 +242,6 @@ function GetPrimaryKey($keyName)
 
         $this->Button_DoSearch->Show();
         $this->ListBox1->Show();
-        $this->p_vat_type_id->Show();
-        $this->vat_code->Show();
-        $this->ListBox2->Show();
         $this->Button_DoSearch1->Show();
         $this->date_start_laporan->Show();
         $this->date_end_laporan->Show();
@@ -270,6 +249,8 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_end_start_laporan2->Show();
         $this->Button_DoSearch2->Show();
         $this->Button_DoSearch3->Show();
+        $this->vat_code->Show();
+        $this->p_vat_type_dtl_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
