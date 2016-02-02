@@ -27,41 +27,6 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<Hidden id="570" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchp_vat_type_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
-				<TextBox id="571" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" PathID="t_rep_lap_spjpSearchvat_code">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<ListBox id="577" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="ListBox2" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchListBox2" connection="ConnSIKP" _valueOfList="7" _nameOfList="STPD" dataSource="(select 0,'SPTPD dan SPTD')
-UNION(
-select p_settlement_type_id, code
-from p_settlement_type
-where p_settlement_type_id in (1,7)
-order by p_settlement_type_id)" fieldSource="i_flag_setoran" required="True">
-					<Components/>
-					<Events>
-						<Event name="OnChange" type="Client">
-							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="578"/>
-							</Actions>
-						</Event>
-					</Events>
-					<TableParameters/>
-					<SPParameters/>
-					<SQLParameters/>
-					<JoinTables/>
-					<JoinLinks/>
-					<Fields/>
-					<Attributes/>
-					<Features/>
-				</ListBox>
 				<Button id="579" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_lap_spjpSearchButton_DoSearch1">
 					<Components/>
 					<Events>
@@ -107,7 +72,19 @@ order by p_settlement_type_id)" fieldSource="i_flag_setoran" required="True">
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<TextBox id="533" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code" required="False" caption="Nama Ayat" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_rep_lap_spjpSearchvat_code">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<Hidden id="535" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchp_vat_type_dtl_id" fieldSource="p_vat_type_dtl_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
