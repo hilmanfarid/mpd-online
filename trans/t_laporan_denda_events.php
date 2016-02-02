@@ -44,9 +44,8 @@ function Page_BeforeShow(& $sender)
 	global $Label1;
 	$param_arr['end_date'] = CCGetFromGet('date_end_laporan');
 	$param_arr['start_date'] = CCGetFromGet('date_start_laporan');
-	$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id','');
+	$param_arr['p_vat_type_dtl_id'] = CCGetFromGet('p_vat_type_dtl_id','');
 	$param_arr['status_bayar'] = CCGetFromGet('ListBox1');
-	$param_arr['ketetapan'] = CCGetFromGet('ListBox2',4);
 
 	$param_arr['vat_code'] = CCGetFromGet('vat_code');
 	if($doAction == 'view_html') {
@@ -116,17 +115,14 @@ function GetCetakHTML($param_arr) {
 		left join p_vat_type_dtl p on p.p_vat_type_dtl_id = a.p_vat_type_dtl_id
 		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id 
 		left join p_settlement_type r on r.p_settlement_type_id=a.p_settlement_type_id
-		where case when ".$param_arr['ketetapan']." = 0 then a.p_settlement_type_id in (1,7)
-				else a.p_settlement_type_id = ".$param_arr['ketetapan']." 
-			end
+		where a.p_settlement_type_id = 7
 		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 			and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 		and x.p_account_status_id = 1
 		and nvl(a.total_penalty_amount,0) > 0";
-	if ($param_arr['p_vat_type_id']!=''){
-		$query.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
-				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
+	if ($param_arr['p_vat_type_dtl_id']!=''){
+		$query.="and a.p_vat_type_dtl_id =".$param_arr['p_vat_type_dtl_id'];
 	}
 	if ($param_arr['status_bayar']==2){
 		$query.="and receipt_no is not null ORDER BY wp_name";
@@ -199,7 +195,7 @@ function CetakExcel($param_arr) {
 	$dbConn	= new clsDBConnSIKP();
 	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
-		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,
+		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak, 
 		* from t_vat_setllement a
 		left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 		left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
@@ -207,17 +203,14 @@ function CetakExcel($param_arr) {
 		left join p_vat_type_dtl p on p.p_vat_type_dtl_id = a.p_vat_type_dtl_id
 		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id 
 		left join p_settlement_type r on r.p_settlement_type_id=a.p_settlement_type_id
-		where case when ".$param_arr['ketetapan']." = 0 then a.p_settlement_type_id in (1,7)
-				else a.p_settlement_type_id = ".$param_arr['ketetapan']." 
-			end
+		where a.p_settlement_type_id = 7
 		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 			and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 		and x.p_account_status_id = 1
 		and nvl(a.total_penalty_amount,0) > 0";
-	if ($param_arr['p_vat_type_id']!=''){
-		$query.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
-				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
+	if ($param_arr['p_vat_type_dtl_id']!=''){
+		$query.="and a.p_vat_type_dtl_id =".$param_arr['p_vat_type_dtl_id'];
 	}
 	if ($param_arr['status_bayar']==2){
 		$query.="and receipt_no is not null ORDER BY wp_name";
@@ -225,7 +218,7 @@ function CetakExcel($param_arr) {
 		if ($param_arr['status_bayar']==3){
 			$query.="and receipt_no is null ORDER BY wp_name";
 		}else{
-			$query.="ORDER BY q.p_vat_type_id, ayat_pajak, wp_name, start_period";
+			$query.="ORDER BY q.p_vat_type_id, ayat_pajak, wp_name,a.npwd, start_period";
 		}
 	}
 	//echo $query;exit;
@@ -407,18 +400,15 @@ function GetCetakRekapHTML($param_arr) {
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 			left join p_settlement_type r on r.p_settlement_type_id=a.p_settlement_type_id
-			where case when ".$param_arr['ketetapan']." = 0 then a.p_settlement_type_id in (1,7)
-				else a.p_settlement_type_id = ".$param_arr['ketetapan']." 
-			end
+			where a.p_settlement_type_id = 7
 			and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 				and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 			and a.settlement_date between to_date('".$data[$i]['start_date']."','yyyy-mm-dd') 
 				and (to_date('".$data[$i]['end_date']."','yyyy-mm-dd')+1)
 			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 			and x.p_account_status_id = 1";
-		if ($param_arr['p_vat_type_id']!=''){
-			$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
-					from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
+		if ($param_arr['p_vat_type_dtl_id']!=''){
+			$query2.="and a.p_vat_type_dtl_id =".$param_arr['p_vat_type_dtl_id'];
 		}
 		if ($param_arr['status_bayar']==2){
 			$query2.="and receipt_no is not null";
@@ -457,19 +447,11 @@ function GetCetakRekapHTML($param_arr) {
 function CetakRekapExcel($param_arr) {
 	
 	startExcel("laporan_rekap_denda.xls");
-	$dbConn	= new clsDBConnSIKP();
-	$query="select code from p_settlement_type 
-			where p_settlement_type_id =".$param_arr['ketetapan'];
-	//echo $query;exit;
-	
-	$dbConn->query($query);
-	$dbConn->next_record();
-	$ketetapan = $dbConn->f("code");
 
 	$output = '';
 	$output .= '<table><tr><td colspan=6 align="center"><strong>LAPORAN REKAP DENDA<strong/></td></tr>';
 	$output .= '<tr><td colspan=6 align="center"><strong>TAHUN '.substr($param_arr['start_date'],0,4).'</strong></td></tr>';
-	$output .= '<tr><td colspan=6 align="center"><strong>PERIODE '.$param_arr['start_date'].' SD '.$param_arr['end_date'].'</strong></td></tr>';
+	$output .= '<tr><td colspan=6 align="center"><strong>PERIODE PENETAPAN'.$param_arr['start_date'].' SD '.$param_arr['end_date'].'</strong></td></tr>';
 	$output .= '<tr><td colspan=6 align="center"></td></tr>';
 	$output .= '<tr><td colspan=6 align="center"></td></tr></table>';
 
@@ -510,18 +492,15 @@ function CetakRekapExcel($param_arr) {
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 			left join p_settlement_type r on r.p_settlement_type_id=a.p_settlement_type_id
-			where case when ".$param_arr['ketetapan']." = 0 then a.p_settlement_type_id in (1,7)
-				else a.p_settlement_type_id = ".$param_arr['ketetapan']." 
-			end
+			where a.p_settlement_type_id = 7
 			and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 				and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 			and a.settlement_date between to_date('".$data[$i]['start_date']."','yyyy-mm-dd') 
 				and (to_date('".$data[$i]['end_date']."','yyyy-mm-dd')+1)
 			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 			and x.p_account_status_id = 1";
-		if ($param_arr['p_vat_type_id']!=''){
-			$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
-					from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
+		if ($param_arr['p_vat_type_dtl_id']!=''){
+			$query2.="and a.p_vat_type_dtl_id =".$param_arr['p_vat_type_dtl_id'];
 		}
 		if ($param_arr['status_bayar']==2){
 			$query2.="and receipt_no is not null";
@@ -529,7 +508,6 @@ function CetakRekapExcel($param_arr) {
 		if ($param_arr['status_bayar']==3){
 			$query2.="and receipt_no is null";
 		}
-
 		//echo $query2;exit;
 		$data2 = array();
 		$dbConn2->query($query2);
