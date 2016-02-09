@@ -17,15 +17,19 @@ $query="select * from t_payment_receipt a
 $dbConn->query($query);
 $data=array();
 if ($dbConn->next_record()) {
-	/*$json = array('items'=>array(),'message'=>'data ditemukan','success'=>'success');
+	$json = array('items'=>array(),'message'=>'data ditemukan','success'=>'success');
 	$item = array(
 		'npwd' => $dbConn->f("npwd"),
 		'payment_vat_amount' => $dbConn->f("payment_vat_amount"),
-		'finance_period_code' => $dbConn->f("finance_period_code")
+		'finance_period_code' => $dbConn->f("finance_period_code"),
+		'merk_dagang' => $dbConn->f("company_brand"),
+		'alamat_merk_dagang' => $dbConn->f("brand_address_name")." ".$dbConn->f("brand_address_no"),
+		'pemilik' => $dbConn->f("company_owner"),
+		'alamat_pemilik' => $dbConn->f("address_name_owner")." ".$dbConn->f("address_no_owner")
 		);
 	$json['items']=$item;
-	print_r( ($json));*/
-	$myXMLData =
+	print_r( ($json));
+	/*$myXMLData =
 	"<?xml version='1.0' encoding='UTF-8'?>
 	<pembayaran_wp>
 		<npwd>".$dbConn->f("npwd")."</npwd>
@@ -36,16 +40,18 @@ if ($dbConn->next_record()) {
 		<pemilik>".$dbConn->f("company_owner")."</pemilik>
 		<alamat_pemilik>".$dbConn->f("address_name_owner")." ".$dbConn->f("address_no_owner")."</alamat_pemilik>
 	</pembayaran_wp>";
-	print_r($myXMLData);
+	print_r($myXMLData);*/
 }else{
-	$myXMLData =
+	$json = array('items'=>array(),'message'=>'data tidak ditemukan','success'=>'fail');
+	/*$myXMLData =
 	"<?xml version='1.0' encoding='UTF-8'?>
 	<pembayaran_wp>
 		<npwd></npwd>
 		<payment_vat_amount></payment_vat_amount>
 		<finance_period_code></finance_period_code>
 	</pembayaran_wp>";
-	print_r($myXMLData);
+	print_r($myXMLData);*/
+	print_r( ($json));
 }
 $dbConn->close();
 
