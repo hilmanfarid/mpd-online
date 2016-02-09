@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_year_period</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
+<script language="javascript" type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function()
+{
+        jQuery(".numeric-field").maskMoney({thousands:',', precision: 0, defaultZero:true});
+    jQuery(window).scroll(function()
+    {
+            jQuery('#tabtop').css('top', jQuery(window).scrollTop());
+    });
+
+        jQuery(".numeric-field").keydown(function(event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+                 // Allow: Ctrl+A
+                (event.keyCode == 65 && event.ctrlKey === true) || 
+                 // Allow: home, end, left, right
+                (event.keyCode >= 35 && event.keyCode <= 39)) {
+                     // let it happen, don't do anything
+                     return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                    event.preventDefault(); 
+                }   
+            }
+        });
+});
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        TARGET PENDAPATAN PAJAK TRIWULAN 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record p_year_periodSearch -->
+        <form id="p_year_periodSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field"><input id="p_year_periodSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"></td> 
+                    <td class="search-field">
+                      <!-- BEGIN Button Button_DoSearch --><input id="p_year_periodSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_year_periodSearch --><br>
+        <!-- BEGIN Grid p_year_periodGrid -->
+        <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>DAFTAR TAHUN </strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th style="TEXT-ALIGN: center" width="1%" scope="col">#</th>
+ 
+                  <th scope="col">Tahun</th>
+ 
+                  <th scope="col">Tanggal Awal</th>
+ 
+                  <th scope="col">Tanggal Akhir</th>
+ 
+                  <th scope="col"><label for="p_app_menuFormdescription">Deskripsi</label></th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Triwulan I</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Triwulan II</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Triwulan III</th>
+ 
+                  <th style="TEXT-ALIGN: center" scope="col">Triwulan IV</th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {p_year_periodGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center"><a href="{DLink_Src}" id="p_year_periodGridDLink_{p_year_periodGrid:rowNumber}">{DLink}</a></td> 
+                  <td>{year_code}&nbsp;<input id="p_year_periodGridp_year_period_id_{p_year_periodGrid:rowNumber}" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"></td> 
+                  <td>{start_date}</td> 
+                  <td>{end_date}</td> 
+                  <td>{description}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{target_triwulan_1}</td> 
+                  <td style="TEXT-ALIGN: right">{target_triwulan_2}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{target_triwulan_3}&nbsp;</td> 
+                  <td style="TEXT-ALIGN: right">{target_triwulan_4}&nbsp;</td>
+                </tr>
+ <!-- END Row -->
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="9">-</td>
+                </tr>
+                <!-- END NoRecords -->
+                <tr class="Footer">
+                  <td><b><a href="{Insert_Link_Src}" id="p_year_periodGridInsert_Link"><img border="0" src="../images/insert_link.gif"></a></b></td> 
+                  <td colspan="9">
+                    <!-- BEGIN Navigator Navigator -->
+                    <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
+                    <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
+                    <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/Prev.gif"></a> <!-- END Prev_On -->
+                    <!-- BEGIN Prev_Off --><img border="0" alt="{Prev_URL}" src="../Styles/sikp/Images/PrevOff.gif"><!-- END Prev_Off -->&nbsp; 
+                    <!-- BEGIN Pages -->
+                    <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+                    <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->
+                    <!-- BEGIN Next_On --><a href="{Next_URL}"><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/Next.gif"></a> <!-- END Next_On -->
+                    <!-- BEGIN Next_Off --><img border="0" alt="{Next_URL}" src="../Styles/sikp/Images/NextOff.gif"><!-- END Next_Off -->
+                    <!-- BEGIN Last_On --><a href="{Last_URL}"><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/Last.gif"></a> <!-- END Last_On -->
+                    <!-- BEGIN Last_Off --><img border="0" alt="{Last_URL}" src="../Styles/sikp/Images/LastOff.gif"><!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid p_year_periodGrid --><br>
+        <!-- BEGIN Record p_year_periodForm -->
+        <form id="p_year_periodForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI TAHUN</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="grid-table" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="5">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th" width="200"><label for="p_year_periodFormyear_code">Tahun</label></td> 
+                    <td colspan="4"><input id="p_year_periodFormyear_code" class="ControlsRO" value="{year_code}" readonly maxlength="32" size="25" name="{year_code_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" width="200">Triwulan&nbsp;I&nbsp;</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right; WIDTH: 191px; HEIGHT: 22px" id="p_year_periodFormtarget_triwulan_1" class="numeric-field" value="{target_triwulan_1}" maxlength="32" size="24" name="{target_triwulan_1_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" width="200">Triwulan&nbsp;II&nbsp;</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right; WIDTH: 191px; HEIGHT: 22px" id="p_year_periodFormtarget_triwulan_2" class="numeric-field" value="{target_triwulan_2}" maxlength="32" size="24" name="{target_triwulan_2_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" width="200">Triwulan&nbsp;III</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right; WIDTH: 191px; HEIGHT: 22px" id="p_year_periodFormtarget_triwulan_3" class="numeric-field" value="{target_triwulan_3}" maxlength="32" size="24" name="{target_triwulan_3_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" width="200">Triwulan&nbsp;IV</td> 
+                    <td colspan="4"><input style="TEXT-ALIGN: right; WIDTH: 191px; HEIGHT: 22px" id="p_year_periodFormtarget_triwulan_4" class="numeric-field" value="{target_triwulan_4}" maxlength="32" size="24" name="{target_triwulan_4_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_year_periodFormcreated_by">Dibuat Oleh</label></td> 
+                    <td colspan="4"><input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="12" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="15" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="p_year_periodFormupdated_by">Diubah Oleh</label></td> 
+                    <td colspan="4"><input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="15" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="p_year_periodFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td style="TEXT-ALIGN: left"></td> 
+                    <td colspan="4" align="right">&nbsp; 
+                      <!-- BEGIN Button Button_Update --><input id="p_year_periodFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; <input id="p_year_periodFormp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="p_year_periodFormp_year_periodGridPage" value="{p_year_periodGridPage}" type="hidden" name="{p_year_periodGridPage_Name}"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record p_year_periodForm --><br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+function lov_p_data_status_list() {
+        getFrom_LOV('p_year_periodForm','p_status_list_id,p_status_list_code','lov_2_field.php?TABLE=p_status_list&FIELD_0=p_status_list_id&FIELD_1=code&FIELD_2=description&LABEL1=Status Data&LABEL2=Deskripsi&HEADER_PAGE=STATUS DATA&HEADER_LOV=DAFTAR STATUS DATA&ORDER=listing_no');
+}
+
+function DoGenerate() {
+        var year_code = document.getElementById('p_year_periodFormyear_code').value;
+        if(year_code == "") {
+                alert('Inputkan Nilai Tahun / Pilih Salah Satu Tahun Pelaporan Pajak');
+                return false;
+        }
+
+        url = "../param/p_year_period_pajak.php?generate_status=Y&year_code="+year_code;
+                
+    params  = 'width=300';
+    params += ', height=300';
+    params += ', top=0, left=0';
+
+    newwin=window.open(url,'windowname4', params);
+    if (window.focus) {newwin.focus()}
+    return false;
+}
+
+
+function setNormalValue(){
+    jQuery(".numeric-field").each(function() {
+        var thisVal=jQuery(this).val();
+                if(thisVal!=0){
+                jQuery(this).val(thisVal.replace(/,/g ,''));
+                }
+    });
+}
+</script>
+</body>
+</html>
