@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -64,7 +64,7 @@ $(document).ready(function()
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label style="display: none;" for="searchFormOBJ">&nbsp;</label><label style="display: none;" for="LOVs_P_CUSTOMER_SEGMENT_ID">&nbsp;</label></td> 
+                    <td class="search-field">&nbsp;Nama WP/ NPWD / No Kohir : <input style="TEXT-TRANSFORM: uppercase" id="searchForms_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}"><label for="searchFormOBJ" style="display: none;">&nbsp;</label><label for="LOVs_P_CUSTOMER_SEGMENT_ID" style="display: none;">&nbsp;</label></td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch --><input id="searchFormButton_DoSearch" class="btn_tambah" value="Cari" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
@@ -110,7 +110,9 @@ $(document).ready(function()
  
                   <th style="TEXT-ALIGN: center" scope="col">&nbsp;CETAK SSPD</th>
  
-                  <th scope="col">&nbsp;CETAK STPD</th>
+                  <th scope="col">&nbsp;CETAK STPD (TGL TAP)</th>
+ 
+                  <th scope="col">&nbsp;CETAK STPD (TGL BAYAR)</th>
  
                   <th style="TEXT-ALIGN: center" colspan="6" scope="col">UBAH DENDA</th>
                 </tr>
@@ -130,6 +132,7 @@ $(document).ready(function()
                     <!-- BEGIN Button cetak_payment --><input style="DISPLAY: none" id="t_vat_setllementGridcetak_payment" class="btn_tambah" onclick="flagPayment('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" value="Flag Payment" alt="Button2" type="button" name="{Button_Name}"><!-- END Button cetak_payment --></td> 
                   <td>{cetak_sptpd} 
                     <!-- BEGIN Button cetak_register --><input style="DISPLAY: none" id="t_vat_setllementGridcetak_register" class="btn_tambah" onclick="cetakRegister('t_vat_setllementGridt_customer_order_id_{t_vat_setllementGrid:rowNumber}');" value="Cetak Register" alt="Button2" type="button" name="{Button_Name}"><!-- END Button cetak_register --></td> 
+                  <td>{cetak_sptpd2}</td> 
                   <td style="TEXT-ALIGN: center" colspan="6">&nbsp; 
                     <!-- BEGIN Button BtnUbahDenda --><input id="t_vat_setllementGridBtnUbahDenda" class="Button" onclick="viewFormUbahDenda({t_vat_setllement_id},'{total_penalty_amount}');" value="Ubah Denda" alt="Button2" type="button" name="{Button_Name}"><!-- END Button BtnUbahDenda --></td>
                 </tr>
@@ -301,9 +304,9 @@ function submitter(){
 
 
 
-function cetakStpd(pid){
+function cetakStpd(pid,tgl_surat){
          
-                var urlLink = "?t_vat_setllement_id="+pid;
+                var urlLink = "?t_vat_setllement_id="+pid+"&tgl_surat="+tgl_surat;
                 return popup("../report/cetak_formulir_stpd_pdf.php"+urlLink);
 
                                           /*
