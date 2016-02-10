@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-90EE1D16
+//Class_Initialize Event @2-1CB6FD5C
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -91,6 +91,8 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->cetak_sptpd = & new clsControl(ccsLabel, "cetak_sptpd", "cetak_sptpd", ccsText, "", CCGetRequestParam("cetak_sptpd", ccsGet, NULL), $this);
         $this->cetak_sptpd->HTML = true;
         $this->BtnUbahDenda = & new clsButton("BtnUbahDenda", ccsGet, $this);
+        $this->cetak_sptpd2 = & new clsControl(ccsLabel, "cetak_sptpd2", "cetak_sptpd2", ccsText, "", CCGetRequestParam("cetak_sptpd2", ccsGet, NULL), $this);
+        $this->cetak_sptpd2->HTML = true;
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -108,7 +110,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-D6BB6BC3
+//Show Method @2-46BB4202
     function Show()
     {
         global $Tpl;
@@ -155,6 +157,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["cetak_register"] = $this->cetak_register->Visible;
             $this->ControlsVisible["cetak_sptpd"] = $this->cetak_sptpd->Visible;
             $this->ControlsVisible["BtnUbahDenda"] = $this->BtnUbahDenda->Visible;
+            $this->ControlsVisible["cetak_sptpd2"] = $this->cetak_sptpd2->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -197,6 +200,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->cetak_register->Show();
                 $this->cetak_sptpd->Show();
                 $this->BtnUbahDenda->Show();
+                $this->cetak_sptpd2->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -230,7 +234,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Show Method
 
-//GetErrors Method @2-1761AAA7
+//GetErrors Method @2-D57C1D8D
     function GetErrors()
     {
         $errors = "";
@@ -249,6 +253,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $errors = ComposeStrings($errors, $this->t_customer_order_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->total_penalty_amount->Errors->ToString());
         $errors = ComposeStrings($errors, $this->cetak_sptpd->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->cetak_sptpd2->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
