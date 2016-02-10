@@ -22,13 +22,18 @@ $query="select b.npwd,
 	   d.vat_code,
 	   e.order_no,
 	   d.penalty_code as penalty_ayat,
-      replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', ' ') as dengan_huruf
-from t_vat_penalty a, t_vat_setllement b, t_cust_account c, p_vat_type d, t_customer_order e
-where a.t_vat_setllement_id = b.t_vat_setllement_id
-and b.t_cust_account_id = c.t_cust_account_id
-and b.t_customer_order_id = e.t_customer_order_id 
-and c.p_vat_type_id = d.p_vat_type_id
-and a.t_vat_setllement_id = ".$VatId;
+      replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', ' ') as dengan_huruf,
+	  f.code as finance_period_code,
+	  to_char(b.settlement_date,'DD MON YYYY')as settlement_date,
+	  to_char(g.payment_date,'DD MON YYYY')as payment_date
+from t_vat_penalty a
+left join t_vat_setllement b on a.t_vat_setllement_id = b.t_vat_setllement_id
+left join t_cust_account c on b.t_cust_account_id = c.t_cust_account_id
+left join p_vat_type d on d.p_vat_type_id = c.p_vat_type_id 	
+left join t_customer_order e on b.t_customer_order_id = e.t_customer_order_id
+left join p_finance_period f on f.p_finance_period_id = b.p_finance_period_id
+left join t_payment_receipt g on g.t_vat_setllement_id = b.t_vat_setllement_id
+where a.t_vat_setllement_id = ".$VatId;
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
@@ -45,7 +50,9 @@ while ($dbConn->next_record()) {
 		$data["tahun"] = $dbConn->f("tahun");
 		$data["penalty_ayat"] = $dbConn->f("penalty_ayat");
 		$data["order_no"] = $dbConn->f("order_no");
-		
+		$data["finance_period_code"] = $dbConn->f("finance_period_code");
+		$data["settlement_date"] = $dbConn->f("settlement_date");
+		$data["payment_date"] = $dbConn->f("payment_date");
 }
 
 	//nip & nama
@@ -128,10 +135,10 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($lheader1, $this->height + 2, "", "L", 0, 'L');
 		$this->Cell($lheader3, $this->height + 2, "Jalan Wastukancana no. 2", "R", 0, 'C');
-		$this->Cell(5, $this->height + 2, "", "", 0, 'L');
+		$this->Cell(2, $this->height + 2, "", "", 0, 'L');
 		$this->SetFont('Arial', '', 8);
 		$this->Cell($lheader1 - 5, $this->height + 2, "Masa Pajak ", "", 0, 'L');
-		$this->Cell($lheader1, $this->height + 2, ": " . $data["tahun"], "R", 0, 'L');
+		$this->Cell($lheader1 + 3, $this->height + 2, ": " . $data["finance_period_code"], "R", 0, 'L');
 		$this->SetFont('Arial', '', 10);
 		$this->Cell($lheader2, $this->height + 2, "", "R", 0, 'C');
 		$this->Ln($this->height-4);
@@ -312,11 +319,22 @@ class FormCetak extends FPDF {
 		}
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,30,$this->getY(),25,0,'PNG');
 	
+		$tgl_surat = CCGetFromGet("tgl_surat", "");
+		$tgl = date("d M Y");
+		if ($tgl_surat=="tgl_bayar"){
+			$tgl = $data["payment_date"];
+		}
+		if ($tgl_surat=="tgl_tap"){
+			$tgl = $data["settlement_date"];
+		}
+		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d M Y") /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $tgl /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
+		
+		
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "KEPALA BIDANG PAJAK, ", "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "a.n. KEPALA BIDANG PAJAK, ", "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "R", 0, 'C');
