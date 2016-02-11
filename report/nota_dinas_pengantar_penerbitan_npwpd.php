@@ -160,13 +160,59 @@ class FormCetak extends FPDF {
 			$periode=$param_arr['date_start_laporan']." s.d. ".$periode=$param_arr['date_end_laporan'];;
 		}
         $this->SetFont('Times', '', 12);
-        $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Sehubungan dengan permohonan pendaftaran Wajib Pajak Daerah yang diterima pada tanggal ".$periode." sebagaimana terlampir, bersama ini kami sampaikan draft Surat Pengukuhan Wajib Pajak Daerah sebanyak ".$data["jumlah"]." (".$data["huruf"].") lembar untuk kiranya berkenan Bapak tandatangani.", "", 'J');
-        $this->Ln(6);
-
-        $this->Cell($lengthJudul1, $this->height, "", "", 0, 'L');
-        $this->MultiCell($lengthJudul2, $this->height, "Demikian kami sampaikan, atas perhatian dan perkenan Bapak dihaturkan terima kasih.", "", 'J');
-        $this->Ln();
+        
+		$this->SetWidths(array($lengthJudul1,10,$lengthJudul2-10));
+		$this->SetAligns(array("J","J","J"));
+		$this->RowMultiBorderWithHeight(
+				array("",
+					"",
+					"Dipermaklumkan  dengan  hormat, sehubungan dengan permohonan pendaftaran"
+				),
+				array("",
+					"",
+					""
+				),
+				$this->height
+			);
+		$this->SetWidths(array($lengthJudul1,$lengthJudul2));
+		$this->SetAligns(array("J","J"));
+		$this->RowMultiBorderWithHeight(
+				array("",
+					"Wajib Pajak Daerah yang diterima pada tanggal ".$periode." sebagaimana terlampir, bersama ini kami sampaikan draft Surat Pengukuhan Wajib Pajak Daerah sebanyak ".$data["jumlah"]." (".$data["huruf"].") lembar untuk kiranya berkenan Bapak tandatangani."
+				),
+				array("",
+					""
+				),
+				$this->height
+			);
+		$this->Ln(6);
+		
+        $this->SetWidths(array($lengthJudul1,10,$lengthJudul2-10));
+		$this->SetAligns(array("J","J","J"));
+		$this->RowMultiBorderWithHeight(
+				array("",
+					"",
+					"Demikian kami sampaikan, atas perhatian dan perkenan Bapak dihaturkan terima"
+				),
+				array("",
+					"",
+					""
+				),
+				$this->height
+			);
+		$this->SetWidths(array($lengthJudul1,$lengthJudul2));
+		$this->SetAligns(array("J","J"));
+		$this->RowMultiBorderWithHeight(
+				array("",
+					"kasih."
+				),
+				array("",
+					""
+				),
+				$this->height
+			);
+			
+		$this->Ln(6);
 
         //TTD
 		$lengWP1 = $lengthJudul2 * 1/3;
