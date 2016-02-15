@@ -74,26 +74,32 @@ function Page_BeforeShow(& $sender)
 			$dbConn	= new clsDBConnSIKP();
 			
 			if(empty($param_arr['status'])) { /* GLOBAL */
-				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)";
+				$query="SELECT b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.* 
+				FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1) a
+				left join t_cust_account b on a.t_cust_account_id=b.t_cust_account_id
+				ORDER BY company_brand, npwd";
 			}
 			else if($param_arr['status'] == '1') { /* BELUM BAYAR */
-				$query="SELECT * FROM f_rep_status_piutang2 (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+				$query="SELECT b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*
+						FROM f_rep_status_piutang2 (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1) a
+						left join t_cust_account b on a.t_cust_account_id=b.t_cust_account_id
 						WHERE ((f_teg1_amount is null) OR (f_teg1_amount < 1)) AND
 							  ((f_teg2_amount is null) OR (f_teg2_amount < 1)) AND
 							  ((f_teg3_amount is null) OR (f_teg3_amount < 1))
 							  AND NOT textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
-							  ";
+						ORDER BY company_brand, npwd";
 			
 			}else if($param_arr['status'] == '2') { /* SUDAH BAYAR */
-				$query="SELECT *, (f_amount IS NULL AND f_teg1_amount IS NULL AND f_teg2_amount IS NULL AND f_teg3_amount IS NULL AND f_action_sts > 0) AS bayar_setelah
-						FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+				$query="SELECT b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*, (f_amount IS NULL AND f_teg1_amount IS NULL AND f_teg2_amount IS NULL AND f_teg3_amount IS NULL AND f_action_sts > 0) AS bayar_setelah
+						FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1) a
+						left join t_cust_account b on a.t_cust_account_id=b.t_cust_account_id
 						WHERE (f_teg1_amount > 0) OR 
 							  (f_teg2_amount > 0) OR 
 							  (f_teg3_amount > 0) 
 							  OR textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
-							  ";
+						ORDER BY company_brand, npwd";
 			}
-			
+			//echo $query;exit;
 			$data = array();
 			$dbConn->query($query);
 			while ($dbConn->next_record()) {
@@ -153,24 +159,30 @@ function Page_BeforeShow(& $sender)
 			$dbConn	= new clsDBConnSIKP();
 			
 			if(empty($param_arr['status'])) { /* GLOBAL */
-				$query="SELECT * FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)";
+				$query="SELECT b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.* 
+				FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1) a
+				left join t_cust_account b on a.t_cust_account_id=b.t_cust_account_id
+				ORDER BY company_brand, npwd";
 			}
 			else if($param_arr['status'] == '1') { /* BELUM BAYAR */
-				$query="SELECT * FROM f_rep_status_piutang2 (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+				$query="SELECT b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*
+						FROM f_rep_status_piutang2 (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1) a
+						left join t_cust_account b on a.t_cust_account_id=b.t_cust_account_id
 						WHERE ((f_teg1_amount is null) OR (f_teg1_amount < 1)) AND
 							  ((f_teg2_amount is null) OR (f_teg2_amount < 1)) AND
 							  ((f_teg3_amount is null) OR (f_teg3_amount < 1))
 							  AND NOT textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
-							  ";
+						ORDER BY company_brand, npwd";
 			
 			}else if($param_arr['status'] == '2') { /* SUDAH BAYAR */
-				$query="SELECT *, (f_amount IS NULL AND f_teg1_amount IS NULL AND f_teg2_amount IS NULL AND f_teg3_amount IS NULL AND f_action_sts > 0) AS bayar_setelah
-						FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1)
+				$query="SELECT b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.*, (f_amount IS NULL AND f_teg1_amount IS NULL AND f_teg2_amount IS NULL AND f_teg3_amount IS NULL AND f_action_sts > 0) AS bayar_setelah
+						FROM f_rep_status_piutang (".$param_arr['p_vat_type_id'].", ".$param_arr['p_finance_period_id'].", 1) a
+						left join t_cust_account b on a.t_cust_account_id=b.t_cust_account_id
 						WHERE (f_teg1_amount > 0) OR 
 							  (f_teg2_amount > 0) OR 
 							  (f_teg3_amount > 0) 
 							  OR textregexeq(f_action_sts,'^[[:digit:]]+(\.[[:digit:]]+)?$')
-							  ";
+						ORDER BY company_brand, npwd";
 			}
 			
 			$data = array();
@@ -233,7 +245,8 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 
 
 		$output.='<th align="center" rowspan="2">NO</th>';
-		$output.='<th align="center" rowspan="2" width="200">WAJIB PAJAK</th>';
+		$output.='<th align="center" rowspan="2" width="200">MERK DAGANG</th>';
+		$output.='<th align="center" rowspan="2" width="200">ALAMAT MERK DAGANG</th>';
 		$output.='<th align="center" rowspan="2" width="90">NPWPD</th>';
 		$output.='<th align="center" rowspan="2">SPTPD</th>';
 		$output.='<th align="center" rowspan="2">STPD</th>';
@@ -259,7 +272,8 @@ function GetCetakHTML($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $st
 
 			$output .= '<tr>';
 			$output .= '<td align="center">'.($i+1).'</td>';
-			$output .= '<td align="left">'.$data[$i]['nama'].'</td>';
+			$output .= '<td align="left">'.$data[$i]['company_brand'].'</td>';
+			$output .= '<td align="left">'.$data[$i]['alamat_merk_dagang'].'</td>';
 			$output .= '<td align="center">'.$data[$i]['npwpd'].'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_amount'],0,",",".").'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_penalty'],0,",",".").'</td>';
@@ -338,7 +352,8 @@ function CetakExcel($data, $pajak_periode, $jenis_pajak, $tgl_jatuh_tempo, $stat
 
 			$output .= '<tr>';
 			$output .= '<td align="center">'.($i+1).'</td>';
-			$output .= '<td align="left">'.$data[$i]['nama'].'</td>';
+			$output .= '<td align="left">'.$data[$i]['company_brand'].'</td>';
+			$output .= '<td align="left">'.$data[$i]['alamat_merk_dagang'].'</td>';
 			$output .= '<td align="left">'.$data[$i]['alamat'].'</td>';
 			$output .= '<td align="center">'.$data[$i]['npwpd'].'</td>';
 			$output .= '<td align="right">'.number_format($data[$i]['f_amount'],0,",",".").'</td>';
