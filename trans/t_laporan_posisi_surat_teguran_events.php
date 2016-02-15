@@ -68,10 +68,12 @@ function Page_BeforeShow(& $sender)
 		$t_rep_sisa_piutangSearch->vat_code->SetValue($param_arr['jenis_pajak']);
 
 		if(!empty($param_arr['p_finance_period_id']) and !empty($param_arr['p_vat_type_id'])) {
-		$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
+			$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 			$dbConn	= new clsDBConnSIKP();
-			$query="select * from f_posisi_surat_teguran_test_2(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."')
-				ORDER BY wp_name,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
+			$query="select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.* 
+				from f_posisi_surat_teguran_test_2(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."') a
+				left join t_cust_account b on a.npwpd = b.npwd
+				ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
 			//echo $query;exit;
 			$data = array();
 			$dbConn->query($query);
@@ -113,8 +115,10 @@ function Page_BeforeShow(& $sender)
 		if(!empty($param_arr['p_finance_period_id']) and !empty($param_arr['p_vat_type_id'])) {
 		$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 			$dbConn	= new clsDBConnSIKP();
-			$query="select * from f_posisi_surat_teguran_test_2(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."')
-				ORDER BY  wp_name,npwpd,surat_teguran_3,surat_teguran_2,surat_teguran_1";
+			$query="select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.* 
+				from f_posisi_surat_teguran_test_2(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."') a
+				left join t_cust_account b on a.npwpd = b.npwd
+				ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
 			//echo $query;exit;
 			$data = array();
 			$dbConn->query($query);
@@ -160,7 +164,8 @@ function GetCetakHTML($data,$param_arr) {
 
 
 		$output.='<th align="center" >NO</th>';
-		$output.='<th align="center" >WAJIB PAJAK</th>';
+		$output.='<th align="center" >MERK DAGANG</th>';
+		$output.='<th align="center" >ALAMAT MERK DAGANG</th>';
 		$output.='<th align="center" >NPWPD</th>';
 		$output.='<th align="center" >SURAT TEGURAN 1</th>';
 		$output.='<th align="center" >SURAT TEGURAN 2</th>';
@@ -241,7 +246,8 @@ function GetCetakHTML($data,$param_arr) {
 			}else{
 				$output .= '<tr>';
 				$output .= '<td align="center">'.($j+1).'</td>';
-				$output .= '<td align="left">'.$temp['wp_name'].'</td>';
+				$output .= '<td align="left">'.$temp['company_brand'].'</td>';
+				$output .= '<td align="left">'.$temp['alamat_merk_dagang'].'</td>';
 				$output .= '<td align="center">'.$temp['npwpd'].'</td>';
 				$output .= '<td align="center">'.$surat_teguran_1.'</td>';
 				$output .= '<td align="center">'.$surat_teguran_2.'</td>';
@@ -272,7 +278,8 @@ function GetCetakHTML($data,$param_arr) {
 		if ($j > 0){
 			$output .= '<tr>';
 			$output .= '<td align="center">'.($j+1).'</td>';
-			$output .= '<td align="left">'.$temp['wp_name'].'</td>';
+			$output .= '<td align="left">'.$temp['company_brand'].'</td>';
+			$output .= '<td align="left">'.$temp['alamat_merk_dagang'].'</td>';
 			$output .= '<td align="center">'.$temp['npwpd'].'</td>';
 			$output .= '<td align="center">'.$surat_teguran_1.'</td>';
 			$output .= '<td align="center">'.$surat_teguran_2.'</td>';
@@ -303,7 +310,8 @@ function CetakExcel($data, $param_arr) {
 	$output .='<table border="1" widht="100%">
                 <tr>';
 		$output.='<th align="center" >NO</th>';
-		$output.='<th align="center" >WAJIB PAJAK</th>';
+		$output.='<th align="center" >MERK DAGANG</th>';
+		$output.='<th align="center" >ALAMAT MERK DAGANG</th>';
 		$output.='<th align="center" >NPWPD</th>';
 		$output.='<th align="center" >SURAT TEGURAN 1</th>';
 		$output.='<th align="center" >SURAT TEGURAN 2</th>';
@@ -384,7 +392,8 @@ function CetakExcel($data, $param_arr) {
 			}else{
 				$output .= '<tr>';
 				$output .= '<td align="center">'.($j+1).'</td>';
-				$output .= '<td align="left">'.$temp['wp_name'].'</td>';
+				$output .= '<td align="left">'.$temp['company_brand'].'</td>';
+				$output .= '<td align="left">'.$temp['alamat_merk_dagang'].'</td>';
 				$output .= '<td align="center">'.$temp['npwpd'].'</td>';
 				$output .= '<td align="center">'.$surat_teguran_1.'</td>';
 				$output .= '<td align="center">'.$surat_teguran_2.'</td>';
@@ -415,7 +424,8 @@ function CetakExcel($data, $param_arr) {
 		if ($j > 0){
 			$output .= '<tr>';
 			$output .= '<td align="center">'.($j+1).'</td>';
-			$output .= '<td align="left">'.$temp['wp_name'].'</td>';
+			$output .= '<td align="left">'.$temp['company_brand'].'</td>';
+			$output .= '<td align="left">'.$temp['alamat_merk_dagang'].'</td>';
 			$output .= '<td align="center">'.$temp['npwpd'].'</td>';
 			$output .= '<td align="center">'.$surat_teguran_1.'</td>';
 			$output .= '<td align="center">'.$surat_teguran_2.'</td>';
