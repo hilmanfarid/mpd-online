@@ -104,7 +104,7 @@ function GetCetakHTML2($data) {
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>LAPORAN REALISASI HARIAN MURNI DAN NON MURNI</strong></td> 
+                  		<td class="th"><strong>LAPORAN KETETAPAN DAN REALISASI</strong></td> 
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               		</table>';
@@ -196,6 +196,20 @@ function GetCetakHTML2($data) {
 	$jumlah_des= 0;
 	$jumlah_xdes=0;
 	$jumlah_xnov=0;
+	$jumlah_jan_per_ayat= 0;
+	$jumlah_feb_per_ayat= 0;
+	$jumlah_mar_per_ayat= 0;
+	$jumlah_apr_per_ayat= 0;
+	$jumlah_mei_per_ayat= 0;
+	$jumlah_jun_per_ayat= 0;
+	$jumlah_jul_per_ayat= 0;
+	$jumlah_agu_per_ayat= 0;
+	$jumlah_sep_per_ayat= 0;
+	$jumlah_okt_per_ayat= 0;
+	$jumlah_nov_per_ayat= 0;
+	$jumlah_des_per_ayat= 0;
+	$jumlah_xdes_per_ayat=0;
+	$jumlah_xnov_per_ayat=0;
 	$jumlah_per_wp = 0;
 	$jumlah_bulan_bayar = 0;
 	$ketetapan_realisasi = 0; //jumlah pembayaran
@@ -222,6 +236,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_jan=$jumlah_jan+$item["jumlah_terima"];
+						$jumlah_jan_per_ayat=$jumlah_jan_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_jan=$item["payment_date"];
 				        break;
 				    case "02":
@@ -231,6 +246,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_feb=$jumlah_feb+$item["jumlah_terima"];
+						$jumlah_feb_per_ayat=$jumlah_feb_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_feb=$item["payment_date"];
 				        break;
 				    case "03":
@@ -240,6 +256,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_mar=$jumlah_mar+$item["jumlah_terima"];
+						$jumlah_mar_per_ayat=$jumlah_mar_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_mar=$item["payment_date"];
 				        break;
 				    case "04":
@@ -249,6 +266,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_apr=$jumlah_apr+$item["jumlah_terima"];
+						$jumlah_apr_per_ayat=$jumlah_apr_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_apr=$item["payment_date"];
 				        break;
 				    case "05":
@@ -258,6 +276,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_mei=$jumlah_mei+$item["jumlah_terima"];
+						$jumlah_mei_per_ayat=$jumlah_mei_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_mei=$item["payment_date"];
 				        break;
 				    case "06":
@@ -267,6 +286,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_jun=$jumlah_jun+$item["jumlah_terima"];
+						$jumlah_jun_per_ayat=$jumlah_jun_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_jun=$item["payment_date"];
 				        break;
 				    case "07":
@@ -276,6 +296,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_jul=$jumlah_jul+$item["jumlah_terima"];
+						$jumlah_jul_per_ayat=$jumlah_jul_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_jul=$item["payment_date"];
 				        break;
 				    case "08":
@@ -285,6 +306,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_agu=$jumlah_agu+$item["jumlah_terima"];
+						$jumlah_agu_per_ayat=$jumlah_agu_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_agu=$item["payment_date"];
 				        break;
 				    case "09":
@@ -294,6 +316,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_sep=$jumlah_sep+$item["jumlah_terima"];
+						$jumlah_sep_per_ayat=$jumlah_sep_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_sep=$item["payment_date"];
 				        break;
 				    case "10":
@@ -303,6 +326,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_okt=$jumlah_okt+$item["jumlah_terima"];
+						$jumlah_okt_per_ayat=$jumlah_okt_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_okt=$item["payment_date"];
 				        break;
 				    case "11":
@@ -312,6 +336,7 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_nov=$jumlah_nov+$item["jumlah_terima"];
+						$jumlah_nov_per_ayat=$jumlah_nov_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_nov=$item["payment_date"];
 				        break;
 				}
@@ -323,18 +348,21 @@ function GetCetakHTML2($data) {
 						$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 					}
 					$jumlah_des=$jumlah_des+$item["jumlah_terima"];
+					$jumlah_des_per_ayat=$jumlah_des_per_ayat+$item["jumlah_terima"];
 					$tgl_bayar_des=$item["payment_date"];
 				}
 				else{
 					if ($thn < $year_date){
 						$xdes=$xdes+$item["jumlah_terima"];
 						$jumlah_xdes=$jumlah_xdes+$item["jumlah_terima"];
+						$jumlah_xdes_per_ayat=$jumlah_xdes_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_xdes=$item["payment_date"];
 					}
 					else{
 						if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
 								$xnov=$xnov+$item["jumlah_terima"];
 								$jumlah_xnov=$jumlah_xnov+$item["jumlah_terima"];
+								$jumlah_xnov_per_ayat=$jumlah_xnov_per_ayat+$item["jumlah_terima"];
 								$tgl_bayar_xnov=$item["payment_date"];
 						}
 					}
@@ -347,6 +375,8 @@ function GetCetakHTML2($data) {
 			//$output .= '</tr>';
 			$jumlahtemp += $item["jumlah_terima"];
 			$new =1;
+			$i = $i+1;
+			//$i2 = $i2 + 1;
 		}else{
 			if ($before['npwpd']==$item['npwpd']){				
 				if ($thn == $year_date && $bln != 12){
@@ -358,6 +388,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_jan=$jumlah_jan+$item["jumlah_terima"];
+							$jumlah_jan_per_ayat=$jumlah_jan_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_jan=$item["payment_date"];
 					        break;
 					    case "02":
@@ -367,6 +398,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_feb=$jumlah_feb+$item["jumlah_terima"];
+							$jumlah_feb_per_ayat=$jumlah_feb_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_feb=$item["payment_date"];
 					        break;
 					    case "03":
@@ -376,6 +408,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_mar=$jumlah_mar+$item["jumlah_terima"];
+							$jumlah_mar_per_ayat=$jumlah_mar_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_mar=$item["payment_date"];
 					        break;
 					    case "04":
@@ -385,6 +418,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_apr=$jumlah_apr+$item["jumlah_terima"];
+							$jumlah_apr_per_ayat=$jumlah_apr_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_apr=$item["payment_date"];
 					        break;
 					    case "05":
@@ -394,6 +428,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_mei=$jumlah_mei+$item["jumlah_terima"];
+							$jumlah_mei_per_ayat=$jumlah_mei_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_mei=$item["payment_date"];
 					        break;
 					    case "06":
@@ -403,6 +438,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_jun=$jumlah_jun+$item["jumlah_terima"];
+							$jumlah_jun_per_ayat=$jumlah_jun_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_jun=$item["payment_date"];
 					        break;
 					    case "07":
@@ -412,6 +448,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_jul=$jumlah_jul+$item["jumlah_terima"];
+							$jumlah_jul_per_ayat=$jumlah_jul_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_jul=$item["payment_date"];
 					        break;
 					    case "08":
@@ -421,6 +458,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_agu=$jumlah_agu+$item["jumlah_terima"];
+							$jumlah_agu_per_ayat=$jumlah_agu_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_agu=$item["payment_date"];
 					        break;
 					    case "09":
@@ -430,6 +468,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_sep=$jumlah_sep+$item["jumlah_terima"];
+							$jumlah_sep_per_ayat=$jumlah_sep_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_sep=$item["payment_date"];
 					        break;
 					    case "10":
@@ -439,6 +478,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_okt=$jumlah_okt+$item["jumlah_terima"];
+							$jumlah_okt_per_ayat=$jumlah_okt_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_okt=$item["payment_date"];
 					        break;
 					    case "11":
@@ -448,6 +488,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_nov=$jumlah_nov+$item["jumlah_terima"];
+							$jumlah_nov_per_ayat=$jumlah_nov_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_nov=$item["payment_date"];
 					        break;
 					}
@@ -459,18 +500,21 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_des=$jumlah_des+$item["jumlah_terima"];
+						$jumlah_des_per_ayat=$jumlah_des_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_des=$item["payment_date"];
 					}
 					else{
 						if ($thn < $year_date){
 							$xdes=$xdes+$item["jumlah_terima"];
 							$jumlah_xdes=$jumlah_xdes+$item["jumlah_terima"];
+							$jumlah_xdes_per_ayat=$jumlah_xdes_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_xdes=$item["payment_date"];
 						}
 						else{
 							if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
 									$xnov=$xnov+$item["jumlah_terima"];
 									$jumlah_xnov=$jumlah_xnov+$item["jumlah_terima"];
+									$jumlah_xnov_per_ayat=$jumlah_xnov_per_ayat+$item["jumlah_terima"];
 									$tgl_bayar_xnov=$item["payment_date"];
 							}
 						}
@@ -552,10 +596,45 @@ function GetCetakHTML2($data) {
 				$tgl_bayar_des= '';
 				$tgl_bayar_xdes='';
 				$tgl_bayar_xnov='';
+				$ayat = $item["kode_ayat"];
+				$ayatsesudah = $before["kode_ayat"];
+				if(($ayat != $ayatsesudah&&count($data)>1)){
+					$output .= '<tr>';
+						$output .= '<td align="CENTER" colspan=7>JUMLAH PER AYAT</td>';
+						$output .= '<td align="right">'.number_format($jumlah_xdes_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_des_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_jan_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_feb_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_mar_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_apr_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_mei_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_jun_per_ayatun, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_jul_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_agu_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_sep_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_okt_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_nov_per_ayat, 2, ',', '.').'</td>';
+						$output .= '<td align="right">'.number_format($jumlah_xnov_per_ayat, 2, ',', '.').'</td>';
+					$output .= '</tr>';
+					$jumlah_jan_per_ayat= 0;
+					$jumlah_feb_per_ayat= 0;
+					$jumlah_mar_per_ayat= 0;
+					$jumlah_apr_per_ayat= 0;
+					$jumlah_mei_per_ayat= 0;
+					$jumlah_jun_per_ayat= 0;
+					$jumlah_jul_per_ayat= 0;
+					$jumlah_agu_per_ayat= 0;
+					$jumlah_sep_per_ayat= 0;
+					$jumlah_okt_per_ayat= 0;
+					$jumlah_nov_per_ayat= 0;
+					$jumlah_des_per_ayat= 0;
+					$jumlah_xdes_per_ayat=0;
+					$jumlah_xnov_per_ayat=0;
+				}
 				$jumlah_per_wp = 0;
 				$jumlah_bulan_bayar = 0;
 				$ketetapan_realisasi = 0; //jumlah pembayaran
-				$output .= '<td align="center">'.($i+1).'</td>';
+				$output .= '<tr><td align="center">'.($i+1).'</td>';
 				$output .= '<td align="center">'.$item["kode_jns_pajak"]." ".$item["kode_ayat"].'</td>';
 				$output .= '<td align="center">'.$item["nama_ayat"].'</td>';
 				//$output .= '<td align="left">'.$item['no_kohir'].'</td>';
@@ -574,6 +653,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_jan=$jumlah_jan+$item["jumlah_terima"];
+							$jumlah_jan_per_ayat=$jumlah_jan_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_jan=$item["payment_date"];
 					        break;
 					    case "02":
@@ -583,6 +663,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_feb=$jumlah_feb+$item["jumlah_terima"];
+							$jumlah_feb_per_ayat=$jumlah_feb_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_feb=$item["payment_date"];
 					        break;
 					    case "03":
@@ -592,6 +673,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_mar=$jumlah_mar+$item["jumlah_terima"];
+							$jumlah_mar_per_ayat=$jumlah_mar_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_mar=$item["payment_date"];
 					        break;
 					    case "04":
@@ -601,6 +683,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_apr=$jumlah_apr+$item["jumlah_terima"];
+							$jumlah_apr_per_ayat=$jumlah_apr_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_apr=$item["payment_date"];
 					        break;
 					    case "05":
@@ -610,6 +693,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_mei=$jumlah_mei+$item["jumlah_terima"];
+							$jumlah_mei_per_ayat=$jumlah_mei_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_mei=$item["payment_date"];
 					        break;
 					    case "06":
@@ -619,6 +703,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_jun=$jumlah_jun+$item["jumlah_terima"];
+							$jumlah_jun_per_ayat=$jumlah_jun_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_jun=$item["payment_date"];
 					        break;
 					    case "07":
@@ -628,6 +713,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_jul=$jumlah_jul+$item["jumlah_terima"];
+							$jumlah_jul_per_ayat=$jumlah_jul_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_jul=$item["payment_date"];
 					        break;
 					    case "08":
@@ -637,6 +723,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_agu=$jumlah_agu+$item["jumlah_terima"];
+							$jumlah_agu_per_ayat=$jumlah_agu_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_agu=$item["payment_date"];
 					        break;
 					    case "09":
@@ -646,6 +733,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_sep=$jumlah_sep+$item["jumlah_terima"];
+							$jumlah_sep_per_ayat=$jumlah_sep_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_sep=$item["payment_date"];
 					        break;
 					    case "10":
@@ -655,6 +743,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_okt=$jumlah_okt+$item["jumlah_terima"];
+							$jumlah_okt_per_ayat=$jumlah_okt_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_okt=$item["payment_date"];
 					        break;
 					    case "11":
@@ -664,6 +753,7 @@ function GetCetakHTML2($data) {
 								$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 							}
 							$jumlah_nov=$jumlah_nov+$item["jumlah_terima"];
+							$jumlah_nov_per_ayat=$jumlah_nov_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_nov=$item["payment_date"];
 					        break;
 					}
@@ -675,18 +765,21 @@ function GetCetakHTML2($data) {
 							$jumlah_bulan_bayar = $jumlah_bulan_bayar + 1;
 						}
 						$jumlah_des=$jumlah_des+$item["jumlah_terima"];
+						$jumlah_des_per_ayat=$jumlah_des_per_ayat+$item["jumlah_terima"];
 						$tgl_bayar_des=$item["payment_date"];
 					}
 					else{
 						if ($thn < $year_date){
 							$xdes=$xdes+$item["jumlah_terima"];
 							$jumlah_xdes=$jumlah_xdes+$item["jumlah_terima"];
+							$jumlah_xdes_per_ayat=$jumlah_xdes_per_ayat+$item["jumlah_terima"];
 							$tgl_bayar_xdes=$item["payment_date"];
 						}
 						else{
 							if (($thn == $year_date && $bln == 12)||($thn > $year_date)){
 									$xnov=$xnov+$item["jumlah_terima"];
 									$jumlah_xnov=$jumlah_xnov+$item["jumlah_terima"];
+									$jumlah_xnov_per_ayat=$jumlah_xnov_per_ayat+$item["jumlah_terima"];
 									$tgl_bayar_xnov=$item["payment_date"];
 							}
 						}
@@ -736,10 +829,27 @@ function GetCetakHTML2($data) {
 			$output .= '<td align="right">'.$jumlah_bulan_bayar.'</td>';
 			$output .= '<td align="right">'.number_format($jumlah_per_wp/$jumlah_bulan_bayar, 2, ',', '.').'</td>';
 			$output .= '</tr>';
+			$output .= '<tr>';
+				$output .= '<td align="CENTER" colspan=7>JUMLAH PER AYAT</td>';
+				$output .= '<td align="right">'.number_format($jumlah_xdes_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_des_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_jan_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_feb_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_mar_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_apr_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_mei_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_jun_per_ayatun, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_jul_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_agu_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_sep_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_okt_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_nov_per_ayat, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jumlah_xnov_per_ayat, 2, ',', '.').'</td>';
+			$output .= '</tr>';
 		}
 	}
 	$output .= '<tr>';
-		$output .= '<td align="CENTER" colspan=7TOTAL PAJAK</td>';
+		$output .= '<td align="CENTER" colspan=7>TOTAL PAJAK</td>';
 		$output .= '<td align="right">'.number_format($jumlah_xdes, 2, ',', '.').'</td>';
 		$output .= '<td align="right">'.number_format($jumlah_des, 2, ',', '.').'</td>';
 		$output .= '<td align="right">'.number_format($jumlah_jan, 2, ',', '.').'</td>';
