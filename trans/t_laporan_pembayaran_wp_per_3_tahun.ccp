@@ -34,7 +34,14 @@ order by start_date DESC" boundColumn="p_year_period_id" textColumn="year_code" 
 					<Attributes/>
 					<Features/>
 				</ListBox>
-			</Components>
+				<Button id="573" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_lap_spjpSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
