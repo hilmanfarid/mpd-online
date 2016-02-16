@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-90D650A6
+//Class_Initialize Event @3-DDE407F1
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -79,6 +79,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             list($this->p_year_period_id->BoundColumn, $this->p_year_period_id->TextColumn, $this->p_year_period_id->DBFormat) = array("p_year_period_id", "year_code", "");
             $this->p_year_period_id->DataSource->SQL = "select * from p_year_period where start_date > '2014-12-31' {SQL_OrderBy}";
             $this->p_year_period_id->DataSource->Order = "start_date DESC";
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -127,7 +128,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-1F799D09
+//Operation Method @3-901EAE82
     function Operation()
     {
         if(!$this->Visible)
@@ -144,12 +145,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoSearch1->Pressed) {
+                $this->PressedButton = "Button_DoSearch1";
             }
         }
         $Redirect = "t_laporan_pembayaran_wp_per_3_tahun.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch1") {
+                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
                     $Redirect = "";
                 }
             }
@@ -159,7 +166,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-2FBDFD88
+//Show Method @3-D4040941
     function Show()
     {
         global $CCSUseAmp;
@@ -208,6 +215,7 @@ function GetPrimaryKey($keyName)
         $this->p_vat_type_id->Show();
         $this->vat_code->Show();
         $this->p_year_period_id->Show();
+        $this->Button_DoSearch1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
