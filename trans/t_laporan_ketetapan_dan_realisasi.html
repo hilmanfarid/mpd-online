@@ -66,7 +66,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -109,7 +109,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <tr class="Controls">
                       <td>&nbsp; </td> 
                       <td class="search-field" colspan="3">
-                        <!-- BEGIN Button Button_DoSearch1 --><input onclick="tampilkanLaporan(2); return false;" id="t_rep_bppsSearchButton_DoSearch1" class="btn_tambah" alt="Search" type="button" value="TAMPILKAN" name="{Button_Name}"><!-- END Button Button_DoSearch1 --></td>
+                        <!-- BEGIN Button Button_DoSearch1 --><input onclick="tampilkanLaporan(2); return false;" id="t_rep_bppsSearchButton_DoSearch1" class="btn_tambah" alt="Search" type="button" value="TAMPILKAN" name="{Button_Name}"><!-- END Button Button_DoSearch1 -->&nbsp; 
+                        <!-- BEGIN Button Button_DoSearch2 --><input onclick="tampilkanLaporan(1); return false;" id="t_rep_bppsSearchButton_DoSearch2" class="btn_tambah" alt="Search" type="button" value="TAMPILKAN EXCEL" name="{Button_Name}"><!-- END Button Button_DoSearch2 --></td>
                     </tr>
                   </table>
                 </td>
@@ -150,24 +151,28 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 }
 
                 function tampilkanLaporan(gaya_tampilan){
-                        var params = "?doAction=view_html2";
+                        if (gaya_tampilan == 2){
+							var params = "?doAction=view_html2";
+						}else{
+							var params = "?doAction=view_excel";
+						}
                         var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
-                            var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
-                            var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
-                            var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
-                                var jenis_pajak = document.getElementById("t_rep_bppsSearchvat_code").value;
-                                var periode_tahun = document.getElementById("t_rep_bppsSearchyear_code").value;
+                        var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
+                        var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
+                        var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
+                        var jenis_pajak = document.getElementById("t_rep_bppsSearchvat_code").value;
+                        var periode_tahun = document.getElementById("t_rep_bppsSearchyear_code").value;
 
-                            if(tgl_penerimaan == "" || tgl_penerimaan_last == "" || p_year_period_id == "" || p_vat_type_id == "") {
-                                alert("Semua Filter Harus Diisi");
-                            }else {
-                                location.href="t_laporan_ketetapan_dan_realisasi.php"+params+
-                                                                "&tgl_penerimaan=" + tgl_penerimaan + 
-                                "&tgl_penerimaan_last=" + tgl_penerimaan_last + 
-                                "&p_year_period_id=" + p_year_period_id+
-                                "&p_vat_type_id="+p_vat_type_id+
-                                "&vat_code="+jenis_pajak+
-                                "&year_code="+periode_tahun;
+                        if(tgl_penerimaan == "" || tgl_penerimaan_last == "" || p_year_period_id == "" || p_vat_type_id == "") {
+                            alert("Semua Filter Harus Diisi");
+                        }else {
+                            location.href="t_laporan_ketetapan_dan_realisasi.php"+params+
+                            "&tgl_penerimaan=" + tgl_penerimaan + 
+                            "&tgl_penerimaan_last=" + tgl_penerimaan_last + 
+                            "&p_year_period_id=" + p_year_period_id+
+                            "&p_vat_type_id="+p_vat_type_id+
+                            "&vat_code="+jenis_pajak+
+                            "&year_code="+periode_tahun;
                         }               
                         }
         </script>
