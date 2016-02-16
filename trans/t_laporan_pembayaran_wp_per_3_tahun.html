@@ -21,24 +21,25 @@ $(document).ready(function()
             $('#tabtop').css('top', $(window).scrollTop());
     });
 });
-</script></head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN PEMBAYRAN&nbsp;WP PER&nbsp;3 TAHUN&nbsp;
+        LAPORAN PEMBAYRAN&nbsp;WP PER&nbsp;3 TAHUN&nbsp; 
       </div>
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
         <!-- BEGIN Record t_rep_lap_spjpSearch -->
         <form id="t_rep_lap_spjpSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -49,8 +50,8 @@ $(document).ready(function()
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">Jenis Pajak</td> 
-                    <td class="search-field"><input id="t_rep_lap_spjpSearchvat_code" class="ControlsRQ" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}"></td> 
-                    <td><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}">&nbsp;</td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchvat_code" class="ControlsRQ" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}"></td> 
+                    <td><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}">&nbsp;</td> 
                     <td class="search-field">&nbsp;</td>
                   </tr>
  
@@ -63,7 +64,8 @@ $(document).ready(function()
  </td> 
                     <td>&nbsp;</td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="TAMPILKAN" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input onclick="cetak(1); return false;" id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="TAMPILKAN" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch1 --><input onclick="cetak(2); return false;" id="t_rep_lap_spjpSearchButton_DoSearch1" class="btn_tambah" alt="Search" type="submit" value="TAMPILKAN EXCEL" name="{Button_Name}"><!-- END Button Button_DoSearch1 --></td>
                   </tr>
                 </table>
               </td>
@@ -108,8 +110,13 @@ $(document).ready(function()
             getFrom_LOV('t_rep_lap_spjpSearch','p_vat_type_id,vat_code','lov_vat_type.php');
     }
 
-    function cetak()
+    function cetak(gaya_tampilan)
     {
+		if (gaya_tampilan == 1){
+			var params = "?doAction=view_html";
+		}else{
+			var params = "?doAction=view_excel";
+		}
         p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
@@ -117,7 +124,6 @@ $(document).ready(function()
         if(p_year_period_id == ""|| p_vat_type_id == "" ) {
             alert("Semua Filter Harus Diisi");
         }else {
-                var params = "?doAction=view_html";
                 params += "&p_year_period_id="+p_year_period_id;
                 params += "&p_vat_type_id="+p_vat_type_id;
                 params += "&vat_code="+vat_code;
