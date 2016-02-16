@@ -42,12 +42,15 @@ function Page_BeforeShow(& $sender)
     // Write your own code here.
 	$doAction = CCGetFromGet('doAction');
 	global $Label1;
-	if($doAction == 'view_html') {
-		$param_arr['p_year_period_id'] = CCGetFromGet('p_year_period_id');
-		$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
+	$param_arr['p_year_period_id'] = CCGetFromGet('p_year_period_id');
+	$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
 
-		$param_arr['vat_code'] = CCGetFromGet('vat_code');
+	$param_arr['vat_code'] = CCGetFromGet('vat_code');
+	if($doAction == 'view_html') {
 		$Label1->SetText(GetCetakHTML($param_arr));
+	}
+	if($doAction == 'view_excel') {
+		GetCetakHTML($param_arr);
 	}
 // -------------------------
 //End Custom Code
@@ -58,7 +61,10 @@ function Page_BeforeShow(& $sender)
 //End Close Page_BeforeShow
 
 function GetCetakHTML($param_arr) {
-	
+	$doAction = CCGetFromGet('doAction');
+	if($doAction == 'view_excel') {		
+		startExcel("laporan_pembayaran_wp_per_3_tahun.xls");
+	}
 	$output = '';
 	
 	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0">
@@ -67,9 +73,7 @@ function GetCetakHTML($param_arr) {
 
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0" width="900">
                 	<tr>
-                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>LAPORAN REKAP SKPDKB</strong></td> 
-                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  		<td class="th" colspan = 9 ><strong>LAPORAN PEMBAYARAN WP PER 3 TAHUN</strong></td> 
                 	</tr>
               		</table>';
 	
@@ -90,6 +94,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >NPWPD</th>';
 	$output.='<th align="center" >NAMA MERK DAGANG</th>';
 	$output.='<th align="center" >ALAMAT MERK DAGANG</th>';
+	$output.='<th align="center" >TGL PENGUKUHAN</th>';
 	$output.='<th align="center" >MASA PAJAK</th>';
 	$output.='<th align="center" >'.($tahun-2).'</th>';
 	$output.='<th align="center" >'.($tahun-1).'</th>';
@@ -97,7 +102,8 @@ function GetCetakHTML($param_arr) {
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select DISTINCT (a.npwd),a.t_cust_account_id,c.company_brand,c.brand_address_name||' '||c.brand_address_no as alamat 
+	$query="select DISTINCT (a.npwd),a.t_cust_account_id,c.company_brand,c.brand_address_name||' '||c.brand_address_no as alamat,
+			to_char(active_date,'dd-mm-yyyy') as active_date
 			from t_vat_setllement a, t_payment_receipt b, t_cust_account c
 			where a.t_vat_setllement_id = b.t_vat_setllement_id
 				and a.npwd != '' 
@@ -138,6 +144,7 @@ function GetCetakHTML($param_arr) {
 
 	for( $k = 0 ; $k<count($data); $k++ ){ 
 		$json_url = "http://localhost/mpd/services/pembayaran_wp.php?p_year_period_id=".$param_arr['p_year_period_id']."&t_cust_account_id=".$data[$k]['t_cust_account_id'];
+		//echo $json_url;exit;
 		$json = file_get_contents($json_url);
 		$data_json = json_decode($json, TRUE);
 		/*echo "<pre>";
@@ -152,13 +159,14 @@ function GetCetakHTML($param_arr) {
 			$i=0;
 			foreach($tahun['arr_data'] as $bulan){
 				if($j==0){
-					$no = '<tr><td>'.($k+1).'-'.($i+1).'</td>';
+					$no = '<tr><td>'.($k+1).'-'.($i+1).'&nbsp</td>';
 					$npwpd= '<td>'.$bulan['npwd'].'</td>';
 					$company_brand= '<td>'.$data[$k]['company_brand'].'</td>';
 					$alamat= '<td>'.$data[$k]['alamat'].'</td>';
+					$active_date= '<td>'.$data[$k]['active_date'].'</td>';
 					//$masa= '<td>'.$bulan['code'].'</td>';
 					$tahun = '<td>'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
-					$html[$i].=$no.$npwpd.$company_brand.$alamat.$masa[$i].$tahun;
+					$html[$i].=$no.$npwpd.$company_brand.$alamat.$active_date.$masa[$i].$tahun;
 				}else{
 					$html[$i].='<td>'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
 					if($j==2){
@@ -175,7 +183,7 @@ function GetCetakHTML($param_arr) {
 	}
 	
 	//echo '<script>';
-	return $output;
+	//return $output;
 	//echo '</script>';
 	
 	/*$j = 0;
@@ -199,6 +207,19 @@ function GetCetakHTML($param_arr) {
 		}	
 	}*/
 	
-	return $output;
+	if($doAction == 'view_excel') {		
+		echo $output;
+		exit;
+	}else{	
+		return $output;
+	}
+}
+
+function startExcel($filename = "laporan.xls") {    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
 }
 ?>
