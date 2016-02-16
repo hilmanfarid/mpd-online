@@ -19,8 +19,8 @@ function Page_BeforeShow(& $sender)
 // -------------------------
     // Write your own code here.
 
-	$doAction = CCGetFromGet('doAction');
-	if($doAction == 'view_html2') {
+	$doAction = CCGetFromGet('doAction','');
+	if($doAction != ''){
 		$p_vat_type_id		= CCGetFromGet("p_vat_type_id", "");
 		$p_year_period_id	= CCGetFromGet("p_year_period_id", "");
 		$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
@@ -29,7 +29,7 @@ function Page_BeforeShow(& $sender)
 
 		$tgl_penerimaan = "'".$tgl_penerimaan."'";
 		$tgl_penerimaan_last = "'".$tgl_penerimaan_last."'";
-	
+
 		$date_start=str_replace("'", "",$year_code);
 		$year_date = $year_code;
 
@@ -37,7 +37,7 @@ function Page_BeforeShow(& $sender)
 		$data				= array();
 		$dbConn				= new clsDBConnSIKP();
 		$jenis_laporan		= CCGetFromGet("jenis_laporan", "all"); 
-		
+	
 		$query	= "select to_char(active_date,'dd-mm-yyyy') as active_date2,*,
 			case 
 				when payment_date is not null then to_char(payment_date,'dd-mm-yyyy')
@@ -77,8 +77,12 @@ function Page_BeforeShow(& $sender)
 			"payment_date"		=> $dbConn->f("payment_date"),
 			"jam"		=> $dbConn->f("jam"));
 		}
-		
+	}
+	if($doAction == 'view_html2') {		
 		$Label1->SetText(GetCetakHTML2($data));	
+	}
+	if($doAction == 'view_excel') {		
+		GetCetakHTML2($data);	
 	}
 	
 // -------------------------
@@ -89,6 +93,10 @@ function Page_BeforeShow(& $sender)
 }
 
 function GetCetakHTML2($data) {
+	$doAction = CCGetFromGet('doAction');
+	if($doAction == 'view_excel') {		
+		startExcel("rekap_skpdkb_jabatan.xls");
+	}
 	$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
 	$year_code = CCGetFromGet("year_code", "");
 	$date_start=str_replace("'", "",$year_code);
@@ -109,7 +117,7 @@ function GetCetakHTML2($data) {
                 	</tr>
               		</table>';
 	
-	$output .= '<h2>LAPORAN REALISASI HARIAN PER JENIS PAJAK </h2>';
+	$output .= '<h2>LAPORAN KETETAPAN DAN REALISASI</h2>';
 	//$output .= '<h2>TANGGAL : '.dateToString($date_start, "-")." s/d ".dateToString($date_end, "-").'</h2> <br/>';
 
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px">
@@ -869,8 +877,12 @@ function GetCetakHTML2($data) {
 
 	$output.='</td></tr></table>';
 	$output.='</table>';
-		
-	return $output;
+	if($doAction == 'view_excel') {		
+		echo $output;
+		exit;
+	}else{	
+		return $output;
+	}
 }
 
 //Page_OnInitializeView @1-5261C3FE
@@ -893,5 +905,13 @@ function Page_OnInitializeView(& $sender)
 }
 //End Close Page_OnInitializeView
 
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
 
 ?>
