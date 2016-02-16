@@ -95,7 +95,7 @@ function Page_BeforeShow(& $sender)
 function GetCetakHTML2($data) {
 	$doAction = CCGetFromGet('doAction');
 	if($doAction == 'view_excel') {		
-		startExcel("rekap_skpdkb_jabatan.xls");
+		startExcel("laporan_ketetapan_dan_realisasi.xls");
 	}
 	$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
 	$year_code = CCGetFromGet("year_code", "");
