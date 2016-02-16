@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-317F2184
+//Class_Initialize Event @3-74EB111D
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -82,6 +82,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->tgl_penerimaan_last->Required = true;
             $this->DatePicker_tgl_penerimaan_last1 = & new clsDatePicker("DatePicker_tgl_penerimaan_last1", "t_rep_bppsSearch", "tgl_penerimaan_last", $this);
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -141,7 +142,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-446070E3
+//Operation Method @3-11E8DB6B
     function Operation()
     {
         if(!$this->Visible)
@@ -158,12 +159,18 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch1";
             if($this->Button_DoSearch1->Pressed) {
                 $this->PressedButton = "Button_DoSearch1";
+            } else if($this->Button_DoSearch2->Pressed) {
+                $this->PressedButton = "Button_DoSearch2";
             }
         }
         $Redirect = "t_laporan_ketetapan_dan_realisasi.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch1") {
                 if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch2") {
+                if(!CCGetEvent($this->Button_DoSearch2->CCSEvents, "OnClick", $this->Button_DoSearch2)) {
                     $Redirect = "";
                 }
             }
@@ -173,7 +180,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-C749F6AD
+//Show Method @3-A205065F
     function Show()
     {
         global $CCSUseAmp;
@@ -231,6 +238,7 @@ function GetPrimaryKey($keyName)
         $this->tgl_penerimaan_last->Show();
         $this->DatePicker_tgl_penerimaan_last1->Show();
         $this->Button_DoSearch1->Show();
+        $this->Button_DoSearch2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
