@@ -45,8 +45,10 @@ function Page_BeforeShow(& $sender)
 	$param_arr['p_year_period_id'] = CCGetFromGet('p_year_period_id');
 	$param_arr['p_finance_period_id'] = CCGetFromGet('p_finance_period_id');
 	$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
+	$param_arr['p_vat_type_dtl_id'] = CCGetFromGet('p_vat_type_dtl_id');
 
 	$param_arr['vat_code'] = CCGetFromGet('vat_code');
+	$param_arr['vat_code_dtl'] = CCGetFromGet('vat_code_dtl');
 	$param_arr['year_code'] = CCGetFromGet('year_code');
 	$param_arr['code'] = CCGetFromGet('code');
 	if($doAction == 'view_html') {
@@ -110,9 +112,7 @@ function GetCetakHTML($param_arr) {
 			from t_vat_setllement a, t_payment_receipt b, t_cust_account c
 			where a.t_vat_setllement_id = b.t_vat_setllement_id
 				and a.npwd != '' 
-				and a.p_vat_type_dtl_id in
-					(select p_vat_type_dtl_id from p_vat_type_dtl 
-					where p_vat_type_id = ".$param_arr['p_vat_type_id'].")
+				and (case when ".$param_arr['p_vat_type_dtl_id']." = 10 then c.p_vat_type_dtl_id in (10,9) else c.p_vat_type_dtl_id = ".$param_arr['p_vat_type_dtl_id']." end)
 				and a.start_period > to_date ('31-12-2012','dd-mm-yyyy')
 			and c.t_cust_account_id=a.t_cust_account_id
 			order by c.company_brand,a.npwd ";
@@ -146,7 +146,7 @@ function GetCetakHTML($param_arr) {
 	$masa[11]= '<td>Desember</td>';*/
 
 	for( $k = 0 ; $k<count($data); $k++ ){ 
-		$json_url = "http://localhost/mpd/services/pembayaran_wp_bulanan.php?p_finance_period_id=".$param_arr['p_finance_period_id']."&t_cust_account_id=".$data[$k]['t_cust_account_id'];
+		$json_url = "http://localhost/mpd/services/pembayaran_wp_bulanan.php?p_finance_period_id=".$param_arr['p_finance_period_id']."&t_cust_account_id=".$data[$k]['t_cust_account_id']."&p_vat_type_dtl_id=".$param_arr['p_vat_type_dtl_id'];
 		//echo $json_url;exit;
 		$json = file_get_contents($json_url);
 		$data_json = json_decode($json, TRUE);
