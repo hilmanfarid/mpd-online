@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -52,6 +52,13 @@ $(document).ready(function()
                     <td class="search-field">Jenis Pajak</td> 
                     <td class="search-field"><input id="t_rep_lap_spjpSearchvat_code" class="ControlsRQ" maxlength="32" size="32" value="{vat_code}" name="{vat_code_Name}"></td> 
                     <td><img onclick="javascript:jenispajak()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_vat_type_id" type="hidden" value="{p_vat_type_id}" name="{p_vat_type_id_Name}">&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Ayat Pajak</td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchvat_code_dtl" class="ControlsRQ" readonly maxlength="32" size="32" value="{vat_code_dtl}" name="{vat_code_dtl_Name}"></td> 
+                    <td><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_vat_type_dtl_id" type="hidden" value="{p_vat_type_dtl_id}" name="{p_vat_type_dtl_id_Name}"></td> 
                     <td class="search-field">&nbsp;</td>
                   </tr>
  
@@ -109,9 +116,18 @@ $(document).ready(function()
         getFrom_LOV('t_rep_lap_spjpSearch','p_year_period_id,year_code','lov_year_period.php');
     }
 
-        function jenispajak() {
+    function jenispajak() {
             getFrom_LOV('t_rep_lap_spjpSearch','p_vat_type_id,vat_code','lov_vat_type.php');
     }
+
+	function lov_tipeayat() {
+        var p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
+        if (p_vat_type_id != "" && p_vat_type_id != 0 && p_vat_type_id != false && p_vat_type_id != undefined &&  p_vat_type_id != null){
+           getFrom_LOV('t_rep_lap_spjpSearch','p_vat_type_dtl_id,vat_code_dtl','lov_2_field.php?TABLE=p_vat_type_dtl&FIELD_0=p_vat_type_dtl_id&FIELD_1=vat_code&FIELD_2=description&FIELD_3= and p_vat_type_id = '+document.getElementById('t_rep_lap_spjpSearchp_vat_type_id').value+'&LABEL1=Tipe Ayat&LABEL2=Deskripsi&HEADER_PAGE=TIPE AYAT&HEADER_LOV=DAFTAR TIPE AYAT&ORDER=p_vat_type_dtl_id');
+        }else{
+            alert("Jenis Pajak belum Diisi");
+        }
+	}
 
     function cetak(gaya_tampilan)
     {
@@ -122,19 +138,23 @@ $(document).ready(function()
         }
         p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
-		p_finance_period_id = document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
+		p_vat_type_dtl_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_dtl_id").value;
+        p_finance_period_id = document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
-		year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
+		vat_code_dtl= document.getElementById("t_rep_lap_spjpSearchvat_code_dtl").value;
+        year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
         code= document.getElementById("t_rep_lap_spjpSearchcode").value;
         if(p_year_period_id == ""|| p_finance_period_id == ""|| p_vat_type_id == "" ) {
             alert("Semua Filter Harus Diisi");
         }else {
                 params += "&p_year_period_id="+p_year_period_id;
-				params += "&p_finance_period_id="+p_finance_period_id;
+                params += "&p_finance_period_id="+p_finance_period_id;
                 params += "&p_vat_type_id="+p_vat_type_id;
+				params += "&p_vat_type_dtl_id="+p_vat_type_dtl_id;
                 params += "&vat_code="+vat_code;
-				params += "&year_code="+year_code;
-				params += "&code="+code;
+				params += "&vat_code_dtl="+vat_code_dtl;
+                params += "&year_code="+year_code;
+                params += "&code="+code;
                 location.href="t_laporan_pembayaran_wp_per_3_tahun_bulanan.php"+params;
         }
     }
