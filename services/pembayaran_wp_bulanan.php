@@ -74,7 +74,7 @@ class clsGridSELECT_target_amt_realisa { //SELECT_target_amt_realisa class @2-74
     }
 //End Initialize Method
 
-//Show Method @2-32B90E0F
+//Show Method @2-D0C0A51A
     function Show()
     {
         global $Tpl;
@@ -86,6 +86,7 @@ class clsGridSELECT_target_amt_realisa { //SELECT_target_amt_realisa class @2-74
         $this->DataSource->Parameters["urlp_year_period_id"] = CCGetFromGet("p_year_period_id", NULL);
         $this->DataSource->Parameters["urlt_cust_account_id"] = CCGetFromGet("t_cust_account_id", NULL);
         $this->DataSource->Parameters["urlp_finance_period_id"] = CCGetFromGet("p_finance_period_id", NULL);
+        $this->DataSource->Parameters["urlp_vat_type_dtl_id"] = CCGetFromGet("p_vat_type_dtl_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -213,7 +214,7 @@ class clsSELECT_target_amt_realisaDataSource extends clsDBConnSIKP {  //SELECT_t
     }
 //End SetOrder Method
 
-//Prepare Method @2-780BDA6F
+//Prepare Method @2-C5017895
     function Prepare()
     {
         global $CCSLocales;
@@ -222,10 +223,11 @@ class clsSELECT_target_amt_realisaDataSource extends clsDBConnSIKP {  //SELECT_t
         $this->wp->AddParameter("1", "urlp_year_period_id", ccsFloat, "", "", $this->Parameters["urlp_year_period_id"], 0, false);
         $this->wp->AddParameter("2", "urlt_cust_account_id", ccsInteger, "", "", $this->Parameters["urlt_cust_account_id"], 1, false);
         $this->wp->AddParameter("3", "urlp_finance_period_id", ccsFloat, "", "", $this->Parameters["urlp_finance_period_id"], 0, false);
+        $this->wp->AddParameter("4", "urlp_vat_type_dtl_id", ccsFloat, "", "", $this->Parameters["urlp_vat_type_dtl_id"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-576A3D19
+//Open Method @2-9AF5A84E
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -253,6 +255,13 @@ class clsSELECT_target_amt_realisaDataSource extends clsDBConnSIKP {  //SELECT_t
         "								from p_finance_period \n" .
         "								where p_finance_period_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsFloat) . ")\n" .
         ")\n" .
+        "and \n" .
+        "( case \n" .
+        "		when t_vat_setllement_id is null then TRUE \n" .
+        "		when " . $this->SQLValue($this->wp->GetDBValue("4"), ccsFloat) . " = 10 then b.p_vat_type_dtl_id in (10,9)\n" .
+        "		else c.p_vat_type_dtl_id = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsFloat) . " end\n" .
+        ")\n" .
+        "\n" .
         "group by \n" .
         "c.npwd,c.wp_name,a.p_finance_period_id,a.code,e.code\n" .
         "ORDER BY a.start_date\n" .
