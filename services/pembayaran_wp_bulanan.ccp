@@ -24,6 +24,13 @@ OR
 								from p_finance_period 
 								where p_finance_period_id = {p_finance_period_id})
 )
+and 
+( case 
+		when t_vat_setllement_id is null then TRUE 
+		when {p_vat_type_dtl_id} = 10 then b.p_vat_type_dtl_id in (10,9)
+		else c.p_vat_type_dtl_id = {p_vat_type_dtl_id} end
+)
+
 group by 
 c.npwd,c.wp_name,a.p_finance_period_id,a.code,e.code
 ORDER BY a.start_date
@@ -73,6 +80,7 @@ ORDER BY a.start_date
 				<SQLParameter id="752" variable="p_year_period_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_year_period_id"/>
 				<SQLParameter id="758" variable="t_cust_account_id" parameterType="URL" defaultValue="1" dataType="Integer" parameterSource="t_cust_account_id"/>
 				<SQLParameter id="761" variable="p_finance_period_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_finance_period_id"/>
+				<SQLParameter id="762" variable="p_vat_type_dtl_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_vat_type_dtl_id"/>
 </SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
