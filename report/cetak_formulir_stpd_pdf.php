@@ -22,7 +22,7 @@ $query="select b.npwd,
 	   d.vat_code,
 	   e.order_no,
 	   d.penalty_code as penalty_ayat,
-      replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', ' ')|| ' ' || f_terbilang_abal_abal(to_char(nvl(a.penalty_amt,0)),'IDR') as dengan_huruf,
+      replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', ' ') as dengan_huruf,
 	  f.code as finance_period_code,
 	  to_char(b.settlement_date,'DD MON YYYY')as settlement_date,
 	  to_char(g.payment_date,'DD MON YYYY')as payment_date
@@ -328,26 +328,26 @@ class FormCetak extends FPDF {
 			$tgl = $data["settlement_date"];
 		}
 		
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . $tgl /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody3 - 25, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 + 25, $this->height, "Bandung, " . $tgl /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
 		
 		
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "a.n. KEPALA BIDANG PAJAK, ", "R", 0, 'C');
+		$this->Cell($lbody3 - 25, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 + 25, $this->height, "a.n. KEPALA DINAS PELAYANAN PAJAK", "R", 0, 'C');
 		$this->Ln();
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "KOTA BANDUNG", "R", 0, 'C');
+		$this->Cell($lbody3 - 25, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 + 25, $this->height, "Kepala Bidang Pajak Pendaftaran", "R", 0, 'C');
 		$this->newLine();
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
 		
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Drs. H. GUN GUN SUMARYANA", "R", 0, 'C');
+		$this->Cell($lbody3 - 25, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 + 25, $this->height, "Drs. H. GUN GUN SUMARYANA", "R", 0, 'C');
 		$this->Ln();
 		
-		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 8, $this->height, "NIP. 19700806 199101 1 001", "T", 0, 'L'); //isi nip
+		$this->Cell($lbody3 - 22, $this->height, "", "L", 0, 'L');
+		$this->Cell($lbody1 + 20, $this->height, "NIP. 19700806 199101 1 001", "T", 0, 'C'); //isi nip
 		$this->Cell(2, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "", "LBR", 0, 'L');
@@ -360,17 +360,17 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "TANDA TERIMA", "LR", 0, 'C');
 		$this->Ln();
-		$this->Cell($lbody1, $this->height, "     NPWPD", "L", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": " /*.$data["npwpd"]*/, "R", 0, 'L');
-		$this->Ln();
 		$this->Cell($lbody1, $this->height, "     Nama", "L", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": " /*.$data["nama"]*/, "R", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": " .$data["company_name"], "R", 0, 'L');
 		$this->Ln();
 		$this->Cell($lbody1, $this->height, "     Alamat", "L", 0, 'L');
-		$this->Cell($lbody3, $this->height, ": " /*.$data["alamat"]*/, "R", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": " .$data["address_name"], "R", 0, 'L');
+		$this->Ln();
+		$this->Cell($lbody1, $this->height, "     NPWPD", "L", 0, 'L');
+		$this->Cell($lbody3, $this->height, ": ". $data["npwd"], "R", 0, 'L');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
-		$this->Cell($lbody1 + 10, $this->height, "Bandung, " . date("d M Y") /*. $data["tanggal"]*/, "R", 0, 'C');
+		$this->Cell($lbody1 + 10, $this->height, "Bandung, ..............................." . date("Y") /*. $data["tanggal"]*/, "R", 0, 'C');
 		$this->Ln();
 		$this->Cell($lbody3 - 10, $this->height, "", "L", 0, 'L');
 		$this->Cell($lbody1 + 10, $this->height, "Yang menerima, ", "R", 0, 'C');
