@@ -636,16 +636,18 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4-5, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4+10, $this->height, "Drs. PRIANA WIRASAPUTRA, MM.", "B", 0, 'C');
+		//$this->Cell($lbody4+10, $this->height, "Drs. PRIANA WIRASAPUTRA, MM.", "B", 0, 'C');
 		//$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
+		$this->Cell($lbody4+10, $this->height, "Drs. H. EMA SUMARNA, M. Si", "B", 0, 'C');
 		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
-		$this->Cell($lbody4 - 2, $this->height, "NIP. 19600308 198503 1 007", "", 0, 'C'); //isi nip
+		//$this->Cell($lbody4 - 2, $this->height, "NIP. 19600308 198503 1 007", "", 0, 'C'); //isi nip
 		//$this->Cell($lbody4 - 2, $this->height, "NIP. 19750625 199403 1 001", "", 0, 'C'); //isi nip
+		$this->Cell($lbody4 - 2, $this->height, "NIP. 19661207 198603 1 006", "", 0, 'C'); //isi nip
 		$this->Cell(2, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
