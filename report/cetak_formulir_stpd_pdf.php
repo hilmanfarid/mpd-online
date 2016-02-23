@@ -22,7 +22,7 @@ $query="select b.npwd,
 	   d.vat_code,
 	   e.order_no,
 	   d.penalty_code as penalty_ayat,
-      replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', ' ') as dengan_huruf,
+      replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', '') ||' '|| f_terbilang_abal_abal(to_char(nvl(a.penalty_amt,0)),'IDR') as dengan_huruf,
 	  f.code as finance_period_code,
 	  to_char(b.settlement_date,'DD MON YYYY')as settlement_date,
 	  to_char(g.payment_date,'DD MON YYYY')as payment_date
