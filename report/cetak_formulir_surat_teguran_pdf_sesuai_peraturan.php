@@ -149,14 +149,16 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('BKANT', '', 12);
 		
-		$this->Image('../images/logo_pemda.png',25,3,25,25);
-		
 		$lheader = $this->lengthCell / 8;
 		$lheader1 = $lheader * 1;
 		$lheader2 = $lheader * 2;
 		$lheader3 = $lheader * 3;
 		$lheader4 = $lheader * 4;
 		$lheader7 = $lheader * 7;
+		
+		/*
+		//header
+		$this->Image('../images/logo_pemda.png',25,3,25,25);
 		
 		$this->Cell($lheader1, $this->height, "", "LT", 0, 'L');
 		$this->Cell($lheader7, $this->height, "", "TR", 0, 'C');
@@ -180,6 +182,33 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader1, $this->height, "", "LB", 0, 'L');
 		$this->Cell($lheader7, $this->height, "", "RB", 0, 'C');
 		$this->Ln();
+		//end header
+		*/
+		
+		// header kosong
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
+		$this->Ln();
+		
+		$this->SetFont('Arial', 'B', 12);
+		$this->Cell($lheader1, 8, "", "", 0, 'L');
+		$this->Cell($lheader7, 8, "", "", 0, 'C');
+		$this->Ln(8);
+		
+		$this->SetFont('Arial', 'B', 16);
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
+		$this->Ln();
+		
+		$this->SetFont('Arial', '', 10);
+		$this->Cell($lheader1, $this->height + 3, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height + 3, "", "", 0, 'C');
+		$this->Ln();
+		
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
+		$this->Ln();
+		//end header kosong
 		
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
 		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
