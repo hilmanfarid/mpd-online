@@ -22,7 +22,8 @@ $query="select b.npwd,
 	   d.vat_code,
 	   e.order_no,
 	   d.penalty_code as penalty_ayat,
-      replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', '') ||' '|| f_terbilang_abal_abal(to_char(nvl(a.penalty_amt,0)),'IDR') as dengan_huruf,
+      --replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', '') ||' '|| f_terbilang_abal_abal(to_char(nvl(a.penalty_amt,0)),'IDR') as dengan_huruf,
+	  replace(f_terbilang(to_char(nvl(a.penalty_amt,0)),'IDR'), '  ', '') as dengan_huruf,
 	  f.code as finance_period_code,
 	  to_char(b.settlement_date,'DD MON YYYY')as settlement_date,
 	  (select to_char(payment_date,'DD MON YYYY')
@@ -290,7 +291,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "", "BLR", 0, 'L');
 		$this->newLine();
 		
-		$this->Cell(5, $this->height + 2, "", "L", 0, 'L');
+		/*$this->Cell(5, $this->height + 2, "", "L", 0, 'L');
 		$this->Cell($lbody1 - 5, $this->height + 2, "Dengan huruf", "", 0, 'L');
 		$this->Cell($lbody3, $this->height + 2, "", "R", 0, 'L');
 		$this->Ln($this->height - 4);
@@ -298,7 +299,23 @@ class FormCetak extends FPDF {
 		// Dengan huruf
 		$this->Cell($lbody1 - 5, $this->height, "", "", 0, 'L');
 		$this->kotak(25, 34, 1, $data["dengan_huruf"]);
-		$this->Ln();
+		$this->Ln();*/
+		
+		$this->SetWidths(array(5, $lbody1 - 5, $lbody3-5,5));
+		$this->SetAligns(array("L",  "L", "C","C"));
+		$this->RowMultiBorderWithHeight(
+			array("",
+				"Dengan huruf",
+				$data["dengan_huruf"],
+				""
+			),
+			array("L",
+				"",
+				"TBLR",
+				"R"
+			),
+			$this->height
+		);
 		// ============
 		
 		$this->Cell($this->lengthCell, $this->height, "", "BLR", 0, 'L');
