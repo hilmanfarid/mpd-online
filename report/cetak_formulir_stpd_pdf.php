@@ -25,7 +25,13 @@ $query="select b.npwd,
       replace(f_terbilang(to_char(round(nvl(a.penalty_amt,0))),'IDR'), '  ', '') ||' '|| f_terbilang_abal_abal(to_char(nvl(a.penalty_amt,0)),'IDR') as dengan_huruf,
 	  f.code as finance_period_code,
 	  to_char(b.settlement_date,'DD MON YYYY')as settlement_date,
-	  to_char(g.payment_date,'DD MON YYYY')as payment_date
+	  (select to_char(payment_date,'DD MON YYYY')
+		from t_payment_receipt x,t_vat_setllement y
+		where y.p_finance_period_id = b.p_finance_period_id 
+			and y.t_cust_account_id = b.t_cust_account_id
+			and x.t_vat_setllement_id = y.t_vat_setllement_id
+			and y.p_settlement_type_id in (1,4)
+	  ) as payment_date
 from t_vat_penalty a
 left join t_vat_setllement b on a.t_vat_setllement_id = b.t_vat_setllement_id
 left join t_cust_account c on b.t_cust_account_id = c.t_cust_account_id
