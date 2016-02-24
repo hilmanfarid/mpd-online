@@ -27,6 +27,12 @@ function t_vat_setllementGrid_cetak_BeforeShow(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_cetak_BeforeShow
 
+//Custom Code @225-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
   // -------------------------
      // Write your own code here.
   	//$nilai1 = CCGetFromGet("CURR_DOC_ID","");
@@ -50,6 +56,12 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_cetak_sptpd_BeforeShow
 
+//Custom Code @301-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //DEL  // -------------------------
 //DEL      // Write your own code here.
   	$nilai = $t_vat_setllementGrid->t_vat_setllement_id->GetValue();
@@ -67,7 +79,8 @@ function t_vat_setllementGrid_cetak_sptpd_BeforeShow(& $sender)
 	$t_vat_setllementGrid->cetak_sptpd2->SetValue("<input type='button' value='CETAK' style='WIDTH: 57px; HEIGHT: 22px' class='Button' onclick=\"" .
     									 "cetakStpd(".$nilai.",'tgl_bayar')\">");
   	}else{
-  	$t_vat_setllementGrid->cetak_sptpd->SetValue("");	
+  	$t_vat_setllementGrid->cetak_sptpd->SetValue("");
+	$t_vat_setllementGrid->cetak_sptpd2->SetValue("");	
   	}
   	/*
   	$action_button = CCGetFromGet("action_button","");
@@ -109,6 +122,12 @@ function t_vat_setllementGrid_cetak_sptpd2_BeforeShow(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_cetak_sptpd2_BeforeShow
 
+//Custom Code @315-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //Close t_vat_setllementGrid_cetak_sptpd2_BeforeShow @314-1839F9B4
     return $t_vat_setllementGrid_cetak_sptpd2_BeforeShow;
 }
@@ -122,6 +141,16 @@ function t_vat_setllementGrid_BeforeShowRow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeShowRow
+
+//Set Row Style @10-982C9472
+    $styles = array("Row", "AltRow");
+    if (count($styles)) {
+        $Style = $styles[($Component->RowNumber - 1) % count($styles)];
+        if (strlen($Style) && !strpos($Style, "="))
+            $Style = (strpos($Style, ":") ? 'style="' : 'class="'). $Style . '"';
+        $Component->Attributes->SetValue("rowStyle", $Style);
+    }
+//End Set Row Style
 
 // Start Bdr
     global $selected_id;
@@ -167,6 +196,12 @@ function t_vat_setllementGrid_BeforeSelect(& $sender)
     global $t_vat_setllementGrid; //Compatibility
 //End t_vat_setllementGrid_BeforeSelect
 
+//Custom Code @124-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 //DEL  // -------------------------
 //DEL      // Write your own code here.
 //DEL  	$Component->DataSource->Parameters["urls_keyword"] = strtoupper(CCGetFromGet("s_keyword", NULL));
@@ -187,6 +222,12 @@ function Page_OnInitializeView(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_ro_new; //Compatibility
 //End Page_OnInitializeView
+
+//Custom Code @66-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 //DEL  // -------------------------
 //DEL      // Write your own code here.
@@ -209,6 +250,12 @@ function Page_BeforeShow(& $sender)
     $Container = & CCGetParentContainer($sender);
     global $t_vat_setllement_ro_new; //Compatibility
 //End Page_BeforeShow
+
+//Custom Code @193-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
 
 //Close Page_BeforeShow @1-4BC230CD
     return $Page_BeforeShow;
