@@ -81,8 +81,8 @@ class FormCetak extends FPDF {
 	var $fontFam = 'Arial';
 	var $yearId=0;
 	var $yearCode="";
-	var $paperWSize = 210;
-	var $paperHSize = 297;
+	var $paperWSize = 215;
+	var $paperHSize = 330;
 	var $height = 5;
 	var $currX;
 	var $currY;
@@ -90,7 +90,7 @@ class FormCetak extends FPDF {
 	var $aligns;
 	
 	function FormCetak() {
-		$this->FPDF();
+		$this->FPDF('P','mm',array($this->paperWSize, $this->paperHSize));
 	}
 	
 	function __construct() {
