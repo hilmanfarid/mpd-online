@@ -97,6 +97,7 @@ function print_excel($param_arr) {
 						c.vat_code as ayat_pajak,
 						c.code as dtl_code,
 						vat.code as vat_code
+						a.payment_key
 						FROM t_payment_receipt f, t_vat_setllement a, p_vat_type_dtl c, t_cust_account d,
 						p_vat_type vat
 						WHERE 
@@ -125,6 +126,7 @@ function print_excel($param_arr) {
 		$data["vat_code"][] = $dbConn->f("vat_code");
 		$data["dtl_code"][] = $dbConn->f("dtl_code");
 		$data["ayat_pajak"][] = $dbConn->f("ayat_pajak");
+		$data["payment_key"][] = $dbConn->f("payment_key");
 	}
 	$dbConn->close();
 	
@@ -174,7 +176,7 @@ function print_excel($param_arr) {
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
 			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
-			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['payment_key'][$i].'</td>';
 			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['denda'][$i], 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
 			$output .= '</tr>';
@@ -198,7 +200,7 @@ function print_excel($param_arr) {
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
 			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
-			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['payment_key'][$i].'</td>';
 			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['denda'][$i], 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
 			$output .= '</tr>';
@@ -253,7 +255,7 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .= '<th>TGL PEMBAYARAN</th>';
 	$output .= '<th>PERIODE</th>';
 	$output .= '<th>AYAT PAJAK</th>';	
-	$output .= '<th>NOMOR KOHIR</th>';
+	$output .= '<th>NOMOR BAYAR</th>';
 	$output .= '<th>NILAI DENDA</th>';
 	$output .= '<th>NILAI PAJAK</th>';
 	$output .= '</tr>';
@@ -264,7 +266,8 @@ function GetCetakGeneralHTML($param_arr) {
 					a.no_kohir, f.finance_period_code, f.payment_amount, f.payment_vat_amount,
 						c.vat_code as ayat_pajak,
 						c.code as dtl_code,
-						vat.code as vat_code
+						vat.code as vat_code,
+						a.payment_key
 						FROM t_payment_receipt f, t_vat_setllement a, p_vat_type_dtl c, t_cust_account d,
 						p_vat_type vat
 						WHERE 
@@ -293,6 +296,7 @@ function GetCetakGeneralHTML($param_arr) {
 		$data["ayat_pajak"][] = $dbConn->f("ayat_pajak");
 		$data["vat_code"][] = $dbConn->f("vat_code");
 		$data["dtl_code"][] = $dbConn->f("dtl_code");
+		$data["payment_key"][] = $dbConn->f("payment_key");
 	}
 	$dbConn->close();
 	
@@ -326,7 +330,7 @@ function GetCetakGeneralHTML($param_arr) {
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
 			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
-			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['payment_key'][$i].'</td>';
 			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['denda'][$i], 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
 			$output .= '</tr>';
@@ -350,7 +354,7 @@ function GetCetakGeneralHTML($param_arr) {
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
 			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
-			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['payment_key'][$i].'</td>';
 			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['denda'][$i], 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
 			$output .= '</tr>';
