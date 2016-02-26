@@ -104,7 +104,7 @@ order by p_settlement_type_id" fieldSource="i_flag_setoran" required="True">
 					<Attributes/>
 					<Features/>
 				</Button>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
