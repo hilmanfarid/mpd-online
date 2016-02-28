@@ -99,6 +99,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >NPWPD</th>';
 	$output.='<th align="center" >MASA PAJAK</th>';
 	$output.='<th align="center" >TGL TAP</th>';
+	$output.='<th align="center" >NO. BAYAR</th>';
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
@@ -109,7 +110,7 @@ function GetCetakHTML($param_arr) {
 	$dbConn	= new clsDBConnSIKP();
 	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
-		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,
+		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,a.payment_key as payment_key2,
 		* from t_vat_setllement a
 		left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 		left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
@@ -119,8 +120,7 @@ function GetCetakHTML($param_arr) {
 		where p_settlement_type_id = ".$param_arr['ketetapan']." 
 		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 			and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
-		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
-		and x.p_account_status_id = 1";
+		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)";
 	if ($param_arr['p_vat_type_id']!=''){
 		$query.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
 				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
@@ -146,10 +146,12 @@ function GetCetakHTML($param_arr) {
 	$jumlah_sisa =0;
 	for ($i = 0; $i < count($data); $i++) {
 		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
-		$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
-		$temp_sisa = $temp - $data[$i]['payment_amount'];
+		//$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
+		//$temp_sisa = $temp - $data[$i]['payment_amount'];
+		$temp = $data[$i]['total_vat_amount'];
+		$temp_sisa = $temp - $data[$i]['payment_vat_amount'];
 		$jumlah = $jumlah + $temp;
-		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_amount'];
+		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_vat_amount'];
 		$jumlah_sisa = $jumlah_sisa + $temp_sisa;
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
@@ -158,6 +160,7 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['payment_key2'].'</td>';
 		$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
@@ -166,12 +169,12 @@ function GetCetakHTML($param_arr) {
 			$output.='<td align="left" >Sudah Bayar</td>';
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
-		$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
-		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='</tr>';
 	}
 
-	$output.='<tr><td align="center" colspan=7 >Jumlah</td>';
+	$output.='<tr><td align="center" colspan=8 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
 	$output.='<td align="center" colspan=2 ></td>';
 	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
@@ -200,7 +203,7 @@ function CetakExcel($param_arr) {
 	$dbConn	= new clsDBConnSIKP();
 	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
-		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,
+		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,a.payment_key as payment_key2,
 		* from t_vat_setllement a
 		left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
 		left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
@@ -210,8 +213,7 @@ function CetakExcel($param_arr) {
 		where p_settlement_type_id = ".$param_arr['ketetapan']." 
 		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 			and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
-		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
-		and x.p_account_status_id = 1";
+		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)";
 	if ($param_arr['p_vat_type_id']!=''){
 		$query.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
 				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
@@ -247,6 +249,7 @@ function CetakExcel($param_arr) {
 	$output.='<th align="center" >NPWPD</th>';
 	$output.='<th align="center" >MASA PAJAK</th>';
 	$output.='<th align="center" >TGL TAP</th>';
+	$output.='<th align="center" >NO. BAYAR</th>';
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
@@ -259,10 +262,12 @@ function CetakExcel($param_arr) {
 
     for ($i = 0; $i < count($data); $i++) {
 		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
-		$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
-		$temp_sisa = $temp - $data[$i]['payment_amount'];
+		//$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
+		//$temp_sisa = $temp - $data[$i]['payment_amount'];
+		$temp = $data[$i]['total_vat_amount'];
+		$temp_sisa = $temp - $data[$i]['payment_vat_amount'];
 		$jumlah = $jumlah + $temp;
-		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_amount'];
+		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_vat_amount'];
 		$jumlah_sisa = $jumlah_sisa + $temp_sisa;
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
@@ -271,6 +276,7 @@ function CetakExcel($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['payment_key2'].'</td>';
 		$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
@@ -279,11 +285,11 @@ function CetakExcel($param_arr) {
 			$output.='<td align="left" >Sudah Bayar</td>';
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
-		$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
-		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='</tr>';
 	}
-	$output.='<tr><td align="center" colspan=7 >Jumlah</td>';
+	$output.='<tr><td align="center" colspan=8 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
 	$output.='<td align="center" colspan=2 ></td>';
 	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
@@ -407,8 +413,8 @@ function GetCetakRekapHTML($param_arr) {
 	for ($i = 0; $i < count($data); $i++) {
 
 		$dbConn2	= new clsDBConnSIKP();
-		$query2="select sum(y.payment_amount) as realisasi, 
-						sum(a.total_vat_amount+nvl(a.total_penalty_amount,0)) as ketetapan
+		$query2="select sum(y.payment_vat_amount) as realisasi, 
+						sum(a.total_vat_amount) as ketetapan
 			from t_vat_setllement a 
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
@@ -417,8 +423,7 @@ function GetCetakRekapHTML($param_arr) {
 				and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 			and a.settlement_date between to_date('".$data[$i]['start_date']."','yyyy-mm-dd') 
 				and (to_date('".$data[$i]['end_date']."','yyyy-mm-dd')+1)
-			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
-			and x.p_account_status_id = 1";
+			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)";
 		if ($param_arr['p_vat_type_id']!=''){
 			$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
 					from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
@@ -516,8 +521,8 @@ function CetakRekapExcel($param_arr) {
 	for ($i = 0; $i < count($data); $i++) {
 
 		$dbConn2	= new clsDBConnSIKP();
-		$query2="select sum(y.payment_amount) as realisasi, 
-						sum(a.total_vat_amount+nvl(a.total_penalty_amount,0)) as ketetapan
+		$query2="select sum(y.payment_vat_amount) as realisasi, 
+						sum(a.total_vat_amount) as ketetapan
 			from t_vat_setllement a 
 			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
 			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
@@ -526,8 +531,7 @@ function CetakRekapExcel($param_arr) {
 				and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 			and a.settlement_date between to_date('".$data[$i]['start_date']."','yyyy-mm-dd') 
 				and (to_date('".$data[$i]['end_date']."','yyyy-mm-dd')+1)
-			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
-			and x.p_account_status_id = 1";
+			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)";
 		if ($param_arr['p_vat_type_id']!=''){
 			$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
 					from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
