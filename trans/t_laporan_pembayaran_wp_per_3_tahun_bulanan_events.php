@@ -107,15 +107,12 @@ function GetCetakHTML($param_arr) {
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select DISTINCT (a.npwd),a.t_cust_account_id,c.company_brand,c.brand_address_name||' '||c.brand_address_no as alamat,
+	$query="(select DISTINCT (c.npwd),c.t_cust_account_id,c.company_brand,regexp_replace(c.brand_address_name, '\r|\n', '', 'g')||' '||regexp_replace(c.brand_address_no, '\r|\n', '', 'g') as alamat,
 			to_char(active_date,'dd-mm-yyyy') as active_date
-			from t_vat_setllement a, t_payment_receipt b, t_cust_account c
-			where a.t_vat_setllement_id = b.t_vat_setllement_id
-				and a.npwd != '' 
-				and (case when ".$param_arr['p_vat_type_dtl_id']." = 10 then c.p_vat_type_dtl_id in (10,9) else c.p_vat_type_dtl_id = ".$param_arr['p_vat_type_dtl_id']." end)
-				and a.start_period > to_date ('31-12-2012','dd-mm-yyyy')
-			and c.t_cust_account_id=a.t_cust_account_id
-			order by c.company_brand,a.npwd ";
+			from t_cust_account c
+			where (case when ".$param_arr['p_vat_type_dtl_id']." = 10 then c.p_vat_type_dtl_id in (10,9) else c.p_vat_type_dtl_id = ".$param_arr['p_vat_type_dtl_id']." end)
+			and c.p_account_status_id = 1)
+			order by company_brand,npwd ";
 	//echo $query;exit;
 	$data = array();
 	$dbConn->query($query);
