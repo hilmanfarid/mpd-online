@@ -254,7 +254,8 @@ function GetCetakGeneralHTML($param_arr) {
 	$output .= '<th>NPWPD</th>';
 	$output .= '<th>TGL PEMBAYARAN</th>';
 	$output .= '<th>PERIODE</th>';
-	$output .= '<th>AYAT PAJAK</th>';	
+	$output .= '<th>AYAT PAJAK</th>';
+	$output .= '<th>NOMOR KOHIR</th>';	
 	$output .= '<th>NOMOR BAYAR</th>';
 	$output .= '<th>NILAI DENDA</th>';
 	$output .= '<th>NILAI PAJAK</th>';
@@ -317,7 +318,7 @@ function GetCetakGeneralHTML($param_arr) {
 						
 
 			$output .= '<tr>';
-			$output .= '<td colspan="8" align="center"> <b>TOTAL '.$ayat_pajak.'</b></td>';
+			$output .= '<td colspan="9" align="center"> <b>TOTAL '.$ayat_pajak.'</b></td>';
 			$output .= '<td align="right" style="color:#FF0000;">Rp '.number_format($total_denda_per_ayat, 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">Rp '.number_format($total_per_ayat, 0, ',', '.').'</td>';
 			$output .= '<tr>';
@@ -330,6 +331,7 @@ function GetCetakGeneralHTML($param_arr) {
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
 			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
 			$output .= '<td align="center" style="color:#008000;">'.$data['payment_key'][$i].'</td>';
 			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['denda'][$i], 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
@@ -355,6 +357,7 @@ function GetCetakGeneralHTML($param_arr) {
 			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
 			$output .= '<td align="center" style="color:#008000;">'.$data['payment_key'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
 			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['denda'][$i], 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
 			$output .= '</tr>';
@@ -362,13 +365,13 @@ function GetCetakGeneralHTML($param_arr) {
 	}	
 			
 			$output .= '<tr>';
-			$output .= '<td colspan="8" align="center"> <b>TOTAL '.$ayat_pajak.'</b></td>';
+			$output .= '<td colspan="9" align="center"> <b>TOTAL '.$ayat_pajak.'</b></td>';
 			$output .= '<td align="right" style="color:#FF0000;">Rp '.number_format($total_denda_per_ayat, 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">Rp '.number_format($total_per_ayat, 0, ',', '.').'</td>';
 			$output .= '<tr>';
 
 		$output .= '<tr>
-			<td colspan="8" align="center" style="font-size:15px;"> <b>TOTAL </b></td>
+			<td colspan="9" align="center" style="font-size:15px;"> <b>TOTAL </b></td>
 			<td align="right" style="font-size:15px;color:#FF0000;">Rp '.number_format($total_denda, 0, ',', '.').'</td>
 			<td align="right" style="font-size:15px;color:#000080;">Rp '.number_format($total_payment, 0, ',', '.').'</td>
 		</tr>';
