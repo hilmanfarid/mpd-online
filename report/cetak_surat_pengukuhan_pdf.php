@@ -378,11 +378,24 @@ class FormCetak extends FPDF {
 		$sigLen = $lengthCell / 2;
 		$sigLen1 = $sigLen * 1;
 		$sigLen2 = $sigLen * 2;
+		$bulan =array();
+		$bulan [1]= "Januari";
+		$bulan [2]= "Februari";
+		$bulan [3]= "Maret";
+		$bulan [4]= "April";
+		$bulan [5]= "Mei";
+		$bulan [6]= "Juni";
+		$bulan [7]= "Juli";
+		$bulan [8]= "Agustus";
+		$bulan [9]= "September";
+		$bulan [10]= "Oktober";
+		$bulan [11]= "Nopember";
+		$bulan [12]= "Desember";
 		
 		$tgl = CCGetFromGet("tgl", "");
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
 		if ($tgl == ''){
-			$this->Cell($sigLen1, $this->height, "Bandung, " . date("j F Y"), 0, 0, 'C');
+			$this->Cell($sigLen1, $this->height, "Bandung, " . date("j").' '.$bulan[date('n')].' '.date("Y"), 0, 0, 'C');
 		}else{
 			$this->Cell($sigLen1, $this->height, "Bandung, ".$tgl , 0, 0, 'C');
 		}
