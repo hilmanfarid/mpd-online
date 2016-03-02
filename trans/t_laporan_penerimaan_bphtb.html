@@ -21,10 +21,10 @@
                 params += "&wp_name="+document.getElementById("t_laporan_penerimaan_bphtbwp_name").value;
                 params += "&p_region_id_kecamatan="+document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kecamatan").value;
                 params += "&p_region_id_kelurahan="+document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kelurahan").value;
-				params += "&p_bphtb_legal_doc_type_id="+document.getElementById("t_laporan_penerimaan_bphtbp_bphtb_legal_doc_type_id").value;
+                params += "&p_bphtb_legal_doc_type_id="+document.getElementById("t_laporan_penerimaan_bphtbp_bphtb_legal_doc_type_id").value;
+				params += "&verificated_by="+document.getElementById("t_laporan_penerimaan_bphtbverificated_by").value;
                 
-                                
-                                window.open("t_laporan_penerimaan_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+                window.open("t_laporan_penerimaan_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
 
         function printLaporanExcel(){
@@ -37,8 +37,8 @@
                 params += "&p_region_id_kecamatan="+document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kecamatan").value;
                 params += "&p_region_id_kelurahan="+document.getElementById("t_laporan_penerimaan_bphtbp_region_id_kelurahan").value;
                 params += "&p_bphtb_legal_doc_type_id="+document.getElementById("t_laporan_penerimaan_bphtbp_bphtb_legal_doc_type_id").value;
-                                
-                                window.open("t_laporan_penerimaan_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
+				params += "&verificated_by="+document.getElementById("t_laporan_penerimaan_bphtbverificated_by").value;                                
+				window.open("t_laporan_penerimaan_bphtb.php"+params, "_blank", "toolbar=0,location=0,menubar=0");
         }
 
 
@@ -93,9 +93,32 @@ function t_laporan_penerimaan_bphtbp_bphtb_legal_doc_type_id_OnChange()
 }
 //End Close t_laporan_penerimaan_bphtbp_bphtb_legal_doc_type_id_OnChange
 
-//bind_events @1-BFCD9EA6
+//t_laporan_penerimaan_bphtbverificated_by_OnChange @31-1398DDCF
+function t_laporan_penerimaan_bphtbverificated_by_OnChange()
+{
+    var result = true;
+//End t_laporan_penerimaan_bphtbverificated_by_OnChange
+
+//Custom Code @32-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if(this.value==1){
+                
+        }else{
+                
+        }
+    // -------------------------
+//End Custom Code
+
+//Close t_laporan_penerimaan_bphtbverificated_by_OnChange @31-BC33A33A
+    return result;
+}
+//End Close t_laporan_penerimaan_bphtbverificated_by_OnChange
+
+//bind_events @1-FF9F07BB
 function bind_events() {
     addEventHandler("t_laporan_penerimaan_bphtbp_bphtb_legal_doc_type_id", "change", t_laporan_penerimaan_bphtbp_bphtb_legal_doc_type_id_OnChange);
+    addEventHandler("t_laporan_penerimaan_bphtbverificated_by", "change", t_laporan_penerimaan_bphtbverificated_by_OnChange);
 }
 //End bind_events
 
@@ -104,8 +127,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -114,8 +137,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
         <!-- BEGIN Record t_laporan_penerimaan_bphtb -->
@@ -138,27 +161,27 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <tr>
                     <td align="left">No Transaksi&nbsp;</td> 
-                    <td><input id="t_laporan_penerimaan_bphtbreceipt_no" class="ControlsIN" value="{receipt_no}" size="22" name="{receipt_no_Name}"></td>
+                    <td><input id="t_laporan_penerimaan_bphtbreceipt_no" class="ControlsIN" size="22" value="{receipt_no}" name="{receipt_no_Name}"></td>
                   </tr>
  
                   <tr>
                     <td align="left">NOP&nbsp;</td> 
-                    <td><input id="t_laporan_penerimaan_bphtbnjop_pbb" class="ControlsIN" value="{njop_pbb}" size="22" name="{njop_pbb_Name}"></td>
+                    <td><input id="t_laporan_penerimaan_bphtbnjop_pbb" class="ControlsIN" size="22" value="{njop_pbb}" name="{njop_pbb_Name}"></td>
                   </tr>
  
                   <tr>
                     <td align="left">Nama</td> 
-                    <td><input id="t_laporan_penerimaan_bphtbwp_name" class="ControlsIN" value="{wp_name}" size="22" name="{wp_name_Name}"></td>
+                    <td><input id="t_laporan_penerimaan_bphtbwp_name" class="ControlsIN" size="22" value="{wp_name}" name="{wp_name_Name}"></td>
                   </tr>
  
                   <tr>
                     <td align="left">Kecamatan</td> 
-                    <td><input id="t_laporan_penerimaan_bphtbnama_kecamatan" class="ControlsIN" value="{nama_kecamatan}" maxlength="32" size="32" name="{nama_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region2()" border="0" src="../images/view.gif">&nbsp;<input id="t_laporan_penerimaan_bphtbp_region_id_kecamatan" value="{p_region_id_kecamatan}" type="hidden" name="{p_region_id_kecamatan_Name}"></td>
+                    <td><input id="t_laporan_penerimaan_bphtbnama_kecamatan" class="ControlsIN" maxlength="32" size="32" value="{nama_kecamatan}" name="{nama_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region2()" border="0" src="../images/view.gif">&nbsp;<input id="t_laporan_penerimaan_bphtbp_region_id_kecamatan" type="hidden" value="{p_region_id_kecamatan}" name="{p_region_id_kecamatan_Name}"></td>
                   </tr>
  
                   <tr>
                     <td align="left">Kelurahan</td> 
-                    <td><input id="t_laporan_penerimaan_bphtbnama_kelurahan" class="ControlsIN" value="{nama_kelurahan}" readonly maxlength="32" size="32" name="{nama_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region3()" border="0" src="../images/view.gif">&nbsp;<input id="t_laporan_penerimaan_bphtbp_region_id_kelurahan" value="{p_region_id_kelurahan}" type="hidden" name="{p_region_id_kelurahan_Name}"></td>
+                    <td><input id="t_laporan_penerimaan_bphtbnama_kelurahan" class="ControlsIN" readonly maxlength="32" size="32" value="{nama_kelurahan}" name="{nama_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region3()" border="0" src="../images/view.gif">&nbsp;<input id="t_laporan_penerimaan_bphtbp_region_id_kelurahan" type="hidden" value="{p_region_id_kelurahan}" name="{p_region_id_kelurahan_Name}"></td>
                   </tr>
  
                   <tr>
@@ -172,10 +195,20 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   </tr>
  
                   <tr>
-                    <td colspan="2" align="right"><input id="t_laporan_penerimaan_bphtbcetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}">
-                      <!-- BEGIN Button Button1 --><input id="t_laporan_penerimaan_bphtbButton1" class="btn_tambah" onclick="printLaporan()" value="Download" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 -->&nbsp; 
-                      <!-- BEGIN Button Button3 --><input id="t_laporan_penerimaan_bphtbButton3" class="btn_tambah" onclick="printLaporanExcel()" value="Excel" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button3 -->&nbsp;&nbsp; 
-                      <!-- BEGIN Button Button2 --><input id="t_laporan_penerimaan_bphtbButton2" class="btn_tambah" onclick="doReset()" value="Reset" alt="Button2" type="button" name="{Button_Name}"><!-- END Button Button2 --></td>
+                    <td align="left">Nama Pemeriksa</td> 
+                    <td>
+                      <select id="t_laporan_penerimaan_bphtbverificated_by" class="ControlsIN" name="{verificated_by_Name}">
+                        <option selected value="0">Semua</option>
+                        {verificated_by_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr>
+                    <td colspan="2" align="right"><input id="t_laporan_penerimaan_bphtbcetak_laporan" type="hidden" value="T" name="{cetak_laporan_Name}">
+                      <!-- BEGIN Button Button1 --><input onclick="printLaporan()" id="t_laporan_penerimaan_bphtbButton1" class="btn_tambah" alt="Button1" type="button" value="Download" name="{Button_Name}"><!-- END Button Button1 -->&nbsp; 
+                      <!-- BEGIN Button Button3 --><input onclick="printLaporanExcel()" id="t_laporan_penerimaan_bphtbButton3" class="btn_tambah" alt="Button1" type="button" value="Excel" name="{Button_Name}"><!-- END Button Button3 -->&nbsp;&nbsp; 
+                      <!-- BEGIN Button Button2 --><input onclick="doReset()" id="t_laporan_penerimaan_bphtbButton2" class="btn_tambah" alt="Button2" type="button" value="Reset" name="{Button_Name}"><!-- END Button Button2 --></td>
                   </tr>
                 </table>
               </td>
