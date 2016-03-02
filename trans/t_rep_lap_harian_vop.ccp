@@ -30,6 +30,7 @@
 				<ListBox id="564" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="nama_teller" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="t_rep_lap_harian_bdhrSearchnama_teller" connection="ConnSIKP" dataSource="select b.app_user_name,b.app_user_name from p_app_user_role a
 left join p_app_user b on a.p_app_user_id=b.p_app_user_id
 where a.p_app_role_id=11
+or b.p_app_user_id = 2058
 order by b.app_user_name" _valueOfList="MOBIL1" _nameOfList="MOBIL1">
 					<Components/>
 					<Events/>
