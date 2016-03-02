@@ -35,7 +35,8 @@ function Page_BeforeShow(& $sender)
 		$param_arr['p_region_id_kecamatan'] = CCGetFromGet('p_region_id_kecamatan');
 		$param_arr['p_region_id_kelurahan'] = CCGetFromGet('p_region_id_kelurahan');
 		$param_arr['p_bphtb_legal_doc_type_id'] = CCGetFromGet('p_bphtb_legal_doc_type_id',0);
-
+		$param_arr['verificated_by'] = CCGetFromGet('verificated_by','0');
+		
 		print_excel($param_arr);
 
 	}else if($t_laporan_penerimaan_bphtb->cetak_laporan->GetValue()=='T'){
@@ -69,7 +70,9 @@ function print_excel($param_arr) {
 	startExcel("laporan_penerimaan_bpthb");
 	echo "<div><h3> LAPORAN PENERIMAAN BPHTB </h3></div>";	
 	echo "<div><h3>TANGGAL : ".dateToString($param_arr['date_start'], true)." s/d ".dateToString($param_arr['date_end'], true)."</h3></div>";	
-
+	if($param_arr['verificated_by'] != '0') {
+	  echo '<div><h3>VERIFIKATOR : '.$param_arr['verificated_by'].'</h3></div>';
+	}
 	echo '<table border="1" width="100%"> ';
 	echo '<tr>
 			<th>NO</th>
@@ -84,10 +87,13 @@ function print_excel($param_arr) {
 			<th>LUAS TNH</th>
 			<th>LUAS BGN</th>
 			<th>NJOP (Rp)</th>
-			<th>TOTAL BAYAR (Rp)</th>
-			<th>VERIFIKATOR</th>
-			<th>DAFTAR ONLINE?</th>
-	  </tr>
+			<th>NILAI TRANSAKSI (Rp)</th>
+			<th>TOTAL BAYAR (Rp)</th>';
+	if($param_arr['verificated_by'] == '0') {
+	  echo '<th>VERIFIKATOR</th>';
+	}
+	echo 	'<th>DAFTAR ONLINE?</th>
+	 	   </tr>
 	 ';
 
 	 $dbConn = new clsDBConnSIKP();
@@ -128,10 +134,15 @@ function print_excel($param_arr) {
 	if($param_arr['p_bphtb_legal_doc_type_id'] != 0) {
 		$criteria[] = " b.p_bphtb_legal_doc_type_id = ".$param_arr['p_bphtb_legal_doc_type_id'];
 	}
+
+	if($param_arr['verificated_by'] != '0') {
+		$criteria[] = " b.verificated_by ilike '%".$param_arr['verificated_by']."%' ";
+	}
 	
 	$whereClause = join(" AND ", $criteria);
 	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date, b.t_ppat_id,
-					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount, b.verificated_by    
+					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount, b.verificated_by,
+					market_price,building_total_price+land_total_price as njop    
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
@@ -162,6 +173,8 @@ function print_excel($param_arr) {
 					   'land_total_price' => $dbConn->f("land_total_price"),
 					   'payment_amount' => $dbConn->f("payment_amount"),
 					   'verificated_by' => $dbConn->f("verificated_by"),
+					   'market_price' => $dbConn->f("market_price"),
+					   'njop' => $dbConn->f("njop"),
 					   't_ppat_id' => $dbConn->f("t_ppat_id")
 						);
 		
@@ -179,9 +192,12 @@ function print_excel($param_arr) {
 		echo '<td align="left">'.$item['kecamatan_name'].'</td>';
 		echo '<td align="right">'.number_format($item['land_area'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['building_area'],0,",",".").'</td>';
-		echo '<td align="right">'.number_format($item['land_total_price'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['njop'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['market_price'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['payment_amount'],0,",",".").'</td>';
-		echo '<td align="center">'.$item['verificated_by'].'</td>';
+		if($param_arr['verificated_by'] == '0') {
+			echo '<td align="center">'.$item['verificated_by'].'</td>';
+		}
 		echo '<td align="center">'.$status_daftar.'</td>';
 		echo '</tr>';
 		
