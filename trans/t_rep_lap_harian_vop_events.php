@@ -356,8 +356,8 @@ function GetCetakGeneralHTML($param_arr) {
 			$output .= '<td align="center">'.$data['payment_date'][$i].'</td>';
 			$output .= '<td align="left" style="color:#008000;font-weight:bold;">'.$data['finance_period_code'][$i].'</td>';
 			$output .= '<td align="left">'.$data['ayat_pajak'][$i].'</td>';
-			$output .= '<td align="center" style="color:#008000;">'.$data['payment_key'][$i].'</td>';
 			$output .= '<td align="center" style="color:#008000;">'.$data['no_kohir'][$i].'</td>';
+			$output .= '<td align="center" style="color:#008000;">'.$data['payment_key'][$i].'</td>';
 			$output .= '<td align="right" style="color:#FF0000;">'.number_format($data['denda'][$i], 0, ',', '.').'</td>';
 			$output .= '<td align="right" style="color:#000080;">'.number_format($data['payment_vat_amount'][$i], 0, ',', '.').'</td>';
 			$output .= '</tr>';
