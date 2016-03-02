@@ -45,7 +45,7 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-E6CBA6C3
+//Class_Initialize Event @2-1618955F
     function clsRecordt_laporan_penerimaan_bphtb($RelativePath, & $Parent)
     {
 
@@ -96,11 +96,14 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
             $this->p_bphtb_legal_doc_type_id->DataSource->SQL = "select p_bphtb_legal_doc_type_id,description \n" .
             "from p_bphtb_legal_doc_type";
             $this->p_bphtb_legal_doc_type_id->DataSource->Order = "";
+            $this->verificated_by = & new clsControl(ccsListBox, "verificated_by", "verificated_by", ccsText, "", CCGetRequestParam("verificated_by", $Method, NULL), $this);
+            $this->verificated_by->DSType = dsListOfValues;
+            $this->verificated_by->Values = array(array("ACEP", "ACEP"), array("ASEP", "ASEP"), array("IWAN", "IWAN"), array("RONI", "RONI"), array("ZAENAL", "ZAENAL"));
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-319CDBD6
+//Validate Method @2-CD040887
     function Validate()
     {
         global $CCSLocales;
@@ -117,6 +120,7 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
         $Validation = ($this->p_region_id_kelurahan->Validate() && $Validation);
         $Validation = ($this->nama_kelurahan->Validate() && $Validation);
         $Validation = ($this->p_bphtb_legal_doc_type_id->Validate() && $Validation);
+        $Validation = ($this->verificated_by->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->date_start_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->date_end_laporan->Errors->Count() == 0);
@@ -129,11 +133,12 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
         $Validation =  $Validation && ($this->p_region_id_kelurahan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->nama_kelurahan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_bphtb_legal_doc_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->verificated_by->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-2D40A4F6
+//CheckErrors Method @2-84E6D3B7
     function CheckErrors()
     {
         $errors = false;
@@ -150,6 +155,7 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
         $errors = ($errors || $this->p_region_id_kelurahan->Errors->Count());
         $errors = ($errors || $this->nama_kelurahan->Errors->Count());
         $errors = ($errors || $this->p_bphtb_legal_doc_type_id->Errors->Count());
+        $errors = ($errors || $this->verificated_by->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -214,7 +220,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-9F0E887E
+//Show Method @2-5A692791
     function Show()
     {
         global $CCSUseAmp;
@@ -229,6 +235,7 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->p_bphtb_legal_doc_type_id->Prepare();
+        $this->verificated_by->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -252,6 +259,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->p_region_id_kelurahan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->nama_kelurahan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_bphtb_legal_doc_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->verificated_by->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -285,6 +293,7 @@ function GetPrimaryKey($keyName)
         $this->Button2->Show();
         $this->Button3->Show();
         $this->p_bphtb_legal_doc_type_id->Show();
+        $this->verificated_by->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
