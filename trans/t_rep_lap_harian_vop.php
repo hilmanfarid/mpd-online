@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-99CE3FE3
+//Class_Initialize Event @3-69FC371B
     function clsRecordt_rep_lap_harian_bdhrSearch($RelativePath, & $Parent)
     {
 
@@ -80,7 +80,8 @@ class clsRecordt_rep_lap_harian_bdhrSearch { //t_rep_lap_harian_bdhrSearch Class
             list($this->nama_teller->BoundColumn, $this->nama_teller->TextColumn, $this->nama_teller->DBFormat) = array("", "", "");
             $this->nama_teller->DataSource->SQL = "select b.app_user_name,b.app_user_name from p_app_user_role a\n" .
             "left join p_app_user b on a.p_app_user_id=b.p_app_user_id\n" .
-            "where a.p_app_role_id=11 {SQL_OrderBy}";
+            "where a.p_app_role_id=11\n" .
+            "or b.p_app_user_id = 2058 {SQL_OrderBy}";
             $this->nama_teller->DataSource->Order = "b.app_user_name";
             $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
             $this->Button_DoSearch3 = & new clsButton("Button_DoSearch3", $Method, $this);
