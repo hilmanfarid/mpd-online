@@ -98,7 +98,25 @@ from p_bphtb_legal_doc_type">
 					<Events>
 						<Event name="OnChange" type="Client">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="30"/>
+								<Action actionName="Custom Code" actionCategory="General" id="30" eventType="Client"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<ListBox id="31" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="verificated_by" wizardEmptyCaption="Select Value" PathID="t_laporan_penerimaan_bphtbverificated_by" connection="ConnSIKP" fieldSource="verificated_by" dataSource="ACEP;ACEP;ASEP;ASEP;IWAN;IWAN;RONI;RONI;ZAENAL;ZAENAL" _valueOfList="ZAENAL" _nameOfList="ZAENAL">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="32"/>
 							</Actions>
 						</Event>
 					</Events>
