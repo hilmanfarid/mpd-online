@@ -77,6 +77,7 @@ function print_excel($param_arr) {
 	echo '<tr>
 			<th>NO</th>
 			<th>NO TRANSAKSI</th>
+			<th>JENIS TRANSAKSI</th>
 			<th>NOP</th>
 			<th>TGL BAYAR</th>
 			<th>TGL DAFTAR</th>
@@ -142,11 +143,12 @@ function print_excel($param_arr) {
 	$whereClause = join(" AND ", $criteria);
 	$query="SELECT a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date, b.t_ppat_id,
 					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount, b.verificated_by,
-					market_price,building_total_price+land_total_price as njop    
+					market_price,building_total_price+land_total_price as njop, c.description
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
-			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id";
+			LEFT JOIN p_region AS kecamatan ON b.wp_p_region_id_kec = kecamatan.p_region_id
+			LEFT JOIN p_bphtb_legal_doc_type c on c.p_bphtb_legal_doc_type_id = b.p_bphtb_legal_doc_type_id";
 	if(!empty($whereClause))
 		$query.= " WHERE ".$whereClause;
 	$query.= " ORDER BY a.receipt_no ASC";
@@ -175,6 +177,7 @@ function print_excel($param_arr) {
 					   'verificated_by' => $dbConn->f("verificated_by"),
 					   'market_price' => $dbConn->f("market_price"),
 					   'njop' => $dbConn->f("njop"),
+					   'description' => $dbConn->f("description"),
 					   't_ppat_id' => $dbConn->f("t_ppat_id")
 						);
 		
@@ -183,6 +186,7 @@ function print_excel($param_arr) {
 		echo '<tr>';
 		echo '<td align="center">'.$no.'</td>';
 		echo '<td align="center">'.$item['receipt_no'].'</td>';
+		echo '<td align="center">'.$item['description'].'</td>';
 		echo '<td align="left">&nbsp;'.$item['njop_pbb'].'</td>';
 		echo '<td align="center">'.dateToString($item['payment_date']).'</td>';
 		echo '<td align="center">'.dateToString($item['creation_date']).'</td>';
@@ -206,7 +210,7 @@ function print_excel($param_arr) {
 	}
 
 	echo '<tr>
-			<td colspan="12" align="center"> <b>TOTAL</b> </td>
+			<td colspan="14" align="center"> <b>TOTAL</b> </td>
 			<td align="right"><b>'.number_format($total_nilai_penerimaan,0,",",".").'</b></td>
 			<td align="center"> &nbsp; </td>
 			<td align="center"> &nbsp; </td>
