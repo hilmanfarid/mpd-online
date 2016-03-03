@@ -8,19 +8,27 @@ include_once(RelativePath . "/Common.php");
 include "../include/fpdf17/mc_table.php";
 
 $t_customer_order_id = CCGetFromGet("t_customer_order_id", "");
+$t_cust_account_id = CCGetFromGet("t_cust_account_id", "");
 
 //$t_customer_order_id = 67;     
 //$dataArr = array();
 // $dataBaru = array();
 
-if(empty($t_customer_order_id)){
+if(empty($t_customer_order_id) && empty($t_cust_account_id)){
 	echo "data tidak ada";
 	exit();
 }
 $dbConn = new clsDBConnSIKP();
-$query="select b.vat_code,to_char(a.registration_date,'dd Mon yyyy') as registration_date_2,company_owner,a.* from t_vat_registration a 
-		left join p_vat_type_dtl b on a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
-		where t_customer_order_id = ".$t_customer_order_id;
+if (empty($t_cust_account_id)){
+	$query="select b.vat_code,to_char(a.registration_date,'dd Mon yyyy') as registration_date_2,company_owner,a.* from t_vat_registration a 
+			left join p_vat_type_dtl b on a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
+			where t_customer_order_id = ".$t_customer_order_id;
+}else{
+	$query="select b.vat_code,to_char(a.active_date,'dd Mon yyyy') as registration_date_2,company_owner,a.* from t_cust_account a 
+			left join p_vat_type_dtl b on a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
+			left join t_customer c on c.t_customer_id = a.t_customer_id
+			where t_cust_account_id = ".$t_cust_account_id;
+}
 //echo $query;exit;
 $dbConn->query($query);
 $data=array();
