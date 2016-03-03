@@ -51,23 +51,23 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
-<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        CETAK&nbsp;ULANG DOKUMEN PENDAFTARAN&nbsp; 
+        CETAK&nbsp;KARTU NPWPD UNTUK WP YANG SUDAH TERDAFTAR DI MPD
       </div>
     </div>
   </div>
 </div>
-<div style="CLEAR: both; PADDING-TOP: 50px">
-  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+<div style="PADDING-TOP: 50px; CLEAR: both">
+  <table class="module-container" cellspacing="0" cellpadding="0" align="center" border="0">
     <tr>
       <td>
         <!-- BEGIN Record t_rep_lap_spjpSearch -->
         <form id="t_rep_lap_spjpSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+          <table class="search-field" cellspacing="0" cellpadding="0" border="0">
             <tr>
               <td valign="top">
                 <table class="Record" cellspacing="0" cellpadding="0">
@@ -78,15 +78,15 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">NPWPD/Nama WP</td> 
-                    <td class="search-field"><input id="t_rep_lap_spjpSearchsearch" class="ControlsIN" value="{search}" maxlength="32" size="32" name="{search_Name}"></td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchsearch" class="ControlsIN" maxlength="32" size="32" value="{search}" name="{search_Name}"></td> 
                     <td>&nbsp;</td> 
                     <td class="search-field">&nbsp; 
-                      <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="TAMPILKAN" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                      <!-- BEGIN Button Button_DoSearch --><input onclick="cetak(); return false;" id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="TAMPILKAN" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
  
                   <tr class="Controls">
                     <td class="search-field">Tanggal Dokumen</td> 
-                    <td class="search-field"><input id="t_rep_lap_spjpSearchtgl" class="ControlsIN" value="{tgl}" maxlength="32" size="32" name="{tgl_Name}"></td> 
+                    <td class="search-field"><input id="t_rep_lap_spjpSearchtgl" class="ControlsIN" maxlength="32" size="32" value="{tgl}" name="{tgl_Name}"></td> 
                     <td>
                       <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_spjpSearchDatePicker_end_start_laporan1"><img id="t_rep_lap_spjpSearchDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 -->&nbsp;</td> 
                     <td class="search-field"></td>
@@ -166,13 +166,13 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 tgl= document.getElementById("t_rep_lap_spjpSearchtgl").value;
                 window.open("../report/cetak_formulir_tanda_terima_pengukuhan_pdf.php?t_customer_order_id=" + set_id +"&tgl="+tgl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
-	
-		function cetak_kartu_npwpd(set_id)
+        
+                function cetak_kartu_npwpd(set_id)
     {
                 window.open("../report/cetak_kartu_npwpd.php?t_customer_order_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
 
-	function cetak_kartu_npwpd_v2(set_id)
+        function cetak_kartu_npwpd_v2(set_id)
     {
                 window.open("../report/cetak_kartu_npwpd_v2.php?t_cust_account_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
