@@ -34,7 +34,7 @@ $dbConn->query($query);
 $data=array();
 while ($dbConn->next_record()) {
 		$data= array(
-			'npwpd' => $dbConn->f("npwpd"),
+			'npwpd' => $dbConn->f("npwd"),
 			'company_name' => $dbConn->f("company_owner"),
 			'company_brand' => $dbConn->f("company_brand"),
 			'brand_address_name' => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no"),
