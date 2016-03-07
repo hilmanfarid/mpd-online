@@ -45,7 +45,7 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-1618955F
+//Class_Initialize Event @2-651CA1A6
     function clsRecordt_laporan_penerimaan_bphtb($RelativePath, & $Parent)
     {
 
@@ -98,7 +98,7 @@ class clsRecordt_laporan_penerimaan_bphtb { //t_laporan_penerimaan_bphtb Class @
             $this->p_bphtb_legal_doc_type_id->DataSource->Order = "";
             $this->verificated_by = & new clsControl(ccsListBox, "verificated_by", "verificated_by", ccsText, "", CCGetRequestParam("verificated_by", $Method, NULL), $this);
             $this->verificated_by->DSType = dsListOfValues;
-            $this->verificated_by->Values = array(array("ACEP", "ACEP"), array("ASEP", "ASEP"), array("IWAN", "IWAN"), array("RONI", "RONI"), array("ZAENAL", "ZAENAL"));
+            $this->verificated_by->Values = array(array("ACEP", "ACEP"), array("ASEP", "ASEP"), array("IWAN", "IWAN"), array("RONI", "RONI"), array("TATANG", "TATANG"), array("ZAENAL", "ZAENAL"));
         }
     }
 //End Class_Initialize Event
