@@ -111,7 +111,7 @@ from p_bphtb_legal_doc_type">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-				<ListBox id="31" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="verificated_by" wizardEmptyCaption="Select Value" PathID="t_laporan_penerimaan_bphtbverificated_by" connection="ConnSIKP" fieldSource="verificated_by" dataSource="ACEP;ACEP;ASEP;ASEP;IWAN;IWAN;RONI;RONI;ZAENAL;ZAENAL" _valueOfList="ZAENAL" _nameOfList="ZAENAL">
+				<ListBox id="31" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="verificated_by" wizardEmptyCaption="Select Value" PathID="t_laporan_penerimaan_bphtbverificated_by" connection="ConnSIKP" fieldSource="verificated_by" dataSource="ACEP;ACEP;ASEP;ASEP;IWAN;IWAN;RONI;RONI;TATANG;TATANG;ZAENAL;ZAENAL" _valueOfList="TATANG" _nameOfList="TATANG">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
