@@ -19,12 +19,14 @@ if(empty($t_customer_order_id) && empty($t_cust_account_id)){
 	exit();
 }
 $dbConn = new clsDBConnSIKP();
-if (empty($t_cust_account_id)){
-	$query="select b.vat_code,to_char(a.registration_date,'dd Mon yyyy') as registration_date_2,company_owner,a.* from t_vat_registration a 
+if (empty($t_cust_account_id)||$t_cust_account_id==''){
+	$query="select b.vat_code,to_char(a.registration_date,'dd Mon yyyy') as registration_date_2,company_owner,a.*,
+			npwpd as npwd from t_vat_registration a 
 			left join p_vat_type_dtl b on a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
 			where t_customer_order_id = ".$t_customer_order_id;
 }else{
-	$query="select b.vat_code,to_char(a.active_date,'dd Mon yyyy') as registration_date_2,company_owner,a.* from t_cust_account a 
+	$query="select b.vat_code,to_char(a.active_date,'dd Mon yyyy') as registration_date_2,company_owner,a.*
+			from t_cust_account a 
 			left join p_vat_type_dtl b on a.p_vat_type_dtl_id = b.p_vat_type_dtl_id
 			left join t_customer c on c.t_customer_id = a.t_customer_id
 			where t_cust_account_id = ".$t_cust_account_id;
