@@ -21,7 +21,19 @@
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-			</Components>
+				<ListBox id="106" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="kode_bank" wizardEmptyCaption="Select Value" PathID="t_rep_lap_harian_bdhrSearchkode_bank" connection="ConnSIKP" _valueOfList="3" _nameOfList="Per Semester" dataSource="select code,bank_name from p_bank" fieldSource="period_type">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
