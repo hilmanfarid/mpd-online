@@ -51,8 +51,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; POSITION: absolute; WIDTH: 99.9%">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div id="tabtop" class="tab-container" style="BORDER-TOP: #a2a2a2 1px solid; HEIGHT: 37px; WIDTH: 99.9%; POSITION: absolute">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
@@ -84,6 +84,18 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                       <td class="search-field">
                         <!-- BEGIN Button Button_DoSearch --><input onclick="cetak(); return false;" id="t_rep_lap_harian_bdhrSearchButton_DoSearch" class="btn_tambah" alt="Search" type="submit" value="TAMPILKAN" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                     </tr>
+ 
+                    <tr class="Controls">
+                      <td class="search-field">&nbsp;Bank Penerimaan</td> 
+                      <td class="search-field">
+                        <select id="t_rep_lap_harian_bdhrSearchkode_bank" name="{kode_bank_Name}">
+                          <option selected value="">Select Value</option>
+                          {kode_bank_Options}
+                        </select>
+ </td> 
+                      <td>&nbsp;</td> 
+                      <td class="search-field">&nbsp;</td>
+                    </tr>
                   </table>
                 </td>
               </tr>
@@ -100,7 +112,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 function cetak()
                 {
                         tgl_penerimaan = document.getElementById("t_rep_lap_harian_bdhrSearchtgl_penerimaan").value;
-                        window.open("../report/cetak_rep_lap_harian_bdhr.php?tgl_penerimaan='" + tgl_penerimaan + "'", '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+						kode_bank = document.getElementById("t_rep_lap_harian_bdhrSearchkode_bank").value;
+                        window.open("../report/cetak_rep_lap_harian_bdhr.php?tgl_penerimaan='" + tgl_penerimaan + "'"+ "&kode_bank="+kode_bank, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
                 }
         </script>
   </body>
