@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-EF83D08C
+//Class_Initialize Event @3-8CB6D198
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -79,11 +79,18 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->ListBox1 = & new clsControl(ccsListBox, "ListBox1", "ListBox1", ccsText, "", CCGetRequestParam("ListBox1", $Method, NULL), $this);
             $this->ListBox1->DSType = dsListOfValues;
             $this->ListBox1->Values = array(array("1", "Pokok"), array("2", "Denda"));
+            $this->kode_bank = & new clsControl(ccsListBox, "kode_bank", "kode_bank", ccsText, "", CCGetRequestParam("kode_bank", $Method, NULL), $this);
+            $this->kode_bank->DSType = dsSQL;
+            $this->kode_bank->DataSource = new clsDBConnSIKP();
+            $this->kode_bank->ds = & $this->kode_bank->DataSource;
+            list($this->kode_bank->BoundColumn, $this->kode_bank->TextColumn, $this->kode_bank->DBFormat) = array("", "", "");
+            $this->kode_bank->DataSource->SQL = "select code,bank_name from p_bank";
+            $this->kode_bank->DataSource->Order = "";
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-88AC5CB8
+//Validate Method @3-9630AD09
     function Validate()
     {
         global $CCSLocales;
@@ -95,6 +102,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->ListBox1->Validate() && $Validation);
+        $Validation = ($this->kode_bank->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
@@ -102,11 +110,12 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->ListBox1->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->kode_bank->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-099975B9
+//CheckErrors Method @3-04D71F9D
     function CheckErrors()
     {
         $errors = false;
@@ -117,6 +126,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->ListBox1->Errors->Count());
+        $errors = ($errors || $this->kode_bank->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -169,7 +179,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-EB85544A
+//Show Method @3-CB3E5D9C
     function Show()
     {
         global $CCSUseAmp;
@@ -184,6 +194,7 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->ListBox1->Prepare();
+        $this->kode_bank->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -201,6 +212,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->ListBox1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->kode_bank->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -226,6 +238,7 @@ function GetPrimaryKey($keyName)
         $this->p_year_period_id->Show();
         $this->Button_DoSearch->Show();
         $this->ListBox1->Show();
+        $this->kode_bank->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
