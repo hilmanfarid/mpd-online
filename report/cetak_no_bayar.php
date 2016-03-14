@@ -16,7 +16,8 @@ $dbConn				= new clsDBConnSIKP();
 $query				= "select x.company_brand,x.brand_address_name,x.brand_address_no,to_char(a.settlement_date,'dd-mm-yyyy') as settlement_date,
 				to_char(a.settlement_date,'HH24:MI:ss') as pukul,a.npwd,wp_name,vat_code,z.code, nvl(total_vat_amount,0)as total_vat_amount,
 				nvl(total_penalty_amount,0) as total_penalty_amount,nvl(total_vat_amount,0)+nvl(total_penalty_amount,0) as total_bayar,payment_key,
-				replace(f_terbilang(to_char(nvl(total_vat_amount,0)+nvl(total_penalty_amount,0)),'IDR'),'    sen ','') as dengan_huruf 
+				replace(f_terbilang(to_char(nvl(total_vat_amount,0)+nvl(total_penalty_amount,0)),'IDR'),'    sen ','') as dengan_huruf ,
+				payment_due_day,p_settlement_type_id
 				from sikp.t_vat_setllement a
 				left join sikp.t_cust_account x on a.t_cust_account_id =x.t_cust_account_id 
 				left join sikp.p_vat_type_dtl y on y.p_vat_type_dtl_id = a.p_vat_type_dtl_id
@@ -39,6 +40,8 @@ while ($dbConn->next_record()) {
 	$data["total_bayar"]		    = $dbConn->f("total_bayar");
 	$data["dengan_huruf"]		    = $dbConn->f("dengan_huruf");
 	$data["payment_key"]		    = $dbConn->f("payment_key");	
+	$data["payment_due_day"]		    = $dbConn->f("payment_due_day");
+	$data["p_settlement_type_id"]		    = $dbConn->f("p_settlement_type_id");
 }
 $items = $data;
 
@@ -110,17 +113,18 @@ $pdf->SetWidths(array(200));
 $pdf->SetAligns(array("L"));
 $pdf->SetFont('helvetica', '',10);
 $pdf->ln(6);
-$pdf->RowMultiBorderWithHeight(array("*Nomor pembayaran dan denda pajak yang tertera pada slip ini hanya berlaku pada hari ini, tanggal ".$items['settlement_date']." sampai dengan pukul 23:59 WIB"),
-array(''),6);
+if ($items['p_settlement_type_id']==1){
+	$pdf->RowMultiBorderWithHeight(array("*Nomor pembayaran dan denda pajak yang tertera pada slip ini hanya berlaku pada tanggal ".$items['payment_due_day']),array(''),6);
+}
 //$pdf->RowMultiBorderWithHeight(array("**Keterlambatan pembayaran melewati tanggal jatuh tempo akan dikenakan denda sesuai administrasi berupa bunga sebesar 2% (dua persen) setiap bulannya."),
 //array(''),6);
 $pdf->ln(8);
 $pdf->SetFont('helvetica', '',12);
 $pdf->SetAligns(array("C"));
-$pdf->RowMultiBorderWithHeight(array("Bandung, ".$items['settlement_date']." Pukul ".$items['pukul']),array(''),6);
+$pdf->RowMultiBorderWithHeight(array("Bandung, ".date('d-M-y')),array(''),6);
 $pdf->SetFont('helvetica', '',12);
 $pdf->RowMultiBorderWithHeight(array("BAYAR PAJAK MUDAH BANDUNG JUARA"),array(''),6);
-$pdf->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd-wp/client/lib/qrcode/generate-qr.php?param='.$no_bayar.'',175,13,25,25,'PNG');
+$pdf->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$no_bayar.'',175,13,25,25,'PNG');
 $pdf->Output(time()."_kwitansi_".$no_bayar,"I");
 exit;
 ?>
