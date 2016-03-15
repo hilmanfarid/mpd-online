@@ -98,7 +98,8 @@ while ($dbConn->next_record()) {
 	$data["jenis_pensiunan"]		= $dbConn->f("jenis_pensiunan");
 	$data["sk_bpn_no"]		        = $dbConn->f("sk_bpn_no");
 	$data["tanggal_sk"]		        = $dbConn->f("tanggal_sk");
-	$data["persen_pengurangan"]     = ceil($dbConn->f("bphtb_discount")/$dbConn->f("bphtb_amt") * 100);
+	//$data["persen_pengurangan"]     = ceil($dbConn->f("bphtb_discount")/$dbConn->f("bphtb_amt") * 100);
+	$data["persen_pengurangan"]     = $dbConn->f("description");
 	$data["jenis_perolehan_hak"]	= $dbConn->f("jenis_perolehan_hak");
 	$data["pilihan_lembar_cetak"]	= $dbConn->f("pilihan_lembar_cetak");
 	$data["opsi_a2"]	            = $dbConn->f("opsi_a2");
@@ -303,7 +304,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1, $this->height, "", "", 0, "");
 		$this->Cell($this->length - $lbody1, $this->height, "Pengenaan Pengurangan Karena ".$data['jenis_perolehan_hak'], "", 0, "");
 		$this->Ln();
-		$this->barisBaru2($lbody1, "Besaran Pengenaan Pengurangan ", $data['persen_pengurangan']."%", "Rp", $data["bphtb_discount"]);
+		$this->barisBaru2($lbody1, "Besaran Pengenaan Pengurangan ", $data['persen_pengurangan'], "Rp", $data["bphtb_discount"]);
 
 		if($data["npop_kp"]==0){
 			$this->barisBaruStr($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", "NIHIL");
@@ -358,10 +359,10 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($subtractor, $this->height, "", "", 0, "L");
 		$this->Cell($lbodyx3 + $lbodyx2, $this->height, "$field", "", 0, "L");
-		$this->Cell($lbodyx1, $this->height, "$middle", "", 0, "L");
+		$this->Cell($lbodyx1+10, $this->height, "$middle", "", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "$currency", "", 0, "L");
 		$this->SetFont("Arial", "B", 8);
-		$this->Cell($lbodyx2, $this->height, number_format($data, 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx2-10, $this->height, number_format($data, 0, ",", "."), "", 0, "R");
 		$this->SetFont("Arial", "", 8);
 		$this->Ln();
 	}
@@ -375,9 +376,9 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($subtractor, $this->height, "", "", 0, "L");
 		$this->Cell($lbodyx3 + $lbodyx2, $this->height, "$field", "", 0, "L");
-		$this->Cell($lbodyx1, $this->height, "$middle", "", 0, "L");
+		$this->Cell($lbodyx1+10, $this->height, "$middle", "", 0, "L");
 		$this->Cell($lbodyx1, $this->height, "$currency", "", 0, "L");
-		$this->Cell($lbodyx2, $this->height, number_format($data, 0, ",", "."), "", 0, "R");
+		$this->Cell($lbodyx2-10, $this->height, number_format($data, 0, ",", "."), "", 0, "R");
 		$this->Ln();
 	}
 
