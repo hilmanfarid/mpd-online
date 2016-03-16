@@ -52,19 +52,19 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="169" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_rep_lap_spjpSearchvat_code_dtl" required="True" caption="Tipe Ayat">
+				<TextBox id="169" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_rep_lap_spjpSearchvat_code_dtl" caption="Tipe Ayat">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<Hidden id="170" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" PathID="t_rep_lap_spjpSearchp_vat_type_dtl_id">
+				<Hidden id="170" fieldSourceType="DBColumn" dataType="Text" name="p_vat_type_dtl_id" PathID="t_rep_lap_spjpSearchp_vat_type_dtl_id">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
