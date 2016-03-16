@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-5243AC58
+//Class_Initialize Event @3-D41B8CE6
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -78,7 +78,6 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
             $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Tipe Ayat", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
-            $this->vat_code_dtl->Required = true;
             $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
         }
     }
