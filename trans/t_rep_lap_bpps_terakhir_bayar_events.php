@@ -43,11 +43,10 @@ function Page_BeforeShow(& $sender)
 		$dbConn				= new clsDBConnSIKP();
 		$jenis_laporan		= "all"; 
 		$query	= "select *,trunc(payment_date) 
-			from f_rep_bpps_piutang2new($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, to_char(sysdate,'dd-mm-yyyy'), $i_flag_setoran) 
-			order by kode_ayat, wp_name, payment_date";	
+			from f_rep_bpps_piutang2new_rm_masuk_resto($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, to_char(sysdate,'dd-mm-yyyy'), $i_flag_setoran) 
+			order by p_vat_type_dtl_id, wp_name,npwpd, payment_date";	
 		
-		//echo $query;
-		//exit;
+		//echo $query; exit;
 		$dbConn->query($query);
 
 
