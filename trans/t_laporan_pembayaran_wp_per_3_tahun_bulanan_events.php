@@ -44,7 +44,7 @@ function Page_BeforeShow(& $sender)
 	global $Label1;
 	$param_arr['p_year_period_id'] = CCGetFromGet('p_year_period_id');
 	$param_arr['p_finance_period_id'] = CCGetFromGet('p_finance_period_id');
-	$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
+	$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id','');
 	$param_arr['p_vat_type_dtl_id'] = CCGetFromGet('p_vat_type_dtl_id');
 
 	$param_arr['vat_code'] = CCGetFromGet('vat_code');
@@ -96,6 +96,7 @@ function GetCetakHTML($param_arr) {
 	//$dbConn->close();
 
 	$output.='<th align="center" >NO</th>';
+	$output.='<th align="center" >AYAT PAJAK</th>';
 	$output.='<th align="center" >NPWPD</th>';
 	$output.='<th align="center" >NAMA MERK DAGANG</th>';
 	$output.='<th align="center" >ALAMAT MERK DAGANG</th>';
@@ -105,14 +106,50 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >'.($tahun-1).'</th>';
 	$output.='<th align="center" >'.$tahun.'</th>';
 	$output.='</tr>';
-	
+
+	if ($param_arr['p_vat_type_dtl_id']==''){
+		$param_arr['p_vat_type_dtl_id'] = 0;
+	}
+
 	$dbConn	= new clsDBConnSIKP();
-	$query="(select DISTINCT (c.npwd),c.t_cust_account_id,c.company_brand,regexp_replace(c.brand_address_name, '\r|\n', '', 'g')||' '||regexp_replace(c.brand_address_no, '\r|\n', '', 'g') as alamat,
-			to_char(active_date,'dd-mm-yyyy') as active_date
+	$query="(select DISTINCT (c.npwd), c.t_cust_account_id,c.company_brand,regexp_replace(c.brand_address_name, '\r|\n', '', 'g')||' '||regexp_replace(c.brand_address_no, '\r|\n', '', 'g') as alamat,
+			to_char(active_date,'dd-mm-yyyy') as active_date,
+			c.p_vat_type_dtl_id, vat_code
 			from t_cust_account c
-			where (case when ".$param_arr['p_vat_type_dtl_id']." = 10 then c.p_vat_type_dtl_id in (10,9) else c.p_vat_type_dtl_id = ".$param_arr['p_vat_type_dtl_id']." end)
-			and c.p_account_status_id = 1)
-			order by company_brand,npwd ";
+			left join p_vat_type_dtl d on d.p_vat_type_dtl_id=c.p_vat_type_dtl_id
+			where (case 
+						when ".$param_arr['p_vat_type_dtl_id']." = 0 then true
+						when ".$param_arr['p_vat_type_dtl_id']." = 10 then c.p_vat_type_dtl_id in (10,9) 
+						else c.p_vat_type_dtl_id = ".$param_arr['p_vat_type_dtl_id']." 
+					end)
+			and ".$param_arr['p_vat_type_id']." = c.p_vat_type_id 
+			and c.p_account_status_id = 1
+			)
+			union
+			(select DISTINCT (c.npwd),c.t_cust_account_id,c.company_brand,regexp_replace(c.brand_address_name, '\r|\n', '', 'g')||' '||regexp_replace(c.brand_address_no, '\r|\n', '', 'g') as alamat,
+			to_char(active_date,'dd-mm-yyyy') as active_date,
+			c.p_vat_type_dtl_id, vat_code
+			from t_cust_account c
+			left join p_vat_type_dtl d on d.p_vat_type_dtl_id=c.p_vat_type_dtl_id
+			where (case 
+						when ".$param_arr['p_vat_type_dtl_id']." = 0 then true
+						when ".$param_arr['p_vat_type_dtl_id']." = 10 then c.p_vat_type_dtl_id in (10,9) 
+						else c.p_vat_type_dtl_id = ".$param_arr['p_vat_type_dtl_id']." 
+					end)
+			and ".$param_arr['p_vat_type_id']." = c.p_vat_type_id 
+			and c.p_account_status_id != 1
+			and (
+					(
+						select start_date
+						from t_payment_receipt x
+						left join p_finance_period y on x.p_finance_period_id = y.p_finance_period_id
+						where x.t_cust_account_id = c.t_cust_account_id
+						ORDER BY y.start_date desc
+						limit 1
+					) >= to_date('01-01-2014')
+				)
+			)
+			order by p_vat_type_dtl_id,company_brand,npwd ";
 	//echo $query;exit;
 	$data = array();
 	$dbConn->query($query);
@@ -161,13 +198,14 @@ function GetCetakHTML($param_arr) {
 			foreach($tahun['arr_data'] as $bulan){
 				if($j==0){
 					$no = '<tr><td>'.($k+1).'&nbsp</td>';
+					$vat_code= '<td>'.$data[$k]['vat_code'].'</td>';
 					$npwpd= '<td>'.$bulan['npwd'].'</td>';
 					$company_brand= '<td>'.$data[$k]['company_brand'].'</td>';
 					$alamat= '<td>'.$data[$k]['alamat'].'</td>';
 					$active_date= '<td>'.$data[$k]['active_date'].'</td>';
 					$masa= '<td>'.substr($bulan['code'],0,-5).'</td>';
 					$jumlah_bayar = '<td>'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
-					$html[$i].=$no.$npwpd.$company_brand.$alamat.$active_date.$masa.$jumlah_bayar;
+					$html[$i].=$no.$vat_code.$npwpd.$company_brand.$alamat.$active_date.$masa.$jumlah_bayar;
 				}else{
 					$html[$i].='<td>'.number_format($bulan['pajak'], 2, ',', '.').'</td>';
 					if($j==2){
