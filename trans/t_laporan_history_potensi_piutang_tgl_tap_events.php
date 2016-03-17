@@ -242,21 +242,27 @@ function CetakExcel($param_arr) {
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
                 <tr >';
 
-	$output.='<th align="center" >NO</th>';
-	$output.='<th align="center" >JENIS PAJAK</th>';
-	$output.='<th align="center" >AYAT PAJAK</th>';
-	$output.='<th align="center" >NAMA</th>';
-	$output.='<th align="center" >NPWPD</th>';
-	$output.='<th align="center" >MASA PAJAK</th>';
-	$output.='<th align="center" >TGL TAP</th>';
-	$output.='<th align="center" >NO. BAYAR</th>';
-	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
-	$output.='<th align="center" >STATUS BAYAR</th>';
-	$output.='<th align="center" >TANGGAL BAYAR</th>';
-	$output.='<th align="center" >BESARNYA</th>';
-	$output.='<th align="center" >SISA</th>';
+	$output.='<th rowspan=2 align="center" >NO</th>';
+	$output.='<th rowspan=2 align="center" >JENIS PAJAK</th>';
+	$output.='<th rowspan=2 align="center" >AYAT PAJAK</th>';
+	$output.='<th rowspan=2 align="center" >NAMA</th>';
+	$output.='<th rowspan=2 align="center" >NPWPD</th>';
+	$output.='<th rowspan=2 align="center" >MASA PAJAK</th>';
+	$output.='<th rowspan=2 align="center" >TGL TAP</th>';
+	$output.='<th rowspan=2 align="center" >NO. BAYAR</th>';
+	$output.='<th rowspan=2 align="center" >TOTAL HARUS DIBAYAR</th>';
+	$output.='<th colspan=2 align="center" >STATUS BAYAR</th>';
+	$output.='<th rowspan=2 align="center" >TANGGAL BAYAR</th>';
+	$output.='<th rowspan=2 align="center" >BESARNYA</th>';
+	$output.='<th rowspan=2 align="center" >SISA</th>';
+	$output.='</tr>';
+	$output.='<tr>';
+	$output.='<th align="center" >SUDAH BAYAR</th>';
+	$output.='<th align="center" >BELUM BAYAR</th>';
 	$output.='</tr>';
 	$jumlah = 0;
+	$jumlah_belum_bayar = 0;
+	$jumlah_sudah_bayar = 0;
 	$jumlah_relisasi =0;
 	$jumlah_sisa =0;
 
@@ -280,9 +286,13 @@ function CetakExcel($param_arr) {
 		$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
-			$output.='<td align="left" >Belum Bayar</td>';
+			$output.='<td align="right" >'.number_format(0, 2, ',', '.').'</td>';
+			$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
+			$jumlah_belum_bayar = $jumlah_belum_bayar + $temp;
 		}else{
-			$output.='<td align="left" >Sudah Bayar</td>';
+			$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
+			$output.='<td align="right" >'.number_format(0, 2, ',', '.').'</td>';
+			$jumlah_sudah_bayar = $jumlah_sudah_bayar + $data[$i]['payment_vat_amount'];
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
@@ -291,7 +301,9 @@ function CetakExcel($param_arr) {
 	}
 	$output.='<tr><td align="center" colspan=8 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
-	$output.='<td align="center" colspan=2 ></td>';
+	$output.='<td align="right">'.number_format($jumlah_sudah_bayar, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_belum_bayar, 2, ',', '.').'</td>';
+	$output.='<td align="center"></td>';
 	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_sisa, 2, ',', '.').'</td>';
 	$output.='</tr>';
