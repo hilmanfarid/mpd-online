@@ -66,6 +66,7 @@ function view_html($param_arr) {
 	$output.='<th>MERK DAGANG</th>';
 	$output.='<th>ALAMAT MERK DAGANG</th>';
 	$output.='<th>KECAMATAN</th>';
+	$output.='<th>KELURAHAN</th>';
 	$output.='<th>AYAT PAJAK</th>';
 	$output.='<th>STATUS WP</th>';
 	$output.='</tr>';
@@ -75,10 +76,11 @@ function view_html($param_arr) {
 
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="select z.region_name as kecamatan,y.code as status_code,* FROM T_CUST_ACCOUNT a
+	$query="select z.region_name as kecamatan,w.region_name as kelurahan,y.code as status_code,* FROM T_CUST_ACCOUNT a
 		left join p_vat_type_dtl x on x.p_vat_type_dtl_id = a.p_vat_type_dtl_id 
 		left join p_account_status y on y.p_account_status_id = a.p_account_status_id
 		left join p_region z on z.p_region_id = a.brand_p_region_id_kec 
+		left join p_region w on w.p_region_id = a.brand_p_region_id_kel 
 		WHERE f_get_wilayah(a.npwd) = '".$param_arr['kode_wilayah']."'";
 	if ($param_arr['p_vat_type_id']!=''){
 		$query .= "and a.p_vat_type_id = ".$param_arr['p_vat_type_id'];
@@ -94,6 +96,7 @@ function view_html($param_arr) {
 						"brand_address_name" => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no"),
 						"status_code" => $dbConn->f("status_code"),
 						"kecamatan" => $dbConn->f("kecamatan"),
+						"kelurahan" => $dbConn->f("kelurahan"),
 						"ayat_pajak" => $dbConn->f("vat_code")
 						);
 		
@@ -103,6 +106,7 @@ function view_html($param_arr) {
 			$output .= '<td align="left">'.$item['company_brand'].'</td>';
 			$output .= '<td align="left">'.$item['brand_address_name'].'</td>';
 			$output .= '<td align="left">'.$item['kecamatan'].'</td>';
+			$output .= '<td align="left">'.$item['kelurahan'].'</td>';
 			$output .= '<td align="left">'.$item['ayat_pajak'].'</td>';
 			$output .= '<td align="left">'.$item['status_code'].'</td>';
 		$output .= '</tr>';
