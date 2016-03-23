@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-A5E8AE64
+//Class_Initialize Event @2-72168498
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -84,11 +84,18 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Jenis Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
             $this->Button3 = & new clsButton("Button3", $Method, $this);
+            $this->p_account_status_id = & new clsControl(ccsListBox, "p_account_status_id", "p_account_status_id", ccsText, "", CCGetRequestParam("p_account_status_id", $Method, NULL), $this);
+            $this->p_account_status_id->DSType = dsSQL;
+            $this->p_account_status_id->DataSource = new clsDBConnSIKP();
+            $this->p_account_status_id->ds = & $this->p_account_status_id->DataSource;
+            list($this->p_account_status_id->BoundColumn, $this->p_account_status_id->TextColumn, $this->p_account_status_id->DBFormat) = array("", "", "");
+            $this->p_account_status_id->DataSource->SQL = "select p_account_status_id,code from p_account_status {SQL_OrderBy}";
+            $this->p_account_status_id->DataSource->Order = "p_account_status_id";
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-FCDECCF5
+//Validate Method @2-DD203AA6
     function Validate()
     {
         global $CCSLocales;
@@ -98,16 +105,18 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
         $Validation = ($this->kode_wilayah->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->p_account_status_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->cetak_laporan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kode_wilayah->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_account_status_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-74A3795D
+//CheckErrors Method @2-0B2EF381
     function CheckErrors()
     {
         $errors = false;
@@ -115,6 +124,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
         $errors = ($errors || $this->kode_wilayah->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->p_account_status_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -179,7 +189,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-8FE930C7
+//Show Method @2-58EAF69C
     function Show()
     {
         global $CCSUseAmp;
@@ -194,6 +204,7 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->kode_wilayah->Prepare();
+        $this->p_account_status_id->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -208,6 +219,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->kode_wilayah->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_account_status_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -232,6 +244,7 @@ function GetPrimaryKey($keyName)
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
         $this->Button3->Show();
+        $this->p_account_status_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
