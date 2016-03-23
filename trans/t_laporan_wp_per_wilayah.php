@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-4648786B
+//Class_Initialize Event @2-5F0F9B86
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -83,6 +83,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->kode_wilayah->Required = true;
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "Jenis Pajak", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->Button3 = & new clsButton("Button3", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -134,7 +135,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @2-45C0B612
+//Operation Method @2-C940739D
     function Operation()
     {
         if(!$this->Visible)
@@ -153,6 +154,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button1";
             } else if($this->Button2->Pressed) {
                 $this->PressedButton = "Button2";
+            } else if($this->Button3->Pressed) {
+                $this->PressedButton = "Button3";
             }
         }
         $Redirect = "t_laporan_wp_per_wilayah.php";
@@ -165,6 +168,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button2->CCSEvents, "OnClick", $this->Button2)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button3") {
+                if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -172,7 +179,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-2B271B28
+//Show Method @2-8FE930C7
     function Show()
     {
         global $CCSUseAmp;
@@ -224,6 +231,7 @@ function GetPrimaryKey($keyName)
         $this->kode_wilayah->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
+        $this->Button3->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
