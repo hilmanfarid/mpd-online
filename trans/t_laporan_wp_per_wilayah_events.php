@@ -24,6 +24,7 @@ function Page_BeforeShow(& $sender)
 	$param_arr = array();
 	$param_arr['kode_wilayah'] = CCGetFromGet("kode_wilayah", 1);
 	$param_arr['p_vat_type_id'] = CCGetFromGet("p_vat_type_id", 1);
+	$param_arr['p_account_status_id'] = CCGetFromGet("p_account_status_id", 1);
 	if($cetak_laporan == 'view_html') {
 		$Label1->SetText(view_html($param_arr));
 	}
@@ -84,6 +85,9 @@ function view_html($param_arr) {
 		WHERE f_get_wilayah(a.npwd) = '".$param_arr['kode_wilayah']."'";
 	if ($param_arr['p_vat_type_id']!=''){
 		$query .= "and a.p_vat_type_id = ".$param_arr['p_vat_type_id'];
+	}
+	if ($param_arr['p_account_status_id']!=0){
+		$query .= "and a.p_account_status_id = ".$param_arr['p_account_status_id'];
 	}
 	$query .= " order by x.vat_code, wp_name";
 	$dbConn->query($query);
