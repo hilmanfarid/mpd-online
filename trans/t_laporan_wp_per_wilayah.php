@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-5F0F9B86
+//Class_Initialize Event @2-A5E8AE64
     function clsRecordt_laporan_piutang_pajak($RelativePath, & $Parent)
     {
 
@@ -77,7 +77,7 @@ class clsRecordt_laporan_piutang_pajak { //t_laporan_piutang_pajak Class @2-4FD1
             $this->kode_wilayah->DataSource = new clsDBConnSIKP();
             $this->kode_wilayah->ds = & $this->kode_wilayah->DataSource;
             list($this->kode_wilayah->BoundColumn, $this->kode_wilayah->TextColumn, $this->kode_wilayah->DBFormat) = array("", "", "");
-            $this->kode_wilayah->DataSource->SQL = "select p_business_area_id, business_area_name\n" .
+            $this->kode_wilayah->DataSource->SQL = "select business_area_name, business_area_name\n" .
             "from p_business_area ";
             $this->kode_wilayah->DataSource->Order = "";
             $this->kode_wilayah->Required = true;
