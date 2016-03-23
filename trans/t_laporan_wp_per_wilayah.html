@@ -16,8 +16,15 @@
                 params += "&kode_wilayah="+document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
                 params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
                 params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
-				location.href = "t_laporan_wp_per_wilayah.php"+params;
-		}
+                                location.href = "t_laporan_wp_per_wilayah.php"+params;
+                }
+		function printLaporanExcel(){
+                var params = "?cetak_laporan=view_excel";
+                params += "&kode_wilayah="+document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
+                params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
+                params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
+                                location.href = "t_laporan_wp_per_wilayah.php"+params;
+                }
                 
 </script>
 <style>
@@ -85,7 +92,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -128,6 +135,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                   <tr>
                     <td colspan="2" align="right">&nbsp; 
+                      <!-- BEGIN Button Button3 --><input id="t_laporan_piutang_pajak_allButton2" class="btn_tambah" onclick="printLaporanExcel()" value="Download Excel" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button3 -->&nbsp; 
                       <!-- BEGIN Button Button2 --><input id="t_laporan_piutang_pajak_allButton2" class="btn_tambah" onclick="printLaporanHTML()" value="Tampilkan" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->
                       <!-- BEGIN Button Button1 --><input style="DISPLAY: none" id="t_laporan_piutang_pajak_allButton1" class="btn_tambah" onclick="printLaporan()" value="Download" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 --></td>
                   </tr>
