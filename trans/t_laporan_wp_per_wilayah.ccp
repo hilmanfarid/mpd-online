@@ -26,7 +26,7 @@ from p_business_area ">
 					<Events>
 						<Event name="OnChange" type="Client">
 							<Actions>
-								<Action actionName="Custom Code" actionCategory="General" id="24"/>
+								<Action actionName="Custom Code" actionCategory="General" id="24" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
@@ -57,7 +57,20 @@ from p_business_area ">
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<ListBox id="29" visible="Yes" fieldSourceType="DBColumn" sourceType="SQL" dataType="Text" returnValueType="Number" name="p_account_status_id" wizardEmptyCaption="Select Value" PathID="t_laporan_piutang_pajakp_account_status_id" connection="ConnSIKP" _valueOfList="3" _nameOfList="Per Semester" dataSource="select p_account_status_id,code from p_account_status
+ORDER BY p_account_status_id" fieldSource="period_type">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
