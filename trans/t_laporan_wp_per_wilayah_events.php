@@ -16,23 +16,19 @@ function Page_BeforeShow(& $sender)
     global $t_laporan_wp_per_wilayah; //Compatibility
 //End Page_BeforeShow
 
-//Custom Code @10-2A29BDB7
-// -------------------------
-    // Write your own code here.
-// -------------------------
-//End Custom Code
 	$cetak_laporan = CCGetFromGet('cetak_laporan');
 	global $Label1;
 	 
 // -------------------------
     // Write your own code here.
-
+	$param_arr = array();
+	$param_arr['kode_wilayah'] = CCGetFromGet("kode_wilayah", 1);
+	$param_arr['p_vat_type_id'] = CCGetFromGet("p_vat_type_id", 1);
 	if($cetak_laporan == 'view_html') {
-		$param_arr = array();
-		$param_arr['kode_wilayah'] = CCGetFromGet("kode_wilayah", 1);
-		$param_arr['p_vat_type_id'] = CCGetFromGet("p_vat_type_id", 1);
 		$Label1->SetText(view_html($param_arr));
-
+	}
+	if($cetak_laporan == 'view_excel') {
+		view_html($param_arr);
 	}
 	
 // -------------------------
@@ -44,26 +40,32 @@ function Page_BeforeShow(& $sender)
 //End Close Page_BeforeShow
 
 function view_html($param_arr) {
+	$cetak_laporan = CCGetFromGet('cetak_laporan');
+	if($cetak_laporan == 'view_excel') {
+		startExcel("laporan_denda.xls");
+	}
+
 	$output = '';	
 	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
           		<tr>
             		<td valign="top">';
 
-	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+	$output .='<table class="grid-table" border="" cellspacing="0" cellpadding="0">
                 	<tr>
-                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>DAFTAR WP WILAYAH '.$param_arr['kode_wilayah'].'</strong></td> 
-                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  		<td class="HeaderLeft"></td> 
+                  		<td class="th"><strong>Daftar WP - '.$param_arr['kode_wilayah'].'</strong></td> 
+                  		<td class="HeaderRight"></td>
                 	</tr>
                </table>';
 	
-	$output .='<table class="report" cellspacing="0" cellpadding="3px" width="100%">
+	$output .='<table class="report" cellspacing="0" cellpadding="3px" width="100%" border="1">
                 <tr>';
 
 	$output.='<th>NO</th>';
 	$output.='<th>NPWPD</th>';
-	$output.='<th>NAMA WP</th>';
-	$output.='<th>ALAMAT WP</th>';
+	$output.='<th>MERK DAGANG</th>';
+	$output.='<th>ALAMAT MERK DAGANG</th>';
+	$output.='<th>KECAMATAN</th>';
 	$output.='<th>AYAT PAJAK</th>';
 	$output.='<th>STATUS WP</th>';
 	$output.='</tr>';
@@ -73,10 +75,11 @@ function view_html($param_arr) {
 
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="select y.code as status_code,* FROM T_CUST_ACCOUNT a
+	$query="select z.region_name as kecamatan,y.code as status_code,* FROM T_CUST_ACCOUNT a
 		left join p_vat_type_dtl x on x.p_vat_type_dtl_id = a.p_vat_type_dtl_id 
 		left join p_account_status y on y.p_account_status_id = a.p_account_status_id
-		WHERE f_get_wilayah_id(a.npwd) = '".$param_arr['kode_wilayah']."'";
+		left join p_region z on z.p_region_id = a.brand_p_region_id_kec 
+		WHERE f_get_wilayah(a.npwd) = '".$param_arr['kode_wilayah']."'";
 	if ($param_arr['p_vat_type_id']!=''){
 		$query .= "and a.p_vat_type_id = ".$param_arr['p_vat_type_id'];
 	}
@@ -87,23 +90,29 @@ function view_html($param_arr) {
 		$item = array(
 						"t_piutang_pajak_penetapan_final_id" => $dbConn->f("t_piutang_pajak_penetapan_final_id"),
 						"npwd" => $dbConn->f("npwd"),
-						"wp_name" => $dbConn->f("wp_name"),
-						"wp_address_name" => $dbConn->f("wp_address_name"),
+						"company_brand" => $dbConn->f("company_brand"),
+						"brand_address_name" => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no"),
 						"status_code" => $dbConn->f("status_code"),
+						"kecamatan" => $dbConn->f("kecamatan"),
 						"ayat_pajak" => $dbConn->f("vat_code")
 						);
 		
 		$output .= '<tr>';
 			$output .= '<td align="center">'.$no++.'</td>';
 			$output .= '<td align="left">'.$item['npwd'].'</td>';
-			$output .= '<td align="left">'.$item['wp_name'].'</td>';
-			$output .= '<td align="left">'.$item['wp_address_name'].'</td>';
+			$output .= '<td align="left">'.$item['company_brand'].'</td>';
+			$output .= '<td align="left">'.$item['brand_address_name'].'</td>';
+			$output .= '<td align="left">'.$item['kecamatan'].'</td>';
 			$output .= '<td align="left">'.$item['ayat_pajak'].'</td>';
 			$output .= '<td align="left">'.$item['status_code'].'</td>';
 		$output .= '</tr>';
 	}
 	$output.='</table>';
-	
+
+	if($cetak_laporan == 'view_excel') {
+		echo $output;
+		exit;
+	}
 	return $output;
 }
 
@@ -231,6 +240,16 @@ function dateToString($date){
 	$pieces = explode('-', $date);
 	
 	return $pieces[2].' '.$monthname[(int)$pieces[1]].' '.$pieces[0];
+}
+
+
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
 }
 
 ?>
