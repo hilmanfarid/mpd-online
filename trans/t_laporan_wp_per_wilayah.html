@@ -15,13 +15,15 @@
                 var params = "?cetak_laporan=view_html";
                 params += "&kode_wilayah="+document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
                 params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
+				params += "&p_account_status_id="+document.getElementById("t_laporan_piutang_pajakp_account_status_id").value;
                 params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
                                 location.href = "t_laporan_wp_per_wilayah.php"+params;
                 }
-		function printLaporanExcel(){
+                function printLaporanExcel(){
                 var params = "?cetak_laporan=view_excel";
                 params += "&kode_wilayah="+document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
                 params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
+				params += "&p_account_status_id="+document.getElementById("t_laporan_piutang_pajakp_account_status_id").value;
                 params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
                                 location.href = "t_laporan_wp_per_wilayah.php"+params;
                 }
@@ -130,6 +132,16 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                       </select>
  &nbsp;&nbsp;<input id="t_laporan_piutang_pajak_allcetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></p>
                     </td>
+                  </tr>
+ 
+                  <tr>
+                    <td align="left">Status WP</td> 
+                    <td>
+                      <select id="t_laporan_piutang_pajakp_account_status_id" name="{p_account_status_id_Name}">
+                        <option selected value="0">Semua</option>
+                        {p_account_status_id_Options}
+                      </select>
+ </td>
                   </tr>
  
                   <tr>
