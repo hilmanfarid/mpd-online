@@ -294,10 +294,15 @@ and rownum &lt; 4
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Grid id="928" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_target_realisasi_triwulanGrid1" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="select *, f_get_realisasi(to_date('01-01-'||year_code),to_date('31-03-'||year_code)) as realisasi_triwulan_1,
-f_get_realisasi(to_date('01-04-'||year_code),to_date('30-06-'||year_code)) as realisasi_triwulan_2,
-f_get_realisasi(to_date('01-07-'||year_code),to_date('30-09-'||year_code)) as realisasi_triwulan_3,
-f_get_realisasi(to_date('01-10-'||year_code),to_date('31-12-'||year_code)) as realisasi_triwulan_4
+		<Grid id="928" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_target_realisasi_triwulanGrid1" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="select f_get_realisasi(to_date('31-03-'||year_code)) as realisasi_triwulan_1,
+case when sysdate &gt; to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,
+case when sysdate &gt; to_date('30-09-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,
+case when sysdate &gt; to_date('31-12-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,
+(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(1)) as target_triwulan_1_v2,
+(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(2)) as target_triwulan_2_v2,
+(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(3)) as target_triwulan_3_v2,
+(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(4)) as target_triwulan_4_v2,	
+*
 from p_year_period  
 where sysdate between start_date and end_date">
 			<Components>
@@ -307,25 +312,25 @@ where sysdate between start_date and end_date">
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="944" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_triwulan_1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_triwulanGrid1target_triwulan_1" fieldSource="target_triwulan_1" format="#,##0.00">
+				<Label id="944" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_triwulan_1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_triwulanGrid1target_triwulan_1" fieldSource="target_triwulan_1_v2" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="945" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_triwulan_2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_triwulanGrid1target_triwulan_2" fieldSource="target_triwulan_2" format="#,##0.00">
+				<Label id="945" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_triwulan_2" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_triwulanGrid1target_triwulan_2" fieldSource="target_triwulan_2_v2" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="946" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_triwulan_3" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_triwulanGrid1target_triwulan_3" fieldSource="target_triwulan_3" format="#,##0.00">
+				<Label id="946" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_triwulan_3" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_triwulanGrid1target_triwulan_3" fieldSource="target_triwulan_3_v2" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="947" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_triwulan_4" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_triwulanGrid1target_triwulan_4" fieldSource="target_triwulan_4" format="#,##0.00">
+				<Label id="947" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_triwulan_4" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_triwulanGrid1target_triwulan_4" fieldSource="target_triwulan_4_v2" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -581,271 +586,271 @@ where sysdate between start_date and end_date">
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="998" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_hiburan" format="#,##0.00">
+				<Label id="998" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_hiburan" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="999" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_parkir" format="#,##0.00">
+				<Label id="999" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_parkir" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1000" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_ppj" format="#,##0.00">
+				<Label id="1000" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_ppj" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1001" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_bphtb" format="#,##0.00">
+				<Label id="1001" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_bphtb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1002" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_pbb" format="#,##0.00">
+				<Label id="1002" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_pbb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1003" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_reklame" format="#,##0.00">
+				<Label id="1003" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_reklame" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1004" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_pat" format="#,##0.00">
+				<Label id="1004" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_pat" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1005" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_denda" format="#,##0.00">
+				<Label id="1005" fieldSourceType="DBColumn" dataType="Float" html="False" name="target_amount_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1target_amount_denda" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1006" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_resto" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_resto" format="#,##0.00">
+				<Label id="1006" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_resto" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_resto" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1007" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_hiburan" format="#,##0.00">
+				<Label id="1007" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_hiburan" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1008" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_parkir" format="#,##0.00">
+				<Label id="1008" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_parkir" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1009" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_ppj" format="#,##0.00">
+				<Label id="1009" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_ppj" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1010" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_bphtb" format="#,##0.00">
+				<Label id="1010" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_bphtb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1011" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_pbb" format="#,##0.00">
+				<Label id="1011" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_pbb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1012" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_reklame" format="#,##0.00">
+				<Label id="1012" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_reklame" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1013" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_pat" format="#,##0.00">
+				<Label id="1013" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_pat" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1014" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_denda" format="#,##0.00">
+				<Label id="1014" fieldSourceType="DBColumn" dataType="Float" html="False" name="realisasi_amt_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1realisasi_amt_denda" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1015" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_resto" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_resto" format="#,##0.00">
+				<Label id="1015" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_resto" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_resto" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1016" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_hiburan" format="#,##0.00">
+				<Label id="1016" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_hiburan" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1017" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_parkir" format="#,##0.00">
+				<Label id="1017" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_parkir" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1018" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_ppj" format="#,##0.00">
+				<Label id="1018" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_ppj" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1020" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_pbb" format="#,##0.00">
+				<Label id="1020" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_pbb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1021" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_reklame" format="#,##0.00">
+				<Label id="1021" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_reklame" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1022" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_pat" format="#,##0.00">
+				<Label id="1022" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_pat" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1023" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_denda" format="#,##0.00">
+				<Label id="1023" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_denda" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1024" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_resto" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_resto" format="#,##0.00">
+				<Label id="1024" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_resto" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_resto" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1025" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_hiburan" format="#,##0.00">
+				<Label id="1025" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_hiburan" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1026" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_parkir" format="#,##0.00">
+				<Label id="1026" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_parkir" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1027" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_ppj" format="#,##0.00">
+				<Label id="1027" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_ppj" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1028" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_bphtb" format="#,##0.00">
+				<Label id="1028" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_bphtb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1029" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_pbb" format="#,##0.00">
+				<Label id="1029" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_pbb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1030" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_reklame" format="#,##0.00">
+				<Label id="1030" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_reklame" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1031" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_pat" format="#,##0.00">
+				<Label id="1031" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_pat" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1032" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_denda" format="#,##0.00">
+				<Label id="1032" fieldSourceType="DBColumn" dataType="Float" html="False" name="selisih_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1selisih_denda" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1033" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_resto" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_resto" format="#,##0.00">
+				<Label id="1033" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_resto" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_resto" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1034" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_hiburan" format="#,##0.00">
+				<Label id="1034" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_hiburan" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_hiburan" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1035" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_parkir" format="#,##0.00">
+				<Label id="1035" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_parkir" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_parkir" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1036" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_ppj" format="#,##0.00">
+				<Label id="1036" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_ppj" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_ppj" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1037" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_bphtb" format="#,##0.00">
+				<Label id="1037" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_bphtb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1038" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_pbb" format="#,##0.00">
+				<Label id="1038" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_pbb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_pbb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1039" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_reklame" format="#,##0.00">
+				<Label id="1039" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_reklame" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_reklame" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1040" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_pat" format="#,##0.00">
+				<Label id="1040" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_pat" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_pat" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1041" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_denda" format="#,##0.00">
+				<Label id="1041" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_selisih_denda" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_selisih_denda" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1019" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_bphtb" format="#,##0.00">
+				<Label id="1019" fieldSourceType="DBColumn" dataType="Float" html="False" name="percentage_bphtb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_target_realisasi_jenisGrid1percentage_bphtb" format="#,##0.00">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
