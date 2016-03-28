@@ -997,20 +997,30 @@ class clst_target_realisasi_triwulanGrid1DataSource extends clsDBConnSIKP {  //t
     }
 //End Prepare Method
 
-//Open Method @928-7574E296
+//Open Method @928-0E95E404
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (select *, f_get_realisasi(to_date('01-01-'||year_code),to_date('31-03-'||year_code)) as realisasi_triwulan_1,\n" .
-        "f_get_realisasi(to_date('01-04-'||year_code),to_date('30-06-'||year_code)) as realisasi_triwulan_2,\n" .
-        "f_get_realisasi(to_date('01-07-'||year_code),to_date('30-09-'||year_code)) as realisasi_triwulan_3,\n" .
-        "f_get_realisasi(to_date('01-10-'||year_code),to_date('31-12-'||year_code)) as realisasi_triwulan_4\n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (select f_get_realisasi(to_date('31-03-'||year_code)) as realisasi_triwulan_1,\n" .
+        "case when sysdate > to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,\n" .
+        "case when sysdate > to_date('30-09-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,\n" .
+        "case when sysdate > to_date('31-12-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,\n" .
+        "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(1)) as target_triwulan_1_v2,\n" .
+        "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(2)) as target_triwulan_2_v2,\n" .
+        "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(3)) as target_triwulan_3_v2,\n" .
+        "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(4)) as target_triwulan_4_v2,	\n" .
+        "*\n" .
         "from p_year_period  \n" .
         "where sysdate between start_date and end_date) cnt";
-        $this->SQL = "select *, f_get_realisasi(to_date('01-01-'||year_code),to_date('31-03-'||year_code)) as realisasi_triwulan_1,\n" .
-        "f_get_realisasi(to_date('01-04-'||year_code),to_date('30-06-'||year_code)) as realisasi_triwulan_2,\n" .
-        "f_get_realisasi(to_date('01-07-'||year_code),to_date('30-09-'||year_code)) as realisasi_triwulan_3,\n" .
-        "f_get_realisasi(to_date('01-10-'||year_code),to_date('31-12-'||year_code)) as realisasi_triwulan_4\n" .
+        $this->SQL = "select f_get_realisasi(to_date('31-03-'||year_code)) as realisasi_triwulan_1,\n" .
+        "case when sysdate > to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,\n" .
+        "case when sysdate > to_date('30-09-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,\n" .
+        "case when sysdate > to_date('31-12-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,\n" .
+        "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(1)) as target_triwulan_1_v2,\n" .
+        "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(2)) as target_triwulan_2_v2,\n" .
+        "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(3)) as target_triwulan_3_v2,\n" .
+        "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(4)) as target_triwulan_4_v2,	\n" .
+        "*\n" .
         "from p_year_period  \n" .
         "where sysdate between start_date and end_date";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
@@ -1023,13 +1033,13 @@ class clst_target_realisasi_triwulanGrid1DataSource extends clsDBConnSIKP {  //t
     }
 //End Open Method
 
-//SetValues Method @928-BCDBE926
+//SetValues Method @928-1C698A37
     function SetValues()
     {
-        $this->target_triwulan_1->SetDBValue(trim($this->f("target_triwulan_1")));
-        $this->target_triwulan_2->SetDBValue(trim($this->f("target_triwulan_2")));
-        $this->target_triwulan_3->SetDBValue(trim($this->f("target_triwulan_3")));
-        $this->target_triwulan_4->SetDBValue(trim($this->f("target_triwulan_4")));
+        $this->target_triwulan_1->SetDBValue(trim($this->f("target_triwulan_1_v2")));
+        $this->target_triwulan_2->SetDBValue(trim($this->f("target_triwulan_2_v2")));
+        $this->target_triwulan_3->SetDBValue(trim($this->f("target_triwulan_3_v2")));
+        $this->target_triwulan_4->SetDBValue(trim($this->f("target_triwulan_4_v2")));
         $this->realisasi_triwulan_1->SetDBValue(trim($this->f("realisasi_triwulan_1")));
         $this->realisasi_triwulan_2->SetDBValue(trim($this->f("realisasi_triwulan_2")));
         $this->realisasi_triwulan_3->SetDBValue(trim($this->f("realisasi_triwulan_3")));
