@@ -140,86 +140,86 @@ function t_target_realisasi_jenisGrid_BeforeShowRow(& $sender)
 	 
 	 global $t_target_realisasi_jenisGrid1;
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 1){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_hotel->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(1) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(1)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_hotel->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_hotel->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_hotel->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 2){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_resto->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(2) as target";
+	 	$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(2)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_resto->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_resto->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_resto->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 3){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_hiburan->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(3) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(3)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_hiburan->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_hiburan->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_hiburan->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 4){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_parkir->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(4) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(4)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_parkir->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_parkir->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_parkir->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 5){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_ppj->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(5) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(5)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_ppj->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_ppj->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_ppj->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 6){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_bphtb->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(6) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(6)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_bphtb->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_bphtb->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_bphtb->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 8){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_pbb->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(8) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(8)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_pbb->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_pbb->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_pbb->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 9){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_reklame->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(9) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(9)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_reklame->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_reklame->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_reklame->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 10){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_pat->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(10) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(10)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_pat->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_pat->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_pat->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 	 }
 
 
 	 if ($t_target_realisasi_jenisGrid->p_vat_type_id->GetValue() == 999){
-	 	$t_target_realisasi_jenisGrid1->realisasi_amt_denda->SetValue($realisasi);
-
-		$query = "select f_get_target_triwulan_berjalan_per_jenis_pajak(999) as target";
+		$query = "select o_target,o_target_sebelumnya from 
+				 f_get_target_triwulan_berjalan_per_jenis_pajak_v2(999)";
 		$dbConn->query($query);
 		$dbConn->next_record();
-		$t_target_realisasi_jenisGrid1->target_amount_denda->SetValue($dbConn->f("target"));
+		$t_target_realisasi_jenisGrid1->target_amount_denda->SetValue($dbConn->f("o_target"));
+		$t_target_realisasi_jenisGrid1->realisasi_amt_denda->SetValue($realisasi-$dbConn->f("o_target_sebelumnya"));
 
 		//jumlah target
 		$t_target_realisasi_jenisGrid1->target_amount_sum->SetValue(
