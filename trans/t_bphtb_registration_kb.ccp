@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="ISPParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration_kb" customUpdate="t_bphtb_registration" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list_kb.ccp" dataSource="select a.*,
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_bphtb_registrationForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_bphtb_registrationForm" activeCollection="ISPParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="Table" parameterTypeListName="ParameterTypeList" customUpdateType="Table" customInsertType="Procedure" customDelete="t_bphtb_registration" customInsert="f_bphtb_registration_kb_dengan_denda" customUpdate="t_bphtb_registration" activeTableType="t_bphtb_registration" returnPage="t_bphtb_registration_list_kb.ccp" dataSource="select a.*,
 b.region_name as wp_kota,
 c.region_name as wp_kecamatan,
 d.region_name as wp_kelurahan,
@@ -8,7 +8,8 @@ e.region_name as object_region,
 f.region_name as object_kecamatan,
 g.region_name as object_kelurahan,
 h.description as doc_name,
-(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old
+(a.bphtb_amt - a.bphtb_discount) AS bphtb_amt_final_old,
+a.bphtb_amt_final as bphtb_amt_final2
 
 from t_bphtb_registration as a 
 left join p_region as b
@@ -27,7 +28,7 @@ left join p_bphtb_legal_doc_type as h
 	on a.p_bphtb_legal_doc_type_id = h.p_bphtb_legal_doc_type_id
 left join t_bphtb_registration as i
 	on a.registration_no_ref = i.registration_no
-where a.t_bphtb_registration_id = {t_bphtb_registration_id}">
+where a.t_bphtb_registration_id = {t_bphtb_registration_id}" connection="ConnSIKP">
 			<Components>
 				<Button id="95" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" operation="Insert" wizardCaption="Add" PathID="t_bphtb_registrationFormButton_Insert" removeParameters="FLAG;t_bphtb_registration_id;">
 					<Components/>
@@ -282,7 +283,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="939" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final_old" PathID="t_bphtb_registrationFormbphtb_amt_final_old" format="#,##0.00" fieldSource="bphtb_amt_final_old">
+				<TextBox id="939" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final_old" PathID="t_bphtb_registrationFormbphtb_amt_final_old" format="#,##0" fieldSource="bphtb_amt_final_old">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -300,7 +301,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="942" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="market_price" PathID="t_bphtb_registrationFormmarket_price" fieldSource="market_price" format="#,##0.00">
+				<TextBox id="942" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="market_price" PathID="t_bphtb_registrationFormmarket_price" fieldSource="market_price" format="#,##0">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -337,6 +338,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<SPParameters/>
 					<SQLParameters/>
 					<JoinTables/>
+
 					<JoinLinks/>
 					<Fields/>
 					<Attributes/>
@@ -390,7 +392,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="1014" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="prev_payment_amount" PathID="t_bphtb_registrationFormprev_payment_amount" fieldSource="prev_payment_amount" format="#,##0.00">
+				<TextBox id="1014" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="prev_payment_amount" PathID="t_bphtb_registrationFormprev_payment_amount" fieldSource="prev_payment_amount" format="#,##0">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -408,13 +410,43 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<TextBox id="1030" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final" PathID="t_bphtb_registrationFormbphtb_amt_final" fieldSource="bphtb_amt_final" format="#,##0.00" required="True">
+				<TextBox id="1030" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final" PathID="t_bphtb_registrationFormbphtb_amt_final" fieldSource="bphtb_amt_final_without_penalty" format="#,##0" required="True" caption="Total Kekurangan Pembayaran">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<ListBox id="1071" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="month_quantity" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormmonth_quantity" connection="ConnSIKP" dataSource="0;0;1;1;2;2;3;3;4;4;5;5;6;6;7;7;8;8;9;9;10;10;11;11;12;12;13;13;14;14;15;15;16;16;17;17;18;18;19;19;20;20;21;21;22;22;23;23;24;24" _valueOfList="24" _nameOfList="24" fieldSource="month_quantity">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="1072"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+<TextBox id="1073" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="penalty_amt" PathID="t_bphtb_registrationFormpenalty_amt" format="#,##0" fieldSource="penalty_amt">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="1074" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="bphtb_amt_final2" PathID="t_bphtb_registrationFormbphtb_amt_final2" fieldSource="bphtb_amt_final" format="#,##0" required="True" caption="Total Kurang Bayar + Denda">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -490,7 +522,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key971" parameterName="npop_kp" parameterSource="npop_kp" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" scale="10" precision="6" defaultValue="0"/>
 				<SPParameter id="Key972" parameterName="bphtb_amt" parameterSource="bphtb_amt" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" scale="10" precision="6" defaultValue="0"/>
 				<SPParameter id="Key973" parameterName="bphtb_discount" parameterSource="bphtb_discount" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" scale="10" precision="6" defaultValue="0"/>
-				<SPParameter id="Key1032" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="bphtb_amt_final" scale="10" precision="6" parameterSource="bphtb_amt_final"/>
+				<SPParameter id="Key1032" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="bphtb_amt_final" scale="10" precision="6" parameterSource="bphtb_amt_final2"/>
 				<SPParameter id="Key975" parameterName="description" parameterSource="description" dataType="Char" parameterType="Control" dataSize="255" direction="Input" scale="10" precision="6" defaultValue="&quot;-&quot;"/>
 				<SPParameter id="Key976" parameterName="i_user" parameterSource="UserLogin" dataType="Char" parameterType="Session" dataSize="255" direction="Input" scale="10" precision="6"/>
 				<SPParameter id="Key1007" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="jenis_harga_bphtb" scale="0" precision="0" parameterSource="jenis_harga_bphtb"/>
@@ -498,7 +530,10 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SPParameter id="Key1013" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="add_disc_percent" scale="0" precision="0" parameterSource="add_disc_percent"/>
 				<SPParameter id="Key1070" dataType="Text" parameterType="Control" dataSize="0" direction="Input" parameterName="registration_no_ref" scale="0" precision="0" parameterSource="registration_no_ref"/>
 				<SPParameter id="Key1071" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="prev_payment_amount" scale="10" precision="6" parameterSource="prev_payment_amount"/>
-				<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
+				<SPParameter id="Key1076" dataType="Int" parameterType="Control" dataSize="0" direction="Input" parameterName="month_quantity" scale="0" precision="0" parameterSource="month_quantity"/>
+<SPParameter id="Key1077" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="penalty_amt" scale="0" precision="0" parameterSource="penalty_amt"/>
+<SPParameter id="Key1078" dataType="Numeric" parameterType="Control" dataSize="0" direction="Input" parameterName="bphtb_amt_final_without_penalty" scale="0" precision="0" parameterSource="bphtb_amt_final"/>
+<SPParameter id="Key977" parameterName="o_t_bphtb_registration_id" parameterSource="o_t_bphtb_registration_id" dataType="Numeric" parameterType="URL" dataSize="0" direction="InputOutput" scale="10" precision="6"/>
 				<SPParameter id="Key978" parameterName="o_mess" parameterSource="o_mess" dataType="Char" parameterType="URL" dataSize="255" direction="InputOutput" scale="10" precision="6"/>
 			</ISPParameters>
 			<ISQLParameters>
