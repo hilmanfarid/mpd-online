@@ -70,7 +70,7 @@ ORDER BY p_account_status_id" fieldSource="period_type">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
