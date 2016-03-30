@@ -16,6 +16,12 @@ function Page_BeforeShow(& $sender)
     global $t_laporan_wp_per_wilayah; //Compatibility
 //End Page_BeforeShow
 
+//Custom Code @10-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
 	$cetak_laporan = CCGetFromGet('cetak_laporan');
 	global $Label1;
 	 
@@ -43,7 +49,7 @@ function Page_BeforeShow(& $sender)
 function view_html($param_arr) {
 	$cetak_laporan = CCGetFromGet('cetak_laporan');
 	if($cetak_laporan == 'view_excel') {
-		startExcel("laporan_denda.xls");
+		startExcel("laporan_wp_per_wilayah.xls");
 	}
 
 	$output = '';	
