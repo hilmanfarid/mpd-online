@@ -69,6 +69,20 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
+				<Button id="565" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch1" PathID="t_rep_bppsSearchButton_DoSearch1">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+<Button id="566" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch2" PathID="t_rep_bppsSearchButton_DoSearch2">
+					<Components/>
+					<Events>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
 </Components>
 			<Events/>
 			<TableParameters/>
@@ -91,7 +105,13 @@
 			<Attributes/>
 			<Features/>
 		</Record>
-	</Components>
+		<Label id="567" fieldSourceType="DBColumn" dataType="Text" html="True" name="Label1" PathID="Label1">
+			<Components/>
+			<Events/>
+			<Attributes/>
+			<Features/>
+		</Label>
+</Components>
 	<CodeFiles>
 		<CodeFile id="Events" language="PHPTemplates" name="t_rep_bpps_events.php" forShow="False" comment="//" codePage="windows-1252"/>
 		<CodeFile id="Code" language="PHPTemplates" name="t_rep_bpps.php" forShow="True" url="t_rep_bpps.php" comment="//" codePage="windows-1252"/>
@@ -106,5 +126,10 @@
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="568"/>
+</Actions>
+</Event>
+</Events>
 </Page>
