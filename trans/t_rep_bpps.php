@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-8CB6D198
+//Class_Initialize Event @3-B8278685
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -86,6 +86,8 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             list($this->kode_bank->BoundColumn, $this->kode_bank->TextColumn, $this->kode_bank->DBFormat) = array("", "", "");
             $this->kode_bank->DataSource->SQL = "select code,bank_name from p_bank";
             $this->kode_bank->DataSource->Order = "";
+            $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -147,7 +149,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-6E799684
+//Operation Method @3-802B7BBC
     function Operation()
     {
         if(!$this->Visible)
@@ -164,12 +166,24 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->Button_DoSearch1->Pressed) {
+                $this->PressedButton = "Button_DoSearch1";
+            } else if($this->Button_DoSearch2->Pressed) {
+                $this->PressedButton = "Button_DoSearch2";
             }
         }
         $Redirect = "t_rep_bpps.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch1") {
+                if(!CCGetEvent($this->Button_DoSearch1->CCSEvents, "OnClick", $this->Button_DoSearch1)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "Button_DoSearch2") {
+                if(!CCGetEvent($this->Button_DoSearch2->CCSEvents, "OnClick", $this->Button_DoSearch2)) {
                     $Redirect = "";
                 }
             }
@@ -179,7 +193,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-CB3E5D9C
+//Show Method @3-18B15F2C
     function Show()
     {
         global $CCSUseAmp;
@@ -239,6 +253,8 @@ function GetPrimaryKey($keyName)
         $this->Button_DoSearch->Show();
         $this->ListBox1->Show();
         $this->kode_bank->Show();
+        $this->Button_DoSearch1->Show();
+        $this->Button_DoSearch2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
@@ -278,7 +294,7 @@ include_once("./t_rep_bpps_events.php");
 $CCSEventResult = CCGetEvent($CCSEvents, "BeforeInitialize", $MainPage);
 //End Before Initialize
 
-//Initialize Objects @1-9736B044
+//Initialize Objects @1-944D12DC
 $DBConnSIKP = new clsDBConnSIKP();
 $MainPage->Connections["ConnSIKP"] = & $DBConnSIKP;
 $Attributes = new clsAttributes("page:");
@@ -286,7 +302,10 @@ $MainPage->Attributes = & $Attributes;
 
 // Controls
 $t_rep_bppsSearch = & new clsRecordt_rep_bppsSearch("", $MainPage);
+$Label1 = & new clsControl(ccsLabel, "Label1", "Label1", ccsText, "", CCGetRequestParam("Label1", ccsGet, NULL), $MainPage);
+$Label1->HTML = true;
 $MainPage->t_rep_bppsSearch = & $t_rep_bppsSearch;
+$MainPage->Label1 = & $Label1;
 
 BindEvents();
 
@@ -325,8 +344,9 @@ if($Redirect)
 }
 //End Go to destination page
 
-//Show Page @1-9F33A748
+//Show Page @1-9A57D572
 $t_rep_bppsSearch->Show();
+$Label1->Show();
 $Tpl->block_path = "";
 $Tpl->Parse($BlockToParse, false);
 if (!isset($main_block)) $main_block = $Tpl->GetVar($BlockToParse);
