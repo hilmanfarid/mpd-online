@@ -76,10 +76,22 @@ function startExcel($filename = "laporan.xls") {
 }
 
 function GetCetakRekapHTML($param_arr) {
+	$dbConn	= new clsDBConnSIKP();
+	$query="select p_settlement_type_id, code
+			from p_settlement_type
+			where p_settlement_type_id = ".$param_arr['ketetapan'];
+	//echo $query;exit;
+	$data = array();
+	$dbConn->query($query);
+	$dbConn->next_record();
+	$ketetapan = $dbConn->Record;
+	$dbConn->close();
+
 	$doAction = CCGetFromGet('doAction');
 	if($doAction == 'cetak_rekap_excel') {
-		startExcel("laporan_ketetapan_vs_realisasi.xls");
+		startExcel("laporan_ketetapan_vs_realisasi_".$param_arr['start_date']."_s.d._".$param_arr['end_date']."_".str_replace(' ','_',$ketetapan["code"]).".xls");
 	}
+
 	$output = '';
 	
 	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0">
@@ -96,6 +108,7 @@ function GetCetakRekapHTML($param_arr) {
 	
 	//$output .= '<h2>JENIS PAJAK : '.$param_arr['vat_code'].' </h2>';
 	$output .= '<h2>PERIODE PENETAPAN : '.$param_arr['start_date'].' s.d. '.$param_arr['end_date'].'</h2>';
+	$output .= '<h2>JENIS KETETAPAN : '.$ketetapan["code"].'</h2>';
 	$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
                 <tr >';
