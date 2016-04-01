@@ -120,7 +120,7 @@ function GetCetakHTML($param_arr) {
 		where p_settlement_type_id = ".$param_arr['ketetapan']." 
 		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 			and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
-		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)";
+		";
 	if ($param_arr['p_vat_type_id']!=''){
 		$query.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
 				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
@@ -213,7 +213,7 @@ function CetakExcel($param_arr) {
 		where p_settlement_type_id = ".$param_arr['ketetapan']." 
 		and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
 			and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
-		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)";
+		";
 	if ($param_arr['p_vat_type_id']!=''){
 		$query.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
 				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
@@ -425,26 +425,54 @@ function GetCetakRekapHTML($param_arr) {
 	for ($i = 0; $i < count($data); $i++) {
 
 		$dbConn2	= new clsDBConnSIKP();
-		$query2="select sum(y.payment_vat_amount) as realisasi, 
-						sum(a.total_vat_amount) as ketetapan
-			from t_vat_setllement a 
-			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
-			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
-			where p_settlement_type_id = ".$param_arr['ketetapan']." 
-			and a.settlement_date between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
-				and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
-			and a.settlement_date between to_date('".$data[$i]['start_date']."','yyyy-mm-dd') 
-				and (to_date('".$data[$i]['end_date']."','yyyy-mm-dd')+1)
-			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)";
-		if ($param_arr['p_vat_type_id']!=''){
-			$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
-					from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
-		}
-		if ($param_arr['status_bayar']==2){
-			$query2.="and receipt_no is not null";
-		}
-		if ($param_arr['status_bayar']==3){
-			$query2.="and receipt_no is null";
+		if ($param_arr['ketetapan'] == 7)
+		{
+			$query2="select SUM (round(a.penalty_amount)) AS realisasi, 
+							count(a.t_payment_receipt_id) as jumlah_sspd_realisasi,
+							SUM (round(b.penalty_amt)) AS ketetapan,
+							count(e.t_vat_setllement_id) as jumlah_sspd_ketetapan
+				from t_vat_setllement e
+				left join t_payment_receipt a  on a.t_vat_setllement_id = e.t_vat_setllement_id
+				left join t_vat_penalty b on b.t_vat_setllement_id = e.t_vat_setllement_id
+				left join p_vat_type_dtl c on c.p_vat_type_dtl_id = e.p_vat_type_dtl_id
+				left join p_vat_type d on c.p_vat_type_id = d.p_vat_type_id
+				where p_settlement_type_id = ".$param_arr['ketetapan']." 
+				and trunc(settlement_date) between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
+					and (to_date('".$param_arr['end_date']."','yyyy-mm-dd'))
+				and b.penalty_amt is not null";
+			if ($param_arr['p_vat_type_id']!=''){
+				$query2.="and e.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
+						from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
+			}
+			if ($param_arr['status_bayar']==2){
+				$query2.="and receipt_no is not null";
+			}
+			if ($param_arr['status_bayar']==3){
+				$query2.="and receipt_no is null";
+			}
+			//echo $query2;exit;
+		}else{
+
+			$dbConn2	= new clsDBConnSIKP();
+			$query2="select sum(y.payment_vat_amount) as realisasi,
+							sum(a.total_vat_amount) as ketetapan
+				from t_vat_setllement a 
+				left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
+				left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
+				where p_settlement_type_id = ".$param_arr['ketetapan']." 
+				and trunc(settlement_date) between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
+					and (to_date('".$param_arr['end_date']."','yyyy-mm-dd'))
+				";
+			if ($param_arr['p_vat_type_id']!=''){
+				$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
+						from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
+			}
+			if ($param_arr['status_bayar']==2){
+				$query2.="and receipt_no is not null";
+			}
+			if ($param_arr['status_bayar']==3){
+				$query2.="and receipt_no is null";
+			}
 		}
 
 		//echo $query2;exit;
@@ -543,7 +571,7 @@ function CetakRekapExcel($param_arr) {
 				and (to_date('".$param_arr['end_date']."','yyyy-mm-dd')+1)
 			and a.settlement_date between to_date('".$data[$i]['start_date']."','yyyy-mm-dd') 
 				and (to_date('".$data[$i]['end_date']."','yyyy-mm-dd')+1)
-			and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)";
+			";
 		if ($param_arr['p_vat_type_id']!=''){
 			$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
 					from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
