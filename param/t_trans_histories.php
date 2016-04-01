@@ -397,7 +397,7 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
     }
 //End Prepare Method
 
-//Open Method @2-99C28A83
+//Open Method @2-E38F0F93
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -423,9 +423,9 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "						 to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
         "						 to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
         "						 e.code as type_code,\n" .
-        "						 nvl((case when A.debt_vat_amt <= 0 then null end)::numeric,a.total_vat_amount) as debt_vat_amt,\n" .
+        "						 nvl((case when A.debt_vat_amt <= 0 then null else A.debt_vat_amt end)::numeric,a.total_vat_amount) as debt_vat_amt,\n" .
         "						 nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
-        "						 nvl((case when A.debt_vat_amt <= 0 then null end)::numeric,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
+        "						 nvl((case when A.debt_vat_amt <= 0 then null else A.debt_vat_amt end)::numeric,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
         "						 nvl(a.db_increasing_charge,0) as kenaikan,\n" .
         "						 nvl(a.db_interest_charge,0) as kenaikan1,\n" .
         "						 a.p_vat_type_dtl_id,\n" .
@@ -477,9 +477,9 @@ class clsHistoryGridDataSource extends clsDBConnSIKP {  //HistoryGridDataSource 
         "						 to_char(a.start_period,'DD-MON-YYYY') as periode_awal_laporan,\n" .
         "						 to_char(a.end_period,'DD-MON-YYYY') as periode_akhir_laporan,\n" .
         "						 e.code as type_code,\n" .
-        "						 nvl((case when A.debt_vat_amt <= 0 then null end)::numeric,a.total_vat_amount) as debt_vat_amt,\n" .
+        "						 nvl((case when A.debt_vat_amt <= 0 then null else A.debt_vat_amt end)::numeric,a.total_vat_amount) as debt_vat_amt,\n" .
         "						 nvl(a.db_increasing_charge,0) as db_increasing_charge,\n" .
-        "						 nvl((case when A.debt_vat_amt <= 0 then null end)::numeric,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
+        "						 nvl((case when A.debt_vat_amt <= 0 then null else A.debt_vat_amt end)::numeric,a.total_vat_amount) + nvl(a.db_increasing_charge,0) +nvl(a.db_interest_charge,0) + nvl(a.total_penalty_amount,0) as total_hrs_bayar,\n" .
         "						 nvl(a.db_increasing_charge,0) as kenaikan,\n" .
         "						 nvl(a.db_interest_charge,0) as kenaikan1,\n" .
         "						 a.p_vat_type_dtl_id,\n" .
