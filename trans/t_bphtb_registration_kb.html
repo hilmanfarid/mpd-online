@@ -18,6 +18,13 @@ function printLaporan(){
                 var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
         window.open("../report/cetak_rep_bphtb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
 }
+
+function printLaporan(pejabat){
+        var params =document.getElementById('t_bphtb_registrationFormt_bphtb_registration_id').value;
+                params = params +"&pejabat="+pejabat;
+        window.open("../report/cetak_rep_bphtb_kb.php?t_bphtb_registration_id="+params, "_blank", "toolbar=0,location=0,menubar=0");
+}
+
 function setNormalValue(){
     jQuery(".numeric-field").each(function() {
         var thisVal=jQuery(this).val();
@@ -98,25 +105,12 @@ function t_bphtb_registrationFormadd_disc_percent_OnChange()
 }
 //End Close t_bphtb_registrationFormadd_disc_percent_OnChange
 
-//t_bphtb_registrationFormmonth_quantity_OnChange @1071-4F5311B6
-function t_bphtb_registrationFormmonth_quantity_OnChange()
-{
-    var result = true;
-//End t_bphtb_registrationFormmonth_quantity_OnChange
-
-//Custom Code @1072-2A29BDB7
-    // -------------------------
-    // Write your own code here.
-	var bphtb_amt_final = document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value.replace(/,/g ,'');
-    document.getElementById('t_bphtb_registrationFormpenalty_amt').value = ReplaceNumberWithCommas(this.value*bphtb_amt_final*2/100);
-        hitungTotalBayar(); 
-    // -------------------------
-//End Custom Code
-
-//Close t_bphtb_registrationFormmonth_quantity_OnChange @1071-BC33A33A
-    return result;
-}
-//End Close t_bphtb_registrationFormmonth_quantity_OnChange
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL          var bphtb_amt_final = document.getElementById('t_bphtb_registrationFormbphtb_amt_final').value.replace(/,/g ,'');
+//DEL      document.getElementById('t_bphtb_registrationFormpenalty_amt').value = ReplaceNumberWithCommas(this.value*bphtb_amt_final*2/100);
+//DEL          hitungTotalBayar(); 
+//DEL      // -------------------------
 
 //t_bphtb_registrationForm_OnSubmit @94-5816823C
 function t_bphtb_registrationForm_OnSubmit()
@@ -179,13 +173,12 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(send
 }
 //End PTAutoFill1 Loading
 
-//bind_events @1-495A51C8
+//bind_events @1-C71F104E
 function bind_events() {
     addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start);
     addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange);
     addEventHandler("t_bphtb_registrationFormButton_Delete", "click", t_bphtb_registrationFormButton_Delete_OnClick);
     addEventHandler("t_bphtb_registrationFormadd_disc_percent", "change", t_bphtb_registrationFormadd_disc_percent_OnChange);
-    addEventHandler("t_bphtb_registrationFormmonth_quantity", "change", t_bphtb_registrationFormmonth_quantity_OnChange);
     addEventHandler("t_bphtb_registrationForm", "submit", t_bphtb_registrationForm_OnSubmit);
     addEventHandler("t_bphtb_registrationFormButton_Cancel", "click", t_bphtb_registrationFormButton_Cancel_OnClick);
 }
@@ -229,7 +222,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -491,30 +484,9 @@ jQuery(document).ready(function()
                     <td colspan="6">Rp. <input style="TEXT-ALIGN: right; BACKGROUND: #ffd345" id="t_bphtb_registrationFormbphtb_amt_final" class="numeric-field" value="{bphtb_amt_final}" name="{bphtb_amt_final_Name}"></td>
                   </tr>
  
-                  <tr class="Controls">
-                    <td class="th">&nbsp;</td> 
-                    <td class="th" colspan="2">Denda</td> 
-                    <td colspan="6">&nbsp;2 % *&nbsp; 
-                      <select id="t_bphtb_registrationFormmonth_quantity" name="{month_quantity_Name}">
-                        {month_quantity_Options}
-                      </select>
- Bulan * Total Kekurangan Pembayaran</td>
-                  </tr>
- 
-                  <tr class="Controls">
-                    <td class="th">&nbsp;</td> 
-                    <td class="th" colspan="2">&nbsp;</td> 
-                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right; BACKGROUND: #84ffa3" id="t_bphtb_registrationFormpenalty_amt" class="numeric-field" value="{penalty_amt}" readonly name="{penalty_amt_Name}"></td>
-                  </tr>
- 
-                  <tr class="Controls">
-                    <td class="th">&nbsp;</td> 
-                    <td class="th" colspan="2"><span style="COLOR: red; FONT-WEIGHT: bold">Total Kurang Bayar + Denda</span></td> 
-                    <td colspan="6">Rp. <input style="TEXT-ALIGN: right; BACKGROUND: #ffd345" id="t_bphtb_registrationFormbphtb_amt_final2" class="numeric-field" value="{bphtb_amt_final2}" name="{bphtb_amt_final2_Name}"></td>
-                  </tr>
- 
                   <tr class="Bottom">
                     <td colspan="9" align="right">&nbsp; 
+                      <!-- BEGIN Button Button4 --><input id="t_bphtb_registrationFormButton4" class="btn_tambah" onclick="printLaporan(2);" value="CETAK NOTA VERIFIKASI (INDRA WISNU)" alt="Button2" type="button" name="{Button_Name}"><!-- END Button Button4 -->&nbsp; 
                       <!-- BEGIN Button Button3 --><input id="t_bphtb_registrationFormButton3" class="btn_tambah" onclick="printLaporan();" value="CETAK NOTA VERIFIKASI" alt="Button2" type="submit" name="{Button_Name}"><!-- END Button Button3 -->
                       <!-- BEGIN Button Button_Insert --><input id="t_bphtb_registrationFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
                       <!-- BEGIN Button Button_Update --><input id="t_bphtb_registrationFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
