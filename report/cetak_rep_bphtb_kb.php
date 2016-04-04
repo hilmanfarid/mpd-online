@@ -278,11 +278,11 @@ class FormCetak extends FPDF {
 		if($data["npop_kp"]==0){
 			$this->barisBaruStr($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", "NIHIL");
 		}else{
-			$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
+			$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final_old"]);
 		}
 		
-		$this->barisBaru2($lbody1, "Nilai Pajak Yang Sudah Dibayar", "", "Rp", $data["bphtb_amt_final_old"]);
-		$this->barisBaru2($lbody1, "Total Kekurangan Pembayaran", "", "Rp", $data["prev_payment_amount"]);
+		$this->barisBaru2($lbody1, "Nilai Pajak Yang Sudah Dibayar", "", "Rp", $data["prev_payment_amount"]);
+		$this->barisBaru2($lbody1, "Total Kekurangan Pembayaran", "", "Rp", $data["bphtb_amt_final"]);
 		
 		$this->newLine();
 				
