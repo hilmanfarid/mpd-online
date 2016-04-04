@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-FC970E03
+//Class_Initialize Event @94-94A54F27
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -157,12 +157,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->t_bphtb_registration_id_old = & new clsControl(ccsHidden, "t_bphtb_registration_id_old", "test", ccsFloat, "", CCGetRequestParam("t_bphtb_registration_id_old", $Method, NULL), $this);
             $this->bphtb_amt_final = & new clsControl(ccsTextBox, "bphtb_amt_final", "Total Kekurangan Pembayaran", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("bphtb_amt_final", $Method, NULL), $this);
             $this->bphtb_amt_final->Required = true;
-            $this->month_quantity = & new clsControl(ccsListBox, "month_quantity", "month_quantity", ccsText, "", CCGetRequestParam("month_quantity", $Method, NULL), $this);
-            $this->month_quantity->DSType = dsListOfValues;
-            $this->month_quantity->Values = array(array("0", "0"), array("1", "1"), array("2", "2"), array("3", "3"), array("4", "4"), array("5", "5"), array("6", "6"), array("7", "7"), array("8", "8"), array("9", "9"), array("10", "10"), array("11", "11"), array("12", "12"), array("13", "13"), array("14", "14"), array("15", "15"), array("16", "16"), array("17", "17"), array("18", "18"), array("19", "19"), array("20", "20"), array("21", "21"), array("22", "22"), array("23", "23"), array("24", "24"));
-            $this->penalty_amt = & new clsControl(ccsTextBox, "penalty_amt", "penalty_amt", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("penalty_amt", $Method, NULL), $this);
-            $this->bphtb_amt_final2 = & new clsControl(ccsTextBox, "bphtb_amt_final2", "Total Kurang Bayar + Denda", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("bphtb_amt_final2", $Method, NULL), $this);
-            $this->bphtb_amt_final2->Required = true;
+            $this->Button4 = & new clsButton("Button4", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -206,7 +201,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-77795C10
+//Validate Method @94-F1DCE03D
     function Validate()
     {
         global $CCSLocales;
@@ -261,9 +256,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->registration_no_ref->Validate() && $Validation);
         $Validation = ($this->t_bphtb_registration_id_old->Validate() && $Validation);
         $Validation = ($this->bphtb_amt_final->Validate() && $Validation);
-        $Validation = ($this->month_quantity->Validate() && $Validation);
-        $Validation = ($this->penalty_amt->Validate() && $Validation);
-        $Validation = ($this->bphtb_amt_final2->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -314,14 +306,11 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->registration_no_ref->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_bphtb_registration_id_old->Errors->Count() == 0);
         $Validation =  $Validation && ($this->bphtb_amt_final->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->month_quantity->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->penalty_amt->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->bphtb_amt_final2->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-C8C5B0E9
+//CheckErrors Method @94-9F3F6DCE
     function CheckErrors()
     {
         $errors = false;
@@ -374,9 +363,6 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->registration_no_ref->Errors->Count());
         $errors = ($errors || $this->t_bphtb_registration_id_old->Errors->Count());
         $errors = ($errors || $this->bphtb_amt_final->Errors->Count());
-        $errors = ($errors || $this->month_quantity->Errors->Count());
-        $errors = ($errors || $this->penalty_amt->Errors->Count());
-        $errors = ($errors || $this->bphtb_amt_final2->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -398,7 +384,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @94-29D11BD0
+//Operation Method @94-50206248
     function Operation()
     {
         if(!$this->Visible)
@@ -425,6 +411,8 @@ function GetPrimaryKey($keyName)
                 $this->PressedButton = "Button_Cancel";
             } else if($this->Button3->Pressed) {
                 $this->PressedButton = "Button3";
+            } else if($this->Button4->Pressed) {
+                $this->PressedButton = "Button4";
             }
         }
         $Redirect = "t_bphtb_registration_list_kb.php" . "?" . CCGetQueryString("QueryString", array("ccsForm"));
@@ -453,6 +441,10 @@ function GetPrimaryKey($keyName)
                 if(!CCGetEvent($this->Button3->CCSEvents, "OnClick", $this->Button3)) {
                     $Redirect = "";
                 }
+            } else if($this->PressedButton == "Button4") {
+                if(!CCGetEvent($this->Button4->CCSEvents, "OnClick", $this->Button4)) {
+                    $Redirect = "";
+                }
             }
         } else {
             $Redirect = "";
@@ -462,7 +454,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @94-34D48EE6
+//InsertRow Method @94-1E27D500
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -497,16 +489,13 @@ function GetPrimaryKey($keyName)
         $this->DataSource->npop_kp->SetValue($this->npop_kp->GetValue(true));
         $this->DataSource->bphtb_amt->SetValue($this->bphtb_amt->GetValue(true));
         $this->DataSource->bphtb_discount->SetValue($this->bphtb_discount->GetValue(true));
-        $this->DataSource->bphtb_amt_final2->SetValue($this->bphtb_amt_final2->GetValue(true));
+        $this->DataSource->bphtb_amt_final->SetValue($this->bphtb_amt_final->GetValue(true));
         $this->DataSource->description->SetValue($this->description->GetValue(true));
         $this->DataSource->jenis_harga_bphtb->SetValue($this->jenis_harga_bphtb->GetValue(true));
         $this->DataSource->bphtb_legal_doc_description->SetValue($this->bphtb_legal_doc_description->GetValue(true));
         $this->DataSource->add_disc_percent->SetValue($this->add_disc_percent->GetValue(true));
         $this->DataSource->registration_no_ref->SetValue($this->registration_no_ref->GetValue(true));
         $this->DataSource->prev_payment_amount->SetValue($this->prev_payment_amount->GetValue(true));
-        $this->DataSource->month_quantity->SetValue($this->month_quantity->GetValue(true));
-        $this->DataSource->penalty_amt->SetValue($this->penalty_amt->GetValue(true));
-        $this->DataSource->bphtb_amt_final->SetValue($this->bphtb_amt_final->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
@@ -570,7 +559,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-A7AAF5B8
+//Show Method @94-2241C810
     function Show()
     {
         global $CCSUseAmp;
@@ -587,7 +576,6 @@ function GetPrimaryKey($keyName)
         $this->p_bphtb_legal_doc_type_id->Prepare();
         $this->jenis_harga_bphtb->Prepare();
         $this->add_disc_percent->Prepare();
-        $this->month_quantity->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -648,9 +636,6 @@ function GetPrimaryKey($keyName)
                     $this->registration_no_ref->SetValue($this->DataSource->registration_no_ref->GetValue());
                     $this->t_bphtb_registration_id_old->SetValue($this->DataSource->t_bphtb_registration_id_old->GetValue());
                     $this->bphtb_amt_final->SetValue($this->DataSource->bphtb_amt_final->GetValue());
-                    $this->month_quantity->SetValue($this->DataSource->month_quantity->GetValue());
-                    $this->penalty_amt->SetValue($this->DataSource->penalty_amt->GetValue());
-                    $this->bphtb_amt_final2->SetValue($this->DataSource->bphtb_amt_final2->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -711,9 +696,6 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->registration_no_ref->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_bphtb_registration_id_old->Errors->ToString());
             $Error = ComposeStrings($Error, $this->bphtb_amt_final->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->month_quantity->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->penalty_amt->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->bphtb_amt_final2->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -789,9 +771,7 @@ function GetPrimaryKey($keyName)
         $this->registration_no_ref->Show();
         $this->t_bphtb_registration_id_old->Show();
         $this->bphtb_amt_final->Show();
-        $this->month_quantity->Show();
-        $this->penalty_amt->Show();
-        $this->bphtb_amt_final2->Show();
+        $this->Button4->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -802,7 +782,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-173FE28A
+//DataSource Variables @94-F9F1BE20
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -867,12 +847,9 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $registration_no_ref;
     var $t_bphtb_registration_id_old;
     var $bphtb_amt_final;
-    var $month_quantity;
-    var $penalty_amt;
-    var $bphtb_amt_final2;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-898346D7
+//DataSourceClass_Initialize Event @94-FF9BFF2B
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -976,12 +953,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->bphtb_amt_final = new clsField("bphtb_amt_final", ccsFloat, "");
         
-        $this->month_quantity = new clsField("month_quantity", ccsText, "");
-        
-        $this->penalty_amt = new clsField("penalty_amt", ccsFloat, "");
-        
-        $this->bphtb_amt_final2 = new clsField("bphtb_amt_final2", ccsFloat, "");
-        
 
         $this->UpdateFields["updated_by"] = array("Name" => "updated_by", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
         $this->UpdateFields["updated_date"] = array("Name" => "updated_date", "Value" => "", "DataType" => ccsText, "OmitIfEmpty" => 1);
@@ -1074,7 +1045,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-5781753D
+//SetValues Method @94-B100300D
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1123,13 +1094,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->registration_no_ref->SetDBValue($this->f("registration_no_ref"));
         $this->t_bphtb_registration_id_old->SetDBValue(trim($this->f("t_bphtb_registration_id_old")));
         $this->bphtb_amt_final->SetDBValue(trim($this->f("bphtb_amt_final_without_penalty")));
-        $this->month_quantity->SetDBValue($this->f("month_quantity"));
-        $this->penalty_amt->SetDBValue(trim($this->f("penalty_amt")));
-        $this->bphtb_amt_final2->SetDBValue(trim($this->f("bphtb_amt_final")));
     }
 //End SetValues Method
 
-//Insert Method @94-788B2EF0
+//Insert Method @94-49053386
     function Insert()
     {
         global $CCSLocales;
@@ -1165,7 +1133,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["npop_kp"] = new clsSQLParameter("ctrlnpop_kp", ccsFloat, "", "", $this->npop_kp->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["bphtb_amt"] = new clsSQLParameter("ctrlbphtb_amt", ccsFloat, "", "", $this->bphtb_amt->GetValue(true), 0, false, $this->ErrorBlock);
         $this->cp["bphtb_discount"] = new clsSQLParameter("ctrlbphtb_discount", ccsFloat, "", "", $this->bphtb_discount->GetValue(true), 0, false, $this->ErrorBlock);
-        $this->cp["bphtb_amt_final"] = new clsSQLParameter("ctrlbphtb_amt_final2", ccsFloat, "", "", $this->bphtb_amt_final2->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["bphtb_amt_final"] = new clsSQLParameter("ctrlbphtb_amt_final", ccsFloat, "", "", $this->bphtb_amt_final->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["description"] = new clsSQLParameter("ctrldescription", ccsText, "", "", $this->description->GetValue(true), "-", false, $this->ErrorBlock);
         $this->cp["i_user"] = new clsSQLParameter("sesUserLogin", ccsText, "", "", CCGetSession("UserLogin", NULL), "", false, $this->ErrorBlock);
         $this->cp["jenis_harga_bphtb"] = new clsSQLParameter("ctrljenis_harga_bphtb", ccsFloat, "", "", $this->jenis_harga_bphtb->GetValue(true), "", false, $this->ErrorBlock);
@@ -1173,9 +1141,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->cp["add_disc_percent"] = new clsSQLParameter("ctrladd_disc_percent", ccsFloat, "", "", $this->add_disc_percent->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["registration_no_ref"] = new clsSQLParameter("ctrlregistration_no_ref", ccsText, "", "", $this->registration_no_ref->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["prev_payment_amount"] = new clsSQLParameter("ctrlprev_payment_amount", ccsFloat, "", "", $this->prev_payment_amount->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["month_quantity"] = new clsSQLParameter("ctrlmonth_quantity", ccsInteger, "", "", $this->month_quantity->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["penalty_amt"] = new clsSQLParameter("ctrlpenalty_amt", ccsFloat, "", "", $this->penalty_amt->GetValue(true), "", false, $this->ErrorBlock);
-        $this->cp["bphtb_amt_final_without_penalty"] = new clsSQLParameter("ctrlbphtb_amt_final", ccsFloat, "", "", $this->bphtb_amt_final->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["o_t_bphtb_registration_id"] = new clsSQLParameter("urlo_t_bphtb_registration_id", ccsFloat, "", "", CCGetFromGet("o_t_bphtb_registration_id", NULL), "", false, $this->ErrorBlock);
         $this->cp["o_mess"] = new clsSQLParameter("urlo_mess", ccsText, "", "", CCGetFromGet("o_mess", NULL), "", false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
@@ -1300,7 +1265,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         if (!strlen($this->cp["bphtb_discount"]->GetText()) and !is_bool($this->cp["bphtb_discount"]->GetValue(true))) 
             $this->cp["bphtb_discount"]->SetText(0);
         if (!is_null($this->cp["bphtb_amt_final"]->GetValue()) and !strlen($this->cp["bphtb_amt_final"]->GetText()) and !is_bool($this->cp["bphtb_amt_final"]->GetValue())) 
-            $this->cp["bphtb_amt_final"]->SetValue($this->bphtb_amt_final2->GetValue(true));
+            $this->cp["bphtb_amt_final"]->SetValue($this->bphtb_amt_final->GetValue(true));
         if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
             $this->cp["description"]->SetValue($this->description->GetValue(true));
         if (!strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue(true))) 
@@ -1317,17 +1282,11 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
             $this->cp["registration_no_ref"]->SetValue($this->registration_no_ref->GetValue(true));
         if (!is_null($this->cp["prev_payment_amount"]->GetValue()) and !strlen($this->cp["prev_payment_amount"]->GetText()) and !is_bool($this->cp["prev_payment_amount"]->GetValue())) 
             $this->cp["prev_payment_amount"]->SetValue($this->prev_payment_amount->GetValue(true));
-        if (!is_null($this->cp["month_quantity"]->GetValue()) and !strlen($this->cp["month_quantity"]->GetText()) and !is_bool($this->cp["month_quantity"]->GetValue())) 
-            $this->cp["month_quantity"]->SetValue($this->month_quantity->GetValue(true));
-        if (!is_null($this->cp["penalty_amt"]->GetValue()) and !strlen($this->cp["penalty_amt"]->GetText()) and !is_bool($this->cp["penalty_amt"]->GetValue())) 
-            $this->cp["penalty_amt"]->SetValue($this->penalty_amt->GetValue(true));
-        if (!is_null($this->cp["bphtb_amt_final_without_penalty"]->GetValue()) and !strlen($this->cp["bphtb_amt_final_without_penalty"]->GetText()) and !is_bool($this->cp["bphtb_amt_final_without_penalty"]->GetValue())) 
-            $this->cp["bphtb_amt_final_without_penalty"]->SetValue($this->bphtb_amt_final->GetValue(true));
         if (!is_null($this->cp["o_t_bphtb_registration_id"]->GetValue()) and !strlen($this->cp["o_t_bphtb_registration_id"]->GetText()) and !is_bool($this->cp["o_t_bphtb_registration_id"]->GetValue())) 
             $this->cp["o_t_bphtb_registration_id"]->SetText(CCGetFromGet("o_t_bphtb_registration_id", NULL));
         if (!is_null($this->cp["o_mess"]->GetValue()) and !strlen($this->cp["o_mess"]->GetText()) and !is_bool($this->cp["o_mess"]->GetValue())) 
             $this->cp["o_mess"]->SetText(CCGetFromGet("o_mess", NULL));
-        $this->SQL = "SELECT f_bphtb_registration_kb_dengan_denda (" . $this->ToSQL($this->cp["wp_name"]->GetDBValue(), $this->cp["wp_name"]->DataType) . ", "
+        $this->SQL = "SELECT f_bphtb_registration_kb (" . $this->ToSQL($this->cp["wp_name"]->GetDBValue(), $this->cp["wp_name"]->DataType) . ", "
              . $this->ToSQL($this->cp["npwp"]->GetDBValue(), $this->cp["npwp"]->DataType) . ", "
              . $this->ToSQL($this->cp["wp_address_name"]->GetDBValue(), $this->cp["wp_address_name"]->DataType) . ", "
              . $this->ToSQL($this->cp["wp_rt"]->GetDBValue(), $this->cp["wp_rt"]->DataType) . ", "
@@ -1365,9 +1324,6 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
              . $this->ToSQL($this->cp["add_disc_percent"]->GetDBValue(), $this->cp["add_disc_percent"]->DataType) . ", "
              . $this->ToSQL($this->cp["registration_no_ref"]->GetDBValue(), $this->cp["registration_no_ref"]->DataType) . ", "
              . $this->ToSQL($this->cp["prev_payment_amount"]->GetDBValue(), $this->cp["prev_payment_amount"]->DataType) . ", "
-             . $this->ToSQL($this->cp["month_quantity"]->GetDBValue(), $this->cp["month_quantity"]->DataType) . ", "
-             . $this->ToSQL($this->cp["penalty_amt"]->GetDBValue(), $this->cp["penalty_amt"]->DataType) . ", "
-             . $this->ToSQL($this->cp["bphtb_amt_final_without_penalty"]->GetDBValue(), $this->cp["bphtb_amt_final_without_penalty"]->DataType) . ", "
              . $this->ToSQL($this->cp["o_t_bphtb_registration_id"]->GetDBValue(), $this->cp["o_t_bphtb_registration_id"]->DataType) . ", "
              . $this->ToSQL($this->cp["o_mess"]->GetDBValue(), $this->cp["o_mess"]->DataType) . ");";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
