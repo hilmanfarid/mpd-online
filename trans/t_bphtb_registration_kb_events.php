@@ -1,10 +1,11 @@
 <?php
-//BindEvents Method @1-C31E5BAD
+//BindEvents Method @1-FC88A646
 function BindEvents()
 {
     global $t_bphtb_registrationForm;
     global $CCSEvents;
     $t_bphtb_registrationForm->Button3->CCSEvents["OnClick"] = "t_bphtb_registrationForm_Button3_OnClick";
+    $t_bphtb_registrationForm->Button4->CCSEvents["OnClick"] = "t_bphtb_registrationForm_Button4_OnClick";
     $t_bphtb_registrationForm->CCSEvents["BeforeSelect"] = "t_bphtb_registrationForm_BeforeSelect";
     $t_bphtb_registrationForm->CCSEvents["BeforeInsert"] = "t_bphtb_registrationForm_BeforeInsert";
     $t_bphtb_registrationForm->ds->CCSEvents["AfterExecuteDelete"] = "t_bphtb_registrationForm_ds_AfterExecuteDelete";
@@ -34,6 +35,26 @@ function t_bphtb_registrationForm_Button3_OnClick(& $sender)
     return $t_bphtb_registrationForm_Button3_OnClick;
 }
 //End Close t_bphtb_registrationForm_Button3_OnClick
+
+//t_bphtb_registrationForm_Button4_OnClick @1071-A549D8E9
+function t_bphtb_registrationForm_Button4_OnClick(& $sender)
+{
+    $t_bphtb_registrationForm_Button4_OnClick = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_bphtb_registrationForm; //Compatibility
+//End t_bphtb_registrationForm_Button4_OnClick
+
+//Custom Code @1072-2A29BDB7
+// -------------------------
+    // Write your own code here.
+// -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationForm_Button4_OnClick @1071-369DD06C
+    return $t_bphtb_registrationForm_Button4_OnClick;
+}
+//End Close t_bphtb_registrationForm_Button4_OnClick
 
 //t_bphtb_registrationForm_BeforeSelect @94-50B4A263
 function t_bphtb_registrationForm_BeforeSelect(& $sender)
