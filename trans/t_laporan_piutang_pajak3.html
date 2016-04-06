@@ -21,10 +21,10 @@
         }
 
                 function printLaporanHTML(){
-                        if( document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value == "" || 
-                                document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
-                                document.getElementById("t_laporan_piutang_pajak2status_bayar").value == "") {
-                                alert("Ada Filter yang Harus Diisi");
+                    if( document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value == "" || 
+                            document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
+                            document.getElementById("t_laporan_piutang_pajak2status_bayar").value == "") {
+                            alert("Ada Filter yang Harus Diisi");
                      }else {
                         var params = "?cetak_laporan=view_html";
                         params += "&year_code="+document.getElementById("t_laporan_piutang_pajak2year_code").value;
@@ -33,17 +33,18 @@
                         params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value;
                         params += "&status_bayar="+document.getElementById("t_laporan_piutang_pajak2status_bayar").value;
                         params += "&tgl_penerimaan="+document.getElementById("t_laporan_piutang_pajak2tgl_penerimaan").value;
-                                                location.href = "t_laporan_piutang_pajak3.php"+params;
-                                        }
+                        params += "&tgl_penerimaan_akhir="+document.getElementById("t_laporan_piutang_pajak2tgl_penerimaan_akhir").value;
+                        location.href = "t_laporan_piutang_pajak3.php"+params;
+                    }
                 }
 
-                                function printLaporanExcel(){
-                        if( document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value == "" || 
+				function printLaporanExcel(){
+                     if( document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value == "" || 
                                 document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
                                 document.getElementById("t_laporan_piutang_pajak2status_bayar").value == "") {
                                 alert("Ada Filter yang Harus Diisi");
                      }else {
-					 	
+                                                
                         var params = "?cetak_laporan=view_excel";
                         params += "&year_code="+document.getElementById("t_laporan_piutang_pajak2year_code").value;
                         params += "&vat_code="+document.getElementById("t_laporan_piutang_pajak2vat_code").value;
@@ -51,8 +52,9 @@
                         params += "&p_vat_type_id="+document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value;
                         params += "&status_bayar="+document.getElementById("t_laporan_piutang_pajak2status_bayar").value;
                         params += "&tgl_penerimaan="+document.getElementById("t_laporan_piutang_pajak2tgl_penerimaan").value;
-                                                location.href = "t_laporan_piutang_pajak3.php"+params;
-                                        }
+                        params += "&tgl_penerimaan_akhir="+document.getElementById("t_laporan_piutang_pajak2tgl_penerimaan_akhir").value;
+                        location.href = "t_laporan_piutang_pajak3.php"+params;
+                    }
                 }
                 
                 function viewFormModifikasi(t_piutang_pajak_penetapan_final_id) {
@@ -111,13 +113,19 @@ padding-right:4px;
 //DEL          }
 //DEL      // -------------------------
 
-//Date Picker Object Definitions @1-C14072CD
+//Date Picker Object Definitions @1-38519112
 
 var t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan = new Object(); 
-t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.format           = "dd-mmm-yy";
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.format           = "dd-mm-yy";
 t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
 t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.relativePathPart = "../";
 t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+var t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan1 = new Object(); 
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan1.format           = "dd-mm-yy";
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan1.style            = "Styles/sikp/Style.css";
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan1.relativePathPart = "../";
+t_laporan_piutang_pajak2_DatePicker_tgl_penerimaan1.themeVersion = "3.0";
 
 //End Date Picker Object Definitions
 
@@ -131,7 +139,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -158,19 +166,17 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Tahun 
-                      <td class="search-field">&nbsp; <input id="t_laporan_piutang_pajak2year_code" class="ControlsRQ" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajak2p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_laporan_piutang_pajak2cetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></td>
+                      <td class="search-field"><input id="t_laporan_piutang_pajak2year_code" class="ControlsRQ" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajak2p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_laporan_piutang_pajak2cetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></td>
                     </tr>
  
                     <tr>
                       <td align="left">Jenis&nbsp;Pajak&nbsp;</td> 
-                      <td>
-                        <p>&nbsp; <input id="t_laporan_piutang_pajak2vat_code" class="ControlsRQ" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}">&nbsp;<img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajak2p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></p>
-                      </td>
+                      <td><input id="t_laporan_piutang_pajak2vat_code" class="ControlsRQ" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}">&nbsp;<img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajak2p_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td>
                     </tr>
  
                     <tr>
                       <td align="left">Status Bayar</td> 
-                      <td>&nbsp; 
+                      <td>
                         <select id="t_laporan_piutang_pajak2status_bayar" class="ControlsRQ" name="{status_bayar_Name}">
                           {status_bayar_Options}
                         </select>
@@ -179,8 +185,9 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
  
                     <tr>
                       <td align="left">Tanggal Penerimaan</td> 
-                      <td>&nbsp; <input style="WIDTH: 95px; HEIGHT: 20px" id="t_laporan_piutang_pajak2tgl_penerimaan" value="{tgl_penerimaan}" maxlength="32" size="11" name="{tgl_penerimaan_Name}">
-                        <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan"><img id="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan --></td>
+                      <td><input style="WIDTH: 95px; HEIGHT: 20px" id="t_laporan_piutang_pajak2tgl_penerimaan" value="{tgl_penerimaan}" maxlength="32" size="11" name="{tgl_penerimaan_Name}">
+                        <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan"><img id="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp; s.d.&nbsp;&nbsp;<input style="WIDTH: 95px; HEIGHT: 20px" id="t_laporan_piutang_pajak2tgl_penerimaan_akhir" value="{tgl_penerimaan_akhir}" maxlength="32" size="11" name="{tgl_penerimaan_akhir_Name}">
+                        <!-- BEGIN DatePicker DatePicker_tgl_penerimaan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan1"><img id="t_laporan_piutang_pajak2DatePicker_tgl_penerimaan1_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan1 --></td>
                     </tr>
  
                     <tr>
