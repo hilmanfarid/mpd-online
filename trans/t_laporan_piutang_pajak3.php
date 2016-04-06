@@ -45,7 +45,7 @@ class clsRecordt_laporan_piutang_pajak2 { //t_laporan_piutang_pajak2 Class @2-48
     // Class variables
 //End Variables
 
-//Class_Initialize Event @2-7BECD7B9
+//Class_Initialize Event @2-13BBD669
     function clsRecordt_laporan_piutang_pajak2($RelativePath, & $Parent)
     {
 
@@ -82,14 +82,16 @@ class clsRecordt_laporan_piutang_pajak2 { //t_laporan_piutang_pajak2 Class @2-48
             $this->status_bayar->DSType = dsListOfValues;
             $this->status_bayar->Values = array(array("0", "SEMUA"), array("1", "SUDAH BAYAR"), array("2", "BELUM BAYAR"));
             $this->status_bayar->Required = true;
-            $this->tgl_penerimaan = & new clsControl(ccsTextBox, "tgl_penerimaan", "tgl_penerimaan", ccsDate, array("dd", "-", "mmm", "-", "yy"), CCGetRequestParam("tgl_penerimaan", $Method, NULL), $this);
+            $this->tgl_penerimaan = & new clsControl(ccsTextBox, "tgl_penerimaan", "tgl_penerimaan", ccsDate, array("dd", "-", "mm", "-", "yy"), CCGetRequestParam("tgl_penerimaan", $Method, NULL), $this);
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_laporan_piutang_pajak2", "tgl_penerimaan", $this);
             $this->Button3 = & new clsButton("Button3", $Method, $this);
+            $this->tgl_penerimaan_akhir = & new clsControl(ccsTextBox, "tgl_penerimaan_akhir", "tgl_penerimaan_akhir", ccsDate, array("dd", "-", "mm", "-", "yy"), CCGetRequestParam("tgl_penerimaan_akhir", $Method, NULL), $this);
+            $this->DatePicker_tgl_penerimaan1 = & new clsDatePicker("DatePicker_tgl_penerimaan1", "t_laporan_piutang_pajak2", "tgl_penerimaan_akhir", $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @2-6AFCBC08
+//Validate Method @2-9DEAB557
     function Validate()
     {
         global $CCSLocales;
@@ -102,6 +104,7 @@ class clsRecordt_laporan_piutang_pajak2 { //t_laporan_piutang_pajak2 Class @2-48
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $Validation = ($this->status_bayar->Validate() && $Validation);
         $Validation = ($this->tgl_penerimaan->Validate() && $Validation);
+        $Validation = ($this->tgl_penerimaan_akhir->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
@@ -110,11 +113,12 @@ class clsRecordt_laporan_piutang_pajak2 { //t_laporan_piutang_pajak2 Class @2-48
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->status_bayar->Errors->Count() == 0);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->tgl_penerimaan_akhir->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @2-45F08611
+//CheckErrors Method @2-C85B6A16
     function CheckErrors()
     {
         $errors = false;
@@ -126,6 +130,8 @@ class clsRecordt_laporan_piutang_pajak2 { //t_laporan_piutang_pajak2 Class @2-48
         $errors = ($errors || $this->status_bayar->Errors->Count());
         $errors = ($errors || $this->tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
+        $errors = ($errors || $this->tgl_penerimaan_akhir->Errors->Count());
+        $errors = ($errors || $this->DatePicker_tgl_penerimaan1->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -190,7 +196,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @2-B690E934
+//Show Method @2-60C41306
     function Show()
     {
         global $CCSUseAmp;
@@ -223,6 +229,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->status_bayar->Errors->ToString());
             $Error = ComposeStrings($Error, $this->tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->tgl_penerimaan_akhir->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -251,6 +259,8 @@ function GetPrimaryKey($keyName)
         $this->tgl_penerimaan->Show();
         $this->DatePicker_tgl_penerimaan->Show();
         $this->Button3->Show();
+        $this->tgl_penerimaan_akhir->Show();
+        $this->DatePicker_tgl_penerimaan1->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
