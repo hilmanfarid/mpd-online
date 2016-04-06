@@ -295,9 +295,9 @@ and rownum &lt; 4
 			<Features/>
 		</Grid>
 		<Grid id="928" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_target_realisasi_triwulanGrid1" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="select f_get_realisasi(to_date('31-03-'||year_code)) as realisasi_triwulan_1,
-case when sysdate &gt; to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,
-case when sysdate &gt; to_date('30-09-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,
-case when sysdate &gt; to_date('31-12-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,
+case when sysdate &gt; to_date('31-03-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,
+case when sysdate &gt; to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,
+case when sysdate &gt; to_date('30-09-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,
 (SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(1)) as target_triwulan_1_v2,
 (SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(2)) as target_triwulan_2_v2,
 (SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(3)) as target_triwulan_3_v2,
