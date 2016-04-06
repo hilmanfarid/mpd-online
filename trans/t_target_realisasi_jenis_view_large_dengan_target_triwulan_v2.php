@@ -997,14 +997,14 @@ class clst_target_realisasi_triwulanGrid1DataSource extends clsDBConnSIKP {  //t
     }
 //End Prepare Method
 
-//Open Method @928-0E95E404
+//Open Method @928-B8215E08
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select f_get_realisasi(to_date('31-03-'||year_code)) as realisasi_triwulan_1,\n" .
-        "case when sysdate > to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,\n" .
-        "case when sysdate > to_date('30-09-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,\n" .
-        "case when sysdate > to_date('31-12-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,\n" .
+        "case when sysdate > to_date('31-03-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,\n" .
+        "case when sysdate > to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,\n" .
+        "case when sysdate > to_date('30-09-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,\n" .
         "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(1)) as target_triwulan_1_v2,\n" .
         "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(2)) as target_triwulan_2_v2,\n" .
         "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(3)) as target_triwulan_3_v2,\n" .
@@ -1013,9 +1013,9 @@ class clst_target_realisasi_triwulanGrid1DataSource extends clsDBConnSIKP {  //t
         "from p_year_period  \n" .
         "where sysdate between start_date and end_date) cnt";
         $this->SQL = "select f_get_realisasi(to_date('31-03-'||year_code)) as realisasi_triwulan_1,\n" .
-        "case when sysdate > to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,\n" .
-        "case when sysdate > to_date('30-09-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,\n" .
-        "case when sysdate > to_date('31-12-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,\n" .
+        "case when sysdate > to_date('31-03-'||year_code) then f_get_realisasi(to_date('30-06-'||year_code)) else 0 end as realisasi_triwulan_2,\n" .
+        "case when sysdate > to_date('30-06-'||year_code) then f_get_realisasi(to_date('30-09-'||year_code)) else 0 end as realisasi_triwulan_3,\n" .
+        "case when sysdate > to_date('30-09-'||year_code) then f_get_realisasi(to_date('31-12-'||year_code)) else 0 end as realisasi_triwulan_4,\n" .
         "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(1)) as target_triwulan_1_v2,\n" .
         "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(2)) as target_triwulan_2_v2,\n" .
         "(SELECT o_target FROM f_get_target_triwulan_tahun_berjalan(3)) as target_triwulan_3_v2,\n" .
