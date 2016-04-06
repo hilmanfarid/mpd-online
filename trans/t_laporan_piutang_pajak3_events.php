@@ -33,6 +33,7 @@ function Page_BeforeShow(& $sender)
 	$param_arr['vat_code'] = $t_laporan_piutang_pajak2->vat_code->GetValue();
 	$param_arr['status_bayar'] = $t_laporan_piutang_pajak2->status_bayar->GetValue();
 	$param_arr['tgl_penerimaan'] = CCGetFromGet('tgl_penerimaan');
+	$param_arr['tgl_penerimaan_akhir'] = CCGetFromGet('tgl_penerimaan_akhir');
 
 	$t_laporan_piutang_pajak2->p_year_period_id->SetValue($param_arr['year_period_id']);
 	$t_laporan_piutang_pajak2->year_code->SetValue($param_arr['year_code']);
@@ -44,7 +45,7 @@ function Page_BeforeShow(& $sender)
 		$Label1->SetText(view_html($param_arr));
 	}
 	if($cetak_laporan == 'view_excel') {		
-		$Label1->SetText(CetakExcel($param_arr));
+		view_html($param_arr);
 	}
 	/*else if($t_laporan_piutang_pajak2->cetak_laporan->GetValue()=='T'){
 		$param_arr=array();
@@ -64,7 +65,10 @@ function Page_BeforeShow(& $sender)
 //End Close Page_BeforeShow
 
 function view_html($param_arr) {
-	
+	$cetak_laporan = CCGetFromGet('cetak_laporan');
+	if($cetak_laporan == 'view_excel') {		
+		startExcel("LAPORAN_PIUTANG_2002-2014.xls");
+	}
 	
 	$output = '';	
 	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -73,13 +77,13 @@ function view_html($param_arr) {
 
 	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
                 	<tr>
-                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  		<td class="HeaderLeft"></td> 
                   		<td class="th"><strong>DAFTAR PIUTANG (2002-2014)</strong></td> 
-                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  		<td class="HeaderRight"></td>
                 	</tr>
                </table>';
 	
-	$output .='<table class="report" cellspacing="0" cellpadding="3px" width="100%">
+	$output .='<table border=1 class="report" cellspacing="0" cellpadding="3px" width="100%">
                 <tr>';
 
 	$output.='<th>NO</th>';
@@ -111,22 +115,16 @@ function view_html($param_arr) {
 	if($param_arr['status_bayar']!=0){
 		if($param_arr['status_bayar']==1){
 			$query=$query." and tgl_bayar is not null";
-			$tgl_peneriamaan = CCGetFromGet('tgl_penerimaan',"");
-			if($tgl_peneriamaan!=""){
-				$query=$query." AND trunc(tgl_bayar)<=trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD')";
-			}
 		}else{
-			$tgl_peneriamaan = CCGetFromGet('tgl_penerimaan',"");
-			if($tgl_peneriamaan!=""){
-				$query=$query." and (
-						tgl_bayar is null
-					OR 
-						( trunc(tgl_bayar) > trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD'))
-					) ";
-			}else{
-				$query=$query." and tgl_bayar is null";
-			}
+			$query=$query." and tgl_bayar is null";
 		}
+	}
+	if($param_arr['tgl_penerimaan']!=""){
+		$query=$query." and trunc(tgl_bayar) >= to_date('".$param_arr['tgl_penerimaan']."') ";
+	}
+
+	if($param_arr['tgl_penerimaan_akhir']!=""){
+		$query=$query." and trunc(tgl_bayar) <= to_date('".$param_arr['tgl_penerimaan_akhir']."') ";
 	}
 	
 	$query=$query." order by wp_name,p_finance_period_id, masa_pajak";
@@ -183,148 +181,13 @@ function view_html($param_arr) {
 	
 	$output.='</td></tr></table>';
 	$output.='</table>';
+
+	if($cetak_laporan == 'view_excel') {		
+		echo $output;
+		exit;
+	}
 	
 	return $output;
-}
-function startExcel($filename = "laporan.xls") {
-    
-	header("Content-type: application/vnd.ms-excel");
-	header("Content-Disposition: attachment; filename=$filename");
-	header("Expires: 0");
-	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
-	header("Pragma: public");
-}
-
-function CetakExcel($param_arr) {
-	startExcel("laporan_history_potensi_piutang.xls");
-	
-	$output = '';	
-	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
-          		<tr>
-            		<td valign="top">';
-
-	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0">
-                	<tr>
-                  		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>DAFTAR PIUTANG (2002-2014)</strong></td> 
-                  		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
-                	</tr>
-               </table>';
-	
-	$output .='<table class="report" cellspacing="0" cellpadding="3px" width="100%">
-                <tr>';
-
-	$output.='<th>NO</th>';
-	$output.='<th>NPWPD</th>';
-	$output.='<th>NAMA MERK DAGANG</th>';
-	$output.='<th>NAMA WP</th>';
-	$output.='<th>ALAMAT MERK DAGANG</th>';
-	$output.='<th>MASA PAJAK</th>';
-	$output.='<th>TGL TAP</th>';
-	$output.='<th>NO KOHIR</th>';
-	$output.='<th>BESARNYA (Rp)</th>';
-	$output.='<th>REALISASI <br/>PIUTANG (Rp)</th>';
-	$output.='<th>TGL BAYAR</th>';
-	$output.='<th>SISA <br/>PIUTANG (Rp)</th>';
-	$output.='<th>KETERANGAN</th>';
-	//$output.='<th>TAHUN</th>';
-	//$output.='<th>MODIF</th>';
-	$output.='</tr>';
-	
-	$no=1;
-
-
-	$dbConn = new clsDBConnSIKP();
-	
-	$query="select a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.code as periode_bayar,
-					b.company_brand, b.brand_address_name || ' ' || b.brand_address_no as brand_address_name
-			from t_piutang_pajak_penetapan_final_2 as a
-			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
-			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
-			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']." and a.p_year_period_id = ".$param_arr['year_period_id'];
-	if($param_arr['status_bayar']!=0){
-		if($param_arr['status_bayar']==1){
-			$query=$query." and tgl_bayar is not null";
-			$tgl_peneriamaan = CCGetFromGet('tgl_penerimaan',"");
-			if($tgl_peneriamaan!=""){
-				$query=$query." AND trunc(tgl_bayar)<=trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD')";
-			}
-		}else{
-			$tgl_peneriamaan = CCGetFromGet('tgl_penerimaan',"");
-			if($tgl_peneriamaan!=""){
-				$query=$query." and (
-						tgl_bayar is null
-					OR 
-						( trunc(tgl_bayar) > trunc(TO_DATE('".$tgl_peneriamaan."'), 'DDD'))
-					) ";
-			}else{
-				$query=$query." and tgl_bayar is null";
-			}
-		}
-	}
-	
-	$query=$query." order by wp_name,p_finance_period_id, masa_pajak";
-	//echo $query;
-	//exit;
-	$dbConn->query($query);
-	$total_nilai = 0;
-	$total_realisasi = 0;
-	$total_sisa = 0;
-	while($dbConn->next_record()){
-		$item = array(
-						"t_piutang_pajak_penetapan_final_id" => $dbConn->f("t_piutang_pajak_penetapan_final_id"),
-						"npwd" => $dbConn->f("npwd"),
-						"wp_name" => $dbConn->f("wp_name"),
-						"company_brand" => $dbConn->f("company_brand"),
-						"brand_address_name" => $dbConn->f("brand_address_name"),
-						"masa_pajak" => $dbConn->f("masa_pajak"),
-						"periode_bayar" => $dbConn->f("periode_bayar"),
-						"tgl_tap" => $dbConn->f("tgl_tap_formated"),
-						"no_kohir" => $dbConn->f("no_kohir"),
-						"realisasi_piutang" => $dbConn->f("realisasi_piutang"),
-						"tgl_bayar" => $dbConn->f("tgl_bayar_formated"),
-						"nilai_piutang" => $dbConn->f("nilai_piutang"),
-						"sisa_piutang" => $dbConn->f("sisa_piutang"),
-						"keterangan" => $dbConn->f("keterangan"),
-						"p_year_period_id" => $dbConn->f("p_year_period_id"),
-						"year_code" => $dbConn->f("year_code")
-						);
-		
-		$output .= '<tr>';
-			$output .= '<td align="center">'.$no++.'</td>';
-			$output .= '<td align="left">'.$item['npwd'].'</td>';
-			$output .= '<td align="left">'.$item['company_brand'].'</td>';
-			$output .= '<td align="left">'.$item['wp_name'].'</td>';
-			$output .= '<td align="left">'.$item['brand_address_name'].'</td>';
-			$output .= '<td align="center">'.$item['masa_pajak'].'</td>';
-			$output .= '<td align="left">'.$item['tgl_tap'].'</td>';
-			$output .= '<td align="left">'.$item['no_kohir'].'</td>';
-			$output .= '<td align="right">'.number_format($item['nilai_piutang'],0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($item['realisasi_piutang'],0,",",".").'</td>';
-			$output .= '<td align="center">'.$item['tgl_bayar'].'</td>';
-			$output .= '<td align="right">'.number_format($item['sisa_piutang'],0,",",".").'</td>';
-			$output .= '<td align="left">'.$item['keterangan'].'</td>';
-			//$output .= '<td align="center">'.$item['year_code'].'</td>';
-			//$output .= '<td align="center"><button class="btn_tambah" onclick="viewFormModifikasi('.$item['t_piutang_pajak_penetapan_final_id'].')">Ubah Data</button></td>';
-		$output .= '</tr>';
-		$total_nilai = $total_nilai + $item['nilai_piutang'];
-		$total_realisasi = $total_realisasi + $item['realisasi_piutang'];
-		$total_sisa = $total_sisa + $item['sisa_piutang'];	
-	}
-	$output .= '<tr>';
-			$output .= '<td colspan=6 align="center">Total</td>';
-			$output .= '<td align="right">'.number_format($total_nilai,0,",",".").'</td>';
-			$output .= '<td align="right">'.number_format($total_realisasi,0,",",".").'</td>';
-			$output .= '<td align="center"></td>';
-			$output .= '<td align="right">'.number_format($total_sisa,0,",",".").'</td>';
-			$output .= '<td align="center"></td>';
-		$output .= '</tr>';
-	
-	$output.='</td></tr></table>';
-	$output.='</table>';
-
-	echo $output;
-	exit;
 }
 
 function print_laporan($param_arr){
