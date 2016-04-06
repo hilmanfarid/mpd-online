@@ -190,6 +190,15 @@ function view_html($param_arr) {
 	return $output;
 }
 
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
+
 function print_laporan($param_arr){
 	include "../include/fpdf17/mc_table.php";
 	$_BORDER = 0;
