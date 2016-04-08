@@ -26,7 +26,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -88,15 +88,19 @@ $(document).ready(function()
                 <tr class="Caption">
                   <th style="TEXT-ALIGN: center" width="10">#</th>
  
-                  <th width="10" scope="col">Nama Perusahaan</th>
+                  <th width="10" scope="col">Merk Dagang</th>
  
                   <th width="10" scope="col">&nbsp;Tanggal Transaksi</th>
  
-                  <th width="10" scope="col">Nama Service</th>
+                  <th width="10" scope="col">No.&nbsp; Faktur</th>
  
-                  <th width="10" scope="col">Service Charge</th>
+                  <th width="10" scope="col">Jumlah Faktur</th>
  
-                  <th width="10" scope="col">Service Vat</th>
+                  <th width="10" scope="col">Omset</th>
+ 
+                  <th width="10" scope="col">Pajak</th>
+ 
+                  <th width="10" scope="col">Keterangan&nbsp;</th>
                 </tr>
  
                 <!-- BEGIN Row -->
@@ -108,26 +112,32 @@ $(document).ready(function()
                   </td> 
                   <td>
                     <div align="left">
-                      {company_name}&nbsp;&nbsp;&nbsp;&nbsp; 
+                      {company_brand}&nbsp;&nbsp;&nbsp;&nbsp; 
                     </div>
                   </td> 
                   <td>{trans_date}&nbsp;</td> 
                   <td style="TEXT-ALIGN: right">
                     <div align="left">
-                      {service_desc}&nbsp;<input id="t_vat_setllement_dtlGridt_vat_setllement_dtl_id" value="{t_vat_setllement_dtl_id}" type="hidden" name="{t_vat_setllement_dtl_id_Name}">&nbsp;&nbsp;&nbsp; 
+                      {bill_no}&nbsp;- {bill_no_end}&nbsp;<input id="t_vat_setllement_dtlGridt_vat_setllement_dtl_id" value="{t_vat_setllement_dtl_id}" type="hidden" name="{t_vat_setllement_dtl_id_Name}">&nbsp;&nbsp;&nbsp; 
                     </div>
                   </td> 
-                  <td ><div align="right">{service_charge}</div></td> 
+                  <td>{bill_count}</td> 
                   <td>
                     <div align="right">
-                      {vat_charge}
+                      {service_charge} 
                     </div>
-                  </td>
+                  </td> 
+                  <td>
+                    <div align="right">
+                      {vat_charge} 
+                    </div>
+                  </td> 
+                  <td>{description}</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="6">
+                  <td colspan="8">
                     <p>data tidak ditemukan</p>
                   </td>
                 </tr>
@@ -136,17 +146,19 @@ $(document).ready(function()
                   <td colspan="4">
                     <p style="FONT-WEIGHT: bold" align="center">Total</p>
                   </td> 
+                  <td>&nbsp;</td> 
                   <td>
                     <p align="right">{jumlah_service}</p>
                   </td> 
                   <td>
                     <p align="right">{jumlah_pajak}</p>
-                  </td>
+                  </td> 
+                  <td>&nbsp;</td>
                 </tr>
  
                 <tr class="Footer">
                   <td>&nbsp;</td> 
-                  <td colspan="5">&nbsp; 
+                  <td colspan="7">&nbsp; 
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
