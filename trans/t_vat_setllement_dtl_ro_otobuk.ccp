@@ -14,7 +14,7 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="32" fieldSourceType="DBColumn" dataType="Text" html="False" name="company_name" fieldSource="company_name" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridcompany_name">
+				<Label id="32" fieldSourceType="DBColumn" dataType="Text" html="False" name="company_brand" fieldSource="company_brand" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridcompany_brand">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -26,7 +26,7 @@
 					<Attributes/>
 					<Features/>
 				</Navigator>
-				<Label id="86" fieldSourceType="DBColumn" dataType="Text" html="False" name="service_desc" fieldSource="service_desc" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridservice_desc">
+				<Label id="86" fieldSourceType="DBColumn" dataType="Text" html="False" name="bill_no" fieldSource="bill_no" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridbill_no">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -54,24 +54,42 @@
 					<Features/>
 				</Label>
 				<Label id="226" fieldSourceType="DBColumn" dataType="Float" html="False" name="jumlah_service" PathID="t_vat_setllement_dtlGridjumlah_service" format="#,##0.00">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
-<Label id="227" fieldSourceType="DBColumn" dataType="Float" html="False" name="jumlah_pajak" PathID="t_vat_setllement_dtlGridjumlah_pajak" format="#,##0.00">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Label>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="227" fieldSourceType="DBColumn" dataType="Float" html="False" name="jumlah_pajak" PathID="t_vat_setllement_dtlGridjumlah_pajak" format="#,##0.00">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+				<Label id="229" fieldSourceType="DBColumn" dataType="Text" html="False" name="bill_count" fieldSource="bill_count" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridbill_count">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="230" fieldSourceType="DBColumn" dataType="Text" html="False" name="bill_no_end" fieldSource="bill_no_end" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridbill_no_end">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="231" fieldSourceType="DBColumn" dataType="Text" html="False" name="description" fieldSource="description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGriddescription">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
 </Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
 						<Action actionName="Set Row Style" actionCategory="General" id="87" styles="Row;AltRow" name="rowStyle"/>
 						<Action actionName="Custom Code" actionCategory="General" id="228"/>
-</Actions>
+					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
