@@ -42,7 +42,7 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-4CF4B56A
+//Class_Initialize Event @2-A5DF8717
     function clsGridt_vat_setllement_dtlGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -71,13 +71,16 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
 
         $this->service_charge = & new clsControl(ccsLabel, "service_charge", "service_charge", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("service_charge", ccsGet, NULL), $this);
         $this->vat_charge = & new clsControl(ccsLabel, "vat_charge", "vat_charge", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("vat_charge", ccsGet, NULL), $this);
-        $this->company_name = & new clsControl(ccsLabel, "company_name", "company_name", ccsText, "", CCGetRequestParam("company_name", ccsGet, NULL), $this);
-        $this->service_desc = & new clsControl(ccsLabel, "service_desc", "service_desc", ccsText, "", CCGetRequestParam("service_desc", ccsGet, NULL), $this);
+        $this->company_brand = & new clsControl(ccsLabel, "company_brand", "company_brand", ccsText, "", CCGetRequestParam("company_brand", ccsGet, NULL), $this);
+        $this->bill_no = & new clsControl(ccsLabel, "bill_no", "bill_no", ccsText, "", CCGetRequestParam("bill_no", ccsGet, NULL), $this);
         $this->DLink = & new clsControl(ccsLink, "DLink", "DLink", ccsText, "", CCGetRequestParam("DLink", ccsGet, NULL), $this);
         $this->DLink->HTML = true;
         $this->DLink->Page = "t_vat_setllement_dtl_ro_otobuk.php";
         $this->t_vat_setllement_dtl_id = & new clsControl(ccsHidden, "t_vat_setllement_dtl_id", "Id", ccsFloat, "", CCGetRequestParam("t_vat_setllement_dtl_id", ccsGet, NULL), $this);
         $this->trans_date = & new clsControl(ccsLabel, "trans_date", "trans_date", ccsText, "", CCGetRequestParam("trans_date", ccsGet, NULL), $this);
+        $this->bill_count = & new clsControl(ccsLabel, "bill_count", "bill_count", ccsText, "", CCGetRequestParam("bill_count", ccsGet, NULL), $this);
+        $this->bill_no_end = & new clsControl(ccsLabel, "bill_no_end", "bill_no_end", ccsText, "", CCGetRequestParam("bill_no_end", ccsGet, NULL), $this);
+        $this->description = & new clsControl(ccsLabel, "description", "description", ccsText, "", CCGetRequestParam("description", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->jumlah_service = & new clsControl(ccsLabel, "jumlah_service", "jumlah_service", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("jumlah_service", ccsGet, NULL), $this);
@@ -96,7 +99,7 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
     }
 //End Initialize Method
 
-//Show Method @2-7555C1AB
+//Show Method @2-3F4BB45A
     function Show()
     {
         global $Tpl;
@@ -128,11 +131,14 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
         if (!$this->IsEmpty) {
             $this->ControlsVisible["service_charge"] = $this->service_charge->Visible;
             $this->ControlsVisible["vat_charge"] = $this->vat_charge->Visible;
-            $this->ControlsVisible["company_name"] = $this->company_name->Visible;
-            $this->ControlsVisible["service_desc"] = $this->service_desc->Visible;
+            $this->ControlsVisible["company_brand"] = $this->company_brand->Visible;
+            $this->ControlsVisible["bill_no"] = $this->bill_no->Visible;
             $this->ControlsVisible["DLink"] = $this->DLink->Visible;
             $this->ControlsVisible["t_vat_setllement_dtl_id"] = $this->t_vat_setllement_dtl_id->Visible;
             $this->ControlsVisible["trans_date"] = $this->trans_date->Visible;
+            $this->ControlsVisible["bill_count"] = $this->bill_count->Visible;
+            $this->ControlsVisible["bill_no_end"] = $this->bill_no_end->Visible;
+            $this->ControlsVisible["description"] = $this->description->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -142,22 +148,28 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock . "/Row";
                 $this->service_charge->SetValue($this->DataSource->service_charge->GetValue());
                 $this->vat_charge->SetValue($this->DataSource->vat_charge->GetValue());
-                $this->company_name->SetValue($this->DataSource->company_name->GetValue());
-                $this->service_desc->SetValue($this->DataSource->service_desc->GetValue());
+                $this->company_brand->SetValue($this->DataSource->company_brand->GetValue());
+                $this->bill_no->SetValue($this->DataSource->bill_no->GetValue());
                 $this->DLink->Parameters = CCGetQueryString("QueryString", array("FLAG", "ccsForm"));
                 $this->DLink->Parameters = CCAddParam($this->DLink->Parameters, "t_vat_setllement_dtl_id", $this->DataSource->f("t_vat_setllement_dtl_id"));
                 $this->t_vat_setllement_dtl_id->SetValue($this->DataSource->t_vat_setllement_dtl_id->GetValue());
                 $this->trans_date->SetValue($this->DataSource->trans_date->GetValue());
+                $this->bill_count->SetValue($this->DataSource->bill_count->GetValue());
+                $this->bill_no_end->SetValue($this->DataSource->bill_no_end->GetValue());
+                $this->description->SetValue($this->DataSource->description->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
                 $this->service_charge->Show();
                 $this->vat_charge->Show();
-                $this->company_name->Show();
-                $this->service_desc->Show();
+                $this->company_brand->Show();
+                $this->bill_no->Show();
                 $this->DLink->Show();
                 $this->t_vat_setllement_dtl_id->Show();
                 $this->trans_date->Show();
+                $this->bill_count->Show();
+                $this->bill_no_end->Show();
+                $this->description->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -192,17 +204,20 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
     }
 //End Show Method
 
-//GetErrors Method @2-CD1F661A
+//GetErrors Method @2-F0CD4CB8
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->service_charge->Errors->ToString());
         $errors = ComposeStrings($errors, $this->vat_charge->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->company_name->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->service_desc->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->company_brand->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->bill_no->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DLink->Errors->ToString());
         $errors = ComposeStrings($errors, $this->t_vat_setllement_dtl_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->trans_date->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->bill_count->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->bill_no_end->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->description->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -213,7 +228,7 @@ class clsGridt_vat_setllement_dtlGrid { //t_vat_setllement_dtlGrid class @2-DB98
 
 class clst_vat_setllement_dtlGridDataSource extends clsDBConnSIKP {  //t_vat_setllement_dtlGridDataSource Class @2-DD92A569
 
-//DataSource Variables @2-BFD3DED6
+//DataSource Variables @2-8C287E1D
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -227,13 +242,16 @@ class clst_vat_setllement_dtlGridDataSource extends clsDBConnSIKP {  //t_vat_set
     // Datasource fields
     var $service_charge;
     var $vat_charge;
-    var $company_name;
-    var $service_desc;
+    var $company_brand;
+    var $bill_no;
     var $t_vat_setllement_dtl_id;
     var $trans_date;
+    var $bill_count;
+    var $bill_no_end;
+    var $description;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-4C485FD0
+//DataSourceClass_Initialize Event @2-7A947D13
     function clst_vat_setllement_dtlGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -243,13 +261,19 @@ class clst_vat_setllement_dtlGridDataSource extends clsDBConnSIKP {  //t_vat_set
         
         $this->vat_charge = new clsField("vat_charge", ccsFloat, "");
         
-        $this->company_name = new clsField("company_name", ccsText, "");
+        $this->company_brand = new clsField("company_brand", ccsText, "");
         
-        $this->service_desc = new clsField("service_desc", ccsText, "");
+        $this->bill_no = new clsField("bill_no", ccsText, "");
         
         $this->t_vat_setllement_dtl_id = new clsField("t_vat_setllement_dtl_id", ccsFloat, "");
         
         $this->trans_date = new clsField("trans_date", ccsText, "");
+        
+        $this->bill_count = new clsField("bill_count", ccsText, "");
+        
+        $this->bill_no_end = new clsField("bill_no_end", ccsText, "");
+        
+        $this->description = new clsField("description", ccsText, "");
         
 
     }
@@ -303,15 +327,18 @@ class clst_vat_setllement_dtlGridDataSource extends clsDBConnSIKP {  //t_vat_set
     }
 //End Open Method
 
-//SetValues Method @2-6F9B4FD5
+//SetValues Method @2-57AE2CB8
     function SetValues()
     {
         $this->service_charge->SetDBValue(trim($this->f("service_charge")));
         $this->vat_charge->SetDBValue(trim($this->f("vat_charge")));
-        $this->company_name->SetDBValue($this->f("company_name"));
-        $this->service_desc->SetDBValue($this->f("service_desc"));
+        $this->company_brand->SetDBValue($this->f("company_brand"));
+        $this->bill_no->SetDBValue($this->f("bill_no"));
         $this->t_vat_setllement_dtl_id->SetDBValue(trim($this->f("t_vat_setllement_dtl_id")));
         $this->trans_date->SetDBValue($this->f("trans_date"));
+        $this->bill_count->SetDBValue($this->f("bill_count"));
+        $this->bill_no_end->SetDBValue($this->f("bill_no_end"));
+        $this->description->SetDBValue($this->f("description"));
     }
 //End SetValues Method
 
