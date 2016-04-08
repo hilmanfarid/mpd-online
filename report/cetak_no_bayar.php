@@ -114,7 +114,7 @@ $pdf->SetAligns(array("L"));
 $pdf->SetFont('helvetica', '',10);
 $pdf->ln(6);
 if ($items['p_settlement_type_id']==1){
-	$pdf->RowMultiBorderWithHeight(array("*Nomor pembayaran dan denda pajak yang tertera pada slip ini hanya berlaku pada tanggal ".$items['payment_due_day']),array(''),6);
+	$pdf->RowMultiBorderWithHeight(array("*Nomor pembayaran dan denda pajak yang tertera pada slip ini berlaku sampai dengan tanggal ".$items['payment_due_day']),array(''),6);
 }
 //$pdf->RowMultiBorderWithHeight(array("**Keterlambatan pembayaran melewati tanggal jatuh tempo akan dikenakan denda sesuai administrasi berupa bunga sebesar 2% (dua persen) setiap bulannya."),
 //array(''),6);
