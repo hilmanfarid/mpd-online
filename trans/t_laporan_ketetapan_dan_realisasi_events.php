@@ -125,15 +125,15 @@ function GetCetakHTML2($data) {
 
 
 	$output.='<th rowspan = 2>NO</th>';
-	$output.='<th rowspan = 2>NO AYAT</th>';
-	$output.='<th rowspan = 2>NAMA AYAT</th>';
+	$output.='<th rowspan = 2>KODE REKENING PENDAPATAN</th>';
+	$output.='<th rowspan = 2>URAIAN</th>';
 	//$output.='<th>NO KOHIR</th>';
-	$output.='<th rowspan = 2>MERK DAGANG</th>';
-	$output.='<th rowspan = 2>ALAMAT MERK DAGANG</th>';
+	$output.='<th rowspan = 2>OBJEK PAJAK</th>';
+	$output.='<th rowspan = 2>ALAMAT</th>';
 	$output.='<th rowspan = 2>TANGGAL PENGUKUHAN</th>';
 	$output.='<th rowspan = 2>NPWPD</th>';
 
-	$output.='<th colspan = 14 align=center>REALISASI DAN TANGGAL BAYAR</th>';
+	$output.='<th colspan = 14 align=center>REALISASI MASA PAJAK BULAN<br>TANGGAL PEMBAYARAN</th>';
 	$output.='<th rowspan = 2>KETETAPAN REALISASI</th>';
 	$output.='<th rowspan = 2>JUMLAH <BR>BULAN BAYAR</th>';
 	$output.='<th rowspan = 2>RATA-RATA KETETAPAN</th>';
