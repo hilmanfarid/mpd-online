@@ -27,7 +27,9 @@ d.region_name as wp_kelurahan,
 e.region_name as object_region,
 f.region_name as object_kecamatan,
 g.region_name as object_kelurahan,
-h.description as doc_name
+h.description as doc_name,
+case when a.creation_date <= to_date('06-01-2016','dd-mm-yyyy') then 1 
+else 0 end as status_tanggal
 
 from t_bphtb_exemption as j
 left join t_bphtb_registration as a  on j.t_bphtb_registration_id = a.t_bphtb_registration_id
@@ -111,6 +113,7 @@ while ($dbConn->next_record()) {
 	$data["nomor_berita_acara"]	    = $dbConn->f("nomor_berita_acara");
 	$data["nomor_notaris"]	    = $dbConn->f("nomor_notaris");
 	$data["tanggal_berita_acara"]	    = $dbConn->f("tanggal_berita_acara");
+	$data["status_tanggal"]	    = $dbConn->f("status_tanggal");
 }
 
 $dbConn->close();
@@ -498,7 +501,8 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "B", 8);
 		$this->SetWidths(array($ttd2,$ttd1));
 		$this->SetAligns(array("C","C"));
-		/*$this->RowMultiBorderWithHeight(
+		if ($data['status_tanggal']==1){
+			$this->RowMultiBorderWithHeight(
 			array
 			(	"",
 				"KEPALA DINAS PELAYANAN PAJAK\n\n\n\n\nDrs. PRIANA WIRASAPUTRA, MM\nPembina Utama Muda\nNIP. 19600308 198503 1 007"
@@ -507,8 +511,9 @@ class FormCetak extends FPDF {
 			(
 				"",""
 			),
-			$this->height-1);*/
-		$this->RowMultiBorderWithHeight(
+			$this->height-1);
+		}else{
+			$this->RowMultiBorderWithHeight(
 			array
 			(	"",
 				"KEPALA DINAS PELAYANAN PAJAK\n\n\n\n\nDrs. H. Ema Sumarna, M. Si\nPembina Utama Muda IV/C\nNIP. 19661207 198603 1 006"
@@ -518,6 +523,8 @@ class FormCetak extends FPDF {
 				"",""
 			),
 			$this->height-1);
+		}		
+		
 		$this->Ln();
 		$this->Ln();
 		$this->Ln();
