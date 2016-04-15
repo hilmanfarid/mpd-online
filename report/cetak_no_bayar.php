@@ -17,11 +17,12 @@ $query				= "select x.company_brand,x.brand_address_name,x.brand_address_no,to_c
 				to_char(a.settlement_date,'HH24:MI:ss') as pukul,a.npwd,wp_name,vat_code,z.code, nvl(total_vat_amount,0)as total_vat_amount,
 				nvl(total_penalty_amount,0) as total_penalty_amount,nvl(total_vat_amount,0)+nvl(total_penalty_amount,0) as total_bayar,payment_key,
 				replace(f_terbilang(to_char(nvl(total_vat_amount,0)+nvl(total_penalty_amount,0)),'IDR'),'    sen ','') as dengan_huruf ,
-				payment_due_day,p_settlement_type_id
+				payment_due_day,p_settlement_type_id, nvl(w.is_employee,'N') as is_employee, nvl(a.is_surveyed,'N') as is_surveyed
 				from sikp.t_vat_setllement a
 				left join sikp.t_cust_account x on a.t_cust_account_id =x.t_cust_account_id 
 				left join sikp.p_vat_type_dtl y on y.p_vat_type_dtl_id = a.p_vat_type_dtl_id
 				left join sikp.p_finance_period z on z.p_finance_period_id = a.p_finance_period_id
+				left join sikp.p_app_user w on w.app_user_name = a.created_by
 				where payment_key ='".$no_bayar."'";
 
 $dbConn->query($query);
@@ -42,6 +43,19 @@ while ($dbConn->next_record()) {
 	$data["payment_key"]		    = $dbConn->f("payment_key");	
 	$data["payment_due_day"]		    = $dbConn->f("payment_due_day");
 	$data["p_settlement_type_id"]		    = $dbConn->f("p_settlement_type_id");
+	$data["is_employee"]		    = $dbConn->f("is_employee");
+	$data["is_surveyed"]		    = $dbConn->f("is_surveyed");
+}
+if ($data["is_employee"]!='Y' && $data["is_surveyed"]!='Y'){
+	echo '<html>
+			<head>
+				<script language="javascript">';
+				echo 'alert("Anda diharapkan untuk mengisi survey terlebih dahulu untuk mencetak dokumen No. Bayar '.$no_bayar.'");';
+				echo 'location.href="../trans/t_survey_kepuasan_pelanggan_pelaporan_pertanyaan.php?payment_key="+"'.$no_bayar.'";';
+			echo '</script>
+			</head>
+		</html>';
+	EXIT;
 }
 $items = $data;
 
