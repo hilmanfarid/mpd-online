@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>SURVEY KEPUASAN PELANGGAN</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+
+function submit()
+{
+        payment_key =  document.getElementById("t_rep_lap_spjpSearchpayment_key").value;
+        params = "&p_survey_question_id_1="+document.getElementById("t_vat_setllementGridp_survey_question_id_1").value;
+        params += "&p_survey_question_id_2="+document.getElementById("t_vat_setllementGridp_survey_question_id_2").value;
+        params += "&p_survey_question_id_3="+document.getElementById("t_vat_setllementGridp_survey_question_id_3").value;
+        params += "&p_survey_question_id_4="+document.getElementById("t_vat_setllementGridp_survey_question_id_4").value;
+        params += "&p_survey_question_id_5="+document.getElementById("t_vat_setllementGridp_survey_question_id_5").value;
+        params += "&p_survey_question_id_6="+document.getElementById("t_vat_setllementGridp_survey_question_id_6").value;
+        params += "&p_survey_question_id_7="+document.getElementById("t_vat_setllementGridp_survey_question_id_7").value;
+        params += "&p_survey_question_id_8="+document.getElementById("t_vat_setllementGridp_survey_question_id_8").value;
+        params += "&p_survey_question_id_9="+document.getElementById("t_vat_setllementGridp_survey_question_id_9").value;
+        
+        p_survey_answer_score_id_1 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_1").value;
+        p_survey_answer_score_id_2 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_2").value;
+        p_survey_answer_score_id_3 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_3").value;
+        p_survey_answer_score_id_4 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_4").value;
+        p_survey_answer_score_id_5 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_5").value;
+        p_survey_answer_score_id_6 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_6").value;
+        p_survey_answer_score_id_7 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_7").value;
+        p_survey_answer_score_id_8 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_8").value;
+        p_survey_answer_score_id_9 = document.getElementById("t_vat_setllementGridp_survey_answer_score_id_9").value;
+
+        params += "&p_survey_answer_score_id_1="+p_survey_answer_score_id_1;
+        params += "&p_survey_answer_score_id_2="+p_survey_answer_score_id_2;
+        params += "&p_survey_answer_score_id_3="+p_survey_answer_score_id_3;
+        params += "&p_survey_answer_score_id_4="+p_survey_answer_score_id_4;
+        params += "&p_survey_answer_score_id_5="+p_survey_answer_score_id_5;
+        params += "&p_survey_answer_score_id_6="+p_survey_answer_score_id_6;
+        params += "&p_survey_answer_score_id_7="+p_survey_answer_score_id_7;
+        params += "&p_survey_answer_score_id_8="+p_survey_answer_score_id_8;
+        params += "&p_survey_answer_score_id_9="+p_survey_answer_score_id_9;
+        if(p_survey_answer_score_id_1 == "" || 
+                        p_survey_answer_score_id_2 == "" || 
+                        p_survey_answer_score_id_3 == "" || 
+                        p_survey_answer_score_id_4 == "" || 
+                        p_survey_answer_score_id_5 == "" || 
+                        p_survey_answer_score_id_6 == "" || 
+                        p_survey_answer_score_id_7 == "" || 
+                        p_survey_answer_score_id_8 == "" || 
+                        p_survey_answer_score_id_9 == "")
+                {
+                        alert("Semua pertanyaan harap dijawab");
+                        return;
+                }
+                t_vat_setllementGridButton_DoSearch2.disabled = "disabled";
+        location.href="t_survey_kepuasan_pelanggan_pelaporan_pertanyaan.php?doAction=submit&payment_key="+payment_key+params;
+}
+
+function pilih_jawaban(answer_id,input_id,question_id){
+        document.getElementById(answer_id).value = document.getElementById(input_id).value;
+        document.getElementById(question_id).value = document.getElementById("t_vat_setllementGridp_survey_question_id").value;
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_vat_setllementGridButton_DoSearch2_OnClick @592-83A8DD49
+function t_vat_setllementGridButton_DoSearch2_OnClick()
+{
+    var result = true;
+//End t_vat_setllementGridButton_DoSearch2_OnClick
+
+//Custom Code @597-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_vat_setllementGridButton_DoSearch2_OnClick @592-BC33A33A
+    return result;
+}
+//End Close t_vat_setllementGridButton_DoSearch2_OnClick
+
+//bind_events @1-D746A818
+function bind_events() {
+    addEventHandler("t_vat_setllementGridButton_DoSearch2", "click", t_vat_setllementGridButton_DoSearch2_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body style="BACKGROUND: #e1ffc4" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Record t_rep_lap_spjpSearch -->
+        <form id="t_rep_lap_spjpSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="middle">
+                <p align="center"><font size="6"><strong><font color="#000000">&nbsp;SURVEY KEPUASAN PELAYANAN<br>
+                </font></strong></font></p>
+                <input id="t_rep_lap_spjpSearchpayment_key" value="{payment_key}" type="hidden" name="{payment_key_Name}"><br>
+                <br>
+                <!-- BEGIN Grid t_vat_setllementGrid --><!-- END Grid t_vat_setllementGrid --></td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_rep_lap_spjpSearch -->
+        <div align="left">
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div style="CLEAR: both">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td align="center">
+        <!-- BEGIN Grid t_vat_setllementGrid -->
+        <table>
+          <tr>
+            <td valign="top">
+              <table class="Grid" cellspacing="0" cellpadding="0">
+                <tr class="Controls">
+                  <th valign="center" colspan="2"><font size="5"><br>
+                  Bagaimana menurut Anda mengenai pelayanan kami dalam hal :</font></th>
+ 
+                  <th colspan="4" scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img style="CURSOR: pointer" src="../images/emoticon2_1.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img style="CURSOR: pointer" src="../images/emoticon2_2.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img style="CURSOR: pointer" src="../images/emoticon2_3.png"><img style="CURSOR: pointer" src="../images/emoticon2_4.png"></th>
+                </tr>
+ 
+                <!-- BEGIN Row -->
+                <tr {t_vat_setllementGrid:rowStyle}>
+                  <td style="TEXT-ALIGN: center" height="30"><font size="4">{no}.<input id="t_vat_setllementGridp_survey_question_id" value="{p_survey_question_id}" type="hidden" name="{p_survey_question_id_Name}"><input id="t_vat_setllementGridp_survey_question_id_{t_vat_setllementGrid:rowNumber}" value="{p_survey_question_id1}" type="hidden" name="{p_survey_question_id_{t_vat_setllementGrid:rowNumber}_Name}"></font></td> 
+                  <td><font size="4">{survey_question}</font></td> 
+                  <td colspan="4"><font size="0">
+                    <!-- BEGIN RadioButton pilihan_jawaban -->
+                    <div style="PADDING-LEFT: 60px; FLOAT: left; border-radius: 25px" id="div_pilihan_jawaban_{pilihan_jawaban:optionNumber}" class="pilihan_jawaban_class">
+                      <input id="t_vat_setllementGridpilihan_jawaban_{t_vat_setllementGrid:rowNumber}_{pilihan_jawaban:optionNumber}" onchange="pilih_jawaban('t_vat_setllementGridp_survey_answer_score_id_{t_vat_setllementGrid:rowNumber}','t_vat_setllementGridpilihan_jawaban_{t_vat_setllementGrid:rowNumber}_{pilihan_jawaban:optionNumber}','t_vat_setllementGridp_survey_question_id_{t_vat_setllementGrid:rowNumber}')" value="{Value}" type="radio" name="{pilihan_jawaban_Name_{t_vat_setllementGrid:rowNumber}}" {Check}><label for="t_vat_setllementGridpilihan_jawaban_{t_vat_setllementGrid:rowNumber}_{pilihan_jawaban:optionNumber}" style="vertical-align:middle">&nbsp;</label> 
+                    </div>
+                    <!-- END RadioButton pilihan_jawaban --><input id="t_vat_setllementGridp_survey_answer_score_id_{t_vat_setllementGrid:rowNumber}" value="{p_survey_answer_score_id}" type="hidden" name="{p_survey_answer_score_id_{t_vat_setllementGrid:rowNumber}_Name}"></font></td>
+                </tr>
+ <!-- END Row -->
+                <tr class="NoRecords">
+                  <td colspan="6">
+                    <p align="center">
+                    <!-- BEGIN Button Button_DoSearch2 --><input id="t_vat_setllementGridButton_DoSearch2" class="btn_tambah" onclick="submit()" value="Submit" alt="Search" type="button" name="{Button_Name}"><!-- END Button Button_DoSearch2 --></p>
+                  </td>
+                </tr>
+                <!-- BEGIN NoRecords -->
+                <tr class="NoRecords">
+                  <td colspan="6">-</td>
+                </tr>
+                <!-- END NoRecords -->
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- END Grid t_vat_setllementGrid --></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
