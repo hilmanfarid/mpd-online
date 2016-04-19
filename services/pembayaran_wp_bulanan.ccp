@@ -3,7 +3,7 @@
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" connection="ConnSIKP" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" dataSource="select c.npwd,c.wp_name,a.p_finance_period_id,a.code,sum(nvl(total_vat_amount,0)) as pajak
 from p_finance_period a
 left join t_cust_account c on c.t_cust_account_id = {t_cust_account_id}
-left join t_vat_setllement b on b.p_finance_period_id = a.p_finance_period_id and b.t_cust_account_id = c.t_cust_account_id and p_settlement_type_id in (1,4,6) and b.p_vat_type_dtl_id not in (11,27,14,15)
+left join t_vat_setllement b on b.p_finance_period_id = a.p_finance_period_id and b.t_cust_account_id = c.t_cust_account_id and p_settlement_type_id in (1,4,6) and b.p_vat_type_dtl_id not in (27,15)
 where a. p_finance_period_id in (
 SELECT
 	p_finance_period_id

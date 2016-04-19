@@ -227,14 +227,14 @@ class clsSELECT_target_amt_realisaDataSource extends clsDBConnSIKP {  //SELECT_t
     }
 //End Prepare Method
 
-//Open Method @2-FAD063D4
+//Open Method @2-E71215AE
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "select c.npwd,c.wp_name,a.p_finance_period_id,a.code,sum(nvl(total_vat_amount,0)) as pajak\n" .
         "from p_finance_period a\n" .
         "left join t_cust_account c on c.t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("2"), ccsInteger) . "\n" .
-        "left join t_vat_setllement b on b.p_finance_period_id = a.p_finance_period_id and b.t_cust_account_id = c.t_cust_account_id and p_settlement_type_id in (1,4,6) and b.p_vat_type_dtl_id not in (11,27,14,15)\n" .
+        "left join t_vat_setllement b on b.p_finance_period_id = a.p_finance_period_id and b.t_cust_account_id = c.t_cust_account_id and p_settlement_type_id in (1,4,6) and b.p_vat_type_dtl_id not in (27,15)\n" .
         "where a. p_finance_period_id in (\n" .
         "SELECT\n" .
         "	p_finance_period_id\n" .
