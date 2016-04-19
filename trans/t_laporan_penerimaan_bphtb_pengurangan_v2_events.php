@@ -292,7 +292,7 @@ function print_laporan($param_arr){
 	$whereClause = join(" AND ", $criteria);
 	$query="SELECT pengurangan.updated_by,b.verificated_by,a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date,
 					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount,
-					npop,npop_tkp,npop_kp,bphtb_amt,bphtb_discount,bphtb_amt_final
+					npop,npop_tkp,npop_kp,bphtb_amt,bphtb_discount/bphtb_amt*100 as bphtb_discount,bphtb_amt_final
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
@@ -302,8 +302,7 @@ function print_laporan($param_arr){
 		$query.= " WHERE ".$whereClause;
 	$query.= " order by trunc(b.creation_date) ASC, upper(b.wp_name) ASC";
 
-	//print_r($query);
-	//exit;
+	//print_r($query); exit;
 	$dbConn->query($query);
 	$items=array();
 	$pdf->SetFont('helvetica', '',9);
@@ -319,7 +318,7 @@ function print_laporan($param_arr){
 	$pdf->SetFont('arial', 'B',6);
 	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","TGL DAFTAR",
 			"NAMA","ALAMAT","KELURAHAN","KECAMATAN","NPOP",
-			"NPOPTKP","NPOPKP","BPHTB TERUTANG","POTONGAN","BPHTB BAYAR"),
+			"NPOPTKP","NPOPKP","BPHTB TERUTANG","POTONGAN (%)","BPHTB BAYAR"),
 			array('LTB','LTB','LTB','LTB','LTB',
 			'LTB','LTB','LTB','LTB','LTB',
 			'LTB','LTB','LTB','LTB','LTBR'),5);
@@ -351,6 +350,7 @@ function print_laporan($param_arr){
 					   'npop_kp' => $dbConn->f("npop_kp"),
 					   'bphtb_amt' => $dbConn->f("bphtb_amt"),
 					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
+					   'bphtb_discount' => $dbConn->f("bphtb_discount"),
 					   'payment_amount' => $dbConn->f("payment_amount")
 						);
 		$pdf->RowMultiBorderWithHeight(array($no,
