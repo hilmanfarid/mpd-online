@@ -90,14 +90,15 @@ function print_excel($param_arr) {
 			<th>TGL DAFTAR</th>
 			<th>NAMA</th>
 			<th>ALAMAT</th>
-			<th>KELURAHAN</th>
-			<th>KECAMATAN</th>
 			<th>LUAS TNH</th>
 			<th>LUAS BGN</th>
-			<th>NJOP (Rp)</th>
-			<th>TOTAL BAYAR (Rp)</th>
+			<th>NPOP (Rp)</th>
+			<th>NPOPTKP (Rp)</th>
+			<th>NPOPKP (Rp)</th>
+			<th>BPHTB TERUTANG (Rp)</th>
+			<th>POTONGAN</th>
+			<th>BPHTB BAYAR (Rp)</th>
 			<th>VERIFIKATOR</th>
-			<th>PETUGAS INPUT</th>
 	  </tr>
 	 ';
 
@@ -143,8 +144,9 @@ function print_excel($param_arr) {
 	$criteria[] = " pengurangan.t_bphtb_exemption_id is not null ";	
 
 	$whereClause = join(" AND ", $criteria);
-	$query="SELECT pengurangan.updated_by,a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date, b.t_ppat_id,
-					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount, b.verificated_by    
+	$query="SELECT pengurangan.updated_by,b.verificated_by,a.receipt_no, b.njop_pbb, to_char(a.payment_date, 'YYYY-MM-DD') AS payment_date, to_char(b.creation_date, 'YYYY-MM-DD') AS creation_date,
+					b.wp_name, b.wp_address_name, kelurahan.region_name AS kelurahan_name, kecamatan.region_name AS kecamatan_name, b.land_area, b.building_area, b.land_total_price, a.payment_amount,
+					npop,npop_tkp,npop_kp,bphtb_amt,bphtb_discount/bphtb_amt*100 as bphtb_discount,bphtb_amt_final
 					FROM t_payment_receipt_bphtb AS a
 			LEFT JOIN t_bphtb_registration AS b ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
@@ -174,10 +176,15 @@ function print_excel($param_arr) {
 					   'land_area' => $dbConn->f("land_area"),
 					   'building_area' => $dbConn->f("building_area"),
 					   'land_total_price' => $dbConn->f("land_total_price"),
-					   'payment_amount' => $dbConn->f("payment_amount"),
-					   'verificated_by' => $dbConn->f("verificated_by"),
 					   'updated_by' => $dbConn->f("updated_by"),
-					   't_ppat_id' => $dbConn->f("t_ppat_id")
+					   'verificated_by' => $dbConn->f("verificated_by"),
+					   'npop' => $dbConn->f("npop"),
+					   'npop_tkp' => $dbConn->f("npop_tkp"),
+					   'npop_kp' => $dbConn->f("npop_kp"),
+					   'bphtb_amt' => $dbConn->f("bphtb_amt"),
+					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
+					   'bphtb_discount' => $dbConn->f("bphtb_discount"),
+					   'payment_amount' => $dbConn->f("payment_amount")
 						);
 		
 		$status_daftar = empty($item['t_ppat_id']) ? "Tidak" : "Ya";
@@ -190,14 +197,15 @@ function print_excel($param_arr) {
 		echo '<td align="center">'.dateToString($item['creation_date']).'</td>';
 		echo '<td align="left">'.trim(strtoupper($item['wp_name'])).'</td>';
 		echo '<td align="left">'.$item['wp_address_name'].'</td>';
-		echo '<td align="left">'.$item['kelurahan_name'].'</td>';
-		echo '<td align="left">'.$item['kecamatan_name'].'</td>';
 		echo '<td align="right">'.number_format($item['land_area'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['building_area'],0,",",".").'</td>';
-		echo '<td align="right">'.number_format($item['land_total_price'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['npop'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['npop_tkp'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['npop_kp'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['bphtb_amt'],0,",",".").'</td>';
+		echo '<td align="right">'.number_format($item['bphtb_discount'],0,",",".").'</td>';
 		echo '<td align="right">'.number_format($item['payment_amount'],0,",",".").'</td>';
 		echo '<td align="center">'.$item['verificated_by'].'</td>';
-		echo '<td align="center">'.$item['updated_by'].'</td>';
 		echo '</tr>';
 		
 		$total_nilai_penerimaan += $item['payment_amount'];
@@ -317,7 +325,7 @@ function print_laporan($param_arr){
 			25,25,25,25,25));
 	$pdf->SetFont('arial', 'B',6);
 	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","TGL DAFTAR",
-			"NAMA","ALAMAT","KELURAHAN","KECAMATAN","NPOP",
+			"NAMA","ALAMAT","LUAS TANAH","LUAS BANGUNAN","NPOP",
 			"NPOPTKP","NPOPKP","BPHTB TERUTANG","POTONGAN (%)","BPHTB BAYAR"),
 			array('LTB','LTB','LTB','LTB','LTB',
 			'LTB','LTB','LTB','LTB','LTB',
@@ -328,7 +336,7 @@ function print_laporan($param_arr){
 	/* CONTENTS */
 	$pdf->SetFont('arial', '',6);
 	$no =1;
-	$pdf->SetAligns(Array('C','L','L','C','C','L','L','L','L','R','R','R','R','R','R'));
+	$pdf->SetAligns(Array('C','L','L','C','C','L','L','R','R','R','R','R','R','R','R'));
 	$total_nilai_penerimaan = 0;
 	while($dbConn->next_record()){
 		$items[]= $item = array(
@@ -360,8 +368,8 @@ function print_laporan($param_arr){
 											dateToString($item['creation_date']),
 											trim(strtoupper($item['wp_name'])),
 											$item['wp_address_name'],
-											$item['kelurahan_name'],
-											$item['kecamatan_name'],
+											$item['land_area'],
+											$item['building_area'],
 											number_format($item['npop'],0),
 											number_format($item['npop_tkp'],0),
 											number_format($item['npop_kp'],0,",","."),
