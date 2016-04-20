@@ -213,9 +213,8 @@ function print_excel($param_arr) {
 	}
 
 	echo '<tr>
-			<td colspan="12" align="center"> <b>TOTAL</b> </td>
+			<td colspan="14" align="center"> <b>TOTAL</b> </td>
 			<td align="right"><b>'.number_format($total_nilai_penerimaan,0,",",".").'</b></td>
-			<td align="center"> &nbsp; </td>
 			<td align="center"> &nbsp; </td>
 		 </tr>';
 	echo '</table>';
