@@ -309,17 +309,17 @@ function print_laporan($param_arr){
 	$pdf->ln(2);
 	
 	/* HEADER */
-	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C','C','C','C','C'));
-	$pdf->SetWidths(array(6,22,25,15,16,35,45,28,28,13,14,20,25,25,25));
+	$pdf->SetAligns(Array('C','C','C','C','C','C','C','C','C','C','C','C','C','C'));
+	$pdf->SetWidths(array(6,22,25,15,35,45,28,28,13,14,20,25,25,25));
 	$pdf->SetFont('arial', 'B',6);
-	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","TGL DAFTAR","NAMA","ALAMAT","KELURAHAN","KECAMATAN","LUAS TNH","LUAS BGN","NJOP (Rp)","TOTAL BAYAR (Rp)","VERIFIKATOR","PETUGAS INPUT"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','TLBR'),5);
+	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","NAMA","ALAMAT","KELURAHAN","KECAMATAN","LUAS TNH","LUAS BGN","NJOP (Rp)","TOTAL BAYAR (Rp)","VERIFIKATOR","PETUGAS INPUT"),array('LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','LTB','TLBR'),5);
 	/* END HEADER */	
 
 	
 	/* CONTENTS */
 	$pdf->SetFont('arial', '',6);
 	$no =1;
-	$pdf->SetAligns(Array('C','L','L','C','C','L','L','L','L','R','R','R','R','C','C'));
+	$pdf->SetAligns(Array('C','L','L','C','L','L','L','L','R','R','R','R','C','C'));
 	$total_nilai_penerimaan = 0;
 	while($dbConn->next_record()){
 		$items[]= $item = array(
@@ -342,7 +342,6 @@ function print_laporan($param_arr){
 											$item['receipt_no'],
 											$item['njop_pbb'],
 											dateToString($item['payment_date']),
-											dateToString($item['creation_date']),
 											trim(strtoupper($item['wp_name'])),
 											$item['wp_address_name'],
 											$item['kelurahan_name'],
@@ -353,7 +352,7 @@ function print_laporan($param_arr){
 											number_format($item['payment_amount'],0,",","."),
 											$item['verificated_by'],
 											$item['updated_by']
-											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
+											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
 		
 		$total_nilai_penerimaan += $item['payment_amount'];
 		$no++;
@@ -362,7 +361,7 @@ function print_laporan($param_arr){
 	
 
 	/* BOTTOM */
-	$pdf->SetWidths(array(6+22+25+15+16+35+45+28+28+13+14+20,25));
+	$pdf->SetWidths(array(6+22+25+15+35+45+28+28+13+14+20,25));
 	$pdf->SetAligns(Array('C','R'));
 	$pdf->SetFont('arial', 'B',8);
 	$pdf->RowMultiBorderWithHeight(array("TOTAL", number_format($total_nilai_penerimaan,0,",",".")), array('LB','LBR'), 6);
