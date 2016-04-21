@@ -12,46 +12,46 @@
                         window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
                 }
         function printLaporanHTML(){
-				var p_vat_type_id = document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
-				var upp_name = document.getElementById("t_laporan_piutang_pajakkode_wilayah");
-				if (p_vat_type_id == "" ){
-					alert("Jenis Pajak wajib diisi.");
-				}else{
-	                var params = "?cetak_laporan=view_html";
-	                params += "&kode_wilayah="+document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
-					params += "&kode_wilayah_name="+upp_name.options[upp_name.selectedIndex].text;
-	                params += "&p_vat_type_id="+p_vat_type_id;
-	                params += "&p_account_status_id="+document.getElementById("t_laporan_piutang_pajakp_account_status_id").value;
-	                params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
-					params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_dtl_id").value;
-					params += "&vat_code_dtl="+document.getElementById("t_laporan_piutang_pajakvat_code_dtl").value;
-					params += "&p_region_id_kecamatan="+document.getElementById("t_laporan_piutang_pajakp_region_id_kecamatan").value;
-					params += "&nama_kecamatan="+document.getElementById("t_laporan_piutang_pajaknama_kecamatan").value;
-					params += "&p_region_id_kelurahan="+document.getElementById("t_laporan_piutang_pajakp_region_id_kelurahan").value;
-					params += "&nama_kelurahan="+document.getElementById("t_laporan_piutang_pajaknama_kelurahan").value;
-	                location.href = "t_laporan_wp_terdaftar.php"+params;
-				}
-		}
+                                var p_vat_type_id = document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
+                                var upp_name = document.getElementById("t_laporan_piutang_pajakkode_wilayah");
+                                if (p_vat_type_id == "" ){
+                                        alert("Jenis Pajak wajib diisi.");
+                                }else{
+                        var params = "?cetak_laporan=view_html";
+                        params += "&kode_wilayah="+document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
+                                        params += "&kode_wilayah_name="+upp_name.options[upp_name.selectedIndex].text;
+                        params += "&p_vat_type_id="+p_vat_type_id;
+                        params += "&p_account_status_id="+document.getElementById("t_laporan_piutang_pajakp_account_status_id").value;
+                        params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
+                                        params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_dtl_id").value;
+                                        params += "&vat_code_dtl="+document.getElementById("t_laporan_piutang_pajakvat_code_dtl").value;
+                                        params += "&p_region_id_kecamatan="+document.getElementById("t_laporan_piutang_pajakp_region_id_kecamatan").value;
+                                        params += "&nama_kecamatan="+document.getElementById("t_laporan_piutang_pajaknama_kecamatan").value;
+                                        params += "&p_region_id_kelurahan="+document.getElementById("t_laporan_piutang_pajakp_region_id_kelurahan").value;
+                                        params += "&nama_kelurahan="+document.getElementById("t_laporan_piutang_pajaknama_kelurahan").value;
+                        location.href = "t_laporan_wp_terdaftar.php"+params;
+                                }
+                }
         function printLaporanExcel(){
                 var p_vat_type_id = document.getElementById("t_laporan_piutang_pajakp_vat_type_id").value;
-				var upp_name = document.getElementById("t_laporan_piutang_pajakkode_wilayah");
-				if (p_vat_type_id == "" ){
-					alert("Jenis Pajak wajib diisi.");
-				}else{
-	                var params = "?cetak_laporan=view_excel";
-	                params += "&kode_wilayah="+document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
-					params += "&kode_wilayah_name="+upp_name.options[upp_name.selectedIndex].text;
-	                params += "&p_vat_type_id="+p_vat_type_id;
-	                params += "&p_account_status_id="+document.getElementById("t_laporan_piutang_pajakp_account_status_id").value;
-	                params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
-					params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_dtl_id").value;
-					params += "&vat_code_dtl="+document.getElementById("t_laporan_piutang_pajakvat_code_dtl").value;
-					params += "&p_region_id_kecamatan="+document.getElementById("t_laporan_piutang_pajakp_region_id_kecamatan").value;
-					params += "&nama_kecamatan="+document.getElementById("t_laporan_piutang_pajaknama_kecamatan").value;
-					params += "&p_region_id_kelurahan="+document.getElementById("t_laporan_piutang_pajakp_region_id_kelurahan").value;
-					params += "&nama_kelurahan="+document.getElementById("t_laporan_piutang_pajaknama_kelurahan").value;
-	                location.href = "t_laporan_wp_terdaftar.php"+params;
-				}
+                                var upp_name = document.getElementById("t_laporan_piutang_pajakkode_wilayah");
+                                if (p_vat_type_id == "" ){
+                                        alert("Jenis Pajak wajib diisi.");
+                                }else{
+                        var params = "?cetak_laporan=view_excel";
+                        params += "&kode_wilayah="+document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
+                                        params += "&kode_wilayah_name="+upp_name.options[upp_name.selectedIndex].text;
+                        params += "&p_vat_type_id="+p_vat_type_id;
+                        params += "&p_account_status_id="+document.getElementById("t_laporan_piutang_pajakp_account_status_id").value;
+                        params += "&vat_code="+document.getElementById("t_laporan_piutang_pajakvat_code").value;
+                                        params += "&p_vat_type_dtl_id="+document.getElementById("t_laporan_piutang_pajakp_vat_type_dtl_id").value;
+                                        params += "&vat_code_dtl="+document.getElementById("t_laporan_piutang_pajakvat_code_dtl").value;
+                                        params += "&p_region_id_kecamatan="+document.getElementById("t_laporan_piutang_pajakp_region_id_kecamatan").value;
+                                        params += "&nama_kecamatan="+document.getElementById("t_laporan_piutang_pajaknama_kecamatan").value;
+                                        params += "&p_region_id_kelurahan="+document.getElementById("t_laporan_piutang_pajakp_region_id_kelurahan").value;
+                                        params += "&nama_kelurahan="+document.getElementById("t_laporan_piutang_pajaknama_kelurahan").value;
+                        location.href = "t_laporan_wp_terdaftar.php"+params;
+                                }
         }
                 
 </script>
@@ -125,7 +125,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -163,11 +163,11 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <tr>
                     <td align="left">Kode Wlayah</td> 
                     <td>
-                      <select id="t_laporan_piutang_pajakkode_wilayah" class="ControlsRQ" name="{kode_wilayah_Name}">
-                        {kode_wilayah_Options}
+                      <select id="t_laporan_piutang_pajakkode_wilayah" class="ControlsIN" name="{kode_wilayah_Name}">
+                        <option selected value="0">Semua</option>
+						{kode_wilayah_Options}
                       </select>
-					  <input id="t_laporan_piutang_pajak_allcetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}">
-                    </td>
+ <input id="t_laporan_piutang_pajak_allcetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></td>
                   </tr>
  
                   <tr>
@@ -221,16 +221,16 @@ function lov_tipeayat() {
 }
 
 function lov_region2() {
-				var upp = document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
-				var upp_name = document.getElementById("t_laporan_piutang_pajakkode_wilayah");
-				
-				//alert (upp_name.options[upp_name.selectedIndex].text);
-                var kota = 749;     //kota bandung     
-                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
-                        getFrom_LOV('t_laporan_piutang_pajak','p_region_id_kecamatan,nama_kecamatan','lov_region_kec_upp.php?p_business_area_id='+upp);
-                }else{
-                        alert("KOTA/KABUPATEN Belum Diisi");
-                }
+                var upp = document.getElementById("t_laporan_piutang_pajakkode_wilayah").value;
+                var upp_name = document.getElementById("t_laporan_piutang_pajakkode_wilayah");
+                
+                //alert (upp_name.options[upp_name.selectedIndex].text);
+				if(upp==0){
+					var kota = 749;     //kota bandung  
+					getFrom_LOV('t_laporan_piutang_pajak','p_region_id_kecamatan,nama_kecamatan','lov_region_kec.php?p_region_id='+kota);
+				}else{
+					getFrom_LOV('t_laporan_piutang_pajak','p_region_id_kecamatan,nama_kecamatan','lov_region_kec_upp.php?p_business_area_id='+upp);
+				}
 }
 
 function lov_region3() {
