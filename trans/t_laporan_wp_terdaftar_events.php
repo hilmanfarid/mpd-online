@@ -75,6 +75,7 @@ function view_html($param_arr) {
 	$output.='<th>NO</th>';
 	$output.='<th>NPWPD</th>';
 	$output.='<th>TANGGAL PENGUKUHAN</th>';
+	$output.='<th>URAIAN JENIS PAJAK</th>';
 	$output.='<th>WAJIB PAJAK</th>';
 	$output.='<th>PENANGGUNG PAJAK</th>';
 	$output.='<th>ALAMAT</th>';
@@ -147,6 +148,7 @@ function view_html($param_arr) {
 			$output .= '<td align="center">'.$no++.'</td>';
 			$output .= '<td align="left">'.$item['npwd'].'</td>';
 			$output .= '<td align="left">'.$item['active_date2'].'</td>';
+			$output .= '<td align="left">'.$item['ayat_pajak'].'</td>';
 			$output .= '<td align="left">'.$item['wp_name'].'</td>';
 			$output .= '<td align="left">'.$item['company_owner'].'</td>';
 			$output .= '<td align="left">'.$item['address_name_owner'].'</td>';
