@@ -103,10 +103,10 @@ function view_html($param_arr) {
 		left join p_account_status y on y.p_account_status_id = a.p_account_status_id
 		left join p_region z on z.p_region_id = a.brand_p_region_id_kec 
 		left join p_region w on w.p_region_id = a.brand_p_region_id_kel 
-		left join t_customer v on v.t_customer_id = a.t_customer_id
-		WHERE f_get_wilayah(a.npwd) = '".$param_arr['kode_wilayah_name']."'";
-	if ($param_arr['p_vat_type_id']!=''){
-		$query .= "and a.p_vat_type_id = ".$param_arr['p_vat_type_id'];
+		left join t_customer v on v.t_customer_id = a.t_customer_id 
+		WHERE a.p_vat_type_id = ".$param_arr['p_vat_type_id'];
+	if ($param_arr['kode_wilayah']!=0){
+		$query .= " and f_get_wilayah(a.npwd) = '".$param_arr['kode_wilayah_name']."'";
 	}
 	if ($param_arr['p_account_status_id']!=0){
 		$query .= "and case 
