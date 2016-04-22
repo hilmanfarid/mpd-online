@@ -21,8 +21,7 @@
         }
 
                 function printLaporanHTML(){
-                    if( document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value == "" || 
-                            document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
+                    if( document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
                             document.getElementById("t_laporan_piutang_pajak2status_bayar").value == "") {
                             alert("Ada Filter yang Harus Diisi");
                      }else {
@@ -38,9 +37,8 @@
                     }
                 }
 
-				function printLaporanExcel(){
-                     if( document.getElementById("t_laporan_piutang_pajak2p_year_period_id").value == "" || 
-                                document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
+                                function printLaporanExcel(){
+                     if( document.getElementById("t_laporan_piutang_pajak2p_vat_type_id").value == "" || 
                                 document.getElementById("t_laporan_piutang_pajak2status_bayar").value == "") {
                                 alert("Ada Filter yang Harus Diisi");
                      }else {
@@ -139,7 +137,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -166,7 +164,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr class="Controls">
                     <td class="search-field">&nbsp;Tahun 
-                      <td class="search-field"><input id="t_laporan_piutang_pajak2year_code" class="ControlsRQ" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajak2p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_laporan_piutang_pajak2cetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></td>
+                      <td class="search-field"><input id="t_laporan_piutang_pajak2year_code" class="ControlsIN" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_piutang_pajak2p_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_laporan_piutang_pajak2cetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></td>
                     </tr>
  
                     <tr>
