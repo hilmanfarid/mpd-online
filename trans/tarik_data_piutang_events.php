@@ -138,7 +138,7 @@ function cetak_excel($param_arr){
 									A .p_finance_period_id = b.p_finance_period_id
 								AND A .t_cust_account_id = C .t_cust_account_id
 								AND EXTRACT (YEAR FROM A .settlement_date) = '".$param_arr['year_code']."'
-								AND A .is_settled = 'N'
+								AND d.t_payment_receipt_id is null
 								".$whereCondition."
 								AND A .t_vat_setllement_id = d.t_vat_setllement_id (+)
 								AND A .p_settlement_type_id = e.p_settlement_type_id
@@ -345,14 +345,14 @@ function view_html($param_arr) {
 								FROM
 									t_vat_setllement A,
 									p_finance_period b,
-									t_cust_account C,
+									t_cust_account C, 
 									t_payment_receipt d,
 									p_settlement_type e
 								WHERE
 									A .p_finance_period_id = b.p_finance_period_id
 								AND A .t_cust_account_id = C .t_cust_account_id
 								AND EXTRACT (YEAR FROM A .settlement_date) = '".$param_arr['year_code']."'
-								AND A .is_settled = 'N'
+								AND d.t_payment_receipt_id is null
 								".$whereCondition."
 								AND A .t_vat_setllement_id = d.t_vat_setllement_id (+)
 								AND A .p_settlement_type_id = e.p_settlement_type_id
