@@ -106,12 +106,16 @@ function view_html($param_arr) {
 
 	$dbConn = new clsDBConnSIKP();
 	
-	$query="select case when sisa_piutang < 0 then 0 else sisa_piutang end as sisa_piutang_v2,
+	$query="select sisa_piutang,
 			a.*,to_char(a.tgl_tap,'dd-mm-yyyy') as tgl_tap_formated, to_char(a.tgl_bayar,'dd-mm-yyyy') as tgl_bayar_formated , b.wp_name, c.code as periode_bayar
 			from t_piutang_pajak_penetapan_final_2 as a
 			LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
 			LEFT JOIN p_finance_period as c ON a.p_finance_period_id = c.p_finance_period_id
-			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id']." and a.p_year_period_id = ".$param_arr['year_period_id'];
+			WHERE a.p_vat_type_id=".$param_arr['p_vat_type_id'];
+	
+	if($param_arr['year_period_id']!=""){
+		$query=$query." and a.p_year_period_id = ".$param_arr['year_period_id'];
+	}
 	if($param_arr['status_bayar']!=0){
 		if($param_arr['status_bayar']==1){
 			$query=$query." and tgl_bayar is not null";
@@ -145,7 +149,7 @@ function view_html($param_arr) {
 						"realisasi_piutang" => $dbConn->f("realisasi_piutang"),
 						"tgl_bayar" => $dbConn->f("tgl_bayar_formated"),
 						"nilai_piutang" => $dbConn->f("nilai_piutang"),
-						"sisa_piutang" => $dbConn->f("sisa_piutang_v2"),
+						"sisa_piutang" => $dbConn->f("sisa_piutang"),
 						"keterangan" => $dbConn->f("keterangan"),
 						"p_year_period_id" => $dbConn->f("p_year_period_id"),
 						"year_code" => $dbConn->f("year_code")
