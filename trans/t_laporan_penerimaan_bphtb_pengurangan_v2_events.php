@@ -316,17 +316,17 @@ function print_laporan($param_arr){
 	$pdf->ln(2);
 	
 	/* HEADER */
-	$pdf->SetAligns(Array('C','C','C','C','C',
+	$pdf->SetAligns(Array('C','C','C','C',
 			'C','C','C','C','C',
 			'C','C','C','C','C'));
 	$pdf->SetWidths(array(6,22,25,15,16,
 			20,35,28,28,25,
 			25,25,25,25,25));
 	$pdf->SetFont('arial', 'B',6);
-	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR","TGL DAFTAR",
+	$pdf->RowMultiBorderWithHeight(array("NO","NO TRANSAKSI","NOP","TGL BAYAR",
 			"NAMA","ALAMAT","LUAS TANAH","LUAS BANGUNAN","NPOP",
 			"NPOPTKP","NPOPKP","BPHTB TERUTANG","POTONGAN (%)","BPHTB BAYAR"),
-			array('LTB','LTB','LTB','LTB','LTB',
+			array('LTB','LTB','LTB','LTB',
 			'LTB','LTB','LTB','LTB','LTB',
 			'LTB','LTB','LTB','LTB','LTBR'),5);
 	/* END HEADER */	
@@ -335,7 +335,7 @@ function print_laporan($param_arr){
 	/* CONTENTS */
 	$pdf->SetFont('arial', '',6);
 	$no =1;
-	$pdf->SetAligns(Array('C','L','L','C','C','L','L','R','R','R','R','R','R','R','R'));
+	$pdf->SetAligns(Array('C','L','L','C','L','L','R','R','R','R','R','R','R','R'));
 	$total_nilai_penerimaan = 0;
 	while($dbConn->next_record()){
 		$items[]= $item = array(
@@ -364,7 +364,6 @@ function print_laporan($param_arr){
 											$item['receipt_no'],
 											$item['njop_pbb'],
 											dateToString($item['payment_date']),
-											dateToString($item['creation_date']),
 											trim(strtoupper($item['wp_name'])),
 											$item['wp_address_name'],
 											$item['land_area'],
@@ -375,7 +374,7 @@ function print_laporan($param_arr){
 											number_format($item['bphtb_amt'],0,",","."),
 											number_format($item['bphtb_discount'],0,",","."),
 											number_format($item['payment_amount'],0,",","."),
-											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
+											),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
 		
 		$total_nilai_penerimaan += $item['payment_amount'];
 		$no++;
@@ -384,7 +383,7 @@ function print_laporan($param_arr){
 	
 
 	/* BOTTOM */
-	$pdf->SetWidths(array(6+22+25+15+16+
+	$pdf->SetWidths(array(6+22+25+15+
 			20+35+28+28+25+
 			25+25+25+25,25));
 	$pdf->SetAligns(Array('C','R'));
