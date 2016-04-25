@@ -51,7 +51,8 @@ $dbConn = new clsDBConnSIKP();
 $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) 
-		and b.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$p_vat_type_id.")";
+		and b.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$p_vat_type_id.")
+		order by b.company_brand";
 
 $dbConn->query($query);
 //echo $query;exit;
@@ -59,8 +60,8 @@ $data=array();
 while ($dbConn->next_record()) {
 		$data[]= array(
 			'npwd' => $dbConn->f("npwd"),
-			'company_name' => $dbConn->f("company_name"),
-			'address' => $dbConn->f("address"),
+			'company_name' => $dbConn->f("company_brand"),
+			'address' => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no"),
 			'letter_no' => $dbConn->f("letter_no"),
 			'vat_code' => $dbConn->f("vat_code"),
 			'periode' => $dbConn->f("periode"),
