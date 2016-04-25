@@ -124,7 +124,7 @@ function GetCetakHTML($param_arr) {
 		if ($param_arr['status_bayar']==3){
 			$query.="and receipt_no is null ORDER BY wp_name";
 		}else{
-			$query.="ORDER BY wp_name,start_period";
+			$query.="ORDER BY company_brand,start_period";
 		}
 	}
 	//echo $query;exit;
@@ -138,8 +138,8 @@ function GetCetakHTML($param_arr) {
 	for ($i = 0; $i < count($data); $i++) {
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['wp_address_name'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['due_date_char'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
@@ -232,7 +232,7 @@ function GetCetakExcel($param_arr) {
 		if ($param_arr['status_bayar']==3){
 			$query.="and receipt_no is null ORDER BY wp_name";
 		}else{
-			$query.="ORDER BY wp_name";
+			$query.="ORDER BY company_brand";
 		}
 	}
 	//echo $query;exit;
@@ -246,8 +246,8 @@ function GetCetakExcel($param_arr) {
 	for ($i = 0; $i < count($data); $i++) {
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['wp_address_name'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['due_date_char'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
