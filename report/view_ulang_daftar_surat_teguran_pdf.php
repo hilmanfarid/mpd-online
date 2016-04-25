@@ -29,13 +29,13 @@ $dbConn = new clsDBConnSIKP();
 $query = "select * from f_debt_letter_list($t_customer_order_id) as a 
 		  LEFT JOIN t_cust_account as b ON a.t_cust_account_id = b.t_cust_account_id
 		  WHERE a.p_vat_type_id = $p_vat_type_id AND b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)
-		  order by b.wp_name";
+		  order by b.company_brand";
 //echo $query; exit;
 $dbConn->query($query);
 while ($dbConn->next_record()) {
 		$data["npwd"][] = $dbConn->f("npwd");
 		$data["company_name"][] = $dbConn->f("company_brand");
-		$data["address_name"][] = $dbConn->f("brand_address_name");
+		$data["address_name"][] = $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no");
 		$data["vat_code"][] = $dbConn->f("vat_code");
 		$data["due_date"][] = $dbConn->f("due_date");
 		$data["start_date"][] = $dbConn->f("start_date");
