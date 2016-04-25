@@ -97,6 +97,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >AYAT PAJAK</th>';
 	$output.='<th align="center" >NAMA</th>';
 	$output.='<th align="center" >NPWPD</th>';
+	$output.='<th align="center" >ALAMAT</th>';
 	$output.='<th align="center" >MASA PAJAK</th>';
 	$output.='<th align="center" >TGL TAP</th>';
 	$output.='<th align="center" >NO. BAYAR</th>';
@@ -156,8 +157,9 @@ function GetCetakHTML($param_arr) {
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['payment_key2'].'</td>';
@@ -174,7 +176,7 @@ function GetCetakHTML($param_arr) {
 		$output.='</tr>';
 	}
 
-	$output.='<tr><td align="center" colspan=8 >Jumlah</td>';
+	$output.='<tr><td align="center" colspan=9 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
 	$output.='<td align="center" colspan=2 ></td>';
 	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
@@ -247,6 +249,7 @@ function CetakExcel($param_arr) {
 	$output.='<th rowspan=2 align="center" >AYAT PAJAK</th>';
 	$output.='<th rowspan=2 align="center" >NAMA</th>';
 	$output.='<th rowspan=2 align="center" >NPWPD</th>';
+	$output.='<th rowspan=2 align="center" >ALAMAT</th>';
 	$output.='<th rowspan=2 align="center" >MASA PAJAK</th>';
 	$output.='<th rowspan=2 align="center" >TGL TAP</th>';
 	$output.='<th rowspan=2 align="center" >NO. BAYAR</th>';
@@ -280,6 +283,7 @@ function CetakExcel($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['payment_key2'].'</td>';
@@ -299,7 +303,7 @@ function CetakExcel($param_arr) {
 		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='</tr>';
 	}
-	$output.='<tr><td align="center" colspan=8 >Jumlah</td>';
+	$output.='<tr><td align="center" colspan=9 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_sudah_bayar, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_belum_bayar, 2, ',', '.').'</td>';
@@ -425,54 +429,24 @@ function GetCetakRekapHTML($param_arr) {
 	for ($i = 0; $i < count($data); $i++) {
 
 		$dbConn2	= new clsDBConnSIKP();
-		if ($param_arr['ketetapan'] == 7)
-		{
-			$query2="select SUM (round(a.penalty_amount)) AS realisasi, 
-							count(a.t_payment_receipt_id) as jumlah_sspd_realisasi,
-							SUM (round(b.penalty_amt)) AS ketetapan,
-							count(e.t_vat_setllement_id) as jumlah_sspd_ketetapan
-				from t_vat_setllement e
-				left join t_payment_receipt a  on a.t_vat_setllement_id = e.t_vat_setllement_id
-				left join t_vat_penalty b on b.t_vat_setllement_id = e.t_vat_setllement_id
-				left join p_vat_type_dtl c on c.p_vat_type_dtl_id = e.p_vat_type_dtl_id
-				left join p_vat_type d on c.p_vat_type_id = d.p_vat_type_id
-				where p_settlement_type_id = ".$param_arr['ketetapan']." 
-				and trunc(settlement_date) between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
-					and (to_date('".$param_arr['end_date']."','yyyy-mm-dd'))
-				and b.penalty_amt is not null";
-			if ($param_arr['p_vat_type_id']!=''){
-				$query2.="and e.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
-						from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
-			}
-			if ($param_arr['status_bayar']==2){
-				$query2.="and receipt_no is not null";
-			}
-			if ($param_arr['status_bayar']==3){
-				$query2.="and receipt_no is null";
-			}
-			//echo $query2;exit;
-		}else{
-
-			$dbConn2	= new clsDBConnSIKP();
-			$query2="select sum(y.payment_vat_amount) as realisasi,
-							sum(a.total_vat_amount) as ketetapan
-				from t_vat_setllement a 
-				left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
-				left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
-				where p_settlement_type_id = ".$param_arr['ketetapan']." 
-				and trunc(settlement_date) between to_date('".$param_arr['start_date']."','yyyy-mm-dd') 
-					and (to_date('".$param_arr['end_date']."','yyyy-mm-dd'))
-				";
-			if ($param_arr['p_vat_type_id']!=''){
-				$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
-						from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
-			}
-			if ($param_arr['status_bayar']==2){
-				$query2.="and receipt_no is not null";
-			}
-			if ($param_arr['status_bayar']==3){
-				$query2.="and receipt_no is null";
-			}
+		$query2="select sum(y.payment_vat_amount) as realisasi,
+						sum(a.total_vat_amount) as ketetapan
+			from t_vat_setllement a
+			left join t_payment_receipt y on y.t_vat_setllement_id=a.t_vat_setllement_id
+			left join t_cust_account x on x.t_cust_account_id=a.t_cust_account_id
+			where p_settlement_type_id = ".$param_arr['ketetapan']." 
+			and trunc(settlement_date) between to_date('".$data[$i]['start_date']."','yyyy-mm-dd') 
+				and (to_date('".$data[$i]['end_date']."','yyyy-mm-dd'))
+			";
+		if ($param_arr['p_vat_type_id']!=''){
+			$query2.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
+					from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
+		}
+		if ($param_arr['status_bayar']==2){
+			$query2.="and receipt_no is not null";
+		}
+		if ($param_arr['status_bayar']==3){
+			$query2.="and receipt_no is null";
 		}
 
 		//echo $query2;exit;
