@@ -94,7 +94,7 @@ function print_excel($param_arr) {
 	}else{
 		$query="select *,to_char(start_period, 'DD-MM-YYYY') as start_period_formated,to_char(end_period, 'DD-MM-YYYY') as end_period_formated,to_char(tanggal, 'DD-MM-YYYY') as date_settle_formated from sikp.f_laporan_harian_sptpd2(".$param_arr['p_vat_type_id'].",2001,'".$param_arr['date_start']."', '".$param_arr['date_end']."') ORDER BY trunc(tanggal),ayat_code_dtl, jenis ASC";
 	}
-
+	//echo $query;exit;
 	$dbConn->query($query);
 		
 	$no =1;
@@ -115,6 +115,7 @@ function print_excel($param_arr) {
 		<th>JENIS</th>
 		<th>OMZET</th>
 		<th>KETETAPAN</th>
+		<th>VOP</th>
 	</tr>";
 
 	while($dbConn->next_record()){
@@ -135,6 +136,7 @@ function print_excel($param_arr) {
 					   'jenis_pajak' => $dbConn->f("jenis"),
 					   'jenis_pajak_dtl' => $dbConn->f("jenis_dtl"),
 					   'ayat_code' => $dbConn->f("ayat_code"),
+					   'created_by' => $dbConn->f("created_by"),
 					   'ayat_code_dtl' => $dbConn->f("ayat_code_dtl")
 						);
 
@@ -142,7 +144,7 @@ function print_excel($param_arr) {
 			//$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['no_order'],$item['nama'],$item['alamat'],$item['npwpd'], 2, ',', '.'),$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak'],'Rp '.number_format($item['omzet'], 2, ',', '.'),'Rp '.number_format($item['ketetapan']),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);			
 			
 			echo "<tr>
-				<td>".$no."</td>
+				<td>".$no."</td> 
 				<td>".$item['tanggal']."</td>
 				<td>".$item['no_order']."</td>
 				<td>".$item['nama']."</td>
@@ -153,13 +155,14 @@ function print_excel($param_arr) {
 				<td>".$item['jenis_pajak']."</td>
 				<td align='right'>".number_format($item['omzet'], 2, ',', '.')."</td>
 				<td align='right'>".number_format($item['ketetapan'],0,',', '.')."</td>
+				<td>".$item['created_by']."</td>
 			</tr>";
 		
 		}else{
 			//$pdf->RowMultiBorderWithHeight(array($no,$item['tanggal'],$item['ayat_code'].'.'.$item['ayat_code_dtl'],$item['nama'],$item['alamat'],$item['npwpd'],$item['kohir'],$item['start_period'].' - '.$item['end_period'],$item['jenis_pajak'],'Rp '.number_format($item['omzet'], 2, ',', '.'),'Rp '.number_format($item['ketetapan'], 2, ',', '.')),array('LB','LB','LB','LB','LB','LB','LB','LB','LB','LB','LBR'),6);
 			
 			echo "<tr>
-				<td>".$no."</td>
+				<td>".$no."</td> 
 				<td>".$item['tanggal']."</td>
 				<td>".$item['ayat_code'].".".$item['ayat_code_dtl']."</td>
 				<td>".$item['nama']."</td>
@@ -170,6 +173,7 @@ function print_excel($param_arr) {
 				<td>".$item['jenis_pajak']."</td>
 				<td align='right'>".number_format($item['omzet'], 2, ',', '.')."</td>
 				<td align='right'>".number_format($item['ketetapan'],0,',', '.')."</td>
+				<td>".$item['created_by']."</td>
 			</tr>";
 		}
 		
@@ -186,6 +190,7 @@ function print_excel($param_arr) {
 		<td colspan="9" align="center"> <b>JUMLAH </b></td>
 		<td align="right"> <b>'.number_format($jumlah_omzet, 2, ",", ".").' </b></td>
 		<td align="right"> <b>'.number_format($jumlah_ketetapan, 2, ",", ".").' </b></td>
+		<td></td>
 	</tr>';
 	echo "</table>";
 	exit;
