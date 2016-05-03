@@ -30,16 +30,12 @@ $query="select
 		c.reg_letter_no,
 		decode(c.p_hotel_grade_id,null,null,1,1,2,1,3,1,4,1,5,1,0) as klasifikasi,
 		d.vat_code as detail_jenis_pajak
-from t_customer_order a,
-		p_rqst_type b,
-		t_vat_registration c,
-		p_vat_type type,
-		p_vat_type_dtl d
-where a.p_rqst_type_id = b.p_rqst_type_id
-	and a.t_customer_order_id = c.t_customer_order_id
-	and b.p_vat_type_id = type.p_vat_type_id
-	and c.p_vat_type_dtl_id = d.p_vat_type_dtl_id
-	and a.t_customer_order_id =".$t_customer_order_id;
+from t_vat_registration c		
+left join t_customer_order a on a.t_customer_order_id = c.t_customer_order_id
+left join p_rqst_type b on a.p_rqst_type_id = b.p_rqst_type_id
+left join p_vat_type type on b.p_vat_type_id = type.p_vat_type_id
+left join p_vat_type_dtl d on c.p_vat_type_dtl_id = d.p_vat_type_dtl_id
+where a.t_customer_order_id =".$t_customer_order_id;
 
 $dbConn->query($query);
 while ($dbConn->next_record()) {
