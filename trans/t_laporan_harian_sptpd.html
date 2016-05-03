@@ -24,7 +24,7 @@
         }
 
 
-		function printLaporanExcel(){
+                function printLaporanExcel(){
                 var params = "?cetak_laporan=excel";
                 params += "&year_code="+document.getElementById("t_laporan_harian_sptpdyear_code").value;
                 params += "&date_start_laporan="+document.getElementById("t_laporan_harian_sptpddate_start_laporan").value;
@@ -71,7 +71,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -98,32 +98,32 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <!-- END Error -->
                   <tr style="DISPLAY: none" class="Controls">
                     <td class="search-field">&nbsp;Tahun 
-                      <td class="search-field"><input id="t_laporan_harian_sptpdyear_code" class="ControlsRQ" name="{year_code_Name}" readonly maxlength="32" value="{year_code}" size="32">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_year_period_id" name="{p_year_period_id_Name}" value="{p_year_period_id}" type="hidden"><input id="t_laporan_harian_sptpdcetak_laporan" name="{cetak_laporan_Name}" value="T" type="hidden"></td>
+                      <td class="search-field"><input id="t_laporan_harian_sptpdyear_code" class="ControlsRQ" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}"><input id="t_laporan_harian_sptpdcetak_laporan" value="T" type="hidden" name="{cetak_laporan_Name}"></td>
                     </tr>
  
                     <tr class="Controls">
                       <td class="search-field"><label for="t_laporan_penerimaan_pajaks_p_finance_period_id">Tanggal</label></td> 
-                      <td class="search-field"><label for="t_laporan_harian_sptpddate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_harian_sptpddate_start_laporan" class="ControlsRQ" name="{date_start_laporan_Name}" value="{date_start_laporan}">&nbsp; 
-                        <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_sptpdDatePicker_date_start_laporan1"><img id="t_laporan_harian_sptpdDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_harian_sptpddate_end_laporan" class="ControlsRQ" name="{date_end_laporan_Name}" value="{date_end_laporan}">&nbsp; 
+                      <td class="search-field"><label for="t_laporan_harian_sptpddate_start_laporan" style="display: none;">&nbsp;</label><input id="t_laporan_harian_sptpddate_start_laporan" class="ControlsRQ" value="{date_start_laporan}" name="{date_start_laporan_Name}">&nbsp; 
+                        <!-- BEGIN DatePicker DatePicker_date_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_sptpdDatePicker_date_start_laporan1"><img id="t_laporan_harian_sptpdDatePicker_date_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_date_start_laporan1 -->&nbsp; s/d <input id="t_laporan_harian_sptpddate_end_laporan" class="ControlsRQ" value="{date_end_laporan}" name="{date_end_laporan_Name}">&nbsp; 
                         <!-- BEGIN DatePicker DatePicker_end_start_laporan1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_laporan_harian_sptpdDatePicker_end_start_laporan1"><img id="t_laporan_harian_sptpdDatePicker_end_start_laporan1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan1 --></td>
                     </tr>
  
                     <tr>
                       <td align="left">Jenis&nbsp;Pajak&nbsp;</td> 
                       <td>
-                        <p>&nbsp;<input id="t_laporan_harian_sptpdvat_code" class="ControlsRQ" name="{vat_code_Name}" readonly maxlength="32" value="{vat_code}" size="32"><img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_id" name="{p_vat_type_id_Name}" value="{p_vat_type_id}" type="hidden"></p>
+                        <p>&nbsp;<input id="t_laporan_harian_sptpdvat_code" class="ControlsRQ" value="{vat_code}" readonly maxlength="32" size="32" name="{vat_code_Name}">&nbsp;<img onclick="javascript:lov_ayatpajak()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></p>
                       </td>
                     </tr>
  
                     <tr style="DISPLAY: none">
                       <td align="left">&nbsp;Ayat Pajak</td> 
-                      <td>&nbsp; <input id="t_laporan_harian_sptpdvat_code_dtl" onchange="alert('changed')" class="ControlsRQ" name="{vat_code_dtl_Name}" readonly maxlength="32" value="{vat_code_dtl}" size="32"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_dtl_id" onchange="alert('tes');" name="{p_vat_type_dtl_id_Name}" value="{p_vat_type_dtl_id}" type="hidden"></td>
+                      <td>&nbsp; <input id="t_laporan_harian_sptpdvat_code_dtl" class="ControlsRQ" onchange="alert('changed')" value="{vat_code_dtl}" readonly maxlength="32" size="32" name="{vat_code_dtl_Name}"><img onclick="javascript:lov_tipeayat()" border="0" src="../images/view.gif"><input id="t_laporan_harian_sptpdp_vat_type_dtl_id" onchange="alert('tes');" value="{p_vat_type_dtl_id}" type="hidden" name="{p_vat_type_dtl_id_Name}"></td>
                     </tr>
  
                     <tr>
                       <td colspan="2" align="right">&nbsp; 
-                        <!-- BEGIN Button Button2 --><input id="t_laporan_harian_sptpdButton2" class="btn_tambah" onclick="printLaporanExcel()" name="{Button_Name}" alt="Button1" value="Download Excel" type="button"><!-- END Button Button2 -->
-                        <!-- BEGIN Button Button1 --><input id="t_laporan_harian_sptpdButton1" class="btn_tambah" onclick="printLaporan()" name="{Button_Name}" alt="Button1" value="Download Pdf" type="button"><!-- END Button Button1 --></td>
+                        <!-- BEGIN Button Button2 --><input id="t_laporan_harian_sptpdButton2" class="btn_tambah" onclick="printLaporanExcel()" value="Download Excel" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button2 -->
+                        <!-- BEGIN Button Button1 --><input id="t_laporan_harian_sptpdButton1" class="btn_tambah" onclick="printLaporan()" value="Download Pdf" alt="Button1" type="button" name="{Button_Name}"><!-- END Button Button1 --></td>
                     </tr>
                   </table>
                 </td>
