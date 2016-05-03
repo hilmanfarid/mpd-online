@@ -11,13 +11,14 @@ $data = array();
 
 $dbConn = new clsDBConnSIKP();
 
-$query = 	"select a.p_vat_type_dtl_id,a.t_vat_registration_id,c.vat_code,
+$query = 	"select d.p_rqst_type_id, a.p_vat_type_dtl_id,a.t_vat_registration_id,c.vat_code,
 			a.company_brand, a.brand_address_name, a.brand_address_no, a.wp_name, a.wp_address_name, a.company_name, a.address_name, b.code as job_name, a.bap_employee_no_1, a.bap_employee_name_1, a.bap_employee_no_2, a.bap_employee_name_2, a.bap_employee_job_pos_1, a.bap_employee_job_pos_2 " .
 			"from t_vat_registration a " .
-			"join p_job_position b " .
+			"left join p_job_position b " .
 			"on a.p_job_position_id = b.p_job_position_id " .
 			"left join p_vat_type_dtl c on c.p_vat_type_dtl_id=a.p_vat_type_dtl_id ".
-			"where t_customer_order_id = $t_customer_order_id";
+			"left join t_customer_order d on d.t_customer_order_id = a.t_customer_order_id ".
+			"where a.t_customer_order_id = $t_customer_order_id";
 //die($query);
 $dbConn->query($query);
 while ($dbConn->next_record()) {
@@ -38,6 +39,7 @@ while ($dbConn->next_record()) {
 	$data["p_vat_type_dtl_id"]	= $dbConn->f("p_vat_type_dtl_id");
 	$data["t_vat_registration_id"]	= $dbConn->f("t_vat_registration_id");
 	$data["vat_code"]	= $dbConn->f("vat_code");
+	$data["p_rqst_type_id"]	= $dbConn->f("p_rqst_type_id");
 }
 
 $dbConn->close();
@@ -239,7 +241,7 @@ class FormCetak extends FPDF {
 		
 		$data_pajak = array();
 		$dbConn = new clsDBConnSIKP();
-		$query = 	"select * from p_vat_type_dtl where p_vat_type_dtl_id =  " . $data["p_vat_type_dtl_id"];
+		$query = 	"select * from p_rqst_type where p_rqst_type_id =  " . $data["p_rqst_type_id"];
 
 		$dbConn->query($query);
 		while ($dbConn->next_record()) {
