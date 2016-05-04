@@ -180,7 +180,13 @@ a.t_customer_order_id = {CURR_DOC_ID}" parameterTypeListName="ParameterTypeList"
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Button id="362" urlType="Relative" enableValidation="True" isDefault="False" name="Button2" PathID="t_vat_setllementGridButton2">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
