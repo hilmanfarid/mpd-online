@@ -214,6 +214,7 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 // -------------------------
     $no_kohir = $t_vat_setllementForm->no_kohir->GetValue();
 	
+	/*
 	if(!empty($no_kohir)) {
 		//empty statement		
 		$i_vat_setllement_id = $t_vat_setllementForm->t_vat_setllement_id->GetValue();
@@ -246,6 +247,7 @@ function t_vat_setllementForm_Button2_OnClick(& $sender)
 		$dbConn1->next_record();
 		$t_vat_setllementForm->payment_key->SetValue($dbConn1->f("payment_key"));		
 	}
+	*/
 	
 	//update anomali 
 	$dbConn2 = new clsDBConnSIKP();
