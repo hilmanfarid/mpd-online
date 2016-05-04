@@ -105,6 +105,24 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange()
 }
 //End Close t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange
 
+//t_bphtb_registrationFormpotongan_waris_OnChange @1084-5BB95D33
+function t_bphtb_registrationFormpotongan_waris_OnChange()
+{
+    var result = true;
+//End t_bphtb_registrationFormpotongan_waris_OnChange
+
+//Custom Code @1085-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+	getNPOP();
+    // -------------------------
+//End Custom Code
+
+//Close t_bphtb_registrationFormpotongan_waris_OnChange @1084-BC33A33A
+    return result;
+}
+//End Close t_bphtb_registrationFormpotongan_waris_OnChange
+
 //DEL      // -------------------------
 //DEL      // Write your own code here.
 //DEL      var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
@@ -173,12 +191,13 @@ function t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start(send
 }
 //End PTAutoFill1 Loading
 
-//bind_events @1-DD6EE2E3
+//bind_events @1-5B963A22
 function bind_events() {
     addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_idPTAutoFill1_start);
     addEventHandler("t_bphtb_registrationFormp_bphtb_legal_doc_type_id", "change", t_bphtb_registrationFormp_bphtb_legal_doc_type_id_OnChange);
     addEventHandler("t_bphtb_registrationFormButton_Delete", "click", t_bphtb_registrationFormButton_Delete_OnClick);
     addEventHandler("t_bphtb_registrationFormnjop_pbb", "change", t_bphtb_registrationFormnjop_pbb_OnChange);
+    addEventHandler("t_bphtb_registrationFormpotongan_waris", "change", t_bphtb_registrationFormpotongan_waris_OnChange);
     addEventHandler("t_bphtb_registrationForm", "submit", t_bphtb_registrationForm_OnSubmit);
     addEventHandler("t_bphtb_registrationFormButton_Cancel", "click", t_bphtb_registrationFormButton_Cancel_OnClick);
 }
@@ -220,7 +239,7 @@ jQuery(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -444,6 +463,17 @@ jQuery(document).ready(function()
                       </select>
  : </td> 
                     <td>Rp. &nbsp;<input style="TEXT-ALIGN: right" id="t_bphtb_registrationFormmarket_price" class="numeric-field" onkeyup="getNPOP();" value="{market_price}" name="{market_price_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">&nbsp;</td> 
+                    <td class="th" colspan="2">Potongan Kebijakan untuk Waris</td> 
+                    <td colspan="5">
+                      <select id="t_bphtb_registrationFormpotongan_waris" onkeyup="getNPOP();" name="{potongan_waris_Name}">
+                        {potongan_waris_Options}
+                      </select>
+ </td> 
+                    <td>&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -703,10 +733,17 @@ function hitungTotalBangunan(){
                 
 }
 function getNPOP(){
+        var waris = document.getElementById('t_bphtb_registrationFormpotongan_waris').value;
+		var res = waris.split("/"); 
+		//alert(ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,'')*res[0]/res[1]));
+		var total_price = ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,'')*res[0]/res[1]);
+		var market_price = ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,'')*res[0]/res[1]);
         if(parseFloat(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''))>parseFloat(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''))){
-                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormtotal_price').value.replace(/,/g ,''));
+						var components = total_price.toString().split(".");
+						document.getElementById('t_bphtb_registrationFormnpop').value=components[0];
                 }else{
-                        document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(document.getElementById('t_bphtb_registrationFormmarket_price').value.replace(/,/g ,''));
+                        var components = market_price.toString().split(".");
+						document.getElementById('t_bphtb_registrationFormnpop').value=components[0];
                 }    
                 var npotkp_cons = document.getElementById('t_bphtb_registrationFormnilai_doc').value;
                                 if(npotkp_cons==''){
@@ -715,7 +752,7 @@ function getNPOP(){
                 if(npotkp_cons >= 0 && npotkp_cons != ''){
                         //alert((document.getElementById('t_bphtb_registrationFormtotal_price').value).replace(/,/g ,''));
                         //document.getElementById('t_bphtb_registrationFormnpop_tkp').value = ReplaceNumberWithCommas(npotkp_cons*(document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,''));
-                                document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,'')*npotkp_cons));
+                                document.getElementById('t_bphtb_registrationFormnpop').value=ReplaceNumberWithCommas(Math.ceil((document.getElementById('t_bphtb_registrationFormnpop').value).replace(/,/g ,'')*npotkp_cons*res[0]/res[1]));
                                 }
                                 var npop = document.getElementById('t_bphtb_registrationFormnpop').value.replace(/,/g ,'');
                 var persen_kurang = document.getElementById('t_bphtb_registrationFormadd_disc_percent').value/100;

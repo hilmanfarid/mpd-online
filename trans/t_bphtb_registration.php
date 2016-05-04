@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-42999F65
+//Class_Initialize Event @94-AA42AFCC
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -129,7 +129,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             "left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_legal_doc_type_id\n" .
             "";
             $this->p_bphtb_legal_doc_type_id->DataSource->Order = "";
-            $this->npop = & new clsControl(ccsTextBox, "npop", "npop", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("npop", $Method, NULL), $this);
+            $this->npop = & new clsControl(ccsTextBox, "npop", "npop", ccsFloat, array(False, 0, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("npop", $Method, NULL), $this);
             $this->npop_tkp = & new clsControl(ccsTextBox, "npop_tkp", "npop_tkp", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("npop_tkp", $Method, NULL), $this);
             $this->npop_kp = & new clsControl(ccsTextBox, "npop_kp", "npop_kp", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("npop_kp", $Method, NULL), $this);
             $this->bphtb_amt = & new clsControl(ccsTextBox, "bphtb_amt", "bphtb_amt", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("bphtb_amt", $Method, NULL), $this);
@@ -162,6 +162,9 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->building_price_real = & new clsControl(ccsTextBox, "building_price_real", "building_price_real", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("building_price_real", $Method, NULL), $this);
             $this->Button4 = & new clsButton("Button4", $Method, $this);
             $this->add_disc_percent = & new clsControl(ccsTextBox, "add_disc_percent", "add_disc_percent", ccsFloat, "", CCGetRequestParam("add_disc_percent", $Method, NULL), $this);
+            $this->potongan_waris = & new clsControl(ccsListBox, "potongan_waris", "potongan_waris", ccsText, "", CCGetRequestParam("potongan_waris", $Method, NULL), $this);
+            $this->potongan_waris->DSType = dsListOfValues;
+            $this->potongan_waris->Values = array(array("1/1", "Bukan Waris"), array("1/3", "1/3"), array("2/3", "2/3"), array("1/4", "1/4"), array("1/7", "1/7"));
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');
@@ -201,6 +204,8 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
                     $this->building_price_real->SetText(0);
                 if(!is_array($this->add_disc_percent->Value) && !strlen($this->add_disc_percent->Value) && $this->add_disc_percent->Value !== false)
                     $this->add_disc_percent->SetText(0);
+                if(!is_array($this->potongan_waris->Value) && !strlen($this->potongan_waris->Value) && $this->potongan_waris->Value !== false)
+                    $this->potongan_waris->SetText(0);
             }
         }
     }
@@ -217,7 +222,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     }
 //End Initialize Method
 
-//Validate Method @94-A7790B36
+//Validate Method @94-C7E32D25
     function Validate()
     {
         global $CCSLocales;
@@ -277,6 +282,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation = ($this->land_price_real->Validate() && $Validation);
         $Validation = ($this->building_price_real->Validate() && $Validation);
         $Validation = ($this->add_disc_percent->Validate() && $Validation);
+        $Validation = ($this->potongan_waris->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->wp_kota->Errors->Count() == 0);
         $Validation =  $Validation && ($this->wp_kelurahan->Errors->Count() == 0);
@@ -332,11 +338,12 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $Validation =  $Validation && ($this->land_price_real->Errors->Count() == 0);
         $Validation =  $Validation && ($this->building_price_real->Errors->Count() == 0);
         $Validation =  $Validation && ($this->add_disc_percent->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->potongan_waris->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-22E23C2E
+//CheckErrors Method @94-563A3C31
     function CheckErrors()
     {
         $errors = false;
@@ -394,6 +401,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
         $errors = ($errors || $this->land_price_real->Errors->Count());
         $errors = ($errors || $this->building_price_real->Errors->Count());
         $errors = ($errors || $this->add_disc_percent->Errors->Count());
+        $errors = ($errors || $this->potongan_waris->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -585,7 +593,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-5D6EC5A9
+//Show Method @94-0903E265
     function Show()
     {
         global $CCSUseAmp;
@@ -601,6 +609,7 @@ function GetPrimaryKey($keyName)
 
         $this->p_bphtb_legal_doc_type_id->Prepare();
         $this->jenis_harga_bphtb->Prepare();
+        $this->potongan_waris->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -666,6 +675,7 @@ function GetPrimaryKey($keyName)
                     $this->land_price_real->SetValue($this->DataSource->land_price_real->GetValue());
                     $this->building_price_real->SetValue($this->DataSource->building_price_real->GetValue());
                     $this->add_disc_percent->SetValue($this->DataSource->add_disc_percent->GetValue());
+                    $this->potongan_waris->SetValue($this->DataSource->potongan_waris->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -731,6 +741,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->land_price_real->Errors->ToString());
             $Error = ComposeStrings($Error, $this->building_price_real->Errors->ToString());
             $Error = ComposeStrings($Error, $this->add_disc_percent->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->potongan_waris->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -813,6 +824,7 @@ function GetPrimaryKey($keyName)
         $this->building_price_real->Show();
         $this->Button4->Show();
         $this->add_disc_percent->Show();
+        $this->potongan_waris->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -823,7 +835,7 @@ function GetPrimaryKey($keyName)
 
 class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_registrationFormDataSource Class @94-BDFCC0BF
 
-//DataSource Variables @94-D9D775DA
+//DataSource Variables @94-5EB0D54A
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -892,9 +904,10 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     var $land_price_real;
     var $building_price_real;
     var $add_disc_percent;
+    var $potongan_waris;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-251D461E
+//DataSourceClass_Initialize Event @94-0A7A07D8
     function clst_bphtb_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -1008,6 +1021,8 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         
         $this->add_disc_percent = new clsField("add_disc_percent", ccsFloat, "");
         
+        $this->potongan_waris = new clsField("potongan_waris", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -1066,7 +1081,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
     }
 //End Open Method
 
-//SetValues Method @94-D547FC86
+//SetValues Method @94-57D2428C
     function SetValues()
     {
         $this->wp_kota->SetDBValue($this->f("wp_kota"));
@@ -1120,6 +1135,7 @@ class clst_bphtb_registrationFormDataSource extends clsDBConnSIKP {  //t_bphtb_r
         $this->land_price_real->SetDBValue(trim($this->f("land_price_real")));
         $this->building_price_real->SetDBValue(trim($this->f("building_price_real")));
         $this->add_disc_percent->SetDBValue(trim($this->f("add_disc_percent_2")));
+        $this->potongan_waris->SetDBValue($this->f("potongan_waris"));
     }
 //End SetValues Method
 

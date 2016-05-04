@@ -309,7 +309,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<JoinLinks/>
 					<Fields/>
 				</ListBox>
-				<TextBox id="935" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop" PathID="t_bphtb_registrationFormnpop" fieldSource="npop" format="#,##0.00">
+				<TextBox id="935" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="npop" PathID="t_bphtb_registrationFormnpop" fieldSource="npop" format="#,##0">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -501,7 +501,25 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<ListBox id="1084" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="potongan_waris" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormpotongan_waris" connection="ConnSIKP" dataSource="1/1;Bukan Waris;1/3;1/3;2/3;2/3;1/4;1/4;1/7;1/7" fieldSource="potongan_waris" defaultValue="0" _valueOfList="1/1" _nameOfList="Bukan Waris">
+					<Components/>
+					<Events>
+<Event name="OnChange" type="Client">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="1085"/>
+</Actions>
+</Event>
+</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -588,18 +606,18 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 			</ISPParameters>
 			<ISQLParameters>
 				<SQLParameter id="1068" variable="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
-<SQLParameter id="1069" variable="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
-<SQLParameter id="1070" variable="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
-<SQLParameter id="1071" variable="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kecamatan"/>
-<SQLParameter id="1072" variable="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kelurahan"/>
-<SQLParameter id="1073" variable="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="wp_kecamatan"/>
-<SQLParameter id="1074" variable="object_kelurahan" dataType="Text" parameterType="Control" parameterSource="object_kelurahan"/>
-<SQLParameter id="1075" variable="object_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kelurahan"/>
-<SQLParameter id="1076" variable="object_kecamatan" dataType="Text" parameterType="Control" parameterSource="object_kecamatan"/>
-<SQLParameter id="1077" variable="object_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kecamatan"/>
-<SQLParameter id="1078" variable="object_kota" dataType="Text" parameterType="Control" parameterSource="object_kota"/>
-<SQLParameter id="1079" variable="object_p_region_id" dataType="Float" parameterType="Control" parameterSource="object_p_region_id"/>
-</ISQLParameters>
+				<SQLParameter id="1069" variable="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
+				<SQLParameter id="1070" variable="wp_p_region_id" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id"/>
+				<SQLParameter id="1071" variable="wp_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kecamatan"/>
+				<SQLParameter id="1072" variable="wp_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="wp_p_region_id_kelurahan"/>
+				<SQLParameter id="1073" variable="wp_kecamatan" dataType="Text" parameterType="Control" parameterSource="wp_kecamatan"/>
+				<SQLParameter id="1074" variable="object_kelurahan" dataType="Text" parameterType="Control" parameterSource="object_kelurahan"/>
+				<SQLParameter id="1075" variable="object_p_region_id_kelurahan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kelurahan"/>
+				<SQLParameter id="1076" variable="object_kecamatan" dataType="Text" parameterType="Control" parameterSource="object_kecamatan"/>
+				<SQLParameter id="1077" variable="object_p_region_id_kecamatan" dataType="Float" parameterType="Control" parameterSource="object_p_region_id_kecamatan"/>
+				<SQLParameter id="1078" variable="object_kota" dataType="Text" parameterType="Control" parameterSource="object_kota"/>
+				<SQLParameter id="1079" variable="object_p_region_id" dataType="Float" parameterType="Control" parameterSource="object_p_region_id"/>
+			</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="910" field="wp_kota" dataType="Text" parameterType="Control" parameterSource="wp_kota"/>
 				<CustomParameter id="911" field="wp_kelurahan" dataType="Text" parameterType="Control" parameterSource="wp_kelurahan"/>
@@ -717,10 +735,10 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 				<SQLParameter id="1052" variable="add_disc_percent" dataType="Float" parameterType="Control" parameterSource="add_disc_percent"/>
 				<SQLParameter id="1053" variable="t_bphtb_registration_id" parameterType="URL" dataType="Float" parameterSource="t_bphtb_registration_id" defaultValue="0"/>
 				<SQLParameter id="1080" variable="land_area_real" dataType="Integer" parameterType="Control" parameterSource="land_area_real"/>
-<SQLParameter id="1081" variable="land_price_real" dataType="Float" parameterType="Control" parameterSource="land_price_real"/>
-<SQLParameter id="1082" variable="building_area_real" dataType="Integer" parameterType="Control" parameterSource="building_area_real"/>
-<SQLParameter id="1083" variable="building_price_real" dataType="Float" parameterType="Control" parameterSource="building_price_real"/>
-</USQLParameters>
+				<SQLParameter id="1081" variable="land_price_real" dataType="Float" parameterType="Control" parameterSource="land_price_real"/>
+				<SQLParameter id="1082" variable="building_area_real" dataType="Integer" parameterType="Control" parameterSource="building_area_real"/>
+				<SQLParameter id="1083" variable="building_price_real" dataType="Float" parameterType="Control" parameterSource="building_price_real"/>
+			</USQLParameters>
 			<UConditions>
 				<TableParameter id="778" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="Control" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
 				<TableParameter id="995" conditionType="Parameter" useIsNull="False" field="t_bphtb_registration_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_bphtb_registration_id"/>
