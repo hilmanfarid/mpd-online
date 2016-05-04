@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-1CB0B131
+//Class_Initialize Event @2-B756EC8C
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -89,6 +89,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->cetak_stpd = & new clsControl(ccsLabel, "cetak_stpd", "cetak_stpd", ccsText, "", CCGetRequestParam("cetak_stpd", ccsGet, NULL), $this);
         $this->cetak_stpd->HTML = true;
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
+        $this->Button2 = & new clsButton("Button2", ccsGet, $this);
     }
 //End Class_Initialize Event
 
@@ -103,7 +104,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-332C33EB
+//Show Method @2-66263D22
     function Show()
     {
         global $Tpl;
@@ -263,6 +264,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             return;
         }
         $this->Button1->Show();
+        $this->Button2->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
