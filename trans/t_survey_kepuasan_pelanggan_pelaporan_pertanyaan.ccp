@@ -74,11 +74,11 @@ ORDER BY score_number desc" boundColumn="p_survey_answer_score_id" textColumn="s
 					<Components/>
 					<Events>
 						<Event name="OnClick" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="597"/>
-</Actions>
-</Event>
-</Events>
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="597"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
