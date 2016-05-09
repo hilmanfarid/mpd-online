@@ -24,7 +24,7 @@ OR
 )
 and 
 ( case 
-		when t_vat_setllement_id is null then TRUE 
+		when {p_vat_type_dtl_id} = 0  then TRUE 
 		when {p_vat_type_dtl_id} = 10 then b.p_vat_type_dtl_id in (10,9)
 		else c.p_vat_type_dtl_id = {p_vat_type_dtl_id} end
 )

@@ -227,7 +227,7 @@ class clsSELECT_target_amt_realisaDataSource extends clsDBConnSIKP {  //SELECT_t
     }
 //End Prepare Method
 
-//Open Method @2-E71215AE
+//Open Method @2-939D8C28
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -255,7 +255,7 @@ class clsSELECT_target_amt_realisaDataSource extends clsDBConnSIKP {  //SELECT_t
         ")\n" .
         "and \n" .
         "( case \n" .
-        "		when t_vat_setllement_id is null then TRUE \n" .
+        "		when " . $this->SQLValue($this->wp->GetDBValue("4"), ccsFloat) . " = 0  then TRUE \n" .
         "		when " . $this->SQLValue($this->wp->GetDBValue("4"), ccsFloat) . " = 10 then b.p_vat_type_dtl_id in (10,9)\n" .
         "		else c.p_vat_type_dtl_id = " . $this->SQLValue($this->wp->GetDBValue("4"), ccsFloat) . " end\n" .
         ")\n" .
