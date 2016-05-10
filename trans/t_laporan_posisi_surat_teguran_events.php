@@ -71,7 +71,7 @@ function Page_BeforeShow(& $sender)
 			$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 			$dbConn	= new clsDBConnSIKP();
 			$query="select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.* 
-				from f_posisi_surat_teguran_test_2(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."') a
+				from f_posisi_surat_teguran_test(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."') a
 				left join t_cust_account b on a.npwpd = b.npwd
 				ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
 			//echo $query;exit;
@@ -116,7 +116,7 @@ function Page_BeforeShow(& $sender)
 		$tanggal = CCGetFromGet('date_end_laporan','31-12-2014');
 			$dbConn	= new clsDBConnSIKP();
 			$query="select b.company_brand,regexp_replace(b.brand_address_name, '\r|\n', '', 'g')||' '||b.brand_address_no as alamat_merk_dagang,a.* 
-				from f_posisi_surat_teguran_test_2(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."') a
+				from f_posisi_surat_teguran_test(".$param_arr['p_vat_type_id'].",".$param_arr['p_finance_period_id'].",'".$tanggal."') a
 				left join t_cust_account b on a.npwpd = b.npwd
 				ORDER BY company_brand,npwpd, surat_teguran_3,surat_teguran_2,surat_teguran_1";
 			//echo $query;exit;
