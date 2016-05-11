@@ -328,7 +328,7 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', '', 10);
 		$this->tulis("1. Harap penyetoran dilakukan melalui Kas Daerah dengan menggunakan Surat Setoran Pajak Daerah (SSPD)", "L");
 		$this->tulis("2. Apabila STPD ini tidak atau kurang dibayar setelah lewat waktu paling lama 15 hari kalender sejak STPD ini", "L");
-		$this->tulis("diterbitkan dikenakan sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
+		$this->tulis("diterbitkan / diterima dikenakan sanksi administrasi berupa bunga sebesar 2% per bulan.", "L");
 		
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
