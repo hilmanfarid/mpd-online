@@ -78,7 +78,9 @@ function GetCetakHTML($param_arr) {
 
 	$output.='<th align="center" >NO</th>';
 	$output.='<th align="center" >NPWPD</th>';
-	$output.='<th align="center" >NAMA</th>';
+	$output.='<th align="center" >NAMA WP</th>';
+	$output.='<th align="center" >ALAMAT</th>';
+	$output.='<th align="center" >OBJEK PAJAK</th>';
 	$output.='<th align="center" >ALAMAT</th>';
 	$output.='<th align="center" >BAP</th>';
 	$output.='<th align="center" >NOTA DINAS</th>';
@@ -92,6 +94,7 @@ function GetCetakHTML($param_arr) {
 	$query="select * from t_vat_registration where
 	npwpd ilike '%".$param_arr['search']."%'
 	or wp_name ilike '%".$param_arr['search']."%'
+	or company_brand ilike '%".$param_arr['search']."%'
 	ORDER BY wp_name";
 		
 	//echo $query;exit;
@@ -107,6 +110,8 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['wp_address_name'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['brand_address_name'].'</td>';
 		$output.='<td align="center" ><input id="cetak_bap" class="btn_tambah" onclick="cetak_bap('.$data[$i]['t_customer_order_id'].'); return false;" value="cetak_BAP" type="button">';
 		$output.='<td align="center" ><input id="cetak_nota_dinas" class="btn_tambah" onClick="cetak_nota_dinas('.$data[$i]['t_customer_order_id'].')" value="cetak_nota_dinas" type="button">';
 		$output.='<td align="center" ><input id="cetak_pegukuhan" class="btn_tambah" onclick="cetak_pengukuhan('.$data[$i]['t_customer_order_id'].'); return false;" value="cetak_pengukuhan" type="button">';

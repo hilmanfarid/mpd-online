@@ -51,7 +51,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -77,7 +77,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   </tr>
                   <!-- END Error -->
                   <tr class="Controls">
-                    <td class="search-field">NPWPD/Nama WP</td> 
+                    <td class="search-field">NPWPD/Nama WP/Objek Pajak</td> 
                     <td class="search-field"><input id="t_rep_lap_spjpSearchsearch" class="ControlsIN" value="{search}" maxlength="32" size="32" name="{search_Name}"></td> 
                     <td>&nbsp;</td> 
                     <td class="search-field">&nbsp; 
@@ -166,13 +166,13 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                                 tgl= document.getElementById("t_rep_lap_spjpSearchtgl").value;
                 window.open("../report/cetak_formulir_tanda_terima_pengukuhan_pdf.php?t_customer_order_id=" + set_id +"&tgl="+tgl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
-	
-		function cetak_kartu_npwpd(set_id)
+        
+                function cetak_kartu_npwpd(set_id)
     {
                 window.open("../report/cetak_kartu_npwpd.php?t_customer_order_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
 
-	function cetak_kartu_npwpd_v2(set_id)
+        function cetak_kartu_npwpd_v2(set_id)
     {
                 window.open("../report/cetak_kartu_npwpd_v2.php?t_customer_order_id=" + set_id , '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
