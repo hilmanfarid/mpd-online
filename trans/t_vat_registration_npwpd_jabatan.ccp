@@ -41,12 +41,12 @@ WHERE  t_ppat_id = {t_ppat_id}" customDelete="DELETE FROM t_ppat WHERE  t_ppat_i
 				<Button id="24" urlType="Relative" enableValidation="True" isDefault="False" name="Button_Insert" wizardCaption="Add" PathID="t_ppatFormButton_Insert" removeParameters="FLAG">
 					<Components/>
 					<Events>
-<Event name="OnClick" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="374"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnClick" type="Server">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="374"/>
+							</Actions>
+						</Event>
+					</Events>
 					<Attributes/>
 					<Features/>
 				</Button>
@@ -194,7 +194,7 @@ WHERE  t_ppat_id = {t_ppat_id}" customDelete="DELETE FROM t_ppat WHERE  t_ppat_i
 					<Attributes/>
 					<Features/>
 				</Hidden>
-</Components>
+			</Components>
 			<Events>
 				<Event name="AfterInsert" type="Server">
 					<Actions>

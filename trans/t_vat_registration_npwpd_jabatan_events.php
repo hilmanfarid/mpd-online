@@ -80,6 +80,9 @@ function t_ppatForm_Button_Insert_OnClick(& $sender)
 		echo 'alert("'.$mess.'");';
 		echo '</script>';
 	}
+	echo '<script language="javascript">';
+	echo "location.href='t_vat_registration_npwpd_jabatan.php';";
+	echo '</script>';
 	return;
 // -------------------------
 //End Custom Code
