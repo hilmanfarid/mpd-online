@@ -293,7 +293,8 @@ function print_laporan($param_arr){
 	$pdf->ln(5);
 	$pdf->SetWidtHs(array(239,90));
 	$pdf->SetAligns(array("C", "C","C","C","C"));
-	$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
+	//$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\n(Drs. H. UGAS RAHMANSYAH, SAP, MAP)\n(NIP 19640127 199703 1001)"),array("",""),5);
+	$pdf->RowMultiBorderWithHeight(array("","KEPALA SEKSI VERIFIKASI OTORISASI DAN PEMBUKUAN\n\n\n\n\nDrs. H. Deden Saepulloh, MM.\nPembina\nNIP 19681210 199010 1001"),array("",""),5);
 	$pdf->Output("","I");
 	echo 'tes';
 	exit;	
