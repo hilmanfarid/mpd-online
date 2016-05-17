@@ -360,7 +360,6 @@ class FormCetak extends FPDF {
 		// Body Bawah
 		$this->Ln();
 		$this->Ln();
-		$this->Ln();
 		$this->SetFont('Times', '', 11);
 		$this->Cell($lengthCell, $this->height, "Telah dikukuhkan pada tata usaha kami sebagai Wajib Pajak", 0, 0, 'L');
 		$this->Ln();
@@ -439,12 +438,13 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Ln();
 		
-		$this->SetFont('Times', 'BU', 10);
-		$this->Cell($lengthCell / 10, $this->height, "Tembusan,", 0, 0, 'L');
-		$this->SetFont('Times', '', 10);
+		$this->SetFont('Times', 'BU', 8);
+		$this->Cell(15, $this->height, "Tembusan,", 0, 0, 'L');
+		$this->SetFont('Times', '', 8);
 		$this->Cell($lengthCell - ($lengthCell / 10), $this->height, "disampaikan kepada Yth:", 0, 0, 'L');
 		$this->Ln();
-		
+		$this->SetFont('Times', '', 8);
+		$this->height = $this->height - 1;
 		$this->Cell($lengthCell, $this->height, "1. Bapak Walikota Bandung (sebagai laporan);", 0, 0, 'L');
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height, "2. Bapak Wakil Walikota Bandung (sebagai laporan);", 0, 0, 'L');
@@ -453,6 +453,17 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height, "4. Arsip.", 0, 0, 'L');
 		$this->Ln();
+		$this->Ln();
+		
+		$this->SetWidths(array($lengthCell-15));
+		$this->SetAligns(array("J"));
+		$this->RowMultiBorderWithHeight(array(
+			"Catatan :\nApabila Saudara telah mendaftarkan diri dan memiliki NPWPD agar segera melapor pada loket Pelayanan Informasi dan Penanganan Pengaduan Dinas Pelayanan Pajak Jl. Wastukencana No. 2 Bandung dengan  membawa FC bukti pembayaran pajak bulan terakhir."
+			),
+			array(
+			""
+			),
+			$this->height);
 	}
 	
 	function getNumberFormat($number, $dec) {
