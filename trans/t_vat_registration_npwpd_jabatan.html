@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -67,26 +67,6 @@ $(document).ready(function()
                   </tr>
  
                   <tr class="Controls">
-                    <td class="th">Alamat Objek Pajak</td> 
-                    <td><input style="WIDTH: 500px; HEIGHT: 20px" id="t_ppatFormbrand_address_name" class="ControlsRQ" value="{brand_address_name}" size="58" name="{brand_address_name_Name}"></td>
-                  </tr>
- 
-                  <tr class="Controls" style="display:none">
-                    <td class="th">Alamat Tambahan</td> 
-                    <td><input style="WIDTH: 500px; HEIGHT: 20px" id="t_ppatFormcompany_additional_addr" class="ControlsIN" value="{company_additional_addr}" size="58" name="{company_additional_addr_Name}"></td>
-                  </tr>
- 
-                  <tr class="Controls">
-                    <td class="th">No Lokasi</td> 
-                    <td><input style="WIDTH: 77px; HEIGHT: 20px" id="t_ppatFormbrand_address_no" class="ControlsRQ" value="{brand_address_no}" size="7" name="{brand_address_no_Name}"></td>
-                  </tr>
- 
-                  <tr class="Controls">
-                    <td class="th">RT / RW</td> 
-                    <td><input style="WIDTH: 38px; HEIGHT: 20px" id="t_ppatFormbrand_address_rt" class="ControlsIN" value="{brand_address_rt}" maxlength="250" size="5" name="{brand_address_rt_Name}">&nbsp;/ <input style="WIDTH: 38px; HEIGHT: 20px" id="t_ppatFormbrand_address_rw" class="ControlsIN" value="{brand_address_rw}" maxlength="250" size="5" name="{brand_address_rw_Name}"></td>
-                  </tr>
- 
-                  <tr class="Controls">
                     <td class="th">Kota / Kabupaten</td> 
                     <td><input id="t_ppatFormkota" class="ControlsRQ" tabindex="2" value="{kota}" readonly maxlength="32" size="32" name="{kota_Name}">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif"><input id="t_ppatFormbrand_p_region_id" value="{brand_p_region_id}" type="hidden" name="{brand_p_region_id_Name}"></td>
                   </tr>
@@ -99,6 +79,26 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td class="th">Kelurahan</td> 
                     <td><input id="t_ppatFormkelurahan" class="ControlsRQ" tabindex="2" value="{kelurahan}" readonly maxlength="32" size="32" name="{kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif"><input id="t_ppatFormbrand_p_region_id_kel" value="{brand_p_region_id_kel}" type="hidden" name="{brand_p_region_id_kel_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Alamat Objek Pajak</td> 
+                    <td><input style="WIDTH: 500px; HEIGHT: 20px" id="t_ppatFormbrand_address_name" class="ControlsRQ" value="{brand_address_name}" size="58" name="{brand_address_name_Name}"></td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">Alamat Tambahan</td> 
+                    <td><input style="WIDTH: 500px; HEIGHT: 20px" id="t_ppatFormcompany_additional_addr" class="ControlsIN" value="{company_additional_addr}" size="58" name="{company_additional_addr_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No Lokasi</td> 
+                    <td><input style="WIDTH: 77px; HEIGHT: 20px" id="t_ppatFormbrand_address_no" class="ControlsRQ" value="{brand_address_no}" size="7" name="{brand_address_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">RT / RW</td> 
+                    <td><input style="WIDTH: 38px; HEIGHT: 20px" id="t_ppatFormbrand_address_rt" class="ControlsIN" value="{brand_address_rt}" maxlength="250" size="5" name="{brand_address_rt_Name}">&nbsp;/ <input style="WIDTH: 38px; HEIGHT: 20px" id="t_ppatFormbrand_address_rw" class="ControlsIN" value="{brand_address_rw}" maxlength="250" size="5" name="{brand_address_rw_Name}"></td>
                   </tr>
  
                   <tr class="Controls">

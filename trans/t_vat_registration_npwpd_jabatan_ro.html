@@ -66,12 +66,12 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        NPWPD JABATAN
+        NPWPD JABATAN 
       </div>
     </div>
   </div>
@@ -123,6 +123,21 @@ $(document).ready(function()
                 </tr>
  
                 <tr class="Controls">
+                  <td class="th">Kota / Kabupaten</td> 
+                  <td colspan="3"><input id="t_vat_registrationFormkota" class="ControlsRO" tabindex="2" value="{kota}" readonly maxlength="32" size="32" name="{kota_Name}"><input id="t_vat_registrationFormbrand_p_region_id" value="{brand_p_region_id}" type="hidden" name="{brand_p_region_id_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Kecamatan</td> 
+                  <td colspan="3"><input id="t_vat_registrationFormkecamatan" class="ControlsRO" tabindex="2" value="{kecamatan}" readonly maxlength="32" size="32" name="{kecamatan_Name}"><input id="t_vat_registrationFormbrand_p_region_id_kec" value="{brand_p_region_id_kec}" type="hidden" name="{brand_p_region_id_kec_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Kelurahan</td> 
+                  <td colspan="3"><input id="t_vat_registrationFormkelurahan" class="ControlsRO" tabindex="2" value="{kelurahan}" readonly maxlength="32" size="32" name="{kelurahan_Name}"><input id="t_vat_registrationFormbrand_p_region_id_kel" value="{brand_p_region_id_kel}" type="hidden" name="{brand_p_region_id_kel_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
                   <td class="th">Alamat Objek Pajak</td> 
                   <td colspan="3"><input style="WIDTH: 500px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_name" class="ControlsRO" value="{brand_address_name}" size="58" name="{brand_address_name_Name}"></td>
                 </tr>
@@ -140,21 +155,6 @@ $(document).ready(function()
                 <tr class="Controls">
                   <td class="th">RT / RW</td> 
                   <td colspan="3"><input style="WIDTH: 38px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_rt" class="ControlsRO" value="{brand_address_rt}" maxlength="250" size="5" name="{brand_address_rt_Name}">/ <input style="WIDTH: 38px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_rw" class="ControlsRO" value="{brand_address_rw}" maxlength="250" size="5" name="{brand_address_rw_Name}"></td>
-                </tr>
- 
-                <tr class="Controls">
-                  <td class="th">Kota / Kabupaten</td> 
-                  <td colspan="3"><input id="t_vat_registrationFormkota" class="ControlsRO" tabindex="2" value="{kota}" readonly maxlength="32" size="32" name="{kota_Name}"><input id="t_vat_registrationFormbrand_p_region_id" value="{brand_p_region_id}" type="hidden" name="{brand_p_region_id_Name}"></td>
-                </tr>
- 
-                <tr class="Controls">
-                  <td class="th">Kecamatan</td> 
-                  <td colspan="3"><input id="t_vat_registrationFormkecamatan" class="ControlsRO" tabindex="2" value="{kecamatan}" readonly maxlength="32" size="32" name="{kecamatan_Name}"><input id="t_vat_registrationFormbrand_p_region_id_kec" value="{brand_p_region_id_kec}" type="hidden" name="{brand_p_region_id_kec_Name}"></td>
-                </tr>
- 
-                <tr class="Controls">
-                  <td class="th">Kelurahan</td> 
-                  <td colspan="3"><input id="t_vat_registrationFormkelurahan" class="ControlsRO" tabindex="2" value="{kelurahan}" readonly maxlength="32" size="32" name="{kelurahan_Name}"><input id="t_vat_registrationFormbrand_p_region_id_kel" value="{brand_p_region_id_kel}" type="hidden" name="{brand_p_region_id_kel_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
