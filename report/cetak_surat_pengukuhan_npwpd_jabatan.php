@@ -98,6 +98,7 @@ class FormCetak extends FPDF {
 		$startY = $this->GetY();
 		$startX = $this->paperWSize-42;
 		$lengthCell = $startX + 20;
+		$this->height = 5;
 		
 		$this->Image('../images/logo_pemda.png',25,12,25,25);
 		
@@ -203,7 +204,7 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array($lengthCell-15));
 		$this->SetAligns(array("J"));
 		$this->RowMultiBorderWithHeight(array(
-			"Untuk menghidari dilakukan pemeriksaan dan pengenaan sanksi administrasi perpajakan karena ada indikasi tidak dipenuhinya kewajiban perpajakan daerah, pemilik/pengelola usaha diminta untuk datang ke loket informasi dan penanganan pengaduan pada Dinas Pelayanan Pajak Kota Bandung Jl. Wastukancana No. 2 Bandung paling lambat 7 (tujuh) hari kerja sejak diterimanya pengukuhan ini untuk memberikan klarifikasi, pemutakhiran data dan menerima informasi terkait kwajiban perpajakan daerah dengan membawa kelengkapan sebagai berikut :"
+			"Untuk menghidari dilakukan pemeriksaan dan pengenaan sanksi administrasi perpajakan karena ada indikasi tidak dipenuhinya kewajiban perpajakan daerah, pemilik/pengelola usaha diminta untuk datang ke loket informasi dan penanganan pengaduan pada Dinas Pelayanan Pajak Kota Bandung Jl. Wastukancana No. 2 Bandung paling lambat 7 (tujuh) hari kerja sejak diterimanya pengukuhan ini untuk memberikan klarifikasi, pemutakhiran data dan menerima informasi terkait kewajiban perpajakan daerah dengan membawa kelengkapan sebagai berikut :"
 			),
 			array(
 			""
@@ -232,7 +233,7 @@ class FormCetak extends FPDF {
 		
 		$this->RowMultiBorderWithHeight(array(
 			"3. ",
-			"surat pernyataan kegiatan usaha dari pemilik/pengelola usahan dan/atau fotocopy perizinan kegiatan usaha dari instansi berwenang."
+			"Surat pernyataan kegiatan usaha dari pemilik/pengelola usaha dan/atau fotocopy perizinan kegiatan usaha dari instansi berwenang."
 			),
 			array(
 			"",""
@@ -309,7 +310,7 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
 		$this->SetFont('Times', '', 11);
-		$this->Cell($sigLen1, $this->height, "Pembina Utama Muda", 0, 0, 'C');
+		$this->Cell($sigLen1, $this->height, "PEMBINA UTAMA MUDA", 0, 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
@@ -326,7 +327,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lengthCell - ($lengthCell / 10), $this->height, "disampaikan kepada Yth:", 0, 0, 'L');
 		$this->Ln();
 		$this->SetFont('Times', '', 8);
-		$this->height = $this->height - 1;
+		//$this->height = $this->height - 1;
+		$this->height = 4;
 		$this->Cell($lengthCell, $this->height, "1. Bapak Walikota Bandung (sebagai laporan);", 0, 0, 'L');
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height, "2. Bapak Wakil Walikota Bandung (sebagai laporan); dan", 0, 0, 'L');
