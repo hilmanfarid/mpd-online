@@ -91,7 +91,7 @@ class clsGridLOV_REGION { //LOV_REGION class @2-0DD88139
     }
 //End Initialize Method
 
-//Show Method @2-3C2006F0
+//Show Method @2-D56A28D6
     function Show()
     {
         global $Tpl;
@@ -102,6 +102,7 @@ class clsGridLOV_REGION { //LOV_REGION class @2-0DD88139
 
         $this->DataSource->Parameters["urlp_vat_type_id"] = CCGetFromGet("p_vat_type_id", NULL);
         $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
+        $this->DataSource->Parameters["urlp_rqst_type_id"] = CCGetFromGet("p_rqst_type_id", NULL);
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -234,7 +235,7 @@ class clsLOV_REGIONDataSource extends clsDBConnSIKP {  //LOV_REGIONDataSource Cl
     }
 //End SetOrder Method
 
-//Prepare Method @2-ACE692F5
+//Prepare Method @2-D1D5876B
     function Prepare()
     {
         global $CCSLocales;
@@ -242,15 +243,17 @@ class clsLOV_REGIONDataSource extends clsDBConnSIKP {  //LOV_REGIONDataSource Cl
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlp_vat_type_id", ccsFloat, "", "", $this->Parameters["urlp_vat_type_id"], 0, false);
         $this->wp->AddParameter("2", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("3", "urlp_rqst_type_id", ccsFloat, "", "", $this->Parameters["urlp_rqst_type_id"], 0, false);
     }
 //End Prepare Method
 
-//Open Method @2-ED33233B
+//Open Method @2-81FA8BAD
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (select * from v_p_vat_type_dtl_rep\n" .
-        "where p_vat_type_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " \n" .
+        "where (p_vat_type_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " \n" .
+        "or p_vat_type_id = (select p_vat_type_id from p_rqst_type where p_rqst_type_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsFloat) . "))\n" .
         "and valid_from <= sysdate\n" .
         "and case when valid_to is null then true \n" .
         "		else valid_to >= sysdate\n" .
@@ -259,7 +262,8 @@ class clsLOV_REGIONDataSource extends clsDBConnSIKP {  //LOV_REGIONDataSource Cl
         "(upper(nomor_ayat) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' or\n" .
         "upper(nama_ayat) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%')) cnt";
         $this->SQL = "select * from v_p_vat_type_dtl_rep\n" .
-        "where p_vat_type_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " \n" .
+        "where (p_vat_type_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " \n" .
+        "or p_vat_type_id = (select p_vat_type_id from p_rqst_type where p_rqst_type_id = " . $this->SQLValue($this->wp->GetDBValue("3"), ccsFloat) . "))\n" .
         "and valid_from <= sysdate\n" .
         "and case when valid_to is null then true \n" .
         "		else valid_to >= sysdate\n" .
@@ -324,7 +328,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-7E01F3E9
+//Class_Initialize Event @3-082B2041
     function clsRecordLOV($RelativePath, & $Parent)
     {
 
@@ -353,11 +357,12 @@ class clsRecordLOV { //LOV Class @3-40E97705
             $this->FORM = & new clsControl(ccsTextBox, "FORM", "FORM", ccsText, "", CCGetRequestParam("FORM", $Method, NULL), $this);
             $this->OBJ = & new clsControl(ccsTextBox, "OBJ", "OBJ", ccsText, "", CCGetRequestParam("OBJ", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsFloat, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsFloat, "", CCGetRequestParam("p_rqst_type_id", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-C0B9D7CA
+//Validate Method @3-43224E7D
     function Validate()
     {
         global $CCSLocales;
@@ -367,16 +372,18 @@ class clsRecordLOV { //LOV Class @3-40E97705
         $Validation = ($this->FORM->Validate() && $Validation);
         $Validation = ($this->OBJ->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->p_rqst_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->s_keyword->Errors->Count() == 0);
         $Validation =  $Validation && ($this->FORM->Errors->Count() == 0);
         $Validation =  $Validation && ($this->OBJ->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-4EB85160
+//CheckErrors Method @3-627B7FAD
     function CheckErrors()
     {
         $errors = false;
@@ -384,6 +391,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
         $errors = ($errors || $this->FORM->Errors->Count());
         $errors = ($errors || $this->OBJ->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->p_rqst_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -437,7 +445,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-E0EBB48B
+//Show Method @3-619F20CA
     function Show()
     {
         global $CCSUseAmp;
@@ -465,6 +473,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->FORM->Errors->ToString());
             $Error = ComposeStrings($Error, $this->OBJ->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_rqst_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -487,6 +496,7 @@ function GetPrimaryKey($keyName)
         $this->FORM->Show();
         $this->OBJ->Show();
         $this->p_vat_type_id->Show();
+        $this->p_rqst_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

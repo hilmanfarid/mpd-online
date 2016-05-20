@@ -1,7 +1,8 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\lov" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" connection="ConnSIKP" name="LOV_REGION" pageSizeLimit="100" wizardCaption="List of P CUSTOMER SEGMENT " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="False" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="No records" pasteActions="pasteActions" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" resultSetType="parameter" dataSource="select * from v_p_vat_type_dtl_rep
-where p_vat_type_id = {p_vat_type_id} 
+where (p_vat_type_id = {p_vat_type_id} 
+or p_vat_type_id = (select p_vat_type_id from p_rqst_type where p_rqst_type_id = {p_rqst_type_id}))
 and valid_from &lt;= sysdate
 and case when valid_to is null then true 
 		else valid_to &gt;= sysdate
@@ -70,7 +71,8 @@ upper(nama_ayat) like '%{s_keyword}%')">
 			<SQLParameters>
 				<SQLParameter id="40" variable="p_vat_type_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_vat_type_id"/>
 				<SQLParameter id="42" variable="s_keyword" parameterType="URL" dataType="Text" parameterSource="s_keyword"/>
-			</SQLParameters>
+				<SQLParameter id="43" variable="p_rqst_type_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="p_rqst_type_id"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -107,7 +109,13 @@ upper(nama_ayat) like '%{s_keyword}%')">
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Hidden id="44" fieldSourceType="DBColumn" dataType="Float" name="p_rqst_type_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVp_rqst_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
