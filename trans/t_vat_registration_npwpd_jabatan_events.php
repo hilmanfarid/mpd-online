@@ -29,6 +29,7 @@ function t_ppatForm_Button_Insert_OnClick(& $sender)
 	$dbConn = new clsDBConnSIKP();
 	$company_brand = $t_ppatForm->company_brand->GetValue();
 	$p_rqst_type_id = $t_ppatForm->p_rqst_type_id->GetValue();
+	$p_vat_type_dtl_id = $t_ppatForm->p_vat_type_dtl_id->GetValue();
 	$brand_address_name = $t_ppatForm->brand_address_name->GetValue();
 	$brand_address_no = $t_ppatForm->brand_address_no->GetValue();
 	$brand_address_rt = $t_ppatForm->brand_address_rt->GetValue();
@@ -58,7 +59,8 @@ function t_ppatForm_Button_Insert_OnClick(& $sender)
 			'$brand_mobile_no',
 			'$brand_fax_no',
 			'$brand_zip_code',
-			$p_rqst_type_id
+			$p_rqst_type_id,
+			$p_vat_type_dtl_id
 			)";
 	//die($sql);
 	$dbConn->query($sql);

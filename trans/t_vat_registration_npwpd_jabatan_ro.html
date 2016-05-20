@@ -114,12 +114,17 @@ $(document).ready(function()
                 </td> 
                 <tr class="Controls">
                   <td class="th"><label for="t_ppatForm_code">Nama Objek Pajak</label></td> 
-                  <td colspan="3"><input style="WIDTH: 500px; HEIGHT: 20px" id="t_vat_registrationFormcompany_brand" class="ControlsRO" value="{company_brand}" size="56" name="{company_brand_Name}"></td>
+                  <td colspan="3"><input style="WIDTH: 500px; HEIGHT: 20px" id="t_vat_registrationFormcompany_brand" class="ControlsRO" value="{company_brand}" readonly size="56" name="{company_brand_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Jenis Pajak</td> 
                   <td colspan="3"><input id="t_vat_registrationFormrqst_type_code" class="ControlsRO" tabindex="2" value="{rqst_type_code}" readonly maxlength="32" size="32" name="{rqst_type_code_Name}"><input id="t_vat_registrationFormp_rqst_type_id1" value="{p_rqst_type_id1}" type="hidden" name="{p_rqst_type_id1_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td class="th">Ayat Pajak</td> 
+                  <td colspan="3"><input id="t_vat_registrationFormvat_code_dtl" class="ControlsRO" tabindex="2" value="{vat_code_dtl}" readonly maxlength="32" size="32" name="{vat_code_dtl_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
@@ -139,42 +144,42 @@ $(document).ready(function()
  
                 <tr class="Controls">
                   <td class="th">Alamat Objek Pajak</td> 
-                  <td colspan="3"><input style="WIDTH: 500px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_name" class="ControlsRO" value="{brand_address_name}" size="58" name="{brand_address_name_Name}"></td>
+                  <td colspan="3"><input style="WIDTH: 500px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_name" class="ControlsRO" value="{brand_address_name}" readonly size="58" name="{brand_address_name_Name}"></td>
                 </tr>
  
                 <tr style="DISPLAY: none" class="Controls">
                   <td class="th">Alamat Tambahan</td> 
-                  <td colspan="3"><input style="WIDTH: 500px; HEIGHT: 20px" id="t_vat_registrationFormcompany_additional_addr" class="ControlsRO" value="{company_additional_addr}" size="58" name="{company_additional_addr_Name}"></td>
+                  <td colspan="3"><input style="WIDTH: 500px; HEIGHT: 20px" id="t_vat_registrationFormcompany_additional_addr" class="ControlsRO" value="{company_additional_addr}" readonly size="58" name="{company_additional_addr_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">No Lokasi</td> 
-                  <td colspan="3"><input style="WIDTH: 77px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_no" class="ControlsRO" value="{brand_address_no}" size="7" name="{brand_address_no_Name}"></td>
+                  <td colspan="3"><input style="WIDTH: 77px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_no" class="ControlsRO" value="{brand_address_no}" readonly size="7" name="{brand_address_no_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">RT / RW</td> 
-                  <td colspan="3"><input style="WIDTH: 38px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_rt" class="ControlsRO" value="{brand_address_rt}" maxlength="250" size="5" name="{brand_address_rt_Name}">/ <input style="WIDTH: 38px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_rw" class="ControlsRO" value="{brand_address_rw}" maxlength="250" size="5" name="{brand_address_rw_Name}"></td>
+                  <td colspan="3"><input style="WIDTH: 38px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_rt" class="ControlsRO" value="{brand_address_rt}" readonly maxlength="250" size="5" name="{brand_address_rt_Name}">/ <input style="WIDTH: 38px; HEIGHT: 20px" id="t_vat_registrationFormbrand_address_rw" class="ControlsRO" value="{brand_address_rw}" readonly maxlength="250" size="5" name="{brand_address_rw_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th"><label for="t_vat_registrationFormbrand_phone_no">No. Telpon</label></td> 
-                  <td colspan="3"><input id="t_vat_registrationFormbrand_phone_no" class="ControlsRO" value="{brand_phone_no}" maxlength="32" size="35" name="{brand_phone_no_Name}"></td>
+                  <td colspan="3"><input id="t_vat_registrationFormbrand_phone_no" class="ControlsRO" value="{brand_phone_no}" readonly maxlength="32" size="35" name="{brand_phone_no_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">No. Handphone</td> 
-                  <td colspan="3"><input id="t_vat_registrationFormbrand_mobile_no" class="ControlsRO" value="{brand_mobile_no}" maxlength="32" size="35" name="{brand_mobile_no_Name}"></td>
+                  <td colspan="3"><input id="t_vat_registrationFormbrand_mobile_no" class="ControlsRO" value="{brand_mobile_no}" readonly maxlength="32" size="35" name="{brand_mobile_no_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">No. Fax</td> 
-                  <td colspan="3"><input id="t_vat_registrationFormbrand_fax_no" class="ControlsRO" value="{brand_fax_no}" maxlength="32" size="35" name="{brand_fax_no_Name}"></td>
+                  <td colspan="3"><input id="t_vat_registrationFormbrand_fax_no" class="ControlsRO" value="{brand_fax_no}" readonly maxlength="32" size="35" name="{brand_fax_no_Name}"></td>
                 </tr>
  
                 <tr class="Controls">
                   <td class="th">Kode Pos</td> 
-                  <td colspan="3"><input id="t_vat_registrationFormbrand_zip_code" class="ControlsRO" value="{brand_zip_code}" maxlength="6" size="10" name="{brand_zip_code_Name}"></td>
+                  <td colspan="3"><input id="t_vat_registrationFormbrand_zip_code" class="ControlsRO" value="{brand_zip_code}" readonly maxlength="6" size="10" name="{brand_zip_code_Name}"></td>
                 </tr>
               </td>&nbsp;</td> </td> 
           <tr class="Controls">

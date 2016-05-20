@@ -45,7 +45,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     // Class variables
 //End Variables
 
-//Class_Initialize Event @23-F61F952E
+//Class_Initialize Event @23-CE60F6C1
     function clsRecordt_ppatForm($RelativePath, & $Parent)
     {
 
@@ -110,6 +110,9 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
             $this->rqst_type_code->Required = true;
             $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsFloat, "", CCGetRequestParam("p_rqst_type_id", $Method, NULL), $this);
             $this->t_vat_registration_id = & new clsControl(ccsHidden, "t_vat_registration_id", "t_vat_registration_id", ccsFloat, "", CCGetRequestParam("t_vat_registration_id", $Method, NULL), $this);
+            $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Tipe Ayat", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
+            $this->vat_code_dtl->Required = true;
+            $this->p_vat_type_dtl_id = & new clsControl(ccsHidden, "p_vat_type_dtl_id", "p_vat_type_dtl_id", ccsText, "", CCGetRequestParam("p_vat_type_dtl_id", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->kota->Value) && !strlen($this->kota->Value) && $this->kota->Value !== false)
                     $this->kota->SetText('KOTA BANDUNG');
@@ -139,7 +142,7 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
     }
 //End Initialize Method
 
-//Validate Method @23-A382C0C9
+//Validate Method @23-FF075C71
     function Validate()
     {
         global $CCSLocales;
@@ -168,6 +171,8 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
         $Validation = ($this->rqst_type_code->Validate() && $Validation);
         $Validation = ($this->p_rqst_type_id->Validate() && $Validation);
         $Validation = ($this->t_vat_registration_id->Validate() && $Validation);
+        $Validation = ($this->vat_code_dtl->Validate() && $Validation);
+        $Validation = ($this->p_vat_type_dtl_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->brand_phone_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->company_brand->Errors->Count() == 0);
@@ -192,11 +197,13 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
         $Validation =  $Validation && ($this->rqst_type_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_rqst_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_vat_registration_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code_dtl->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_vat_type_dtl_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @23-57DBF706
+//CheckErrors Method @23-73BED883
     function CheckErrors()
     {
         $errors = false;
@@ -223,6 +230,8 @@ class clsRecordt_ppatForm { //t_ppatForm Class @23-3750BFA7
         $errors = ($errors || $this->rqst_type_code->Errors->Count());
         $errors = ($errors || $this->p_rqst_type_id->Errors->Count());
         $errors = ($errors || $this->t_vat_registration_id->Errors->Count());
+        $errors = ($errors || $this->vat_code_dtl->Errors->Count());
+        $errors = ($errors || $this->p_vat_type_dtl_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -356,7 +365,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @23-A1F96E6F
+//Show Method @23-08879FEB
     function Show()
     {
         global $CCSUseAmp;
@@ -412,6 +421,8 @@ function GetPrimaryKey($keyName)
                 $this->EditMode = false;
             }
         }
+        if (!$this->FormSubmitted) {
+        }
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
@@ -438,6 +449,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->rqst_type_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_rqst_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->t_vat_registration_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code_dtl->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_vat_type_dtl_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -481,6 +494,8 @@ function GetPrimaryKey($keyName)
         $this->rqst_type_code->Show();
         $this->p_rqst_type_id->Show();
         $this->t_vat_registration_id->Show();
+        $this->vat_code_dtl->Show();
+        $this->p_vat_type_dtl_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -491,7 +506,7 @@ function GetPrimaryKey($keyName)
 
 class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Class @23-F9738238
 
-//DataSource Variables @23-D80364D9
+//DataSource Variables @23-EA0EEBA8
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -529,9 +544,11 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
     var $rqst_type_code;
     var $p_rqst_type_id;
     var $t_vat_registration_id;
+    var $vat_code_dtl;
+    var $p_vat_type_dtl_id;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @23-5BB12ED3
+//DataSourceClass_Initialize Event @23-623AEF6C
     function clst_ppatFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -582,6 +599,10 @@ class clst_ppatFormDataSource extends clsDBConnSIKP {  //t_ppatFormDataSource Cl
         $this->p_rqst_type_id = new clsField("p_rqst_type_id", ccsFloat, "");
         
         $this->t_vat_registration_id = new clsField("t_vat_registration_id", ccsFloat, "");
+        
+        $this->vat_code_dtl = new clsField("vat_code_dtl", ccsText, "");
+        
+        $this->p_vat_type_dtl_id = new clsField("p_vat_type_dtl_id", ccsText, "");
         
 
     }

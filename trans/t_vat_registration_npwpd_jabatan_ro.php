@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     // Class variables
 //End Variables
 
-//Class_Initialize Event @629-FDC20E8E
+//Class_Initialize Event @629-8199B5D9
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -142,6 +142,8 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->brand_mobile_no = & new clsControl(ccsTextBox, "brand_mobile_no", "No Handphone", ccsText, "", CCGetRequestParam("brand_mobile_no", $Method, NULL), $this);
             $this->brand_fax_no = & new clsControl(ccsTextBox, "brand_fax_no", "no fax", ccsText, "", CCGetRequestParam("brand_fax_no", $Method, NULL), $this);
             $this->brand_zip_code = & new clsControl(ccsTextBox, "brand_zip_code", "kode pos", ccsText, "", CCGetRequestParam("brand_zip_code", $Method, NULL), $this);
+            $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
+            $this->vat_code_dtl->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -173,7 +175,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     }
 //End Initialize Method
 
-//Validate Method @629-BD0E55E2
+//Validate Method @629-DF19C473
     function Validate()
     {
         global $CCSLocales;
@@ -230,6 +232,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->brand_mobile_no->Validate() && $Validation);
         $Validation = ($this->brand_fax_no->Validate() && $Validation);
         $Validation = ($this->brand_zip_code->Validate() && $Validation);
+        $Validation = ($this->vat_code_dtl->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->created_by->Errors->Count() == 0);
         $Validation =  $Validation && ($this->updated_by->Errors->Count() == 0);
@@ -282,11 +285,12 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->brand_mobile_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_fax_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_zip_code->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->vat_code_dtl->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @629-BA24AA43
+//CheckErrors Method @629-2187E66D
     function CheckErrors()
     {
         $errors = false;
@@ -341,6 +345,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->brand_mobile_no->Errors->Count());
         $errors = ($errors || $this->brand_fax_no->Errors->Count());
         $errors = ($errors || $this->brand_zip_code->Errors->Count());
+        $errors = ($errors || $this->vat_code_dtl->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -465,7 +470,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @629-2A326C27
+//Show Method @629-769F9D30
     function Show()
     {
         global $CCSUseAmp;
@@ -519,6 +524,7 @@ function GetPrimaryKey($keyName)
                     $this->brand_mobile_no->SetValue($this->DataSource->brand_mobile_no->GetValue());
                     $this->brand_fax_no->SetValue($this->DataSource->brand_fax_no->GetValue());
                     $this->brand_zip_code->SetValue($this->DataSource->brand_zip_code->GetValue());
+                    $this->vat_code_dtl->SetValue($this->DataSource->vat_code_dtl->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -580,6 +586,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->brand_mobile_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_fax_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_zip_code->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->vat_code_dtl->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -660,6 +667,7 @@ function GetPrimaryKey($keyName)
         $this->brand_mobile_no->Show();
         $this->brand_fax_no->Show();
         $this->brand_zip_code->Show();
+        $this->vat_code_dtl->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -670,7 +678,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_registrationFormDataSource Class @629-5993B12E
 
-//DataSource Variables @629-BC125F42
+//DataSource Variables @629-0772F548
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -734,9 +742,10 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $brand_mobile_no;
     var $brand_fax_no;
     var $brand_zip_code;
+    var $vat_code_dtl;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @629-EED5EF85
+//DataSourceClass_Initialize Event @629-ECE223C9
     function clst_vat_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -844,6 +853,8 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->brand_zip_code = new clsField("brand_zip_code", ccsText, "");
         
+        $this->vat_code_dtl = new clsField("vat_code_dtl", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -859,11 +870,11 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End Prepare Method
 
-//Open Method @629-D19EF9F5
+//Open Method @629-1B343C10
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->SQL = "select d.p_rqst_type_id, a.p_vat_type_dtl_id,a.t_vat_registration_id,c.vat_code,\n" .
+        $this->SQL = "select d.p_rqst_type_id, a.p_vat_type_dtl_id,a.t_vat_registration_id,c.vat_code as vat_code_dtl,\n" .
         "			a.company_brand, a.brand_address_name, a.brand_address_no, \n" .
         "			case when length(nvl(a.brand_address_rt,''))<1 then '-' else a.brand_address_rt end as brand_address_rt,\n" .
         "			case when length(nvl(a.brand_address_rw,''))<1 then '-' else a.brand_address_rw end as brand_address_rw,\n" .
@@ -893,7 +904,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End Open Method
 
-//SetValues Method @629-53893ABE
+//SetValues Method @629-659651BE
     function SetValues()
     {
         $this->created_by->SetDBValue($this->f("created_by"));
@@ -922,6 +933,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->brand_mobile_no->SetDBValue($this->f("brand_mobile_no"));
         $this->brand_fax_no->SetDBValue($this->f("brand_fax_no"));
         $this->brand_zip_code->SetDBValue($this->f("brand_zip_code"));
+        $this->vat_code_dtl->SetDBValue($this->f("vat_code_dtl"));
     }
 //End SetValues Method
 
