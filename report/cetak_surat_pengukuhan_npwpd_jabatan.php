@@ -79,6 +79,9 @@ class FormCetak extends FPDF {
 	
 	function __construct() {
 		$this->FormCetak();
+		$this->startY = $this->GetY();
+		$this->startX = $this->paperWSize-42;
+		$this->lengthCell = $this->startX+20;
 	}
 	
 	function setCourier(){
@@ -96,276 +99,155 @@ class FormCetak extends FPDF {
 		$startX = $this->paperWSize-42;
 		$lengthCell = $startX + 20;
 		
+		$this->Image('../images/logo_pemda.png',25,12,25,25);
+		
+		$lheader = $this->lengthCell / 8;
+		$lheader1 = $lheader * 1;
+		$lheader2 = $lheader * 2;
+		$lheader3 = $lheader * 3;
+		$lheader4 = $lheader * 4;
+		$lheader7 = $lheader * 7;
+		
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
+		$this->Ln();
+		
+		$this->SetFont('Arial', 'B', 12);
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
+		$this->Ln();
+		
+		$this->SetFont('Arial', 'B', 16);
+		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "", 0, 'C');
+		$this->Ln();
+		
+		$this->SetFont('Arial', '', 10);
+		$this->Cell($lheader1, $this->height + 3, "", "", 0, 'L');
+		$this->Cell($lheader7, $this->height + 3, "Jalan Wastukancana No. 2 Telp. 022. 4235052 - Bandung", "", 0, 'C');
+		$this->Ln();
+		
+		$this->Cell($lheader1, $this->height, "", "B", 0, 'L');
+		$this->Cell($lheader7, $this->height, "", "B", 0, 'C');
+		$this->Ln();
+		
 		// Set margins
 		$this->SetLeftMargin(17);
 		$this->SetRightMargin(15);
 		
 		// Judul
-		for($i = 0; $i < 7; $i++){
-			$this->Cell($lengthCell, $this->height, "", 0, 0, "C");
-			$this->Ln();
-		}
-		$this->Ln();
-		$this->Ln();
+		
 		$this->Ln();
 		$this->SetFont('Times', 'B', 12);
-		$this->Cell($lengthCell, $this->height, "SURAT PENGUKUHAN NPWPD JABATAN", 0, 0, 'C');
+		$this->Cell($lengthCell, $this->height, "SURAT PENGUKUHAN", 0, 0, 'C');
+		$this->Ln();
+		$this->Cell($lengthCell, $this->height, "NOMOR POKOK WAJIB PAJAK DAERAH (NPWPD) JABATAN", 0, 0, 'C');
+		$this->Ln();
+		$this->Cell($lengthCell, $this->height, "NOMOR :                                                            ", 0, 0, 'C');
 		$this->Ln();
 		
 		$this->SetFont('Times', '', 11);
-		$this->Cell($lengthCell, $this->height, "Nomor: 973/" . $data["reg_letter_no"]."/".str_ireplace('Pajak ','',$data['vat_code']) ."/Disyanjak", 0, 0, 'C');
+		//$this->Cell($lengthCell, $this->height, "Nomor: 973/" . $data["reg_letter_no"]."/".str_ireplace('Pajak ','',$data['vat_code']) ."/Disyanjak", 0, 0, 'C');
 		// Body Atas
 		$this->Ln();
 		$this->Ln();
-		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "                Berdasarkan Undang-undang Nomor 28 Tahun 2009 tentang Pajak Daerah dan Retribusi Daerah dan", 0, 0, 'L');
-		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "Peraturan Daerah No. 20 tahun 2011 tentang Pajak Daerah, dengan ini menyatakan bahwa:", 0, 0, 'L');
 		
-		// Form
-		$this->Ln();
-		$this->Ln();
-		$formLen = $lengthCell / 3;
-		$formLen1 = $formLen * 1;
-		$formLen2 = $formLen * 2;
-		$twelfth = $lengthCell / 12;
-		$twelfth1 = $twelfth * 1;
-		
-		// Form 1. Wajib Pajak
-		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "1. Wajib Pajak", 0, 0, 'L');
-		$this->SetFont('Times', '', 11);
-		$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-		$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_name"], 0, 0, 'L');
-		
-
-		// Form 2. NPWPD
-		$this->Ln();
-		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "2. Nomor Pokok Wajib Pajak Daerah", 0, 0, 'L');
-		$this->SetFont('Times', '', 11);
-		$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-
-		$newstr = substr_replace($data["npwpd"],'.', 2, 0);
-		$newstr = substr_replace($newstr,'.', 10, 0);
-		$newstr = substr_replace($newstr,'.', 13, 0);
-		$this->SetFont('Times', 'B', 14);
-		$this->Cell($formLen2 - $twelfth1, $this->height, $newstr, 0, 0, 'L');
-		$this->Ln();
-		$this->SetFont('Times', 'B', 11);
-		$this->Cell($formLen1, $this->height, "    (NPWPD)", 0, 0, 'L');
-
+		$this->SetWidths(array($lengthCell-15));
+		$this->SetAligns(array("J"));
+		$this->RowMultiBorderWithHeight(array(
+			"Berdasarkan Peraturan Daerah Kota Bandung Nomor 20 Tahun 2011 tentang Pajak Daerah, bersama ini diterbitkan NPWPD Jabatan terhadap :"
+			),
+			array(
+			""
+			),
+			$this->height);
 			
-		if(empty($data['company_name']) or $data['company_name'] == '-' or $data['company_name'] == 'A' or strlen($data['company_name']) < 3 ) { 
-			//PERORANGAN
+		$this->SetWidths(array(30,$lengthCell-15-30));
+		$this->SetAligns(array("J","J"));
+		$this->RowMultiBorderWithHeight(array(
+			"Objek Pajak",
+			": ".$data["company_brand"]
+			),
+			array(
+			"",""
+			),
+			$this->height);
 			
-			// Form 3. Nama Merek Dagang
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "3. Nama Merek Dagang", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_brand"], 0, 0, 'L');
+		$this->RowMultiBorderWithHeight(array(
+			"Alamat",
+			": ".$data["alamat_brand"]
+			),
+			array(
+			"",""
+			),
+			$this->height);
 			
-			// Form 4. Alamat Merek Dagang
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "4. Alamat Lokasi Usaha", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_brand"], 0, 0, 'L');
-		
-			// Form 5. Alamat Wajib Pajak
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "5. Alamat Wajib Pajak", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], 0, 0, 'L');
+		$this->RowMultiBorderWithHeight(array(
+			"Jenis Pajak",
+			": ".$data["vat_code"]
+			),
+			array(
+			"",""
+			),
+			$this->height);
 			
-			// Form 6. Jenis Pajak
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "6. Jenis Pajak", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-
-
-		} else { //PERUSAHAAN
-
-			// Form 3. Nama Badan/Perusahaan
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "3. Nama Badan/Perusahaan", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_name"], 0, 0, 'L');
+		$this->RowMultiBorderWithHeight(array(
+			"NPWPD Jabatan",
+			": ".$data["npwpd"]
+			),
+			array(
+			"",""
+			),
+			$this->height);
+			
+		$this->SetWidths(array($lengthCell-15));
+		$this->SetAligns(array("J"));
+		$this->RowMultiBorderWithHeight(array(
+			"Untuk menghidari dilakukan pemeriksaan dan pengenaan sanksi administrasi perpajakan karena ada indikasi tidak dipenuhinya kewajiban perpajakan daerah, pemilik/pengelola usaha diminta untuk datang ke loket informasi dan penanganan pengaduan pada Dinas Pelayanan Pajak Kota Bandung Jl. Wastukancana No. 2 Bandung paling lambat 7 (tujuh) hari kerja sejak diterimanya pengukuhan ini untuk memberikan klarifikasi, pemutakhiran data dan menerima informasi terkait kwajiban perpajakan daerah dengan membawa kelengkapan sebagai berikut :"
+			),
+			array(
+			""
+			),
+			$this->height);
 		
-				
-			// Form 4. Nama Merek Dagang
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "4. Nama Merek Dagang", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_brand"], 0, 0, 'L');
+		$this->SetWidths(array(7,$lengthCell-15-7));
+		$this->SetAligns(array("J","J"));
+		$this->RowMultiBorderWithHeight(array(
+			"1. ",
+			"Fotocopy identitas diri (KTP atau SIM atau Paspor);"
+			),
+			array(
+			"",""
+			),
+			$this->height);
 		
-			// Form 5. Alamat Merek Dagang
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "5. Alamat Lokasi Usaha", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["alamat_brand"], 0, 0, 'L');
+		$this->RowMultiBorderWithHeight(array(
+			"2. ",
+			"Fotocopy akte pendirian (untuk badan usaha); dan"
+			),
+			array(
+			"",""
+			),
+			$this->height);
 		
-
-			// Form 6. Alamat Wajib Pajak
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "6. Alamat Wajib Pajak", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["wp_address_name"], '', 0, 'L');
+		$this->RowMultiBorderWithHeight(array(
+			"3. ",
+			"surat pernyataan kegiatan usaha dari pemilik/pengelola usahan dan/atau fotocopy perizinan kegiatan usaha dari instansi berwenang."
+			),
+			array(
+			"",""
+			),
+			$this->height);
 		
-			// Form 7. Alamat Badan/Perusahaan
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "7. Alamat Badan/Perusahaan", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-			$this->Cell($formLen2 - $twelfth1, $this->height, $data["company_address"], 0, 0, 'L');
-		
-
-			// Form 8. Jenis Pajak
-			$this->Ln();
-			$this->SetFont('Times', 'B', 11);
-			$this->Cell($formLen1, $this->height, "8. Jenis Pajak", 0, 0, 'L');
-			$this->SetFont('Times', '', 11);
-			$this->Cell($twelfth1-12, $this->height, " : ", 0, 0, 'C');
-		}
-
-		// Form 8. Jenis Pajak -> Kotak Pilihan
-		$kotakLen = ($formLen2 - $twelfth1) / 20;
-		$kotakLen1 = $kotakLen * 1;
-		$kotakLen3 = $kotakLen * 3;
-		$kotakLen9 = $kotakLen * 9;
-		
-		$this->SetFont('Times', 'B', 11);
-		
-		$hotel = " ";
-		$restoran = " ";
-		$hiburan = " ";
-		$parkir = " ";
-		$ppj = " ";
-		$bphtb = " ";
-		
-		switch($data["p_vat_type_id"]){
-			case 1: $hotel = "X"; break;
-			case 2: $restoran = "X"; break;
-			case 3: $hiburan = "X"; break;
-			case 4: $parkir = "X"; break;
-			case 5: $ppj = "X"; break;
-			case 6: $bphtb = "X"; break;
-		}
-		
-		$bintang = " ";
-		$melati = " ";
-		$losmen = " ";
-		$detail_bintang = array();
-		$detail_melati = array();
-		$detail_losmen = array();
-		if(strpos(strtolower($data["detail_jenis_pajak"]), "bintang") !== false){ //HOTEL BINTANG X
-			preg_match("/\d+/", $data["detail_jenis_pajak"], $detail_bintang);
-			$bintang = "X";
-			//$bintang = $detail_bintang[0];
-		}
-		else if(strpos(strtolower($data["detail_jenis_pajak"]), "melati") !== false){ //HOTEL MELATI X
-			preg_match("/\d+/", $data["detail_jenis_pajak"], $detail_melati);
-			//$melati = $detail_melati[0];
-			$melati = "X";
-		}
-		else if(strpos(strtolower($data["detail_jenis_pajak"]), "rumah kos") !== false){ //HOTEL MELATI X
-			preg_match("/\d+/", $data["detail_jenis_pajak"], $detail_losmen);
-			//$losmen = $detail_losmen[0];
-			$losmen = "X";
-			$hotel=" ";
-		}
-		
-		// switch($data["klasifikasi"]){
-			// case 1: $bintang = "X"; break;
-			// case 0: $melati = "X"; break;
-		// }
-		
-		// if(is_null($data["klasifikasi"])){
-			// $bintang = " ";
-			// $melati = " ";
-		// }
-		
-		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 1
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[$parkir]", "", 0, 'L');
-		$this->SetTimes();
-		$this->Cell($kotakLen9, $this->height, " Pajak Parkir", "", 0, 'L');
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[ ]", "", 0, 'L');
-		$this->SetTimes();
-		$this->Cell($kotakLen9, $this->height, " Pajak Reklame", "", 0, 'L');
-		
-		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 2
-		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[$hiburan]", "", 0, 'L');
-		$this->SetTimes();
-		$this->Cell($kotakLen9, $this->height, " Pajak Hiburan", "", 0, 'L');
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[$ppj]", "", 0, 'L');
-		$this->SetTimes();
-		$this->Cell($kotakLen9, $this->height, " Pajak Penerangan Jalan", "", 0, 'L');
-		
-		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 3
-		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[$restoran]", "", 0, 'L');
-		$this->SetTimes();
-		$this->Cell($kotakLen9 * 2 + $kotakLen1, $this->height, " Pajak Restoran/Rumah Makan", "", 0, 'L');
-		
-		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 4
-		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[$hotel]", "", 0, 'L');
-		$this->SetTimes();
-		$this->Cell($kotakLen9 + 8, $this->height, " Pajak Hotel: Klasifikasi: Bintang", "", 0, 'L');
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[$bintang]", "", 0, 'L');
-		$this->SetTimes();
-		$this->Cell($kotakLen3 - 3, $this->height, "  Melati", "", 0, 'L');
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[$melati]", "", 0, 'L');
-		
-		// Form 6. Kewajiban Wajib Pajak -> Kotak Pilihan -> Baris 5
-		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1-12, $this->height, "", 0, 0, 'L');
-		$this->SetCourier();
-		$this->Cell($kotakLen1, $this->height, "[$losmen]", "", 0, 'L');
-		$this->SetTimes();
-		$this->Cell($kotakLen9 * 2 + $kotakLen1, $this->height, " Pajak Sewa Menyewa/Kontrak Rumah dan/atau", "", 0, 'L');
-		$this->Ln();
-		$this->Cell($formLen1 + $twelfth1, $this->height, "", 0, 0, 'L');
-		$this->Cell($kotakLen1, $this->height, "", "", 0, 'L');
-		$this->Cell($kotakLen9 * 2 + $kotakLen1, $this->height, " Bangunan", "", 0, 'L');
-		
-		// Body Bawah
-		$this->Ln();
-		$this->Ln();
-		$this->SetFont('Times', '', 11);
-		$this->Cell($lengthCell, $this->height, "Telah dikukuhkan pada tata usaha kami sebagai Wajib Pajak", 0, 0, 'L');
-		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "                Dengan terbitnya surat ini, maka dalam melaksanakan hak dan kewajiban yang berkenaan dengan", 0, 0, 'L');
-		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "Pajak Daerah wajib mencantumkan NPWPD.", 0, 0, 'L');
+		$this->SetWidths(array($lengthCell-15));
+		$this->SetAligns(array("J"));
+		$this->RowMultiBorderWithHeight(array(
+			"Demikian disampaikan untuk menjadi perhatian."
+			),
+			array(
+			""
+			),
+			$this->height);
 		
 		// Signature
 		$this->Ln();
@@ -447,11 +329,9 @@ class FormCetak extends FPDF {
 		$this->height = $this->height - 1;
 		$this->Cell($lengthCell, $this->height, "1. Bapak Walikota Bandung (sebagai laporan);", 0, 0, 'L');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "2. Bapak Wakil Walikota Bandung (sebagai laporan);", 0, 0, 'L');
+		$this->Cell($lengthCell, $this->height, "2. Bapak Wakil Walikota Bandung (sebagai laporan); dan", 0, 0, 'L');
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height, "3. Bapak Sekretaris Daerah Kota Bandung (sebagai laporan);", 0, 0, 'L');
-		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "4. Arsip.", 0, 0, 'L');
 		$this->Ln();
 		$this->Ln();
 		
