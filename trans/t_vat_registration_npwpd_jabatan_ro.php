@@ -45,7 +45,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     // Class variables
 //End Variables
 
-//Class_Initialize Event @629-8199B5D9
+//Class_Initialize Event @629-D3CAB28C
     function clsRecordt_vat_registrationForm($RelativePath, & $Parent)
     {
 
@@ -128,22 +128,15 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
             $this->brand_address_rw = & new clsControl(ccsTextBox, "brand_address_rw", "rw", ccsText, "", CCGetRequestParam("brand_address_rw", $Method, NULL), $this);
             $this->kota = & new clsControl(ccsTextBox, "kota", "Kota/Kabupaten - Objek Pajak", ccsText, "", CCGetRequestParam("kota", $Method, NULL), $this);
             $this->kota->Required = true;
-            $this->brand_p_region_id = & new clsControl(ccsHidden, "brand_p_region_id", "Kota/Kabupaten - WP", ccsFloat, "", CCGetRequestParam("brand_p_region_id", $Method, NULL), $this);
-            $this->brand_p_region_id->Required = true;
             $this->kecamatan = & new clsControl(ccsTextBox, "kecamatan", "Kecamatan - Objek Pajak", ccsText, "", CCGetRequestParam("kecamatan", $Method, NULL), $this);
             $this->kecamatan->Required = true;
-            $this->brand_p_region_id_kec = & new clsControl(ccsHidden, "brand_p_region_id_kec", "Kecamatan - WP", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kec", $Method, NULL), $this);
-            $this->brand_p_region_id_kec->Required = true;
             $this->kelurahan = & new clsControl(ccsTextBox, "kelurahan", "Kelurahan - Objek Pajak", ccsText, "", CCGetRequestParam("kelurahan", $Method, NULL), $this);
             $this->kelurahan->Required = true;
-            $this->brand_p_region_id_kel = & new clsControl(ccsHidden, "brand_p_region_id_kel", "Kelurahan - WP", ccsFloat, "", CCGetRequestParam("brand_p_region_id_kel", $Method, NULL), $this);
-            $this->brand_p_region_id_kel->Required = true;
             $this->brand_phone_no = & new clsControl(ccsTextBox, "brand_phone_no", "no telpon", ccsText, "", CCGetRequestParam("brand_phone_no", $Method, NULL), $this);
             $this->brand_mobile_no = & new clsControl(ccsTextBox, "brand_mobile_no", "No Handphone", ccsText, "", CCGetRequestParam("brand_mobile_no", $Method, NULL), $this);
             $this->brand_fax_no = & new clsControl(ccsTextBox, "brand_fax_no", "no fax", ccsText, "", CCGetRequestParam("brand_fax_no", $Method, NULL), $this);
             $this->brand_zip_code = & new clsControl(ccsTextBox, "brand_zip_code", "kode pos", ccsText, "", CCGetRequestParam("brand_zip_code", $Method, NULL), $this);
             $this->vat_code_dtl = & new clsControl(ccsTextBox, "vat_code_dtl", "Ayat Pajak", ccsText, "", CCGetRequestParam("vat_code_dtl", $Method, NULL), $this);
-            $this->vat_code_dtl->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -157,8 +150,6 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
                     $this->status_request_date->SetText(date("d-M-Y h:i:s"));
                 if(!is_array($this->kota->Value) && !strlen($this->kota->Value) && $this->kota->Value !== false)
                     $this->kota->SetText('KOTA BANDUNG');
-                if(!is_array($this->brand_p_region_id->Value) && !strlen($this->brand_p_region_id->Value) && $this->brand_p_region_id->Value !== false)
-                    $this->brand_p_region_id->SetText(749);
             }
         }
     }
@@ -175,7 +166,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     }
 //End Initialize Method
 
-//Validate Method @629-DF19C473
+//Validate Method @629-D2DED8FE
     function Validate()
     {
         global $CCSLocales;
@@ -223,11 +214,8 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation = ($this->brand_address_rt->Validate() && $Validation);
         $Validation = ($this->brand_address_rw->Validate() && $Validation);
         $Validation = ($this->kota->Validate() && $Validation);
-        $Validation = ($this->brand_p_region_id->Validate() && $Validation);
         $Validation = ($this->kecamatan->Validate() && $Validation);
-        $Validation = ($this->brand_p_region_id_kec->Validate() && $Validation);
         $Validation = ($this->kelurahan->Validate() && $Validation);
-        $Validation = ($this->brand_p_region_id_kel->Validate() && $Validation);
         $Validation = ($this->brand_phone_no->Validate() && $Validation);
         $Validation = ($this->brand_mobile_no->Validate() && $Validation);
         $Validation = ($this->brand_fax_no->Validate() && $Validation);
@@ -276,11 +264,8 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $Validation =  $Validation && ($this->brand_address_rt->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_address_rw->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kota->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_p_region_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kecamatan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_p_region_id_kec->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kelurahan->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->brand_p_region_id_kel->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_phone_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_mobile_no->Errors->Count() == 0);
         $Validation =  $Validation && ($this->brand_fax_no->Errors->Count() == 0);
@@ -290,7 +275,7 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
     }
 //End Validate Method
 
-//CheckErrors Method @629-2187E66D
+//CheckErrors Method @629-74BB47E1
     function CheckErrors()
     {
         $errors = false;
@@ -336,11 +321,8 @@ class clsRecordt_vat_registrationForm { //t_vat_registrationForm Class @629-5A81
         $errors = ($errors || $this->brand_address_rt->Errors->Count());
         $errors = ($errors || $this->brand_address_rw->Errors->Count());
         $errors = ($errors || $this->kota->Errors->Count());
-        $errors = ($errors || $this->brand_p_region_id->Errors->Count());
         $errors = ($errors || $this->kecamatan->Errors->Count());
-        $errors = ($errors || $this->brand_p_region_id_kec->Errors->Count());
         $errors = ($errors || $this->kelurahan->Errors->Count());
-        $errors = ($errors || $this->brand_p_region_id_kel->Errors->Count());
         $errors = ($errors || $this->brand_phone_no->Errors->Count());
         $errors = ($errors || $this->brand_mobile_no->Errors->Count());
         $errors = ($errors || $this->brand_fax_no->Errors->Count());
@@ -470,7 +452,7 @@ function GetPrimaryKey($keyName)
     }
 //End UpdateRow Method
 
-//Show Method @629-769F9D30
+//Show Method @629-60ED2E9A
     function Show()
     {
         global $CCSUseAmp;
@@ -515,11 +497,8 @@ function GetPrimaryKey($keyName)
                     $this->brand_address_rt->SetValue($this->DataSource->brand_address_rt->GetValue());
                     $this->brand_address_rw->SetValue($this->DataSource->brand_address_rw->GetValue());
                     $this->kota->SetValue($this->DataSource->kota->GetValue());
-                    $this->brand_p_region_id->SetValue($this->DataSource->brand_p_region_id->GetValue());
                     $this->kecamatan->SetValue($this->DataSource->kecamatan->GetValue());
-                    $this->brand_p_region_id_kec->SetValue($this->DataSource->brand_p_region_id_kec->GetValue());
                     $this->kelurahan->SetValue($this->DataSource->kelurahan->GetValue());
-                    $this->brand_p_region_id_kel->SetValue($this->DataSource->brand_p_region_id_kel->GetValue());
                     $this->brand_phone_no->SetValue($this->DataSource->brand_phone_no->GetValue());
                     $this->brand_mobile_no->SetValue($this->DataSource->brand_mobile_no->GetValue());
                     $this->brand_fax_no->SetValue($this->DataSource->brand_fax_no->GetValue());
@@ -577,11 +556,8 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->brand_address_rt->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_address_rw->Errors->ToString());
             $Error = ComposeStrings($Error, $this->kota->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_p_region_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->kecamatan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_p_region_id_kec->Errors->ToString());
             $Error = ComposeStrings($Error, $this->kelurahan->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->brand_p_region_id_kel->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_phone_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_mobile_no->Errors->ToString());
             $Error = ComposeStrings($Error, $this->brand_fax_no->Errors->ToString());
@@ -658,11 +634,8 @@ function GetPrimaryKey($keyName)
         $this->brand_address_rt->Show();
         $this->brand_address_rw->Show();
         $this->kota->Show();
-        $this->brand_p_region_id->Show();
         $this->kecamatan->Show();
-        $this->brand_p_region_id_kec->Show();
         $this->kelurahan->Show();
-        $this->brand_p_region_id_kel->Show();
         $this->brand_phone_no->Show();
         $this->brand_mobile_no->Show();
         $this->brand_fax_no->Show();
@@ -678,7 +651,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_registrationFormDataSource Class @629-5993B12E
 
-//DataSource Variables @629-0772F548
+//DataSource Variables @629-0790EAAB
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -733,11 +706,8 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $brand_address_rt;
     var $brand_address_rw;
     var $kota;
-    var $brand_p_region_id;
     var $kecamatan;
-    var $brand_p_region_id_kec;
     var $kelurahan;
-    var $brand_p_region_id_kel;
     var $brand_phone_no;
     var $brand_mobile_no;
     var $brand_fax_no;
@@ -745,7 +715,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     var $vat_code_dtl;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @629-ECE223C9
+//DataSourceClass_Initialize Event @629-DC996A8C
     function clst_vat_registrationFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -835,15 +805,9 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         
         $this->kota = new clsField("kota", ccsText, "");
         
-        $this->brand_p_region_id = new clsField("brand_p_region_id", ccsFloat, "");
-        
         $this->kecamatan = new clsField("kecamatan", ccsText, "");
         
-        $this->brand_p_region_id_kec = new clsField("brand_p_region_id_kec", ccsFloat, "");
-        
         $this->kelurahan = new clsField("kelurahan", ccsText, "");
-        
-        $this->brand_p_region_id_kel = new clsField("brand_p_region_id_kel", ccsFloat, "");
         
         $this->brand_phone_no = new clsField("brand_phone_no", ccsText, "");
         
@@ -904,7 +868,7 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
     }
 //End Open Method
 
-//SetValues Method @629-659651BE
+//SetValues Method @629-C8DBAAEF
     function SetValues()
     {
         $this->created_by->SetDBValue($this->f("created_by"));
@@ -924,11 +888,8 @@ class clst_vat_registrationFormDataSource extends clsDBConnSIKP {  //t_vat_regis
         $this->brand_address_rt->SetDBValue($this->f("brand_address_rt"));
         $this->brand_address_rw->SetDBValue($this->f("brand_address_rw"));
         $this->kota->SetDBValue($this->f("kota"));
-        $this->brand_p_region_id->SetDBValue(trim($this->f("brand_p_region_id")));
         $this->kecamatan->SetDBValue($this->f("kecamatan"));
-        $this->brand_p_region_id_kec->SetDBValue(trim($this->f("brand_p_region_id_kec")));
         $this->kelurahan->SetDBValue($this->f("kelurahan"));
-        $this->brand_p_region_id_kel->SetDBValue(trim($this->f("brand_p_region_id_kel")));
         $this->brand_phone_no->SetDBValue($this->f("brand_phone_no"));
         $this->brand_mobile_no->SetDBValue($this->f("brand_mobile_no"));
         $this->brand_fax_no->SetDBValue($this->f("brand_fax_no"));

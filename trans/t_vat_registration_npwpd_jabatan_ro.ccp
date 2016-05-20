@@ -347,36 +347,18 @@ t_cust_acc_status_modif_id =
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="254" fieldSourceType="DBColumn" dataType="Float" name="brand_p_region_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormbrand_p_region_id" fieldSource="brand_p_region_id" caption="Kota/Kabupaten - WP" defaultValue="749" required="True">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<TextBox id="258" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kecamatan" caption="Kecamatan - Objek Pajak" fieldSource="kecamatan" required="True" PathID="t_vat_registrationFormkecamatan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="260" fieldSourceType="DBColumn" dataType="Float" name="brand_p_region_id_kec" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormbrand_p_region_id_kec" fieldSource="brand_p_region_id_kec" caption="Kecamatan - WP" required="True">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<TextBox id="261" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="kelurahan" fieldSource="kelurahan" required="True" caption="Kelurahan - Objek Pajak" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormkelurahan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<Hidden id="263" fieldSourceType="DBColumn" dataType="Float" name="brand_p_region_id_kel" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_vat_registrationFormbrand_p_region_id_kel" fieldSource="brand_p_region_id_kel" caption="Kelurahan - WP" required="True">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<TextBox id="37" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="brand_phone_no" fieldSource="brand_phone_no" required="False" caption="no telpon" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormbrand_phone_no">
 					<Components/>
 					<Events/>
@@ -401,13 +383,13 @@ t_cust_acc_status_modif_id =
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<TextBox id="961" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" fieldSource="vat_code_dtl" required="True" caption="Ayat Pajak" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormvat_code_dtl">
+				<TextBox id="961" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="vat_code_dtl" fieldSource="vat_code_dtl" caption="Ayat Pajak" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_registrationFormvat_code_dtl">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
