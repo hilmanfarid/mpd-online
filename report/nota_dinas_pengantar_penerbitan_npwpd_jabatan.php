@@ -20,7 +20,7 @@ if (empty($param_arr['date_start_laporan']) && empty($param_arr['date_end_lapora
     echo "Data Tidak Ditemukan";
     exit;
 }else {
-    $sql = "SELECT COUNT (*)as jumlah , RTRIM(f_eja(COUNT (*)::VARCHAR)) as huruf
+    $sql = "SELECT COUNT (*)as jumlah , replace(rtrim(f_terbilang(COUNT (*)::VARCHAR,null)),'  ',' ')as huruf
 			FROM t_vat_registration a 
 			left join p_vat_type_dtl b on a.p_vat_type_dtl_id=b.p_vat_type_dtl_id  
 			left join t_customer_order c on a.t_customer_order_id = c. t_customer_order_id
@@ -33,7 +33,7 @@ if (empty($param_arr['date_start_laporan']) && empty($param_arr['date_end_lapora
 			and case when ".$param_arr['nilai']."=0 then true
 					else c.p_order_status_id = ".$param_arr['nilai']."
 				end ";
-
+	//echo  $sql;    exit;
     $dbConn->query($sql);
     while ($dbConn->next_record()) {
         $data["jumlah"] = $dbConn->f("jumlah");
