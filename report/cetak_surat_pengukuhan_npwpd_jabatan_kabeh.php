@@ -26,7 +26,7 @@ $query="select
 		c.brand_address_name || ' ' || nvl(brand_address_no,' ') as alamat_brand ,
 		b.p_vat_type_id,
 		type.vat_code,
-		c.reg_letter_no,
+		LPAD(c.reg_letter_no,5,0) as reg_letter_no,
 		decode(c.p_hotel_grade_id,null,null,1,1,2,1,3,1,4,1,5,1,0) as klasifikasi,
 		d.vat_code as detail_jenis_pajak
 from t_vat_registration c		
@@ -34,7 +34,9 @@ left join t_customer_order a on a.t_customer_order_id = c.t_customer_order_id
 left join p_rqst_type b on a.p_rqst_type_id = b.p_rqst_type_id
 left join p_vat_type type on b.p_vat_type_id = type.p_vat_type_id
 left join p_vat_type_dtl d on c.p_vat_type_dtl_id = d.p_vat_type_dtl_id
-where c.npwpd_jabatan = 'Y'";
+left join p_region kec on kec.p_region_id = c.brand_p_region_id_kec
+where c.npwpd_jabatan = 'Y'
+order by kec.region_name, brand_address_name";
 
 $dbConn->query($query);
 $items = array();
@@ -84,6 +86,7 @@ class FormCetak extends FPDF {
 		$this->startY = $this->GetY();
 		$this->startX = $this->paperWSize-42;
 		$this->lengthCell = $this->startX+20;
+		$this->DefPageFormat[1] = 330;
 	}
 	
 	function setCourier(){
@@ -96,11 +99,16 @@ class FormCetak extends FPDF {
 	
 	function PageCetak($data) {
 		$this->AliasNbPages();
-		$this->AddPage("P");		
+		$this->AddPage("P");	
+			
 		$startY = $this->GetY();
 		$startX = $this->paperWSize-42;
 		$lengthCell = $startX + 20;
 		$this->height = 5;
+		
+		$this->AddFont('BookmanOldStyle','');
+		$this->AddFont('BookmanOldStyle','B','BookmanOldStyleB.php');
+		$this->AddFont('BookmanOldStyle','BI','BookmanOldStyleBI.php');
 		
 		$this->Image('../images/logo_pemda.png',25,12,25,25);
 		
@@ -115,17 +123,17 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', 'B', 12);
+		$this->SetFont('BookmanOldStyle', 'B', 12);
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
 		$this->Cell($lheader7, $this->height, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
-		$this->Ln();
+		$this->Ln(7);
 		
-		$this->SetFont('Arial', 'B', 16);
+		$this->SetFont('BookmanOldStyle', 'B', 18);
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
 		$this->Cell($lheader7, $this->height, "DINAS PELAYANAN PAJAK", "", 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Arial', '', 10);
+		$this->SetFont('BookmanOldStyle', '', 10);
 		$this->Cell($lheader1, $this->height + 3, "", "", 0, 'L');
 		$this->Cell($lheader7, $this->height + 3, "Jalan Wastukancana No. 2 Telp. 022. 4235052 - Bandung", "", 0, 'C');
 		$this->Ln();
@@ -135,37 +143,41 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		// Set margins
-		$this->SetLeftMargin(17);
-		$this->SetRightMargin(15);
+		$this->SetLeftMargin(33);
+		$this->SetRightMargin(0);
 		
 		// Judul
 		
 		$this->Ln();
-		$this->SetFont('Times', 'B', 12);
-		$this->Cell($lengthCell, $this->height, "SURAT PENGUKUHAN", 0, 0, 'C');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "NOMOR POKOK WAJIB PAJAK DAERAH (NPWPD) JABATAN", 0, 0, 'C');
+		$this->SetFont('BookmanOldStyle', 'B', 12);
+		$this->Cell($lengthCell-40, $this->height, "SURAT PENGUKUHAN", 0, 0, 'C');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "NOMOR :                                                            ", 0, 0, 'C');
+		$this->Cell($lengthCell-40, $this->height, "NOMOR POKOK WAJIB PAJAK DAERAH (NPWPD) JABATAN", 0, 0, 'C');
+		$this->Ln();
+		$this->Cell($lengthCell-40, $this->height, "NOMOR : 973 / ".$data["reg_letter_no"]." / NPWPD.JBT - DISYANJAK", 0, 0, 'C');
 		$this->Ln();
 		
-		$this->SetFont('Times', '', 11);
+		$this->SetFont('BookmanOldStyle', '', 11);
 		//$this->Cell($lengthCell, $this->height, "Nomor: 973/" . $data["reg_letter_no"]."/".str_ireplace('Pajak ','',$data['vat_code']) ."/Disyanjak", 0, 0, 'C');
 		// Body Atas
 		$this->Ln();
 		$this->Ln();
 		
-		$this->SetWidths(array($lengthCell-15));
+		$this->SetWidths(array($lengthCell-40));
 		$this->SetAligns(array("J"));
+		$this->Cell(10, $this->height, "     ", 0, 0, 'J');
+		$this->Cell($lengthCell-50, $this->height, "Berdasarkan  Peraturan  Daerah Kota Bandung Nomor 20 Tahun 2011", 0, 0, 'J');
+		$this->Ln();
 		$this->RowMultiBorderWithHeight(array(
-			"Berdasarkan Peraturan Daerah Kota Bandung Nomor 20 Tahun 2011 tentang Pajak Daerah, bersama ini diterbitkan NPWPD Jabatan terhadap :"
+			"tentang Pajak Daerah, bersama ini diterbitkan NPWPD Jabatan terhadap :"
 			),
 			array(
 			""
 			),
 			$this->height);
-			
-		$this->SetWidths(array(30,$lengthCell-15-30));
+		$this->Ln(2);
+		$this->SetWidths(array(40,$lengthCell-40-40));
 		$this->SetAligns(array("J","J"));
 		$this->RowMultiBorderWithHeight(array(
 			"Objek Pajak",
@@ -202,18 +214,43 @@ class FormCetak extends FPDF {
 			"",""
 			),
 			$this->height);
-			
-		$this->SetWidths(array($lengthCell-15));
+		
+		$this->Ln(2);
+		$this->SetWidths(array($lengthCell-40));
 		$this->SetAligns(array("J"));
+		$this->Cell(10, $this->height, "     ", 0, 0, 'J');
+		$this->Cell($lengthCell-50, $this->height, "Untuk   memenuhi   ketentuan   pada   Peraturan   Daerah  dimaksud, ", 0, 0, 'J');
+		$this->Ln();
 		$this->RowMultiBorderWithHeight(array(
-			"Untuk menghidari dilakukan pemeriksaan dan pengenaan sanksi administrasi perpajakan karena ada indikasi tidak dipenuhinya kewajiban perpajakan daerah, pemilik/pengelola usaha diminta untuk datang ke loket informasi dan penanganan pengaduan pada Dinas Pelayanan Pajak Kota Bandung Jl. Wastukancana No. 2 Bandung paling lambat 7 (tujuh) hari kerja sejak diterimanya pengukuhan ini untuk memberikan klarifikasi, pemutakhiran data dan menerima informasi terkait kewajiban perpajakan daerah dengan membawa kelengkapan sebagai berikut :"
+			"pemilik/pengelola usaha diminta untuk datang   ke   loket   informasi dan penanganan   pengaduan   pada  Dinas   Pelayanan   Pajak   Kota  Bandung"
 			),
 			array(
 			""
 			),
 			$this->height);
 		
-		$this->SetWidths(array(7,$lengthCell-15-7));
+		
+		$this->Cell($lengthCell-120, $this->height, "Jl. Wastukancana  No. 2  Bandung", "", 0, 'J');
+		$this->SetFont('BookmanOldStyle', 'BI', 11);
+		$this->Cell(10, $this->height, " paling  lambat  7  (tujuh)  hari  kerja", 0, 0, 'J');
+		$this->Ln();
+		$this->SetFont('BookmanOldStyle', '', 11);
+		$this->Cell(122, $this->height, "sejak   diterimanya   pengukuhan   ini   untuk    memberikan", 0, 0, 'J');
+		$this->SetFont('BookmanOldStyle', 'BI', 11);
+		$this->Cell($lengthCell-66, $this->height, "klarifikasi, ", 0, 0, 'J');
+		$this->Ln();
+		$this->Cell($lengthCell-80, $this->height, "pemutakhiran   data   dan   menerima    informasi", 0, 0, 'J');
+		$this->SetFont('BookmanOldStyle', '', 11);
+		$this->Cell(90, $this->height, " terkait   kewajiban", 0, 0, 'J');
+		$this->Ln();
+		$this->Cell(55, $this->height, "perpajakan  daerah  dengan ", 0, 0, 'J');
+		$this->SetFont('BookmanOldStyle', 'BI', 11);
+		$this->Cell(52, $this->height, "membawa  kelengkapan", 0, 0, 'J');
+		$this->SetFont('BookmanOldStyle', '', 11);
+		$this->Cell(90, $this->height, "sebagai berikut :", 0, 0, 'J');
+		$this->Ln();
+		$this->Ln(2);
+		$this->SetWidths(array(7,$lengthCell-40-7));
 		$this->SetAligns(array("J","J"));
 		$this->RowMultiBorderWithHeight(array(
 			"1. ",
@@ -241,21 +278,33 @@ class FormCetak extends FPDF {
 			"",""
 			),
 			$this->height);
-		
-		$this->SetWidths(array($lengthCell-15));
+			
+		$this->Ln(2);
+		$this->SetWidths(array($lengthCell-40));
 		$this->SetAligns(array("J"));
+		$this->Cell(10, $this->height, "     ", 0, 0, 'J');
+		$this->Cell($lengthCell-50, $this->height, "Apabila  Saudara  telah  mendaftarkan diri dan memiliki  NPWPD  agar", 0, 0, 'J');
+		$this->Ln();
 		$this->RowMultiBorderWithHeight(array(
-			"Demikian disampaikan untuk menjadi perhatian."
+			"segera melapor pada loket Pelayanan Informasi dan Penanganan Pengaduan Dinas Pelayanan Pajak Jl. Wastukancana No. 2 Bandung dengan  membawa FC bukti pembayaran pajak bulan terakhir."
 			),
 			array(
 			""
 			),
 			$this->height);
+		$this->Ln(2);
+		$this->SetWidths(array($lengthCell-40));
+		$this->SetAligns(array("J"));
+		$this->Cell(10, $this->height, "     ", 0, 0, 'J');
+		$this->Cell($lengthCell-50, $this->height, "Demikian disampaikan untuk menjadi perhatian.", 0, 0, 'J');
+		$this->Ln();
+		$this->Ln();
 		
 		// Signature
 		$this->Ln();
 		$this->Ln();
-		$sigLen = $lengthCell / 2;
+		$this->Ln();
+		$sigLen = ($lengthCell-40) / 2;
 		$sigLen1 = $sigLen * 1;
 		$sigLen2 = $sigLen * 2;
 		$bulan =array();
@@ -282,12 +331,13 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$this->SetFont('Times', 'B', 11);
+		$this->SetFont('BookmanOldStyle', 'B', 11);
 		$this->Cell($sigLen1, $this->height, "a.n. WALIKOTA BANDUNG", 0, 0, 'C');
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$this->Cell($sigLen1, $this->height, "Kepala Dinas Pelayanan Pajak", 0, 0, 'C');
+		$this->Cell($sigLen1, $this->height, "KEPALA DINAS PELAYANAN PAJAK", 0, 0, 'C');
+		$this->Ln();
 		$this->Ln();
 		$this->Ln();
 		$this->Ln();
@@ -299,7 +349,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$this->SetFont('Times', '', 11);
+		$this->SetFont('BookmanOldStyle', '', 11);
 		$this->Cell($sigLen1, $this->height, "Pembina Utama Muda", 0, 0, 'C');
 		$this->Ln();
 		
@@ -311,7 +361,7 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
-		$this->SetFont('Times', '', 11);
+		$this->SetFont('BookmanOldStyle', '', 11);
 		$this->Cell($sigLen1, $this->height, "PEMBINA UTAMA MUDA", 0, 0, 'C');
 		$this->Ln();
 		
@@ -323,31 +373,19 @@ class FormCetak extends FPDF {
 		$this->Ln();
 		$this->Ln();
 		
-		$this->SetFont('Times', 'BU', 8);
-		$this->Cell(15, $this->height, "Tembusan,", 0, 0, 'L');
-		$this->SetFont('Times', '', 8);
-		$this->Cell($lengthCell - ($lengthCell / 10), $this->height, "disampaikan kepada Yth:", 0, 0, 'L');
+		$this->SetFont('BookmanOldStyle', 'BU', 11);
+		$this->Cell(23, $this->height, "Tembusan,", 0, 0, 'L');
+		$this->SetFont('BookmanOldStyle', '', 11);
+		$this->Cell($lengthCell - ($lengthCell / 10), $this->height, "disampaikan kepada Yth. :", 0, 0, 'L');
 		$this->Ln();
-		$this->SetFont('Times', '', 8);
+		$this->SetFont('BookmanOldStyle', '', 11);
 		//$this->height = $this->height - 1;
 		$this->height = 4;
 		$this->Cell($lengthCell, $this->height, "1. Bapak Walikota Bandung (sebagai laporan);", 0, 0, 'L');
 		$this->Ln();
 		$this->Cell($lengthCell, $this->height, "2. Bapak Wakil Walikota Bandung (sebagai laporan); dan", 0, 0, 'L');
 		$this->Ln();
-		$this->Cell($lengthCell, $this->height, "3. Bapak Sekretaris Daerah Kota Bandung (sebagai laporan);", 0, 0, 'L');
-		$this->Ln();
-		$this->Ln();
-		
-		$this->SetWidths(array($lengthCell-15));
-		$this->SetAligns(array("J"));
-		$this->RowMultiBorderWithHeight(array(
-			"Catatan :\nApabila Saudara telah mendaftarkan diri dan memiliki NPWPD agar segera melapor pada loket Pelayanan Informasi dan Penanganan Pengaduan Dinas Pelayanan Pajak Jl. Wastukencana No. 2 Bandung dengan  membawa FC bukti pembayaran pajak bulan terakhir."
-			),
-			array(
-			""
-			),
-			$this->height);
+		$this->Cell($lengthCell, $this->height, "3. Bapak Sekretaris Daerah Kota Bandung (sebagai laporan).", 0, 0, 'L');
 	}
 	
 	function getNumberFormat($number, $dec) {
