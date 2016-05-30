@@ -109,7 +109,8 @@ function GetCetakHTML($param_arr) {
 				end 
 			and case when ".$param_arr['nilai']."=0 then true
 					else c.p_order_status_id = ".$param_arr['nilai']."
-				end ";
+				end 
+			order by company_brand";
 	//echo $query;exit;
 	$data = array();
 	$dbConn->query($query);
@@ -188,7 +189,8 @@ function GetCetakExcel($param_arr) {
 				end 
 			and case when ".$param_arr['nilai']."=0 then true
 					else c.p_order_status_id = ".$param_arr['nilai']."
-				end ";
+				end 
+			order by company_brand";
 	//echo $query;exit;
 	$data = array();
 	$dbConn->query($query);
