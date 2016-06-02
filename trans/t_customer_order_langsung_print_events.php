@@ -151,20 +151,28 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
     // Write your own code here.
 	$dbConnect = new clsDBConnSIKP();
 	$CustId = $t_customer_orderForm->t_customer_order_id->GetValue();
+	//print kartu npwpd
+	file_get_contents("http://172.16.20.1/mpd/report/cetak_kartu_npwpd2.php?t_customer_order_id=".$CustId."&save=true");
+	file_get_contents("http://172.16.20.1/mpd/report/cetak_berita_acara_pemeriksaan_pdf2.php?t_customer_order_id=".$CustId."&save=true");
+	//exit;
+
 	$npwpd = '';
+	$mobile_no = '';
 	//generate npwpd
-	$sql = "select npwpd from t_vat_registration where t_customer_order_id =".$CustId;
+	$sql = "select nvl(mobile_no_owner,wp_mobile_no) as mobile_no,npwpd from t_vat_registration where t_customer_order_id =".$CustId;
 	//echo $sql; exit;
 	$dbConnect->query($sql);
 	while($dbConnect->next_record()){
 		$npwpd = $dbConnect->f("npwpd");
+		$mobile_no = $dbConnect->f("mobile_no");
 	}
 	
-	if ($npwpd='' || empty($npwpd)){
+	if ($npwpd=='' || empty($npwpd)){
 		$sql = "select f_gen_npwpd(".$CustId.")as npwpd from dual";
 		$dbConnect->query($sql);
 		while($dbConnect->next_record()){
 			$val = $dbConnect->f("npwpd");
+			$npwpd = $val;
 		}
 	
 		//update npwpd
@@ -179,21 +187,52 @@ function t_customer_orderForm_Button1_OnClick(& $sender)
 	}
 	
 	//submit
-	$sql = "select o_result_code, o_result_msg from f_first_submit_engine(500,".$CustId.",'".CCGetUserLogin()."')";
+	$sql = "select o_result_code, o_result_msg from f_first_submit_engine_daftar(500,".$CustId.",'".CCGetUserLogin()."')";
 	//die($sql);
 	$dbConnect->query($sql);
 	while($dbConnect->next_record()){
 		$errCode = $dbConnect->f("o_result_code");
 		$errMsg = $dbConnect->f("o_result_msg");
 	}
-
 	echo "<meta http-equiv='refresh' content='0;url=t_customer_order.php?pesan=".$errMsg."'/>";
-	
-	//print kartu npwpd
+
+	$sql = "select after_submit_pendaftaran_langsung_bayar from after_submit_pendaftaran_langsung_bayar(".$CustId.")";
+	//die($sql);
+	$dbConnect->query($sql);
+	$dbConnect->next_record();
+	$after_submit_pendaftaran_langsung_bayar = $dbConnect->f("after_submit_pendaftaran_langsung_bayar");
+	if ($after_submit_pendaftaran_langsung_bayar != '1'){
+		echo "<meta http-equiv='refresh' content='0;url=t_customer_order.php?pesan=".$after_submit_pendaftaran_langsung_bayar."'/>";
+	}
+
+	//send welcome sms
+	if (strlen ( $mobile_no )>6){
+		$sql = "
+			INSERT INTO t_sms_outbox(
+				npwpd,  
+				mobile_no, 
+				message,  
+				is_sent,
+				date_added,
+				message_type)
+			VALUES ('".$npwpd."', 
+				'".$mobile_no."',
+				'Selamat Anda telah terdaftar menjadi wajib pajak Daerah Kota Bandung, dengan NPWPD '||'".$npwpd."'||'.', 
+				'N', 
+				sysdate,
+				'IMMIDIATEDLY')";
+		//die($sql);
+		$dbConnect->query($sql);
+		$dbConnect->next_record();
+	}
+		
+	/*
 	echo '<script language="javascript">';
 	//echo "window.open('http://172.16.20.1/mpd/report/cetak_formulir_skpd_nihil.php?t_vat_setllement_id=".$t_vat_setllement_id."','No Payment', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
-	echo "window.open('../report/cetak_kartu_npwpd.php?t_customer_order_id=".$CustId."','', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes')";
+	echo "window.open('../report/cetak_kartu_npwpd.php?t_customer_order_id=".$CustId."','', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');";
+	echo "window.open('../report/cetak_berita_acara_pemeriksaan_pdf.php?t_customer_order_id=".$CustId."','', 'left=0,top=0,width=500,height=500,toolbar=no,scrollbars=yes,resizable=yes');";
 	echo '</script>';
+	*/
 	return;
 	
 // -------------------------

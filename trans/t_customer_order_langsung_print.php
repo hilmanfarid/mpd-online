@@ -44,7 +44,7 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-F3839A4A
+//Class_Initialize Event @2-EB1388F6
     function clsGridt_customer_orderGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -83,8 +83,6 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
         $this->p_rqst_type_id = & new clsControl(ccsHidden, "p_rqst_type_id", "p_rqst_type_id", ccsFloat, "", CCGetRequestParam("p_rqst_type_id", ccsGet, NULL), $this);
         $this->cetak = & new clsControl(ccsLabel, "cetak", "cetak", ccsText, "", CCGetRequestParam("cetak", ccsGet, NULL), $this);
         $this->cetak->HTML = true;
-        $this->company_brand = & new clsControl(ccsLabel, "company_brand", "company_brand", ccsText, "", CCGetRequestParam("company_brand", ccsGet, NULL), $this);
-        $this->npwpd = & new clsControl(ccsLabel, "npwpd", "npwpd", ccsText, "", CCGetRequestParam("npwpd", ccsGet, NULL), $this);
         $this->Insert_Link = & new clsControl(ccsLink, "Insert_Link", "Insert_Link", ccsText, "", CCGetRequestParam("Insert_Link", ccsGet, NULL), $this);
         $this->Insert_Link->Page = "t_customer_order.php";
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
@@ -103,7 +101,7 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
     }
 //End Initialize Method
 
-//Show Method @2-8B2E61BF
+//Show Method @2-ADAE5575
     function Show()
     {
         global $Tpl;
@@ -113,7 +111,7 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
         $this->RowNumber = 0;
 
         $this->DataSource->Parameters["urls_keyword"] = CCGetFromGet("s_keyword", NULL);
-        $this->DataSource->Parameters["expr636"] = 1;
+        $this->DataSource->Parameters["expr631"] = 1;
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
@@ -142,8 +140,6 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
             $this->ControlsVisible["t_vat_registration_id"] = $this->t_vat_registration_id->Visible;
             $this->ControlsVisible["p_rqst_type_id"] = $this->p_rqst_type_id->Visible;
             $this->ControlsVisible["cetak"] = $this->cetak->Visible;
-            $this->ControlsVisible["company_brand"] = $this->company_brand->Visible;
-            $this->ControlsVisible["npwpd"] = $this->npwpd->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -160,8 +156,6 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
                 $this->order_date->SetValue($this->DataSource->order_date->GetValue());
                 $this->t_vat_registration_id->SetValue($this->DataSource->t_vat_registration_id->GetValue());
                 $this->p_rqst_type_id->SetValue($this->DataSource->p_rqst_type_id->GetValue());
-                $this->company_brand->SetValue($this->DataSource->company_brand->GetValue());
-                $this->npwpd->SetValue($this->DataSource->npwpd->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -174,8 +168,6 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
                 $this->t_vat_registration_id->Show();
                 $this->p_rqst_type_id->Show();
                 $this->cetak->Show();
-                $this->company_brand->Show();
-                $this->npwpd->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -211,7 +203,7 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
     }
 //End Show Method
 
-//GetErrors Method @2-2D4F114C
+//GetErrors Method @2-DD008414
     function GetErrors()
     {
         $errors = "";
@@ -224,8 +216,6 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
         $errors = ComposeStrings($errors, $this->t_vat_registration_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->p_rqst_type_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->cetak->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->company_brand->Errors->ToString());
-        $errors = ComposeStrings($errors, $this->npwpd->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -236,7 +226,7 @@ class clsGridt_customer_orderGrid { //t_customer_orderGrid class @2-BB95BC1E
 
 class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_orderGridDataSource Class @2-3A5DA697
 
-//DataSource Variables @2-C41C1818
+//DataSource Variables @2-39955C99
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -255,11 +245,9 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
     var $order_date;
     var $t_vat_registration_id;
     var $p_rqst_type_id;
-    var $company_brand;
-    var $npwpd;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @2-B1A56C17
+//DataSourceClass_Initialize Event @2-A57ECCCC
     function clst_customer_orderGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -279,54 +267,55 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
         
         $this->p_rqst_type_id = new clsField("p_rqst_type_id", ccsFloat, "");
         
-        $this->company_brand = new clsField("company_brand", ccsText, "");
-        
-        $this->npwpd = new clsField("npwpd", ccsText, "");
-        
 
     }
 //End DataSourceClass_Initialize Event
 
-//SetOrder Method @2-955934DA
+//SetOrder Method @2-5CABC816
     function SetOrder($SorterName, $SorterDirection)
     {
-        $this->Order = "a.t_customer_order_id";
+        $this->Order = "t_customer_order_id";
         $this->Order = CCGetOrder($this->Order, $SorterName, $SorterDirection, 
             "");
     }
 //End SetOrder Method
 
-//Prepare Method @2-A1B4CA83
+//Prepare Method @2-5CA777B2
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
-        $this->wp->AddParameter("2", "expr636", ccsFloat, "", "", $this->Parameters["expr636"], "", false);
+        $this->wp->AddParameter("2", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("3", "urls_keyword", ccsText, "", "", $this->Parameters["urls_keyword"], "", false);
+        $this->wp->AddParameter("5", "expr631", ccsFloat, "", "", $this->Parameters["expr631"], "", false);
+        $this->wp->Criterion[1] = $this->wp->Operation(opContains, "upper(order_no)", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsText),false);
+        $this->wp->Criterion[2] = $this->wp->Operation(opContains, "upper(rqst_type_code)", $this->wp->GetDBValue("2"), $this->ToSQL($this->wp->GetDBValue("2"), ccsText),false);
+        $this->wp->Criterion[3] = $this->wp->Operation(opContains, "upper(order_status_code)", $this->wp->GetDBValue("3"), $this->ToSQL($this->wp->GetDBValue("3"), ccsText),false);
+        $this->wp->Criterion[4] = "( p_rqst_type_id IN (1,2,3,4,5) )";
+        $this->wp->Criterion[5] = $this->wp->Operation(opGreaterThanOrEqual, "p_order_status_id", $this->wp->GetDBValue("5"), $this->ToSQL($this->wp->GetDBValue("5"), ccsFloat),false);
+        $this->Where = $this->wp->opAND(
+             false, $this->wp->opAND(
+             false, $this->wp->opOR(
+             true, $this->wp->opOR(
+             false, 
+             $this->wp->Criterion[1], 
+             $this->wp->Criterion[2]), 
+             $this->wp->Criterion[3]), 
+             $this->wp->Criterion[4]), 
+             $this->wp->Criterion[5]);
     }
 //End Prepare Method
 
-//Open Method @2-6281FC75
+//Open Method @2-55C37E46
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
-        "FROM v_customer_order  a\n" .
-        "left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id\n" .
-        "WHERE ( upper(company_brand) ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "or upper(order_no) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(rqst_type_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(order_status_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
-        "AND ( p_rqst_type_id IN (1,2,3,4,5) )) cnt";
-        $this->SQL = "SELECT * \n" .
-        "FROM v_customer_order  a\n" .
-        "left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id\n" .
-        "WHERE ( upper(company_brand) ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "or upper(order_no) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(rqst_type_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
-        "OR upper(order_status_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
-        "AND ( p_rqst_type_id IN (1,2,3,4,5) ){SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*)\n\n" .
+        "FROM v_customer_order";
+        $this->SQL = "SELECT * \n\n" .
+        "FROM v_customer_order {SQL_Where} {SQL_OrderBy}";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -337,7 +326,7 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
     }
 //End Open Method
 
-//SetValues Method @2-0372B629
+//SetValues Method @2-D9F550EB
     function SetValues()
     {
         $this->order_no->SetDBValue($this->f("order_no"));
@@ -347,8 +336,6 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
         $this->order_date->SetDBValue($this->f("order_date"));
         $this->t_vat_registration_id->SetDBValue(trim($this->f("t_vat_registration_id")));
         $this->p_rqst_type_id->SetDBValue(trim($this->f("p_rqst_type_id")));
-        $this->company_brand->SetDBValue($this->f("company_brand"));
-        $this->npwpd->SetDBValue($this->f("npwpd"));
     }
 //End SetValues Method
 

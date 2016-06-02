@@ -1,16 +1,8 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customer_orderGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT * 
-FROM v_customer_order  a
-left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id
-WHERE ( upper(company_brand) ILIKE '%{s_keyword}%'
-or upper(order_no) LIKE '%{s_keyword}%'
-OR upper(rqst_type_code) LIKE '%{s_keyword}%'
-OR upper(order_status_code) LIKE '%{s_keyword}%' )
-AND ( p_rqst_type_id IN (1,2,3,4,5) )
-ORDER BY a.t_customer_order_id" orderBy="t_customer_order_id">
+		<Grid id="2" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customer_orderGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="v_customer_order" orderBy="t_customer_order_id">
 			<Components>
-				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_customer_order.ccp" removeParameters="t_customer_order_id;order_no;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_customer_orderGridInsert_Link">
+				<Link id="7" visible="Yes" fieldSourceType="DBColumn" dataType="Text" html="False" hrefType="Page" urlType="Relative" preserveParameters="GET" name="Insert_Link" hrefSource="t_customer_order_langsung_print.ccp" removeParameters="t_customer_order_id;order_no;s_keyword" wizardThemeItem="FooterA" wizardDefaultValue="Add New" wizardUseTemplateBlock="False" PathID="t_customer_orderGridInsert_Link">
 					<Components/>
 					<Events/>
 					<LinkParameters>
@@ -19,7 +11,7 @@ ORDER BY a.t_customer_order_id" orderBy="t_customer_order_id">
 					<Attributes/>
 					<Features/>
 				</Link>
-				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_customer_order.ccp" wizardThemeItem="GridA" PathID="t_customer_orderGridDLink" removeParameters="FLAG">
+				<Link id="11" visible="Yes" fieldSourceType="CodeExpression" html="True" hrefType="Page" urlType="Relative" preserveParameters="GET" name="DLink" wizardCaption="Detail" wizardSize="50" wizardMaxLength="60" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" dataType="Text" wizardDefaultValue="DLink" hrefSource="t_customer_order_langsung_print.ccp" wizardThemeItem="GridA" PathID="t_customer_orderGridDLink" removeParameters="FLAG">
 					<Components/>
 					<Events/>
 					<LinkParameters>
@@ -90,19 +82,7 @@ ORDER BY a.t_customer_order_id" orderBy="t_customer_order_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-				<Label id="637" fieldSourceType="DBColumn" dataType="Text" html="False" name="company_brand" fieldSource="company_brand" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customer_orderGridcompany_brand">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-<Label id="638" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwpd" fieldSource="npwpd" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customer_orderGridnpwpd">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -124,6 +104,7 @@ ORDER BY a.t_customer_order_id" orderBy="t_customer_order_id">
 				<TableParameter id="631" conditionType="Parameter" useIsNull="False" field="p_order_status_id" dataType="Float" searchConditionType="GreaterThanOrEqual" parameterType="Expression" logicOperator="And" parameterSource="1"/>
 			</TableParameters>
 			<JoinTables>
+				<JoinTable id="557" tableName="v_customer_order" posLeft="10" posTop="10" posWidth="154" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
@@ -132,13 +113,13 @@ ORDER BY a.t_customer_order_id" orderBy="t_customer_order_id">
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="627" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
-				<SQLParameter id="636" parameterType="Expression" variable="Expr1" dataType="Float" parameterSource="1"/>
-</SQLParameters>
+				<SQLParameter id="628" parameterType="Expression" variable="Expr0" dataType="Float" parameterSource="1,2,3,4,5"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
 		</Grid>
-		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_customer_orderSearch" wizardCaption="Search P App Role " wizardOrientation="Vertical" wizardFormMethod="post" returnPage="t_customer_order.ccp" PathID="t_customer_orderSearch" pasteActions="pasteActions">
+		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_customer_orderSearch" wizardCaption="Search P App Role " wizardOrientation="Vertical" wizardFormMethod="post" returnPage="t_customer_order_langsung_print.ccp" PathID="t_customer_orderSearch" pasteActions="pasteActions">
 			<Components>
 				<TextBox id="559" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="s_keyword" wizardCaption="Keyword" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" PathID="t_customer_orderSearchs_keyword">
 					<Components/>
@@ -415,8 +396,8 @@ WHERE t_customer_order_id = {t_customer_order_id}">
 		</Record>
 	</Components>
 	<CodeFiles>
-		<CodeFile id="Events" language="PHPTemplates" name="t_customer_order_events.php" forShow="False" comment="//" codePage="windows-1252"/>
-		<CodeFile id="Code" language="PHPTemplates" name="t_customer_order.php" forShow="True" url="t_customer_order.php" comment="//" codePage="windows-1252"/>
+		<CodeFile id="Events" language="PHPTemplates" name="t_customer_order_langsung_print_events.php" forShow="False" comment="//" codePage="windows-1252"/>
+		<CodeFile id="Code" language="PHPTemplates" name="t_customer_order_langsung_print.php" forShow="True" url="t_customer_order.php" comment="//" codePage="windows-1252"/>
 	</CodeFiles>
 	<SecurityGroups/>
 	<CachingParameters/>
