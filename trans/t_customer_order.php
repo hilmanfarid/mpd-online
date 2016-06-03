@@ -307,11 +307,11 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
     }
 //End Prepare Method
 
-//Open Method @2-6281FC75
+//Open Method @2-CB54A0F7
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT * \n" .
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT a.*,b.company_brand,b.npwpd \n" .
         "FROM v_customer_order  a\n" .
         "left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id\n" .
         "WHERE ( upper(company_brand) ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
@@ -319,7 +319,7 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
         "OR upper(rqst_type_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(order_status_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
         "AND ( p_rqst_type_id IN (1,2,3,4,5) )) cnt";
-        $this->SQL = "SELECT * \n" .
+        $this->SQL = "SELECT a.*,b.company_brand,b.npwpd \n" .
         "FROM v_customer_order  a\n" .
         "left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id\n" .
         "WHERE ( upper(company_brand) ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .

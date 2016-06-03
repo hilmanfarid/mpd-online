@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customer_orderGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT * 
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_customer_orderGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT a.*,b.company_brand,b.npwpd 
 FROM v_customer_order  a
 left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id
 WHERE ( upper(company_brand) ILIKE '%{s_keyword}%'
@@ -96,13 +96,13 @@ ORDER BY a.t_customer_order_id" orderBy="t_customer_order_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="638" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwpd" fieldSource="npwpd" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customer_orderGridnpwpd">
+				<Label id="638" fieldSourceType="DBColumn" dataType="Text" html="False" name="npwpd" fieldSource="npwpd" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_customer_orderGridnpwpd">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -133,7 +133,7 @@ ORDER BY a.t_customer_order_id" orderBy="t_customer_order_id">
 			<SQLParameters>
 				<SQLParameter id="627" parameterType="URL" variable="s_keyword" dataType="Text" parameterSource="s_keyword"/>
 				<SQLParameter id="636" parameterType="Expression" variable="Expr1" dataType="Float" parameterSource="1"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
