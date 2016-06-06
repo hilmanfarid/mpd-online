@@ -4,6 +4,7 @@ define("PathToCurrentPage", "/report/");
 define("FileName", "cetak_surat_pengukuhan_pdf.php");
 include_once(RelativePath . "/Common.php");
 include_once("../include/fpdf.php");
+include_once("../include/qrcode/generate-qr-file.php");
 define('FPDF_FONTPATH','../include/font/');
 
 $t_customer_order_id = CCGetFromGet("CURR_DOC_ID", "");
@@ -366,6 +367,16 @@ class FormCetak extends FPDF {
 		
 		$this->Cell($sigLen1, $this->height, "", 0, 0, 'C');
 		$this->Cell($sigLen1, $this->height, "NIP. 19661207 198603 1 006", 0, 0, 'C');
+		
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+		str_replace(" ","-","NOMOR : 973 / ".$data["reg_letter_no"]." / NPWPD.JBT - DISYANJAK")."_".
+		$data["npwpd"]."_".
+		str_replace(" ","-",$data["company_brand"])."_".
+		str_replace(" ","-",$data["alamat_brand"])."_".
+		str_replace(" ","-",$data["vat_code"])
+		,40,228,25,25,'PNG');
+		
+		
 		// Tembusan
 		
 		$this->Ln();
