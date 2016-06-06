@@ -369,11 +369,11 @@ class FormCetak extends FPDF {
 		$this->Cell($sigLen1, $this->height, "NIP. 19661207 198603 1 006", 0, 0, 'C');
 		
 		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
-		str_replace(" ","-","NOMOR : 973 / ".$data["reg_letter_no"]." / NPWPD.JBT - DISYANJAK")."_".
-		$data["npwpd"]."_".
-		str_replace(" ","-",$data["company_brand"])."_".
-		str_replace(" ","-",$data["alamat_brand"])."_".
-		str_replace(" ","-",$data["vat_code"])
+		str_replace(" ","_","NOMOR : 973 / ".$data["reg_letter_no"]." / NPWPD.JBT - DISYANJAK")."_".
+		$data["npwpd"]."-".
+		str_replace(" ","_",$data["company_brand"])."-".
+		str_replace(" ","_",$data["alamat_brand"])."-".
+		str_replace(" ","_",$data["vat_code"])
 		,40,228,25,25,'PNG');
 		
 		
