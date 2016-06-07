@@ -1,0 +1,685 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_customer_order</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_vat_registrationFormButton_Delete_OnClick @97-E1D94417
+function t_vat_registrationFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_vat_registrationFormButton_Delete_OnClick
+
+//Confirmation Message @98-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close t_vat_registrationFormButton_Delete_OnClick @97-BC33A33A
+    return result;
+}
+//End Close t_vat_registrationFormButton_Delete_OnClick
+
+//t_vat_registrationFormp_doc_delivery_type_id_OnChange @909-120DC042
+function t_vat_registrationFormp_doc_delivery_type_id_OnChange()
+{
+    var result = true;
+//End t_vat_registrationFormp_doc_delivery_type_id_OnChange
+
+//Custom Code @916-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if($("#t_vat_registrationFormp_doc_delivery_type_id").val() == 3){
+            document.getElementById("t_vat_registrationFormwp_email").className ="ControlsRQ";
+                        document.getElementById("t_vat_registrationFormemail").className ="ControlsRQ";
+    }else{
+            document.getElementById("t_vat_registrationFormwp_email").className ="ControlsIN";
+                        document.getElementById("t_vat_registrationFormemail").className ="ControlsIN";
+    }
+    // -------------------------
+//End Custom Code
+
+//Close t_vat_registrationFormp_doc_delivery_type_id_OnChange @909-BC33A33A
+    return result;
+}
+//End Close t_vat_registrationFormp_doc_delivery_type_id_OnChange
+
+//t_vat_registrationFormjenis_usaha_OnChange @912-93F55BD8
+function t_vat_registrationFormjenis_usaha_OnChange()
+{
+    var result = true;
+//End t_vat_registrationFormjenis_usaha_OnChange
+
+//Custom Code @915-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if($("#t_vat_registrationFormjenis_usaha").val() == "Perorangan"){
+                        $(".owner").hide();
+                                                document.getElementById("t_vat_registrationFormwp_mobile_no").className ="ControlsRQ";
+                                                $("#t_vat_registrationFormwp_mobile_td").show();
+                }else{
+                        $(".owner").show();
+                                                $("#t_vat_registrationFormwp_mobile_td").hide();
+                }
+    // -------------------------
+//End Custom Code
+
+//Close t_vat_registrationFormjenis_usaha_OnChange @912-BC33A33A
+    return result;
+}
+//End Close t_vat_registrationFormjenis_usaha_OnChange
+
+//t_vat_registrationFormButton_Cancel_OnClick @99-7E2DD051
+function t_vat_registrationFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_vat_registrationFormButton_Cancel_OnClick
+
+//bind_events @1-C05F65D4
+function bind_events() {
+    addEventHandler("t_vat_registrationFormButton_Delete", "click", t_vat_registrationFormButton_Delete_OnClick);
+    addEventHandler("t_vat_registrationFormp_doc_delivery_type_id", "change", t_vat_registrationFormp_doc_delivery_type_id_OnChange);
+    addEventHandler("t_vat_registrationFormjenis_usaha", "change", t_vat_registrationFormjenis_usaha_OnChange);
+    addEventHandler("t_vat_registrationFormButton_Cancel", "click", t_vat_registrationFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <label onclick="javascript:toOrder()">
+      <div class="tab-title">
+        PERMINTAAN PELANGGAN 
+      </div>
+      </label>
+    </div>
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        FORMULIR PENDAFTARAN 
+      </div>
+    </div>
+    <div class="th tab-button">
+      <label onclick="javascript:toReg2()">
+      <div class="tab-title">
+        DATA IZIN DAN POTENSI 
+      </div>
+      </label>
+    </div>
+    <!--<div class="th tab-button">
+      <label onclick="javascript:toReg3()">
+      <div class="tab-title">
+        DOKUMEN PENDUKUNG 
+      </div>
+      </label>
+    </div>-->
+  </div>
+</div>
+ura 
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_registrationForm -->
+        <form id="t_vat_registrationForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI FORMULIR PENDAFTARAN</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Nomor Order</label></label>&nbsp; </label></label></label></label></label></label></label></td> 
+                    <td colspan="3"><input id="t_vat_registrationFormorder_no" class="ControlsRO" tabindex="2" value="{order_no}" readonly maxlength="14" name="{order_no_Name}">&nbsp;<input id="t_vat_registrationFormt_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}"><input id="t_vat_registrationFormp_rqst_type_id" value="{p_rqst_type_id}" type="hidden" name="{p_rqst_type_id_Name}"><input id="t_vat_registrationFormt_vat_registration_id" value="{t_vat_registration_id}" type="hidden" name="{t_vat_registration_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Tanggal Pendaftaran&nbsp;</td> 
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormregistration_date" class="ControlsRO" value="{registration_date}" readonly maxlength="100" size="25" name="{registration_date_Name}">&nbsp;<input style="WIDTH: 83px; HEIGHT: 22px" id="t_vat_registrationFormrqst_type_code" value="{rqst_type_code}" size="11" type="hidden" name="{rqst_type_code_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Surat Edaran</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormpre_vat_brand_name" class="ControlsIN" tabindex="2" value="{pre_vat_brand_name}" readonly maxlength="32" size="32" name="{pre_vat_brand_name_Name}">&nbsp;<img onclick="javascript:lov_vat_pre_registration()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormt_vat_pre_registration_id" value="{t_vat_pre_registration_id}" type="hidden" name="{t_vat_pre_registration_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Nama Ayat&nbsp;</td> 
+                    <td colspan="3">
+                      <select id="t_vat_registrationFormp_vat_type_dtl_id" class="ControlsRQ" name="{p_vat_type_dtl_id_Name}">
+                        <option selected value="">Pilih</option>
+                        {p_vat_type_dtl_id_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">User Name&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_user_name" class="ControlsRQ" tabindex="2" value="{wp_user_name}" maxlength="32" size="32" name="{wp_user_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Password</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_user_pwd" class="ControlsRQ" tabindex="2" value="{wp_user_pwd}" maxlength="32" size="32" type="password" name="{wp_user_pwd_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Media Pengiriman Dokumen</td> 
+                    <td colspan="3">
+                      <select id="t_vat_registrationFormp_doc_delivery_type_id" class="ControlsRQ" name="{p_doc_delivery_type_id_Name}">
+                        <option selected value="">Pilih</option>
+                        {p_doc_delivery_type_id_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jenis Usaha</td> 
+                    <td colspan="3">
+                      <select id="t_vat_registrationFormjenis_usaha" class="ControlsRQ" name="{jenis_usaha_Name}">
+                        <option selected value="">Pilih</option>
+                        {jenis_usaha_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td colspan="4">
+                      <p align="center">&nbsp;KETERANGAN WAJIB PAJAK</p>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Nama Wajib Pajak&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_name" class="ControlsRQ" tabindex="2" value="{wp_name}" maxlength="64" size="50" name="{wp_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Alamat Wajib Pajak&nbsp;</td> 
+                    <td colspan="3"><textarea id="t_vat_registrationFormwp_address_name" class="ControlsRQ" rows="3" cols="64" name="{wp_address_name_Name}">{wp_address_name}</textarea>&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_address_no" class="ControlsRQ" tabindex="2" value="{wp_address_no}" maxlength="20" size="10" name="{wp_address_no_Name}">&nbsp;Rt/Rw <input id="t_vat_registrationFormwp_address_rt" class="ControlsRQ" tabindex="2" value="{wp_address_rt}" maxlength="5" size="5" name="{wp_address_rt_Name}">&nbsp;/ <input id="t_vat_registrationFormwp_address_rw" class="ControlsRQ" tabindex="2" value="{wp_address_rw}" maxlength="5" size="5" name="{wp_address_rw_Name}">&nbsp;&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kota/Kabupaten&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_kota" class="ControlsRQ" tabindex="2" value="{wp_kota}" readonly maxlength="32" size="32" name="{wp_kota_Name}">&nbsp;<img onclick="javascript:lov_region_wp1()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormwp_p_region_id" value="{wp_p_region_id}" type="hidden" name="{wp_p_region_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kecamatan&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_kecamatan" class="ControlsRQ" tabindex="2" value="{wp_kecamatan}" readonly maxlength="32" size="32" name="{wp_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_wp2()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormwp_p_region_id_kecamatan" value="{wp_p_region_id_kecamatan}" type="hidden" name="{wp_p_region_id_kecamatan_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kelurahan&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_kelurahan" class="ControlsRQ" tabindex="2" value="{wp_kelurahan}" readonly maxlength="32" size="32" name="{wp_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_wp3()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormwp_p_region_id_kelurahan" value="{wp_p_region_id_kelurahan}" type="hidden" name="{wp_p_region_id_kelurahan_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kode Pos&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_zip_code" class="ControlsRQ" tabindex="2" value="{wp_zip_code}" maxlength="5" size="6" name="{wp_zip_code_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No. Telephon&nbsp;</td> 
+                    <td colspan="2"><input id="t_vat_registrationFormwp_phone_no" class="ControlsIN" tabindex="2" value="{wp_phone_no}" maxlength="20" name="{wp_phone_no_Name}"></td> 
+                    <td id="t_vat_registrationFormwp_mobile_td">No. Selular <input id="t_vat_registrationFormwp_mobile_no" class="ControlsIN" tabindex="2" value="{wp_mobile_no}" maxlength="20" name="{wp_mobile_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No. Fax&nbsp;&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_fax_no" class="ControlsIN" tabindex="2" value="{wp_fax_no}" maxlength="20" name="{wp_fax_no_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Email&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormwp_email" class="ControlsIN" tabindex="2" value="{wp_email}" maxlength="64" size="50" name="{wp_email_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td colspan="4">
+                      <p align="center">KETERANGAN&nbsp;PERUSAHAAN/BADAN</p>
+                    </td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">Nama Badan/Perusahaan</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormcompany_name" class="ControlsRQ" tabindex="2" value="{company_name}" maxlength="64" size="50" name="{company_name_Name}">&nbsp;&nbsp;</td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">Alamat Badan</td> 
+                    <td colspan="3"><textarea id="t_vat_registrationFormaddress_name" class="ControlsRQ" rows="3" cols="64" name="{address_name_Name}">{address_name}</textarea>&nbsp;</td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">No</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormaddress_no" class="ControlsRQ" tabindex="2" value="{address_no}" maxlength="20" size="10" name="{address_no_Name}">&nbsp;Rt/Rw&nbsp;<input id="t_vat_registrationFormaddress_rt" class="ControlsIN" tabindex="2" value="{address_rt}" maxlength="5" size="5" name="{address_rt_Name}">&nbsp;/ <input id="t_vat_registrationFormaddress_rw" class="ControlsIN" tabindex="2" value="{address_rw}" maxlength="5" size="5" name="{address_rw_Name}"></td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">Kota/Kabupaten&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormkota_code" class="ControlsRQ" tabindex="2" value="{kota_code}" readonly maxlength="32" size="32" name="{kota_code_Name}">&nbsp;<img onclick="javascript:lov_region1()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id" value="{p_region_id}" type="hidden" name="{p_region_id_Name}"></td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">Kecamatan&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormkecamatan_code" class="ControlsRQ" tabindex="2" value="{kecamatan_code}" readonly maxlength="32" size="32" name="{kecamatan_code_Name}">&nbsp;<img onclick="javascript:lov_region2()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_kecamatan" value="{p_region_id_kecamatan}" type="hidden" name="{p_region_id_kecamatan_Name}"></td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">Kelurahan</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormkelurahan_code" class="ControlsRQ" tabindex="2" value="{kelurahan_code}" readonly maxlength="32" size="32" name="{kelurahan_code_Name}">&nbsp;<img onclick="javascript:lov_region3()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_kelurahan" value="{p_region_id_kelurahan}" type="hidden" name="{p_region_id_kelurahan_Name}"></td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">Kode Pos&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormzip_code" class="ControlsIN" tabindex="2" value="{zip_code}" maxlength="5" size="6" name="{zip_code_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">No. Telephon</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormphone_no" class="ControlsIN" tabindex="2" value="{phone_no}" maxlength="20" name="{phone_no_Name}">&nbsp;<input id="t_vat_registrationFormmobile_no" tabindex="2" value="{mobile_no}" maxlength="20" type="hidden" name="{mobile_no_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">No. Fax&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormfax_no" class="ControlsIN" tabindex="2" value="{fax_no}" maxlength="20" name="{fax_no_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td colspan="4">
+                      <p align="center">KETERANGAN&nbsp;PENANGGUNG PAJAK</p>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">Nama Penanggung Pajak</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormcompany_owner" class="ControlsRQ" tabindex="2" value="{company_owner}" maxlength="64" size="50" name="{company_owner_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">Jabatan</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormjob_position_code" class="ControlsRQ" tabindex="2" value="{job_position_code}" readonly maxlength="48" size="48" name="{job_position_code_Name}">&nbsp;<img onclick="javascript:lov_job()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_job_position_id" value="{p_job_position_id}" type="hidden" name="{p_job_position_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">Alamat&nbsp;Tempat Tinggal</td> 
+                    <td colspan="3"><textarea id="t_vat_registrationFormaddress_name_owner" class="ControlsRQ" rows="3" cols="64" name="{address_name_owner_Name}">{address_name_owner}</textarea>&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">No&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormaddress_no_owner" class="ControlsRQ" tabindex="2" value="{address_no_owner}" maxlength="20" size="10" name="{address_no_owner_Name}">&nbsp;Rt/Rw&nbsp;<input id="t_vat_registrationFormaddress_rt_owner" class="ControlsIN" tabindex="2" value="{address_rt_owner}" maxlength="5" size="5" name="{address_rt_owner_Name}">&nbsp;/ <input id="t_vat_registrationFormaddress_rw_owner" class="ControlsIN" tabindex="2" value="{address_rw_owner}" maxlength="5" size="5" name="{address_rw_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">Kota/Kabupaten&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormkota_own_code" class="ControlsRQ" tabindex="2" value="{kota_own_code}" readonly maxlength="32" size="32" name="{kota_own_code_Name}">&nbsp;<img onclick="javascript:lov_region_own1()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_owner" value="{p_region_id_owner}" type="hidden" name="{p_region_id_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">Kecamatan&nbsp;&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormkecamatan_own_code" class="ControlsRQ" tabindex="2" value="{kecamatan_own_code}" readonly maxlength="32" size="32" name="{kecamatan_own_code_Name}">&nbsp;<img onclick="javascript:lov_region_own2()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_kec_owner" value="{p_region_id_kec_owner}" type="hidden" name="{p_region_id_kec_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">Kelurahan&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormkelurahan_own_code" class="ControlsRQ" tabindex="2" value="{kelurahan_own_code}" readonly maxlength="32" size="32" name="{kelurahan_own_code_Name}">&nbsp;<img onclick="javascript:lov_region_own3()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormp_region_id_kel_owner" value="{p_region_id_kel_owner}" type="hidden" name="{p_region_id_kel_owner_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">Kode Pos&nbsp;&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormzip_code_owner" class="ControlsIN" tabindex="2" value="{zip_code_owner}" maxlength="5" size="6" name="{zip_code_owner_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">No. Telephon&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormphone_no_owner" class="ControlsIN" tabindex="2" value="{phone_no_owner}" maxlength="20" name="{phone_no_owner_Name}">No. Selular <input id="t_vat_registrationFormmobile_no_owner" class="ControlsRQ" tabindex="2" value="{mobile_no_owner}" maxlength="20" name="{mobile_no_owner_Name}">&nbsp; 
+                      <!-- BEGIN Button Button1 --><input style="DISPLAY: none" id="t_vat_registrationFormButton1" class="Button" onclick="return submitDummy()" value="Validasi Via Handphone" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 -->&nbsp; {pesan}</td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">No. Fax&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormfax_no_owner" class="ControlsIN" tabindex="2" value="{fax_no_owner}" maxlength="20" name="{fax_no_owner_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls owner">
+                    <td class="th">Email&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormemail" class="ControlsIN" tabindex="2" value="{email}" maxlength="64" size="50" name="{email_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td colspan="4">
+                      <p align="center">&nbsp;KETERANGAN OBJEK PAJAK</p>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Nama Objek Pajak</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormcompany_brand" class="ControlsRQ" tabindex="2" value="{company_brand}" maxlength="64" size="50" name="{company_brand_Name}">&nbsp;&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Alamat Lokasi Usaha</td> 
+                    <td colspan="3"><textarea id="t_vat_registrationFormbrand_address_name" class="ControlsRQ" rows="3" cols="64" name="{brand_address_name_Name}">{brand_address_name}</textarea>&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_address_no" class="ControlsRQ" tabindex="2" value="{brand_address_no}" maxlength="20" size="10" name="{brand_address_no_Name}">&nbsp;Rt/Rw <input id="t_vat_registrationFormbrand_address_rt" class="ControlsIN" tabindex="2" value="{brand_address_rt}" maxlength="5" size="5" name="{brand_address_rt_Name}">&nbsp;/ <input id="t_vat_registrationFormbrand_address_rw" class="ControlsIN" tabindex="2" value="{brand_address_rw}" maxlength="5" size="5" name="{brand_address_rw_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kota/Kabupaten&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_kota" class="ControlsRQ" tabindex="2" value="{brand_kota}" readonly maxlength="32" size="32" name="{brand_kota_Name}">&nbsp;<img onclick="javascript:lov_region_brand1()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id" value="{brand_p_region_id}" type="hidden" name="{brand_p_region_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kecamatan&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_kecamatan" class="ControlsRQ" tabindex="2" value="{brand_kecamatan}" readonly maxlength="32" size="32" name="{brand_kecamatan_Name}">&nbsp;<img onclick="javascript:lov_region_brand2()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id_kec" value="{brand_p_region_id_kec}" type="hidden" name="{brand_p_region_id_kec_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kelurahan&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_kelurahan" class="ControlsRQ" tabindex="2" value="{brand_kelurahan}" readonly maxlength="32" size="32" name="{brand_kelurahan_Name}">&nbsp;<img onclick="javascript:lov_region_brand3()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_registrationFormbrand_p_region_id_kel" value="{brand_p_region_id_kel}" type="hidden" name="{brand_p_region_id_kel_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Kode Pos&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_zip_code" class="ControlsIN" tabindex="2" value="{brand_zip_code}" maxlength="5" size="6" name="{brand_zip_code_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No. Telephon&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_phone_no" class="ControlsIN" tabindex="2" value="{brand_phone_no}" maxlength="20" name="{brand_phone_no_Name}">&nbsp;<input style="DISPLAY: none" id="t_vat_registrationFormbrand_mobile_no" class="ControlsIN" tabindex="2" value="{brand_mobile_no}" maxlength="20" name="{brand_mobile_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">No. Fax&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormbrand_fax_no" class="ControlsIN" tabindex="2" value="{brand_fax_no}" maxlength="20" name="{brand_fax_no_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td colspan="4">
+                      <p align="center">&nbsp;LUPA PASSWORD</p>
+                    </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Pilih Pertanyaan ?&nbsp;</td> 
+                    <td colspan="3">
+                      <select id="t_vat_registrationFormp_private_question_id" class="ControlsRQ" name="{p_private_question_id_Name}">
+                        <option selected value="">Pilih</option>
+                        {p_private_question_id_Options}
+                      </select>
+ &nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Jawaban&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_registrationFormprivate_answer" class="ControlsRQ" tabindex="2" value="{private_answer}" maxlength="64" size="50" name="{private_answer_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td colspan="4">
+                      <p align="center">&nbsp;VALIDASI</p>
+                    </td>
+                  </tr>
+ 
+                  <tr style="DISPLAY: none" class="Controls">
+                    <td class="th">Kode&nbsp;Validasi&nbsp;</td> 
+                    <td colspan="3">
+                      <!-- BEGIN TextBox validation_code --><input id="t_vat_registrationFormvalidation_code" class="ControlsRQ" tabindex="2" value="{validation_code}" maxlength="20" name="{validation_code_Name}"><!-- END TextBox validation_code -->&nbsp;{Label3}</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_registrationFormcreated_by">Dibuat Oleh</label></td> 
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="16" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="15" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th"><label for="t_vat_registrationFormupdated_by">Diubah Oleh</label></td> 
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="16" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_registrationFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="4" align="right">
+                      <!-- BEGIN Button Button_Insert --><input id="t_vat_registrationFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input id="t_vat_registrationFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input id="t_vat_registrationFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input id="t_vat_registrationFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_registrationForm --><br>
+        <br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</div>
+<script language="javascript">
+// === FUNGSI ANGKA ===
+function checkIt(evt) {
+var charCode = (evt.which) ? evt.which : event.keyCode
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false
+        }
+        return true
+}
+
+function lov_job() {
+        getFrom_LOV('t_vat_registrationForm','p_job_position_id,job_position_code','lov_2_field.php?TABLE=p_job_position&FIELD_0=p_job_position_id&FIELD_1=code&FIELD_2=description&LABEL1=Jabatan&LABEL2=Deskripsi&HEADER_PAGE=JABATAN&HEADER_LOV=DAFTAR JABATAN&ORDER=p_job_position_id');
+}
+
+
+function lov_region_wp1() {
+        getFrom_LOV('t_vat_registrationForm','wp_p_region_id,wp_kota','lov_region.php');
+}
+
+function lov_region_wp2() {
+                var kota = document.getElementById("t_vat_registrationFormwp_p_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_vat_registrationForm','wp_p_region_id_kecamatan,wp_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_wp3() {
+                var kec = document.getElementById("t_vat_registrationFormwp_p_region_id_kecamatan").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_vat_registrationForm','wp_p_region_id_kelurahan,wp_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region_brand1() {
+        getFrom_LOV('t_vat_registrationForm','brand_p_region_id,brand_kota','lov_region.php');
+}
+
+function lov_region_brand2() {
+                var kota = document.getElementById("t_vat_registrationFormbrand_p_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_vat_registrationForm','brand_p_region_id_kec,brand_kecamatan','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_brand3() {
+                var kec = document.getElementById("t_vat_registrationFormbrand_p_region_id_kec").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_vat_registrationForm','brand_p_region_id_kel,brand_kelurahan','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region1() {
+        getFrom_LOV('t_vat_registrationForm','p_region_id,kota_code','lov_region.php');
+}
+
+function lov_region2() {
+                var kota = document.getElementById("t_vat_registrationFormp_region_id").value;          
+                if (kota!= "" && kota != 0 && kota != false && kota != undefined &&  kota != null){
+                        getFrom_LOV('t_vat_registrationForm','p_region_id_kecamatan,kecamatan_code','lov_region_kec.php?p_region_id='+kota);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region3() {
+                var kec = document.getElementById("t_vat_registrationFormp_region_id_kecamatan").value;          
+                if (kec!= "" && kec != 0 && kec != false && kec != undefined &&  kec != null){
+                        getFrom_LOV('t_vat_registrationForm','p_region_id_kelurahan,kelurahan_code','lov_region_kel.php?p_region_id='+kec);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function lov_region_own1() {
+        getFrom_LOV('t_vat_registrationForm','p_region_id_owner,kota_own_code','lov_region.php');
+}
+
+function lov_region_own2() {
+                var kota2 = document.getElementById("t_vat_registrationFormp_region_id_owner").value;          
+                if (kota2!= "" && kota2 != 0 && kota2 != false && kota2 != undefined &&  kota2 != null){
+                        getFrom_LOV('t_vat_registrationForm','p_region_id_kec_owner,kecamatan_own_code','lov_region_kec.php?p_region_id='+kota2);
+                }else{
+                        alert("KOTA/KABUPATEN Belum Diisi");
+                }
+}
+
+function lov_region_own3() {
+                var kec2 = document.getElementById("t_vat_registrationFormp_region_id_kec_owner").value;          
+                if (kec2!= "" && kec2 != 0 && kec2 != false && kec2 != undefined &&  kec2 != null){
+                        getFrom_LOV('t_vat_registrationForm','p_region_id_kel_owner,kelurahan_own_code','lov_region_kel.php?p_region_id='+kec2);
+                }else{
+                        alert("KECAMATAN Belum Diisi");
+                }
+}
+
+function toOrder()
+{
+
+    var pid=document.getElementById('t_vat_registrationFormt_customer_order_id').value;
+        location.href="t_customer_order.php?t_customer_order_id="+pid;
+   
+}
+
+function toReg2()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_vat_registrationFormt_vat_registration_id'))
+  {
+    var pid=idelement.value;
+    var req_code=document.getElementById("t_vat_registrationFormrqst_type_code").value;
+    var id_req=document.getElementById("t_vat_registrationFormp_rqst_type_id").value;
+        var id_cus=document.getElementById("t_vat_registrationFormt_customer_order_id").value;
+        if (pid != 0)
+    {
+     location.href="t_vat_reg_dtl.php?t_vat_registration_id="+pid+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_customer_order_id="+id_cus;
+    } else {
+     alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+    }
+  } else {
+     alert("Isi FORMULIR PENDAFTARAN Terlebih Dahulu!");
+  }
+}
+/*
+function toReg3()
+{
+  var idelement;
+  if (idelement = document.getElementById('t_vat_registrationFormt_customer_order_id'))
+  {
+    var pid=idelement.value;
+    var req_code=document.getElementById("t_vat_registrationFormrqst_type_code").value;
+    var id_req=document.getElementById("t_vat_registrationFormp_rqst_type_id").value;
+        var id_vat=document.getElementById("t_vat_registrationFormt_vat_registration_id").value;
+        if (pid != 0)
+    {
+     location.href="t_cust_order_legal_doc.php?t_vat_registration_id="+id_vat+"&rqst_type_code="+req_code+"&p_rqst_type_id="+id_req+"&t_customer_order_id="+pid;
+    } else {
+     alert("Pilih salah satu ORDER!");
+    }
+  } else {
+     alert("Pilih salah satu ORDER!");
+  }
+}
+*/
+
+function lov_vat_pre_registration() {
+        getFrom_LOV('t_vat_registrationForm','t_vat_pre_registration_id,pre_vat_brand_name,company_brand,brand_address_name,brand_address_no,brand_address_rt,brand_address_rw,brand_p_region_id_kel,brand_p_region_id_kec,brand_p_region_id,brand_phone_no,brand_mobile_no,brand_fax_no,brand_zip_code,brand_kota,brand_kecamatan,brand_kelurahan','lov_vat_pre_registration.php');
+}
+
+if($("#t_vat_registrationFormjenis_usaha").val() == "Perorangan"){
+        $(".owner").hide();
+        document.getElementById("t_vat_registrationFormwp_mobile_no").className ="ControlsRQ";
+                $("#t_vat_registrationFormwp_mobile_td").show();
+}else{
+        $(".owner").show();
+                $("#t_vat_registrationFormwp_mobile_td").hide();
+}
+
+if($("#t_vat_registrationFormp_doc_delivery_type_id").val() == 3){
+        document.getElementById("t_vat_registrationFormwp_email").className ="ControlsRQ";
+                document.getElementById("t_vat_registrationFormemail").className ="ControlsRQ";
+}else{
+        document.getElementById("t_vat_registrationFormwp_email").className ="ControlsIN";
+                document.getElementById("t_vat_registrationFormemail").className ="ControlsIN";
+}
+</script>
+</body>
+</html>

@@ -74,6 +74,11 @@ function t_vat_registrationForm_Button1_OnClick(& $sender)
 }
 //End Close t_vat_registrationForm_Button1_OnClick
 
+//DEL  // -------------------------
+//DEL      // Write your own code here.
+//DEL  	$t_vat_registrationForm->Controls
+//DEL  // -------------------------
+
 //t_vat_registrationForm_BeforeSelect @94-ECCFF8E4
 function t_vat_registrationForm_BeforeSelect(& $sender)
 {
