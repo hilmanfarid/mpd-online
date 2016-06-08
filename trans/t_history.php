@@ -45,7 +45,7 @@ class clsRecordp_room_typeSearch { //p_room_typeSearch Class @3-1AC24589
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-234FD3FA
+//Class_Initialize Event @3-F21A5E57
     function clsRecordp_room_typeSearch($RelativePath, & $Parent)
     {
 
@@ -77,6 +77,7 @@ class clsRecordp_room_typeSearch { //p_room_typeSearch Class @3-1AC24589
             $this->date_start_laporan = & new clsControl(ccsTextBox, "date_start_laporan", "date_start_laporan", ccsText, "", CCGetRequestParam("date_start_laporan", $Method, NULL), $this);
             $this->DatePicker_end_start_laporan2 = & new clsDatePicker("DatePicker_end_start_laporan2", "p_room_typeSearch", "date_start_laporan", $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->download_excel = & new clsButton("download_excel", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -133,7 +134,7 @@ function GetPrimaryKey($keyName)
 }
 //End MasterDetail
 
-//Operation Method @3-AFCADBBD
+//Operation Method @3-B3B29BE9
     function Operation()
     {
         if(!$this->Visible)
@@ -150,13 +151,20 @@ function GetPrimaryKey($keyName)
             $this->PressedButton = "Button_DoSearch";
             if($this->Button_DoSearch->Pressed) {
                 $this->PressedButton = "Button_DoSearch";
+            } else if($this->download_excel->Pressed) {
+                $this->PressedButton = "download_excel";
             }
         }
         $Redirect = "t_history.php";
         if($this->Validate()) {
             if($this->PressedButton == "Button_DoSearch") {
-                $Redirect = "t_history.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y")));
+                $Redirect = "t_history.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y", "download_excel", "download_excel_x", "download_excel_y")));
                 if(!CCGetEvent($this->Button_DoSearch->CCSEvents, "OnClick", $this->Button_DoSearch)) {
+                    $Redirect = "";
+                }
+            } else if($this->PressedButton == "download_excel") {
+                $Redirect = "t_history.php" . "?" . CCMergeQueryStrings(CCGetQueryString("Form", array("Button_DoSearch", "Button_DoSearch_x", "Button_DoSearch_y", "download_excel", "download_excel_x", "download_excel_y")));
+                if(!CCGetEvent($this->download_excel->CCSEvents, "OnClick", $this->download_excel)) {
                     $Redirect = "";
                 }
             }
@@ -166,7 +174,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-5F9E219B
+//Show Method @3-4D7BB7BB
     function Show()
     {
         global $CCSUseAmp;
@@ -222,6 +230,7 @@ function GetPrimaryKey($keyName)
         $this->date_start_laporan->Show();
         $this->DatePicker_end_start_laporan2->Show();
         $this->p_vat_type_id->Show();
+        $this->download_excel->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

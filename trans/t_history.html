@@ -16,6 +16,22 @@ function getFrom_LOV(formName,fieldList,LOV_NM)
 function jenispajak() {
         getFrom_LOV('p_room_typeSearch','p_vat_type_id,vat_code','lov_vat_type.php');
 }
+
+function cetak_excel()
+{
+    s_keyword = document.getElementById("p_room_typeSearchs_keyword").value;
+    vat_code= document.getElementById("p_room_typeSearchvat_code").value;
+    p_vat_type_id = document.getElementById("p_room_typeSearchp_vat_type_id").value;
+    date_start_laporan = document.getElementById("p_room_typeSearchdate_start_laporan").value;
+    date_end_laporan = document.getElementById("p_room_typeSearchdate_end_laporan").value;
+    var params = "?doAction=view_excel";
+    params += "&s_keyword="+s_keyword;
+    params += "&vat_code="+vat_code;
+    params += "&p_vat_type_id="+p_vat_type_id;
+    params += "&date_start_laporan="+date_start_laporan;
+    params += "&date_end_laporan="+date_end_laporan;
+    location.href="t_history.php"+params;
+}
 </script>
 <script language="javascript" type="text/javascript">
 $(document).ready(function()
@@ -61,7 +77,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -97,7 +113,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   <tr class="Controls">
                     <td class="search-field">Jenis Pajak </td> 
                     <td class="search-field"><input id="p_room_typeSearchvat_code" class="ControlsIN" value="{vat_code}" maxlength="32" size="32" name="{vat_code_Name}">&nbsp;<img onclick="javascript:jenispajak()" border="0" src="../images/view.gif">&nbsp;<input id="p_room_typeSearchp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
-                    <td class="search-field">&nbsp;</td>
+                    <td class="search-field">
+                      <!-- BEGIN Button download_excel --><input id="p_room_typeSearchdownload_excel" class="btn_tambah" value="Download Excel" alt="Search" type="submit" name="{Button_Name}" onclick="cetak_excel(); return false;"><!-- END Button download_excel --></td>
                   </tr>
  
                   <tr class="Controls">

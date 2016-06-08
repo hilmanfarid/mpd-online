@@ -3,7 +3,7 @@
 $add_flag=CCGetFromGet("FLAG", "NONE");
 $is_show_form=($add_flag=="ADD");
 
-//BindEvents Method @1-ACE17054
+//BindEvents Method @1-DA5540AF
 function BindEvents()
 {
     global $p_room_typeGrid;
@@ -13,6 +13,7 @@ function BindEvents()
     $p_room_typeGrid->ds->CCSEvents["BeforeBuildSelect"] = "p_room_typeGrid_ds_BeforeBuildSelect";
     $p_room_typeGrid->ds->CCSEvents["BeforeExecuteSelect"] = "p_room_typeGrid_ds_BeforeExecuteSelect";
     $CCSEvents["OnInitializeView"] = "Page_OnInitializeView";
+    $CCSEvents["BeforeShow"] = "Page_BeforeShow";
 }
 //End BindEvents Method
 
@@ -104,7 +105,7 @@ function p_room_typeGrid_ds_BeforeBuildSelect(& $sender)
 
 //Custom Code @177-2A29BDB7
 // -------------------------
-    // Write your own code here.	
+    // Write your own code here.
 // -------------------------
 //End Custom Code
 
@@ -192,4 +193,116 @@ function Page_OnInitializeView(& $sender)
 }
 //End Close Page_OnInitializeView
 
+//Page_BeforeShow @1-0BC6A8F6
+function Page_BeforeShow(& $sender)
+{
+    $Page_BeforeShow = true;
+    $Component = & $sender;
+    $Container = & CCGetParentContainer($sender);
+    global $t_history; //Compatibility
+//End Page_BeforeShow
+
+//Custom Code @184-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	$doAction = CCGetFromGet('doAction');
+	//global $Label1;
+	$param_arr['s_keyword'] = CCGetFromGet('s_keyword');
+	$param_arr['vat_code'] = CCGetFromGet('vat_code');
+	$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id');
+	$param_arr['date_start_laporan'] = CCGetFromGet('date_start_laporan');
+	$param_arr['date_end_laporan'] = CCGetFromGet('date_end_laporan');
+	if($doAction == 'view_excel') {
+		GetCetakExcel($param_arr);
+	}
+// -------------------------
+//End Custom Code
+
+//Close Page_BeforeShow @1-4BC230CD
+    return $Page_BeforeShow;
+}
+//End Close Page_BeforeShow
+function startExcel($filename = "laporan.xls") {
+    
+	header("Content-type: application/vnd.ms-excel");
+	header("Content-Disposition: attachment; filename=$filename");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+	header("Pragma: public");
+}
+
+function GetCetakExcel($param_arr) {
+	
+	startExcel("history.xls");
+	
+	$output = '';
+	
+	$output .='<table id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0">
+          		<tr>
+            		<td valign="top">';
+
+	$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0" width="900">
+                	<tr>
+                  		<td class="th"><strong>HISTORY</strong></td> 
+                	</tr>
+              		</table>';
+	
+	$output .='<table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="3px" width="100%">
+                <tr >';
+
+	$output.='<th align="center" >NO</th>';
+	$output.='<th align="center" >NPWPD</th>';
+	$output.='<th align="center" >PERIODE</th>';
+	$output.='<th align="center" >TANGAL TAP</th>';
+	$output.='<th align="center" >Execute By</th>';
+	$output.='<th align="center" >Modification Type</th>';
+	$output.='<th align="center" >Modification Date</th>';
+	$output.='<th align="center" >Reason</th>';
+	$output.='</tr>';
+	
+	$dbConn	= new clsDBConnSIKP();
+	$query="SELECT h.*, p.code, t.code as type_code
+			FROM h_vat_setllement h
+			LEFT JOIN p_finance_period p on p.p_finance_period_id = h.p_finance_period_id
+			LEFT JOIN p_settlement_type t on t.p_settlement_type_id = h.p_settlement_type_id
+			WHERE h.npwd LIKE '%".$param_arr['s_keyword']."%'";
+
+	if ( $param_arr['date_end_laporan'] !=  '' ){
+		$query .= " and (trunc(modification_date) <= '".$param_arr['date_end_laporan']."')";
+	}
+	if ( $param_arr['date_start_laporan'] !=  '' ){
+		$query .= " and (trunc(modification_date) >= '".$param_arr['date_start_laporan']."')";
+	}
+	
+	if ( $param_arr['p_vat_type_id'] !=  '' ){
+		$query .= " and (h.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$param_arr['p_vat_type_id']."))";
+	}
+
+	$query .= " order by modification_date desc";
+	//echo $query;exit;
+	$data = array();
+	$dbConn->query($query);
+	while ($dbConn->next_record()) {
+		$data[] = $dbConn->Record;
+	}
+	$dbConn->close();
+
+	for ($i = 0; $i < count($data); $i++) {
+		$output.='<tr><td align="center" >'.($i+1).'</td>';
+		$output.='<td align="left" >'.$data[$i]['npwd'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['code'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['type_code'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['settlement_date'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['modified_by'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['modification_type'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['alasan'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
+		$output.='</tr>';
+	}
+
+	$output.='</table>';
+
+	echo $output;
+	exit;
+}
 ?>

@@ -50,7 +50,13 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-			</Components>
+				<Button id="183" urlType="Relative" enableValidation="True" isDefault="False" name="download_excel" operation="Search" wizardCaption="Search" PathID="p_room_typeSearchdownload_excel">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>
@@ -199,5 +205,10 @@ WHERE h.npwd LIKE '%{s_keyword}%'" pasteActions="pasteActions" activeCollection=
 				<Action actionName="Custom Code" actionCategory="General" id="66"/>
 			</Actions>
 		</Event>
-	</Events>
+		<Event name="BeforeShow" type="Server">
+<Actions>
+<Action actionName="Custom Code" actionCategory="General" id="184"/>
+</Actions>
+</Event>
+</Events>
 </Page>
