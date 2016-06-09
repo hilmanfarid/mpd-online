@@ -192,6 +192,7 @@ class FormCetak extends FPDF {
 			$this->RowMultiBorderWithHeight(
 				array("Nomor",
 					":",
+					/*" 973 /       - Disyanjak",*/
 					/*$data["letter_no"]."-".$no_urut*/""
 				),
 				array("",
@@ -204,6 +205,7 @@ class FormCetak extends FPDF {
 			$this->RowMultiBorderWithHeight(
 				array("Nomor",
 					":",
+					" 973 /       - Disyanjak",
 					/*" - "*/""
 				),
 				array("",
@@ -216,7 +218,7 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 			array("Perihal",
 				":",
-				"SURAT TEGURAN"
+				" SURAT TEGURAN"
 			),
 			array("L",
 				"",
