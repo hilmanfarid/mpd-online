@@ -182,6 +182,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 tgl= document.getElementById("t_rep_lap_spjpSearchtgl").value;
                 window.open("../report/cetak_surat_pengukuhan_npwpd_jabatan.php?CURR_DOC_ID=" + set_id +"&tgl="+tgl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
     }
+
+	function cetak_form_pemutakhiran_data(set_id)
+    {
+                tgl= document.getElementById("t_rep_lap_spjpSearchtgl").value;
+                window.open("../report/cetak_form_pemutakhiran_data_npwpd_jabatan.php?t_customer_order_id=" + set_id +"&tgl="+tgl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+    }
 </script>
 <p>{Label1}</p>
 </body>
