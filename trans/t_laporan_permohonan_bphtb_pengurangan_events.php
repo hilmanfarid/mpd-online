@@ -37,7 +37,8 @@ function Page_BeforeShow(& $sender)
 	$param_arr['p_bphtb_legal_doc_type_id'] = CCGetFromGet('p_bphtb_legal_doc_type_id',0);
 	if($type_cetak == 'excel') {
 		print_laporan($param_arr);
-	}else{
+	}
+	if($type_cetak == 'html'){
 		$Label1->SetText(print_laporan($param_arr));
 	}
 // -------------------------
@@ -135,7 +136,7 @@ function print_laporan($param_arr) {
 					object_kota.region_name AS object_kota_name, b.land_area, 
 					b.building_area, b.land_total_price, a.payment_amount, b.verificated_by ,
 					pengurangan.keterangan_opsi_c,(building_total_price+land_total_price) as njop,
-					b.bphtb_amt_final, b.bphtb_discount
+					b.bphtb_amt_final, b.bphtb_discount,bphtb_amt
 					FROM t_bphtb_registration AS b
 			LEFT JOIN t_payment_receipt_bphtb AS a ON a.t_bphtb_registration_id = b.t_bphtb_registration_id
 			LEFT JOIN p_region AS kelurahan ON b.wp_p_region_id_kel = kelurahan.p_region_id
@@ -181,6 +182,7 @@ function print_laporan($param_arr) {
 					   'keterangan_opsi_c' => $dbConn->f("keterangan_opsi_c"),
 					   'njop' => $dbConn->f("njop"),
 					   'bphtb_amt_final' => $dbConn->f("bphtb_amt_final"),
+					   'bphtb_amt' => $dbConn->f("bphtb_amt"),
 					   'bphtb_discount' => $dbConn->f("bphtb_discount"),
 					   't_ppat_id' => $dbConn->f("t_ppat_id")
 						);
@@ -202,14 +204,14 @@ function print_laporan($param_arr) {
 		$output .= '<td align="left">'.$item['keterangan_opsi_c'].'</td>';
 
 		$output .= '<td align="right">'.number_format($item['njop'],0,",",".").'</td>';
-		$output .= '<td align="right">'.number_format($item['bphtb_amt_final'],0,",",".").'</td>';
+		$output .= '<td align="right">'.number_format($item['bphtb_amt'],0,",",".").'</td>';
 		$output .= '<td align="right">'.number_format($item['bphtb_discount'],0,",",".").'</td>';
 
 		$output .= '<td align="center">'.dateToString($item['creation_date']).'</td>';
 		$output .= '</tr>';
 		
 		$total_njop += $item['njop'];
-		$total_bphtb_amt_final += $item['bphtb_amt_final'];
+		$total_bphtb_amt_final += $item['bphtb_amt'];
 		$total_bphtb_discount += $item['bphtb_discount'];
 		$no++;
 	}
