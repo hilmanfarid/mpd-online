@@ -96,6 +96,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >JENIS PAJAK</th>';
 	$output.='<th align="center" >AYAT PAJAK</th>';
 	$output.='<th align="center" >NAMA</th>';
+	$output.='<th align="center" >MERK DAGANG</th>';
 	$output.='<th align="center" >NPWPD</th>';
 	$output.='<th align="center" >ALAMAT</th>';
 	$output.='<th align="center" >MASA PAJAK</th>';
@@ -127,12 +128,12 @@ function GetCetakHTML($param_arr) {
 				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
 	}
 	if ($param_arr['status_bayar']==2){
-		$query.="and receipt_no is not null ORDER BY wp_name";
+		$query.="and receipt_no is not null ORDER BY company_brand";
 	}else{
 		if ($param_arr['status_bayar']==3){
-			$query.="and receipt_no is null ORDER BY wp_name";
+			$query.="and receipt_no is null ORDER BY company_brand";
 		}else{
-			$query.="ORDER BY q.p_vat_type_id, ayat_pajak, wp_name, start_period";
+			$query.="ORDER BY q.p_vat_type_id, ayat_pajak, company_brand, start_period";
 		}
 	}
 	//echo $query;exit;
@@ -157,6 +158,7 @@ function GetCetakHTML($param_arr) {
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
@@ -221,12 +223,12 @@ function CetakExcel($param_arr) {
 				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
 	}
 	if ($param_arr['status_bayar']==2){
-		$query.="and receipt_no is not null ORDER BY wp_name";
+		$query.="and receipt_no is not null ORDER BY company_brand";
 	}else{
 		if ($param_arr['status_bayar']==3){
-			$query.="and receipt_no is null ORDER BY wp_name";
+			$query.="and receipt_no is null ORDER BY company_brand";
 		}else{
-			$query.="ORDER BY q.p_vat_type_id, ayat_pajak, wp_name, start_period";
+			$query.="ORDER BY q.p_vat_type_id, ayat_pajak, company_brand, start_period";
 		}
 	}
 	//echo $query;exit;
@@ -248,6 +250,7 @@ function CetakExcel($param_arr) {
 	$output.='<th rowspan=2 align="center" >JENIS PAJAK</th>';
 	$output.='<th rowspan=2 align="center" >AYAT PAJAK</th>';
 	$output.='<th rowspan=2 align="center" >NAMA</th>';
+	$output.='<th rowspan=2 align="center" >MERK DAGANG</th>';
 	$output.='<th rowspan=2 align="center" >NPWPD</th>';
 	$output.='<th rowspan=2 align="center" >ALAMAT</th>';
 	$output.='<th rowspan=2 align="center" >MASA PAJAK</th>';
@@ -282,6 +285,7 @@ function CetakExcel($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['npwpd'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
