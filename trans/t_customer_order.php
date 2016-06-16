@@ -307,7 +307,7 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
     }
 //End Prepare Method
 
-//Open Method @2-CB54A0F7
+//Open Method @2-9FE20685
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -315,6 +315,7 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
         "FROM v_customer_order  a\n" .
         "left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id\n" .
         "WHERE ( upper(company_brand) ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "or upper(npwpd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "or upper(order_no) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(rqst_type_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(order_status_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .
@@ -323,6 +324,7 @@ class clst_customer_orderGridDataSource extends clsDBConnSIKP {  //t_customer_or
         "FROM v_customer_order  a\n" .
         "left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id\n" .
         "WHERE ( upper(company_brand) ILIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
+        "or upper(npwpd) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "or upper(order_no) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(rqst_type_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%'\n" .
         "OR upper(order_status_code) LIKE '%" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "%' )\n" .

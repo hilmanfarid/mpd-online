@@ -4,6 +4,7 @@
 FROM v_customer_order  a
 left join t_vat_registration b on a.t_vat_registration_id = b.t_vat_registration_id
 WHERE ( upper(company_brand) ILIKE '%{s_keyword}%'
+or upper(npwpd) LIKE '%{s_keyword}%'
 or upper(order_no) LIKE '%{s_keyword}%'
 OR upper(rqst_type_code) LIKE '%{s_keyword}%'
 OR upper(order_status_code) LIKE '%{s_keyword}%' )
