@@ -42,7 +42,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-CD1AEF34
+//Class_Initialize Event @2-2596DF45
     function clsGridt_vat_setllementGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -96,6 +96,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
         $this->created_by = & new clsControl(ccsLabel, "created_by", "created_by", ccsText, "", CCGetRequestParam("created_by", ccsGet, NULL), $this);
         $this->vat_settlement_id = & new clsControl(ccsLabel, "vat_settlement_id", "vat_settlement_id", ccsText, "", CCGetRequestParam("vat_settlement_id", ccsGet, NULL), $this);
         $this->customer_order_id = & new clsControl(ccsLabel, "customer_order_id", "customer_order_id", ccsText, "", CCGetRequestParam("customer_order_id", ccsGet, NULL), $this);
+        $this->BtnUbahKetetapan = & new clsButton("BtnUbahKetetapan", ccsGet, $this);
         $this->Button1 = & new clsButton("Button1", ccsGet, $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
@@ -113,7 +114,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
     }
 //End Initialize Method
 
-//Show Method @2-D714575F
+//Show Method @2-22CA97DD
     function Show()
     {
         global $Tpl;
@@ -167,6 +168,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
             $this->ControlsVisible["created_by"] = $this->created_by->Visible;
             $this->ControlsVisible["vat_settlement_id"] = $this->vat_settlement_id->Visible;
             $this->ControlsVisible["customer_order_id"] = $this->customer_order_id->Visible;
+            $this->ControlsVisible["BtnUbahKetetapan"] = $this->BtnUbahKetetapan->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -222,6 +224,7 @@ class clsGridt_vat_setllementGrid { //t_vat_setllementGrid class @2-AD714316
                 $this->created_by->Show();
                 $this->vat_settlement_id->Show();
                 $this->customer_order_id->Show();
+                $this->BtnUbahKetetapan->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }

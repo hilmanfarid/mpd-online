@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>LOV</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.1.00.031">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<!--start user-->
+<script language="javascript">
+function clickReturn(retVal) {
+                strObj = document.getElementById('LOVOBJ').value;
+                strForm = document.getElementById('LOVFORM').value;
+        arrVal = retVal.split('#~#');
+                arrForm = strObj.split(',');
+                for (x=0;x<arrForm.length;x++) {
+                window.opener.document.getElementById(strForm+arrForm[x]).value = arrVal[x];
+                }
+                window.close();
+}
+</script>
+<!--end user-->
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//DEL      // -------------------------
+//DEL      // Write your own code here.
+//DEL          actionType="submit";
+//DEL      // -------------------------
+
+//t_customer_orderForm_OnSubmit @28-847EF66C
+function t_customer_orderForm_OnSubmit()
+{
+    var result = true;
+//End t_customer_orderForm_OnSubmit
+
+//Custom Code @50-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+        if(actionType=='submit'){
+                var idelement;
+                if(idelement = document.getElementById('t_customer_orderFormt_customer_order_id')){
+                        var pid=idelement.value;
+                        var VatId = document.getElementById("t_customer_orderFormt_vat_registration_id").value;
+                        var order_no=document.getElementById("t_customer_orderFormorder_no").value;
+                        var id_req=document.getElementById("t_customer_orderFormp_rqst_type_id").value;
+                        if (pid!= "" && pid != 0 && pid != false && pid != undefined &&  pid != null){
+                                
+                        } else {
+                                return false;
+                        }
+                } else {
+                 alert("Pilih salah satu ORDER!");
+                }
+                result = $('<div></div>').appendTo('body')
+                    .html(regis_list)
+                    .dialog({
+                            modal: true,
+                            title: 'Anda Yakin Untuk Melakukan Submit Pada Data Ini?',
+                            zIndex: 10000,
+                            autoOpen: true,
+                            width: 'auto',
+                                height: '400',
+                            resizable: true,
+                            buttons: {
+                                Yes: function () {
+                                    result = true;
+                                                $('#t_customer_orderForm').append("<input name='Button1' type=hidden value='SUBMIT'/>");
+                                                $('#t_customer_orderForm').submit();            
+                                },
+                                No: function () {
+                                    result = false;
+                                    $(this).dialog("close");
+                                                return false;
+                                }
+                            },
+                            close: function (event, ui) {
+                                $(this).remove();
+                            }
+                        });
+                        $('#msg').hide();       
+                actionType="";
+        return false;
+        }
+        
+        
+    // -------------------------
+//End Custom Code
+
+//Close t_customer_orderForm_OnSubmit @28-BC33A33A
+    return result;
+}
+//End Close t_customer_orderForm_OnSubmit
+
+//bind_events @1-0DF0E406
+function bind_events() {
+    addEventHandler("t_customer_orderForm", "submit", t_customer_orderForm_OnSubmit);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        UBAH NILAI DENDA 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table style="WIDTH: 100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td align="center"><br>
+        <!-- BEGIN Record t_customer_orderForm -->
+        <form id="t_customer_orderForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI PERMINTAAN PELANGGAN</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="4">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th"><label for="p_organizationFormemail_address"><label for="V_P_ORGANIZATIONORGANIZATION_NAME"><label for="p_organization_levelFormis_head"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE"><label for="p_organizationFormfull_name"><label for="V_P_ORGANIZATIONORGANIZATION_CODE">Jenis Ketetapan:</label></label></label></label></label></label></label></label></label></td> 
+                    <td colspan="3"><label for="t_customer_orderFormTextBox1" style="display: none;">&nbsp;</label><input id="t_customer_orderFormt_vat_setllement_id" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}">
+                      <select id="t_customer_orderFormp_settlement_type_id" name="{p_settlement_type_id_Name}">
+                        {p_settlement_type_id_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th">Alasan:</td> 
+                    <td colspan="3"><textarea style="WIDTH: 240px; HEIGHT: 54px" id="t_customer_orderFormdeskripsi" class="ControlsIN" rows="3" cols="19" name="{deskripsi_Name}">{deskripsi}</textarea>&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="4" align="right">&nbsp; 
+                      <!-- BEGIN Button Button_Update --><input id="t_customer_orderFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->&nbsp; </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_customer_orderForm --></td>
+    </tr>
+  </table>
+</div>
+<br>
+</body>
+</html>
