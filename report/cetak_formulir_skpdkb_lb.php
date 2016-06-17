@@ -115,7 +115,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader1, $this->height, "", "L", 0, 'C');			
 		$this->Cell($lheader2, $this->height, "PEMERINTAH KOTA", "R", 0, 'C');
 		$this->SetFont('Arial', '', 12);
-		$this->Cell($lheader3, $this->height, "SKPDKBLB", "R", 0, 'C');
+		$this->Cell($lheader3, $this->height, "SKPDLB", "R", 0, 'C');
 		$this->Cell($lheader2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
@@ -144,7 +144,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader1, $this->height + 1, "", "L", 0, 'C');	
 		$this->Cell($lheader2, $this->height + 1, "DINAS PELAYANAN PAJAK", "R", 0, 'C');
 		$this->SetFont('Arial', '', 9);
-		$this->Cell($lheader3, $this->height + 1, "Kurang Bayar Lebih Bayar)", "R", 0, 'C');
+		$this->Cell($lheader3, $this->height + 1, "Lebih Bayar)", "R", 0, 'C');
 		$this->Cell($lheader2, $this->height + 1, "", "R", 0, 'C');
 		$this->Ln($this->height - 4);
 		
