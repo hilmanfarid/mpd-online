@@ -292,12 +292,21 @@ class clsLOV_ORDERDataSource extends clsDBConnSIKP {  //LOV_ORDERDataSource Clas
     }
 //End Prepare Method
 
-//Open Method @2-02415B5B
+//Open Method @2-6ACC8ACF
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
+        $this->CountSQL = "SELECT COUNT(*) FROM (select a.t_cust_account_id, a.npwd, wp_name,a.wp_address_name, \n" .
+        "a.p_vat_type_id, vat_code, tbl.p_vat_type_dtl_id, vat_code_dtl,\n" .
+        "a.company_brand,a.brand_address_name||' '||a.brand_address_no as brand_address_name\n" .
+        "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl\n" .
+        "LEFT JOIN t_cust_account A ON A.t_cust_account_id= tbl.t_cust_account_id\n" .
+        "where upper(a.npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
+        "upper(a.wp_name) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
+        "upper(a.company_brand) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%') cnt";
         $this->SQL = "select a.t_cust_account_id, a.npwd, wp_name,a.wp_address_name, \n" .
-        "a.p_vat_type_id, vat_code, a.p_vat_type_dtl_id, vat_code_dtl,a.company_brand,a.brand_address_name||' '||a.brand_address_no as brand_address_name\n" .
+        "a.p_vat_type_id, vat_code, tbl.p_vat_type_dtl_id, vat_code_dtl,\n" .
+        "a.company_brand,a.brand_address_name||' '||a.brand_address_no as brand_address_name\n" .
         "from f_get_npwd_by_username('" . $this->SQLValue($this->wp->GetDBValue("1"), ccsText) . "') AS tbl\n" .
         "LEFT JOIN t_cust_account A ON A.t_cust_account_id= tbl.t_cust_account_id\n" .
         "where upper(a.npwd) like '%" . $this->SQLValue($this->wp->GetDBValue("2"), ccsText) . "%' OR\n" .
