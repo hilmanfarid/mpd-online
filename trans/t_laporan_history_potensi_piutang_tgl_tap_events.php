@@ -107,10 +107,14 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
 	$output.='<th align="center" >BESARNYA</th>';
 	$output.='<th align="center" >SISA</th>';
+	$output.='<th align="center" >TANGGAL PENGUKUHAN</th>';
+	$output.='<th align="center" >TANGGAL PENUTUPAN</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
+	$query="select to_char(last_satatus_date,'dd-mm-yyyy') as last_satatus_date_short , 
+		to_char(active_date ,'dd-mm-yyyy') as active_date_short,
+		a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
 		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,a.payment_key as payment_key2,
 		* from t_vat_setllement a
@@ -175,6 +179,12 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
+		$output.='<td align="left" >'.$data[$i]['active_date_short'].'</td>';
+		if ($data[$i]['p_account_status_id']==1) {
+			$output.='<td align="left" ></td>';
+		}else{
+			$output.='<td align="left" >'.$data[$i]['last_satatus_date_short'].'</td>';
+		}
 		$output.='</tr>';
 	}
 
@@ -205,7 +215,9 @@ function CetakExcel($param_arr) {
 	startExcel("laporan_history_potensi_piutang.xls");
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
+	$query="select to_char(last_satatus_date,'dd-mm-yyyy') as last_satatus_date_short , 
+		to_char(active_date ,'dd-mm-yyyy') as active_date_short,
+		a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
 		p.vat_code as ayat_pajak,q.vat_code as jenis_pajak,a.payment_key as payment_key2,
 		* from t_vat_setllement a
@@ -261,6 +273,8 @@ function CetakExcel($param_arr) {
 	$output.='<th rowspan=2 align="center" >TANGGAL BAYAR</th>';
 	$output.='<th rowspan=2 align="center" >BESARNYA</th>';
 	$output.='<th rowspan=2 align="center" >SISA</th>';
+	$output.='<th rowspan=2 align="center" >TANGGAL PENGUKUHAN</th>';
+	$output.='<th rowspan=2 align="center" >TANGGAL PENUTUPAN</th>';
 	$output.='</tr>';
 	$output.='<tr>';
 	$output.='<th align="center" >SUDAH BAYAR</th>';
@@ -305,6 +319,12 @@ function CetakExcel($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
+		$output.='<td align="left" >'.$data[$i]['active_date_short'].'</td>';
+		if ($data[$i]['p_account_status_id']==1) {
+			$output.='<td align="left" ></td>';
+		}else{
+			$output.='<td align="left" >'.$data[$i]['last_satatus_date_short'].'</td>';
+		}
 		$output.='</tr>';
 	}
 	$output.='<tr><td align="center" colspan=9 >Jumlah</td>';
