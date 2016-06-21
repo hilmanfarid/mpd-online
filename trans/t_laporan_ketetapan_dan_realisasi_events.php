@@ -43,7 +43,7 @@ function Page_BeforeShow(& $sender)
 				when payment_date is not null then to_char(payment_date,'dd-mm-yyyy')
 				else ''
 			end as payment_date 
-		from f_rep_bpps_piutang2new_mod_1($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, 1) a
+		from f_rep_bpps_piutang2new_mod_2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, 1) a
 		left join t_cust_account x on a.npwpd = x.npwd 
 		order by kode_ayat, npwpd, masa_pajak";	
 		//echo $query;
