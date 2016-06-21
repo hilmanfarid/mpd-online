@@ -46,7 +46,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-AA42AFCC
+//Class_Initialize Event @94-34D43A45
     function clsRecordt_bphtb_registrationForm($RelativePath, & $Parent)
     {
 
@@ -164,7 +164,7 @@ class clsRecordt_bphtb_registrationForm { //t_bphtb_registrationForm Class @94-9
             $this->add_disc_percent = & new clsControl(ccsTextBox, "add_disc_percent", "add_disc_percent", ccsFloat, "", CCGetRequestParam("add_disc_percent", $Method, NULL), $this);
             $this->potongan_waris = & new clsControl(ccsListBox, "potongan_waris", "potongan_waris", ccsText, "", CCGetRequestParam("potongan_waris", $Method, NULL), $this);
             $this->potongan_waris->DSType = dsListOfValues;
-            $this->potongan_waris->Values = array(array("1/1", "Bukan Waris"), array("1/3", "1/3"), array("2/3", "2/3"), array("1/4", "1/4"), array("1/7", "1/7"));
+            $this->potongan_waris->Values = array(array("1/1", "Bukan Waris"), array("1/2", "1/2"), array("1/3", "1/3"), array("2/3", "2/3"), array("1/4", "1/4"), array("1/7", "1/7"));
             if(!$this->FormSubmitted) {
                 if(!is_array($this->wp_kota->Value) && !strlen($this->wp_kota->Value) && $this->wp_kota->Value !== false)
                     $this->wp_kota->SetText('KOTA BANDUNG');

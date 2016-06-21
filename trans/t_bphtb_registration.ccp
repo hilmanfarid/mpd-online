@@ -501,15 +501,15 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</TextBox>
-				<ListBox id="1084" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="potongan_waris" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormpotongan_waris" connection="ConnSIKP" dataSource="1/1;Bukan Waris;1/3;1/3;2/3;2/3;1/4;1/4;1/7;1/7" fieldSource="potongan_waris" defaultValue="0" _valueOfList="1/1" _nameOfList="Bukan Waris">
+				<ListBox id="1084" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="potongan_waris" wizardEmptyCaption="Select Value" PathID="t_bphtb_registrationFormpotongan_waris" connection="ConnSIKP" dataSource="1/1;Bukan Waris;1/2;1/2;1/3;1/3;2/3;2/3;1/4;1/4;1/7;1/7" fieldSource="potongan_waris" defaultValue="0" _valueOfList="1/2" _nameOfList="1/2">
 					<Components/>
 					<Events>
-<Event name="OnChange" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="1085"/>
-</Actions>
-</Event>
-</Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="1085"/>
+							</Actions>
+						</Event>
+					</Events>
 					<TableParameters/>
 					<SPParameters/>
 					<SQLParameters/>
@@ -519,7 +519,7 @@ left join p_legal_doc_type legal on legal.p_legal_doc_type_id = bphtb_legal.p_le
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
