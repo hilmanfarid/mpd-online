@@ -29,8 +29,36 @@ $(document).ready(function()
     });
 });
 </script>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include Common JSFunctions @1-86BEACD2
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-CF3B5192
+
+var LOV_DatePicker_tgl_penerimaan = new Object(); 
+LOV_DatePicker_tgl_penerimaan.format           = "dd-mm-yyyy";
+LOV_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
+LOV_DatePicker_tgl_penerimaan.relativePathPart = "../";
+LOV_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
+
+//bind_events @1-BF0EB765
+function bind_events() {
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -124,7 +152,30 @@ $(document).ready(function()
                   <tr class="Controls">
                     <td>nomor_register</td> 
                     <td>:</td> 
-                    <td class="search-field"><input style="WIDTH: 292px; HEIGHT: 22px" id="LOVreceipt_no" class="ControlsRQ" value="{receipt_no}" size="28" name="{receipt_no_Name}"></td>
+                    <td class="search-field"><input style="WIDTH: 292px; HEIGHT: 22px" id="LOVreceipt_no1" class="ControlsRQ" value="{receipt_no}" size="28" name="{receipt_no_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>Tanggal Bayar</td> 
+                    <td>:</td> 
+                    <td class="search-field"><input id="LOVpayment_date" class="ControlsRQ" value="{payment_date}" readonly maxlength="32" size="32" name="{payment_date_Name}">&nbsp; 
+                      <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="LOVDatePicker_tgl_penerimaan"><img id="LOVDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan --></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>Bank/BKP</td> 
+                    <td>:</td> 
+                    <td class="search-field">
+                      <select id="LOVis_bjb" name="{is_bjb_Name}">
+                        {is_bjb_Options}
+                      </select>
+ </td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td>Nama Kasir</td> 
+                    <td>:</td> 
+                    <td class="search-field"><input style="WIDTH: 292px; HEIGHT: 22px" id="LOVreceipt_no1" class="ControlsRQ" value="{p_cg_terminal_id}" size="28" name="{p_cg_terminal_id_Name}"></td>
                   </tr>
  
                   <tr class="Controls">

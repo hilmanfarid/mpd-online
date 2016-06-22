@@ -1,10 +1,12 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\trans" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="LOV" returnPage="t_vat_setllement_ubah_register.ccp" PathID="LOV" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="USQLParameters" dataSource="select a.t_vat_setllement_id, a.npwd,a.no_kohir, a.is_settled,a.total_trans_amount,a.total_vat_amount,
+		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="LOV" returnPage="t_vat_setllement_ubah_register.ccp" PathID="LOV" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="USQLParameters" dataSource="select a.t_vat_setllement_id, a.npwd,a.no_kohir, a.is_settled,a.total_trans_amount,
+a.total_vat_amount,to_char(payment_date,'dd-mm-yyyy') as payment_date,
+p_cg_terminal_id,case when kode_bank = '110' then 1 else 2 end as is_bjb,
 b.receipt_no,b.payment_amount,b.payment_vat_amount
 from t_vat_setllement a
 LEFT JOIN t_payment_receipt b on a.t_vat_setllement_id = b.t_vat_setllement_id
-where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT * from f_ubah_data_register2(
+where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT * from f_ubah_data_register3(
 {t_vat_setllement_id}, 
 {total_trans_amount}, 
 {total_vat_amount}, 
@@ -12,8 +14,11 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 '{receipt_no}', 
 {payment_amount}, 
 {payment_vat_amount},
-'{user_name}'
-) AS msg">
+'{user_name}',
+'{payment_date}',
+{is_bjb},
+'{p_cg_terminal_id}'
+) AS msg" pasteAsReplace="pasteAsReplace">
 			<Components>
 				<TextBox id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="npwd" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVnpwd" fieldSource="npwd" required="True">
 					<Components/>
@@ -81,7 +86,37 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 					<Attributes/>
 					<Features/>
 				</TextBox>
-			</Components>
+				<ListBox id="61" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="is_bjb" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" wizardEmptyCaption="Select Value" PathID="LOVis_bjb" fieldSource="is_bjb" connection="ConnSIKP" activeCollection="SQLParameters" parameterTypeListName="ParameterTypeList" _valueOfList="2" _nameOfList="BKP" dataSource="1;BJB;2;BKP">
+					<Components/>
+					<Events/>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+<TextBox id="63" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_cg_terminal_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVp_cg_terminal_id" fieldSource="p_cg_terminal_id" required="True">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<DatePicker id="65" name="DatePicker_tgl_penerimaan" control="payment_date" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="LOVDatePicker_tgl_penerimaan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+<TextBox id="64" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="payment_date" PathID="LOVpayment_date" format="dd-mm-yyyy" fieldSource="payment_date">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events>
 				<Event name="BeforeShow" type="Server">
 					<Actions>
@@ -138,6 +173,9 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 				<SQLParameter id="57" variable="payment_amount" parameterType="Control" dataType="Float" parameterSource="payment_amount" defaultValue="0"/>
 				<SQLParameter id="58" variable="payment_vat_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="payment_vat_amount"/>
 				<SQLParameter id="60" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
+				<SQLParameter id="66" variable="p_cg_terminal_id" parameterType="Control" dataType="Text" parameterSource="p_cg_terminal_id"/>
+<SQLParameter id="67" variable="payment_date" parameterType="Control" dataType="Text" parameterSource="payment_date"/>
+<SQLParameter id="68" variable="is_bjb" parameterType="Control" defaultValue="1" dataType="Integer" parameterSource="is_bjb"/>
 </USQLParameters>
 			<UConditions/>
 			<UFormElements>
