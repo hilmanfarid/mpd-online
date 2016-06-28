@@ -26,9 +26,11 @@ function Page_BeforeShow(& $sender)
 		$tgl_penerimaan		= CCGetFromGet("tgl_penerimaan", "");
 		$tgl_penerimaan_last = CCGetFromGet("tgl_penerimaan_last", "");
 		$year_code = CCGetFromGet("year_code", "");
+		$kode_wilayah = CCGetFromGet("kode_wilayah", "");
 
 		$tgl_penerimaan = "'".$tgl_penerimaan."'";
 		$tgl_penerimaan_last = "'".$tgl_penerimaan_last."'";
+		$kode_wilayah = "'".$kode_wilayah."'";
 
 		$date_start=str_replace("'", "",$year_code);
 		$year_date = $year_code;
@@ -43,11 +45,10 @@ function Page_BeforeShow(& $sender)
 				when payment_date is not null then to_char(payment_date,'dd-mm-yyyy')
 				else ''
 			end as payment_date 
-		from f_rep_bpps_piutang2new_mod_2($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, 1) a
+		from f_rep_bpps_piutang2new_mod_2_per_wilayah($p_vat_type_id, $p_year_period_id, $tgl_penerimaan, $tgl_penerimaan_last, 1,$kode_wilayah) a
 		left join t_cust_account x on a.npwpd = x.npwd 
 		order by kode_ayat, npwpd, masa_pajak";	
-		//echo $query;
-		//exit;
+		//echo $query; exit;
 		$dbConn->query($query);
 
 		$tgl_penerimaan = str_replace("'", "", $tgl_penerimaan);

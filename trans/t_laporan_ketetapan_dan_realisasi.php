@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-74EB111D
+//Class_Initialize Event @3-00AEAB24
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -83,11 +83,20 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             $this->DatePicker_tgl_penerimaan_last1 = & new clsDatePicker("DatePicker_tgl_penerimaan_last1", "t_rep_bppsSearch", "tgl_penerimaan_last", $this);
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
             $this->Button_DoSearch2 = & new clsButton("Button_DoSearch2", $Method, $this);
+            $this->kode_wilayah = & new clsControl(ccsListBox, "kode_wilayah", "kode_wilayah", ccsText, "", CCGetRequestParam("kode_wilayah", $Method, NULL), $this);
+            $this->kode_wilayah->DSType = dsSQL;
+            $this->kode_wilayah->DataSource = new clsDBConnSIKP();
+            $this->kode_wilayah->ds = & $this->kode_wilayah->DataSource;
+            list($this->kode_wilayah->BoundColumn, $this->kode_wilayah->TextColumn, $this->kode_wilayah->DBFormat) = array("", "", "");
+            $this->kode_wilayah->DataSource->SQL = "select business_area_name, business_area_name\n" .
+            "from p_business_area ";
+            $this->kode_wilayah->DataSource->Order = "";
+            $this->kode_wilayah->Required = true;
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-B662DD92
+//Validate Method @3-A568176E
     function Validate()
     {
         global $CCSLocales;
@@ -99,6 +108,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->tgl_penerimaan_last->Validate() && $Validation);
+        $Validation = ($this->kode_wilayah->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
@@ -106,11 +116,12 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->tgl_penerimaan_last->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->kode_wilayah->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-661081E4
+//CheckErrors Method @3-CA58997B
     function CheckErrors()
     {
         $errors = false;
@@ -122,6 +133,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->tgl_penerimaan_last->Errors->Count());
         $errors = ($errors || $this->DatePicker_tgl_penerimaan_last1->Errors->Count());
+        $errors = ($errors || $this->kode_wilayah->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -180,7 +192,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-A205065F
+//Show Method @3-8EC01492
     function Show()
     {
         global $CCSUseAmp;
@@ -194,6 +206,7 @@ function GetPrimaryKey($keyName)
 
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
+        $this->kode_wilayah->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -212,6 +225,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->tgl_penerimaan_last->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan_last1->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->kode_wilayah->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -239,6 +253,7 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_tgl_penerimaan_last1->Show();
         $this->Button_DoSearch1->Show();
         $this->Button_DoSearch2->Show();
+        $this->kode_wilayah->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

@@ -47,6 +47,23 @@ t_rep_bppsSearch_DatePicker_tgl_penerimaan_last1.themeVersion = "3.0";
 
 //End Date Picker Object Definitions
 
+//t_rep_bppsSearchkode_wilayah_OnChange @23-935B1EA5
+function t_rep_bppsSearchkode_wilayah_OnChange()
+{
+    var result = true;
+//End t_rep_bppsSearchkode_wilayah_OnChange
+
+//Custom Code @24-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_bppsSearchkode_wilayah_OnChange @23-BC33A33A
+    return result;
+}
+//End Close t_rep_bppsSearchkode_wilayah_OnChange
+
 //DEL      // -------------------------
 //DEL      // Write your own code here.
 //DEL          if(this.value==1){
@@ -56,8 +73,9 @@ t_rep_bppsSearch_DatePicker_tgl_penerimaan_last1.themeVersion = "3.0";
 //DEL          }
 //DEL      // -------------------------
 
-//bind_events @1-BF0EB765
+//bind_events @1-933FAD41
 function bind_events() {
+    addEventHandler("t_rep_bppsSearchkode_wilayah", "change", t_rep_bppsSearchkode_wilayah_OnChange);
 }
 //End bind_events
 
@@ -66,12 +84,12 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
       <div class="tab-title-selected">
-        LAPORAN&nbsp;REALISASI BERDASARKAN MASA PAJAK
+        LAPORAN&nbsp;REALISASI BERDASARKAN MASA PAJAK 
       </div>
     </div>
   </div>
@@ -106,6 +124,16 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td class="search-field" colspan="3"><input style="WIDTH: 95px; HEIGHT: 20px" id="t_rep_bppsSearchtgl_penerimaan" class="ControlsRQ" value="{tgl_penerimaan}" maxlength="32" size="11" name="{tgl_penerimaan_Name}">
                       <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_bppsSearchDatePicker_tgl_penerimaan"><img id="t_rep_bppsSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a>&nbsp;<!-- END DatePicker DatePicker_tgl_penerimaan -->&nbsp; s.d&nbsp;&nbsp; <input style="WIDTH: 95px; HEIGHT: 20px" id="t_rep_bppsSearchtgl_penerimaan_last" class="ControlsRQ" value="{tgl_penerimaan_last}" maxlength="32" size="11" name="{tgl_penerimaan_last_Name}">
                       <!-- BEGIN DatePicker DatePicker_tgl_penerimaan_last1 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_bppsSearchDatePicker_tgl_penerimaan_last1"><img id="t_rep_bppsSearchDatePicker_tgl_penerimaan_last1_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan_last1 --></td> 
+                    <tr class="Controls">
+                      <td>Wilayah</td> 
+                      <td class="search-field" colspan="3">
+                        <select id="t_rep_bppsSearchkode_wilayah" class="ControlsRQ" name="{kode_wilayah_Name}">
+                          <option selected value="0">Semua</option>
+						  {kode_wilayah_Options}
+                        </select>
+ </td>
+                    </tr>
+ 
                     <tr class="Controls">
                       <td>&nbsp; </td> 
                       <td class="search-field" colspan="3">
@@ -152,16 +180,17 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 
                 function tampilkanLaporan(gaya_tampilan){
                         if (gaya_tampilan == 2){
-                                                        var params = "?doAction=view_html2";
-                                                }else{
-                                                        var params = "?doAction=view_excel";
-                                                }
+                                var params = "?doAction=view_html2";
+                        }else{
+                                var params = "?doAction=view_excel";
+                        }
                         var tgl_penerimaan = document.getElementById("t_rep_bppsSearchtgl_penerimaan").value;
                         var tgl_penerimaan_last = document.getElementById("t_rep_bppsSearchtgl_penerimaan_last").value;
                         var p_year_period_id = document.getElementById("t_rep_bppsSearchp_year_period_id").value;
                         var p_vat_type_id = document.getElementById("t_rep_bppsSearchp_vat_type_id").value;
                         var jenis_pajak = document.getElementById("t_rep_bppsSearchvat_code").value;
                         var periode_tahun = document.getElementById("t_rep_bppsSearchyear_code").value;
+						var kode_wilayah = document.getElementById("t_rep_bppsSearchkode_wilayah").value;
 
                         if(tgl_penerimaan == "" || tgl_penerimaan_last == "" || p_year_period_id == "" || p_vat_type_id == "") {
                             alert("Semua Filter Harus Diisi");
@@ -172,7 +201,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                             "&p_year_period_id=" + p_year_period_id+
                             "&p_vat_type_id="+p_vat_type_id+
                             "&vat_code="+jenis_pajak+
-                            "&year_code="+periode_tahun;
+                            "&year_code="+periode_tahun+
+							"&kode_wilayah="+kode_wilayah;
                         }               
                         }
         </script>
