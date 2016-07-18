@@ -29,7 +29,31 @@ function t_penerimaan_skpd_viewGrid_BeforeShowRow(& $sender)
         $Component->Attributes->SetValue("rowStyle", $Style);
     }
 //End Set Row Style
-	$nilai_penerimaan = $Component->DataSource->payment_vat_amount->GetValue();
+
+//Custom Code @251-2A29BDB7
+// -------------------------
+    // Write your own code here.
+	if ($Component->DataSource->p_vat_type_id->GetValue()==8){
+		$ws_data = file_get_contents('http://49.236.219.74/wsrealpbb/realisasi/index/pbb/pokok/'.date("d-m-Y"));
+		$ws_data = json_decode($ws_data);
+		$t_penerimaan_skpd_viewGrid->payment_vat_amount->SetValue(str_replace('.','',$ws_data->nilai));
+		//print_r(str_replace('.','',$ws_data->nilai));exit;
+	}
+	if ($Component->DataSource->p_vat_type_id->GetValue()==9){
+		$ws_data = file_get_contents('http://49.236.219.74/wsrealpbb/realisasi/index/reklame/pokok/'.date("d-m-Y"));
+		$ws_data = json_decode($ws_data);
+		$t_penerimaan_skpd_viewGrid->payment_vat_amount->SetValue(str_replace('.','',$ws_data->nilai));
+		//print_r(str_replace('.','',$ws_data->nilai));exit;
+	}
+	if ($Component->DataSource->p_vat_type_id->GetValue()==10){
+		$ws_data = file_get_contents('http://49.236.219.74/wsrealpbb/realisasi/index/pat/pokok/'.date("d-m-Y"));
+		$ws_data = json_decode($ws_data);
+		$t_penerimaan_skpd_viewGrid->payment_vat_amount->SetValue(str_replace('.','',$ws_data->nilai));
+		//print_r(str_replace('.','',$ws_data->nilai));exit;
+	}
+// -------------------------
+//End Custom Code
+	$nilai_penerimaan = $t_penerimaan_skpd_viewGrid->payment_vat_amount->GetValue();
 
 	$sum_penerimaan = $t_penerimaan_skpd_viewGrid->total_penerimaan->GetValue();
 	$t_penerimaan_skpd_viewGrid->total_penerimaan->SetValue($sum_penerimaan + $nilai_penerimaan);

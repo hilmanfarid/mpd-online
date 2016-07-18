@@ -42,7 +42,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-3F2CDBBE
+//Class_Initialize Event @2-603EEB2D
     function clsGridt_penerimaan_skpd_viewGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -72,6 +72,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
         $this->payment_vat_amount = & new clsControl(ccsLabel, "payment_vat_amount", "payment_vat_amount", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("payment_vat_amount", ccsGet, NULL), $this);
         $this->vat_code = & new clsControl(ccsLabel, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", ccsGet, NULL), $this);
         $this->no_urut = & new clsControl(ccsLabel, "no_urut", "no_urut", ccsText, "", CCGetRequestParam("no_urut", ccsGet, NULL), $this);
+        $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "Id", ccsFloat, "", CCGetRequestParam("p_vat_type_id", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
         $this->total_penerimaan = & new clsControl(ccsLabel, "total_penerimaan", "total_penerimaan", ccsFloat, array(False, 2, Null, Null, False, "", "", 1, True, ""), CCGetRequestParam("total_penerimaan", ccsGet, NULL), $this);
@@ -89,7 +90,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     }
 //End Initialize Method
 
-//Show Method @2-9CCC3C62
+//Show Method @2-E2D8704C
     function Show()
     {
         global $Tpl;
@@ -122,6 +123,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
             $this->ControlsVisible["payment_vat_amount"] = $this->payment_vat_amount->Visible;
             $this->ControlsVisible["vat_code"] = $this->vat_code->Visible;
             $this->ControlsVisible["no_urut"] = $this->no_urut->Visible;
+            $this->ControlsVisible["p_vat_type_id"] = $this->p_vat_type_id->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -132,12 +134,14 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
                 $this->payment_vat_amount->SetValue($this->DataSource->payment_vat_amount->GetValue());
                 $this->vat_code->SetValue($this->DataSource->vat_code->GetValue());
                 $this->no_urut->SetValue($this->DataSource->no_urut->GetValue());
+                $this->p_vat_type_id->SetValue($this->DataSource->p_vat_type_id->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
                 $this->payment_vat_amount->Show();
                 $this->vat_code->Show();
                 $this->no_urut->Show();
+                $this->p_vat_type_id->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -171,13 +175,14 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
     }
 //End Show Method
 
-//GetErrors Method @2-CA5368AE
+//GetErrors Method @2-FBAE4C1E
     function GetErrors()
     {
         $errors = "";
         $errors = ComposeStrings($errors, $this->payment_vat_amount->Errors->ToString());
         $errors = ComposeStrings($errors, $this->vat_code->Errors->ToString());
         $errors = ComposeStrings($errors, $this->no_urut->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->p_vat_type_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -188,7 +193,7 @@ class clsGridt_penerimaan_skpd_viewGrid { //t_penerimaan_skpd_viewGrid class @2-
 
 class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_penerimaan_skpd_viewGridDataSource Class @2-14CAF917
 
-//DataSource Variables @2-A4D676FC
+//DataSource Variables @2-9E5BE3DA
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -203,9 +208,10 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     var $payment_vat_amount;
     var $vat_code;
     var $no_urut;
-//End DataSource Variables
+    var $p_vat_type_id;
+//End DataSource Variables 
 
-//DataSourceClass_Initialize Event @2-3D2C511D
+//DataSourceClass_Initialize Event @2-612FC1DB
     function clst_penerimaan_skpd_viewGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -216,6 +222,8 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         $this->vat_code = new clsField("vat_code", ccsText, "");
         
         $this->no_urut = new clsField("no_urut", ccsText, "");
+        
+        $this->p_vat_type_id = new clsField("p_vat_type_id", ccsFloat, "");
         
 
     }
@@ -241,13 +249,15 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Prepare Method
 
-//Open Method @2-1379396C
+//Open Method @2-346DCD53
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->CountSQL = "SELECT COUNT(*) FROM (SELECT row_number() over(order by united.p_vat_type_id) AS no_urut,  \n" .
         "united.vat_code, \n" .
-        "united.payment_vat_amount FROM (\n" .
+        "united.payment_vat_amount,\n" .
+        "united.p_vat_type_id\n" .
+        "FROM (\n" .
         "(SELECT b.p_vat_type_id, b.vat_code, \n" .
         "sum(jml_hari_ini) as payment_vat_amount \n" .
         "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
@@ -259,7 +269,9 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
         ") AS united) cnt";
         $this->SQL = "SELECT row_number() over(order by united.p_vat_type_id) AS no_urut,  \n" .
         "united.vat_code, \n" .
-        "united.payment_vat_amount FROM (\n" .
+        "united.payment_vat_amount,\n" .
+        "united.p_vat_type_id\n" .
+        "FROM (\n" .
         "(SELECT b.p_vat_type_id, b.vat_code, \n" .
         "sum(jml_hari_ini) as payment_vat_amount \n" .
         "from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a \n" .
@@ -279,12 +291,13 @@ class clst_penerimaan_skpd_viewGridDataSource extends clsDBConnSIKP {  //t_pener
     }
 //End Open Method
 
-//SetValues Method @2-8CBB3591
+//SetValues Method @2-7CEE224F
     function SetValues()
     {
         $this->payment_vat_amount->SetDBValue(trim($this->f("payment_vat_amount")));
         $this->vat_code->SetDBValue($this->f("vat_code"));
         $this->no_urut->SetDBValue($this->f("no_urut"));
+        $this->p_vat_type_id->SetDBValue(trim($this->f("p_vat_type_id")));
     }
 //End SetValues Method
 

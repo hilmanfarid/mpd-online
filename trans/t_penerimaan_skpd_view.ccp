@@ -2,7 +2,9 @@
 	<Components>
 		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="20" connection="ConnSIKP" name="t_penerimaan_skpd_viewGrid" pageSizeLimit="100" wizardCaption="List of P App Module Role " wizardGridType="Tabular" wizardSortingType="SimpleDir" wizardAllowInsert="True" wizardAltRecord="False" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="data tidak ditemukan" activeCollection="TableParameters" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" dataSource="SELECT row_number() over(order by united.p_vat_type_id) AS no_urut,  
 united.vat_code, 
-united.payment_vat_amount FROM (
+united.payment_vat_amount,
+united.p_vat_type_id
+FROM (
 (SELECT b.p_vat_type_id, b.vat_code, 
 sum(jml_hari_ini) as payment_vat_amount 
 from f_rep_harian_global(to_char(sysdate,'dd-mm-yyyy')) a 
@@ -44,11 +46,18 @@ ORDER BY united.p_vat_type_id ASC" orderBy="p_region_id">
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Hidden id="254" fieldSourceType="DBColumn" dataType="Float" name="p_vat_type_id" fieldSource="p_vat_type_id" caption="Id" wizardCaption="P App User Id" wizardSize="12" wizardMaxLength="12" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_penerimaan_skpd_viewGridp_vat_type_id">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Hidden>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
 						<Action actionName="Set Row Style" actionCategory="General" id="87" styles="Row;AltRow" name="rowStyle"/>
+						<Action actionName="Custom Code" actionCategory="General" id="251"/>
 					</Actions>
 				</Event>
 				<Event name="BeforeShow" type="Server">

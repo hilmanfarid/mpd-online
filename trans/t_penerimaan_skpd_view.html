@@ -110,9 +110,9 @@ window.onload = showTime;
  
                 <!-- BEGIN Row -->
                 <tr {t_penerimaan_skpd_viewGrid:rowStyle}>
-                  <td style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" height="30">{no_urut}</td> 
+                  <td style="TEXT-ALIGN: center; VERTICAL-ALIGN: middle" height="30">{no_urut}<input id="t_penerimaan_skpd_viewGridp_vat_type_id" value="{p_vat_type_id}" type="hidden" name="{p_vat_type_id_Name}"></td> 
                   <td style="VERTICAL-ALIGN: middle" height="30">{vat_code}&nbsp;</td> 
-                  <td style="TEXT-ALIGN: right; VERTICAL-ALIGN: middle" height="30">Rp. {payment_vat_amount}&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td style="TEXT-ALIGN: right; VERTICAL-ALIGN: middle" height="30">Rp. {payment_vat_amount}&nbsp;&nbsp; </td>
                 </tr>
  <!-- END Row -->
                 <tr class="Caption">
@@ -143,13 +143,13 @@ window.onload = showTime;
         <!-- END Grid t_penerimaan_skpd_viewGrid --><br>
         &nbsp;</td>
     </tr>
-	<tr style="display:none;">
-		<td><div class="grid-table-container" style="display:none;PADDING-BOTTOM: 5px; 
-		PADDING-RIGHT: 10px; COLOR: #000000; FONT-SIZE: 20px; 
-		background-color:#59B704;
-		FONT-WEIGHT: bold" id="timer" align="right">
-		</div></td>
-	</tr>
+ 
+    <tr style="DISPLAY: none">
+      <td>
+        <div style="PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #59b704; PADDING-RIGHT: 10px; DISPLAY: none; COLOR: #000000; FONT-SIZE: 20px; FONT-WEIGHT: bold" id="timer" class="grid-table-container" align="right">
+        </div>
+      </td>
+    </tr>
   </table>
   <br>
 </div>
