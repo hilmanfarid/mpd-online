@@ -22,7 +22,8 @@ d.region_name as wp_region_kel,
 e.region_name as object_region,
 f.region_name as object_region_kec,
 g.region_name as object_region_kel,
-h.description as doc_name
+h.description as doc_name,
+to_char(a.creation_date,'dd-mm-yyyy') as creation_date_2
 
 from t_bphtb_registration_expired as a 
 left join p_region as b
@@ -78,6 +79,7 @@ while ($dbConn->next_record()) {
 	$data["jenis_harga_bphtb"]		= $dbConn->f("jenis_harga_bphtb");
 	$data["description"]			= $dbConn->f("description");
 	$data["check_potongan"]			= $dbConn->f("check_potongan");
+	$data["creation_date_2"]			= $dbConn->f("creation_date_2");
 	
 }
 
@@ -315,7 +317,7 @@ class FormCetak extends FPDF {
 		
 		$tgl = CCGetFromGet("tgl", '');
 		if ($tgl == ''){
-			$this->Cell($lbody1 - 103, $this->height, "Bandung, ".date("d-m-Y"), "", 0, 'C');
+			$this->Cell($lbody1 - 103, $this->height, "Bandung, ".$data['creation_date_2'], "", 0, 'C');
 		}else{
 			$this->Cell($lbody1 - 103, $this->height, "Bandung, ".$tgl, "", 0, 'C');
 		}
