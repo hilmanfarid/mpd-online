@@ -78,6 +78,7 @@ function print_excel($param_arr) {
 			<th>NAMA AYAT</th>
 			<th>NO KOHIR</th>
 			<th>NAMA WP</th>
+			<th>MERK DAGANG</th>
 			<th>NPWPD</th>
 			<th>JUMLAH</th>
 			<th>MASA PAJAK</th>
@@ -91,12 +92,13 @@ function print_excel($param_arr) {
 	
 	
 	if($param_arr['jenis_laporan'] == 'all'){ 
-		$query	= "select b.t_vat_setllement_id,c.code, 
+		$query	= "select d.company_brand, b.t_vat_setllement_id,c.code,  
 		a.*,trunc(payment_date) from f_rep_bpps_piutang2new_mod_1(".$param_arr['p_vat_type_id'].",
 		".$param_arr['p_year_period_id'].", ".$param_arr['tgl_penerimaan'].", 
 		".$param_arr['tgl_penerimaan_last'].", ".$param_arr['i_flag_setoran'].") a
 		left join t_vat_setllement b on a.t_vat_setllement_id = b.t_vat_setllement_id
 		left join p_settlement_type c on c.p_settlement_type_id=b.p_settlement_type_id
+		left join t_cust_account d on d.t_cust_account_id=b.t_cust_account_id
 		order by kode_jns_trans, kode_jns_pajak, kode_ayat";	
 	}else if($param_arr['jenis_laporan'] == 'piutang'){
 		$query	= "select *,trunc(payment_date) 
@@ -133,6 +135,7 @@ function print_excel($param_arr) {
 		"nama_ayat"		=> $dbConn->f("nama_ayat"),
 		"no_kohir"		=> $dbConn->f("no_kohir"),
 		"wp_name"			=> $dbConn->f("wp_name"),
+		"company_brand"			=> $dbConn->f("company_brand"),
 		"wp_address_name"	=> $dbConn->f("wp_address_name"),
 		"wp_address_no"		=> $dbConn->f("wp_address_no"),
 		"npwpd"			=> $dbConn->f("npwpd"),
@@ -156,6 +159,7 @@ function print_excel($param_arr) {
 		echo '<td align="left">&nbsp;'.$item['nama_ayat'].'</td>';
 		echo '<td align="left">'.$item['no_kohir'].'</td>';
 		echo '<td align="left">'.trim(strtoupper($item['wp_name'])).'</td>';
+		echo '<td align="left">'.trim(strtoupper($item['company_brand'])).'</td>';
 		echo '<td align="left">'.$item['npwpd'].'</td>';
 		echo '<td align="right">'.number_format($item['jumlah_terima'],2,",",".").'</td>';
 		echo '<td align="left">'.$item['masa_pajak'].'</td>';
