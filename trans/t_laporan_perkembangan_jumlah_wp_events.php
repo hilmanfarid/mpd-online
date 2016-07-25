@@ -113,7 +113,7 @@ function GetCetakHTML($param_arr) {
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select upper(b.vat_code) as jenis_pajak ,a.vat_code as ayat_pajak, 
+	/*$query="select upper(b.vat_code) as jenis_pajak ,a.vat_code as ayat_pajak, 
 			(select count(*) from t_cust_account x 
 				where case when ".$param_arr['npwpd_jabatan']." = 1 then true 
 						   else x.npwpd_jabatan = 'Y'
@@ -163,8 +163,98 @@ function GetCetakHTML($param_arr) {
 
 			from p_vat_type_dtl a
 			left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id
+			where a.p_vat_type_id in (1,2,3,4,5)*/
+			/*ORDER BY a.p_vat_type_id,a.code";	*/
+
+	$query="select case when p_vat_type_dtl_id = 35 then 'RUMAH KOS' 
+						when p_vat_type_dtl_id = 18 then 'DISKOTIK/KLUB MALAM' 
+						when p_vat_type_dtl_id = 13 then 'PANTI PIJAT/SPA/REFLEKSI' 
+						when p_vat_type_dtl_id = 31 then 'HIBURAN INSIDENTIL' 
+						else ayat_pajak end as ayat_pajak_2,* 
+			from 
+			(select upper(b.vat_code) as jenis_pajak ,a.vat_code as ayat_pajak,a.p_vat_type_dtl_id,
+			(select count(*) from t_cust_account x 
+				where case when ".$param_arr['npwpd_jabatan']." = 1 then true 
+						   else x.npwpd_jabatan = 'Y'
+					  end
+					and case when A.p_vat_type_dtl_id = 10 then x.p_vat_type_dtl_id in (9,10) 
+						 when A.p_vat_type_dtl_id = 18 then x.p_vat_type_dtl_id in (18,20) 
+						 when A.p_vat_type_dtl_id = 13 then x.p_vat_type_dtl_id in (13,44) 
+						 when A.p_vat_type_dtl_id = 31 then x.p_vat_type_dtl_id in (15,41,12,17,21,42,43,27,30,31) 
+						 else A.p_vat_type_dtl_id = x.p_vat_type_dtl_id end
+					and x.p_account_status_id = 1 and
+							trunc(x.last_satatus_date) <= (select end_date from p_finance_period y where y.p_finance_period_id = ".$param_arr['p_finance_period_id'].")) as jumlah_aktif_sd_bulan_ini,
+
+			(select count(*) from t_cust_account x 
+				where case when ".$param_arr['npwpd_jabatan']." = 1 then true 
+						   else x.npwpd_jabatan = 'Y'
+					  end
+					and case when A.p_vat_type_dtl_id = 10 then x.p_vat_type_dtl_id in (9,10) 
+						 when A.p_vat_type_dtl_id = 18 then x.p_vat_type_dtl_id in (18,20) 
+						 when A.p_vat_type_dtl_id = 13 then x.p_vat_type_dtl_id in (13,44) 
+						 when A.p_vat_type_dtl_id = 31 then x.p_vat_type_dtl_id in (15,41,12,17,21,42,43,27,30,31) 
+						 else A.p_vat_type_dtl_id = x.p_vat_type_dtl_id end
+					and x.p_account_status_id != 1 and
+							trunc(x.last_satatus_date) <= (select end_date from p_finance_period y where y.p_finance_period_id = ".$param_arr['p_finance_period_id'].")) as jumlah_non_aktif_sd_bulan_ini,
+
+			(select count(*) from t_cust_account x 
+				where case when ".$param_arr['npwpd_jabatan']." = 1 then true 
+						   else x.npwpd_jabatan = 'Y'
+					  end
+					and case when A.p_vat_type_dtl_id = 10 then x.p_vat_type_dtl_id in (9,10) 
+						 when A.p_vat_type_dtl_id = 18 then x.p_vat_type_dtl_id in (18,20) 
+						 when A.p_vat_type_dtl_id = 13 then x.p_vat_type_dtl_id in (13,44) 
+						 when A.p_vat_type_dtl_id = 31 then x.p_vat_type_dtl_id in (15,41,12,17,21,42,43,27,30,31) 
+						 else A.p_vat_type_dtl_id = x.p_vat_type_dtl_id end
+					and x.p_account_status_id = 1 and
+							trunc(x.last_satatus_date) BETWEEN (select start_date from p_finance_period y where y.p_finance_period_id = ".$param_arr['p_finance_period_id'].") 
+								and (select end_date from p_finance_period y where y.p_finance_period_id = ".$param_arr['p_finance_period_id'].")) as jumlah_aktif_bulan_ini,
+
+			(select count(*) from t_cust_account x 
+				where case when ".$param_arr['npwpd_jabatan']." = 1 then true 
+						   else x.npwpd_jabatan = 'Y'
+					  end
+					and case when A.p_vat_type_dtl_id = 10 then x.p_vat_type_dtl_id in (9,10) 
+						 when A.p_vat_type_dtl_id = 18 then x.p_vat_type_dtl_id in (18,20) 
+						 when A.p_vat_type_dtl_id = 13 then x.p_vat_type_dtl_id in (13,44) 
+						 when A.p_vat_type_dtl_id = 31 then x.p_vat_type_dtl_id in (15,41,12,17,21,42,43,27,30,31) 
+						 else A.p_vat_type_dtl_id = x.p_vat_type_dtl_id end
+					and x.p_account_status_id != 1 and
+							trunc(x.last_satatus_date) BETWEEN (select start_date from p_finance_period y where y.p_finance_period_id = ".$param_arr['p_finance_period_id'].") 
+								and  (select end_date from p_finance_period y where y.p_finance_period_id = ".$param_arr['p_finance_period_id'].")) as jumlah_non_aktif_bulan_ini,
+
+			(select count(*) from t_cust_account x 
+				where case when ".$param_arr['npwpd_jabatan']." = 1 then true 
+						   else x.npwpd_jabatan = 'Y'
+					  end
+					and case when A.p_vat_type_dtl_id = 10 then x.p_vat_type_dtl_id in (9,10) 
+						 when A.p_vat_type_dtl_id = 18 then x.p_vat_type_dtl_id in (18,20) 
+						 when A.p_vat_type_dtl_id = 13 then x.p_vat_type_dtl_id in (13,44) 
+						 when A.p_vat_type_dtl_id = 31 then x.p_vat_type_dtl_id in (15,41,12,17,21,42,43,27,30,31) 
+						 else A.p_vat_type_dtl_id = x.p_vat_type_dtl_id end
+					and x.p_account_status_id = 1 and
+							trunc(x.last_satatus_date) <= (select end_date from p_finance_period z where z.end_date = 
+								(select start_date-1 from p_finance_period y where y.p_finance_period_id = ".$param_arr['p_finance_period_id']."))) as jumlah_aktif_sd_bulan_lalu,
+
+			(select count(*) from t_cust_account x 
+				where case when ".$param_arr['npwpd_jabatan']." = 1 then true 
+						   else x.npwpd_jabatan = 'Y'
+					  end
+					and case when A.p_vat_type_dtl_id = 10 then x.p_vat_type_dtl_id in (9,10) 
+						 when A.p_vat_type_dtl_id = 18 then x.p_vat_type_dtl_id in (18,20) 
+						 when A.p_vat_type_dtl_id = 13 then x.p_vat_type_dtl_id in (13,44) 
+						 when A.p_vat_type_dtl_id = 31 then x.p_vat_type_dtl_id in (15,41,12,17,21,42,43,27,30,31) 
+						 else A.p_vat_type_dtl_id = x.p_vat_type_dtl_id end
+					and x.p_account_status_id != 1 and
+							trunc(x.last_satatus_date) <= (select end_date from p_finance_period z where z.end_date = 
+								(select start_date-1 from p_finance_period y where y.p_finance_period_id = ".$param_arr['p_finance_period_id']."))) as jumlah_non_aktif_sd_bulan_lalu
+
+
+			from p_vat_type_dtl a
+			left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id
 			where a.p_vat_type_id in (1,2,3,4,5)
-			ORDER BY a.p_vat_type_id,a.code";
+				and a.p_vat_type_dtl_id not in (9,20,44,15,41,12,17,21,42,43,27,30)
+			ORDER BY a.p_vat_type_id,a.code)";
 
 	//echo $query;exit;
 	$data = array();
@@ -209,7 +299,7 @@ function GetCetakHTML($param_arr) {
 
 		if($data[$i]['jenis_pajak'] != 'PAJAK PARKIR' && $data[$i]['jenis_pajak'] != 'PAJAK PPJ'){
 			$output.='<tr><td align="center" ></td>';
-			$output.='<td align="left" >- '.$data[$i]['ayat_pajak'].'</td>';
+			$output.='<td align="left" >- '.$data[$i]['ayat_pajak_2'].'</td>';
 			$output.='<td align="right" >'.$data[$i]['jumlah_aktif_sd_bulan_lalu'].'</td>';
 			$output.='<td align="right" >'.$data[$i]['jumlah_non_aktif_sd_bulan_lalu'].'</td>';
 			$output.='<td align="right" >'.$data[$i]['jumlah_aktif_bulan_ini'].'</td>';
