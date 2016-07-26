@@ -8,13 +8,13 @@ function BindEvents()
 }
 //End BindEvents Method
 
-//Page_OnInitializeView @1-E2D2DBA5
+//Page_OnInitializeView @1-B8ADB20A
 function Page_OnInitializeView(& $sender)
 {
     $Page_OnInitializeView = true;
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
-    global $t_laporan_pembayaran_per_bulan_per_ayat; //Compatibility
+    global $t_laporan_detil_pembayaran_per_bulan_per_ayat; //Compatibility
 //End Page_OnInitializeView
 
 //Custom Code @66-2A29BDB7
@@ -28,13 +28,13 @@ function Page_OnInitializeView(& $sender)
 }
 //End Close Page_OnInitializeView
 
-//Page_BeforeShow @1-D9F1EFC0
+//Page_BeforeShow @1-2E8C3804
 function Page_BeforeShow(& $sender)
 {
     $Page_BeforeShow = true;
     $Component = & $sender;
     $Container = & CCGetParentContainer($sender);
-    global $t_laporan_pembayaran_per_bulan_per_ayat; //Compatibility
+    global $t_laporan_detil_pembayaran_per_bulan_per_ayat; //Compatibility
 //End Page_BeforeShow
 
 //Custom Code @572-2A29BDB7
@@ -80,13 +80,13 @@ function GetCetakHTML($param_arr) {
 		$output .='<table class="grid-table" border="0" cellspacing="0" cellpadding="0" width="900">
                 	<tr>
                   		<td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
-                  		<td class="th"><strong>LAPORAN PEMBAYARAN PER JENIS DAN MASA PAJAK</strong></td> 
+                  		<td class="th"><strong>LAPORAN DETIL PEMBAYARAN PER JENIS DAN MASA PAJAK</strong></td> 
                   		<td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
                 	</tr>
               		</table>';
 	}
 	
-	$output .= '<h2 style="color:black;" align="center">REKAPITULASI PEMBAYARAN PAJAK HOTEL, RESTORAN, HIBURAN, PARKIR, DAN PPJ</h2>';
+	$output .= '<h2 style="color:black;" align="center">PEMBAYARAN PAJAK HOTEL, RESTORAN, HIBURAN, PARKIR, DAN PPJ</h2>';
 	if($param_arr['npwpd_jabatan'] == 2) {	
 		$output .= '<h2 style="color:black;" align="center">NPWPD JABATAN</h2>';
 	}
@@ -105,75 +105,39 @@ function GetCetakHTML($param_arr) {
                 <tr >';
 
 	
-	$output.='<th align="center" rowspan=2 >NO</th>';
-	$output.='<th align="center" rowspan=2 >URAIAN JENIS PAJAK</th>';
-	$output.='<th align="center" colspan=3 >JANUARI</th>';
-	$output.='<th align="center" colspan=3 >FEBRUARI</th>';
-	$output.='<th align="center" colspan=3 >MARET</th>';
-	$output.='<th align="center" colspan=3 >APRIL</th>';
-	$output.='<th align="center" colspan=3 >MEI</th>';
-	$output.='<th align="center" colspan=3 >JUNI</th>';
-	$output.='<th align="center" colspan=3 >JULI</th>';
-	$output.='<th align="center" colspan=3 >AGUSTUS</th>';
-	$output.='<th align="center" colspan=3 >SEPTEMBER</th>';
-	$output.='<th align="center" colspan=3 >OKTOBER</th>';
-	$output.='<th align="center" colspan=3 >NOVEMBER</th>';
-	$output.='<th align="center" colspan=3 >DESEMBER</th>';
-	$output.='</tr>';
-	
-	$output.='<tr>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
-	$output.='<th align="center" >AKTIF</th>';
-	$output.='<th align="center" >BAYAR</th>';
-	$output.='<th align="center" >NILAI</th>';
+	$output.='<th align="center">NO</th>';
+	$output.='<th align="center">JENIS PAJAK</th>';
+	$output.='<th align="center">URAIAN JENIS PAJAK</th>';
+	$output.='<th align="center">NPWPD</th>';
+	$output.='<th align="center">OBJEK PAJAK</th>';
+	$output.='<th align="center">ALAMAT</th>';
+	$output.='<th align="center">MASA PAJAK</th>';
+	$output.='<th align="center">TOTAL BAYAR</th>';
+	$output.='<th align="center">TANGGAL BAYAR</th>';
+	$output.='<th align="center">WILAYAH</th>';
 	$output.='</tr>';
 
 	$dbConn	= new clsDBConnSIKP();
 
-	$query="select case when p_vat_type_dtl_id = 35 then 'RUMAH KOS' 
-						when p_vat_type_dtl_id = 18 then 'DISKOTIK/KLUB MALAM' 
-						when p_vat_type_dtl_id = 13 then 'PANTI PIJAT/SPA/REFLEKSI' 
-						when p_vat_type_dtl_id = 31 then 'HIBURAN INSIDENTIL' 
-						else ayat_pajak end as ayat_pajak_2,* 
-			from 
-			(select upper(b.vat_code) as jenis_pajak ,a.vat_code as ayat_pajak,a.p_vat_type_dtl_id,a.p_vat_type_id
-			from p_vat_type_dtl a
-			left join p_vat_type b on b.p_vat_type_id = a.p_vat_type_id
-			where a.p_vat_type_id in (1,2,3,4,5)
-				and a.p_vat_type_dtl_id not in (9,20,44,15,41,12,17,21,42,43,27,30)
-			ORDER BY a.p_vat_type_id,a.code)";
+	$query="select 
+				f_get_wilayah(b.npwd) as wilayah,e.vat_code as jenis_pajak,
+				f.vat_code as ayat_pajak,d.code as masa_pajak,
+				to_char(payment_date,'dd-mm-yyyy') as tanggal_bayar,*
+			from t_vat_setllement a
+				left join t_cust_account b on a.t_cust_account_id=b.t_cust_account_id
+				left join t_payment_receipt c on c.t_vat_setllement_id=a.t_vat_setllement_id
+				LEFT JOIN p_finance_period d on d.p_finance_period_id=a.p_finance_period_id
+				left join p_vat_type e on e.p_vat_type_id = b.p_vat_type_id
+				left join p_vat_type_dtl f on f.p_vat_type_dtl_id = b.p_vat_type_dtl_id
+			where p_account_status_id = 1 
+				--and trunc(last_satatus_date) <= (select end_date from p_finance_period where start_date = to_date('".$start_date."','dd-mm-yyyy'))
+				and c.t_payment_receipt_id is not null
+				and trunc(payment_date) between to_date('".$param_arr['tgl_penerimaan']."','dd-mm-yyyy') and to_date('".$param_arr['tgl_penerimaan_last']."','dd-mm-yyyy')
+				and case when ".$param_arr['npwpd_jabatan']." = 1 then true else npwpd_jabatan='Y' end
+				and case when '".$param_arr['kode_wilayah']."' = 'semua' then true 
+					when '".$param_arr['kode_wilayah']."' = 'lainnya' then f_get_wilayah(b.npwd)='-' 
+					else '".$param_arr['kode_wilayah']."' = f_get_wilayah(b.npwd) end
+			order by wilayah, company_brand, b.npwd, d.start_date";
 
 	//echo $query;exit;
 	$data = array();
@@ -183,57 +147,20 @@ function GetCetakHTML($param_arr) {
 	}
 	$dbConn->close();
 
-	$j = 0;
-	$total = array();
-	for($bulan=1;$bulan<=12;$bulan++){
-		$total[$bulan]['aktif'] = 0;
-		$total[$bulan]['bayar'] = 0;
-		$total[$bulan]['nilai'] = 0;
-	}
-
 	for ($i = 0; $i < count($data); $i++) {
-		if($data[$i]['jenis_pajak'] != $data[$i-1]['jenis_pajak']){
-			$output.='<tr><td align="center" ><b>'.($j+1).'</b></td>';
-			$output.='<td align="left" ><b>'.$data[$i]['jenis_pajak'].'</b></td>';
-			for($bulan=1;$bulan<=12;$bulan++){
-				$data_per_bulan = getDataPerJenis($data[$i]['p_vat_type_id'],
-						'01-'.str_pad($bulan, 2, "0", STR_PAD_LEFT).'-'.$param_arr['year_code']); 
-				$output.='<td align="right" >'.$data_per_bulan['aktif'].'</td>';
-				$output.='<td align="right" >'.$data_per_bulan['bayar'].'</td>';
-				$output.='<td align="right" >'.number_format($data_per_bulan['nilai'], 2, ',', '.').'</td>';
-				$total[$bulan]['aktif'] += $data_per_bulan['aktif'];
-				$total[$bulan]['bayar'] += $data_per_bulan['bayar'];
-				$total[$bulan]['nilai'] += $data_per_bulan['nilai'];
-			}
-			$output.='</tr>';
-			$j++;
-		}
-
-		if($data[$i]['jenis_pajak'] != 'PAJAK PARKIR' && $data[$i]['jenis_pajak'] != 'PAJAK PPJ'){
-			$output.='<tr><td align="center" ></td>';
-			$output.='<td align="left" >- '.$data[$i]['ayat_pajak_2'].'</td>';
-			//get data perbulan
-			for($bulan=1;$bulan<=12;$bulan++){
-				
-				$data_per_bulan = getData($data[$i]['p_vat_type_dtl_id'],
-					'01-'.str_pad($bulan, 2, "0", STR_PAD_LEFT).'-'.$param_arr['year_code']); 
-				$output.='<td align="right" >'.$data_per_bulan['aktif'].'</td>';
-				$output.='<td align="right" >'.$data_per_bulan['bayar'].'</td>';
-				$output.='<td align="right" >'.number_format($data_per_bulan['nilai'], 2, ',', '.').'</td>';
-				
-			}
-			$output.='</tr>';
-		}
+		$output.='</tr>'; 
+		$output.='<td align="left" >'.($i+1).'</td>';
+		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['npwd'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['payment_amount'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['tanggal_bayar'].'</td>';
+		$output.='<td align="left" >'.$data[$i]['wilayah'].'</td>';
+		$output.='</tr>';
 	}
-	$output.='<tr><td align="center" ></td>';
-	$output.='<td align="left" ><b>JUMLAH</b></td>';
-	for($bulan=1;$bulan<=12;$bulan++){
-		$output.='<td align="right" >'.$total[$bulan]['aktif'].'</td>';
-		$output.='<td align="right" >'.$total[$bulan]['bayar'].'</td>';
-		$output.='<td align="right" >'.number_format($total[$bulan]['nilai'], 2, ',', '.').'</td>';
-	}
-	
-	$output.='</tr>';
 
 	$output.='</table>';
 	if($doAction == 'view_excel') {	
