@@ -156,7 +156,7 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['company_brand'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['brand_address_name'].' '.$data[$i]['brand_address_no'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
-		$output.='<td align="left" >'.$data[$i]['payment_amount'].'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="left" >'.$data[$i]['tanggal_bayar'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['wilayah'].'</td>';
 		$output.='</tr>';
