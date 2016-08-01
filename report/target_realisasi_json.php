@@ -6,7 +6,7 @@ include_once(RelativePath . "/Common.php");
 
 $dbConn = new clsDBConnSIKP();
 
-$query="select * from t_target_realisasi_sementara_2
+$query="select * from t_target_realisasi_sementara
 		ORDER BY p_vat_type_id";
 
 $dbConn->query($query);
