@@ -11,7 +11,7 @@ $query="select * from t_target_realisasi_sementara
 
 $dbConn->query($query);
 $item=array();
-$json = array('items'=>array(),'message'=>'data ditemukan','success'=>1);
+$json = array('items'=>array(),'message'=>'data ditemukan','success'=>'1');
 while ($dbConn->next_record()) {	
 	$item[] = array(
 		'p_vat_type_id' => $dbConn->f("p_vat_type_id"),
@@ -25,7 +25,7 @@ while ($dbConn->next_record()) {
 		);	
 }
 if (empty($item)) {
-	$json = array('items'=>array(),'message'=>'data tidak ditemukan','success'=>0);
+	$json = array('items'=>array(),'message'=>'data tidak ditemukan','success'=>'0');
 }
 $json['items']=$item;
 $json=json_encode ($json);
