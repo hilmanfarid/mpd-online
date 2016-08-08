@@ -113,8 +113,7 @@ function GetCetakHTML($param_arr) {
 		left join p_finance_period z on z.p_finance_period_id = a.p_finance_period_id
 		left join p_vat_type_dtl p on p.p_vat_type_dtl_id = a.p_vat_type_dtl_id
 		left join p_vat_type q on q.p_vat_type_id = p.p_vat_type_id
-		where p_settlement_type_id = ".$param_arr['ketetapan']." 
-		and a.p_finance_period_id in(
+		where a.p_finance_period_id in(
 			select p_finance_period_id 
 			from p_finance_period 
 			where 
@@ -125,15 +124,18 @@ function GetCetakHTML($param_arr) {
 		)
 		and a.p_vat_type_dtl_id not in (11, 15, 41, 12, 42, 43, 30, 17, 21, 27, 31)
 		and x.p_account_status_id = 1";
+    if ($param_arr['ketetapan']!=0){
+		$query.=" and p_settlement_type_id = ".$param_arr['ketetapan']." ";
+	}
 	if ($param_arr['p_vat_type_id']!=''){
 		$query.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 
 				from p_vat_type_dtl where p_vat_type_id =".$param_arr['p_vat_type_id'].")";
 	}
 	if ($param_arr['status_bayar']==2){
-		$query.="and receipt_no is not null ORDER BY wp_name";
+		$query.="and receipt_no is not null ORDER BY q.p_vat_type_id, ayat_pajak, wp_name, start_period";
 	}else{
 		if ($param_arr['status_bayar']==3){
-			$query.="and receipt_no is null ORDER BY wp_name";
+			$query.="and receipt_no is null ORDER BY q.p_vat_type_id, ayat_pajak, wp_name, start_period";
 		}else{
 			$query.="ORDER BY q.p_vat_type_id, ayat_pajak, wp_name, start_period";
 		}
