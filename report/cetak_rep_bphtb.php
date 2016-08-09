@@ -122,7 +122,14 @@ class FormCetak extends FPDF {
 		$this->AddPage("P");
 		$encImageData = '';
 		$dbConn = new clsDBConnSIKP();
-		$query = "select f_encrypt_str('".$data['registration_no']."') AS enc_data";
+				
+		if($data["npop_kp"]==0){
+			$nilai="NIHIL";
+		}else{
+			$nilai=$data["bphtb_amt_final"];
+		}
+		
+		$query = "select f_encrypt_str('".$data['registration_no']."-".$nilai."') AS enc_data";
 
 		$dbConn->query($query);
 		while ($dbConn->next_record()) {
@@ -138,6 +145,7 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "BEA PEROLEHAN HAK ATAS TANAH DAN BANGUNAN", "", 0, "C");
 		$this->Ln();
 		$this->newLine();
+		$this->SetFont("Arial", "", 12);
 		$this->Cell($this->lengthCell, $this->height, "JENIS TRANSAKSI: ".strtoupper($data['doc_name']), "", 0, "C");
 		$this->Ln();
 		$this->Cell($this->lengthCell, $this->height, "NO REGISTRASI: ".strtoupper($data['registration_no']), "", 0, "C");
@@ -159,7 +167,7 @@ class FormCetak extends FPDF {
 		$this->barisBaru("", "7 Kabupaten/Kota", ": " . $data["wp_region"]);
 		$this->Ln();
 		
-		$this->barisBaru("B", "1 Nomor Objek Pajak PBB ", ": " . $data["njop_pbb"]);
+		$this->barisBaru12("B", "1 Nomor Objek Pajak PBB ", ": " . $data["njop_pbb"]);
 		$this->barisBaru("", "2 Letak tanah atau bangunan", ": " . $data["object_address_name"]);
 		$this->barisBaru("", "3 RT/RW", ": " . $data["object_rt"] . "/" . $data["object_rw"]);
 		$this->barisBaru("", "4 Kelurahan/Desa", ": " . $data["object_region_kel"]);
@@ -241,7 +249,9 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx1-20, $this->height, "", "B", 0, "R");
 		$this->Cell($lbodyx1+20, $this->height, $jenis_harga[$jenis_harga_bphtb], "RB", 0, "R");
 		$this->Cell($lbodyx1, $this->height, "Rp", "B", 0, "L");
+		$this->SetFont("Arial", "", 10);
 		$this->Cell($lbodyx1, $this->height, number_format($data["market_price"], 2, ",", "."), "B", 0, "R");
+		$this->SetFont("Arial", "", 8);
 		$this->Cell($lbodyx1, $this->height, "", "BR", 0, "");
 		$this->Ln();
 		$this->Ln();
@@ -273,7 +283,7 @@ class FormCetak extends FPDF {
 		if($data["npop_kp"]==0){
 			$this->barisBaruStr($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", "NIHIL");
 		}else{
-			$this->barisBaru2($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
+			$this->barisBaru2_10($lbody1, "Bea Perolehan Hak atas Tanah dan Bangunan yang harus dibayar", "", "Rp", $data["bphtb_amt_final"]);
 		}
 		
 		
@@ -367,6 +377,24 @@ class FormCetak extends FPDF {
 		$this->Cell($lbodyx2, $this->height, number_format($data, 2, ",", "."), "", 0, "R");
 		$this->Ln();
 	}
+	
+	function barisBaru2_10($subtractor, $field, $middle, $currency, $data){
+		$this->SetFont("Arial", "", 8);
+		$lbodyx = ($this->lengthCell - $subtractor) / 9;
+		$lbodyx1 = $lbodyx * 1;
+		$lbodyx2 = $lbodyx * 2;
+		$lbodyx3 = $lbodyx * 3;
+		$lbodyx5 = $lbodyx * 5;
+		
+		$this->Cell($subtractor, $this->height, "", "", 0, "L");
+		$this->Cell($lbodyx3 + $lbodyx2, $this->height, "$field", "", 0, "L");
+		$this->Cell($lbodyx1, $this->height, "$middle", "", 0, "L");
+		$this->Cell($lbodyx1, $this->height, "$currency", "", 0, "L");
+		$this->SetFont("Arial", "", 10);
+		$this->Cell($lbodyx2, $this->height, number_format($data, 2, ",", "."), "", 0, "R");
+		$this->SetFont("Arial", "", 8);
+		$this->Ln();
+	}
 
 	function barisBaruStr($subtractor, $field, $middle, $currency, $data){
 		$lbodyx = ($this->lengthCell - $subtractor) / 9;
@@ -393,6 +421,20 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody1, $this->height, "$section", "", 0, "L");
 		$this->Cell($lbody4, $this->height, "$field", "", 0, "L");
 		
+		$this->SetWidths(array($lbody15));
+		$this->SetAligns(array("L"));
+		$this->RowMultiBorderWithHeight(array($data), array(""), $this->height);
+	}
+	function barisBaru12($section, $field, $data){
+		$this->SetFont("Arial", "", 8);
+		$lbody = $this->lengthCell / 20;
+		$lbody1 = $lbody * 1;
+		$lbody4 = $lbody * 4;
+		$lbody15 = $lbody * 15;
+		
+		$this->Cell($lbody1, $this->height, "$section", "", 0, "L");
+		$this->Cell($lbody4, $this->height, "$field", "", 0, "L");
+		$this->SetFont("Arial", "", 12);
 		$this->SetWidths(array($lbody15));
 		$this->SetAligns(array("L"));
 		$this->RowMultiBorderWithHeight(array($data), array(""), $this->height);
