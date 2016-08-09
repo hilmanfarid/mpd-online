@@ -1,4 +1,10 @@
 <?php
+ob_start(); 
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods, Status, WeFindErrorCode, WeFindErrorDesc");
+header("Access-Control-Allow-Methods: OPTIONS, POST, GET, UPDATE, DELETE");
+header('Content-Type: text/javascript; charset=UTF-8');
+
 define("RelativePath", "..");
 define("PathToCurrentPage", "/report/");
 define("FileName", "target_realisasi_json.php");
