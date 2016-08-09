@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-EDA99247
+//Class_Initialize Event @3-579835D1
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -91,11 +91,15 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->ListBox2->DataSource->Order = "p_settlement_type_id";
             $this->ListBox2->Required = true;
             $this->Button_DoSearch1 = & new clsButton("Button_DoSearch1", $Method, $this);
+            $this->tgl_penerimaan = & new clsControl(ccsTextBox, "tgl_penerimaan", "tgl_penerimaan", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("tgl_penerimaan", $Method, NULL), $this);
+            $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "t_rep_lap_spjpSearch", "tgl_penerimaan", $this);
+            $this->tgl_penerimaan_last = & new clsControl(ccsTextBox, "tgl_penerimaan_last", "tgl_penerimaan_last", ccsDate, array("dd", "-", "mm", "-", "yyyy"), CCGetRequestParam("tgl_penerimaan_last", $Method, NULL), $this);
+            $this->DatePicker_tgl_penerimaan_last = & new clsDatePicker("DatePicker_tgl_penerimaan_last", "t_rep_lap_spjpSearch", "tgl_penerimaan_last", $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-C4A88F5B
+//Validate Method @3-7BFFCD0F
     function Validate()
     {
         global $CCSLocales;
@@ -111,6 +115,8 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation = ($this->code1->Validate() && $Validation);
         $Validation = ($this->p_finance_period_id1->Validate() && $Validation);
         $Validation = ($this->ListBox2->Validate() && $Validation);
+        $Validation = ($this->tgl_penerimaan->Validate() && $Validation);
+        $Validation = ($this->tgl_penerimaan_last->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
@@ -122,11 +128,13 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation =  $Validation && ($this->code1->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id1->Errors->Count() == 0);
         $Validation =  $Validation && ($this->ListBox2->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->tgl_penerimaan_last->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-4AD6CA0A
+//CheckErrors Method @3-A62DB745
     function CheckErrors()
     {
         $errors = false;
@@ -140,6 +148,10 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $errors = ($errors || $this->code1->Errors->Count());
         $errors = ($errors || $this->p_finance_period_id1->Errors->Count());
         $errors = ($errors || $this->ListBox2->Errors->Count());
+        $errors = ($errors || $this->tgl_penerimaan->Errors->Count());
+        $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
+        $errors = ($errors || $this->tgl_penerimaan_last->Errors->Count());
+        $errors = ($errors || $this->DatePicker_tgl_penerimaan_last->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -198,7 +210,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-AC4487A9
+//Show Method @3-73D91138
     function Show()
     {
         global $CCSUseAmp;
@@ -234,6 +246,10 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->code1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_finance_period_id1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->ListBox2->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->tgl_penerimaan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->tgl_penerimaan_last->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan_last->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -263,6 +279,10 @@ function GetPrimaryKey($keyName)
         $this->p_finance_period_id1->Show();
         $this->ListBox2->Show();
         $this->Button_DoSearch1->Show();
+        $this->tgl_penerimaan->Show();
+        $this->DatePicker_tgl_penerimaan->Show();
+        $this->tgl_penerimaan_last->Show();
+        $this->DatePicker_tgl_penerimaan_last->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }

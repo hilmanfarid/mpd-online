@@ -48,6 +48,8 @@ function Page_BeforeShow(& $sender)
 	$param_arr['p_vat_type_id'] = CCGetFromGet('p_vat_type_id','');
 	$param_arr['status_bayar'] = CCGetFromGet('ListBox1');
 	$param_arr['ketetapan'] = CCGetFromGet('ListBox2',4);
+	$param_arr['tgl_penerimaan'] = CCGetFromGet('tgl_penerimaan','');
+	$param_arr['tgl_penerimaan_last'] = CCGetFromGet('tgl_penerimaan_last','');
 
 	$param_arr['vat_code'] = CCGetFromGet('vat_code');
 	$param_arr['year_code'] = CCGetFromGet('year_code');
@@ -126,6 +128,12 @@ function GetCetakHTML($param_arr) {
 		and x.p_account_status_id = 1";
     if ($param_arr['ketetapan']!=0){
 		$query.=" and p_settlement_type_id = ".$param_arr['ketetapan']." ";
+	}
+	if ($param_arr['tgl_penerimaan']!=''){
+		$query.=" and trunc(payment_date) >= to_date('".$param_arr['tgl_penerimaan']."','dd-mm-yyyy') ";
+	}
+	if ($param_arr['tgl_penerimaan_last']!=''){
+		$query.=" and trunc(payment_date) <= to_date('".$param_arr['tgl_penerimaan_last']."','dd-mm-yyyy') ";
 	}
 	if ($param_arr['p_vat_type_id']!=''){
 		$query.="and a.p_vat_type_dtl_id in (select p_vat_type_dtl_id 

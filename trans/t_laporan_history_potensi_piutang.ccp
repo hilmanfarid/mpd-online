@@ -101,7 +101,31 @@ ORDER BY p_settlement_type_id" fieldSource="i_flag_setoran" required="True">
 					<Attributes/>
 					<Features/>
 				</Button>
-			</Components>
+				<TextBox id="559" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan" PathID="t_rep_lap_spjpSearchtgl_penerimaan" format="dd-mm-yyyy">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<DatePicker id="191" name="DatePicker_tgl_penerimaan" control="tgl_penerimaan" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="t_rep_lap_spjpSearchDatePicker_tgl_penerimaan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+<TextBox id="565" visible="Yes" fieldSourceType="DBColumn" dataType="Date" name="tgl_penerimaan_last" PathID="t_rep_lap_spjpSearchtgl_penerimaan_last" format="dd-mm-yyyy">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<DatePicker id="583" name="DatePicker_tgl_penerimaan_last" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchDatePicker_tgl_penerimaan_last" control="tgl_penerimaan_last" wizardDatePickerType="Image" wizardPicture="../Styles/None/Images/DatePicker.gif" style="../Styles/sikp/Style.css">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</DatePicker>
+</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

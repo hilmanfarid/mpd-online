@@ -24,11 +24,28 @@ $(document).ready(function()
 </script>
 <script language="JavaScript" type="text/javascript">
 //Begin CCS script
-//Include Common JSFunctions @1-9722A627
+//Include Common JSFunctions @1-86BEACD2
 </script>
 <script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" src="../ClientI18N.php?file=DatePicker.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
 <script language="JavaScript" type="text/javascript">
 //End Include Common JSFunctions
+
+//Date Picker Object Definitions @1-44E3767A
+
+var t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan = new Object(); 
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan.format           = "dd-mm-yyyy";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan.style            = "Styles/sikp/Style.css";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan.relativePathPart = "../";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan.themeVersion = "3.0";
+
+var t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan_last = new Object(); 
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan_last.format           = "dd-mm-yyyy";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan_last.style            = "Styles/sikp/Style.css";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan_last.relativePathPart = "../";
+t_rep_lap_spjpSearch_DatePicker_tgl_penerimaan_last.themeVersion = "3.0";
+
+//End Date Picker Object Definitions
 
 //t_rep_lap_spjpSearchListBox1_OnChange @566-35AA4398
 function t_rep_lap_spjpSearchListBox1_OnChange()
@@ -95,7 +112,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -124,7 +141,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td class="search-field">Jenis Ketetapan</td> 
                     <td class="search-field">
                       <select id="t_rep_lap_spjpSearchListBox2" class="ControlsRQ" name="{ListBox2_Name}">
-					  	<option value=0>Semua</option>
+                        <option selected value="0">Semua</option>
                         {ListBox2_Options}
                       </select>
  </td> 
@@ -173,8 +190,10 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   </tr>
  
                   <tr class="Controls">
-                    <td class="search-field">&nbsp;</td> 
-                    <td class="search-field">&nbsp;</td> 
+                    <td class="search-field">Tanggal Bayar</td> 
+                    <td class="search-field"><input style="WIDTH: 95px; HEIGHT: 20px" id="t_rep_lap_spjpSearchtgl_penerimaan" class="ControlsIN" value="{tgl_penerimaan}" maxlength="32" size="11" name="{tgl_penerimaan_Name}">
+                      <!-- BEGIN DatePicker DatePicker_tgl_penerimaan --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_spjpSearchDatePicker_tgl_penerimaan"><img id="t_rep_lap_spjpSearchDatePicker_tgl_penerimaan_Image" border="0" alt="Show Date Picker" src="../Styles/sikp/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan -->s.d <input style="WIDTH: 95px; HEIGHT: 20px" id="t_rep_lap_spjpSearchtgl_penerimaan_last" class="ControlsIN" value="{tgl_penerimaan_last}" maxlength="32" size="11" name="{tgl_penerimaan_last_Name}">
+                      <!-- BEGIN DatePicker DatePicker_tgl_penerimaan_last --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_spjpSearchDatePicker_tgl_penerimaan_last"><img id="t_rep_lap_spjpSearchDatePicker_tgl_penerimaan_last_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_tgl_penerimaan_last --></td> 
                     <td>&nbsp;</td> 
                     <td class="search-field">
                       <!-- BEGIN Button Button_DoSearch1 --><input id="t_rep_lap_spjpSearchButton_DoSearch1" class="btn_tambah" onclick="cetak_excel(); return false;" value="TAMPILKAN EXCEL" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch1 --></td>
@@ -248,29 +267,33 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
     {
         p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
         p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
-                p_finance_period_id1= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id1").value;
+        p_finance_period_id1= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id1").value;
         status_bayar = document.getElementById("t_rep_lap_spjpSearchListBox1").value;
-                ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
+        ketetapan = document.getElementById("t_rep_lap_spjpSearchListBox2").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
         code= document.getElementById("t_rep_lap_spjpSearchcode").value;
-                code1= document.getElementById("t_rep_lap_spjpSearchcode1").value;
+        code1= document.getElementById("t_rep_lap_spjpSearchcode1").value;
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
-        
+		tgl_penerimaan= document.getElementById("t_rep_lap_spjpSearchtgl_penerimaan").value;
+		tgl_penerimaan_last= document.getElementById("t_rep_lap_spjpSearchtgl_penerimaan_last").value;
+				        
         if(p_year_period_id == "" || p_finance_period_id == ""|| p_finance_period_id1 == "") {
             alert("Semua Filter Harus Diisi");
         }else {
-                        var params = "?doAction=view_html";
+                var params = "?doAction=view_html";
                 params += "&p_year_period_id="+p_year_period_id;
                 params += "&p_finance_period_id="+p_finance_period_id;
-                                params += "&p_finance_period_id1="+p_finance_period_id1;
+                params += "&p_finance_period_id1="+p_finance_period_id1;
                 params += "&p_vat_type_id="+p_vat_type_id;
-                        params += "&year_code="+year_code;
+                params += "&year_code="+year_code;
                 params += "&code="+code;
-                                params += "&code1="+code1;
+                params += "&code1="+code1;
                 params += "&vat_code="+vat_code;
-                        params += "&ListBox1="+status_bayar;
-                                                params += "&ListBox2="+ketetapan;
+                params += "&ListBox1="+status_bayar;
+                params += "&ListBox2="+ketetapan;
+                params += "&tgl_penerimaan="+tgl_penerimaan;
+                params += "&tgl_penerimaan_last="+tgl_penerimaan_last;
                 location.href="t_laporan_history_potensi_piutang.php"+params;
         }
     }
@@ -287,21 +310,25 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 code1= document.getElementById("t_rep_lap_spjpSearchcode1").value;
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         year_code= document.getElementById("t_rep_lap_spjpSearchyear_code").value;
-        
+		tgl_penerimaan= document.getElementById("t_rep_lap_spjpSearchtgl_penerimaan").value;
+		tgl_penerimaan_last= document.getElementById("t_rep_lap_spjpSearchtgl_penerimaan_last").value;
+		        
         if(p_year_period_id == "" || p_finance_period_id == ""|| p_finance_period_id1 == "") {
             alert("Semua Filter Harus Diisi");
         }else {
-                        var params = "?doAction=cetak_excel";
+                var params = "?doAction=cetak_excel";
                 params += "&p_year_period_id="+p_year_period_id;
                 params += "&p_finance_period_id="+p_finance_period_id;
-                                params += "&p_finance_period_id1="+p_finance_period_id1;
+                params += "&p_finance_period_id1="+p_finance_period_id1;
                 params += "&p_vat_type_id="+p_vat_type_id;
-                        params += "&year_code="+year_code;
+				params += "&year_code="+year_code;
                 params += "&code="+code;
-                                params += "&code1="+code1;
+                params += "&code1="+code1;
                 params += "&vat_code="+vat_code;
-                        params += "&ListBox1="+status_bayar;
-                                                params += "&ListBox2="+ketetapan;
+                params += "&ListBox1="+status_bayar;
+                params += "&ListBox2="+ketetapan;
+                params += "&tgl_penerimaan="+tgl_penerimaan;
+                params += "&tgl_penerimaan_last="+tgl_penerimaan_last;
                 location.href="t_laporan_history_potensi_piutang.php"+params;
         }
     }
