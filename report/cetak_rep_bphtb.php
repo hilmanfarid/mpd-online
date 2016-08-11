@@ -605,6 +605,7 @@ class FormCetak extends FPDF {
 
 $formulir = new FormCetak();
 $formulir->PageCetak($data, $user);
+$formulir->PageCetak($data, $user);
 $formulir->Output();
 
 ?>
