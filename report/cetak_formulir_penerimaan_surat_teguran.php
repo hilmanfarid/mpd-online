@@ -50,6 +50,7 @@ $dbConn = new clsDBConnSIKP();
 
 $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
+		LEFT JOIN t_debt_letter_dtl AS c ON tbl.t_cust_account_id = c.t_cust_account_id and tbl.t_debt_letter_id = c.t_debt_letter_id
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) 
 		and b.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$p_vat_type_id.")
 		order by b.company_brand";
@@ -73,6 +74,7 @@ while ($dbConn->next_record()) {
 			'debt_period_code' =>  $dbConn->f("debt_period_code"),
 			'sequence_no' => $dbConn->f("sequence_no"),
 			'letter_date_txt' => $dbConn->f("letter_date_txt"),
+			't_debt_letter_dtl_id' => $dbConn->f("t_debt_letter_dtl_id"),
 			'nama_kadin' => $nama_kadin,
 			'nip_kadin' => $nip_kadin
 		);
@@ -164,6 +166,16 @@ class FormCetak extends PDF_MC_Table {
 		$this->RowMultiBorderWithHeight(array("",""),array('',''),10);
 		$this->SetFont('BookmanOldStyle', 'B',12);
 		$this->RowMultiBorderWithHeight(array("PENGIRIM","PENERIMA"),array('',''),5);
+		
+		$dbConn = new clsDBConnSIKP();
+		$query = "select f_encrypt_str('".$data['t_debt_letter_dtl_id']."') AS enc_data";
+
+		$dbConn->query($query);
+		while ($dbConn->next_record()) {
+			$encImageData = $dbConn->f("enc_data");
+		}
+		//$this->Image('../images/logo_pemda.png',20,10,25,25);
+		$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.$encImageData,90,120,30,30,'PNG');
 		
 		
 	}
