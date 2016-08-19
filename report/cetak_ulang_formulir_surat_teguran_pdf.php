@@ -130,7 +130,7 @@ class FormCetak extends FPDF {
 		
 		$this->SetFont('Arial', 'B', 8);
 		
-		/*$this->Image('../images/logo_pemda.png',3,3,15,15);
+		$this->Image('../images/logo_pemda.png',3,3,15,15);
 		$this->Cell(8, 3, "", "", 0, 'L');
 		$this->Cell(70, 3, "PEMERINTAH KOTA BANDUNG", "", 0, 'C');
 		$this->Ln();
@@ -147,9 +147,9 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', 'B', 6);
 		$this->Cell(8, 3, "", "", 0, 'L');
 		$this->Cell(70, 3, "BANDUNG", "", 0, 'C');
-		$this->Ln();*/
+		$this->Ln();
 		
-		$this->Cell(8, 3, "", "", 0, 'L');
+		/*$this->Cell(8, 3, "", "", 0, 'L');
 		$this->Cell(70, 3, "", "", 0, 'C');
 		$this->Ln();
 		
@@ -165,7 +165,7 @@ class FormCetak extends FPDF {
 		$this->SetFont('Arial', 'B', 6);
 		$this->Cell(8, 3, "", "", 0, 'L');
 		$this->Cell(70, 3, "", "", 0, 'C');
-		$this->Ln();
+		$this->Ln();*/
 		$this->Ln();
 		
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
