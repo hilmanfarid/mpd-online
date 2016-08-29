@@ -102,6 +102,10 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >MASA PAJAK</th>';
 	$output.='<th align="center" >TGL TAP</th>';
 	$output.='<th align="center" >NO. BAYAR</th>';
+	$output.='<th align="center" >PAJAK TERHUTANG</th>';
+	$output.='<th align="center" >KENAIKAN 25%</th>';
+	$output.='<th align="center" >KENAIKAN 2%</th>';
+	$output.='<th align="center" >DENDA</th>';
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
@@ -169,6 +173,10 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['payment_key2'].'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['db_increasing_charge'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['db_interest_charge'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
@@ -268,6 +276,10 @@ function CetakExcel($param_arr) {
 	$output.='<th rowspan=2 align="center" >MASA PAJAK</th>';
 	$output.='<th rowspan=2 align="center" >TGL TAP</th>';
 	$output.='<th rowspan=2 align="center" >NO. BAYAR</th>';
+	$output.='<th rowspan=2 align="center" >PAJAK TERHUTANG</th>';
+	$output.='<th rowspan=2 align="center" >KENAIKAN 25%</th>';
+	$output.='<th rowspan=2 align="center" >KENAIKAN 2%</th>';
+	$output.='<th rowspan=2 align="center" >DENDA</th>';
 	$output.='<th rowspan=2 align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th colspan=2 align="center" >STATUS BAYAR</th>';
 	$output.='<th rowspan=2 align="center" >TANGGAL BAYAR</th>';
@@ -305,6 +317,10 @@ function CetakExcel($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['masa_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['tgl_tap'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['payment_key2'].'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['db_increasing_charge'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['db_interest_charge'], 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
@@ -385,13 +401,13 @@ function CetakExcel($param_arr) {
 			 	<td></td>
 				<td align="center" colspan=2 width="50%">Drs, H. GUN GUN SUMARYANA</td>
 				<td align="center" colspan=5 width="50%"></td>
-				<td align="center" colspan=3 width="50%">Drs. H. DEDEN SAEPULLOH, MM</td>
+				<td align="center" colspan=3 width="50%">DIN KAMADIATINI S.IP.,MM</td>
 			 </tr>
 			 <tr>
 			 	<td></td>
 				<td align="center" colspan=2 width="50%">NIP. 19700806 199101 1001</td>
 				<td align="center" colspan=5 width="50%"></td>
-				<td align="center" colspan=3 width="50%">NIP. 19681210 199010 1001</td>
+				<td align="center" colspan=3 width="50%">NIP. 19710320 199803 2006</td>
 			 </tr>
 			 ';
 	$output.='</table>';
