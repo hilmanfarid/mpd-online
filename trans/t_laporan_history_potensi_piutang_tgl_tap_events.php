@@ -109,7 +109,7 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th align="center" >STATUS BAYAR</th>';
 	$output.='<th align="center" >TANGGAL BAYAR</th>';
-	$output.='<th align="center" >BESARNYA</th>';
+	//$output.='<th align="center" >BESARNYA</th>';
 	$output.='<th align="center" >SISA</th>';
 	$output.='<th align="center" >TANGGAL PENGUKUHAN</th>';
 	$output.='<th align="center" >TANGGAL PENUTUPAN</th>';
@@ -154,6 +154,10 @@ function GetCetakHTML($param_arr) {
 	$jumlah =0;
 	$jumlah_relisasi =0;
 	$jumlah_sisa =0;
+	$jumlah_debt_vat_amt =0;
+	$jumlah_db_increasing_charge =0;
+	$jumlah_db_interest_charge =0;
+	$jumlah_total_penalty_amount =0;
 	for ($i = 0; $i < count($data); $i++) {
 		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
 		//$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
@@ -163,6 +167,12 @@ function GetCetakHTML($param_arr) {
 		$jumlah = $jumlah + $temp;
 		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_vat_amount'];
 		$jumlah_sisa = $jumlah_sisa + $temp_sisa;
+
+		$jumlah_debt_vat_amt =$jumlah_debt_vat_amt+$data[$i]['debt_vat_amt'];
+		$jumlah_db_increasing_charge =$jumlah_db_increasing_charge+$data[$i]['db_increasing_charge'];
+		$jumlah_db_interest_charge =$jumlah_db_interest_charge+$data[$i]['db_interest_charge'];
+		$jumlah_total_penalty_amount =$jumlah_total_penalty_amount+$data[$i]['total_penalty_amount'];
+
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
@@ -177,7 +187,7 @@ function GetCetakHTML($param_arr) {
 		$output.='<td align="right" >'.number_format($data[$i]['db_increasing_charge'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['db_interest_charge'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
-		$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
 			$output.='<td align="left" >Belum Bayar</td>';
@@ -185,7 +195,7 @@ function GetCetakHTML($param_arr) {
 			$output.='<td align="left" >Sudah Bayar</td>';
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
-		$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
+		//$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="left" >'.$data[$i]['active_date_short'].'</td>';
 		if ($data[$i]['p_account_status_id']==1) {
@@ -196,10 +206,14 @@ function GetCetakHTML($param_arr) {
 		$output.='</tr>';
 	}
 
-	$output.='<tr><td align="center" colspan=9 >Jumlah</td>';
+	$output.='<tr><td align="center" colspan=10 >Jumlah</td>';
+	$output.='<td align="right">'.number_format($jumlah_debt_vat_amt, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_db_increasing_charge, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_db_interest_charge, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_total_penalty_amount, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
 	$output.='<td align="center" colspan=2 ></td>';
-	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
+	//$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_sisa, 2, ',', '.').'</td>';
 	$output.='</tr>';
 
@@ -283,7 +297,7 @@ function CetakExcel($param_arr) {
 	$output.='<th rowspan=2 align="center" >TOTAL HARUS DIBAYAR</th>';
 	$output.='<th colspan=2 align="center" >STATUS BAYAR</th>';
 	$output.='<th rowspan=2 align="center" >TANGGAL BAYAR</th>';
-	$output.='<th rowspan=2 align="center" >BESARNYA</th>';
+	//$output.='<th rowspan=2 align="center" >BESARNYA</th>';
 	$output.='<th rowspan=2 align="center" >SISA</th>';
 	$output.='<th rowspan=2 align="center" >TANGGAL PENGUKUHAN</th>';
 	$output.='<th rowspan=2 align="center" >TANGGAL PENUTUPAN</th>';
@@ -297,6 +311,10 @@ function CetakExcel($param_arr) {
 	$jumlah_sudah_bayar = 0;
 	$jumlah_relisasi =0;
 	$jumlah_sisa =0;
+	$jumlah_debt_vat_amt =0;
+	$jumlah_db_increasing_charge =0;
+	$jumlah_db_interest_charge =0;
+	$jumlah_total_penalty_amount =0;
 
     for ($i = 0; $i < count($data); $i++) {
 		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
@@ -307,6 +325,12 @@ function CetakExcel($param_arr) {
 		$jumlah = $jumlah + $temp;
 		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_vat_amount'];
 		$jumlah_sisa = $jumlah_sisa + $temp_sisa;
+
+		$jumlah_debt_vat_amt =$jumlah_debt_vat_amt+$data[$i]['debt_vat_amt'];
+		$jumlah_db_increasing_charge =$jumlah_db_increasing_charge+$data[$i]['db_increasing_charge'];
+		$jumlah_db_interest_charge =$jumlah_db_interest_charge+$data[$i]['db_interest_charge'];
+		$jumlah_total_penalty_amount =$jumlah_total_penalty_amount+$data[$i]['total_penalty_amount'];
+
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
@@ -321,19 +345,19 @@ function CetakExcel($param_arr) {
 		$output.='<td align="right" >'.number_format($data[$i]['db_increasing_charge'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['db_interest_charge'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
-		$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
+		$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
 		
 		if ($data[$i]['payment_date']=='') {
 			$output.='<td align="right" >'.number_format(0, 2, ',', '.').'</td>';
 			$output.='<td align="right" >'.number_format($temp, 2, ',', '.').'</td>';
 			$jumlah_belum_bayar = $jumlah_belum_bayar + $temp;
 		}else{
-			$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
+			$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
 			$output.='<td align="right" >'.number_format(0, 2, ',', '.').'</td>';
-			$jumlah_sudah_bayar = $jumlah_sudah_bayar + $data[$i]['payment_vat_amount'];
+			$jumlah_sudah_bayar = $jumlah_sudah_bayar + $data[$i]['payment_amount'];
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
-		$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
+		//$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
 		$output.='<td align="left" >'.$data[$i]['active_date_short'].'</td>';
 		if ($data[$i]['p_account_status_id']==1) {
@@ -343,12 +367,16 @@ function CetakExcel($param_arr) {
 		}
 		$output.='</tr>';
 	}
-	$output.='<tr><td align="center" colspan=9 >Jumlah</td>';
+	$output.='<tr><td align="center" colspan=10 >Jumlah</td>';
+	$output.='<td align="right">'.number_format($jumlah_debt_vat_amt, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_db_increasing_charge, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_db_interest_charge, 2, ',', '.').'</td>';
+	$output.='<td align="right">'.number_format($jumlah_total_penalty_amount, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_sudah_bayar, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_belum_bayar, 2, ',', '.').'</td>';
 	$output.='<td align="center"></td>';
-	$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
+	//$output.='<td align="right">'.number_format($jumlah_realisasi, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_sisa, 2, ',', '.').'</td>';
 	$output.='</tr>';
 
