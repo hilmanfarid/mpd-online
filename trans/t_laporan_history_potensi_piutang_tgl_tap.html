@@ -91,6 +91,23 @@ function t_rep_lap_spjpSearchListBox2_OnChange()
 }
 //End Close t_rep_lap_spjpSearchListBox2_OnChange
 
+//t_rep_lap_spjpSearchkode_wilayah_OnChange @23-4214657F
+function t_rep_lap_spjpSearchkode_wilayah_OnChange()
+{
+    var result = true;
+//End t_rep_lap_spjpSearchkode_wilayah_OnChange
+
+//Custom Code @24-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_lap_spjpSearchkode_wilayah_OnChange @23-BC33A33A
+    return result;
+}
+//End Close t_rep_lap_spjpSearchkode_wilayah_OnChange
+
 //DEL      // -------------------------
 //DEL      // Write your own code here.
 //DEL          if(this.value==1){
@@ -100,10 +117,11 @@ function t_rep_lap_spjpSearchListBox2_OnChange()
 //DEL          }
 //DEL      // -------------------------
 
-//bind_events @1-B599DEC6
+//bind_events @1-3385E954
 function bind_events() {
     addEventHandler("t_rep_lap_spjpSearchListBox1", "change", t_rep_lap_spjpSearchListBox1_OnChange);
     addEventHandler("t_rep_lap_spjpSearchListBox2", "change", t_rep_lap_spjpSearchListBox2_OnChange);
+    addEventHandler("t_rep_lap_spjpSearchkode_wilayah", "change", t_rep_lap_spjpSearchkode_wilayah_OnChange);
 }
 //End bind_events
 
@@ -112,7 +130,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -169,6 +187,18 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                     <td>&nbsp; 
                       <!-- BEGIN DatePicker DatePicker_end_start_laporan2 --><a href="javascript:showDatePicker('{Name}','{FormName}','{DateControl}');" id="t_rep_lap_spjpSearchDatePicker_end_start_laporan2"><img id="t_rep_lap_spjpSearchDatePicker_end_start_laporan2_Image" border="0" alt="Show Date Picker" src="../Styles/None/Images/DatePicker.gif"></a><!-- END DatePicker DatePicker_end_start_laporan2 --></td> 
                     <td class="search-field"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Wilayah</td> 
+                    <td class="search-field">
+                      <select id="t_rep_lap_spjpSearchkode_wilayah" class="ControlsRQ" name="{kode_wilayah_Name}">
+                        <option value="0">Semua</option>
+						{kode_wilayah_Options}
+                      </select>
+ </td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
                   </tr>
  
                   <tr class="Controls">
@@ -279,7 +309,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
         vat_code= document.getElementById("t_rep_lap_spjpSearchvat_code").value;
         start_date = document.getElementById("t_rep_lap_spjpSearchdate_start_laporan").value;
         end_date = document.getElementById("t_rep_lap_spjpSearchdate_end_laporan").value;
-
+		kode_wilayah = document.getElementById("t_rep_lap_spjpSearchkode_wilayah").value;
                 
         if(start_date == "" || end_date == "") {
             alert("Semua Filter Harus Diisi");
@@ -291,6 +321,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                 params += "&ListBox2="+ketetapan;
                 params += "&date_start_laporan="+start_date;
                 params += "&date_end_laporan="+end_date;
+				params += "&kode_wilayah="+kode_wilayah;
                 location.href="t_laporan_history_potensi_piutang_tgl_tap.php"+params;
         }
     }
