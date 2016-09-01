@@ -165,8 +165,12 @@ function GetCetakHTML($param_arr) {
 	
 	$jumlah_total_penalty_amount =0;
 	for ($i = 0; $i < count($data); $i++) {
-		if ($param_arr['ketetapan'] != 4){
-			$data[$i]['debt_vat_amt'] = $data[$i]['total_vat_amount'];
+		if ($param_arr['ketetapan'] == 6){
+			$data[$i]['debt_vat_amt'] = $data[$i]['debt_vat_amt']-$data[$i]['cr_payment'];
+		}else{
+			if ($param_arr['ketetapan'] != 4){
+				$data[$i]['debt_vat_amt'] = $data[$i]['total_vat_amount'];
+			}
 		}
 		
 		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
