@@ -461,7 +461,7 @@ class FormCetak extends FPDF {
 		$this->SetFont("Arial", "B", 12);
 		$this->RowMultiBorderWithHeight(
 			array
-			(	"(022) 93216588",
+			(	"",//"(022) 93216588",
 				""
 			),
 			array
