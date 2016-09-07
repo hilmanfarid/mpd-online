@@ -123,7 +123,7 @@ from p_business_area ">
 					<Attributes/>
 					<Features/>
 				</ListBox>
-</Components>
+			</Components>
 			<Events/>
 			<TableParameters/>
 			<SPParameters/>

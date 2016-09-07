@@ -177,7 +177,11 @@ function GetCetakHTML($param_arr) {
 		//$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
 		//$temp_sisa = $temp - $data[$i]['payment_amount'];
 		$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
-		$temp_sisa = $temp - $data[$i]['payment_amount'];
+		if ($param_arr['ketetapan'] == 6){
+			$temp_sisa = $data[$i]['debt_vat_amt'] + $data[$i]['db_increasing_charge'] - $data[$i]['payment_amount'];
+		}else{
+			$temp_sisa = $temp - $data[$i]['payment_amount'];
+		}
 		$jumlah = $jumlah + $temp;
 		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_vat_amount'];
 		$jumlah_sisa = $jumlah_sisa + $temp_sisa;
@@ -211,7 +215,11 @@ function GetCetakHTML($param_arr) {
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
 		//$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
-		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		if ($param_arr['ketetapan'] == 6){
+			$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt'] + $data[$i]['db_increasing_charge'] - $data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		}else{
+			$output.='<td align="right" >'.number_format($temp - $data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		}
 		$output.='<td align="left" >'.$data[$i]['active_date_short'].'</td>';
 		if ($data[$i]['p_account_status_id']==1) {
 			$output.='<td align="left" ></td>';
@@ -343,11 +351,22 @@ function CetakExcel($param_arr) {
 	$jumlah_total_penalty_amount =0;
 
     for ($i = 0; $i < count($data); $i++) {
+		if ($param_arr['ketetapan'] == 6){
+			$data[$i]['debt_vat_amt'] = $data[$i]['debt_vat_amt']-$data[$i]['cr_payment'];
+		}else{
+			if ($param_arr['ketetapan'] != 4){
+				$data[$i]['debt_vat_amt'] = $data[$i]['total_vat_amount'];
+			}
+		}
 		//$temp = ($data[$i]['total_penalty_amount']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['debt_vat_amt']);
 		//$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
 		//$temp_sisa = $temp - $data[$i]['payment_amount'];
 		$temp = $data[$i]['total_vat_amount']+$data[$i]['total_penalty_amount'];
-		$temp_sisa = $temp - $data[$i]['payment_amount'];
+		if ($param_arr['ketetapan'] == 6){
+			$temp_sisa = $data[$i]['debt_vat_amt'] + $data[$i]['db_increasing_charge']- $data[$i]['payment_amount'];
+		}else{
+			$temp_sisa = $temp - $data[$i]['payment_amount'];
+		}
 		$jumlah = $jumlah + $temp;
 		$jumlah_realisasi = $jumlah_realisasi + $data[$i]['payment_vat_amount'];
 		$jumlah_sisa = $jumlah_sisa + $temp_sisa;
@@ -378,7 +397,7 @@ function CetakExcel($param_arr) {
 			if ($data[$i]['payment_date']=='') {
 				$output.='<td align="right" >'.number_format(0, 2, ',', '.').'</td>';
 				$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['total_penalty_amount'], 2, ',', '.').'</td>';
-				$jumlah_belum_bayar = $jumlah_belum_bayar + $temp;
+				$jumlah_belum_bayar = $jumlah_belum_bayar + $data[$i]['debt_vat_amt']+$data[$i]['db_increasing_charge']+$data[$i]['db_interest_charge']+$data[$i]['total_penalty_amount'];
 			}else{
 				$output.='<td align="right" >'.number_format($data[$i]['payment_amount'], 2, ',', '.').'</td>';
 				$output.='<td align="right" >'.number_format(0, 2, ',', '.').'</td>';
@@ -387,7 +406,11 @@ function CetakExcel($param_arr) {
 		}
 		$output.='<td align="left" >'.$data[$i]['payment_date'].'</td>';
 		//$output.='<td align="right" >'.number_format($data[$i]['payment_vat_amount'], 2, ',', '.').'</td>';
-		$output.='<td align="right" >'.number_format($temp-$data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		if ($param_arr['ketetapan'] == 6){
+			$output.='<td align="right" >'.number_format($data[$i]['debt_vat_amt'] + $data[$i]['db_increasing_charge'] - $data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		}else{
+			$output.='<td align="right" >'.number_format($temp - $data[$i]['payment_amount'], 2, ',', '.').'</td>';
+		}
 		$output.='<td align="left" >'.$data[$i]['active_date_short'].'</td>';
 		if ($data[$i]['p_account_status_id']==1) {
 			$output.='<td align="left" ></td>';
