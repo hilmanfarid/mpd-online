@@ -90,7 +90,7 @@ function print_laporan($param_arr){
 			b.brand_address_name ||' '|| nvl(b.brand_address_no,'') as alamat_new
 			from sikp.f_laporan_global_wp2(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
 			left join t_cust_account b on a.npwpd = b.npwd
-			where f_get_wilayah_id(b.npwd) = ".$param_arr['kode_wilayah']."order by nama_wp";
+			where f_get_wilayah_id(b.npwd) = ".$param_arr['kode_wilayah']." order by TRIM(company_brand)";
 	//echo $query;exit;
 	$dbConn->query($query);
 	$items=array();
@@ -177,7 +177,8 @@ function print_excel($param_arr) {
 			b.brand_address_name ||' '|| nvl(b.brand_address_no,'') as alamat_new
 			from sikp.f_laporan_global_wp2(".$param_arr['p_rqst_type_id'].",'".$param_arr['date_start']."', '".$param_arr['date_end']."') a
 			left join t_cust_account b on a.npwpd = b.npwd
-			where f_get_wilayah_id(b.npwd) = ".$param_arr['kode_wilayah'];
+			where f_get_wilayah_id(b.npwd) = ".$param_arr['kode_wilayah']. " 
+			order by TRIM(company_brand)";
 	$dbConn->query($query);
 
 	$no =1;
