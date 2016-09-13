@@ -115,10 +115,12 @@ function GetCetakHTML($param_arr) {
 	$output.='<th align="center" >SISA</th>';
 	$output.='<th align="center" >TANGGAL PENGUKUHAN</th>';
 	$output.='<th align="center" >TANGGAL PENUTUPAN</th>';
+	$output.='<th align="center" >WILAYAH</th>';
 	$output.='</tr>';
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select to_char(last_satatus_date,'dd-mm-yyyy') as last_satatus_date_short , 
+	$query="select f_get_wilayah(a.npwd)as wilayah,
+		to_char(last_satatus_date,'dd-mm-yyyy') as last_satatus_date_short , 
 		to_char(active_date ,'dd-mm-yyyy') as active_date_short,
 		a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
@@ -226,6 +228,7 @@ function GetCetakHTML($param_arr) {
 		}else{
 			$output.='<td align="left" >'.$data[$i]['last_satatus_date_short'].'</td>';
 		}
+		$output.='<td align="left" >'.$data[$i]['wilayah'].'</td>';
 		$output.='</tr>';
 	}
 
@@ -261,7 +264,8 @@ function CetakExcel($param_arr) {
 	startExcel("laporan_history_potensi_piutang.xls");
 	
 	$dbConn	= new clsDBConnSIKP();
-	$query="select to_char(last_satatus_date,'dd-mm-yyyy') as last_satatus_date_short , 
+	$query="select f_get_wilayah(a.npwd)as wilayah,
+		to_char(last_satatus_date,'dd-mm-yyyy') as last_satatus_date_short , 
 		to_char(active_date ,'dd-mm-yyyy') as active_date_short,
 		a.t_vat_setllement_id as set_id,a.npwd as npwpd ,z.code as masa_pajak,
 		to_char(due_date,'dd-mm-yyyy')as due_date_char, to_char(settlement_date,'dd-mm-yyyy') as tgl_tap,
@@ -331,6 +335,7 @@ function CetakExcel($param_arr) {
 	$output.='<th rowspan=2 align="center" >SISA</th>';
 	$output.='<th rowspan=2 align="center" >TANGGAL PENGUKUHAN</th>';
 	$output.='<th rowspan=2 align="center" >TANGGAL PENUTUPAN</th>';
+	$output.='<th rowspan=2 align="center" >WILAYAH</th>';
 	$output.='</tr>';
 	if ($param_arr['status_bayar']!=3){
 		$output.='<tr>';
@@ -417,6 +422,7 @@ function CetakExcel($param_arr) {
 		}else{
 			$output.='<td align="left" >'.$data[$i]['last_satatus_date_short'].'</td>';
 		}
+		$output.='<td align="left" >'.$data[$i]['wilayah'].'</td>';
 		$output.='</tr>';
 	}
 	$output.='<tr><td align="center" colspan=10 >Jumlah</td>';
