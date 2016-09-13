@@ -284,10 +284,10 @@ function CetakExcel($param_arr) {
 		$query.=" and f_get_wilayah_id(a.npwd) =".$param_arr['kode_wilayah']." ";
 	}
 	if ($param_arr['status_bayar']==2){
-		$query.="and receipt_no is not null ORDER BY company_brand";
+		$query.="and receipt_no is not null ORDER BY q.p_vat_type_id, ayat_pajak, company_brand, start_period";
 	}else{
 		if ($param_arr['status_bayar']==3){
-			$query.="and receipt_no is null ORDER BY company_brand";
+			$query.="and receipt_no is null ORDER BY q.p_vat_type_id, ayat_pajak, company_brand, start_period";
 		}else{
 			$query.="ORDER BY q.p_vat_type_id, ayat_pajak, company_brand, start_period";
 		}
