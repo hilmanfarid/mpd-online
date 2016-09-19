@@ -39,11 +39,29 @@
 					<Features/>
 				</Hidden>
 				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_lap_spjpSearchButton_DoSearch">
-<Components/>
-<Events/>
-<Attributes/>
-<Features/>
-</Button>
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+				<ListBox id="566" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ttd" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchttd" connection="ConnSIKP" _valueOfList="2" _nameOfList="Basah" dataSource="1;Barcode;2;Basah" required="True">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="567" eventType="Client"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
 </Components>
 			<Events/>
 			<TableParameters/>
