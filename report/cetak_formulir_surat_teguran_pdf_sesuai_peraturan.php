@@ -13,6 +13,7 @@ $dbConn = new clsDBConnSIKP();
 $p_year_period_id = CCGetFromGet("p_year_period_id", "");
 $p_finance_period_id = CCGetFromGet("p_finance_period_id", "");
 $p_vat_type_id = CCGetFromGet("p_vat_type_id", "");
+$ttd = CCGetFromGet("ttd", 1);
 if(empty($p_vat_type_id)){
 	$p_vat_type_id = 0;
 }
@@ -598,6 +599,15 @@ class FormCetak extends FPDF {
 		$lbody = $this->lengthCell / 16;
 		$lbody2 = $lbody * 2;
 		$lbody4 = $lbody * 4;
+		
+		//setting ttd
+		$ttd = CCGetFromGet("ttd", 1);
+		if ($ttd == 1){
+			$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
+			str_replace(" ","_",$data['company_name'])."-".
+			$data["npwd"]
+			,160,153+sizeof($data_piutang)*4,25,25,'PNG');
+		}
 
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
@@ -643,26 +653,6 @@ class FormCetak extends FPDF {
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
 		
-		/*if ($_SERVER['HTTP_HOST']=='172.16.20.1'){
-			$this->Image('http://'.$_SERVER['HTTP_HOST'].'/include/qrcode/generate-qr.php?param='.
-			str_replace(" ","-",$data['letter_date_txt'])."_".
-			$data["npwd"]."_".
-			str_replace(" ","-",$data["periode"])
-			,15,170,25,25,'PNG');
-		}else{
-			$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
-			str_replace(" ","-",$data['letter_date_txt'])."_".
-			$data["npwd"]."_".
-			str_replace(" ","-",$data["periode"])
-			,15,170,25,25,'PNG');
-		}*/
-
-		/*$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
-		str_replace(" ","-",$data['letter_date_txt'])."_".
-		$data["npwd"]."_".
-		str_replace(" ","-",$data["periode"])
-		,28,168,25,25,'PNG');*/
-		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
 		$this->Cell($lbody4-5, $this->height, "", "", 0, 'C');
@@ -671,6 +661,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody4+10, $this->height, "Drs. H. EMA SUMARNA, M. Si", "B", 0, 'C');
 		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
 		$this->Ln();
+		
+		
 		
 		$this->Cell($lbody2, $this->height, "", "L", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'L');
