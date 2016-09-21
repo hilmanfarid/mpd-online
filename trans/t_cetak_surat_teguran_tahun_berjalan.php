@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-9DC0E7CA
+//Class_Initialize Event @3-10AAEEEB
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -69,57 +69,63 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->code = & new clsControl(ccsTextBox, "code", "code", ccsText, "", CCGetRequestParam("code", $Method, NULL), $this);
-            $this->p_finance_period_id = & new clsControl(ccsHidden, "p_finance_period_id", "p_finance_period_id", ccsText, "", CCGetRequestParam("p_finance_period_id", $Method, NULL), $this);
             $this->p_year_period_id = & new clsControl(ccsHidden, "p_year_period_id", "p_year_period_id", ccsText, "", CCGetRequestParam("p_year_period_id", $Method, NULL), $this);
             $this->year_code = & new clsControl(ccsTextBox, "year_code", "year_code", ccsText, "", CCGetRequestParam("year_code", $Method, NULL), $this);
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->ttd = & new clsControl(ccsListBox, "ttd", "ttd", ccsText, "", CCGetRequestParam("ttd", $Method, NULL), $this);
             $this->ttd->DSType = dsListOfValues;
             $this->ttd->Values = array(array("1", "Barcode"), array("2", "Basah"));
             $this->ttd->Required = true;
+            $this->teg_ke = & new clsControl(ccsListBox, "teg_ke", "teg_ke", ccsText, "", CCGetRequestParam("teg_ke", $Method, NULL), $this);
+            $this->teg_ke->DSType = dsListOfValues;
+            $this->teg_ke->Values = array(array("1", "1"), array("2", "2"), array("3", "3"));
+            $this->teg_ke->Required = true;
+            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->p_settlement_type_id = & new clsControl(ccsListBox, "p_settlement_type_id", "p_settlement_type_id", ccsText, "", CCGetRequestParam("p_settlement_type_id", $Method, NULL), $this);
+            $this->p_settlement_type_id->DSType = dsListOfValues;
+            $this->p_settlement_type_id->Values = array(array("4", "SKPDKB JABATAN"), array("2", "SKPDKB PEMERIKSAAN"));
+            $this->p_settlement_type_id->Required = true;
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-319B0D4F
+//Validate Method @3-ADDB4345
     function Validate()
     {
         global $CCSLocales;
         $Validation = true;
         $Where = "";
-        $Validation = ($this->code->Validate() && $Validation);
-        $Validation = ($this->p_finance_period_id->Validate() && $Validation);
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->year_code->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
         $Validation = ($this->ttd->Validate() && $Validation);
+        $Validation = ($this->teg_ke->Validate() && $Validation);
+        $Validation = ($this->p_settlement_type_id->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
-        $Validation =  $Validation && ($this->code->Errors->Count() == 0);
-        $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->ttd->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->teg_ke->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_settlement_type_id->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-CB44A4B1
+//CheckErrors Method @3-9FE8C621
     function CheckErrors()
     {
         $errors = false;
-        $errors = ($errors || $this->code->Errors->Count());
-        $errors = ($errors || $this->p_finance_period_id->Errors->Count());
         $errors = ($errors || $this->p_year_period_id->Errors->Count());
         $errors = ($errors || $this->year_code->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
         $errors = ($errors || $this->ttd->Errors->Count());
+        $errors = ($errors || $this->teg_ke->Errors->Count());
+        $errors = ($errors || $this->p_settlement_type_id->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -172,7 +178,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-3555E250
+//Show Method @3-0DAFFBCC
     function Show()
     {
         global $CCSUseAmp;
@@ -187,6 +193,8 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->ttd->Prepare();
+        $this->teg_ke->Prepare();
+        $this->p_settlement_type_id->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -197,13 +205,13 @@ function GetPrimaryKey($keyName)
 
         if($this->FormSubmitted || $this->CheckErrors()) {
             $Error = "";
-            $Error = ComposeStrings($Error, $this->code->Errors->ToString());
-            $Error = ComposeStrings($Error, $this->p_finance_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_year_period_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->year_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->ttd->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->teg_ke->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_settlement_type_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -221,14 +229,14 @@ function GetPrimaryKey($keyName)
             return;
         }
 
-        $this->code->Show();
-        $this->p_finance_period_id->Show();
         $this->p_year_period_id->Show();
         $this->year_code->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
-        $this->Button_DoSearch->Show();
         $this->ttd->Show();
+        $this->teg_ke->Show();
+        $this->Button_DoSearch->Show();
+        $this->p_settlement_type_id->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
