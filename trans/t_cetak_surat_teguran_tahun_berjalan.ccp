@@ -2,18 +2,6 @@
 	<Components>
 		<Record id="3" sourceType="Table" urlType="Relative" secured="False" allowInsert="False" allowUpdate="False" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="t_rep_lap_spjpSearch" returnPage="t_cetak_surat_teguran_tahun_berjalan.ccp" PathID="t_rep_lap_spjpSearch" pasteActions="pasteActions" pasteAsReplace="pasteAsReplace">
 			<Components>
-				<TextBox id="561" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="code" PathID="t_rep_lap_spjpSearchcode">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</TextBox>
-				<Hidden id="562" fieldSourceType="DBColumn" dataType="Text" name="p_finance_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchp_finance_period_id">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Hidden>
 				<Hidden id="563" fieldSourceType="DBColumn" dataType="Text" name="p_year_period_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="t_rep_lap_spjpSearchp_year_period_id">
 					<Components/>
 					<Events/>
@@ -38,18 +26,54 @@
 					<Attributes/>
 					<Features/>
 				</Hidden>
-				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_lap_spjpSearchButton_DoSearch">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
 				<ListBox id="566" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="ttd" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchttd" connection="ConnSIKP" _valueOfList="2" _nameOfList="Basah" dataSource="1;Barcode;2;Basah" required="True">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
 							<Actions>
 								<Action actionName="Custom Code" actionCategory="General" id="567" eventType="Client"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<ListBox id="572" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="teg_ke" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchteg_ke" connection="ConnSIKP" dataSource="1;1;2;2;3;3" required="True" _valueOfList="3" _nameOfList="3">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="573" eventType="Client"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_lap_spjpSearchButton_DoSearch">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<ListBox id="574" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="p_settlement_type_id" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchp_settlement_type_id" connection="ConnSIKP" dataSource="4;SKPDKB JABATAN;2;SKPDKB PEMERIKSAAN" required="True" _valueOfList="2" _nameOfList="SKPDKB PEMERIKSAAN">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="575" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
