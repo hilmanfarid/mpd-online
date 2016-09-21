@@ -52,7 +52,7 @@ $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) 
 		and b.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$p_vat_type_id.")
-		order by b.company_brand";
+		order by b.company_brand limit 10";
 
 $dbConn->query($query);
 //echo $query;exit;
@@ -310,8 +310,9 @@ class FormCetak extends FPDF {
 		/*$this->Cell($this->lengthCell, $this->height, "Nomor: ".$data["letter_no"], "LR", 0, 'C');
 		$this->newLine();*/
 		$this->SetWidths(array(10,204.3, 5));
+		$this->SetAligns(array("L", "J", "C"));
 		$this->RowMultiBorderWithHeight(array("",
-				"Menurut pembukuan kami hingga saat ini Saudara masih mempunyai tunggakan Pajak sebagai berikut:",
+				"Menurut pembukuan kami hingga saat ini Saudara belum melapor dan/atau membayar pajak daerah sebagai berikut:",
 				""
 			),
 			array("L",
@@ -329,7 +330,7 @@ class FormCetak extends FPDF {
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
-		$this->SetWidths(array(10, $ltable4, $ltable2, $ltable2, $ltable3, $ltable3, 5));
+		$this->SetWidths(array(10, $ltable4, $ltable2, $ltable2+5, $ltable3-5, $ltable3, 5));
 		$this->SetAligns(array("L", "C", "C", "C", "C", "C", "L"));
 		
 		$title_kolom4 = 'SPTPD';
@@ -339,12 +340,13 @@ class FormCetak extends FPDF {
 			$title_kolom4 = 'NO SKPDKB';
 			$title_kolom5 = 'SKPDKB JABATAN';
 		}
-
-		$this->RowMultiBorderWithHeight(
+		
+		if( $data["sequence_no"] == 3) {
+			$this->RowMultiBorderWithHeight(
 			array("",
 				"JENIS PAJAK",
 				"TAHUN",
-				"BULAN",
+				"MASA PAJAK",
 				$title_kolom4,
 				$title_kolom5,
 				""
@@ -358,10 +360,32 @@ class FormCetak extends FPDF {
 				"LR"
 			),
 			$this->height
-		);
+			);
+		}else{
+			$this->SetWidths(array(50, $ltable4, $ltable2, $ltable2+5, $ltable3-5, $ltable3, 5-40));
+			$this->RowMultiBorderWithHeight(
+			array("",
+				"JENIS PAJAK",
+				"TAHUN",
+				"MASA PAJAK",
+				"",
+				"",
+				""
+			),
+			array("LR",
+				"TBLR",
+				"TBLR",
+				"TBLR",
+				"",
+				"",
+				"R"
+			),
+			$this->height
+			);
+			$this->SetWidths(array(10, $ltable4, $ltable2, $ltable2+5, $ltable3-5, $ltable3, 5));
+		}
+
 		
-		
-		$this->SetWidths(array(10, $ltable4, $ltable2, $ltable2, $ltable3, $ltable3, 5));
 		$this->SetAligns(array("L", "C", "C", "L", "C", "C", "L"));
 		$tahun = explode(" ",$data["periode"]);
 
@@ -400,25 +424,27 @@ class FormCetak extends FPDF {
 			);
 
 		} else {
+			$this->SetWidths(array(50, $ltable4, $ltable2, $ltable2+5, $ltable3-5, $ltable3, 5-40));
 			$this->RowMultiBorderWithHeight(
 				array("",
 					$data["vat_code"],
 					$tahun[1],
 					$bulan_string,
-					$data["tap_no"],
-					"-",
+					"",
+					"",
 					""
 				),
 				array("LR",
 					"TBLR",
 					"TBLR",
 					"TBLR",
-					"TBLR",
-					"TBLR",
-					"LR"
+					"",
+					"",
+					"R"
 				),
 				$this->height
 			);
+			$this->SetWidths(array(10, $ltable4, $ltable2, $ltable2+5, $ltable3-5, $ltable3, 5));
 		}
 		
 		$lbody = $this->lengthCell / 4;
@@ -431,13 +457,30 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody3, $this->height, "", "R", 0, 'L');
 		$this->Ln();
 		
-		$this->tulis("Sampai saat ini belum melunasi pembayaran pajak.", "L");
-		$this->tulis("", "L");
-		$this->tulis("Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang-undang Nomor 28 Tahun", "FJ");
+		//$this->tulis("Sampai saat ini belum melunasi pembayaran pajak.", "L");
+		//$this->tulis("", "L");
+		$this->SetWidths(array(10,$this->lengthCell-15,5));
+		$this->SetAligns(array("L", "J", "C"));
+		$this->RowMultiBorderWithHeight(
+				array("",
+					"Untuk mencegah tindakan penagihan dengan penetapan pajak ditambah sansi administrasi secara jabatan berdasarkan ".
+					"Undang-undang Nomor 28 Tahun 2011 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar ".
+					"melapar dan/atau membayar pajak anda dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut ".
+					"tindakan penagihan akan dilanjutkan dengan penetapan pajak ditambag sanksi administrasi secara jabatan.",
+					""
+				),
+				array("L",
+					"",
+					"R"
+				),
+				$this->height
+			);
+		/*$this->tulis("Untuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang-undang Nomor 28 Tahun", "FJ");
 		$this->tulis("2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi", "FJ");
 		$this->tulis("jumlah tunggakan dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut", "FJ");
 		$this->tulis("tindakan penagihan akan ditindaklanjuti dengan penyerahan Surat Paksa.", "L");
-		$this->tulis("", "L");
+		*/$this->tulis("", "L");
+		
 		$this->tulis("Apabila saudara telah melaksanakan pembayaran pajak tersebut, kami mohon untuk dapat memperlihatkan", "FJ");
 		$this->tulis("SSPD yang telah divalidasi dengan melampirkan photo copy dokumen yang dimaksud.", "L");
 		$this->tulis("", "L");
