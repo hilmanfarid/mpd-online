@@ -47,9 +47,45 @@ function t_rep_lap_spjpSearchttd_OnChange()
 }
 //End Close t_rep_lap_spjpSearchttd_OnChange
 
-//bind_events @1-76879086
+//t_rep_lap_spjpSearchteg_ke_OnChange @572-20B220ED
+function t_rep_lap_spjpSearchteg_ke_OnChange()
+{
+    var result = true;
+//End t_rep_lap_spjpSearchteg_ke_OnChange
+
+//Custom Code @573-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_lap_spjpSearchteg_ke_OnChange @572-BC33A33A
+    return result;
+}
+//End Close t_rep_lap_spjpSearchteg_ke_OnChange
+
+//t_rep_lap_spjpSearchp_settlement_type_id_OnChange @574-981E1558
+function t_rep_lap_spjpSearchp_settlement_type_id_OnChange()
+{
+    var result = true;
+//End t_rep_lap_spjpSearchp_settlement_type_id_OnChange
+
+//Custom Code @575-2A29BDB7
+    // -------------------------
+    // Write your own code here.
+    // -------------------------
+//End Custom Code
+
+//Close t_rep_lap_spjpSearchp_settlement_type_id_OnChange @574-BC33A33A
+    return result;
+}
+//End Close t_rep_lap_spjpSearchp_settlement_type_id_OnChange
+
+//bind_events @1-06B3FA2A
 function bind_events() {
     addEventHandler("t_rep_lap_spjpSearchttd", "change", t_rep_lap_spjpSearchttd_OnChange);
+    addEventHandler("t_rep_lap_spjpSearchteg_ke", "change", t_rep_lap_spjpSearchteg_ke_OnChange);
+    addEventHandler("t_rep_lap_spjpSearchp_settlement_type_id", "change", t_rep_lap_spjpSearchp_settlement_type_id_OnChange);
 }
 //End bind_events
 
@@ -58,7 +94,7 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
 //End CCS script
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -98,11 +134,25 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                   </tr>
  
                   <tr class="Controls">
-                    <td class="search-field">Periode Pajak</td> 
-                    <td class="search-field"><input id="t_rep_lap_spjpSearchcode" class="ControlsRQ" value="{code}" maxlength="32" size="32" name="{code_Name}"></td> 
-                    <td><img onclick="javascript:periodepajak()" border="0" src="../images/view.gif"><input id="t_rep_lap_spjpSearchp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td> 
+                    <td class="search-field">Ketetapan</td> 
                     <td class="search-field">
-                      <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="TAMPILKAN PDF" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
+                      <select id="t_rep_lap_spjpSearchp_settlement_type_id" class="ControlsRQ" name="{p_settlement_type_id_Name}">
+                        {p_settlement_type_id_Options}
+                      </select>
+ </td> 
+                    <td>&nbsp;</td> 
+                    <td class="search-field">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="search-field">Teguran Ke</td> 
+                    <td class="search-field">
+                      <select id="t_rep_lap_spjpSearchteg_ke" class="ControlsRQ" name="{teg_ke_Name}">
+                        {teg_ke_Options}
+                      </select>
+ </td> 
+                    <td></td> 
+                    <td class="search-field"></td>
                   </tr>
  
                   <tr class="Controls">
@@ -113,7 +163,8 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
                       </select>
  </td> 
                     <td>&nbsp;</td> 
-                    <td class="search-field">&nbsp;</td>
+                    <td class="search-field">&nbsp; 
+                      <!-- BEGIN Button Button_DoSearch --><input id="t_rep_lap_spjpSearchButton_DoSearch" class="btn_tambah" onclick="cetak(); return false;" value="TAMPILKAN PDF" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td>
                   </tr>
                 </table>
               </td>
@@ -161,13 +212,14 @@ window.onload = bind_events; //Assign bind_events @1-19F7B649
     function cetak()
     {
         p_year_period_id = document.getElementById("t_rep_lap_spjpSearchp_year_period_id").value;
-        p_finance_period_id= document.getElementById("t_rep_lap_spjpSearchp_finance_period_id").value;
+        teg_ke= document.getElementById("t_rep_lap_spjpSearchteg_ke").value;
         p_vat_type_id = document.getElementById("t_rep_lap_spjpSearchp_vat_type_id").value;
-		ttd = document.getElementById("t_rep_lap_spjpSearchttd").value;
-        if(p_year_period_id == "" || p_finance_period_id == "") {
+		p_settlement_type_id = document.getElementById("t_rep_lap_spjpSearchp_settlement_type_id").value;
+        ttd = document.getElementById("t_rep_lap_spjpSearchttd").value;
+        if(p_year_period_id == "" ) {
             alert("Filter Berwarna Kuning Harus Diisi");
         }else {
-            window.open("../report/cetak_formulir_surat_teguran_pdf_sesuai_peraturan.php?p_year_period_id=" + p_year_period_id + "&p_finance_period_id=" + p_finance_period_id+"&p_vat_type_id="+p_vat_type_id+"&ttd="+ttd, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+            window.open("../report/cetak_formulir_surat_teguran_pdf_sesuai_peraturan.php?p_year_period_id=" + p_year_period_id + "&teg_ke=" + teg_ke+"&p_vat_type_id="+p_vat_type_id+"&ttd="+ttd+"&p_settlement_type_id="+p_settlement_type_id, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
         }
     }
 </script>
