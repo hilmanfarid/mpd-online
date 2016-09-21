@@ -10,72 +10,33 @@ include_once("../include/qrcode/generate-qr-file.php");
 $dbConn = new clsDBConnSIKP();
 
 //$t_customer_order_id = CCGetFromGet("t_customer_order_id", "");
-$p_year_period_id = CCGetFromGet("p_year_period_id", "");
-$p_finance_period_id = CCGetFromGet("p_finance_period_id", "");
-$p_vat_type_id = CCGetFromGet("p_vat_type_id", "");
+$p_year_period_id = CCGetFromGet("p_year_period_id", 27);
+$p_settlement_type_id = CCGetFromGet("p_settlement_type_id", 4);
+$p_vat_type_id = CCGetFromGet("p_vat_type_id", 0);
 $ttd = CCGetFromGet("ttd", 1);
 if(empty($p_vat_type_id)){
 	$p_vat_type_id = 0;
 }
 
-$query ="select * from t_debt_letter where sequence_no = 3 and p_finance_period_id = ".$p_finance_period_id;
-//echo $query;exit;
-$dbConn->query($query);
-$dbConn->next_record();
-$t_customer_order_id = $dbConn->f("t_customer_order_id");
+$query ="select DISTINCT a.t_cust_account_id,company_brand,b.npwd,brand_address_name,brand_address_no,vat_code
+		from t_vat_setllement a
+		left join t_cust_account b on a.t_cust_account_id=b.t_cust_account_id
+		left join t_payment_receipt c on a.t_vat_setllement_id = c.t_vat_setllement_id
+		left join p_vat_type d on d.p_vat_type_id = b.p_vat_type_id
+		where p_settlement_type_id = ".$p_settlement_type_id." 
+		and trunc(settlement_date) 
+			BETWEEN (select start_date from p_year_period where p_year_period_id = ".$p_year_period_id.")
+			and (select end_date from p_year_period where p_year_period_id = ".$p_year_period_id.")
+		and is_settled = 'N'
+		and t_payment_receipt_id is NULL
+		and b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)
+		AND B.p_account_status_id = 1
+		and case 
+				when ".$p_vat_type_id." = 0 then true
+				else b.p_vat_type_id = ".$p_vat_type_id."
+			end
+		ORDER BY b.company_brand";
 
-//$t_customer_order_id = 67;
-//$dataArr = array();
-// $dataBaru = array();
-
-if(empty($t_customer_order_id)){
-	echo "data tidak ada";
-	exit();
-}else{
-
-//nip & nama
-	$ttd = "SELECT value as nama_kadin, value_2 as nip_kadin "
-		  ."FROM p_global_param "
-		  ."WHERE code = 'TTD KADIN'";
-		  
-	$dbConn->query($ttd);
-	
-	$nama_kadin = "";
-	$nip_kadin = "";
-
-	while($dbConn->next_record()){
-		$nama_kadin = $dbConn->f("nama_kadin");
-		$nip_kadin = $dbConn->f("nip_kadin");
-	}
-
-$query ="select to_char(start_date - interval '1 month','dd-mm-yyyy') as start_date,
-		to_char(end_date- interval '1 month','dd-mm-yyyy') as end_date 
-		from p_year_period where p_year_period_id = ".$p_year_period_id;
-//echo $query;exit;
-$dbConn->query($query);
-$dbConn->next_record();
-$start_year = $dbConn->f("start_date");
-$end_year = $dbConn->f("end_date");
-
-$query="select to_char(letter_date,'dd-mm-yyyy') as letter_date_short,c.region_name as kota,* from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
-		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
-		left join p_region as c on b.brand_p_region_id = c.p_region_id
-		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43)
-			AND B.p_account_status_id = 1
-			and case 
-					when ".$p_vat_type_id." = 0 then true
-					else b.p_vat_type_id = ".$p_vat_type_id."
-				end
-			and EXISTS (select 1
-				from t_vat_setllement x 
-				left join t_payment_receipt y on x.t_vat_setllement_id = y.t_vat_setllement_id
-				where x.t_cust_account_id = tbl.t_cust_account_id
-				and y.t_payment_receipt_id is NULL
-				and x.p_settlement_type_id = 4
-				and x.start_period between 
-					to_date('".$start_year."','dd-mm-yyyy') and to_date('".$end_year."','dd-mm-yyyy')
-				)
-		order by p_vat_type_id,company_brand";
 //echo $query;exit;
 $dbConn->query($query);
 $data=array();
@@ -86,27 +47,9 @@ while ($dbConn->next_record()) {
 			//'company_name' => $dbConn->f("company_name"),
 			//'address' => $dbConn->f("address"),
 			'company_name' => $dbConn->f("company_brand"),
-			'address' => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no"),
-			'letter_no' => $dbConn->f("letter_no"),
 			'vat_code' => $dbConn->f("vat_code"),
-			'periode' => $dbConn->f("periode"),
-			'tap_no' => $dbConn->f("tap_no"),
-			'tap_date' => $dbConn->f("tap_date"),
-			'due_date' => $dbConn->f("due_date"),
-			'debt_amount' => $dbConn->f("debt_amount"),
-			'terbilang' =>  $dbConn->f("terbilang"),
-			'debt_period_code' =>  $dbConn->f("debt_period_code"),
-			'sequence_no' => $dbConn->f("sequence_no"),
-			'letter_date_txt' => $dbConn->f("letter_date_txt"),
-			'letter_date' => $dbConn->f("letter_date_short"),
-			'kota' => $dbConn->f("kota"),
-			'nama_kadin' => $nama_kadin,
-			'nip_kadin' => $nip_kadin
+			'address' => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no")
 		);
-}
-
-	
-$dbConn->close();
 }
 
 //$path = '';
@@ -321,7 +264,8 @@ class FormCetak extends FPDF {
 		$this->Ln();
 
 		$this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
-		$this->Cell($lkepada2, $this->height, $data['kota'], "R", 0, 'L');
+		//$this->Cell($lkepada2, $this->height, $data['kota'], "R", 0, 'L');
+		$this->Cell($lkepada2, $this->height, "BANDUNG", "R", 0, 'L');
 		$this->Ln();
 		
 		// $this->Cell($lkepada3, $this->height, "", "L", 0, 'L');
@@ -334,7 +278,8 @@ class FormCetak extends FPDF {
 		$this->SetFont('BKANT', 'U', 10);
 		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
 		// $this->newLine();
-		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN", "LR", 0, 'C');
+		$ttd = CCGetFromGet("ttd", 1);
+		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN ".numberToRoman($ttd), "LR", 0, 'C');
 		$this->Ln();
 		$this->SetFont('BKANT', '', 10);
 		$data["letter_no"]=trim($data["letter_no"]);
@@ -369,6 +314,9 @@ class FormCetak extends FPDF {
 		$ltable6 = $ltable * 6;
 		$ltable4 = $ltable * 4;
 		
+		$p_year_period_id = CCGetFromGet("p_year_period_id", 27);
+		$p_settlement_type_id = CCGetFromGet("p_settlement_type_id", 4);
+		$p_vat_type_id = CCGetFromGet("p_vat_type_id", "");
 		$dbConn = new clsDBConnSIKP();
 		$query="select to_char(start_period,'dd-mm-yyyy') ||' s.d. '||to_char(end_period,'dd-mm-yyyy') as masa_pajak,  
 				c.code,to_char(a.due_date,'dd-mm-yyyy') as due_date_short, 
@@ -381,9 +329,10 @@ class FormCetak extends FPDF {
 				left join t_customer_order d on d.t_customer_order_id = a.t_customer_order_id
 				where a.t_cust_account_id = ".$data["t_cust_account_id"]." 
 				and b.t_payment_receipt_id is NULL
-				and a.p_settlement_type_id = 4
-				and a.start_period between 
-					to_date('".$start_year."','dd-mm-yyyy') and to_date('".$end_year."','dd-mm-yyyy')
+				and a.p_settlement_type_id = ".$p_settlement_type_id."
+				and trunc(settlement_date) 
+					BETWEEN (select start_date from p_year_period where p_year_period_id = ".$p_year_period_id.")
+					and (select end_date from p_year_period where p_year_period_id = ".$p_year_period_id.")
 				ORDER BY start_period ";
 		//echo $query;exit;
 		$dbConn->query($query);
@@ -404,13 +353,13 @@ class FormCetak extends FPDF {
 		$this->SetWidths(array(10, $ltable2+5, $ltable4-5, $ltable3, $ltable2, $ltable3, 5));
 		$this->SetAligns(array("L",  "C", "C", "C", "C", "C","L"));
 		
-		$title_kolom4 = 'SPTPD';
-		$title_kolom5 = 'Tgl. Setor';
+		//$title_kolom4 = 'SPTPD';
+		//$title_kolom5 = 'Tgl. Setor';
 
-		if( $data["sequence_no"] == 3) {
+		//if( $data["sequence_no"] == 3) {
 			$title_kolom4 = 'No dan Tanggal SKPDKB';
 			$title_kolom5 = 'Jumlah Tunggakan';
-		}
+		//}
 
 		$this->RowMultiBorderWithHeight(
 			array("",
@@ -450,57 +399,15 @@ class FormCetak extends FPDF {
 		}
 
 		$total_piutang = 0;
-		if( $data["sequence_no"] == 3) {
-			foreach($data_piutang as $item ){
-				$this->RowMultiBorderWithHeight(
-					array("",
-						$data["vat_code"],
-						$item["masa_pajak"],
-						$item["order_no"].' - '.$item["tgl_ketetapan"],
-						$item["due_date"],
-						number_format($item["piutang"],0,",","."),
-						""
-					),
-					array("LR",
-						"TBLR",
-						"TBLR",
-						"TBLR",
-						"TBLR",
-						"TBLR",
-						"LR"
-					),
-					$this->height
-				);
-				$total_piutang += $item["piutang"];
-			}
-			$this->RowMultiBorderWithHeight(
-				array("",
-					"",
-					"",
-					"",
-					"",
-					number_format($total_piutang,0,",","."),
-					""
-				),
-				array("LR",
-					"TBLR",
-					"TBLR",
-					"TBLR",
-					"TBLR",
-					"TBLR",
-					"LR"
-				),
-				$this->height
-			);
-		} else {
-			$this->SetAligns(array("L",  "C", "C", "C", "C", "C","L"));
+	
+		foreach($data_piutang as $item ){
 			$this->RowMultiBorderWithHeight(
 				array("",
 					$data["vat_code"],
-					$bulan_string.' '.$tahun[1],
-					$data["tap_no"],
-					"-",
-					"-",
+					$item["masa_pajak"],
+					$item["order_no"].' - '.$item["tgl_ketetapan"],
+					$item["due_date"],
+					number_format($item["piutang"],0,",","."),
 					""
 				),
 				array("LR",
@@ -513,7 +420,28 @@ class FormCetak extends FPDF {
 				),
 				$this->height
 			);
+			$total_piutang += $item["piutang"];
 		}
+		$this->RowMultiBorderWithHeight(
+			array("",
+				"",
+				"",
+				"",
+				"",
+				number_format($total_piutang,0,",","."),
+				""
+			),
+			array("LR",
+				"TBLR",
+				"TBLR",
+				"TBLR",
+				"TBLR",
+				"TBLR",
+				"LR"
+			),
+			$this->height
+		);
+		
 		
 		$lbody = $this->lengthCell / 4;
 		$lbody1 = $lbody * 1;
@@ -549,22 +477,57 @@ class FormCetak extends FPDF {
 			);		
 		}
 		
+		$teg_ke = CCGetFromGet("teg_ke", 1);
 		$this->SetWidths(array(10,$this->lengthCell-20,10));
 		$this->SetAligns(array("L","J","L"));
-		$this->RowMultiBorderWithHeight(
-			array("",
-				"\nUntuk    mencegah    tindakan    penagihan    dengan    Surat    Paksa    berdasarkan    Peraturan    Daerah    Kota    Bandung ".
-				"Nomor 20 Tahun 2011 tentang Pajak Daerah, maka diminta kepada Saudara agar melunasi jumlah tunggakan dimaksud ".
-				"paling lambat 7 (tujuh) hari setelah diterimanya Surat Teguran ini. Lewat batas waktu tersebut tindakan ".
-				"penagihan akan dilanjutkan dengan penyerahan Surat Paksa.",
-				""
-			),
-			array("L",
-				"",
-				"R"
-			),
-			$this->height
-		);
+		if ($teg_ke == 1){
+			$this->RowMultiBorderWithHeight(
+				array("",
+					"\nUntuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang - Undang Nomor 28 ".
+					"Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi jumlah tunggakan ".
+					"dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
+					"dengan penyerahan Surat Teguran II yang dapat diikuti dengan pemasangan Media Peringatan.",
+					""
+				),
+				array("L",
+					"",
+					"R"
+				),
+				$this->height
+			);
+		}
+		if ($teg_ke == 2){
+			$this->RowMultiBorderWithHeight(
+				array("",
+					"\nUntuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang - Undang Nomor 28 ".
+					"Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi jumlah tunggakan ".
+					"dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
+					"dengan penyerahan Surat Teguran III yang dapat dikenakan sanksi administrasi sesuai dengan ketentuan perundang-undangan.",
+					""
+				),
+				array("L",
+					"",
+					"R"
+				),
+				$this->height
+			);
+		}
+		if ($teg_ke == 3){
+			$this->RowMultiBorderWithHeight(
+				array("",
+					"\nUntuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang - Undang Nomor 28 ".
+					"Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi jumlah tunggakan ".
+					"dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
+					"dengan penyerahan Surat Paksa.",
+					""
+				),
+				array("L",
+					"",
+					"R"
+				),
+				$this->height
+			);
+		}
 		
 		$this->RowMultiBorderWithHeight(
 			array("",
@@ -616,7 +579,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
 		//$this->Cell($lbody4, $this->height, "Bandung, " .$data['letter_date_txt'] /*. $data["tanggal"]*/, "", 0, 'C');
-		$this->Cell($lbody4, $this->height, "Bandung, ............................................" /*. $data["tanggal"]*/, "", 0, 'C');
+		$this->Cell($lbody4, $this->height, "Bandung, ". date('d-m-Y') /*. $data["tanggal"]*/, "", 0, 'C');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
