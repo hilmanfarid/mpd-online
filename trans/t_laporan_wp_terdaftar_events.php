@@ -85,6 +85,7 @@ function view_html($param_arr) {
 	//$output.='<th>KELURAHAN</th>';
 	//$output.='<th>AYAT PAJAK</th>';
 	$output.='<th>STATUS WP</th>';
+	$output.='<th>WILAYAH</th>';
 	$output.='</tr>';
 	
 	$no=1;
@@ -97,7 +98,7 @@ function view_html($param_arr) {
 					case
 						when a.p_account_status_id = 1 then 'Terdaftar' 
 						else 'Tutup' end as status_wp
-					,* 
+					,f_get_wilayah(a.npwd) AS wilayah,* 
 		FROM T_CUST_ACCOUNT a
 		left join p_vat_type_dtl x on x.p_vat_type_dtl_id = a.p_vat_type_dtl_id 
 		left join p_account_status y on y.p_account_status_id = a.p_account_status_id
@@ -105,8 +106,13 @@ function view_html($param_arr) {
 		left join p_region w on w.p_region_id = a.brand_p_region_id_kel 
 		left join t_customer v on v.t_customer_id = a.t_customer_id 
 		WHERE a.p_vat_type_id = ".$param_arr['p_vat_type_id'];
-	if ($param_arr['kode_wilayah']!=0){
-		$query .= " and f_get_wilayah(a.npwd) = '".$param_arr['kode_wilayah_name']."'";
+	
+	if ($param_arr['kode_wilayah']==-1){
+		$query .= " and f_get_wilayah(a.npwd) = '-'";
+	}else{
+		if ($param_arr['kode_wilayah']!=0){
+			$query .= " and f_get_wilayah(a.npwd) = '".$param_arr['kode_wilayah_name']."'";
+		}
 	}
 	if ($param_arr['p_account_status_id']!=0){
 		$query .= "and case 
@@ -141,7 +147,8 @@ function view_html($param_arr) {
 						"wp_name" => $dbConn->f("wp_name"),
 						"company_owner" => $dbConn->f("company_owner"),
 						"address_name_owner" => $dbConn->f("address_name_owner").' '.$dbConn->f("address_no_owner"),
-						"ayat_pajak" => $dbConn->f("vat_code")
+						"ayat_pajak" => $dbConn->f("vat_code"),
+						"wilayah" => $dbConn->f("wilayah")
 						);
 		
 		$output .= '<tr>';
@@ -158,6 +165,7 @@ function view_html($param_arr) {
 			//$output .= '<td align="left">'.$item['kelurahan'].'</td>';
 			//$output .= '<td align="left">'.$item['ayat_pajak'].'</td>';
 			$output .= '<td align="left">'.$item['status_code'].'</td>';
+			$output .= '<td align="left">'.$item['wilayah'].'</td>';
 		$output .= '</tr>';
 	}
 	$output.='</table>';
