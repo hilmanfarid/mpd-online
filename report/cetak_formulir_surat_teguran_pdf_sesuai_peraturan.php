@@ -485,7 +485,7 @@ class FormCetak extends FPDF {
 				array("",
 					"\nUntuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang - Undang Nomor 28 ".
 					"Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi jumlah tunggakan ".
-					"dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
+					"dalam waktu 7 (tujuh) hari sejak diterima Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
 					"dengan penyerahan Surat Teguran II yang dapat diikuti dengan pemasangan Media Peringatan.",
 					""
 				),
@@ -501,7 +501,7 @@ class FormCetak extends FPDF {
 				array("",
 					"\nUntuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang - Undang Nomor 28 ".
 					"Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi jumlah tunggakan ".
-					"dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
+					"dalam waktu 7 (tujuh) hari sejak diterima Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
 					"dengan penyerahan Surat Teguran III yang dapat dikenakan sanksi administrasi sesuai dengan ketentuan perundang-undangan.",
 					""
 				),
@@ -517,7 +517,7 @@ class FormCetak extends FPDF {
 				array("",
 					"\nUntuk mencegah tindakan penagihan dengan Surat Paksa berdasarkan Undang - Undang Nomor 28 ".
 					"Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar melunasi jumlah tunggakan ".
-					"dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
+					"dalam waktu 7 (tujuh) hari sejak diterima Surat Teguran ini. Setelah batas waktu tersebut tindakan penagihan akan ditindaklanjuti ".
 					"dengan penyerahan Surat Paksa.",
 					""
 				),
