@@ -52,7 +52,7 @@ $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) 
 		and b.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$p_vat_type_id.")
-		order by b.company_brand limit 10";
+		order by b.company_brand";
 
 $dbConn->query($query);
 //echo $query;exit;
@@ -205,12 +205,12 @@ class FormCetak extends FPDF {
 			$this->RowMultiBorderWithHeight(
 				array("Nomor",
 					":",
-					" 973 /       - Disyanjak",
-					/*" - "*/""
+					" 973 /       - Disyanjak"
+					/*" - "*/
 				),
 				array("",
 					"",
-					""
+					"R"
 				),
 				3
 			);
@@ -222,7 +222,7 @@ class FormCetak extends FPDF {
 			),
 			array("L",
 				"",
-				"R"
+				""
 			),
 			3
 		);
