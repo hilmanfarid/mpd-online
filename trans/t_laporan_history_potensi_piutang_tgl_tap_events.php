@@ -94,6 +94,7 @@ function GetCetakHTML($param_arr) {
                 <tr >';
 
 	$output.='<th align="center" >NO</th>';
+	$output.='<th align="center" >NO WP</th>';
 	$output.='<th align="center" >JENIS PAJAK</th>';
 	$output.='<th align="center" >AYAT PAJAK</th>';
 	$output.='<th align="center" >NAMA</th>';
@@ -166,6 +167,7 @@ function GetCetakHTML($param_arr) {
 	$jumlah_db_interest_charge =0;
 	
 	$jumlah_total_penalty_amount =0;
+	$j=0;
 	for ($i = 0; $i < count($data); $i++) {
 		if ($param_arr['ketetapan'] == 6){
 			$data[$i]['debt_vat_amt'] = $data[$i]['debt_vat_amt']-$data[$i]['cr_payment'];
@@ -194,6 +196,15 @@ function GetCetakHTML($param_arr) {
 		$jumlah_total_penalty_amount =$jumlah_total_penalty_amount+$data[$i]['total_penalty_amount'];
 
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
+		if($i==0 || 
+			($data[$i-1]['npwpd']!=$data[$i]['npwpd']) 
+		  )
+		{
+			$output.='<td align="center" >'.($j+1).'</td>';
+			$j=$j+1;
+		}else{
+			$output.='<td align="center" ></td>';
+		}
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
@@ -232,7 +243,7 @@ function GetCetakHTML($param_arr) {
 		$output.='</tr>';
 	}
 
-	$output.='<tr><td align="center" colspan=10 >Jumlah</td>';
+	$output.='<tr><td align="center" colspan=11 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah_debt_vat_amt, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_db_increasing_charge, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_db_interest_charge, 2, ',', '.').'</td>';
@@ -312,6 +323,7 @@ function CetakExcel($param_arr) {
                 <tr >';
 
 	$output.='<th rowspan=2 align="center" >NO</th>';
+	$output.='<th rowspan=2 align="center" >NO WP</th>';
 	$output.='<th rowspan=2 align="center" >JENIS PAJAK</th>';
 	$output.='<th rowspan=2 align="center" >AYAT PAJAK</th>';
 	$output.='<th rowspan=2 align="center" >NAMA</th>';
@@ -354,6 +366,7 @@ function CetakExcel($param_arr) {
 	$jumlah_db_increasing_charge =0;
 	$jumlah_db_interest_charge =0;
 	$jumlah_total_penalty_amount =0;
+	$j=0;
 
     for ($i = 0; $i < count($data); $i++) {
 		if ($param_arr['ketetapan'] == 6){
@@ -382,6 +395,15 @@ function CetakExcel($param_arr) {
 		$jumlah_total_penalty_amount =$jumlah_total_penalty_amount+$data[$i]['total_penalty_amount'];
 
 		$output.='<tr><td align="center" >'.($i+1).'</td>';
+		if($i==0 || 
+			($data[$i-1]['npwpd']!=$data[$i]['npwpd']) 
+		  )
+		{
+			$output.='<td align="center" >'.($j+1).'</td>';
+			$j=$j+1;
+		}else{
+			$output.='<td align="center" ></td>';
+		}
 		$output.='<td align="left" >'.$data[$i]['jenis_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['ayat_pajak'].'</td>';
 		$output.='<td align="left" >'.$data[$i]['wp_name'].'</td>';
@@ -425,7 +447,7 @@ function CetakExcel($param_arr) {
 		$output.='<td align="left" >'.$data[$i]['wilayah'].'</td>';
 		$output.='</tr>';
 	}
-	$output.='<tr><td align="center" colspan=10 >Jumlah</td>';
+	$output.='<tr><td align="center" colspan=11 >Jumlah</td>';
 	$output.='<td align="right">'.number_format($jumlah_debt_vat_amt, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_db_increasing_charge, 2, ',', '.').'</td>';
 	$output.='<td align="right">'.number_format($jumlah_db_interest_charge, 2, ',', '.').'</td>';
