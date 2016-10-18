@@ -1,7 +1,9 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_restaurantForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_restaurantForm" activeCollection="DSQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_restaurant(t_cacc_dtl_restaurant_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, table_qty, avg_subscription, seat_qty, max_service_qty, service_type_desc, valid_from, valid_to) 
-VALUES(generate_id('sikp','t_cacc_dtl_restaurant','t_cacc_dtl_restaurant_id'), '{description}', '{created_by}', '{updated_by}', sysdate, sysdate, {t_cust_account_id}, '{table_qty}', {avg_subscription}, {seat_qty}, {max_service_qty}, '{service_type_desc}', to_date('{valid_from}','DD-MON-YYYY'), case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end)" customUpdate="UPDATE t_cacc_dtl_restaurant
+		<Record id="94" sourceType="SQL" urlType="Relative" secured="False" allowInsert="True" allowUpdate="True" allowDelete="True" validateData="True" preserveParameters="GET" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" connection="ConnSIKP" name="t_vat_reg_dtl_restaurantForm" errorSummator="Error" wizardCaption="Add/Edit V P App User " wizardFormMethod="post" PathID="t_vat_reg_dtl_restaurantForm" activeCollection="USQLParameters" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" customDeleteType="SQL" parameterTypeListName="ParameterTypeList" customUpdateType="SQL" customInsertType="SQL" customInsert="INSERT INTO t_cacc_dtl_restaurant(t_cacc_dtl_restaurant_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, table_qty, avg_subscription, seat_qty, max_service_qty, service_type_desc, valid_from, valid_to,
+min_food_price,max_food_price,min_beverage_price,max_beverage_price) 
+VALUES(generate_id('sikp','t_cacc_dtl_restaurant','t_cacc_dtl_restaurant_id'), '{description}', '{created_by}', '{updated_by}', sysdate, sysdate, {t_cust_account_id}, '{table_qty}', {avg_subscription}, {seat_qty}, {max_service_qty}, '{service_type_desc}', to_date('{valid_from}','DD-MON-YYYY'), case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end,
+{min_food_price},{max_food_price},{min_beverage_price},{max_beverage_price})" customUpdate="UPDATE t_cacc_dtl_restaurant
 SET description='{description}', 
 updated_by='{updated_by}', 
 updated_date=sysdate, 
@@ -11,12 +13,17 @@ avg_subscription={avg_subscription},
 seat_qty={seat_qty}, 
 max_service_qty={max_service_qty},
 valid_from = to_date('{valid_from}','DD-MON-YYYY'),
-valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end
+valid_to=case when '{valid_to}' = '' then null else to_date('{valid_to}','dd-mon-yyyy') end,
+min_food_price={min_food_price},
+max_food_price={max_food_price},
+min_beverage_price={min_beverage_price},
+max_beverage_price={max_beverage_price}
 WHERE t_cacc_dtl_restaurant_id={t_cacc_dtl_restaurant_id}" customDelete="DELETE FROM t_cacc_dtl_restaurant
 WHERE t_cacc_dtl_restaurant_id = {t_cacc_dtl_restaurant_id}" dataSource="SELECT a.t_cacc_dtl_restaurant_id, a.t_cust_account_id, a.service_type_desc, 
 	 to_char(a.valid_from,'DD-MON-YYYY')as valid_from, to_char(a.valid_to,'DD-MON-YYYY')as valid_to,	
 	 a.seat_qty, a.table_qty, a.max_service_qty, a.avg_subscription, a.description, to_char(a.creation_date, 'DD-MON-YYYY') AS creation_date, 
-	 a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by
+	 a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by,
+	 min_food_price,max_food_price,min_beverage_price,max_beverage_price
    FROM t_cacc_dtl_restaurant a, t_cust_account c
   WHERE a.t_cust_account_id = c.t_cust_account_id 
   AND a.t_cacc_dtl_restaurant_id = {t_cacc_dtl_restaurant_id}">
@@ -173,7 +180,31 @@ WHERE t_cacc_dtl_restaurant_id = {t_cacc_dtl_restaurant_id}" dataSource="SELECT 
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-			</Components>
+				<TextBox id="827" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="min_food_price" fieldSource="min_food_price" required="False" caption="min_food_price" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_reg_dtl_restaurantFormmin_food_price">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="828" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="max_food_price" fieldSource="max_food_price" required="False" caption="max_food_price" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_reg_dtl_restaurantFormmax_food_price">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="829" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="min_beverage_price" fieldSource="min_beverage_price" required="False" caption="min_beverage_price" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_reg_dtl_restaurantFormmin_beverage_price">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+<TextBox id="831" visible="Yes" fieldSourceType="DBColumn" dataType="Float" name="max_beverage_price" fieldSource="max_beverage_price" required="False" caption="max_beverage_price" wizardCaption="ORGANIZATION CODE" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" PathID="t_vat_reg_dtl_restaurantFormmax_beverage_price">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+</Components>
 			<Events>
 				<Event name="AfterExecuteUpdate" type="Server">
 					<Actions>
@@ -191,11 +222,11 @@ WHERE t_cacc_dtl_restaurant_id = {t_cacc_dtl_restaurant_id}" dataSource="SELECT 
 					</Actions>
 				</Event>
 				<Event name="AfterExecuteDelete" type="Server">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="826"/>
-</Actions>
-</Event>
-</Events>
+					<Actions>
+						<Action actionName="Custom Code" actionCategory="General" id="826"/>
+					</Actions>
+				</Event>
+			</Events>
 			<TableParameters>
 			</TableParameters>
 			<SPParameters/>
@@ -230,7 +261,11 @@ WHERE t_cacc_dtl_restaurant_id = {t_cacc_dtl_restaurant_id}" dataSource="SELECT 
 				<SQLParameter id="815" variable="service_type_desc" parameterType="Control" dataType="Text" parameterSource="service_type_desc"/>
 				<SQLParameter id="822" variable="valid_from" parameterType="Control" dataType="Text" parameterSource="valid_from"/>
 				<SQLParameter id="823" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
-			</ISQLParameters>
+				<SQLParameter id="832" variable="min_food_price" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="min_food_price"/>
+<SQLParameter id="833" variable="max_food_price" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="max_food_price"/>
+<SQLParameter id="834" variable="min_beverage_price" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="min_beverage_price"/>
+<SQLParameter id="835" variable="max_beverage_price" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="max_beverage_price"/>
+</ISQLParameters>
 			<IFormElements>
 				<CustomParameter id="760" field="t_vat_reg_dtl_restaurant_id" dataType="Float" parameterType="Control" parameterSource="t_vat_reg_dtl_restaurant_id"/>
 				<CustomParameter id="761" field="description" dataType="Text" parameterType="Control" parameterSource="description"/>
@@ -273,7 +308,11 @@ WHERE t_cacc_dtl_restaurant_id = {t_cacc_dtl_restaurant_id}" dataSource="SELECT 
 				<SQLParameter id="811" variable="max_service_qty" dataType="Float" parameterType="Control" parameterSource="max_service_qty"/>
 				<SQLParameter id="824" variable="valid_from" parameterType="Control" dataType="Text" parameterSource="valid_from"/>
 				<SQLParameter id="825" variable="valid_to" parameterType="Control" dataType="Text" parameterSource="valid_to"/>
-			</USQLParameters>
+				<SQLParameter id="836" variable="min_food_price" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="min_food_price"/>
+<SQLParameter id="837" variable="max_food_price" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="max_food_price"/>
+<SQLParameter id="838" variable="min_beverage_price" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="min_beverage_price"/>
+<SQLParameter id="839" variable="max_beverage_price" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="max_beverage_price"/>
+</USQLParameters>
 			<UConditions>
 			</UConditions>
 			<UFormElements>

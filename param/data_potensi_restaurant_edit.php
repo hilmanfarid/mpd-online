@@ -45,7 +45,7 @@ class clsRecordt_vat_reg_dtl_restaurantForm { //t_vat_reg_dtl_restaurantForm Cla
     // Class variables
 //End Variables
 
-//Class_Initialize Event @94-847C4A1C
+//Class_Initialize Event @94-F472A097
     function clsRecordt_vat_reg_dtl_restaurantForm($RelativePath, & $Parent)
     {
 
@@ -104,6 +104,10 @@ class clsRecordt_vat_reg_dtl_restaurantForm { //t_vat_reg_dtl_restaurantForm Cla
             $this->DatePicker_valid_from = & new clsDatePicker("DatePicker_valid_from", "t_vat_reg_dtl_restaurantForm", "valid_from", $this);
             $this->valid_to = & new clsControl(ccsTextBox, "valid_to", "Valid To", ccsText, "", CCGetRequestParam("valid_to", $Method, NULL), $this);
             $this->DatePicker_valid_to = & new clsDatePicker("DatePicker_valid_to", "t_vat_reg_dtl_restaurantForm", "valid_to", $this);
+            $this->min_food_price = & new clsControl(ccsTextBox, "min_food_price", "min_food_price", ccsFloat, "", CCGetRequestParam("min_food_price", $Method, NULL), $this);
+            $this->max_food_price = & new clsControl(ccsTextBox, "max_food_price", "max_food_price", ccsFloat, "", CCGetRequestParam("max_food_price", $Method, NULL), $this);
+            $this->min_beverage_price = & new clsControl(ccsTextBox, "min_beverage_price", "min_beverage_price", ccsFloat, "", CCGetRequestParam("min_beverage_price", $Method, NULL), $this);
+            $this->max_beverage_price = & new clsControl(ccsTextBox, "max_beverage_price", "max_beverage_price", ccsFloat, "", CCGetRequestParam("max_beverage_price", $Method, NULL), $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->created_by->Value) && !strlen($this->created_by->Value) && $this->created_by->Value !== false)
                     $this->created_by->SetText(CCGetUserLogin());
@@ -131,7 +135,7 @@ class clsRecordt_vat_reg_dtl_restaurantForm { //t_vat_reg_dtl_restaurantForm Cla
     }
 //End Initialize Method
 
-//Validate Method @94-2BA5ED6A
+//Validate Method @94-1F8D8D16
     function Validate()
     {
         global $CCSLocales;
@@ -154,6 +158,10 @@ class clsRecordt_vat_reg_dtl_restaurantForm { //t_vat_reg_dtl_restaurantForm Cla
         $Validation = ($this->p_rest_service_type_id->Validate() && $Validation);
         $Validation = ($this->valid_from->Validate() && $Validation);
         $Validation = ($this->valid_to->Validate() && $Validation);
+        $Validation = ($this->min_food_price->Validate() && $Validation);
+        $Validation = ($this->max_food_price->Validate() && $Validation);
+        $Validation = ($this->min_beverage_price->Validate() && $Validation);
+        $Validation = ($this->max_beverage_price->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->t_cacc_dtl_restaurant_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->description->Errors->Count() == 0);
@@ -172,11 +180,15 @@ class clsRecordt_vat_reg_dtl_restaurantForm { //t_vat_reg_dtl_restaurantForm Cla
         $Validation =  $Validation && ($this->p_rest_service_type_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->valid_from->Errors->Count() == 0);
         $Validation =  $Validation && ($this->valid_to->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->min_food_price->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->max_food_price->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->min_beverage_price->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->max_beverage_price->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @94-5B671235
+//CheckErrors Method @94-F96D4741
     function CheckErrors()
     {
         $errors = false;
@@ -199,6 +211,10 @@ class clsRecordt_vat_reg_dtl_restaurantForm { //t_vat_reg_dtl_restaurantForm Cla
         $errors = ($errors || $this->DatePicker_valid_from->Errors->Count());
         $errors = ($errors || $this->valid_to->Errors->Count());
         $errors = ($errors || $this->DatePicker_valid_to->Errors->Count());
+        $errors = ($errors || $this->min_food_price->Errors->Count());
+        $errors = ($errors || $this->max_food_price->Errors->Count());
+        $errors = ($errors || $this->min_beverage_price->Errors->Count());
+        $errors = ($errors || $this->max_beverage_price->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -278,7 +294,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//InsertRow Method @94-D50AC8F1
+//InsertRow Method @94-FFFAA38F
     function InsertRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeInsert", $this);
@@ -292,13 +308,17 @@ function GetPrimaryKey($keyName)
         $this->DataSource->service_type_desc->SetValue($this->service_type_desc->GetValue(true));
         $this->DataSource->valid_from->SetValue($this->valid_from->GetValue(true));
         $this->DataSource->valid_to->SetValue($this->valid_to->GetValue(true));
+        $this->DataSource->min_food_price->SetValue($this->min_food_price->GetValue(true));
+        $this->DataSource->max_food_price->SetValue($this->max_food_price->GetValue(true));
+        $this->DataSource->min_beverage_price->SetValue($this->min_beverage_price->GetValue(true));
+        $this->DataSource->max_beverage_price->SetValue($this->max_beverage_price->GetValue(true));
         $this->DataSource->Insert();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterInsert", $this);
         return (!$this->CheckErrors());
     }
 //End InsertRow Method
 
-//UpdateRow Method @94-F25C5638
+//UpdateRow Method @94-D30D8F8F
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -312,6 +332,10 @@ function GetPrimaryKey($keyName)
         $this->DataSource->max_service_qty->SetValue($this->max_service_qty->GetValue(true));
         $this->DataSource->valid_from->SetValue($this->valid_from->GetValue(true));
         $this->DataSource->valid_to->SetValue($this->valid_to->GetValue(true));
+        $this->DataSource->min_food_price->SetValue($this->min_food_price->GetValue(true));
+        $this->DataSource->max_food_price->SetValue($this->max_food_price->GetValue(true));
+        $this->DataSource->min_beverage_price->SetValue($this->min_beverage_price->GetValue(true));
+        $this->DataSource->max_beverage_price->SetValue($this->max_beverage_price->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
@@ -330,7 +354,7 @@ function GetPrimaryKey($keyName)
     }
 //End DeleteRow Method
 
-//Show Method @94-1D76859B
+//Show Method @94-28A8E40C
     function Show()
     {
         global $CCSUseAmp;
@@ -373,6 +397,10 @@ function GetPrimaryKey($keyName)
                     $this->p_rest_service_type_id->SetValue($this->DataSource->p_rest_service_type_id->GetValue());
                     $this->valid_from->SetValue($this->DataSource->valid_from->GetValue());
                     $this->valid_to->SetValue($this->DataSource->valid_to->GetValue());
+                    $this->min_food_price->SetValue($this->DataSource->min_food_price->GetValue());
+                    $this->max_food_price->SetValue($this->DataSource->max_food_price->GetValue());
+                    $this->min_beverage_price->SetValue($this->DataSource->min_beverage_price->GetValue());
+                    $this->max_beverage_price->SetValue($this->DataSource->max_beverage_price->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -402,6 +430,10 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->DatePicker_valid_from->Errors->ToString());
             $Error = ComposeStrings($Error, $this->valid_to->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_valid_to->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->min_food_price->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->max_food_price->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->min_beverage_price->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->max_beverage_price->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -446,6 +478,10 @@ function GetPrimaryKey($keyName)
         $this->DatePicker_valid_from->Show();
         $this->valid_to->Show();
         $this->DatePicker_valid_to->Show();
+        $this->min_food_price->Show();
+        $this->max_food_price->Show();
+        $this->min_beverage_price->Show();
+        $this->max_beverage_price->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -456,7 +492,7 @@ function GetPrimaryKey($keyName)
 
 class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat_reg_dtl_restaurantFormDataSource Class @94-55268935
 
-//DataSource Variables @94-3F381887
+//DataSource Variables @94-CCEB8542
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -488,9 +524,13 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
     var $p_rest_service_type_id;
     var $valid_from;
     var $valid_to;
+    var $min_food_price;
+    var $max_food_price;
+    var $min_beverage_price;
+    var $max_beverage_price;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @94-A9AF80C8
+//DataSourceClass_Initialize Event @94-0F3A2A5A
     function clst_vat_reg_dtl_restaurantFormDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -530,6 +570,14 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
         
         $this->valid_to = new clsField("valid_to", ccsText, "");
         
+        $this->min_food_price = new clsField("min_food_price", ccsFloat, "");
+        
+        $this->max_food_price = new clsField("max_food_price", ccsFloat, "");
+        
+        $this->min_beverage_price = new clsField("min_beverage_price", ccsFloat, "");
+        
+        $this->max_beverage_price = new clsField("max_beverage_price", ccsFloat, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -545,14 +593,15 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
     }
 //End Prepare Method
 
-//Open Method @94-2569DF89
+//Open Method @94-3F58AFD1
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "SELECT a.t_cacc_dtl_restaurant_id, a.t_cust_account_id, a.service_type_desc, \n" .
         "	 to_char(a.valid_from,'DD-MON-YYYY')as valid_from, to_char(a.valid_to,'DD-MON-YYYY')as valid_to,	\n" .
         "	 a.seat_qty, a.table_qty, a.max_service_qty, a.avg_subscription, a.description, to_char(a.creation_date, 'DD-MON-YYYY') AS creation_date, \n" .
-        "	 a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by\n" .
+        "	 a.created_by, to_char(a.updated_date, 'DD-MON-YYYY') AS updated_date, a.updated_by,\n" .
+        "	 min_food_price,max_food_price,min_beverage_price,max_beverage_price\n" .
         "   FROM t_cacc_dtl_restaurant a, t_cust_account c\n" .
         "  WHERE a.t_cust_account_id = c.t_cust_account_id \n" .
         "  AND a.t_cacc_dtl_restaurant_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "";
@@ -564,7 +613,7 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
     }
 //End Open Method
 
-//SetValues Method @94-4C38B4BC
+//SetValues Method @94-9BA5DEDB
     function SetValues()
     {
         $this->t_cacc_dtl_restaurant_id->SetDBValue(trim($this->f("t_cacc_dtl_restaurant_id")));
@@ -582,10 +631,14 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
         $this->p_rest_service_type_id->SetDBValue($this->f("p_rest_service_type_id"));
         $this->valid_from->SetDBValue($this->f("valid_from"));
         $this->valid_to->SetDBValue($this->f("valid_to"));
+        $this->min_food_price->SetDBValue(trim($this->f("min_food_price")));
+        $this->max_food_price->SetDBValue(trim($this->f("max_food_price")));
+        $this->min_beverage_price->SetDBValue(trim($this->f("min_beverage_price")));
+        $this->max_beverage_price->SetDBValue(trim($this->f("max_beverage_price")));
     }
 //End SetValues Method
 
-//Insert Method @94-06F4F413
+//Insert Method @94-3513B74B
     function Insert()
     {
         global $CCSLocales;
@@ -602,6 +655,10 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
         $this->cp["service_type_desc"] = new clsSQLParameter("ctrlservice_type_desc", ccsText, "", "", $this->service_type_desc->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["valid_from"] = new clsSQLParameter("ctrlvalid_from", ccsText, "", "", $this->valid_from->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["valid_to"] = new clsSQLParameter("ctrlvalid_to", ccsText, "", "", $this->valid_to->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["min_food_price"] = new clsSQLParameter("ctrlmin_food_price", ccsFloat, "", "", $this->min_food_price->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["max_food_price"] = new clsSQLParameter("ctrlmax_food_price", ccsFloat, "", "", $this->max_food_price->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["min_beverage_price"] = new clsSQLParameter("ctrlmin_beverage_price", ccsFloat, "", "", $this->min_beverage_price->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["max_beverage_price"] = new clsSQLParameter("ctrlmax_beverage_price", ccsFloat, "", "", $this->max_beverage_price->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildInsert", $this->Parent);
         if (!is_null($this->cp["description"]->GetValue()) and !strlen($this->cp["description"]->GetText()) and !is_bool($this->cp["description"]->GetValue())) 
             $this->cp["description"]->SetValue($this->description->GetValue(true));
@@ -627,8 +684,26 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
             $this->cp["valid_from"]->SetValue($this->valid_from->GetValue(true));
         if (!is_null($this->cp["valid_to"]->GetValue()) and !strlen($this->cp["valid_to"]->GetText()) and !is_bool($this->cp["valid_to"]->GetValue())) 
             $this->cp["valid_to"]->SetValue($this->valid_to->GetValue(true));
-        $this->SQL = "INSERT INTO t_cacc_dtl_restaurant(t_cacc_dtl_restaurant_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, table_qty, avg_subscription, seat_qty, max_service_qty, service_type_desc, valid_from, valid_to) \n" .
-        "VALUES(generate_id('sikp','t_cacc_dtl_restaurant','t_cacc_dtl_restaurant_id'), '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', sysdate, sysdate, " . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["table_qty"]->GetDBValue(), ccsText) . "', " . $this->SQLValue($this->cp["avg_subscription"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["seat_qty"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["max_service_qty"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["service_type_desc"]->GetDBValue(), ccsText) . "', to_date('" . $this->SQLValue($this->cp["valid_from"]->GetDBValue(), ccsText) . "','DD-MON-YYYY'), case when '" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "' = '' then null else to_date('" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "','dd-mon-yyyy') end)";
+        if (!is_null($this->cp["min_food_price"]->GetValue()) and !strlen($this->cp["min_food_price"]->GetText()) and !is_bool($this->cp["min_food_price"]->GetValue())) 
+            $this->cp["min_food_price"]->SetValue($this->min_food_price->GetValue(true));
+        if (!strlen($this->cp["min_food_price"]->GetText()) and !is_bool($this->cp["min_food_price"]->GetValue(true))) 
+            $this->cp["min_food_price"]->SetText(0);
+        if (!is_null($this->cp["max_food_price"]->GetValue()) and !strlen($this->cp["max_food_price"]->GetText()) and !is_bool($this->cp["max_food_price"]->GetValue())) 
+            $this->cp["max_food_price"]->SetValue($this->max_food_price->GetValue(true));
+        if (!strlen($this->cp["max_food_price"]->GetText()) and !is_bool($this->cp["max_food_price"]->GetValue(true))) 
+            $this->cp["max_food_price"]->SetText(0);
+        if (!is_null($this->cp["min_beverage_price"]->GetValue()) and !strlen($this->cp["min_beverage_price"]->GetText()) and !is_bool($this->cp["min_beverage_price"]->GetValue())) 
+            $this->cp["min_beverage_price"]->SetValue($this->min_beverage_price->GetValue(true));
+        if (!strlen($this->cp["min_beverage_price"]->GetText()) and !is_bool($this->cp["min_beverage_price"]->GetValue(true))) 
+            $this->cp["min_beverage_price"]->SetText(0);
+        if (!is_null($this->cp["max_beverage_price"]->GetValue()) and !strlen($this->cp["max_beverage_price"]->GetText()) and !is_bool($this->cp["max_beverage_price"]->GetValue())) 
+            $this->cp["max_beverage_price"]->SetValue($this->max_beverage_price->GetValue(true));
+        if (!strlen($this->cp["max_beverage_price"]->GetText()) and !is_bool($this->cp["max_beverage_price"]->GetValue(true))) 
+            $this->cp["max_beverage_price"]->SetText(0);
+        $this->SQL = "INSERT INTO t_cacc_dtl_restaurant(t_cacc_dtl_restaurant_id, description, created_by, updated_by, creation_date, updated_date, t_cust_account_id, table_qty, avg_subscription, seat_qty, max_service_qty, service_type_desc, valid_from, valid_to,\n" .
+        "min_food_price,max_food_price,min_beverage_price,max_beverage_price) \n" .
+        "VALUES(generate_id('sikp','t_cacc_dtl_restaurant','t_cacc_dtl_restaurant_id'), '" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["created_by"]->GetDBValue(), ccsText) . "', '" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', sysdate, sysdate, " . $this->SQLValue($this->cp["t_cust_account_id"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["table_qty"]->GetDBValue(), ccsText) . "', " . $this->SQLValue($this->cp["avg_subscription"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["seat_qty"]->GetDBValue(), ccsFloat) . ", " . $this->SQLValue($this->cp["max_service_qty"]->GetDBValue(), ccsFloat) . ", '" . $this->SQLValue($this->cp["service_type_desc"]->GetDBValue(), ccsText) . "', to_date('" . $this->SQLValue($this->cp["valid_from"]->GetDBValue(), ccsText) . "','DD-MON-YYYY'), case when '" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "' = '' then null else to_date('" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "','dd-mon-yyyy') end,\n" .
+        "" . $this->SQLValue($this->cp["min_food_price"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["max_food_price"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["min_beverage_price"]->GetDBValue(), ccsFloat) . "," . $this->SQLValue($this->cp["max_beverage_price"]->GetDBValue(), ccsFloat) . ")";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteInsert", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
             $this->query($this->SQL);
@@ -637,7 +712,7 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
     }
 //End Insert Method
 
-//Update Method @94-C859111E
+//Update Method @94-89CEF3C4
     function Update()
     {
         global $CCSLocales;
@@ -653,6 +728,10 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
         $this->cp["max_service_qty"] = new clsSQLParameter("ctrlmax_service_qty", ccsFloat, "", "", $this->max_service_qty->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["valid_from"] = new clsSQLParameter("ctrlvalid_from", ccsText, "", "", $this->valid_from->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["valid_to"] = new clsSQLParameter("ctrlvalid_to", ccsText, "", "", $this->valid_to->GetValue(true), "", false, $this->ErrorBlock);
+        $this->cp["min_food_price"] = new clsSQLParameter("ctrlmin_food_price", ccsFloat, "", "", $this->min_food_price->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["max_food_price"] = new clsSQLParameter("ctrlmax_food_price", ccsFloat, "", "", $this->max_food_price->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["min_beverage_price"] = new clsSQLParameter("ctrlmin_beverage_price", ccsFloat, "", "", $this->min_beverage_price->GetValue(true), 0, false, $this->ErrorBlock);
+        $this->cp["max_beverage_price"] = new clsSQLParameter("ctrlmax_beverage_price", ccsFloat, "", "", $this->max_beverage_price->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["t_cacc_dtl_restaurant_id"]->GetValue()) and !strlen($this->cp["t_cacc_dtl_restaurant_id"]->GetText()) and !is_bool($this->cp["t_cacc_dtl_restaurant_id"]->GetValue())) 
             $this->cp["t_cacc_dtl_restaurant_id"]->SetValue($this->t_cacc_dtl_restaurant_id->GetValue(true));
@@ -678,6 +757,22 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
             $this->cp["valid_from"]->SetValue($this->valid_from->GetValue(true));
         if (!is_null($this->cp["valid_to"]->GetValue()) and !strlen($this->cp["valid_to"]->GetText()) and !is_bool($this->cp["valid_to"]->GetValue())) 
             $this->cp["valid_to"]->SetValue($this->valid_to->GetValue(true));
+        if (!is_null($this->cp["min_food_price"]->GetValue()) and !strlen($this->cp["min_food_price"]->GetText()) and !is_bool($this->cp["min_food_price"]->GetValue())) 
+            $this->cp["min_food_price"]->SetValue($this->min_food_price->GetValue(true));
+        if (!strlen($this->cp["min_food_price"]->GetText()) and !is_bool($this->cp["min_food_price"]->GetValue(true))) 
+            $this->cp["min_food_price"]->SetText(0);
+        if (!is_null($this->cp["max_food_price"]->GetValue()) and !strlen($this->cp["max_food_price"]->GetText()) and !is_bool($this->cp["max_food_price"]->GetValue())) 
+            $this->cp["max_food_price"]->SetValue($this->max_food_price->GetValue(true));
+        if (!strlen($this->cp["max_food_price"]->GetText()) and !is_bool($this->cp["max_food_price"]->GetValue(true))) 
+            $this->cp["max_food_price"]->SetText(0);
+        if (!is_null($this->cp["min_beverage_price"]->GetValue()) and !strlen($this->cp["min_beverage_price"]->GetText()) and !is_bool($this->cp["min_beverage_price"]->GetValue())) 
+            $this->cp["min_beverage_price"]->SetValue($this->min_beverage_price->GetValue(true));
+        if (!strlen($this->cp["min_beverage_price"]->GetText()) and !is_bool($this->cp["min_beverage_price"]->GetValue(true))) 
+            $this->cp["min_beverage_price"]->SetText(0);
+        if (!is_null($this->cp["max_beverage_price"]->GetValue()) and !strlen($this->cp["max_beverage_price"]->GetText()) and !is_bool($this->cp["max_beverage_price"]->GetValue())) 
+            $this->cp["max_beverage_price"]->SetValue($this->max_beverage_price->GetValue(true));
+        if (!strlen($this->cp["max_beverage_price"]->GetText()) and !is_bool($this->cp["max_beverage_price"]->GetValue(true))) 
+            $this->cp["max_beverage_price"]->SetText(0);
         $this->SQL = "UPDATE t_cacc_dtl_restaurant\n" .
         "SET description='" . $this->SQLValue($this->cp["description"]->GetDBValue(), ccsText) . "', \n" .
         "updated_by='" . $this->SQLValue($this->cp["updated_by"]->GetDBValue(), ccsText) . "', \n" .
@@ -688,7 +783,11 @@ class clst_vat_reg_dtl_restaurantFormDataSource extends clsDBConnSIKP {  //t_vat
         "seat_qty=" . $this->SQLValue($this->cp["seat_qty"]->GetDBValue(), ccsFloat) . ", \n" .
         "max_service_qty=" . $this->SQLValue($this->cp["max_service_qty"]->GetDBValue(), ccsFloat) . ",\n" .
         "valid_from = to_date('" . $this->SQLValue($this->cp["valid_from"]->GetDBValue(), ccsText) . "','DD-MON-YYYY'),\n" .
-        "valid_to=case when '" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "' = '' then null else to_date('" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "','dd-mon-yyyy') end\n" .
+        "valid_to=case when '" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "' = '' then null else to_date('" . $this->SQLValue($this->cp["valid_to"]->GetDBValue(), ccsText) . "','dd-mon-yyyy') end,\n" .
+        "min_food_price=" . $this->SQLValue($this->cp["min_food_price"]->GetDBValue(), ccsFloat) . ",\n" .
+        "max_food_price=" . $this->SQLValue($this->cp["max_food_price"]->GetDBValue(), ccsFloat) . ",\n" .
+        "min_beverage_price=" . $this->SQLValue($this->cp["min_beverage_price"]->GetDBValue(), ccsFloat) . ",\n" .
+        "max_beverage_price=" . $this->SQLValue($this->cp["max_beverage_price"]->GetDBValue(), ccsFloat) . "\n" .
         "WHERE t_cacc_dtl_restaurant_id=" . $this->SQLValue($this->cp["t_cacc_dtl_restaurant_id"]->GetDBValue(), ccsFloat) . "";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
