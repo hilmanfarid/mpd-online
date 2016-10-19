@@ -46,7 +46,7 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @688-07985ED4
+//Class_Initialize Event @688-61465CF9
     function clsGridt_vat_reg_dtl_restaurantGrid($RelativePath, & $Parent)
     {
         global $FileName;
@@ -88,6 +88,8 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
         $this->t_cust_account_id = & new clsControl(ccsHidden, "t_cust_account_id", "t_cust_account_id", ccsFloat, "", CCGetRequestParam("t_cust_account_id", ccsGet, NULL), $this);
         $this->valid_from = & new clsControl(ccsLabel, "valid_from", "valid_from", ccsText, "", CCGetRequestParam("valid_from", ccsGet, NULL), $this);
         $this->valid_to = & new clsControl(ccsLabel, "valid_to", "valid_to", ccsText, "", CCGetRequestParam("valid_to", ccsGet, NULL), $this);
+        $this->makanan = & new clsControl(ccsLabel, "makanan", "makanan", ccsText, "", CCGetRequestParam("makanan", ccsGet, NULL), $this);
+        $this->minuman = & new clsControl(ccsLabel, "minuman", "minuman", ccsText, "", CCGetRequestParam("minuman", ccsGet, NULL), $this);
         $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
         $this->Navigator->PageSizes = array("1", "5", "10", "25", "50");
     }
@@ -104,7 +106,7 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
     }
 //End Initialize Method
 
-//Show Method @688-4EB18596
+//Show Method @688-C403AB81
     function Show()
     {
         global $Tpl;
@@ -144,6 +146,8 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
             $this->ControlsVisible["t_cust_account_id"] = $this->t_cust_account_id->Visible;
             $this->ControlsVisible["valid_from"] = $this->valid_from->Visible;
             $this->ControlsVisible["valid_to"] = $this->valid_to->Visible;
+            $this->ControlsVisible["makanan"] = $this->makanan->Visible;
+            $this->ControlsVisible["minuman"] = $this->minuman->Visible;
             while ($this->ForceIteration || (($this->RowNumber < $this->PageSize) &&  ($this->HasRecord = $this->DataSource->has_next_record()))) {
                 $this->RowNumber++;
                 if ($this->HasRecord) {
@@ -166,6 +170,8 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
                 $this->t_cust_account_id->SetValue($this->DataSource->t_cust_account_id->GetValue());
                 $this->valid_from->SetValue($this->DataSource->valid_from->GetValue());
                 $this->valid_to->SetValue($this->DataSource->valid_to->GetValue());
+                $this->makanan->SetValue($this->DataSource->makanan->GetValue());
+                $this->minuman->SetValue($this->DataSource->minuman->GetValue());
                 $this->Attributes->SetValue("rowNumber", $this->RowNumber);
                 $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeShowRow", $this);
                 $this->Attributes->Show();
@@ -180,6 +186,8 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
                 $this->t_cust_account_id->Show();
                 $this->valid_from->Show();
                 $this->valid_to->Show();
+                $this->makanan->Show();
+                $this->minuman->Show();
                 $Tpl->block_path = $ParentPath . "/" . $GridBlock;
                 $Tpl->parse("Row", true);
             }
@@ -212,7 +220,7 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
     }
 //End Show Method
 
-//GetErrors Method @688-34C8DDD5
+//GetErrors Method @688-CCA69B94
     function GetErrors()
     {
         $errors = "";
@@ -227,6 +235,8 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
         $errors = ComposeStrings($errors, $this->t_cust_account_id->Errors->ToString());
         $errors = ComposeStrings($errors, $this->valid_from->Errors->ToString());
         $errors = ComposeStrings($errors, $this->valid_to->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->makanan->Errors->ToString());
+        $errors = ComposeStrings($errors, $this->minuman->Errors->ToString());
         $errors = ComposeStrings($errors, $this->Errors->ToString());
         $errors = ComposeStrings($errors, $this->DataSource->Errors->ToString());
         return $errors;
@@ -237,7 +247,7 @@ class clsGridt_vat_reg_dtl_restaurantGrid { //t_vat_reg_dtl_restaurantGrid class
 
 class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat_reg_dtl_restaurantGridDataSource Class @688-0A111FC1
 
-//DataSource Variables @688-918E96DC
+//DataSource Variables @688-2745FBDD
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -260,9 +270,11 @@ class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat
     var $t_cust_account_id;
     var $valid_from;
     var $valid_to;
+    var $makanan;
+    var $minuman;
 //End DataSource Variables
 
-//DataSourceClass_Initialize Event @688-9E39BBBF
+//DataSourceClass_Initialize Event @688-56556150
     function clst_vat_reg_dtl_restaurantGridDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -290,6 +302,10 @@ class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat
         
         $this->valid_to = new clsField("valid_to", ccsText, "");
         
+        $this->makanan = new clsField("makanan", ccsText, "");
+        
+        $this->minuman = new clsField("minuman", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -303,27 +319,42 @@ class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat
     }
 //End SetOrder Method
 
-//Prepare Method @688-3E99123F
+//Prepare Method @688-75050C29
     function Prepare()
     {
         global $CCSLocales;
         global $DefaultDateFormat;
         $this->wp = new clsSQLParameters($this->ErrorBlock);
         $this->wp->AddParameter("1", "urlt_cust_account_id", ccsFloat, "", "", $this->Parameters["urlt_cust_account_id"], "", false);
-        $this->wp->Criterion[1] = $this->wp->Operation(opEqual, "t_cust_account_id", $this->wp->GetDBValue("1"), $this->ToSQL($this->wp->GetDBValue("1"), ccsFloat),false);
-        $this->Where = 
-             $this->wp->Criterion[1];
     }
 //End Prepare Method
 
-//Open Method @688-B129CEB5
+//Open Method @688-8C41CF7F
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
-        $this->CountSQL = "SELECT COUNT(*)\n\n" .
-        "FROM t_cacc_dtl_restaurant";
-        $this->SQL = "SELECT * \n\n" .
-        "FROM t_cacc_dtl_restaurant {SQL_Where} {SQL_OrderBy}";
+        $this->CountSQL = "SELECT COUNT(*) FROM (SELECT *,\n" .
+        "	case \n" .
+        "		when min_food_price is null then '-' \n" .
+        "		else min_food_price||' s.d. '||max_food_price\n" .
+        "	end as makanan,\n" .
+        "	case \n" .
+        "		when min_beverage_price is null then '-' \n" .
+        "		else min_beverage_price||' s.d. '||min_beverage_price\n" .
+        "	end as minuman\n" .
+        "FROM t_cacc_dtl_restaurant\n" .
+        "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ) cnt";
+        $this->SQL = "SELECT *,\n" .
+        "	case \n" .
+        "		when min_food_price is null then '-' \n" .
+        "		else min_food_price||' s.d. '||max_food_price\n" .
+        "	end as makanan,\n" .
+        "	case \n" .
+        "		when min_beverage_price is null then '-' \n" .
+        "		else min_beverage_price||' s.d. '||min_beverage_price\n" .
+        "	end as minuman\n" .
+        "FROM t_cacc_dtl_restaurant\n" .
+        "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteSelect", $this->Parent);
         if ($this->CountSQL) 
             $this->RecordsCount = CCGetDBValue(CCBuildSQL($this->CountSQL, $this->Where, ""), $this);
@@ -334,7 +365,7 @@ class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat
     }
 //End Open Method
 
-//SetValues Method @688-A66333BF
+//SetValues Method @688-6359D2F5
     function SetValues()
     {
         $this->service_type_desc->SetDBValue($this->f("service_type_desc"));
@@ -348,6 +379,8 @@ class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat
         $this->t_cust_account_id->SetDBValue(trim($this->f("t_cust_account_id")));
         $this->valid_from->SetDBValue($this->f("valid_from"));
         $this->valid_to->SetDBValue($this->f("valid_to"));
+        $this->makanan->SetDBValue($this->f("makanan"));
+        $this->minuman->SetDBValue($this->f("minuman"));
     }
 //End SetValues Method
 

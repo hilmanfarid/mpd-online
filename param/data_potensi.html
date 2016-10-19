@@ -23,7 +23,7 @@ $(document).ready(function()
 });
 </script>
 </head>
-<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
   <div class="tab-background-styled">
     <div class="th tab-button">
@@ -71,7 +71,7 @@ $(document).ready(function()
       <td colspan="2">
         <!-- BEGIN Record t_vat_setllementSearch -->
         <form id="t_vat_setllementSearch" method="post" name="{HTMLFormName}" action="{Action}">
-          <input id="t_vat_setllementSearcht_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"><input style="WIDTH: 112px; HEIGHT: 22px" id="t_vat_setllementSearchcustomer_name" name="{customer_name_Name}" value="{customer_name}" size="15" type="hidden"><input style="WIDTH: 100px; HEIGHT: 22px" id="t_vat_setllementSearcht_customer_id" name="{t_customer_id_Name}" value="{t_customer_id}" size="13" type="hidden">
+          <input id="t_vat_setllementSearcht_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"><input style="WIDTH: 112px; HEIGHT: 22px" id="t_vat_setllementSearchcustomer_name" value="{customer_name}" size="15" type="hidden" name="{customer_name_Name}"><input style="WIDTH: 100px; HEIGHT: 22px" id="t_vat_setllementSearcht_customer_id" value="{t_customer_id}" size="13" type="hidden" name="{t_customer_id_Name}">
         </form>
         <!-- END Record t_vat_setllementSearch --><br>
         <!-- BEGIN Grid t_vat_reg_dtlGrid -->
@@ -106,7 +106,7 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtlGridDLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtlGridADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{license_type_code}&nbsp;<input id="t_vat_reg_dtlGridt_cacc_license_letter_id_{t_vat_reg_dtlGrid:rowNumber}" name="{t_cacc_license_letter_id_Name}" value="{t_cacc_license_letter_id}" type="hidden"><input id="t_vat_reg_dtlGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{license_type_code}&nbsp;<input id="t_vat_reg_dtlGridt_cacc_license_letter_id_{t_vat_reg_dtlGrid:rowNumber}" value="{t_cacc_license_letter_id}" type="hidden" name="{t_cacc_license_letter_id_Name}"><input id="t_vat_reg_dtlGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{license_no}&nbsp;</td> 
                   <td>{valid_from}</td> 
                   <td>{valid_to}&nbsp;</td> 
@@ -173,7 +173,7 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_employeeGridDLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_employeeGridADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{jabatan}&nbsp;<input id="t_vat_reg_employeeGridt_cust_acc_employee_id_{t_vat_reg_employeeGrid:rowNumber}" name="{t_cust_acc_employee_id_Name}" value="{t_cust_acc_employee_id}" type="hidden"><input id="t_vat_reg_employeeGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{jabatan}&nbsp;<input id="t_vat_reg_employeeGridt_cust_acc_employee_id_{t_vat_reg_employeeGrid:rowNumber}" value="{t_cust_acc_employee_id}" type="hidden" name="{t_cust_acc_employee_id_Name}"><input id="t_vat_reg_employeeGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{employee_qty}&nbsp;</td> 
                   <td>{employee_salery}</td> 
                   <td>{valid_from}&nbsp;</td> 
@@ -238,6 +238,10 @@ $(document).ready(function()
                   <th scope="col">Jumlah pengunjung<br>
                   rata-rata per Bulan&nbsp; </th>
  
+                  <th scope="col">Harga Makanan&nbsp;</th>
+ 
+                  <th scope="col">Harga&nbsp; Minuman</th>
+ 
                   <th scope="col">Berlaku Dari&nbsp;</th>
  
                   <th scope="col">Berlaku&nbsp;Sampai&nbsp;</th>
@@ -248,23 +252,25 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_restaurantGridDLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_restaurantGridADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{service_type_desc}&nbsp;<input id="t_vat_reg_dtl_restaurantGridt_cacc_dtl_restaurant_id_{t_vat_reg_dtl_restaurantGrid:rowNumber}" name="{t_cacc_dtl_restaurant_id_Name}" value="{t_cacc_dtl_restaurant_id}" type="hidden"><input id="t_vat_reg_dtl_restaurantGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{service_type_desc}&nbsp;<input id="t_vat_reg_dtl_restaurantGridt_cacc_dtl_restaurant_id_{t_vat_reg_dtl_restaurantGrid:rowNumber}" value="{t_cacc_dtl_restaurant_id}" type="hidden" name="{t_cacc_dtl_restaurant_id_Name}"><input id="t_vat_reg_dtl_restaurantGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{seat_qty}&nbsp;</td> 
                   <td>{table_qty}&nbsp;</td> 
                   <td>{max_service_qty}&nbsp;</td> 
                   <td>{avg_subscription}&nbsp;</td> 
+                  <td>{makanan}</td> 
+                  <td>{minuman}</td> 
                   <td>{valid_from}&nbsp;</td> 
                   <td>{valid_to}&nbsp;</td>
                 </tr>
  <!-- END Row -->
                 <!-- BEGIN NoRecords -->
                 <tr class="NoRecords">
-                  <td colspan="8">-</td>
+                  <td colspan="10">-</td>
                 </tr>
                 <!-- END NoRecords -->
                 <tr class="Footer">
                   <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b></td> 
-                  <td colspan="7">
+                  <td colspan="9">
                     <!-- BEGIN Navigator Navigator -->
                     <!-- BEGIN First_On --><a href="{First_URL}"><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/First.gif"></a> <!-- END First_On -->
                     <!-- BEGIN First_Off --><img border="0" alt="{First_URL}" src="../Styles/sikp/Images/FirstOff.gif"><!-- END First_Off -->
@@ -319,7 +325,7 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_hotelGrid1DLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_hotelGrid1ADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{room_type_code}&nbsp;<input id="t_vat_reg_dtl_hotelGrid1t_cacc_dtl_hotel_id_{t_vat_reg_dtl_hotelGrid1:rowNumber}" name="{t_cacc_dtl_hotel_id_Name}" value="{t_cacc_dtl_hotel_id}" type="hidden"><input id="t_vat_reg_dtl_hotelGrid1t_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{room_type_code}&nbsp;<input id="t_vat_reg_dtl_hotelGrid1t_cacc_dtl_hotel_id_{t_vat_reg_dtl_hotelGrid1:rowNumber}" value="{t_cacc_dtl_hotel_id}" type="hidden" name="{t_cacc_dtl_hotel_id_Name}"><input id="t_vat_reg_dtl_hotelGrid1t_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{room_qty}&nbsp;</td> 
                   <td>{service_qty}&nbsp;</td> 
                   <td>{service_charge_wd}&nbsp;</td> 
@@ -398,8 +404,8 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="v_vat_reg_dtl_entertaintmentGridDLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="v_vat_reg_dtl_entertaintmentGridADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{entertainment_desc}&nbsp;<input id="v_vat_reg_dtl_entertaintmentGridt_cacc_dtl_entertaintment_id_{v_vat_reg_dtl_entertaintmentGrid:rowNumber}" name="{t_cacc_dtl_entertaintment_id_Name}" value="{t_cacc_dtl_entertaintment_id}" type="hidden"></td> 
-                  <td>{service_charge_wd}&nbsp;<input id="v_vat_reg_dtl_entertaintmentGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{entertainment_desc}&nbsp;<input id="v_vat_reg_dtl_entertaintmentGridt_cacc_dtl_entertaintment_id_{v_vat_reg_dtl_entertaintmentGrid:rowNumber}" value="{t_cacc_dtl_entertaintment_id}" type="hidden" name="{t_cacc_dtl_entertaintment_id_Name}"></td> 
+                  <td>{service_charge_wd}&nbsp;<input id="v_vat_reg_dtl_entertaintmentGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>&nbsp;{service_charge_we}</td> 
                   <td>{seat_qty}</td> 
                   <td>{room_qty}&nbsp;</td> 
@@ -471,8 +477,8 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_parkingGridDLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_parkingGridADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{classification_desc}&nbsp;<input id="t_vat_reg_dtl_parkingGridt_acc_dtl_parking_id_{t_vat_reg_dtl_parkingGrid:rowNumber}" name="{t_acc_dtl_parking_id_Name}" value="{t_acc_dtl_parking_id}" type="hidden"></td> 
-                  <td>{parking_size}&nbsp;<input id="t_vat_reg_dtl_parkingGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{classification_desc}&nbsp;<input id="t_vat_reg_dtl_parkingGridt_acc_dtl_parking_id_{t_vat_reg_dtl_parkingGrid:rowNumber}" value="{t_acc_dtl_parking_id}" type="hidden" name="{t_acc_dtl_parking_id_Name}"></td> 
+                  <td>{parking_size}&nbsp;<input id="t_vat_reg_dtl_parkingGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{max_load_qty}&nbsp;</td> 
                   <td>{avg_subscription_qty}</td> 
                   <td>{valid_from}&nbsp;</td> 
@@ -541,8 +547,8 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_ppjGridDLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_ppjGridADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{pwr_classification_desc}&nbsp;<input id="t_vat_reg_dtl_ppjGridt_cacc_dtl_ppj_id_{t_vat_reg_dtl_ppjGrid:rowNumber}" name="{t_cacc_dtl_ppj_id_Name}" value="{t_cacc_dtl_ppj_id}" type="hidden"></td> 
-                  <td>{power_capacity}&nbsp;<input id="t_vat_reg_dtl_ppjGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{pwr_classification_desc}&nbsp;<input id="t_vat_reg_dtl_ppjGridt_cacc_dtl_ppj_id_{t_vat_reg_dtl_ppjGrid:rowNumber}" value="{t_cacc_dtl_ppj_id}" type="hidden" name="{t_cacc_dtl_ppj_id_Name}"></td> 
+                  <td>{power_capacity}&nbsp;<input id="t_vat_reg_dtl_ppjGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{service_charge}&nbsp;</td> 
                   <td>{power_factor}</td> 
                   <td>{description}</td> 
@@ -611,8 +617,8 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_ppj_nplGridDLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_ppj_nplGridADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{owner_qty}&nbsp;<input id="t_vat_reg_dtl_ppj_nplGridt_cacc_dtl_ppj_pln_id_{t_vat_reg_dtl_ppj_nplGrid:rowNumber}" name="{t_cacc_dtl_ppj_pln_id_Name}" value="{t_cacc_dtl_ppj_pln_id}" type="hidden"></td> 
-                  <td>{power_capacity}&nbsp;<input id="t_vat_reg_dtl_ppj_nplGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{owner_qty}&nbsp;<input id="t_vat_reg_dtl_ppj_nplGridt_cacc_dtl_ppj_pln_id_{t_vat_reg_dtl_ppj_nplGrid:rowNumber}" value="{t_cacc_dtl_ppj_pln_id}" type="hidden" name="{t_cacc_dtl_ppj_pln_id_Name}"></td> 
+                  <td>{power_capacity}&nbsp;<input id="t_vat_reg_dtl_ppj_nplGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{description}</td> 
                   <td>{valid_from}&nbsp;</td> 
                   <td>{valid_to}&nbsp;</td>
@@ -674,8 +680,8 @@ $(document).ready(function()
                   <td style="TEXT-ALIGN: center" nowrap>
                     <!-- BEGIN Link DLink --><a href="{DLink_Src}" id="t_vat_reg_dtl_hotel_srvcGridDLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio.gif"></a><!-- END Link DLink -->
                     <!-- BEGIN Link ADLink --><a href="{ADLink_Src}" id="t_vat_reg_dtl_hotel_srvcGridADLink_{P_APP_ROLE:rowNumber}"><img border="0" src="../images/radio_s.gif" width="16"></a><!-- END Link ADLink --></td> 
-                  <td>{services}&nbsp;<input id="t_vat_reg_dtl_hotel_srvcGridt_cacc_dtl_hotel_srvc_id_{t_vat_reg_dtl_hotel_srvcGrid:rowNumber}" name="{t_cacc_dtl_hotel_srvc_id_Name}" value="{t_cacc_dtl_hotel_srvc_id}" type="hidden"></td> 
-                  <td>{description}<input id="t_vat_reg_dtl_hotel_srvcGridt_cust_account_id" name="{t_cust_account_id_Name}" value="{t_cust_account_id}" type="hidden"></td> 
+                  <td>{services}&nbsp;<input id="t_vat_reg_dtl_hotel_srvcGridt_cacc_dtl_hotel_srvc_id_{t_vat_reg_dtl_hotel_srvcGrid:rowNumber}" value="{t_cacc_dtl_hotel_srvc_id}" type="hidden" name="{t_cacc_dtl_hotel_srvc_id_Name}"></td> 
+                  <td>{description}<input id="t_vat_reg_dtl_hotel_srvcGridt_cust_account_id" value="{t_cust_account_id}" type="hidden" name="{t_cust_account_id_Name}"></td> 
                   <td>{valid_from}&nbsp;</td> 
                   <td>{valid_to}&nbsp;</td>
                 </tr>

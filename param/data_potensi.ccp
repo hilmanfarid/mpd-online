@@ -1,6 +1,16 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" cachingDuration="1 minutes" wizardTheme="RWNet" wizardThemeVersion="3.0" needGeneration="0" pasteActions="pasteActions">
 	<Components>
-		<Grid id="688" secured="False" sourceType="Table" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_reg_dtl_restaurantGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="t_cacc_dtl_restaurant">
+		<Grid id="688" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="5" connection="ConnSIKP" name="t_vat_reg_dtl_restaurantGrid" pageSizeLimit="100" wizardCaption="List of P App Role " wizardGridType="Tabular" wizardAllowInsert="True" wizardAltRecord="True" wizardAltRecordType="Style" wizardRecordSeparator="False" wizardNoRecords="-" pasteAsReplace="pasteAsReplace" pasteActions="pasteActions" activeCollection="TableParameters" parameterTypeListName="ParameterTypeList" dataSource="SELECT *,
+	case 
+		when min_food_price is null then '-' 
+		else min_food_price||' s.d. '||max_food_price
+	end as makanan,
+	case 
+		when min_beverage_price is null then '-' 
+		else min_beverage_price||' s.d. '||min_beverage_price
+	end as minuman
+FROM t_cacc_dtl_restaurant
+WHERE t_cust_account_id = {t_cust_account_id} ">
 			<Components>
 				<Label id="693" fieldSourceType="DBColumn" dataType="Text" html="False" name="service_type_desc" fieldSource="service_type_desc" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtl_restaurantGridservice_type_desc">
 					<Components/>
@@ -80,7 +90,19 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-			</Components>
+				<Label id="1047" fieldSourceType="DBColumn" dataType="Text" html="False" name="makanan" fieldSource="makanan" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtl_restaurantGridmakanan">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+<Label id="1048" fieldSourceType="DBColumn" dataType="Text" html="False" name="minuman" fieldSource="minuman" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtl_restaurantGridminuman">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Label>
+</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -100,7 +122,8 @@
 			</Fields>
 			<SPParameters/>
 			<SQLParameters>
-			</SQLParameters>
+				<SQLParameter id="1046" parameterType="URL" variable="t_cust_account_id" dataType="Float" parameterSource="t_cust_account_id"/>
+</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
@@ -969,7 +992,6 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 					<Events/>
 					<Attributes/>
 					<Features/>
-
 				</Hidden>
 			</Components>
 			<Events>
@@ -995,7 +1017,7 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 			</TableParameters>
 			<JoinTables>
 				<JoinTable id="1044" tableName="v_cacc_license_letter" posWidth="20" posHeight="40" posLeft="10" posTop="10"/>
-</JoinTables>
+			</JoinTables>
 			<JoinLinks/>
 			<Fields>
 				<Field id="457" fieldName="*"/>
