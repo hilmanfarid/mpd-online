@@ -338,7 +338,7 @@ class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat
     }
 //End Prepare Method
 
-//Open Method @688-8C41CF7F
+//Open Method @688-EDA0F28F
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
@@ -349,7 +349,7 @@ class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat
         "	end as makanan,\n" .
         "	case \n" .
         "		when min_beverage_price is null then '-' \n" .
-        "		else min_beverage_price||' s.d. '||min_beverage_price\n" .
+        "		else min_beverage_price||' s.d. '||max_beverage_price\n" .
         "	end as minuman\n" .
         "FROM t_cacc_dtl_restaurant\n" .
         "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ) cnt";
@@ -360,7 +360,7 @@ class clst_vat_reg_dtl_restaurantGridDataSource extends clsDBConnSIKP {  //t_vat
         "	end as makanan,\n" .
         "	case \n" .
         "		when min_beverage_price is null then '-' \n" .
-        "		else min_beverage_price||' s.d. '||min_beverage_price\n" .
+        "		else min_beverage_price||' s.d. '||max_beverage_price\n" .
         "	end as minuman\n" .
         "FROM t_cacc_dtl_restaurant\n" .
         "WHERE t_cust_account_id = " . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . " ";

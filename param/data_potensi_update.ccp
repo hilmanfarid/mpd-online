@@ -7,7 +7,7 @@
 	end as makanan,
 	case 
 		when min_beverage_price is null then '-' 
-		else min_beverage_price||' s.d. '||min_beverage_price
+		else min_beverage_price||' s.d. '||max_beverage_price
 	end as minuman
 FROM t_cacc_dtl_restaurant
 WHERE t_cust_account_id = {t_cust_account_id} ">
@@ -116,13 +116,13 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="1071" fieldSourceType="DBColumn" dataType="Text" html="False" name="minuman" fieldSource="minuman" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtl_restaurantGridminuman">
+				<Label id="1071" fieldSourceType="DBColumn" dataType="Text" html="False" name="minuman" fieldSource="minuman" wizardCaption="Code" wizardSize="32" wizardMaxLength="32" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_reg_dtl_restaurantGridminuman">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
@@ -135,7 +135,6 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 				<TableParameter id="937" conditionType="Parameter" useIsNull="False" field="t_cust_account_id" dataType="Float" searchConditionType="Equal" parameterType="URL" logicOperator="And" parameterSource="t_cust_account_id"/>
 			</TableParameters>
 			<JoinTables>
-				<JoinTable id="936" tableName="t_cacc_dtl_restaurant" posLeft="10" posTop="10" posWidth="160" posHeight="180"/>
 			</JoinTables>
 			<JoinLinks/>
 			<Fields>
@@ -143,7 +142,7 @@ WHERE t_cust_account_id = {t_cust_account_id} ">
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="1072" parameterType="URL" variable="t_cust_account_id" dataType="Float" parameterSource="t_cust_account_id"/>
-</SQLParameters>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
