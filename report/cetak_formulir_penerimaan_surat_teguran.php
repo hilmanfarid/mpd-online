@@ -156,7 +156,7 @@ class FormCetak extends PDF_MC_Table {
 		$this->RowMultiBorderWithHeight(array("NO.","TGL. & NO. SURAT","PERIHAL"),array('BLTR','BLTR','BLTR'),10);
 		$this->SetFont('BookmanOldStyle', '',10);
 		$this->SetAligns(array("L","L","L"));
-		$this->RowMultiBorderWithHeight(array("1",$data['letter_date_txt']." - 973 / 1405 - Disyanjak","SURAT TEGURAN ".numberToRoman($data["sequence_no"])),array('BLTR','BLTR','BLTR'),10);
+		$this->RowMultiBorderWithHeight(array("1",$data['letter_date_txt']." - 973 /       - Disyanjak","SURAT TEGURAN ".numberToRoman($data["sequence_no"])),array('BLTR','BLTR','BLTR'),10);
 		$this->RowMultiBorderWithHeight(array("","",""),array('BLTR','BLTR','BLTR'),10);
 		//$this->RowMultiBorderWithHeight(array("","",""),array('BLTR','BLTR','BLTR'),10);
 		
