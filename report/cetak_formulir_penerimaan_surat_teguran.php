@@ -148,6 +148,7 @@ class FormCetak extends PDF_MC_Table {
 		$this->SetWidths(array(5,35,155,5));
 		$this->SetAligns(array("L","L","L","C"));
 		$this->RowMultiBorderWithHeight(array("","Kepada Yth. :","Pimpinan ".$data['company_name'],""),array('','','',''),10);
+		$this->RowMultiBorderWithHeight(array("","             ",$data["address"],""),array('','','',''),10);
 		
 		$this->SetFont('BookmanOldStyle', 'B',12);
 		$this->SetWidths(array(10,90,100));
@@ -155,9 +156,9 @@ class FormCetak extends PDF_MC_Table {
 		$this->RowMultiBorderWithHeight(array("NO.","TGL. & NO. SURAT","PERIHAL"),array('BLTR','BLTR','BLTR'),10);
 		$this->SetFont('BookmanOldStyle', '',10);
 		$this->SetAligns(array("L","L","L"));
-		$this->RowMultiBorderWithHeight(array("1",$data['letter_date_txt']." - 973 /       - Disyanjak","SURAT TEGURAN ".numberToRoman($data["sequence_no"])),array('BLTR','BLTR','BLTR'),10);
+		$this->RowMultiBorderWithHeight(array("1",$data['letter_date_txt']." - 973 / 1405 - Disyanjak","SURAT TEGURAN ".numberToRoman($data["sequence_no"])),array('BLTR','BLTR','BLTR'),10);
 		$this->RowMultiBorderWithHeight(array("","",""),array('BLTR','BLTR','BLTR'),10);
-		$this->RowMultiBorderWithHeight(array("","",""),array('BLTR','BLTR','BLTR'),10);
+		//$this->RowMultiBorderWithHeight(array("","",""),array('BLTR','BLTR','BLTR'),10);
 		
 		$this->SetFont('BookmanOldStyle', '',12);
 		$this->SetWidths(array(100,100));
