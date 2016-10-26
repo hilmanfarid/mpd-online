@@ -78,7 +78,7 @@ $query="select kec.region_name as kecamatan, kel.region_name as kelurahan,* from
 				when $p_region_id_kelurahan = 0 then true
 				else $p_region_id_kelurahan = b.brand_p_region_id_kel
 			end
-		order by b.company_brand limit 11";
+		order by b.company_brand";
 
 $dbConn->query($query);
 //echo $query;exit;
