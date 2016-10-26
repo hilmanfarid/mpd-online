@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-70814C16
+//Class_Initialize Event @3-BFFB3072
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -84,11 +84,22 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->ListBox2->Required = true;
             $this->vat_code = & new clsControl(ccsTextBox, "vat_code", "vat_code", ccsText, "", CCGetRequestParam("vat_code", $Method, NULL), $this);
             $this->p_vat_type_id = & new clsControl(ccsHidden, "p_vat_type_id", "p_vat_type_id", ccsText, "", CCGetRequestParam("p_vat_type_id", $Method, NULL), $this);
+            $this->jenis_wp = & new clsControl(ccsListBox, "jenis_wp", "jenis_wp", ccsText, "", CCGetRequestParam("jenis_wp", $Method, NULL), $this);
+            $this->jenis_wp->DSType = dsListOfValues;
+            $this->jenis_wp->Values = array(array("1", "Semua"), array("2", "Non NPWPD Jabatan"), array("3", "Hanya NPWPD Jabatan"));
+            $this->jenis_wp->Required = true;
+            $this->no_surat = & new clsControl(ccsTextBox, "no_surat", "no_surat", ccsText, "", CCGetRequestParam("no_surat", $Method, NULL), $this);
+            $this->nama_kecamatan = & new clsControl(ccsTextBox, "nama_kecamatan", "Kecamatan", ccsText, "", CCGetRequestParam("nama_kecamatan", $Method, NULL), $this);
+            $this->nama_kecamatan->Required = true;
+            $this->nama_kelurahan = & new clsControl(ccsTextBox, "nama_kelurahan", "Kelurahan", ccsText, "", CCGetRequestParam("nama_kelurahan", $Method, NULL), $this);
+            $this->nama_kelurahan->Required = true;
+            $this->p_region_id_kecamatan = & new clsControl(ccsHidden, "p_region_id_kecamatan", "p_region_id_kecamatan", ccsText, "", CCGetRequestParam("p_region_id_kecamatan", $Method, NULL), $this);
+            $this->p_region_id_kelurahan = & new clsControl(ccsHidden, "p_region_id_kelurahan", "p_region_id_kelurahan", ccsText, "", CCGetRequestParam("p_region_id_kelurahan", $Method, NULL), $this);
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-5F0B6E2F
+//Validate Method @3-DE3C9622
     function Validate()
     {
         global $CCSLocales;
@@ -102,6 +113,12 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation = ($this->ListBox2->Validate() && $Validation);
         $Validation = ($this->vat_code->Validate() && $Validation);
         $Validation = ($this->p_vat_type_id->Validate() && $Validation);
+        $Validation = ($this->jenis_wp->Validate() && $Validation);
+        $Validation = ($this->no_surat->Validate() && $Validation);
+        $Validation = ($this->nama_kecamatan->Validate() && $Validation);
+        $Validation = ($this->nama_kelurahan->Validate() && $Validation);
+        $Validation = ($this->p_region_id_kecamatan->Validate() && $Validation);
+        $Validation = ($this->p_region_id_kelurahan->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_finance_period_id->Errors->Count() == 0);
@@ -111,11 +128,17 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation =  $Validation && ($this->ListBox2->Errors->Count() == 0);
         $Validation =  $Validation && ($this->vat_code->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_vat_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->jenis_wp->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->no_surat->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kecamatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->nama_kelurahan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_region_id_kecamatan->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->p_region_id_kelurahan->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-E55CB0F0
+//CheckErrors Method @3-81A328D9
     function CheckErrors()
     {
         $errors = false;
@@ -127,6 +150,12 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $errors = ($errors || $this->ListBox2->Errors->Count());
         $errors = ($errors || $this->vat_code->Errors->Count());
         $errors = ($errors || $this->p_vat_type_id->Errors->Count());
+        $errors = ($errors || $this->jenis_wp->Errors->Count());
+        $errors = ($errors || $this->no_surat->Errors->Count());
+        $errors = ($errors || $this->nama_kecamatan->Errors->Count());
+        $errors = ($errors || $this->nama_kelurahan->Errors->Count());
+        $errors = ($errors || $this->p_region_id_kecamatan->Errors->Count());
+        $errors = ($errors || $this->p_region_id_kelurahan->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -179,7 +208,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-B63B211F
+//Show Method @3-1B7307B2
     function Show()
     {
         global $CCSUseAmp;
@@ -195,6 +224,7 @@ function GetPrimaryKey($keyName)
 
         $this->ListBox1->Prepare();
         $this->ListBox2->Prepare();
+        $this->jenis_wp->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -213,6 +243,12 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->ListBox2->Errors->ToString());
             $Error = ComposeStrings($Error, $this->vat_code->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_vat_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->jenis_wp->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->no_surat->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kecamatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->nama_kelurahan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_region_id_kecamatan->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->p_region_id_kelurahan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -239,6 +275,12 @@ function GetPrimaryKey($keyName)
         $this->ListBox2->Show();
         $this->vat_code->Show();
         $this->p_vat_type_id->Show();
+        $this->jenis_wp->Show();
+        $this->no_surat->Show();
+        $this->nama_kecamatan->Show();
+        $this->nama_kelurahan->Show();
+        $this->p_region_id_kecamatan->Show();
+        $this->p_region_id_kelurahan->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
