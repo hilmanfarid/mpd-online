@@ -12,6 +12,17 @@ $sequence_no = CCGetFromGet("sequence_no", "");
 $pejabat = CCGetFromGet("pejabat", 1);
 $p_vat_type_id = CCGetFromGet("p_vat_type_id", 1);
 
+$jenis_wp = CCGetFromGet("jenis_wp", 1);
+$p_region_id_kecamatan = CCGetFromGet("p_region_id_kecamatan", 0);
+$p_region_id_kelurahan = CCGetFromGet("p_region_id_kelurahan", 0);
+
+if ($p_region_id_kecamatan==""){
+	$p_region_id_kecamatan=0;
+}
+if ($p_region_id_kelurahan==""){
+	$p_region_id_kelurahan=0;
+}
+
 $dbConn = new clsDBConnSIKP();
 $query="select * from t_debt_letter where 
 	p_finance_period_id=".$p_finance_period_id." and sequence_no = ".$sequence_no;
@@ -48,11 +59,26 @@ $dbConn = new clsDBConnSIKP();
 	}
 
 
-$query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
+$query="select kec.region_name as kecamatan, kel.region_name as kelurahan,* from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
+		left join p_region kec on kec.p_region_id = b.brand_p_region_id_kec
+		left join p_region kel on kel.p_region_id = b.brand_p_region_id_kel
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) 
 		and b.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$p_vat_type_id.")
-		order by b.company_brand";
+		and case 
+				when $jenis_wp = 1 then true
+				when $jenis_wp = 2 then (b.npwpd_jabatan is null or b.npwpd_jabatan!='Y')
+				when $jenis_wp = 3 then b.npwpd_jabatan = 'Y'
+			end
+		and case 
+				when $p_region_id_kecamatan = 0 then true
+				else $p_region_id_kecamatan = b.brand_p_region_id_kec
+			end
+		and case 
+				when $p_region_id_kelurahan = 0 then true
+				else $p_region_id_kelurahan = b.brand_p_region_id_kel
+			end
+		order by b.company_brand limit 11";
 
 $dbConn->query($query);
 //echo $query;exit;
@@ -73,6 +99,8 @@ while ($dbConn->next_record()) {
 			'debt_period_code' =>  $dbConn->f("debt_period_code"),
 			'sequence_no' => $dbConn->f("sequence_no"),
 			'letter_date_txt' => $dbConn->f("letter_date_txt"),
+			'kecamatan' => $dbConn->f("kecamatan"),
+			'kelurahan' => $dbConn->f("kelurahan"),
 			'nama_kadin' => $nama_kadin,
 			'nip_kadin' => $nip_kadin
 		);
@@ -188,12 +216,13 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("L","L","L"));
 		$posy = $this->getY();
 		$data["letter_no"]=trim($data["letter_no"]);
-		if(!empty($data["letter_no"])){
+		$no_surat = CCGetFromGet("no_surat", "");
+		if(!empty($no_surat)){
 			$this->RowMultiBorderWithHeight(
 				array("Nomor",
 					":",
-					/*" 973 /       - Disyanjak",*/
-					/*$data["letter_no"]."-".$no_urut*/""
+					" 973 / ".$no_surat." - Disyanjak"
+					/*" - "*/
 				),
 				array("",
 					"",
@@ -277,7 +306,8 @@ class FormCetak extends FPDF {
 		$this->SetAligns(array("L","L"));
 		$this->RowMultiBorderWithHeight(
 			array("",
-				$data["address"]
+				$data["address"]."\n".
+				"Kec. ".$data["kecamatan"]." Kel. ".$data["kelurahan"]
 			),
 			array("L",
 				"R"
@@ -520,6 +550,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody4, $this->height, "Kepala Bidang Pajak Pendaftaran", "", 0, 'C');
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
+		$posy = $this->getY();
 
 		$this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'L');
 		$this->Ln();
@@ -566,7 +597,7 @@ class FormCetak extends FPDF {
 							str_replace(" ","-",$data['letter_date_txt'])."_".
 							$data["npwd"]."_".
 							str_replace(" ","-",$data["periode"])
-							,161,184,25,25,'PNG'
+							,161,$posy,25,25,'PNG'
 						);
 		}else{
 			if ($pejabat == 1){
@@ -575,7 +606,7 @@ class FormCetak extends FPDF {
 				str_replace(" ","-",$data['letter_date_txt'])."_".
 				$data["npwd"]."_".
 				str_replace(" ","-",$data["periode"])
-				,28,184,25,25,'PNG');
+				,28,$posy,25,25,'PNG');
 			}else{
 				$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
 				$this->Image('../images/ttd_pa_soni.jpg',$lbody2+$lbody4+$lbody4-20,178,$lbody4+48,20);
@@ -583,7 +614,7 @@ class FormCetak extends FPDF {
 				str_replace(" ","-",$data['letter_date_txt'])."_".
 				$data["npwd"]."_".
 				str_replace(" ","-",$data["periode"])
-				,28,184,25,25,'PNG');
+				,28,$posy,25,25,'PNG');
 			}
 		}
 		$this->Cell($lbody2-5, $this->height, "", "R", 0, 'C');
