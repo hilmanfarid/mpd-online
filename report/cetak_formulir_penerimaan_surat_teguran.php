@@ -12,6 +12,17 @@ $sequence_no = CCGetFromGet("sequence_no", "");
 $pejabat = CCGetFromGet("pejabat", 1);
 $p_vat_type_id = CCGetFromGet("p_vat_type_id", 1);
 
+$jenis_wp = CCGetFromGet("jenis_wp", 1);
+$p_region_id_kecamatan = CCGetFromGet("p_region_id_kecamatan", 0);
+$p_region_id_kelurahan = CCGetFromGet("p_region_id_kelurahan", 0);
+
+if ($p_region_id_kecamatan==""){
+	$p_region_id_kecamatan=0;
+}
+if ($p_region_id_kelurahan==""){
+	$p_region_id_kelurahan=0;
+}
+
 $dbConn = new clsDBConnSIKP();
 $query="select * from t_debt_letter where 
 	p_finance_period_id=".$p_finance_period_id." and sequence_no = ".$sequence_no;
@@ -51,8 +62,23 @@ $dbConn = new clsDBConnSIKP();
 $query="select * from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
 		LEFT JOIN t_debt_letter_dtl AS c ON tbl.t_cust_account_id = c.t_cust_account_id and tbl.t_debt_letter_id = c.t_debt_letter_id
+		left join p_region kec on kec.p_region_id = b.brand_p_region_id_kec
+		left join p_region kel on kel.p_region_id = b.brand_p_region_id_kel
 		WHERE b.p_vat_type_dtl_id NOT IN (11, 15, 17, 21, 27, 30, 41, 42, 43) 
 		and b.p_vat_type_dtl_id in (select p_vat_type_dtl_id from p_vat_type_dtl where p_vat_type_id = ".$p_vat_type_id.")
+		and case 
+				when $jenis_wp = 1 then true
+				when $jenis_wp = 2 then (b.npwpd_jabatan is null or b.npwpd_jabatan!='Y')
+				when $jenis_wp = 3 then b.npwpd_jabatan = 'Y'
+			end
+		and case 
+				when $p_region_id_kecamatan = 0 then true
+				else $p_region_id_kecamatan = b.brand_p_region_id_kec
+			end
+		and case 
+				when $p_region_id_kelurahan = 0 then true
+				else $p_region_id_kelurahan = b.brand_p_region_id_kel
+			end
 		order by b.company_brand";
 
 $dbConn->query($query);
@@ -156,7 +182,13 @@ class FormCetak extends PDF_MC_Table {
 		$this->RowMultiBorderWithHeight(array("NO.","TGL. & NO. SURAT","PERIHAL"),array('BLTR','BLTR','BLTR'),10);
 		$this->SetFont('BookmanOldStyle', '',10);
 		$this->SetAligns(array("L","L","L"));
-		$this->RowMultiBorderWithHeight(array("1",$data['letter_date_txt']." - 973 /       - Disyanjak","SURAT TEGURAN ".numberToRoman($data["sequence_no"])),array('BLTR','BLTR','BLTR'),10);
+		$no_surat = CCGetFromGet("no_surat", "");
+		if(!empty($no_surat)){
+			$this->RowMultiBorderWithHeight(array("1",$data['letter_date_txt']." - 973 / ".$no_surat." - Disyanjak","SURAT TEGURAN ".numberToRoman($data["sequence_no"])),array('BLTR','BLTR','BLTR'),10);
+		}ELSE{
+			$this->RowMultiBorderWithHeight(array("1",$data['letter_date_txt']." - 973 /       - Disyanjak","SURAT TEGURAN ".numberToRoman($data["sequence_no"])),array('BLTR','BLTR','BLTR'),10);
+		}
+		
 		$this->RowMultiBorderWithHeight(array("","",""),array('BLTR','BLTR','BLTR'),10);
 		//$this->RowMultiBorderWithHeight(array("","",""),array('BLTR','BLTR','BLTR'),10);
 		
