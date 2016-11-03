@@ -12,8 +12,8 @@ $data = array();
 $dbConn = new clsDBConnSIKP();
 
 $query="select a.order_no ,
-       c.company_name ||'('||c.company_brand||')' as nama,
-       c.address_name ||' no. '|| c.address_no as alamat,
+       c.company_brand as nama,
+       c.brand_address_name ||' no. '|| c.brand_address_no as alamat,
        c.npwd,
        'SPTPD' as dasar_setoran ,
        e.code as masa_pajak,
