@@ -100,7 +100,7 @@ class FormCetak extends FPDF {
 		$lheader4 = $lheader * 4;
 		$lheader7 = $lheader * 7;
 		
-		/*
+		
 		//header
 		$this->Image('../images/logo_pemda.png',25,3,25,25);
 		
@@ -127,8 +127,8 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader7, $this->height, "", "RB", 0, 'C');
 		$this->Ln();
 		//end header
-		*/
 		
+		/*
 		// header kosong
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
 		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
@@ -153,6 +153,7 @@ class FormCetak extends FPDF {
 		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
 		$this->Ln();
 		//end header kosong
+		*/
 		
 		$this->Cell($lheader1, $this->height, "", "", 0, 'L');
 		$this->Cell($lheader7, $this->height, "", "", 0, 'C');
