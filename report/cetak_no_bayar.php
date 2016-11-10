@@ -50,7 +50,7 @@ if ($data["is_employee"]!='Y' && $data["is_surveyed"]!='Y'){
 	echo '<html>
 			<head>
 				<script language="javascript">';
-				echo 'alert("Anda diharapkan untuk mengisi survey terlebih dahulu untuk mencetak dokumen No. Bayar '.$no_bayar.'");';
+				echo 'alert("Anda diharapkan untuk mengisi survey terlebih dahulu untuk mencetak dokumen No. Bayar");';
 				echo 'location.href="../trans/t_survey_kepuasan_pelanggan_pelaporan_pertanyaan.php?payment_key="+"'.$no_bayar.'";';
 			echo '</script>
 			</head>
