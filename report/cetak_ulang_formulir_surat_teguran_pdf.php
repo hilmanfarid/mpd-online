@@ -494,8 +494,8 @@ class FormCetak extends FPDF {
 		$this->RowMultiBorderWithHeight(
 				array("",
 					"Untuk mencegah tindakan penagihan dengan penetapan pajak ditambah sansi administrasi secara jabatan berdasarkan ".
-					"Undang-undang Nomor 28 Tahun 2011 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar ".
-					"melapar dan/atau membayar pajak anda dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut ".
+					"Undang-undang Nomor 28 Tahun 2009 dan Peraturan Daerah Nomor 20 Tahun 2011 Ps 70, maka diminta kepada Saudara agar ".
+					"melapor dan/atau membayar pajak anda dalam waktu 7 (tujuh) hari setelah Surat Teguran ini. Setelah batas waktu tersebut ".
 					"tindakan penagihan akan dilanjutkan dengan penetapan pajak ditambag sanksi administrasi secara jabatan.",
 					""
 				),
@@ -596,7 +596,8 @@ class FormCetak extends FPDF {
 							'http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
 							str_replace(" ","-",$data['letter_date_txt'])."_".
 							$data["npwd"]."_".
-							str_replace(" ","-",$data["periode"])
+							str_replace(" ","-",$data["periode"])."_".
+							"Drs-H-GUN-GUN-SUMARYANA"
 							,161,$posy,25,25,'PNG'
 						);
 		}else{
@@ -605,7 +606,8 @@ class FormCetak extends FPDF {
 				$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
 				str_replace(" ","-",$data['letter_date_txt'])."_".
 				$data["npwd"]."_".
-				str_replace(" ","-",$data["periode"])
+				str_replace(" ","-",$data["periode"])."_".
+				"Drs-H-GUN-GUN-SUMARYANA"
 				,28,$posy,25,25,'PNG');
 			}else{
 				$this->Cell($lbody4+10, $this->height, "H. SONI BAKHTIAR, S.Sos, M.Si.", "B", 0, 'C');
@@ -613,7 +615,8 @@ class FormCetak extends FPDF {
 				$this->Image('http://'.$_SERVER['HTTP_HOST'].'/mpd/include/qrcode/generate-qr.php?param='.
 				str_replace(" ","-",$data['letter_date_txt'])."_".
 				$data["npwd"]."_".
-				str_replace(" ","-",$data["periode"])
+				str_replace(" ","-",$data["periode"])."_".
+				"H-SONI-BAKHTIAR-S-Sos-M-Si"
 				,28,$posy,25,25,'PNG');
 			}
 		}
