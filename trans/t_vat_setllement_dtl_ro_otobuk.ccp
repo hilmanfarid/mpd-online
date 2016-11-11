@@ -71,19 +71,19 @@
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="230" fieldSourceType="DBColumn" dataType="Text" html="False" name="bill_no_end" fieldSource="bill_no_end" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridbill_no_end">
+				<Label id="230" fieldSourceType="DBColumn" dataType="Text" html="False" name="bill_no_end" fieldSource="bill_no_end" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGridbill_no_end">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-<Label id="231" fieldSourceType="DBColumn" dataType="Text" html="False" name="description" fieldSource="description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGriddescription">
+				<Label id="231" fieldSourceType="DBColumn" dataType="Text" html="False" name="description" fieldSource="description" wizardCaption="Description" wizardSize="50" wizardMaxLength="250" wizardIsPassword="False" wizardUseTemplateBlock="False" wizardAddNbsp="True" PathID="t_vat_setllement_dtlGriddescription">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</Label>
-</Components>
+			</Components>
 			<Events>
 				<Event name="BeforeShowRow" type="Server">
 					<Actions>
