@@ -41,6 +41,13 @@ $(document).ready(function()
         DETAIL SPTPD (Pelaporan Pajak) 
       </div>
     </div>
+	<div class="th tab-button">
+      <label onclick="javascript:toTapping()">
+      <div class="tab-title">
+        HASIL TAPPING
+      </div>
+      </label>
+    </div>
   </div>
 </div>
 <div style="CLEAR: both; PADDING-TOP: 50px">
@@ -223,6 +230,81 @@ function toVat()
 
 
     location.href="t_vat_setllement_ro_otobuk.php?t_vat_setllement_id="+pid
+                                           +"&t_cust_account_id="+custId
+                                           +"&p_finance_period_id="+fId
+                                           +"&t_customer_order_id="+cusId
+                                           +"&npwd="+npwd
+                                           +"&finance_period_code="+fcode
+                                           +"&order_no="+order
+                                                                                        +"&TAKEN_CTL="+takenCtl
+                                                                                        +"&IS_TAKEN="+isTaken
+                                                                                        +"&CURR_DOC_ID="+currDocId
+                                                                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                                                                        +"&CURR_PROC_ID="+currProcId
+                                                                                        +"&CURR_CTL_ID="+currCtlId
+                                                                                        +"&USER_ID_DOC="+userIdDoc
+                                                                                        +"&USER_ID_DONOR="+userIdDonor
+                                                                                        +"&USER_ID_LOGIN="+userIdLogin
+                                                                                        +"&USER_ID_TAKEN="+userIdTaken
+                                                                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                                                                        +"&IS_MANUAL="+isManual
+                                                                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                                                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                                                                        +"&PREV_DOC_ID="+PrevDocId
+                                                                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                                                                        +"&PREV_PROC_ID="+PrevProcId
+                                                                                        +"&PREV_CTL_ID="+PrevCtlId
+                                                                                        +"&SLOT_1="+slot1
+                                                                                        +"&SLOT_2="+slot2
+                                                                                        +"&SLOT_3="+slot3
+                                                                                        +"&SLOT_4="+slot4
+                                                                                        +"&SLOT_5="+slot5
+                                                                                        +"&MESSAGE="+msg;
+
+                                                                                                                                                   +"&p_rqst_type_id="+reqId
+                                                                                                                                                   +"&rqst_type_code="+reqCode;
+   
+}
+
+function toTapping()
+{
+    var pid=document.getElementById("t_vat_setllement_dtlSearcht_vat_setllement_id").value;
+    var custId=document.getElementById("t_vat_setllement_dtlSearcht_cust_account_id").value;
+    var fId=document.getElementById("t_vat_setllement_dtlSearchp_finance_period_id").value;
+    var cusId=document.getElementById("t_vat_setllement_dtlSearcht_customer_order_id").value;
+    var npwd=document.getElementById("t_vat_setllement_dtlSearchnpwd").value;
+    var fcode=document.getElementById("t_vat_setllement_dtlSearchfinance_period_code").value;
+    var order=document.getElementById("t_vat_setllement_dtlSearchorder_no").value;
+        var reqId=document.getElementById("t_vat_setllement_dtlSearchp_rqst_type_id").value;
+    var reqCode=document.getElementById("t_vat_setllement_dtlSearchrqst_type_code").value; 
+
+                var takenCtl = document.getElementById('t_vat_setllement_dtlSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_vat_setllement_dtlSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_vat_setllement_dtlSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_vat_setllement_dtlSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_vat_setllement_dtlSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_vat_setllement_dtlSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_vat_setllement_dtlSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_vat_setllement_dtlSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_vat_setllement_dtlSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_vat_setllement_dtlSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_vat_setllement_dtlSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_vat_setllement_dtlSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_vat_setllement_dtlSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_vat_setllement_dtlSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_vat_setllement_dtlSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_vat_setllement_dtlSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_vat_setllement_dtlSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_vat_setllement_dtlSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_vat_setllement_dtlSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_vat_setllement_dtlSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_vat_setllement_dtlSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_vat_setllement_dtlSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_vat_setllement_dtlSearchSLOT_5').value;
+        var msg = document.getElementById('t_vat_setllement_dtlSearchMESSAGE').value;
+
+
+    location.href="t_vat_setllement_dtl_ro_otobuk_tapping.php?t_vat_setllement_id="+pid
                                            +"&t_cust_account_id="+custId
                                            +"&p_finance_period_id="+fId
                                            +"&t_customer_order_id="+cusId
