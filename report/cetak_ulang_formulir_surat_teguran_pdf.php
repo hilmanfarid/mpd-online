@@ -59,7 +59,8 @@ $dbConn = new clsDBConnSIKP();
 	}
 
 
-$query="select kec.region_name as kecamatan, kel.region_name as kelurahan,* from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
+$query="select nvl(brand_address_rt,'-') as brand_address_rt,nvl(brand_address_rw,'-') as brand_address_rw,
+		kec.region_name as kecamatan, kel.region_name as kelurahan,* from f_debt_letter_print2(".$t_customer_order_id.") AS tbl (ty_debt_letter_list)
 		LEFT JOIN t_cust_account as b ON tbl.t_cust_account_id = b.t_cust_account_id
 		left join p_region kec on kec.p_region_id = b.brand_p_region_id_kec
 		left join p_region kel on kel.p_region_id = b.brand_p_region_id_kel
@@ -87,7 +88,7 @@ while ($dbConn->next_record()) {
 		$data[]= array(
 			'npwd' => $dbConn->f("npwd"),
 			'company_name' => $dbConn->f("company_brand"),
-			'address' => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no"),
+			'address' => $dbConn->f("brand_address_name").' '.$dbConn->f("brand_address_no").' RT'.$dbConn->f("brand_address_rt").'/'.$dbConn->f("brand_address_rw"),
 			'letter_no' => $dbConn->f("letter_no"),
 			'vat_code' => $dbConn->f("vat_code"),
 			'periode' => $dbConn->f("periode"),
