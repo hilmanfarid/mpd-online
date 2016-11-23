@@ -53,6 +53,18 @@ if($pbb!='' && $pbb>0){
 		);	
 }
 
+//REKLAME
+$ws_data = file_get_contents('http://49.236.219.74/wsrealpbb/realisasi/index/reklame/pokok/'.date("d-m-Y"));
+$ws_data = json_decode($ws_data);
+$reklame = str_replace('.','',$ws_data->nilai);
+if($reklame!='' && $reklame>0){
+	$item[] = array(
+		'p_vat_type_id' => 9,
+		'jenis_pajak' => "REKLAME",
+		'realisasi' => $reklame 
+		);	
+}
+
 //PAT
 $ws_data = file_get_contents('http://49.236.219.74/wsrealpbb/realisasi/index/pat/pokok/'.date("d-m-Y"));
 $ws_data = json_decode($ws_data);
@@ -60,23 +72,13 @@ $ws_data = json_decode($ws_data);
 $pat = str_replace('.','',$ws_data->nilai);	
 if($pat!='' && $pat>0){
 	$item[] = array(
-		'p_vat_type_id' => 9,
+		'p_vat_type_id' => 10,
 		'jenis_pajak' => "PAT",
 		'realisasi' => $pat 
 		);	
 }
 
-//REKLAME
-$ws_data = file_get_contents('http://49.236.219.74/wsrealpbb/realisasi/index/reklame/pokok/'.date("d-m-Y"));
-$ws_data = json_decode($ws_data);
-$reklame = str_replace('.','',$ws_data->nilai);
-if($reklame!='' && $reklame>0){
-	$item[] = array(
-		'p_vat_type_id' => 10,
-		'jenis_pajak' => "REKLAME",
-		'realisasi' => $reklame 
-		);	
-}
+
 
 
 
