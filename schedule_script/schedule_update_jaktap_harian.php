@@ -24,7 +24,7 @@ try{
 	$ws_data = file_get_contents('http://49.236.219.74/wsrealpbb/realisasi/index/reklame/pokok/'.date("d-m-Y"));
 	$ws_data = json_decode($ws_data);
 	$reklame = str_replace('.','',$ws_data->nilai);
-	if($reklame!='' && $pat>0){
+	if($reklame!='' && $reklame>0){
 		$sql = " select * from f_insert_jaktap(45, $reklame)";
 		$dbConn->query($sql);
 		
@@ -39,7 +39,7 @@ try{
 	$ws_data = json_decode($ws_data);
 	$pbb = str_replace('.','',$ws_data->nilai);
 	
-	if($pbb!='' && $pat>0){
+	if($pbb!='' && $pbb>0){
 		$sql = " select * from f_insert_jaktap(52, $pbb)";
 		$dbConn->query($sql);
 
