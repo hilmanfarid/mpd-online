@@ -78,10 +78,6 @@ if($pat!='' && $pat>0){
 		);	
 }
 
-
-
-
-
 if (empty($item)) {
 	$json = array('items'=>array(),'message'=>'data tidak ditemukan','success'=>'0');
 }
