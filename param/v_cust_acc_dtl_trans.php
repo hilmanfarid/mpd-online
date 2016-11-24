@@ -42,7 +42,7 @@ class clsGridVIEWDETTRANS { //VIEWDETTRANS class @2-1212C8D9
     var $RowControls;
 //End Variables
 
-//Class_Initialize Event @2-7B1BC0E2
+//Class_Initialize Event @2-CC230B62
     function clsGridVIEWDETTRANS($RelativePath, & $Parent)
     {
         global $FileName;
@@ -59,7 +59,7 @@ class clsGridVIEWDETTRANS { //VIEWDETTRANS class @2-1212C8D9
         $this->ds = & $this->DataSource;
         $this->PageSize = CCGetParam($this->ComponentName . "PageSize", "");
         if(!is_numeric($this->PageSize) || !strlen($this->PageSize))
-            $this->PageSize = 10;
+            $this->PageSize = 35;
         else
             $this->PageSize = intval($this->PageSize);
         if ($this->PageSize > 100)

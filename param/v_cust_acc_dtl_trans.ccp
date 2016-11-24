@@ -1,6 +1,6 @@
 <Page id="1" templateExtension="html" relativePath=".." fullRelativePath=".\param" secured="False" urlType="Relative" isIncluded="False" SSLAccess="False" isService="False" cachingEnabled="False" validateRequest="True" cachingDuration="1 minutes" wizardTheme="sikm" wizardThemeVersion="3.0" needGeneration="0">
 	<Components>
-		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="10" name="VIEWDETTRANS" connection="ConnSIKP" dataSource="select  c.trans_date, c.bill_no, c.service_desc, c.service_charge, c.vat_charge 
+		<Grid id="2" secured="False" sourceType="SQL" returnValueType="Number" defaultPageSize="35" name="VIEWDETTRANS" connection="ConnSIKP" dataSource="select  c.trans_date, c.bill_no, c.service_desc, c.service_charge, c.vat_charge 
 from t_vat_setllement a, 
 t_vat_setllement_dtl b, 
 t_cust_acc_dtl_trans c
@@ -46,18 +46,18 @@ where a.t_vat_setllement_id = b.t_vat_setllement_id and
 					<Features/>
 				</Label>
 				<Button id="53" urlType="Relative" enableValidation="True" isDefault="False" name="Button1" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="VIEWDETTRANSButton1">
-<Components/>
-<Events>
-<Event name="OnClick" type="Client">
-<Actions>
-<Action actionName="Custom Code" actionCategory="General" id="54"/>
-</Actions>
-</Event>
-</Events>
-<Attributes/>
-<Features/>
-</Button>
-</Components>
+					<Components/>
+					<Events>
+						<Event name="OnClick" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="54"/>
+							</Actions>
+						</Event>
+					</Events>
+					<Attributes/>
+					<Features/>
+				</Button>
+			</Components>
 			<Events>
 				<Event name="BeforeSelect" type="Server">
 					<Actions>
@@ -82,8 +82,8 @@ where a.t_vat_setllement_id = b.t_vat_setllement_id and
 			<SPParameters/>
 			<SQLParameters>
 				<SQLParameter id="51" variable="t_vat_setllement_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="t_vat_setllement_id"/>
-<SQLParameter id="52" variable="t_cust_account_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="t_cust_account_id"/>
-</SQLParameters>
+				<SQLParameter id="52" variable="t_cust_account_id" parameterType="URL" defaultValue="0" dataType="Float" parameterSource="t_cust_account_id"/>
+			</SQLParameters>
 			<SecurityGroups/>
 			<Attributes/>
 			<Features/>
