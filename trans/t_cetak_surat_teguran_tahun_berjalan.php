@@ -45,7 +45,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-10AAEEEB
+//Class_Initialize Event @3-565C4B08
     function clsRecordt_rep_lap_spjpSearch($RelativePath, & $Parent)
     {
 
@@ -81,16 +81,20 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
             $this->teg_ke->DSType = dsListOfValues;
             $this->teg_ke->Values = array(array("1", "1"), array("2", "2"), array("3", "3"));
             $this->teg_ke->Required = true;
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
             $this->p_settlement_type_id = & new clsControl(ccsListBox, "p_settlement_type_id", "p_settlement_type_id", ccsText, "", CCGetRequestParam("p_settlement_type_id", $Method, NULL), $this);
             $this->p_settlement_type_id->DSType = dsListOfValues;
             $this->p_settlement_type_id->Values = array(array("4", "SKPDKB JABATAN"), array("2", "SKPDKB PEMERIKSAAN"));
             $this->p_settlement_type_id->Required = true;
+            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->tgl_cetak = & new clsControl(ccsListBox, "tgl_cetak", "tgl_cetak", ccsText, "", CCGetRequestParam("tgl_cetak", $Method, NULL), $this);
+            $this->tgl_cetak->DSType = dsListOfValues;
+            $this->tgl_cetak->Values = array(array("1", "Ya"), array("0", "Tidak"));
+            $this->tgl_cetak->Required = true;
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-ADDB4345
+//Validate Method @3-F304C90B
     function Validate()
     {
         global $CCSLocales;
@@ -103,6 +107,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation = ($this->ttd->Validate() && $Validation);
         $Validation = ($this->teg_ke->Validate() && $Validation);
         $Validation = ($this->p_settlement_type_id->Validate() && $Validation);
+        $Validation = ($this->tgl_cetak->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
@@ -111,11 +116,12 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $Validation =  $Validation && ($this->ttd->Errors->Count() == 0);
         $Validation =  $Validation && ($this->teg_ke->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_settlement_type_id->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->tgl_cetak->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-9FE8C621
+//CheckErrors Method @3-CD9EF32C
     function CheckErrors()
     {
         $errors = false;
@@ -126,6 +132,7 @@ class clsRecordt_rep_lap_spjpSearch { //t_rep_lap_spjpSearch Class @3-FE45B59C
         $errors = ($errors || $this->ttd->Errors->Count());
         $errors = ($errors || $this->teg_ke->Errors->Count());
         $errors = ($errors || $this->p_settlement_type_id->Errors->Count());
+        $errors = ($errors || $this->tgl_cetak->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -178,7 +185,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-0DAFFBCC
+//Show Method @3-26B90185
     function Show()
     {
         global $CCSUseAmp;
@@ -195,6 +202,7 @@ function GetPrimaryKey($keyName)
         $this->ttd->Prepare();
         $this->teg_ke->Prepare();
         $this->p_settlement_type_id->Prepare();
+        $this->tgl_cetak->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -212,6 +220,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->ttd->Errors->ToString());
             $Error = ComposeStrings($Error, $this->teg_ke->Errors->ToString());
             $Error = ComposeStrings($Error, $this->p_settlement_type_id->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->tgl_cetak->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -235,8 +244,9 @@ function GetPrimaryKey($keyName)
         $this->p_vat_type_id->Show();
         $this->ttd->Show();
         $this->teg_ke->Show();
-        $this->Button_DoSearch->Show();
         $this->p_settlement_type_id->Show();
+        $this->Button_DoSearch->Show();
+        $this->tgl_cetak->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
