@@ -45,7 +45,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-00AEAB24
+//Class_Initialize Event @3-46089BBD
     function clsRecordt_rep_bppsSearch($RelativePath, & $Parent)
     {
 
@@ -92,11 +92,15 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
             "from p_business_area ";
             $this->kode_wilayah->DataSource->Order = "";
             $this->kode_wilayah->Required = true;
+            $this->tgl_bayar = & new clsControl(ccsListBox, "tgl_bayar", "tgl_bayar", ccsText, "", CCGetRequestParam("tgl_bayar", $Method, NULL), $this);
+            $this->tgl_bayar->DSType = dsListOfValues;
+            $this->tgl_bayar->Values = array(array("1", "Ya"), array("0", "Tidak"));
+            $this->tgl_bayar->Required = true;
         }
     }
 //End Class_Initialize Event
 
-//Validate Method @3-A568176E
+//Validate Method @3-63150506
     function Validate()
     {
         global $CCSLocales;
@@ -109,6 +113,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation = ($this->p_year_period_id->Validate() && $Validation);
         $Validation = ($this->tgl_penerimaan_last->Validate() && $Validation);
         $Validation = ($this->kode_wilayah->Validate() && $Validation);
+        $Validation = ($this->tgl_bayar->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->tgl_penerimaan->Errors->Count() == 0);
         $Validation =  $Validation && ($this->year_code->Errors->Count() == 0);
@@ -117,11 +122,12 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $Validation =  $Validation && ($this->p_year_period_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->tgl_penerimaan_last->Errors->Count() == 0);
         $Validation =  $Validation && ($this->kode_wilayah->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->tgl_bayar->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-CA58997B
+//CheckErrors Method @3-9F0B0D3C
     function CheckErrors()
     {
         $errors = false;
@@ -134,6 +140,7 @@ class clsRecordt_rep_bppsSearch { //t_rep_bppsSearch Class @3-C18ACE8B
         $errors = ($errors || $this->tgl_penerimaan_last->Errors->Count());
         $errors = ($errors || $this->DatePicker_tgl_penerimaan_last1->Errors->Count());
         $errors = ($errors || $this->kode_wilayah->Errors->Count());
+        $errors = ($errors || $this->tgl_bayar->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         return $errors;
     }
@@ -192,7 +199,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//Show Method @3-8EC01492
+//Show Method @3-29BDFB89
     function Show()
     {
         global $CCSUseAmp;
@@ -207,6 +214,7 @@ function GetPrimaryKey($keyName)
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeSelect", $this);
 
         $this->kode_wilayah->Prepare();
+        $this->tgl_bayar->Prepare();
 
         $RecordBlock = "Record " . $this->ComponentName;
         $ParentPath = $Tpl->block_path;
@@ -226,6 +234,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->tgl_penerimaan_last->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan_last1->Errors->ToString());
             $Error = ComposeStrings($Error, $this->kode_wilayah->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->tgl_bayar->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
             $Tpl->Parse("Error", false);
@@ -254,6 +263,7 @@ function GetPrimaryKey($keyName)
         $this->Button_DoSearch1->Show();
         $this->Button_DoSearch2->Show();
         $this->kode_wilayah->Show();
+        $this->tgl_bayar->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
     }
