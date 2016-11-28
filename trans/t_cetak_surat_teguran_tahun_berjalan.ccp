@@ -62,18 +62,36 @@
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_lap_spjpSearchButton_DoSearch">
-					<Components/>
-					<Events/>
-					<Attributes/>
-					<Features/>
-				</Button>
-<ListBox id="574" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="p_settlement_type_id" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchp_settlement_type_id" connection="ConnSIKP" dataSource="4;SKPDKB JABATAN;2;SKPDKB PEMERIKSAAN" required="True" _valueOfList="2" _nameOfList="SKPDKB PEMERIKSAAN">
+				<ListBox id="574" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="p_settlement_type_id" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchp_settlement_type_id" connection="ConnSIKP" dataSource="4;SKPDKB JABATAN;2;SKPDKB PEMERIKSAAN" required="True" _valueOfList="2" _nameOfList="SKPDKB PEMERIKSAAN">
 					<Components/>
 					<Events>
 						<Event name="OnChange" type="Client">
 							<Actions>
 								<Action actionName="Custom Code" actionCategory="General" id="575" eventType="Client"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
+				<Button id="4" urlType="Relative" enableValidation="True" isDefault="False" name="Button_DoSearch" PathID="t_rep_lap_spjpSearchButton_DoSearch">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</Button>
+<ListBox id="576" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="tgl_cetak" wizardEmptyCaption="Select Value" PathID="t_rep_lap_spjpSearchtgl_cetak" connection="ConnSIKP" dataSource="1;Ya;0;Tidak" required="True" _valueOfList="0" _nameOfList="Tidak">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="577" eventType="Client"/>
 							</Actions>
 						</Event>
 					</Events>
