@@ -95,6 +95,7 @@ function Page_BeforeShow(& $sender)
 
 function GetCetakHTML2($data) {
 	$doAction = CCGetFromGet('doAction');
+	$tgl_bayar = CCGetFromGet("tgl_bayar", 1);
 	if($doAction == 'view_excel') {		
 		startExcel("laporan_ketetapan_dan_realisasi.xls");
 	}
@@ -532,35 +533,51 @@ function GetCetakHTML2($data) {
 				$jumlahtemp += $item["jumlah_terima"];
 				$ayat = $item["kode_ayat"];
 			}else{
-				$output .= '<td align="right">'.number_format($xdes, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_xdes.'</td>';
-				$output .= '<td align="right">'.number_format($des, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_des.'</td>';
-				$output .= '<td align="right">'.number_format($jan, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_jan.'</td>';
-				$output .= '<td align="right">'.number_format($feb, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_feb.'</td>';
-				$output .= '<td align="right">'.number_format($mar, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_mar.'</td>';
-				$output .= '<td align="right">'.number_format($apr, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_apr.'</td>';
-				$output .= '<td align="right">'.number_format($mei, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_mei.'</td>';
-				$output .= '<td align="right">'.number_format($jun, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_jun.'</td>';
-				$output .= '<td align="right">'.number_format($jul, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_jul.'</td>';
-				$output .= '<td align="right">'.number_format($agu, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_agu.'</td>';
-				$output .= '<td align="right">'.number_format($sep, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_sep.'</td>';
-				$output .= '<td align="right">'.number_format($okt, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_okt.'</td>';
-				$output .= '<td align="right">'.number_format($nov, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_nov.'</td>';
-				$output .= '<td align="right">'.number_format($xnov, 2, ',', '.');
-				$output .= '<br>'.$tgl_bayar_xnov.'</td>';
-		
+				if($tgl_bayar==1){
+					$output .= '<td align="right">'.number_format($xdes, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_xdes.'</td>';
+					$output .= '<td align="right">'.number_format($des, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_des.'</td>';
+					$output .= '<td align="right">'.number_format($jan, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_jan.'</td>';
+					$output .= '<td align="right">'.number_format($feb, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_feb.'</td>';
+					$output .= '<td align="right">'.number_format($mar, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_mar.'</td>';
+					$output .= '<td align="right">'.number_format($apr, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_apr.'</td>';
+					$output .= '<td align="right">'.number_format($mei, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_mei.'</td>';
+					$output .= '<td align="right">'.number_format($jun, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_jun.'</td>';
+					$output .= '<td align="right">'.number_format($jul, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_jul.'</td>';
+					$output .= '<td align="right">'.number_format($agu, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_agu.'</td>';
+					$output .= '<td align="right">'.number_format($sep, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_sep.'</td>';
+					$output .= '<td align="right">'.number_format($okt, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_okt.'</td>';
+					$output .= '<td align="right">'.number_format($nov, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_nov.'</td>';
+					$output .= '<td align="right">'.number_format($xnov, 2, ',', '.');
+					$output .= '<br>'.$tgl_bayar_xnov.'</td>';
+				}else{
+					$output .= '<td align="right">'.number_format($xdes, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($des, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($jan, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($feb, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($mar, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($apr, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($mei, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($jun, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($jul, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($agu, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($sep, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($okt, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($nov, 2, ',', '.').'</td>';
+					$output .= '<td align="right">'.number_format($xnov, 2, ',', '.').'</td>';
+				}
 				//$new=0;
 				//$output .= '<tr>';
 				$jumlahperayat += $jumlahtemp;
@@ -805,34 +822,51 @@ function GetCetakHTML2($data) {
 		if(empty($data[$i2]))
 		{
 			$jumlahperayat += $jumlahtemp;
-			$output .= '<td align="right">'.number_format($xdes, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_xdes.'</td>';
-			$output .= '<td align="right">'.number_format($des, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_des.'</td>';
-			$output .= '<td align="right">'.number_format($jan, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_jan.'</td>';
-			$output .= '<td align="right">'.number_format($feb, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_feb.'</td>';
-			$output .= '<td align="right">'.number_format($mar, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_mar.'</td>';
-			$output .= '<td align="right">'.number_format($apr, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_apr.'</td>';
-			$output .= '<td align="right">'.number_format($mei, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_mei.'</td>';
-			$output .= '<td align="right">'.number_format($jun, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_jun.'</td>';
-			$output .= '<td align="right">'.number_format($jul, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_jul.'</td>';
-			$output .= '<td align="right">'.number_format($agu, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_agu.'</td>';
-			$output .= '<td align="right">'.number_format($sep, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_sep.'</td>';
-			$output .= '<td align="right">'.number_format($okt, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_okt.'</td>';
-			$output .= '<td align="right">'.number_format($nov, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_nov.'</td>';
-			$output .= '<td align="right">'.number_format($xnov, 2, ',', '.');
-			$output .= '<br>'.$tgl_bayar_xnov.'</td>';
+			if($tgl_bayar==1){
+				$output .= '<td align="right">'.number_format($xdes, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_xdes.'</td>';
+				$output .= '<td align="right">'.number_format($des, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_des.'</td>';
+				$output .= '<td align="right">'.number_format($jan, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_jan.'</td>';
+				$output .= '<td align="right">'.number_format($feb, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_feb.'</td>';
+				$output .= '<td align="right">'.number_format($mar, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_mar.'</td>';
+				$output .= '<td align="right">'.number_format($apr, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_apr.'</td>';
+				$output .= '<td align="right">'.number_format($mei, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_mei.'</td>';
+				$output .= '<td align="right">'.number_format($jun, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_jun.'</td>';
+				$output .= '<td align="right">'.number_format($jul, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_jul.'</td>';
+				$output .= '<td align="right">'.number_format($agu, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_agu.'</td>';
+				$output .= '<td align="right">'.number_format($sep, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_sep.'</td>';
+				$output .= '<td align="right">'.number_format($okt, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_okt.'</td>';
+				$output .= '<td align="right">'.number_format($nov, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_nov.'</td>';
+				$output .= '<td align="right">'.number_format($xnov, 2, ',', '.');
+				$output .= '<br>'.$tgl_bayar_xnov.'</td>';
+			}else{
+				$output .= '<td align="right">'.number_format($xdes, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($des, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jan, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($feb, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($mar, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($apr, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($mei, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jun, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($jul, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($agu, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($sep, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($okt, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($nov, 2, ',', '.').'</td>';
+				$output .= '<td align="right">'.number_format($xnov, 2, ',', '.').'</td>';
+			}
 			
 			$output .= '<td align="right">'.number_format($jumlah_per_wp, 2, ',', '.').'</td>';
 			$output .= '<td align="right">'.$jumlah_bulan_bayar.'</td>';
