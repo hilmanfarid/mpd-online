@@ -279,8 +279,8 @@ class FormCetak extends FPDF {
 		$this->SetFont('BKANT', 'U', 10);
 		// $this->Cell($this->lengthCell, $this->height, "", "LR", 0, 'C');
 		// $this->newLine();
-		$ttd = CCGetFromGet("ttd", 1);
-		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN ".numberToRoman($ttd), "LR", 0, 'C');
+		$teg_ke = CCGetFromGet("teg_ke", 1);
+		$this->Cell($this->lengthCell, $this->height, "SURAT TEGURAN ".numberToRoman($teg_ke), "LR", 0, 'C');
 		$this->Ln();
 		$this->SetFont('BKANT', '', 10);
 		$data["letter_no"]=trim($data["letter_no"]);
