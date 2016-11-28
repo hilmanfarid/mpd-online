@@ -83,6 +83,24 @@ from p_business_area ">
 					<Attributes/>
 					<Features/>
 				</ListBox>
+				<ListBox id="572" visible="Yes" fieldSourceType="DBColumn" sourceType="ListOfValues" dataType="Text" returnValueType="Number" name="tgl_bayar" wizardEmptyCaption="Select Value" PathID="t_rep_bppsSearchtgl_bayar" connection="ConnSIKP" dataSource="1;Ya;0;Tidak" required="True" _valueOfList="0" _nameOfList="Tidak">
+					<Components/>
+					<Events>
+						<Event name="OnChange" type="Client">
+							<Actions>
+								<Action actionName="Custom Code" actionCategory="General" id="573" eventType="Client"/>
+							</Actions>
+						</Event>
+					</Events>
+					<TableParameters/>
+					<SPParameters/>
+					<SQLParameters/>
+					<JoinTables/>
+					<JoinLinks/>
+					<Fields/>
+					<Attributes/>
+					<Features/>
+				</ListBox>
 </Components>
 			<Events/>
 			<TableParameters/>
