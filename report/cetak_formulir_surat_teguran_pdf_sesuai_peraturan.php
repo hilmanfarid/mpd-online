@@ -580,7 +580,12 @@ class FormCetak extends FPDF {
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
 		$this->Cell($lbody4, $this->height, "", "", 0, 'C');
 		//$this->Cell($lbody4, $this->height, "Bandung, " .$data['letter_date_txt'] /*. $data["tanggal"]*/, "", 0, 'C');
-		$this->Cell($lbody4, $this->height, "Bandung, ". date('d-m-Y') /*. $data["tanggal"]*/, "", 0, 'C');
+		$tgl_cetak = CCGetFromGet("tgl_cetak", 1);
+		if ($tgl_cetak==1){
+			$this->Cell($lbody4, $this->height, "Bandung, ". date('d-m-Y') /*. $data["tanggal"]*/, "", 0, 'C');
+		}else{
+			$this->Cell($lbody4, $this->height, "Bandung, .......................................", "", 0, 'C');
+		}
 		$this->Cell($lbody2, $this->height, "", "R", 0, 'C');
 		$this->Ln();
 		
