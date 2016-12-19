@@ -45,7 +45,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
     // Class variables
 //End Variables
 
-//Class_Initialize Event @3-23779843
+//Class_Initialize Event @3-B9035CFA
     function clsRecordLOV($RelativePath, & $Parent)
     {
 
@@ -99,6 +99,8 @@ class clsRecordLOV { //LOV Class @3-40E97705
             $this->p_cg_terminal_id->Required = true;
             $this->DatePicker_tgl_penerimaan = & new clsDatePicker("DatePicker_tgl_penerimaan", "LOV", "payment_date", $this);
             $this->payment_date = & new clsControl(ccsTextBox, "payment_date", "payment_date", ccsText, "", CCGetRequestParam("payment_date", $Method, NULL), $this);
+            $this->penalty_amount = & new clsControl(ccsTextBox, "penalty_amount", "penalty_amount", ccsText, "", CCGetRequestParam("penalty_amount", $Method, NULL), $this);
+            $this->penalty_amount->Required = true;
         }
     }
 //End Class_Initialize Event
@@ -114,7 +116,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
     }
 //End Initialize Method
 
-//Validate Method @3-C05849E1
+//Validate Method @3-2B4A4351
     function Validate()
     {
         global $CCSLocales;
@@ -132,6 +134,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
         $Validation = ($this->is_bjb->Validate() && $Validation);
         $Validation = ($this->p_cg_terminal_id->Validate() && $Validation);
         $Validation = ($this->payment_date->Validate() && $Validation);
+        $Validation = ($this->penalty_amount->Validate() && $Validation);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "OnValidate", $this);
         $Validation =  $Validation && ($this->npwd->Errors->Count() == 0);
         $Validation =  $Validation && ($this->t_vat_setllement_id->Errors->Count() == 0);
@@ -145,11 +148,12 @@ class clsRecordLOV { //LOV Class @3-40E97705
         $Validation =  $Validation && ($this->is_bjb->Errors->Count() == 0);
         $Validation =  $Validation && ($this->p_cg_terminal_id->Errors->Count() == 0);
         $Validation =  $Validation && ($this->payment_date->Errors->Count() == 0);
+        $Validation =  $Validation && ($this->penalty_amount->Errors->Count() == 0);
         return (($this->Errors->Count() == 0) && $Validation);
     }
 //End Validate Method
 
-//CheckErrors Method @3-F70E2743
+//CheckErrors Method @3-DC6B1E80
     function CheckErrors()
     {
         $errors = false;
@@ -166,6 +170,7 @@ class clsRecordLOV { //LOV Class @3-40E97705
         $errors = ($errors || $this->p_cg_terminal_id->Errors->Count());
         $errors = ($errors || $this->DatePicker_tgl_penerimaan->Errors->Count());
         $errors = ($errors || $this->payment_date->Errors->Count());
+        $errors = ($errors || $this->penalty_amount->Errors->Count());
         $errors = ($errors || $this->Errors->Count());
         $errors = ($errors || $this->DataSource->Errors->Count());
         return $errors;
@@ -223,7 +228,7 @@ function GetPrimaryKey($keyName)
     }
 //End Operation Method
 
-//UpdateRow Method @3-87053EB4
+//UpdateRow Method @3-7766964E
     function UpdateRow()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeUpdate", $this);
@@ -238,13 +243,14 @@ function GetPrimaryKey($keyName)
         $this->DataSource->p_cg_terminal_id->SetValue($this->p_cg_terminal_id->GetValue(true));
         $this->DataSource->payment_date->SetValue($this->payment_date->GetValue(true));
         $this->DataSource->is_bjb->SetValue($this->is_bjb->GetValue(true));
+        $this->DataSource->penalty_amount->SetValue($this->penalty_amount->GetValue(true));
         $this->DataSource->Update();
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "AfterUpdate", $this);
         return (!$this->CheckErrors());
     }
 //End UpdateRow Method
 
-//Show Method @3-BC316417
+//Show Method @3-E8262839
     function Show()
     {
         global $CCSUseAmp;
@@ -286,6 +292,7 @@ function GetPrimaryKey($keyName)
                     $this->is_bjb->SetValue($this->DataSource->is_bjb->GetValue());
                     $this->p_cg_terminal_id->SetValue($this->DataSource->p_cg_terminal_id->GetValue());
                     $this->payment_date->SetValue($this->DataSource->payment_date->GetValue());
+                    $this->penalty_amount->SetValue($this->DataSource->penalty_amount->GetValue());
                 }
             } else {
                 $this->EditMode = false;
@@ -307,6 +314,7 @@ function GetPrimaryKey($keyName)
             $Error = ComposeStrings($Error, $this->p_cg_terminal_id->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DatePicker_tgl_penerimaan->Errors->ToString());
             $Error = ComposeStrings($Error, $this->payment_date->Errors->ToString());
+            $Error = ComposeStrings($Error, $this->penalty_amount->Errors->ToString());
             $Error = ComposeStrings($Error, $this->Errors->ToString());
             $Error = ComposeStrings($Error, $this->DataSource->Errors->ToString());
             $Tpl->SetVar("Error", $Error);
@@ -340,6 +348,7 @@ function GetPrimaryKey($keyName)
         $this->p_cg_terminal_id->Show();
         $this->DatePicker_tgl_penerimaan->Show();
         $this->payment_date->Show();
+        $this->penalty_amount->Show();
         $Tpl->parse();
         $Tpl->block_path = $ParentPath;
         $this->DataSource->close();
@@ -350,7 +359,7 @@ function GetPrimaryKey($keyName)
 
 class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026EF
 
-//DataSource Variables @3-304C048F
+//DataSource Variables @3-F5F685E8
     var $Parent = "";
     var $CCSEvents = "";
     var $CCSEventResult;
@@ -375,9 +384,10 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     var $is_bjb;
     var $p_cg_terminal_id;
     var $payment_date;
+    var $penalty_amount;
 //End DataSource Variables
-	var $itemResult;
-//DataSourceClass_Initialize Event @3-F39DCD0F
+
+//DataSourceClass_Initialize Event @3-9E374F3C
     function clsLOVDataSource(& $Parent)
     {
         $this->Parent = & $Parent;
@@ -407,6 +417,8 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         
         $this->payment_date = new clsField("payment_date", ccsText, "");
         
+        $this->penalty_amount = new clsField("penalty_amount", ccsText, "");
+        
 
     }
 //End DataSourceClass_Initialize Event
@@ -422,14 +434,14 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End Prepare Method
 
-//Open Method @3-77E919CC
+//Open Method @3-D7ECB7D1
     function Open()
     {
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildSelect", $this->Parent);
         $this->SQL = "select a.t_vat_setllement_id, a.npwd,a.no_kohir, a.is_settled,a.total_trans_amount,\n" .
         "a.total_vat_amount,to_char(payment_date,'dd-mm-yyyy') as payment_date,\n" .
         "p_cg_terminal_id,case when kode_bank = '110' then 1 else 2 end as is_bjb,\n" .
-        "b.receipt_no,b.payment_amount,b.payment_vat_amount\n" .
+        "b.receipt_no,b.payment_amount,b.payment_vat_amount,b.penalty_amount\n" .
         "from t_vat_setllement a\n" .
         "LEFT JOIN t_payment_receipt b on a.t_vat_setllement_id = b.t_vat_setllement_id\n" .
         "where a.t_vat_setllement_id=" . $this->SQLValue($this->wp->GetDBValue("1"), ccsFloat) . "";
@@ -441,7 +453,7 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
     }
 //End Open Method
 
-//SetValues Method @3-34E2B9FB
+//SetValues Method @3-35C1F343
     function SetValues()
     {
         $this->npwd->SetDBValue($this->f("npwd"));
@@ -456,10 +468,11 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         $this->is_bjb->SetDBValue($this->f("is_bjb"));
         $this->p_cg_terminal_id->SetDBValue($this->f("p_cg_terminal_id"));
         $this->payment_date->SetDBValue($this->f("payment_date"));
+        $this->penalty_amount->SetDBValue($this->f("penalty_amount"));
     }
 //End SetValues Method
 
-//Update Method @3-7DFF96F7
+//Update Method @3-E8B09861
     function Update()
     {
         global $CCSLocales;
@@ -476,6 +489,7 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         $this->cp["p_cg_terminal_id"] = new clsSQLParameter("ctrlp_cg_terminal_id", ccsText, "", "", $this->p_cg_terminal_id->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["payment_date"] = new clsSQLParameter("ctrlpayment_date", ccsText, "", "", $this->payment_date->GetValue(true), "", false, $this->ErrorBlock);
         $this->cp["is_bjb"] = new clsSQLParameter("ctrlis_bjb", ccsInteger, "", "", $this->is_bjb->GetValue(true), 1, false, $this->ErrorBlock);
+        $this->cp["penalty_amount"] = new clsSQLParameter("ctrlpenalty_amount", ccsFloat, "", "", $this->penalty_amount->GetValue(true), 0, false, $this->ErrorBlock);
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeBuildUpdate", $this->Parent);
         if (!is_null($this->cp["t_vat_setllement_id"]->GetValue()) and !strlen($this->cp["t_vat_setllement_id"]->GetText()) and !is_bool($this->cp["t_vat_setllement_id"]->GetValue())) 
             $this->cp["t_vat_setllement_id"]->SetValue($this->t_vat_setllement_id->GetValue(true));
@@ -511,7 +525,11 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
             $this->cp["is_bjb"]->SetValue($this->is_bjb->GetValue(true));
         if (!strlen($this->cp["is_bjb"]->GetText()) and !is_bool($this->cp["is_bjb"]->GetValue(true))) 
             $this->cp["is_bjb"]->SetText(1);
-        $this->SQL = "SELECT * from f_ubah_data_register3(\n" .
+        if (!is_null($this->cp["penalty_amount"]->GetValue()) and !strlen($this->cp["penalty_amount"]->GetText()) and !is_bool($this->cp["penalty_amount"]->GetValue())) 
+            $this->cp["penalty_amount"]->SetValue($this->penalty_amount->GetValue(true));
+        if (!strlen($this->cp["penalty_amount"]->GetText()) and !is_bool($this->cp["penalty_amount"]->GetValue(true))) 
+            $this->cp["penalty_amount"]->SetText(0);
+        $this->SQL = "SELECT * from f_ubah_data_register4(\n" .
         "" . $this->SQLValue($this->cp["t_vat_setllement_id"]->GetDBValue(), ccsInteger) . ", \n" .
         "" . $this->SQLValue($this->cp["total_trans_amount"]->GetDBValue(), ccsFloat) . ", \n" .
         "" . $this->SQLValue($this->cp["total_vat_amount"]->GetDBValue(), ccsFloat) . ", \n" .
@@ -522,7 +540,8 @@ class clsLOVDataSource extends clsDBConnSIKP {  //LOVDataSource Class @3-D70026E
         "'" . $this->SQLValue($this->cp["user_name"]->GetDBValue(), ccsText) . "',\n" .
         "'" . $this->SQLValue($this->cp["payment_date"]->GetDBValue(), ccsText) . "',\n" .
         "" . $this->SQLValue($this->cp["is_bjb"]->GetDBValue(), ccsInteger) . ",\n" .
-        "'" . $this->SQLValue($this->cp["p_cg_terminal_id"]->GetDBValue(), ccsText) . "'\n" .
+        "'" . $this->SQLValue($this->cp["p_cg_terminal_id"]->GetDBValue(), ccsText) . "',\n" .
+        "" . $this->SQLValue($this->cp["penalty_amount"]->GetDBValue(), ccsFloat) . "\n" .
         ") AS msg";
         $this->CCSEventResult = CCGetEvent($this->CCSEvents, "BeforeExecuteUpdate", $this->Parent);
         if($this->Errors->Count() == 0 && $this->CmdExecution) {
