@@ -3,7 +3,7 @@
 		<Record id="3" sourceType="SQL" urlType="Relative" secured="False" allowInsert="False" allowUpdate="True" allowDelete="False" validateData="True" preserveParameters="None" returnValueType="Number" returnValueTypeForDelete="Number" returnValueTypeForInsert="Number" returnValueTypeForUpdate="Number" name="LOV" returnPage="t_vat_setllement_ubah_register.ccp" PathID="LOV" connection="ConnSIKP" pasteActions="pasteActions" parameterTypeListName="ParameterTypeList" activeCollection="USQLParameters" dataSource="select a.t_vat_setllement_id, a.npwd,a.no_kohir, a.is_settled,a.total_trans_amount,
 a.total_vat_amount,to_char(payment_date,'dd-mm-yyyy') as payment_date,
 p_cg_terminal_id,case when kode_bank = '110' then 1 else 2 end as is_bjb,
-b.receipt_no,b.payment_amount,b.payment_vat_amount
+b.receipt_no,b.payment_amount,b.payment_vat_amount,b.penalty_amount
 from t_vat_setllement a
 LEFT JOIN t_payment_receipt b on a.t_vat_setllement_id = b.t_vat_setllement_id
 where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" customUpdate="SELECT * from f_ubah_data_register3(
@@ -17,7 +17,8 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 '{user_name}',
 '{payment_date}',
 {is_bjb},
-'{p_cg_terminal_id}'
+'{p_cg_terminal_id}',
+{penalty_amount}
 ) AS msg" pasteAsReplace="pasteAsReplace">
 			<Components>
 				<TextBox id="5" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="npwd" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVnpwd" fieldSource="npwd" required="True">
@@ -98,19 +99,25 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 					<Attributes/>
 					<Features/>
 				</ListBox>
-<TextBox id="63" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_cg_terminal_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVp_cg_terminal_id" fieldSource="p_cg_terminal_id" required="True">
+				<TextBox id="63" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="p_cg_terminal_id" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVp_cg_terminal_id" fieldSource="p_cg_terminal_id" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</TextBox>
-<DatePicker id="65" name="DatePicker_tgl_penerimaan" control="payment_date" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="LOVDatePicker_tgl_penerimaan">
+				<DatePicker id="65" name="DatePicker_tgl_penerimaan" control="payment_date" wizardSatellite="True" wizardControl="valid_from" wizardDatePickerType="Image" wizardPicture="../Styles/CoffeeBreak/Images/DatePicker.gif" style="../Styles/sikp/Style.css" PathID="LOVDatePicker_tgl_penerimaan">
 					<Components/>
 					<Events/>
 					<Attributes/>
 					<Features/>
 				</DatePicker>
-<TextBox id="64" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="payment_date" PathID="LOVpayment_date" format="dd-mm-yyyy" fieldSource="payment_date">
+				<TextBox id="64" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="payment_date" PathID="LOVpayment_date" format="dd-mm-yyyy" fieldSource="payment_date">
+					<Components/>
+					<Events/>
+					<Attributes/>
+					<Features/>
+				</TextBox>
+				<TextBox id="69" visible="Yes" fieldSourceType="DBColumn" dataType="Text" name="penalty_amount" wizardTheme="None" wizardThemeType="File" wizardThemeVersion="3.0" PathID="LOVpenalty_amount" fieldSource="penalty_amount" required="True">
 					<Components/>
 					<Events/>
 					<Attributes/>
@@ -174,8 +181,9 @@ where a.t_vat_setllement_id={t_vat_setllement_id}" customUpdateType="SQL" custom
 				<SQLParameter id="58" variable="payment_vat_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="payment_vat_amount"/>
 				<SQLParameter id="60" variable="user_name" parameterType="Session" dataType="Text" parameterSource="UserLogin"/>
 				<SQLParameter id="66" variable="p_cg_terminal_id" parameterType="Control" dataType="Text" parameterSource="p_cg_terminal_id"/>
-<SQLParameter id="67" variable="payment_date" parameterType="Control" dataType="Text" parameterSource="payment_date"/>
-<SQLParameter id="68" variable="is_bjb" parameterType="Control" defaultValue="1" dataType="Integer" parameterSource="is_bjb"/>
+				<SQLParameter id="67" variable="payment_date" parameterType="Control" dataType="Text" parameterSource="payment_date"/>
+				<SQLParameter id="68" variable="is_bjb" parameterType="Control" defaultValue="1" dataType="Integer" parameterSource="is_bjb"/>
+				<SQLParameter id="70" variable="penalty_amount" parameterType="Control" defaultValue="0" dataType="Float" parameterSource="penalty_amount"/>
 </USQLParameters>
 			<UConditions/>
 			<UFormElements>
