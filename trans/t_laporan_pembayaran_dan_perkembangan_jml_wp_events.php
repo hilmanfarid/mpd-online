@@ -255,8 +255,8 @@ function Page_BeforeShow(& $sender)
 
 	$output.='<th align="center" >NO</th>';
 	$output.='<th align="center" >JENIS PAJAK</th>';
+	$output.='<th align="center" >YANG BELUM BAYAR</th>';
 	$output.='<th align="center" >SELURUHNYA</th>';
-	$output.='<th align="center" >YANG SUDAH BAYAR</th>';
 	$output.='<th align="center" >PERSENTASE</th></tr>';
 
 	$total_o_jml_wp_blum_bayar = 0;
