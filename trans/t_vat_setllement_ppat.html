@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>p_rqst_type</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.maskMoney.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","left=0,top=0,width=500,height=580,toolbar=no,scrollbars=yes,resizable=yes");
+}
+//Begin CCS script
+
+//Include Common JSFunctions @1-9722A627
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include Common JSFunctions
+
+//t_vat_setllementFormButton_Delete_OnClick @26-7B6BDCA8
+function t_vat_setllementFormButton_Delete_OnClick()
+{
+    var result = true;
+//End t_vat_setllementFormButton_Delete_OnClick
+
+//Confirmation Message @27-8243B274
+    return confirm('Delete record?');
+//End Confirmation Message
+
+//Close t_vat_setllementFormButton_Delete_OnClick @26-BC33A33A
+    return result;
+}
+//End Close t_vat_setllementFormButton_Delete_OnClick
+
+//t_vat_setllementFormButton_Cancel_OnClick @28-1E821BF5
+function t_vat_setllementFormButton_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End t_vat_setllementFormButton_Cancel_OnClick
+
+//bind_events @1-57199209
+function bind_events() {
+    addEventHandler("t_vat_setllementFormButton_Delete", "click", t_vat_setllementFormButton_Delete_OnClick);
+    addEventHandler("t_vat_setllementFormButton_Cancel", "click", t_vat_setllementFormButton_Cancel_OnClick);
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+
+//End CCS script
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    /*$("#t_vat_setllementFormp_vat_type_dtl_id").bind("change paste keyup", function() {
+       alert('tes'); 
+    });*/
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        SURAT TAGIHAN DENDA PROFESI 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>
+        <!-- BEGIN Record t_vat_setllementForm -->
+        <form id="t_vat_setllementForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>PELAPORAN SURAT TAGIHAN DENDA PROFESI</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="5">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th" colspan="2">Nama&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_setllementFormppat_name" class="ControlsRQ" value="{ppat_name}" maxlength="32" size="32" name="{ppat_name_Name}">&nbsp;<img onclick="javascript:lov_ppat()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormt_ppat_id" value="{t_ppat_id}" type="hidden" name="{t_ppat_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="2">Alamat</td> 
+                    <td colspan="3"><input id="t_vat_setllementFormaddress_name" class="ControlsRQ" value="{address_name}" maxlength="14" size="60" name="{address_name_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="2">No. SK Pengukuhan PPAT/S</td> 
+                    <td colspan="3"><input id="t_vat_setllementFormno_sk" class="ControlsRQ" value="{no_sk}" maxlength="32" size="32" name="{no_sk_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" rowspan="2">Denda Atas&nbsp;Pelaporan Bulan</td> 
+                    <td class="th">Tahun&nbsp;</td> 
+                    <td colspan="3"><input id="t_vat_setllementFormyear_code" class="ControlsIN" value="{year_code}" readonly maxlength="32" size="32" name="{year_code_Name}">&nbsp;<img onclick="javascript:lov_year_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_year_period_id" value="{p_year_period_id}" type="hidden" name="{p_year_period_id_Name}">&nbsp;</td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="2">Bulan</td> 
+                    <td colspan="2"><input id="t_vat_setllementFormfinance_period_code" class="ControlsIN" value="{finance_period_code}" readonly maxlength="32" size="32" name="{finance_period_code_Name}">&nbsp;<img onclick="javascript:lov_period()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_finance_period_id" value="{p_finance_period_id}" type="hidden" name="{p_finance_period_id_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" rowspan="3"><label for="p_rqst_typeFormcode">Denda atas AJB yang <br>
+                      ditandatangani sebelum <br>
+                      pembayaran BPHTB</label></td> 
+                    <td>&nbsp;</td> 
+                    <td colspan="3"><input style="TEXT-ALIGN: left; WIDTH: 247px; HEIGHT: 20px" id="t_vat_setllementFormsanksi_ajb" class="ControlsIN" value="{sanksi_ajb}" maxlength="14" size="31" name="{sanksi_ajb_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td colspan="2">&nbsp;Tahun</td> 
+                    <td colspan="2"><input id="t_vat_setllementFormyear_code_ajb" class="ControlsIN" value="{year_code_ajb}" readonly maxlength="32" size="32" name="{year_code_ajb_Name}">&nbsp;<img onclick="javascript:lov_year_period_ajb()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_year_period_id_ajb" value="{p_year_period_id_ajb}" type="hidden" name="{p_year_period_id_ajb_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td colspan="2">&nbsp;Bulan</td> 
+                    <td colspan="2"><input id="t_vat_setllementFormfinance_period_code_ajb" class="ControlsIN" value="{finance_period_code_ajb}" readonly maxlength="32" size="32" name="{finance_period_code_ajb_Name}">&nbsp;<img onclick="javascript:lov_period_ajb()" border="0" src="../images/view.gif">&nbsp;<input id="t_vat_setllementFormp_finance_period_id_ajb" value="{p_finance_period_id_ajb}" type="hidden" name="{p_finance_period_id_ajb_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="2"><label for="t_vat_setllementFormcreated_by">Dibuat Oleh</label></td> 
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreated_by" class="ControlsRO" value="{created_by}" readonly maxlength="12" size="15" name="{created_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormcreation_date" class="ControlsRO" value="{creation_date}" readonly maxlength="100" size="15" name="{creation_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Controls">
+                    <td class="th" colspan="2"><label for="t_vat_setllementFormupdated_by">Diubah Oleh</label></td> 
+                    <td colspan="3"><input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_by" class="ControlsRO" value="{updated_by}" readonly maxlength="15" size="15" name="{updated_by_Name}">; Tanggal : <input style="TEXT-TRANSFORM: uppercase" id="t_vat_setllementFormupdated_date" class="ControlsRO" value="{updated_date}" readonly maxlength="100" size="15" name="{updated_date_Name}"></td>
+                  </tr>
+ 
+                  <tr class="Bottom">
+                    <td colspan="5" align="right">
+                      <!-- BEGIN Button Button1 --><input id="t_vat_setllementFormButton1" class="btn_tambah" value="SUBMIT" alt="Button1" type="submit" name="{Button_Name}"><!-- END Button Button1 -->
+                      <!-- BEGIN Button Button_Insert --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Insert" class="btn_tambah" value="SIMPAN" alt="Add" type="submit" name="{Button_Name}"><!-- END Button Button_Insert -->
+                      <!-- BEGIN Button Button_Update --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Update" class="btn_tambah" value="SIMPAN" alt="Submit" type="submit" name="{Button_Name}"><!-- END Button Button_Update -->
+                      <!-- BEGIN Button Button_Delete --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Delete" class="btn_tambah" value="HAPUS" alt="Delete" type="submit" name="{Button_Name}"><!-- END Button Button_Delete -->
+                      <!-- BEGIN Button Button_Cancel --><input style="DISPLAY: none" id="t_vat_setllementFormButton_Cancel" class="btn_tambah" value="BATAL" alt="Cancel" type="submit" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_setllementForm --><br>
+      </td> 
+      <td valign="top">
+        <table style="DISPLAY: none" id="table-piutang" class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="top">
+              <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                  <td class="th"><strong>INFORMASI PAJAK BELUM BAYAR</strong></td> 
+                  <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                </tr>
+              </table>
+ 
+              <table id="table-piutang-detil" class="Grid" border="1" cellspacing="0" cellpadding="0">
+                <tr class="Caption">
+                  <th scope="col">&nbsp;PERIODE</th>
+ 
+                  <th scope="col">&nbsp;JENIS</th>
+                </tr>
+ 
+                <tr>
+                  <td>1 </td> 
+                  <td>tes </td>
+                </tr>
+ 
+                <tr>
+                  <td>2 </td> 
+                  <td>tes </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <div>
+    </div>
+ 
+    <script type="text/javascript" src="../js/lov.js"></script>
+    <script language="javascript">
+function lov_ppat() {
+        getFrom_LOV('t_vat_setllementForm','t_ppat_id,ppat_name,address_name','lov_ppat.php');
+}
+
+function lov_year_period() {
+        getFrom_LOV('t_vat_setllementForm','p_year_period_id,year_code','lov_year_period.php');
+}
+
+function lov_year_period_ajb() {
+        getFrom_LOV('t_vat_setllementForm','p_year_period_id_ajb,year_code_ajb','lov_year_period.php');
+}
+
+function lov_period() {
+        var yearId = document.getElementById("t_vat_setllementFormp_year_period_id").value;
+        if (yearId != "" && yearId != 0 && yearId != false && yearId != undefined &&  yearId != null){
+           getFrom_LOV("t_vat_setllementForm", "p_finance_period_id,finance_period_code", "lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode Pajak&LABEL2=Deskripsi&HEADER_PAGE=PERIODE PAJAK&HEADER_LOV=DAFTAR PERIODE PAJAK&FIELD_3=AND p_year_period_id=" + yearId + "ORDER BY start_date");
+        }else{
+            alert("Periode Tahun Year belum Diisi");
+        }
+}
+function lov_period_ajb() {
+        var yearId = document.getElementById("t_vat_setllementFormp_year_period_id_ajb").value;
+        if (yearId != "" && yearId != 0 && yearId != false && yearId != undefined &&  yearId != null){
+           getFrom_LOV("t_vat_setllementForm", "p_finance_period_id_ajb,finance_period_code_ajb", "lov_2_field.php?TABLE=p_finance_period&FIELD_0=p_finance_period_id&FIELD_1=code&FIELD_2=description&LABEL1=Periode Pajak&LABEL2=Deskripsi&HEADER_PAGE=PERIODE PAJAK&HEADER_LOV=DAFTAR PERIODE PAJAK&FIELD_3=AND p_year_period_id=" + yearId + "ORDER BY start_date");
+        }else{
+            alert("Periode Tahun Year belum Diisi");
+        }
+}
+</script>
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+    <div>
+    </div>
+ 
+  </div>
+  </body>
+  </html>
