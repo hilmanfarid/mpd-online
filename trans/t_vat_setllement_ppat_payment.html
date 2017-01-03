@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>t_vat_setllement</title>
+<meta name="GENERATOR" content="CodeCharge Studio 4.3.00.7676">
+<link rel="stylesheet" type="text/css" href="../Styles/sikp/Style_doctype.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+function getFrom_LOV(formName,fieldList,LOV_NM)
+{
+        arrLOV = LOV_NM.split("?");
+        window.open("../lov/"+arrLOV[0]+"?FORM="+formName+"&OBJ="+fieldList+"&"+arrLOV[1],"LOV","width=600,height=500,toolbar=no,scrollbars=yes,resizable=yes");
+}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function()
+{
+    $(window).scroll(function()
+    {
+            $('#tabtop').css('top', $(window).scrollTop());
+    });
+});
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div style="POSITION: absolute; WIDTH: 99.9%; HEIGHT: 37px; BORDER-TOP: #a2a2a2 1px solid" id="tabtop" class="tab-container">
+  <div class="tab-background-styled">
+    <div class="th tab-button">
+      <div class="tab-title-selected">
+        PEMBAYARAN DENDA PROFESI 
+      </div>
+    </div>
+  </div>
+</div>
+<div style="CLEAR: both; PADDING-TOP: 50px">
+  <table class="module-container" border="0" cellspacing="0" cellpadding="0" align="center">
+    <tr>
+      <td>&nbsp; 
+        <!-- BEGIN Record t_vat_setllement_dtlSearch -->
+        <form id="t_vat_setllement_dtlSearch" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="search-field" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td valign="top">
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="2">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="search-field">NOMOR PAYMENT KEY: <input id="t_vat_setllement_dtlSearchs_keyword" class="ControlsIN" value="{s_keyword}" maxlength="32" size="32" name="{s_keyword_Name}">
+                      <td class="search-field">
+                        <!-- BEGIN Button Button_DoSearch --><input id="t_vat_setllement_dtlSearchButton_DoSearch" class="btn_tambah" value="CARI" alt="Search" type="submit" name="{Button_Name}"><!-- END Button Button_DoSearch --></td></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <!-- END Record t_vat_setllement_dtlSearch --><br>
+        <!-- BEGIN Record t_vat_setllementForm -->
+        <form id="t_vat_setllementForm" method="post" name="{HTMLFormName}" action="{Action}">
+          <table class="grid-table-container" border="0" cellspacing="0" cellpadding="0" width="20%">
+            <tr>
+              <td valign="top">
+                <table class="grid-table" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="HeaderLeft"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td> 
+                    <td class="th"><strong>INFORMASI</strong></td> 
+                    <td class="HeaderRight"><img border="0" alt="" src="../Styles/sikp/Images/Spacer.gif"></td>
+                  </tr>
+                </table>
+ 
+                <table class="Record" cellspacing="0" cellpadding="0">
+                  <!-- BEGIN Error -->
+                  <tr class="Error">
+                    <td colspan="5">{Error}</td>
+                  </tr>
+                  <!-- END Error -->
+                  <tr class="Controls">
+                    <td class="th" colspan="5">
+                      <tr class="Controls">
+                        <td class="th" colspan="2">Nama&nbsp;</td> 
+                        <td colspan="3"><input id="t_vat_setllementFormppat_name" class="ControlsRO" value="{ppat_name}" maxlength="32" size="32" name="{ppat_name_Name}"><input id="t_vat_setllementFormt_ppat_id" value="{t_ppat_id}" type="hidden" name="{t_ppat_id_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th" colspan="2">Alamat</td> 
+                        <td colspan="3"><input id="t_vat_setllementFormaddress_name" class="ControlsRO" value="{address_name}" maxlength="14" size="60" name="{address_name_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th" colspan="2">No. SK Pengukuhan PPAT/S</td> 
+                        <td colspan="3"><input id="t_vat_setllementFormno_sk" class="ControlsRO" value="{no_sk}" maxlength="32" size="32" name="{no_sk_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th" colspan="2">Jumlah Denda</td> 
+                        <td colspan="3"><input style="TEXT-ALIGN: right" id="t_vat_setllementFormtotal_vat_amount" class="ControlsRO" value="{total_vat_amount}" maxlength="32" size="32" name="{total_vat_amount_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th" rowspan="2">Denda Atas&nbsp;Pelaporan Bulan</td> 
+                        <td class="th">Tahun&nbsp;</td> 
+                        <td colspan="3"><input id="t_vat_setllementFormyear_period_code_denda_profesi" class="ControlsRO" value="{year_period_code_denda_profesi}" readonly maxlength="32" size="32" name="{year_period_code_denda_profesi_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th" colspan="2">Bulan</td> 
+                        <td colspan="2"><input id="t_vat_setllementFormfinance_period_code_denda_profesi" class="ControlsRO" value="{finance_period_code_denda_profesi}" readonly maxlength="32" size="32" name="{finance_period_code_denda_profesi_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td class="th" rowspan="3"><label for="p_rqst_typeFormcode">Denda atas AJB yang <br>
+                          ditandatangani sebelum <br>
+                          pembayaran BPHTB</label></td> 
+                        <td></td> 
+                        <td colspan="3"><input style="TEXT-ALIGN: left; WIDTH: 247px; HEIGHT: 20px" id="t_vat_setllementFormsanksi_ajb" class="ControlsRO" value="{sanksi_ajb}" maxlength="14" size="31" name="{sanksi_ajb_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td colspan="2">Tahun</td> 
+                        <td colspan="2"><input id="t_vat_setllementFormyear_period_code_denda_profesi_ajb" class="ControlsRO" value="{year_period_code_sanksi_ajb}" readonly maxlength="32" size="32" name="{year_period_code_sanksi_ajb_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Controls">
+                        <td colspan="2">Bulan</td> 
+                        <td colspan="2"><input id="t_vat_setllementFormfinance_period_code_denda_profesi_ajb" class="ControlsRO" value="{finance_period_code_sanksi_ajb}" readonly maxlength="32" size="32" name="{finance_period_code_sanksi_ajb_Name}"></td>
+                      </tr>
+ 
+                      <tr class="Bottom">
+                        <td colspan="5" align="right">&nbsp; 
+                          <!-- BEGIN Button cetak_payment --><input id="t_vat_setllementFormcetak_payment" class="btn_tambah" onclick="flagPayment('t_vat_setllementFormt_customer_order_id');" value="Flag Payment" alt="Button2" type="button" name="{Button_Name}"><!-- END Button cetak_payment --><input id="t_vat_setllementFormt_customer_order_id" value="{t_customer_order_id}" type="hidden" name="{t_customer_order_id_Name}">&nbsp; <input id="t_vat_setllementFormt_vat_setllement_id" value="{t_vat_setllement_id}" type="hidden" name="{t_vat_setllement_id_Name}"></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </form>
+            <!-- END Record t_vat_setllementForm -->
+            <p></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <script type="text/javascript" src="../js/lov.js"></script>
+    <script language="javascript">
+function popup(url) 
+{
+        params  = 'width=650';
+        params += ', height=500';
+        params += ', top=0, left=0';
+
+        newwin=window.open(url,'windowname4', params);
+        if (window.focus) {newwin.focus()}
+                return false;
+}
+
+function lov_npwd() {
+        getFrom_LOV('t_vat_setllementSearch','t_cust_account_id,npwd','lov_cust_account.php');
+}
+
+function lov_period() {
+        getFrom_LOV('t_vat_setllementSearch','p_finance_period_id,finance_period_code','lov_finance_period.php');
+}
+
+function lov_order() {
+        getFrom_LOV('t_vat_setllementSearch','t_customer_order_id,order_no','lov_customer_order.php');
+}
+
+function lov_rqst() {
+        getFrom_LOV('t_vat_setllementSearch','p_rqst_type_id,rqst_type_code','lov_2_field.php?TABLE=p_rqst_type&FIELD_0=p_rqst_type_id&FIELD_1=code&FIELD_2=description&FIELD_3=AND p_rqst_type_id IN(6,7,8,9,10)&LABEL1=Jenis Permohonan&LABEL2=Deskripsi&HEADER_PAGE=JENIS PERMOHONAN&HEADER_LOV=DAFTAR JENIS PERMOHONAN&ORDER=p_rqst_type_id');
+}
+
+
+function toActive(){
+        var takenCtl = document.getElementById('t_vat_setllementSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_vat_setllementSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_vat_setllementSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_vat_setllementSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_vat_setllementSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_vat_setllementSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_vat_setllementSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_vat_setllementSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_vat_setllementSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_vat_setllementSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_vat_setllementSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_vat_setllementSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_vat_setllementSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_vat_setllementSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_vat_setllementSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_vat_setllementSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_vat_setllementSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_vat_setllementSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_vat_setllementSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_vat_setllementSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_vat_setllementSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_vat_setllementSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_vat_setllementSearchSLOT_5').value;
+        var msg = document.getElementById('t_vat_setllementSearchMESSAGE').value;
+        
+         location.href="t_order_log_kronologis2.php?TAKEN_CTL="+takenCtl
+                                        +"&IS_TAKEN="+isTaken
+                                        +"&CURR_DOC_ID="+currDocId
+                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                        +"&CURR_PROC_ID="+currProcId
+                                        +"&CURR_CTL_ID="+currCtlId
+                                        +"&USER_ID_DOC="+userIdDoc
+                                        +"&USER_ID_DONOR="+userIdDonor
+                                        +"&USER_ID_LOGIN="+userIdLogin
+                                        +"&USER_ID_TAKEN="+userIdTaken
+                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                        +"&IS_MANUAL="+isManual
+                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                        +"&PREV_DOC_ID="+PrevDocId
+                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                        +"&PREV_PROC_ID="+PrevProcId
+                                        +"&PREV_CTL_ID="+PrevCtlId
+                                        +"&SLOT_1="+slot1
+                                        +"&SLOT_2="+slot2
+                                        +"&SLOT_3="+slot3
+                                        +"&SLOT_4="+slot4
+                                        +"&SLOT_5="+slot5
+                                        +"&MESSAGE="+msg;
+}
+
+function submitter(){
+        var takenCtl = document.getElementById('t_vat_setllementSearchTAKEN_CTL').value;
+        var isTaken = document.getElementById('t_vat_setllementSearchIS_TAKEN').value;
+        var currDocId = document.getElementById('t_vat_setllementSearchCURR_DOC_ID').value;
+        var currDocTypeId = document.getElementById('t_vat_setllementSearchCURR_DOC_TYPE_ID').value;
+        var currProcId = document.getElementById('t_vat_setllementSearchCURR_PROC_ID').value;
+        var currCtlId = document.getElementById('t_vat_setllementSearchCURR_CTL_ID').value;
+        var userIdDoc = document.getElementById('t_vat_setllementSearchUSER_ID_DOC').value;
+        var userIdDonor = document.getElementById('t_vat_setllementSearchUSER_ID_DONOR').value;
+        var userIdLogin = document.getElementById('t_vat_setllementSearchUSER_ID_LOGIN').value;
+        var userIdTaken = document.getElementById('t_vat_setllementSearchUSER_ID_TAKEN').value;
+        var isCreateDoc = document.getElementById('t_vat_setllementSearchIS_CREATE_DOC').value;
+        var isManual = document.getElementById('t_vat_setllementSearchIS_MANUAL').value;
+        var currProcStatus = document.getElementById('t_vat_setllementSearchCURR_PROC_STATUS').value;
+        var currDocStatus = document.getElementById('t_vat_setllementSearchCURR_DOC_STATUS').value;
+        var PrevDocId = document.getElementById('t_vat_setllementSearchPREV_DOC_ID').value;
+        var PrevDocTypeId = document.getElementById('t_vat_setllementSearchPREV_DOC_TYPE_ID').value;
+        var PrevProcId = document.getElementById('t_vat_setllementSearchPREV_PROC_ID').value;
+        var PrevCtlId = document.getElementById('t_vat_setllementSearchPREV_CTL_ID').value;
+        var slot1 = document.getElementById('t_vat_setllementSearchSLOT_1').value;
+        var slot2 = document.getElementById('t_vat_setllementSearchSLOT_2').value;
+        var slot3 = document.getElementById('t_vat_setllementSearchSLOT_3').value;
+        var slot4 = document.getElementById('t_vat_setllementSearchSLOT_4').value;
+        var slot5 = document.getElementById('t_vat_setllementSearchSLOT_5').value;
+        var msg = document.getElementById('t_vat_setllementSearchMESSAGE').value;
+        
+         var urlLink = "?TAKEN_CTL="+takenCtl
+                                        +"&IS_TAKEN="+isTaken
+                                        +"&CURR_DOC_ID="+currDocId
+                                        +"&CURR_DOC_TYPE_ID="+currDocTypeId
+                                        +"&CURR_PROC_ID="+currProcId
+                                        +"&CURR_CTL_ID="+currCtlId
+                                        +"&USER_ID_DOC="+userIdDoc
+                                        +"&USER_ID_DONOR="+userIdDonor
+                                        +"&USER_ID_LOGIN="+userIdLogin
+                                        +"&USER_ID_TAKEN="+userIdTaken
+                                        +"&IS_CREATE_DOC="+isCreateDoc
+                                        +"&IS_MANUAL="+isManual
+                                        +"&CURR_PROC_STATUS="+currProcStatus
+                                        +"&CURR_DOC_STATUS="+currDocStatus
+                                        +"&PREV_DOC_ID="+PrevDocId
+                                        +"&PREV_DOC_TYPE_ID="+PrevDocTypeId
+                                        +"&PREV_PROC_ID="+PrevProcId
+                                        +"&PREV_CTL_ID="+PrevCtlId
+                                        +"&SLOT_1="+slot1
+                                        +"&SLOT_2="+slot2
+                                        +"&SLOT_3="+slot3
+                                        +"&SLOT_4="+slot4
+                                        +"&SLOT_5="+slot5
+                                        +"&MESSAGE="+msg;
+     return popup("../workflow/php_submitter_start.php"+urlLink);
+}
+
+
+
+function cetakSptpd(pid,req){
+               
+               if (req == 1){
+                     var urlLink = "?t_vat_setllement_id="+pid;
+                     return popup("../report/cetak_sptpd_hotel_pdf.php"+urlLink);
+                }else if(req == 2){
+                     var urlLink = "?t_vat_setllement_id="+pid;
+                     return popup("../report/cetak_sptpd_restoran_pdf.php"+urlLink);
+                }else if(req == 3){
+                     var urlLink = "?t_vat_setllement_id="+pid;
+                     return popup("../report/cetak_sptpd_hiburan_pdf.php"+urlLink);     
+                        }else if(req == 4){
+                     var urlLink = "?t_vat_setllement_id="+pid;
+                     return popup("../report/cetak_sptpd_parkir_pdf.php"+urlLink);
+                }else if(req == 5){
+                     var urlLink = "?t_vat_setllement_id="+pid;
+                     return popup("../report/cetak_sptpd_ppj_pdf.php"+urlLink); 
+                }else{
+                     alert("Jenis Permohonan Tidak Diketahui");      
+                }
+              
+}
+
+function cetak_sspd(idCus){
+                 var urlLink = "?t_customer_order_id="+idCus;
+         return popup("../report/cetak_formulir_sspd_pdf.php"+urlLink);
+}
+
+function flagPayment(cust_order_id){
+        var id_order = document.getElementById(cust_order_id).value; 
+        if(confirm("Apakah Anda Yakin Untuk Menambahkan Flag Payment?"))
+        location.href=document.URL+"&action_button=flag_payment&t_customer_order_id="+id_order;
+}
+
+function cetakRegister(cust_order_id){
+                var id_order = document.getElementById(cust_order_id).value;
+        location.href=document.URL+"&action_button2=cetak_register&t_customer_order_id="+id_order;
+}
+</script>
+    </body>
+    </html>
